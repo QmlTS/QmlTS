@@ -59,6 +59,10 @@ export class RegistryQuery implements RegistryQueryInterface {
     }
   }
 
+  private static escapeRegExp(value: string): string {
+    return value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  }
+
   getModuleUris(): string[] {
     return [...this.moduleIndex.keys()];
   }
@@ -123,7 +127,12 @@ export class RegistryQuery implements RegistryQueryInterface {
   }
 
   searchTypes(pattern: string): QmlType[] {
-    const regexStr = '^' + pattern.replace(/\*/g, '.*') + '$';
+    const regexStr = '^'
+      + pattern
+        .split('*')
+        .map((segment) => RegistryQuery.escapeRegExp(segment))
+        .join('.*')
+      + '$';
     const regex = new RegExp(regexStr);
     const allTypes = [...this.registry.types, ...this.registry.builtins];
     return allTypes.filter((t) => regex.test(t.qmlName));
@@ -195,17 +204,9 @@ export class RegistryQuery implements RegistryQueryInterface {
 
     if (!inherited) return result;
 
-    const ownNames = new Set(result.map((p) => p.name));
-
-    // Walk up the inheritance chain
     const chain = this.getInheritanceChain(qualifiedName);
     for (const ancestor of chain) {
       for (const prop of ancestor.properties) {
-        if (ownNames.has(prop.name)) {
-          // Mark the inherited one as overridden (a descendant overrides it)
-          continue;
-        }
-        ownNames.add(prop.name);
         result.push({
           ...prop,
           declaredBy: ancestor.qualifiedName,

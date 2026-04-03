@@ -45,6 +45,11 @@ interface ModuleInfo {
   qmldirFile: RawQmldirFile;
 }
 
+interface MetatypesEntryInfo {
+  cls: RawMetatypesClass;
+  filePath: string;
+}
+
 interface ParsedExport {
   module: string;
   name: string;
@@ -130,13 +135,14 @@ export function normalize(
   }
 
   // 2. Build metatypes index
-  const metatypesIndex = new Map<string, RawMetatypesClass>();
+  const metatypesIndex = new Map<string, MetatypesEntryInfo>();
   for (const mtFile of metatypesFiles) {
     for (const entry of mtFile.entries) {
       for (const cls of entry.classes) {
-        metatypesIndex.set(cls.className, cls);
+        const info: MetatypesEntryInfo = { cls, filePath: mtFile.filePath };
+        metatypesIndex.set(cls.className, info);
         if (cls.qualifiedClassName !== cls.className) {
-          metatypesIndex.set(cls.qualifiedClassName, cls);
+          metatypesIndex.set(cls.qualifiedClassName, info);
         }
       }
     }
@@ -154,10 +160,14 @@ export function normalize(
 
     // Find which module this file belongs to
     let ownerModule: ModuleInfo | undefined;
+    let ownerModuleDirLength = -1;
     for (const [dirPath, mod] of dirToModule) {
-      if (fileDir === dirPath || fileDir.startsWith(dirPath + '/')) {
+      if (
+        (fileDir === dirPath || fileDir.startsWith(dirPath + '/'))
+        && dirPath.length > ownerModuleDirLength
+      ) {
         ownerModule = mod;
-        break;
+        ownerModuleDirLength = dirPath.length;
       }
     }
 
@@ -283,7 +293,7 @@ function buildQmlType(
   ownerModule: ModuleInfo | undefined,
   _isBuiltin: boolean,
   mapper: TypeNameMapper,
-  metatypesIndex: Map<string, RawMetatypesClass>,
+  metatypesIndex: Map<string, MetatypesEntryInfo>,
   referencedMetatypes: Set<string>,
   config: NormalizerConfig,
   diagnostics: ParseDiagnostic[],
@@ -346,7 +356,8 @@ function buildQmlType(
   const enums: QmlEnum[] = comp.enums.map((en) => mapEnum(en));
 
   // Check metatypes for supplementary info
-  const mtClass = metatypesIndex.get(comp.name);
+  const mtEntry = metatypesIndex.get(comp.name);
+  const mtClass = mtEntry?.cls;
   if (mtClass) {
     referencedMetatypes.add(comp.name);
     if (mtClass.qualifiedClassName !== comp.name) {
@@ -363,9 +374,8 @@ function buildQmlType(
   }
 
   const sources: TypeSource[] = [{ kind: 'qmltypes', filePath }];
-  if (mtClass) {
-    // Find metatypes file path from the index — use a placeholder since we track by class
-    sources.push({ kind: 'metatypes', filePath: '' });
+  if (mtEntry) {
+    sources.push({ kind: 'metatypes', filePath: mtEntry.filePath });
   }
 
   // Filter private if configured

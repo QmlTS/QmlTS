@@ -12,6 +12,8 @@ import type {
   BuildConfig, BuildResult, NormalizerConfig, ParseDiagnostic
 } from './types.js';
 
+const DEFAULT_PARSE_CONCURRENCY = 16;
+
 export class RegistryBuilder {
   async build(config: BuildConfig): Promise<BuildResult> {
     const startTime = performance.now();
@@ -38,11 +40,13 @@ export class RegistryBuilder {
 
     // Phase 3: Parse qmltypes files
     progress('parsing-qmltypes', 20, `Parsing ${scanResult.qmltypesFiles.length} qmltypes files...`);
-    const qmltypesResults = await Promise.all(
-      scanResult.qmltypesFiles.map(async (f) => {
+    const qmltypesResults = await mapWithConcurrency(
+      scanResult.qmltypesFiles,
+      DEFAULT_PARSE_CONCURRENCY,
+      async (f) => {
         const content = await readFile(f.absolutePath, 'utf-8');
         return parseQmltypes(content, f.absolutePath);
-      })
+      }
     );
     for (const r of qmltypesResults) {
       diagnostics.push(...r.diagnostics);
@@ -50,11 +54,13 @@ export class RegistryBuilder {
 
     // Phase 4: Parse qmldir files
     progress('parsing-qmldir', 40, `Parsing ${scanResult.qmldirFiles.length} qmldir files...`);
-    const qmldirResults = await Promise.all(
-      scanResult.qmldirFiles.map(async (f) => {
+    const qmldirResults = await mapWithConcurrency(
+      scanResult.qmldirFiles,
+      DEFAULT_PARSE_CONCURRENCY,
+      async (f) => {
         const content = await readFile(f.absolutePath, 'utf-8');
         return parseQmldir(content, f.absolutePath);
-      })
+      }
     );
     for (const r of qmldirResults) {
       diagnostics.push(...r.diagnostics);
@@ -62,11 +68,13 @@ export class RegistryBuilder {
 
     // Phase 5: Parse metatypes files
     progress('parsing-metatypes', 55, `Parsing ${scanResult.metatypesFiles.length} metatypes files...`);
-    const metatypesResults = await Promise.all(
-      scanResult.metatypesFiles.map(async (f) => {
+    const metatypesResults = await mapWithConcurrency(
+      scanResult.metatypesFiles,
+      DEFAULT_PARSE_CONCURRENCY,
+      async (f) => {
         const content = await readFile(f.absolutePath, 'utf-8');
         return parseMetatypes(content, f.absolutePath);
-      })
+      }
     );
     for (const r of metatypesResults) {
       diagnostics.push(...r.diagnostics);
@@ -149,4 +157,27 @@ export class RegistryBuilder {
 
     return result;
   }
+}
+
+async function mapWithConcurrency<T, R>(
+  items: T[],
+  concurrency: number,
+  worker: (item: T, index: number) => Promise<R>,
+): Promise<R[]> {
+  if (items.length === 0) return [];
+
+  const results = new Array<R>(items.length);
+  let nextIndex = 0;
+
+  const runWorker = async (): Promise<void> => {
+    while (true) {
+      const currentIndex = nextIndex++;
+      if (currentIndex >= items.length) return;
+      results[currentIndex] = await worker(items[currentIndex]!, currentIndex);
+    }
+  };
+
+  const workerCount = Math.min(concurrency, items.length);
+  await Promise.all(Array.from({ length: workerCount }, () => runWorker()));
+  return results;
 }

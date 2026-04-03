@@ -51,6 +51,13 @@ describe('RegistryQuery', () => {
       expect(results.some(t => t.qmlName === 'Rectangle')).toBe(true);
     });
 
+    test('searchTypes treats regex metacharacters literally except for wildcard star', () => {
+      const query = buildQuery();
+      expect(query.searchTypes('Rect(angle')).toHaveLength(0);
+      const results = query.searchTypes('Rect*gle');
+      expect(results.some(t => t.qmlName === 'Rectangle')).toBe(true);
+    });
+
     test('findByQualifiedName returns undefined for non-existent type', () => {
       const query = buildQuery();
       expect(query.findByQualifiedName('NonExistent')).toBeUndefined();
@@ -104,6 +111,63 @@ describe('RegistryQuery', () => {
       const defProp = query.getDefaultProperty('QQuickItem');
       expect(defProp).toBeDefined();
       expect(defProp!.name).toBe('data');
+    });
+
+    test('overridden inherited properties remain visible and are flagged', () => {
+      const registry = {
+        formatVersion: '1.0.0',
+        generatedAt: new Date().toISOString(),
+        qtVersion: '6.11.0',
+        qtDir: '/tmp/qt',
+        buildDuration: 1,
+        modules: [],
+        builtins: [],
+        stats: {
+          moduleCount: 0,
+          typeCount: 2,
+          builtinCount: 0,
+          sourceFiles: { qmltypes: 0, qmldir: 0, metatypes: 0 },
+        },
+        types: [
+          {
+            qualifiedName: 'Base',
+            qmlName: 'Base',
+            moduleUri: 'Test',
+            accessSemantics: 'reference',
+            exports: [],
+            creatable: true,
+            singleton: false,
+            properties: [{ name: 'x', type: 'int', cppType: 'int', readonly: false, constant: false, required: false, final: false, pointer: false, list: false, hasNotify: false }],
+            signals: [],
+            methods: [],
+            enums: [],
+            sources: [{ kind: 'qmltypes', filePath: 'base.qmltypes' }],
+          },
+          {
+            qualifiedName: 'Derived',
+            qmlName: 'Derived',
+            moduleUri: 'Test',
+            accessSemantics: 'reference',
+            baseType: 'Base',
+            exports: [],
+            creatable: true,
+            singleton: false,
+            properties: [{ name: 'x', type: 'double', cppType: 'double', readonly: false, constant: false, required: false, final: false, pointer: false, list: false, hasNotify: false }],
+            signals: [],
+            methods: [],
+            enums: [],
+            sources: [{ kind: 'qmltypes', filePath: 'derived.qmltypes' }],
+          },
+        ],
+      } as const;
+
+      const query = new RegistryQuery(registry);
+      const props = query.getAllProperties('Derived', true).filter((p) => p.name === 'x');
+      expect(props).toHaveLength(2);
+      expect(props[0]?.declaredBy).toBe('Derived');
+      expect(props[0]?.overridden).toBe(false);
+      expect(props[1]?.declaredBy).toBe('Base');
+      expect(props[1]?.overridden).toBe(true);
     });
   });
 

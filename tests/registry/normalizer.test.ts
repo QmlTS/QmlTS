@@ -105,4 +105,49 @@ describe('Normalizer', () => {
     const qtquick = result.registry.modules.find(m => m.uri === 'QtQuick');
     expect(qtquick).toBeDefined();
   });
+
+  test('prefers the most specific owner module for nested module directories', () => {
+    const qmltypesFiles: RawQmltypesFile[] = [
+      {
+        filePath: 'qml/QtQuick/Controls/plugins.qmltypes',
+        components: [
+          {
+            name: 'QQuickButton',
+            exports: [],
+            properties: [],
+            signals: [],
+            methods: [],
+            enums: [],
+          },
+        ],
+      },
+    ];
+    const qmldirFiles: RawQmldirFile[] = [
+      {
+        filePath: 'qml/QtQuick/qmldir',
+        module: 'QtQuick',
+        imports: [],
+        depends: [],
+        typeEntries: [],
+      },
+      {
+        filePath: 'qml/QtQuick/Controls/qmldir',
+        module: 'QtQuick.Controls',
+        imports: [],
+        depends: [],
+        typeEntries: [],
+      },
+    ];
+
+    const result = normalize(qmltypesFiles, qmldirFiles, [], defaultConfig, '6.11.0', '/tmp/qt');
+    expect(result.registry.types[0]?.moduleUri).toBe('QtQuick.Controls');
+  });
+
+  test('tracks metatypes source file path in type sources', () => {
+    const { qmltypesFiles, qmldirFiles, metatypesFiles } = loadFixtures();
+    const result = normalize(qmltypesFiles, qmldirFiles, metatypesFiles, defaultConfig, '6.11.0', '/tmp/qt');
+    const item = result.registry.types.find(t => t.qualifiedName === 'QQuickItem');
+    const metatypesSource = item?.sources.find((s) => s.kind === 'metatypes');
+    expect(metatypesSource?.filePath).toBe('metatypes/qt6quick_metatypes.json');
+  });
 });

@@ -2,6 +2,7 @@ import { readFile, writeFile, access } from 'node:fs/promises';
 import { constants } from 'node:fs';
 import type { QmlRegistry } from './types.js';
 import { SnapshotError } from './errors.js';
+import { validateQtDir } from './scanner.js';
 
 export class RegistrySnapshot {
   serialize(registry: QmlRegistry, pretty?: boolean): string {
@@ -38,6 +39,7 @@ export class RegistrySnapshot {
       'generatedAt',
       'qtVersion',
       'qtDir',
+      'buildDuration',
       'modules',
       'types',
       'builtins',
@@ -54,6 +56,9 @@ export class RegistrySnapshot {
 
     if (!Array.isArray(record['modules'])) {
       throw new SnapshotError('Field "modules" must be an array', 'corrupted');
+    }
+    if (typeof record['buildDuration'] !== 'number') {
+      throw new SnapshotError('Field "buildDuration" must be a number', 'corrupted');
     }
     if (!Array.isArray(record['types'])) {
       throw new SnapshotError('Field "types" must be an array', 'corrupted');
@@ -92,20 +97,11 @@ export class RegistrySnapshot {
 
     try {
       const registry = await this.loadFromFile(snapshotPath);
-      const detectedVersion = detectQtVersionFromDir(qtDir);
+      const detectedVersion = await validateQtDir(qtDir);
       if (!detectedVersion) return false;
       return registry.qtVersion === detectedVersion;
     } catch {
       return false;
     }
   }
-}
-
-function detectQtVersionFromDir(qtDir: string): string | undefined {
-  // Extract Qt version from directory path patterns like:
-  //   .../Qt/6.7.0/...  or  .../6.5.2/...
-  const normalized = qtDir.replace(/\\/g, '/');
-  const versionPattern = /\/(\d+\.\d+\.\d+)\b/;
-  const match = versionPattern.exec(normalized);
-  return match?.[1];
 }
