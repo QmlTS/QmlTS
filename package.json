@@ -5,8 +5,15 @@
   "type": "module",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "files": [
+    "dist/",
+    "data/",
+    "README.md",
+    "LICENSE"
+  ],
   "scripts": {
     "build": "bun build src/index.ts --outdir dist --target bun",
+    "generate": "bun run scripts/generate-registry.ts",
     "test": "bun test",
     "test:ci": "bun test --bail=1",
     "typecheck": "tsc --noEmit",
