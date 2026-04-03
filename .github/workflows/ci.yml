@@ -35,6 +35,12 @@ jobs:
         with:
           bun-version: latest
 
+      - name: Install Qt 6.11.0
+        uses: jurplel/install-qt-action@v4
+        with:
+          version: '6.11.0'
+          cache: true
+
       - name: Install dependencies
         run: bun install --frozen-lockfile
 
@@ -43,3 +49,5 @@ jobs:
 
       - name: Run tests
         run: bun run test:ci
+        env:
+          QT_DIR: ${{ env.Qt6_DIR }}
