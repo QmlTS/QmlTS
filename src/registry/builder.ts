@@ -1,16 +1,14 @@
-import { scan, validateQtDir } from './scanner.js';
-import { parseQmltypes } from './qmltypes-parser.js';
-import { parseQmldir } from './qmldir-parser.js';
-import { parseMetatypes } from './metatypes-parser.js';
-import { normalize } from './normalizer.js';
-import { RegistryQuery } from './registry-query.js';
-import { RegistrySnapshot } from './snapshot.js';
-import { ScanError } from './errors.js';
 import { readFile } from 'node:fs/promises';
 import { join } from 'node:path';
-import type {
-  BuildConfig, BuildResult, NormalizerConfig, ParseDiagnostic
-} from './types.js';
+import { ScanError } from './errors.js';
+import { parseMetatypes } from './metatypes-parser.js';
+import { normalize } from './normalizer.js';
+import { parseQmldir } from './qmldir-parser.js';
+import { parseQmltypes } from './qmltypes-parser.js';
+import { RegistryQuery } from './registry-query.js';
+import { scan, validateQtDir } from './scanner.js';
+import { RegistrySnapshot } from './snapshot.js';
+import type { BuildConfig, BuildResult, NormalizerConfig, ParseDiagnostic } from './types.js';
 
 const DEFAULT_PARSE_CONCURRENCY = 16;
 
@@ -27,26 +25,28 @@ export class RegistryBuilder {
       throw new ScanError(
         `Invalid Qt installation directory: ${config.qtDir}`,
         config.qtDir,
-        'not-qt'
+        'not-qt',
       );
     }
 
     // Phase 2: Scan for metadata files
     progress('scanning', 10, 'Scanning for metadata files...');
     const scanResult = await scan(config);
-    scanResult.warnings.forEach(w =>
-      diagnostics.push({ level: 'warning', message: w })
-    );
+    scanResult.warnings.forEach((w) => diagnostics.push({ level: 'warning', message: w }));
 
     // Phase 3: Parse qmltypes files
-    progress('parsing-qmltypes', 20, `Parsing ${scanResult.qmltypesFiles.length} qmltypes files...`);
+    progress(
+      'parsing-qmltypes',
+      20,
+      `Parsing ${scanResult.qmltypesFiles.length} qmltypes files...`,
+    );
     const qmltypesResults = await mapWithConcurrency(
       scanResult.qmltypesFiles,
       DEFAULT_PARSE_CONCURRENCY,
       async (f) => {
         const content = await readFile(f.absolutePath, 'utf-8');
         return parseQmltypes(content, f.absolutePath);
-      }
+      },
     );
     for (const r of qmltypesResults) {
       diagnostics.push(...r.diagnostics);
@@ -60,21 +60,25 @@ export class RegistryBuilder {
       async (f) => {
         const content = await readFile(f.absolutePath, 'utf-8');
         return parseQmldir(content, f.absolutePath);
-      }
+      },
     );
     for (const r of qmldirResults) {
       diagnostics.push(...r.diagnostics);
     }
 
     // Phase 5: Parse metatypes files
-    progress('parsing-metatypes', 55, `Parsing ${scanResult.metatypesFiles.length} metatypes files...`);
+    progress(
+      'parsing-metatypes',
+      55,
+      `Parsing ${scanResult.metatypesFiles.length} metatypes files...`,
+    );
     const metatypesResults = await mapWithConcurrency(
       scanResult.metatypesFiles,
       DEFAULT_PARSE_CONCURRENCY,
       async (f) => {
         const content = await readFile(f.absolutePath, 'utf-8');
         return parseMetatypes(content, f.absolutePath);
-      }
+      },
     );
     for (const r of metatypesResults) {
       diagnostics.push(...r.diagnostics);
@@ -90,12 +94,12 @@ export class RegistryBuilder {
     };
 
     const normalizeResult = normalize(
-      qmltypesResults.map(r => r.file),
-      qmldirResults.map(r => r.file),
-      metatypesResults.map(r => r.file),
+      qmltypesResults.map((r) => r.file),
+      qmldirResults.map((r) => r.file),
+      metatypesResults.map((r) => r.file),
       normConfig,
       qtVersion,
-      config.qtDir
+      config.qtDir,
     );
     diagnostics.push(...normalizeResult.diagnostics);
 
@@ -107,9 +111,13 @@ export class RegistryBuilder {
     normalizeResult.registry.buildDuration = duration;
 
     // Completed
-    progress('completed', 100, `Done. ${normalizeResult.registry.stats.typeCount} types in ${Math.round(duration)}ms`);
+    progress(
+      'completed',
+      100,
+      `Done. ${normalizeResult.registry.stats.typeCount} types in ${Math.round(duration)}ms`,
+    );
 
-    const hasErrors = diagnostics.some(d => d.level === 'error');
+    const hasErrors = diagnostics.some((d) => d.level === 'error');
 
     return {
       registry: normalizeResult.registry,

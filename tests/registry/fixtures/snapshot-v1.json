@@ -30,8 +30,34 @@
       "singleton": false,
       "defaultProperty": "data",
       "properties": [
-        { "name": "width", "type": "double", "cppType": "double", "readonly": false, "constant": false, "required": false, "final": false, "pointer": false, "list": false, "hasNotify": true, "notifySignal": "widthChanged", "hasBindable": false },
-        { "name": "height", "type": "double", "cppType": "double", "readonly": false, "constant": false, "required": false, "final": false, "pointer": false, "list": false, "hasNotify": true, "notifySignal": "heightChanged", "hasBindable": false }
+        {
+          "name": "width",
+          "type": "double",
+          "cppType": "double",
+          "readonly": false,
+          "constant": false,
+          "required": false,
+          "final": false,
+          "pointer": false,
+          "list": false,
+          "hasNotify": true,
+          "notifySignal": "widthChanged",
+          "hasBindable": false
+        },
+        {
+          "name": "height",
+          "type": "double",
+          "cppType": "double",
+          "readonly": false,
+          "constant": false,
+          "required": false,
+          "final": false,
+          "pointer": false,
+          "list": false,
+          "hasNotify": true,
+          "notifySignal": "heightChanged",
+          "hasBindable": false
+        }
       ],
       "signals": [{ "name": "widthChanged", "parameters": [] }],
       "methods": [],

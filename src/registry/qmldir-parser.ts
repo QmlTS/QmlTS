@@ -1,11 +1,11 @@
 import type {
-  QmldirParseResult,
-  RawQmldirFile,
-  RawQmldirPlugin,
-  RawQmldirImport,
-  RawQmldirDepend,
-  RawQmldirTypeEntry,
   ParseDiagnostic,
+  QmldirParseResult,
+  RawQmldirDepend,
+  RawQmldirFile,
+  RawQmldirImport,
+  RawQmldirPlugin,
+  RawQmldirTypeEntry,
 } from './types.js';
 
 // ---------------------------------------------------------------------------
@@ -142,24 +142,18 @@ export function parseQmldir(content: string, filePath: string): QmldirParseResul
         break;
 
       case 'singleton':
-        typeEntries.push(
-          buildTypeEntry(parts[1] ?? '', parts[2] ?? '', parts[3] ?? '', true),
-        );
+        typeEntries.push(buildTypeEntry(parts[1] ?? '', parts[2] ?? '', parts[3] ?? '', true));
         break;
 
       case 'internal':
         // internal types don't have a public version — store as non-singleton
-        typeEntries.push(
-          buildTypeEntry(parts[1] ?? '', '', parts[2] ?? '', false),
-        );
+        typeEntries.push(buildTypeEntry(parts[1] ?? '', '', parts[2] ?? '', false));
         break;
 
       default:
         // Type entry: TypeName version file
         if (/^[A-Z]/.test(keyword) && parts.length >= 3) {
-          typeEntries.push(
-            buildTypeEntry(keyword, parts[1] ?? '', parts[2] ?? '', false),
-          );
+          typeEntries.push(buildTypeEntry(keyword, parts[1] ?? '', parts[2] ?? '', false));
         } else {
           diagnostics.push({
             level: 'warning',
@@ -190,7 +184,7 @@ export function parseQmldir(content: string, filePath: string): QmldirParseResul
   return {
     file,
     diagnostics,
-    success: !diagnostics.some(d => d.level === 'error'),
+    success: !diagnostics.some((d) => d.level === 'error'),
   };
 }
 

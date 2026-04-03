@@ -1,10 +1,10 @@
-import { describe, test, expect } from 'bun:test';
+import { describe, expect, test } from 'bun:test';
 import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
-import { normalize } from '../../src/registry/normalizer.js';
-import { parseQmltypes } from '../../src/registry/qmltypes-parser.js';
-import { parseQmldir } from '../../src/registry/qmldir-parser.js';
 import { parseMetatypes } from '../../src/registry/metatypes-parser.js';
+import { normalize } from '../../src/registry/normalizer.js';
+import { parseQmldir } from '../../src/registry/qmldir-parser.js';
+import { parseQmltypes } from '../../src/registry/qmltypes-parser.js';
 import { RegistryQuery } from '../../src/registry/registry-query.js';
 import type { NormalizerConfig, QmlRegistry } from '../../src/registry/types.js';
 
@@ -21,10 +21,17 @@ const defaultConfig: NormalizerConfig = {
 function buildQuery() {
   const qmltypes = parseQmltypes(readFixture('complex.qmltypes'), 'qml/QtQuick/plugins.qmltypes');
   const qmldir = parseQmldir(readFixture('minimal.qmldir'), 'qml/QtQuick/qmldir');
-  const metatypes = parseMetatypes(readFixture('minimal_metatypes.json'), 'metatypes/qt6quick_metatypes.json');
+  const metatypes = parseMetatypes(
+    readFixture('minimal_metatypes.json'),
+    'metatypes/qt6quick_metatypes.json',
+  );
   const result = normalize(
-    [qmltypes.file], [qmldir.file], [metatypes.file],
-    defaultConfig, '6.11.0', '/tmp/qt'
+    [qmltypes.file],
+    [qmldir.file],
+    [metatypes.file],
+    defaultConfig,
+    '6.11.0',
+    '/tmp/qt',
   );
   return new RegistryQuery(result.registry);
 }
@@ -48,14 +55,14 @@ describe('RegistryQuery', () => {
     test('RQ-13: searchTypes with wildcard', () => {
       const query = buildQuery();
       const results = query.searchTypes('Rect*');
-      expect(results.some(t => t.qmlName === 'Rectangle')).toBe(true);
+      expect(results.some((t) => t.qmlName === 'Rectangle')).toBe(true);
     });
 
     test('searchTypes treats regex metacharacters literally except for wildcard star', () => {
       const query = buildQuery();
       expect(query.searchTypes('Rect(angle')).toHaveLength(0);
       const results = query.searchTypes('Rect*gle');
-      expect(results.some(t => t.qmlName === 'Rectangle')).toBe(true);
+      expect(results.some((t) => t.qmlName === 'Rectangle')).toBe(true);
     });
 
     test('findByQualifiedName returns undefined for non-existent type', () => {
@@ -68,7 +75,7 @@ describe('RegistryQuery', () => {
     test('RQ-20: getInheritanceChain', () => {
       const query = buildQuery();
       const chain = query.getInheritanceChain('QQuickRectangle');
-      const names = chain.map(t => t.qualifiedName);
+      const names = chain.map((t) => t.qualifiedName);
       expect(names).toContain('QQuickItem');
     });
 
@@ -92,7 +99,7 @@ describe('RegistryQuery', () => {
     test('RQ-30: getAllProperties without inheritance', () => {
       const query = buildQuery();
       const props = query.getAllProperties('QQuickRectangle', false);
-      const names = props.map(p => p.name);
+      const names = props.map((p) => p.name);
       expect(names).toContain('color');
       expect(names).toContain('radius');
     });
@@ -100,7 +107,7 @@ describe('RegistryQuery', () => {
     test('RQ-31: getAllProperties with inheritance', () => {
       const query = buildQuery();
       const props = query.getAllProperties('QQuickRectangle', true);
-      const names = props.map(p => p.name);
+      const names = props.map((p) => p.name);
       expect(names).toContain('color');
       // Inherited from QQuickItem
       // These might be present depending on how the fixture data is merged
@@ -137,7 +144,21 @@ describe('RegistryQuery', () => {
             exports: [],
             creatable: true,
             singleton: false,
-            properties: [{ name: 'x', type: 'int', cppType: 'int', readonly: false, constant: false, required: false, final: false, pointer: false, list: false, hasNotify: false, hasBindable: false }],
+            properties: [
+              {
+                name: 'x',
+                type: 'int',
+                cppType: 'int',
+                readonly: false,
+                constant: false,
+                required: false,
+                final: false,
+                pointer: false,
+                list: false,
+                hasNotify: false,
+                hasBindable: false,
+              },
+            ],
             signals: [],
             methods: [],
             enums: [],
@@ -152,7 +173,21 @@ describe('RegistryQuery', () => {
             exports: [],
             creatable: true,
             singleton: false,
-            properties: [{ name: 'x', type: 'double', cppType: 'double', readonly: false, constant: false, required: false, final: false, pointer: false, list: false, hasNotify: false, hasBindable: false }],
+            properties: [
+              {
+                name: 'x',
+                type: 'double',
+                cppType: 'double',
+                readonly: false,
+                constant: false,
+                required: false,
+                final: false,
+                pointer: false,
+                list: false,
+                hasNotify: false,
+                hasBindable: false,
+              },
+            ],
             signals: [],
             methods: [],
             enums: [],
@@ -176,7 +211,7 @@ describe('RegistryQuery', () => {
       const query = buildQuery();
       const creatables = query.getCreatableTypes();
       expect(creatables.length).toBeGreaterThan(0);
-      expect(creatables.every(t => t.creatable && t.accessSemantics === 'reference')).toBe(true);
+      expect(creatables.every((t) => t.creatable && t.accessSemantics === 'reference')).toBe(true);
     });
 
     test('getValueTypes returns value semantics types', () => {
@@ -185,7 +220,7 @@ describe('RegistryQuery', () => {
       const query = new RegistryQuery(result.registry);
       const valueTypes = query.getValueTypes();
       expect(valueTypes.length).toBeGreaterThan(0);
-      expect(valueTypes.every(t => t.accessSemantics === 'value')).toBe(true);
+      expect(valueTypes.every((t) => t.accessSemantics === 'value')).toBe(true);
     });
   });
 

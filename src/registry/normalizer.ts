@@ -1,34 +1,34 @@
+import { TypeNameMapper } from './type-name-mapper.js';
 import type {
-  RawQmltypesFile,
-  RawQmltypesComponent,
-  RawQmltypesProperty,
-  RawQmltypesSignal,
-  RawQmltypesMethod,
-  RawQmltypesEnum,
-  RawQmltypesParameter,
-  RawQmldirFile,
-  RawMetatypesFile,
-  RawMetatypesClass,
-  NormalizerConfig,
-  NormalizeResult,
   MergeConflict,
+  ModuleDependency,
+  ModuleImport,
+  NormalizeResult,
+  NormalizerConfig,
   ParseDiagnostic,
-  QmlRegistry,
-  QmlModule,
-  QmlType,
-  QmlTypeExport,
-  QmlProperty,
-  QmlSignal,
-  QmlMethod,
-  QmlParameter,
   QmlEnum,
   QmlEnumValue,
   QmlFileTypeEntry,
-  ModuleImport,
-  ModuleDependency,
+  QmlMethod,
+  QmlModule,
+  QmlParameter,
+  QmlProperty,
+  QmlRegistry,
+  QmlSignal,
+  QmlType,
+  QmlTypeExport,
+  RawMetatypesClass,
+  RawMetatypesFile,
+  RawQmldirFile,
+  RawQmltypesComponent,
+  RawQmltypesEnum,
+  RawQmltypesFile,
+  RawQmltypesMethod,
+  RawQmltypesParameter,
+  RawQmltypesProperty,
+  RawQmltypesSignal,
   TypeSource,
 } from './types.js';
-import { TypeNameMapper } from './type-name-mapper.js';
 
 const DEFAULT_CONFIG: NormalizerConfig = {
   primarySource: 'qmltypes-primary',
@@ -163,8 +163,8 @@ export function normalize(
     let ownerModuleDirLength = -1;
     for (const [dirPath, mod] of dirToModule) {
       if (
-        (fileDir === dirPath || fileDir.startsWith(dirPath + '/'))
-        && dirPath.length > ownerModuleDirLength
+        (fileDir === dirPath || fileDir.startsWith(`${dirPath}/`)) &&
+        dirPath.length > ownerModuleDirLength
       ) {
         ownerModule = mod;
         ownerModuleDirLength = dirPath.length;
@@ -363,14 +363,7 @@ function buildQmlType(
     if (mtClass.qualifiedClassName !== comp.name) {
       referencedMetatypes.add(mtClass.qualifiedClassName);
     }
-    mergeMetatypesInfo(
-      comp,
-      mtClass,
-      properties,
-      methods,
-      config,
-      conflicts,
-    );
+    mergeMetatypesInfo(comp, mtClass, properties, methods, config, conflicts);
   }
 
   const sources: TypeSource[] = [{ kind: 'qmltypes', filePath }];
@@ -477,9 +470,7 @@ function mapEnum(en: RawQmltypesEnum): QmlEnum {
     underlyingType: en.type,
     isFlag: en.isFlag ?? false,
     isScoped: en.isScoped ?? false,
-    values: en.values.map(
-      (v): QmlEnumValue => ({ name: v }),
-    ),
+    values: en.values.map((v): QmlEnumValue => ({ name: v })),
   };
 }
 

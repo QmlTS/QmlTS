@@ -1,7 +1,8 @@
-import { join, relative, dirname } from 'node:path';
+import type { Dirent } from 'node:fs';
 import { readdir, stat } from 'node:fs/promises';
-import type { ScannerConfig, ScanResult, DiscoveredFile } from './types.js';
+import { dirname, join, relative } from 'node:path';
 import { ScanError } from './errors.js';
+import type { DiscoveredFile, ScannerConfig, ScanResult } from './types.js';
 
 /** Hardcoded Qt version — project targets Qt 6.11 exclusively. */
 export const QT_VERSION = '6.11.0';
@@ -37,11 +38,7 @@ export async function scan(config: ScannerConfig): Promise<ScanResult> {
   // Validate the Qt directory
   const version = await validateQtDir(qtDir);
   if (version === null) {
-    throw new ScanError(
-      `Invalid Qt installation directory: ${qtDir}`,
-      qtDir,
-      'not-qt'
-    );
+    throw new ScanError(`Invalid Qt installation directory: ${qtDir}`, qtDir, 'not-qt');
   }
 
   const warnings: string[] = [];
@@ -95,19 +92,21 @@ export async function scan(config: ScannerConfig): Promise<ScanResult> {
 function applyFilters(
   files: DiscoveredFile[],
   moduleFilter: string[] | undefined,
-  includeBuiltins: boolean
+  includeBuiltins: boolean,
 ): DiscoveredFile[] {
   let result = files;
 
   if (!includeBuiltins) {
-    result = result.filter(f => !f.isBuiltin);
+    result = result.filter((f) => !f.isBuiltin);
   }
 
   if (moduleFilter && moduleFilter.length > 0) {
-    result = result.filter(f => {
+    result = result.filter((f) => {
       if (f.isBuiltin) return includeBuiltins;
       if (!f.inferredModule) return false;
-      return moduleFilter.some(m => f.inferredModule === m || f.inferredModule?.startsWith(m + '.'));
+      return moduleFilter.some(
+        (m) => f.inferredModule === m || f.inferredModule?.startsWith(`${m}.`),
+      );
     });
   }
 
@@ -126,9 +125,9 @@ async function walkQmlDir(
   qmlRoot: string,
   qmltypesFiles: DiscoveredFile[],
   qmldirFiles: DiscoveredFile[],
-  warnings: string[]
+  warnings: string[],
 ): Promise<void> {
-  let entries;
+  let entries: Dirent[];
   try {
     entries = await readdir(dir, { withFileTypes: true });
   } catch {
@@ -182,9 +181,9 @@ async function walkMetatypesDir(
   dir: string,
   qtDir: string,
   metatypesFiles: DiscoveredFile[],
-  warnings: string[]
+  warnings: string[],
 ): Promise<void> {
-  let entries;
+  let entries: Dirent[];
   try {
     entries = await readdir(dir, { withFileTypes: true });
   } catch {

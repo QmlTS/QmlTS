@@ -11,8 +11,8 @@
 
 import { join } from 'node:path';
 import { RegistryBuilder } from '../src/registry/builder.js';
-import { RegistrySnapshot } from '../src/registry/snapshot.js';
 import { QT_VERSION } from '../src/registry/scanner.js';
+import { RegistrySnapshot } from '../src/registry/snapshot.js';
 
 const QT_DIR = process.env['QT_DIR'];
 if (!QT_DIR) {
@@ -37,7 +37,7 @@ const result = await builder.build({
 
 if (!result.success) {
   console.error('\nBuild failed:');
-  for (const d of result.diagnostics.filter(d => d.level === 'error')) {
+  for (const d of result.diagnostics.filter((d) => d.level === 'error')) {
     console.error(`  ${d.message}`);
   }
   process.exit(1);
@@ -53,7 +53,9 @@ console.log('Snapshot generated successfully:');
 console.log(`  Types:      ${stats.typeCount}`);
 console.log(`  Builtins:   ${stats.builtinCount}`);
 console.log(`  Modules:    ${stats.moduleCount}`);
-console.log(`  Sources:    ${stats.sourceFiles.qmltypes} qmltypes, ${stats.sourceFiles.qmldir} qmldir, ${stats.sourceFiles.metatypes} metatypes`);
+console.log(
+  `  Sources:    ${stats.sourceFiles.qmltypes} qmltypes, ${stats.sourceFiles.qmldir} qmldir, ${stats.sourceFiles.metatypes} metatypes`,
+);
 console.log(`  Size:       ${Math.round(json.length / 1024)} KB`);
 console.log(`  Duration:   ${Math.round(result.duration)} ms`);
 console.log(`  Output:     ${outputPath}`);

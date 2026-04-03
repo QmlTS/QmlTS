@@ -1,5 +1,5 @@
-import { describe, test, expect } from 'bun:test';
-import { getRegistry, getQuery, QT_VERSION } from '../../src/index.js';
+import { describe, expect, test } from 'bun:test';
+import { getQuery, getRegistry, QT_VERSION } from '../../src/index.js';
 
 describe('Public API (pre-built snapshot)', () => {
   test('getRegistry() returns a valid QmlRegistry', () => {
@@ -39,7 +39,7 @@ describe('Public API (pre-built snapshot)', () => {
   test('can query properties with inheritance', () => {
     const query = getQuery();
     const props = query.getAllProperties('QQuickRectangle', true);
-    const names = props.map(p => p.name);
+    const names = props.map((p) => p.name);
     expect(names).toContain('color');
     expect(names).toContain('radius');
   });
@@ -47,7 +47,7 @@ describe('Public API (pre-built snapshot)', () => {
   test('can traverse inheritance chain', () => {
     const query = getQuery();
     const chain = query.getInheritanceChain('QQuickRectangle');
-    const names = chain.map(t => t.qualifiedName);
+    const names = chain.map((t) => t.qualifiedName);
     expect(names).toContain('QQuickItem');
   });
 
@@ -62,7 +62,7 @@ describe('Public API (pre-built snapshot)', () => {
     const query = getQuery();
     const creatables = query.getCreatableTypes('QtQuick');
     expect(creatables.length).toBeGreaterThan(0);
-    expect(creatables.every(t => t.creatable)).toBe(true);
+    expect(creatables.every((t) => t.creatable)).toBe(true);
   });
 
   test('registry stats match expected Qt 6.11 data', () => {

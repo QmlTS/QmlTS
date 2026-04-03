@@ -5,7 +5,7 @@ export class ScanError extends Error {
   constructor(
     message: string,
     qtDir: string,
-    reason: 'not-found' | 'not-qt' | 'version-mismatch' | 'permission'
+    reason: 'not-found' | 'not-qt' | 'version-mismatch' | 'permission',
   ) {
     super(message);
     this.name = 'ScanError';
@@ -31,7 +31,10 @@ export class ParseError extends Error {
 export class SnapshotError extends Error {
   public readonly reason: 'invalid-format' | 'version-mismatch' | 'corrupted' | 'io-error';
 
-  constructor(message: string, reason: 'invalid-format' | 'version-mismatch' | 'corrupted' | 'io-error') {
+  constructor(
+    message: string,
+    reason: 'invalid-format' | 'version-mismatch' | 'corrupted' | 'io-error',
+  ) {
     super(message);
     this.name = 'SnapshotError';
     this.reason = reason;

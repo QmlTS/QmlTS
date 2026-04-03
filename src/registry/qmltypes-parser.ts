@@ -1,12 +1,12 @@
 import type {
+  ParseDiagnostic,
   QmltypesParseResult,
   RawQmltypesComponent,
+  RawQmltypesEnum,
+  RawQmltypesMethod,
+  RawQmltypesParameter,
   RawQmltypesProperty,
   RawQmltypesSignal,
-  RawQmltypesMethod,
-  RawQmltypesEnum,
-  RawQmltypesParameter,
-  ParseDiagnostic,
 } from './types.js';
 
 // ---------------------------------------------------------------------------
@@ -114,14 +114,37 @@ function tokenize(content: string): Token[] {
     const startLine = line;
     const ch = peek();
     switch (ch) {
-      case '{': advance(); tokens.push({ type: 'lbrace', value: '{', line: startLine }); continue;
-      case '}': advance(); tokens.push({ type: 'rbrace', value: '}', line: startLine }); continue;
-      case '[': advance(); tokens.push({ type: 'lbracket', value: '[', line: startLine }); continue;
-      case ']': advance(); tokens.push({ type: 'rbracket', value: ']', line: startLine }); continue;
-      case ':': advance(); tokens.push({ type: 'colon', value: ':', line: startLine }); continue;
-      case ';': advance(); tokens.push({ type: 'semicolon', value: ';', line: startLine }); continue;
-      case ',': advance(); tokens.push({ type: 'comma', value: ',', line: startLine }); continue;
-      case '"': tokens.push({ type: 'string', value: readString(), line: startLine }); continue;
+      case '{':
+        advance();
+        tokens.push({ type: 'lbrace', value: '{', line: startLine });
+        continue;
+      case '}':
+        advance();
+        tokens.push({ type: 'rbrace', value: '}', line: startLine });
+        continue;
+      case '[':
+        advance();
+        tokens.push({ type: 'lbracket', value: '[', line: startLine });
+        continue;
+      case ']':
+        advance();
+        tokens.push({ type: 'rbracket', value: ']', line: startLine });
+        continue;
+      case ':':
+        advance();
+        tokens.push({ type: 'colon', value: ':', line: startLine });
+        continue;
+      case ';':
+        advance();
+        tokens.push({ type: 'semicolon', value: ';', line: startLine });
+        continue;
+      case ',':
+        advance();
+        tokens.push({ type: 'comma', value: ',', line: startLine });
+        continue;
+      case '"':
+        tokens.push({ type: 'string', value: readString(), line: startLine });
+        continue;
       default:
         if (/[a-zA-Z_]/.test(ch)) {
           tokens.push({ type: 'identifier', value: readIdentifier(), line: startLine });
@@ -200,15 +223,29 @@ class BlockParser {
 
   private parseValue(): PropValue {
     const tok = this.peek();
-    if (tok.type === 'string') { this.advance(); return tok.value; }
-    if (tok.type === 'number') { this.advance(); return Number(tok.value); }
+    if (tok.type === 'string') {
+      this.advance();
+      return tok.value;
+    }
+    if (tok.type === 'number') {
+      this.advance();
+      return Number(tok.value);
+    }
     if (tok.type === 'identifier') {
-      if (tok.value === 'true') { this.advance(); return true; }
-      if (tok.value === 'false') { this.advance(); return false; }
+      if (tok.value === 'true') {
+        this.advance();
+        return true;
+      }
+      if (tok.value === 'false') {
+        this.advance();
+        return false;
+      }
       this.advance();
       return tok.value; // unquoted identifier as string value
     }
-    if (tok.type === 'lbracket') { return this.parseArray(); }
+    if (tok.type === 'lbracket') {
+      return this.parseArray();
+    }
 
     this.diagnostics.push({
       level: 'error',
@@ -226,9 +263,11 @@ class BlockParser {
     while (this.peek().type !== 'rbracket' && this.peek().type !== 'eof') {
       const tok = this.peek();
       if (tok.type === 'string') {
-        this.advance(); items.push(tok.value);
+        this.advance();
+        items.push(tok.value);
       } else if (tok.type === 'number') {
-        this.advance(); items.push(Number(tok.value));
+        this.advance();
+        items.push(Number(tok.value));
       } else if (tok.type === 'identifier') {
         this.advance();
         if (tok.value === 'true') items.push(true);
@@ -273,7 +312,11 @@ class BlockParser {
     // Skip `import ...` preamble lines (not block-structured)
     while (this.peek().type === 'identifier' && this.peek().value === 'import') {
       while (this.peek().type !== 'eof') {
-        if (this.peek().type === 'identifier' && this.peek().value !== 'import' && this.peekAt(1).type === 'lbrace') {
+        if (
+          this.peek().type === 'identifier' &&
+          this.peek().value !== 'import' &&
+          this.peekAt(1).type === 'lbrace'
+        ) {
           break;
         }
         this.advance();
@@ -367,9 +410,7 @@ function convertSignal(block: ParsedBlock): RawQmltypesSignal {
     revision: num(block.props, 'revision'),
     lineNumber: num(block.props, 'lineNumber'),
     isMethodConstant: bool(block.props, 'isMethodConstant'),
-    parameters: block.children
-      .filter(c => c.blockType === 'Parameter')
-      .map(convertParameter),
+    parameters: block.children.filter((c) => c.blockType === 'Parameter').map(convertParameter),
   };
 }
 
@@ -385,9 +426,7 @@ function convertMethod(block: ParsedBlock): RawQmltypesMethod {
     isJavaScriptFunction: bool(block.props, 'isJavaScriptFunction'),
     isMethodConstant: bool(block.props, 'isMethodConstant'),
     isTypeConstant: bool(block.props, 'isTypeConstant'),
-    parameters: block.children
-      .filter(c => c.blockType === 'Parameter')
-      .map(convertParameter),
+    parameters: block.children.filter((c) => c.blockType === 'Parameter').map(convertParameter),
   };
 }
 
@@ -428,18 +467,10 @@ function convertComponent(block: ParsedBlock): RawQmltypesComponent {
     interfaces: strArray(block.props, 'interfaces'),
     hasCustomParser: bool(block.props, 'hasCustomParser'),
     enforcesScopedEnums: bool(block.props, 'enforcesScopedEnums'),
-    properties: block.children
-      .filter(c => c.blockType === 'Property')
-      .map(convertProperty),
-    signals: block.children
-      .filter(c => c.blockType === 'Signal')
-      .map(convertSignal),
-    methods: block.children
-      .filter(c => c.blockType === 'Method')
-      .map(convertMethod),
-    enums: block.children
-      .filter(c => c.blockType === 'Enum')
-      .map(convertEnum),
+    properties: block.children.filter((c) => c.blockType === 'Property').map(convertProperty),
+    signals: block.children.filter((c) => c.blockType === 'Signal').map(convertSignal),
+    methods: block.children.filter((c) => c.blockType === 'Method').map(convertMethod),
+    enums: block.children.filter((c) => c.blockType === 'Enum').map(convertEnum),
   };
 }
 
@@ -476,7 +507,7 @@ export function parseQmltypes(content: string, filePath: string): QmltypesParseR
       }
     }
 
-    const hasErrors = diagnostics.some(d => d.level === 'error');
+    const hasErrors = diagnostics.some((d) => d.level === 'error');
     return {
       file: { filePath, components },
       diagnostics,

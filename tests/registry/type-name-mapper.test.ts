@@ -1,4 +1,4 @@
-import { describe, test, expect } from 'bun:test';
+import { describe, expect, test } from 'bun:test';
 import { TypeNameMapper } from '../../src/registry/type-name-mapper.js';
 
 describe('TypeNameMapper', () => {

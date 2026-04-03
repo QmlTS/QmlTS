@@ -13,16 +13,26 @@
   ],
   "scripts": {
     "build": "bun build src/index.ts --outdir dist --target bun",
+    "format": "biome check --write .",
+    "format:check": "biome check .",
+    "lint": "biome lint .",
+    "lint:fix": "biome lint --write .",
     "generate": "bun run scripts/generate-registry.ts",
     "test": "bun test",
     "test:ci": "bun test --bail=1",
     "typecheck": "tsc --noEmit",
-    "lint": "tsc --noEmit",
     "clean": "rm -rf dist"
   },
-  "keywords": ["qml", "qt", "typescript", "dsl", "code-generation"],
+  "keywords": [
+    "qml",
+    "qt",
+    "typescript",
+    "dsl",
+    "code-generation"
+  ],
   "license": "MIT",
   "devDependencies": {
+    "@biomejs/biome": "latest",
     "@types/bun": "latest",
     "typescript": "^5.8"
   }

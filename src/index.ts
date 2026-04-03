@@ -1,7 +1,7 @@
 import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
-import { RegistrySnapshot } from './registry/snapshot.js';
 import { RegistryQuery } from './registry/registry-query.js';
+import { RegistrySnapshot } from './registry/snapshot.js';
 import type { QmlRegistry, RegistryQueryInterface } from './registry/types.js';
 
 // ─── Pre-built snapshot path ────────────────────────────────

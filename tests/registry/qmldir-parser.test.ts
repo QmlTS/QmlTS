@@ -1,4 +1,4 @@
-import { describe, test, expect } from 'bun:test';
+import { describe, expect, test } from 'bun:test';
 import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { parseQmldir } from '../../src/registry/qmldir-parser.js';
@@ -56,7 +56,7 @@ describe('QmldirParser', () => {
 
   test('QD-10: import directive', () => {
     const result = parseQmldir(readFixture('minimal.qmldir'), 'minimal.qmldir');
-    const qtqmlImport = result.file.imports.find(i => i.module === 'QtQml');
+    const qtqmlImport = result.file.imports.find((i) => i.module === 'QtQml');
     expect(qtqmlImport).toBeDefined();
     expect(qtqmlImport!.kind).toBe('required');
     expect(qtqmlImport!.version).toBe('auto');
@@ -64,19 +64,19 @@ describe('QmldirParser', () => {
 
   test('QD-11: optional import', () => {
     const result = parseQmldir('optional import QtGraphicalEffects auto\n', 'test.qmldir');
-    const imp = result.file.imports.find(i => i.module === 'QtGraphicalEffects');
+    const imp = result.file.imports.find((i) => i.module === 'QtGraphicalEffects');
     expect(imp?.kind).toBe('optional');
   });
 
   test('QD-12: default import', () => {
     const result = parseQmldir('default import QtQuick.Controls.Material auto\n', 'test.qmldir');
-    const imp = result.file.imports.find(i => i.module === 'QtQuick.Controls.Material');
+    const imp = result.file.imports.find((i) => i.module === 'QtQuick.Controls.Material');
     expect(imp?.kind).toBe('default');
   });
 
   test('QD-13: depends', () => {
     const result = parseQmldir(readFixture('minimal.qmldir'), 'minimal.qmldir');
-    const dep = result.file.depends.find(d => d.module === 'QtQml');
+    const dep = result.file.depends.find((d) => d.module === 'QtQml');
     expect(dep).toBeDefined();
     expect(dep!.version).toBe('auto');
   });

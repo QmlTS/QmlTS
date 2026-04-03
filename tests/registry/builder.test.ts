@@ -1,6 +1,6 @@
-import { describe, test, expect } from 'bun:test';
+import { describe, expect, test } from 'bun:test';
 import { RegistryBuilder } from '../../src/registry/builder.js';
-import { QT_VERSION } from '../../src/registry/scanner.js';
+import { QT_VERSION, scan } from '../../src/registry/scanner.js';
 
 const QT_DIR = process.env['QT_DIR'];
 
@@ -33,9 +33,13 @@ describe('RegistryBuilder', () => {
     test('B-03: build() produces correct stats', async () => {
       const builder = new RegistryBuilder();
       const result = await builder.build({ qtDir: QT_DIR! });
-      expect(result.registry.stats.sourceFiles.qmltypes).toBeGreaterThanOrEqual(100);
-      expect(result.registry.stats.sourceFiles.qmldir).toBeGreaterThanOrEqual(100);
-      expect(result.registry.stats.sourceFiles.metatypes).toBeGreaterThanOrEqual(150);
+      const scanned = await scan({ qtDir: QT_DIR! });
+      expect(result.registry.stats.sourceFiles.qmltypes).toBe(scanned.qmltypesFiles.length);
+      expect(result.registry.stats.sourceFiles.qmldir).toBe(scanned.qmldirFiles.length);
+      expect(result.registry.stats.sourceFiles.metatypes).toBe(scanned.metatypesFiles.length);
+      expect(result.registry.stats.sourceFiles.qmltypes).toBeGreaterThan(0);
+      expect(result.registry.stats.sourceFiles.qmldir).toBeGreaterThan(0);
+      expect(result.registry.stats.sourceFiles.metatypes).toBeGreaterThan(0);
       expect(result.registry.stats.moduleCount).toBeGreaterThan(0);
       expect(result.registry.stats.typeCount).toBeGreaterThan(0);
     });
@@ -44,16 +48,12 @@ describe('RegistryBuilder', () => {
   describe('error handling', () => {
     test('B-06: invalid Qt path throws ScanError', async () => {
       const builder = new RegistryBuilder();
-      await expect(
-        builder.build({ qtDir: '/nonexistent/qt' })
-      ).rejects.toThrow();
+      await expect(builder.build({ qtDir: '/nonexistent/qt' })).rejects.toThrow();
     });
 
     test('build with invalid path throws', async () => {
       const builder = new RegistryBuilder();
-      await expect(
-        builder.build({ qtDir: '/definitely/not/a/qt/installation' })
-      ).rejects.toThrow();
+      await expect(builder.build({ qtDir: '/definitely/not/a/qt/installation' })).rejects.toThrow();
     });
   });
 

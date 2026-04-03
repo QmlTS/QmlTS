@@ -1,13 +1,13 @@
 import type {
-  QmlRegistry,
   QmlModule,
-  QmlType,
   QmlProperty,
+  QmlRegistry,
+  QmlType,
+  RegistryQueryInterface,
+  ResolvedEnum,
+  ResolvedMethod,
   ResolvedProperty,
   ResolvedSignal,
-  ResolvedMethod,
-  ResolvedEnum,
-  RegistryQueryInterface,
 } from './types.js';
 
 export class RegistryQuery implements RegistryQueryInterface {
@@ -127,12 +127,13 @@ export class RegistryQuery implements RegistryQueryInterface {
   }
 
   searchTypes(pattern: string): QmlType[] {
-    const regexStr = '^'
-      + pattern
+    const regexStr =
+      '^' +
+      pattern
         .split('*')
         .map((segment) => RegistryQuery.escapeRegExp(segment))
-        .join('.*')
-      + '$';
+        .join('.*') +
+      '$';
     const regex = new RegExp(regexStr);
     const allTypes = [...this.registry.types, ...this.registry.builtins];
     return allTypes.filter((t) => regex.test(t.qmlName));

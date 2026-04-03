@@ -1,10 +1,10 @@
-import { describe, test, expect } from 'bun:test';
+import { describe, expect, test } from 'bun:test';
 import { readFileSync } from 'node:fs';
-import { join } from 'node:path';
-import { mkdtemp, rm, mkdir } from 'node:fs/promises';
+import { mkdir, mkdtemp, rm } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
-import { RegistrySnapshot } from '../../src/registry/snapshot.js';
+import { join } from 'node:path';
 import { SnapshotError } from '../../src/registry/errors.js';
+import { RegistrySnapshot } from '../../src/registry/snapshot.js';
 import type { QmlRegistry } from '../../src/registry/types.js';
 
 const fixturesDir = join(import.meta.dir, 'fixtures');
@@ -67,9 +67,7 @@ describe('RegistrySnapshot', () => {
   });
 
   test('loadFromFile with non-existent file throws', async () => {
-    await expect(
-      snapshot.loadFromFile('/nonexistent/path/snapshot.json')
-    ).rejects.toThrow();
+    await expect(snapshot.loadFromFile('/nonexistent/path/snapshot.json')).rejects.toThrow();
   });
 
   test('serialize compact (no pretty) is single line', () => {

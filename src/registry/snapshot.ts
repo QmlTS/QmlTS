@@ -1,8 +1,8 @@
-import { readFile, writeFile, access } from 'node:fs/promises';
 import { constants } from 'node:fs';
-import type { QmlRegistry } from './types.js';
+import { access, readFile, writeFile } from 'node:fs/promises';
 import { SnapshotError } from './errors.js';
 import { validateQtDir } from './scanner.js';
+import type { QmlRegistry } from './types.js';
 
 export class RegistrySnapshot {
   serialize(registry: QmlRegistry, pretty?: boolean): string {
@@ -47,10 +47,7 @@ export class RegistrySnapshot {
     ];
     for (const field of requiredFields) {
       if (!(field in record)) {
-        throw new SnapshotError(
-          `Missing required field "${field}" in snapshot`,
-          'invalid-format',
-        );
+        throw new SnapshotError(`Missing required field "${field}" in snapshot`, 'invalid-format');
       }
     }
 
@@ -80,10 +77,7 @@ export class RegistrySnapshot {
     try {
       content = await readFile(filePath, 'utf-8');
     } catch {
-      throw new SnapshotError(
-        `Failed to read snapshot file: ${filePath}`,
-        'io-error',
-      );
+      throw new SnapshotError(`Failed to read snapshot file: ${filePath}`, 'io-error');
     }
     return this.deserialize(content);
   }

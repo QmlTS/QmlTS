@@ -1,16 +1,16 @@
 import type {
   MetatypesParseResult,
-  RawMetatypesFile,
-  RawMetatypesEntry,
-  RawMetatypesClass,
-  RawMetatypesSuperClass,
-  RawMetatypesClassInfo,
-  RawMetatypesProperty,
-  RawMetatypesMethod,
-  RawMetatypesArgument,
-  RawMetatypesEnum,
-  RawMetatypesInterface,
   ParseDiagnostic,
+  RawMetatypesArgument,
+  RawMetatypesClass,
+  RawMetatypesClassInfo,
+  RawMetatypesEntry,
+  RawMetatypesEnum,
+  RawMetatypesFile,
+  RawMetatypesInterface,
+  RawMetatypesMethod,
+  RawMetatypesProperty,
+  RawMetatypesSuperClass,
 } from './types.js';
 
 // ---------------------------------------------------------------------------
@@ -62,7 +62,7 @@ export function parseMetatypes(content: string, filePath: string): MetatypesPars
   }
 
   const file: RawMetatypesFile = { filePath, entries };
-  const hasErrors = diagnostics.some(d => d.level === 'error');
+  const hasErrors = diagnostics.some((d) => d.level === 'error');
   return { file, diagnostics, success: !hasErrors };
 }
 
@@ -76,9 +76,7 @@ function coerceEntry(raw: Record<string, any>): RawMetatypesEntry {
   return {
     inputFile: String(raw['inputFile'] ?? ''),
     outputRevision: Number(raw['outputRevision'] ?? 0),
-    classes: Array.isArray(raw['classes'])
-      ? (raw['classes'] as any[]).map(coerceClass)
-      : [],
+    classes: Array.isArray(raw['classes']) ? (raw['classes'] as any[]).map(coerceClass) : [],
   };
 }
 
@@ -97,21 +95,13 @@ function coerceClass(raw: any): RawMetatypesClass {
     classInfos: Array.isArray(r['classInfos'])
       ? (r['classInfos'] as any[]).map(coerceClassInfo)
       : undefined,
-    enums: Array.isArray(r['enums'])
-      ? (r['enums'] as any[]).map(coerceEnum)
-      : undefined,
+    enums: Array.isArray(r['enums']) ? (r['enums'] as any[]).map(coerceEnum) : undefined,
     properties: Array.isArray(r['properties'])
       ? (r['properties'] as any[]).map(coerceProperty)
       : undefined,
-    signals: Array.isArray(r['signals'])
-      ? (r['signals'] as any[]).map(coerceMethod)
-      : undefined,
-    slots: Array.isArray(r['slots'])
-      ? (r['slots'] as any[]).map(coerceMethod)
-      : undefined,
-    methods: Array.isArray(r['methods'])
-      ? (r['methods'] as any[]).map(coerceMethod)
-      : undefined,
+    signals: Array.isArray(r['signals']) ? (r['signals'] as any[]).map(coerceMethod) : undefined,
+    slots: Array.isArray(r['slots']) ? (r['slots'] as any[]).map(coerceMethod) : undefined,
+    methods: Array.isArray(r['methods']) ? (r['methods'] as any[]).map(coerceMethod) : undefined,
     interfaces: Array.isArray(r['interfaces'])
       ? (r['interfaces'] as any[]).map(coerceInterfaceList)
       : undefined,

@@ -114,9 +114,7 @@
         "className": "QObject",
         "qualifiedClassName": "QObject",
         "object": true,
-        "classInfos": [
-          { "name": "QML.Element", "value": "QtObject" }
-        ],
+        "classInfos": [{ "name": "QML.Element", "value": "QtObject" }],
         "properties": [
           {
             "name": "objectName",
@@ -142,18 +140,14 @@
             "returnType": "void",
             "access": "public",
             "index": 0,
-            "arguments": [
-              { "name": "obj", "type": "QObject*" }
-            ]
+            "arguments": [{ "name": "obj", "type": "QObject*" }]
           },
           {
             "name": "objectNameChanged",
             "returnType": "void",
             "access": "public",
             "index": 1,
-            "arguments": [
-              { "name": "objectName", "type": "QString" }
-            ]
+            "arguments": [{ "name": "objectName", "type": "QString" }]
           }
         ],
         "methods": [
