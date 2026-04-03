@@ -30,23 +30,18 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Install Qt
+        uses: jurplel/install-qt-action@v4
+        with:
+          version: '6.11.0'
+          target: desktop
+          arch: linux_gcc_64
+          cache: true
+
       - name: Setup Bun
         uses: oven-sh/setup-bun@v2
         with:
           bun-version: latest
-
-      - name: Install Qt 6.11.0
-        uses: jurplel/install-qt-action@v4
-        with:
-          version: '6.11.0'
-          cache: true
-
-      - name: Configure QT_DIR
-        run: |
-          QT_PREFIX=$(cd "$Qt6_DIR/../../.." && pwd)
-          echo "QT_DIR=$QT_PREFIX" >> $GITHUB_ENV
-          echo "Qt prefix: $QT_PREFIX"
-          ls "$QT_PREFIX/qml" | head -5
 
       - name: Install dependencies
         run: bun install --frozen-lockfile
@@ -56,3 +51,5 @@ jobs:
 
       - name: Run tests
         run: bun run test:ci
+        env:
+          QT_DIR: ${{ env.QT_ROOT_DIR }}
