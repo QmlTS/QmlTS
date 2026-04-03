@@ -1,0 +1,49 @@
+{
+  "formatVersion": "1.0.0",
+  "generatedAt": "2025-01-01T00:00:00.000Z",
+  "qtVersion": "6.11.0",
+  "qtDir": "/tmp/qt/6.11.0/gcc_64",
+  "buildDuration": 1500,
+  "modules": [
+    {
+      "uri": "QtQuick",
+      "dirPath": "/tmp/qt/6.11.0/gcc_64/qml/QtQuick",
+      "qmltypesPath": "/tmp/qt/6.11.0/gcc_64/qml/QtQuick/plugins.qmltypes",
+      "designerSupported": true,
+      "isStatic": false,
+      "isSystem": false,
+      "imports": [{ "module": "QtQml", "version": "auto", "kind": "required" }],
+      "dependencies": [{ "module": "QtQml", "version": "auto" }],
+      "exportedTypeNames": ["Item", "Rectangle"],
+      "qmlFileTypes": []
+    }
+  ],
+  "types": [
+    {
+      "qualifiedName": "QQuickItem",
+      "qmlName": "Item",
+      "moduleUri": "QtQuick",
+      "accessSemantics": "reference",
+      "baseType": "QObject",
+      "exports": [{ "module": "QtQuick", "name": "Item", "version": "2.0", "revision": 512 }],
+      "creatable": true,
+      "singleton": false,
+      "defaultProperty": "data",
+      "properties": [
+        { "name": "width", "type": "double", "cppType": "double", "readonly": false, "constant": false, "required": false, "final": false, "pointer": false, "list": false, "hasNotify": true, "notifySignal": "widthChanged", "hasBindable": false },
+        { "name": "height", "type": "double", "cppType": "double", "readonly": false, "constant": false, "required": false, "final": false, "pointer": false, "list": false, "hasNotify": true, "notifySignal": "heightChanged", "hasBindable": false }
+      ],
+      "signals": [{ "name": "widthChanged", "parameters": [] }],
+      "methods": [],
+      "enums": [],
+      "sources": [{ "kind": "qmltypes", "filePath": "qml/QtQuick/plugins.qmltypes" }]
+    }
+  ],
+  "builtins": [],
+  "stats": {
+    "moduleCount": 1,
+    "typeCount": 1,
+    "builtinCount": 0,
+    "sourceFiles": { "qmltypes": 1, "qmldir": 1, "metatypes": 0 }
+  }
+}

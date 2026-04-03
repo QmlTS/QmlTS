@@ -1,0 +1,9 @@
+module QtQuick
+plugin qtquick2plugin
+linktarget Qt6::qtquick2plugin
+classname QtQuick2Plugin
+designersupported
+typeinfo plugins.qmltypes
+prefer :/qt-project.org/imports/QtQuick/
+import QtQml auto
+depends QtQml auto

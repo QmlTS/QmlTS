@@ -1,0 +1,27 @@
+import QtQuick.tooling 1.2
+Module {
+    Component {
+        name: "QQuickItem"
+        accessSemantics: "reference"
+        prototype: "QObject"
+        exports: ["QtQuick/Item 2.0"]
+        exportMetaObjectRevisions: [512]
+        enforcesScopedEnums: true
+        Enum {
+            name: "TransformOrigin"
+            values: ["TopLeft", "Top", "TopRight", "Left", "Center", "Right", "BottomLeft", "Bottom", "BottomRight"]
+        }
+        Enum {
+            name: "Flags"
+            alias: "Flag"
+            isFlag: true
+            values: ["ItemClipsChildrenToShape", "ItemAcceptsInputMethod", "ItemIsFocusScope", "ItemHasContents", "ItemAcceptsDrops"]
+        }
+        Enum {
+            name: "FocusPolicy"
+            isScoped: true
+            type: "quint8"
+            values: ["TabFocus", "ClickFocus", "StrongFocus", "WheelFocus", "NoFocus"]
+        }
+    }
+}
