@@ -69,6 +69,4 @@ jobs:
         run: bun run typecheck
 
       - name: Run tests
-        run: bun run test:ci
-        env:
-          QT_DIR: ${{ env.QT_ROOT_DIR }}
+        run: QT_DIR="$QT_ROOT_DIR" bun run test:ci
