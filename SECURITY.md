@@ -20,4 +20,4 @@ If you believe you have found a security vulnerability in this project, please r
 3. Click the **Report a vulnerability** button.
 4. Provide a descriptive summary and details of the vulnerability, including steps to reproduce.
 
-We take all security reports seriously and will strive to review and respond to your report within 48 hours. Once the issue is resolved, we will publish a security advisory and credit you for the discovery.
+We take all security reports seriously and will review and respond to reports as promptly as possible. Once an issue is resolved, we may publish a security advisory and, with your permission, credit you for the discovery using your preferred attribution details.
