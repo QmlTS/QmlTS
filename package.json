@@ -1,0 +1,39 @@
+{
+  "name": "@qmlts/registry",
+  "version": "0.1.0",
+  "description": "Qt type registry builder for QmlTS — scans Qt installations and builds a unified type registry from .qmltypes, qmldir, and metatypes JSON files",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist/",
+    "data/",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "bun build src/index.ts --outdir dist --target bun",
+    "format": "biome check --write .",
+    "format:check": "biome check .",
+    "lint": "biome lint .",
+    "lint:fix": "biome lint --write .",
+    "generate": "bun run scripts/generate-registry.ts",
+    "test": "bun test",
+    "test:ci": "bun test --bail=1",
+    "typecheck": "tsc --noEmit",
+    "clean": "rm -rf dist"
+  },
+  "keywords": [
+    "qml",
+    "qt",
+    "typescript",
+    "dsl",
+    "code-generation"
+  ],
+  "license": "MIT",
+  "devDependencies": {
+    "@biomejs/biome": "latest",
+    "@types/bun": "latest",
+    "typescript": "^5.8"
+  }
+}

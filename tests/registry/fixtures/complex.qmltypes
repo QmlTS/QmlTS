@@ -1,0 +1,71 @@
+import QtQuick.tooling 1.2
+Module {
+    Component {
+        name: "QQuickRectangle"
+        accessSemantics: "reference"
+        prototype: "QQuickItem"
+        exports: ["QtQuick/Rectangle 2.0", "QtQuick/Rectangle 6.0"]
+        exportMetaObjectRevisions: [512, 1536]
+        Property { name: "color"; type: "QColor" }
+        Property { name: "radius"; type: "double" }
+        Property { name: "gradient"; type: "QQuickGradient"; isPointer: true }
+        Property { name: "border"; type: "QQuickPen"; isReadonly: true; isPointer: true }
+    }
+    Component {
+        name: "QQuickText"
+        accessSemantics: "reference"
+        prototype: "QQuickItem"
+        exports: ["QtQuick/Text 2.0"]
+        exportMetaObjectRevisions: [512]
+        defaultProperty: "data"
+        Property { name: "text"; type: "QString"; notify: "textChanged" }
+        Property { name: "font"; type: "QFont" }
+        Property { name: "color"; type: "QColor" }
+        Property { name: "elide"; type: "QQuickText::TextElideMode" }
+        Property { name: "wrapMode"; type: "QQuickText::WrapMode" }
+        Signal {
+            name: "textChanged"
+        }
+        Signal {
+            name: "linkActivated"
+            Parameter { name: "link"; type: "QString" }
+        }
+        Method {
+            name: "doLayout"
+        }
+        Enum {
+            name: "TextElideMode"
+            values: ["ElideLeft", "ElideMiddle", "ElideRight", "ElideNone"]
+        }
+        Enum {
+            name: "WrapMode"
+            values: ["NoWrap", "WordWrap", "WrapAnywhere", "Wrap"]
+        }
+    }
+    Component {
+        name: "QQuickItem"
+        accessSemantics: "reference"
+        prototype: "QObject"
+        exports: ["QtQuick/Item 2.0"]
+        exportMetaObjectRevisions: [512]
+        defaultProperty: "data"
+        Property { name: "width"; type: "double" }
+        Property { name: "height"; type: "double" }
+        Property { name: "visible"; type: "bool" }
+        Property { name: "data"; type: "QObject"; isList: true; isReadonly: true }
+    }
+    Component {
+        name: "QObject"
+        accessSemantics: "reference"
+        exports: ["QtQml/QtObject 2.0"]
+        exportMetaObjectRevisions: [512]
+        Property { name: "objectName"; type: "QString"; notify: "objectNameChanged" }
+        Signal {
+            name: "destroyed"
+            Parameter { name: "obj"; type: "QObject"; isPointer: true }
+        }
+        Method {
+            name: "deleteLater"
+        }
+    }
+}

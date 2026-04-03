@@ -1,0 +1,46 @@
+default_language_version:
+  python: python3
+
+exclude: |
+  (?x)^(
+    .*thirdparty/.*|
+    .*build/.*|
+    .*out/.*|
+    .*dist/.*|
+    .*coverage/.*|
+    .*\.bin$
+  )$
+
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v6.0.0
+    hooks:
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: mixed-line-ending
+        args: [--fix=lf]
+      - id: check-added-large-files
+        args: [--maxkb=2048]
+      - id: check-merge-conflict
+      - id: check-yaml
+
+  - repo: local
+    hooks:
+      - id: biome-check
+        name: TypeScript Format and Lint (Biome)
+        entry: bunx @biomejs/biome check --write --no-errors-on-unmatched
+        language: system
+        files: \.(ts|tsx|mts|cts|js|jsx|json)$
+      - id: ts-typecheck
+        name: TypeScript Type Check
+        entry: bun run typecheck
+        language: system
+        pass_filenames: false
+        files: ^(src|tests|scripts)/.*\.(ts|tsx|mts|cts)$
+      - id: bun-test
+        name: Bun Test
+        entry: bun run test:ci
+        language: system
+        pass_filenames: false
+        always_run: true
+        stages: [pre-push]

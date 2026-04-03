@@ -1,0 +1,28 @@
+import QtQuick.tooling 1.2
+Module {
+    Component {
+        name: "QQuickItem"
+        accessSemantics: "reference"
+        prototype: "QObject"
+        exports: ["QtQuick/Item 2.0"]
+        exportMetaObjectRevisions: [512]
+        defaultProperty: "data"
+        Property { name: "width"; type: "double" }
+        Property { name: "height"; type: "double" }
+        Property { name: "visible"; type: "bool"; notify: "visibleChanged" }
+        Property { name: "children"; type: "QQuickItem"; isList: true; isReadonly: true }
+        Signal {
+            name: "widthChanged"
+        }
+        Method {
+            name: "mapToItem"
+            type: "QPointF"
+            Parameter { name: "item"; type: "QQuickItem"; isPointer: true }
+            Parameter { name: "point"; type: "QPointF" }
+        }
+        Enum {
+            name: "TransformOrigin"
+            values: ["TopLeft", "Top", "TopRight", "Left", "Center"]
+        }
+    }
+}

@@ -1,0 +1,33 @@
+import QtQuick.tooling 1.2
+Module {
+    Component {
+        name: "QQuickKeysAttached"
+        accessSemantics: "reference"
+        prototype: "QObject"
+        Property { name: "enabled"; type: "bool" }
+        Property { name: "priority"; type: "QQuickKeysAttached::Priority" }
+        Signal {
+            name: "pressed"
+            Parameter { name: "event"; type: "QQuickKeyEvent"; isPointer: true }
+        }
+        Signal {
+            name: "released"
+            Parameter { name: "event"; type: "QQuickKeyEvent"; isPointer: true }
+        }
+        Enum {
+            name: "Priority"
+            values: ["BeforeItem", "AfterItem"]
+        }
+    }
+    Component {
+        name: "QQuickItem"
+        accessSemantics: "reference"
+        prototype: "QObject"
+        exports: ["QtQuick/Item 2.0"]
+        exportMetaObjectRevisions: [512]
+        attachedType: "QQuickKeysAttached"
+        defaultProperty: "data"
+        Property { name: "width"; type: "double" }
+        Property { name: "height"; type: "double" }
+    }
+}

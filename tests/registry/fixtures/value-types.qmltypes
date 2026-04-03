@@ -1,0 +1,40 @@
+import QtQuick.tooling 1.2
+Module {
+    Component {
+        name: "QColor"
+        accessSemantics: "value"
+        extension: "QColorValueType"
+        extensionIsNamespace: false
+        Property { name: "r"; type: "double" }
+        Property { name: "g"; type: "double" }
+        Property { name: "b"; type: "double" }
+        Property { name: "a"; type: "double" }
+        Property { name: "hsvHue"; type: "double" }
+        Property { name: "hsvSaturation"; type: "double" }
+        Property { name: "hsvValue"; type: "double" }
+        Method {
+            name: "toString"
+            type: "QString"
+        }
+    }
+    Component {
+        name: "QPointF"
+        accessSemantics: "value"
+        Property { name: "x"; type: "double" }
+        Property { name: "y"; type: "double" }
+    }
+    Component {
+        name: "QSizeF"
+        accessSemantics: "value"
+        Property { name: "width"; type: "double" }
+        Property { name: "height"; type: "double" }
+    }
+    Component {
+        name: "QRectF"
+        accessSemantics: "value"
+        Property { name: "x"; type: "double" }
+        Property { name: "y"; type: "double" }
+        Property { name: "width"; type: "double" }
+        Property { name: "height"; type: "double" }
+    }
+}
