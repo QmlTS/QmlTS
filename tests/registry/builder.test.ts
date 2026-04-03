@@ -1,24 +1,31 @@
-import { describe, test, expect } from 'bun:test';
+import { describe, test, expect, beforeAll } from 'bun:test';
 import { RegistryBuilder } from '../../src/registry/builder.js';
+import { QT_VERSION } from '../../src/registry/scanner.js';
 
-const QT_DIR = process.env['QT_DIR'];
+const QT_DIR = process.env['QT_DIR']!;
+
+beforeAll(() => {
+  if (!process.env['QT_DIR']) {
+    throw new Error('QT_DIR environment variable is required to run tests');
+  }
+});
 
 describe('RegistryBuilder', () => {
-  // Integration tests — only run when QT_DIR is set
-  describe.skipIf(!QT_DIR)('with Qt installation', () => {
+  describe('with Qt installation', () => {
     test('B-01: build() completes successfully', async () => {
       const builder = new RegistryBuilder();
-      const result = await builder.build({ qtDir: QT_DIR! });
+      const result = await builder.build({ qtDir: QT_DIR });
       expect(result.success).toBe(true);
       expect(result.registry.types.length).toBeGreaterThan(0);
       expect(result.registry.modules.length).toBeGreaterThan(0);
+      expect(result.registry.qtVersion).toBe(QT_VERSION);
     });
 
     test('B-02: build() calls progress callback', async () => {
       const phases: string[] = [];
       const builder = new RegistryBuilder();
       await builder.build({
-        qtDir: QT_DIR!,
+        qtDir: QT_DIR,
         onProgress: (phase) => {
           phases.push(phase);
         },
@@ -28,16 +35,25 @@ describe('RegistryBuilder', () => {
       expect(phases).toContain('completed');
     });
 
+    test('B-03: build() produces correct stats', async () => {
+      const builder = new RegistryBuilder();
+      const result = await builder.build({ qtDir: QT_DIR });
+      expect(result.registry.stats.sourceFiles.qmltypes).toBeGreaterThanOrEqual(100);
+      expect(result.registry.stats.sourceFiles.qmldir).toBeGreaterThanOrEqual(100);
+      expect(result.registry.stats.sourceFiles.metatypes).toBeGreaterThanOrEqual(150);
+      expect(result.registry.stats.moduleCount).toBeGreaterThan(0);
+      expect(result.registry.stats.typeCount).toBeGreaterThan(0);
+    });
+  });
+
+  describe('error handling', () => {
     test('B-06: invalid Qt path throws ScanError', async () => {
       const builder = new RegistryBuilder();
       await expect(
         builder.build({ qtDir: '/nonexistent/qt' })
       ).rejects.toThrow();
     });
-  });
 
-  // Unit tests (no Qt required)
-  describe('error handling', () => {
     test('build with invalid path throws', async () => {
       const builder = new RegistryBuilder();
       await expect(

@@ -12,6 +12,7 @@ bun.lockb
 # Cache
 .cache/
 *.snapshot.json
+!data/*.snapshot.json
 
 # IDE
 .idea/

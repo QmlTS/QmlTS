@@ -26,7 +26,7 @@ export type {
 export { ScanError, ParseError, SnapshotError } from './errors.js';
 
 // Scanner
-export { scan, validateQtDir } from './scanner.js';
+export { scan, validateQtDir, QT_VERSION } from './scanner.js';
 
 // Parsers
 export { parseQmltypes } from './qmltypes-parser.js';

@@ -1,7 +1,7 @@
 import { describe, test, expect } from 'bun:test';
 import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
-import { mkdtemp, rm, mkdir, writeFile } from 'node:fs/promises';
+import { mkdtemp, rm, mkdir } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { RegistrySnapshot } from '../../src/registry/snapshot.js';
 import { SnapshotError } from '../../src/registry/errors.js';
@@ -79,16 +79,13 @@ describe('RegistrySnapshot', () => {
     expect(lines.length).toBe(1);
   });
 
-  test('isValid accepts Qt dirs whose version is discovered from qtcoreversion.h', async () => {
+  test('isValid returns true for matching snapshot and valid Qt dir', async () => {
     const registry = loadSnapshotFixture();
     const tempDir = await mkdtemp(join(tmpdir(), 'qmlts-qt-'));
     const snapshotPath = join(tempDir, 'snapshot.json');
-    const headerPath = join(tempDir, 'include', 'QtCore', 'qtcoreversion.h');
 
     try {
       await mkdir(join(tempDir, 'qml'), { recursive: true });
-      await mkdir(join(tempDir, 'include', 'QtCore'), { recursive: true });
-      await writeFile(headerPath, '#define QT_VERSION_STR "6.11.0"\n', 'utf-8');
       await snapshot.saveToFile({ ...registry, qtVersion: '6.11.0' }, snapshotPath);
       await expect(snapshot.isValid(snapshotPath, tempDir)).resolves.toBe(true);
     } finally {

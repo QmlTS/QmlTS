@@ -3,11 +3,12 @@ import { readdir, stat } from 'node:fs/promises';
 import type { ScannerConfig, ScanResult, DiscoveredFile } from './types.js';
 import { ScanError } from './errors.js';
 
+/** Hardcoded Qt version — project targets Qt 6.11 exclusively. */
+export const QT_VERSION = '6.11.0';
+
 const BUILTIN_FILES = new Set(['builtins.qmltypes', 'jsroot.qmltypes']);
-const VERSION_PATTERN = /\d+\.\d+\.\d+/;
 
 export async function validateQtDir(qtDir: string): Promise<string | null> {
-  // Check directory exists
   try {
     const dirStat = await stat(qtDir);
     if (!dirStat.isDirectory()) return null;
@@ -15,51 +16,15 @@ export async function validateQtDir(qtDir: string): Promise<string | null> {
     return null;
   }
 
-  // Look for a qmake binary
-  const qmakeCandidates = ['bin/qmake.exe', 'bin/qmake', 'bin/qmake6.exe', 'bin/qmake6'];
-  let hasQmake = false;
-  for (const candidate of qmakeCandidates) {
-    try {
-      await stat(join(qtDir, candidate));
-      hasQmake = true;
-      break;
-    } catch {
-      // not found, try next
-    }
-  }
-
-  // Check for qml/ directory
-  let hasQmlDir = false;
+  // Must have qml/ directory for QML metadata
   try {
     const qmlStat = await stat(join(qtDir, 'qml'));
-    hasQmlDir = qmlStat.isDirectory();
+    if (!qmlStat.isDirectory()) return null;
   } catch {
-    // not found
+    return null;
   }
 
-  if (!hasQmake && !hasQmlDir) return null;
-
-  // Extract version from path segments
-  const normalized = qtDir.replace(/\\/g, '/');
-  const segments = normalized.split('/');
-  for (let i = segments.length - 1; i >= 0; i--) {
-    const seg = segments[i]!;
-    const match = VERSION_PATTERN.exec(seg);
-    if (match) return match[0];
-  }
-
-  // Try reading qtcoreversion.h for version info
-  try {
-    const { readFile } = await import('node:fs/promises');
-    const versionHeader = join(qtDir, 'include', 'QtCore', 'qtcoreversion.h');
-    const content = await readFile(versionHeader, 'utf-8');
-    const versionMatch = /QT_VERSION_STR\s+"(\d+\.\d+\.\d+)"/.exec(content);
-    if (versionMatch?.[1]) return versionMatch[1];
-  } catch {
-    // not available
-  }
-
-  return null;
+  return QT_VERSION;
 }
 
 export async function scan(config: ScannerConfig): Promise<ScanResult> {
