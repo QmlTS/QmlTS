@@ -5,7 +5,7 @@ import { normalize } from '../../src/registry/normalizer.js';
 import { parseQmltypes } from '../../src/registry/qmltypes-parser.js';
 import { parseQmldir } from '../../src/registry/qmldir-parser.js';
 import { parseMetatypes } from '../../src/registry/metatypes-parser.js';
-import type { NormalizerConfig, RawQmltypesFile, RawQmldirFile, RawMetatypesFile } from '../../src/registry/types.js';
+import type { NormalizerConfig, RawQmltypesFile, RawQmldirFile } from '../../src/registry/types.js';
 
 const fixturesDir = join(import.meta.dir, 'fixtures');
 const readFixture = (name: string) => readFileSync(join(fixturesDir, name), 'utf-8');

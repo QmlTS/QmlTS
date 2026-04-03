@@ -6,7 +6,7 @@ import { parseQmltypes } from '../../src/registry/qmltypes-parser.js';
 import { parseQmldir } from '../../src/registry/qmldir-parser.js';
 import { parseMetatypes } from '../../src/registry/metatypes-parser.js';
 import { RegistryQuery } from '../../src/registry/registry-query.js';
-import type { NormalizerConfig } from '../../src/registry/types.js';
+import type { NormalizerConfig, QmlRegistry } from '../../src/registry/types.js';
 
 const fixturesDir = join(import.meta.dir, 'fixtures');
 const readFixture = (name: string) => readFileSync(join(fixturesDir, name), 'utf-8');
@@ -114,7 +114,7 @@ describe('RegistryQuery', () => {
     });
 
     test('overridden inherited properties remain visible and are flagged', () => {
-      const registry = {
+      const registry: QmlRegistry = {
         formatVersion: '1.0.0',
         generatedAt: new Date().toISOString(),
         qtVersion: '6.11.0',
@@ -137,7 +137,7 @@ describe('RegistryQuery', () => {
             exports: [],
             creatable: true,
             singleton: false,
-            properties: [{ name: 'x', type: 'int', cppType: 'int', readonly: false, constant: false, required: false, final: false, pointer: false, list: false, hasNotify: false }],
+            properties: [{ name: 'x', type: 'int', cppType: 'int', readonly: false, constant: false, required: false, final: false, pointer: false, list: false, hasNotify: false, hasBindable: false }],
             signals: [],
             methods: [],
             enums: [],
@@ -152,14 +152,14 @@ describe('RegistryQuery', () => {
             exports: [],
             creatable: true,
             singleton: false,
-            properties: [{ name: 'x', type: 'double', cppType: 'double', readonly: false, constant: false, required: false, final: false, pointer: false, list: false, hasNotify: false }],
+            properties: [{ name: 'x', type: 'double', cppType: 'double', readonly: false, constant: false, required: false, final: false, pointer: false, list: false, hasNotify: false, hasBindable: false }],
             signals: [],
             methods: [],
             enums: [],
             sources: [{ kind: 'qmltypes', filePath: 'derived.qmltypes' }],
           },
         ],
-      } as const;
+      };
 
       const query = new RegistryQuery(registry);
       const props = query.getAllProperties('Derived', true).filter((p) => p.name === 'x');
