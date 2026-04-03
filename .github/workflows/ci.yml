@@ -41,6 +41,13 @@ jobs:
           version: '6.11.0'
           cache: true
 
+      - name: Configure QT_DIR
+        run: |
+          QT_PREFIX=$(cd "$Qt6_DIR/../../.." && pwd)
+          echo "QT_DIR=$QT_PREFIX" >> $GITHUB_ENV
+          echo "Qt prefix: $QT_PREFIX"
+          ls "$QT_PREFIX/qml" | head -5
+
       - name: Install dependencies
         run: bun install --frozen-lockfile
 
@@ -49,5 +56,3 @@ jobs:
 
       - name: Run tests
         run: bun run test:ci
-        env:
-          QT_DIR: ${{ env.Qt6_DIR }}
