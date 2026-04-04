@@ -7,6 +7,10 @@ export {
   QtToolNotFoundError,
   QtToolTimeoutError,
 } from './errors.js';
+export { withTempQmlFile } from './temp-file.js';
+// Infrastructure
+export { getToolBinaryPath, runTool } from './tool-runner.js';
+
 export type {
   QmlAotStats,
   QmlCachegenBatchResult,
