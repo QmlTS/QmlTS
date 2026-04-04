@@ -1,5 +1,6 @@
 // Types
 
+export { parseLintJson, parseStderr } from './diagnostic.js';
 // Errors
 export {
   QtInstallationNotFoundError,
