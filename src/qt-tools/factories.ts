@@ -9,8 +9,9 @@ import * as qmltcMod from './qmltc.js';
 import * as typeReg from './qmltyperegistrar.js';
 import * as gate from './quality-gate.js';
 import * as rccMod from './rcc.js';
+import { runTool } from './tool-runner.js';
 import { checkTools, discover, getImportPaths, getToolPath } from './toolchain.js';
-import type { QtInstallation, QtToolchainConfig } from './types.js';
+import type { QtInstallation, QtToolchainConfig, ToolRunnerOptions } from './types.js';
 
 export function createQtToolchain(config?: QtToolchainConfig) {
   return {
@@ -23,6 +24,16 @@ export function createQtToolchain(config?: QtToolchainConfig) {
   };
 }
 
+export function createToolRunner(installation: QtInstallation, defaultOptions?: ToolRunnerOptions) {
+  return {
+    run: (
+      tool: Parameters<typeof runTool>[1],
+      args: readonly string[],
+      options?: ToolRunnerOptions,
+    ) => runTool(installation, tool, args, { ...defaultOptions, ...options }),
+  };
+}
+
 export function createQmlFormat(installation: QtInstallation) {
   return {
     formatFile: (path: string, opts?: Parameters<typeof format.formatFile>[2]) =>
@@ -32,6 +43,7 @@ export function createQmlFormat(installation: QtInstallation) {
     formatFiles: (paths: readonly string[], opts?: Parameters<typeof format.formatFiles>[2]) =>
       format.formatFiles(installation, paths, opts),
     getDefaultOptions: () => format.getDefaultOptions(installation),
+    writeDefaults: (targetDir: string) => format.writeDefaults(installation, targetDir),
   };
 }
 
@@ -46,6 +58,8 @@ export function createQmlLint(installation: QtInstallation) {
     lintModule: (name: string, opts?: Parameters<typeof lint.lintModule>[2]) =>
       lint.lintModule(installation, name, opts),
     listPlugins: () => lint.listPlugins(installation),
+    parseJsonOutput: lint.parseJsonOutput,
+    writeDefaults: (targetDir: string) => lint.writeDefaults(installation, targetDir),
   };
 }
 

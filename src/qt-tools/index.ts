@@ -22,6 +22,7 @@ export {
   createQtToolchain,
   createQualityGate,
   createRcc,
+  createToolRunner,
 } from './factories.js';
 export {
   buildRunArgs,
@@ -44,6 +45,7 @@ export {
   formatFiles,
   formatString,
   getDefaultOptions,
+  writeDefaults as formatWriteDefaults,
 } from './qmlformat.js';
 export {
   buildImportScannerArgs,
@@ -59,6 +61,8 @@ export {
   lintModule,
   lintString,
   listPlugins,
+  parseJsonOutput,
+  writeDefaults as lintWriteDefaults,
 } from './qmllint.js';
 export {
   buildQmltcArgs,

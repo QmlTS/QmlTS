@@ -5,6 +5,7 @@ import { runTool } from './tool-runner.js';
 import type {
   QmlLintBatchResult,
   QmlLintDiagnostic,
+  QmlLintJsonOutput,
   QmlLintOptions,
   QmlLintResult,
   QtInstallation,
@@ -165,7 +166,11 @@ export async function lintFiles(
 
   // Map file paths to results (handle path normalization)
   const results = new Map<string, QmlLintResult>();
-  const normalize = (p: string) => resolve(p).replace(/\\/g, '/').toLowerCase();
+  const IS_WINDOWS = process.platform === 'win32';
+  const normalize = (p: string) => {
+    const resolved = resolve(p).replace(/\\/g, '/');
+    return IS_WINDOWS ? resolved.toLowerCase() : resolved;
+  };
   for (const fp of filePaths) {
     const normalizedFp = normalize(fp);
     let found = false;
@@ -242,4 +247,15 @@ export async function listPlugins(installation: QtInstallation): Promise<readonl
     if (name) plugins.push(name);
   }
   return plugins;
+}
+
+export function parseJsonOutput(json: string): QmlLintJsonOutput {
+  return JSON.parse(json) as QmlLintJsonOutput;
+}
+
+export async function writeDefaults(
+  installation: QtInstallation,
+  targetDir: string,
+): Promise<void> {
+  await runTool(installation, 'qmllint', ['--write-defaults'], { cwd: targetDir });
 }

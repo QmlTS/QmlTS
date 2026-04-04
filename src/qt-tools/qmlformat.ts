@@ -88,3 +88,10 @@ export async function getDefaultOptions(
   const result = await runTool(installation, 'qmlformat', ['--output-options']);
   return JSON.parse(result.stdout);
 }
+
+export async function writeDefaults(
+  installation: QtInstallation,
+  targetDir: string,
+): Promise<void> {
+  await runTool(installation, 'qmlformat', ['--write-defaults'], { cwd: targetDir });
+}
