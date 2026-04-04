@@ -37,6 +37,8 @@ export function resolveQtDir(config?: QtToolchainConfig): string | undefined {
     const ext = process.platform === 'win32' ? '.exe' : '';
     for (const dir of pathDirs) {
       if (dir && existsSync(join(dir, `qmlformat${ext}`))) {
+        const base = basename(dir).toLowerCase();
+        if (base !== 'bin' && base !== 'libexec') continue;
         const candidate = resolve(dir, '..');
         if (validateQtDirectory(candidate)) {
           return candidate;
@@ -50,7 +52,22 @@ export function resolveQtDir(config?: QtToolchainConfig): string | undefined {
 
 function validateQtDirectory(dir: string): boolean {
   const binDir = join(dir, 'bin');
-  return existsSync(binDir) && statSync(binDir).isDirectory();
+  const qmlDir = join(dir, 'qml');
+  if (!(existsSync(binDir) && statSync(binDir).isDirectory())) return false;
+  if (!(existsSync(qmlDir) && statSync(qmlDir).isDirectory())) return false;
+
+  const qmlformatCandidates = getToolBinaryCandidates(
+    {
+      rootDir: dir,
+      binDir,
+      qmlDir,
+      libDir: join(dir, 'lib'),
+      version: { major: 0, minor: 0, patch: 0, string: '0.0.0' },
+      platform: '',
+    },
+    'qmlformat',
+  );
+  return qmlformatCandidates.some((candidate) => existsSync(candidate));
 }
 
 function parseQtVersion(rootDir: string): QtVersion {

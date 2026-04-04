@@ -9,6 +9,8 @@ const RUNTIME_ERROR_PATTERNS = [
   /TypeError:/,
   /module .+ is not installed/i,
   /Component is not ready/,
+  /Cannot assign to non-existent property/,
+  /file not found/i,
 ];
 
 export function buildRunArgs(filePath: string, options?: QmlRunOptions): string[] {
@@ -97,19 +99,25 @@ export async function smokeTest(
   };
   const result = await run(installation, filePath, mergedOptions);
   const runtimeErrors = detectRuntimeErrors(result.stderr);
-  // loaded = exited cleanly OR timed out with no runtime errors
+  const stderrLower = result.stderr.toLowerCase();
+  const hasLoadFailurePattern =
+    stderrLower.includes('qqmlapplicationengine failed') ||
+    stderrLower.includes('file not found') ||
+    stderrLower.includes('is not a type');
   const loaded =
-    (result.exitCode === 0 && !result.timedOut) || (result.timedOut && runtimeErrors.length === 0);
+    (result.exitCode === 0 && runtimeErrors.length === 0 && !hasLoadFailurePattern) ||
+    (result.timedOut && runtimeErrors.length === 0 && !hasLoadFailurePattern);
   return { ...result, loaded, runtimeErrors };
 }
 
 export async function listConfigs(installation: QtInstallation): Promise<readonly string[]> {
   const result = await runTool(installation, 'qml', ['--list-conf']);
+  const output = result.stdout || result.stderr;
   const configs: string[] = [];
-  for (const line of result.stdout.split('\n')) {
+  for (const line of output.split('\n')) {
     const trimmed = line.trim();
     if (!trimmed) continue;
-    if (trimmed.includes('configurations:')) continue;
+    if (/configurations?:$/i.test(trimmed)) continue;
     configs.push(trimmed);
   }
   return configs;

@@ -60,11 +60,15 @@ export async function generateQmltypes(
   const tempDir = await mkdtemp(join(tmpdir(), 'qmlts-reg-'));
   const tempOutput = join(tempDir, 'registration.cpp');
   try {
-    return await register(installation, mocJsonFiles, {
+    const result = await register(installation, mocJsonFiles, {
       ...options,
       outputFile: tempOutput,
       generateQmltypes: outputPath,
     });
+    return {
+      ...result,
+      outputFile: undefined,
+    };
   } finally {
     await rm(tempDir, { recursive: true, force: true }).catch(() => {});
   }

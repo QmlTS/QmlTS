@@ -1,3 +1,4 @@
+import { resolve } from 'node:path';
 import { parseLintJson, parseStderr } from './diagnostic.js';
 import { withTempQmlFile } from './temp-file.js';
 import { runTool } from './tool-runner.js';
@@ -153,57 +154,47 @@ export async function lintFiles(
         });
       }
     } catch {
-      // JSON parsing failed — fall back to per-file stderr parsing
+      // JSON parsing failed — fall back to per-file linting to avoid duplicating
+      // combined stderr diagnostics across every file result.
       for (const fp of filePaths) {
-        const diagnostics = parseStderr(result.stderr, fp);
-        const summary = {
-          errors: diagnostics.filter((d) => d.level === 'error').length,
-          warnings: diagnostics.filter((d) => d.level === 'warning').length,
-          infos: diagnostics.filter((d) => d.level === 'info').length,
-        };
-        perFileResults.set(fp, {
-          exitCode: result.exitCode,
-          stdout: result.stdout,
-          stderr: result.stderr,
-          durationMs: result.durationMs,
-          command: result.command,
-          valid: false,
-          diagnostics,
-          summary,
-        });
+        const fallbackResult = await lintFile(installation, fp, options);
+        perFileResults.set(fp, fallbackResult);
       }
     }
   }
 
   // Map file paths to results (handle path normalization)
   const results = new Map<string, QmlLintResult>();
-  const normalize = (p: string) => p.replace(/\\/g, '/');
+  const normalize = (p: string) => resolve(p).replace(/\\/g, '/').toLowerCase();
   for (const fp of filePaths) {
     const normalizedFp = normalize(fp);
     let found = false;
     for (const [filename, lintResult] of perFileResults) {
       const normalizedFilename = normalize(filename);
-      if (
-        normalizedFp === normalizedFilename ||
-        normalizedFp.endsWith(`/${normalizedFilename}`) ||
-        normalizedFilename.endsWith(`/${normalizedFp}`)
-      ) {
+      if (normalizedFp === normalizedFilename) {
         results.set(fp, lintResult);
         found = true;
         break;
       }
     }
     if (!found) {
-      // If not found in JSON, it was likely valid with no output
+      const message = `qmllint batch output did not include a result for '${fp}'`;
       results.set(fp, {
-        exitCode: 0,
-        stdout: '',
-        stderr: '',
+        exitCode: result.exitCode === 0 ? 1 : result.exitCode,
+        stdout: result.stdout,
+        stderr: result.stderr,
         durationMs: result.durationMs,
         command: result.command,
-        valid: true,
-        diagnostics: [],
-        summary: { errors: 0, warnings: 0, infos: 0 },
+        valid: false,
+        diagnostics: [
+          {
+            level: 'error',
+            file: fp,
+            line: 0,
+            message,
+          },
+        ],
+        summary: { errors: 1, warnings: 0, infos: 0 },
       });
     }
   }

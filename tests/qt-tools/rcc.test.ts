@@ -29,6 +29,13 @@ describe('Rcc', () => {
     expect(xml).toContain('prefix="/"');
   });
 
+  test('RCC-02b: createQrcXml escapes XML special characters', () => {
+    const xml = createQrcXml(['a&b<test>.qml'], { prefix: '/qml"&' });
+    expect(xml).toContain('&amp;');
+    expect(xml).toContain('&lt;test&gt;');
+    expect(xml).toContain('prefix="/qml&quot;&amp;"');
+  });
+
   describe.skipIf(!QT_DIR)('with Qt', () => {
     test('RCC-03: compile test.qrc to C++', async () => {
       const inst = await discover({ qtDir: QT_DIR! });

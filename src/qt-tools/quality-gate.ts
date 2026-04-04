@@ -60,7 +60,7 @@ export async function check(
   }
 
   // Stage 3: Compile
-  if (passed && shouldRunStage(level, 'compile')) {
+  if (shouldRunStage(level, 'compile')) {
     onProgress?.('compile', 0, 1);
     cachegenResult = await compile(installation, filePath, cachegenOptions);
     if (!cachegenResult.success) passed = false;
@@ -71,7 +71,7 @@ export async function check(
   }
 
   // Stage 4: Full (smoke test via qml runner)
-  if (passed && shouldRunStage(level, 'full')) {
+  if (shouldRunStage(level, 'full')) {
     onProgress?.('full', 0, 1);
     smokeTestResult = await smokeTest(installation, filePath, runOptions);
     if (!smokeTestResult.loaded) passed = false;

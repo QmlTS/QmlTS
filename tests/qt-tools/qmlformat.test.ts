@@ -1,4 +1,7 @@
 import { describe, expect, test } from 'bun:test';
+import { readFileSync } from 'node:fs';
+import { mkdtemp, rm, writeFile } from 'node:fs/promises';
+import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import {
   formatFile,
@@ -132,5 +135,21 @@ describe.skipIf(!QT_DIR)('QmlFormat', () => {
     const inst = await discover({ qtDir: QT_DIR! });
     const result = await formatFile(inst, join(FIXTURES, 'syntax-error.qml'), { force: true });
     expect(result).toBeDefined();
+  });
+
+  test('FMT-17: inplace mode returns post-format file content and change status', async () => {
+    const inst = await discover({ qtDir: QT_DIR! });
+    const tmpDir = await mkdtemp(join(tmpdir(), 'qmlformat-'));
+    const filePath = join(tmpDir, 'inplace.qml');
+    try {
+      await writeFile(filePath, 'import QtQuick\nItem { width: 100 }\n', 'utf-8');
+      const result = await formatFile(inst, filePath, { inplace: true });
+      const afterText = readFileSync(filePath, 'utf-8');
+      expect(result.exitCode).toBe(0);
+      expect(result.formattedText).toBe(afterText);
+      expect(result.hasChanges).toBe(true);
+    } finally {
+      await rm(tmpDir, { recursive: true, force: true });
+    }
   });
 });

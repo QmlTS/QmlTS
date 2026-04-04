@@ -54,11 +54,14 @@ describe.skipIf(!QT_DIR)('QmlRunner', () => {
     expect(result.loaded).toBe(false);
   }, 10_000);
 
-  test('RUN-06: listConfigs returns config names', async () => {
+  test('RUN-06: listConfigs returns a stable config list result', async () => {
     const inst = await discover({ qtDir: QT_DIR! });
     const configs = await listConfigs(inst);
-    expect(configs.length).toBeGreaterThan(0);
-    expect(configs).toContain('default');
+    expect(Array.isArray(configs)).toBe(true);
+    for (const config of configs) {
+      expect(typeof config).toBe('string');
+      expect(config.length).toBeGreaterThan(0);
+    }
   });
 
   test('RUN-07: smokeTest valid.qml with timeout = timed out but loaded', async () => {

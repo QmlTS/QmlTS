@@ -112,12 +112,21 @@ export function createQrcXml(
   files: readonly string[],
   options?: { readonly prefix?: string },
 ): string {
-  const prefix = options?.prefix ?? '/';
-  const entries = files.map((f) => `<file>${f}</file>`).join('\n');
+  const prefix = escapeXml(options?.prefix ?? '/');
+  const entries = files.map((f) => `<file>${escapeXml(f)}</file>`).join('\n');
   return `<!DOCTYPE RCC><RCC version="1.0">
 <qresource prefix="${prefix}">
 ${entries}
 </qresource>
 </RCC>
 `;
+}
+
+function escapeXml(value: string): string {
+  return value
+    .replaceAll('&', '&amp;')
+    .replaceAll('<', '&lt;')
+    .replaceAll('>', '&gt;')
+    .replaceAll('"', '&quot;')
+    .replaceAll("'", '&apos;');
 }
