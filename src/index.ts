@@ -31,5 +31,7 @@ export function getQuery(): RegistryQueryInterface {
 export * from './ast/index.js';
 // ─── Re-export Emitter module ───────────────────────────────
 export * from './emitter/index.js';
+// ─── Re-export Qt Tools module ──────────────────────────────
+export * from './qt-tools/index.js';
 // ─── Re-export everything for advanced / maintainer use ─────
 export * from './registry/index.js';
