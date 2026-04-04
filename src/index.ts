@@ -27,5 +27,7 @@ export function getQuery(): RegistryQueryInterface {
   return _query;
 }
 
+// ─── Re-export AST module ───────────────────────────────────
+export * from './ast/index.js';
 // ─── Re-export everything for advanced / maintainer use ─────
 export * from './registry/index.js';
