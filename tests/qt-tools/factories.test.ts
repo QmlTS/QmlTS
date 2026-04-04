@@ -99,7 +99,7 @@ describe('Factories', () => {
       const inst = await discover({ qtDir: QT_DIR! });
       const linter = createQmlLint(inst);
       const json = JSON.stringify({
-        files: [{ filename: 'a.qml', warnings: [] }],
+        files: [{ filename: 'a.qml', success: true, warnings: [] }],
         revision: 3,
       });
       const parsed = linter.parseJsonOutput(json);

@@ -1,4 +1,7 @@
 import { describe, expect, test } from 'bun:test';
+import { mkdirSync, mkdtempSync, rmSync, writeFileSync } from 'node:fs';
+import { tmpdir } from 'node:os';
+import { join } from 'node:path';
 import { QtInstallationNotFoundError } from '../../src/qt-tools/errors.js';
 import {
   checkTools,
@@ -86,19 +89,25 @@ describe('QtToolchain', () => {
     });
   });
 
-  test('TC-12: resolveQtDir returns undefined when no config or env', () => {
+  test('TC-12: resolveQtDir discovers Qt via PATH', () => {
     const origQmlts = process.env['QMLTS_QT_DIR'];
     const origQt = process.env['QT_DIR'];
     const origPath = process.env['PATH'];
+    const tempRoot = mkdtempSync(join(tmpdir(), 'qmlts-toolchain-path-'));
+    const qtDir = join(tempRoot, 'qt');
+    const binDir = join(qtDir, 'bin');
+    const qmlDir = join(qtDir, 'qml');
     try {
+      mkdirSync(binDir, { recursive: true });
+      mkdirSync(qmlDir, { recursive: true });
+      writeFileSync(join(binDir, process.platform === 'win32' ? 'qmlformat.exe' : 'qmlformat'), '');
       delete process.env['QMLTS_QT_DIR'];
       delete process.env['QT_DIR'];
-      process.env['PATH'] = '';
+      process.env['PATH'] = binDir;
       const result = resolveQtDir();
-      // On CI or machines without Qt in common paths, this should be undefined
-      // On machines with Qt installed in common paths, it may find it
-      expect(result === undefined || typeof result === 'string').toBe(true);
+      expect(result).toBe(qtDir);
     } finally {
+      rmSync(tempRoot, { recursive: true, force: true });
       if (origQmlts !== undefined) process.env['QMLTS_QT_DIR'] = origQmlts;
       else delete process.env['QMLTS_QT_DIR'];
       if (origQt !== undefined) process.env['QT_DIR'] = origQt;
@@ -127,4 +136,37 @@ describe('QtToolchain', () => {
     const result = resolveQtDir({ qtDir: '/explicit/path' });
     expect(result).toBe('/explicit/path');
   });
+
+  test.skipIf(process.platform === 'win32')(
+    'TC-15: resolveQtDir discovers a non-versioned Qt prefix in common paths',
+    () => {
+      const origQmlts = process.env['QMLTS_QT_DIR'];
+      const origQt = process.env['QT_DIR'];
+      const origPath = process.env['PATH'];
+      const origHome = process.env['HOME'];
+      const tempHome = mkdtempSync(join(tmpdir(), 'qmlts-toolchain-home-'));
+      const qtRoot = join(tempHome, 'Qt');
+      try {
+        mkdirSync(join(qtRoot, 'bin'), { recursive: true });
+        mkdirSync(join(qtRoot, 'qml'), { recursive: true });
+        writeFileSync(join(qtRoot, 'bin', 'qmlformat'), '');
+        delete process.env['QMLTS_QT_DIR'];
+        delete process.env['QT_DIR'];
+        process.env['PATH'] = '';
+        process.env['HOME'] = tempHome;
+        const result = resolveQtDir();
+        expect(result).toBe(qtRoot);
+      } finally {
+        rmSync(tempHome, { recursive: true, force: true });
+        if (origQmlts !== undefined) process.env['QMLTS_QT_DIR'] = origQmlts;
+        else delete process.env['QMLTS_QT_DIR'];
+        if (origQt !== undefined) process.env['QT_DIR'] = origQt;
+        else delete process.env['QT_DIR'];
+        if (origPath !== undefined) process.env['PATH'] = origPath;
+        else delete process.env['PATH'];
+        if (origHome !== undefined) process.env['HOME'] = origHome;
+        else delete process.env['HOME'];
+      }
+    },
+  );
 });

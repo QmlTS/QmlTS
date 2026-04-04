@@ -132,6 +132,7 @@ describe.skipIf(!QT_DIR)('QmlLint', () => {
       files: [
         {
           filename: 'test.qml',
+          success: true,
           warnings: [
             {
               message: 'test warning',
