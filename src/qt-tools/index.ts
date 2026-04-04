@@ -30,6 +30,7 @@ export {
   lintString,
   listPlugins,
 } from './qmllint.js';
+export { check, checkFiles, checkString } from './quality-gate.js';
 export { withTempQmlFile } from './temp-file.js';
 // Infrastructure
 export { getToolBinaryPath, runTool } from './tool-runner.js';
