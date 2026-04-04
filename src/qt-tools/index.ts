@@ -8,12 +8,35 @@ export {
   QtToolNotFoundError,
   QtToolTimeoutError,
 } from './errors.js';
+// Factories
+export {
+  createDiagnosticParser,
+  createQmlCachegen,
+  createQmlDom,
+  createQmlFormat,
+  createQmlImportScanner,
+  createQmlLint,
+  createQmlRunner,
+  createQmlTypeRegistrar,
+  createQmltc,
+  createQtToolchain,
+  createQualityGate,
+  createRcc,
+} from './factories.js';
+export {
+  buildRunArgs,
+  listConfigs,
+  run as qmlRun,
+  runString as qmlRunString,
+  smokeTest,
+} from './qml-runner.js';
 export {
   buildCachegenArgs,
   compile as cachegenCompile,
   compileFiles as cachegenCompileFiles,
   compileString as cachegenCompileString,
 } from './qmlcachegen.js';
+export { buildDomArgs, dumpAst, dumpDom, dumpString } from './qmldom.js';
 // Tool wrappers
 export {
   buildFormatArgs,
@@ -23,6 +46,13 @@ export {
   getDefaultOptions,
 } from './qmlformat.js';
 export {
+  buildImportScannerArgs,
+  scanDir,
+  scanFiles,
+  scanQrcFiles,
+  scanString as scanImportsString,
+} from './qmlimportscanner.js';
+export {
   buildLintArgs,
   lintFile,
   lintFiles,
@@ -30,7 +60,25 @@ export {
   lintString,
   listPlugins,
 } from './qmllint.js';
+export {
+  buildQmltcArgs,
+  compile as qmltcCompile,
+  compileString as qmltcCompileString,
+} from './qmltc.js';
+export {
+  buildTypeRegistrarArgs,
+  generateQmltypes,
+  register,
+} from './qmltyperegistrar.js';
 export { check, checkFiles, checkString } from './quality-gate.js';
+export {
+  buildRccArgs,
+  compile as rccCompile,
+  createQrcXml,
+  generateProjectQrc,
+  listEntries,
+  listMappings,
+} from './rcc.js';
 export { withTempQmlFile } from './temp-file.js';
 // Infrastructure
 export { getToolBinaryPath, runTool } from './tool-runner.js';
@@ -41,9 +89,13 @@ export type {
   QmlCachegenBatchResult,
   QmlCachegenOptions,
   QmlCachegenResult,
+  QmlDomOptions,
+  QmlDomResult,
   QmlFormatBatchResult,
   QmlFormatOptions,
   QmlFormatResult,
+  QmlImportScannerOptions,
+  QmlImportScannerResult,
   QmlLintBatchResult,
   QmlLintDiagnostic,
   QmlLintFix,
@@ -52,6 +104,13 @@ export type {
   QmlLintOptions,
   QmlLintResult,
   QmlLintWarningCategory,
+  QmlRunOptions,
+  QmlRunResult,
+  QmlSmokeTestResult,
+  QmlTypeRegistrarOptions,
+  QmlTypeRegistrarResult,
+  QmltcOptions,
+  QmltcResult,
   QtInstallation,
   QtToolchainConfig,
   QtToolName,
@@ -60,6 +119,9 @@ export type {
   QualityGateLevel,
   QualityGateOptions,
   QualityGateResult,
+  RccOptions,
+  RccResult,
+  ScannedImport,
   ToolAvailability,
   ToolInfo,
   ToolResult,
