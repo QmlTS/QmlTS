@@ -59,13 +59,69 @@ The registry module has two layers:
 ### Module Roadmap
 
 ```
-@qmlts/registry   Qt type scanner       ← you are here
-@qmlts/ast        QML AST
+@qmlts/registry   Qt type scanner       ✓ done
+@qmlts/ast        QML AST               ← you are here
 @qmlts/emitter    AST → QML text
 @qmlts/dsl        Fluent DSL generator
 @qmlts/compiler   TS DSL → QML
 @qmlts/cli        Command-line tool
 ```
+
+### AST Module
+
+The AST module provides an in-memory representation of QML documents as a typed tree structure. It is **pure TypeScript** with zero runtime dependencies — no Qt installation needed.
+
+```typescript
+import {
+  createDocument, createObject, v,
+  validateStructure, validateSemantics,
+  walkAst, transformAst, astSerializer, astUtils,
+  getQuery,
+} from 'qmlts';
+
+// Build a QML document
+const doc = createDocument()
+  .importModule('QtQuick')
+  .root(
+    createObject('Rectangle')
+      .id('root')
+      .bind('width', 400)
+      .bind('height', 300)
+      .bind('color', v.str('red'))
+      .child(
+        createObject('Text')
+          .bind('text', v.str('Hello from QmlTS'))
+      )
+  );
+
+// Validate structure (no Qt needed)
+const result = validateStructure(doc);
+console.log(result.valid); // true
+
+// Semantic validation with Qt registry
+const semantic = validateSemantics(doc, getQuery());
+console.log(semantic.diagnostics); // []
+
+// Traverse, transform, serialize
+const ids = astUtils.collectIds(doc);
+const json = astSerializer.serialize(doc);
+const clone = astSerializer.clone(doc);
+```
+
+#### AST APIs
+
+| API | Description |
+|-----|-------------|
+| `v.*` | Value factory — `v.num()`, `v.str()`, `v.bool()`, `v.nil()`, `v.expr()`, `v.block()`, `v.enumRef()` |
+| `createDocument()` | Fluent document builder — pragmas, imports, root object |
+| `createObject(type)` | Fluent object builder — bindings, properties, signals, children, etc. |
+| `walkAst(doc, visitor)` | Type-safe visitor pattern traversal |
+| `walkAstGeneric(doc, callbacks)` | Generic walker with enter/leave, path, parent tracking |
+| `transformAst(doc, transformer)` | Immutable tree transformation |
+| `validateStructure(doc)` | Structural validation (E001–E010) — no registry needed |
+| `validateSemantics(doc, query)` | Semantic validation (E100–E106, W001) — uses registry |
+| `astSerializer` | Serialize/deserialize/clone AST to/from JSON |
+| `astUtils` | 12 utility functions — collectIds, findObjectsByType, countNodes, etc. |
 
 ## Development
 
@@ -108,34 +164,56 @@ Scanner and builder integration tests require a Qt installation:
 QT_DIR=/path/to/qt/6.11.0/gcc_64 bun test
 ```
 
-Without `QT_DIR`, these tests are automatically skipped. CI runs the default test suite (no Qt required).
+Without `QT_DIR`, these tests are automatically skipped. CI runs the full test suite with Qt 6.11 installed via `install-qt-action`.
 
 ### Project Structure
 
 ```
 QmlTS/
-├── .github/workflows/ci.yml   # CI (self-hosted Linux runner, no Qt)
+├── .github/workflows/ci.yml   # CI (self-hosted Linux runner + Qt 6.11)
 ├── data/
 │   └── qt-6.11.0-registry.snapshot.json  # Pre-built registry (committed)
 ├── scripts/
 │   └── generate-registry.ts   # Maintainer: regenerate snapshot
 ├── src/
-│   ├── index.ts                # Public API: getRegistry(), getQuery()
-│   └── registry/               # Internal build tools
-│       ├── types.ts            # Type definitions
-│       ├── scanner.ts          # File discovery
-│       ├── *-parser.ts         # Three format parsers
-│       ├── normalizer.ts       # Three-source merge
-│       ├── registry-query.ts   # Query engine
-│       ├── snapshot.ts         # Serialization
-│       └── builder.ts          # Build orchestrator
+│   ├── index.ts                # Public API: getRegistry(), getQuery(), AST exports
+│   ├── registry/               # Module 01: Qt type registry
+│   │   ├── types.ts            # Type definitions
+│   │   ├── scanner.ts          # File discovery
+│   │   ├── *-parser.ts         # Three format parsers
+│   │   ├── normalizer.ts       # Three-source merge
+│   │   ├── registry-query.ts   # Query engine
+│   │   ├── snapshot.ts         # Serialization
+│   │   └── builder.ts          # Build orchestrator
+│   └── ast/                    # Module 02: QML AST
+│       ├── types.ts            # AST node type definitions
+│       ├── values.ts           # Value factory (v.*)
+│       ├── builder.ts          # Document & object builders
+│       ├── visitor.ts          # Type-safe visitor traversal
+│       ├── walker.ts           # Generic enter/leave walker
+│       ├── transform.ts        # Immutable tree transform
+│       ├── validator.ts        # Structural + semantic validation
+│       ├── serializer.ts       # AST ↔ JSON serialization
+│       ├── utils.ts            # 12 utility functions
+│       └── index.ts            # Barrel exports
 ├── tests/
-│   └── registry/
-│       ├── public-api.test.ts  # Tests using built-in snapshot
-│       ├── *-parser.test.ts    # Parser unit tests (fixtures)
-│       ├── scanner.test.ts     # Integration (needs QT_DIR)
-│       ├── builder.test.ts     # Integration (needs QT_DIR)
-│       └── fixtures/           # Test data files
+│   ├── registry/
+│   │   ├── public-api.test.ts  # Tests using built-in snapshot
+│   │   ├── *-parser.test.ts    # Parser unit tests (fixtures)
+│   │   ├── scanner.test.ts     # Integration (needs QT_DIR)
+│   │   ├── builder.test.ts     # Integration (needs QT_DIR)
+│   │   └── fixtures/           # Test data files
+│   └── ast/
+│       ├── value-factory.test.ts
+│       ├── builder.test.ts
+│       ├── visitor.test.ts
+│       ├── walker.test.ts
+│       ├── transform.test.ts
+│       ├── serializer.test.ts
+│       ├── validator-structure.test.ts
+│       ├── validator-semantic.test.ts
+│       ├── utils.test.ts
+│       └── e2e.test.ts         # Full pipeline integration
 ├── package.json
 ├── tsconfig.json
 └── README.md
