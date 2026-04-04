@@ -8,6 +8,12 @@ export {
   QtToolNotFoundError,
   QtToolTimeoutError,
 } from './errors.js';
+export {
+  buildCachegenArgs,
+  compile as cachegenCompile,
+  compileFiles as cachegenCompileFiles,
+  compileString as cachegenCompileString,
+} from './qmlcachegen.js';
 // Tool wrappers
 export {
   buildFormatArgs,
