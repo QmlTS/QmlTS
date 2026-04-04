@@ -1,0 +1,191 @@
+{
+  "kind": "Document",
+  "pragmas": [],
+  "imports": [
+    {
+      "kind": "Import",
+      "importKind": "module",
+      "moduleUri": "QtQuick"
+    }
+  ],
+  "rootObject": {
+    "kind": "ObjectDefinition",
+    "typeName": "Item",
+    "members": [
+      {
+        "kind": "IdAssignment",
+        "id": "root"
+      },
+      {
+        "kind": "PropertyDeclaration",
+        "name": "count",
+        "typeName": "int",
+        "initialValue": {
+          "kind": "number",
+          "value": 0
+        }
+      },
+      {
+        "kind": "PropertyDeclaration",
+        "name": "name",
+        "typeName": "string"
+      },
+      {
+        "kind": "PropertyDeclaration",
+        "name": "area",
+        "typeName": "real",
+        "isReadonly": true,
+        "initialValue": {
+          "kind": "expression",
+          "code": "w * h"
+        }
+      },
+      {
+        "kind": "PropertyDeclaration",
+        "name": "title",
+        "typeName": "string",
+        "isRequired": true
+      },
+      {
+        "kind": "PropertyAlias",
+        "name": "text",
+        "targetPath": "label.text"
+      },
+      {
+        "kind": "SignalDeclaration",
+        "name": "clicked",
+        "parameters": []
+      },
+      {
+        "kind": "SignalDeclaration",
+        "name": "moved",
+        "parameters": [
+          {
+            "name": "x",
+            "type": "int"
+          },
+          {
+            "name": "y",
+            "type": "int"
+          }
+        ]
+      },
+      {
+        "kind": "SignalHandler",
+        "name": "onClicked",
+        "body": {
+          "form": "expression",
+          "code": "doStuff()"
+        }
+      },
+      {
+        "kind": "SignalHandler",
+        "name": "onMoved",
+        "body": {
+          "form": "block",
+          "code": "console.log(\"moved\")"
+        }
+      },
+      {
+        "kind": "SignalHandler",
+        "name": "onPressed",
+        "body": {
+          "form": "arrow",
+          "parameters": [
+            "event"
+          ],
+          "body": "handle(event)",
+          "isBlock": true
+        }
+      },
+      {
+        "kind": "FunctionDeclaration",
+        "name": "calculate",
+        "parameters": [
+          {
+            "name": "a",
+            "type": "int"
+          },
+          {
+            "name": "b",
+            "type": "int"
+          }
+        ],
+        "body": "return a + b",
+        "returnType": "int"
+      },
+      {
+        "kind": "FunctionDeclaration",
+        "name": "reset",
+        "parameters": [],
+        "body": "count = 0"
+      },
+      {
+        "kind": "Binding",
+        "property": "width",
+        "value": {
+          "kind": "number",
+          "value": 100
+        }
+      },
+      {
+        "kind": "Binding",
+        "property": "height",
+        "value": {
+          "kind": "number",
+          "value": 200
+        }
+      },
+      {
+        "kind": "ObjectDefinition",
+        "typeName": "Rectangle",
+        "members": [
+          {
+            "kind": "Binding",
+            "property": "color",
+            "value": {
+              "kind": "string",
+              "value": "red"
+            }
+          }
+        ]
+      },
+      {
+        "kind": "InlineComponent",
+        "name": "Badge",
+        "body": {
+          "kind": "ObjectDefinition",
+          "typeName": "Text",
+          "members": [
+            {
+              "kind": "Binding",
+              "property": "text",
+              "value": {
+                "kind": "string",
+                "value": "!"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "kind": "EnumDeclaration",
+        "name": "Direction",
+        "members": [
+          {
+            "name": "Up"
+          },
+          {
+            "name": "Down"
+          },
+          {
+            "name": "Left"
+          },
+          {
+            "name": "Right"
+          }
+        ]
+      }
+    ]
+  }
+}

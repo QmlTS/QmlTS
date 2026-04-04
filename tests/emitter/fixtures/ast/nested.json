@@ -1,0 +1,49 @@
+{
+  "kind": "Document",
+  "pragmas": [],
+  "imports": [
+    {
+      "kind": "Import",
+      "importKind": "module",
+      "moduleUri": "QtQuick"
+    }
+  ],
+  "rootObject": {
+    "kind": "ObjectDefinition",
+    "typeName": "Item",
+    "members": [
+      {
+        "kind": "ObjectDefinition",
+        "typeName": "Column",
+        "members": [
+          {
+            "kind": "ObjectDefinition",
+            "typeName": "Row",
+            "members": [
+              {
+                "kind": "ObjectDefinition",
+                "typeName": "Rectangle",
+                "members": [
+                  {
+                    "kind": "ObjectDefinition",
+                    "typeName": "Text",
+                    "members": [
+                      {
+                        "kind": "Binding",
+                        "property": "text",
+                        "value": {
+                          "kind": "string",
+                          "value": "Deep"
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}
