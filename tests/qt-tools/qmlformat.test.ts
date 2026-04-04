@@ -8,6 +8,7 @@ import {
   formatFiles,
   formatString,
   getDefaultOptions,
+  writeDefaults,
 } from '../../src/qt-tools/qmlformat.js';
 import { discover } from '../../src/qt-tools/toolchain.js';
 
@@ -148,6 +149,19 @@ describe.skipIf(!QT_DIR)('QmlFormat', () => {
       expect(result.exitCode).toBe(0);
       expect(result.formattedText).toBe(afterText);
       expect(result.hasChanges).toBe(true);
+    } finally {
+      await rm(tmpDir, { recursive: true, force: true });
+    }
+  });
+
+  test('FMT-18: writeDefaults creates .qmlformat.ini', async () => {
+    const inst = await discover({ qtDir: QT_DIR! });
+    const tmpDir = await mkdtemp(join(tmpdir(), 'qmlformat-wd-'));
+    try {
+      await writeDefaults(inst, tmpDir);
+      const iniPath = join(tmpDir, '.qmlformat.ini');
+      const content = readFileSync(iniPath, 'utf-8');
+      expect(content).toContain('[General]');
     } finally {
       await rm(tmpDir, { recursive: true, force: true });
     }

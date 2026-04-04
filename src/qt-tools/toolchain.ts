@@ -1,4 +1,5 @@
-import { existsSync, statSync } from 'node:fs';
+import { existsSync, readdirSync, statSync } from 'node:fs';
+import { homedir } from 'node:os';
 import { basename, join, resolve } from 'node:path';
 import { QtInstallationNotFoundError, QtToolNotFoundError } from './errors.js';
 import { getToolBinaryCandidates, getToolBinaryPath, runTool } from './tool-runner.js';
@@ -11,6 +12,8 @@ import type {
   ToolInfo,
 } from './types.js';
 
+const IS_WINDOWS = process.platform === 'win32';
+
 const KNOWN_TOOLS: readonly QtToolName[] = [
   'qmlformat',
   'qmllint',
@@ -21,7 +24,59 @@ const KNOWN_TOOLS: readonly QtToolName[] = [
   'qml',
   'rcc',
   'qmltyperegistrar',
+  'moc',
+  'qmlaotstats',
 ];
+
+function getCommonQtPaths(): readonly string[] {
+  const envHome =
+    process.env['HOME'] ??
+    process.env['USERPROFILE'] ??
+    (process.env['HOMEDRIVE'] && process.env['HOMEPATH']
+      ? `${process.env['HOMEDRIVE']}${process.env['HOMEPATH']}`
+      : undefined);
+  const homeDir = envHome ?? homedir();
+  const homeQt = join(homeDir, 'Qt');
+  if (IS_WINDOWS) {
+    return ['C:\\Qt', 'D:\\Qt'];
+  }
+  if (process.platform === 'darwin') {
+    return [homeQt, '/opt/Qt', '/usr/local/Qt'];
+  }
+  return [homeQt, '/opt/Qt', '/usr/lib/qt6', '/usr/local/Qt'];
+}
+
+function findQtInCommonPaths(commonPaths: readonly string[]): string | undefined {
+  for (const root of commonPaths) {
+    if (!existsSync(root)) continue;
+    try {
+      if (validateQtDirectory(root)) {
+        return root;
+      }
+
+      const entries = readdirSync(root, { withFileTypes: true });
+      const versionDirs = entries
+        .filter((e) => e.isDirectory() && /^\d+\.\d+\.\d+$/.test(e.name))
+        .sort((a, b) => b.name.localeCompare(a.name, undefined, { numeric: true }));
+
+      for (const vdir of versionDirs) {
+        const versionPath = join(root, vdir.name);
+        const platEntries = readdirSync(versionPath, { withFileTypes: true });
+        for (const plat of platEntries) {
+          if (!plat.isDirectory()) continue;
+          const candidate = join(versionPath, plat.name);
+          if (validateQtDirectory(candidate)) {
+            return candidate;
+          }
+        }
+      }
+    } catch {
+      // Permission denied or unreadable — skip
+    }
+  }
+
+  return undefined;
+}
 
 export function resolveQtDir(config?: QtToolchainConfig): string | undefined {
   if (config?.qtDir) return config.qtDir;
@@ -33,8 +88,8 @@ export function resolveQtDir(config?: QtToolchainConfig): string | undefined {
   // PATH-based discovery: find qmlformat in PATH and derive Qt root
   const pathEnv = process.env['PATH'];
   if (pathEnv) {
-    const pathDirs = pathEnv.split(process.platform === 'win32' ? ';' : ':');
-    const ext = process.platform === 'win32' ? '.exe' : '';
+    const pathDirs = pathEnv.split(IS_WINDOWS ? ';' : ':');
+    const ext = IS_WINDOWS ? '.exe' : '';
     for (const dir of pathDirs) {
       if (dir && existsSync(join(dir, `qmlformat${ext}`))) {
         const base = basename(dir).toLowerCase();
@@ -47,7 +102,7 @@ export function resolveQtDir(config?: QtToolchainConfig): string | undefined {
     }
   }
 
-  return undefined;
+  return findQtInCommonPaths(getCommonQtPaths());
 }
 
 function validateQtDirectory(dir: string): boolean {
@@ -93,9 +148,11 @@ function detectPlatform(rootDir: string): string {
 export async function discover(config?: QtToolchainConfig): Promise<QtInstallation> {
   const dir = resolveQtDir(config);
   const searched: string[] = [];
+  const commonQtPaths = getCommonQtPaths();
   if (config?.qtDir) searched.push(config.qtDir);
   if (process.env['QMLTS_QT_DIR']) searched.push(process.env['QMLTS_QT_DIR']);
   if (process.env['QT_DIR']) searched.push(process.env['QT_DIR']);
+  if (!dir) searched.push(...commonQtPaths.filter((p) => existsSync(p)));
 
   if (!dir) {
     throw new QtInstallationNotFoundError(

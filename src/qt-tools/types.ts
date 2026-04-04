@@ -41,6 +41,8 @@ export interface ToolAvailability {
   readonly qml: ToolInfo;
   readonly rcc: ToolInfo;
   readonly qmltyperegistrar: ToolInfo;
+  readonly moc: ToolInfo;
+  readonly qmlaotstats: ToolInfo;
 }
 
 export type QtToolName =
@@ -235,6 +237,7 @@ export interface QmlLintJsonOutput {
     readonly warnings: readonly {
       readonly message: string;
       readonly id?: string;
+      readonly severity?: string;
       readonly type: string;
       readonly line: number;
       readonly column: number;

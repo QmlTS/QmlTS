@@ -1,4 +1,7 @@
 import { describe, expect, test } from 'bun:test';
+import { readFileSync } from 'node:fs';
+import { mkdtemp, rm } from 'node:fs/promises';
+import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import {
   createDiagnosticParser,
@@ -7,6 +10,7 @@ import {
   createQmlRunner,
   createQualityGate,
   createRcc,
+  createToolRunner,
 } from '../../src/qt-tools/factories.js';
 import { discover } from '../../src/qt-tools/toolchain.js';
 
@@ -55,6 +59,52 @@ describe('Factories', () => {
       const qmlRunner = createQmlRunner(inst);
       const configs = await qmlRunner.listConfigs();
       expect(Array.isArray(configs)).toBe(true);
+    });
+
+    test('FAC-07: createToolRunner.run executes qmlformat --help', async () => {
+      const inst = await discover({ qtDir: QT_DIR! });
+      const runner = createToolRunner(inst);
+      const result = await runner.run('qmlformat', ['--help']);
+      expect(result.exitCode).toBe(0);
+      expect(result.stdout).toContain('qmlformat');
+    });
+
+    test('FAC-08: createQmlFormat.writeDefaults creates ini file', async () => {
+      const inst = await discover({ qtDir: QT_DIR! });
+      const fmt = createQmlFormat(inst);
+      const tmpDir = await mkdtemp(join(tmpdir(), 'fac-fmt-wd-'));
+      try {
+        await fmt.writeDefaults(tmpDir);
+        const content = readFileSync(join(tmpDir, '.qmlformat.ini'), 'utf-8');
+        expect(content).toContain('[General]');
+      } finally {
+        await rm(tmpDir, { recursive: true, force: true });
+      }
+    });
+
+    test('FAC-09: createQmlLint.writeDefaults creates ini file', async () => {
+      const inst = await discover({ qtDir: QT_DIR! });
+      const linter = createQmlLint(inst);
+      const tmpDir = await mkdtemp(join(tmpdir(), 'fac-lint-wd-'));
+      try {
+        await linter.writeDefaults(tmpDir);
+        const content = readFileSync(join(tmpDir, '.qmllint.ini'), 'utf-8');
+        expect(content).toContain('[Warnings]');
+      } finally {
+        await rm(tmpDir, { recursive: true, force: true });
+      }
+    });
+
+    test('FAC-10: createQmlLint.parseJsonOutput parses JSON', async () => {
+      const inst = await discover({ qtDir: QT_DIR! });
+      const linter = createQmlLint(inst);
+      const json = JSON.stringify({
+        files: [{ filename: 'a.qml', success: true, warnings: [] }],
+        revision: 3,
+      });
+      const parsed = linter.parseJsonOutput(json);
+      expect(parsed.files).toHaveLength(1);
+      expect(parsed.files[0]!.filename).toBe('a.qml');
     });
   });
 });

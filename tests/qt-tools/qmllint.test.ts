@@ -1,6 +1,16 @@
 import { describe, expect, test } from 'bun:test';
+import { readFileSync } from 'node:fs';
+import { mkdtemp, rm } from 'node:fs/promises';
+import { tmpdir } from 'node:os';
 import { join } from 'node:path';
-import { lintFile, lintFiles, lintString, listPlugins } from '../../src/qt-tools/qmllint.js';
+import {
+  lintFile,
+  lintFiles,
+  lintString,
+  listPlugins,
+  parseJsonOutput,
+  writeDefaults,
+} from '../../src/qt-tools/qmllint.js';
 import { discover } from '../../src/qt-tools/toolchain.js';
 
 const QT_DIR = process.env['QT_DIR'];
@@ -113,6 +123,48 @@ describe.skipIf(!QT_DIR)('QmlLint', () => {
     for (const plugin of plugins) {
       expect(typeof plugin).toBe('string');
       expect(plugin.length).toBeGreaterThan(0);
+    }
+  });
+
+  // LNT-17: parseJsonOutput parses valid JSON
+  test('LNT-17: parseJsonOutput parses qmllint JSON', () => {
+    const json = JSON.stringify({
+      files: [
+        {
+          filename: 'test.qml',
+          success: true,
+          warnings: [
+            {
+              message: 'test warning',
+              type: 'incompatible-type',
+              line: 5,
+              column: 1,
+              charOffset: 42,
+              length: 10,
+              suggestions: [],
+            },
+          ],
+        },
+      ],
+      revision: 3,
+    });
+    const result = parseJsonOutput(json);
+    expect(result.files).toHaveLength(1);
+    expect(result.files[0]!.warnings).toHaveLength(1);
+    expect(result.files[0]!.warnings[0]!.message).toBe('test warning');
+  });
+
+  // LNT-18: writeDefaults creates .qmllint.ini
+  test('LNT-18: writeDefaults creates .qmllint.ini', async () => {
+    const inst = await discover({ qtDir: QT_DIR! });
+    const tmpDir = await mkdtemp(join(tmpdir(), 'qmllint-wd-'));
+    try {
+      await writeDefaults(inst, tmpDir);
+      const iniPath = join(tmpDir, '.qmllint.ini');
+      const content = readFileSync(iniPath, 'utf-8');
+      expect(content).toContain('[Warnings]');
+    } finally {
+      await rm(tmpDir, { recursive: true, force: true });
     }
   });
 });
