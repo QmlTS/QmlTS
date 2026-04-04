@@ -36,14 +36,20 @@ export async function formatFile(
   filePath: string,
   options?: QmlFormatOptions,
 ): Promise<QmlFormatResult> {
+  const beforeText = readFileSync(filePath, 'utf-8');
   const args = buildFormatArgs(filePath, options);
   const result = await runTool(installation, 'qmlformat', args);
-  const formattedText = result.exitCode === 0 ? result.stdout : undefined;
-  const original = readFileSync(filePath, 'utf-8');
-  // Normalize line endings for comparison (qmlformat may produce different line endings)
-  const normalizeEndings = (s: string) => s.replace(/\r\n/g, '\n');
+  const formattedText =
+    result.exitCode === 0
+      ? options?.inplace
+        ? readFileSync(filePath, 'utf-8')
+        : result.stdout
+      : undefined;
+  // Normalize line endings (strip all \r) and trailing whitespace for comparison
+  const normalizeForCompare = (s: string) => s.replace(/\r/g, '').trimEnd();
   const hasChanges =
-    formattedText !== undefined && normalizeEndings(formattedText) !== normalizeEndings(original);
+    formattedText !== undefined &&
+    normalizeForCompare(formattedText) !== normalizeForCompare(beforeText);
   return { ...result, formattedText, hasChanges };
 }
 

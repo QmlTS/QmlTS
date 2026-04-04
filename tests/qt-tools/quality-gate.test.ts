@@ -118,4 +118,26 @@ describe.skipIf(!QT_DIR)('QualityGate', () => {
     const result = await checkFiles(inst, [join(FIXTURES, 'valid.qml')], { level: 'syntax' });
     expect(result.durationMs).toBeGreaterThan(0);
   });
+
+  // QG-12: full level includes smoke test
+  test('QG-12: full level includes smoke test', async () => {
+    const inst = await discover({ qtDir: QT_DIR! });
+    const result = await check(inst, join(FIXTURES, 'minimal-app.qml'), {
+      level: 'full',
+      runOptions: { timeout: 5000 },
+    });
+    expect(result.smokeTestResult).toBeDefined();
+    expect(result.smokeTestResult!.loaded).toBe(true);
+  }, 15_000);
+
+  // QG-13: full level fails for syntax error before reaching smoke test
+  test('QG-13: full level fails for syntax error before reaching smoke test', async () => {
+    const inst = await discover({ qtDir: QT_DIR! });
+    const result = await check(inst, join(FIXTURES, 'syntax-error.qml'), {
+      level: 'full',
+      runOptions: { timeout: 3000 },
+    });
+    expect(result.passed).toBe(false);
+    expect(result.smokeTestResult).toBeUndefined();
+  }, 10_000);
 });

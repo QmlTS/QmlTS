@@ -1,3 +1,4 @@
+import { resolve } from 'node:path';
 import { parseLintJson, parseStderr } from './diagnostic.js';
 import { withTempQmlFile } from './temp-file.js';
 import { runTool } from './tool-runner.js';
@@ -128,7 +129,10 @@ export async function lintFiles(
   if (jsonText.startsWith('{')) {
     try {
       const parsed = JSON.parse(jsonText);
-      for (const fileEntry of parsed.files ?? []) {
+      if (!parsed.files || !Array.isArray(parsed.files)) {
+        throw new Error('Invalid qmllint JSON output: missing files array');
+      }
+      for (const fileEntry of parsed.files) {
         const diagnostics = parseLintJson(
           JSON.stringify({ files: [fileEntry], revision: parsed.revision }),
         );
@@ -150,38 +154,47 @@ export async function lintFiles(
         });
       }
     } catch {
-      // If JSON parsing fails, create a single result
+      // JSON parsing failed — fall back to per-file linting to avoid duplicating
+      // combined stderr diagnostics across every file result.
+      for (const fp of filePaths) {
+        const fallbackResult = await lintFile(installation, fp, options);
+        perFileResults.set(fp, fallbackResult);
+      }
     }
   }
 
   // Map file paths to results (handle path normalization)
   const results = new Map<string, QmlLintResult>();
+  const normalize = (p: string) => resolve(p).replace(/\\/g, '/').toLowerCase();
   for (const fp of filePaths) {
-    const normalizedFp = fp.replace(/\\/g, '/');
+    const normalizedFp = normalize(fp);
     let found = false;
     for (const [filename, lintResult] of perFileResults) {
-      if (
-        filename === fp ||
-        filename === normalizedFp ||
-        filename.endsWith(normalizedFp) ||
-        normalizedFp.endsWith(filename)
-      ) {
+      const normalizedFilename = normalize(filename);
+      if (normalizedFp === normalizedFilename) {
         results.set(fp, lintResult);
         found = true;
         break;
       }
     }
     if (!found) {
-      // If not found in JSON, it was likely valid with no output
+      const message = `qmllint batch output did not include a result for '${fp}'`;
       results.set(fp, {
-        exitCode: 0,
-        stdout: '',
-        stderr: '',
+        exitCode: result.exitCode === 0 ? 1 : result.exitCode,
+        stdout: result.stdout,
+        stderr: result.stderr,
         durationMs: result.durationMs,
         command: result.command,
-        valid: true,
-        diagnostics: [],
-        summary: { errors: 0, warnings: 0, infos: 0 },
+        valid: false,
+        diagnostics: [
+          {
+            level: 'error',
+            file: fp,
+            line: 0,
+            message,
+          },
+        ],
+        summary: { errors: 1, warnings: 0, infos: 0 },
       });
     }
   }

@@ -1,5 +1,5 @@
 import { existsSync, statSync } from 'node:fs';
-import { basename, join } from 'node:path';
+import { basename, join, resolve } from 'node:path';
 import { QtInstallationNotFoundError, QtToolNotFoundError } from './errors.js';
 import { getToolBinaryCandidates, getToolBinaryPath, runTool } from './tool-runner.js';
 import type {
@@ -29,12 +29,45 @@ export function resolveQtDir(config?: QtToolchainConfig): string | undefined {
   if (qmltsDir) return qmltsDir;
   const qtDir = process.env['QT_DIR'];
   if (qtDir) return qtDir;
+
+  // PATH-based discovery: find qmlformat in PATH and derive Qt root
+  const pathEnv = process.env['PATH'];
+  if (pathEnv) {
+    const pathDirs = pathEnv.split(process.platform === 'win32' ? ';' : ':');
+    const ext = process.platform === 'win32' ? '.exe' : '';
+    for (const dir of pathDirs) {
+      if (dir && existsSync(join(dir, `qmlformat${ext}`))) {
+        const base = basename(dir).toLowerCase();
+        if (base !== 'bin' && base !== 'libexec') continue;
+        const candidate = resolve(dir, '..');
+        if (validateQtDirectory(candidate)) {
+          return candidate;
+        }
+      }
+    }
+  }
+
   return undefined;
 }
 
 function validateQtDirectory(dir: string): boolean {
   const binDir = join(dir, 'bin');
-  return existsSync(binDir) && statSync(binDir).isDirectory();
+  const qmlDir = join(dir, 'qml');
+  if (!(existsSync(binDir) && statSync(binDir).isDirectory())) return false;
+  if (!(existsSync(qmlDir) && statSync(qmlDir).isDirectory())) return false;
+
+  const qmlformatCandidates = getToolBinaryCandidates(
+    {
+      rootDir: dir,
+      binDir,
+      qmlDir,
+      libDir: join(dir, 'lib'),
+      version: { major: 0, minor: 0, patch: 0, string: '0.0.0' },
+      platform: '',
+    },
+    'qmlformat',
+  );
+  return qmlformatCandidates.some((candidate) => existsSync(candidate));
 }
 
 function parseQtVersion(rootDir: string): QtVersion {
