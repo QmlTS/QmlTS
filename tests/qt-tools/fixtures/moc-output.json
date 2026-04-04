@@ -1,0 +1,18 @@
+{
+    "classes": [
+        {
+            "className": "TestItem",
+            "lineNumber": 3,
+            "object": true,
+            "qualifiedClassName": "TestItem",
+            "superClasses": [
+                {
+                    "access": "public",
+                    "name": "QObject"
+                }
+            ]
+        }
+    ],
+    "inputFile": "testitem.h",
+    "outputRevision": 69
+}
