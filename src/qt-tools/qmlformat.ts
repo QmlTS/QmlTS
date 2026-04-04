@@ -40,10 +40,11 @@ export async function formatFile(
   const result = await runTool(installation, 'qmlformat', args);
   const formattedText = result.exitCode === 0 ? result.stdout : undefined;
   const original = readFileSync(filePath, 'utf-8');
-  // Normalize line endings for comparison (qmlformat may produce different line endings)
-  const normalizeEndings = (s: string) => s.replace(/\r\n/g, '\n');
+  // Normalize line endings (strip all \r) and trailing whitespace for comparison
+  const normalizeForCompare = (s: string) => s.replace(/\r/g, '').trimEnd();
   const hasChanges =
-    formattedText !== undefined && normalizeEndings(formattedText) !== normalizeEndings(original);
+    formattedText !== undefined &&
+    normalizeForCompare(formattedText) !== normalizeForCompare(original);
   return { ...result, formattedText, hasChanges };
 }
 

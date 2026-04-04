@@ -1,5 +1,5 @@
 import { existsSync, statSync } from 'node:fs';
-import { basename, join } from 'node:path';
+import { basename, join, resolve } from 'node:path';
 import { QtInstallationNotFoundError, QtToolNotFoundError } from './errors.js';
 import { getToolBinaryCandidates, getToolBinaryPath, runTool } from './tool-runner.js';
 import type {
@@ -29,6 +29,22 @@ export function resolveQtDir(config?: QtToolchainConfig): string | undefined {
   if (qmltsDir) return qmltsDir;
   const qtDir = process.env['QT_DIR'];
   if (qtDir) return qtDir;
+
+  // PATH-based discovery: find qmlformat in PATH and derive Qt root
+  const pathEnv = process.env['PATH'];
+  if (pathEnv) {
+    const pathDirs = pathEnv.split(process.platform === 'win32' ? ';' : ':');
+    const ext = process.platform === 'win32' ? '.exe' : '';
+    for (const dir of pathDirs) {
+      if (dir && existsSync(join(dir, `qmlformat${ext}`))) {
+        const candidate = resolve(dir, '..');
+        if (validateQtDirectory(candidate)) {
+          return candidate;
+        }
+      }
+    }
+  }
+
   return undefined;
 }
 

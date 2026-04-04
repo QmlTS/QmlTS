@@ -128,7 +128,10 @@ export async function lintFiles(
   if (jsonText.startsWith('{')) {
     try {
       const parsed = JSON.parse(jsonText);
-      for (const fileEntry of parsed.files ?? []) {
+      if (!parsed.files || !Array.isArray(parsed.files)) {
+        throw new Error('Invalid qmllint JSON output: missing files array');
+      }
+      for (const fileEntry of parsed.files) {
         const diagnostics = parseLintJson(
           JSON.stringify({ files: [fileEntry], revision: parsed.revision }),
         );
@@ -150,21 +153,40 @@ export async function lintFiles(
         });
       }
     } catch {
-      // If JSON parsing fails, create a single result
+      // JSON parsing failed — fall back to per-file stderr parsing
+      for (const fp of filePaths) {
+        const diagnostics = parseStderr(result.stderr, fp);
+        const summary = {
+          errors: diagnostics.filter((d) => d.level === 'error').length,
+          warnings: diagnostics.filter((d) => d.level === 'warning').length,
+          infos: diagnostics.filter((d) => d.level === 'info').length,
+        };
+        perFileResults.set(fp, {
+          exitCode: result.exitCode,
+          stdout: result.stdout,
+          stderr: result.stderr,
+          durationMs: result.durationMs,
+          command: result.command,
+          valid: false,
+          diagnostics,
+          summary,
+        });
+      }
     }
   }
 
   // Map file paths to results (handle path normalization)
   const results = new Map<string, QmlLintResult>();
+  const normalize = (p: string) => p.replace(/\\/g, '/');
   for (const fp of filePaths) {
-    const normalizedFp = fp.replace(/\\/g, '/');
+    const normalizedFp = normalize(fp);
     let found = false;
     for (const [filename, lintResult] of perFileResults) {
+      const normalizedFilename = normalize(filename);
       if (
-        filename === fp ||
-        filename === normalizedFp ||
-        filename.endsWith(normalizedFp) ||
-        normalizedFp.endsWith(filename)
+        normalizedFp === normalizedFilename ||
+        normalizedFp.endsWith(`/${normalizedFilename}`) ||
+        normalizedFilename.endsWith(`/${normalizedFp}`)
       ) {
         results.set(fp, lintResult);
         found = true;
