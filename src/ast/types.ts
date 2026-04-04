@@ -24,10 +24,6 @@ export type NodeKind =
   | 'AttachedBinding'
   | 'ArrayBinding'
   | 'BehaviorOn'
-  // Values
-  | 'ScriptExpression'
-  | 'ObjectValue'
-  | 'ArrayValue'
   // Signals
   | 'SignalDeclaration'
   | 'SignalHandler'
@@ -418,29 +414,35 @@ export interface AttachedBindingBuilder {
 
 // ─── §3 Visitor / Walker / Transform Types ───────────────────────────────
 
+// biome-ignore lint/suspicious/noConfusingVoidType: Visitor callbacks use false as a traversal control signal.
+export type VisitorResult = void | false;
+
+// biome-ignore lint/suspicious/noConfusingVoidType: Walker enter callbacks use false as a traversal control signal.
+export type WalkerEnterResult = void | false;
+
 export interface QmlAstVisitor {
-  visitDocument?(node: QmlDocument): void | false;
-  visitImport?(node: ImportNode): void | false;
-  visitPragma?(node: PragmaNode): void | false;
-  visitObjectDefinition?(node: ObjectDefinitionNode): void | false;
-  visitInlineComponent?(node: InlineComponentNode): void | false;
-  visitIdAssignment?(node: IdAssignmentNode): void | false;
-  visitPropertyDeclaration?(node: PropertyDeclarationNode): void | false;
-  visitPropertyAlias?(node: PropertyAliasNode): void | false;
-  visitBinding?(node: BindingNode): void | false;
-  visitGroupedBinding?(node: GroupedBindingNode): void | false;
-  visitAttachedBinding?(node: AttachedBindingNode): void | false;
-  visitArrayBinding?(node: ArrayBindingNode): void | false;
-  visitBehaviorOn?(node: BehaviorOnNode): void | false;
-  visitSignalDeclaration?(node: SignalDeclarationNode): void | false;
-  visitSignalHandler?(node: SignalHandlerNode): void | false;
-  visitFunctionDeclaration?(node: FunctionDeclarationNode): void | false;
-  visitEnumDeclaration?(node: EnumDeclarationNode): void | false;
-  visitComment?(node: CommentNode): void | false;
+  visitDocument?(node: QmlDocument): VisitorResult;
+  visitImport?(node: ImportNode): VisitorResult;
+  visitPragma?(node: PragmaNode): VisitorResult;
+  visitObjectDefinition?(node: ObjectDefinitionNode): VisitorResult;
+  visitInlineComponent?(node: InlineComponentNode): VisitorResult;
+  visitIdAssignment?(node: IdAssignmentNode): VisitorResult;
+  visitPropertyDeclaration?(node: PropertyDeclarationNode): VisitorResult;
+  visitPropertyAlias?(node: PropertyAliasNode): VisitorResult;
+  visitBinding?(node: BindingNode): VisitorResult;
+  visitGroupedBinding?(node: GroupedBindingNode): VisitorResult;
+  visitAttachedBinding?(node: AttachedBindingNode): VisitorResult;
+  visitArrayBinding?(node: ArrayBindingNode): VisitorResult;
+  visitBehaviorOn?(node: BehaviorOnNode): VisitorResult;
+  visitSignalDeclaration?(node: SignalDeclarationNode): VisitorResult;
+  visitSignalHandler?(node: SignalHandlerNode): VisitorResult;
+  visitFunctionDeclaration?(node: FunctionDeclarationNode): VisitorResult;
+  visitEnumDeclaration?(node: EnumDeclarationNode): VisitorResult;
+  visitComment?(node: CommentNode): VisitorResult;
 }
 
 export interface WalkerCallbacks {
-  enter?(node: AstNode, parent: AstNode | null, path: string[]): void | false;
+  enter?(node: AstNode, parent: AstNode | null, path: string[]): WalkerEnterResult;
   leave?(node: AstNode, parent: AstNode | null, path: string[]): void;
 }
 

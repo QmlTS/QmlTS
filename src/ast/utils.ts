@@ -5,28 +5,12 @@ import type {
   ObjectDefinitionNode,
   QmlDocument,
 } from './types.js';
-import { walkAst } from './visitor.js';
 import { walkAstGeneric } from './walker.js';
 
 /** AST utility functions. */
 export const astUtils: AstUtils = {
   collectIds(doc: QmlDocument): Map<string, ObjectDefinitionNode> {
     const result = new Map<string, ObjectDefinitionNode>();
-    let currentObj: ObjectDefinitionNode | null = null;
-
-    walkAst(doc, {
-      visitObjectDefinition(node) {
-        currentObj = node;
-      },
-      visitIdAssignment(node) {
-        if (currentObj) {
-          result.set(node.id, currentObj);
-        }
-      },
-    });
-
-    // Use walker for proper parent tracking
-    result.clear();
     walkAstGeneric(doc, {
       enter(node, parent) {
         if (node.kind === 'IdAssignment' && parent?.kind === 'ObjectDefinition') {
@@ -40,8 +24,11 @@ export const astUtils: AstUtils = {
 
   collectTypeNames(doc: QmlDocument): string[] {
     const types = new Set<string>();
-    walkAst(doc, {
-      visitObjectDefinition(node) {
+    walkAstGeneric(doc, {
+      enter(node) {
+        if (node.kind !== 'ObjectDefinition') {
+          return;
+        }
         types.add(node.typeName);
       },
     });
@@ -56,8 +43,11 @@ export const astUtils: AstUtils = {
 
   findObjectsByType(doc: QmlDocument, typeName: string): ObjectDefinitionNode[] {
     const results: ObjectDefinitionNode[] = [];
-    walkAst(doc, {
-      visitObjectDefinition(node) {
+    walkAstGeneric(doc, {
+      enter(node) {
+        if (node.kind !== 'ObjectDefinition') {
+          return;
+        }
         if (node.typeName === typeName) {
           results.push(node);
         }

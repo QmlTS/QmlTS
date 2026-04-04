@@ -52,6 +52,14 @@ describe('validateSemantics', () => {
     expect(result.diagnostics.some((d) => d.code === DiagnosticCode.UNKNOWN_SIGNAL)).toBe(true);
   });
 
+  test('typo in changed handler still reports E102', () => {
+    const doc = createDocument()
+      .importModule('QtQuick')
+      .root(createObject('Rectangle').handler('onWdithChanged', v.block('console.log("typo")')));
+    const result = validateSemantics(doc, query);
+    expect(result.diagnostics.some((d) => d.code === DiagnosticCode.UNKNOWN_SIGNAL)).toBe(true);
+  });
+
   // VSM-06: Unknown attached type
   test('unknown attached type reports E103', () => {
     const doc = createDocument()

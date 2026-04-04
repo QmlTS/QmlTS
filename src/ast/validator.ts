@@ -221,21 +221,6 @@ export function validateSemantics(doc: QmlDocument, registry: RegistryQueryLike)
     }
   }
 
-  // E107: Unknown module
-  for (const uri of importedModules) {
-    // Check if module has any types
-    let found = false;
-    // Try to find at least one type in this module by checking common types
-    // We use findByQmlName which accepts moduleUri
-    // A module is "known" if registry recognizes it
-    if (registry.findByQmlName('Item', uri) !== undefined) {
-      found = true;
-    }
-    // This is a simplified check - in practice we'd need a getModule method
-    // For now we skip this check since RegistryQueryLike doesn't expose module listing
-    void found;
-  }
-
   // Track used types for W001
   const usedTypes = new Set<string>();
 
@@ -304,13 +289,17 @@ function validateObject(
   const qualifiedName = typeInfo.qualifiedName;
   const properties = registry.getAllProperties(qualifiedName, true);
   const signals = registry.getAllSignals(qualifiedName, true);
-
-  const boundProps = new Set<string>();
-  const declaredProps = new Set<string>();
+  const localPropertyNames = new Set(
+    obj.members
+      .filter(
+        (member): member is Extract<ObjectMember, { name: string }> =>
+          member.kind === 'PropertyDeclaration' || member.kind === 'PropertyAlias',
+      )
+      .map((member) => member.name),
+  );
 
   for (const member of obj.members) {
     if (member.kind === 'Binding') {
-      boundProps.add(member.property);
       // E101: Unknown property
       const propInfo = properties.find((p) => p.name === member.property);
       if (!propInfo) {
@@ -341,18 +330,18 @@ function validateObject(
       }
     }
 
-    if (member.kind === 'PropertyDeclaration') {
-      declaredProps.add(member.name);
-    }
-
     // E102: Unknown signal (handler has no matching signal)
     if (member.kind === 'SignalHandler') {
       const signalName = member.name.replace(/^on/, '');
       const lowerSignal = signalName.charAt(0).toLowerCase() + signalName.slice(1);
-      // Check for built-in change signals (property + "Changed")
       const isChangeSignal = lowerSignal.endsWith('Changed');
+      const changedProperty = isChangeSignal ? lowerSignal.slice(0, -'Changed'.length) : undefined;
+      const propertyExists =
+        changedProperty !== undefined &&
+        (properties.some((p) => p.name === changedProperty) ||
+          localPropertyNames.has(changedProperty));
       const signalExists = signals.some((s) => s.name === lowerSignal);
-      if (!signalExists && !isChangeSignal) {
+      if (!signalExists && !propertyExists) {
         diagnostics.push({
           level: 'error',
           code: DiagnosticCode.UNKNOWN_SIGNAL,
