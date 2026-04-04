@@ -307,12 +307,13 @@ export interface QmlCachegenBatchResult {
 
 // ─── QualityGate ────────────────────────────────────────────
 
-export type QualityGateLevel = 'syntax' | 'lint' | 'compile';
+export type QualityGateLevel = 'syntax' | 'lint' | 'compile' | 'full';
 
 export interface QualityGateOptions {
   readonly level: QualityGateLevel;
   readonly lintOptions?: QmlLintOptions;
   readonly cachegenOptions?: QmlCachegenOptions;
+  readonly runOptions?: QmlRunOptions;
   readonly onProgress?: (stage: string, current: number, total: number) => void;
 }
 
@@ -322,6 +323,7 @@ export interface QualityGateResult {
   readonly formatResult?: QmlFormatResult;
   readonly lintResult?: QmlLintResult;
   readonly cachegenResult?: QmlCachegenResult;
+  readonly smokeTestResult?: QmlSmokeTestResult;
   readonly diagnostics: readonly QmlLintDiagnostic[];
 }
 
@@ -332,4 +334,150 @@ export interface QualityGateBatchResult {
   readonly failedCount: number;
   readonly totalDiagnostics: number;
   readonly durationMs: number;
+}
+
+// ─── Qmltc ──────────────────────────────────────────────────
+
+export interface QmltcOptions {
+  readonly implPath: string;
+  readonly headerPath: string;
+  readonly importPaths?: readonly string[];
+  readonly qmldirFiles?: readonly string[];
+  readonly resourceFiles?: readonly string[];
+  readonly metaResourceFiles?: readonly string[];
+  readonly namespace?: string;
+  readonly module?: string;
+  readonly exportMacro?: string;
+  readonly exportInclude?: string;
+  readonly bare?: boolean;
+}
+
+export interface QmltcResult extends ToolResult {
+  readonly success: boolean;
+  readonly headerFile?: string;
+  readonly implFile?: string;
+  readonly errors: readonly string[];
+}
+
+// ─── QmlImportScanner ───────────────────────────────────────
+
+export interface QmlImportScannerOptions {
+  readonly mode:
+    | { readonly type: 'rootPath'; readonly path: string }
+    | { readonly type: 'qmlFiles'; readonly files: readonly string[] }
+    | { readonly type: 'qrcFiles'; readonly files: readonly string[] };
+  readonly importPaths: readonly string[];
+  readonly excludeDirs?: readonly string[];
+}
+
+export interface ScannedImport {
+  readonly name: string;
+  readonly version?: string;
+  readonly type: 'module' | 'directory' | 'javascript';
+  readonly path?: string;
+  readonly classname?: string;
+  readonly plugin?: string;
+}
+
+export interface QmlImportScannerResult extends ToolResult {
+  readonly success: boolean;
+  readonly imports: readonly ScannedImport[];
+}
+
+// ─── QmlDom ─────────────────────────────────────────────────
+
+export interface QmlDomOptions {
+  readonly dump?: boolean;
+  readonly dumpAst?: boolean;
+  readonly reformat?: boolean;
+  readonly reformatDir?: string;
+  readonly filterFields?: string;
+  readonly importPaths?: readonly string[];
+  readonly qmltypesFiles?: readonly string[];
+  readonly pathToDump?: string;
+  readonly dependencies?: 'none' | 'required' | 'reachable';
+  readonly backups?: number;
+}
+
+export interface QmlDomResult extends ToolResult {
+  readonly success: boolean;
+  readonly dom?: unknown;
+  readonly ast?: unknown;
+}
+
+// ─── QML Runner ─────────────────────────────────────────────
+
+export interface QmlRunOptions {
+  readonly appType?: 'core' | 'gui' | 'widget';
+  readonly importPaths?: readonly string[];
+  readonly config?: string;
+  readonly translationFile?: string;
+  readonly quiet?: boolean;
+  readonly verbose?: boolean;
+  readonly rhi?: 'default' | 'vulkan' | 'metal' | 'd3d11' | 'd3d12' | 'opengl';
+  readonly software?: boolean;
+  readonly transparent?: boolean;
+  readonly fixedAnimations?: boolean;
+  readonly selectors?: readonly string[];
+  readonly timeout?: number;
+  readonly qmlArgs?: readonly string[];
+  readonly platform?: string;
+}
+
+export interface QmlRunResult extends ToolResult {
+  readonly success: boolean;
+  readonly timedOut: boolean;
+}
+
+export interface QmlSmokeTestResult extends QmlRunResult {
+  readonly loaded: boolean;
+  readonly runtimeErrors: readonly string[];
+}
+
+// ─── Rcc ────────────────────────────────────────────────────
+
+export interface RccOptions {
+  readonly outputFile?: string;
+  readonly name?: string;
+  readonly root?: string;
+  readonly compressAlgo?: 'zlib' | 'none';
+  readonly compressLevel?: number;
+  readonly noCompress?: boolean;
+  readonly generator?: 'cpp' | 'python' | 'python2';
+  readonly binary?: boolean;
+  readonly useNamespace?: boolean;
+  readonly verbose?: boolean;
+  readonly depfile?: string;
+  readonly list?: boolean;
+  readonly listMapping?: boolean;
+}
+
+export interface RccResult extends ToolResult {
+  readonly success: boolean;
+  readonly outputFile?: string;
+  readonly entries?: readonly string[];
+  readonly mappings?: ReadonlyMap<string, string>;
+}
+
+// ─── QmlTypeRegistrar ───────────────────────────────────────
+
+export interface QmlTypeRegistrarOptions {
+  readonly outputFile: string;
+  readonly importName?: string;
+  readonly majorVersion?: number;
+  readonly minorVersion?: number;
+  readonly pastMajorVersion?: number;
+  readonly namespace?: string;
+  readonly generateQmltypes?: string;
+  readonly foreignTypes?: readonly string[];
+  readonly privateIncludes?: boolean;
+  readonly followForeignVersioning?: boolean;
+  readonly jsroot?: boolean;
+  readonly extract?: boolean;
+}
+
+export interface QmlTypeRegistrarResult extends ToolResult {
+  readonly success: boolean;
+  readonly outputFile?: string;
+  readonly qmltypesFile?: string;
 }
