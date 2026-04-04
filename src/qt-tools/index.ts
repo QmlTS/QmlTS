@@ -11,6 +11,7 @@ export {
 export { withTempQmlFile } from './temp-file.js';
 // Infrastructure
 export { getToolBinaryPath, runTool } from './tool-runner.js';
+export { checkTools, discover, getImportPaths, getToolPath } from './toolchain.js';
 
 export type {
   QmlAotStats,
