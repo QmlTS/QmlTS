@@ -8,6 +8,14 @@ export {
   QtToolNotFoundError,
   QtToolTimeoutError,
 } from './errors.js';
+// Tool wrappers
+export {
+  buildFormatArgs,
+  formatFile,
+  formatFiles,
+  formatString,
+  getDefaultOptions,
+} from './qmlformat.js';
 export { withTempQmlFile } from './temp-file.js';
 // Infrastructure
 export { getToolBinaryPath, runTool } from './tool-runner.js';

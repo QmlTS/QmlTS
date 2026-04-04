@@ -9,7 +9,7 @@ export async function withTempQmlFile<T>(
   const dir = await mkdtemp(join(tmpdir(), 'qmlts-'));
   const filePath = join(dir, 'input.qml');
   try {
-    await writeFile(filePath, content, 'utf-8');
+    await writeFile(filePath, content.replace(/\r\n/g, '\n'), 'utf-8');
     return await fn(filePath);
   } finally {
     await rm(dir, { recursive: true, force: true }).catch(() => {});
