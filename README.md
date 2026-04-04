@@ -62,6 +62,7 @@ The registry module has two layers:
 @qmlts/registry   Qt type scanner       ✓ done
 @qmlts/ast        QML AST               ✓ done
 @qmlts/emitter    AST → QML text        ✓ done
+@qmlts/qt-tools   Qt CLI tool wrappers  ✓ done
 @qmlts/dsl        Fluent DSL generator
 @qmlts/compiler   TS DSL → QML
 @qmlts/cli        Command-line tool
@@ -175,6 +176,54 @@ const clone = astSerializer.clone(doc);
 | `astSerializer` | Serialize/deserialize/clone AST to/from JSON |
 | `astUtils` | 12 utility functions — collectIds, findObjectsByType, countNodes, etc. |
 
+### Qt Tools Module
+
+The qt-tools module provides type-safe TypeScript wrappers around Qt CLI tools. All operations require a Qt 6.11+ installation with `QT_DIR` set.
+
+```typescript
+import {
+  discover, checkTools,
+  formatFile, formatString,
+  lintFile, lintString, listPlugins,
+  cachegenCompile, cachegenCompileString,
+  check, checkFiles,
+} from 'qmlts';
+
+// Discover Qt installation
+const qt = await discover(); // uses QT_DIR env var
+const tools = await checkTools(qt);
+console.log(tools.qmlformat.available); // true
+
+// Format QML
+const fmt = await formatString(qt, 'import QtQuick\nItem{width:100}\n');
+console.log(fmt.formattedText);
+
+// Lint QML
+const lint = await lintFile(qt, 'path/to/file.qml');
+console.log(lint.valid, lint.diagnostics);
+
+// Compile QML (qmlcachegen)
+const cg = await cachegenCompile(qt, 'path/to/file.qml', { dumpAotStats: true });
+console.log(cg.success, cg.aotStats);
+
+// Quality gate (syntax → lint → compile)
+const gate = await check(qt, 'path/to/file.qml', { level: 'compile' });
+console.log(gate.passed, gate.diagnostics);
+```
+
+#### Qt Tools APIs
+
+| API | Description |
+|-----|-------------|
+| `discover(config?)` | Find Qt installation (config > `QMLTS_QT_DIR` > `QT_DIR`) |
+| `checkTools(installation)` | Probe available Qt CLI tools |
+| `formatFile/String/Files` | Format QML via `qmlformat` |
+| `lintFile/String/Files` | Lint QML via `qmllint` (JSON output) |
+| `cachegenCompile/String/Files` | Compile QML via `qmlcachegen` |
+| `check/checkString/checkFiles` | Quality gate: multi-stage validation |
+| `listPlugins(installation)` | List available `qmllint` plugins |
+| `buildFormatArgs/buildLintArgs/buildCachegenArgs` | Pure arg-building functions |
+
 ## Development
 
 ### Prerequisites
@@ -256,6 +305,18 @@ QmlTS/
 │       ├── normalize.ts        # Member reordering for normalize option
 │       ├── source-map.ts       # SourceMap implementation
 │       └── index.ts            # Barrel exports
+│   └── qt-tools/               # Module 04: Qt CLI tool wrappers
+│       ├── types.ts            # All tool interfaces
+│       ├── errors.ts           # QtToolError, QtToolNotFoundError, etc.
+│       ├── toolchain.ts        # Qt installation discovery
+│       ├── tool-runner.ts      # Bun.spawn process runner
+│       ├── temp-file.ts        # Temp QML file management
+│       ├── diagnostic.ts       # Stderr/JSON diagnostic parser
+│       ├── qmlformat.ts        # qmlformat wrapper
+│       ├── qmllint.ts          # qmllint wrapper
+│       ├── qmlcachegen.ts      # qmlcachegen wrapper
+│       ├── quality-gate.ts     # Multi-stage quality gate
+│       └── index.ts            # Barrel exports
 ├── tests/
 │   ├── registry/
 │   │   ├── public-api.test.ts  # Tests using built-in snapshot
@@ -284,6 +345,15 @@ QmlTS/
 │       ├── determinism.test.ts   # DT-01..DT-04
 │       ├── golden.test.ts        # Golden file comparisons
 │       └── fixtures/             # AST JSON + golden QML files
+│   └── qt-tools/
+│       ├── diagnostic.test.ts    # DP-01..DP-06 (pure TS)
+│       ├── toolchain.test.ts     # TC-01..TC-09 (needs Qt)
+│       ├── tool-runner.test.ts   # TR-01..TR-06 (needs Qt)
+│       ├── qmlformat.test.ts     # FMT-01..FMT-16 (needs Qt)
+│       ├── qmllint.test.ts       # LNT-01..LNT-16 (needs Qt)
+│       ├── qmlcachegen.test.ts   # CG-01..CG-10 (needs Qt)
+│       ├── quality-gate.test.ts  # QG-01..QG-11 (needs Qt)
+│       └── fixtures/             # QML test files
 ├── package.json
 ├── tsconfig.json
 └── README.md
