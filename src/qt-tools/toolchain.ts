@@ -1,7 +1,7 @@
 import { existsSync, statSync } from 'node:fs';
 import { basename, join } from 'node:path';
 import { QtInstallationNotFoundError, QtToolNotFoundError } from './errors.js';
-import { getToolBinaryPath, runTool } from './tool-runner.js';
+import { getToolBinaryCandidates, getToolBinaryPath, runTool } from './tool-runner.js';
 import type {
   QtInstallation,
   QtToolchainConfig,
@@ -119,7 +119,7 @@ export async function checkTools(installation: QtInstallation): Promise<ToolAvai
 export function getToolPath(installation: QtInstallation, tool: QtToolName): string {
   const binPath = getToolBinaryPath(installation, tool);
   if (!existsSync(binPath)) {
-    throw new QtToolNotFoundError(tool, [binPath]);
+    throw new QtToolNotFoundError(tool, getToolBinaryCandidates(installation, tool));
   }
   return binPath;
 }

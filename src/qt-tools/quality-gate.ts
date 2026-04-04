@@ -45,7 +45,7 @@ export async function check(
   }
 
   // Stage 2: Lint
-  if (passed && shouldRunStage(level, 'lint')) {
+  if (shouldRunStage(level, 'lint')) {
     onProgress?.('lint', 0, 1);
     lintResult = await lintFile(installation, filePath, lintOptions);
     diagnostics.push(...lintResult.diagnostics);
@@ -57,7 +57,7 @@ export async function check(
   }
 
   // Stage 3: Compile
-  if (passed && shouldRunStage(level, 'compile')) {
+  if (shouldRunStage(level, 'compile')) {
     onProgress?.('compile', 0, 1);
     cachegenResult = await compile(installation, filePath, cachegenOptions);
     if (!cachegenResult.success) passed = false;

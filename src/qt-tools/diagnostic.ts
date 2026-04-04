@@ -1,11 +1,20 @@
 import type { QmlLintDiagnostic, QmlLintFix, QmlLintJsonOutput } from './types.js';
 
-// "file.qml:10:5: error: message text"
-const STRICT_RE = /^(.+?):(\d+):(\d+):\s*(error|warning|info):\s*(.+)$/;
-// "file.qml:10: error: message"
-const RELAXED_RE = /^(.+?):(\d+):\s*(error|warning|info):\s*(.+)$/;
-// "[Dom][QmlFile][Parsing] Error: message"
-const BRACKET_RE = /^\[.+?\]\s*(Error|Warning|Info):\s*(.+)$/i;
+type DiagnosticLevel = 'error' | 'warning' | 'info';
+
+const LEVELS: readonly DiagnosticLevel[] = ['error', 'warning', 'info'];
+
+interface ParsedMessageLine {
+  readonly prefix: string;
+  readonly level: DiagnosticLevel;
+  readonly message: string;
+}
+
+interface ParsedLocation {
+  readonly file: string;
+  readonly line: number;
+  readonly column?: number;
+}
 
 export function parseStderr(stderr: string, defaultFile?: string): QmlLintDiagnostic[] {
   const diagnostics: QmlLintDiagnostic[] = [];
@@ -14,37 +23,15 @@ export function parseStderr(stderr: string, defaultFile?: string): QmlLintDiagno
     const line = rawLine.trim();
     if (!line) continue;
 
-    const strict = STRICT_RE.exec(line);
-    if (strict) {
-      diagnostics.push({
-        file: strict[1]!,
-        line: Number(strict[2]),
-        column: Number(strict[3]),
-        level: strict[4] as 'error' | 'warning' | 'info',
-        message: strict[5]!,
-      });
+    const standard = parseStandardDiagnostic(line);
+    if (standard) {
+      diagnostics.push(standard);
       continue;
     }
 
-    const relaxed = RELAXED_RE.exec(line);
-    if (relaxed) {
-      diagnostics.push({
-        file: relaxed[1]!,
-        line: Number(relaxed[2]),
-        level: relaxed[3] as 'error' | 'warning' | 'info',
-        message: relaxed[4]!,
-      });
-      continue;
-    }
-
-    const bracket = BRACKET_RE.exec(line);
+    const bracket = parseBracketDiagnostic(line, defaultFile);
     if (bracket) {
-      diagnostics.push({
-        file: defaultFile ?? '<unknown>',
-        line: 0,
-        level: bracket[1]!.toLowerCase() as 'error' | 'warning' | 'info',
-        message: bracket[2]!,
-      });
+      diagnostics.push(bracket);
     }
   }
 
@@ -87,7 +74,119 @@ export function parseLintJson(json: string): QmlLintDiagnostic[] {
   return diagnostics;
 }
 
-function mapType(type: string): 'error' | 'warning' | 'info' {
+function parseStandardDiagnostic(line: string): QmlLintDiagnostic | undefined {
+  const parsedMessage = splitMessageLine(line);
+  if (!parsedMessage) return undefined;
+
+  const location = parseLocation(parsedMessage.prefix);
+  if (!location) return undefined;
+
+  return {
+    file: location.file,
+    line: location.line,
+    column: location.column,
+    level: parsedMessage.level,
+    message: parsedMessage.message,
+  };
+}
+
+function splitMessageLine(line: string): ParsedMessageLine | undefined {
+  const lowerLine = line.toLowerCase();
+
+  for (let i = 0; i < line.length; i++) {
+    if (line[i] !== ':') continue;
+
+    let cursor = i + 1;
+    while (cursor < line.length && isAsciiWhitespace(line[cursor]!)) {
+      cursor++;
+    }
+
+    for (const level of LEVELS) {
+      if (!lowerLine.startsWith(level, cursor)) continue;
+
+      const afterLevel = cursor + level.length;
+      if (line[afterLevel] !== ':') continue;
+
+      const prefix = line.slice(0, i).trim();
+      const message = line.slice(afterLevel + 1).trim();
+      if (!prefix || !message) continue;
+
+      return { prefix, level, message };
+    }
+  }
+
+  return undefined;
+}
+
+function parseLocation(prefix: string): ParsedLocation | undefined {
+  const segments = prefix.split(':');
+  if (segments.length < 2) return undefined;
+
+  const last = segments[segments.length - 1]!.trim();
+  const secondLast = segments[segments.length - 2]!.trim();
+
+  if (isDecimal(secondLast) && isDecimal(last)) {
+    const file = segments.slice(0, -2).join(':').trim();
+    if (!file) return undefined;
+    return {
+      file,
+      line: Number(secondLast),
+      column: Number(last),
+    };
+  }
+
+  if (isDecimal(last)) {
+    const file = segments.slice(0, -1).join(':').trim();
+    if (!file) return undefined;
+    return {
+      file,
+      line: Number(last),
+    };
+  }
+
+  return undefined;
+}
+
+function parseBracketDiagnostic(line: string, defaultFile?: string): QmlLintDiagnostic | undefined {
+  if (!line.startsWith('[')) return undefined;
+
+  const lastBracket = line.lastIndexOf(']');
+  if (lastBracket < 0) return undefined;
+
+  const tail = line.slice(lastBracket + 1).trim();
+  if (!tail) return undefined;
+
+  const separator = tail.indexOf(':');
+  if (separator <= 0) return undefined;
+
+  const rawLevel = tail.slice(0, separator).trim().toLowerCase();
+  if (!LEVELS.includes(rawLevel as DiagnosticLevel)) return undefined;
+
+  const message = tail.slice(separator + 1).trim();
+  if (!message) return undefined;
+
+  return {
+    file: defaultFile ?? '<unknown>',
+    line: 0,
+    level: rawLevel as DiagnosticLevel,
+    message,
+  };
+}
+
+function isAsciiWhitespace(char: string): boolean {
+  return char === ' ' || char === '\t';
+}
+
+function isDecimal(value: string): boolean {
+  if (value.length === 0) return false;
+  for (let i = 0; i < value.length; i++) {
+    const code = value.charCodeAt(i);
+    if (code < 48 || code > 57) return false;
+  }
+  return true;
+}
+
+function mapType(type: string): DiagnosticLevel {
   switch (type) {
     case 'error':
       return 'error';

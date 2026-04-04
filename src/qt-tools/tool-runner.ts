@@ -5,9 +5,24 @@ import type { QtInstallation, QtToolName, ToolResult, ToolRunnerOptions } from '
 
 const IS_WINDOWS = process.platform === 'win32';
 
-export function getToolBinaryPath(installation: QtInstallation, tool: QtToolName): string {
+export function getToolBinaryCandidates(
+  installation: QtInstallation,
+  tool: QtToolName,
+): readonly string[] {
   const ext = IS_WINDOWS ? '.exe' : '';
-  return join(installation.binDir, `${tool}${ext}`);
+  const candidates = [join(installation.binDir, `${tool}${ext}`)];
+
+  // On Unix-like Qt installs, helper executables can live under libexec.
+  if (!IS_WINDOWS) {
+    candidates.push(join(installation.rootDir, 'libexec', tool));
+  }
+
+  return candidates;
+}
+
+export function getToolBinaryPath(installation: QtInstallation, tool: QtToolName): string {
+  const candidates = getToolBinaryCandidates(installation, tool);
+  return candidates.find((candidate) => existsSync(candidate)) ?? candidates[0]!;
 }
 
 export async function runTool(
@@ -16,9 +31,10 @@ export async function runTool(
   args: readonly string[],
   options?: ToolRunnerOptions,
 ): Promise<ToolResult> {
-  const binPath = getToolBinaryPath(installation, tool);
-  if (!existsSync(binPath)) {
-    throw new QtToolNotFoundError(tool, [binPath]);
+  const candidates = getToolBinaryCandidates(installation, tool);
+  const binPath = candidates.find((candidate) => existsSync(candidate));
+  if (!binPath) {
+    throw new QtToolNotFoundError(tool, candidates);
   }
 
   const command = [binPath, ...args].join(' ');
