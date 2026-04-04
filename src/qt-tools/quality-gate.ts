@@ -1,3 +1,4 @@
+import { smokeTest } from './qml-runner.js';
 import { compile } from './qmlcachegen.js';
 import { formatFile } from './qmlformat.js';
 import { lintFile } from './qmllint.js';
@@ -7,6 +8,7 @@ import type {
   QmlFormatResult,
   QmlLintDiagnostic,
   QmlLintResult,
+  QmlSmokeTestResult,
   QtInstallation,
   QualityGateBatchResult,
   QualityGateLevel,
@@ -14,7 +16,7 @@ import type {
   QualityGateResult,
 } from './types.js';
 
-const LEVEL_ORDER: readonly QualityGateLevel[] = ['syntax', 'lint', 'compile'];
+const LEVEL_ORDER: readonly QualityGateLevel[] = ['syntax', 'lint', 'compile', 'full'];
 
 function shouldRunStage(target: QualityGateLevel, stage: QualityGateLevel): boolean {
   return LEVEL_ORDER.indexOf(stage) <= LEVEL_ORDER.indexOf(target);
@@ -25,12 +27,13 @@ export async function check(
   filePath: string,
   options: QualityGateOptions,
 ): Promise<QualityGateResult> {
-  const { level, lintOptions, cachegenOptions, onProgress } = options;
+  const { level, lintOptions, cachegenOptions, runOptions, onProgress } = options;
   const diagnostics: QmlLintDiagnostic[] = [];
   let passed = true;
   let formatResult: QmlFormatResult | undefined;
   let lintResult: QmlLintResult | undefined;
   let cachegenResult: QmlCachegenResult | undefined;
+  let smokeTestResult: QmlSmokeTestResult | undefined;
 
   // Stage 1: Syntax (via qmlformat parse check)
   if (shouldRunStage(level, 'syntax')) {
@@ -57,11 +60,22 @@ export async function check(
   }
 
   // Stage 3: Compile
-  if (shouldRunStage(level, 'compile')) {
+  if (passed && shouldRunStage(level, 'compile')) {
     onProgress?.('compile', 0, 1);
     cachegenResult = await compile(installation, filePath, cachegenOptions);
     if (!cachegenResult.success) passed = false;
     onProgress?.('compile', 1, 1);
+    if (!passed) {
+      return { filePath, passed, formatResult, lintResult, cachegenResult, diagnostics };
+    }
+  }
+
+  // Stage 4: Full (smoke test via qml runner)
+  if (passed && shouldRunStage(level, 'full')) {
+    onProgress?.('full', 0, 1);
+    smokeTestResult = await smokeTest(installation, filePath, runOptions);
+    if (!smokeTestResult.loaded) passed = false;
+    onProgress?.('full', 1, 1);
   }
 
   return {
@@ -70,6 +84,7 @@ export async function check(
     formatResult,
     lintResult,
     cachegenResult,
+    smokeTestResult,
     diagnostics,
   };
 }
