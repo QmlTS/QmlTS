@@ -60,12 +60,64 @@ The registry module has two layers:
 
 ```
 @qmlts/registry   Qt type scanner       ✓ done
-@qmlts/ast        QML AST               ← you are here
-@qmlts/emitter    AST → QML text
+@qmlts/ast        QML AST               ✓ done
+@qmlts/emitter    AST → QML text        ✓ done
 @qmlts/dsl        Fluent DSL generator
 @qmlts/compiler   TS DSL → QML
 @qmlts/cli        Command-line tool
 ```
+
+### Emitter Module
+
+The emitter converts QML AST documents into deterministic `.qml` text strings. It is **pure TypeScript** with zero runtime dependencies.
+
+```typescript
+import { createDocument, createObject, v, emit, emitWithSourceMap } from 'qmlts';
+
+const doc = createDocument()
+  .importModule('QtQuick')
+  .root(
+    createObject('Rectangle')
+      .id('root')
+      .bind('width', 400)
+      .bind('color', v.str('red'))
+  );
+
+// Generate QML text
+const qml = emit(doc);
+// → "import QtQuick\n\nRectangle {\n    id: root\n\n    width: 400\n    color: \"red\"\n}\n"
+
+// With options
+const formatted = emit(doc, { indentSize: 2, normalize: true, semicolonRule: 'always' });
+
+// With source map
+const { text, sourceMap } = emitWithSourceMap(doc);
+const span = sourceMap.getOutputSpan(doc.rootObject);
+```
+
+#### Emitter APIs
+
+| API | Description |
+|-----|-------------|
+| `emit(doc, options?)` | Generate QML text from AST document |
+| `emitFragment(node, options?)` | Generate text for a single AST node |
+| `emitWithSourceMap(doc, options?)` | Emit with AST→output position tracking |
+| `normalizeMembers(members)` | Reorder members by QML convention |
+
+#### EmitOptions
+
+| Option | Default | Description |
+|--------|---------|-------------|
+| `indentStyle` | `'spaces'` | `'spaces'` or `'tabs'` |
+| `indentSize` | `4` | Spaces per indent level |
+| `newline` | `'\n'` | `'\n'` or `'\r\n'` |
+| `quoteStyle` | `'double'` | `'double'`, `'single'`, or `'preserve'` |
+| `normalize` | `false` | Reorder members by category |
+| `sortImports` | `false` | Sort imports alphabetically |
+| `semicolonRule` | `'omit'` | `'omit'`, `'always'`, or `'essential'` |
+| `emitComments` | `true` | Include comments in output |
+| `singleLineEmptyObjects` | `true` | `Item { }` vs multi-line |
+| `trailingNewline` | `true` | Newline at end of file |
 
 ### AST Module
 
@@ -174,9 +226,10 @@ QmlTS/
 ├── data/
 │   └── qt-6.11.0-registry.snapshot.json  # Pre-built registry (committed)
 ├── scripts/
-│   └── generate-registry.ts   # Maintainer: regenerate snapshot
+│   ├── generate-registry.ts   # Maintainer: regenerate snapshot
+│   └── generate-golden.ts     # Regenerate emitter golden test files
 ├── src/
-│   ├── index.ts                # Public API: getRegistry(), getQuery(), AST exports
+│   ├── index.ts                # Public API: getRegistry(), getQuery(), AST & emitter exports
 │   ├── registry/               # Module 01: Qt type registry
 │   │   ├── types.ts            # Type definitions
 │   │   ├── scanner.ts          # File discovery
@@ -185,16 +238,23 @@ QmlTS/
 │   │   ├── registry-query.ts   # Query engine
 │   │   ├── snapshot.ts         # Serialization
 │   │   └── builder.ts          # Build orchestrator
-│   └── ast/                    # Module 02: QML AST
-│       ├── types.ts            # AST node type definitions
-│       ├── values.ts           # Value factory (v.*)
-│       ├── builder.ts          # Document & object builders
-│       ├── visitor.ts          # Type-safe visitor traversal
-│       ├── walker.ts           # Generic enter/leave walker
-│       ├── transform.ts        # Immutable tree transform
-│       ├── validator.ts        # Structural + semantic validation
-│       ├── serializer.ts       # AST ↔ JSON serialization
-│       ├── utils.ts            # 12 utility functions
+│   ├── ast/                    # Module 02: QML AST
+│   │   ├── types.ts            # AST node type definitions
+│   │   ├── values.ts           # Value factory (v.*)
+│   │   ├── builder.ts          # Document & object builders
+│   │   ├── visitor.ts          # Type-safe visitor traversal
+│   │   ├── walker.ts           # Generic enter/leave walker
+│   │   ├── transform.ts        # Immutable tree transform
+│   │   ├── validator.ts        # Structural + semantic validation
+│   │   ├── serializer.ts       # AST ↔ JSON serialization
+│   │   ├── utils.ts            # 12 utility functions
+│   │   └── index.ts            # Barrel exports
+│   └── emitter/                # Module 03: QML code emitter
+│       ├── types.ts            # EmitOptions, SourceMap interfaces
+│       ├── writer.ts           # QmlWriter — indent/position tracking
+│       ├── emitter.ts          # emit(), emitFragment(), emitWithSourceMap()
+│       ├── normalize.ts        # Member reordering for normalize option
+│       ├── source-map.ts       # SourceMap implementation
 │       └── index.ts            # Barrel exports
 ├── tests/
 │   ├── registry/
@@ -203,17 +263,27 @@ QmlTS/
 │   │   ├── scanner.test.ts     # Integration (needs QT_DIR)
 │   │   ├── builder.test.ts     # Integration (needs QT_DIR)
 │   │   └── fixtures/           # Test data files
-│   └── ast/
-│       ├── value-factory.test.ts
-│       ├── builder.test.ts
-│       ├── visitor.test.ts
-│       ├── walker.test.ts
-│       ├── transform.test.ts
-│       ├── serializer.test.ts
-│       ├── validator-structure.test.ts
-│       ├── validator-semantic.test.ts
-│       ├── utils.test.ts
-│       └── e2e.test.ts         # Full pipeline integration
+│   ├── ast/
+│   │   ├── value-factory.test.ts
+│   │   ├── builder.test.ts
+│   │   ├── visitor.test.ts
+│   │   ├── walker.test.ts
+│   │   ├── transform.test.ts
+│   │   ├── serializer.test.ts
+│   │   ├── validator-structure.test.ts
+│   │   ├── validator-semantic.test.ts
+│   │   ├── utils.test.ts
+│   │   └── e2e.test.ts         # Full pipeline integration
+│   └── emitter/
+│       ├── emit-basic.test.ts   # EB-01..EB-25
+│       ├── emit-bindings.test.ts # BV-01..BV-27
+│       ├── emit-members.test.ts  # MM-01..MM-34
+│       ├── emit-options.test.ts  # OPT-01..OPT-13
+│       ├── emit-fragment.test.ts # FE-01..FE-07
+│       ├── source-map.test.ts    # SM-01..SM-08
+│       ├── determinism.test.ts   # DT-01..DT-04
+│       ├── golden.test.ts        # Golden file comparisons
+│       └── fixtures/             # AST JSON + golden QML files
 ├── package.json
 ├── tsconfig.json
 └── README.md
