@@ -16,6 +16,14 @@ export {
   formatString,
   getDefaultOptions,
 } from './qmlformat.js';
+export {
+  buildLintArgs,
+  lintFile,
+  lintFiles,
+  lintModule,
+  lintString,
+  listPlugins,
+} from './qmllint.js';
 export { withTempQmlFile } from './temp-file.js';
 // Infrastructure
 export { getToolBinaryPath, runTool } from './tool-runner.js';
