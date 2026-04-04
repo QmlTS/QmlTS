@@ -1,0 +1,71 @@
+{
+  "kind": "Document",
+  "pragmas": [],
+  "imports": [
+    {
+      "kind": "Import",
+      "importKind": "module",
+      "moduleUri": "QtQuick"
+    }
+  ],
+  "rootObject": {
+    "kind": "ObjectDefinition",
+    "typeName": "Item",
+    "members": [
+      {
+        "kind": "Binding",
+        "property": "width",
+        "value": {
+          "kind": "number",
+          "value": 100
+        }
+      },
+      {
+        "kind": "ObjectDefinition",
+        "typeName": "Rectangle",
+        "members": [
+          {
+            "kind": "Binding",
+            "property": "color",
+            "value": {
+              "kind": "string",
+              "value": "red"
+            }
+          }
+        ]
+      },
+      {
+        "kind": "PropertyDeclaration",
+        "name": "count",
+        "typeName": "int",
+        "initialValue": {
+          "kind": "number",
+          "value": 0
+        }
+      },
+      {
+        "kind": "SignalHandler",
+        "name": "onClicked",
+        "body": {
+          "form": "expression",
+          "code": "doStuff()"
+        }
+      },
+      {
+        "kind": "IdAssignment",
+        "id": "root"
+      },
+      {
+        "kind": "SignalDeclaration",
+        "name": "clicked",
+        "parameters": []
+      },
+      {
+        "kind": "FunctionDeclaration",
+        "name": "calc",
+        "parameters": [],
+        "body": "return 42"
+      }
+    ]
+  }
+}

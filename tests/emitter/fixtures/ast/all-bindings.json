@@ -1,0 +1,167 @@
+{
+  "kind": "Document",
+  "pragmas": [],
+  "imports": [
+    {
+      "kind": "Import",
+      "importKind": "module",
+      "moduleUri": "QtQuick"
+    }
+  ],
+  "rootObject": {
+    "kind": "ObjectDefinition",
+    "typeName": "Item",
+    "members": [
+      {
+        "kind": "Binding",
+        "property": "width",
+        "value": {
+          "kind": "number",
+          "value": 400
+        }
+      },
+      {
+        "kind": "Binding",
+        "property": "opacity",
+        "value": {
+          "kind": "number",
+          "value": 0.5
+        }
+      },
+      {
+        "kind": "Binding",
+        "property": "x",
+        "value": {
+          "kind": "number",
+          "value": -10
+        }
+      },
+      {
+        "kind": "Binding",
+        "property": "text",
+        "value": {
+          "kind": "string",
+          "value": "hello"
+        }
+      },
+      {
+        "kind": "Binding",
+        "property": "visible",
+        "value": {
+          "kind": "boolean",
+          "value": true
+        }
+      },
+      {
+        "kind": "Binding",
+        "property": "enabled",
+        "value": {
+          "kind": "boolean",
+          "value": false
+        }
+      },
+      {
+        "kind": "Binding",
+        "property": "model",
+        "value": {
+          "kind": "null"
+        }
+      },
+      {
+        "kind": "Binding",
+        "property": "wrapMode",
+        "value": {
+          "kind": "enum",
+          "typeName": "Text",
+          "valueName": "WordWrap"
+        }
+      },
+      {
+        "kind": "Binding",
+        "property": "color",
+        "value": {
+          "kind": "expression",
+          "code": "enabled ? \"blue\" : \"gray\""
+        }
+      },
+      {
+        "kind": "Binding",
+        "property": "onClicked",
+        "value": {
+          "kind": "script-block",
+          "code": "count++"
+        }
+      },
+      {
+        "kind": "GroupedBinding",
+        "group": "anchors",
+        "bindings": [
+          {
+            "kind": "Binding",
+            "property": "left",
+            "value": {
+              "kind": "expression",
+              "code": "parent.left"
+            }
+          },
+          {
+            "kind": "Binding",
+            "property": "right",
+            "value": {
+              "kind": "expression",
+              "code": "parent.right"
+            }
+          }
+        ]
+      },
+      {
+        "kind": "AttachedBinding",
+        "attachedTypeName": "Layout",
+        "bindings": [
+          {
+            "kind": "Binding",
+            "property": "fillWidth",
+            "value": {
+              "kind": "boolean",
+              "value": true
+            }
+          }
+        ]
+      },
+      {
+        "kind": "ArrayBinding",
+        "property": "states",
+        "elements": [
+          {
+            "kind": "string",
+            "value": "idle"
+          },
+          {
+            "kind": "string",
+            "value": "active"
+          }
+        ]
+      },
+      {
+        "kind": "BehaviorOn",
+        "property": "opacity",
+        "members": [
+          {
+            "kind": "ObjectDefinition",
+            "typeName": "NumberAnimation",
+            "members": [
+              {
+                "kind": "Binding",
+                "property": "duration",
+                "value": {
+                  "kind": "number",
+                  "value": 200
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,259 @@
+{
+  "kind": "Document",
+  "pragmas": [
+    {
+      "kind": "Pragma",
+      "name": "Singleton"
+    },
+    {
+      "kind": "Pragma",
+      "name": "ComponentBehavior",
+      "value": "Bound"
+    }
+  ],
+  "imports": [
+    {
+      "kind": "Import",
+      "importKind": "module",
+      "moduleUri": "QtQuick",
+      "version": "6.0"
+    },
+    {
+      "kind": "Import",
+      "importKind": "module",
+      "moduleUri": "QtQuick.Controls"
+    },
+    {
+      "kind": "Import",
+      "importKind": "directory",
+      "path": "../components"
+    },
+    {
+      "kind": "Import",
+      "importKind": "javascript",
+      "path": "logic.js",
+      "qualifier": "Logic"
+    }
+  ],
+  "rootObject": {
+    "kind": "ObjectDefinition",
+    "typeName": "ApplicationWindow",
+    "members": [
+      {
+        "kind": "IdAssignment",
+        "id": "root"
+      },
+      {
+        "kind": "PropertyDeclaration",
+        "name": "count",
+        "typeName": "int",
+        "initialValue": {
+          "kind": "number",
+          "value": 0
+        }
+      },
+      {
+        "kind": "PropertyDeclaration",
+        "name": "title",
+        "typeName": "string",
+        "initialValue": {
+          "kind": "string",
+          "value": "My App"
+        }
+      },
+      {
+        "kind": "PropertyDeclaration",
+        "name": "items",
+        "typeName": "list<Item>"
+      },
+      {
+        "kind": "PropertyAlias",
+        "name": "mainContent",
+        "targetPath": "contentArea.data"
+      },
+      {
+        "kind": "SignalDeclaration",
+        "name": "activated",
+        "parameters": [
+          {
+            "name": "x",
+            "type": "int"
+          },
+          {
+            "name": "y",
+            "type": "int"
+          }
+        ]
+      },
+      {
+        "kind": "SignalHandler",
+        "name": "onActivated",
+        "body": {
+          "form": "arrow",
+          "parameters": [
+            "x",
+            "y"
+          ],
+          "body": "console.log(x, y)",
+          "isBlock": true
+        }
+      },
+      {
+        "kind": "Binding",
+        "property": "width",
+        "value": {
+          "kind": "number",
+          "value": 800
+        }
+      },
+      {
+        "kind": "Binding",
+        "property": "height",
+        "value": {
+          "kind": "number",
+          "value": 600
+        }
+      },
+      {
+        "kind": "Binding",
+        "property": "visible",
+        "value": {
+          "kind": "boolean",
+          "value": true
+        }
+      },
+      {
+        "kind": "Binding",
+        "property": "opacity",
+        "value": {
+          "kind": "expression",
+          "code": "enabled ? 1.0 : 0.5"
+        }
+      },
+      {
+        "kind": "GroupedBinding",
+        "group": "anchors",
+        "bindings": [
+          {
+            "kind": "Binding",
+            "property": "fill",
+            "value": {
+              "kind": "expression",
+              "code": "parent"
+            }
+          }
+        ]
+      },
+      {
+        "kind": "AttachedBinding",
+        "attachedTypeName": "Layout",
+        "bindings": [
+          {
+            "kind": "Binding",
+            "property": "fillWidth",
+            "value": {
+              "kind": "boolean",
+              "value": true
+            }
+          },
+          {
+            "kind": "Binding",
+            "property": "preferredHeight",
+            "value": {
+              "kind": "number",
+              "value": 100
+            }
+          }
+        ]
+      },
+      {
+        "kind": "FunctionDeclaration",
+        "name": "doStuff",
+        "parameters": [
+          {
+            "name": "x",
+            "type": "int"
+          }
+        ],
+        "body": "return x > 0",
+        "returnType": "bool"
+      },
+      {
+        "kind": "EnumDeclaration",
+        "name": "Status",
+        "members": [
+          {
+            "name": "Idle",
+            "value": 0
+          },
+          {
+            "name": "Loading",
+            "value": 1
+          },
+          {
+            "name": "Done",
+            "value": 2
+          }
+        ]
+      },
+      {
+        "kind": "ObjectDefinition",
+        "typeName": "Rectangle",
+        "members": [
+          {
+            "kind": "IdAssignment",
+            "id": "contentArea"
+          },
+          {
+            "kind": "Binding",
+            "property": "color",
+            "value": {
+              "kind": "string",
+              "value": "white"
+            }
+          },
+          {
+            "kind": "ObjectDefinition",
+            "typeName": "Text",
+            "members": [
+              {
+                "kind": "Binding",
+                "property": "text",
+                "value": {
+                  "kind": "string",
+                  "value": "Hello"
+                }
+              },
+              {
+                "kind": "Binding",
+                "property": "font.pixelSize",
+                "value": {
+                  "kind": "number",
+                  "value": 24
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "kind": "InlineComponent",
+        "name": "MyButton",
+        "body": {
+          "kind": "ObjectDefinition",
+          "typeName": "Button",
+          "members": [
+            {
+              "kind": "Binding",
+              "property": "text",
+              "value": {
+                "kind": "string",
+                "value": "Click"
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "kind": "Document",
+  "pragmas": [],
+  "imports": [],
+  "rootObject": {
+    "kind": "ObjectDefinition",
+    "typeName": "Item",
+    "members": []
+  }
+}
