@@ -1,6 +1,6 @@
 import { describe, expect, test } from 'bun:test';
 import { astSerializer, createDocument, createObject, v } from '../../src/ast/index.js';
-import { emit, emitFragment, emitWithSourceMap } from '../../src/emitter/index.js';
+import { emit } from '../../src/emitter/index.js';
 
 // ═══════════════════════════════════════════════════════════════════════════
 //  §1: Determinism (DT-01..DT-04)

@@ -68,11 +68,19 @@ class EmitContext {
   readonly sourceMap: SourceMapImpl | null;
   private _semicolonSuffix: string;
 
+  private static resolveSemicolonSuffix(
+    semicolonRule: ResolvedEmitOptions['semicolonRule'],
+  ): string {
+    // The pure emitter never emits multiple statements on a single line, so
+    // "essential" currently has the same concrete output as "omit".
+    return semicolonRule === 'always' ? ';' : '';
+  }
+
   constructor(opts: ResolvedEmitOptions, sourceMap: SourceMapImpl | null, initialIndent = 0) {
     this.opts = opts;
     this.writer = new QmlWriter(opts, initialIndent);
     this.sourceMap = sourceMap;
-    this._semicolonSuffix = opts.semicolonRule === 'always' ? ';' : '';
+    this._semicolonSuffix = EmitContext.resolveSemicolonSuffix(opts.semicolonRule);
   }
 
   get semi(): string {
@@ -190,21 +198,30 @@ function emitImport(ctx: EmitContext, node: ImportNode): void {
 
 // ─── Object ──────────────────────────────────────────────────────────────
 
-function emitObject(ctx: EmitContext, node: ObjectDefinitionNode): void {
+function emitObject(
+  ctx: EmitContext,
+  node: ObjectDefinitionNode,
+  options?: { inlineStart?: boolean },
+): void {
   const { writer, opts } = ctx;
   const startLine = writer.line;
   const startCol = writer.column;
+  const inlineStart = options?.inlineStart ?? false;
 
   emitLeadingComments(ctx, node);
 
   const members = opts.normalize ? normalizeMembers(node.members) : node.members;
 
   if (members.length === 0 && opts.singleLineEmptyObjects) {
-    writer.writeIndent();
+    if (!inlineStart) {
+      writer.writeIndent();
+    }
     writer.write(`${node.typeName} { }`);
     emitTrailingComment(ctx, node);
   } else {
-    writer.writeIndent();
+    if (!inlineStart) {
+      writer.writeIndent();
+    }
     writer.write(`${node.typeName} {`);
     emitTrailingComment(ctx, node);
     writer.writeNewline();
@@ -503,7 +520,7 @@ function emitBindingValue(ctx: EmitContext, value: BindingValue): void {
     }
 
     case 'object':
-      emitObject(ctx, value.node);
+      emitObject(ctx, value.node, { inlineStart: true });
       break;
 
     case 'array': {
@@ -561,15 +578,35 @@ function emitAttachedBinding(ctx: EmitContext, node: AttachedBindingNode): void 
 
   emitLeadingComments(ctx, node);
 
-  for (const binding of node.bindings) {
+  if (node.bindings.length === 0) {
+    if (ctx.opts.emitComments && node.trailingComment) {
+      writer.writeIndent();
+      writer.write(`// ${node.trailingComment}`);
+      writer.writeNewline();
+    }
+    ctx.recordSpan(node, startLine, startCol);
+    return;
+  }
+
+  for (let i = 0; i < node.bindings.length; i++) {
+    const binding = node.bindings[i]!;
+    const bindingStartLine = writer.line;
+    const bindingStartCol = writer.column;
+    const isLastBinding = i === node.bindings.length - 1;
+
+    emitLeadingComments(ctx, binding);
     writer.writeIndent();
     writer.write(`${node.attachedTypeName}.${binding.property}: `);
     emitBindingValue(ctx, binding.value);
     writer.write(ctx.semi);
+    emitTrailingComment(ctx, binding);
+    if (isLastBinding) {
+      emitTrailingComment(ctx, node);
+    }
+    ctx.recordSpan(binding, bindingStartLine, bindingStartCol);
     writer.writeNewline();
   }
 
-  emitTrailingComment(ctx, node);
   ctx.recordSpan(node, startLine, startCol);
 }
 
@@ -588,7 +625,6 @@ function emitArrayBinding(ctx: EmitContext, node: ArrayBindingNode): void {
     writer.write(`${node.property}: [`);
     emitBindingValue(ctx, node.elements[0]!);
     writer.write(`]${ctx.semi}`);
-    writer.writeNewline();
   } else {
     // Multi-element — each on its own line
     writer.writeIndent();
@@ -613,11 +649,11 @@ function emitArrayBinding(ctx: EmitContext, node: ArrayBindingNode): void {
     writer.dedent();
     writer.writeIndent();
     writer.write(`]${ctx.semi}`);
-    writer.writeNewline();
   }
 
   emitTrailingComment(ctx, node);
   ctx.recordSpan(node, startLine, startCol);
+  writer.writeNewline();
 }
 
 function isSimpleValue(v: BindingValue): boolean {
@@ -880,7 +916,8 @@ function emitInlineComponent(ctx: EmitContext, node: InlineComponentNode): void 
   const members = opts.normalize ? normalizeMembers(node.body.members) : node.body.members;
 
   if (members.length === 0 && opts.singleLineEmptyObjects) {
-    writer.writeLine(`component ${node.name}: ${node.body.typeName} { }`);
+    writer.writeIndent();
+    writer.write(`component ${node.name}: ${node.body.typeName} { }`);
   } else {
     writer.writeIndent();
     writer.write(`component ${node.name}: ${node.body.typeName} {`);
@@ -890,11 +927,11 @@ function emitInlineComponent(ctx: EmitContext, node: InlineComponentNode): void 
     writer.dedent();
     writer.writeIndent();
     writer.write('}');
-    writer.writeNewline();
   }
 
   emitTrailingComment(ctx, node);
   ctx.recordSpan(node, startLine, startCol);
+  writer.writeNewline();
 }
 
 // ─── Comment Node ────────────────────────────────────────────────────────

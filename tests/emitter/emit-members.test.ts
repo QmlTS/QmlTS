@@ -317,4 +317,31 @@ describe('Comments', () => {
     expect(result).not.toContain('/*');
     expect(result).toContain('width: 100');
   });
+
+  test('array binding trailing comment stays on the closing bracket line', () => {
+    const obj = createObject('Item');
+    obj.addMember({
+      kind: 'ArrayBinding',
+      property: 'model',
+      elements: [
+        { kind: 'number', value: 1 },
+        { kind: 'number', value: 2 },
+      ],
+      trailingComment: 'model list',
+    } as ObjectMember);
+    const result = emit(createDocument().root(obj));
+    expect(result).toContain('    ] // model list');
+  });
+
+  test('inline component trailing comment stays on the component line', () => {
+    const obj = createObject('Item');
+    obj.addMember({
+      kind: 'InlineComponent',
+      name: 'Badge',
+      body: createObject('Rectangle').build(),
+      trailingComment: 'badge component',
+    });
+    const result = emit(createDocument().root(obj));
+    expect(result).toContain('    component Badge: Rectangle { } // badge component');
+  });
 });

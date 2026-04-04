@@ -1,6 +1,6 @@
 import { describe, expect, test } from 'bun:test';
-import { astSerializer, createDocument, createObject, v } from '../../src/ast/index.js';
-import { emit, emitFragment, emitWithSourceMap } from '../../src/emitter/index.js';
+import { createObject, v } from '../../src/ast/index.js';
+import { emitFragment } from '../../src/emitter/index.js';
 
 // ═══════════════════════════════════════════════════════════════════════════
 //  §1: emitFragment (FE-01..FE-07)

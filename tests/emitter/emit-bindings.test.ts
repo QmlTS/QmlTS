@@ -138,9 +138,13 @@ describe('Binding Values', () => {
     });
     const doc = createDocument().root(root);
     const result = emit(doc);
-    expect(result).toContain('gradient:');
-    expect(result).toContain('Gradient {');
-    expect(result).toContain('orientation: 1');
+    expect(result).toBe(
+      'Rectangle {\n' +
+        '    gradient: Gradient {\n' +
+        '        orientation: 1\n' +
+        '    }\n' +
+        '}\n',
+    );
   });
 
   // BV-17
@@ -222,6 +226,39 @@ describe('Complex Bindings', () => {
         '    Layout.fillWidth: true\n' +
         '    Layout.fillHeight: false\n' +
         '    Layout.preferredWidth: 200\n' +
+        '}\n',
+    );
+  });
+
+  test('attached binding preserves binding comments and node trailing comment', () => {
+    const doc = createDocument().root(
+      createObject('Item').addMember({
+        kind: 'AttachedBinding',
+        attachedTypeName: 'Layout',
+        bindings: [
+          {
+            kind: 'Binding',
+            property: 'fillWidth',
+            value: { kind: 'boolean', value: true },
+            leadingComments: ['binding comment'],
+          },
+          {
+            kind: 'Binding',
+            property: 'preferredWidth',
+            value: { kind: 'number', value: 200 },
+            trailingComment: 'binding trailing',
+          },
+        ],
+        trailingComment: 'attached trailing',
+      }),
+    );
+
+    const result = emit(doc);
+    expect(result).toBe(
+      'Item {\n' +
+        '    // binding comment\n' +
+        '    Layout.fillWidth: true\n' +
+        '    Layout.preferredWidth: 200 // binding trailing // attached trailing\n' +
         '}\n',
     );
   });

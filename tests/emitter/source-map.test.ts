@@ -1,6 +1,6 @@
 import { describe, expect, test } from 'bun:test';
-import { astSerializer, createDocument, createObject, v } from '../../src/ast/index.js';
-import { emit, emitFragment, emitWithSourceMap } from '../../src/emitter/index.js';
+import { createDocument, createObject, v } from '../../src/ast/index.js';
+import { emitWithSourceMap } from '../../src/emitter/index.js';
 
 // ═══════════════════════════════════════════════════════════════════════════
 //  §1: emitWithSourceMap (SM-01..SM-08)
@@ -71,7 +71,7 @@ describe('emitWithSourceMap', () => {
 
   test('SM-04: getNodesAtLine returns nodes spanning that line', () => {
     const doc = buildTestDoc();
-    const { text, sourceMap } = emitWithSourceMap(doc);
+    const { sourceMap } = emitWithSourceMap(doc);
 
     // Line 1 should be the import line → should have at least Import and Document
     const nodesAtLine1 = sourceMap.getNodesAtLine(1);
@@ -159,5 +159,27 @@ describe('emitWithSourceMap', () => {
     expect(entryKinds.has('Import')).toBe(true);
     expect(entryKinds.has('ObjectDefinition')).toBe(true);
     expect(entryKinds.has('Binding')).toBe(true);
+  });
+
+  test('attached binding child entries get source map spans', () => {
+    const doc = createDocument().root(
+      createObject('Item').addMember({
+        kind: 'AttachedBinding',
+        attachedTypeName: 'Layout',
+        bindings: [
+          { kind: 'Binding', property: 'fillWidth', value: { kind: 'boolean', value: true } },
+        ],
+      }),
+    );
+
+    const attached = doc.rootObject.members[0];
+    expect(attached?.kind).toBe('AttachedBinding');
+    if (attached?.kind !== 'AttachedBinding') {
+      return;
+    }
+
+    const { sourceMap } = emitWithSourceMap(doc);
+    const span = sourceMap.getOutputSpan(attached.bindings[0]!);
+    expect(span).toBeDefined();
   });
 });

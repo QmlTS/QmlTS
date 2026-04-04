@@ -1,5 +1,5 @@
 import { describe, expect, test } from 'bun:test';
-import { astSerializer, createDocument, createObject, v } from '../../src/ast/index.js';
+import { createDocument, createObject, v } from '../../src/ast/index.js';
 import { emit } from '../../src/emitter/index.js';
 
 // ═══════════════════════════════════════════════════════════════════════════
