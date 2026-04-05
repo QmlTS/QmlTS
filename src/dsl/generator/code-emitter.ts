@@ -1,4 +1,4 @@
-import type { TypeMapper } from './type-mapper.js';
+import type { PeerTypeRef, TypeMapper } from './type-mapper.js';
 import type {
   AnalyzedRegistry,
   AnalyzedSignal,
@@ -15,10 +15,15 @@ import type {
 export class CodeEmitter {
   private readonly analyzed: AnalyzedRegistry;
   private readonly mapper: TypeMapper;
+  // Module directory lookup: moduleUri → directoryName
+  private readonly moduleDirs = new Map<string, string>();
 
   constructor(analyzed: AnalyzedRegistry, mapper: TypeMapper) {
     this.analyzed = analyzed;
     this.mapper = mapper;
+    for (const mod of analyzed.modules) {
+      this.moduleDirs.set(mod.uri, mod.directoryName);
+    }
   }
 
   /** Emit a complete TypeScript file for one analyzed type */
@@ -38,7 +43,7 @@ export class CodeEmitter {
   }
 
   /** Emit a grouped surface builder file */
-  emitGroupedSurfaceCode(surface: GroupedSurface): string {
+  emitGroupedSurfaceCode(surface: GroupedSurface, moduleUri = ''): string {
     this.mapper.resetImports();
     const lines: string[] = [];
     const builderName = surface.builderName;
@@ -61,16 +66,17 @@ export class CodeEmitter {
     }
     lines.push('}');
 
-    // Imports
+    // Imports — surface files are type-only
     const runtimeImports = this.mapper.getRequiredRuntimeImports();
-    const importSection = this.buildRuntimeImportSection(runtimeImports, false);
+    const peerRefs = this.mapper.getPeerTypeRefs();
+    const importSection = this.buildSurfaceImportSection(runtimeImports, peerRefs, moduleUri);
     const header = this.buildHeader(`Grouped surface: ${surface.qmlName}`, importSection);
 
     return `${header}\n${lines.join('\n')}\n`;
   }
 
   /** Emit an attached surface builder file */
-  emitAttachedSurfaceCode(surface: AttachedSurface): string {
+  emitAttachedSurfaceCode(surface: AttachedSurface, moduleUri = ''): string {
     this.mapper.resetImports();
     const lines: string[] = [];
     const builderName = surface.builderName;
@@ -100,9 +106,10 @@ export class CodeEmitter {
     }
     lines.push('}');
 
-    // Imports
+    // Imports — surface files are type-only
     const runtimeImports = this.mapper.getRequiredRuntimeImports();
-    const importSection = this.buildRuntimeImportSection(runtimeImports, false);
+    const peerRefs = this.mapper.getPeerTypeRefs();
+    const importSection = this.buildSurfaceImportSection(runtimeImports, peerRefs, moduleUri);
     const header = this.buildHeader(`Attached type: ${surface.ownerQmlName}`, importSection);
 
     return `${header}\n${lines.join('\n')}\n`;
@@ -122,6 +129,13 @@ export class CodeEmitter {
     for (const prop of allProps) {
       if (!prop.readonly) {
         propTypes.set(prop.name, this.mapper.mapType(prop.qmlType));
+      }
+    }
+
+    // Also pre-map signal parameter types
+    for (const sig of allSignals) {
+      for (const p of sig.parameters) {
+        this.mapper.mapType(p.type);
       }
     }
 
@@ -156,13 +170,22 @@ export class CodeEmitter {
       }
     }
 
-    // Attached type methods
+    // Attached type methods (detect name conflicts with properties/grouped)
+    const usedNames = new Set<string>();
+    for (const prop of sortedByName(allProps)) {
+      if (!prop.readonly) usedNames.add(safeName(prop.name));
+    }
+    for (const ref of type.groupedProperties) {
+      usedNames.add(ref.propertyName);
+    }
     for (const ref of type.attachedTypes) {
       const surface = this.analyzed.attachedSurfaces.get(ref.attachedQualifiedName);
       if (surface) {
-        lines.push(
-          `  ${ref.methodName}(setup: (b: ${surface.builderName}) => void): ${builderName};`,
-        );
+        let methodName = ref.methodName;
+        if (usedNames.has(methodName)) {
+          methodName = `${methodName}Attached`;
+        }
+        lines.push(`  ${methodName}(setup: (b: ${surface.builderName}) => void): ${builderName};`);
       }
     }
 
@@ -177,20 +200,18 @@ export class CodeEmitter {
     // ─── Enum namespace ─────────────────────────────────────────────────
     if (hasEnums) {
       lines.push('');
-      lines.push(`export namespace ${type.qmlName} {`);
-      for (const en of sortedByName(allEnums)) {
-        for (const member of en.members) {
-          lines.push(
-            `  export const ${member.name} = createEnumToken('${type.qmlName}', '${en.name}', '${member.name}');`,
-          );
-        }
-      }
-      lines.push('}');
+      this.emitEnumNamespace(type.qmlName, allEnums, lines);
     }
 
     // ─── Build imports and header ───────────────────────────────────────
     const runtimeImports = this.mapper.getRequiredRuntimeImports();
-    const importSection = this.buildRuntimeImportSection(runtimeImports, hasEnums);
+    const peerRefs = this.collectAllPeerRefs(type);
+    const importSection = this.buildCreatableImportSection(
+      runtimeImports,
+      peerRefs,
+      hasEnums,
+      type.moduleUri,
+    );
     const header = this.buildHeader(type.qmlName, importSection);
 
     return `${header}\n${lines.join('\n')}\n`;
@@ -222,25 +243,26 @@ export class CodeEmitter {
     lines.push('}');
     lines.push('');
 
-    // Const declaration
-    lines.push(`export const ${type.qmlName} = {} as ${interfaceName};`);
-
-    // Enum namespace
     if (hasEnums) {
-      lines.push('');
-      lines.push(`export namespace ${type.qmlName} {`);
-      for (const en of sortedByName(allEnums)) {
-        for (const member of en.members) {
-          lines.push(
-            `  export const ${member.name} = createEnumToken('${type.qmlName}', '${en.name}', '${member.name}');`,
-          );
-        }
-      }
+      // Use function pattern for namespace merging with enums
+      lines.push(`export function ${type.qmlName}(): ${interfaceName} {`);
+      lines.push(`  return {} as ${interfaceName};`);
       lines.push('}');
+      lines.push('');
+      this.emitEnumNamespace(type.qmlName, allEnums, lines);
+    } else {
+      // Simple const for singletons without enums
+      lines.push(`export const ${type.qmlName} = {} as ${interfaceName};`);
     }
 
     const runtimeImports = this.mapper.getRequiredRuntimeImports();
-    const importSection = this.buildRuntimeImportSection(runtimeImports, hasEnums);
+    const peerRefs = this.collectAllPeerRefs(type);
+    const importSection = this.buildSingletonImportSection(
+      runtimeImports,
+      peerRefs,
+      hasEnums,
+      type.moduleUri,
+    );
     const header = this.buildHeader(type.qmlName, importSection);
 
     return `${header}\n${lines.join('\n')}\n`;
@@ -249,7 +271,7 @@ export class CodeEmitter {
   private emitGroupedSurfaceFile(type: AnalyzedType): string {
     const surface = this.analyzed.groupedSurfaces.get(type.qualifiedName);
     if (surface) {
-      return this.emitGroupedSurfaceCode(surface);
+      return this.emitGroupedSurfaceCode(surface, type.moduleUri);
     }
     return this.emitCreatable(type);
   }
@@ -257,7 +279,7 @@ export class CodeEmitter {
   private emitAttachedTypeFile(type: AnalyzedType): string {
     const surface = this.analyzed.attachedSurfaces.get(type.qualifiedName);
     if (surface) {
-      return this.emitAttachedSurfaceCode(surface);
+      return this.emitAttachedSurfaceCode(surface, type.moduleUri);
     }
     return this.emitCreatable(type);
   }
@@ -267,9 +289,83 @@ export class CodeEmitter {
       return '() => void';
     }
     const params = sig.parameters
-      .map((p) => `${safeName(p.name)}: ${this.mapper.mapType(p.type)}`)
+      .map((p, i) => {
+        const name = p.name || `arg${i}`;
+        return `${safeName(name)}: ${this.mapper.mapType(p.type)}`;
+      })
       .join(', ');
     return `(${params}) => void`;
+  }
+
+  /** Emit nested enum namespace: TypeName.EnumName.MemberName */
+  private emitEnumNamespace(
+    typeName: string,
+    allEnums: { name: string; members: { name: string }[] }[],
+    lines: string[],
+  ): void {
+    lines.push(`export namespace ${typeName} {`);
+    for (const en of sortedByName(allEnums)) {
+      lines.push(`  export namespace ${en.name} {`);
+      for (const member of en.members) {
+        lines.push(
+          `    export const ${member.name} = createEnumToken('${typeName}', '${en.name}', '${member.name}');`,
+        );
+      }
+      lines.push('  }');
+    }
+    lines.push('}');
+  }
+
+  /**
+   * Collect all peer type refs: from TypeMapper (property types) +
+   * grouped/attached surface builders used in the interface.
+   * Filter out self-references.
+   */
+  private collectAllPeerRefs(type: AnalyzedType): PeerTypeRef[] {
+    const selfNames = new Set<string>();
+    selfNames.add(`${type.qmlName}Builder`);
+    selfNames.add(`${type.qmlName}Instance`);
+
+    // Start with mapper's peer refs (from property type mapping)
+    const allRefs = new Map<string, PeerTypeRef>();
+    for (const ref of this.mapper.getPeerTypeRefs()) {
+      if (!selfNames.has(ref.tsName)) {
+        allRefs.set(ref.tsName, ref);
+      }
+    }
+
+    // Add grouped surface builder refs
+    for (const ref of type.groupedProperties) {
+      const surface = this.analyzed.groupedSurfaces.get(ref.surfaceQualifiedName);
+      if (surface && !selfNames.has(surface.builderName)) {
+        // Find which module the grouped surface type lives in
+        const surfaceType = this.analyzed.allTypes.get(ref.surfaceQualifiedName);
+        const moduleUri = surfaceType?.moduleUri ?? type.moduleUri;
+        allRefs.set(surface.builderName, {
+          tsName: surface.builderName,
+          qmlName: surface.qmlName,
+          moduleUri,
+        });
+      }
+    }
+
+    // Add attached surface builder refs
+    for (const ref of type.attachedTypes) {
+      const surface = this.analyzed.attachedSurfaces.get(ref.attachedQualifiedName);
+      if (surface && !selfNames.has(surface.builderName)) {
+        const surfaceType = this.analyzed.allTypes.get(ref.attachedQualifiedName);
+        const moduleUri = surfaceType?.moduleUri ?? type.moduleUri;
+        allRefs.set(surface.builderName, {
+          tsName: surface.builderName,
+          qmlName: surfaceType?.qmlName ?? surface.ownerQmlName,
+          moduleUri,
+        });
+      }
+    }
+
+    return [...allRefs.values()].sort((a, b) =>
+      a.tsName < b.tsName ? -1 : a.tsName > b.tsName ? 1 : 0,
+    );
   }
 
   private buildHeader(typeName: string, importSection: string): string {
@@ -282,21 +378,106 @@ export class CodeEmitter {
     ].join('\n');
   }
 
-  private buildRuntimeImportSection(runtimeImports: string[], needsEnumToken: boolean): string {
+  private buildCreatableImportSection(
+    runtimeImports: string[],
+    peerRefs: PeerTypeRef[],
+    needsEnumToken: boolean,
+    currentModule: string,
+  ): string {
     const lines: string[] = [];
 
-    // Runtime builder import
-    const builderImports = ['DslBuilderImpl', 'QmlObjectBuilder'];
+    // Value imports (used at runtime)
+    const valueImports = ['DslBuilderImpl'];
     if (needsEnumToken) {
-      builderImports.push('createEnumToken');
+      valueImports.push('createEnumToken');
     }
-    // Add runtime type imports
-    const allImports = [...builderImports, ...runtimeImports];
-    allImports.sort();
+    valueImports.sort();
 
-    lines.push(`import { ${allImports.join(', ')} } from '../../runtime/index.js';`);
+    // Type-only imports (used only in type positions)
+    const typeImports = ['QmlObjectBuilder', ...runtimeImports];
+    typeImports.sort();
+
+    lines.push(`import { ${valueImports.join(', ')} } from '../../runtime/index.js';`);
+    if (typeImports.length > 0) {
+      lines.push(`import type { ${typeImports.join(', ')} } from '../../runtime/index.js';`);
+    }
+
+    // Peer imports
+    this.emitPeerImports(lines, peerRefs, currentModule);
 
     return lines.join('\n');
+  }
+
+  /** Import section for singleton types */
+  private buildSingletonImportSection(
+    runtimeImports: string[],
+    peerRefs: PeerTypeRef[],
+    needsEnumToken: boolean,
+    currentModule: string,
+  ): string {
+    const lines: string[] = [];
+
+    if (needsEnumToken) {
+      lines.push(`import { createEnumToken } from '../../runtime/index.js';`);
+    }
+
+    if (runtimeImports.length > 0) {
+      const sorted = [...runtimeImports].sort();
+      lines.push(`import type { ${sorted.join(', ')} } from '../../runtime/index.js';`);
+    }
+
+    // Peer imports
+    this.emitPeerImports(lines, peerRefs, currentModule);
+
+    return lines.join('\n');
+  }
+
+  /** Import section for grouped/attached surface files (type-only) */
+  private buildSurfaceImportSection(
+    runtimeImports: string[],
+    peerRefs: PeerTypeRef[],
+    currentModule: string,
+  ): string {
+    const lines: string[] = [];
+
+    if (runtimeImports.length > 0) {
+      const sorted = [...runtimeImports].sort();
+      lines.push(`import type { ${sorted.join(', ')} } from '../../runtime/index.js';`);
+    }
+
+    this.emitPeerImports(lines, peerRefs, currentModule);
+
+    return lines.join('\n');
+  }
+
+  /** Generate peer type import statements grouped by source file */
+  private emitPeerImports(lines: string[], peerRefs: PeerTypeRef[], currentModule: string): void {
+    if (peerRefs.length === 0) return;
+
+    // Group by source file
+    const byFile = new Map<string, string[]>();
+    for (const ref of peerRefs) {
+      const moduleDir = this.moduleDirs.get(ref.moduleUri) ?? ref.moduleUri;
+      let relativePath: string;
+      if (ref.moduleUri === currentModule) {
+        relativePath = `./${ref.qmlName}.js`;
+      } else {
+        relativePath = `../${moduleDir}/${ref.qmlName}.js`;
+      }
+      const existing = byFile.get(relativePath);
+      if (existing) {
+        existing.push(ref.tsName);
+      } else {
+        byFile.set(relativePath, [ref.tsName]);
+      }
+    }
+
+    // Sort by file path for determinism
+    const sortedPaths = [...byFile.keys()].sort();
+    for (const filePath of sortedPaths) {
+      const names = byFile.get(filePath)!.sort();
+      lines.push(`import type { ${names.join(', ')} } from '${filePath}';`);
+    }
   }
 }
 

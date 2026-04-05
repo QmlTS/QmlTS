@@ -1,6 +1,13 @@
 import { QML_TYPE_MAP } from '../runtime/types.js';
 import type { AnalyzedRegistry, AnalyzedType, GeneratorDiagnostic } from './types.js';
 
+/** Reference to a builder/instance type from another generated file */
+export interface PeerTypeRef {
+  readonly tsName: string;
+  readonly qmlName: string;
+  readonly moduleUri: string;
+}
+
 /**
  * Maps QML/C++ type names to TypeScript type names.
  * Category-aware: produces builder names for creatable types,
@@ -10,6 +17,7 @@ import type { AnalyzedRegistry, AnalyzedType, GeneratorDiagnostic } from './type
 export class TypeMapper {
   private readonly analyzed: AnalyzedRegistry;
   private readonly runtimeImports = new Set<string>();
+  private readonly peerTypeRefs = new Map<string, PeerTypeRef>();
   private readonly diagnostics: GeneratorDiagnostic[] = [];
   private readonly typeNameToAnalyzed = new Map<string, AnalyzedType>();
 
@@ -76,6 +84,13 @@ export class TypeMapper {
     return [...this.runtimeImports].sort();
   }
 
+  /** Get peer type references (builders/instances from other generated files) */
+  getPeerTypeRefs(): PeerTypeRef[] {
+    return [...this.peerTypeRefs.values()].sort((a, b) =>
+      a.tsName < b.tsName ? -1 : a.tsName > b.tsName ? 1 : 0,
+    );
+  }
+
   /** Get accumulated diagnostics (unknown type warnings) */
   getDiagnostics(): GeneratorDiagnostic[] {
     return [...this.diagnostics];
@@ -84,26 +99,55 @@ export class TypeMapper {
   /** Reset tracked imports (call before emitting a new file) */
   resetImports(): void {
     this.runtimeImports.clear();
+    this.peerTypeRefs.clear();
   }
 
   private mapAnalyzedType(type: AnalyzedType): string {
     switch (type.classification) {
-      case 'creatable-object':
-        return `${type.qmlName}Builder`;
-      case 'singleton':
-        return `${type.qmlName}Instance`;
+      case 'creatable-object': {
+        const tsName = `${type.qmlName}Builder`;
+        this.peerTypeRefs.set(tsName, {
+          tsName,
+          qmlName: type.qmlName,
+          moduleUri: type.moduleUri,
+        });
+        return tsName;
+      }
+      case 'singleton': {
+        const tsName = `${type.qmlName}Instance`;
+        this.peerTypeRefs.set(tsName, {
+          tsName,
+          qmlName: type.qmlName,
+          moduleUri: type.moduleUri,
+        });
+        return tsName;
+      }
       case 'grouped-surface': {
         const surface = this.analyzed.groupedSurfaces.get(type.qualifiedName);
-        return surface ? surface.builderName : `${type.qmlName}Builder`;
+        const tsName = surface ? surface.builderName : `${type.qmlName}Builder`;
+        this.peerTypeRefs.set(tsName, {
+          tsName,
+          qmlName: surface ? surface.qmlName : type.qmlName,
+          moduleUri: type.moduleUri,
+        });
+        return tsName;
       }
       case 'attached-type': {
         const attached = this.analyzed.attachedSurfaces.get(type.qualifiedName);
-        return attached ? attached.builderName : `${type.qmlName}Builder`;
+        const tsName = attached ? attached.builderName : `${type.qmlName}Builder`;
+        this.peerTypeRefs.set(tsName, {
+          tsName,
+          qmlName: attached ? attached.ownerQmlName : type.qmlName,
+          moduleUri: type.moduleUri,
+        });
+        return tsName;
       }
       case 'value-type':
+        this.runtimeImports.add('QmlValue');
         return 'QmlValue';
       case 'non-creatable':
       case 'internal':
+        this.runtimeImports.add('QmlValue');
         return 'QmlValue';
     }
   }

@@ -1,0 +1,73 @@
+// AUTO-GENERATED — DO NOT EDIT
+// Type: Attached type: Layout
+// Generated from Qt 6.11.0
+
+import type { QmlValue } from '../../runtime/index.js';
+export interface LayoutAttachedBuilder {
+  alignment(value: QmlValue): LayoutAttachedBuilder;
+  alignmentBind(expr: string): LayoutAttachedBuilder;
+  bottomMargin(value: number): LayoutAttachedBuilder;
+  bottomMarginBind(expr: string): LayoutAttachedBuilder;
+  column(value: number): LayoutAttachedBuilder;
+  columnBind(expr: string): LayoutAttachedBuilder;
+  columnSpan(value: number): LayoutAttachedBuilder;
+  columnSpanBind(expr: string): LayoutAttachedBuilder;
+  fillHeight(value: boolean): LayoutAttachedBuilder;
+  fillHeightBind(expr: string): LayoutAttachedBuilder;
+  fillWidth(value: boolean): LayoutAttachedBuilder;
+  fillWidthBind(expr: string): LayoutAttachedBuilder;
+  horizontalStretchFactor(value: number): LayoutAttachedBuilder;
+  horizontalStretchFactorBind(expr: string): LayoutAttachedBuilder;
+  leftMargin(value: number): LayoutAttachedBuilder;
+  leftMarginBind(expr: string): LayoutAttachedBuilder;
+  margins(value: number): LayoutAttachedBuilder;
+  marginsBind(expr: string): LayoutAttachedBuilder;
+  maximumHeight(value: number): LayoutAttachedBuilder;
+  maximumHeightBind(expr: string): LayoutAttachedBuilder;
+  maximumWidth(value: number): LayoutAttachedBuilder;
+  maximumWidthBind(expr: string): LayoutAttachedBuilder;
+  minimumHeight(value: number): LayoutAttachedBuilder;
+  minimumHeightBind(expr: string): LayoutAttachedBuilder;
+  minimumWidth(value: number): LayoutAttachedBuilder;
+  minimumWidthBind(expr: string): LayoutAttachedBuilder;
+  preferredHeight(value: number): LayoutAttachedBuilder;
+  preferredHeightBind(expr: string): LayoutAttachedBuilder;
+  preferredWidth(value: number): LayoutAttachedBuilder;
+  preferredWidthBind(expr: string): LayoutAttachedBuilder;
+  rightMargin(value: number): LayoutAttachedBuilder;
+  rightMarginBind(expr: string): LayoutAttachedBuilder;
+  row(value: number): LayoutAttachedBuilder;
+  rowBind(expr: string): LayoutAttachedBuilder;
+  rowSpan(value: number): LayoutAttachedBuilder;
+  rowSpanBind(expr: string): LayoutAttachedBuilder;
+  topMargin(value: number): LayoutAttachedBuilder;
+  topMarginBind(expr: string): LayoutAttachedBuilder;
+  useDefaultSizePolicy(value: QmlValue): LayoutAttachedBuilder;
+  useDefaultSizePolicyBind(expr: string): LayoutAttachedBuilder;
+  verticalStretchFactor(value: number): LayoutAttachedBuilder;
+  verticalStretchFactorBind(expr: string): LayoutAttachedBuilder;
+  objectName(value: string): LayoutAttachedBuilder;
+  objectNameBind(expr: string): LayoutAttachedBuilder;
+  onAlignmentChanged(handler: () => void): LayoutAttachedBuilder;
+  onBottomMarginChanged(handler: () => void): LayoutAttachedBuilder;
+  onColumnChanged(handler: () => void): LayoutAttachedBuilder;
+  onColumnSpanChanged(handler: () => void): LayoutAttachedBuilder;
+  onFillHeightChanged(handler: () => void): LayoutAttachedBuilder;
+  onFillWidthChanged(handler: () => void): LayoutAttachedBuilder;
+  onHorizontalStretchFactorChanged(handler: () => void): LayoutAttachedBuilder;
+  onLeftMarginChanged(handler: () => void): LayoutAttachedBuilder;
+  onMarginsChanged(handler: () => void): LayoutAttachedBuilder;
+  onMaximumHeightChanged(handler: () => void): LayoutAttachedBuilder;
+  onMaximumWidthChanged(handler: () => void): LayoutAttachedBuilder;
+  onMinimumHeightChanged(handler: () => void): LayoutAttachedBuilder;
+  onMinimumWidthChanged(handler: () => void): LayoutAttachedBuilder;
+  onPreferredHeightChanged(handler: () => void): LayoutAttachedBuilder;
+  onPreferredWidthChanged(handler: () => void): LayoutAttachedBuilder;
+  onRightMarginChanged(handler: () => void): LayoutAttachedBuilder;
+  onRowChanged(handler: () => void): LayoutAttachedBuilder;
+  onRowSpanChanged(handler: () => void): LayoutAttachedBuilder;
+  onTopMarginChanged(handler: () => void): LayoutAttachedBuilder;
+  onUseDefaultSizePolicyChanged(handler: () => void): LayoutAttachedBuilder;
+  onVerticalStretchFactorChanged(handler: () => void): LayoutAttachedBuilder;
+  onObjectNameChanged(handler: (objectName: string) => void): LayoutAttachedBuilder;
+}

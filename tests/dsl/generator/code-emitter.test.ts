@@ -61,11 +61,11 @@ describe('CodeEmitter', () => {
       expect(code).toContain("createEnumToken('Text', 'HAlignment', 'AlignRight')");
     });
 
-    test('CE-11: Item emits TransformOrigin enum', () => {
+    test('CE-11: Item emits TransformOrigin enum as nested namespace', () => {
       const t = analyzed.allTypes.get('QQuickItem')!;
       const code = emitter.emitType(t);
       expect(code).toContain('export namespace Item');
-      expect(code).toContain('TransformOrigin');
+      expect(code).toContain('export namespace TransformOrigin');
     });
 
     test('CE-12: enum token uses correct owner name (qmlName)', () => {
@@ -134,13 +134,22 @@ describe('CodeEmitter', () => {
   });
 
   describe('singleton types', () => {
-    test('CE-70: singleton emits typed const, not factory function', () => {
+    test('CE-70: singleton emits interface and accessor', () => {
       const appType = [...analyzed.allTypes.values()].find(
         (t) => t.classification === 'singleton' && t.moduleUri === 'QtQuick',
       );
       if (appType) {
         const code = emitter.emitType(appType);
-        expect(code).toContain('export const');
+        const allEnums = [...appType.ownEnums, ...appType.inheritedEnums];
+        if (allEnums.length > 0) {
+          // Singletons with enums use function + namespace pattern
+          expect(code).toContain(`export function ${appType.qmlName}()`);
+          expect(code).toContain(`export namespace ${appType.qmlName}`);
+        } else {
+          // Singletons without enums use simple const
+          expect(code).toContain('export const');
+        }
+        expect(code).toContain(`${appType.qmlName}Instance`);
       }
     });
   });
