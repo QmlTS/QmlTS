@@ -1,5 +1,5 @@
 import { mkdirSync, rmSync, writeFileSync } from 'node:fs';
-import { dirname, join } from 'node:path';
+import { dirname, join, relative, resolve } from 'node:path';
 import type { GeneratorResult } from './types.js';
 
 export interface WriteResult {
@@ -64,10 +64,16 @@ export async function formatGeneratedFiles(outputDir: string): Promise<FormatRes
 /** Validate generated files via TypeScript typecheck against outputDir. */
 export async function validateGeneratedFiles(outputDir: string): Promise<ValidateResult> {
   try {
+    const absOutputDir = resolve(outputDir);
+
     // Generated files import from ../../runtime/index.js relative to the generated dir.
     // Create a temp tsconfig in the parent of the generated tree that includes it.
-    const parentDir = join(outputDir, '..');
+    const parentDir = dirname(absOutputDir);
     const tsconfigPath = join(parentDir, 'tsconfig.validate.json');
+    const includePattern = join(relative(parentDir, absOutputDir), '**', '*.ts').replace(
+      /\\/g,
+      '/',
+    );
 
     const tsconfig = {
       compilerOptions: {
@@ -80,7 +86,7 @@ export async function validateGeneratedFiles(outputDir: string): Promise<Validat
         noUnusedLocals: false,
         noUnusedParameters: false,
       },
-      include: [join(outputDir, '**', '*.ts')],
+      include: [includePattern],
     };
 
     writeFileSync(tsconfigPath, JSON.stringify(tsconfig, null, 2));

@@ -8,6 +8,9 @@
  */
 import { describe, expect, test } from 'bun:test';
 import { createDocument } from '../../src/ast/builder.js';
+import { Settings } from '../../src/dsl/generated/QtCore/Settings.js';
+import { Connections } from '../../src/dsl/generated/QtQml/Connections.js';
+import { Timer } from '../../src/dsl/generated/QtQml/Timer.js';
 import { Column } from '../../src/dsl/generated/QtQuick/Column.js';
 import { Image } from '../../src/dsl/generated/QtQuick/Image.js';
 import { Item } from '../../src/dsl/generated/QtQuick/Item.js';
@@ -16,6 +19,12 @@ import { MouseArea } from '../../src/dsl/generated/QtQuick/MouseArea.js';
 import { Rectangle } from '../../src/dsl/generated/QtQuick/Rectangle.js';
 import { Row } from '../../src/dsl/generated/QtQuick/Row.js';
 import { Text } from '../../src/dsl/generated/QtQuick/Text.js';
+import { ColumnLayout } from '../../src/dsl/generated/QtQuick.Layouts/ColumnLayout.js';
+import { RowLayout } from '../../src/dsl/generated/QtQuick.Layouts/RowLayout.js';
+import { Button } from '../../src/dsl/generated/QtQuick.Templates/Button.js';
+import { Label } from '../../src/dsl/generated/QtQuick.Templates/Label.js';
+import { Slider } from '../../src/dsl/generated/QtQuick.Templates/Slider.js';
+import { TextField } from '../../src/dsl/generated/QtQuick.Templates/TextField.js';
 import type { QmlColor } from '../../src/dsl/runtime/types.js';
 import { emit } from '../../src/emitter/emitter.js';
 
@@ -287,11 +296,6 @@ describe('Acceptance: Generated Fluent API', () => {
   });
 });
 
-// ─── P0 Module Expansion: QtQuick.Layouts ──────────────────────────────
-
-import { ColumnLayout } from '../../src/dsl/generated/QtQuick.Layouts/ColumnLayout.js';
-import { RowLayout } from '../../src/dsl/generated/QtQuick.Layouts/RowLayout.js';
-
 describe('Acceptance: QtQuick.Layouts', () => {
   test('ACC-13: ColumnLayout with spacing and children', () => {
     const layout = ColumnLayout()
@@ -342,11 +346,6 @@ describe('Acceptance: QtQuick.Layouts', () => {
   });
 });
 
-// ─── P0 Module Expansion: QtQml ────────────────────────────────────────
-
-import { Connections } from '../../src/dsl/generated/QtQml/Connections.js';
-import { Timer } from '../../src/dsl/generated/QtQml/Timer.js';
-
 describe('Acceptance: QtQml', () => {
   test('ACC-16: Timer with interval and signal handler', () => {
     const timer = Timer().interval(1000).repeat(true).running(true).onTriggered('count++');
@@ -373,10 +372,6 @@ describe('Acceptance: QtQml', () => {
   });
 });
 
-// ─── P0 Module Expansion: QtCore ───────────────────────────────────────
-
-import { Settings } from '../../src/dsl/generated/QtCore/Settings.js';
-
 describe('Acceptance: QtCore', () => {
   test('ACC-18: Settings with category', () => {
     const settings = Settings().category('app');
@@ -388,13 +383,6 @@ describe('Acceptance: QtCore', () => {
     expect(qml).toContain('category: "app"');
   });
 });
-
-// ─── P0 Module Expansion: QtQuick.Templates ────────────────────────────
-
-import { Button } from '../../src/dsl/generated/QtQuick.Templates/Button.js';
-import { Label } from '../../src/dsl/generated/QtQuick.Templates/Label.js';
-import { Slider } from '../../src/dsl/generated/QtQuick.Templates/Slider.js';
-import { TextField } from '../../src/dsl/generated/QtQuick.Templates/TextField.js';
 
 describe('Acceptance: QtQuick.Templates', () => {
   test('ACC-19: Button with text and click handler', () => {

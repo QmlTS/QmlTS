@@ -63,7 +63,7 @@ export class CodeEmitter {
     // Imports — surface files are type-only, filter to actually used
     const codeBody = lines.join('\n');
     const runtimeImports = filterUsedImports(this.mapper.getRequiredRuntimeImports(), codeBody);
-    const peerRefs = this.mapper.getPeerTypeRefs().filter((r) => codeBody.includes(r.tsName));
+    const peerRefs = filterUsedPeerRefs(this.mapper.getPeerTypeRefs(), codeBody);
     const importSection = this.buildSurfaceImportSection(runtimeImports, peerRefs, moduleUri);
     const header = this.buildHeader(`Grouped surface: ${surface.qmlName}`, importSection);
 
@@ -103,7 +103,7 @@ export class CodeEmitter {
     // Imports — surface files are type-only, filter to actually used
     const codeBody = lines.join('\n');
     const runtimeImports = filterUsedImports(this.mapper.getRequiredRuntimeImports(), codeBody);
-    const peerRefs = this.mapper.getPeerTypeRefs().filter((r) => codeBody.includes(r.tsName));
+    const peerRefs = filterUsedPeerRefs(this.mapper.getPeerTypeRefs(), codeBody);
     const importSection = this.buildSurfaceImportSection(runtimeImports, peerRefs, moduleUri);
     const header = this.buildHeader(`Attached type: ${surface.ownerQmlName}`, importSection);
 
@@ -200,7 +200,7 @@ export class CodeEmitter {
     // ─── Build imports and header ───────────────────────────────────────
     const codeBody = lines.join('\n');
     const runtimeImports = filterUsedImports(this.mapper.getRequiredRuntimeImports(), codeBody);
-    const peerRefs = this.collectAllPeerRefs(type).filter((r) => codeBody.includes(r.tsName));
+    const peerRefs = filterUsedPeerRefs(this.collectAllPeerRefs(type), codeBody);
     const importSection = this.buildCreatableImportSection(
       runtimeImports,
       peerRefs,
@@ -252,7 +252,7 @@ export class CodeEmitter {
 
     const codeBody = lines.join('\n');
     const runtimeImports = filterUsedImports(this.mapper.getRequiredRuntimeImports(), codeBody);
-    const peerRefs = this.collectAllPeerRefs(type).filter((r) => codeBody.includes(r.tsName));
+    const peerRefs = filterUsedPeerRefs(this.collectAllPeerRefs(type), codeBody);
     const importSection = this.buildSingletonImportSection(
       runtimeImports,
       peerRefs,
@@ -620,6 +620,13 @@ function filterUsedImports(imports: string[], codeBody: string): string[] {
   return imports.filter((name) => {
     // Use word-boundary check to avoid false positives
     const pattern = new RegExp(`\\b${name.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\b`);
+    return pattern.test(codeBody);
+  });
+}
+
+function filterUsedPeerRefs(peerRefs: PeerTypeRef[], codeBody: string): PeerTypeRef[] {
+  return peerRefs.filter((ref) => {
+    const pattern = new RegExp(`\\b${ref.tsName.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\b`);
     return pattern.test(codeBody);
   });
 }
