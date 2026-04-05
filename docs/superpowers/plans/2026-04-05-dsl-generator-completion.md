@@ -41,7 +41,7 @@
 | `src/dsl/generator/code-emitter.ts` | Generate TypeMetadata per type; change signal handler sigs from function to string; use `createFluentBuilder` in factories; enum-typed properties → QmlEnumToken |
 | `src/dsl/generator/generator.ts` | Pass enum index from analyzer to TypeMapper |
 | `src/dsl/generator/index.ts` | Re-export orchestration module |
-| `scripts/generate-dsl.ts` | Use orchestration layer; add `--format`/`--validate`/`--stats` flags |
+| `scripts/generate-dsl.ts` | Use orchestration layer; add `--format`/`--validate` flags and print generation statistics |
 | `src/dsl/generated/**` | Regenerated P0 snapshot with metadata + new signatures |
 | `src/index.ts` | Add orchestration to DSL exports |
 
@@ -1526,11 +1526,11 @@ export type { WriteResult, FormatResult, ValidateResult } from './orchestration.
 
 - [ ] **Step 3: Update CLI script to use orchestration**
 
-Replace `scripts/generate-dsl.ts` content to use the orchestration layer and support `--format`/`--validate`/`--stats` flags. The script should:
+Replace `scripts/generate-dsl.ts` content to use the orchestration layer and support `--format`/`--validate` flags. The script should:
 - Use `writeGeneratedFiles()` instead of manual file writing
 - Call `formatGeneratedFiles()` when `--format` is passed
 - Call `validateGeneratedFiles()` when `--validate` is passed
-- Print stats when `--stats` is passed
+- Print generation statistics after generation completes
 
 - [ ] **Step 4: Verify typecheck and run**
 

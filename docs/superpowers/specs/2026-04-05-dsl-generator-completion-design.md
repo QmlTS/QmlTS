@@ -228,7 +228,8 @@ Options:
   --all         Generate all modules (default: P0 modules only)
   --format      Run biome formatting after generation
   --validate    Run TypeScript type checking after generation
-  --stats       Print generation statistics
+
+The CLI prints generation statistics after generation completes.
 ```
 
 ### 4. Testing Strategy
