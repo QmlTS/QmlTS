@@ -4,8 +4,8 @@
  * and produces deterministic, well-formed output.
  */
 import { describe, expect, test } from 'bun:test';
-import { generate } from '../../src/dsl/generator/generator.js';
 import { join } from 'node:path';
+import { generate } from '../../src/dsl/generator/generator.js';
 
 const SNAPSHOT_PATH = join(import.meta.dir, '..', '..', 'data', 'qt-6.11.0-registry.snapshot.json');
 
@@ -42,12 +42,12 @@ describe('Full Generation Acceptance', () => {
     });
 
     test('FG-04: P0 has zero errors', () => {
-      const errors = p0Result.diagnostics.filter(d => d.level === 'error');
+      const errors = p0Result.diagnostics.filter((d) => d.level === 'error');
       expect(errors.length).toBe(0);
     });
 
     test('FG-05: P0 warning count is below budget (50)', () => {
-      const warnings = p0Result.diagnostics.filter(d => d.level === 'warning');
+      const warnings = p0Result.diagnostics.filter((d) => d.level === 'warning');
       expect(warnings.length).toBeLessThan(50);
     });
 
@@ -69,8 +69,8 @@ describe('Full Generation Acceptance', () => {
 
     test('FG-10: P0 generates index files for modules with types', () => {
       const generatedModules = p0Result.files
-        .filter(f => f.relativePath.endsWith('/index.ts') && f.relativePath !== 'index.ts')
-        .map(f => f.relativePath.replace('/index.ts', ''));
+        .filter((f) => f.relativePath.endsWith('/index.ts') && f.relativePath !== 'index.ts')
+        .map((f) => f.relativePath.replace('/index.ts', ''));
       expect(generatedModules.length).toBeGreaterThanOrEqual(7);
       // Core modules with types should always be present
       expect(generatedModules).toContain('QtQuick');
@@ -79,7 +79,7 @@ describe('Full Generation Acceptance', () => {
     });
 
     test('FG-11: P0 generates top-level index', () => {
-      const topIndex = p0Result.files.find(f => f.relativePath === 'index.ts');
+      const topIndex = p0Result.files.find((f) => f.relativePath === 'index.ts');
       expect(topIndex).toBeDefined();
     });
 
@@ -124,8 +124,10 @@ describe('Full Generation Acceptance', () => {
         moduleWhitelist: ['QtQuick'],
       });
       const typeFiles = result.files
-        .filter(f => f.relativePath.startsWith('QtQuick/') && f.relativePath !== 'QtQuick/index.ts')
-        .map(f => f.relativePath);
+        .filter(
+          (f) => f.relativePath.startsWith('QtQuick/') && f.relativePath !== 'QtQuick/index.ts',
+        )
+        .map((f) => f.relativePath);
       const sorted = [...typeFiles].sort();
       expect(typeFiles).toEqual(sorted);
     });
@@ -151,12 +153,12 @@ describe('Full Generation Acceptance', () => {
     });
 
     test('FG-33: all-modules has zero errors', () => {
-      const errors = allResult.diagnostics.filter(d => d.level === 'error');
+      const errors = allResult.diagnostics.filter((d) => d.level === 'error');
       expect(errors.length).toBe(0);
     });
 
     test('FG-34: all-modules warning budget (<500)', () => {
-      const warnings = allResult.diagnostics.filter(d => d.level === 'warning');
+      const warnings = allResult.diagnostics.filter((d) => d.level === 'warning');
       expect(warnings.length).toBeLessThan(500);
     });
 

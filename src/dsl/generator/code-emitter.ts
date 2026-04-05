@@ -1,10 +1,5 @@
 import type { PeerTypeRef, TypeMapper } from './type-mapper.js';
-import type {
-  AnalyzedRegistry,
-  AnalyzedType,
-  AttachedSurface,
-  GroupedSurface,
-} from './types.js';
+import type { AnalyzedRegistry, AnalyzedType, AttachedSurface, GroupedSurface } from './types.js';
 
 /**
  * Emits TypeScript source code for analyzed types.
@@ -196,7 +191,9 @@ export class CodeEmitter {
 
     // ─── Factory function ───────────────────────────────────────────────
     lines.push(`export function ${type.qmlName}(): ${builderName} {`);
-    lines.push(`  return createFluentBuilder('${type.qmlName}', ${metaConstName}) as unknown as ${builderName};`);
+    lines.push(
+      `  return createFluentBuilder('${type.qmlName}', ${metaConstName}) as unknown as ${builderName};`,
+    );
     lines.push('}');
 
     // ─── Enum namespace ─────────────────────────────────────────────────
@@ -306,11 +303,7 @@ export class CodeEmitter {
   }
 
   /** Emit TypeMetadata constant for Proxy-based runtime dispatch */
-  private emitTypeMetadata(
-    constName: string,
-    type: AnalyzedType,
-    lines: string[],
-  ): void {
+  private emitTypeMetadata(constName: string, type: AnalyzedType, lines: string[]): void {
     const allProps = [...type.ownProperties, ...type.inheritedProperties];
     const allSignals = [...type.ownSignals, ...type.inheritedSignals];
 
@@ -379,7 +372,9 @@ export class CodeEmitter {
       lines.push('      signals: [');
       for (const sig of surface.signals) {
         const handlerName = `on${capitalize(sig.name)}`;
-        lines.push(`        { handlerName: '${handlerName}', paramCount: ${sig.parameters.length} },`);
+        lines.push(
+          `        { handlerName: '${handlerName}', paramCount: ${sig.parameters.length} },`,
+        );
       }
       lines.push('      ],');
       lines.push('    },');

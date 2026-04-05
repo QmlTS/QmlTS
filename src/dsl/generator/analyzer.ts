@@ -440,10 +440,7 @@ function dedupeAttachedRefs(refs: AttachedTypeRef[]): AttachedTypeRef[] {
 
 function buildEnumIndex(allTypes: QmlType[]): Map<string, EnumResolution> {
   const index = new Map<string, EnumResolution>();
-  const nameOwners = new Map<
-    string,
-    { qn: string; qmlName: string; moduleUri: string }[]
-  >();
+  const nameOwners = new Map<string, { qn: string; qmlName: string; moduleUri: string }[]>();
 
   for (const type of allTypes) {
     for (const en of type.enums) {

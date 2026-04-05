@@ -8,17 +8,16 @@
  */
 import { describe, expect, test } from 'bun:test';
 import { createDocument } from '../../src/ast/builder.js';
-import { emit } from '../../src/emitter/emitter.js';
-import type { QmlColor } from '../../src/dsl/runtime/types.js';
-
+import { Column } from '../../src/dsl/generated/QtQuick/Column.js';
+import { Image } from '../../src/dsl/generated/QtQuick/Image.js';
+import { Item } from '../../src/dsl/generated/QtQuick/Item.js';
+import { MouseArea } from '../../src/dsl/generated/QtQuick/MouseArea.js';
 // Import generated DSL factories and namespaces
 import { Rectangle } from '../../src/dsl/generated/QtQuick/Rectangle.js';
-import { Text } from '../../src/dsl/generated/QtQuick/Text.js';
-import { Item } from '../../src/dsl/generated/QtQuick/Item.js';
-import { Column } from '../../src/dsl/generated/QtQuick/Column.js';
 import { Row } from '../../src/dsl/generated/QtQuick/Row.js';
-import { Image } from '../../src/dsl/generated/QtQuick/Image.js';
-import { MouseArea } from '../../src/dsl/generated/QtQuick/MouseArea.js';
+import { Text } from '../../src/dsl/generated/QtQuick/Text.js';
+import type { QmlColor } from '../../src/dsl/runtime/types.js';
+import { emit } from '../../src/emitter/emitter.js';
 
 describe('Acceptance: Generated Fluent API', () => {
   describe('ACC-01: Basic property setters', () => {
@@ -40,9 +39,7 @@ describe('Acceptance: Generated Fluent API', () => {
         .height(100)
         .color('blue' as QmlColor);
 
-      const doc = createDocument()
-        .importModule('QtQuick')
-        .root(rect);
+      const doc = createDocument().importModule('QtQuick').root(rect);
       const qml = emit(doc);
 
       expect(qml).toContain('import QtQuick');
@@ -56,14 +53,7 @@ describe('Acceptance: Generated Fluent API', () => {
   describe('ACC-02: Chaining fluency', () => {
     test('long chain returns same proxy (chaining)', () => {
       const rect = Rectangle();
-      const result = rect
-        .id('myRect')
-        .width(100)
-        .height(50)
-        .visible(true)
-        .opacity(0.8)
-        .x(10)
-        .y(20);
+      const result = rect.id('myRect').width(100).height(50).visible(true).opacity(0.8).x(10).y(20);
 
       // Chaining should return the same builder
       expect(result.build().typeName).toBe('Rectangle');
@@ -73,13 +63,9 @@ describe('Acceptance: Generated Fluent API', () => {
 
   describe('ACC-03: Binding expressions', () => {
     test('widthBind creates binding expression', () => {
-      const rect = Rectangle()
-        .widthBind('parent.width')
-        .heightBind('parent.height / 2');
+      const rect = Rectangle().widthBind('parent.width').heightBind('parent.height / 2');
 
-      const doc = createDocument()
-        .importModule('QtQuick')
-        .root(rect);
+      const doc = createDocument().importModule('QtQuick').root(rect);
       const qml = emit(doc);
 
       expect(qml).toContain('width: parent.width');
@@ -91,9 +77,7 @@ describe('Acceptance: Generated Fluent API', () => {
     test('Column with child Text and Rectangle', () => {
       const col = Column()
         .spacing(10)
-        .child(
-          Text().text('Hello World'),
-        )
+        .child(Text().text('Hello World'))
         .child(
           Rectangle()
             .width(100)
@@ -101,9 +85,7 @@ describe('Acceptance: Generated Fluent API', () => {
             .color('green' as QmlColor),
         );
 
-      const doc = createDocument()
-        .importModule('QtQuick')
-        .root(col);
+      const doc = createDocument().importModule('QtQuick').root(col);
       const qml = emit(doc);
 
       expect(qml).toContain('Column {');
@@ -117,12 +99,9 @@ describe('Acceptance: Generated Fluent API', () => {
 
   describe('ACC-05: Signal handlers', () => {
     test('onClicked signal handler', () => {
-      const area = MouseArea()
-        .onClicked('console.log("clicked")');
+      const area = MouseArea().onClicked('console.log("clicked")');
 
-      const doc = createDocument()
-        .importModule('QtQuick')
-        .root(area);
+      const doc = createDocument().importModule('QtQuick').root(area);
       const qml = emit(doc);
 
       expect(qml).toContain('MouseArea {');
@@ -131,12 +110,10 @@ describe('Acceptance: Generated Fluent API', () => {
     });
 
     test('multiple signal handlers', () => {
-      const area = MouseArea()
-        .onClicked('handleClick()')
-        .onPressed('handlePress()');
+      const area = MouseArea().onClicked('handleClick()').onPressed('handlePress()');
 
       const node = area.build();
-      const handlers = node.members.filter(m => m.kind === 'SignalHandler');
+      const handlers = node.members.filter((m) => m.kind === 'SignalHandler');
       expect(handlers.length).toBe(2);
     });
   });
@@ -158,13 +135,9 @@ describe('Acceptance: Generated Fluent API', () => {
     });
 
     test('Text with enum property produces correct QML', () => {
-      const t = Text()
-        .text('Hello')
-        .horizontalAlignment(Text.HAlignment.AlignHCenter);
+      const t = Text().text('Hello').horizontalAlignment(Text.HAlignment.AlignHCenter);
 
-      const doc = createDocument()
-        .importModule('QtQuick')
-        .root(t);
+      const doc = createDocument().importModule('QtQuick').root(t);
       const qml = emit(doc);
 
       expect(qml).toContain('Text {');
@@ -184,14 +157,12 @@ describe('Acceptance: Generated Fluent API', () => {
       const rect = Rectangle()
         .width(200)
         .height(100)
-        .border(b => {
+        .border((b) => {
           b.width(2);
           b.color('black' as QmlColor);
         });
 
-      const doc = createDocument()
-        .importModule('QtQuick')
-        .root(rect);
+      const doc = createDocument().importModule('QtQuick').root(rect);
       const qml = emit(doc);
 
       expect(qml).toContain('Rectangle {');
@@ -201,15 +172,12 @@ describe('Acceptance: Generated Fluent API', () => {
     });
 
     test('Item anchors grouped property', () => {
-      const rect = Rectangle()
-        .anchors(a => {
-          a.fill('parent');
-          a.margins(10);
-        });
+      const rect = Rectangle().anchors((a) => {
+        a.fill('parent');
+        a.margins(10);
+      });
 
-      const doc = createDocument()
-        .importModule('QtQuick')
-        .root(rect);
+      const doc = createDocument().importModule('QtQuick').root(rect);
       const qml = emit(doc);
 
       expect(qml).toContain('anchors {');
@@ -220,13 +188,9 @@ describe('Acceptance: Generated Fluent API', () => {
 
   describe('ACC-08: id assignment', () => {
     test('id() sets QML id', () => {
-      const rect = Rectangle()
-        .id('myRect')
-        .width(100);
+      const rect = Rectangle().id('myRect').width(100);
 
-      const doc = createDocument()
-        .importModule('QtQuick')
-        .root(rect);
+      const doc = createDocument().importModule('QtQuick').root(rect);
       const qml = emit(doc);
 
       expect(qml).toContain('id: myRect');
@@ -265,7 +229,7 @@ describe('Acceptance: Generated Fluent API', () => {
                     .width(100)
                     .height(100)
                     .color('red' as QmlColor)
-                    .border(b => {
+                    .border((b) => {
                       b.width(2);
                       b.color('darkred' as QmlColor);
                     }),
@@ -278,17 +242,10 @@ describe('Acceptance: Generated Fluent API', () => {
                     .radius(10),
                 ),
             )
-            .child(
-              MouseArea()
-                .widthBind('parent.width')
-                .height(40)
-                .onClicked('Qt.quit()'),
-            ),
+            .child(MouseArea().widthBind('parent.width').height(40).onClicked('Qt.quit()')),
         );
 
-      const doc = createDocument()
-        .importModule('QtQuick')
-        .root(scene);
+      const doc = createDocument().importModule('QtQuick').root(scene);
       const qml = emit(doc);
 
       // Verify structure
@@ -308,14 +265,9 @@ describe('Acceptance: Generated Fluent API', () => {
 
   describe('ACC-11: Image with source', () => {
     test('Image with source and fillMode', () => {
-      const img = Image()
-        .source('qrc:/images/logo.png')
-        .width(200)
-        .height(200);
+      const img = Image().source('qrc:/images/logo.png').width(200).height(200);
 
-      const doc = createDocument()
-        .importModule('QtQuick')
-        .root(img);
+      const doc = createDocument().importModule('QtQuick').root(img);
       const qml = emit(doc);
 
       expect(qml).toContain('Image {');

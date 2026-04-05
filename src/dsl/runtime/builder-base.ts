@@ -23,9 +23,9 @@ export type DslPropertyValue = number | string | boolean | null | QmlEnumToken;
 
 /** A single property entry for grouped/attached callbacks */
 export interface BuilderEntry {
-	readonly property: string;
-	readonly value?: DslPropertyValue;
-	readonly expression?: string;
+  readonly property: string;
+  readonly value?: DslPropertyValue;
+  readonly expression?: string;
 }
 
 /**
