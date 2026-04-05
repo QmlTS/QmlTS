@@ -7,7 +7,7 @@ import type { PropertyMeta, SignalMeta } from "./metadata.js";
  * Throws TypeError on unknown methods (fail-fast).
  */
 export interface PropertyCollectorProxy {
-	[key: string]: (...args: unknown[]) => PropertyCollectorProxy;
+	[key: string]: (...args: unknown[]) => unknown;
 	__entries(): BuilderEntry[];
 }
 
