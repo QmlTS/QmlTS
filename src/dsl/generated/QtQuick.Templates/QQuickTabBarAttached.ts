@@ -5,8 +5,8 @@
 export interface TabBarAttachedBuilder {
   objectName(value: string): TabBarAttachedBuilder;
   objectNameBind(expr: string): TabBarAttachedBuilder;
-  onIndexChanged(handler: () => void): TabBarAttachedBuilder;
-  onPositionChanged(handler: () => void): TabBarAttachedBuilder;
-  onTabBarChanged(handler: () => void): TabBarAttachedBuilder;
-  onObjectNameChanged(handler: (objectName: string) => void): TabBarAttachedBuilder;
+  onIndexChanged(body: string): TabBarAttachedBuilder;
+  onPositionChanged(body: string): TabBarAttachedBuilder;
+  onTabBarChanged(body: string): TabBarAttachedBuilder;
+  onObjectNameChanged(body: string): TabBarAttachedBuilder;
 }

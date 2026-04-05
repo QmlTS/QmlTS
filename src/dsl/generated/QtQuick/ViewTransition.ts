@@ -5,10 +5,10 @@
 export interface ViewTransitionAttachedBuilder {
   objectName(value: string): ViewTransitionAttachedBuilder;
   objectNameBind(expr: string): ViewTransitionAttachedBuilder;
-  onDestinationChanged(handler: () => void): ViewTransitionAttachedBuilder;
-  onIndexChanged(handler: () => void): ViewTransitionAttachedBuilder;
-  onItemChanged(handler: () => void): ViewTransitionAttachedBuilder;
-  onTargetIndexesChanged(handler: () => void): ViewTransitionAttachedBuilder;
-  onTargetItemsChanged(handler: () => void): ViewTransitionAttachedBuilder;
-  onObjectNameChanged(handler: (objectName: string) => void): ViewTransitionAttachedBuilder;
+  onDestinationChanged(body: string): ViewTransitionAttachedBuilder;
+  onIndexChanged(body: string): ViewTransitionAttachedBuilder;
+  onItemChanged(body: string): ViewTransitionAttachedBuilder;
+  onTargetIndexesChanged(body: string): ViewTransitionAttachedBuilder;
+  onTargetItemsChanged(body: string): ViewTransitionAttachedBuilder;
+  onObjectNameChanged(body: string): ViewTransitionAttachedBuilder;
 }

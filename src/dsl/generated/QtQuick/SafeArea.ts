@@ -8,7 +8,7 @@ export interface SafeAreaAttachedBuilder {
   additionalMarginsBind(expr: string): SafeAreaAttachedBuilder;
   objectName(value: string): SafeAreaAttachedBuilder;
   objectNameBind(expr: string): SafeAreaAttachedBuilder;
-  onAdditionalMarginsChanged(handler: () => void): SafeAreaAttachedBuilder;
-  onMarginsChanged(handler: () => void): SafeAreaAttachedBuilder;
-  onObjectNameChanged(handler: (objectName: string) => void): SafeAreaAttachedBuilder;
+  onAdditionalMarginsChanged(body: string): SafeAreaAttachedBuilder;
+  onMarginsChanged(body: string): SafeAreaAttachedBuilder;
+  onObjectNameChanged(body: string): SafeAreaAttachedBuilder;
 }

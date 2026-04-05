@@ -2,8 +2,13 @@
 // Type: DelegateChoice
 // Generated from Qt 6.11.0
 
-import type { QmlComponent, QmlObjectBuilder, QmlValue } from '../../runtime/index.js';
-import { DslBuilderImpl } from '../../runtime/index.js';
+import type {
+  QmlComponent,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
+import { createFluentBuilder } from '../../runtime/index.js';
 import type { DelegateModelAttachedBuilder } from './QQmlDelegateModelAttached.js';
 import type { ObjectModelAttachedBuilder } from './QQmlObjectModelAttached.js';
 import type { PackageAttachedBuilder } from './QQuickPackageAttached.js';
@@ -23,18 +28,79 @@ export interface DelegateChoiceBuilder {
   roleValueBind(expr: string): DelegateChoiceBuilder;
   row(value: number): DelegateChoiceBuilder;
   rowBind(expr: string): DelegateChoiceBuilder;
-  onChanged(handler: () => void): DelegateChoiceBuilder;
-  onColumnChanged(handler: () => void): DelegateChoiceBuilder;
-  onDelegateChanged(handler: () => void): DelegateChoiceBuilder;
-  onIndexChanged(handler: () => void): DelegateChoiceBuilder;
-  onObjectNameChanged(handler: (objectName: string) => void): DelegateChoiceBuilder;
-  onRoleValueChanged(handler: () => void): DelegateChoiceBuilder;
-  onRowChanged(handler: () => void): DelegateChoiceBuilder;
+  onChanged(body: string): DelegateChoiceBuilder;
+  onColumnChanged(body: string): DelegateChoiceBuilder;
+  onDelegateChanged(body: string): DelegateChoiceBuilder;
+  onIndexChanged(body: string): DelegateChoiceBuilder;
+  onObjectNameChanged(body: string): DelegateChoiceBuilder;
+  onRoleValueChanged(body: string): DelegateChoiceBuilder;
+  onRowChanged(body: string): DelegateChoiceBuilder;
   delegateModel(setup: (b: DelegateModelAttachedBuilder) => void): DelegateChoiceBuilder;
   objectModel(setup: (b: ObjectModelAttachedBuilder) => void): DelegateChoiceBuilder;
   package(setup: (b: PackageAttachedBuilder) => void): DelegateChoiceBuilder;
 }
 
+const DELEGATECHOICE_META: TypeMetadata = {
+  typeName: 'DelegateChoice',
+  properties: [
+    { name: 'column', hasValue: true, hasBinding: true },
+    { name: 'delegate', hasValue: true, hasBinding: true },
+    { name: 'index', hasValue: true, hasBinding: true },
+    { name: 'objectName', hasValue: true, hasBinding: true },
+    { name: 'roleValue', hasValue: true, hasBinding: true },
+    { name: 'row', hasValue: true, hasBinding: true },
+  ],
+  signals: [
+    { handlerName: 'onChanged', paramCount: 0 },
+    { handlerName: 'onColumnChanged', paramCount: 0 },
+    { handlerName: 'onDelegateChanged', paramCount: 0 },
+    { handlerName: 'onIndexChanged', paramCount: 0 },
+    { handlerName: 'onObjectNameChanged', paramCount: 1 },
+    { handlerName: 'onRoleValueChanged', paramCount: 0 },
+    { handlerName: 'onRowChanged', paramCount: 0 },
+  ],
+  grouped: [],
+  attached: [
+    {
+      methodName: 'delegateModel',
+      attachedTypeName: 'DelegateModel',
+      properties: [
+        { name: 'groups', hasValue: true, hasBinding: true },
+        { name: 'inItems', hasValue: true, hasBinding: true },
+        { name: 'inPersistedItems', hasValue: true, hasBinding: true },
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
+      signals: [
+        { handlerName: 'onGroupsChanged', paramCount: 0 },
+        { handlerName: 'onUnresolvedChanged', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'objectModel',
+      attachedTypeName: 'ObjectModel',
+      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
+      signals: [
+        { handlerName: 'onIndexChanged', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'package',
+      attachedTypeName: 'Package',
+      properties: [
+        { name: 'name', hasValue: true, hasBinding: true },
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
+      signals: [{ handlerName: 'onObjectNameChanged', paramCount: 1 }],
+    },
+  ],
+  defaultProperty: 'delegate',
+};
+
 export function DelegateChoice(): DelegateChoiceBuilder {
-  return new DslBuilderImpl('DelegateChoice') as unknown as DelegateChoiceBuilder;
+  return createFluentBuilder(
+    'DelegateChoice',
+    DELEGATECHOICE_META,
+  ) as unknown as DelegateChoiceBuilder;
 }

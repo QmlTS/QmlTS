@@ -5,7 +5,7 @@
 export interface SplitHandleAttachedBuilder {
   objectName(value: string): SplitHandleAttachedBuilder;
   objectNameBind(expr: string): SplitHandleAttachedBuilder;
-  onHoveredChanged(handler: () => void): SplitHandleAttachedBuilder;
-  onPressedChanged(handler: () => void): SplitHandleAttachedBuilder;
-  onObjectNameChanged(handler: (objectName: string) => void): SplitHandleAttachedBuilder;
+  onHoveredChanged(body: string): SplitHandleAttachedBuilder;
+  onPressedChanged(body: string): SplitHandleAttachedBuilder;
+  onObjectNameChanged(body: string): SplitHandleAttachedBuilder;
 }

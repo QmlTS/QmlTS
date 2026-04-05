@@ -5,8 +5,8 @@
 export interface StackLayoutAttachedBuilder {
   objectName(value: string): StackLayoutAttachedBuilder;
   objectNameBind(expr: string): StackLayoutAttachedBuilder;
-  onIndexChanged(handler: () => void): StackLayoutAttachedBuilder;
-  onIsCurrentItemChanged(handler: () => void): StackLayoutAttachedBuilder;
-  onLayoutChanged(handler: () => void): StackLayoutAttachedBuilder;
-  onObjectNameChanged(handler: (objectName: string) => void): StackLayoutAttachedBuilder;
+  onIndexChanged(body: string): StackLayoutAttachedBuilder;
+  onIsCurrentItemChanged(body: string): StackLayoutAttachedBuilder;
+  onLayoutChanged(body: string): StackLayoutAttachedBuilder;
+  onObjectNameChanged(body: string): StackLayoutAttachedBuilder;
 }

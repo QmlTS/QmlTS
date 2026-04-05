@@ -21,14 +21,14 @@ export interface SplitViewAttachedBuilder {
   preferredWidthBind(expr: string): SplitViewAttachedBuilder;
   objectName(value: string): SplitViewAttachedBuilder;
   objectNameBind(expr: string): SplitViewAttachedBuilder;
-  onFillHeightChanged(handler: () => void): SplitViewAttachedBuilder;
-  onFillWidthChanged(handler: () => void): SplitViewAttachedBuilder;
-  onMaximumHeightChanged(handler: () => void): SplitViewAttachedBuilder;
-  onMaximumWidthChanged(handler: () => void): SplitViewAttachedBuilder;
-  onMinimumHeightChanged(handler: () => void): SplitViewAttachedBuilder;
-  onMinimumWidthChanged(handler: () => void): SplitViewAttachedBuilder;
-  onPreferredHeightChanged(handler: () => void): SplitViewAttachedBuilder;
-  onPreferredWidthChanged(handler: () => void): SplitViewAttachedBuilder;
-  onViewChanged(handler: () => void): SplitViewAttachedBuilder;
-  onObjectNameChanged(handler: (objectName: string) => void): SplitViewAttachedBuilder;
+  onFillHeightChanged(body: string): SplitViewAttachedBuilder;
+  onFillWidthChanged(body: string): SplitViewAttachedBuilder;
+  onMaximumHeightChanged(body: string): SplitViewAttachedBuilder;
+  onMaximumWidthChanged(body: string): SplitViewAttachedBuilder;
+  onMinimumHeightChanged(body: string): SplitViewAttachedBuilder;
+  onMinimumWidthChanged(body: string): SplitViewAttachedBuilder;
+  onPreferredHeightChanged(body: string): SplitViewAttachedBuilder;
+  onPreferredWidthChanged(body: string): SplitViewAttachedBuilder;
+  onViewChanged(body: string): SplitViewAttachedBuilder;
+  onObjectNameChanged(body: string): SplitViewAttachedBuilder;
 }

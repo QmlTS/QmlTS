@@ -2,8 +2,8 @@
 // Type: FunctionFilter
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlValue } from '../../runtime/index.js';
-import { DslBuilderImpl } from '../../runtime/index.js';
+import type { QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import { createFluentBuilder } from '../../runtime/index.js';
 import type { DelegateModelAttachedBuilder } from './QQmlDelegateModelAttached.js';
 import type { ObjectModelAttachedBuilder } from './QQmlObjectModelAttached.js';
 import type { PackageAttachedBuilder } from './QQuickPackageAttached.js';
@@ -19,17 +19,74 @@ export interface FunctionFilterBuilder {
   invertedBind(expr: string): FunctionFilterBuilder;
   objectName(value: string): FunctionFilterBuilder;
   objectNameBind(expr: string): FunctionFilterBuilder;
-  onColumnChanged(handler: () => void): FunctionFilterBuilder;
-  onEnabledChanged(handler: () => void): FunctionFilterBuilder;
-  onInvalidateCache(handler: (filter: QmlValue) => void): FunctionFilterBuilder;
-  onInvalidateModel(handler: () => void): FunctionFilterBuilder;
-  onInvertedChanged(handler: () => void): FunctionFilterBuilder;
-  onObjectNameChanged(handler: (objectName: string) => void): FunctionFilterBuilder;
+  onColumnChanged(body: string): FunctionFilterBuilder;
+  onEnabledChanged(body: string): FunctionFilterBuilder;
+  onInvalidateCache(body: string): FunctionFilterBuilder;
+  onInvalidateModel(body: string): FunctionFilterBuilder;
+  onInvertedChanged(body: string): FunctionFilterBuilder;
+  onObjectNameChanged(body: string): FunctionFilterBuilder;
   delegateModel(setup: (b: DelegateModelAttachedBuilder) => void): FunctionFilterBuilder;
   objectModel(setup: (b: ObjectModelAttachedBuilder) => void): FunctionFilterBuilder;
   package(setup: (b: PackageAttachedBuilder) => void): FunctionFilterBuilder;
 }
 
+const FUNCTIONFILTER_META: TypeMetadata = {
+  typeName: 'FunctionFilter',
+  properties: [
+    { name: 'column', hasValue: true, hasBinding: true },
+    { name: 'enabled', hasValue: true, hasBinding: true },
+    { name: 'inverted', hasValue: true, hasBinding: true },
+    { name: 'objectName', hasValue: true, hasBinding: true },
+  ],
+  signals: [
+    { handlerName: 'onColumnChanged', paramCount: 0 },
+    { handlerName: 'onEnabledChanged', paramCount: 0 },
+    { handlerName: 'onInvalidateCache', paramCount: 1 },
+    { handlerName: 'onInvalidateModel', paramCount: 0 },
+    { handlerName: 'onInvertedChanged', paramCount: 0 },
+    { handlerName: 'onObjectNameChanged', paramCount: 1 },
+  ],
+  grouped: [],
+  attached: [
+    {
+      methodName: 'delegateModel',
+      attachedTypeName: 'DelegateModel',
+      properties: [
+        { name: 'groups', hasValue: true, hasBinding: true },
+        { name: 'inItems', hasValue: true, hasBinding: true },
+        { name: 'inPersistedItems', hasValue: true, hasBinding: true },
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
+      signals: [
+        { handlerName: 'onGroupsChanged', paramCount: 0 },
+        { handlerName: 'onUnresolvedChanged', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'objectModel',
+      attachedTypeName: 'ObjectModel',
+      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
+      signals: [
+        { handlerName: 'onIndexChanged', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'package',
+      attachedTypeName: 'Package',
+      properties: [
+        { name: 'name', hasValue: true, hasBinding: true },
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
+      signals: [{ handlerName: 'onObjectNameChanged', paramCount: 1 }],
+    },
+  ],
+};
+
 export function FunctionFilter(): FunctionFilterBuilder {
-  return new DslBuilderImpl('FunctionFilter') as unknown as FunctionFilterBuilder;
+  return createFluentBuilder(
+    'FunctionFilter',
+    FUNCTIONFILTER_META,
+  ) as unknown as FunctionFilterBuilder;
 }

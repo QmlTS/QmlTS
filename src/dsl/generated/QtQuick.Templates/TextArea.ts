@@ -5,19 +5,18 @@
 import type {
   QmlColor,
   QmlComponent,
+  QmlEnumToken,
   QmlFont,
   QmlObjectBuilder,
-  QmlRect,
   QmlUrl,
-  QmlValue,
+  TypeMetadata,
 } from '../../runtime/index.js';
-import { createEnumToken, DslBuilderImpl } from '../../runtime/index.js';
+import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { QtObjectBuilder } from '../QML/QtObject.js';
 import type { ItemBuilder } from '../QtQuick/Item.js';
 import type { PaletteBuilder } from '../QtQuick/Palette.js';
 import type { AnchorsBuilder } from '../QtQuick/QQuickAnchors.js';
 import type { LayerBuilder } from '../QtQuick/QQuickItemLayer.js';
-import type { WindowBuilder } from '../QtQuick/Window.js';
 import type { ContextMenuAttachedBuilder } from './ContextMenu.js';
 import type { ActionGroupAttachedBuilder } from './QQuickActionGroupAttached.js';
 import type { ApplicationWindowAttachedBuilder } from './QQuickApplicationWindowAttached.js';
@@ -72,15 +71,15 @@ export interface TextAreaBuilder {
   enabledBind(expr: string): TextAreaBuilder;
   focus(value: boolean): TextAreaBuilder;
   focusBind(expr: string): TextAreaBuilder;
-  focusPolicy(value: QmlValue): TextAreaBuilder;
+  focusPolicy(value: QmlEnumToken): TextAreaBuilder;
   focusPolicyBind(expr: string): TextAreaBuilder;
-  focusReason(value: QmlValue): TextAreaBuilder;
+  focusReason(value: QmlEnumToken): TextAreaBuilder;
   focusReasonBind(expr: string): TextAreaBuilder;
   font(value: QmlFont): TextAreaBuilder;
   fontBind(expr: string): TextAreaBuilder;
   height(value: number): TextAreaBuilder;
   heightBind(expr: string): TextAreaBuilder;
-  horizontalAlignment(value: QmlValue): TextAreaBuilder;
+  horizontalAlignment(value: QmlEnumToken): TextAreaBuilder;
   horizontalAlignmentBind(expr: string): TextAreaBuilder;
   hoverEnabled(value: boolean): TextAreaBuilder;
   hoverEnabledBind(expr: string): TextAreaBuilder;
@@ -88,13 +87,13 @@ export interface TextAreaBuilder {
   implicitHeightBind(expr: string): TextAreaBuilder;
   implicitWidth(value: number): TextAreaBuilder;
   implicitWidthBind(expr: string): TextAreaBuilder;
-  inputMethodHints(value: QmlValue): TextAreaBuilder;
+  inputMethodHints(value: QmlEnumToken): TextAreaBuilder;
   inputMethodHintsBind(expr: string): TextAreaBuilder;
   leftInset(value: number): TextAreaBuilder;
   leftInsetBind(expr: string): TextAreaBuilder;
   leftPadding(value: number): TextAreaBuilder;
   leftPaddingBind(expr: string): TextAreaBuilder;
-  mouseSelectionMode(value: QmlValue): TextAreaBuilder;
+  mouseSelectionMode(value: QmlEnumToken): TextAreaBuilder;
   mouseSelectionModeBind(expr: string): TextAreaBuilder;
   objectName(value: string): TextAreaBuilder;
   objectNameBind(expr: string): TextAreaBuilder;
@@ -116,7 +115,7 @@ export interface TextAreaBuilder {
   placeholderTextColorBind(expr: string): TextAreaBuilder;
   readOnly(value: boolean): TextAreaBuilder;
   readOnlyBind(expr: string): TextAreaBuilder;
-  renderType(value: QmlValue): TextAreaBuilder;
+  renderType(value: QmlEnumToken): TextAreaBuilder;
   renderTypeBind(expr: string): TextAreaBuilder;
   rightInset(value: number): TextAreaBuilder;
   rightInsetBind(expr: string): TextAreaBuilder;
@@ -142,7 +141,7 @@ export interface TextAreaBuilder {
   tabStopDistanceBind(expr: string): TextAreaBuilder;
   text(value: string): TextAreaBuilder;
   textBind(expr: string): TextAreaBuilder;
-  textFormat(value: QmlValue): TextAreaBuilder;
+  textFormat(value: QmlEnumToken): TextAreaBuilder;
   textFormatBind(expr: string): TextAreaBuilder;
   textMargin(value: number): TextAreaBuilder;
   textMarginBind(expr: string): TextAreaBuilder;
@@ -150,15 +149,15 @@ export interface TextAreaBuilder {
   topInsetBind(expr: string): TextAreaBuilder;
   topPadding(value: number): TextAreaBuilder;
   topPaddingBind(expr: string): TextAreaBuilder;
-  transformOrigin(value: QmlValue): TextAreaBuilder;
+  transformOrigin(value: QmlEnumToken): TextAreaBuilder;
   transformOriginBind(expr: string): TextAreaBuilder;
-  verticalAlignment(value: QmlValue): TextAreaBuilder;
+  verticalAlignment(value: QmlEnumToken): TextAreaBuilder;
   verticalAlignmentBind(expr: string): TextAreaBuilder;
   visible(value: boolean): TextAreaBuilder;
   visibleBind(expr: string): TextAreaBuilder;
   width(value: number): TextAreaBuilder;
   widthBind(expr: string): TextAreaBuilder;
-  wrapMode(value: QmlValue): TextAreaBuilder;
+  wrapMode(value: QmlEnumToken): TextAreaBuilder;
   wrapModeBind(expr: string): TextAreaBuilder;
   x(value: number): TextAreaBuilder;
   xBind(expr: string): TextAreaBuilder;
@@ -166,99 +165,99 @@ export interface TextAreaBuilder {
   yBind(expr: string): TextAreaBuilder;
   z(value: number): TextAreaBuilder;
   zBind(expr: string): TextAreaBuilder;
-  onActiveFocusChanged(handler: (arg0: boolean) => void): TextAreaBuilder;
-  onActiveFocusOnPressChanged(handler: (activeFocusOnPressed: boolean) => void): TextAreaBuilder;
-  onActiveFocusOnTabChanged(handler: (arg0: boolean) => void): TextAreaBuilder;
-  onAntialiasingChanged(handler: (arg0: boolean) => void): TextAreaBuilder;
-  onBackgroundChanged(handler: () => void): TextAreaBuilder;
-  onBaseUrlChanged(handler: () => void): TextAreaBuilder;
-  onBaselineOffsetChanged(handler: (arg0: number) => void): TextAreaBuilder;
-  onBottomInsetChanged(handler: () => void): TextAreaBuilder;
-  onBottomPaddingChanged(handler: () => void): TextAreaBuilder;
-  onCanPasteChanged(handler: () => void): TextAreaBuilder;
-  onCanRedoChanged(handler: () => void): TextAreaBuilder;
-  onCanUndoChanged(handler: () => void): TextAreaBuilder;
-  onChildrenChanged(handler: () => void): TextAreaBuilder;
-  onChildrenRectChanged(handler: (arg0: QmlRect) => void): TextAreaBuilder;
-  onClipChanged(handler: (arg0: boolean) => void): TextAreaBuilder;
-  onColorChanged(handler: (color: QmlColor) => void): TextAreaBuilder;
-  onContainmentMaskChanged(handler: () => void): TextAreaBuilder;
-  onContentSizeChanged(handler: () => void): TextAreaBuilder;
-  onCursorDelegateChanged(handler: () => void): TextAreaBuilder;
-  onCursorPositionChanged(handler: () => void): TextAreaBuilder;
-  onCursorRectangleChanged(handler: () => void): TextAreaBuilder;
-  onCursorVisibleChanged(handler: (isCursorVisible: boolean) => void): TextAreaBuilder;
-  onEditingFinished(handler: () => void): TextAreaBuilder;
-  onEffectiveHorizontalAlignmentChanged(handler: () => void): TextAreaBuilder;
-  onEnabledChanged(handler: () => void): TextAreaBuilder;
-  onFocusChanged(handler: (arg0: boolean) => void): TextAreaBuilder;
-  onFocusPolicyChanged(handler: (arg0: QmlValue) => void): TextAreaBuilder;
-  onFocusReasonChanged(handler: () => void): TextAreaBuilder;
-  onFontChanged(handler: () => void): TextAreaBuilder;
-  onHeightChanged(handler: () => void): TextAreaBuilder;
-  onHorizontalAlignmentChanged(handler: (alignment: QmlValue) => void): TextAreaBuilder;
-  onHoverEnabledChanged(handler: () => void): TextAreaBuilder;
-  onHoveredChanged(handler: () => void): TextAreaBuilder;
-  onImplicitBackgroundHeightChanged(handler: () => void): TextAreaBuilder;
-  onImplicitBackgroundWidthChanged(handler: () => void): TextAreaBuilder;
-  onImplicitHeightChanged(handler: () => void): TextAreaBuilder;
-  onImplicitHeightChanged3(handler: () => void): TextAreaBuilder;
-  onImplicitWidthChanged(handler: () => void): TextAreaBuilder;
-  onImplicitWidthChanged3(handler: () => void): TextAreaBuilder;
-  onInputMethodComposingChanged(handler: () => void): TextAreaBuilder;
-  onInputMethodHintsChanged(handler: () => void): TextAreaBuilder;
-  onLeftInsetChanged(handler: () => void): TextAreaBuilder;
-  onLeftPaddingChanged(handler: () => void): TextAreaBuilder;
-  onLineCountChanged(handler: () => void): TextAreaBuilder;
-  onLinkActivated(handler: (link: string) => void): TextAreaBuilder;
-  onLinkHovered(handler: (link: string) => void): TextAreaBuilder;
-  onMouseSelectionModeChanged(handler: (mode: QmlValue) => void): TextAreaBuilder;
-  onObjectNameChanged(handler: (objectName: string) => void): TextAreaBuilder;
-  onOpacityChanged(handler: () => void): TextAreaBuilder;
-  onOverwriteModeChanged(handler: (overwriteMode: boolean) => void): TextAreaBuilder;
-  onPaddingChanged(handler: () => void): TextAreaBuilder;
-  onPaletteChanged(handler: () => void): TextAreaBuilder;
-  onPaletteCreated(handler: () => void): TextAreaBuilder;
-  onParentChanged(handler: (arg0: ItemBuilder) => void): TextAreaBuilder;
-  onPersistentSelectionChanged(handler: (isPersistentSelection: boolean) => void): TextAreaBuilder;
-  onPlaceholderTextChanged(handler: () => void): TextAreaBuilder;
-  onPlaceholderTextColorChanged(handler: () => void): TextAreaBuilder;
-  onPreeditTextChanged(handler: () => void): TextAreaBuilder;
-  onPressAndHold(handler: (event: QmlValue) => void): TextAreaBuilder;
-  onPressed(handler: (event: QmlValue) => void): TextAreaBuilder;
-  onReadOnlyChanged(handler: (isReadOnly: boolean) => void): TextAreaBuilder;
-  onReleased(handler: (event: QmlValue) => void): TextAreaBuilder;
-  onRenderTypeChanged(handler: () => void): TextAreaBuilder;
-  onRightInsetChanged(handler: () => void): TextAreaBuilder;
-  onRightPaddingChanged(handler: () => void): TextAreaBuilder;
-  onRotationChanged(handler: () => void): TextAreaBuilder;
-  onScaleChanged(handler: () => void): TextAreaBuilder;
-  onSelectByKeyboardChanged(handler: (selectByKeyboard: boolean) => void): TextAreaBuilder;
-  onSelectByMouseChanged(handler: (selectByMouse: boolean) => void): TextAreaBuilder;
-  onSelectedTextChanged(handler: () => void): TextAreaBuilder;
-  onSelectedTextColorChanged(handler: (color: QmlColor) => void): TextAreaBuilder;
-  onSelectionColorChanged(handler: (color: QmlColor) => void): TextAreaBuilder;
-  onSelectionEndChanged(handler: () => void): TextAreaBuilder;
-  onSelectionStartChanged(handler: () => void): TextAreaBuilder;
-  onSmoothChanged(handler: (arg0: boolean) => void): TextAreaBuilder;
-  onStateChanged(handler: (arg0: string) => void): TextAreaBuilder;
-  onTabStopDistanceChanged(handler: (distance: number) => void): TextAreaBuilder;
-  onTextChanged(handler: () => void): TextAreaBuilder;
-  onTextEdited(handler: () => void): TextAreaBuilder;
-  onTextFormatChanged(handler: (textFormat: QmlValue) => void): TextAreaBuilder;
-  onTextMarginChanged(handler: (textMargin: number) => void): TextAreaBuilder;
-  onTopInsetChanged(handler: () => void): TextAreaBuilder;
-  onTopPaddingChanged(handler: () => void): TextAreaBuilder;
-  onTransformOriginChanged(handler: (arg0: QmlValue) => void): TextAreaBuilder;
-  onVerticalAlignmentChanged(handler: (alignment: QmlValue) => void): TextAreaBuilder;
-  onVisibleChanged(handler: () => void): TextAreaBuilder;
-  onVisibleChildrenChanged(handler: () => void): TextAreaBuilder;
-  onWidthChanged(handler: () => void): TextAreaBuilder;
-  onWindowChanged(handler: (window: WindowBuilder) => void): TextAreaBuilder;
-  onWrapModeChanged(handler: () => void): TextAreaBuilder;
-  onXChanged(handler: () => void): TextAreaBuilder;
-  onYChanged(handler: () => void): TextAreaBuilder;
-  onZChanged(handler: () => void): TextAreaBuilder;
+  onActiveFocusChanged(body: string): TextAreaBuilder;
+  onActiveFocusOnPressChanged(body: string): TextAreaBuilder;
+  onActiveFocusOnTabChanged(body: string): TextAreaBuilder;
+  onAntialiasingChanged(body: string): TextAreaBuilder;
+  onBackgroundChanged(body: string): TextAreaBuilder;
+  onBaseUrlChanged(body: string): TextAreaBuilder;
+  onBaselineOffsetChanged(body: string): TextAreaBuilder;
+  onBottomInsetChanged(body: string): TextAreaBuilder;
+  onBottomPaddingChanged(body: string): TextAreaBuilder;
+  onCanPasteChanged(body: string): TextAreaBuilder;
+  onCanRedoChanged(body: string): TextAreaBuilder;
+  onCanUndoChanged(body: string): TextAreaBuilder;
+  onChildrenChanged(body: string): TextAreaBuilder;
+  onChildrenRectChanged(body: string): TextAreaBuilder;
+  onClipChanged(body: string): TextAreaBuilder;
+  onColorChanged(body: string): TextAreaBuilder;
+  onContainmentMaskChanged(body: string): TextAreaBuilder;
+  onContentSizeChanged(body: string): TextAreaBuilder;
+  onCursorDelegateChanged(body: string): TextAreaBuilder;
+  onCursorPositionChanged(body: string): TextAreaBuilder;
+  onCursorRectangleChanged(body: string): TextAreaBuilder;
+  onCursorVisibleChanged(body: string): TextAreaBuilder;
+  onEditingFinished(body: string): TextAreaBuilder;
+  onEffectiveHorizontalAlignmentChanged(body: string): TextAreaBuilder;
+  onEnabledChanged(body: string): TextAreaBuilder;
+  onFocusChanged(body: string): TextAreaBuilder;
+  onFocusPolicyChanged(body: string): TextAreaBuilder;
+  onFocusReasonChanged(body: string): TextAreaBuilder;
+  onFontChanged(body: string): TextAreaBuilder;
+  onHeightChanged(body: string): TextAreaBuilder;
+  onHorizontalAlignmentChanged(body: string): TextAreaBuilder;
+  onHoverEnabledChanged(body: string): TextAreaBuilder;
+  onHoveredChanged(body: string): TextAreaBuilder;
+  onImplicitBackgroundHeightChanged(body: string): TextAreaBuilder;
+  onImplicitBackgroundWidthChanged(body: string): TextAreaBuilder;
+  onImplicitHeightChanged(body: string): TextAreaBuilder;
+  onImplicitHeightChanged3(body: string): TextAreaBuilder;
+  onImplicitWidthChanged(body: string): TextAreaBuilder;
+  onImplicitWidthChanged3(body: string): TextAreaBuilder;
+  onInputMethodComposingChanged(body: string): TextAreaBuilder;
+  onInputMethodHintsChanged(body: string): TextAreaBuilder;
+  onLeftInsetChanged(body: string): TextAreaBuilder;
+  onLeftPaddingChanged(body: string): TextAreaBuilder;
+  onLineCountChanged(body: string): TextAreaBuilder;
+  onLinkActivated(body: string): TextAreaBuilder;
+  onLinkHovered(body: string): TextAreaBuilder;
+  onMouseSelectionModeChanged(body: string): TextAreaBuilder;
+  onObjectNameChanged(body: string): TextAreaBuilder;
+  onOpacityChanged(body: string): TextAreaBuilder;
+  onOverwriteModeChanged(body: string): TextAreaBuilder;
+  onPaddingChanged(body: string): TextAreaBuilder;
+  onPaletteChanged(body: string): TextAreaBuilder;
+  onPaletteCreated(body: string): TextAreaBuilder;
+  onParentChanged(body: string): TextAreaBuilder;
+  onPersistentSelectionChanged(body: string): TextAreaBuilder;
+  onPlaceholderTextChanged(body: string): TextAreaBuilder;
+  onPlaceholderTextColorChanged(body: string): TextAreaBuilder;
+  onPreeditTextChanged(body: string): TextAreaBuilder;
+  onPressAndHold(body: string): TextAreaBuilder;
+  onPressed(body: string): TextAreaBuilder;
+  onReadOnlyChanged(body: string): TextAreaBuilder;
+  onReleased(body: string): TextAreaBuilder;
+  onRenderTypeChanged(body: string): TextAreaBuilder;
+  onRightInsetChanged(body: string): TextAreaBuilder;
+  onRightPaddingChanged(body: string): TextAreaBuilder;
+  onRotationChanged(body: string): TextAreaBuilder;
+  onScaleChanged(body: string): TextAreaBuilder;
+  onSelectByKeyboardChanged(body: string): TextAreaBuilder;
+  onSelectByMouseChanged(body: string): TextAreaBuilder;
+  onSelectedTextChanged(body: string): TextAreaBuilder;
+  onSelectedTextColorChanged(body: string): TextAreaBuilder;
+  onSelectionColorChanged(body: string): TextAreaBuilder;
+  onSelectionEndChanged(body: string): TextAreaBuilder;
+  onSelectionStartChanged(body: string): TextAreaBuilder;
+  onSmoothChanged(body: string): TextAreaBuilder;
+  onStateChanged(body: string): TextAreaBuilder;
+  onTabStopDistanceChanged(body: string): TextAreaBuilder;
+  onTextChanged(body: string): TextAreaBuilder;
+  onTextEdited(body: string): TextAreaBuilder;
+  onTextFormatChanged(body: string): TextAreaBuilder;
+  onTextMarginChanged(body: string): TextAreaBuilder;
+  onTopInsetChanged(body: string): TextAreaBuilder;
+  onTopPaddingChanged(body: string): TextAreaBuilder;
+  onTransformOriginChanged(body: string): TextAreaBuilder;
+  onVerticalAlignmentChanged(body: string): TextAreaBuilder;
+  onVisibleChanged(body: string): TextAreaBuilder;
+  onVisibleChildrenChanged(body: string): TextAreaBuilder;
+  onWidthChanged(body: string): TextAreaBuilder;
+  onWindowChanged(body: string): TextAreaBuilder;
+  onWrapModeChanged(body: string): TextAreaBuilder;
+  onXChanged(body: string): TextAreaBuilder;
+  onYChanged(body: string): TextAreaBuilder;
+  onZChanged(body: string): TextAreaBuilder;
   anchors(setup: (b: AnchorsBuilder) => void): TextAreaBuilder;
   layer(setup: (b: LayerBuilder) => void): TextAreaBuilder;
   actionGroup(setup: (b: ActionGroupAttachedBuilder) => void): TextAreaBuilder;
@@ -281,8 +280,467 @@ export interface TextAreaBuilder {
   tumbler(setup: (b: TumblerAttachedBuilder) => void): TextAreaBuilder;
 }
 
+const TEXTAREA_META: TypeMetadata = {
+  typeName: 'TextArea',
+  properties: [
+    { name: 'activeFocusOnPress', hasValue: true, hasBinding: true },
+    { name: 'activeFocusOnTab', hasValue: true, hasBinding: true },
+    { name: 'antialiasing', hasValue: true, hasBinding: true },
+    { name: 'background', hasValue: true, hasBinding: true },
+    { name: 'baseUrl', hasValue: true, hasBinding: true },
+    { name: 'baselineOffset', hasValue: true, hasBinding: true },
+    { name: 'bottomInset', hasValue: true, hasBinding: true },
+    { name: 'bottomPadding', hasValue: true, hasBinding: true },
+    { name: 'clip', hasValue: true, hasBinding: true },
+    { name: 'color', hasValue: true, hasBinding: true },
+    { name: 'containmentMask', hasValue: true, hasBinding: true },
+    { name: 'cursorDelegate', hasValue: true, hasBinding: true },
+    { name: 'cursorPosition', hasValue: true, hasBinding: true },
+    { name: 'cursorVisible', hasValue: true, hasBinding: true },
+    { name: 'enabled', hasValue: true, hasBinding: true },
+    { name: 'focus', hasValue: true, hasBinding: true },
+    { name: 'focusPolicy', hasValue: true, hasBinding: true },
+    { name: 'focusReason', hasValue: true, hasBinding: true },
+    { name: 'font', hasValue: true, hasBinding: true },
+    { name: 'height', hasValue: true, hasBinding: true },
+    { name: 'horizontalAlignment', hasValue: true, hasBinding: true },
+    { name: 'hoverEnabled', hasValue: true, hasBinding: true },
+    { name: 'implicitHeight', hasValue: true, hasBinding: true },
+    { name: 'implicitWidth', hasValue: true, hasBinding: true },
+    { name: 'inputMethodHints', hasValue: true, hasBinding: true },
+    { name: 'leftInset', hasValue: true, hasBinding: true },
+    { name: 'leftPadding', hasValue: true, hasBinding: true },
+    { name: 'mouseSelectionMode', hasValue: true, hasBinding: true },
+    { name: 'objectName', hasValue: true, hasBinding: true },
+    { name: 'opacity', hasValue: true, hasBinding: true },
+    { name: 'overwriteMode', hasValue: true, hasBinding: true },
+    { name: 'padding', hasValue: true, hasBinding: true },
+    { name: 'palette', hasValue: true, hasBinding: true },
+    { name: 'parent', hasValue: true, hasBinding: true },
+    { name: 'persistentSelection', hasValue: true, hasBinding: true },
+    { name: 'placeholderText', hasValue: true, hasBinding: true },
+    { name: 'placeholderTextColor', hasValue: true, hasBinding: true },
+    { name: 'readOnly', hasValue: true, hasBinding: true },
+    { name: 'renderType', hasValue: true, hasBinding: true },
+    { name: 'rightInset', hasValue: true, hasBinding: true },
+    { name: 'rightPadding', hasValue: true, hasBinding: true },
+    { name: 'rotation', hasValue: true, hasBinding: true },
+    { name: 'scale', hasValue: true, hasBinding: true },
+    { name: 'selectByKeyboard', hasValue: true, hasBinding: true },
+    { name: 'selectByMouse', hasValue: true, hasBinding: true },
+    { name: 'selectedTextColor', hasValue: true, hasBinding: true },
+    { name: 'selectionColor', hasValue: true, hasBinding: true },
+    { name: 'smooth', hasValue: true, hasBinding: true },
+    { name: 'state', hasValue: true, hasBinding: true },
+    { name: 'tabStopDistance', hasValue: true, hasBinding: true },
+    { name: 'text', hasValue: true, hasBinding: true },
+    { name: 'textFormat', hasValue: true, hasBinding: true },
+    { name: 'textMargin', hasValue: true, hasBinding: true },
+    { name: 'topInset', hasValue: true, hasBinding: true },
+    { name: 'topPadding', hasValue: true, hasBinding: true },
+    { name: 'transformOrigin', hasValue: true, hasBinding: true },
+    { name: 'verticalAlignment', hasValue: true, hasBinding: true },
+    { name: 'visible', hasValue: true, hasBinding: true },
+    { name: 'width', hasValue: true, hasBinding: true },
+    { name: 'wrapMode', hasValue: true, hasBinding: true },
+    { name: 'x', hasValue: true, hasBinding: true },
+    { name: 'y', hasValue: true, hasBinding: true },
+    { name: 'z', hasValue: true, hasBinding: true },
+  ],
+  signals: [
+    { handlerName: 'onActiveFocusChanged', paramCount: 1 },
+    { handlerName: 'onActiveFocusOnPressChanged', paramCount: 1 },
+    { handlerName: 'onActiveFocusOnTabChanged', paramCount: 1 },
+    { handlerName: 'onAntialiasingChanged', paramCount: 1 },
+    { handlerName: 'onBackgroundChanged', paramCount: 0 },
+    { handlerName: 'onBaseUrlChanged', paramCount: 0 },
+    { handlerName: 'onBaselineOffsetChanged', paramCount: 1 },
+    { handlerName: 'onBottomInsetChanged', paramCount: 0 },
+    { handlerName: 'onBottomPaddingChanged', paramCount: 0 },
+    { handlerName: 'onCanPasteChanged', paramCount: 0 },
+    { handlerName: 'onCanRedoChanged', paramCount: 0 },
+    { handlerName: 'onCanUndoChanged', paramCount: 0 },
+    { handlerName: 'onChildrenChanged', paramCount: 0 },
+    { handlerName: 'onChildrenRectChanged', paramCount: 1 },
+    { handlerName: 'onClipChanged', paramCount: 1 },
+    { handlerName: 'onColorChanged', paramCount: 1 },
+    { handlerName: 'onContainmentMaskChanged', paramCount: 0 },
+    { handlerName: 'onContentSizeChanged', paramCount: 0 },
+    { handlerName: 'onCursorDelegateChanged', paramCount: 0 },
+    { handlerName: 'onCursorPositionChanged', paramCount: 0 },
+    { handlerName: 'onCursorRectangleChanged', paramCount: 0 },
+    { handlerName: 'onCursorVisibleChanged', paramCount: 1 },
+    { handlerName: 'onEditingFinished', paramCount: 0 },
+    { handlerName: 'onEffectiveHorizontalAlignmentChanged', paramCount: 0 },
+    { handlerName: 'onEnabledChanged', paramCount: 0 },
+    { handlerName: 'onFocusChanged', paramCount: 1 },
+    { handlerName: 'onFocusPolicyChanged', paramCount: 1 },
+    { handlerName: 'onFocusReasonChanged', paramCount: 0 },
+    { handlerName: 'onFontChanged', paramCount: 0 },
+    { handlerName: 'onHeightChanged', paramCount: 0 },
+    { handlerName: 'onHorizontalAlignmentChanged', paramCount: 1 },
+    { handlerName: 'onHoverEnabledChanged', paramCount: 0 },
+    { handlerName: 'onHoveredChanged', paramCount: 0 },
+    { handlerName: 'onImplicitBackgroundHeightChanged', paramCount: 0 },
+    { handlerName: 'onImplicitBackgroundWidthChanged', paramCount: 0 },
+    { handlerName: 'onImplicitHeightChanged', paramCount: 0 },
+    { handlerName: 'onImplicitHeightChanged3', paramCount: 0 },
+    { handlerName: 'onImplicitWidthChanged', paramCount: 0 },
+    { handlerName: 'onImplicitWidthChanged3', paramCount: 0 },
+    { handlerName: 'onInputMethodComposingChanged', paramCount: 0 },
+    { handlerName: 'onInputMethodHintsChanged', paramCount: 0 },
+    { handlerName: 'onLeftInsetChanged', paramCount: 0 },
+    { handlerName: 'onLeftPaddingChanged', paramCount: 0 },
+    { handlerName: 'onLineCountChanged', paramCount: 0 },
+    { handlerName: 'onLinkActivated', paramCount: 1 },
+    { handlerName: 'onLinkHovered', paramCount: 1 },
+    { handlerName: 'onMouseSelectionModeChanged', paramCount: 1 },
+    { handlerName: 'onObjectNameChanged', paramCount: 1 },
+    { handlerName: 'onOpacityChanged', paramCount: 0 },
+    { handlerName: 'onOverwriteModeChanged', paramCount: 1 },
+    { handlerName: 'onPaddingChanged', paramCount: 0 },
+    { handlerName: 'onPaletteChanged', paramCount: 0 },
+    { handlerName: 'onPaletteCreated', paramCount: 0 },
+    { handlerName: 'onParentChanged', paramCount: 1 },
+    { handlerName: 'onPersistentSelectionChanged', paramCount: 1 },
+    { handlerName: 'onPlaceholderTextChanged', paramCount: 0 },
+    { handlerName: 'onPlaceholderTextColorChanged', paramCount: 0 },
+    { handlerName: 'onPreeditTextChanged', paramCount: 0 },
+    { handlerName: 'onPressAndHold', paramCount: 1 },
+    { handlerName: 'onPressed', paramCount: 1 },
+    { handlerName: 'onReadOnlyChanged', paramCount: 1 },
+    { handlerName: 'onReleased', paramCount: 1 },
+    { handlerName: 'onRenderTypeChanged', paramCount: 0 },
+    { handlerName: 'onRightInsetChanged', paramCount: 0 },
+    { handlerName: 'onRightPaddingChanged', paramCount: 0 },
+    { handlerName: 'onRotationChanged', paramCount: 0 },
+    { handlerName: 'onScaleChanged', paramCount: 0 },
+    { handlerName: 'onSelectByKeyboardChanged', paramCount: 1 },
+    { handlerName: 'onSelectByMouseChanged', paramCount: 1 },
+    { handlerName: 'onSelectedTextChanged', paramCount: 0 },
+    { handlerName: 'onSelectedTextColorChanged', paramCount: 1 },
+    { handlerName: 'onSelectionColorChanged', paramCount: 1 },
+    { handlerName: 'onSelectionEndChanged', paramCount: 0 },
+    { handlerName: 'onSelectionStartChanged', paramCount: 0 },
+    { handlerName: 'onSmoothChanged', paramCount: 1 },
+    { handlerName: 'onStateChanged', paramCount: 1 },
+    { handlerName: 'onTabStopDistanceChanged', paramCount: 1 },
+    { handlerName: 'onTextChanged', paramCount: 0 },
+    { handlerName: 'onTextEdited', paramCount: 0 },
+    { handlerName: 'onTextFormatChanged', paramCount: 1 },
+    { handlerName: 'onTextMarginChanged', paramCount: 1 },
+    { handlerName: 'onTopInsetChanged', paramCount: 0 },
+    { handlerName: 'onTopPaddingChanged', paramCount: 0 },
+    { handlerName: 'onTransformOriginChanged', paramCount: 1 },
+    { handlerName: 'onVerticalAlignmentChanged', paramCount: 1 },
+    { handlerName: 'onVisibleChanged', paramCount: 0 },
+    { handlerName: 'onVisibleChildrenChanged', paramCount: 0 },
+    { handlerName: 'onWidthChanged', paramCount: 0 },
+    { handlerName: 'onWindowChanged', paramCount: 1 },
+    { handlerName: 'onWrapModeChanged', paramCount: 0 },
+    { handlerName: 'onXChanged', paramCount: 0 },
+    { handlerName: 'onYChanged', paramCount: 0 },
+    { handlerName: 'onZChanged', paramCount: 0 },
+  ],
+  grouped: [
+    {
+      methodName: 'anchors',
+      groupName: 'anchors',
+      properties: [
+        { name: 'alignWhenCentered', hasValue: true, hasBinding: true },
+        { name: 'baseline', hasValue: true, hasBinding: true },
+        { name: 'baselineOffset', hasValue: true, hasBinding: true },
+        { name: 'bottom', hasValue: true, hasBinding: true },
+        { name: 'bottomMargin', hasValue: true, hasBinding: true },
+        { name: 'centerIn', hasValue: true, hasBinding: true },
+        { name: 'fill', hasValue: true, hasBinding: true },
+        { name: 'horizontalCenter', hasValue: true, hasBinding: true },
+        { name: 'horizontalCenterOffset', hasValue: true, hasBinding: true },
+        { name: 'left', hasValue: true, hasBinding: true },
+        { name: 'leftMargin', hasValue: true, hasBinding: true },
+        { name: 'margins', hasValue: true, hasBinding: true },
+        { name: 'right', hasValue: true, hasBinding: true },
+        { name: 'rightMargin', hasValue: true, hasBinding: true },
+        { name: 'top', hasValue: true, hasBinding: true },
+        { name: 'topMargin', hasValue: true, hasBinding: true },
+        { name: 'verticalCenter', hasValue: true, hasBinding: true },
+        { name: 'verticalCenterOffset', hasValue: true, hasBinding: true },
+      ],
+    },
+    {
+      methodName: 'layer',
+      groupName: 'layer',
+      properties: [
+        { name: 'effect', hasValue: true, hasBinding: true },
+        { name: 'enabled', hasValue: true, hasBinding: true },
+        { name: 'format', hasValue: true, hasBinding: true },
+        { name: 'live', hasValue: true, hasBinding: true },
+        { name: 'mipmap', hasValue: true, hasBinding: true },
+        { name: 'samplerName', hasValue: true, hasBinding: true },
+        { name: 'samples', hasValue: true, hasBinding: true },
+        { name: 'smooth', hasValue: true, hasBinding: true },
+        { name: 'sourceRect', hasValue: true, hasBinding: true },
+        { name: 'textureMirroring', hasValue: true, hasBinding: true },
+        { name: 'textureSize', hasValue: true, hasBinding: true },
+        { name: 'wrapMode', hasValue: true, hasBinding: true },
+      ],
+    },
+  ],
+  attached: [
+    {
+      methodName: 'actionGroup',
+      attachedTypeName: 'ActionGroup',
+      properties: [
+        { name: 'group', hasValue: true, hasBinding: true },
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
+      signals: [
+        { handlerName: 'onGroupChanged', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'applicationWindow',
+      attachedTypeName: 'ApplicationWindow',
+      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
+      signals: [
+        { handlerName: 'onActiveFocusControlChanged', paramCount: 0 },
+        { handlerName: 'onContentItemChanged', paramCount: 0 },
+        { handlerName: 'onFooterChanged', paramCount: 0 },
+        { handlerName: 'onHeaderChanged', paramCount: 0 },
+        { handlerName: 'onMenuBarChanged', paramCount: 0 },
+        { handlerName: 'onWindowChanged', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'buttonGroup',
+      attachedTypeName: 'ButtonGroup',
+      properties: [
+        { name: 'group', hasValue: true, hasBinding: true },
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
+      signals: [
+        { handlerName: 'onGroupChanged', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'contextMenu',
+      attachedTypeName: 'ContextMenu',
+      properties: [
+        { name: 'menu', hasValue: true, hasBinding: true },
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
+      signals: [
+        { handlerName: 'onMenuChanged', paramCount: 0 },
+        { handlerName: 'onRequested', paramCount: 1 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'dialogButtonBox',
+      attachedTypeName: 'DialogButtonBox',
+      properties: [
+        { name: 'buttonRole', hasValue: true, hasBinding: true },
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
+      signals: [
+        { handlerName: 'onButtonBoxChanged', paramCount: 0 },
+        { handlerName: 'onButtonRoleChanged', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'overlay',
+      attachedTypeName: 'Overlay',
+      properties: [
+        { name: 'modal', hasValue: true, hasBinding: true },
+        { name: 'modeless', hasValue: true, hasBinding: true },
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
+      signals: [
+        { handlerName: 'onModalChanged', paramCount: 0 },
+        { handlerName: 'onModelessChanged', paramCount: 0 },
+        { handlerName: 'onOverlayChanged', paramCount: 0 },
+        { handlerName: 'onPressed', paramCount: 0 },
+        { handlerName: 'onReleased', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'scrollBar',
+      attachedTypeName: 'ScrollBar',
+      properties: [
+        { name: 'horizontal', hasValue: true, hasBinding: true },
+        { name: 'vertical', hasValue: true, hasBinding: true },
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
+      signals: [
+        { handlerName: 'onHorizontalChanged', paramCount: 0 },
+        { handlerName: 'onVerticalChanged', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'scrollIndicator',
+      attachedTypeName: 'ScrollIndicator',
+      properties: [
+        { name: 'horizontal', hasValue: true, hasBinding: true },
+        { name: 'vertical', hasValue: true, hasBinding: true },
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
+      signals: [
+        { handlerName: 'onHorizontalChanged', paramCount: 0 },
+        { handlerName: 'onVerticalChanged', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'selectionRectangle',
+      attachedTypeName: 'SelectionRectangle',
+      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
+      signals: [
+        { handlerName: 'onControlChanged', paramCount: 0 },
+        { handlerName: 'onDraggingChanged', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'splitHandle',
+      attachedTypeName: 'SplitHandle',
+      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
+      signals: [
+        { handlerName: 'onHoveredChanged', paramCount: 0 },
+        { handlerName: 'onPressedChanged', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'splitView',
+      attachedTypeName: 'SplitView',
+      properties: [
+        { name: 'fillHeight', hasValue: true, hasBinding: true },
+        { name: 'fillWidth', hasValue: true, hasBinding: true },
+        { name: 'maximumHeight', hasValue: true, hasBinding: true },
+        { name: 'maximumWidth', hasValue: true, hasBinding: true },
+        { name: 'minimumHeight', hasValue: true, hasBinding: true },
+        { name: 'minimumWidth', hasValue: true, hasBinding: true },
+        { name: 'preferredHeight', hasValue: true, hasBinding: true },
+        { name: 'preferredWidth', hasValue: true, hasBinding: true },
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
+      signals: [
+        { handlerName: 'onFillHeightChanged', paramCount: 0 },
+        { handlerName: 'onFillWidthChanged', paramCount: 0 },
+        { handlerName: 'onMaximumHeightChanged', paramCount: 0 },
+        { handlerName: 'onMaximumWidthChanged', paramCount: 0 },
+        { handlerName: 'onMinimumHeightChanged', paramCount: 0 },
+        { handlerName: 'onMinimumWidthChanged', paramCount: 0 },
+        { handlerName: 'onPreferredHeightChanged', paramCount: 0 },
+        { handlerName: 'onPreferredWidthChanged', paramCount: 0 },
+        { handlerName: 'onViewChanged', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'stackView',
+      attachedTypeName: 'StackView',
+      properties: [
+        { name: 'visible', hasValue: true, hasBinding: true },
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
+      signals: [
+        { handlerName: 'onActivated', paramCount: 0 },
+        { handlerName: 'onActivating', paramCount: 0 },
+        { handlerName: 'onDeactivated', paramCount: 0 },
+        { handlerName: 'onDeactivating', paramCount: 0 },
+        { handlerName: 'onIndexChanged', paramCount: 0 },
+        { handlerName: 'onRemoved', paramCount: 0 },
+        { handlerName: 'onStatusChanged', paramCount: 0 },
+        { handlerName: 'onViewChanged', paramCount: 0 },
+        { handlerName: 'onVisibleChanged', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'swipeDelegate',
+      attachedTypeName: 'SwipeDelegate',
+      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
+      signals: [
+        { handlerName: 'onClicked', paramCount: 0 },
+        { handlerName: 'onPressedChanged', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'swipeView',
+      attachedTypeName: 'SwipeView',
+      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
+      signals: [
+        { handlerName: 'onIndexChanged', paramCount: 0 },
+        { handlerName: 'onIsCurrentItemChanged', paramCount: 0 },
+        { handlerName: 'onIsNextItemChanged', paramCount: 0 },
+        { handlerName: 'onIsPreviousItemChanged', paramCount: 0 },
+        { handlerName: 'onViewChanged', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'tabBar',
+      attachedTypeName: 'TabBar',
+      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
+      signals: [
+        { handlerName: 'onIndexChanged', paramCount: 0 },
+        { handlerName: 'onPositionChanged', paramCount: 0 },
+        { handlerName: 'onTabBarChanged', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'textArea',
+      attachedTypeName: 'TextArea',
+      properties: [
+        { name: 'flickable', hasValue: true, hasBinding: true },
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
+      signals: [
+        { handlerName: 'onFlickableChanged', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'toolTip',
+      attachedTypeName: 'ToolTip',
+      properties: [
+        { name: 'delay', hasValue: true, hasBinding: true },
+        { name: 'text', hasValue: true, hasBinding: true },
+        { name: 'timeout', hasValue: true, hasBinding: true },
+        { name: 'visible', hasValue: true, hasBinding: true },
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
+      signals: [
+        { handlerName: 'onDelayChanged', paramCount: 0 },
+        { handlerName: 'onTextChanged', paramCount: 0 },
+        { handlerName: 'onTimeoutChanged', paramCount: 0 },
+        { handlerName: 'onVisibleChanged', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'tumbler',
+      attachedTypeName: 'Tumbler',
+      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
+      signals: [
+        { handlerName: 'onDisplacementChanged', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+  ],
+};
+
 export function TextArea(): TextAreaBuilder {
-  return new DslBuilderImpl('TextArea') as unknown as TextAreaBuilder;
+  return createFluentBuilder('TextArea', TEXTAREA_META) as unknown as TextAreaBuilder;
 }
 
 export namespace TextArea {

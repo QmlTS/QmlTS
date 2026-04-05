@@ -4,18 +4,18 @@
 
 import type {
   QmlComponent,
+  QmlEnumToken,
   QmlFont,
   QmlObjectBuilder,
-  QmlRect,
   QmlValue,
+  TypeMetadata,
 } from '../../runtime/index.js';
-import { createEnumToken, DslBuilderImpl } from '../../runtime/index.js';
+import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { QtObjectBuilder } from '../QML/QtObject.js';
 import type { ItemBuilder } from '../QtQuick/Item.js';
 import type { PaletteBuilder } from '../QtQuick/Palette.js';
 import type { AnchorsBuilder } from '../QtQuick/QQuickAnchors.js';
 import type { LayerBuilder } from '../QtQuick/QQuickItemLayer.js';
-import type { WindowBuilder } from '../QtQuick/Window.js';
 import type { ContextMenuAttachedBuilder } from './ContextMenu.js';
 import type { ActionGroupAttachedBuilder } from './QQuickActionGroupAttached.js';
 import type { ApplicationWindowAttachedBuilder } from './QQuickApplicationWindowAttached.js';
@@ -62,9 +62,9 @@ export interface AbstractWeekNumberColumnBuilder {
   enabledBind(expr: string): AbstractWeekNumberColumnBuilder;
   focus(value: boolean): AbstractWeekNumberColumnBuilder;
   focusBind(expr: string): AbstractWeekNumberColumnBuilder;
-  focusPolicy(value: QmlValue): AbstractWeekNumberColumnBuilder;
+  focusPolicy(value: QmlEnumToken): AbstractWeekNumberColumnBuilder;
   focusPolicyBind(expr: string): AbstractWeekNumberColumnBuilder;
-  focusReason(value: QmlValue): AbstractWeekNumberColumnBuilder;
+  focusReason(value: QmlEnumToken): AbstractWeekNumberColumnBuilder;
   focusReasonBind(expr: string): AbstractWeekNumberColumnBuilder;
   font(value: QmlFont): AbstractWeekNumberColumnBuilder;
   fontBind(expr: string): AbstractWeekNumberColumnBuilder;
@@ -116,7 +116,7 @@ export interface AbstractWeekNumberColumnBuilder {
   topInsetBind(expr: string): AbstractWeekNumberColumnBuilder;
   topPadding(value: number): AbstractWeekNumberColumnBuilder;
   topPaddingBind(expr: string): AbstractWeekNumberColumnBuilder;
-  transformOrigin(value: QmlValue): AbstractWeekNumberColumnBuilder;
+  transformOrigin(value: QmlEnumToken): AbstractWeekNumberColumnBuilder;
   transformOriginBind(expr: string): AbstractWeekNumberColumnBuilder;
   verticalPadding(value: number): AbstractWeekNumberColumnBuilder;
   verticalPaddingBind(expr: string): AbstractWeekNumberColumnBuilder;
@@ -134,69 +134,69 @@ export interface AbstractWeekNumberColumnBuilder {
   yearBind(expr: string): AbstractWeekNumberColumnBuilder;
   z(value: number): AbstractWeekNumberColumnBuilder;
   zBind(expr: string): AbstractWeekNumberColumnBuilder;
-  onActiveFocusChanged(handler: (arg0: boolean) => void): AbstractWeekNumberColumnBuilder;
-  onActiveFocusOnTabChanged(handler: (arg0: boolean) => void): AbstractWeekNumberColumnBuilder;
-  onAntialiasingChanged(handler: (arg0: boolean) => void): AbstractWeekNumberColumnBuilder;
-  onAvailableHeightChanged(handler: () => void): AbstractWeekNumberColumnBuilder;
-  onAvailableWidthChanged(handler: () => void): AbstractWeekNumberColumnBuilder;
-  onBackgroundChanged(handler: () => void): AbstractWeekNumberColumnBuilder;
-  onBaselineOffsetChanged(handler: () => void): AbstractWeekNumberColumnBuilder;
-  onBottomInsetChanged(handler: () => void): AbstractWeekNumberColumnBuilder;
-  onBottomPaddingChanged(handler: () => void): AbstractWeekNumberColumnBuilder;
-  onChildrenChanged(handler: () => void): AbstractWeekNumberColumnBuilder;
-  onChildrenRectChanged(handler: (arg0: QmlRect) => void): AbstractWeekNumberColumnBuilder;
-  onClipChanged(handler: (arg0: boolean) => void): AbstractWeekNumberColumnBuilder;
-  onContainmentMaskChanged(handler: () => void): AbstractWeekNumberColumnBuilder;
-  onContentItemChanged(handler: () => void): AbstractWeekNumberColumnBuilder;
-  onDelegateChanged(handler: () => void): AbstractWeekNumberColumnBuilder;
-  onEnabledChanged(handler: () => void): AbstractWeekNumberColumnBuilder;
-  onFocusChanged(handler: (arg0: boolean) => void): AbstractWeekNumberColumnBuilder;
-  onFocusPolicyChanged(handler: (arg0: QmlValue) => void): AbstractWeekNumberColumnBuilder;
-  onFocusReasonChanged(handler: () => void): AbstractWeekNumberColumnBuilder;
-  onFontChanged(handler: () => void): AbstractWeekNumberColumnBuilder;
-  onHeightChanged(handler: () => void): AbstractWeekNumberColumnBuilder;
-  onHorizontalPaddingChanged(handler: () => void): AbstractWeekNumberColumnBuilder;
-  onHoverEnabledChanged(handler: () => void): AbstractWeekNumberColumnBuilder;
-  onHoveredChanged(handler: () => void): AbstractWeekNumberColumnBuilder;
-  onImplicitBackgroundHeightChanged(handler: () => void): AbstractWeekNumberColumnBuilder;
-  onImplicitBackgroundWidthChanged(handler: () => void): AbstractWeekNumberColumnBuilder;
-  onImplicitContentHeightChanged(handler: () => void): AbstractWeekNumberColumnBuilder;
-  onImplicitContentWidthChanged(handler: () => void): AbstractWeekNumberColumnBuilder;
-  onImplicitHeightChanged(handler: () => void): AbstractWeekNumberColumnBuilder;
-  onImplicitWidthChanged(handler: () => void): AbstractWeekNumberColumnBuilder;
-  onLeftInsetChanged(handler: () => void): AbstractWeekNumberColumnBuilder;
-  onLeftPaddingChanged(handler: () => void): AbstractWeekNumberColumnBuilder;
-  onLocaleChanged(handler: () => void): AbstractWeekNumberColumnBuilder;
-  onMirroredChanged(handler: () => void): AbstractWeekNumberColumnBuilder;
-  onMonthChanged(handler: () => void): AbstractWeekNumberColumnBuilder;
-  onObjectNameChanged(handler: (objectName: string) => void): AbstractWeekNumberColumnBuilder;
-  onOpacityChanged(handler: () => void): AbstractWeekNumberColumnBuilder;
-  onPaddingChanged(handler: () => void): AbstractWeekNumberColumnBuilder;
-  onPaletteChanged(handler: () => void): AbstractWeekNumberColumnBuilder;
-  onPaletteCreated(handler: () => void): AbstractWeekNumberColumnBuilder;
-  onParentChanged(handler: (arg0: ItemBuilder) => void): AbstractWeekNumberColumnBuilder;
-  onRightInsetChanged(handler: () => void): AbstractWeekNumberColumnBuilder;
-  onRightPaddingChanged(handler: () => void): AbstractWeekNumberColumnBuilder;
-  onRotationChanged(handler: () => void): AbstractWeekNumberColumnBuilder;
-  onScaleChanged(handler: () => void): AbstractWeekNumberColumnBuilder;
-  onSmoothChanged(handler: (arg0: boolean) => void): AbstractWeekNumberColumnBuilder;
-  onSourceChanged(handler: () => void): AbstractWeekNumberColumnBuilder;
-  onSpacingChanged(handler: () => void): AbstractWeekNumberColumnBuilder;
-  onStateChanged(handler: (arg0: string) => void): AbstractWeekNumberColumnBuilder;
-  onTopInsetChanged(handler: () => void): AbstractWeekNumberColumnBuilder;
-  onTopPaddingChanged(handler: () => void): AbstractWeekNumberColumnBuilder;
-  onTransformOriginChanged(handler: (arg0: QmlValue) => void): AbstractWeekNumberColumnBuilder;
-  onVerticalPaddingChanged(handler: () => void): AbstractWeekNumberColumnBuilder;
-  onVisibleChanged(handler: () => void): AbstractWeekNumberColumnBuilder;
-  onVisibleChildrenChanged(handler: () => void): AbstractWeekNumberColumnBuilder;
-  onVisualFocusChanged(handler: () => void): AbstractWeekNumberColumnBuilder;
-  onWheelEnabledChanged(handler: () => void): AbstractWeekNumberColumnBuilder;
-  onWidthChanged(handler: () => void): AbstractWeekNumberColumnBuilder;
-  onWindowChanged(handler: (window: WindowBuilder) => void): AbstractWeekNumberColumnBuilder;
-  onXChanged(handler: () => void): AbstractWeekNumberColumnBuilder;
-  onYChanged(handler: () => void): AbstractWeekNumberColumnBuilder;
-  onYearChanged(handler: () => void): AbstractWeekNumberColumnBuilder;
-  onZChanged(handler: () => void): AbstractWeekNumberColumnBuilder;
+  onActiveFocusChanged(body: string): AbstractWeekNumberColumnBuilder;
+  onActiveFocusOnTabChanged(body: string): AbstractWeekNumberColumnBuilder;
+  onAntialiasingChanged(body: string): AbstractWeekNumberColumnBuilder;
+  onAvailableHeightChanged(body: string): AbstractWeekNumberColumnBuilder;
+  onAvailableWidthChanged(body: string): AbstractWeekNumberColumnBuilder;
+  onBackgroundChanged(body: string): AbstractWeekNumberColumnBuilder;
+  onBaselineOffsetChanged(body: string): AbstractWeekNumberColumnBuilder;
+  onBottomInsetChanged(body: string): AbstractWeekNumberColumnBuilder;
+  onBottomPaddingChanged(body: string): AbstractWeekNumberColumnBuilder;
+  onChildrenChanged(body: string): AbstractWeekNumberColumnBuilder;
+  onChildrenRectChanged(body: string): AbstractWeekNumberColumnBuilder;
+  onClipChanged(body: string): AbstractWeekNumberColumnBuilder;
+  onContainmentMaskChanged(body: string): AbstractWeekNumberColumnBuilder;
+  onContentItemChanged(body: string): AbstractWeekNumberColumnBuilder;
+  onDelegateChanged(body: string): AbstractWeekNumberColumnBuilder;
+  onEnabledChanged(body: string): AbstractWeekNumberColumnBuilder;
+  onFocusChanged(body: string): AbstractWeekNumberColumnBuilder;
+  onFocusPolicyChanged(body: string): AbstractWeekNumberColumnBuilder;
+  onFocusReasonChanged(body: string): AbstractWeekNumberColumnBuilder;
+  onFontChanged(body: string): AbstractWeekNumberColumnBuilder;
+  onHeightChanged(body: string): AbstractWeekNumberColumnBuilder;
+  onHorizontalPaddingChanged(body: string): AbstractWeekNumberColumnBuilder;
+  onHoverEnabledChanged(body: string): AbstractWeekNumberColumnBuilder;
+  onHoveredChanged(body: string): AbstractWeekNumberColumnBuilder;
+  onImplicitBackgroundHeightChanged(body: string): AbstractWeekNumberColumnBuilder;
+  onImplicitBackgroundWidthChanged(body: string): AbstractWeekNumberColumnBuilder;
+  onImplicitContentHeightChanged(body: string): AbstractWeekNumberColumnBuilder;
+  onImplicitContentWidthChanged(body: string): AbstractWeekNumberColumnBuilder;
+  onImplicitHeightChanged(body: string): AbstractWeekNumberColumnBuilder;
+  onImplicitWidthChanged(body: string): AbstractWeekNumberColumnBuilder;
+  onLeftInsetChanged(body: string): AbstractWeekNumberColumnBuilder;
+  onLeftPaddingChanged(body: string): AbstractWeekNumberColumnBuilder;
+  onLocaleChanged(body: string): AbstractWeekNumberColumnBuilder;
+  onMirroredChanged(body: string): AbstractWeekNumberColumnBuilder;
+  onMonthChanged(body: string): AbstractWeekNumberColumnBuilder;
+  onObjectNameChanged(body: string): AbstractWeekNumberColumnBuilder;
+  onOpacityChanged(body: string): AbstractWeekNumberColumnBuilder;
+  onPaddingChanged(body: string): AbstractWeekNumberColumnBuilder;
+  onPaletteChanged(body: string): AbstractWeekNumberColumnBuilder;
+  onPaletteCreated(body: string): AbstractWeekNumberColumnBuilder;
+  onParentChanged(body: string): AbstractWeekNumberColumnBuilder;
+  onRightInsetChanged(body: string): AbstractWeekNumberColumnBuilder;
+  onRightPaddingChanged(body: string): AbstractWeekNumberColumnBuilder;
+  onRotationChanged(body: string): AbstractWeekNumberColumnBuilder;
+  onScaleChanged(body: string): AbstractWeekNumberColumnBuilder;
+  onSmoothChanged(body: string): AbstractWeekNumberColumnBuilder;
+  onSourceChanged(body: string): AbstractWeekNumberColumnBuilder;
+  onSpacingChanged(body: string): AbstractWeekNumberColumnBuilder;
+  onStateChanged(body: string): AbstractWeekNumberColumnBuilder;
+  onTopInsetChanged(body: string): AbstractWeekNumberColumnBuilder;
+  onTopPaddingChanged(body: string): AbstractWeekNumberColumnBuilder;
+  onTransformOriginChanged(body: string): AbstractWeekNumberColumnBuilder;
+  onVerticalPaddingChanged(body: string): AbstractWeekNumberColumnBuilder;
+  onVisibleChanged(body: string): AbstractWeekNumberColumnBuilder;
+  onVisibleChildrenChanged(body: string): AbstractWeekNumberColumnBuilder;
+  onVisualFocusChanged(body: string): AbstractWeekNumberColumnBuilder;
+  onWheelEnabledChanged(body: string): AbstractWeekNumberColumnBuilder;
+  onWidthChanged(body: string): AbstractWeekNumberColumnBuilder;
+  onWindowChanged(body: string): AbstractWeekNumberColumnBuilder;
+  onXChanged(body: string): AbstractWeekNumberColumnBuilder;
+  onYChanged(body: string): AbstractWeekNumberColumnBuilder;
+  onYearChanged(body: string): AbstractWeekNumberColumnBuilder;
+  onZChanged(body: string): AbstractWeekNumberColumnBuilder;
   anchors(setup: (b: AnchorsBuilder) => void): AbstractWeekNumberColumnBuilder;
   layer(setup: (b: LayerBuilder) => void): AbstractWeekNumberColumnBuilder;
   actionGroup(setup: (b: ActionGroupAttachedBuilder) => void): AbstractWeekNumberColumnBuilder;
@@ -227,9 +227,424 @@ export interface AbstractWeekNumberColumnBuilder {
   tumbler(setup: (b: TumblerAttachedBuilder) => void): AbstractWeekNumberColumnBuilder;
 }
 
+const ABSTRACTWEEKNUMBERCOLUMN_META: TypeMetadata = {
+  typeName: 'AbstractWeekNumberColumn',
+  properties: [
+    { name: 'activeFocusOnTab', hasValue: true, hasBinding: true },
+    { name: 'antialiasing', hasValue: true, hasBinding: true },
+    { name: 'background', hasValue: true, hasBinding: true },
+    { name: 'baselineOffset', hasValue: true, hasBinding: true },
+    { name: 'bottomInset', hasValue: true, hasBinding: true },
+    { name: 'bottomPadding', hasValue: true, hasBinding: true },
+    { name: 'clip', hasValue: true, hasBinding: true },
+    { name: 'containmentMask', hasValue: true, hasBinding: true },
+    { name: 'contentItem', hasValue: true, hasBinding: true },
+    { name: 'delegate', hasValue: true, hasBinding: true },
+    { name: 'enabled', hasValue: true, hasBinding: true },
+    { name: 'focus', hasValue: true, hasBinding: true },
+    { name: 'focusPolicy', hasValue: true, hasBinding: true },
+    { name: 'focusReason', hasValue: true, hasBinding: true },
+    { name: 'font', hasValue: true, hasBinding: true },
+    { name: 'height', hasValue: true, hasBinding: true },
+    { name: 'horizontalPadding', hasValue: true, hasBinding: true },
+    { name: 'hoverEnabled', hasValue: true, hasBinding: true },
+    { name: 'implicitHeight', hasValue: true, hasBinding: true },
+    { name: 'implicitWidth', hasValue: true, hasBinding: true },
+    { name: 'leftInset', hasValue: true, hasBinding: true },
+    { name: 'leftPadding', hasValue: true, hasBinding: true },
+    { name: 'locale', hasValue: true, hasBinding: true },
+    { name: 'month', hasValue: true, hasBinding: true },
+    { name: 'objectName', hasValue: true, hasBinding: true },
+    { name: 'opacity', hasValue: true, hasBinding: true },
+    { name: 'padding', hasValue: true, hasBinding: true },
+    { name: 'palette', hasValue: true, hasBinding: true },
+    { name: 'parent', hasValue: true, hasBinding: true },
+    { name: 'rightInset', hasValue: true, hasBinding: true },
+    { name: 'rightPadding', hasValue: true, hasBinding: true },
+    { name: 'rotation', hasValue: true, hasBinding: true },
+    { name: 'scale', hasValue: true, hasBinding: true },
+    { name: 'smooth', hasValue: true, hasBinding: true },
+    { name: 'source', hasValue: true, hasBinding: true },
+    { name: 'spacing', hasValue: true, hasBinding: true },
+    { name: 'state', hasValue: true, hasBinding: true },
+    { name: 'topInset', hasValue: true, hasBinding: true },
+    { name: 'topPadding', hasValue: true, hasBinding: true },
+    { name: 'transformOrigin', hasValue: true, hasBinding: true },
+    { name: 'verticalPadding', hasValue: true, hasBinding: true },
+    { name: 'visible', hasValue: true, hasBinding: true },
+    { name: 'wheelEnabled', hasValue: true, hasBinding: true },
+    { name: 'width', hasValue: true, hasBinding: true },
+    { name: 'x', hasValue: true, hasBinding: true },
+    { name: 'y', hasValue: true, hasBinding: true },
+    { name: 'year', hasValue: true, hasBinding: true },
+    { name: 'z', hasValue: true, hasBinding: true },
+  ],
+  signals: [
+    { handlerName: 'onActiveFocusChanged', paramCount: 1 },
+    { handlerName: 'onActiveFocusOnTabChanged', paramCount: 1 },
+    { handlerName: 'onAntialiasingChanged', paramCount: 1 },
+    { handlerName: 'onAvailableHeightChanged', paramCount: 0 },
+    { handlerName: 'onAvailableWidthChanged', paramCount: 0 },
+    { handlerName: 'onBackgroundChanged', paramCount: 0 },
+    { handlerName: 'onBaselineOffsetChanged', paramCount: 0 },
+    { handlerName: 'onBottomInsetChanged', paramCount: 0 },
+    { handlerName: 'onBottomPaddingChanged', paramCount: 0 },
+    { handlerName: 'onChildrenChanged', paramCount: 0 },
+    { handlerName: 'onChildrenRectChanged', paramCount: 1 },
+    { handlerName: 'onClipChanged', paramCount: 1 },
+    { handlerName: 'onContainmentMaskChanged', paramCount: 0 },
+    { handlerName: 'onContentItemChanged', paramCount: 0 },
+    { handlerName: 'onDelegateChanged', paramCount: 0 },
+    { handlerName: 'onEnabledChanged', paramCount: 0 },
+    { handlerName: 'onFocusChanged', paramCount: 1 },
+    { handlerName: 'onFocusPolicyChanged', paramCount: 1 },
+    { handlerName: 'onFocusReasonChanged', paramCount: 0 },
+    { handlerName: 'onFontChanged', paramCount: 0 },
+    { handlerName: 'onHeightChanged', paramCount: 0 },
+    { handlerName: 'onHorizontalPaddingChanged', paramCount: 0 },
+    { handlerName: 'onHoverEnabledChanged', paramCount: 0 },
+    { handlerName: 'onHoveredChanged', paramCount: 0 },
+    { handlerName: 'onImplicitBackgroundHeightChanged', paramCount: 0 },
+    { handlerName: 'onImplicitBackgroundWidthChanged', paramCount: 0 },
+    { handlerName: 'onImplicitContentHeightChanged', paramCount: 0 },
+    { handlerName: 'onImplicitContentWidthChanged', paramCount: 0 },
+    { handlerName: 'onImplicitHeightChanged', paramCount: 0 },
+    { handlerName: 'onImplicitWidthChanged', paramCount: 0 },
+    { handlerName: 'onLeftInsetChanged', paramCount: 0 },
+    { handlerName: 'onLeftPaddingChanged', paramCount: 0 },
+    { handlerName: 'onLocaleChanged', paramCount: 0 },
+    { handlerName: 'onMirroredChanged', paramCount: 0 },
+    { handlerName: 'onMonthChanged', paramCount: 0 },
+    { handlerName: 'onObjectNameChanged', paramCount: 1 },
+    { handlerName: 'onOpacityChanged', paramCount: 0 },
+    { handlerName: 'onPaddingChanged', paramCount: 0 },
+    { handlerName: 'onPaletteChanged', paramCount: 0 },
+    { handlerName: 'onPaletteCreated', paramCount: 0 },
+    { handlerName: 'onParentChanged', paramCount: 1 },
+    { handlerName: 'onRightInsetChanged', paramCount: 0 },
+    { handlerName: 'onRightPaddingChanged', paramCount: 0 },
+    { handlerName: 'onRotationChanged', paramCount: 0 },
+    { handlerName: 'onScaleChanged', paramCount: 0 },
+    { handlerName: 'onSmoothChanged', paramCount: 1 },
+    { handlerName: 'onSourceChanged', paramCount: 0 },
+    { handlerName: 'onSpacingChanged', paramCount: 0 },
+    { handlerName: 'onStateChanged', paramCount: 1 },
+    { handlerName: 'onTopInsetChanged', paramCount: 0 },
+    { handlerName: 'onTopPaddingChanged', paramCount: 0 },
+    { handlerName: 'onTransformOriginChanged', paramCount: 1 },
+    { handlerName: 'onVerticalPaddingChanged', paramCount: 0 },
+    { handlerName: 'onVisibleChanged', paramCount: 0 },
+    { handlerName: 'onVisibleChildrenChanged', paramCount: 0 },
+    { handlerName: 'onVisualFocusChanged', paramCount: 0 },
+    { handlerName: 'onWheelEnabledChanged', paramCount: 0 },
+    { handlerName: 'onWidthChanged', paramCount: 0 },
+    { handlerName: 'onWindowChanged', paramCount: 1 },
+    { handlerName: 'onXChanged', paramCount: 0 },
+    { handlerName: 'onYChanged', paramCount: 0 },
+    { handlerName: 'onYearChanged', paramCount: 0 },
+    { handlerName: 'onZChanged', paramCount: 0 },
+  ],
+  grouped: [
+    {
+      methodName: 'anchors',
+      groupName: 'anchors',
+      properties: [
+        { name: 'alignWhenCentered', hasValue: true, hasBinding: true },
+        { name: 'baseline', hasValue: true, hasBinding: true },
+        { name: 'baselineOffset', hasValue: true, hasBinding: true },
+        { name: 'bottom', hasValue: true, hasBinding: true },
+        { name: 'bottomMargin', hasValue: true, hasBinding: true },
+        { name: 'centerIn', hasValue: true, hasBinding: true },
+        { name: 'fill', hasValue: true, hasBinding: true },
+        { name: 'horizontalCenter', hasValue: true, hasBinding: true },
+        { name: 'horizontalCenterOffset', hasValue: true, hasBinding: true },
+        { name: 'left', hasValue: true, hasBinding: true },
+        { name: 'leftMargin', hasValue: true, hasBinding: true },
+        { name: 'margins', hasValue: true, hasBinding: true },
+        { name: 'right', hasValue: true, hasBinding: true },
+        { name: 'rightMargin', hasValue: true, hasBinding: true },
+        { name: 'top', hasValue: true, hasBinding: true },
+        { name: 'topMargin', hasValue: true, hasBinding: true },
+        { name: 'verticalCenter', hasValue: true, hasBinding: true },
+        { name: 'verticalCenterOffset', hasValue: true, hasBinding: true },
+      ],
+    },
+    {
+      methodName: 'layer',
+      groupName: 'layer',
+      properties: [
+        { name: 'effect', hasValue: true, hasBinding: true },
+        { name: 'enabled', hasValue: true, hasBinding: true },
+        { name: 'format', hasValue: true, hasBinding: true },
+        { name: 'live', hasValue: true, hasBinding: true },
+        { name: 'mipmap', hasValue: true, hasBinding: true },
+        { name: 'samplerName', hasValue: true, hasBinding: true },
+        { name: 'samples', hasValue: true, hasBinding: true },
+        { name: 'smooth', hasValue: true, hasBinding: true },
+        { name: 'sourceRect', hasValue: true, hasBinding: true },
+        { name: 'textureMirroring', hasValue: true, hasBinding: true },
+        { name: 'textureSize', hasValue: true, hasBinding: true },
+        { name: 'wrapMode', hasValue: true, hasBinding: true },
+      ],
+    },
+  ],
+  attached: [
+    {
+      methodName: 'actionGroup',
+      attachedTypeName: 'ActionGroup',
+      properties: [
+        { name: 'group', hasValue: true, hasBinding: true },
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
+      signals: [
+        { handlerName: 'onGroupChanged', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'applicationWindow',
+      attachedTypeName: 'ApplicationWindow',
+      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
+      signals: [
+        { handlerName: 'onActiveFocusControlChanged', paramCount: 0 },
+        { handlerName: 'onContentItemChanged', paramCount: 0 },
+        { handlerName: 'onFooterChanged', paramCount: 0 },
+        { handlerName: 'onHeaderChanged', paramCount: 0 },
+        { handlerName: 'onMenuBarChanged', paramCount: 0 },
+        { handlerName: 'onWindowChanged', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'buttonGroup',
+      attachedTypeName: 'ButtonGroup',
+      properties: [
+        { name: 'group', hasValue: true, hasBinding: true },
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
+      signals: [
+        { handlerName: 'onGroupChanged', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'contextMenu',
+      attachedTypeName: 'ContextMenu',
+      properties: [
+        { name: 'menu', hasValue: true, hasBinding: true },
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
+      signals: [
+        { handlerName: 'onMenuChanged', paramCount: 0 },
+        { handlerName: 'onRequested', paramCount: 1 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'dialogButtonBox',
+      attachedTypeName: 'DialogButtonBox',
+      properties: [
+        { name: 'buttonRole', hasValue: true, hasBinding: true },
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
+      signals: [
+        { handlerName: 'onButtonBoxChanged', paramCount: 0 },
+        { handlerName: 'onButtonRoleChanged', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'overlay',
+      attachedTypeName: 'Overlay',
+      properties: [
+        { name: 'modal', hasValue: true, hasBinding: true },
+        { name: 'modeless', hasValue: true, hasBinding: true },
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
+      signals: [
+        { handlerName: 'onModalChanged', paramCount: 0 },
+        { handlerName: 'onModelessChanged', paramCount: 0 },
+        { handlerName: 'onOverlayChanged', paramCount: 0 },
+        { handlerName: 'onPressed', paramCount: 0 },
+        { handlerName: 'onReleased', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'scrollBar',
+      attachedTypeName: 'ScrollBar',
+      properties: [
+        { name: 'horizontal', hasValue: true, hasBinding: true },
+        { name: 'vertical', hasValue: true, hasBinding: true },
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
+      signals: [
+        { handlerName: 'onHorizontalChanged', paramCount: 0 },
+        { handlerName: 'onVerticalChanged', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'scrollIndicator',
+      attachedTypeName: 'ScrollIndicator',
+      properties: [
+        { name: 'horizontal', hasValue: true, hasBinding: true },
+        { name: 'vertical', hasValue: true, hasBinding: true },
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
+      signals: [
+        { handlerName: 'onHorizontalChanged', paramCount: 0 },
+        { handlerName: 'onVerticalChanged', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'selectionRectangle',
+      attachedTypeName: 'SelectionRectangle',
+      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
+      signals: [
+        { handlerName: 'onControlChanged', paramCount: 0 },
+        { handlerName: 'onDraggingChanged', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'splitHandle',
+      attachedTypeName: 'SplitHandle',
+      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
+      signals: [
+        { handlerName: 'onHoveredChanged', paramCount: 0 },
+        { handlerName: 'onPressedChanged', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'splitView',
+      attachedTypeName: 'SplitView',
+      properties: [
+        { name: 'fillHeight', hasValue: true, hasBinding: true },
+        { name: 'fillWidth', hasValue: true, hasBinding: true },
+        { name: 'maximumHeight', hasValue: true, hasBinding: true },
+        { name: 'maximumWidth', hasValue: true, hasBinding: true },
+        { name: 'minimumHeight', hasValue: true, hasBinding: true },
+        { name: 'minimumWidth', hasValue: true, hasBinding: true },
+        { name: 'preferredHeight', hasValue: true, hasBinding: true },
+        { name: 'preferredWidth', hasValue: true, hasBinding: true },
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
+      signals: [
+        { handlerName: 'onFillHeightChanged', paramCount: 0 },
+        { handlerName: 'onFillWidthChanged', paramCount: 0 },
+        { handlerName: 'onMaximumHeightChanged', paramCount: 0 },
+        { handlerName: 'onMaximumWidthChanged', paramCount: 0 },
+        { handlerName: 'onMinimumHeightChanged', paramCount: 0 },
+        { handlerName: 'onMinimumWidthChanged', paramCount: 0 },
+        { handlerName: 'onPreferredHeightChanged', paramCount: 0 },
+        { handlerName: 'onPreferredWidthChanged', paramCount: 0 },
+        { handlerName: 'onViewChanged', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'stackView',
+      attachedTypeName: 'StackView',
+      properties: [
+        { name: 'visible', hasValue: true, hasBinding: true },
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
+      signals: [
+        { handlerName: 'onActivated', paramCount: 0 },
+        { handlerName: 'onActivating', paramCount: 0 },
+        { handlerName: 'onDeactivated', paramCount: 0 },
+        { handlerName: 'onDeactivating', paramCount: 0 },
+        { handlerName: 'onIndexChanged', paramCount: 0 },
+        { handlerName: 'onRemoved', paramCount: 0 },
+        { handlerName: 'onStatusChanged', paramCount: 0 },
+        { handlerName: 'onViewChanged', paramCount: 0 },
+        { handlerName: 'onVisibleChanged', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'swipeDelegate',
+      attachedTypeName: 'SwipeDelegate',
+      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
+      signals: [
+        { handlerName: 'onClicked', paramCount: 0 },
+        { handlerName: 'onPressedChanged', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'swipeView',
+      attachedTypeName: 'SwipeView',
+      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
+      signals: [
+        { handlerName: 'onIndexChanged', paramCount: 0 },
+        { handlerName: 'onIsCurrentItemChanged', paramCount: 0 },
+        { handlerName: 'onIsNextItemChanged', paramCount: 0 },
+        { handlerName: 'onIsPreviousItemChanged', paramCount: 0 },
+        { handlerName: 'onViewChanged', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'tabBar',
+      attachedTypeName: 'TabBar',
+      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
+      signals: [
+        { handlerName: 'onIndexChanged', paramCount: 0 },
+        { handlerName: 'onPositionChanged', paramCount: 0 },
+        { handlerName: 'onTabBarChanged', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'textArea',
+      attachedTypeName: 'TextArea',
+      properties: [
+        { name: 'flickable', hasValue: true, hasBinding: true },
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
+      signals: [
+        { handlerName: 'onFlickableChanged', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'toolTip',
+      attachedTypeName: 'ToolTip',
+      properties: [
+        { name: 'delay', hasValue: true, hasBinding: true },
+        { name: 'text', hasValue: true, hasBinding: true },
+        { name: 'timeout', hasValue: true, hasBinding: true },
+        { name: 'visible', hasValue: true, hasBinding: true },
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
+      signals: [
+        { handlerName: 'onDelayChanged', paramCount: 0 },
+        { handlerName: 'onTextChanged', paramCount: 0 },
+        { handlerName: 'onTimeoutChanged', paramCount: 0 },
+        { handlerName: 'onVisibleChanged', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'tumbler',
+      attachedTypeName: 'Tumbler',
+      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
+      signals: [
+        { handlerName: 'onDisplacementChanged', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+  ],
+};
+
 export function AbstractWeekNumberColumn(): AbstractWeekNumberColumnBuilder {
-  return new DslBuilderImpl(
+  return createFluentBuilder(
     'AbstractWeekNumberColumn',
+    ABSTRACTWEEKNUMBERCOLUMN_META,
   ) as unknown as AbstractWeekNumberColumnBuilder;
 }
 

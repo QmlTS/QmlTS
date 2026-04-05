@@ -5,10 +5,10 @@
 export interface SwipeViewAttachedBuilder {
   objectName(value: string): SwipeViewAttachedBuilder;
   objectNameBind(expr: string): SwipeViewAttachedBuilder;
-  onIndexChanged(handler: () => void): SwipeViewAttachedBuilder;
-  onIsCurrentItemChanged(handler: () => void): SwipeViewAttachedBuilder;
-  onIsNextItemChanged(handler: () => void): SwipeViewAttachedBuilder;
-  onIsPreviousItemChanged(handler: () => void): SwipeViewAttachedBuilder;
-  onViewChanged(handler: () => void): SwipeViewAttachedBuilder;
-  onObjectNameChanged(handler: (objectName: string) => void): SwipeViewAttachedBuilder;
+  onIndexChanged(body: string): SwipeViewAttachedBuilder;
+  onIsCurrentItemChanged(body: string): SwipeViewAttachedBuilder;
+  onIsNextItemChanged(body: string): SwipeViewAttachedBuilder;
+  onIsPreviousItemChanged(body: string): SwipeViewAttachedBuilder;
+  onViewChanged(body: string): SwipeViewAttachedBuilder;
+  onObjectNameChanged(body: string): SwipeViewAttachedBuilder;
 }

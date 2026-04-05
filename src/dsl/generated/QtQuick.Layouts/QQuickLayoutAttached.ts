@@ -2,9 +2,9 @@
 // Type: Attached type: Layout
 // Generated from Qt 6.11.0
 
-import type { QmlValue } from '../../runtime/index.js';
+import type { QmlEnumToken } from '../../runtime/index.js';
 export interface LayoutAttachedBuilder {
-  alignment(value: QmlValue): LayoutAttachedBuilder;
+  alignment(value: QmlEnumToken): LayoutAttachedBuilder;
   alignmentBind(expr: string): LayoutAttachedBuilder;
   bottomMargin(value: number): LayoutAttachedBuilder;
   bottomMarginBind(expr: string): LayoutAttachedBuilder;
@@ -42,32 +42,32 @@ export interface LayoutAttachedBuilder {
   rowSpanBind(expr: string): LayoutAttachedBuilder;
   topMargin(value: number): LayoutAttachedBuilder;
   topMarginBind(expr: string): LayoutAttachedBuilder;
-  useDefaultSizePolicy(value: QmlValue): LayoutAttachedBuilder;
+  useDefaultSizePolicy(value: QmlEnumToken): LayoutAttachedBuilder;
   useDefaultSizePolicyBind(expr: string): LayoutAttachedBuilder;
   verticalStretchFactor(value: number): LayoutAttachedBuilder;
   verticalStretchFactorBind(expr: string): LayoutAttachedBuilder;
   objectName(value: string): LayoutAttachedBuilder;
   objectNameBind(expr: string): LayoutAttachedBuilder;
-  onAlignmentChanged(handler: () => void): LayoutAttachedBuilder;
-  onBottomMarginChanged(handler: () => void): LayoutAttachedBuilder;
-  onColumnChanged(handler: () => void): LayoutAttachedBuilder;
-  onColumnSpanChanged(handler: () => void): LayoutAttachedBuilder;
-  onFillHeightChanged(handler: () => void): LayoutAttachedBuilder;
-  onFillWidthChanged(handler: () => void): LayoutAttachedBuilder;
-  onHorizontalStretchFactorChanged(handler: () => void): LayoutAttachedBuilder;
-  onLeftMarginChanged(handler: () => void): LayoutAttachedBuilder;
-  onMarginsChanged(handler: () => void): LayoutAttachedBuilder;
-  onMaximumHeightChanged(handler: () => void): LayoutAttachedBuilder;
-  onMaximumWidthChanged(handler: () => void): LayoutAttachedBuilder;
-  onMinimumHeightChanged(handler: () => void): LayoutAttachedBuilder;
-  onMinimumWidthChanged(handler: () => void): LayoutAttachedBuilder;
-  onPreferredHeightChanged(handler: () => void): LayoutAttachedBuilder;
-  onPreferredWidthChanged(handler: () => void): LayoutAttachedBuilder;
-  onRightMarginChanged(handler: () => void): LayoutAttachedBuilder;
-  onRowChanged(handler: () => void): LayoutAttachedBuilder;
-  onRowSpanChanged(handler: () => void): LayoutAttachedBuilder;
-  onTopMarginChanged(handler: () => void): LayoutAttachedBuilder;
-  onUseDefaultSizePolicyChanged(handler: () => void): LayoutAttachedBuilder;
-  onVerticalStretchFactorChanged(handler: () => void): LayoutAttachedBuilder;
-  onObjectNameChanged(handler: (objectName: string) => void): LayoutAttachedBuilder;
+  onAlignmentChanged(body: string): LayoutAttachedBuilder;
+  onBottomMarginChanged(body: string): LayoutAttachedBuilder;
+  onColumnChanged(body: string): LayoutAttachedBuilder;
+  onColumnSpanChanged(body: string): LayoutAttachedBuilder;
+  onFillHeightChanged(body: string): LayoutAttachedBuilder;
+  onFillWidthChanged(body: string): LayoutAttachedBuilder;
+  onHorizontalStretchFactorChanged(body: string): LayoutAttachedBuilder;
+  onLeftMarginChanged(body: string): LayoutAttachedBuilder;
+  onMarginsChanged(body: string): LayoutAttachedBuilder;
+  onMaximumHeightChanged(body: string): LayoutAttachedBuilder;
+  onMaximumWidthChanged(body: string): LayoutAttachedBuilder;
+  onMinimumHeightChanged(body: string): LayoutAttachedBuilder;
+  onMinimumWidthChanged(body: string): LayoutAttachedBuilder;
+  onPreferredHeightChanged(body: string): LayoutAttachedBuilder;
+  onPreferredWidthChanged(body: string): LayoutAttachedBuilder;
+  onRightMarginChanged(body: string): LayoutAttachedBuilder;
+  onRowChanged(body: string): LayoutAttachedBuilder;
+  onRowSpanChanged(body: string): LayoutAttachedBuilder;
+  onTopMarginChanged(body: string): LayoutAttachedBuilder;
+  onUseDefaultSizePolicyChanged(body: string): LayoutAttachedBuilder;
+  onVerticalStretchFactorChanged(body: string): LayoutAttachedBuilder;
+  onObjectNameChanged(body: string): LayoutAttachedBuilder;
 }

@@ -5,19 +5,19 @@
 export interface ScreenAttachedBuilder {
   objectName(value: string): ScreenAttachedBuilder;
   objectNameBind(expr: string): ScreenAttachedBuilder;
-  onDesktopGeometryChanged(handler: () => void): ScreenAttachedBuilder;
-  onDevicePixelRatioChanged(handler: () => void): ScreenAttachedBuilder;
-  onHeightChanged(handler: () => void): ScreenAttachedBuilder;
-  onLogicalPixelDensityChanged(handler: () => void): ScreenAttachedBuilder;
-  onManufacturerChanged(handler: () => void): ScreenAttachedBuilder;
-  onModelChanged(handler: () => void): ScreenAttachedBuilder;
-  onNameChanged(handler: () => void): ScreenAttachedBuilder;
-  onObjectNameChanged(handler: (objectName: string) => void): ScreenAttachedBuilder;
-  onOrientationChanged(handler: () => void): ScreenAttachedBuilder;
-  onPixelDensityChanged(handler: () => void): ScreenAttachedBuilder;
-  onPrimaryOrientationChanged(handler: () => void): ScreenAttachedBuilder;
-  onSerialNumberChanged(handler: () => void): ScreenAttachedBuilder;
-  onVirtualXChanged(handler: () => void): ScreenAttachedBuilder;
-  onVirtualYChanged(handler: () => void): ScreenAttachedBuilder;
-  onWidthChanged(handler: () => void): ScreenAttachedBuilder;
+  onDesktopGeometryChanged(body: string): ScreenAttachedBuilder;
+  onDevicePixelRatioChanged(body: string): ScreenAttachedBuilder;
+  onHeightChanged(body: string): ScreenAttachedBuilder;
+  onLogicalPixelDensityChanged(body: string): ScreenAttachedBuilder;
+  onManufacturerChanged(body: string): ScreenAttachedBuilder;
+  onModelChanged(body: string): ScreenAttachedBuilder;
+  onNameChanged(body: string): ScreenAttachedBuilder;
+  onObjectNameChanged(body: string): ScreenAttachedBuilder;
+  onOrientationChanged(body: string): ScreenAttachedBuilder;
+  onPixelDensityChanged(body: string): ScreenAttachedBuilder;
+  onPrimaryOrientationChanged(body: string): ScreenAttachedBuilder;
+  onSerialNumberChanged(body: string): ScreenAttachedBuilder;
+  onVirtualXChanged(body: string): ScreenAttachedBuilder;
+  onVirtualYChanged(body: string): ScreenAttachedBuilder;
+  onWidthChanged(body: string): ScreenAttachedBuilder;
 }

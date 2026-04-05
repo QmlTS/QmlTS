@@ -2,14 +2,13 @@
 // Type: FlexboxLayout
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlRect, QmlValue } from '../../runtime/index.js';
-import { createEnumToken, DslBuilderImpl } from '../../runtime/index.js';
+import type { QmlEnumToken, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { QtObjectBuilder } from '../QML/QtObject.js';
 import type { ItemBuilder } from '../QtQuick/Item.js';
 import type { PaletteBuilder } from '../QtQuick/Palette.js';
 import type { AnchorsBuilder } from '../QtQuick/QQuickAnchors.js';
 import type { LayerBuilder } from '../QtQuick/QQuickItemLayer.js';
-import type { WindowBuilder } from '../QtQuick/Window.js';
 import type { FlexboxLayoutAttachedBuilder } from './QQuickFlexboxLayoutAttached.js';
 import type { LayoutAttachedBuilder } from './QQuickLayoutAttached.js';
 import type { StackLayoutAttachedBuilder } from './QQuickStackLayoutAttached.js';
@@ -19,9 +18,9 @@ export interface FlexboxLayoutBuilder {
 
   activeFocusOnTab(value: boolean): FlexboxLayoutBuilder;
   activeFocusOnTabBind(expr: string): FlexboxLayoutBuilder;
-  alignContent(value: QmlValue): FlexboxLayoutBuilder;
+  alignContent(value: QmlEnumToken): FlexboxLayoutBuilder;
   alignContentBind(expr: string): FlexboxLayoutBuilder;
-  alignItems(value: QmlValue): FlexboxLayoutBuilder;
+  alignItems(value: QmlEnumToken): FlexboxLayoutBuilder;
   alignItemsBind(expr: string): FlexboxLayoutBuilder;
   antialiasing(value: boolean): FlexboxLayoutBuilder;
   antialiasingBind(expr: string): FlexboxLayoutBuilder;
@@ -33,13 +32,13 @@ export interface FlexboxLayoutBuilder {
   columnGapBind(expr: string): FlexboxLayoutBuilder;
   containmentMask(value: QtObjectBuilder): FlexboxLayoutBuilder;
   containmentMaskBind(expr: string): FlexboxLayoutBuilder;
-  direction(value: QmlValue): FlexboxLayoutBuilder;
+  direction(value: QmlEnumToken): FlexboxLayoutBuilder;
   directionBind(expr: string): FlexboxLayoutBuilder;
   enabled(value: boolean): FlexboxLayoutBuilder;
   enabledBind(expr: string): FlexboxLayoutBuilder;
   focus(value: boolean): FlexboxLayoutBuilder;
   focusBind(expr: string): FlexboxLayoutBuilder;
-  focusPolicy(value: QmlValue): FlexboxLayoutBuilder;
+  focusPolicy(value: QmlEnumToken): FlexboxLayoutBuilder;
   focusPolicyBind(expr: string): FlexboxLayoutBuilder;
   gap(value: number): FlexboxLayoutBuilder;
   gapBind(expr: string): FlexboxLayoutBuilder;
@@ -49,7 +48,7 @@ export interface FlexboxLayoutBuilder {
   implicitHeightBind(expr: string): FlexboxLayoutBuilder;
   implicitWidth(value: number): FlexboxLayoutBuilder;
   implicitWidthBind(expr: string): FlexboxLayoutBuilder;
-  justifyContent(value: QmlValue): FlexboxLayoutBuilder;
+  justifyContent(value: QmlEnumToken): FlexboxLayoutBuilder;
   justifyContentBind(expr: string): FlexboxLayoutBuilder;
   objectName(value: string): FlexboxLayoutBuilder;
   objectNameBind(expr: string): FlexboxLayoutBuilder;
@@ -69,13 +68,13 @@ export interface FlexboxLayoutBuilder {
   smoothBind(expr: string): FlexboxLayoutBuilder;
   state(value: string): FlexboxLayoutBuilder;
   stateBind(expr: string): FlexboxLayoutBuilder;
-  transformOrigin(value: QmlValue): FlexboxLayoutBuilder;
+  transformOrigin(value: QmlEnumToken): FlexboxLayoutBuilder;
   transformOriginBind(expr: string): FlexboxLayoutBuilder;
   visible(value: boolean): FlexboxLayoutBuilder;
   visibleBind(expr: string): FlexboxLayoutBuilder;
   width(value: number): FlexboxLayoutBuilder;
   widthBind(expr: string): FlexboxLayoutBuilder;
-  wrap(value: QmlValue): FlexboxLayoutBuilder;
+  wrap(value: QmlEnumToken): FlexboxLayoutBuilder;
   wrapBind(expr: string): FlexboxLayoutBuilder;
   x(value: number): FlexboxLayoutBuilder;
   xBind(expr: string): FlexboxLayoutBuilder;
@@ -83,46 +82,46 @@ export interface FlexboxLayoutBuilder {
   yBind(expr: string): FlexboxLayoutBuilder;
   z(value: number): FlexboxLayoutBuilder;
   zBind(expr: string): FlexboxLayoutBuilder;
-  onActiveFocusChanged(handler: (arg0: boolean) => void): FlexboxLayoutBuilder;
-  onActiveFocusOnTabChanged(handler: (arg0: boolean) => void): FlexboxLayoutBuilder;
-  onAlignContentChanged(handler: () => void): FlexboxLayoutBuilder;
-  onAlignItemsChanged(handler: () => void): FlexboxLayoutBuilder;
-  onAntialiasingChanged(handler: (arg0: boolean) => void): FlexboxLayoutBuilder;
-  onBaselineOffsetChanged(handler: (arg0: number) => void): FlexboxLayoutBuilder;
-  onChildrenChanged(handler: () => void): FlexboxLayoutBuilder;
-  onChildrenRectChanged(handler: (arg0: QmlRect) => void): FlexboxLayoutBuilder;
-  onClipChanged(handler: (arg0: boolean) => void): FlexboxLayoutBuilder;
-  onColumnGapChanged(handler: () => void): FlexboxLayoutBuilder;
-  onContainmentMaskChanged(handler: () => void): FlexboxLayoutBuilder;
-  onCountChanged(handler: () => void): FlexboxLayoutBuilder;
-  onDirectionChanged(handler: () => void): FlexboxLayoutBuilder;
-  onEnabledChanged(handler: () => void): FlexboxLayoutBuilder;
-  onFocusChanged(handler: (arg0: boolean) => void): FlexboxLayoutBuilder;
-  onFocusPolicyChanged(handler: (arg0: QmlValue) => void): FlexboxLayoutBuilder;
-  onGapChanged(handler: () => void): FlexboxLayoutBuilder;
-  onHeightChanged(handler: () => void): FlexboxLayoutBuilder;
-  onImplicitHeightChanged(handler: () => void): FlexboxLayoutBuilder;
-  onImplicitWidthChanged(handler: () => void): FlexboxLayoutBuilder;
-  onJustifyContentChanged(handler: () => void): FlexboxLayoutBuilder;
-  onObjectNameChanged(handler: (objectName: string) => void): FlexboxLayoutBuilder;
-  onOpacityChanged(handler: () => void): FlexboxLayoutBuilder;
-  onPaletteChanged(handler: () => void): FlexboxLayoutBuilder;
-  onPaletteCreated(handler: () => void): FlexboxLayoutBuilder;
-  onParentChanged(handler: (arg0: ItemBuilder) => void): FlexboxLayoutBuilder;
-  onRotationChanged(handler: () => void): FlexboxLayoutBuilder;
-  onRowGapChanged(handler: () => void): FlexboxLayoutBuilder;
-  onScaleChanged(handler: () => void): FlexboxLayoutBuilder;
-  onSmoothChanged(handler: (arg0: boolean) => void): FlexboxLayoutBuilder;
-  onStateChanged(handler: (arg0: string) => void): FlexboxLayoutBuilder;
-  onTransformOriginChanged(handler: (arg0: QmlValue) => void): FlexboxLayoutBuilder;
-  onVisibleChanged(handler: () => void): FlexboxLayoutBuilder;
-  onVisibleChildrenChanged(handler: () => void): FlexboxLayoutBuilder;
-  onWidthChanged(handler: () => void): FlexboxLayoutBuilder;
-  onWindowChanged(handler: (window: WindowBuilder) => void): FlexboxLayoutBuilder;
-  onWrapChanged(handler: () => void): FlexboxLayoutBuilder;
-  onXChanged(handler: () => void): FlexboxLayoutBuilder;
-  onYChanged(handler: () => void): FlexboxLayoutBuilder;
-  onZChanged(handler: () => void): FlexboxLayoutBuilder;
+  onActiveFocusChanged(body: string): FlexboxLayoutBuilder;
+  onActiveFocusOnTabChanged(body: string): FlexboxLayoutBuilder;
+  onAlignContentChanged(body: string): FlexboxLayoutBuilder;
+  onAlignItemsChanged(body: string): FlexboxLayoutBuilder;
+  onAntialiasingChanged(body: string): FlexboxLayoutBuilder;
+  onBaselineOffsetChanged(body: string): FlexboxLayoutBuilder;
+  onChildrenChanged(body: string): FlexboxLayoutBuilder;
+  onChildrenRectChanged(body: string): FlexboxLayoutBuilder;
+  onClipChanged(body: string): FlexboxLayoutBuilder;
+  onColumnGapChanged(body: string): FlexboxLayoutBuilder;
+  onContainmentMaskChanged(body: string): FlexboxLayoutBuilder;
+  onCountChanged(body: string): FlexboxLayoutBuilder;
+  onDirectionChanged(body: string): FlexboxLayoutBuilder;
+  onEnabledChanged(body: string): FlexboxLayoutBuilder;
+  onFocusChanged(body: string): FlexboxLayoutBuilder;
+  onFocusPolicyChanged(body: string): FlexboxLayoutBuilder;
+  onGapChanged(body: string): FlexboxLayoutBuilder;
+  onHeightChanged(body: string): FlexboxLayoutBuilder;
+  onImplicitHeightChanged(body: string): FlexboxLayoutBuilder;
+  onImplicitWidthChanged(body: string): FlexboxLayoutBuilder;
+  onJustifyContentChanged(body: string): FlexboxLayoutBuilder;
+  onObjectNameChanged(body: string): FlexboxLayoutBuilder;
+  onOpacityChanged(body: string): FlexboxLayoutBuilder;
+  onPaletteChanged(body: string): FlexboxLayoutBuilder;
+  onPaletteCreated(body: string): FlexboxLayoutBuilder;
+  onParentChanged(body: string): FlexboxLayoutBuilder;
+  onRotationChanged(body: string): FlexboxLayoutBuilder;
+  onRowGapChanged(body: string): FlexboxLayoutBuilder;
+  onScaleChanged(body: string): FlexboxLayoutBuilder;
+  onSmoothChanged(body: string): FlexboxLayoutBuilder;
+  onStateChanged(body: string): FlexboxLayoutBuilder;
+  onTransformOriginChanged(body: string): FlexboxLayoutBuilder;
+  onVisibleChanged(body: string): FlexboxLayoutBuilder;
+  onVisibleChildrenChanged(body: string): FlexboxLayoutBuilder;
+  onWidthChanged(body: string): FlexboxLayoutBuilder;
+  onWindowChanged(body: string): FlexboxLayoutBuilder;
+  onWrapChanged(body: string): FlexboxLayoutBuilder;
+  onXChanged(body: string): FlexboxLayoutBuilder;
+  onYChanged(body: string): FlexboxLayoutBuilder;
+  onZChanged(body: string): FlexboxLayoutBuilder;
   anchors(setup: (b: AnchorsBuilder) => void): FlexboxLayoutBuilder;
   layer(setup: (b: LayerBuilder) => void): FlexboxLayoutBuilder;
   flexboxLayout(setup: (b: FlexboxLayoutAttachedBuilder) => void): FlexboxLayoutBuilder;
@@ -130,8 +129,213 @@ export interface FlexboxLayoutBuilder {
   stackLayout(setup: (b: StackLayoutAttachedBuilder) => void): FlexboxLayoutBuilder;
 }
 
+const FLEXBOXLAYOUT_META: TypeMetadata = {
+  typeName: 'FlexboxLayout',
+  properties: [
+    { name: 'activeFocusOnTab', hasValue: true, hasBinding: true },
+    { name: 'alignContent', hasValue: true, hasBinding: true },
+    { name: 'alignItems', hasValue: true, hasBinding: true },
+    { name: 'antialiasing', hasValue: true, hasBinding: true },
+    { name: 'baselineOffset', hasValue: true, hasBinding: true },
+    { name: 'clip', hasValue: true, hasBinding: true },
+    { name: 'columnGap', hasValue: true, hasBinding: true },
+    { name: 'containmentMask', hasValue: true, hasBinding: true },
+    { name: 'direction', hasValue: true, hasBinding: true },
+    { name: 'enabled', hasValue: true, hasBinding: true },
+    { name: 'focus', hasValue: true, hasBinding: true },
+    { name: 'focusPolicy', hasValue: true, hasBinding: true },
+    { name: 'gap', hasValue: true, hasBinding: true },
+    { name: 'height', hasValue: true, hasBinding: true },
+    { name: 'implicitHeight', hasValue: true, hasBinding: true },
+    { name: 'implicitWidth', hasValue: true, hasBinding: true },
+    { name: 'justifyContent', hasValue: true, hasBinding: true },
+    { name: 'objectName', hasValue: true, hasBinding: true },
+    { name: 'opacity', hasValue: true, hasBinding: true },
+    { name: 'palette', hasValue: true, hasBinding: true },
+    { name: 'parent', hasValue: true, hasBinding: true },
+    { name: 'rotation', hasValue: true, hasBinding: true },
+    { name: 'rowGap', hasValue: true, hasBinding: true },
+    { name: 'scale', hasValue: true, hasBinding: true },
+    { name: 'smooth', hasValue: true, hasBinding: true },
+    { name: 'state', hasValue: true, hasBinding: true },
+    { name: 'transformOrigin', hasValue: true, hasBinding: true },
+    { name: 'visible', hasValue: true, hasBinding: true },
+    { name: 'width', hasValue: true, hasBinding: true },
+    { name: 'wrap', hasValue: true, hasBinding: true },
+    { name: 'x', hasValue: true, hasBinding: true },
+    { name: 'y', hasValue: true, hasBinding: true },
+    { name: 'z', hasValue: true, hasBinding: true },
+  ],
+  signals: [
+    { handlerName: 'onActiveFocusChanged', paramCount: 1 },
+    { handlerName: 'onActiveFocusOnTabChanged', paramCount: 1 },
+    { handlerName: 'onAlignContentChanged', paramCount: 0 },
+    { handlerName: 'onAlignItemsChanged', paramCount: 0 },
+    { handlerName: 'onAntialiasingChanged', paramCount: 1 },
+    { handlerName: 'onBaselineOffsetChanged', paramCount: 1 },
+    { handlerName: 'onChildrenChanged', paramCount: 0 },
+    { handlerName: 'onChildrenRectChanged', paramCount: 1 },
+    { handlerName: 'onClipChanged', paramCount: 1 },
+    { handlerName: 'onColumnGapChanged', paramCount: 0 },
+    { handlerName: 'onContainmentMaskChanged', paramCount: 0 },
+    { handlerName: 'onCountChanged', paramCount: 0 },
+    { handlerName: 'onDirectionChanged', paramCount: 0 },
+    { handlerName: 'onEnabledChanged', paramCount: 0 },
+    { handlerName: 'onFocusChanged', paramCount: 1 },
+    { handlerName: 'onFocusPolicyChanged', paramCount: 1 },
+    { handlerName: 'onGapChanged', paramCount: 0 },
+    { handlerName: 'onHeightChanged', paramCount: 0 },
+    { handlerName: 'onImplicitHeightChanged', paramCount: 0 },
+    { handlerName: 'onImplicitWidthChanged', paramCount: 0 },
+    { handlerName: 'onJustifyContentChanged', paramCount: 0 },
+    { handlerName: 'onObjectNameChanged', paramCount: 1 },
+    { handlerName: 'onOpacityChanged', paramCount: 0 },
+    { handlerName: 'onPaletteChanged', paramCount: 0 },
+    { handlerName: 'onPaletteCreated', paramCount: 0 },
+    { handlerName: 'onParentChanged', paramCount: 1 },
+    { handlerName: 'onRotationChanged', paramCount: 0 },
+    { handlerName: 'onRowGapChanged', paramCount: 0 },
+    { handlerName: 'onScaleChanged', paramCount: 0 },
+    { handlerName: 'onSmoothChanged', paramCount: 1 },
+    { handlerName: 'onStateChanged', paramCount: 1 },
+    { handlerName: 'onTransformOriginChanged', paramCount: 1 },
+    { handlerName: 'onVisibleChanged', paramCount: 0 },
+    { handlerName: 'onVisibleChildrenChanged', paramCount: 0 },
+    { handlerName: 'onWidthChanged', paramCount: 0 },
+    { handlerName: 'onWindowChanged', paramCount: 1 },
+    { handlerName: 'onWrapChanged', paramCount: 0 },
+    { handlerName: 'onXChanged', paramCount: 0 },
+    { handlerName: 'onYChanged', paramCount: 0 },
+    { handlerName: 'onZChanged', paramCount: 0 },
+  ],
+  grouped: [
+    {
+      methodName: 'anchors',
+      groupName: 'anchors',
+      properties: [
+        { name: 'alignWhenCentered', hasValue: true, hasBinding: true },
+        { name: 'baseline', hasValue: true, hasBinding: true },
+        { name: 'baselineOffset', hasValue: true, hasBinding: true },
+        { name: 'bottom', hasValue: true, hasBinding: true },
+        { name: 'bottomMargin', hasValue: true, hasBinding: true },
+        { name: 'centerIn', hasValue: true, hasBinding: true },
+        { name: 'fill', hasValue: true, hasBinding: true },
+        { name: 'horizontalCenter', hasValue: true, hasBinding: true },
+        { name: 'horizontalCenterOffset', hasValue: true, hasBinding: true },
+        { name: 'left', hasValue: true, hasBinding: true },
+        { name: 'leftMargin', hasValue: true, hasBinding: true },
+        { name: 'margins', hasValue: true, hasBinding: true },
+        { name: 'right', hasValue: true, hasBinding: true },
+        { name: 'rightMargin', hasValue: true, hasBinding: true },
+        { name: 'top', hasValue: true, hasBinding: true },
+        { name: 'topMargin', hasValue: true, hasBinding: true },
+        { name: 'verticalCenter', hasValue: true, hasBinding: true },
+        { name: 'verticalCenterOffset', hasValue: true, hasBinding: true },
+      ],
+    },
+    {
+      methodName: 'layer',
+      groupName: 'layer',
+      properties: [
+        { name: 'effect', hasValue: true, hasBinding: true },
+        { name: 'enabled', hasValue: true, hasBinding: true },
+        { name: 'format', hasValue: true, hasBinding: true },
+        { name: 'live', hasValue: true, hasBinding: true },
+        { name: 'mipmap', hasValue: true, hasBinding: true },
+        { name: 'samplerName', hasValue: true, hasBinding: true },
+        { name: 'samples', hasValue: true, hasBinding: true },
+        { name: 'smooth', hasValue: true, hasBinding: true },
+        { name: 'sourceRect', hasValue: true, hasBinding: true },
+        { name: 'textureMirroring', hasValue: true, hasBinding: true },
+        { name: 'textureSize', hasValue: true, hasBinding: true },
+        { name: 'wrapMode', hasValue: true, hasBinding: true },
+      ],
+    },
+  ],
+  attached: [
+    {
+      methodName: 'flexboxLayout',
+      attachedTypeName: 'FlexboxLayout',
+      properties: [
+        { name: 'alignSelf', hasValue: true, hasBinding: true },
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
+      signals: [
+        { handlerName: 'onAlignSelfChanged', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'layout',
+      attachedTypeName: 'Layout',
+      properties: [
+        { name: 'alignment', hasValue: true, hasBinding: true },
+        { name: 'bottomMargin', hasValue: true, hasBinding: true },
+        { name: 'column', hasValue: true, hasBinding: true },
+        { name: 'columnSpan', hasValue: true, hasBinding: true },
+        { name: 'fillHeight', hasValue: true, hasBinding: true },
+        { name: 'fillWidth', hasValue: true, hasBinding: true },
+        { name: 'horizontalStretchFactor', hasValue: true, hasBinding: true },
+        { name: 'leftMargin', hasValue: true, hasBinding: true },
+        { name: 'margins', hasValue: true, hasBinding: true },
+        { name: 'maximumHeight', hasValue: true, hasBinding: true },
+        { name: 'maximumWidth', hasValue: true, hasBinding: true },
+        { name: 'minimumHeight', hasValue: true, hasBinding: true },
+        { name: 'minimumWidth', hasValue: true, hasBinding: true },
+        { name: 'preferredHeight', hasValue: true, hasBinding: true },
+        { name: 'preferredWidth', hasValue: true, hasBinding: true },
+        { name: 'rightMargin', hasValue: true, hasBinding: true },
+        { name: 'row', hasValue: true, hasBinding: true },
+        { name: 'rowSpan', hasValue: true, hasBinding: true },
+        { name: 'topMargin', hasValue: true, hasBinding: true },
+        { name: 'useDefaultSizePolicy', hasValue: true, hasBinding: true },
+        { name: 'verticalStretchFactor', hasValue: true, hasBinding: true },
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
+      signals: [
+        { handlerName: 'onAlignmentChanged', paramCount: 0 },
+        { handlerName: 'onBottomMarginChanged', paramCount: 0 },
+        { handlerName: 'onColumnChanged', paramCount: 0 },
+        { handlerName: 'onColumnSpanChanged', paramCount: 0 },
+        { handlerName: 'onFillHeightChanged', paramCount: 0 },
+        { handlerName: 'onFillWidthChanged', paramCount: 0 },
+        { handlerName: 'onHorizontalStretchFactorChanged', paramCount: 0 },
+        { handlerName: 'onLeftMarginChanged', paramCount: 0 },
+        { handlerName: 'onMarginsChanged', paramCount: 0 },
+        { handlerName: 'onMaximumHeightChanged', paramCount: 0 },
+        { handlerName: 'onMaximumWidthChanged', paramCount: 0 },
+        { handlerName: 'onMinimumHeightChanged', paramCount: 0 },
+        { handlerName: 'onMinimumWidthChanged', paramCount: 0 },
+        { handlerName: 'onPreferredHeightChanged', paramCount: 0 },
+        { handlerName: 'onPreferredWidthChanged', paramCount: 0 },
+        { handlerName: 'onRightMarginChanged', paramCount: 0 },
+        { handlerName: 'onRowChanged', paramCount: 0 },
+        { handlerName: 'onRowSpanChanged', paramCount: 0 },
+        { handlerName: 'onTopMarginChanged', paramCount: 0 },
+        { handlerName: 'onUseDefaultSizePolicyChanged', paramCount: 0 },
+        { handlerName: 'onVerticalStretchFactorChanged', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'stackLayout',
+      attachedTypeName: 'StackLayout',
+      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
+      signals: [
+        { handlerName: 'onIndexChanged', paramCount: 0 },
+        { handlerName: 'onIsCurrentItemChanged', paramCount: 0 },
+        { handlerName: 'onLayoutChanged', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+  ],
+};
+
 export function FlexboxLayout(): FlexboxLayoutBuilder {
-  return new DslBuilderImpl('FlexboxLayout') as unknown as FlexboxLayoutBuilder;
+  return createFluentBuilder(
+    'FlexboxLayout',
+    FLEXBOXLAYOUT_META,
+  ) as unknown as FlexboxLayoutBuilder;
 }
 
 export namespace FlexboxLayout {

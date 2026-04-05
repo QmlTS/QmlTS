@@ -4,19 +4,18 @@
 
 import type {
   QmlColor,
+  QmlEnumToken,
   QmlFont,
   QmlObjectBuilder,
-  QmlRect,
   QmlUrl,
-  QmlValue,
+  TypeMetadata,
 } from '../../runtime/index.js';
-import { createEnumToken, DslBuilderImpl } from '../../runtime/index.js';
+import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { QtObjectBuilder } from '../QML/QtObject.js';
 import type { ItemBuilder } from '../QtQuick/Item.js';
 import type { PaletteBuilder } from '../QtQuick/Palette.js';
 import type { AnchorsBuilder } from '../QtQuick/QQuickAnchors.js';
 import type { LayerBuilder } from '../QtQuick/QQuickItemLayer.js';
-import type { WindowBuilder } from '../QtQuick/Window.js';
 import type { ContextMenuAttachedBuilder } from './ContextMenu.js';
 import type { ActionGroupAttachedBuilder } from './QQuickActionGroupAttached.js';
 import type { ApplicationWindowAttachedBuilder } from './QQuickApplicationWindowAttached.js';
@@ -59,21 +58,21 @@ export interface LabelBuilder {
   colorBind(expr: string): LabelBuilder;
   containmentMask(value: QtObjectBuilder): LabelBuilder;
   containmentMaskBind(expr: string): LabelBuilder;
-  elide(value: QmlValue): LabelBuilder;
+  elide(value: QmlEnumToken): LabelBuilder;
   elideBind(expr: string): LabelBuilder;
   enabled(value: boolean): LabelBuilder;
   enabledBind(expr: string): LabelBuilder;
   focus(value: boolean): LabelBuilder;
   focusBind(expr: string): LabelBuilder;
-  focusPolicy(value: QmlValue): LabelBuilder;
+  focusPolicy(value: QmlEnumToken): LabelBuilder;
   focusPolicyBind(expr: string): LabelBuilder;
   font(value: QmlFont): LabelBuilder;
   fontBind(expr: string): LabelBuilder;
-  fontSizeMode(value: QmlValue): LabelBuilder;
+  fontSizeMode(value: QmlEnumToken): LabelBuilder;
   fontSizeModeBind(expr: string): LabelBuilder;
   height(value: number): LabelBuilder;
   heightBind(expr: string): LabelBuilder;
-  horizontalAlignment(value: QmlValue): LabelBuilder;
+  horizontalAlignment(value: QmlEnumToken): LabelBuilder;
   horizontalAlignmentBind(expr: string): LabelBuilder;
   leftInset(value: number): LabelBuilder;
   leftInsetBind(expr: string): LabelBuilder;
@@ -81,7 +80,7 @@ export interface LabelBuilder {
   leftPaddingBind(expr: string): LabelBuilder;
   lineHeight(value: number): LabelBuilder;
   lineHeightBind(expr: string): LabelBuilder;
-  lineHeightMode(value: QmlValue): LabelBuilder;
+  lineHeightMode(value: QmlEnumToken): LabelBuilder;
   lineHeightModeBind(expr: string): LabelBuilder;
   linkColor(value: QmlColor): LabelBuilder;
   linkColorBind(expr: string): LabelBuilder;
@@ -101,7 +100,7 @@ export interface LabelBuilder {
   paletteBind(expr: string): LabelBuilder;
   parent(value: ItemBuilder): LabelBuilder;
   parentBind(expr: string): LabelBuilder;
-  renderType(value: QmlValue): LabelBuilder;
+  renderType(value: QmlEnumToken): LabelBuilder;
   renderTypeBind(expr: string): LabelBuilder;
   renderTypeQuality(value: number): LabelBuilder;
   renderTypeQualityBind(expr: string): LabelBuilder;
@@ -117,27 +116,27 @@ export interface LabelBuilder {
   smoothBind(expr: string): LabelBuilder;
   state(value: string): LabelBuilder;
   stateBind(expr: string): LabelBuilder;
-  style(value: QmlValue): LabelBuilder;
+  style(value: QmlEnumToken): LabelBuilder;
   styleBind(expr: string): LabelBuilder;
   styleColor(value: QmlColor): LabelBuilder;
   styleColorBind(expr: string): LabelBuilder;
   text(value: string): LabelBuilder;
   textBind(expr: string): LabelBuilder;
-  textFormat(value: QmlValue): LabelBuilder;
+  textFormat(value: QmlEnumToken): LabelBuilder;
   textFormatBind(expr: string): LabelBuilder;
   topInset(value: number): LabelBuilder;
   topInsetBind(expr: string): LabelBuilder;
   topPadding(value: number): LabelBuilder;
   topPaddingBind(expr: string): LabelBuilder;
-  transformOrigin(value: QmlValue): LabelBuilder;
+  transformOrigin(value: QmlEnumToken): LabelBuilder;
   transformOriginBind(expr: string): LabelBuilder;
-  verticalAlignment(value: QmlValue): LabelBuilder;
+  verticalAlignment(value: QmlEnumToken): LabelBuilder;
   verticalAlignmentBind(expr: string): LabelBuilder;
   visible(value: boolean): LabelBuilder;
   visibleBind(expr: string): LabelBuilder;
   width(value: number): LabelBuilder;
   widthBind(expr: string): LabelBuilder;
-  wrapMode(value: QmlValue): LabelBuilder;
+  wrapMode(value: QmlEnumToken): LabelBuilder;
   wrapModeBind(expr: string): LabelBuilder;
   x(value: number): LabelBuilder;
   xBind(expr: string): LabelBuilder;
@@ -145,79 +144,79 @@ export interface LabelBuilder {
   yBind(expr: string): LabelBuilder;
   z(value: number): LabelBuilder;
   zBind(expr: string): LabelBuilder;
-  onActiveFocusChanged(handler: (arg0: boolean) => void): LabelBuilder;
-  onActiveFocusOnTabChanged(handler: (arg0: boolean) => void): LabelBuilder;
-  onAntialiasingChanged(handler: (arg0: boolean) => void): LabelBuilder;
-  onBackgroundChanged(handler: () => void): LabelBuilder;
-  onBaseUrlChanged(handler: () => void): LabelBuilder;
-  onBaselineOffsetChanged(handler: (arg0: number) => void): LabelBuilder;
-  onBottomInsetChanged(handler: () => void): LabelBuilder;
-  onBottomPaddingChanged(handler: () => void): LabelBuilder;
-  onChildrenChanged(handler: () => void): LabelBuilder;
-  onChildrenRectChanged(handler: (arg0: QmlRect) => void): LabelBuilder;
-  onClipChanged(handler: (arg0: boolean) => void): LabelBuilder;
-  onColorChanged(handler: () => void): LabelBuilder;
-  onContainmentMaskChanged(handler: () => void): LabelBuilder;
-  onContentHeightChanged(handler: (contentHeight: number) => void): LabelBuilder;
-  onContentSizeChanged(handler: () => void): LabelBuilder;
-  onContentWidthChanged(handler: (contentWidth: number) => void): LabelBuilder;
-  onEffectiveHorizontalAlignmentChanged(handler: () => void): LabelBuilder;
-  onElideModeChanged(handler: (mode: QmlValue) => void): LabelBuilder;
-  onEnabledChanged(handler: () => void): LabelBuilder;
-  onFocusChanged(handler: (arg0: boolean) => void): LabelBuilder;
-  onFocusPolicyChanged(handler: (arg0: QmlValue) => void): LabelBuilder;
-  onFontChanged(handler: () => void): LabelBuilder;
-  onFontInfoChanged(handler: () => void): LabelBuilder;
-  onFontSizeModeChanged(handler: () => void): LabelBuilder;
-  onHeightChanged(handler: () => void): LabelBuilder;
-  onHorizontalAlignmentChanged(handler: (alignment: QmlValue) => void): LabelBuilder;
-  onImplicitBackgroundHeightChanged(handler: () => void): LabelBuilder;
-  onImplicitBackgroundWidthChanged(handler: () => void): LabelBuilder;
-  onImplicitHeightChanged(handler: () => void): LabelBuilder;
-  onImplicitWidthChanged(handler: () => void): LabelBuilder;
-  onLeftInsetChanged(handler: () => void): LabelBuilder;
-  onLeftPaddingChanged(handler: () => void): LabelBuilder;
-  onLineCountChanged(handler: () => void): LabelBuilder;
-  onLineHeightChanged(handler: (lineHeight: number) => void): LabelBuilder;
-  onLineHeightModeChanged(handler: (mode: QmlValue) => void): LabelBuilder;
-  onLineLaidOut(handler: (line: QmlValue) => void): LabelBuilder;
-  onLinkActivated(handler: (link: string) => void): LabelBuilder;
-  onLinkColorChanged(handler: () => void): LabelBuilder;
-  onLinkHovered(handler: (link: string) => void): LabelBuilder;
-  onMaximumLineCountChanged(handler: () => void): LabelBuilder;
-  onMinimumPixelSizeChanged(handler: () => void): LabelBuilder;
-  onMinimumPointSizeChanged(handler: () => void): LabelBuilder;
-  onObjectNameChanged(handler: (objectName: string) => void): LabelBuilder;
-  onOpacityChanged(handler: () => void): LabelBuilder;
-  onPaddingChanged(handler: () => void): LabelBuilder;
-  onPaletteChanged(handler: () => void): LabelBuilder;
-  onPaletteCreated(handler: () => void): LabelBuilder;
-  onParentChanged(handler: (arg0: ItemBuilder) => void): LabelBuilder;
-  onRenderTypeChanged(handler: () => void): LabelBuilder;
-  onRenderTypeQualityChanged(handler: () => void): LabelBuilder;
-  onRightInsetChanged(handler: () => void): LabelBuilder;
-  onRightPaddingChanged(handler: () => void): LabelBuilder;
-  onRotationChanged(handler: () => void): LabelBuilder;
-  onScaleChanged(handler: () => void): LabelBuilder;
-  onSmoothChanged(handler: (arg0: boolean) => void): LabelBuilder;
-  onStateChanged(handler: (arg0: string) => void): LabelBuilder;
-  onStyleChanged(handler: (style: QmlValue) => void): LabelBuilder;
-  onStyleColorChanged(handler: () => void): LabelBuilder;
-  onTextChanged(handler: (text: string) => void): LabelBuilder;
-  onTextFormatChanged(handler: (textFormat: QmlValue) => void): LabelBuilder;
-  onTopInsetChanged(handler: () => void): LabelBuilder;
-  onTopPaddingChanged(handler: () => void): LabelBuilder;
-  onTransformOriginChanged(handler: (arg0: QmlValue) => void): LabelBuilder;
-  onTruncatedChanged(handler: () => void): LabelBuilder;
-  onVerticalAlignmentChanged(handler: (alignment: QmlValue) => void): LabelBuilder;
-  onVisibleChanged(handler: () => void): LabelBuilder;
-  onVisibleChildrenChanged(handler: () => void): LabelBuilder;
-  onWidthChanged(handler: () => void): LabelBuilder;
-  onWindowChanged(handler: (window: WindowBuilder) => void): LabelBuilder;
-  onWrapModeChanged(handler: () => void): LabelBuilder;
-  onXChanged(handler: () => void): LabelBuilder;
-  onYChanged(handler: () => void): LabelBuilder;
-  onZChanged(handler: () => void): LabelBuilder;
+  onActiveFocusChanged(body: string): LabelBuilder;
+  onActiveFocusOnTabChanged(body: string): LabelBuilder;
+  onAntialiasingChanged(body: string): LabelBuilder;
+  onBackgroundChanged(body: string): LabelBuilder;
+  onBaseUrlChanged(body: string): LabelBuilder;
+  onBaselineOffsetChanged(body: string): LabelBuilder;
+  onBottomInsetChanged(body: string): LabelBuilder;
+  onBottomPaddingChanged(body: string): LabelBuilder;
+  onChildrenChanged(body: string): LabelBuilder;
+  onChildrenRectChanged(body: string): LabelBuilder;
+  onClipChanged(body: string): LabelBuilder;
+  onColorChanged(body: string): LabelBuilder;
+  onContainmentMaskChanged(body: string): LabelBuilder;
+  onContentHeightChanged(body: string): LabelBuilder;
+  onContentSizeChanged(body: string): LabelBuilder;
+  onContentWidthChanged(body: string): LabelBuilder;
+  onEffectiveHorizontalAlignmentChanged(body: string): LabelBuilder;
+  onElideModeChanged(body: string): LabelBuilder;
+  onEnabledChanged(body: string): LabelBuilder;
+  onFocusChanged(body: string): LabelBuilder;
+  onFocusPolicyChanged(body: string): LabelBuilder;
+  onFontChanged(body: string): LabelBuilder;
+  onFontInfoChanged(body: string): LabelBuilder;
+  onFontSizeModeChanged(body: string): LabelBuilder;
+  onHeightChanged(body: string): LabelBuilder;
+  onHorizontalAlignmentChanged(body: string): LabelBuilder;
+  onImplicitBackgroundHeightChanged(body: string): LabelBuilder;
+  onImplicitBackgroundWidthChanged(body: string): LabelBuilder;
+  onImplicitHeightChanged(body: string): LabelBuilder;
+  onImplicitWidthChanged(body: string): LabelBuilder;
+  onLeftInsetChanged(body: string): LabelBuilder;
+  onLeftPaddingChanged(body: string): LabelBuilder;
+  onLineCountChanged(body: string): LabelBuilder;
+  onLineHeightChanged(body: string): LabelBuilder;
+  onLineHeightModeChanged(body: string): LabelBuilder;
+  onLineLaidOut(body: string): LabelBuilder;
+  onLinkActivated(body: string): LabelBuilder;
+  onLinkColorChanged(body: string): LabelBuilder;
+  onLinkHovered(body: string): LabelBuilder;
+  onMaximumLineCountChanged(body: string): LabelBuilder;
+  onMinimumPixelSizeChanged(body: string): LabelBuilder;
+  onMinimumPointSizeChanged(body: string): LabelBuilder;
+  onObjectNameChanged(body: string): LabelBuilder;
+  onOpacityChanged(body: string): LabelBuilder;
+  onPaddingChanged(body: string): LabelBuilder;
+  onPaletteChanged(body: string): LabelBuilder;
+  onPaletteCreated(body: string): LabelBuilder;
+  onParentChanged(body: string): LabelBuilder;
+  onRenderTypeChanged(body: string): LabelBuilder;
+  onRenderTypeQualityChanged(body: string): LabelBuilder;
+  onRightInsetChanged(body: string): LabelBuilder;
+  onRightPaddingChanged(body: string): LabelBuilder;
+  onRotationChanged(body: string): LabelBuilder;
+  onScaleChanged(body: string): LabelBuilder;
+  onSmoothChanged(body: string): LabelBuilder;
+  onStateChanged(body: string): LabelBuilder;
+  onStyleChanged(body: string): LabelBuilder;
+  onStyleColorChanged(body: string): LabelBuilder;
+  onTextChanged(body: string): LabelBuilder;
+  onTextFormatChanged(body: string): LabelBuilder;
+  onTopInsetChanged(body: string): LabelBuilder;
+  onTopPaddingChanged(body: string): LabelBuilder;
+  onTransformOriginChanged(body: string): LabelBuilder;
+  onTruncatedChanged(body: string): LabelBuilder;
+  onVerticalAlignmentChanged(body: string): LabelBuilder;
+  onVisibleChanged(body: string): LabelBuilder;
+  onVisibleChildrenChanged(body: string): LabelBuilder;
+  onWidthChanged(body: string): LabelBuilder;
+  onWindowChanged(body: string): LabelBuilder;
+  onWrapModeChanged(body: string): LabelBuilder;
+  onXChanged(body: string): LabelBuilder;
+  onYChanged(body: string): LabelBuilder;
+  onZChanged(body: string): LabelBuilder;
   anchors(setup: (b: AnchorsBuilder) => void): LabelBuilder;
   layer(setup: (b: LayerBuilder) => void): LabelBuilder;
   actionGroup(setup: (b: ActionGroupAttachedBuilder) => void): LabelBuilder;
@@ -240,8 +239,437 @@ export interface LabelBuilder {
   tumbler(setup: (b: TumblerAttachedBuilder) => void): LabelBuilder;
 }
 
+const LABEL_META: TypeMetadata = {
+  typeName: 'Label',
+  properties: [
+    { name: 'activeFocusOnTab', hasValue: true, hasBinding: true },
+    { name: 'antialiasing', hasValue: true, hasBinding: true },
+    { name: 'background', hasValue: true, hasBinding: true },
+    { name: 'baseUrl', hasValue: true, hasBinding: true },
+    { name: 'baselineOffset', hasValue: true, hasBinding: true },
+    { name: 'bottomInset', hasValue: true, hasBinding: true },
+    { name: 'bottomPadding', hasValue: true, hasBinding: true },
+    { name: 'clip', hasValue: true, hasBinding: true },
+    { name: 'color', hasValue: true, hasBinding: true },
+    { name: 'containmentMask', hasValue: true, hasBinding: true },
+    { name: 'elide', hasValue: true, hasBinding: true },
+    { name: 'enabled', hasValue: true, hasBinding: true },
+    { name: 'focus', hasValue: true, hasBinding: true },
+    { name: 'focusPolicy', hasValue: true, hasBinding: true },
+    { name: 'font', hasValue: true, hasBinding: true },
+    { name: 'fontSizeMode', hasValue: true, hasBinding: true },
+    { name: 'height', hasValue: true, hasBinding: true },
+    { name: 'horizontalAlignment', hasValue: true, hasBinding: true },
+    { name: 'leftInset', hasValue: true, hasBinding: true },
+    { name: 'leftPadding', hasValue: true, hasBinding: true },
+    { name: 'lineHeight', hasValue: true, hasBinding: true },
+    { name: 'lineHeightMode', hasValue: true, hasBinding: true },
+    { name: 'linkColor', hasValue: true, hasBinding: true },
+    { name: 'maximumLineCount', hasValue: true, hasBinding: true },
+    { name: 'minimumPixelSize', hasValue: true, hasBinding: true },
+    { name: 'minimumPointSize', hasValue: true, hasBinding: true },
+    { name: 'objectName', hasValue: true, hasBinding: true },
+    { name: 'opacity', hasValue: true, hasBinding: true },
+    { name: 'padding', hasValue: true, hasBinding: true },
+    { name: 'palette', hasValue: true, hasBinding: true },
+    { name: 'parent', hasValue: true, hasBinding: true },
+    { name: 'renderType', hasValue: true, hasBinding: true },
+    { name: 'renderTypeQuality', hasValue: true, hasBinding: true },
+    { name: 'rightInset', hasValue: true, hasBinding: true },
+    { name: 'rightPadding', hasValue: true, hasBinding: true },
+    { name: 'rotation', hasValue: true, hasBinding: true },
+    { name: 'scale', hasValue: true, hasBinding: true },
+    { name: 'smooth', hasValue: true, hasBinding: true },
+    { name: 'state', hasValue: true, hasBinding: true },
+    { name: 'style', hasValue: true, hasBinding: true },
+    { name: 'styleColor', hasValue: true, hasBinding: true },
+    { name: 'text', hasValue: true, hasBinding: true },
+    { name: 'textFormat', hasValue: true, hasBinding: true },
+    { name: 'topInset', hasValue: true, hasBinding: true },
+    { name: 'topPadding', hasValue: true, hasBinding: true },
+    { name: 'transformOrigin', hasValue: true, hasBinding: true },
+    { name: 'verticalAlignment', hasValue: true, hasBinding: true },
+    { name: 'visible', hasValue: true, hasBinding: true },
+    { name: 'width', hasValue: true, hasBinding: true },
+    { name: 'wrapMode', hasValue: true, hasBinding: true },
+    { name: 'x', hasValue: true, hasBinding: true },
+    { name: 'y', hasValue: true, hasBinding: true },
+    { name: 'z', hasValue: true, hasBinding: true },
+  ],
+  signals: [
+    { handlerName: 'onActiveFocusChanged', paramCount: 1 },
+    { handlerName: 'onActiveFocusOnTabChanged', paramCount: 1 },
+    { handlerName: 'onAntialiasingChanged', paramCount: 1 },
+    { handlerName: 'onBackgroundChanged', paramCount: 0 },
+    { handlerName: 'onBaseUrlChanged', paramCount: 0 },
+    { handlerName: 'onBaselineOffsetChanged', paramCount: 1 },
+    { handlerName: 'onBottomInsetChanged', paramCount: 0 },
+    { handlerName: 'onBottomPaddingChanged', paramCount: 0 },
+    { handlerName: 'onChildrenChanged', paramCount: 0 },
+    { handlerName: 'onChildrenRectChanged', paramCount: 1 },
+    { handlerName: 'onClipChanged', paramCount: 1 },
+    { handlerName: 'onColorChanged', paramCount: 0 },
+    { handlerName: 'onContainmentMaskChanged', paramCount: 0 },
+    { handlerName: 'onContentHeightChanged', paramCount: 1 },
+    { handlerName: 'onContentSizeChanged', paramCount: 0 },
+    { handlerName: 'onContentWidthChanged', paramCount: 1 },
+    { handlerName: 'onEffectiveHorizontalAlignmentChanged', paramCount: 0 },
+    { handlerName: 'onElideModeChanged', paramCount: 1 },
+    { handlerName: 'onEnabledChanged', paramCount: 0 },
+    { handlerName: 'onFocusChanged', paramCount: 1 },
+    { handlerName: 'onFocusPolicyChanged', paramCount: 1 },
+    { handlerName: 'onFontChanged', paramCount: 0 },
+    { handlerName: 'onFontInfoChanged', paramCount: 0 },
+    { handlerName: 'onFontSizeModeChanged', paramCount: 0 },
+    { handlerName: 'onHeightChanged', paramCount: 0 },
+    { handlerName: 'onHorizontalAlignmentChanged', paramCount: 1 },
+    { handlerName: 'onImplicitBackgroundHeightChanged', paramCount: 0 },
+    { handlerName: 'onImplicitBackgroundWidthChanged', paramCount: 0 },
+    { handlerName: 'onImplicitHeightChanged', paramCount: 0 },
+    { handlerName: 'onImplicitWidthChanged', paramCount: 0 },
+    { handlerName: 'onLeftInsetChanged', paramCount: 0 },
+    { handlerName: 'onLeftPaddingChanged', paramCount: 0 },
+    { handlerName: 'onLineCountChanged', paramCount: 0 },
+    { handlerName: 'onLineHeightChanged', paramCount: 1 },
+    { handlerName: 'onLineHeightModeChanged', paramCount: 1 },
+    { handlerName: 'onLineLaidOut', paramCount: 1 },
+    { handlerName: 'onLinkActivated', paramCount: 1 },
+    { handlerName: 'onLinkColorChanged', paramCount: 0 },
+    { handlerName: 'onLinkHovered', paramCount: 1 },
+    { handlerName: 'onMaximumLineCountChanged', paramCount: 0 },
+    { handlerName: 'onMinimumPixelSizeChanged', paramCount: 0 },
+    { handlerName: 'onMinimumPointSizeChanged', paramCount: 0 },
+    { handlerName: 'onObjectNameChanged', paramCount: 1 },
+    { handlerName: 'onOpacityChanged', paramCount: 0 },
+    { handlerName: 'onPaddingChanged', paramCount: 0 },
+    { handlerName: 'onPaletteChanged', paramCount: 0 },
+    { handlerName: 'onPaletteCreated', paramCount: 0 },
+    { handlerName: 'onParentChanged', paramCount: 1 },
+    { handlerName: 'onRenderTypeChanged', paramCount: 0 },
+    { handlerName: 'onRenderTypeQualityChanged', paramCount: 0 },
+    { handlerName: 'onRightInsetChanged', paramCount: 0 },
+    { handlerName: 'onRightPaddingChanged', paramCount: 0 },
+    { handlerName: 'onRotationChanged', paramCount: 0 },
+    { handlerName: 'onScaleChanged', paramCount: 0 },
+    { handlerName: 'onSmoothChanged', paramCount: 1 },
+    { handlerName: 'onStateChanged', paramCount: 1 },
+    { handlerName: 'onStyleChanged', paramCount: 1 },
+    { handlerName: 'onStyleColorChanged', paramCount: 0 },
+    { handlerName: 'onTextChanged', paramCount: 1 },
+    { handlerName: 'onTextFormatChanged', paramCount: 1 },
+    { handlerName: 'onTopInsetChanged', paramCount: 0 },
+    { handlerName: 'onTopPaddingChanged', paramCount: 0 },
+    { handlerName: 'onTransformOriginChanged', paramCount: 1 },
+    { handlerName: 'onTruncatedChanged', paramCount: 0 },
+    { handlerName: 'onVerticalAlignmentChanged', paramCount: 1 },
+    { handlerName: 'onVisibleChanged', paramCount: 0 },
+    { handlerName: 'onVisibleChildrenChanged', paramCount: 0 },
+    { handlerName: 'onWidthChanged', paramCount: 0 },
+    { handlerName: 'onWindowChanged', paramCount: 1 },
+    { handlerName: 'onWrapModeChanged', paramCount: 0 },
+    { handlerName: 'onXChanged', paramCount: 0 },
+    { handlerName: 'onYChanged', paramCount: 0 },
+    { handlerName: 'onZChanged', paramCount: 0 },
+  ],
+  grouped: [
+    {
+      methodName: 'anchors',
+      groupName: 'anchors',
+      properties: [
+        { name: 'alignWhenCentered', hasValue: true, hasBinding: true },
+        { name: 'baseline', hasValue: true, hasBinding: true },
+        { name: 'baselineOffset', hasValue: true, hasBinding: true },
+        { name: 'bottom', hasValue: true, hasBinding: true },
+        { name: 'bottomMargin', hasValue: true, hasBinding: true },
+        { name: 'centerIn', hasValue: true, hasBinding: true },
+        { name: 'fill', hasValue: true, hasBinding: true },
+        { name: 'horizontalCenter', hasValue: true, hasBinding: true },
+        { name: 'horizontalCenterOffset', hasValue: true, hasBinding: true },
+        { name: 'left', hasValue: true, hasBinding: true },
+        { name: 'leftMargin', hasValue: true, hasBinding: true },
+        { name: 'margins', hasValue: true, hasBinding: true },
+        { name: 'right', hasValue: true, hasBinding: true },
+        { name: 'rightMargin', hasValue: true, hasBinding: true },
+        { name: 'top', hasValue: true, hasBinding: true },
+        { name: 'topMargin', hasValue: true, hasBinding: true },
+        { name: 'verticalCenter', hasValue: true, hasBinding: true },
+        { name: 'verticalCenterOffset', hasValue: true, hasBinding: true },
+      ],
+    },
+    {
+      methodName: 'layer',
+      groupName: 'layer',
+      properties: [
+        { name: 'effect', hasValue: true, hasBinding: true },
+        { name: 'enabled', hasValue: true, hasBinding: true },
+        { name: 'format', hasValue: true, hasBinding: true },
+        { name: 'live', hasValue: true, hasBinding: true },
+        { name: 'mipmap', hasValue: true, hasBinding: true },
+        { name: 'samplerName', hasValue: true, hasBinding: true },
+        { name: 'samples', hasValue: true, hasBinding: true },
+        { name: 'smooth', hasValue: true, hasBinding: true },
+        { name: 'sourceRect', hasValue: true, hasBinding: true },
+        { name: 'textureMirroring', hasValue: true, hasBinding: true },
+        { name: 'textureSize', hasValue: true, hasBinding: true },
+        { name: 'wrapMode', hasValue: true, hasBinding: true },
+      ],
+    },
+  ],
+  attached: [
+    {
+      methodName: 'actionGroup',
+      attachedTypeName: 'ActionGroup',
+      properties: [
+        { name: 'group', hasValue: true, hasBinding: true },
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
+      signals: [
+        { handlerName: 'onGroupChanged', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'applicationWindow',
+      attachedTypeName: 'ApplicationWindow',
+      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
+      signals: [
+        { handlerName: 'onActiveFocusControlChanged', paramCount: 0 },
+        { handlerName: 'onContentItemChanged', paramCount: 0 },
+        { handlerName: 'onFooterChanged', paramCount: 0 },
+        { handlerName: 'onHeaderChanged', paramCount: 0 },
+        { handlerName: 'onMenuBarChanged', paramCount: 0 },
+        { handlerName: 'onWindowChanged', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'buttonGroup',
+      attachedTypeName: 'ButtonGroup',
+      properties: [
+        { name: 'group', hasValue: true, hasBinding: true },
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
+      signals: [
+        { handlerName: 'onGroupChanged', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'contextMenu',
+      attachedTypeName: 'ContextMenu',
+      properties: [
+        { name: 'menu', hasValue: true, hasBinding: true },
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
+      signals: [
+        { handlerName: 'onMenuChanged', paramCount: 0 },
+        { handlerName: 'onRequested', paramCount: 1 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'dialogButtonBox',
+      attachedTypeName: 'DialogButtonBox',
+      properties: [
+        { name: 'buttonRole', hasValue: true, hasBinding: true },
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
+      signals: [
+        { handlerName: 'onButtonBoxChanged', paramCount: 0 },
+        { handlerName: 'onButtonRoleChanged', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'overlay',
+      attachedTypeName: 'Overlay',
+      properties: [
+        { name: 'modal', hasValue: true, hasBinding: true },
+        { name: 'modeless', hasValue: true, hasBinding: true },
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
+      signals: [
+        { handlerName: 'onModalChanged', paramCount: 0 },
+        { handlerName: 'onModelessChanged', paramCount: 0 },
+        { handlerName: 'onOverlayChanged', paramCount: 0 },
+        { handlerName: 'onPressed', paramCount: 0 },
+        { handlerName: 'onReleased', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'scrollBar',
+      attachedTypeName: 'ScrollBar',
+      properties: [
+        { name: 'horizontal', hasValue: true, hasBinding: true },
+        { name: 'vertical', hasValue: true, hasBinding: true },
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
+      signals: [
+        { handlerName: 'onHorizontalChanged', paramCount: 0 },
+        { handlerName: 'onVerticalChanged', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'scrollIndicator',
+      attachedTypeName: 'ScrollIndicator',
+      properties: [
+        { name: 'horizontal', hasValue: true, hasBinding: true },
+        { name: 'vertical', hasValue: true, hasBinding: true },
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
+      signals: [
+        { handlerName: 'onHorizontalChanged', paramCount: 0 },
+        { handlerName: 'onVerticalChanged', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'selectionRectangle',
+      attachedTypeName: 'SelectionRectangle',
+      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
+      signals: [
+        { handlerName: 'onControlChanged', paramCount: 0 },
+        { handlerName: 'onDraggingChanged', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'splitHandle',
+      attachedTypeName: 'SplitHandle',
+      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
+      signals: [
+        { handlerName: 'onHoveredChanged', paramCount: 0 },
+        { handlerName: 'onPressedChanged', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'splitView',
+      attachedTypeName: 'SplitView',
+      properties: [
+        { name: 'fillHeight', hasValue: true, hasBinding: true },
+        { name: 'fillWidth', hasValue: true, hasBinding: true },
+        { name: 'maximumHeight', hasValue: true, hasBinding: true },
+        { name: 'maximumWidth', hasValue: true, hasBinding: true },
+        { name: 'minimumHeight', hasValue: true, hasBinding: true },
+        { name: 'minimumWidth', hasValue: true, hasBinding: true },
+        { name: 'preferredHeight', hasValue: true, hasBinding: true },
+        { name: 'preferredWidth', hasValue: true, hasBinding: true },
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
+      signals: [
+        { handlerName: 'onFillHeightChanged', paramCount: 0 },
+        { handlerName: 'onFillWidthChanged', paramCount: 0 },
+        { handlerName: 'onMaximumHeightChanged', paramCount: 0 },
+        { handlerName: 'onMaximumWidthChanged', paramCount: 0 },
+        { handlerName: 'onMinimumHeightChanged', paramCount: 0 },
+        { handlerName: 'onMinimumWidthChanged', paramCount: 0 },
+        { handlerName: 'onPreferredHeightChanged', paramCount: 0 },
+        { handlerName: 'onPreferredWidthChanged', paramCount: 0 },
+        { handlerName: 'onViewChanged', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'stackView',
+      attachedTypeName: 'StackView',
+      properties: [
+        { name: 'visible', hasValue: true, hasBinding: true },
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
+      signals: [
+        { handlerName: 'onActivated', paramCount: 0 },
+        { handlerName: 'onActivating', paramCount: 0 },
+        { handlerName: 'onDeactivated', paramCount: 0 },
+        { handlerName: 'onDeactivating', paramCount: 0 },
+        { handlerName: 'onIndexChanged', paramCount: 0 },
+        { handlerName: 'onRemoved', paramCount: 0 },
+        { handlerName: 'onStatusChanged', paramCount: 0 },
+        { handlerName: 'onViewChanged', paramCount: 0 },
+        { handlerName: 'onVisibleChanged', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'swipeDelegate',
+      attachedTypeName: 'SwipeDelegate',
+      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
+      signals: [
+        { handlerName: 'onClicked', paramCount: 0 },
+        { handlerName: 'onPressedChanged', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'swipeView',
+      attachedTypeName: 'SwipeView',
+      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
+      signals: [
+        { handlerName: 'onIndexChanged', paramCount: 0 },
+        { handlerName: 'onIsCurrentItemChanged', paramCount: 0 },
+        { handlerName: 'onIsNextItemChanged', paramCount: 0 },
+        { handlerName: 'onIsPreviousItemChanged', paramCount: 0 },
+        { handlerName: 'onViewChanged', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'tabBar',
+      attachedTypeName: 'TabBar',
+      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
+      signals: [
+        { handlerName: 'onIndexChanged', paramCount: 0 },
+        { handlerName: 'onPositionChanged', paramCount: 0 },
+        { handlerName: 'onTabBarChanged', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'textArea',
+      attachedTypeName: 'TextArea',
+      properties: [
+        { name: 'flickable', hasValue: true, hasBinding: true },
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
+      signals: [
+        { handlerName: 'onFlickableChanged', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'toolTip',
+      attachedTypeName: 'ToolTip',
+      properties: [
+        { name: 'delay', hasValue: true, hasBinding: true },
+        { name: 'text', hasValue: true, hasBinding: true },
+        { name: 'timeout', hasValue: true, hasBinding: true },
+        { name: 'visible', hasValue: true, hasBinding: true },
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
+      signals: [
+        { handlerName: 'onDelayChanged', paramCount: 0 },
+        { handlerName: 'onTextChanged', paramCount: 0 },
+        { handlerName: 'onTimeoutChanged', paramCount: 0 },
+        { handlerName: 'onVisibleChanged', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'tumbler',
+      attachedTypeName: 'Tumbler',
+      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
+      signals: [
+        { handlerName: 'onDisplacementChanged', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+  ],
+};
+
 export function Label(): LabelBuilder {
-  return new DslBuilderImpl('Label') as unknown as LabelBuilder;
+  return createFluentBuilder('Label', LABEL_META) as unknown as LabelBuilder;
 }
 
 export namespace Label {

@@ -13,9 +13,9 @@ export interface ToolTipAttachedBuilder {
   visibleBind(expr: string): ToolTipAttachedBuilder;
   objectName(value: string): ToolTipAttachedBuilder;
   objectNameBind(expr: string): ToolTipAttachedBuilder;
-  onDelayChanged(handler: () => void): ToolTipAttachedBuilder;
-  onTextChanged(handler: () => void): ToolTipAttachedBuilder;
-  onTimeoutChanged(handler: () => void): ToolTipAttachedBuilder;
-  onVisibleChanged(handler: () => void): ToolTipAttachedBuilder;
-  onObjectNameChanged(handler: (objectName: string) => void): ToolTipAttachedBuilder;
+  onDelayChanged(body: string): ToolTipAttachedBuilder;
+  onTextChanged(body: string): ToolTipAttachedBuilder;
+  onTimeoutChanged(body: string): ToolTipAttachedBuilder;
+  onVisibleChanged(body: string): ToolTipAttachedBuilder;
+  onObjectNameChanged(body: string): ToolTipAttachedBuilder;
 }

@@ -2,8 +2,8 @@
 // Type: Timer
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder } from '../../runtime/index.js';
-import { DslBuilderImpl } from '../../runtime/index.js';
+import type { QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import { createFluentBuilder } from '../../runtime/index.js';
 export interface TimerBuilder {
   id(id: string): TimerBuilder;
   child(obj: QmlObjectBuilder): TimerBuilder;
@@ -18,14 +18,35 @@ export interface TimerBuilder {
   runningBind(expr: string): TimerBuilder;
   triggeredOnStart(value: boolean): TimerBuilder;
   triggeredOnStartBind(expr: string): TimerBuilder;
-  onIntervalChanged(handler: () => void): TimerBuilder;
-  onObjectNameChanged(handler: (objectName: string) => void): TimerBuilder;
-  onRepeatChanged(handler: () => void): TimerBuilder;
-  onRunningChanged(handler: () => void): TimerBuilder;
-  onTriggered(handler: () => void): TimerBuilder;
-  onTriggeredOnStartChanged(handler: () => void): TimerBuilder;
+  onIntervalChanged(body: string): TimerBuilder;
+  onObjectNameChanged(body: string): TimerBuilder;
+  onRepeatChanged(body: string): TimerBuilder;
+  onRunningChanged(body: string): TimerBuilder;
+  onTriggered(body: string): TimerBuilder;
+  onTriggeredOnStartChanged(body: string): TimerBuilder;
 }
 
+const TIMER_META: TypeMetadata = {
+  typeName: 'Timer',
+  properties: [
+    { name: 'interval', hasValue: true, hasBinding: true },
+    { name: 'objectName', hasValue: true, hasBinding: true },
+    { name: 'repeat', hasValue: true, hasBinding: true },
+    { name: 'running', hasValue: true, hasBinding: true },
+    { name: 'triggeredOnStart', hasValue: true, hasBinding: true },
+  ],
+  signals: [
+    { handlerName: 'onIntervalChanged', paramCount: 0 },
+    { handlerName: 'onObjectNameChanged', paramCount: 1 },
+    { handlerName: 'onRepeatChanged', paramCount: 0 },
+    { handlerName: 'onRunningChanged', paramCount: 0 },
+    { handlerName: 'onTriggered', paramCount: 0 },
+    { handlerName: 'onTriggeredOnStartChanged', paramCount: 0 },
+  ],
+  grouped: [],
+  attached: [],
+};
+
 export function Timer(): TimerBuilder {
-  return new DslBuilderImpl('Timer') as unknown as TimerBuilder;
+  return createFluentBuilder('Timer', TIMER_META) as unknown as TimerBuilder;
 }

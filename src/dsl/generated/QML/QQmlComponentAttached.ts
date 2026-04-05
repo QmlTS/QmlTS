@@ -5,7 +5,7 @@
 export interface ComponentAttachedBuilder {
   objectName(value: string): ComponentAttachedBuilder;
   objectNameBind(expr: string): ComponentAttachedBuilder;
-  onCompleted(handler: () => void): ComponentAttachedBuilder;
-  onDestruction(handler: () => void): ComponentAttachedBuilder;
-  onObjectNameChanged(handler: (objectName: string) => void): ComponentAttachedBuilder;
+  onCompleted(body: string): ComponentAttachedBuilder;
+  onDestruction(body: string): ComponentAttachedBuilder;
+  onObjectNameChanged(body: string): ComponentAttachedBuilder;
 }

@@ -2,15 +2,20 @@
 // Type: TreeViewDelegate
 // Generated from Qt 6.11.0
 
-import type { QmlFont, QmlObjectBuilder, QmlRect, QmlValue } from '../../runtime/index.js';
-import { createEnumToken, DslBuilderImpl } from '../../runtime/index.js';
+import type {
+  QmlEnumToken,
+  QmlFont,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
+import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { QtObjectBuilder } from '../QML/QtObject.js';
 import type { ItemBuilder } from '../QtQuick/Item.js';
 import type { PaletteBuilder } from '../QtQuick/Palette.js';
 import type { AnchorsBuilder } from '../QtQuick/QQuickAnchors.js';
 import type { LayerBuilder } from '../QtQuick/QQuickItemLayer.js';
 import type { TreeViewBuilder } from '../QtQuick/TreeView.js';
-import type { WindowBuilder } from '../QtQuick/Window.js';
 import type { ActionBuilder } from './Action.js';
 import type { ContextMenuAttachedBuilder } from './ContextMenu.js';
 import type { ActionGroupAttachedBuilder } from './QQuickActionGroupAttached.js';
@@ -70,7 +75,7 @@ export interface TreeViewDelegateBuilder {
   currentBind(expr: string): TreeViewDelegateBuilder;
   depth(value: number): TreeViewDelegateBuilder;
   depthBind(expr: string): TreeViewDelegateBuilder;
-  display(value: QmlValue): TreeViewDelegateBuilder;
+  display(value: QmlEnumToken): TreeViewDelegateBuilder;
   displayBind(expr: string): TreeViewDelegateBuilder;
   down(value: boolean): TreeViewDelegateBuilder;
   downBind(expr: string): TreeViewDelegateBuilder;
@@ -82,9 +87,9 @@ export interface TreeViewDelegateBuilder {
   expandedBind(expr: string): TreeViewDelegateBuilder;
   focus(value: boolean): TreeViewDelegateBuilder;
   focusBind(expr: string): TreeViewDelegateBuilder;
-  focusPolicy(value: QmlValue): TreeViewDelegateBuilder;
+  focusPolicy(value: QmlEnumToken): TreeViewDelegateBuilder;
   focusPolicyBind(expr: string): TreeViewDelegateBuilder;
-  focusReason(value: QmlValue): TreeViewDelegateBuilder;
+  focusReason(value: QmlEnumToken): TreeViewDelegateBuilder;
   focusReasonBind(expr: string): TreeViewDelegateBuilder;
   font(value: QmlFont): TreeViewDelegateBuilder;
   fontBind(expr: string): TreeViewDelegateBuilder;
@@ -152,7 +157,7 @@ export interface TreeViewDelegateBuilder {
   topInsetBind(expr: string): TreeViewDelegateBuilder;
   topPadding(value: number): TreeViewDelegateBuilder;
   topPaddingBind(expr: string): TreeViewDelegateBuilder;
-  transformOrigin(value: QmlValue): TreeViewDelegateBuilder;
+  transformOrigin(value: QmlEnumToken): TreeViewDelegateBuilder;
   transformOriginBind(expr: string): TreeViewDelegateBuilder;
   treeView(value: TreeViewBuilder): TreeViewDelegateBuilder;
   treeViewBind(expr: string): TreeViewDelegateBuilder;
@@ -170,101 +175,101 @@ export interface TreeViewDelegateBuilder {
   yBind(expr: string): TreeViewDelegateBuilder;
   z(value: number): TreeViewDelegateBuilder;
   zBind(expr: string): TreeViewDelegateBuilder;
-  onActionChanged(handler: () => void): TreeViewDelegateBuilder;
-  onActiveFocusChanged(handler: (arg0: boolean) => void): TreeViewDelegateBuilder;
-  onActiveFocusOnTabChanged(handler: (arg0: boolean) => void): TreeViewDelegateBuilder;
-  onAntialiasingChanged(handler: (arg0: boolean) => void): TreeViewDelegateBuilder;
-  onAutoExclusiveChanged(handler: () => void): TreeViewDelegateBuilder;
-  onAutoRepeatChanged(handler: () => void): TreeViewDelegateBuilder;
-  onAutoRepeatDelayChanged(handler: () => void): TreeViewDelegateBuilder;
-  onAutoRepeatIntervalChanged(handler: () => void): TreeViewDelegateBuilder;
-  onAvailableHeightChanged(handler: () => void): TreeViewDelegateBuilder;
-  onAvailableWidthChanged(handler: () => void): TreeViewDelegateBuilder;
-  onBackgroundChanged(handler: () => void): TreeViewDelegateBuilder;
-  onBaselineOffsetChanged(handler: () => void): TreeViewDelegateBuilder;
-  onBottomInsetChanged(handler: () => void): TreeViewDelegateBuilder;
-  onBottomPaddingChanged(handler: () => void): TreeViewDelegateBuilder;
-  onCanceled(handler: () => void): TreeViewDelegateBuilder;
-  onCheckableChanged(handler: () => void): TreeViewDelegateBuilder;
-  onCheckedChanged(handler: () => void): TreeViewDelegateBuilder;
-  onChildrenChanged(handler: () => void): TreeViewDelegateBuilder;
-  onChildrenRectChanged(handler: (arg0: QmlRect) => void): TreeViewDelegateBuilder;
-  onClicked(handler: () => void): TreeViewDelegateBuilder;
-  onClipChanged(handler: (arg0: boolean) => void): TreeViewDelegateBuilder;
-  onContainmentMaskChanged(handler: () => void): TreeViewDelegateBuilder;
-  onContentItemChanged(handler: () => void): TreeViewDelegateBuilder;
-  onCurrentChanged(handler: () => void): TreeViewDelegateBuilder;
-  onDepthChanged(handler: () => void): TreeViewDelegateBuilder;
-  onDisplayChanged(handler: () => void): TreeViewDelegateBuilder;
-  onDoubleClicked(handler: () => void): TreeViewDelegateBuilder;
-  onDownChanged(handler: () => void): TreeViewDelegateBuilder;
-  onEditingChanged(handler: () => void): TreeViewDelegateBuilder;
-  onEnabledChanged(handler: () => void): TreeViewDelegateBuilder;
-  onExpandedChanged(handler: () => void): TreeViewDelegateBuilder;
-  onFocusChanged(handler: (arg0: boolean) => void): TreeViewDelegateBuilder;
-  onFocusPolicyChanged(handler: (arg0: QmlValue) => void): TreeViewDelegateBuilder;
-  onFocusReasonChanged(handler: () => void): TreeViewDelegateBuilder;
-  onFontChanged(handler: () => void): TreeViewDelegateBuilder;
-  onHasChildrenChanged(handler: () => void): TreeViewDelegateBuilder;
-  onHeightChanged(handler: () => void): TreeViewDelegateBuilder;
-  onHighlightedChanged(handler: () => void): TreeViewDelegateBuilder;
-  onHorizontalPaddingChanged(handler: () => void): TreeViewDelegateBuilder;
-  onHoverEnabledChanged(handler: () => void): TreeViewDelegateBuilder;
-  onHoveredChanged(handler: () => void): TreeViewDelegateBuilder;
-  onIconChanged(handler: () => void): TreeViewDelegateBuilder;
-  onImplicitBackgroundHeightChanged(handler: () => void): TreeViewDelegateBuilder;
-  onImplicitBackgroundWidthChanged(handler: () => void): TreeViewDelegateBuilder;
-  onImplicitContentHeightChanged(handler: () => void): TreeViewDelegateBuilder;
-  onImplicitContentWidthChanged(handler: () => void): TreeViewDelegateBuilder;
-  onImplicitHeightChanged(handler: () => void): TreeViewDelegateBuilder;
-  onImplicitIndicatorHeightChanged(handler: () => void): TreeViewDelegateBuilder;
-  onImplicitIndicatorWidthChanged(handler: () => void): TreeViewDelegateBuilder;
-  onImplicitWidthChanged(handler: () => void): TreeViewDelegateBuilder;
-  onIndentationChanged(handler: () => void): TreeViewDelegateBuilder;
-  onIndicatorChanged(handler: () => void): TreeViewDelegateBuilder;
-  onIsTreeNodeChanged(handler: () => void): TreeViewDelegateBuilder;
-  onLeftInsetChanged(handler: () => void): TreeViewDelegateBuilder;
-  onLeftMarginChanged(handler: () => void): TreeViewDelegateBuilder;
-  onLeftPaddingChanged(handler: () => void): TreeViewDelegateBuilder;
-  onLocaleChanged(handler: () => void): TreeViewDelegateBuilder;
-  onMirroredChanged(handler: () => void): TreeViewDelegateBuilder;
-  onObjectNameChanged(handler: (objectName: string) => void): TreeViewDelegateBuilder;
-  onOpacityChanged(handler: () => void): TreeViewDelegateBuilder;
-  onPaddingChanged(handler: () => void): TreeViewDelegateBuilder;
-  onPaletteChanged(handler: () => void): TreeViewDelegateBuilder;
-  onPaletteCreated(handler: () => void): TreeViewDelegateBuilder;
-  onParentChanged(handler: (arg0: ItemBuilder) => void): TreeViewDelegateBuilder;
-  onPressAndHold(handler: () => void): TreeViewDelegateBuilder;
-  onPressXChanged(handler: () => void): TreeViewDelegateBuilder;
-  onPressYChanged(handler: () => void): TreeViewDelegateBuilder;
-  onPressed(handler: () => void): TreeViewDelegateBuilder;
-  onPressedChanged(handler: () => void): TreeViewDelegateBuilder;
-  onReleased(handler: () => void): TreeViewDelegateBuilder;
-  onRightInsetChanged(handler: () => void): TreeViewDelegateBuilder;
-  onRightMarginChanged(handler: () => void): TreeViewDelegateBuilder;
-  onRightPaddingChanged(handler: () => void): TreeViewDelegateBuilder;
-  onRotationChanged(handler: () => void): TreeViewDelegateBuilder;
-  onScaleChanged(handler: () => void): TreeViewDelegateBuilder;
-  onSelectedChanged(handler: () => void): TreeViewDelegateBuilder;
-  onSmoothChanged(handler: (arg0: boolean) => void): TreeViewDelegateBuilder;
-  onSpacingChanged(handler: () => void): TreeViewDelegateBuilder;
-  onStateChanged(handler: (arg0: string) => void): TreeViewDelegateBuilder;
-  onTextChanged(handler: () => void): TreeViewDelegateBuilder;
-  onToggled(handler: () => void): TreeViewDelegateBuilder;
-  onTopInsetChanged(handler: () => void): TreeViewDelegateBuilder;
-  onTopPaddingChanged(handler: () => void): TreeViewDelegateBuilder;
-  onTransformOriginChanged(handler: (arg0: QmlValue) => void): TreeViewDelegateBuilder;
-  onTreeviewChanged(handler: () => void): TreeViewDelegateBuilder;
-  onVerticalPaddingChanged(handler: () => void): TreeViewDelegateBuilder;
-  onVisibleChanged(handler: () => void): TreeViewDelegateBuilder;
-  onVisibleChildrenChanged(handler: () => void): TreeViewDelegateBuilder;
-  onVisualFocusChanged(handler: () => void): TreeViewDelegateBuilder;
-  onWheelEnabledChanged(handler: () => void): TreeViewDelegateBuilder;
-  onWidthChanged(handler: () => void): TreeViewDelegateBuilder;
-  onWindowChanged(handler: (window: WindowBuilder) => void): TreeViewDelegateBuilder;
-  onXChanged(handler: () => void): TreeViewDelegateBuilder;
-  onYChanged(handler: () => void): TreeViewDelegateBuilder;
-  onZChanged(handler: () => void): TreeViewDelegateBuilder;
+  onActionChanged(body: string): TreeViewDelegateBuilder;
+  onActiveFocusChanged(body: string): TreeViewDelegateBuilder;
+  onActiveFocusOnTabChanged(body: string): TreeViewDelegateBuilder;
+  onAntialiasingChanged(body: string): TreeViewDelegateBuilder;
+  onAutoExclusiveChanged(body: string): TreeViewDelegateBuilder;
+  onAutoRepeatChanged(body: string): TreeViewDelegateBuilder;
+  onAutoRepeatDelayChanged(body: string): TreeViewDelegateBuilder;
+  onAutoRepeatIntervalChanged(body: string): TreeViewDelegateBuilder;
+  onAvailableHeightChanged(body: string): TreeViewDelegateBuilder;
+  onAvailableWidthChanged(body: string): TreeViewDelegateBuilder;
+  onBackgroundChanged(body: string): TreeViewDelegateBuilder;
+  onBaselineOffsetChanged(body: string): TreeViewDelegateBuilder;
+  onBottomInsetChanged(body: string): TreeViewDelegateBuilder;
+  onBottomPaddingChanged(body: string): TreeViewDelegateBuilder;
+  onCanceled(body: string): TreeViewDelegateBuilder;
+  onCheckableChanged(body: string): TreeViewDelegateBuilder;
+  onCheckedChanged(body: string): TreeViewDelegateBuilder;
+  onChildrenChanged(body: string): TreeViewDelegateBuilder;
+  onChildrenRectChanged(body: string): TreeViewDelegateBuilder;
+  onClicked(body: string): TreeViewDelegateBuilder;
+  onClipChanged(body: string): TreeViewDelegateBuilder;
+  onContainmentMaskChanged(body: string): TreeViewDelegateBuilder;
+  onContentItemChanged(body: string): TreeViewDelegateBuilder;
+  onCurrentChanged(body: string): TreeViewDelegateBuilder;
+  onDepthChanged(body: string): TreeViewDelegateBuilder;
+  onDisplayChanged(body: string): TreeViewDelegateBuilder;
+  onDoubleClicked(body: string): TreeViewDelegateBuilder;
+  onDownChanged(body: string): TreeViewDelegateBuilder;
+  onEditingChanged(body: string): TreeViewDelegateBuilder;
+  onEnabledChanged(body: string): TreeViewDelegateBuilder;
+  onExpandedChanged(body: string): TreeViewDelegateBuilder;
+  onFocusChanged(body: string): TreeViewDelegateBuilder;
+  onFocusPolicyChanged(body: string): TreeViewDelegateBuilder;
+  onFocusReasonChanged(body: string): TreeViewDelegateBuilder;
+  onFontChanged(body: string): TreeViewDelegateBuilder;
+  onHasChildrenChanged(body: string): TreeViewDelegateBuilder;
+  onHeightChanged(body: string): TreeViewDelegateBuilder;
+  onHighlightedChanged(body: string): TreeViewDelegateBuilder;
+  onHorizontalPaddingChanged(body: string): TreeViewDelegateBuilder;
+  onHoverEnabledChanged(body: string): TreeViewDelegateBuilder;
+  onHoveredChanged(body: string): TreeViewDelegateBuilder;
+  onIconChanged(body: string): TreeViewDelegateBuilder;
+  onImplicitBackgroundHeightChanged(body: string): TreeViewDelegateBuilder;
+  onImplicitBackgroundWidthChanged(body: string): TreeViewDelegateBuilder;
+  onImplicitContentHeightChanged(body: string): TreeViewDelegateBuilder;
+  onImplicitContentWidthChanged(body: string): TreeViewDelegateBuilder;
+  onImplicitHeightChanged(body: string): TreeViewDelegateBuilder;
+  onImplicitIndicatorHeightChanged(body: string): TreeViewDelegateBuilder;
+  onImplicitIndicatorWidthChanged(body: string): TreeViewDelegateBuilder;
+  onImplicitWidthChanged(body: string): TreeViewDelegateBuilder;
+  onIndentationChanged(body: string): TreeViewDelegateBuilder;
+  onIndicatorChanged(body: string): TreeViewDelegateBuilder;
+  onIsTreeNodeChanged(body: string): TreeViewDelegateBuilder;
+  onLeftInsetChanged(body: string): TreeViewDelegateBuilder;
+  onLeftMarginChanged(body: string): TreeViewDelegateBuilder;
+  onLeftPaddingChanged(body: string): TreeViewDelegateBuilder;
+  onLocaleChanged(body: string): TreeViewDelegateBuilder;
+  onMirroredChanged(body: string): TreeViewDelegateBuilder;
+  onObjectNameChanged(body: string): TreeViewDelegateBuilder;
+  onOpacityChanged(body: string): TreeViewDelegateBuilder;
+  onPaddingChanged(body: string): TreeViewDelegateBuilder;
+  onPaletteChanged(body: string): TreeViewDelegateBuilder;
+  onPaletteCreated(body: string): TreeViewDelegateBuilder;
+  onParentChanged(body: string): TreeViewDelegateBuilder;
+  onPressAndHold(body: string): TreeViewDelegateBuilder;
+  onPressXChanged(body: string): TreeViewDelegateBuilder;
+  onPressYChanged(body: string): TreeViewDelegateBuilder;
+  onPressed(body: string): TreeViewDelegateBuilder;
+  onPressedChanged(body: string): TreeViewDelegateBuilder;
+  onReleased(body: string): TreeViewDelegateBuilder;
+  onRightInsetChanged(body: string): TreeViewDelegateBuilder;
+  onRightMarginChanged(body: string): TreeViewDelegateBuilder;
+  onRightPaddingChanged(body: string): TreeViewDelegateBuilder;
+  onRotationChanged(body: string): TreeViewDelegateBuilder;
+  onScaleChanged(body: string): TreeViewDelegateBuilder;
+  onSelectedChanged(body: string): TreeViewDelegateBuilder;
+  onSmoothChanged(body: string): TreeViewDelegateBuilder;
+  onSpacingChanged(body: string): TreeViewDelegateBuilder;
+  onStateChanged(body: string): TreeViewDelegateBuilder;
+  onTextChanged(body: string): TreeViewDelegateBuilder;
+  onToggled(body: string): TreeViewDelegateBuilder;
+  onTopInsetChanged(body: string): TreeViewDelegateBuilder;
+  onTopPaddingChanged(body: string): TreeViewDelegateBuilder;
+  onTransformOriginChanged(body: string): TreeViewDelegateBuilder;
+  onTreeviewChanged(body: string): TreeViewDelegateBuilder;
+  onVerticalPaddingChanged(body: string): TreeViewDelegateBuilder;
+  onVisibleChanged(body: string): TreeViewDelegateBuilder;
+  onVisibleChildrenChanged(body: string): TreeViewDelegateBuilder;
+  onVisualFocusChanged(body: string): TreeViewDelegateBuilder;
+  onWheelEnabledChanged(body: string): TreeViewDelegateBuilder;
+  onWidthChanged(body: string): TreeViewDelegateBuilder;
+  onWindowChanged(body: string): TreeViewDelegateBuilder;
+  onXChanged(body: string): TreeViewDelegateBuilder;
+  onYChanged(body: string): TreeViewDelegateBuilder;
+  onZChanged(body: string): TreeViewDelegateBuilder;
   anchors(setup: (b: AnchorsBuilder) => void): TreeViewDelegateBuilder;
   layer(setup: (b: LayerBuilder) => void): TreeViewDelegateBuilder;
   actionGroup(setup: (b: ActionGroupAttachedBuilder) => void): TreeViewDelegateBuilder;
@@ -289,8 +294,477 @@ export interface TreeViewDelegateBuilder {
   tumbler(setup: (b: TumblerAttachedBuilder) => void): TreeViewDelegateBuilder;
 }
 
+const TREEVIEWDELEGATE_META: TypeMetadata = {
+  typeName: 'TreeViewDelegate',
+  properties: [
+    { name: 'action', hasValue: true, hasBinding: true },
+    { name: 'activeFocusOnTab', hasValue: true, hasBinding: true },
+    { name: 'antialiasing', hasValue: true, hasBinding: true },
+    { name: 'autoExclusive', hasValue: true, hasBinding: true },
+    { name: 'autoRepeat', hasValue: true, hasBinding: true },
+    { name: 'autoRepeatDelay', hasValue: true, hasBinding: true },
+    { name: 'autoRepeatInterval', hasValue: true, hasBinding: true },
+    { name: 'background', hasValue: true, hasBinding: true },
+    { name: 'baselineOffset', hasValue: true, hasBinding: true },
+    { name: 'bottomInset', hasValue: true, hasBinding: true },
+    { name: 'bottomPadding', hasValue: true, hasBinding: true },
+    { name: 'checkable', hasValue: true, hasBinding: true },
+    { name: 'checked', hasValue: true, hasBinding: true },
+    { name: 'clip', hasValue: true, hasBinding: true },
+    { name: 'containmentMask', hasValue: true, hasBinding: true },
+    { name: 'contentItem', hasValue: true, hasBinding: true },
+    { name: 'current', hasValue: true, hasBinding: true },
+    { name: 'depth', hasValue: true, hasBinding: true },
+    { name: 'display', hasValue: true, hasBinding: true },
+    { name: 'down', hasValue: true, hasBinding: true },
+    { name: 'editing', hasValue: true, hasBinding: true },
+    { name: 'enabled', hasValue: true, hasBinding: true },
+    { name: 'expanded', hasValue: true, hasBinding: true },
+    { name: 'focus', hasValue: true, hasBinding: true },
+    { name: 'focusPolicy', hasValue: true, hasBinding: true },
+    { name: 'focusReason', hasValue: true, hasBinding: true },
+    { name: 'font', hasValue: true, hasBinding: true },
+    { name: 'hasChildren', hasValue: true, hasBinding: true },
+    { name: 'height', hasValue: true, hasBinding: true },
+    { name: 'highlighted', hasValue: true, hasBinding: true },
+    { name: 'horizontalPadding', hasValue: true, hasBinding: true },
+    { name: 'hoverEnabled', hasValue: true, hasBinding: true },
+    { name: 'icon', hasValue: true, hasBinding: true },
+    { name: 'implicitHeight', hasValue: true, hasBinding: true },
+    { name: 'implicitWidth', hasValue: true, hasBinding: true },
+    { name: 'indentation', hasValue: true, hasBinding: true },
+    { name: 'indicator', hasValue: true, hasBinding: true },
+    { name: 'isTreeNode', hasValue: true, hasBinding: true },
+    { name: 'leftInset', hasValue: true, hasBinding: true },
+    { name: 'leftMargin', hasValue: true, hasBinding: true },
+    { name: 'leftPadding', hasValue: true, hasBinding: true },
+    { name: 'locale', hasValue: true, hasBinding: true },
+    { name: 'objectName', hasValue: true, hasBinding: true },
+    { name: 'opacity', hasValue: true, hasBinding: true },
+    { name: 'padding', hasValue: true, hasBinding: true },
+    { name: 'palette', hasValue: true, hasBinding: true },
+    { name: 'parent', hasValue: true, hasBinding: true },
+    { name: 'rightInset', hasValue: true, hasBinding: true },
+    { name: 'rightMargin', hasValue: true, hasBinding: true },
+    { name: 'rightPadding', hasValue: true, hasBinding: true },
+    { name: 'rotation', hasValue: true, hasBinding: true },
+    { name: 'scale', hasValue: true, hasBinding: true },
+    { name: 'selected', hasValue: true, hasBinding: true },
+    { name: 'smooth', hasValue: true, hasBinding: true },
+    { name: 'spacing', hasValue: true, hasBinding: true },
+    { name: 'state', hasValue: true, hasBinding: true },
+    { name: 'text', hasValue: true, hasBinding: true },
+    { name: 'topInset', hasValue: true, hasBinding: true },
+    { name: 'topPadding', hasValue: true, hasBinding: true },
+    { name: 'transformOrigin', hasValue: true, hasBinding: true },
+    { name: 'treeView', hasValue: true, hasBinding: true },
+    { name: 'verticalPadding', hasValue: true, hasBinding: true },
+    { name: 'visible', hasValue: true, hasBinding: true },
+    { name: 'wheelEnabled', hasValue: true, hasBinding: true },
+    { name: 'width', hasValue: true, hasBinding: true },
+    { name: 'x', hasValue: true, hasBinding: true },
+    { name: 'y', hasValue: true, hasBinding: true },
+    { name: 'z', hasValue: true, hasBinding: true },
+  ],
+  signals: [
+    { handlerName: 'onActionChanged', paramCount: 0 },
+    { handlerName: 'onActiveFocusChanged', paramCount: 1 },
+    { handlerName: 'onActiveFocusOnTabChanged', paramCount: 1 },
+    { handlerName: 'onAntialiasingChanged', paramCount: 1 },
+    { handlerName: 'onAutoExclusiveChanged', paramCount: 0 },
+    { handlerName: 'onAutoRepeatChanged', paramCount: 0 },
+    { handlerName: 'onAutoRepeatDelayChanged', paramCount: 0 },
+    { handlerName: 'onAutoRepeatIntervalChanged', paramCount: 0 },
+    { handlerName: 'onAvailableHeightChanged', paramCount: 0 },
+    { handlerName: 'onAvailableWidthChanged', paramCount: 0 },
+    { handlerName: 'onBackgroundChanged', paramCount: 0 },
+    { handlerName: 'onBaselineOffsetChanged', paramCount: 0 },
+    { handlerName: 'onBottomInsetChanged', paramCount: 0 },
+    { handlerName: 'onBottomPaddingChanged', paramCount: 0 },
+    { handlerName: 'onCanceled', paramCount: 0 },
+    { handlerName: 'onCheckableChanged', paramCount: 0 },
+    { handlerName: 'onCheckedChanged', paramCount: 0 },
+    { handlerName: 'onChildrenChanged', paramCount: 0 },
+    { handlerName: 'onChildrenRectChanged', paramCount: 1 },
+    { handlerName: 'onClicked', paramCount: 0 },
+    { handlerName: 'onClipChanged', paramCount: 1 },
+    { handlerName: 'onContainmentMaskChanged', paramCount: 0 },
+    { handlerName: 'onContentItemChanged', paramCount: 0 },
+    { handlerName: 'onCurrentChanged', paramCount: 0 },
+    { handlerName: 'onDepthChanged', paramCount: 0 },
+    { handlerName: 'onDisplayChanged', paramCount: 0 },
+    { handlerName: 'onDoubleClicked', paramCount: 0 },
+    { handlerName: 'onDownChanged', paramCount: 0 },
+    { handlerName: 'onEditingChanged', paramCount: 0 },
+    { handlerName: 'onEnabledChanged', paramCount: 0 },
+    { handlerName: 'onExpandedChanged', paramCount: 0 },
+    { handlerName: 'onFocusChanged', paramCount: 1 },
+    { handlerName: 'onFocusPolicyChanged', paramCount: 1 },
+    { handlerName: 'onFocusReasonChanged', paramCount: 0 },
+    { handlerName: 'onFontChanged', paramCount: 0 },
+    { handlerName: 'onHasChildrenChanged', paramCount: 0 },
+    { handlerName: 'onHeightChanged', paramCount: 0 },
+    { handlerName: 'onHighlightedChanged', paramCount: 0 },
+    { handlerName: 'onHorizontalPaddingChanged', paramCount: 0 },
+    { handlerName: 'onHoverEnabledChanged', paramCount: 0 },
+    { handlerName: 'onHoveredChanged', paramCount: 0 },
+    { handlerName: 'onIconChanged', paramCount: 0 },
+    { handlerName: 'onImplicitBackgroundHeightChanged', paramCount: 0 },
+    { handlerName: 'onImplicitBackgroundWidthChanged', paramCount: 0 },
+    { handlerName: 'onImplicitContentHeightChanged', paramCount: 0 },
+    { handlerName: 'onImplicitContentWidthChanged', paramCount: 0 },
+    { handlerName: 'onImplicitHeightChanged', paramCount: 0 },
+    { handlerName: 'onImplicitIndicatorHeightChanged', paramCount: 0 },
+    { handlerName: 'onImplicitIndicatorWidthChanged', paramCount: 0 },
+    { handlerName: 'onImplicitWidthChanged', paramCount: 0 },
+    { handlerName: 'onIndentationChanged', paramCount: 0 },
+    { handlerName: 'onIndicatorChanged', paramCount: 0 },
+    { handlerName: 'onIsTreeNodeChanged', paramCount: 0 },
+    { handlerName: 'onLeftInsetChanged', paramCount: 0 },
+    { handlerName: 'onLeftMarginChanged', paramCount: 0 },
+    { handlerName: 'onLeftPaddingChanged', paramCount: 0 },
+    { handlerName: 'onLocaleChanged', paramCount: 0 },
+    { handlerName: 'onMirroredChanged', paramCount: 0 },
+    { handlerName: 'onObjectNameChanged', paramCount: 1 },
+    { handlerName: 'onOpacityChanged', paramCount: 0 },
+    { handlerName: 'onPaddingChanged', paramCount: 0 },
+    { handlerName: 'onPaletteChanged', paramCount: 0 },
+    { handlerName: 'onPaletteCreated', paramCount: 0 },
+    { handlerName: 'onParentChanged', paramCount: 1 },
+    { handlerName: 'onPressAndHold', paramCount: 0 },
+    { handlerName: 'onPressXChanged', paramCount: 0 },
+    { handlerName: 'onPressYChanged', paramCount: 0 },
+    { handlerName: 'onPressed', paramCount: 0 },
+    { handlerName: 'onPressedChanged', paramCount: 0 },
+    { handlerName: 'onReleased', paramCount: 0 },
+    { handlerName: 'onRightInsetChanged', paramCount: 0 },
+    { handlerName: 'onRightMarginChanged', paramCount: 0 },
+    { handlerName: 'onRightPaddingChanged', paramCount: 0 },
+    { handlerName: 'onRotationChanged', paramCount: 0 },
+    { handlerName: 'onScaleChanged', paramCount: 0 },
+    { handlerName: 'onSelectedChanged', paramCount: 0 },
+    { handlerName: 'onSmoothChanged', paramCount: 1 },
+    { handlerName: 'onSpacingChanged', paramCount: 0 },
+    { handlerName: 'onStateChanged', paramCount: 1 },
+    { handlerName: 'onTextChanged', paramCount: 0 },
+    { handlerName: 'onToggled', paramCount: 0 },
+    { handlerName: 'onTopInsetChanged', paramCount: 0 },
+    { handlerName: 'onTopPaddingChanged', paramCount: 0 },
+    { handlerName: 'onTransformOriginChanged', paramCount: 1 },
+    { handlerName: 'onTreeviewChanged', paramCount: 0 },
+    { handlerName: 'onVerticalPaddingChanged', paramCount: 0 },
+    { handlerName: 'onVisibleChanged', paramCount: 0 },
+    { handlerName: 'onVisibleChildrenChanged', paramCount: 0 },
+    { handlerName: 'onVisualFocusChanged', paramCount: 0 },
+    { handlerName: 'onWheelEnabledChanged', paramCount: 0 },
+    { handlerName: 'onWidthChanged', paramCount: 0 },
+    { handlerName: 'onWindowChanged', paramCount: 1 },
+    { handlerName: 'onXChanged', paramCount: 0 },
+    { handlerName: 'onYChanged', paramCount: 0 },
+    { handlerName: 'onZChanged', paramCount: 0 },
+  ],
+  grouped: [
+    {
+      methodName: 'anchors',
+      groupName: 'anchors',
+      properties: [
+        { name: 'alignWhenCentered', hasValue: true, hasBinding: true },
+        { name: 'baseline', hasValue: true, hasBinding: true },
+        { name: 'baselineOffset', hasValue: true, hasBinding: true },
+        { name: 'bottom', hasValue: true, hasBinding: true },
+        { name: 'bottomMargin', hasValue: true, hasBinding: true },
+        { name: 'centerIn', hasValue: true, hasBinding: true },
+        { name: 'fill', hasValue: true, hasBinding: true },
+        { name: 'horizontalCenter', hasValue: true, hasBinding: true },
+        { name: 'horizontalCenterOffset', hasValue: true, hasBinding: true },
+        { name: 'left', hasValue: true, hasBinding: true },
+        { name: 'leftMargin', hasValue: true, hasBinding: true },
+        { name: 'margins', hasValue: true, hasBinding: true },
+        { name: 'right', hasValue: true, hasBinding: true },
+        { name: 'rightMargin', hasValue: true, hasBinding: true },
+        { name: 'top', hasValue: true, hasBinding: true },
+        { name: 'topMargin', hasValue: true, hasBinding: true },
+        { name: 'verticalCenter', hasValue: true, hasBinding: true },
+        { name: 'verticalCenterOffset', hasValue: true, hasBinding: true },
+      ],
+    },
+    {
+      methodName: 'layer',
+      groupName: 'layer',
+      properties: [
+        { name: 'effect', hasValue: true, hasBinding: true },
+        { name: 'enabled', hasValue: true, hasBinding: true },
+        { name: 'format', hasValue: true, hasBinding: true },
+        { name: 'live', hasValue: true, hasBinding: true },
+        { name: 'mipmap', hasValue: true, hasBinding: true },
+        { name: 'samplerName', hasValue: true, hasBinding: true },
+        { name: 'samples', hasValue: true, hasBinding: true },
+        { name: 'smooth', hasValue: true, hasBinding: true },
+        { name: 'sourceRect', hasValue: true, hasBinding: true },
+        { name: 'textureMirroring', hasValue: true, hasBinding: true },
+        { name: 'textureSize', hasValue: true, hasBinding: true },
+        { name: 'wrapMode', hasValue: true, hasBinding: true },
+      ],
+    },
+  ],
+  attached: [
+    {
+      methodName: 'actionGroup',
+      attachedTypeName: 'ActionGroup',
+      properties: [
+        { name: 'group', hasValue: true, hasBinding: true },
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
+      signals: [
+        { handlerName: 'onGroupChanged', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'applicationWindow',
+      attachedTypeName: 'ApplicationWindow',
+      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
+      signals: [
+        { handlerName: 'onActiveFocusControlChanged', paramCount: 0 },
+        { handlerName: 'onContentItemChanged', paramCount: 0 },
+        { handlerName: 'onFooterChanged', paramCount: 0 },
+        { handlerName: 'onHeaderChanged', paramCount: 0 },
+        { handlerName: 'onMenuBarChanged', paramCount: 0 },
+        { handlerName: 'onWindowChanged', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'buttonGroup',
+      attachedTypeName: 'ButtonGroup',
+      properties: [
+        { name: 'group', hasValue: true, hasBinding: true },
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
+      signals: [
+        { handlerName: 'onGroupChanged', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'contextMenu',
+      attachedTypeName: 'ContextMenu',
+      properties: [
+        { name: 'menu', hasValue: true, hasBinding: true },
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
+      signals: [
+        { handlerName: 'onMenuChanged', paramCount: 0 },
+        { handlerName: 'onRequested', paramCount: 1 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'dialogButtonBox',
+      attachedTypeName: 'DialogButtonBox',
+      properties: [
+        { name: 'buttonRole', hasValue: true, hasBinding: true },
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
+      signals: [
+        { handlerName: 'onButtonBoxChanged', paramCount: 0 },
+        { handlerName: 'onButtonRoleChanged', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'overlay',
+      attachedTypeName: 'Overlay',
+      properties: [
+        { name: 'modal', hasValue: true, hasBinding: true },
+        { name: 'modeless', hasValue: true, hasBinding: true },
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
+      signals: [
+        { handlerName: 'onModalChanged', paramCount: 0 },
+        { handlerName: 'onModelessChanged', paramCount: 0 },
+        { handlerName: 'onOverlayChanged', paramCount: 0 },
+        { handlerName: 'onPressed', paramCount: 0 },
+        { handlerName: 'onReleased', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'scrollBar',
+      attachedTypeName: 'ScrollBar',
+      properties: [
+        { name: 'horizontal', hasValue: true, hasBinding: true },
+        { name: 'vertical', hasValue: true, hasBinding: true },
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
+      signals: [
+        { handlerName: 'onHorizontalChanged', paramCount: 0 },
+        { handlerName: 'onVerticalChanged', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'scrollIndicator',
+      attachedTypeName: 'ScrollIndicator',
+      properties: [
+        { name: 'horizontal', hasValue: true, hasBinding: true },
+        { name: 'vertical', hasValue: true, hasBinding: true },
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
+      signals: [
+        { handlerName: 'onHorizontalChanged', paramCount: 0 },
+        { handlerName: 'onVerticalChanged', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'selectionRectangle',
+      attachedTypeName: 'SelectionRectangle',
+      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
+      signals: [
+        { handlerName: 'onControlChanged', paramCount: 0 },
+        { handlerName: 'onDraggingChanged', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'splitHandle',
+      attachedTypeName: 'SplitHandle',
+      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
+      signals: [
+        { handlerName: 'onHoveredChanged', paramCount: 0 },
+        { handlerName: 'onPressedChanged', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'splitView',
+      attachedTypeName: 'SplitView',
+      properties: [
+        { name: 'fillHeight', hasValue: true, hasBinding: true },
+        { name: 'fillWidth', hasValue: true, hasBinding: true },
+        { name: 'maximumHeight', hasValue: true, hasBinding: true },
+        { name: 'maximumWidth', hasValue: true, hasBinding: true },
+        { name: 'minimumHeight', hasValue: true, hasBinding: true },
+        { name: 'minimumWidth', hasValue: true, hasBinding: true },
+        { name: 'preferredHeight', hasValue: true, hasBinding: true },
+        { name: 'preferredWidth', hasValue: true, hasBinding: true },
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
+      signals: [
+        { handlerName: 'onFillHeightChanged', paramCount: 0 },
+        { handlerName: 'onFillWidthChanged', paramCount: 0 },
+        { handlerName: 'onMaximumHeightChanged', paramCount: 0 },
+        { handlerName: 'onMaximumWidthChanged', paramCount: 0 },
+        { handlerName: 'onMinimumHeightChanged', paramCount: 0 },
+        { handlerName: 'onMinimumWidthChanged', paramCount: 0 },
+        { handlerName: 'onPreferredHeightChanged', paramCount: 0 },
+        { handlerName: 'onPreferredWidthChanged', paramCount: 0 },
+        { handlerName: 'onViewChanged', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'stackView',
+      attachedTypeName: 'StackView',
+      properties: [
+        { name: 'visible', hasValue: true, hasBinding: true },
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
+      signals: [
+        { handlerName: 'onActivated', paramCount: 0 },
+        { handlerName: 'onActivating', paramCount: 0 },
+        { handlerName: 'onDeactivated', paramCount: 0 },
+        { handlerName: 'onDeactivating', paramCount: 0 },
+        { handlerName: 'onIndexChanged', paramCount: 0 },
+        { handlerName: 'onRemoved', paramCount: 0 },
+        { handlerName: 'onStatusChanged', paramCount: 0 },
+        { handlerName: 'onViewChanged', paramCount: 0 },
+        { handlerName: 'onVisibleChanged', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'swipeDelegate',
+      attachedTypeName: 'SwipeDelegate',
+      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
+      signals: [
+        { handlerName: 'onClicked', paramCount: 0 },
+        { handlerName: 'onPressedChanged', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'swipeView',
+      attachedTypeName: 'SwipeView',
+      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
+      signals: [
+        { handlerName: 'onIndexChanged', paramCount: 0 },
+        { handlerName: 'onIsCurrentItemChanged', paramCount: 0 },
+        { handlerName: 'onIsNextItemChanged', paramCount: 0 },
+        { handlerName: 'onIsPreviousItemChanged', paramCount: 0 },
+        { handlerName: 'onViewChanged', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'tabBar',
+      attachedTypeName: 'TabBar',
+      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
+      signals: [
+        { handlerName: 'onIndexChanged', paramCount: 0 },
+        { handlerName: 'onPositionChanged', paramCount: 0 },
+        { handlerName: 'onTabBarChanged', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'textArea',
+      attachedTypeName: 'TextArea',
+      properties: [
+        { name: 'flickable', hasValue: true, hasBinding: true },
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
+      signals: [
+        { handlerName: 'onFlickableChanged', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'toolTip',
+      attachedTypeName: 'ToolTip',
+      properties: [
+        { name: 'delay', hasValue: true, hasBinding: true },
+        { name: 'text', hasValue: true, hasBinding: true },
+        { name: 'timeout', hasValue: true, hasBinding: true },
+        { name: 'visible', hasValue: true, hasBinding: true },
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
+      signals: [
+        { handlerName: 'onDelayChanged', paramCount: 0 },
+        { handlerName: 'onTextChanged', paramCount: 0 },
+        { handlerName: 'onTimeoutChanged', paramCount: 0 },
+        { handlerName: 'onVisibleChanged', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'tumbler',
+      attachedTypeName: 'Tumbler',
+      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
+      signals: [
+        { handlerName: 'onDisplacementChanged', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+  ],
+};
+
 export function TreeViewDelegate(): TreeViewDelegateBuilder {
-  return new DslBuilderImpl('TreeViewDelegate') as unknown as TreeViewDelegateBuilder;
+  return createFluentBuilder(
+    'TreeViewDelegate',
+    TREEVIEWDELEGATE_META,
+  ) as unknown as TreeViewDelegateBuilder;
 }
 
 export namespace TreeViewDelegate {

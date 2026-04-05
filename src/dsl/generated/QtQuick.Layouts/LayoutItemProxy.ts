@@ -2,14 +2,13 @@
 // Type: LayoutItemProxy
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlRect, QmlValue } from '../../runtime/index.js';
-import { createEnumToken, DslBuilderImpl } from '../../runtime/index.js';
+import type { QmlEnumToken, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { QtObjectBuilder } from '../QML/QtObject.js';
 import type { ItemBuilder } from '../QtQuick/Item.js';
 import type { PaletteBuilder } from '../QtQuick/Palette.js';
 import type { AnchorsBuilder } from '../QtQuick/QQuickAnchors.js';
 import type { LayerBuilder } from '../QtQuick/QQuickItemLayer.js';
-import type { WindowBuilder } from '../QtQuick/Window.js';
 import type { FlexboxLayoutAttachedBuilder } from './QQuickFlexboxLayoutAttached.js';
 import type { LayoutAttachedBuilder } from './QQuickLayoutAttached.js';
 import type { StackLayoutAttachedBuilder } from './QQuickStackLayoutAttached.js';
@@ -31,7 +30,7 @@ export interface LayoutItemProxyBuilder {
   enabledBind(expr: string): LayoutItemProxyBuilder;
   focus(value: boolean): LayoutItemProxyBuilder;
   focusBind(expr: string): LayoutItemProxyBuilder;
-  focusPolicy(value: QmlValue): LayoutItemProxyBuilder;
+  focusPolicy(value: QmlEnumToken): LayoutItemProxyBuilder;
   focusPolicyBind(expr: string): LayoutItemProxyBuilder;
   height(value: number): LayoutItemProxyBuilder;
   heightBind(expr: string): LayoutItemProxyBuilder;
@@ -57,7 +56,7 @@ export interface LayoutItemProxyBuilder {
   stateBind(expr: string): LayoutItemProxyBuilder;
   target(value: ItemBuilder): LayoutItemProxyBuilder;
   targetBind(expr: string): LayoutItemProxyBuilder;
-  transformOrigin(value: QmlValue): LayoutItemProxyBuilder;
+  transformOrigin(value: QmlEnumToken): LayoutItemProxyBuilder;
   transformOriginBind(expr: string): LayoutItemProxyBuilder;
   visible(value: boolean): LayoutItemProxyBuilder;
   visibleBind(expr: string): LayoutItemProxyBuilder;
@@ -69,38 +68,38 @@ export interface LayoutItemProxyBuilder {
   yBind(expr: string): LayoutItemProxyBuilder;
   z(value: number): LayoutItemProxyBuilder;
   zBind(expr: string): LayoutItemProxyBuilder;
-  onActiveFocusChanged(handler: (arg0: boolean) => void): LayoutItemProxyBuilder;
-  onActiveFocusOnTabChanged(handler: (arg0: boolean) => void): LayoutItemProxyBuilder;
-  onAntialiasingChanged(handler: (arg0: boolean) => void): LayoutItemProxyBuilder;
-  onBaselineOffsetChanged(handler: (arg0: number) => void): LayoutItemProxyBuilder;
-  onChildrenChanged(handler: () => void): LayoutItemProxyBuilder;
-  onChildrenRectChanged(handler: (arg0: QmlRect) => void): LayoutItemProxyBuilder;
-  onClipChanged(handler: (arg0: boolean) => void): LayoutItemProxyBuilder;
-  onContainmentMaskChanged(handler: () => void): LayoutItemProxyBuilder;
-  onEnabledChanged(handler: () => void): LayoutItemProxyBuilder;
-  onFocusChanged(handler: (arg0: boolean) => void): LayoutItemProxyBuilder;
-  onFocusPolicyChanged(handler: (arg0: QmlValue) => void): LayoutItemProxyBuilder;
-  onHeightChanged(handler: () => void): LayoutItemProxyBuilder;
-  onImplicitHeightChanged(handler: () => void): LayoutItemProxyBuilder;
-  onImplicitWidthChanged(handler: () => void): LayoutItemProxyBuilder;
-  onObjectNameChanged(handler: (objectName: string) => void): LayoutItemProxyBuilder;
-  onOpacityChanged(handler: () => void): LayoutItemProxyBuilder;
-  onPaletteChanged(handler: () => void): LayoutItemProxyBuilder;
-  onPaletteCreated(handler: () => void): LayoutItemProxyBuilder;
-  onParentChanged(handler: (arg0: ItemBuilder) => void): LayoutItemProxyBuilder;
-  onRotationChanged(handler: () => void): LayoutItemProxyBuilder;
-  onScaleChanged(handler: () => void): LayoutItemProxyBuilder;
-  onSmoothChanged(handler: (arg0: boolean) => void): LayoutItemProxyBuilder;
-  onStateChanged(handler: (arg0: string) => void): LayoutItemProxyBuilder;
-  onTargetChanged(handler: () => void): LayoutItemProxyBuilder;
-  onTransformOriginChanged(handler: (arg0: QmlValue) => void): LayoutItemProxyBuilder;
-  onVisibleChanged(handler: () => void): LayoutItemProxyBuilder;
-  onVisibleChildrenChanged(handler: () => void): LayoutItemProxyBuilder;
-  onWidthChanged(handler: () => void): LayoutItemProxyBuilder;
-  onWindowChanged(handler: (window: WindowBuilder) => void): LayoutItemProxyBuilder;
-  onXChanged(handler: () => void): LayoutItemProxyBuilder;
-  onYChanged(handler: () => void): LayoutItemProxyBuilder;
-  onZChanged(handler: () => void): LayoutItemProxyBuilder;
+  onActiveFocusChanged(body: string): LayoutItemProxyBuilder;
+  onActiveFocusOnTabChanged(body: string): LayoutItemProxyBuilder;
+  onAntialiasingChanged(body: string): LayoutItemProxyBuilder;
+  onBaselineOffsetChanged(body: string): LayoutItemProxyBuilder;
+  onChildrenChanged(body: string): LayoutItemProxyBuilder;
+  onChildrenRectChanged(body: string): LayoutItemProxyBuilder;
+  onClipChanged(body: string): LayoutItemProxyBuilder;
+  onContainmentMaskChanged(body: string): LayoutItemProxyBuilder;
+  onEnabledChanged(body: string): LayoutItemProxyBuilder;
+  onFocusChanged(body: string): LayoutItemProxyBuilder;
+  onFocusPolicyChanged(body: string): LayoutItemProxyBuilder;
+  onHeightChanged(body: string): LayoutItemProxyBuilder;
+  onImplicitHeightChanged(body: string): LayoutItemProxyBuilder;
+  onImplicitWidthChanged(body: string): LayoutItemProxyBuilder;
+  onObjectNameChanged(body: string): LayoutItemProxyBuilder;
+  onOpacityChanged(body: string): LayoutItemProxyBuilder;
+  onPaletteChanged(body: string): LayoutItemProxyBuilder;
+  onPaletteCreated(body: string): LayoutItemProxyBuilder;
+  onParentChanged(body: string): LayoutItemProxyBuilder;
+  onRotationChanged(body: string): LayoutItemProxyBuilder;
+  onScaleChanged(body: string): LayoutItemProxyBuilder;
+  onSmoothChanged(body: string): LayoutItemProxyBuilder;
+  onStateChanged(body: string): LayoutItemProxyBuilder;
+  onTargetChanged(body: string): LayoutItemProxyBuilder;
+  onTransformOriginChanged(body: string): LayoutItemProxyBuilder;
+  onVisibleChanged(body: string): LayoutItemProxyBuilder;
+  onVisibleChildrenChanged(body: string): LayoutItemProxyBuilder;
+  onWidthChanged(body: string): LayoutItemProxyBuilder;
+  onWindowChanged(body: string): LayoutItemProxyBuilder;
+  onXChanged(body: string): LayoutItemProxyBuilder;
+  onYChanged(body: string): LayoutItemProxyBuilder;
+  onZChanged(body: string): LayoutItemProxyBuilder;
   anchors(setup: (b: AnchorsBuilder) => void): LayoutItemProxyBuilder;
   layer(setup: (b: LayerBuilder) => void): LayoutItemProxyBuilder;
   flexboxLayout(setup: (b: FlexboxLayoutAttachedBuilder) => void): LayoutItemProxyBuilder;
@@ -108,8 +107,199 @@ export interface LayoutItemProxyBuilder {
   stackLayout(setup: (b: StackLayoutAttachedBuilder) => void): LayoutItemProxyBuilder;
 }
 
+const LAYOUTITEMPROXY_META: TypeMetadata = {
+  typeName: 'LayoutItemProxy',
+  properties: [
+    { name: 'activeFocusOnTab', hasValue: true, hasBinding: true },
+    { name: 'antialiasing', hasValue: true, hasBinding: true },
+    { name: 'baselineOffset', hasValue: true, hasBinding: true },
+    { name: 'clip', hasValue: true, hasBinding: true },
+    { name: 'containmentMask', hasValue: true, hasBinding: true },
+    { name: 'enabled', hasValue: true, hasBinding: true },
+    { name: 'focus', hasValue: true, hasBinding: true },
+    { name: 'focusPolicy', hasValue: true, hasBinding: true },
+    { name: 'height', hasValue: true, hasBinding: true },
+    { name: 'implicitHeight', hasValue: true, hasBinding: true },
+    { name: 'implicitWidth', hasValue: true, hasBinding: true },
+    { name: 'objectName', hasValue: true, hasBinding: true },
+    { name: 'opacity', hasValue: true, hasBinding: true },
+    { name: 'palette', hasValue: true, hasBinding: true },
+    { name: 'parent', hasValue: true, hasBinding: true },
+    { name: 'rotation', hasValue: true, hasBinding: true },
+    { name: 'scale', hasValue: true, hasBinding: true },
+    { name: 'smooth', hasValue: true, hasBinding: true },
+    { name: 'state', hasValue: true, hasBinding: true },
+    { name: 'target', hasValue: true, hasBinding: true },
+    { name: 'transformOrigin', hasValue: true, hasBinding: true },
+    { name: 'visible', hasValue: true, hasBinding: true },
+    { name: 'width', hasValue: true, hasBinding: true },
+    { name: 'x', hasValue: true, hasBinding: true },
+    { name: 'y', hasValue: true, hasBinding: true },
+    { name: 'z', hasValue: true, hasBinding: true },
+  ],
+  signals: [
+    { handlerName: 'onActiveFocusChanged', paramCount: 1 },
+    { handlerName: 'onActiveFocusOnTabChanged', paramCount: 1 },
+    { handlerName: 'onAntialiasingChanged', paramCount: 1 },
+    { handlerName: 'onBaselineOffsetChanged', paramCount: 1 },
+    { handlerName: 'onChildrenChanged', paramCount: 0 },
+    { handlerName: 'onChildrenRectChanged', paramCount: 1 },
+    { handlerName: 'onClipChanged', paramCount: 1 },
+    { handlerName: 'onContainmentMaskChanged', paramCount: 0 },
+    { handlerName: 'onEnabledChanged', paramCount: 0 },
+    { handlerName: 'onFocusChanged', paramCount: 1 },
+    { handlerName: 'onFocusPolicyChanged', paramCount: 1 },
+    { handlerName: 'onHeightChanged', paramCount: 0 },
+    { handlerName: 'onImplicitHeightChanged', paramCount: 0 },
+    { handlerName: 'onImplicitWidthChanged', paramCount: 0 },
+    { handlerName: 'onObjectNameChanged', paramCount: 1 },
+    { handlerName: 'onOpacityChanged', paramCount: 0 },
+    { handlerName: 'onPaletteChanged', paramCount: 0 },
+    { handlerName: 'onPaletteCreated', paramCount: 0 },
+    { handlerName: 'onParentChanged', paramCount: 1 },
+    { handlerName: 'onRotationChanged', paramCount: 0 },
+    { handlerName: 'onScaleChanged', paramCount: 0 },
+    { handlerName: 'onSmoothChanged', paramCount: 1 },
+    { handlerName: 'onStateChanged', paramCount: 1 },
+    { handlerName: 'onTargetChanged', paramCount: 0 },
+    { handlerName: 'onTransformOriginChanged', paramCount: 1 },
+    { handlerName: 'onVisibleChanged', paramCount: 0 },
+    { handlerName: 'onVisibleChildrenChanged', paramCount: 0 },
+    { handlerName: 'onWidthChanged', paramCount: 0 },
+    { handlerName: 'onWindowChanged', paramCount: 1 },
+    { handlerName: 'onXChanged', paramCount: 0 },
+    { handlerName: 'onYChanged', paramCount: 0 },
+    { handlerName: 'onZChanged', paramCount: 0 },
+  ],
+  grouped: [
+    {
+      methodName: 'anchors',
+      groupName: 'anchors',
+      properties: [
+        { name: 'alignWhenCentered', hasValue: true, hasBinding: true },
+        { name: 'baseline', hasValue: true, hasBinding: true },
+        { name: 'baselineOffset', hasValue: true, hasBinding: true },
+        { name: 'bottom', hasValue: true, hasBinding: true },
+        { name: 'bottomMargin', hasValue: true, hasBinding: true },
+        { name: 'centerIn', hasValue: true, hasBinding: true },
+        { name: 'fill', hasValue: true, hasBinding: true },
+        { name: 'horizontalCenter', hasValue: true, hasBinding: true },
+        { name: 'horizontalCenterOffset', hasValue: true, hasBinding: true },
+        { name: 'left', hasValue: true, hasBinding: true },
+        { name: 'leftMargin', hasValue: true, hasBinding: true },
+        { name: 'margins', hasValue: true, hasBinding: true },
+        { name: 'right', hasValue: true, hasBinding: true },
+        { name: 'rightMargin', hasValue: true, hasBinding: true },
+        { name: 'top', hasValue: true, hasBinding: true },
+        { name: 'topMargin', hasValue: true, hasBinding: true },
+        { name: 'verticalCenter', hasValue: true, hasBinding: true },
+        { name: 'verticalCenterOffset', hasValue: true, hasBinding: true },
+      ],
+    },
+    {
+      methodName: 'layer',
+      groupName: 'layer',
+      properties: [
+        { name: 'effect', hasValue: true, hasBinding: true },
+        { name: 'enabled', hasValue: true, hasBinding: true },
+        { name: 'format', hasValue: true, hasBinding: true },
+        { name: 'live', hasValue: true, hasBinding: true },
+        { name: 'mipmap', hasValue: true, hasBinding: true },
+        { name: 'samplerName', hasValue: true, hasBinding: true },
+        { name: 'samples', hasValue: true, hasBinding: true },
+        { name: 'smooth', hasValue: true, hasBinding: true },
+        { name: 'sourceRect', hasValue: true, hasBinding: true },
+        { name: 'textureMirroring', hasValue: true, hasBinding: true },
+        { name: 'textureSize', hasValue: true, hasBinding: true },
+        { name: 'wrapMode', hasValue: true, hasBinding: true },
+      ],
+    },
+  ],
+  attached: [
+    {
+      methodName: 'flexboxLayout',
+      attachedTypeName: 'FlexboxLayout',
+      properties: [
+        { name: 'alignSelf', hasValue: true, hasBinding: true },
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
+      signals: [
+        { handlerName: 'onAlignSelfChanged', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'layout',
+      attachedTypeName: 'Layout',
+      properties: [
+        { name: 'alignment', hasValue: true, hasBinding: true },
+        { name: 'bottomMargin', hasValue: true, hasBinding: true },
+        { name: 'column', hasValue: true, hasBinding: true },
+        { name: 'columnSpan', hasValue: true, hasBinding: true },
+        { name: 'fillHeight', hasValue: true, hasBinding: true },
+        { name: 'fillWidth', hasValue: true, hasBinding: true },
+        { name: 'horizontalStretchFactor', hasValue: true, hasBinding: true },
+        { name: 'leftMargin', hasValue: true, hasBinding: true },
+        { name: 'margins', hasValue: true, hasBinding: true },
+        { name: 'maximumHeight', hasValue: true, hasBinding: true },
+        { name: 'maximumWidth', hasValue: true, hasBinding: true },
+        { name: 'minimumHeight', hasValue: true, hasBinding: true },
+        { name: 'minimumWidth', hasValue: true, hasBinding: true },
+        { name: 'preferredHeight', hasValue: true, hasBinding: true },
+        { name: 'preferredWidth', hasValue: true, hasBinding: true },
+        { name: 'rightMargin', hasValue: true, hasBinding: true },
+        { name: 'row', hasValue: true, hasBinding: true },
+        { name: 'rowSpan', hasValue: true, hasBinding: true },
+        { name: 'topMargin', hasValue: true, hasBinding: true },
+        { name: 'useDefaultSizePolicy', hasValue: true, hasBinding: true },
+        { name: 'verticalStretchFactor', hasValue: true, hasBinding: true },
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
+      signals: [
+        { handlerName: 'onAlignmentChanged', paramCount: 0 },
+        { handlerName: 'onBottomMarginChanged', paramCount: 0 },
+        { handlerName: 'onColumnChanged', paramCount: 0 },
+        { handlerName: 'onColumnSpanChanged', paramCount: 0 },
+        { handlerName: 'onFillHeightChanged', paramCount: 0 },
+        { handlerName: 'onFillWidthChanged', paramCount: 0 },
+        { handlerName: 'onHorizontalStretchFactorChanged', paramCount: 0 },
+        { handlerName: 'onLeftMarginChanged', paramCount: 0 },
+        { handlerName: 'onMarginsChanged', paramCount: 0 },
+        { handlerName: 'onMaximumHeightChanged', paramCount: 0 },
+        { handlerName: 'onMaximumWidthChanged', paramCount: 0 },
+        { handlerName: 'onMinimumHeightChanged', paramCount: 0 },
+        { handlerName: 'onMinimumWidthChanged', paramCount: 0 },
+        { handlerName: 'onPreferredHeightChanged', paramCount: 0 },
+        { handlerName: 'onPreferredWidthChanged', paramCount: 0 },
+        { handlerName: 'onRightMarginChanged', paramCount: 0 },
+        { handlerName: 'onRowChanged', paramCount: 0 },
+        { handlerName: 'onRowSpanChanged', paramCount: 0 },
+        { handlerName: 'onTopMarginChanged', paramCount: 0 },
+        { handlerName: 'onUseDefaultSizePolicyChanged', paramCount: 0 },
+        { handlerName: 'onVerticalStretchFactorChanged', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'stackLayout',
+      attachedTypeName: 'StackLayout',
+      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
+      signals: [
+        { handlerName: 'onIndexChanged', paramCount: 0 },
+        { handlerName: 'onIsCurrentItemChanged', paramCount: 0 },
+        { handlerName: 'onLayoutChanged', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+  ],
+  defaultProperty: 'data',
+};
+
 export function LayoutItemProxy(): LayoutItemProxyBuilder {
-  return new DslBuilderImpl('LayoutItemProxy') as unknown as LayoutItemProxyBuilder;
+  return createFluentBuilder(
+    'LayoutItemProxy',
+    LAYOUTITEMPROXY_META,
+  ) as unknown as LayoutItemProxyBuilder;
 }
 
 export namespace LayoutItemProxy {

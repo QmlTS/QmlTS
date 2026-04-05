@@ -7,15 +7,15 @@ export interface GridViewAttachedBuilder {
   delayRemoveBind(expr: string): GridViewAttachedBuilder;
   objectName(value: string): GridViewAttachedBuilder;
   objectNameBind(expr: string): GridViewAttachedBuilder;
-  onAdd(handler: () => void): GridViewAttachedBuilder;
-  onCurrentItemChanged(handler: () => void): GridViewAttachedBuilder;
-  onDelayRemoveChanged(handler: () => void): GridViewAttachedBuilder;
-  onNextSectionChanged(handler: () => void): GridViewAttachedBuilder;
-  onObjectNameChanged(handler: (objectName: string) => void): GridViewAttachedBuilder;
-  onPooled(handler: () => void): GridViewAttachedBuilder;
-  onPrevSectionChanged(handler: () => void): GridViewAttachedBuilder;
-  onRemove(handler: () => void): GridViewAttachedBuilder;
-  onReused(handler: () => void): GridViewAttachedBuilder;
-  onSectionChanged(handler: () => void): GridViewAttachedBuilder;
-  onViewChanged(handler: () => void): GridViewAttachedBuilder;
+  onAdd(body: string): GridViewAttachedBuilder;
+  onCurrentItemChanged(body: string): GridViewAttachedBuilder;
+  onDelayRemoveChanged(body: string): GridViewAttachedBuilder;
+  onNextSectionChanged(body: string): GridViewAttachedBuilder;
+  onObjectNameChanged(body: string): GridViewAttachedBuilder;
+  onPooled(body: string): GridViewAttachedBuilder;
+  onPrevSectionChanged(body: string): GridViewAttachedBuilder;
+  onRemove(body: string): GridViewAttachedBuilder;
+  onReused(body: string): GridViewAttachedBuilder;
+  onSectionChanged(body: string): GridViewAttachedBuilder;
+  onViewChanged(body: string): GridViewAttachedBuilder;
 }

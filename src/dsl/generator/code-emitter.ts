@@ -196,7 +196,7 @@ export class CodeEmitter {
 
     // ─── Factory function ───────────────────────────────────────────────
     lines.push(`export function ${type.qmlName}(): ${builderName} {`);
-    lines.push(`  return createFluentBuilder('${type.qmlName}', ${metaConstName}) as ${builderName};`);
+    lines.push(`  return createFluentBuilder('${type.qmlName}', ${metaConstName}) as unknown as ${builderName};`);
     lines.push('}');
 
     // ─── Enum namespace ─────────────────────────────────────────────────

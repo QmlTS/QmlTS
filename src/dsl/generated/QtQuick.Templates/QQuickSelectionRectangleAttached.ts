@@ -5,7 +5,7 @@
 export interface SelectionRectangleAttachedBuilder {
   objectName(value: string): SelectionRectangleAttachedBuilder;
   objectNameBind(expr: string): SelectionRectangleAttachedBuilder;
-  onControlChanged(handler: () => void): SelectionRectangleAttachedBuilder;
-  onDraggingChanged(handler: () => void): SelectionRectangleAttachedBuilder;
-  onObjectNameChanged(handler: (objectName: string) => void): SelectionRectangleAttachedBuilder;
+  onControlChanged(body: string): SelectionRectangleAttachedBuilder;
+  onDraggingChanged(body: string): SelectionRectangleAttachedBuilder;
+  onObjectNameChanged(body: string): SelectionRectangleAttachedBuilder;
 }

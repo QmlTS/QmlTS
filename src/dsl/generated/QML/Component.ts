@@ -2,8 +2,8 @@
 // Type: Component
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlValue } from '../../runtime/index.js';
-import { createEnumToken, DslBuilderImpl } from '../../runtime/index.js';
+import type { QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { ComponentAttachedBuilder } from './QQmlComponentAttached.js';
 export interface ComponentBuilder {
   id(id: string): ComponentBuilder;
@@ -11,14 +11,37 @@ export interface ComponentBuilder {
 
   objectName(value: string): ComponentBuilder;
   objectNameBind(expr: string): ComponentBuilder;
-  onObjectNameChanged(handler: (objectName: string) => void): ComponentBuilder;
-  onProgressChanged(handler: (arg0: number) => void): ComponentBuilder;
-  onStatusChanged(handler: (arg0: QmlValue) => void): ComponentBuilder;
+  onObjectNameChanged(body: string): ComponentBuilder;
+  onProgressChanged(body: string): ComponentBuilder;
+  onStatusChanged(body: string): ComponentBuilder;
   component(setup: (b: ComponentAttachedBuilder) => void): ComponentBuilder;
 }
 
+const COMPONENT_META: TypeMetadata = {
+  typeName: 'Component',
+  properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
+  signals: [
+    { handlerName: 'onObjectNameChanged', paramCount: 1 },
+    { handlerName: 'onProgressChanged', paramCount: 1 },
+    { handlerName: 'onStatusChanged', paramCount: 1 },
+  ],
+  grouped: [],
+  attached: [
+    {
+      methodName: 'component',
+      attachedTypeName: 'Component',
+      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
+      signals: [
+        { handlerName: 'onCompleted', paramCount: 0 },
+        { handlerName: 'onDestruction', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+  ],
+};
+
 export function Component(): ComponentBuilder {
-  return new DslBuilderImpl('Component') as unknown as ComponentBuilder;
+  return createFluentBuilder('Component', COMPONENT_META) as unknown as ComponentBuilder;
 }
 
 export namespace Component {

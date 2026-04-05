@@ -8,10 +8,10 @@ export interface TableViewAttachedBuilder {
   editDelegateBind(expr: string): TableViewAttachedBuilder;
   objectName(value: string): TableViewAttachedBuilder;
   objectNameBind(expr: string): TableViewAttachedBuilder;
-  onCommit(handler: () => void): TableViewAttachedBuilder;
-  onEditDelegateChanged(handler: () => void): TableViewAttachedBuilder;
-  onPooled(handler: () => void): TableViewAttachedBuilder;
-  onReused(handler: () => void): TableViewAttachedBuilder;
-  onViewChanged(handler: () => void): TableViewAttachedBuilder;
-  onObjectNameChanged(handler: (objectName: string) => void): TableViewAttachedBuilder;
+  onCommit(body: string): TableViewAttachedBuilder;
+  onEditDelegateChanged(body: string): TableViewAttachedBuilder;
+  onPooled(body: string): TableViewAttachedBuilder;
+  onReused(body: string): TableViewAttachedBuilder;
+  onViewChanged(body: string): TableViewAttachedBuilder;
+  onObjectNameChanged(body: string): TableViewAttachedBuilder;
 }

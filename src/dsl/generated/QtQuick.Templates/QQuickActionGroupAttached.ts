@@ -8,6 +8,6 @@ export interface ActionGroupAttachedBuilder {
   groupBind(expr: string): ActionGroupAttachedBuilder;
   objectName(value: string): ActionGroupAttachedBuilder;
   objectNameBind(expr: string): ActionGroupAttachedBuilder;
-  onGroupChanged(handler: () => void): ActionGroupAttachedBuilder;
-  onObjectNameChanged(handler: (objectName: string) => void): ActionGroupAttachedBuilder;
+  onGroupChanged(body: string): ActionGroupAttachedBuilder;
+  onObjectNameChanged(body: string): ActionGroupAttachedBuilder;
 }

@@ -2,14 +2,19 @@
 // Type: GroupBox
 // Generated from Qt 6.11.0
 
-import type { QmlFont, QmlObjectBuilder, QmlRect, QmlValue } from '../../runtime/index.js';
-import { createEnumToken, DslBuilderImpl } from '../../runtime/index.js';
+import type {
+  QmlEnumToken,
+  QmlFont,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
+import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { QtObjectBuilder } from '../QML/QtObject.js';
 import type { ItemBuilder } from '../QtQuick/Item.js';
 import type { PaletteBuilder } from '../QtQuick/Palette.js';
 import type { AnchorsBuilder } from '../QtQuick/QQuickAnchors.js';
 import type { LayerBuilder } from '../QtQuick/QQuickItemLayer.js';
-import type { WindowBuilder } from '../QtQuick/Window.js';
 import type { ContextMenuAttachedBuilder } from './ContextMenu.js';
 import type { ActionGroupAttachedBuilder } from './QQuickActionGroupAttached.js';
 import type { ApplicationWindowAttachedBuilder } from './QQuickApplicationWindowAttached.js';
@@ -58,9 +63,9 @@ export interface GroupBoxBuilder {
   enabledBind(expr: string): GroupBoxBuilder;
   focus(value: boolean): GroupBoxBuilder;
   focusBind(expr: string): GroupBoxBuilder;
-  focusPolicy(value: QmlValue): GroupBoxBuilder;
+  focusPolicy(value: QmlEnumToken): GroupBoxBuilder;
   focusPolicyBind(expr: string): GroupBoxBuilder;
-  focusReason(value: QmlValue): GroupBoxBuilder;
+  focusReason(value: QmlEnumToken): GroupBoxBuilder;
   focusReasonBind(expr: string): GroupBoxBuilder;
   font(value: QmlFont): GroupBoxBuilder;
   fontBind(expr: string): GroupBoxBuilder;
@@ -112,7 +117,7 @@ export interface GroupBoxBuilder {
   topInsetBind(expr: string): GroupBoxBuilder;
   topPadding(value: number): GroupBoxBuilder;
   topPaddingBind(expr: string): GroupBoxBuilder;
-  transformOrigin(value: QmlValue): GroupBoxBuilder;
+  transformOrigin(value: QmlEnumToken): GroupBoxBuilder;
   transformOriginBind(expr: string): GroupBoxBuilder;
   verticalPadding(value: number): GroupBoxBuilder;
   verticalPaddingBind(expr: string): GroupBoxBuilder;
@@ -128,72 +133,72 @@ export interface GroupBoxBuilder {
   yBind(expr: string): GroupBoxBuilder;
   z(value: number): GroupBoxBuilder;
   zBind(expr: string): GroupBoxBuilder;
-  onActiveFocusChanged(handler: (arg0: boolean) => void): GroupBoxBuilder;
-  onActiveFocusOnTabChanged(handler: (arg0: boolean) => void): GroupBoxBuilder;
-  onAntialiasingChanged(handler: (arg0: boolean) => void): GroupBoxBuilder;
-  onAvailableHeightChanged(handler: () => void): GroupBoxBuilder;
-  onAvailableWidthChanged(handler: () => void): GroupBoxBuilder;
-  onBackgroundChanged(handler: () => void): GroupBoxBuilder;
-  onBaselineOffsetChanged(handler: () => void): GroupBoxBuilder;
-  onBottomInsetChanged(handler: () => void): GroupBoxBuilder;
-  onBottomPaddingChanged(handler: () => void): GroupBoxBuilder;
-  onChildrenChanged(handler: () => void): GroupBoxBuilder;
-  onChildrenRectChanged(handler: (arg0: QmlRect) => void): GroupBoxBuilder;
-  onClipChanged(handler: (arg0: boolean) => void): GroupBoxBuilder;
-  onContainmentMaskChanged(handler: () => void): GroupBoxBuilder;
-  onContentChildrenChanged(handler: () => void): GroupBoxBuilder;
-  onContentHeightChanged(handler: () => void): GroupBoxBuilder;
-  onContentItemChanged(handler: () => void): GroupBoxBuilder;
-  onContentWidthChanged(handler: () => void): GroupBoxBuilder;
-  onEnabledChanged(handler: () => void): GroupBoxBuilder;
-  onFocusChanged(handler: (arg0: boolean) => void): GroupBoxBuilder;
-  onFocusPolicyChanged(handler: (arg0: QmlValue) => void): GroupBoxBuilder;
-  onFocusReasonChanged(handler: () => void): GroupBoxBuilder;
-  onFontChanged(handler: () => void): GroupBoxBuilder;
-  onHeightChanged(handler: () => void): GroupBoxBuilder;
-  onHorizontalPaddingChanged(handler: () => void): GroupBoxBuilder;
-  onHoverEnabledChanged(handler: () => void): GroupBoxBuilder;
-  onHoveredChanged(handler: () => void): GroupBoxBuilder;
-  onImplicitBackgroundHeightChanged(handler: () => void): GroupBoxBuilder;
-  onImplicitBackgroundWidthChanged(handler: () => void): GroupBoxBuilder;
-  onImplicitContentHeightChanged(handler: () => void): GroupBoxBuilder;
-  onImplicitContentWidthChanged(handler: () => void): GroupBoxBuilder;
-  onImplicitHeightChanged(handler: () => void): GroupBoxBuilder;
-  onImplicitLabelHeightChanged(handler: () => void): GroupBoxBuilder;
-  onImplicitLabelWidthChanged(handler: () => void): GroupBoxBuilder;
-  onImplicitWidthChanged(handler: () => void): GroupBoxBuilder;
-  onLabelChanged(handler: () => void): GroupBoxBuilder;
-  onLeftInsetChanged(handler: () => void): GroupBoxBuilder;
-  onLeftPaddingChanged(handler: () => void): GroupBoxBuilder;
-  onLocaleChanged(handler: () => void): GroupBoxBuilder;
-  onMirroredChanged(handler: () => void): GroupBoxBuilder;
-  onObjectNameChanged(handler: (objectName: string) => void): GroupBoxBuilder;
-  onOpacityChanged(handler: () => void): GroupBoxBuilder;
-  onPaddingChanged(handler: () => void): GroupBoxBuilder;
-  onPaletteChanged(handler: () => void): GroupBoxBuilder;
-  onPaletteCreated(handler: () => void): GroupBoxBuilder;
-  onParentChanged(handler: (arg0: ItemBuilder) => void): GroupBoxBuilder;
-  onRightInsetChanged(handler: () => void): GroupBoxBuilder;
-  onRightPaddingChanged(handler: () => void): GroupBoxBuilder;
-  onRotationChanged(handler: () => void): GroupBoxBuilder;
-  onScaleChanged(handler: () => void): GroupBoxBuilder;
-  onSmoothChanged(handler: (arg0: boolean) => void): GroupBoxBuilder;
-  onSpacingChanged(handler: () => void): GroupBoxBuilder;
-  onStateChanged(handler: (arg0: string) => void): GroupBoxBuilder;
-  onTitleChanged(handler: () => void): GroupBoxBuilder;
-  onTopInsetChanged(handler: () => void): GroupBoxBuilder;
-  onTopPaddingChanged(handler: () => void): GroupBoxBuilder;
-  onTransformOriginChanged(handler: (arg0: QmlValue) => void): GroupBoxBuilder;
-  onVerticalPaddingChanged(handler: () => void): GroupBoxBuilder;
-  onVisibleChanged(handler: () => void): GroupBoxBuilder;
-  onVisibleChildrenChanged(handler: () => void): GroupBoxBuilder;
-  onVisualFocusChanged(handler: () => void): GroupBoxBuilder;
-  onWheelEnabledChanged(handler: () => void): GroupBoxBuilder;
-  onWidthChanged(handler: () => void): GroupBoxBuilder;
-  onWindowChanged(handler: (window: WindowBuilder) => void): GroupBoxBuilder;
-  onXChanged(handler: () => void): GroupBoxBuilder;
-  onYChanged(handler: () => void): GroupBoxBuilder;
-  onZChanged(handler: () => void): GroupBoxBuilder;
+  onActiveFocusChanged(body: string): GroupBoxBuilder;
+  onActiveFocusOnTabChanged(body: string): GroupBoxBuilder;
+  onAntialiasingChanged(body: string): GroupBoxBuilder;
+  onAvailableHeightChanged(body: string): GroupBoxBuilder;
+  onAvailableWidthChanged(body: string): GroupBoxBuilder;
+  onBackgroundChanged(body: string): GroupBoxBuilder;
+  onBaselineOffsetChanged(body: string): GroupBoxBuilder;
+  onBottomInsetChanged(body: string): GroupBoxBuilder;
+  onBottomPaddingChanged(body: string): GroupBoxBuilder;
+  onChildrenChanged(body: string): GroupBoxBuilder;
+  onChildrenRectChanged(body: string): GroupBoxBuilder;
+  onClipChanged(body: string): GroupBoxBuilder;
+  onContainmentMaskChanged(body: string): GroupBoxBuilder;
+  onContentChildrenChanged(body: string): GroupBoxBuilder;
+  onContentHeightChanged(body: string): GroupBoxBuilder;
+  onContentItemChanged(body: string): GroupBoxBuilder;
+  onContentWidthChanged(body: string): GroupBoxBuilder;
+  onEnabledChanged(body: string): GroupBoxBuilder;
+  onFocusChanged(body: string): GroupBoxBuilder;
+  onFocusPolicyChanged(body: string): GroupBoxBuilder;
+  onFocusReasonChanged(body: string): GroupBoxBuilder;
+  onFontChanged(body: string): GroupBoxBuilder;
+  onHeightChanged(body: string): GroupBoxBuilder;
+  onHorizontalPaddingChanged(body: string): GroupBoxBuilder;
+  onHoverEnabledChanged(body: string): GroupBoxBuilder;
+  onHoveredChanged(body: string): GroupBoxBuilder;
+  onImplicitBackgroundHeightChanged(body: string): GroupBoxBuilder;
+  onImplicitBackgroundWidthChanged(body: string): GroupBoxBuilder;
+  onImplicitContentHeightChanged(body: string): GroupBoxBuilder;
+  onImplicitContentWidthChanged(body: string): GroupBoxBuilder;
+  onImplicitHeightChanged(body: string): GroupBoxBuilder;
+  onImplicitLabelHeightChanged(body: string): GroupBoxBuilder;
+  onImplicitLabelWidthChanged(body: string): GroupBoxBuilder;
+  onImplicitWidthChanged(body: string): GroupBoxBuilder;
+  onLabelChanged(body: string): GroupBoxBuilder;
+  onLeftInsetChanged(body: string): GroupBoxBuilder;
+  onLeftPaddingChanged(body: string): GroupBoxBuilder;
+  onLocaleChanged(body: string): GroupBoxBuilder;
+  onMirroredChanged(body: string): GroupBoxBuilder;
+  onObjectNameChanged(body: string): GroupBoxBuilder;
+  onOpacityChanged(body: string): GroupBoxBuilder;
+  onPaddingChanged(body: string): GroupBoxBuilder;
+  onPaletteChanged(body: string): GroupBoxBuilder;
+  onPaletteCreated(body: string): GroupBoxBuilder;
+  onParentChanged(body: string): GroupBoxBuilder;
+  onRightInsetChanged(body: string): GroupBoxBuilder;
+  onRightPaddingChanged(body: string): GroupBoxBuilder;
+  onRotationChanged(body: string): GroupBoxBuilder;
+  onScaleChanged(body: string): GroupBoxBuilder;
+  onSmoothChanged(body: string): GroupBoxBuilder;
+  onSpacingChanged(body: string): GroupBoxBuilder;
+  onStateChanged(body: string): GroupBoxBuilder;
+  onTitleChanged(body: string): GroupBoxBuilder;
+  onTopInsetChanged(body: string): GroupBoxBuilder;
+  onTopPaddingChanged(body: string): GroupBoxBuilder;
+  onTransformOriginChanged(body: string): GroupBoxBuilder;
+  onVerticalPaddingChanged(body: string): GroupBoxBuilder;
+  onVisibleChanged(body: string): GroupBoxBuilder;
+  onVisibleChildrenChanged(body: string): GroupBoxBuilder;
+  onVisualFocusChanged(body: string): GroupBoxBuilder;
+  onWheelEnabledChanged(body: string): GroupBoxBuilder;
+  onWidthChanged(body: string): GroupBoxBuilder;
+  onWindowChanged(body: string): GroupBoxBuilder;
+  onXChanged(body: string): GroupBoxBuilder;
+  onYChanged(body: string): GroupBoxBuilder;
+  onZChanged(body: string): GroupBoxBuilder;
   anchors(setup: (b: AnchorsBuilder) => void): GroupBoxBuilder;
   layer(setup: (b: LayerBuilder) => void): GroupBoxBuilder;
   actionGroup(setup: (b: ActionGroupAttachedBuilder) => void): GroupBoxBuilder;
@@ -216,8 +221,425 @@ export interface GroupBoxBuilder {
   tumbler(setup: (b: TumblerAttachedBuilder) => void): GroupBoxBuilder;
 }
 
+const GROUPBOX_META: TypeMetadata = {
+  typeName: 'GroupBox',
+  properties: [
+    { name: 'activeFocusOnTab', hasValue: true, hasBinding: true },
+    { name: 'antialiasing', hasValue: true, hasBinding: true },
+    { name: 'background', hasValue: true, hasBinding: true },
+    { name: 'baselineOffset', hasValue: true, hasBinding: true },
+    { name: 'bottomInset', hasValue: true, hasBinding: true },
+    { name: 'bottomPadding', hasValue: true, hasBinding: true },
+    { name: 'clip', hasValue: true, hasBinding: true },
+    { name: 'containmentMask', hasValue: true, hasBinding: true },
+    { name: 'contentHeight', hasValue: true, hasBinding: true },
+    { name: 'contentItem', hasValue: true, hasBinding: true },
+    { name: 'contentWidth', hasValue: true, hasBinding: true },
+    { name: 'enabled', hasValue: true, hasBinding: true },
+    { name: 'focus', hasValue: true, hasBinding: true },
+    { name: 'focusPolicy', hasValue: true, hasBinding: true },
+    { name: 'focusReason', hasValue: true, hasBinding: true },
+    { name: 'font', hasValue: true, hasBinding: true },
+    { name: 'height', hasValue: true, hasBinding: true },
+    { name: 'horizontalPadding', hasValue: true, hasBinding: true },
+    { name: 'hoverEnabled', hasValue: true, hasBinding: true },
+    { name: 'implicitHeight', hasValue: true, hasBinding: true },
+    { name: 'implicitWidth', hasValue: true, hasBinding: true },
+    { name: 'label', hasValue: true, hasBinding: true },
+    { name: 'leftInset', hasValue: true, hasBinding: true },
+    { name: 'leftPadding', hasValue: true, hasBinding: true },
+    { name: 'locale', hasValue: true, hasBinding: true },
+    { name: 'objectName', hasValue: true, hasBinding: true },
+    { name: 'opacity', hasValue: true, hasBinding: true },
+    { name: 'padding', hasValue: true, hasBinding: true },
+    { name: 'palette', hasValue: true, hasBinding: true },
+    { name: 'parent', hasValue: true, hasBinding: true },
+    { name: 'rightInset', hasValue: true, hasBinding: true },
+    { name: 'rightPadding', hasValue: true, hasBinding: true },
+    { name: 'rotation', hasValue: true, hasBinding: true },
+    { name: 'scale', hasValue: true, hasBinding: true },
+    { name: 'smooth', hasValue: true, hasBinding: true },
+    { name: 'spacing', hasValue: true, hasBinding: true },
+    { name: 'state', hasValue: true, hasBinding: true },
+    { name: 'title', hasValue: true, hasBinding: true },
+    { name: 'topInset', hasValue: true, hasBinding: true },
+    { name: 'topPadding', hasValue: true, hasBinding: true },
+    { name: 'transformOrigin', hasValue: true, hasBinding: true },
+    { name: 'verticalPadding', hasValue: true, hasBinding: true },
+    { name: 'visible', hasValue: true, hasBinding: true },
+    { name: 'wheelEnabled', hasValue: true, hasBinding: true },
+    { name: 'width', hasValue: true, hasBinding: true },
+    { name: 'x', hasValue: true, hasBinding: true },
+    { name: 'y', hasValue: true, hasBinding: true },
+    { name: 'z', hasValue: true, hasBinding: true },
+  ],
+  signals: [
+    { handlerName: 'onActiveFocusChanged', paramCount: 1 },
+    { handlerName: 'onActiveFocusOnTabChanged', paramCount: 1 },
+    { handlerName: 'onAntialiasingChanged', paramCount: 1 },
+    { handlerName: 'onAvailableHeightChanged', paramCount: 0 },
+    { handlerName: 'onAvailableWidthChanged', paramCount: 0 },
+    { handlerName: 'onBackgroundChanged', paramCount: 0 },
+    { handlerName: 'onBaselineOffsetChanged', paramCount: 0 },
+    { handlerName: 'onBottomInsetChanged', paramCount: 0 },
+    { handlerName: 'onBottomPaddingChanged', paramCount: 0 },
+    { handlerName: 'onChildrenChanged', paramCount: 0 },
+    { handlerName: 'onChildrenRectChanged', paramCount: 1 },
+    { handlerName: 'onClipChanged', paramCount: 1 },
+    { handlerName: 'onContainmentMaskChanged', paramCount: 0 },
+    { handlerName: 'onContentChildrenChanged', paramCount: 0 },
+    { handlerName: 'onContentHeightChanged', paramCount: 0 },
+    { handlerName: 'onContentItemChanged', paramCount: 0 },
+    { handlerName: 'onContentWidthChanged', paramCount: 0 },
+    { handlerName: 'onEnabledChanged', paramCount: 0 },
+    { handlerName: 'onFocusChanged', paramCount: 1 },
+    { handlerName: 'onFocusPolicyChanged', paramCount: 1 },
+    { handlerName: 'onFocusReasonChanged', paramCount: 0 },
+    { handlerName: 'onFontChanged', paramCount: 0 },
+    { handlerName: 'onHeightChanged', paramCount: 0 },
+    { handlerName: 'onHorizontalPaddingChanged', paramCount: 0 },
+    { handlerName: 'onHoverEnabledChanged', paramCount: 0 },
+    { handlerName: 'onHoveredChanged', paramCount: 0 },
+    { handlerName: 'onImplicitBackgroundHeightChanged', paramCount: 0 },
+    { handlerName: 'onImplicitBackgroundWidthChanged', paramCount: 0 },
+    { handlerName: 'onImplicitContentHeightChanged', paramCount: 0 },
+    { handlerName: 'onImplicitContentWidthChanged', paramCount: 0 },
+    { handlerName: 'onImplicitHeightChanged', paramCount: 0 },
+    { handlerName: 'onImplicitLabelHeightChanged', paramCount: 0 },
+    { handlerName: 'onImplicitLabelWidthChanged', paramCount: 0 },
+    { handlerName: 'onImplicitWidthChanged', paramCount: 0 },
+    { handlerName: 'onLabelChanged', paramCount: 0 },
+    { handlerName: 'onLeftInsetChanged', paramCount: 0 },
+    { handlerName: 'onLeftPaddingChanged', paramCount: 0 },
+    { handlerName: 'onLocaleChanged', paramCount: 0 },
+    { handlerName: 'onMirroredChanged', paramCount: 0 },
+    { handlerName: 'onObjectNameChanged', paramCount: 1 },
+    { handlerName: 'onOpacityChanged', paramCount: 0 },
+    { handlerName: 'onPaddingChanged', paramCount: 0 },
+    { handlerName: 'onPaletteChanged', paramCount: 0 },
+    { handlerName: 'onPaletteCreated', paramCount: 0 },
+    { handlerName: 'onParentChanged', paramCount: 1 },
+    { handlerName: 'onRightInsetChanged', paramCount: 0 },
+    { handlerName: 'onRightPaddingChanged', paramCount: 0 },
+    { handlerName: 'onRotationChanged', paramCount: 0 },
+    { handlerName: 'onScaleChanged', paramCount: 0 },
+    { handlerName: 'onSmoothChanged', paramCount: 1 },
+    { handlerName: 'onSpacingChanged', paramCount: 0 },
+    { handlerName: 'onStateChanged', paramCount: 1 },
+    { handlerName: 'onTitleChanged', paramCount: 0 },
+    { handlerName: 'onTopInsetChanged', paramCount: 0 },
+    { handlerName: 'onTopPaddingChanged', paramCount: 0 },
+    { handlerName: 'onTransformOriginChanged', paramCount: 1 },
+    { handlerName: 'onVerticalPaddingChanged', paramCount: 0 },
+    { handlerName: 'onVisibleChanged', paramCount: 0 },
+    { handlerName: 'onVisibleChildrenChanged', paramCount: 0 },
+    { handlerName: 'onVisualFocusChanged', paramCount: 0 },
+    { handlerName: 'onWheelEnabledChanged', paramCount: 0 },
+    { handlerName: 'onWidthChanged', paramCount: 0 },
+    { handlerName: 'onWindowChanged', paramCount: 1 },
+    { handlerName: 'onXChanged', paramCount: 0 },
+    { handlerName: 'onYChanged', paramCount: 0 },
+    { handlerName: 'onZChanged', paramCount: 0 },
+  ],
+  grouped: [
+    {
+      methodName: 'anchors',
+      groupName: 'anchors',
+      properties: [
+        { name: 'alignWhenCentered', hasValue: true, hasBinding: true },
+        { name: 'baseline', hasValue: true, hasBinding: true },
+        { name: 'baselineOffset', hasValue: true, hasBinding: true },
+        { name: 'bottom', hasValue: true, hasBinding: true },
+        { name: 'bottomMargin', hasValue: true, hasBinding: true },
+        { name: 'centerIn', hasValue: true, hasBinding: true },
+        { name: 'fill', hasValue: true, hasBinding: true },
+        { name: 'horizontalCenter', hasValue: true, hasBinding: true },
+        { name: 'horizontalCenterOffset', hasValue: true, hasBinding: true },
+        { name: 'left', hasValue: true, hasBinding: true },
+        { name: 'leftMargin', hasValue: true, hasBinding: true },
+        { name: 'margins', hasValue: true, hasBinding: true },
+        { name: 'right', hasValue: true, hasBinding: true },
+        { name: 'rightMargin', hasValue: true, hasBinding: true },
+        { name: 'top', hasValue: true, hasBinding: true },
+        { name: 'topMargin', hasValue: true, hasBinding: true },
+        { name: 'verticalCenter', hasValue: true, hasBinding: true },
+        { name: 'verticalCenterOffset', hasValue: true, hasBinding: true },
+      ],
+    },
+    {
+      methodName: 'layer',
+      groupName: 'layer',
+      properties: [
+        { name: 'effect', hasValue: true, hasBinding: true },
+        { name: 'enabled', hasValue: true, hasBinding: true },
+        { name: 'format', hasValue: true, hasBinding: true },
+        { name: 'live', hasValue: true, hasBinding: true },
+        { name: 'mipmap', hasValue: true, hasBinding: true },
+        { name: 'samplerName', hasValue: true, hasBinding: true },
+        { name: 'samples', hasValue: true, hasBinding: true },
+        { name: 'smooth', hasValue: true, hasBinding: true },
+        { name: 'sourceRect', hasValue: true, hasBinding: true },
+        { name: 'textureMirroring', hasValue: true, hasBinding: true },
+        { name: 'textureSize', hasValue: true, hasBinding: true },
+        { name: 'wrapMode', hasValue: true, hasBinding: true },
+      ],
+    },
+  ],
+  attached: [
+    {
+      methodName: 'actionGroup',
+      attachedTypeName: 'ActionGroup',
+      properties: [
+        { name: 'group', hasValue: true, hasBinding: true },
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
+      signals: [
+        { handlerName: 'onGroupChanged', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'applicationWindow',
+      attachedTypeName: 'ApplicationWindow',
+      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
+      signals: [
+        { handlerName: 'onActiveFocusControlChanged', paramCount: 0 },
+        { handlerName: 'onContentItemChanged', paramCount: 0 },
+        { handlerName: 'onFooterChanged', paramCount: 0 },
+        { handlerName: 'onHeaderChanged', paramCount: 0 },
+        { handlerName: 'onMenuBarChanged', paramCount: 0 },
+        { handlerName: 'onWindowChanged', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'buttonGroup',
+      attachedTypeName: 'ButtonGroup',
+      properties: [
+        { name: 'group', hasValue: true, hasBinding: true },
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
+      signals: [
+        { handlerName: 'onGroupChanged', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'contextMenu',
+      attachedTypeName: 'ContextMenu',
+      properties: [
+        { name: 'menu', hasValue: true, hasBinding: true },
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
+      signals: [
+        { handlerName: 'onMenuChanged', paramCount: 0 },
+        { handlerName: 'onRequested', paramCount: 1 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'dialogButtonBox',
+      attachedTypeName: 'DialogButtonBox',
+      properties: [
+        { name: 'buttonRole', hasValue: true, hasBinding: true },
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
+      signals: [
+        { handlerName: 'onButtonBoxChanged', paramCount: 0 },
+        { handlerName: 'onButtonRoleChanged', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'overlay',
+      attachedTypeName: 'Overlay',
+      properties: [
+        { name: 'modal', hasValue: true, hasBinding: true },
+        { name: 'modeless', hasValue: true, hasBinding: true },
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
+      signals: [
+        { handlerName: 'onModalChanged', paramCount: 0 },
+        { handlerName: 'onModelessChanged', paramCount: 0 },
+        { handlerName: 'onOverlayChanged', paramCount: 0 },
+        { handlerName: 'onPressed', paramCount: 0 },
+        { handlerName: 'onReleased', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'scrollBar',
+      attachedTypeName: 'ScrollBar',
+      properties: [
+        { name: 'horizontal', hasValue: true, hasBinding: true },
+        { name: 'vertical', hasValue: true, hasBinding: true },
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
+      signals: [
+        { handlerName: 'onHorizontalChanged', paramCount: 0 },
+        { handlerName: 'onVerticalChanged', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'scrollIndicator',
+      attachedTypeName: 'ScrollIndicator',
+      properties: [
+        { name: 'horizontal', hasValue: true, hasBinding: true },
+        { name: 'vertical', hasValue: true, hasBinding: true },
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
+      signals: [
+        { handlerName: 'onHorizontalChanged', paramCount: 0 },
+        { handlerName: 'onVerticalChanged', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'selectionRectangle',
+      attachedTypeName: 'SelectionRectangle',
+      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
+      signals: [
+        { handlerName: 'onControlChanged', paramCount: 0 },
+        { handlerName: 'onDraggingChanged', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'splitHandle',
+      attachedTypeName: 'SplitHandle',
+      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
+      signals: [
+        { handlerName: 'onHoveredChanged', paramCount: 0 },
+        { handlerName: 'onPressedChanged', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'splitView',
+      attachedTypeName: 'SplitView',
+      properties: [
+        { name: 'fillHeight', hasValue: true, hasBinding: true },
+        { name: 'fillWidth', hasValue: true, hasBinding: true },
+        { name: 'maximumHeight', hasValue: true, hasBinding: true },
+        { name: 'maximumWidth', hasValue: true, hasBinding: true },
+        { name: 'minimumHeight', hasValue: true, hasBinding: true },
+        { name: 'minimumWidth', hasValue: true, hasBinding: true },
+        { name: 'preferredHeight', hasValue: true, hasBinding: true },
+        { name: 'preferredWidth', hasValue: true, hasBinding: true },
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
+      signals: [
+        { handlerName: 'onFillHeightChanged', paramCount: 0 },
+        { handlerName: 'onFillWidthChanged', paramCount: 0 },
+        { handlerName: 'onMaximumHeightChanged', paramCount: 0 },
+        { handlerName: 'onMaximumWidthChanged', paramCount: 0 },
+        { handlerName: 'onMinimumHeightChanged', paramCount: 0 },
+        { handlerName: 'onMinimumWidthChanged', paramCount: 0 },
+        { handlerName: 'onPreferredHeightChanged', paramCount: 0 },
+        { handlerName: 'onPreferredWidthChanged', paramCount: 0 },
+        { handlerName: 'onViewChanged', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'stackView',
+      attachedTypeName: 'StackView',
+      properties: [
+        { name: 'visible', hasValue: true, hasBinding: true },
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
+      signals: [
+        { handlerName: 'onActivated', paramCount: 0 },
+        { handlerName: 'onActivating', paramCount: 0 },
+        { handlerName: 'onDeactivated', paramCount: 0 },
+        { handlerName: 'onDeactivating', paramCount: 0 },
+        { handlerName: 'onIndexChanged', paramCount: 0 },
+        { handlerName: 'onRemoved', paramCount: 0 },
+        { handlerName: 'onStatusChanged', paramCount: 0 },
+        { handlerName: 'onViewChanged', paramCount: 0 },
+        { handlerName: 'onVisibleChanged', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'swipeDelegate',
+      attachedTypeName: 'SwipeDelegate',
+      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
+      signals: [
+        { handlerName: 'onClicked', paramCount: 0 },
+        { handlerName: 'onPressedChanged', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'swipeView',
+      attachedTypeName: 'SwipeView',
+      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
+      signals: [
+        { handlerName: 'onIndexChanged', paramCount: 0 },
+        { handlerName: 'onIsCurrentItemChanged', paramCount: 0 },
+        { handlerName: 'onIsNextItemChanged', paramCount: 0 },
+        { handlerName: 'onIsPreviousItemChanged', paramCount: 0 },
+        { handlerName: 'onViewChanged', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'tabBar',
+      attachedTypeName: 'TabBar',
+      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
+      signals: [
+        { handlerName: 'onIndexChanged', paramCount: 0 },
+        { handlerName: 'onPositionChanged', paramCount: 0 },
+        { handlerName: 'onTabBarChanged', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'textArea',
+      attachedTypeName: 'TextArea',
+      properties: [
+        { name: 'flickable', hasValue: true, hasBinding: true },
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
+      signals: [
+        { handlerName: 'onFlickableChanged', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'toolTip',
+      attachedTypeName: 'ToolTip',
+      properties: [
+        { name: 'delay', hasValue: true, hasBinding: true },
+        { name: 'text', hasValue: true, hasBinding: true },
+        { name: 'timeout', hasValue: true, hasBinding: true },
+        { name: 'visible', hasValue: true, hasBinding: true },
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
+      signals: [
+        { handlerName: 'onDelayChanged', paramCount: 0 },
+        { handlerName: 'onTextChanged', paramCount: 0 },
+        { handlerName: 'onTimeoutChanged', paramCount: 0 },
+        { handlerName: 'onVisibleChanged', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'tumbler',
+      attachedTypeName: 'Tumbler',
+      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
+      signals: [
+        { handlerName: 'onDisplacementChanged', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+  ],
+};
+
 export function GroupBox(): GroupBoxBuilder {
-  return new DslBuilderImpl('GroupBox') as unknown as GroupBoxBuilder;
+  return createFluentBuilder('GroupBox', GROUPBOX_META) as unknown as GroupBoxBuilder;
 }
 
 export namespace GroupBox {

@@ -11,7 +11,7 @@ export interface DelegateModelAttachedBuilder {
   inPersistedItemsBind(expr: string): DelegateModelAttachedBuilder;
   objectName(value: string): DelegateModelAttachedBuilder;
   objectNameBind(expr: string): DelegateModelAttachedBuilder;
-  onGroupsChanged(handler: () => void): DelegateModelAttachedBuilder;
-  onUnresolvedChanged(handler: () => void): DelegateModelAttachedBuilder;
-  onObjectNameChanged(handler: (objectName: string) => void): DelegateModelAttachedBuilder;
+  onGroupsChanged(body: string): DelegateModelAttachedBuilder;
+  onUnresolvedChanged(body: string): DelegateModelAttachedBuilder;
+  onObjectNameChanged(body: string): DelegateModelAttachedBuilder;
 }

@@ -2,9 +2,15 @@
 // Type: ApplicationWindow
 // Generated from Qt 6.11.0
 
-import type { QmlColor, QmlFont, QmlObjectBuilder, QmlValue } from '../../runtime/index.js';
-import { createEnumToken, DslBuilderImpl } from '../../runtime/index.js';
-import type { QtObjectBuilder } from '../QML/QtObject.js';
+import type {
+  QmlColor,
+  QmlEnumToken,
+  QmlFont,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
+import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { ItemBuilder } from '../QtQuick/Item.js';
 import type { PaletteBuilder } from '../QtQuick/Palette.js';
 import type { ContextMenuAttachedBuilder } from './ContextMenu.js';
@@ -35,9 +41,9 @@ export interface ApplicationWindowBuilder {
   bottomPaddingBind(expr: string): ApplicationWindowBuilder;
   color(value: QmlColor): ApplicationWindowBuilder;
   colorBind(expr: string): ApplicationWindowBuilder;
-  contentOrientation(value: QmlValue): ApplicationWindowBuilder;
+  contentOrientation(value: QmlEnumToken): ApplicationWindowBuilder;
   contentOrientationBind(expr: string): ApplicationWindowBuilder;
-  flags(value: QmlValue): ApplicationWindowBuilder;
+  flags(value: QmlEnumToken): ApplicationWindowBuilder;
   flagsBind(expr: string): ApplicationWindowBuilder;
   font(value: QmlFont): ApplicationWindowBuilder;
   fontBind(expr: string): ApplicationWindowBuilder;
@@ -61,7 +67,7 @@ export interface ApplicationWindowBuilder {
   minimumHeightBind(expr: string): ApplicationWindowBuilder;
   minimumWidth(value: number): ApplicationWindowBuilder;
   minimumWidthBind(expr: string): ApplicationWindowBuilder;
-  modality(value: QmlValue): ApplicationWindowBuilder;
+  modality(value: QmlEnumToken): ApplicationWindowBuilder;
   modalityBind(expr: string): ApplicationWindowBuilder;
   objectName(value: string): ApplicationWindowBuilder;
   objectNameBind(expr: string): ApplicationWindowBuilder;
@@ -79,7 +85,7 @@ export interface ApplicationWindowBuilder {
   topPaddingBind(expr: string): ApplicationWindowBuilder;
   transientParent(value: QmlValue): ApplicationWindowBuilder;
   transientParentBind(expr: string): ApplicationWindowBuilder;
-  visibility(value: QmlValue): ApplicationWindowBuilder;
+  visibility(value: QmlEnumToken): ApplicationWindowBuilder;
   visibilityBind(expr: string): ApplicationWindowBuilder;
   visible(value: boolean): ApplicationWindowBuilder;
   visibleBind(expr: string): ApplicationWindowBuilder;
@@ -89,59 +95,59 @@ export interface ApplicationWindowBuilder {
   xBind(expr: string): ApplicationWindowBuilder;
   y(value: number): ApplicationWindowBuilder;
   yBind(expr: string): ApplicationWindowBuilder;
-  onActiveChanged(handler: () => void): ApplicationWindowBuilder;
-  onActiveFocusControlChanged(handler: () => void): ApplicationWindowBuilder;
-  onActiveFocusItemChanged(handler: () => void): ApplicationWindowBuilder;
-  onAfterAnimating(handler: () => void): ApplicationWindowBuilder;
-  onAfterFrameEnd(handler: () => void): ApplicationWindowBuilder;
-  onAfterRenderPassRecording(handler: () => void): ApplicationWindowBuilder;
-  onAfterRendering(handler: () => void): ApplicationWindowBuilder;
-  onAfterSynchronizing(handler: () => void): ApplicationWindowBuilder;
-  onBackgroundChanged(handler: () => void): ApplicationWindowBuilder;
-  onBeforeFrameBegin(handler: () => void): ApplicationWindowBuilder;
-  onBeforeRenderPassRecording(handler: () => void): ApplicationWindowBuilder;
-  onBeforeRendering(handler: () => void): ApplicationWindowBuilder;
-  onBeforeSynchronizing(handler: () => void): ApplicationWindowBuilder;
-  onBottomPaddingChanged(handler: () => void): ApplicationWindowBuilder;
-  onClosing(handler: (close: QmlValue) => void): ApplicationWindowBuilder;
-  onColorChanged(handler: (arg0: QmlColor) => void): ApplicationWindowBuilder;
-  onContentOrientationChanged(handler: (orientation: QmlValue) => void): ApplicationWindowBuilder;
-  onDevicePixelRatioChanged(handler: () => void): ApplicationWindowBuilder;
-  onFlagsChanged(handler: (flags: QmlValue) => void): ApplicationWindowBuilder;
-  onFocusObjectChanged(handler: (object: QtObjectBuilder) => void): ApplicationWindowBuilder;
-  onFontChanged(handler: () => void): ApplicationWindowBuilder;
-  onFooterChanged(handler: () => void): ApplicationWindowBuilder;
-  onFrameSwapped(handler: () => void): ApplicationWindowBuilder;
-  onHeaderChanged(handler: () => void): ApplicationWindowBuilder;
-  onHeightChanged(handler: (arg: number) => void): ApplicationWindowBuilder;
-  onLeftPaddingChanged(handler: () => void): ApplicationWindowBuilder;
-  onLocaleChanged(handler: () => void): ApplicationWindowBuilder;
-  onMaximumHeightChanged(handler: (arg: number) => void): ApplicationWindowBuilder;
-  onMaximumWidthChanged(handler: (arg: number) => void): ApplicationWindowBuilder;
-  onMenuBarChanged(handler: () => void): ApplicationWindowBuilder;
-  onMinimumHeightChanged(handler: (arg: number) => void): ApplicationWindowBuilder;
-  onMinimumWidthChanged(handler: (arg: number) => void): ApplicationWindowBuilder;
-  onModalityChanged(handler: (modality: QmlValue) => void): ApplicationWindowBuilder;
-  onObjectNameChanged(handler: (objectName: string) => void): ApplicationWindowBuilder;
-  onOpacityChanged(handler: (opacity: number) => void): ApplicationWindowBuilder;
-  onPaletteChanged(handler: () => void): ApplicationWindowBuilder;
-  onPaletteCreated(handler: () => void): ApplicationWindowBuilder;
-  onRightPaddingChanged(handler: () => void): ApplicationWindowBuilder;
-  onSafeAreaMarginsChanged(handler: (arg: QmlValue) => void): ApplicationWindowBuilder;
-  onSceneGraphAboutToStop(handler: () => void): ApplicationWindowBuilder;
-  onSceneGraphError(handler: (error: QmlValue, message: string) => void): ApplicationWindowBuilder;
-  onSceneGraphInitialized(handler: () => void): ApplicationWindowBuilder;
-  onSceneGraphInvalidated(handler: () => void): ApplicationWindowBuilder;
-  onScreenChanged(handler: () => void): ApplicationWindowBuilder;
-  onTopPaddingChanged(handler: () => void): ApplicationWindowBuilder;
-  onTransientParentChanged(handler: (transientParent: QmlValue) => void): ApplicationWindowBuilder;
-  onVisibilityChanged(handler: (visibility: QmlValue) => void): ApplicationWindowBuilder;
-  onVisibleChanged(handler: (arg: boolean) => void): ApplicationWindowBuilder;
-  onWidthChanged(handler: (arg: number) => void): ApplicationWindowBuilder;
-  onWindowStateChanged(handler: (windowState: QmlValue) => void): ApplicationWindowBuilder;
-  onWindowTitleChanged(handler: (title: string) => void): ApplicationWindowBuilder;
-  onXChanged(handler: (arg: number) => void): ApplicationWindowBuilder;
-  onYChanged(handler: (arg: number) => void): ApplicationWindowBuilder;
+  onActiveChanged(body: string): ApplicationWindowBuilder;
+  onActiveFocusControlChanged(body: string): ApplicationWindowBuilder;
+  onActiveFocusItemChanged(body: string): ApplicationWindowBuilder;
+  onAfterAnimating(body: string): ApplicationWindowBuilder;
+  onAfterFrameEnd(body: string): ApplicationWindowBuilder;
+  onAfterRenderPassRecording(body: string): ApplicationWindowBuilder;
+  onAfterRendering(body: string): ApplicationWindowBuilder;
+  onAfterSynchronizing(body: string): ApplicationWindowBuilder;
+  onBackgroundChanged(body: string): ApplicationWindowBuilder;
+  onBeforeFrameBegin(body: string): ApplicationWindowBuilder;
+  onBeforeRenderPassRecording(body: string): ApplicationWindowBuilder;
+  onBeforeRendering(body: string): ApplicationWindowBuilder;
+  onBeforeSynchronizing(body: string): ApplicationWindowBuilder;
+  onBottomPaddingChanged(body: string): ApplicationWindowBuilder;
+  onClosing(body: string): ApplicationWindowBuilder;
+  onColorChanged(body: string): ApplicationWindowBuilder;
+  onContentOrientationChanged(body: string): ApplicationWindowBuilder;
+  onDevicePixelRatioChanged(body: string): ApplicationWindowBuilder;
+  onFlagsChanged(body: string): ApplicationWindowBuilder;
+  onFocusObjectChanged(body: string): ApplicationWindowBuilder;
+  onFontChanged(body: string): ApplicationWindowBuilder;
+  onFooterChanged(body: string): ApplicationWindowBuilder;
+  onFrameSwapped(body: string): ApplicationWindowBuilder;
+  onHeaderChanged(body: string): ApplicationWindowBuilder;
+  onHeightChanged(body: string): ApplicationWindowBuilder;
+  onLeftPaddingChanged(body: string): ApplicationWindowBuilder;
+  onLocaleChanged(body: string): ApplicationWindowBuilder;
+  onMaximumHeightChanged(body: string): ApplicationWindowBuilder;
+  onMaximumWidthChanged(body: string): ApplicationWindowBuilder;
+  onMenuBarChanged(body: string): ApplicationWindowBuilder;
+  onMinimumHeightChanged(body: string): ApplicationWindowBuilder;
+  onMinimumWidthChanged(body: string): ApplicationWindowBuilder;
+  onModalityChanged(body: string): ApplicationWindowBuilder;
+  onObjectNameChanged(body: string): ApplicationWindowBuilder;
+  onOpacityChanged(body: string): ApplicationWindowBuilder;
+  onPaletteChanged(body: string): ApplicationWindowBuilder;
+  onPaletteCreated(body: string): ApplicationWindowBuilder;
+  onRightPaddingChanged(body: string): ApplicationWindowBuilder;
+  onSafeAreaMarginsChanged(body: string): ApplicationWindowBuilder;
+  onSceneGraphAboutToStop(body: string): ApplicationWindowBuilder;
+  onSceneGraphError(body: string): ApplicationWindowBuilder;
+  onSceneGraphInitialized(body: string): ApplicationWindowBuilder;
+  onSceneGraphInvalidated(body: string): ApplicationWindowBuilder;
+  onScreenChanged(body: string): ApplicationWindowBuilder;
+  onTopPaddingChanged(body: string): ApplicationWindowBuilder;
+  onTransientParentChanged(body: string): ApplicationWindowBuilder;
+  onVisibilityChanged(body: string): ApplicationWindowBuilder;
+  onVisibleChanged(body: string): ApplicationWindowBuilder;
+  onWidthChanged(body: string): ApplicationWindowBuilder;
+  onWindowStateChanged(body: string): ApplicationWindowBuilder;
+  onWindowTitleChanged(body: string): ApplicationWindowBuilder;
+  onXChanged(body: string): ApplicationWindowBuilder;
+  onYChanged(body: string): ApplicationWindowBuilder;
   actionGroup(setup: (b: ActionGroupAttachedBuilder) => void): ApplicationWindowBuilder;
   applicationWindow(setup: (b: ApplicationWindowAttachedBuilder) => void): ApplicationWindowBuilder;
   buttonGroup(setup: (b: ButtonGroupAttachedBuilder) => void): ApplicationWindowBuilder;
@@ -164,8 +170,355 @@ export interface ApplicationWindowBuilder {
   tumbler(setup: (b: TumblerAttachedBuilder) => void): ApplicationWindowBuilder;
 }
 
+const APPLICATIONWINDOW_META: TypeMetadata = {
+  typeName: 'ApplicationWindow',
+  properties: [
+    { name: 'background', hasValue: true, hasBinding: true },
+    { name: 'bottomPadding', hasValue: true, hasBinding: true },
+    { name: 'color', hasValue: true, hasBinding: true },
+    { name: 'contentOrientation', hasValue: true, hasBinding: true },
+    { name: 'flags', hasValue: true, hasBinding: true },
+    { name: 'font', hasValue: true, hasBinding: true },
+    { name: 'footer', hasValue: true, hasBinding: true },
+    { name: 'header', hasValue: true, hasBinding: true },
+    { name: 'height', hasValue: true, hasBinding: true },
+    { name: 'leftPadding', hasValue: true, hasBinding: true },
+    { name: 'locale', hasValue: true, hasBinding: true },
+    { name: 'maximumHeight', hasValue: true, hasBinding: true },
+    { name: 'maximumWidth', hasValue: true, hasBinding: true },
+    { name: 'menuBar', hasValue: true, hasBinding: true },
+    { name: 'minimumHeight', hasValue: true, hasBinding: true },
+    { name: 'minimumWidth', hasValue: true, hasBinding: true },
+    { name: 'modality', hasValue: true, hasBinding: true },
+    { name: 'objectName', hasValue: true, hasBinding: true },
+    { name: 'opacity', hasValue: true, hasBinding: true },
+    { name: 'palette', hasValue: true, hasBinding: true },
+    { name: 'rightPadding', hasValue: true, hasBinding: true },
+    { name: 'screen', hasValue: true, hasBinding: true },
+    { name: 'title', hasValue: true, hasBinding: true },
+    { name: 'topPadding', hasValue: true, hasBinding: true },
+    { name: 'transientParent', hasValue: true, hasBinding: true },
+    { name: 'visibility', hasValue: true, hasBinding: true },
+    { name: 'visible', hasValue: true, hasBinding: true },
+    { name: 'width', hasValue: true, hasBinding: true },
+    { name: 'x', hasValue: true, hasBinding: true },
+    { name: 'y', hasValue: true, hasBinding: true },
+  ],
+  signals: [
+    { handlerName: 'onActiveChanged', paramCount: 0 },
+    { handlerName: 'onActiveFocusControlChanged', paramCount: 0 },
+    { handlerName: 'onActiveFocusItemChanged', paramCount: 0 },
+    { handlerName: 'onAfterAnimating', paramCount: 0 },
+    { handlerName: 'onAfterFrameEnd', paramCount: 0 },
+    { handlerName: 'onAfterRenderPassRecording', paramCount: 0 },
+    { handlerName: 'onAfterRendering', paramCount: 0 },
+    { handlerName: 'onAfterSynchronizing', paramCount: 0 },
+    { handlerName: 'onBackgroundChanged', paramCount: 0 },
+    { handlerName: 'onBeforeFrameBegin', paramCount: 0 },
+    { handlerName: 'onBeforeRenderPassRecording', paramCount: 0 },
+    { handlerName: 'onBeforeRendering', paramCount: 0 },
+    { handlerName: 'onBeforeSynchronizing', paramCount: 0 },
+    { handlerName: 'onBottomPaddingChanged', paramCount: 0 },
+    { handlerName: 'onClosing', paramCount: 1 },
+    { handlerName: 'onColorChanged', paramCount: 1 },
+    { handlerName: 'onContentOrientationChanged', paramCount: 1 },
+    { handlerName: 'onDevicePixelRatioChanged', paramCount: 0 },
+    { handlerName: 'onFlagsChanged', paramCount: 1 },
+    { handlerName: 'onFocusObjectChanged', paramCount: 1 },
+    { handlerName: 'onFontChanged', paramCount: 0 },
+    { handlerName: 'onFooterChanged', paramCount: 0 },
+    { handlerName: 'onFrameSwapped', paramCount: 0 },
+    { handlerName: 'onHeaderChanged', paramCount: 0 },
+    { handlerName: 'onHeightChanged', paramCount: 1 },
+    { handlerName: 'onLeftPaddingChanged', paramCount: 0 },
+    { handlerName: 'onLocaleChanged', paramCount: 0 },
+    { handlerName: 'onMaximumHeightChanged', paramCount: 1 },
+    { handlerName: 'onMaximumWidthChanged', paramCount: 1 },
+    { handlerName: 'onMenuBarChanged', paramCount: 0 },
+    { handlerName: 'onMinimumHeightChanged', paramCount: 1 },
+    { handlerName: 'onMinimumWidthChanged', paramCount: 1 },
+    { handlerName: 'onModalityChanged', paramCount: 1 },
+    { handlerName: 'onObjectNameChanged', paramCount: 1 },
+    { handlerName: 'onOpacityChanged', paramCount: 1 },
+    { handlerName: 'onPaletteChanged', paramCount: 0 },
+    { handlerName: 'onPaletteCreated', paramCount: 0 },
+    { handlerName: 'onRightPaddingChanged', paramCount: 0 },
+    { handlerName: 'onSafeAreaMarginsChanged', paramCount: 1 },
+    { handlerName: 'onSceneGraphAboutToStop', paramCount: 0 },
+    { handlerName: 'onSceneGraphError', paramCount: 2 },
+    { handlerName: 'onSceneGraphInitialized', paramCount: 0 },
+    { handlerName: 'onSceneGraphInvalidated', paramCount: 0 },
+    { handlerName: 'onScreenChanged', paramCount: 0 },
+    { handlerName: 'onTopPaddingChanged', paramCount: 0 },
+    { handlerName: 'onTransientParentChanged', paramCount: 1 },
+    { handlerName: 'onVisibilityChanged', paramCount: 1 },
+    { handlerName: 'onVisibleChanged', paramCount: 1 },
+    { handlerName: 'onWidthChanged', paramCount: 1 },
+    { handlerName: 'onWindowStateChanged', paramCount: 1 },
+    { handlerName: 'onWindowTitleChanged', paramCount: 1 },
+    { handlerName: 'onXChanged', paramCount: 1 },
+    { handlerName: 'onYChanged', paramCount: 1 },
+  ],
+  grouped: [],
+  attached: [
+    {
+      methodName: 'actionGroup',
+      attachedTypeName: 'ActionGroup',
+      properties: [
+        { name: 'group', hasValue: true, hasBinding: true },
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
+      signals: [
+        { handlerName: 'onGroupChanged', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'applicationWindow',
+      attachedTypeName: 'ApplicationWindow',
+      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
+      signals: [
+        { handlerName: 'onActiveFocusControlChanged', paramCount: 0 },
+        { handlerName: 'onContentItemChanged', paramCount: 0 },
+        { handlerName: 'onFooterChanged', paramCount: 0 },
+        { handlerName: 'onHeaderChanged', paramCount: 0 },
+        { handlerName: 'onMenuBarChanged', paramCount: 0 },
+        { handlerName: 'onWindowChanged', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'buttonGroup',
+      attachedTypeName: 'ButtonGroup',
+      properties: [
+        { name: 'group', hasValue: true, hasBinding: true },
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
+      signals: [
+        { handlerName: 'onGroupChanged', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'contextMenu',
+      attachedTypeName: 'ContextMenu',
+      properties: [
+        { name: 'menu', hasValue: true, hasBinding: true },
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
+      signals: [
+        { handlerName: 'onMenuChanged', paramCount: 0 },
+        { handlerName: 'onRequested', paramCount: 1 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'dialogButtonBox',
+      attachedTypeName: 'DialogButtonBox',
+      properties: [
+        { name: 'buttonRole', hasValue: true, hasBinding: true },
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
+      signals: [
+        { handlerName: 'onButtonBoxChanged', paramCount: 0 },
+        { handlerName: 'onButtonRoleChanged', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'overlay',
+      attachedTypeName: 'Overlay',
+      properties: [
+        { name: 'modal', hasValue: true, hasBinding: true },
+        { name: 'modeless', hasValue: true, hasBinding: true },
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
+      signals: [
+        { handlerName: 'onModalChanged', paramCount: 0 },
+        { handlerName: 'onModelessChanged', paramCount: 0 },
+        { handlerName: 'onOverlayChanged', paramCount: 0 },
+        { handlerName: 'onPressed', paramCount: 0 },
+        { handlerName: 'onReleased', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'scrollBar',
+      attachedTypeName: 'ScrollBar',
+      properties: [
+        { name: 'horizontal', hasValue: true, hasBinding: true },
+        { name: 'vertical', hasValue: true, hasBinding: true },
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
+      signals: [
+        { handlerName: 'onHorizontalChanged', paramCount: 0 },
+        { handlerName: 'onVerticalChanged', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'scrollIndicator',
+      attachedTypeName: 'ScrollIndicator',
+      properties: [
+        { name: 'horizontal', hasValue: true, hasBinding: true },
+        { name: 'vertical', hasValue: true, hasBinding: true },
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
+      signals: [
+        { handlerName: 'onHorizontalChanged', paramCount: 0 },
+        { handlerName: 'onVerticalChanged', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'selectionRectangle',
+      attachedTypeName: 'SelectionRectangle',
+      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
+      signals: [
+        { handlerName: 'onControlChanged', paramCount: 0 },
+        { handlerName: 'onDraggingChanged', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'splitHandle',
+      attachedTypeName: 'SplitHandle',
+      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
+      signals: [
+        { handlerName: 'onHoveredChanged', paramCount: 0 },
+        { handlerName: 'onPressedChanged', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'splitView',
+      attachedTypeName: 'SplitView',
+      properties: [
+        { name: 'fillHeight', hasValue: true, hasBinding: true },
+        { name: 'fillWidth', hasValue: true, hasBinding: true },
+        { name: 'maximumHeight', hasValue: true, hasBinding: true },
+        { name: 'maximumWidth', hasValue: true, hasBinding: true },
+        { name: 'minimumHeight', hasValue: true, hasBinding: true },
+        { name: 'minimumWidth', hasValue: true, hasBinding: true },
+        { name: 'preferredHeight', hasValue: true, hasBinding: true },
+        { name: 'preferredWidth', hasValue: true, hasBinding: true },
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
+      signals: [
+        { handlerName: 'onFillHeightChanged', paramCount: 0 },
+        { handlerName: 'onFillWidthChanged', paramCount: 0 },
+        { handlerName: 'onMaximumHeightChanged', paramCount: 0 },
+        { handlerName: 'onMaximumWidthChanged', paramCount: 0 },
+        { handlerName: 'onMinimumHeightChanged', paramCount: 0 },
+        { handlerName: 'onMinimumWidthChanged', paramCount: 0 },
+        { handlerName: 'onPreferredHeightChanged', paramCount: 0 },
+        { handlerName: 'onPreferredWidthChanged', paramCount: 0 },
+        { handlerName: 'onViewChanged', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'stackView',
+      attachedTypeName: 'StackView',
+      properties: [
+        { name: 'visible', hasValue: true, hasBinding: true },
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
+      signals: [
+        { handlerName: 'onActivated', paramCount: 0 },
+        { handlerName: 'onActivating', paramCount: 0 },
+        { handlerName: 'onDeactivated', paramCount: 0 },
+        { handlerName: 'onDeactivating', paramCount: 0 },
+        { handlerName: 'onIndexChanged', paramCount: 0 },
+        { handlerName: 'onRemoved', paramCount: 0 },
+        { handlerName: 'onStatusChanged', paramCount: 0 },
+        { handlerName: 'onViewChanged', paramCount: 0 },
+        { handlerName: 'onVisibleChanged', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'swipeDelegate',
+      attachedTypeName: 'SwipeDelegate',
+      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
+      signals: [
+        { handlerName: 'onClicked', paramCount: 0 },
+        { handlerName: 'onPressedChanged', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'swipeView',
+      attachedTypeName: 'SwipeView',
+      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
+      signals: [
+        { handlerName: 'onIndexChanged', paramCount: 0 },
+        { handlerName: 'onIsCurrentItemChanged', paramCount: 0 },
+        { handlerName: 'onIsNextItemChanged', paramCount: 0 },
+        { handlerName: 'onIsPreviousItemChanged', paramCount: 0 },
+        { handlerName: 'onViewChanged', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'tabBar',
+      attachedTypeName: 'TabBar',
+      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
+      signals: [
+        { handlerName: 'onIndexChanged', paramCount: 0 },
+        { handlerName: 'onPositionChanged', paramCount: 0 },
+        { handlerName: 'onTabBarChanged', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'textArea',
+      attachedTypeName: 'TextArea',
+      properties: [
+        { name: 'flickable', hasValue: true, hasBinding: true },
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
+      signals: [
+        { handlerName: 'onFlickableChanged', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'toolTip',
+      attachedTypeName: 'ToolTip',
+      properties: [
+        { name: 'delay', hasValue: true, hasBinding: true },
+        { name: 'text', hasValue: true, hasBinding: true },
+        { name: 'timeout', hasValue: true, hasBinding: true },
+        { name: 'visible', hasValue: true, hasBinding: true },
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
+      signals: [
+        { handlerName: 'onDelayChanged', paramCount: 0 },
+        { handlerName: 'onTextChanged', paramCount: 0 },
+        { handlerName: 'onTimeoutChanged', paramCount: 0 },
+        { handlerName: 'onVisibleChanged', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'tumbler',
+      attachedTypeName: 'Tumbler',
+      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
+      signals: [
+        { handlerName: 'onDisplacementChanged', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+  ],
+  defaultProperty: 'contentData',
+};
+
 export function ApplicationWindow(): ApplicationWindowBuilder {
-  return new DslBuilderImpl('ApplicationWindow') as unknown as ApplicationWindowBuilder;
+  return createFluentBuilder(
+    'ApplicationWindow',
+    APPLICATIONWINDOW_META,
+  ) as unknown as ApplicationWindowBuilder;
 }
 
 export namespace ApplicationWindow {

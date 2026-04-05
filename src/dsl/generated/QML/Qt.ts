@@ -5,7 +5,6 @@
 import type { QmlValue } from '../../runtime/index.js';
 import { createEnumToken } from '../../runtime/index.js';
 import type { ApplicationBuilder } from './QQmlApplication.js';
-import type { ComponentAttachedBuilder } from './QQmlComponentAttached.js';
 import type { QtObjectBuilder } from './QtObject.js';
 export interface QtInstance {
   readonly application: ApplicationBuilder;
