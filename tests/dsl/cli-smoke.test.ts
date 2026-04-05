@@ -142,4 +142,13 @@ describe('CLI Smoke Tests', () => {
     expect(stdout).toContain('Formatting');
     expect(stdout).toContain('Validat');
   }, 60_000);
+
+  test('CLI-09: empty --modules value fails clearly', async () => {
+    const outDir = join(tempBase, 'cli-09');
+    const { exitCode, stderr } = await runCli([`--output-dir=${outDir}`, '--modules=']);
+
+    expect(exitCode).toBe(1);
+    expect(stderr).toContain('--modules must contain at least one module name');
+    expect(existsSync(join(outDir, 'index.ts'))).toBe(false);
+  }, 30_000);
 });

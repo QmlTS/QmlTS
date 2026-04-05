@@ -38,6 +38,11 @@ const defaultOutputDir = join(import.meta.dir, '..', 'src', 'dsl', 'generated');
 const outputDir = outputDirArg ? outputDirArg.replace('--output-dir=', '') : defaultOutputDir;
 
 async function main(): Promise<void> {
+  if (modulesArg && moduleWhitelist && moduleWhitelist.length === 0) {
+    console.error('Error: --modules must contain at least one module name.');
+    process.exit(1);
+  }
+
   console.log('Generating DSL...');
   console.log(`  Registry: ${registryPath}`);
   console.log(`  Output:   ${outputDir}`);
