@@ -17,8 +17,6 @@ describe('Generator Orchestrator', () => {
       registryPath: SNAPSHOT_PATH,
       outputDir: '',
       moduleWhitelist: ['QtQuick.Layouts'],
-      formatOutput: false,
-      validateOutput: false,
     });
     expect(result.success).toBe(true);
     expect(result.files.length).toBeGreaterThan(0);
@@ -30,8 +28,6 @@ describe('Generator Orchestrator', () => {
       registryPath: SNAPSHOT_PATH,
       outputDir: '',
       moduleWhitelist: ['QtQuick.Layouts'],
-      formatOutput: false,
-      validateOutput: false,
     });
     expect(result.stats.modulesProcessed).toBe(1);
     expect(result.stats.typesProcessed).toBeGreaterThan(0);
@@ -43,8 +39,6 @@ describe('Generator Orchestrator', () => {
       registryPath: SNAPSHOT_PATH,
       outputDir: '',
       moduleWhitelist: ['QtQuick.Layouts'],
-      formatOutput: false,
-      validateOutput: false,
     });
     expect(result.files.some((f) => f.relativePath === 'QtQuick.Layouts/index.ts')).toBe(true);
     expect(result.files.some((f) => f.relativePath === 'index.ts')).toBe(true);
@@ -55,15 +49,11 @@ describe('Generator Orchestrator', () => {
       registryPath: SNAPSHOT_PATH,
       outputDir: '',
       moduleWhitelist: ['QtQuick.Layouts'],
-      formatOutput: false,
-      validateOutput: false,
     });
     const b = generate({
       registryPath: SNAPSHOT_PATH,
       outputDir: '',
       moduleWhitelist: ['QtQuick.Layouts'],
-      formatOutput: false,
-      validateOutput: false,
     });
     expect(a.files.length).toBe(b.files.length);
     for (let i = 0; i < a.files.length; i++) {
@@ -86,8 +76,6 @@ describe('Generator Orchestrator', () => {
         'QtQuick.Layouts',
         'QtCore',
       ],
-      formatOutput: false,
-      validateOutput: false,
     });
     expect(result.success).toBe(true);
     expect(result.stats.typesProcessed).toBeGreaterThan(400);
@@ -99,8 +87,6 @@ describe('Generator Orchestrator', () => {
       registryPath: SNAPSHOT_PATH,
       outputDir: '',
       moduleWhitelist: ['QtQuick.Layouts'],
-      formatOutput: false,
-      validateOutput: false,
     });
     for (const file of result.files) {
       expect(file.content.length).toBeGreaterThan(0);
@@ -112,8 +98,6 @@ describe('Generator Orchestrator', () => {
       registryPath: SNAPSHOT_PATH,
       outputDir: '',
       moduleWhitelist: ['QtQuick.Layouts'],
-      formatOutput: false,
-      validateOutput: false,
     });
     for (const file of result.files) {
       if (file.relativePath.endsWith('.ts')) {

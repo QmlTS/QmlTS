@@ -4,14 +4,11 @@
  * Generate the TypeScript Fluent DSL from the Qt registry snapshot.
  *
  * Usage:
- *   bun run generate:dsl
+ *   bun run generate:dsl                          # P0 modules → src/dsl/generated/
+ *   bun run generate:dsl -- --all                 # All modules → .generated-full/
+ *   bun run generate:dsl -- --output-dir=./out     # Custom output directory
  *   bun run generate:dsl -- --modules=QtQuick,QtQuick.Layouts
- *   bun run generate:dsl -- --all
- *   bun run generate:dsl -- --format
- *   bun run generate:dsl -- --validate
- *
- * By default, generates DSL for core (P0) modules.
- * Pass --all to generate for all modules.
+ *   bun run generate:dsl -- --format --validate
  */
 
 import { join } from 'node:path';
@@ -38,6 +35,8 @@ const useAll = args.includes('--all');
 const doFormat = args.includes('--format');
 const doValidate = args.includes('--validate');
 const modulesArg = args.find((a) => a.startsWith('--modules='));
+const outputDirArg = args.find((a) => a.startsWith('--output-dir='));
+
 const moduleWhitelist = useAll
   ? undefined
   : modulesArg
@@ -49,7 +48,15 @@ const moduleWhitelist = useAll
     : P0_MODULES;
 
 const registryPath = join(import.meta.dir, '..', 'data', 'qt-6.11.0-registry.snapshot.json');
-const outputDir = join(import.meta.dir, '..', 'src', 'dsl', 'generated');
+
+// --output-dir overrides; otherwise --all defaults to .generated-full/
+const defaultOutputDir = useAll
+  ? join(import.meta.dir, '..', '.generated-full')
+  : join(import.meta.dir, '..', 'src', 'dsl', 'generated');
+
+const outputDir = outputDirArg
+  ? outputDirArg.replace('--output-dir=', '')
+  : defaultOutputDir;
 
 async function main(): Promise<void> {
   console.log('Generating DSL...');
