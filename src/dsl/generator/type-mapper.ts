@@ -27,9 +27,57 @@ export class TypeMapper {
     this.analyzed = analyzed;
     this.enumIndex = analyzed.enumIndex;
 
-    // Build lookup by C++ qualified name and QML name
+    // Build lookup by C++ qualified name (primary key)
     for (const [qn, type] of analyzed.allTypes) {
       this.typeNameToAnalyzed.set(qn, type);
+    }
+
+    // Build reverse-index by qmlName and short C++ class name.
+    // Only index non-ambiguous names; skip if multiple resolvable types share the same short name.
+    const shortNameCandidates = new Map<string, AnalyzedType | null>();
+    const qmlNameCandidates = new Map<string, AnalyzedType | null>();
+
+    for (const [_, type] of analyzed.allTypes) {
+      // Skip internal types — they're implementation details
+      if (type.classification === 'internal') {
+        continue;
+      }
+
+      // Index by qmlName (e.g., "Entity" → Qt3DCore::QEntity)
+      if (!this.typeNameToAnalyzed.has(type.qmlName)) {
+        const existing = qmlNameCandidates.get(type.qmlName);
+        if (existing === undefined) {
+          qmlNameCandidates.set(type.qmlName, type);
+        } else {
+          qmlNameCandidates.set(type.qmlName, null); // ambiguous
+        }
+      }
+
+      // Index by short C++ class name — strip namespace from qualifiedName
+      const colonIdx = type.qualifiedName.lastIndexOf('::');
+      if (colonIdx >= 0) {
+        const shortName = type.qualifiedName.slice(colonIdx + 2);
+        if (!this.typeNameToAnalyzed.has(shortName)) {
+          const existing = shortNameCandidates.get(shortName);
+          if (existing === undefined) {
+            shortNameCandidates.set(shortName, type);
+          } else {
+            shortNameCandidates.set(shortName, null); // ambiguous
+          }
+        }
+      }
+    }
+
+    // Merge non-ambiguous candidates into the primary index
+    for (const [name, type] of qmlNameCandidates) {
+      if (type !== null) {
+        this.typeNameToAnalyzed.set(name, type);
+      }
+    }
+    for (const [name, type] of shortNameCandidates) {
+      if (type !== null && !this.typeNameToAnalyzed.has(name)) {
+        this.typeNameToAnalyzed.set(name, type);
+      }
     }
   }
 

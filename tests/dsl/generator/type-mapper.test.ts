@@ -148,4 +148,51 @@ describe('TypeMapper', () => {
       expect(m2.getRequiredRuntimeImports().length).toBe(0);
     });
   });
+
+  describe('reverse-index resolution', () => {
+    test('TM-80: bare C++ class name resolves to analyzed type', () => {
+      // QEntity is the short C++ name for Qt3DCore::QEntity
+      const result = mapper.mapType('QEntity');
+      expect(result).not.toBe('QmlValue');
+      expect(result).toContain('Builder');
+    });
+
+    test('TM-81: QML name resolves to analyzed type', () => {
+      // "Entity" is the qmlName for Qt3DCore::QEntity
+      const result = mapper.mapType('Entity');
+      expect(result).not.toBe('QmlValue');
+      expect(result).toContain('Builder');
+    });
+
+    test('TM-82: QGeometryView resolves via reverse-index', () => {
+      const result = mapper.mapType('QGeometryView');
+      expect(result).not.toBe('QmlValue');
+    });
+
+    test('TM-83: QEffect resolves via reverse-index', () => {
+      const result = mapper.mapType('QEffect');
+      expect(result).not.toBe('QmlValue');
+    });
+
+    test('TM-84: qualified name still works (regression)', () => {
+      const result = mapper.mapType('Qt3DCore::QEntity');
+      expect(result).not.toBe('QmlValue');
+      expect(result).toContain('Builder');
+    });
+
+    test('TM-85: QAttribute resolves via reverse-index', () => {
+      const result = mapper.mapType('QAttribute');
+      expect(result).not.toBe('QmlValue');
+    });
+
+    test('TM-86: QGeometry resolves via reverse-index', () => {
+      const result = mapper.mapType('QGeometry');
+      expect(result).not.toBe('QmlValue');
+    });
+
+    test('TM-87: truly unknown type still falls back', () => {
+      const m2 = new TypeMapper(analyzed);
+      expect(m2.mapType('CompletelyFakeType')).toBe('QmlValue');
+    });
+  });
 });
