@@ -172,7 +172,9 @@ export class CodeEmitter {
         if (usedNames.has(methodName)) {
           methodName = `${methodName}Attached`;
         }
-        ifaceLines.push(`  ${methodName}(setup: (b: ${surface.builderName}) => void): ${builderName};`);
+        ifaceLines.push(
+          `  ${methodName}(setup: (b: ${surface.builderName}) => void): ${builderName};`,
+        );
       }
     }
 
