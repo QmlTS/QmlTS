@@ -38,3 +38,17 @@ coverage/
 # Logs
 *.log
 npm-debug.log*
+
+# DSL generated output (only P0 snapshot is committed)
+# When running `bun run generate:dsl --all`, extra module directories appear.
+# The P0 modules are explicitly tracked via `git add -f`.
+# To regenerate P0: `bun run generate:dsl` then commit changes.
+src/dsl/generated/*
+!src/dsl/generated/QML/
+!src/dsl/generated/QtCore/
+!src/dsl/generated/QtQml/
+!src/dsl/generated/QtQml.Models/
+!src/dsl/generated/QtQuick/
+!src/dsl/generated/QtQuick.Layouts/
+!src/dsl/generated/QtQuick.Templates/
+!src/dsl/generated/index.ts
