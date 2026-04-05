@@ -21,9 +21,11 @@ export interface QmlObjectBuilder {
 /** Value that can be passed to a property setter */
 export type DslPropertyValue = number | string | boolean | null | QmlEnumToken;
 
-interface GroupedEntry {
-  property: string;
-  value: DslPropertyValue;
+/** A single property entry for grouped/attached callbacks */
+export interface BuilderEntry {
+	readonly property: string;
+	readonly value?: DslPropertyValue;
+	readonly expression?: string;
 }
 
 /**
@@ -80,11 +82,14 @@ export class DslBuilderImpl implements QmlObjectBuilder {
   }
 
   /** Add a grouped property binding (e.g., border { width: 2; color: "black" }). */
-  addGrouped(group: string, entries: GroupedEntry[]): this {
+  addGrouped(group: string, entries: BuilderEntry[]): this {
     const bindings: BindingNode[] = entries.map((e) => ({
       kind: 'Binding' as const,
       property: e.property,
-      value: toDslBindingValue(e.value),
+      value:
+        e.expression !== undefined
+          ? { kind: 'expression' as const, code: e.expression }
+          : toDslBindingValue(e.value!),
     }));
     const node: GroupedBindingNode = { kind: 'GroupedBinding', group, bindings };
     this.members.push(node);
@@ -92,11 +97,14 @@ export class DslBuilderImpl implements QmlObjectBuilder {
   }
 
   /** Add an attached property binding (e.g., Layout.fillWidth: true). */
-  addAttached(attachedTypeName: string, entries: GroupedEntry[]): this {
+  addAttached(attachedTypeName: string, entries: BuilderEntry[]): this {
     const bindings: BindingNode[] = entries.map((e) => ({
       kind: 'Binding' as const,
       property: e.property,
-      value: toDslBindingValue(e.value),
+      value:
+        e.expression !== undefined
+          ? { kind: 'expression' as const, code: e.expression }
+          : toDslBindingValue(e.value!),
     }));
     const node: AttachedBindingNode = {
       kind: 'AttachedBinding',
