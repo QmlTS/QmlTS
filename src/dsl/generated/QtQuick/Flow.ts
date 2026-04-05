@@ -46,7 +46,7 @@ export interface FlowBuilder {
   containmentMaskBind(expr: string): FlowBuilder;
   enabled(value: boolean): FlowBuilder;
   enabledBind(expr: string): FlowBuilder;
-  flow(value: FlowBuilder): FlowBuilder;
+  flow(value: QmlEnumToken): FlowBuilder;
   flowBind(expr: string): FlowBuilder;
   focus(value: boolean): FlowBuilder;
   focusBind(expr: string): FlowBuilder;

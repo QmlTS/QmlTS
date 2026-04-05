@@ -112,7 +112,6 @@ export class CodeEmitter {
 
   private emitCreatable(type: AnalyzedType): string {
     this.mapper.resetImports();
-    const lines: string[] = [];
     const builderName = `${type.dslSymbolName}Builder`;
     const allProps = [...type.ownProperties, ...type.inheritedProperties];
     const allSignals = [...type.ownSignals, ...type.inheritedSignals];
@@ -127,31 +126,32 @@ export class CodeEmitter {
       }
     }
 
-    // ─── Builder interface ──────────────────────────────────────────────
-    lines.push(`export interface ${builderName} {`);
-    lines.push(`  id(id: string): ${builderName};`);
-    lines.push(`  child(obj: QmlObjectBuilder): ${builderName};`);
-    lines.push('');
+    // ─── Builder interface (peer type refs appear here as type annotations) ──
+    const ifaceLines: string[] = [];
+    ifaceLines.push(`export interface ${builderName} {`);
+    ifaceLines.push(`  id(id: string): ${builderName};`);
+    ifaceLines.push(`  child(obj: QmlObjectBuilder): ${builderName};`);
+    ifaceLines.push('');
 
     // Properties (writable only)
     for (const prop of sortedByName(allProps)) {
       if (prop.readonly) continue;
       const tsType = propTypes.get(prop.name) ?? 'QmlValue';
-      lines.push(`  ${safeName(prop.name)}(value: ${tsType}): ${builderName};`);
-      lines.push(`  ${safeName(prop.name)}Bind(expr: string): ${builderName};`);
+      ifaceLines.push(`  ${safeName(prop.name)}(value: ${tsType}): ${builderName};`);
+      ifaceLines.push(`  ${safeName(prop.name)}Bind(expr: string): ${builderName};`);
     }
 
     // Signal handlers
     for (const sig of sortedByName(allSignals)) {
       const handlerName = `on${capitalize(sig.name)}`;
-      lines.push(`  ${handlerName}(body: string): ${builderName};`);
+      ifaceLines.push(`  ${handlerName}(body: string): ${builderName};`);
     }
 
     // Grouped property methods
     for (const ref of type.groupedProperties) {
       const surface = this.analyzed.groupedSurfaces.get(ref.surfaceQualifiedName);
       if (surface) {
-        lines.push(
+        ifaceLines.push(
           `  ${ref.propertyName}(setup: (b: ${surface.builderName}) => void): ${builderName};`,
         );
       }
@@ -172,38 +172,57 @@ export class CodeEmitter {
         if (usedNames.has(methodName)) {
           methodName = `${methodName}Attached`;
         }
-        lines.push(`  ${methodName}(setup: (b: ${surface.builderName}) => void): ${builderName};`);
+        ifaceLines.push(
+          `  ${methodName}(setup: (b: ${surface.builderName}) => void): ${builderName};`,
+        );
       }
     }
 
-    lines.push('}');
-    lines.push('');
+    ifaceLines.push('}');
 
-    // ─── TypeMetadata ───────────────────────────────────────────────────
-    const metaConstName = `${type.dslSymbolName.toUpperCase()}_META`;
-    this.emitTypeMetadata(metaConstName, type, lines);
-    lines.push('');
-
-    // ─── Factory function ───────────────────────────────────────────────
-    lines.push(`export function ${type.dslSymbolName}(): ${builderName} {`);
-    lines.push(
-      `  return createFluentBuilder('${type.qmlName}', ${metaConstName}) as unknown as ${builderName};`,
+    // ─── Resolve peer import collisions ONLY in interface body ──────────
+    let ifaceBody = ifaceLines.join('\n');
+    const ownSymbols = new Set([type.dslSymbolName, builderName]);
+    const allPeerRefs = this.collectAllPeerRefs(type);
+    const usedPeerRefs = filterUsedPeerRefs(allPeerRefs, ifaceBody);
+    const { refs: resolvedPeerRefs, body: resolvedIfaceBody } = resolvePeerNameCollisions(
+      usedPeerRefs,
+      ownSymbols,
+      ifaceBody,
     );
-    lines.push('}');
+    ifaceBody = resolvedIfaceBody;
 
-    // ─── Enum namespace ─────────────────────────────────────────────────
+    // ─── TypeMetadata + Factory + Enums (no peer ref replacement here) ──
+    const restLines: string[] = [];
+    restLines.push('');
+    const metaConstName = `${type.dslSymbolName.toUpperCase()}_META`;
+    this.emitTypeMetadata(metaConstName, type, restLines);
+    restLines.push('');
+
+    restLines.push(`export function ${type.dslSymbolName}(): ${builderName} {`);
+    const factoryLine = `  return createFluentBuilder('${type.qmlName}', ${metaConstName}) as unknown as ${builderName};`;
+    if (factoryLine.length > 100) {
+      restLines.push('  return createFluentBuilder(');
+      restLines.push(`    '${type.qmlName}',`);
+      restLines.push(`    ${metaConstName},`);
+      restLines.push(`  ) as unknown as ${builderName};`);
+    } else {
+      restLines.push(factoryLine);
+    }
+    restLines.push('}');
+
     if (hasEnums) {
-      lines.push('');
-      this.emitEnumNamespace(type.dslSymbolName, allEnums, lines);
+      restLines.push('');
+      this.emitEnumNamespace(type.dslSymbolName, allEnums, restLines);
     }
 
     // ─── Build imports and header ───────────────────────────────────────
-    const codeBody = lines.join('\n');
+    const codeBody = `${ifaceBody}\n${restLines.join('\n')}`;
     const runtimeImports = filterUsedImports(this.mapper.getRequiredRuntimeImports(), codeBody);
-    const peerRefs = filterUsedPeerRefs(this.collectAllPeerRefs(type), codeBody);
+
     const importSection = this.buildCreatableImportSection(
       runtimeImports,
-      peerRefs,
+      resolvedPeerRefs,
       hasEnums,
       type.moduleUri,
     );
@@ -324,25 +343,33 @@ export class CodeEmitter {
     lines.push('  ],');
 
     // Grouped
-    lines.push('  grouped: [');
+    const groupedEntries: string[] = [];
     for (const ref of type.groupedProperties) {
       const surface = this.analyzed.groupedSurfaces.get(ref.surfaceQualifiedName);
       if (!surface) continue;
-      lines.push('    {');
-      lines.push(`      methodName: '${ref.propertyName}',`);
-      lines.push(`      groupName: '${ref.propertyName}',`);
-      lines.push('      properties: [');
+      const entry: string[] = [];
+      entry.push('    {');
+      entry.push(`      methodName: '${ref.propertyName}',`);
+      entry.push(`      groupName: '${ref.propertyName}',`);
+      entry.push('      properties: [');
       for (const p of surface.properties) {
         if (p.readonly) continue;
-        lines.push(`        { name: '${p.name}', hasValue: true, hasBinding: true },`);
+        entry.push(`        { name: '${p.name}', hasValue: true, hasBinding: true },`);
       }
-      lines.push('      ],');
-      lines.push('    },');
+      entry.push('      ],');
+      entry.push('    },');
+      groupedEntries.push(entry.join('\n'));
     }
-    lines.push('  ],');
+    if (groupedEntries.length > 0) {
+      lines.push('  grouped: [');
+      for (const e of groupedEntries) lines.push(e);
+      lines.push('  ],');
+    } else {
+      lines.push('  grouped: [],');
+    }
 
     // Attached
-    lines.push('  attached: [');
+    const attachedEntries: string[] = [];
     const usedNames = new Set<string>();
     for (const prop of sortedByName(allProps)) {
       if (!prop.readonly) usedNames.add(safeName(prop.name));
@@ -357,26 +384,34 @@ export class CodeEmitter {
       if (usedNames.has(methodName)) {
         methodName = `${methodName}Attached`;
       }
-      lines.push('    {');
-      lines.push(`      methodName: '${methodName}',`);
-      lines.push(`      attachedTypeName: '${surface.ownerQmlName}',`);
-      lines.push('      properties: [');
+      const entry: string[] = [];
+      entry.push('    {');
+      entry.push(`      methodName: '${methodName}',`);
+      entry.push(`      attachedTypeName: '${surface.ownerQmlName}',`);
+      entry.push('      properties: [');
       for (const p of surface.properties) {
         if (p.readonly) continue;
-        lines.push(`        { name: '${p.name}', hasValue: true, hasBinding: true },`);
+        entry.push(`        { name: '${p.name}', hasValue: true, hasBinding: true },`);
       }
-      lines.push('      ],');
-      lines.push('      signals: [');
+      entry.push('      ],');
+      entry.push('      signals: [');
       for (const sig of surface.signals) {
         const handlerName = `on${capitalize(sig.name)}`;
-        lines.push(
+        entry.push(
           `        { handlerName: '${handlerName}', paramCount: ${sig.parameters.length} },`,
         );
       }
-      lines.push('      ],');
-      lines.push('    },');
+      entry.push('      ],');
+      entry.push('    },');
+      attachedEntries.push(entry.join('\n'));
     }
-    lines.push('  ],');
+    if (attachedEntries.length > 0) {
+      lines.push('  attached: [');
+      for (const e of attachedEntries) lines.push(e);
+      lines.push('  ],');
+    } else {
+      lines.push('  attached: [],');
+    }
 
     // Default property
     if (type.defaultProperty) {
@@ -468,10 +503,8 @@ export class CodeEmitter {
     const typeImports = ['QmlObjectBuilder', 'TypeMetadata', ...runtimeImports];
     typeImports.sort();
 
+    lines.push(`import type { ${typeImports.join(', ')} } from '../../runtime/index.js';`);
     lines.push(`import { ${valueImports.join(', ')} } from '../../runtime/index.js';`);
-    if (typeImports.length > 0) {
-      lines.push(`import type { ${typeImports.join(', ')} } from '../../runtime/index.js';`);
-    }
 
     // Peer imports
     this.emitPeerImports(lines, peerRefs, currentModule);
@@ -488,13 +521,13 @@ export class CodeEmitter {
   ): string {
     const lines: string[] = [];
 
-    if (needsEnumToken) {
-      lines.push(`import { createEnumToken } from '../../runtime/index.js';`);
-    }
-
     if (runtimeImports.length > 0) {
       const sorted = [...runtimeImports].sort();
       lines.push(`import type { ${sorted.join(', ')} } from '../../runtime/index.js';`);
+    }
+
+    if (needsEnumToken) {
+      lines.push(`import { createEnumToken } from '../../runtime/index.js';`);
     }
 
     // Peer imports
@@ -522,11 +555,15 @@ export class CodeEmitter {
   }
 
   /** Generate peer type import statements grouped by source file */
-  private emitPeerImports(lines: string[], peerRefs: PeerTypeRef[], currentModule: string): void {
+  private emitPeerImports(
+    lines: string[],
+    peerRefs: (PeerTypeRef & { originalName?: string })[],
+    currentModule: string,
+  ): void {
     if (peerRefs.length === 0) return;
 
     // Group by source file
-    const byFile = new Map<string, string[]>();
+    const byFile = new Map<string, { tsName: string; originalName?: string }[]>();
     for (const ref of peerRefs) {
       const moduleDir = this.moduleDirs.get(ref.moduleUri) ?? ref.moduleUri;
       let relativePath: string;
@@ -536,18 +573,22 @@ export class CodeEmitter {
         relativePath = `../${moduleDir}/${ref.emitFileName}.js`;
       }
       const existing = byFile.get(relativePath);
+      const entry = { tsName: ref.tsName, originalName: ref.originalName };
       if (existing) {
-        existing.push(ref.tsName);
+        existing.push(entry);
       } else {
-        byFile.set(relativePath, [ref.tsName]);
+        byFile.set(relativePath, [entry]);
       }
     }
 
     // Sort by file path for determinism
     const sortedPaths = [...byFile.keys()].sort();
     for (const filePath of sortedPaths) {
-      const names = byFile.get(filePath)!.sort();
-      lines.push(`import type { ${names.join(', ')} } from '${filePath}';`);
+      const entries = byFile.get(filePath)!.sort((a, b) => a.tsName.localeCompare(b.tsName));
+      const importNames = entries.map((e) =>
+        e.originalName ? `${e.originalName} as ${e.tsName}` : e.tsName,
+      );
+      lines.push(`import type { ${importNames.join(', ')} } from '${filePath}';`);
     }
   }
 }
@@ -629,4 +670,35 @@ function filterUsedPeerRefs(peerRefs: PeerTypeRef[], codeBody: string): PeerType
     const pattern = new RegExp(`\\b${ref.tsName.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\b`);
     return pattern.test(codeBody);
   });
+}
+
+/**
+ * Resolve name collisions between peer import names and this type's own exported symbols.
+ * Returns the alias map (original name → alias) and rewritten code body.
+ */
+function resolvePeerNameCollisions(
+  peerRefs: PeerTypeRef[],
+  ownSymbols: Set<string>,
+  codeBody: string,
+): { refs: PeerTypeRef[]; body: string } {
+  let body = codeBody;
+
+  for (const ref of peerRefs) {
+    if (ownSymbols.has(ref.tsName)) {
+      const alias = `${ref.tsName}_Ref`;
+      // Replace usages in code body with the alias
+      const pattern = new RegExp(`\\b${ref.tsName.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\b`, 'g');
+      body = body.replace(pattern, alias);
+    }
+  }
+
+  // Create new refs with aliased names
+  const resolvedRefs = peerRefs.map((ref) => {
+    if (ownSymbols.has(ref.tsName)) {
+      return { ...ref, tsName: `${ref.tsName}_Ref`, originalName: ref.tsName };
+    }
+    return ref;
+  });
+
+  return { refs: resolvedRefs, body };
 }

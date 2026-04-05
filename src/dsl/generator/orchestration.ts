@@ -1,6 +1,17 @@
-import { mkdirSync, rmSync, writeFileSync } from 'node:fs';
+import { cpSync, existsSync, mkdirSync, rmSync, writeFileSync } from 'node:fs';
 import { dirname, join, relative, resolve } from 'node:path';
 import type { GeneratorResult } from './types.js';
+
+/** Locate the project's runtime source directory (src/dsl/runtime). */
+function findRuntimeDir(): string {
+  // __dirname → src/dsl/generator, runtime is a sibling
+  return resolve(import.meta.dir, '..', 'runtime');
+}
+
+/** Locate the project's AST source directory (src/ast). */
+function findAstDir(): string {
+  return resolve(import.meta.dir, '..', '..', 'ast');
+}
 
 export interface WriteResult {
   readonly filesWritten: number;
@@ -66,8 +77,31 @@ export async function validateGeneratedFiles(outputDir: string): Promise<Validat
   try {
     const absOutputDir = resolve(outputDir);
 
-    // Generated files import from ../../runtime/index.js relative to the generated dir.
-    // Create a temp tsconfig in the parent of the generated tree that includes it.
+    // Generated files import from ../../runtime/index.js relative to
+    // <outputDir>/ModuleName/File.ts → the runtime must exist at
+    // <parent(parent(outputDir))>/runtime/ for tsc to resolve it.
+    // If the output dir is not the project default, copy runtime + ast there.
+    const runtimeTarget = resolve(absOutputDir, '..', 'runtime');
+    const astTarget = resolve(absOutputDir, '..', '..', 'ast');
+    let copiedRuntime = false;
+
+    if (!existsSync(runtimeTarget)) {
+      const runtimeSrc = findRuntimeDir();
+      if (existsSync(runtimeSrc)) {
+        mkdirSync(dirname(runtimeTarget), { recursive: true });
+        cpSync(runtimeSrc, runtimeTarget, { recursive: true });
+        copiedRuntime = true;
+      }
+    }
+    if (!existsSync(astTarget)) {
+      const astSrc = findAstDir();
+      if (existsSync(astSrc)) {
+        mkdirSync(dirname(astTarget), { recursive: true });
+        cpSync(astSrc, astTarget, { recursive: true });
+        copiedRuntime = true;
+      }
+    }
+
     const parentDir = dirname(absOutputDir);
     const tsconfigPath = join(parentDir, 'tsconfig.validate.json');
     const includePattern = join(relative(parentDir, absOutputDir), '**', '*.ts').replace(
@@ -109,6 +143,14 @@ export async function validateGeneratedFiles(outputDir: string): Promise<Validat
         rmSync(tsconfigPath, { force: true });
       } catch {
         // cleanup is best-effort
+      }
+      if (copiedRuntime) {
+        try {
+          rmSync(runtimeTarget, { recursive: true, force: true });
+          rmSync(astTarget, { recursive: true, force: true });
+        } catch {
+          // cleanup is best-effort
+        }
       }
     }
   } catch (error) {

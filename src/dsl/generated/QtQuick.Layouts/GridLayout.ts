@@ -5,7 +5,6 @@
 import type { QmlEnumToken, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { QtObjectBuilder } from '../QML/QtObject.js';
-import type { FlowBuilder } from '../QtQuick/Flow.js';
 import type { ItemBuilder } from '../QtQuick/Item.js';
 import type { PaletteBuilder } from '../QtQuick/Palette.js';
 import type { AnchorsBuilder } from '../QtQuick/QQuickAnchors.js';
@@ -33,7 +32,7 @@ export interface GridLayoutBuilder {
   containmentMaskBind(expr: string): GridLayoutBuilder;
   enabled(value: boolean): GridLayoutBuilder;
   enabledBind(expr: string): GridLayoutBuilder;
-  flow(value: FlowBuilder): GridLayoutBuilder;
+  flow(value: QmlEnumToken): GridLayoutBuilder;
   flowBind(expr: string): GridLayoutBuilder;
   focus(value: boolean): GridLayoutBuilder;
   focusBind(expr: string): GridLayoutBuilder;

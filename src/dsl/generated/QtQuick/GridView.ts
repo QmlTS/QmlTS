@@ -13,7 +13,6 @@ import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { QtObjectBuilder } from '../QML/QtObject.js';
 import type { AccessibleAttachedBuilder } from './Accessible.js';
 import type { EnterKeyAttachedBuilder } from './EnterKey.js';
-import type { FlowBuilder } from './Flow.js';
 import type { GraphicsInfoAttachedBuilder } from './GraphicsInfo.js';
 import type { ItemBuilder } from './Item.js';
 import type { KeyNavigationAttachedBuilder } from './KeyNavigation.js';
@@ -91,7 +90,7 @@ export interface GridViewBuilder {
   flickDecelerationBind(expr: string): GridViewBuilder;
   flickableDirection(value: QmlEnumToken): GridViewBuilder;
   flickableDirectionBind(expr: string): GridViewBuilder;
-  flow(value: FlowBuilder): GridViewBuilder;
+  flow(value: QmlEnumToken): GridViewBuilder;
   flowBind(expr: string): GridViewBuilder;
   focus(value: boolean): GridViewBuilder;
   focusBind(expr: string): GridViewBuilder;

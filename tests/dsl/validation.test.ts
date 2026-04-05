@@ -6,35 +6,15 @@ import { generate } from '../../src/dsl/generator/generator.js';
 const GENERATED_DIR = join(import.meta.dir, '..', '..', 'src', 'dsl', 'generated');
 const SNAPSHOT_PATH = join(import.meta.dir, '..', '..', 'data', 'qt-6.11.0-registry.snapshot.json');
 
-const P0_MODULES = [
-  'QML',
-  'QtQml',
-  'QtQml.Models',
-  'QtQuick',
-  'QtQuick.Controls.Basic',
-  'QtQuick.Templates',
-  'QtQuick.Layouts',
-  'QtCore',
-];
-
 describe('Generated DSL Validation', () => {
   test('VL-01: generated directory exists', () => {
     expect(existsSync(GENERATED_DIR)).toBe(true);
   });
 
-  test('VL-02: each P0 module has a directory (non-empty only)', () => {
-    // QtQuick.Controls.Basic may be filtered out if it has no exported types
-    const result = generate({
-      registryPath: SNAPSHOT_PATH,
-      outputDir: '',
-      moduleWhitelist: P0_MODULES,
-    });
-    for (const mod of result.stats.modulesProcessed > 0 ? P0_MODULES : []) {
-      const dir = join(GENERATED_DIR, mod);
-      if (existsSync(dir)) {
-        expect(readdirSync(dir).length).toBeGreaterThan(0);
-      }
-    }
+  test('VL-02: committed snapshot has 80+ module directories', () => {
+    const entries = readdirSync(GENERATED_DIR, { withFileTypes: true });
+    const dirs = entries.filter((e) => e.isDirectory());
+    expect(dirs.length).toBeGreaterThan(80);
   });
 
   test('VL-03: each module directory has index.ts', () => {
@@ -70,7 +50,6 @@ describe('Generated DSL Validation', () => {
     const result = generate({
       registryPath: SNAPSHOT_PATH,
       outputDir: '',
-      moduleWhitelist: P0_MODULES,
     });
     expect(result.success).toBe(true);
 
@@ -120,7 +99,6 @@ describe('Generated DSL Validation', () => {
   });
 
   test('VL-12: generated files have no TypeScript syntax errors (smoke test)', () => {
-    // Check that a few key files contain expected exports
     const rectContent = readFileSync(join(GENERATED_DIR, 'QtQuick', 'Rectangle.ts'), 'utf-8');
     expect(rectContent).toContain('export interface RectangleBuilder');
     expect(rectContent).toContain('export function Rectangle()');
@@ -135,11 +113,10 @@ describe('Generated DSL Validation', () => {
     const result = generate({
       registryPath: SNAPSHOT_PATH,
       outputDir: '',
-      moduleWhitelist: P0_MODULES,
     });
-    expect(result.stats.creatableTypes).toBeGreaterThan(200);
-    expect(result.stats.singletonTypes).toBeGreaterThan(0);
-    expect(result.stats.filesGenerated).toBeGreaterThan(250);
-    expect(result.stats.totalLines).toBeGreaterThan(30000);
+    expect(result.stats.creatableTypes).toBeGreaterThan(800);
+    expect(result.stats.singletonTypes).toBeGreaterThan(20);
+    expect(result.stats.filesGenerated).toBeGreaterThan(1000);
+    expect(result.stats.totalLines).toBeGreaterThan(200000);
   });
 });

@@ -5,10 +5,12 @@
  * - Enum tokens are properly accessible via namespaces
  * - Grouped/attached builders work through callbacks
  * - Built AST nodes produce correct QML via emitter
+ * - Non-P0 long-tail modules work at runtime
  */
 import { describe, expect, test } from 'bun:test';
 import { createDocument } from '../../src/ast/builder.js';
 import { Settings } from '../../src/dsl/generated/QtCore/Settings.js';
+import { MediaPlayer } from '../../src/dsl/generated/QtMultimedia/MediaPlayer.js';
 import { Connections } from '../../src/dsl/generated/QtQml/Connections.js';
 import { Timer } from '../../src/dsl/generated/QtQml/Timer.js';
 import { Column } from '../../src/dsl/generated/QtQuick/Column.js';
@@ -17,10 +19,14 @@ import { Item } from '../../src/dsl/generated/QtQuick/Item.js';
 import { MouseArea } from '../../src/dsl/generated/QtQuick/MouseArea.js';
 // Import generated DSL factories and namespaces
 import { Rectangle } from '../../src/dsl/generated/QtQuick/Rectangle.js';
+import { Repeater } from '../../src/dsl/generated/QtQuick/Repeater.js';
 import { Row } from '../../src/dsl/generated/QtQuick/Row.js';
 import { Text } from '../../src/dsl/generated/QtQuick/Text.js';
 import { ColumnLayout } from '../../src/dsl/generated/QtQuick.Layouts/ColumnLayout.js';
 import { RowLayout } from '../../src/dsl/generated/QtQuick.Layouts/RowLayout.js';
+import { StackLayout } from '../../src/dsl/generated/QtQuick.Layouts/StackLayout.js';
+import { ParticleSystem } from '../../src/dsl/generated/QtQuick.Particles/ParticleSystem.js';
+import { Shape } from '../../src/dsl/generated/QtQuick.Shapes/Shape.js';
 import { Button } from '../../src/dsl/generated/QtQuick.Templates/Button.js';
 import { Label } from '../../src/dsl/generated/QtQuick.Templates/Label.js';
 import { Slider } from '../../src/dsl/generated/QtQuick.Templates/Slider.js';
@@ -314,7 +320,9 @@ describe('Acceptance: QtQuick.Layouts', () => {
     expect(qml).toContain('Rectangle {');
   });
 
-  test('ACC-14: RowLayout with Layout attached via addAttached', () => {
+  test('ACC-14: RowLayout with Layout attached via addAttached (cross-module)', () => {
+    // Cross-module attached types (Layout on Rectangle from QtQuick) correctly
+    // use addAttached — this is the intended API for cross-module usage
     const rect = Rectangle()
       .color('red' as QmlColor)
       .addAttached('Layout', [
@@ -332,6 +340,24 @@ describe('Acceptance: QtQuick.Layouts', () => {
     expect(qml).toContain('RowLayout {');
     expect(qml).toContain('Layout.fillWidth: true');
     expect(qml).toContain('Layout.fillHeight: true');
+  });
+
+  test('ACC-14b: ColumnLayout with typed layout() attached method (within-module)', () => {
+    // Within-module attached types use the typed fluent API
+    const cl = ColumnLayout()
+      .spacing(10)
+      .layout((b) => {
+        b.fillWidth(true);
+        b.preferredHeight(100);
+      });
+
+    const doc = createDocument().importModule('QtQuick.Layouts').root(cl);
+    const qml = emit(doc);
+
+    expect(qml).toContain('ColumnLayout {');
+    expect(qml).toContain('spacing: 10');
+    expect(qml).toContain('Layout.fillWidth: true');
+    expect(qml).toContain('Layout.preferredHeight: 100');
   });
 
   test('ACC-15: ColumnLayout binding expression', () => {
@@ -460,5 +486,104 @@ describe('Acceptance: QtQuick.Templates', () => {
     expect(qml).toContain('Button {');
     expect(qml).toContain('Layout.fillWidth: true');
     expect(qml).toContain('onClicked:');
+  });
+});
+
+describe('Acceptance: Non-P0 Long-Tail Modules', () => {
+  test('ACC-24: QtMultimedia MediaPlayer with source', () => {
+    const mp = MediaPlayer().source('qrc:/videos/intro.mp4');
+
+    const doc = createDocument().importModule('QtMultimedia').root(mp);
+    const qml = emit(doc);
+
+    expect(qml).toContain('MediaPlayer {');
+    expect(qml).toContain('source: "qrc:/videos/intro.mp4"');
+  });
+
+  test('ACC-25: QtQuick.Shapes Shape with dimensions', () => {
+    const shape = Shape().width(200).height(200);
+
+    const doc = createDocument().importModule('QtQuick.Shapes').root(shape);
+    const qml = emit(doc);
+
+    expect(qml).toContain('Shape {');
+    expect(qml).toContain('width: 200');
+    expect(qml).toContain('height: 200');
+  });
+
+  test('ACC-26: QtQuick.Particles ParticleSystem running', () => {
+    const ps = ParticleSystem().running(true);
+
+    const doc = createDocument().importModule('QtQuick.Particles').root(ps);
+    const qml = emit(doc);
+
+    expect(qml).toContain('ParticleSystem {');
+    expect(qml).toContain('running: true');
+  });
+
+  test('ACC-27: Repeater with model count', () => {
+    const rep = Repeater().modelBind('10').child(Rectangle().width(50).height(50));
+
+    const doc = createDocument().importModule('QtQuick').root(rep);
+    const qml = emit(doc);
+
+    expect(qml).toContain('Repeater {');
+    expect(qml).toContain('model: 10');
+    expect(qml).toContain('Rectangle {');
+  });
+
+  test('ACC-28: StackLayout with currentIndex', () => {
+    const sl = StackLayout()
+      .currentIndex(1)
+      .child(Rectangle().color('red' as QmlColor))
+      .child(Rectangle().color('blue' as QmlColor));
+
+    const doc = createDocument().importModule('QtQuick').importModule('QtQuick.Layouts').root(sl);
+    const qml = emit(doc);
+
+    expect(qml).toContain('StackLayout {');
+    expect(qml).toContain('currentIndex: 1');
+  });
+
+  test('ACC-29: Complex scene mixing P0 and non-P0 modules', () => {
+    const scene = Item()
+      .id('root')
+      .width(800)
+      .height(600)
+      .child(
+        ColumnLayout()
+          .spacing(20)
+          .layout((b) => {
+            b.fillWidth(true);
+          })
+          .child(Text().text('Multimedia App'))
+          .child(MediaPlayer().source('qrc:/video.mp4'))
+          .child(
+            RowLayout()
+              .spacing(10)
+              .child(
+                Button()
+                  .text('Play')
+                  .onClicked('player.play()')
+                  .addAttached('Layout', [{ property: 'fillWidth', value: true }]),
+              )
+              .child(Slider().from(0).to(100).value(0)),
+          ),
+      );
+
+    const doc = createDocument()
+      .importModule('QtQuick')
+      .importModule('QtQuick.Controls')
+      .importModule('QtQuick.Layouts')
+      .importModule('QtMultimedia')
+      .root(scene);
+    const qml = emit(doc);
+
+    expect(qml).toContain('Item {');
+    expect(qml).toContain('ColumnLayout {');
+    expect(qml).toContain('Layout.fillWidth: true');
+    expect(qml).toContain('MediaPlayer {');
+    expect(qml).toContain('Button {');
+    expect(qml).toContain('Slider {');
   });
 });

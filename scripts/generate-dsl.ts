@@ -4,8 +4,7 @@
  * Generate the TypeScript Fluent DSL from the Qt registry snapshot.
  *
  * Usage:
- *   bun run generate:dsl                          # P0 modules → src/dsl/generated/
- *   bun run generate:dsl -- --all                 # All modules → .generated-full/
+ *   bun run generate:dsl                          # All modules → src/dsl/generated/
  *   bun run generate:dsl -- --output-dir=./out     # Custom output directory
  *   bun run generate:dsl -- --modules=QtQuick,QtQuick.Layouts
  *   bun run generate:dsl -- --format --validate
@@ -19,44 +18,31 @@ import {
   writeGeneratedFiles,
 } from '../src/dsl/generator/orchestration.js';
 
-const P0_MODULES = [
-  'QML',
-  'QtQml',
-  'QtQml.Models',
-  'QtQuick',
-  'QtQuick.Controls.Basic',
-  'QtQuick.Templates',
-  'QtQuick.Layouts',
-  'QtCore',
-];
-
 const args = process.argv.slice(2);
-const useAll = args.includes('--all');
 const doFormat = args.includes('--format');
 const doValidate = args.includes('--validate');
 const modulesArg = args.find((a) => a.startsWith('--modules='));
 const outputDirArg = args.find((a) => a.startsWith('--output-dir='));
 
-const moduleWhitelist = useAll
-  ? undefined
-  : modulesArg
-    ? modulesArg
-        .replace('--modules=', '')
-        .split(',')
-        .map((moduleName) => moduleName.trim())
-        .filter((moduleName) => moduleName.length > 0)
-    : P0_MODULES;
+// Default: all modules. --modules= restricts to a subset.
+const moduleWhitelist = modulesArg
+  ? modulesArg
+      .replace('--modules=', '')
+      .split(',')
+      .map((moduleName) => moduleName.trim())
+      .filter((moduleName) => moduleName.length > 0)
+  : undefined;
 
 const registryPath = join(import.meta.dir, '..', 'data', 'qt-6.11.0-registry.snapshot.json');
-
-// --output-dir overrides; otherwise --all defaults to .generated-full/
-const defaultOutputDir = useAll
-  ? join(import.meta.dir, '..', '.generated-full')
-  : join(import.meta.dir, '..', 'src', 'dsl', 'generated');
-
+const defaultOutputDir = join(import.meta.dir, '..', 'src', 'dsl', 'generated');
 const outputDir = outputDirArg ? outputDirArg.replace('--output-dir=', '') : defaultOutputDir;
 
 async function main(): Promise<void> {
+  if (modulesArg && moduleWhitelist && moduleWhitelist.length === 0) {
+    console.error('Error: --modules must contain at least one module name.');
+    process.exit(1);
+  }
+
   console.log('Generating DSL...');
   console.log(`  Registry: ${registryPath}`);
   console.log(`  Output:   ${outputDir}`);
