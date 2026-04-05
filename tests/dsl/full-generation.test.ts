@@ -46,9 +46,9 @@ describe('Full Generation Acceptance', () => {
       expect(errors.length).toBe(0);
     });
 
-    test('FG-05: P0 warning count is below budget (50)', () => {
+    test('FG-05: P0 warning count is zero', () => {
       const warnings = p0Result.diagnostics.filter((d) => d.level === 'warning');
-      expect(warnings.length).toBeLessThan(50);
+      expect(warnings.length).toBe(0);
     });
 
     test('FG-06: P0 generates creatables', () => {
@@ -157,9 +157,9 @@ describe('Full Generation Acceptance', () => {
       expect(errors.length).toBe(0);
     });
 
-    test('FG-34: all-modules warning budget (<300)', () => {
+    test('FG-34: all-modules warning budget (<10)', () => {
       const warnings = allResult.diagnostics.filter((d) => d.level === 'warning');
-      expect(warnings.length).toBeLessThan(300);
+      expect(warnings.length).toBeLessThan(10);
     });
 
     test('FG-35: generates 500+ files', () => {
