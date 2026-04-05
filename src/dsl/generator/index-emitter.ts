@@ -19,11 +19,11 @@ export class IndexEmitter {
     );
 
     const sorted = [...exportableTypes].sort((a, b) =>
-      a.qmlName < b.qmlName ? -1 : a.qmlName > b.qmlName ? 1 : 0,
+      a.emitFileName < b.emitFileName ? -1 : a.emitFileName > b.emitFileName ? 1 : 0,
     );
 
     for (const type of sorted) {
-      lines.push(`export * from './${type.qmlName}.js';`);
+      lines.push(`export * from './${type.emitFileName}.js';`);
     }
 
     return `${lines.join('\n')}\n`;

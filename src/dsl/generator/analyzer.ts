@@ -166,6 +166,14 @@ export function analyze(
   // ─── Pass 4: build analyzed types ─────────────────────────────────────
   const allAnalyzedTypes = new Map<string, AnalyzedType>();
 
+  // Resolve emit-name collisions across all target types
+  const emitNames = resolveEmitNameCollisions(
+    targetTypes.map((qt) => ({
+      qualifiedName: qt.qualifiedName,
+      qmlName: qt.qmlName,
+    })),
+  );
+
   for (const type of targetTypes) {
     const classification = classifyType(type);
     const properties = resolveProperties(type, query);
@@ -200,9 +208,14 @@ export function analyze(
       }
     }
 
+    const emitFileName = emitNames.get(type.qualifiedName) ?? deriveEmitFileName(type.qmlName);
+    const dslSymbolName = type.qmlName.includes('::') ? emitFileName : type.qmlName;
+
     const analyzed: AnalyzedType = {
       qualifiedName: type.qualifiedName,
       qmlName: type.qmlName,
+      emitFileName,
+      dslSymbolName,
       moduleUri: type.moduleUri,
       classification,
       baseType: type.baseType,
@@ -272,6 +285,54 @@ function cmp(a: string, b: string): number {
   if (a < b) return -1;
   if (a > b) return 1;
   return 0;
+}
+
+/**
+ * Derive a filesystem-safe emit name from a QML type name.
+ * Strips C++ namespace prefixes (e.g. "QtVirtualKeyboard::FooType" → "FooType").
+ */
+function deriveEmitFileName(qmlName: string): string {
+  if (!qmlName.includes('::')) return qmlName;
+  const lastColon = qmlName.lastIndexOf('::');
+  return qmlName.slice(lastColon + 2);
+}
+
+/**
+ * Resolve emit-name collisions within a set of types.
+ * Types without :: keep their plain name; colliding :: types get namespace prefix.
+ */
+function resolveEmitNameCollisions(
+  types: ReadonlyArray<{ qualifiedName: string; qmlName: string }>,
+): Map<string, string> {
+  const nameToTypes = new Map<string, Array<{ qualifiedName: string; qmlName: string }>>();
+  const resolved = new Map<string, string>();
+
+  for (const t of types) {
+    const emitName = deriveEmitFileName(t.qmlName);
+    const existing = nameToTypes.get(emitName);
+    if (existing) {
+      existing.push(t);
+    } else {
+      nameToTypes.set(emitName, [t]);
+    }
+  }
+
+  for (const [emitName, group] of nameToTypes) {
+    if (group.length === 1) {
+      resolved.set(group[0]!.qualifiedName, emitName);
+    } else {
+      const sorted = [...group].sort((a, b) => cmp(a.qmlName, b.qmlName));
+      for (const t of sorted) {
+        if (!t.qmlName.includes('::')) {
+          resolved.set(t.qualifiedName, emitName);
+        } else {
+          resolved.set(t.qualifiedName, t.qmlName.replace(/::/g, '_'));
+        }
+      }
+    }
+  }
+
+  return resolved;
 }
 
 function resolveProperties(

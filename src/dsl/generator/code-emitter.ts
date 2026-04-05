@@ -111,7 +111,7 @@ export class CodeEmitter {
   private emitCreatable(type: AnalyzedType): string {
     this.mapper.resetImports();
     const lines: string[] = [];
-    const builderName = `${type.qmlName}Builder`;
+    const builderName = `${type.dslSymbolName}Builder`;
     const allProps = [...type.ownProperties, ...type.inheritedProperties];
     const allSignals = [...type.ownSignals, ...type.inheritedSignals];
     const allEnums = [...type.ownEnums, ...type.inheritedEnums];
@@ -185,12 +185,12 @@ export class CodeEmitter {
     lines.push('');
 
     // ─── TypeMetadata ───────────────────────────────────────────────────
-    const metaConstName = `${type.qmlName.toUpperCase()}_META`;
+    const metaConstName = `${type.dslSymbolName.toUpperCase()}_META`;
     this.emitTypeMetadata(metaConstName, type, lines);
     lines.push('');
 
     // ─── Factory function ───────────────────────────────────────────────
-    lines.push(`export function ${type.qmlName}(): ${builderName} {`);
+    lines.push(`export function ${type.dslSymbolName}(): ${builderName} {`);
     lines.push(
       `  return createFluentBuilder('${type.qmlName}', ${metaConstName}) as unknown as ${builderName};`,
     );
@@ -199,7 +199,7 @@ export class CodeEmitter {
     // ─── Enum namespace ─────────────────────────────────────────────────
     if (hasEnums) {
       lines.push('');
-      this.emitEnumNamespace(type.qmlName, allEnums, lines);
+      this.emitEnumNamespace(type.dslSymbolName, allEnums, lines);
     }
 
     // ─── Build imports and header ───────────────────────────────────────
@@ -211,7 +211,7 @@ export class CodeEmitter {
       hasEnums,
       type.moduleUri,
     );
-    const header = this.buildHeader(type.qmlName, importSection);
+    const header = this.buildHeader(type.dslSymbolName, importSection);
 
     return `${header}\n${lines.join('\n')}\n`;
   }
@@ -219,7 +219,7 @@ export class CodeEmitter {
   private emitSingleton(type: AnalyzedType): string {
     this.mapper.resetImports();
     const lines: string[] = [];
-    const interfaceName = `${type.qmlName}Instance`;
+    const interfaceName = `${type.dslSymbolName}Instance`;
     const allProps = [...type.ownProperties, ...type.inheritedProperties];
     const allEnums = [...type.ownEnums, ...type.inheritedEnums];
     const hasEnums = allEnums.length > 0;
@@ -244,14 +244,14 @@ export class CodeEmitter {
 
     if (hasEnums) {
       // Use function pattern for namespace merging with enums
-      lines.push(`export function ${type.qmlName}(): ${interfaceName} {`);
+      lines.push(`export function ${type.dslSymbolName}(): ${interfaceName} {`);
       lines.push(`  return {} as ${interfaceName};`);
       lines.push('}');
       lines.push('');
-      this.emitEnumNamespace(type.qmlName, allEnums, lines);
+      this.emitEnumNamespace(type.dslSymbolName, allEnums, lines);
     } else {
       // Simple const for singletons without enums
-      lines.push(`export const ${type.qmlName} = {} as ${interfaceName};`);
+      lines.push(`export const ${type.dslSymbolName} = {} as ${interfaceName};`);
     }
 
     const runtimeImports = this.mapper.getRequiredRuntimeImports();
@@ -262,7 +262,7 @@ export class CodeEmitter {
       hasEnums,
       type.moduleUri,
     );
-    const header = this.buildHeader(type.qmlName, importSection);
+    const header = this.buildHeader(type.dslSymbolName, importSection);
 
     return `${header}\n${lines.join('\n')}\n`;
   }
@@ -396,8 +396,8 @@ export class CodeEmitter {
    */
   private collectAllPeerRefs(type: AnalyzedType): PeerTypeRef[] {
     const selfNames = new Set<string>();
-    selfNames.add(`${type.qmlName}Builder`);
-    selfNames.add(`${type.qmlName}Instance`);
+    selfNames.add(`${type.dslSymbolName}Builder`);
+    selfNames.add(`${type.dslSymbolName}Instance`);
 
     // Start with mapper's peer refs (from property type mapping)
     const allRefs = new Map<string, PeerTypeRef>();
@@ -411,12 +411,12 @@ export class CodeEmitter {
     for (const ref of type.groupedProperties) {
       const surface = this.analyzed.groupedSurfaces.get(ref.surfaceQualifiedName);
       if (surface && !selfNames.has(surface.builderName)) {
-        // Find which module the grouped surface type lives in
         const surfaceType = this.analyzed.allTypes.get(ref.surfaceQualifiedName);
         const moduleUri = surfaceType?.moduleUri ?? type.moduleUri;
         allRefs.set(surface.builderName, {
           tsName: surface.builderName,
           qmlName: surface.qmlName,
+          emitFileName: surfaceType?.emitFileName ?? surface.qmlName,
           moduleUri,
         });
       }
@@ -431,6 +431,7 @@ export class CodeEmitter {
         allRefs.set(surface.builderName, {
           tsName: surface.builderName,
           qmlName: surfaceType?.qmlName ?? surface.ownerQmlName,
+          emitFileName: surfaceType?.emitFileName ?? surface.ownerQmlName,
           moduleUri,
         });
       }
@@ -533,9 +534,9 @@ export class CodeEmitter {
       const moduleDir = this.moduleDirs.get(ref.moduleUri) ?? ref.moduleUri;
       let relativePath: string;
       if (ref.moduleUri === currentModule) {
-        relativePath = `./${ref.qmlName}.js`;
+        relativePath = `./${ref.emitFileName}.js`;
       } else {
-        relativePath = `../${moduleDir}/${ref.qmlName}.js`;
+        relativePath = `../${moduleDir}/${ref.emitFileName}.js`;
       }
       const existing = byFile.get(relativePath);
       if (existing) {
