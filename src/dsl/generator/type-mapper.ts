@@ -48,7 +48,8 @@ export class TypeMapper {
     // 2. Check list types (QList<X>, list<X>)
     const listMatch = qmlType.match(/^(?:QList|list)<(.+)>$/);
     if (listMatch) {
-      const inner = this.mapType(listMatch[1]!);
+      const innerType = listMatch[1]!.trim();
+      const inner = this.mapType(innerType);
       return `${inner}[]`;
     }
 
@@ -68,9 +69,15 @@ export class TypeMapper {
     const colonIdx = qmlType.lastIndexOf('::');
     if (colonIdx >= 0) {
       const stripped = qmlType.slice(colonIdx + 2);
-      // Check if the stripped name is known
       const strippedResult = this.tryMapKnownType(stripped);
       if (strippedResult) return strippedResult;
+    }
+
+    // 5b. Strip pointer suffix and retry (e.g. QBarSet* → QBarSet)
+    if (qmlType.endsWith('*')) {
+      const baseType = qmlType.slice(0, -1).trim();
+      const result = this.tryMapKnownType(baseType);
+      if (result) return result;
     }
 
     // 6. Check grouped surfaces by qualified name
