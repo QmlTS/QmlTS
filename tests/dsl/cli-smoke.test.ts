@@ -151,4 +151,53 @@ describe('CLI Smoke Tests', () => {
     expect(stderr).toContain('--modules must contain at least one module name');
     expect(existsSync(join(outDir, 'index.ts'))).toBe(false);
   }, 30_000);
+
+  test('CLI-10: invalid module name produces zero types but succeeds', async () => {
+    const outDir = join(tempBase, 'cli-10');
+    const { exitCode, stdout } = await runCli([
+      `--output-dir=${outDir}`,
+      '--modules=NonExistentModule',
+    ]);
+
+    // Generator completes but with zero output for unknown modules
+    expect(exitCode).toBe(0);
+    expect(stdout).toContain('Modules:');
+    expect(stdout).toContain('Types:      0');
+  }, 30_000);
+
+  test('CLI-11: mixed valid and invalid modules generates only the valid ones', async () => {
+    const outDir = join(tempBase, 'cli-11');
+    const { exitCode, stdout } = await runCli([
+      `--output-dir=${outDir}`,
+      '--modules=QtQml,FakeModule123',
+    ]);
+
+    expect(exitCode).toBe(0);
+    expect(stdout).toContain('Generation complete');
+    expect(existsSync(join(outDir, 'QtQml', 'index.ts'))).toBe(true);
+    // FakeModule123 should not produce a directory
+    expect(existsSync(join(outDir, 'FakeModule123'))).toBe(false);
+  }, 30_000);
+
+  test('CLI-12: --validate on valid output exits 0', async () => {
+    const outDir = join(tempBase, 'cli-12');
+    const { exitCode, stdout } = await runCli([
+      `--output-dir=${outDir}`,
+      '--modules=QtQml',
+      '--validate',
+    ]);
+
+    expect(exitCode).toBe(0);
+    expect(stdout).toContain('Validat');
+  }, 60_000);
+
+  test('CLI-13: output directory is created if it does not exist', async () => {
+    const outDir = join(tempBase, 'cli-13', 'nested', 'deep');
+    expect(existsSync(outDir)).toBe(false);
+
+    const { exitCode } = await runCli([`--output-dir=${outDir}`, '--modules=QtQml']);
+
+    expect(exitCode).toBe(0);
+    expect(existsSync(join(outDir, 'QtQml', 'index.ts'))).toBe(true);
+  }, 30_000);
 });
