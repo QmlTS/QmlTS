@@ -1,0 +1,114 @@
+// AUTO-GENERATED — DO NOT EDIT
+// Type: ColorGroup
+// Generated from Qt 6.11.0
+
+import type { QmlColor, QmlObjectBuilder } from '../../runtime/index.js';
+import { DslBuilderImpl } from '../../runtime/index.js';
+import type { AccessibleAttachedBuilder } from './Accessible.js';
+import type { EnterKeyAttachedBuilder } from './EnterKey.js';
+import type { GraphicsInfoAttachedBuilder } from './GraphicsInfo.js';
+import type { KeyNavigationAttachedBuilder } from './KeyNavigation.js';
+import type { KeysAttachedBuilder } from './Keys.js';
+import type { LayoutMirroringAttachedBuilder } from './LayoutMirroring.js';
+import type { DragAttachedBuilder } from './QQuickDragAttached.js';
+import type { GridViewAttachedBuilder } from './QQuickGridViewAttached.js';
+import type { ListViewAttachedBuilder } from './QQuickListViewAttached.js';
+import type { PathViewAttachedBuilder } from './QQuickPathViewAttached.js';
+import type { PositionerAttachedBuilder } from './QQuickPositionerAttached.js';
+import type { ScreenAttachedBuilder } from './QQuickScreenAttached.js';
+import type { TableViewAttachedBuilder } from './QQuickTableViewAttached.js';
+import type { WindowAttachedBuilder } from './QQuickWindowAttached.js';
+import type { SafeAreaAttachedBuilder } from './SafeArea.js';
+import type { ViewTransitionAttachedBuilder } from './ViewTransition.js';
+export interface ColorGroupBuilder {
+  id(id: string): ColorGroupBuilder;
+  child(obj: QmlObjectBuilder): ColorGroupBuilder;
+
+  accent(value: QmlColor): ColorGroupBuilder;
+  accentBind(expr: string): ColorGroupBuilder;
+  alternateBase(value: QmlColor): ColorGroupBuilder;
+  alternateBaseBind(expr: string): ColorGroupBuilder;
+  base(value: QmlColor): ColorGroupBuilder;
+  baseBind(expr: string): ColorGroupBuilder;
+  brightText(value: QmlColor): ColorGroupBuilder;
+  brightTextBind(expr: string): ColorGroupBuilder;
+  button(value: QmlColor): ColorGroupBuilder;
+  buttonBind(expr: string): ColorGroupBuilder;
+  buttonText(value: QmlColor): ColorGroupBuilder;
+  buttonTextBind(expr: string): ColorGroupBuilder;
+  dark(value: QmlColor): ColorGroupBuilder;
+  darkBind(expr: string): ColorGroupBuilder;
+  highlight(value: QmlColor): ColorGroupBuilder;
+  highlightBind(expr: string): ColorGroupBuilder;
+  highlightedText(value: QmlColor): ColorGroupBuilder;
+  highlightedTextBind(expr: string): ColorGroupBuilder;
+  light(value: QmlColor): ColorGroupBuilder;
+  lightBind(expr: string): ColorGroupBuilder;
+  link(value: QmlColor): ColorGroupBuilder;
+  linkBind(expr: string): ColorGroupBuilder;
+  linkVisited(value: QmlColor): ColorGroupBuilder;
+  linkVisitedBind(expr: string): ColorGroupBuilder;
+  mid(value: QmlColor): ColorGroupBuilder;
+  midBind(expr: string): ColorGroupBuilder;
+  midlight(value: QmlColor): ColorGroupBuilder;
+  midlightBind(expr: string): ColorGroupBuilder;
+  objectName(value: string): ColorGroupBuilder;
+  objectNameBind(expr: string): ColorGroupBuilder;
+  placeholderText(value: QmlColor): ColorGroupBuilder;
+  placeholderTextBind(expr: string): ColorGroupBuilder;
+  shadow(value: QmlColor): ColorGroupBuilder;
+  shadowBind(expr: string): ColorGroupBuilder;
+  text(value: QmlColor): ColorGroupBuilder;
+  textBind(expr: string): ColorGroupBuilder;
+  toolTipBase(value: QmlColor): ColorGroupBuilder;
+  toolTipBaseBind(expr: string): ColorGroupBuilder;
+  toolTipText(value: QmlColor): ColorGroupBuilder;
+  toolTipTextBind(expr: string): ColorGroupBuilder;
+  window(value: QmlColor): ColorGroupBuilder;
+  windowBind(expr: string): ColorGroupBuilder;
+  windowText(value: QmlColor): ColorGroupBuilder;
+  windowTextBind(expr: string): ColorGroupBuilder;
+  onAccentChanged(handler: () => void): ColorGroupBuilder;
+  onAlternateBaseChanged(handler: () => void): ColorGroupBuilder;
+  onBaseChanged(handler: () => void): ColorGroupBuilder;
+  onBrightTextChanged(handler: () => void): ColorGroupBuilder;
+  onButtonChanged(handler: () => void): ColorGroupBuilder;
+  onButtonTextChanged(handler: () => void): ColorGroupBuilder;
+  onChanged(handler: () => void): ColorGroupBuilder;
+  onDarkChanged(handler: () => void): ColorGroupBuilder;
+  onHighlightChanged(handler: () => void): ColorGroupBuilder;
+  onHighlightedTextChanged(handler: () => void): ColorGroupBuilder;
+  onLightChanged(handler: () => void): ColorGroupBuilder;
+  onLinkChanged(handler: () => void): ColorGroupBuilder;
+  onLinkVisitedChanged(handler: () => void): ColorGroupBuilder;
+  onMidChanged(handler: () => void): ColorGroupBuilder;
+  onMidlightChanged(handler: () => void): ColorGroupBuilder;
+  onObjectNameChanged(handler: (objectName: string) => void): ColorGroupBuilder;
+  onPlaceholderTextChanged(handler: () => void): ColorGroupBuilder;
+  onShadowChanged(handler: () => void): ColorGroupBuilder;
+  onTextChanged(handler: () => void): ColorGroupBuilder;
+  onToolTipBaseChanged(handler: () => void): ColorGroupBuilder;
+  onToolTipTextChanged(handler: () => void): ColorGroupBuilder;
+  onWindowChanged(handler: () => void): ColorGroupBuilder;
+  onWindowTextChanged(handler: () => void): ColorGroupBuilder;
+  accessible(setup: (b: AccessibleAttachedBuilder) => void): ColorGroupBuilder;
+  drag(setup: (b: DragAttachedBuilder) => void): ColorGroupBuilder;
+  enterKey(setup: (b: EnterKeyAttachedBuilder) => void): ColorGroupBuilder;
+  graphicsInfo(setup: (b: GraphicsInfoAttachedBuilder) => void): ColorGroupBuilder;
+  gridView(setup: (b: GridViewAttachedBuilder) => void): ColorGroupBuilder;
+  keyNavigation(setup: (b: KeyNavigationAttachedBuilder) => void): ColorGroupBuilder;
+  keys(setup: (b: KeysAttachedBuilder) => void): ColorGroupBuilder;
+  layoutMirroring(setup: (b: LayoutMirroringAttachedBuilder) => void): ColorGroupBuilder;
+  listView(setup: (b: ListViewAttachedBuilder) => void): ColorGroupBuilder;
+  pathView(setup: (b: PathViewAttachedBuilder) => void): ColorGroupBuilder;
+  positioner(setup: (b: PositionerAttachedBuilder) => void): ColorGroupBuilder;
+  safeArea(setup: (b: SafeAreaAttachedBuilder) => void): ColorGroupBuilder;
+  screen(setup: (b: ScreenAttachedBuilder) => void): ColorGroupBuilder;
+  tableView(setup: (b: TableViewAttachedBuilder) => void): ColorGroupBuilder;
+  viewTransition(setup: (b: ViewTransitionAttachedBuilder) => void): ColorGroupBuilder;
+  windowAttached(setup: (b: WindowAttachedBuilder) => void): ColorGroupBuilder;
+}
+
+export function ColorGroup(): ColorGroupBuilder {
+  return new DslBuilderImpl('ColorGroup') as unknown as ColorGroupBuilder;
+}

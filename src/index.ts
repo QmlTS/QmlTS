@@ -29,6 +29,9 @@ export function getQuery(): RegistryQueryInterface {
 
 // ─── Re-export AST module ───────────────────────────────────
 export * from './ast/index.js';
+export * from './dsl/generator/index.js';
+// ─── Re-export DSL runtime + generator ──────────────────────
+export * from './dsl/runtime/index.js';
 // ─── Re-export Emitter module ───────────────────────────────
 export * from './emitter/index.js';
 // ─── Re-export Qt Tools module ──────────────────────────────
