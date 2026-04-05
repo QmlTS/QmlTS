@@ -12,7 +12,7 @@
  */
 
 import { mkdirSync, rmSync, writeFileSync } from 'node:fs';
-import { join } from 'node:path';
+import { dirname, join } from 'node:path';
 import { generate } from '../src/dsl/generator/generator.js';
 
 const P0_MODULES = [
@@ -32,7 +32,11 @@ const modulesArg = args.find((a) => a.startsWith('--modules='));
 const moduleWhitelist = useAll
   ? undefined
   : modulesArg
-    ? modulesArg.replace('--modules=', '').split(',')
+    ? modulesArg
+        .replace('--modules=', '')
+        .split(',')
+        .map((moduleName) => moduleName.trim())
+        .filter((moduleName) => moduleName.length > 0)
     : P0_MODULES;
 
 const registryPath = join(import.meta.dir, '..', 'data', 'qt-6.11.0-registry.snapshot.json');
@@ -70,7 +74,7 @@ try {
 // Write files
 for (const file of result.files) {
   const filePath = join(outputDir, file.relativePath);
-  const dir = join(filePath, '..');
+  const dir = dirname(filePath);
   mkdirSync(dir, { recursive: true });
   writeFileSync(filePath, file.content, 'utf-8');
 }
