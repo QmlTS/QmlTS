@@ -9,7 +9,7 @@ export interface LayoutMirroringAttachedBuilder {
   enabledBind(expr: string): LayoutMirroringAttachedBuilder;
   objectName(value: string): LayoutMirroringAttachedBuilder;
   objectNameBind(expr: string): LayoutMirroringAttachedBuilder;
-  onChildrenInheritChanged(handler: () => void): LayoutMirroringAttachedBuilder;
-  onEnabledChanged(handler: () => void): LayoutMirroringAttachedBuilder;
-  onObjectNameChanged(handler: (objectName: string) => void): LayoutMirroringAttachedBuilder;
+  onChildrenInheritChanged(body: string): LayoutMirroringAttachedBuilder;
+  onEnabledChanged(body: string): LayoutMirroringAttachedBuilder;
+  onObjectNameChanged(body: string): LayoutMirroringAttachedBuilder;
 }

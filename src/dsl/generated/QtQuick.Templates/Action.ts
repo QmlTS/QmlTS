@@ -2,9 +2,8 @@
 // Type: Action
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlValue } from '../../runtime/index.js';
-import { DslBuilderImpl } from '../../runtime/index.js';
-import type { QtObjectBuilder } from '../QML/QtObject.js';
+import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import { createFluentBuilder } from '../../runtime/index.js';
 import type { ContextMenuAttachedBuilder } from './ContextMenu.js';
 import type { ActionGroupAttachedBuilder } from './QQuickActionGroupAttached.js';
 import type { ApplicationWindowAttachedBuilder } from './QQuickApplicationWindowAttached.js';
@@ -41,15 +40,15 @@ export interface ActionBuilder {
   shortcutBind(expr: string): ActionBuilder;
   text(value: string): ActionBuilder;
   textBind(expr: string): ActionBuilder;
-  onCheckableChanged(handler: (checkable: boolean) => void): ActionBuilder;
-  onCheckedChanged(handler: (checked: boolean) => void): ActionBuilder;
-  onEnabledChanged(handler: (enabled: boolean) => void): ActionBuilder;
-  onIconChanged(handler: (icon: QmlValue) => void): ActionBuilder;
-  onObjectNameChanged(handler: (objectName: string) => void): ActionBuilder;
-  onShortcutChanged(handler: (shortcut: QmlValue) => void): ActionBuilder;
-  onTextChanged(handler: (text: string) => void): ActionBuilder;
-  onToggled(handler: (source: QtObjectBuilder) => void): ActionBuilder;
-  onTriggered(handler: (source: QtObjectBuilder) => void): ActionBuilder;
+  onCheckableChanged(body: string): ActionBuilder;
+  onCheckedChanged(body: string): ActionBuilder;
+  onEnabledChanged(body: string): ActionBuilder;
+  onIconChanged(body: string): ActionBuilder;
+  onObjectNameChanged(body: string): ActionBuilder;
+  onShortcutChanged(body: string): ActionBuilder;
+  onTextChanged(body: string): ActionBuilder;
+  onToggled(body: string): ActionBuilder;
+  onTriggered(body: string): ActionBuilder;
   actionGroup(setup: (b: ActionGroupAttachedBuilder) => void): ActionBuilder;
   applicationWindow(setup: (b: ApplicationWindowAttachedBuilder) => void): ActionBuilder;
   buttonGroup(setup: (b: ButtonGroupAttachedBuilder) => void): ActionBuilder;
@@ -70,6 +69,282 @@ export interface ActionBuilder {
   tumbler(setup: (b: TumblerAttachedBuilder) => void): ActionBuilder;
 }
 
+const ACTION_META: TypeMetadata = {
+  typeName: 'Action',
+  properties: [
+    { name: 'checkable', hasValue: true, hasBinding: true },
+    { name: 'checked', hasValue: true, hasBinding: true },
+    { name: 'enabled', hasValue: true, hasBinding: true },
+    { name: 'icon', hasValue: true, hasBinding: true },
+    { name: 'objectName', hasValue: true, hasBinding: true },
+    { name: 'shortcut', hasValue: true, hasBinding: true },
+    { name: 'text', hasValue: true, hasBinding: true },
+  ],
+  signals: [
+    { handlerName: 'onCheckableChanged', paramCount: 1 },
+    { handlerName: 'onCheckedChanged', paramCount: 1 },
+    { handlerName: 'onEnabledChanged', paramCount: 1 },
+    { handlerName: 'onIconChanged', paramCount: 1 },
+    { handlerName: 'onObjectNameChanged', paramCount: 1 },
+    { handlerName: 'onShortcutChanged', paramCount: 1 },
+    { handlerName: 'onTextChanged', paramCount: 1 },
+    { handlerName: 'onToggled', paramCount: 1 },
+    { handlerName: 'onTriggered', paramCount: 1 },
+  ],
+  grouped: [],
+  attached: [
+    {
+      methodName: 'actionGroup',
+      attachedTypeName: 'ActionGroup',
+      properties: [
+        { name: 'group', hasValue: true, hasBinding: true },
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
+      signals: [
+        { handlerName: 'onGroupChanged', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'applicationWindow',
+      attachedTypeName: 'ApplicationWindow',
+      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
+      signals: [
+        { handlerName: 'onActiveFocusControlChanged', paramCount: 0 },
+        { handlerName: 'onContentItemChanged', paramCount: 0 },
+        { handlerName: 'onFooterChanged', paramCount: 0 },
+        { handlerName: 'onHeaderChanged', paramCount: 0 },
+        { handlerName: 'onMenuBarChanged', paramCount: 0 },
+        { handlerName: 'onWindowChanged', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'buttonGroup',
+      attachedTypeName: 'ButtonGroup',
+      properties: [
+        { name: 'group', hasValue: true, hasBinding: true },
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
+      signals: [
+        { handlerName: 'onGroupChanged', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'contextMenu',
+      attachedTypeName: 'ContextMenu',
+      properties: [
+        { name: 'menu', hasValue: true, hasBinding: true },
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
+      signals: [
+        { handlerName: 'onMenuChanged', paramCount: 0 },
+        { handlerName: 'onRequested', paramCount: 1 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'dialogButtonBox',
+      attachedTypeName: 'DialogButtonBox',
+      properties: [
+        { name: 'buttonRole', hasValue: true, hasBinding: true },
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
+      signals: [
+        { handlerName: 'onButtonBoxChanged', paramCount: 0 },
+        { handlerName: 'onButtonRoleChanged', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'overlay',
+      attachedTypeName: 'Overlay',
+      properties: [
+        { name: 'modal', hasValue: true, hasBinding: true },
+        { name: 'modeless', hasValue: true, hasBinding: true },
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
+      signals: [
+        { handlerName: 'onModalChanged', paramCount: 0 },
+        { handlerName: 'onModelessChanged', paramCount: 0 },
+        { handlerName: 'onOverlayChanged', paramCount: 0 },
+        { handlerName: 'onPressed', paramCount: 0 },
+        { handlerName: 'onReleased', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'scrollBar',
+      attachedTypeName: 'ScrollBar',
+      properties: [
+        { name: 'horizontal', hasValue: true, hasBinding: true },
+        { name: 'vertical', hasValue: true, hasBinding: true },
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
+      signals: [
+        { handlerName: 'onHorizontalChanged', paramCount: 0 },
+        { handlerName: 'onVerticalChanged', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'scrollIndicator',
+      attachedTypeName: 'ScrollIndicator',
+      properties: [
+        { name: 'horizontal', hasValue: true, hasBinding: true },
+        { name: 'vertical', hasValue: true, hasBinding: true },
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
+      signals: [
+        { handlerName: 'onHorizontalChanged', paramCount: 0 },
+        { handlerName: 'onVerticalChanged', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'selectionRectangle',
+      attachedTypeName: 'SelectionRectangle',
+      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
+      signals: [
+        { handlerName: 'onControlChanged', paramCount: 0 },
+        { handlerName: 'onDraggingChanged', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'splitHandle',
+      attachedTypeName: 'SplitHandle',
+      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
+      signals: [
+        { handlerName: 'onHoveredChanged', paramCount: 0 },
+        { handlerName: 'onPressedChanged', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'splitView',
+      attachedTypeName: 'SplitView',
+      properties: [
+        { name: 'fillHeight', hasValue: true, hasBinding: true },
+        { name: 'fillWidth', hasValue: true, hasBinding: true },
+        { name: 'maximumHeight', hasValue: true, hasBinding: true },
+        { name: 'maximumWidth', hasValue: true, hasBinding: true },
+        { name: 'minimumHeight', hasValue: true, hasBinding: true },
+        { name: 'minimumWidth', hasValue: true, hasBinding: true },
+        { name: 'preferredHeight', hasValue: true, hasBinding: true },
+        { name: 'preferredWidth', hasValue: true, hasBinding: true },
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
+      signals: [
+        { handlerName: 'onFillHeightChanged', paramCount: 0 },
+        { handlerName: 'onFillWidthChanged', paramCount: 0 },
+        { handlerName: 'onMaximumHeightChanged', paramCount: 0 },
+        { handlerName: 'onMaximumWidthChanged', paramCount: 0 },
+        { handlerName: 'onMinimumHeightChanged', paramCount: 0 },
+        { handlerName: 'onMinimumWidthChanged', paramCount: 0 },
+        { handlerName: 'onPreferredHeightChanged', paramCount: 0 },
+        { handlerName: 'onPreferredWidthChanged', paramCount: 0 },
+        { handlerName: 'onViewChanged', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'stackView',
+      attachedTypeName: 'StackView',
+      properties: [
+        { name: 'visible', hasValue: true, hasBinding: true },
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
+      signals: [
+        { handlerName: 'onActivated', paramCount: 0 },
+        { handlerName: 'onActivating', paramCount: 0 },
+        { handlerName: 'onDeactivated', paramCount: 0 },
+        { handlerName: 'onDeactivating', paramCount: 0 },
+        { handlerName: 'onIndexChanged', paramCount: 0 },
+        { handlerName: 'onRemoved', paramCount: 0 },
+        { handlerName: 'onStatusChanged', paramCount: 0 },
+        { handlerName: 'onViewChanged', paramCount: 0 },
+        { handlerName: 'onVisibleChanged', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'swipeDelegate',
+      attachedTypeName: 'SwipeDelegate',
+      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
+      signals: [
+        { handlerName: 'onClicked', paramCount: 0 },
+        { handlerName: 'onPressedChanged', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'swipeView',
+      attachedTypeName: 'SwipeView',
+      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
+      signals: [
+        { handlerName: 'onIndexChanged', paramCount: 0 },
+        { handlerName: 'onIsCurrentItemChanged', paramCount: 0 },
+        { handlerName: 'onIsNextItemChanged', paramCount: 0 },
+        { handlerName: 'onIsPreviousItemChanged', paramCount: 0 },
+        { handlerName: 'onViewChanged', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'tabBar',
+      attachedTypeName: 'TabBar',
+      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
+      signals: [
+        { handlerName: 'onIndexChanged', paramCount: 0 },
+        { handlerName: 'onPositionChanged', paramCount: 0 },
+        { handlerName: 'onTabBarChanged', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'textArea',
+      attachedTypeName: 'TextArea',
+      properties: [
+        { name: 'flickable', hasValue: true, hasBinding: true },
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
+      signals: [
+        { handlerName: 'onFlickableChanged', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'toolTip',
+      attachedTypeName: 'ToolTip',
+      properties: [
+        { name: 'delay', hasValue: true, hasBinding: true },
+        { name: 'text', hasValue: true, hasBinding: true },
+        { name: 'timeout', hasValue: true, hasBinding: true },
+        { name: 'visible', hasValue: true, hasBinding: true },
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
+      signals: [
+        { handlerName: 'onDelayChanged', paramCount: 0 },
+        { handlerName: 'onTextChanged', paramCount: 0 },
+        { handlerName: 'onTimeoutChanged', paramCount: 0 },
+        { handlerName: 'onVisibleChanged', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'tumbler',
+      attachedTypeName: 'Tumbler',
+      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
+      signals: [
+        { handlerName: 'onDisplacementChanged', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+  ],
+};
+
 export function Action(): ActionBuilder {
-  return new DslBuilderImpl('Action') as unknown as ActionBuilder;
+  return createFluentBuilder('Action', ACTION_META) as unknown as ActionBuilder;
 }

@@ -10,7 +10,7 @@ export interface ScrollIndicatorAttachedBuilder {
   verticalBind(expr: string): ScrollIndicatorAttachedBuilder;
   objectName(value: string): ScrollIndicatorAttachedBuilder;
   objectNameBind(expr: string): ScrollIndicatorAttachedBuilder;
-  onHorizontalChanged(handler: () => void): ScrollIndicatorAttachedBuilder;
-  onVerticalChanged(handler: () => void): ScrollIndicatorAttachedBuilder;
-  onObjectNameChanged(handler: (objectName: string) => void): ScrollIndicatorAttachedBuilder;
+  onHorizontalChanged(body: string): ScrollIndicatorAttachedBuilder;
+  onVerticalChanged(body: string): ScrollIndicatorAttachedBuilder;
+  onObjectNameChanged(body: string): ScrollIndicatorAttachedBuilder;
 }

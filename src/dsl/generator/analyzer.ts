@@ -10,6 +10,7 @@ import type {
   AnalyzedType,
   AttachedSurface,
   AttachedTypeRef,
+  EnumResolution,
   GroupedPropertyRef,
   GroupedSurface,
   NameConflict,
@@ -250,6 +251,9 @@ export function analyze(
   // ─── Detect name conflicts ────────────────────────────────────────────
   const nameConflicts = detectNameConflicts(allAnalyzedTypes);
 
+  // ─── Build global enum index ─────────────────────────────────────────
+  const enumIndex = buildEnumIndex(allRegistryTypes);
+
   return {
     qtVersion: registry.qtVersion,
     modules: nonEmptyModules,
@@ -257,6 +261,7 @@ export function analyze(
     nameConflicts,
     groupedSurfaces,
     attachedSurfaces,
+    enumIndex,
   };
 }
 
@@ -431,6 +436,53 @@ function dedupeAttachedRefs(refs: AttachedTypeRef[]): AttachedTypeRef[] {
     result.push(ref);
   }
   return result.sort((a, b) => cmp(a.methodName, b.methodName));
+}
+
+function buildEnumIndex(allTypes: QmlType[]): Map<string, EnumResolution> {
+  const index = new Map<string, EnumResolution>();
+  const nameOwners = new Map<string, { qn: string; qmlName: string; moduleUri: string }[]>();
+
+  for (const type of allTypes) {
+    for (const en of type.enums) {
+      const entry = {
+        qn: type.qualifiedName,
+        qmlName: type.qmlName,
+        moduleUri: type.moduleUri,
+      };
+
+      const existing = nameOwners.get(en.name);
+      if (existing) {
+        existing.push(entry);
+      } else {
+        nameOwners.set(en.name, [entry]);
+      }
+
+      if (en.alias && en.alias !== en.name) {
+        const aliasExisting = nameOwners.get(en.alias);
+        if (aliasExisting) {
+          aliasExisting.push(entry);
+        } else {
+          nameOwners.set(en.alias, [entry]);
+        }
+      }
+    }
+  }
+
+  for (const [name, owners] of nameOwners) {
+    const uniqueQNs = [...new Set(owners.map((o) => o.qn))];
+    const isAmbiguous = uniqueQNs.length > 1;
+    const primary = owners[0]!;
+
+    index.set(name, {
+      ownerQualifiedName: primary.qn,
+      ownerQmlName: primary.qmlName,
+      enumName: name,
+      moduleUri: primary.moduleUri,
+      ambiguous: isAmbiguous,
+    });
+  }
+
+  return index;
 }
 
 function detectNameConflicts(allTypes: Map<string, AnalyzedType>): NameConflict[] {

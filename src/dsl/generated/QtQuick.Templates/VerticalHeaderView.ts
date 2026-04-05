@@ -2,8 +2,14 @@
 // Type: VerticalHeaderView
 // Generated from Qt 6.11.0
 
-import type { QmlComponent, QmlObjectBuilder, QmlRect, QmlValue } from '../../runtime/index.js';
-import { createEnumToken, DslBuilderImpl } from '../../runtime/index.js';
+import type {
+  QmlComponent,
+  QmlEnumToken,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
+import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { QtObjectBuilder } from '../QML/QtObject.js';
 import type { ItemSelectionModelBuilder } from '../QtQml.Models/ItemSelectionModel.js';
 import type { ItemBuilder } from '../QtQuick/Item.js';
@@ -12,7 +18,6 @@ import type { AnchorsBuilder } from '../QtQuick/QQuickAnchors.js';
 import type { LayerBuilder } from '../QtQuick/QQuickItemLayer.js';
 import type { TableViewBuilder } from '../QtQuick/TableView.js';
 import type { TransitionBuilder } from '../QtQuick/Transition.js';
-import type { WindowBuilder } from '../QtQuick/Window.js';
 import type { ContextMenuAttachedBuilder } from './ContextMenu.js';
 import type { ActionGroupAttachedBuilder } from './QQuickActionGroupAttached.js';
 import type { ApplicationWindowAttachedBuilder } from './QQuickApplicationWindowAttached.js';
@@ -35,7 +40,7 @@ export interface VerticalHeaderViewBuilder {
   id(id: string): VerticalHeaderViewBuilder;
   child(obj: QmlObjectBuilder): VerticalHeaderViewBuilder;
 
-  acceptedButtons(value: QmlValue): VerticalHeaderViewBuilder;
+  acceptedButtons(value: QmlEnumToken): VerticalHeaderViewBuilder;
   acceptedButtonsBind(expr: string): VerticalHeaderViewBuilder;
   activeFocusOnTab(value: boolean): VerticalHeaderViewBuilder;
   activeFocusOnTabBind(expr: string): VerticalHeaderViewBuilder;
@@ -49,9 +54,9 @@ export interface VerticalHeaderViewBuilder {
   baselineOffsetBind(expr: string): VerticalHeaderViewBuilder;
   bottomMargin(value: number): VerticalHeaderViewBuilder;
   bottomMarginBind(expr: string): VerticalHeaderViewBuilder;
-  boundsBehavior(value: QmlValue): VerticalHeaderViewBuilder;
+  boundsBehavior(value: QmlEnumToken): VerticalHeaderViewBuilder;
   boundsBehaviorBind(expr: string): VerticalHeaderViewBuilder;
-  boundsMovement(value: QmlValue): VerticalHeaderViewBuilder;
+  boundsMovement(value: QmlEnumToken): VerticalHeaderViewBuilder;
   boundsMovementBind(expr: string): VerticalHeaderViewBuilder;
   clip(value: boolean): VerticalHeaderViewBuilder;
   clipBind(expr: string): VerticalHeaderViewBuilder;
@@ -71,19 +76,19 @@ export interface VerticalHeaderViewBuilder {
   contentYBind(expr: string): VerticalHeaderViewBuilder;
   delegate(value: QmlComponent): VerticalHeaderViewBuilder;
   delegateBind(expr: string): VerticalHeaderViewBuilder;
-  delegateModelAccess(value: QmlValue): VerticalHeaderViewBuilder;
+  delegateModelAccess(value: QmlEnumToken): VerticalHeaderViewBuilder;
   delegateModelAccessBind(expr: string): VerticalHeaderViewBuilder;
-  editTriggers(value: QmlValue): VerticalHeaderViewBuilder;
+  editTriggers(value: QmlEnumToken): VerticalHeaderViewBuilder;
   editTriggersBind(expr: string): VerticalHeaderViewBuilder;
   enabled(value: boolean): VerticalHeaderViewBuilder;
   enabledBind(expr: string): VerticalHeaderViewBuilder;
   flickDeceleration(value: number): VerticalHeaderViewBuilder;
   flickDecelerationBind(expr: string): VerticalHeaderViewBuilder;
-  flickableDirection(value: QmlValue): VerticalHeaderViewBuilder;
+  flickableDirection(value: QmlEnumToken): VerticalHeaderViewBuilder;
   flickableDirectionBind(expr: string): VerticalHeaderViewBuilder;
   focus(value: boolean): VerticalHeaderViewBuilder;
   focusBind(expr: string): VerticalHeaderViewBuilder;
-  focusPolicy(value: QmlValue): VerticalHeaderViewBuilder;
+  focusPolicy(value: QmlEnumToken): VerticalHeaderViewBuilder;
   focusPolicyBind(expr: string): VerticalHeaderViewBuilder;
   height(value: number): VerticalHeaderViewBuilder;
   heightBind(expr: string): VerticalHeaderViewBuilder;
@@ -135,9 +140,9 @@ export interface VerticalHeaderViewBuilder {
   rowSpacingBind(expr: string): VerticalHeaderViewBuilder;
   scale(value: number): VerticalHeaderViewBuilder;
   scaleBind(expr: string): VerticalHeaderViewBuilder;
-  selectionBehavior(value: QmlValue): VerticalHeaderViewBuilder;
+  selectionBehavior(value: QmlEnumToken): VerticalHeaderViewBuilder;
   selectionBehaviorBind(expr: string): VerticalHeaderViewBuilder;
-  selectionMode(value: QmlValue): VerticalHeaderViewBuilder;
+  selectionMode(value: QmlEnumToken): VerticalHeaderViewBuilder;
   selectionModeBind(expr: string): VerticalHeaderViewBuilder;
   selectionModel(value: ItemSelectionModelBuilder): VerticalHeaderViewBuilder;
   selectionModelBind(expr: string): VerticalHeaderViewBuilder;
@@ -145,7 +150,7 @@ export interface VerticalHeaderViewBuilder {
   smoothBind(expr: string): VerticalHeaderViewBuilder;
   state(value: string): VerticalHeaderViewBuilder;
   stateBind(expr: string): VerticalHeaderViewBuilder;
-  syncDirection(value: QmlValue): VerticalHeaderViewBuilder;
+  syncDirection(value: QmlEnumToken): VerticalHeaderViewBuilder;
   syncDirectionBind(expr: string): VerticalHeaderViewBuilder;
   syncView(value: TableViewBuilder): VerticalHeaderViewBuilder;
   syncViewBind(expr: string): VerticalHeaderViewBuilder;
@@ -155,7 +160,7 @@ export interface VerticalHeaderViewBuilder {
   textRoleBind(expr: string): VerticalHeaderViewBuilder;
   topMargin(value: number): VerticalHeaderViewBuilder;
   topMarginBind(expr: string): VerticalHeaderViewBuilder;
-  transformOrigin(value: QmlValue): VerticalHeaderViewBuilder;
+  transformOrigin(value: QmlEnumToken): VerticalHeaderViewBuilder;
   transformOriginBind(expr: string): VerticalHeaderViewBuilder;
   visible(value: boolean): VerticalHeaderViewBuilder;
   visibleBind(expr: string): VerticalHeaderViewBuilder;
@@ -167,119 +172,115 @@ export interface VerticalHeaderViewBuilder {
   yBind(expr: string): VerticalHeaderViewBuilder;
   z(value: number): VerticalHeaderViewBuilder;
   zBind(expr: string): VerticalHeaderViewBuilder;
-  onAcceptedButtonsChanged(handler: () => void): VerticalHeaderViewBuilder;
-  onActiveFocusChanged(handler: (arg0: boolean) => void): VerticalHeaderViewBuilder;
-  onActiveFocusOnTabChanged(handler: (arg0: boolean) => void): VerticalHeaderViewBuilder;
-  onAlternatingRowsChanged(handler: () => void): VerticalHeaderViewBuilder;
-  onAnimateChanged(handler: () => void): VerticalHeaderViewBuilder;
-  onAntialiasingChanged(handler: (arg0: boolean) => void): VerticalHeaderViewBuilder;
-  onAtXBeginningChanged(handler: () => void): VerticalHeaderViewBuilder;
-  onAtXEndChanged(handler: () => void): VerticalHeaderViewBuilder;
-  onAtYBeginningChanged(handler: () => void): VerticalHeaderViewBuilder;
-  onAtYEndChanged(handler: () => void): VerticalHeaderViewBuilder;
-  onBaselineOffsetChanged(handler: (arg0: number) => void): VerticalHeaderViewBuilder;
-  onBottomMarginChanged(handler: () => void): VerticalHeaderViewBuilder;
-  onBottomRowChanged(handler: () => void): VerticalHeaderViewBuilder;
-  onBoundsBehaviorChanged(handler: () => void): VerticalHeaderViewBuilder;
-  onBoundsMovementChanged(handler: () => void): VerticalHeaderViewBuilder;
-  onChildrenChanged(handler: () => void): VerticalHeaderViewBuilder;
-  onChildrenRectChanged(handler: (arg0: QmlRect) => void): VerticalHeaderViewBuilder;
-  onClipChanged(handler: (arg0: boolean) => void): VerticalHeaderViewBuilder;
-  onColumnMoved(
-    handler: (logicalIndex: number, oldVisualIndex: number, newVisualIndex: number) => void,
-  ): VerticalHeaderViewBuilder;
-  onColumnSpacingChanged(handler: () => void): VerticalHeaderViewBuilder;
-  onColumnWidthProviderChanged(handler: () => void): VerticalHeaderViewBuilder;
-  onColumnsChanged(handler: () => void): VerticalHeaderViewBuilder;
-  onContainmentMaskChanged(handler: () => void): VerticalHeaderViewBuilder;
-  onContentHeightChanged(handler: () => void): VerticalHeaderViewBuilder;
-  onContentWidthChanged(handler: () => void): VerticalHeaderViewBuilder;
-  onContentXChanged(handler: () => void): VerticalHeaderViewBuilder;
-  onContentYChanged(handler: () => void): VerticalHeaderViewBuilder;
-  onCurrentColumnChanged(handler: () => void): VerticalHeaderViewBuilder;
-  onCurrentRowChanged(handler: () => void): VerticalHeaderViewBuilder;
-  onDelegateChanged(handler: () => void): VerticalHeaderViewBuilder;
-  onDelegateModelAccessChanged(handler: () => void): VerticalHeaderViewBuilder;
-  onDragEnded(handler: () => void): VerticalHeaderViewBuilder;
-  onDragStarted(handler: () => void): VerticalHeaderViewBuilder;
-  onDraggingChanged(handler: () => void): VerticalHeaderViewBuilder;
-  onDraggingHorizontallyChanged(handler: () => void): VerticalHeaderViewBuilder;
-  onDraggingVerticallyChanged(handler: () => void): VerticalHeaderViewBuilder;
-  onEditTriggersChanged(handler: () => void): VerticalHeaderViewBuilder;
-  onEnabledChanged(handler: () => void): VerticalHeaderViewBuilder;
-  onFlickDecelerationChanged(handler: () => void): VerticalHeaderViewBuilder;
-  onFlickEnded(handler: () => void): VerticalHeaderViewBuilder;
-  onFlickStarted(handler: () => void): VerticalHeaderViewBuilder;
-  onFlickableDirectionChanged(handler: () => void): VerticalHeaderViewBuilder;
-  onFlickingChanged(handler: () => void): VerticalHeaderViewBuilder;
-  onFlickingHorizontallyChanged(handler: () => void): VerticalHeaderViewBuilder;
-  onFlickingVerticallyChanged(handler: () => void): VerticalHeaderViewBuilder;
-  onFocusChanged(handler: (arg0: boolean) => void): VerticalHeaderViewBuilder;
-  onFocusPolicyChanged(handler: (arg0: QmlValue) => void): VerticalHeaderViewBuilder;
-  onHeightChanged(handler: () => void): VerticalHeaderViewBuilder;
-  onHorizontalOvershootChanged(handler: () => void): VerticalHeaderViewBuilder;
-  onHorizontalVelocityChanged(handler: () => void): VerticalHeaderViewBuilder;
-  onImplicitHeightChanged(handler: () => void): VerticalHeaderViewBuilder;
-  onImplicitWidthChanged(handler: () => void): VerticalHeaderViewBuilder;
-  onInteractiveChanged(handler: () => void): VerticalHeaderViewBuilder;
-  onIsAtBoundaryChanged(handler: () => void): VerticalHeaderViewBuilder;
-  onKeyNavigationEnabledChanged(handler: () => void): VerticalHeaderViewBuilder;
-  onLayoutChanged(handler: () => void): VerticalHeaderViewBuilder;
-  onLeftColumnChanged(handler: () => void): VerticalHeaderViewBuilder;
-  onLeftMarginChanged(handler: () => void): VerticalHeaderViewBuilder;
-  onMaximumFlickVelocityChanged(handler: () => void): VerticalHeaderViewBuilder;
-  onModelChanged(handler: () => void): VerticalHeaderViewBuilder;
-  onMovableRowsChanged(handler: () => void): VerticalHeaderViewBuilder;
-  onMovementEnded(handler: () => void): VerticalHeaderViewBuilder;
-  onMovementStarted(handler: () => void): VerticalHeaderViewBuilder;
-  onMovingChanged(handler: () => void): VerticalHeaderViewBuilder;
-  onMovingHorizontallyChanged(handler: () => void): VerticalHeaderViewBuilder;
-  onMovingVerticallyChanged(handler: () => void): VerticalHeaderViewBuilder;
-  onObjectNameChanged(handler: (objectName: string) => void): VerticalHeaderViewBuilder;
-  onOpacityChanged(handler: () => void): VerticalHeaderViewBuilder;
-  onOriginXChanged(handler: () => void): VerticalHeaderViewBuilder;
-  onOriginYChanged(handler: () => void): VerticalHeaderViewBuilder;
-  onPaletteChanged(handler: () => void): VerticalHeaderViewBuilder;
-  onPaletteCreated(handler: () => void): VerticalHeaderViewBuilder;
-  onParentChanged(handler: (arg0: ItemBuilder) => void): VerticalHeaderViewBuilder;
-  onPixelAlignedChanged(handler: () => void): VerticalHeaderViewBuilder;
-  onPointerNavigationEnabledChanged(handler: () => void): VerticalHeaderViewBuilder;
-  onPressDelayChanged(handler: () => void): VerticalHeaderViewBuilder;
-  onReboundChanged(handler: () => void): VerticalHeaderViewBuilder;
-  onResizableColumnsChanged(handler: () => void): VerticalHeaderViewBuilder;
-  onResizableRowsChanged(handler: () => void): VerticalHeaderViewBuilder;
-  onReuseItemsChanged(handler: () => void): VerticalHeaderViewBuilder;
-  onRightColumnChanged(handler: () => void): VerticalHeaderViewBuilder;
-  onRightMarginChanged(handler: () => void): VerticalHeaderViewBuilder;
-  onRotationChanged(handler: () => void): VerticalHeaderViewBuilder;
-  onRowHeightProviderChanged(handler: () => void): VerticalHeaderViewBuilder;
-  onRowMoved(
-    handler: (logicalIndex: number, oldVisualIndex: number, newVisualIndex: number) => void,
-  ): VerticalHeaderViewBuilder;
-  onRowSpacingChanged(handler: () => void): VerticalHeaderViewBuilder;
-  onRowsChanged(handler: () => void): VerticalHeaderViewBuilder;
-  onScaleChanged(handler: () => void): VerticalHeaderViewBuilder;
-  onSelectionBehaviorChanged(handler: () => void): VerticalHeaderViewBuilder;
-  onSelectionModeChanged(handler: () => void): VerticalHeaderViewBuilder;
-  onSelectionModelChanged(handler: () => void): VerticalHeaderViewBuilder;
-  onSmoothChanged(handler: (arg0: boolean) => void): VerticalHeaderViewBuilder;
-  onStateChanged(handler: (arg0: string) => void): VerticalHeaderViewBuilder;
-  onSyncDirectionChanged(handler: () => void): VerticalHeaderViewBuilder;
-  onSyncViewChanged(handler: () => void): VerticalHeaderViewBuilder;
-  onSynchronousDragChanged(handler: () => void): VerticalHeaderViewBuilder;
-  onTextRoleChanged(handler: () => void): VerticalHeaderViewBuilder;
-  onTopMarginChanged(handler: () => void): VerticalHeaderViewBuilder;
-  onTopRowChanged(handler: () => void): VerticalHeaderViewBuilder;
-  onTransformOriginChanged(handler: (arg0: QmlValue) => void): VerticalHeaderViewBuilder;
-  onVerticalOvershootChanged(handler: () => void): VerticalHeaderViewBuilder;
-  onVerticalVelocityChanged(handler: () => void): VerticalHeaderViewBuilder;
-  onVisibleChanged(handler: () => void): VerticalHeaderViewBuilder;
-  onVisibleChildrenChanged(handler: () => void): VerticalHeaderViewBuilder;
-  onWidthChanged(handler: () => void): VerticalHeaderViewBuilder;
-  onWindowChanged(handler: (window: WindowBuilder) => void): VerticalHeaderViewBuilder;
-  onXChanged(handler: () => void): VerticalHeaderViewBuilder;
-  onYChanged(handler: () => void): VerticalHeaderViewBuilder;
-  onZChanged(handler: () => void): VerticalHeaderViewBuilder;
+  onAcceptedButtonsChanged(body: string): VerticalHeaderViewBuilder;
+  onActiveFocusChanged(body: string): VerticalHeaderViewBuilder;
+  onActiveFocusOnTabChanged(body: string): VerticalHeaderViewBuilder;
+  onAlternatingRowsChanged(body: string): VerticalHeaderViewBuilder;
+  onAnimateChanged(body: string): VerticalHeaderViewBuilder;
+  onAntialiasingChanged(body: string): VerticalHeaderViewBuilder;
+  onAtXBeginningChanged(body: string): VerticalHeaderViewBuilder;
+  onAtXEndChanged(body: string): VerticalHeaderViewBuilder;
+  onAtYBeginningChanged(body: string): VerticalHeaderViewBuilder;
+  onAtYEndChanged(body: string): VerticalHeaderViewBuilder;
+  onBaselineOffsetChanged(body: string): VerticalHeaderViewBuilder;
+  onBottomMarginChanged(body: string): VerticalHeaderViewBuilder;
+  onBottomRowChanged(body: string): VerticalHeaderViewBuilder;
+  onBoundsBehaviorChanged(body: string): VerticalHeaderViewBuilder;
+  onBoundsMovementChanged(body: string): VerticalHeaderViewBuilder;
+  onChildrenChanged(body: string): VerticalHeaderViewBuilder;
+  onChildrenRectChanged(body: string): VerticalHeaderViewBuilder;
+  onClipChanged(body: string): VerticalHeaderViewBuilder;
+  onColumnMoved(body: string): VerticalHeaderViewBuilder;
+  onColumnSpacingChanged(body: string): VerticalHeaderViewBuilder;
+  onColumnWidthProviderChanged(body: string): VerticalHeaderViewBuilder;
+  onColumnsChanged(body: string): VerticalHeaderViewBuilder;
+  onContainmentMaskChanged(body: string): VerticalHeaderViewBuilder;
+  onContentHeightChanged(body: string): VerticalHeaderViewBuilder;
+  onContentWidthChanged(body: string): VerticalHeaderViewBuilder;
+  onContentXChanged(body: string): VerticalHeaderViewBuilder;
+  onContentYChanged(body: string): VerticalHeaderViewBuilder;
+  onCurrentColumnChanged(body: string): VerticalHeaderViewBuilder;
+  onCurrentRowChanged(body: string): VerticalHeaderViewBuilder;
+  onDelegateChanged(body: string): VerticalHeaderViewBuilder;
+  onDelegateModelAccessChanged(body: string): VerticalHeaderViewBuilder;
+  onDragEnded(body: string): VerticalHeaderViewBuilder;
+  onDragStarted(body: string): VerticalHeaderViewBuilder;
+  onDraggingChanged(body: string): VerticalHeaderViewBuilder;
+  onDraggingHorizontallyChanged(body: string): VerticalHeaderViewBuilder;
+  onDraggingVerticallyChanged(body: string): VerticalHeaderViewBuilder;
+  onEditTriggersChanged(body: string): VerticalHeaderViewBuilder;
+  onEnabledChanged(body: string): VerticalHeaderViewBuilder;
+  onFlickDecelerationChanged(body: string): VerticalHeaderViewBuilder;
+  onFlickEnded(body: string): VerticalHeaderViewBuilder;
+  onFlickStarted(body: string): VerticalHeaderViewBuilder;
+  onFlickableDirectionChanged(body: string): VerticalHeaderViewBuilder;
+  onFlickingChanged(body: string): VerticalHeaderViewBuilder;
+  onFlickingHorizontallyChanged(body: string): VerticalHeaderViewBuilder;
+  onFlickingVerticallyChanged(body: string): VerticalHeaderViewBuilder;
+  onFocusChanged(body: string): VerticalHeaderViewBuilder;
+  onFocusPolicyChanged(body: string): VerticalHeaderViewBuilder;
+  onHeightChanged(body: string): VerticalHeaderViewBuilder;
+  onHorizontalOvershootChanged(body: string): VerticalHeaderViewBuilder;
+  onHorizontalVelocityChanged(body: string): VerticalHeaderViewBuilder;
+  onImplicitHeightChanged(body: string): VerticalHeaderViewBuilder;
+  onImplicitWidthChanged(body: string): VerticalHeaderViewBuilder;
+  onInteractiveChanged(body: string): VerticalHeaderViewBuilder;
+  onIsAtBoundaryChanged(body: string): VerticalHeaderViewBuilder;
+  onKeyNavigationEnabledChanged(body: string): VerticalHeaderViewBuilder;
+  onLayoutChanged(body: string): VerticalHeaderViewBuilder;
+  onLeftColumnChanged(body: string): VerticalHeaderViewBuilder;
+  onLeftMarginChanged(body: string): VerticalHeaderViewBuilder;
+  onMaximumFlickVelocityChanged(body: string): VerticalHeaderViewBuilder;
+  onModelChanged(body: string): VerticalHeaderViewBuilder;
+  onMovableRowsChanged(body: string): VerticalHeaderViewBuilder;
+  onMovementEnded(body: string): VerticalHeaderViewBuilder;
+  onMovementStarted(body: string): VerticalHeaderViewBuilder;
+  onMovingChanged(body: string): VerticalHeaderViewBuilder;
+  onMovingHorizontallyChanged(body: string): VerticalHeaderViewBuilder;
+  onMovingVerticallyChanged(body: string): VerticalHeaderViewBuilder;
+  onObjectNameChanged(body: string): VerticalHeaderViewBuilder;
+  onOpacityChanged(body: string): VerticalHeaderViewBuilder;
+  onOriginXChanged(body: string): VerticalHeaderViewBuilder;
+  onOriginYChanged(body: string): VerticalHeaderViewBuilder;
+  onPaletteChanged(body: string): VerticalHeaderViewBuilder;
+  onPaletteCreated(body: string): VerticalHeaderViewBuilder;
+  onParentChanged(body: string): VerticalHeaderViewBuilder;
+  onPixelAlignedChanged(body: string): VerticalHeaderViewBuilder;
+  onPointerNavigationEnabledChanged(body: string): VerticalHeaderViewBuilder;
+  onPressDelayChanged(body: string): VerticalHeaderViewBuilder;
+  onReboundChanged(body: string): VerticalHeaderViewBuilder;
+  onResizableColumnsChanged(body: string): VerticalHeaderViewBuilder;
+  onResizableRowsChanged(body: string): VerticalHeaderViewBuilder;
+  onReuseItemsChanged(body: string): VerticalHeaderViewBuilder;
+  onRightColumnChanged(body: string): VerticalHeaderViewBuilder;
+  onRightMarginChanged(body: string): VerticalHeaderViewBuilder;
+  onRotationChanged(body: string): VerticalHeaderViewBuilder;
+  onRowHeightProviderChanged(body: string): VerticalHeaderViewBuilder;
+  onRowMoved(body: string): VerticalHeaderViewBuilder;
+  onRowSpacingChanged(body: string): VerticalHeaderViewBuilder;
+  onRowsChanged(body: string): VerticalHeaderViewBuilder;
+  onScaleChanged(body: string): VerticalHeaderViewBuilder;
+  onSelectionBehaviorChanged(body: string): VerticalHeaderViewBuilder;
+  onSelectionModeChanged(body: string): VerticalHeaderViewBuilder;
+  onSelectionModelChanged(body: string): VerticalHeaderViewBuilder;
+  onSmoothChanged(body: string): VerticalHeaderViewBuilder;
+  onStateChanged(body: string): VerticalHeaderViewBuilder;
+  onSyncDirectionChanged(body: string): VerticalHeaderViewBuilder;
+  onSyncViewChanged(body: string): VerticalHeaderViewBuilder;
+  onSynchronousDragChanged(body: string): VerticalHeaderViewBuilder;
+  onTextRoleChanged(body: string): VerticalHeaderViewBuilder;
+  onTopMarginChanged(body: string): VerticalHeaderViewBuilder;
+  onTopRowChanged(body: string): VerticalHeaderViewBuilder;
+  onTransformOriginChanged(body: string): VerticalHeaderViewBuilder;
+  onVerticalOvershootChanged(body: string): VerticalHeaderViewBuilder;
+  onVerticalVelocityChanged(body: string): VerticalHeaderViewBuilder;
+  onVisibleChanged(body: string): VerticalHeaderViewBuilder;
+  onVisibleChildrenChanged(body: string): VerticalHeaderViewBuilder;
+  onWidthChanged(body: string): VerticalHeaderViewBuilder;
+  onWindowChanged(body: string): VerticalHeaderViewBuilder;
+  onXChanged(body: string): VerticalHeaderViewBuilder;
+  onYChanged(body: string): VerticalHeaderViewBuilder;
+  onZChanged(body: string): VerticalHeaderViewBuilder;
   anchors(setup: (b: AnchorsBuilder) => void): VerticalHeaderViewBuilder;
   layer(setup: (b: LayerBuilder) => void): VerticalHeaderViewBuilder;
   actionGroup(setup: (b: ActionGroupAttachedBuilder) => void): VerticalHeaderViewBuilder;
@@ -306,8 +307,489 @@ export interface VerticalHeaderViewBuilder {
   tumbler(setup: (b: TumblerAttachedBuilder) => void): VerticalHeaderViewBuilder;
 }
 
+const VERTICALHEADERVIEW_META: TypeMetadata = {
+  typeName: 'VerticalHeaderView',
+  properties: [
+    { name: 'acceptedButtons', hasValue: true, hasBinding: true },
+    { name: 'activeFocusOnTab', hasValue: true, hasBinding: true },
+    { name: 'alternatingRows', hasValue: true, hasBinding: true },
+    { name: 'animate', hasValue: true, hasBinding: true },
+    { name: 'antialiasing', hasValue: true, hasBinding: true },
+    { name: 'baselineOffset', hasValue: true, hasBinding: true },
+    { name: 'bottomMargin', hasValue: true, hasBinding: true },
+    { name: 'boundsBehavior', hasValue: true, hasBinding: true },
+    { name: 'boundsMovement', hasValue: true, hasBinding: true },
+    { name: 'clip', hasValue: true, hasBinding: true },
+    { name: 'columnSpacing', hasValue: true, hasBinding: true },
+    { name: 'columnWidthProvider', hasValue: true, hasBinding: true },
+    { name: 'containmentMask', hasValue: true, hasBinding: true },
+    { name: 'contentHeight', hasValue: true, hasBinding: true },
+    { name: 'contentWidth', hasValue: true, hasBinding: true },
+    { name: 'contentX', hasValue: true, hasBinding: true },
+    { name: 'contentY', hasValue: true, hasBinding: true },
+    { name: 'delegate', hasValue: true, hasBinding: true },
+    { name: 'delegateModelAccess', hasValue: true, hasBinding: true },
+    { name: 'editTriggers', hasValue: true, hasBinding: true },
+    { name: 'enabled', hasValue: true, hasBinding: true },
+    { name: 'flickDeceleration', hasValue: true, hasBinding: true },
+    { name: 'flickableDirection', hasValue: true, hasBinding: true },
+    { name: 'focus', hasValue: true, hasBinding: true },
+    { name: 'focusPolicy', hasValue: true, hasBinding: true },
+    { name: 'height', hasValue: true, hasBinding: true },
+    { name: 'implicitHeight', hasValue: true, hasBinding: true },
+    { name: 'implicitWidth', hasValue: true, hasBinding: true },
+    { name: 'interactive', hasValue: true, hasBinding: true },
+    { name: 'keyNavigationEnabled', hasValue: true, hasBinding: true },
+    { name: 'leftMargin', hasValue: true, hasBinding: true },
+    { name: 'maximumFlickVelocity', hasValue: true, hasBinding: true },
+    { name: 'model', hasValue: true, hasBinding: true },
+    { name: 'movableRows', hasValue: true, hasBinding: true },
+    { name: 'objectName', hasValue: true, hasBinding: true },
+    { name: 'opacity', hasValue: true, hasBinding: true },
+    { name: 'palette', hasValue: true, hasBinding: true },
+    { name: 'parent', hasValue: true, hasBinding: true },
+    { name: 'pixelAligned', hasValue: true, hasBinding: true },
+    { name: 'pointerNavigationEnabled', hasValue: true, hasBinding: true },
+    { name: 'pressDelay', hasValue: true, hasBinding: true },
+    { name: 'rebound', hasValue: true, hasBinding: true },
+    { name: 'resizableColumns', hasValue: true, hasBinding: true },
+    { name: 'resizableRows', hasValue: true, hasBinding: true },
+    { name: 'reuseItems', hasValue: true, hasBinding: true },
+    { name: 'rightMargin', hasValue: true, hasBinding: true },
+    { name: 'rotation', hasValue: true, hasBinding: true },
+    { name: 'rowHeightProvider', hasValue: true, hasBinding: true },
+    { name: 'rowSpacing', hasValue: true, hasBinding: true },
+    { name: 'scale', hasValue: true, hasBinding: true },
+    { name: 'selectionBehavior', hasValue: true, hasBinding: true },
+    { name: 'selectionMode', hasValue: true, hasBinding: true },
+    { name: 'selectionModel', hasValue: true, hasBinding: true },
+    { name: 'smooth', hasValue: true, hasBinding: true },
+    { name: 'state', hasValue: true, hasBinding: true },
+    { name: 'syncDirection', hasValue: true, hasBinding: true },
+    { name: 'syncView', hasValue: true, hasBinding: true },
+    { name: 'synchronousDrag', hasValue: true, hasBinding: true },
+    { name: 'textRole', hasValue: true, hasBinding: true },
+    { name: 'topMargin', hasValue: true, hasBinding: true },
+    { name: 'transformOrigin', hasValue: true, hasBinding: true },
+    { name: 'visible', hasValue: true, hasBinding: true },
+    { name: 'width', hasValue: true, hasBinding: true },
+    { name: 'x', hasValue: true, hasBinding: true },
+    { name: 'y', hasValue: true, hasBinding: true },
+    { name: 'z', hasValue: true, hasBinding: true },
+  ],
+  signals: [
+    { handlerName: 'onAcceptedButtonsChanged', paramCount: 0 },
+    { handlerName: 'onActiveFocusChanged', paramCount: 1 },
+    { handlerName: 'onActiveFocusOnTabChanged', paramCount: 1 },
+    { handlerName: 'onAlternatingRowsChanged', paramCount: 0 },
+    { handlerName: 'onAnimateChanged', paramCount: 0 },
+    { handlerName: 'onAntialiasingChanged', paramCount: 1 },
+    { handlerName: 'onAtXBeginningChanged', paramCount: 0 },
+    { handlerName: 'onAtXEndChanged', paramCount: 0 },
+    { handlerName: 'onAtYBeginningChanged', paramCount: 0 },
+    { handlerName: 'onAtYEndChanged', paramCount: 0 },
+    { handlerName: 'onBaselineOffsetChanged', paramCount: 1 },
+    { handlerName: 'onBottomMarginChanged', paramCount: 0 },
+    { handlerName: 'onBottomRowChanged', paramCount: 0 },
+    { handlerName: 'onBoundsBehaviorChanged', paramCount: 0 },
+    { handlerName: 'onBoundsMovementChanged', paramCount: 0 },
+    { handlerName: 'onChildrenChanged', paramCount: 0 },
+    { handlerName: 'onChildrenRectChanged', paramCount: 1 },
+    { handlerName: 'onClipChanged', paramCount: 1 },
+    { handlerName: 'onColumnMoved', paramCount: 3 },
+    { handlerName: 'onColumnSpacingChanged', paramCount: 0 },
+    { handlerName: 'onColumnWidthProviderChanged', paramCount: 0 },
+    { handlerName: 'onColumnsChanged', paramCount: 0 },
+    { handlerName: 'onContainmentMaskChanged', paramCount: 0 },
+    { handlerName: 'onContentHeightChanged', paramCount: 0 },
+    { handlerName: 'onContentWidthChanged', paramCount: 0 },
+    { handlerName: 'onContentXChanged', paramCount: 0 },
+    { handlerName: 'onContentYChanged', paramCount: 0 },
+    { handlerName: 'onCurrentColumnChanged', paramCount: 0 },
+    { handlerName: 'onCurrentRowChanged', paramCount: 0 },
+    { handlerName: 'onDelegateChanged', paramCount: 0 },
+    { handlerName: 'onDelegateModelAccessChanged', paramCount: 0 },
+    { handlerName: 'onDragEnded', paramCount: 0 },
+    { handlerName: 'onDragStarted', paramCount: 0 },
+    { handlerName: 'onDraggingChanged', paramCount: 0 },
+    { handlerName: 'onDraggingHorizontallyChanged', paramCount: 0 },
+    { handlerName: 'onDraggingVerticallyChanged', paramCount: 0 },
+    { handlerName: 'onEditTriggersChanged', paramCount: 0 },
+    { handlerName: 'onEnabledChanged', paramCount: 0 },
+    { handlerName: 'onFlickDecelerationChanged', paramCount: 0 },
+    { handlerName: 'onFlickEnded', paramCount: 0 },
+    { handlerName: 'onFlickStarted', paramCount: 0 },
+    { handlerName: 'onFlickableDirectionChanged', paramCount: 0 },
+    { handlerName: 'onFlickingChanged', paramCount: 0 },
+    { handlerName: 'onFlickingHorizontallyChanged', paramCount: 0 },
+    { handlerName: 'onFlickingVerticallyChanged', paramCount: 0 },
+    { handlerName: 'onFocusChanged', paramCount: 1 },
+    { handlerName: 'onFocusPolicyChanged', paramCount: 1 },
+    { handlerName: 'onHeightChanged', paramCount: 0 },
+    { handlerName: 'onHorizontalOvershootChanged', paramCount: 0 },
+    { handlerName: 'onHorizontalVelocityChanged', paramCount: 0 },
+    { handlerName: 'onImplicitHeightChanged', paramCount: 0 },
+    { handlerName: 'onImplicitWidthChanged', paramCount: 0 },
+    { handlerName: 'onInteractiveChanged', paramCount: 0 },
+    { handlerName: 'onIsAtBoundaryChanged', paramCount: 0 },
+    { handlerName: 'onKeyNavigationEnabledChanged', paramCount: 0 },
+    { handlerName: 'onLayoutChanged', paramCount: 0 },
+    { handlerName: 'onLeftColumnChanged', paramCount: 0 },
+    { handlerName: 'onLeftMarginChanged', paramCount: 0 },
+    { handlerName: 'onMaximumFlickVelocityChanged', paramCount: 0 },
+    { handlerName: 'onModelChanged', paramCount: 0 },
+    { handlerName: 'onMovableRowsChanged', paramCount: 0 },
+    { handlerName: 'onMovementEnded', paramCount: 0 },
+    { handlerName: 'onMovementStarted', paramCount: 0 },
+    { handlerName: 'onMovingChanged', paramCount: 0 },
+    { handlerName: 'onMovingHorizontallyChanged', paramCount: 0 },
+    { handlerName: 'onMovingVerticallyChanged', paramCount: 0 },
+    { handlerName: 'onObjectNameChanged', paramCount: 1 },
+    { handlerName: 'onOpacityChanged', paramCount: 0 },
+    { handlerName: 'onOriginXChanged', paramCount: 0 },
+    { handlerName: 'onOriginYChanged', paramCount: 0 },
+    { handlerName: 'onPaletteChanged', paramCount: 0 },
+    { handlerName: 'onPaletteCreated', paramCount: 0 },
+    { handlerName: 'onParentChanged', paramCount: 1 },
+    { handlerName: 'onPixelAlignedChanged', paramCount: 0 },
+    { handlerName: 'onPointerNavigationEnabledChanged', paramCount: 0 },
+    { handlerName: 'onPressDelayChanged', paramCount: 0 },
+    { handlerName: 'onReboundChanged', paramCount: 0 },
+    { handlerName: 'onResizableColumnsChanged', paramCount: 0 },
+    { handlerName: 'onResizableRowsChanged', paramCount: 0 },
+    { handlerName: 'onReuseItemsChanged', paramCount: 0 },
+    { handlerName: 'onRightColumnChanged', paramCount: 0 },
+    { handlerName: 'onRightMarginChanged', paramCount: 0 },
+    { handlerName: 'onRotationChanged', paramCount: 0 },
+    { handlerName: 'onRowHeightProviderChanged', paramCount: 0 },
+    { handlerName: 'onRowMoved', paramCount: 3 },
+    { handlerName: 'onRowSpacingChanged', paramCount: 0 },
+    { handlerName: 'onRowsChanged', paramCount: 0 },
+    { handlerName: 'onScaleChanged', paramCount: 0 },
+    { handlerName: 'onSelectionBehaviorChanged', paramCount: 0 },
+    { handlerName: 'onSelectionModeChanged', paramCount: 0 },
+    { handlerName: 'onSelectionModelChanged', paramCount: 0 },
+    { handlerName: 'onSmoothChanged', paramCount: 1 },
+    { handlerName: 'onStateChanged', paramCount: 1 },
+    { handlerName: 'onSyncDirectionChanged', paramCount: 0 },
+    { handlerName: 'onSyncViewChanged', paramCount: 0 },
+    { handlerName: 'onSynchronousDragChanged', paramCount: 0 },
+    { handlerName: 'onTextRoleChanged', paramCount: 0 },
+    { handlerName: 'onTopMarginChanged', paramCount: 0 },
+    { handlerName: 'onTopRowChanged', paramCount: 0 },
+    { handlerName: 'onTransformOriginChanged', paramCount: 1 },
+    { handlerName: 'onVerticalOvershootChanged', paramCount: 0 },
+    { handlerName: 'onVerticalVelocityChanged', paramCount: 0 },
+    { handlerName: 'onVisibleChanged', paramCount: 0 },
+    { handlerName: 'onVisibleChildrenChanged', paramCount: 0 },
+    { handlerName: 'onWidthChanged', paramCount: 0 },
+    { handlerName: 'onWindowChanged', paramCount: 1 },
+    { handlerName: 'onXChanged', paramCount: 0 },
+    { handlerName: 'onYChanged', paramCount: 0 },
+    { handlerName: 'onZChanged', paramCount: 0 },
+  ],
+  grouped: [
+    {
+      methodName: 'anchors',
+      groupName: 'anchors',
+      properties: [
+        { name: 'alignWhenCentered', hasValue: true, hasBinding: true },
+        { name: 'baseline', hasValue: true, hasBinding: true },
+        { name: 'baselineOffset', hasValue: true, hasBinding: true },
+        { name: 'bottom', hasValue: true, hasBinding: true },
+        { name: 'bottomMargin', hasValue: true, hasBinding: true },
+        { name: 'centerIn', hasValue: true, hasBinding: true },
+        { name: 'fill', hasValue: true, hasBinding: true },
+        { name: 'horizontalCenter', hasValue: true, hasBinding: true },
+        { name: 'horizontalCenterOffset', hasValue: true, hasBinding: true },
+        { name: 'left', hasValue: true, hasBinding: true },
+        { name: 'leftMargin', hasValue: true, hasBinding: true },
+        { name: 'margins', hasValue: true, hasBinding: true },
+        { name: 'right', hasValue: true, hasBinding: true },
+        { name: 'rightMargin', hasValue: true, hasBinding: true },
+        { name: 'top', hasValue: true, hasBinding: true },
+        { name: 'topMargin', hasValue: true, hasBinding: true },
+        { name: 'verticalCenter', hasValue: true, hasBinding: true },
+        { name: 'verticalCenterOffset', hasValue: true, hasBinding: true },
+      ],
+    },
+    {
+      methodName: 'layer',
+      groupName: 'layer',
+      properties: [
+        { name: 'effect', hasValue: true, hasBinding: true },
+        { name: 'enabled', hasValue: true, hasBinding: true },
+        { name: 'format', hasValue: true, hasBinding: true },
+        { name: 'live', hasValue: true, hasBinding: true },
+        { name: 'mipmap', hasValue: true, hasBinding: true },
+        { name: 'samplerName', hasValue: true, hasBinding: true },
+        { name: 'samples', hasValue: true, hasBinding: true },
+        { name: 'smooth', hasValue: true, hasBinding: true },
+        { name: 'sourceRect', hasValue: true, hasBinding: true },
+        { name: 'textureMirroring', hasValue: true, hasBinding: true },
+        { name: 'textureSize', hasValue: true, hasBinding: true },
+        { name: 'wrapMode', hasValue: true, hasBinding: true },
+      ],
+    },
+  ],
+  attached: [
+    {
+      methodName: 'actionGroup',
+      attachedTypeName: 'ActionGroup',
+      properties: [
+        { name: 'group', hasValue: true, hasBinding: true },
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
+      signals: [
+        { handlerName: 'onGroupChanged', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'applicationWindow',
+      attachedTypeName: 'ApplicationWindow',
+      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
+      signals: [
+        { handlerName: 'onActiveFocusControlChanged', paramCount: 0 },
+        { handlerName: 'onContentItemChanged', paramCount: 0 },
+        { handlerName: 'onFooterChanged', paramCount: 0 },
+        { handlerName: 'onHeaderChanged', paramCount: 0 },
+        { handlerName: 'onMenuBarChanged', paramCount: 0 },
+        { handlerName: 'onWindowChanged', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'buttonGroup',
+      attachedTypeName: 'ButtonGroup',
+      properties: [
+        { name: 'group', hasValue: true, hasBinding: true },
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
+      signals: [
+        { handlerName: 'onGroupChanged', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'contextMenu',
+      attachedTypeName: 'ContextMenu',
+      properties: [
+        { name: 'menu', hasValue: true, hasBinding: true },
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
+      signals: [
+        { handlerName: 'onMenuChanged', paramCount: 0 },
+        { handlerName: 'onRequested', paramCount: 1 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'dialogButtonBox',
+      attachedTypeName: 'DialogButtonBox',
+      properties: [
+        { name: 'buttonRole', hasValue: true, hasBinding: true },
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
+      signals: [
+        { handlerName: 'onButtonBoxChanged', paramCount: 0 },
+        { handlerName: 'onButtonRoleChanged', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'overlay',
+      attachedTypeName: 'Overlay',
+      properties: [
+        { name: 'modal', hasValue: true, hasBinding: true },
+        { name: 'modeless', hasValue: true, hasBinding: true },
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
+      signals: [
+        { handlerName: 'onModalChanged', paramCount: 0 },
+        { handlerName: 'onModelessChanged', paramCount: 0 },
+        { handlerName: 'onOverlayChanged', paramCount: 0 },
+        { handlerName: 'onPressed', paramCount: 0 },
+        { handlerName: 'onReleased', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'scrollBar',
+      attachedTypeName: 'ScrollBar',
+      properties: [
+        { name: 'horizontal', hasValue: true, hasBinding: true },
+        { name: 'vertical', hasValue: true, hasBinding: true },
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
+      signals: [
+        { handlerName: 'onHorizontalChanged', paramCount: 0 },
+        { handlerName: 'onVerticalChanged', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'scrollIndicator',
+      attachedTypeName: 'ScrollIndicator',
+      properties: [
+        { name: 'horizontal', hasValue: true, hasBinding: true },
+        { name: 'vertical', hasValue: true, hasBinding: true },
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
+      signals: [
+        { handlerName: 'onHorizontalChanged', paramCount: 0 },
+        { handlerName: 'onVerticalChanged', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'selectionRectangle',
+      attachedTypeName: 'SelectionRectangle',
+      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
+      signals: [
+        { handlerName: 'onControlChanged', paramCount: 0 },
+        { handlerName: 'onDraggingChanged', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'splitHandle',
+      attachedTypeName: 'SplitHandle',
+      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
+      signals: [
+        { handlerName: 'onHoveredChanged', paramCount: 0 },
+        { handlerName: 'onPressedChanged', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'splitView',
+      attachedTypeName: 'SplitView',
+      properties: [
+        { name: 'fillHeight', hasValue: true, hasBinding: true },
+        { name: 'fillWidth', hasValue: true, hasBinding: true },
+        { name: 'maximumHeight', hasValue: true, hasBinding: true },
+        { name: 'maximumWidth', hasValue: true, hasBinding: true },
+        { name: 'minimumHeight', hasValue: true, hasBinding: true },
+        { name: 'minimumWidth', hasValue: true, hasBinding: true },
+        { name: 'preferredHeight', hasValue: true, hasBinding: true },
+        { name: 'preferredWidth', hasValue: true, hasBinding: true },
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
+      signals: [
+        { handlerName: 'onFillHeightChanged', paramCount: 0 },
+        { handlerName: 'onFillWidthChanged', paramCount: 0 },
+        { handlerName: 'onMaximumHeightChanged', paramCount: 0 },
+        { handlerName: 'onMaximumWidthChanged', paramCount: 0 },
+        { handlerName: 'onMinimumHeightChanged', paramCount: 0 },
+        { handlerName: 'onMinimumWidthChanged', paramCount: 0 },
+        { handlerName: 'onPreferredHeightChanged', paramCount: 0 },
+        { handlerName: 'onPreferredWidthChanged', paramCount: 0 },
+        { handlerName: 'onViewChanged', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'stackView',
+      attachedTypeName: 'StackView',
+      properties: [
+        { name: 'visible', hasValue: true, hasBinding: true },
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
+      signals: [
+        { handlerName: 'onActivated', paramCount: 0 },
+        { handlerName: 'onActivating', paramCount: 0 },
+        { handlerName: 'onDeactivated', paramCount: 0 },
+        { handlerName: 'onDeactivating', paramCount: 0 },
+        { handlerName: 'onIndexChanged', paramCount: 0 },
+        { handlerName: 'onRemoved', paramCount: 0 },
+        { handlerName: 'onStatusChanged', paramCount: 0 },
+        { handlerName: 'onViewChanged', paramCount: 0 },
+        { handlerName: 'onVisibleChanged', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'swipeDelegate',
+      attachedTypeName: 'SwipeDelegate',
+      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
+      signals: [
+        { handlerName: 'onClicked', paramCount: 0 },
+        { handlerName: 'onPressedChanged', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'swipeView',
+      attachedTypeName: 'SwipeView',
+      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
+      signals: [
+        { handlerName: 'onIndexChanged', paramCount: 0 },
+        { handlerName: 'onIsCurrentItemChanged', paramCount: 0 },
+        { handlerName: 'onIsNextItemChanged', paramCount: 0 },
+        { handlerName: 'onIsPreviousItemChanged', paramCount: 0 },
+        { handlerName: 'onViewChanged', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'tabBar',
+      attachedTypeName: 'TabBar',
+      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
+      signals: [
+        { handlerName: 'onIndexChanged', paramCount: 0 },
+        { handlerName: 'onPositionChanged', paramCount: 0 },
+        { handlerName: 'onTabBarChanged', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'textArea',
+      attachedTypeName: 'TextArea',
+      properties: [
+        { name: 'flickable', hasValue: true, hasBinding: true },
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
+      signals: [
+        { handlerName: 'onFlickableChanged', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'toolTip',
+      attachedTypeName: 'ToolTip',
+      properties: [
+        { name: 'delay', hasValue: true, hasBinding: true },
+        { name: 'text', hasValue: true, hasBinding: true },
+        { name: 'timeout', hasValue: true, hasBinding: true },
+        { name: 'visible', hasValue: true, hasBinding: true },
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
+      signals: [
+        { handlerName: 'onDelayChanged', paramCount: 0 },
+        { handlerName: 'onTextChanged', paramCount: 0 },
+        { handlerName: 'onTimeoutChanged', paramCount: 0 },
+        { handlerName: 'onVisibleChanged', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'tumbler',
+      attachedTypeName: 'Tumbler',
+      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
+      signals: [
+        { handlerName: 'onDisplacementChanged', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+  ],
+};
+
 export function VerticalHeaderView(): VerticalHeaderViewBuilder {
-  return new DslBuilderImpl('VerticalHeaderView') as unknown as VerticalHeaderViewBuilder;
+  return createFluentBuilder(
+    'VerticalHeaderView',
+    VERTICALHEADERVIEW_META,
+  ) as unknown as VerticalHeaderViewBuilder;
 }
 
 export namespace VerticalHeaderView {

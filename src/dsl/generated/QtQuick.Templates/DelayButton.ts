@@ -2,15 +2,20 @@
 // Type: DelayButton
 // Generated from Qt 6.11.0
 
-import type { QmlFont, QmlObjectBuilder, QmlRect, QmlValue } from '../../runtime/index.js';
-import { createEnumToken, DslBuilderImpl } from '../../runtime/index.js';
+import type {
+  QmlEnumToken,
+  QmlFont,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
+import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { QtObjectBuilder } from '../QML/QtObject.js';
 import type { ItemBuilder } from '../QtQuick/Item.js';
 import type { PaletteBuilder } from '../QtQuick/Palette.js';
 import type { AnchorsBuilder } from '../QtQuick/QQuickAnchors.js';
 import type { LayerBuilder } from '../QtQuick/QQuickItemLayer.js';
 import type { TransitionBuilder } from '../QtQuick/Transition.js';
-import type { WindowBuilder } from '../QtQuick/Window.js';
 import type { ActionBuilder } from './Action.js';
 import type { ContextMenuAttachedBuilder } from './ContextMenu.js';
 import type { ActionGroupAttachedBuilder } from './QQuickActionGroupAttached.js';
@@ -68,7 +73,7 @@ export interface DelayButtonBuilder {
   contentItemBind(expr: string): DelayButtonBuilder;
   delay(value: number): DelayButtonBuilder;
   delayBind(expr: string): DelayButtonBuilder;
-  display(value: QmlValue): DelayButtonBuilder;
+  display(value: QmlEnumToken): DelayButtonBuilder;
   displayBind(expr: string): DelayButtonBuilder;
   down(value: boolean): DelayButtonBuilder;
   downBind(expr: string): DelayButtonBuilder;
@@ -76,9 +81,9 @@ export interface DelayButtonBuilder {
   enabledBind(expr: string): DelayButtonBuilder;
   focus(value: boolean): DelayButtonBuilder;
   focusBind(expr: string): DelayButtonBuilder;
-  focusPolicy(value: QmlValue): DelayButtonBuilder;
+  focusPolicy(value: QmlEnumToken): DelayButtonBuilder;
   focusPolicyBind(expr: string): DelayButtonBuilder;
-  focusReason(value: QmlValue): DelayButtonBuilder;
+  focusReason(value: QmlEnumToken): DelayButtonBuilder;
   focusReasonBind(expr: string): DelayButtonBuilder;
   font(value: QmlFont): DelayButtonBuilder;
   fontBind(expr: string): DelayButtonBuilder;
@@ -134,7 +139,7 @@ export interface DelayButtonBuilder {
   topInsetBind(expr: string): DelayButtonBuilder;
   topPadding(value: number): DelayButtonBuilder;
   topPaddingBind(expr: string): DelayButtonBuilder;
-  transformOrigin(value: QmlValue): DelayButtonBuilder;
+  transformOrigin(value: QmlEnumToken): DelayButtonBuilder;
   transformOriginBind(expr: string): DelayButtonBuilder;
   transition(value: TransitionBuilder): DelayButtonBuilder;
   transitionBind(expr: string): DelayButtonBuilder;
@@ -152,93 +157,93 @@ export interface DelayButtonBuilder {
   yBind(expr: string): DelayButtonBuilder;
   z(value: number): DelayButtonBuilder;
   zBind(expr: string): DelayButtonBuilder;
-  onActionChanged(handler: () => void): DelayButtonBuilder;
-  onActivated(handler: () => void): DelayButtonBuilder;
-  onActiveFocusChanged(handler: (arg0: boolean) => void): DelayButtonBuilder;
-  onActiveFocusOnTabChanged(handler: (arg0: boolean) => void): DelayButtonBuilder;
-  onAntialiasingChanged(handler: (arg0: boolean) => void): DelayButtonBuilder;
-  onAutoExclusiveChanged(handler: () => void): DelayButtonBuilder;
-  onAutoRepeatChanged(handler: () => void): DelayButtonBuilder;
-  onAutoRepeatDelayChanged(handler: () => void): DelayButtonBuilder;
-  onAutoRepeatIntervalChanged(handler: () => void): DelayButtonBuilder;
-  onAvailableHeightChanged(handler: () => void): DelayButtonBuilder;
-  onAvailableWidthChanged(handler: () => void): DelayButtonBuilder;
-  onBackgroundChanged(handler: () => void): DelayButtonBuilder;
-  onBaselineOffsetChanged(handler: () => void): DelayButtonBuilder;
-  onBottomInsetChanged(handler: () => void): DelayButtonBuilder;
-  onBottomPaddingChanged(handler: () => void): DelayButtonBuilder;
-  onCanceled(handler: () => void): DelayButtonBuilder;
-  onCheckableChanged(handler: () => void): DelayButtonBuilder;
-  onCheckedChanged(handler: () => void): DelayButtonBuilder;
-  onChildrenChanged(handler: () => void): DelayButtonBuilder;
-  onChildrenRectChanged(handler: (arg0: QmlRect) => void): DelayButtonBuilder;
-  onClicked(handler: () => void): DelayButtonBuilder;
-  onClipChanged(handler: (arg0: boolean) => void): DelayButtonBuilder;
-  onContainmentMaskChanged(handler: () => void): DelayButtonBuilder;
-  onContentItemChanged(handler: () => void): DelayButtonBuilder;
-  onDelayChanged(handler: () => void): DelayButtonBuilder;
-  onDisplayChanged(handler: () => void): DelayButtonBuilder;
-  onDoubleClicked(handler: () => void): DelayButtonBuilder;
-  onDownChanged(handler: () => void): DelayButtonBuilder;
-  onEnabledChanged(handler: () => void): DelayButtonBuilder;
-  onFocusChanged(handler: (arg0: boolean) => void): DelayButtonBuilder;
-  onFocusPolicyChanged(handler: (arg0: QmlValue) => void): DelayButtonBuilder;
-  onFocusReasonChanged(handler: () => void): DelayButtonBuilder;
-  onFontChanged(handler: () => void): DelayButtonBuilder;
-  onHeightChanged(handler: () => void): DelayButtonBuilder;
-  onHorizontalPaddingChanged(handler: () => void): DelayButtonBuilder;
-  onHoverEnabledChanged(handler: () => void): DelayButtonBuilder;
-  onHoveredChanged(handler: () => void): DelayButtonBuilder;
-  onIconChanged(handler: () => void): DelayButtonBuilder;
-  onImplicitBackgroundHeightChanged(handler: () => void): DelayButtonBuilder;
-  onImplicitBackgroundWidthChanged(handler: () => void): DelayButtonBuilder;
-  onImplicitContentHeightChanged(handler: () => void): DelayButtonBuilder;
-  onImplicitContentWidthChanged(handler: () => void): DelayButtonBuilder;
-  onImplicitHeightChanged(handler: () => void): DelayButtonBuilder;
-  onImplicitIndicatorHeightChanged(handler: () => void): DelayButtonBuilder;
-  onImplicitIndicatorWidthChanged(handler: () => void): DelayButtonBuilder;
-  onImplicitWidthChanged(handler: () => void): DelayButtonBuilder;
-  onIndicatorChanged(handler: () => void): DelayButtonBuilder;
-  onLeftInsetChanged(handler: () => void): DelayButtonBuilder;
-  onLeftPaddingChanged(handler: () => void): DelayButtonBuilder;
-  onLocaleChanged(handler: () => void): DelayButtonBuilder;
-  onMirroredChanged(handler: () => void): DelayButtonBuilder;
-  onObjectNameChanged(handler: (objectName: string) => void): DelayButtonBuilder;
-  onOpacityChanged(handler: () => void): DelayButtonBuilder;
-  onPaddingChanged(handler: () => void): DelayButtonBuilder;
-  onPaletteChanged(handler: () => void): DelayButtonBuilder;
-  onPaletteCreated(handler: () => void): DelayButtonBuilder;
-  onParentChanged(handler: (arg0: ItemBuilder) => void): DelayButtonBuilder;
-  onPressAndHold(handler: () => void): DelayButtonBuilder;
-  onPressXChanged(handler: () => void): DelayButtonBuilder;
-  onPressYChanged(handler: () => void): DelayButtonBuilder;
-  onPressed(handler: () => void): DelayButtonBuilder;
-  onPressedChanged(handler: () => void): DelayButtonBuilder;
-  onProgressChanged(handler: () => void): DelayButtonBuilder;
-  onReleased(handler: () => void): DelayButtonBuilder;
-  onRightInsetChanged(handler: () => void): DelayButtonBuilder;
-  onRightPaddingChanged(handler: () => void): DelayButtonBuilder;
-  onRotationChanged(handler: () => void): DelayButtonBuilder;
-  onScaleChanged(handler: () => void): DelayButtonBuilder;
-  onSmoothChanged(handler: (arg0: boolean) => void): DelayButtonBuilder;
-  onSpacingChanged(handler: () => void): DelayButtonBuilder;
-  onStateChanged(handler: (arg0: string) => void): DelayButtonBuilder;
-  onTextChanged(handler: () => void): DelayButtonBuilder;
-  onToggled(handler: () => void): DelayButtonBuilder;
-  onTopInsetChanged(handler: () => void): DelayButtonBuilder;
-  onTopPaddingChanged(handler: () => void): DelayButtonBuilder;
-  onTransformOriginChanged(handler: (arg0: QmlValue) => void): DelayButtonBuilder;
-  onTransitionChanged(handler: () => void): DelayButtonBuilder;
-  onVerticalPaddingChanged(handler: () => void): DelayButtonBuilder;
-  onVisibleChanged(handler: () => void): DelayButtonBuilder;
-  onVisibleChildrenChanged(handler: () => void): DelayButtonBuilder;
-  onVisualFocusChanged(handler: () => void): DelayButtonBuilder;
-  onWheelEnabledChanged(handler: () => void): DelayButtonBuilder;
-  onWidthChanged(handler: () => void): DelayButtonBuilder;
-  onWindowChanged(handler: (window: WindowBuilder) => void): DelayButtonBuilder;
-  onXChanged(handler: () => void): DelayButtonBuilder;
-  onYChanged(handler: () => void): DelayButtonBuilder;
-  onZChanged(handler: () => void): DelayButtonBuilder;
+  onActionChanged(body: string): DelayButtonBuilder;
+  onActivated(body: string): DelayButtonBuilder;
+  onActiveFocusChanged(body: string): DelayButtonBuilder;
+  onActiveFocusOnTabChanged(body: string): DelayButtonBuilder;
+  onAntialiasingChanged(body: string): DelayButtonBuilder;
+  onAutoExclusiveChanged(body: string): DelayButtonBuilder;
+  onAutoRepeatChanged(body: string): DelayButtonBuilder;
+  onAutoRepeatDelayChanged(body: string): DelayButtonBuilder;
+  onAutoRepeatIntervalChanged(body: string): DelayButtonBuilder;
+  onAvailableHeightChanged(body: string): DelayButtonBuilder;
+  onAvailableWidthChanged(body: string): DelayButtonBuilder;
+  onBackgroundChanged(body: string): DelayButtonBuilder;
+  onBaselineOffsetChanged(body: string): DelayButtonBuilder;
+  onBottomInsetChanged(body: string): DelayButtonBuilder;
+  onBottomPaddingChanged(body: string): DelayButtonBuilder;
+  onCanceled(body: string): DelayButtonBuilder;
+  onCheckableChanged(body: string): DelayButtonBuilder;
+  onCheckedChanged(body: string): DelayButtonBuilder;
+  onChildrenChanged(body: string): DelayButtonBuilder;
+  onChildrenRectChanged(body: string): DelayButtonBuilder;
+  onClicked(body: string): DelayButtonBuilder;
+  onClipChanged(body: string): DelayButtonBuilder;
+  onContainmentMaskChanged(body: string): DelayButtonBuilder;
+  onContentItemChanged(body: string): DelayButtonBuilder;
+  onDelayChanged(body: string): DelayButtonBuilder;
+  onDisplayChanged(body: string): DelayButtonBuilder;
+  onDoubleClicked(body: string): DelayButtonBuilder;
+  onDownChanged(body: string): DelayButtonBuilder;
+  onEnabledChanged(body: string): DelayButtonBuilder;
+  onFocusChanged(body: string): DelayButtonBuilder;
+  onFocusPolicyChanged(body: string): DelayButtonBuilder;
+  onFocusReasonChanged(body: string): DelayButtonBuilder;
+  onFontChanged(body: string): DelayButtonBuilder;
+  onHeightChanged(body: string): DelayButtonBuilder;
+  onHorizontalPaddingChanged(body: string): DelayButtonBuilder;
+  onHoverEnabledChanged(body: string): DelayButtonBuilder;
+  onHoveredChanged(body: string): DelayButtonBuilder;
+  onIconChanged(body: string): DelayButtonBuilder;
+  onImplicitBackgroundHeightChanged(body: string): DelayButtonBuilder;
+  onImplicitBackgroundWidthChanged(body: string): DelayButtonBuilder;
+  onImplicitContentHeightChanged(body: string): DelayButtonBuilder;
+  onImplicitContentWidthChanged(body: string): DelayButtonBuilder;
+  onImplicitHeightChanged(body: string): DelayButtonBuilder;
+  onImplicitIndicatorHeightChanged(body: string): DelayButtonBuilder;
+  onImplicitIndicatorWidthChanged(body: string): DelayButtonBuilder;
+  onImplicitWidthChanged(body: string): DelayButtonBuilder;
+  onIndicatorChanged(body: string): DelayButtonBuilder;
+  onLeftInsetChanged(body: string): DelayButtonBuilder;
+  onLeftPaddingChanged(body: string): DelayButtonBuilder;
+  onLocaleChanged(body: string): DelayButtonBuilder;
+  onMirroredChanged(body: string): DelayButtonBuilder;
+  onObjectNameChanged(body: string): DelayButtonBuilder;
+  onOpacityChanged(body: string): DelayButtonBuilder;
+  onPaddingChanged(body: string): DelayButtonBuilder;
+  onPaletteChanged(body: string): DelayButtonBuilder;
+  onPaletteCreated(body: string): DelayButtonBuilder;
+  onParentChanged(body: string): DelayButtonBuilder;
+  onPressAndHold(body: string): DelayButtonBuilder;
+  onPressXChanged(body: string): DelayButtonBuilder;
+  onPressYChanged(body: string): DelayButtonBuilder;
+  onPressed(body: string): DelayButtonBuilder;
+  onPressedChanged(body: string): DelayButtonBuilder;
+  onProgressChanged(body: string): DelayButtonBuilder;
+  onReleased(body: string): DelayButtonBuilder;
+  onRightInsetChanged(body: string): DelayButtonBuilder;
+  onRightPaddingChanged(body: string): DelayButtonBuilder;
+  onRotationChanged(body: string): DelayButtonBuilder;
+  onScaleChanged(body: string): DelayButtonBuilder;
+  onSmoothChanged(body: string): DelayButtonBuilder;
+  onSpacingChanged(body: string): DelayButtonBuilder;
+  onStateChanged(body: string): DelayButtonBuilder;
+  onTextChanged(body: string): DelayButtonBuilder;
+  onToggled(body: string): DelayButtonBuilder;
+  onTopInsetChanged(body: string): DelayButtonBuilder;
+  onTopPaddingChanged(body: string): DelayButtonBuilder;
+  onTransformOriginChanged(body: string): DelayButtonBuilder;
+  onTransitionChanged(body: string): DelayButtonBuilder;
+  onVerticalPaddingChanged(body: string): DelayButtonBuilder;
+  onVisibleChanged(body: string): DelayButtonBuilder;
+  onVisibleChildrenChanged(body: string): DelayButtonBuilder;
+  onVisualFocusChanged(body: string): DelayButtonBuilder;
+  onWheelEnabledChanged(body: string): DelayButtonBuilder;
+  onWidthChanged(body: string): DelayButtonBuilder;
+  onWindowChanged(body: string): DelayButtonBuilder;
+  onXChanged(body: string): DelayButtonBuilder;
+  onYChanged(body: string): DelayButtonBuilder;
+  onZChanged(body: string): DelayButtonBuilder;
   anchors(setup: (b: AnchorsBuilder) => void): DelayButtonBuilder;
   layer(setup: (b: LayerBuilder) => void): DelayButtonBuilder;
   actionGroup(setup: (b: ActionGroupAttachedBuilder) => void): DelayButtonBuilder;
@@ -261,8 +266,457 @@ export interface DelayButtonBuilder {
   tumbler(setup: (b: TumblerAttachedBuilder) => void): DelayButtonBuilder;
 }
 
+const DELAYBUTTON_META: TypeMetadata = {
+  typeName: 'DelayButton',
+  properties: [
+    { name: 'action', hasValue: true, hasBinding: true },
+    { name: 'activeFocusOnTab', hasValue: true, hasBinding: true },
+    { name: 'antialiasing', hasValue: true, hasBinding: true },
+    { name: 'autoExclusive', hasValue: true, hasBinding: true },
+    { name: 'autoRepeat', hasValue: true, hasBinding: true },
+    { name: 'autoRepeatDelay', hasValue: true, hasBinding: true },
+    { name: 'autoRepeatInterval', hasValue: true, hasBinding: true },
+    { name: 'background', hasValue: true, hasBinding: true },
+    { name: 'baselineOffset', hasValue: true, hasBinding: true },
+    { name: 'bottomInset', hasValue: true, hasBinding: true },
+    { name: 'bottomPadding', hasValue: true, hasBinding: true },
+    { name: 'checkable', hasValue: true, hasBinding: true },
+    { name: 'checked', hasValue: true, hasBinding: true },
+    { name: 'clip', hasValue: true, hasBinding: true },
+    { name: 'containmentMask', hasValue: true, hasBinding: true },
+    { name: 'contentItem', hasValue: true, hasBinding: true },
+    { name: 'delay', hasValue: true, hasBinding: true },
+    { name: 'display', hasValue: true, hasBinding: true },
+    { name: 'down', hasValue: true, hasBinding: true },
+    { name: 'enabled', hasValue: true, hasBinding: true },
+    { name: 'focus', hasValue: true, hasBinding: true },
+    { name: 'focusPolicy', hasValue: true, hasBinding: true },
+    { name: 'focusReason', hasValue: true, hasBinding: true },
+    { name: 'font', hasValue: true, hasBinding: true },
+    { name: 'height', hasValue: true, hasBinding: true },
+    { name: 'horizontalPadding', hasValue: true, hasBinding: true },
+    { name: 'hoverEnabled', hasValue: true, hasBinding: true },
+    { name: 'icon', hasValue: true, hasBinding: true },
+    { name: 'implicitHeight', hasValue: true, hasBinding: true },
+    { name: 'implicitWidth', hasValue: true, hasBinding: true },
+    { name: 'indicator', hasValue: true, hasBinding: true },
+    { name: 'leftInset', hasValue: true, hasBinding: true },
+    { name: 'leftPadding', hasValue: true, hasBinding: true },
+    { name: 'locale', hasValue: true, hasBinding: true },
+    { name: 'objectName', hasValue: true, hasBinding: true },
+    { name: 'opacity', hasValue: true, hasBinding: true },
+    { name: 'padding', hasValue: true, hasBinding: true },
+    { name: 'palette', hasValue: true, hasBinding: true },
+    { name: 'parent', hasValue: true, hasBinding: true },
+    { name: 'progress', hasValue: true, hasBinding: true },
+    { name: 'rightInset', hasValue: true, hasBinding: true },
+    { name: 'rightPadding', hasValue: true, hasBinding: true },
+    { name: 'rotation', hasValue: true, hasBinding: true },
+    { name: 'scale', hasValue: true, hasBinding: true },
+    { name: 'smooth', hasValue: true, hasBinding: true },
+    { name: 'spacing', hasValue: true, hasBinding: true },
+    { name: 'state', hasValue: true, hasBinding: true },
+    { name: 'text', hasValue: true, hasBinding: true },
+    { name: 'topInset', hasValue: true, hasBinding: true },
+    { name: 'topPadding', hasValue: true, hasBinding: true },
+    { name: 'transformOrigin', hasValue: true, hasBinding: true },
+    { name: 'transition', hasValue: true, hasBinding: true },
+    { name: 'verticalPadding', hasValue: true, hasBinding: true },
+    { name: 'visible', hasValue: true, hasBinding: true },
+    { name: 'wheelEnabled', hasValue: true, hasBinding: true },
+    { name: 'width', hasValue: true, hasBinding: true },
+    { name: 'x', hasValue: true, hasBinding: true },
+    { name: 'y', hasValue: true, hasBinding: true },
+    { name: 'z', hasValue: true, hasBinding: true },
+  ],
+  signals: [
+    { handlerName: 'onActionChanged', paramCount: 0 },
+    { handlerName: 'onActivated', paramCount: 0 },
+    { handlerName: 'onActiveFocusChanged', paramCount: 1 },
+    { handlerName: 'onActiveFocusOnTabChanged', paramCount: 1 },
+    { handlerName: 'onAntialiasingChanged', paramCount: 1 },
+    { handlerName: 'onAutoExclusiveChanged', paramCount: 0 },
+    { handlerName: 'onAutoRepeatChanged', paramCount: 0 },
+    { handlerName: 'onAutoRepeatDelayChanged', paramCount: 0 },
+    { handlerName: 'onAutoRepeatIntervalChanged', paramCount: 0 },
+    { handlerName: 'onAvailableHeightChanged', paramCount: 0 },
+    { handlerName: 'onAvailableWidthChanged', paramCount: 0 },
+    { handlerName: 'onBackgroundChanged', paramCount: 0 },
+    { handlerName: 'onBaselineOffsetChanged', paramCount: 0 },
+    { handlerName: 'onBottomInsetChanged', paramCount: 0 },
+    { handlerName: 'onBottomPaddingChanged', paramCount: 0 },
+    { handlerName: 'onCanceled', paramCount: 0 },
+    { handlerName: 'onCheckableChanged', paramCount: 0 },
+    { handlerName: 'onCheckedChanged', paramCount: 0 },
+    { handlerName: 'onChildrenChanged', paramCount: 0 },
+    { handlerName: 'onChildrenRectChanged', paramCount: 1 },
+    { handlerName: 'onClicked', paramCount: 0 },
+    { handlerName: 'onClipChanged', paramCount: 1 },
+    { handlerName: 'onContainmentMaskChanged', paramCount: 0 },
+    { handlerName: 'onContentItemChanged', paramCount: 0 },
+    { handlerName: 'onDelayChanged', paramCount: 0 },
+    { handlerName: 'onDisplayChanged', paramCount: 0 },
+    { handlerName: 'onDoubleClicked', paramCount: 0 },
+    { handlerName: 'onDownChanged', paramCount: 0 },
+    { handlerName: 'onEnabledChanged', paramCount: 0 },
+    { handlerName: 'onFocusChanged', paramCount: 1 },
+    { handlerName: 'onFocusPolicyChanged', paramCount: 1 },
+    { handlerName: 'onFocusReasonChanged', paramCount: 0 },
+    { handlerName: 'onFontChanged', paramCount: 0 },
+    { handlerName: 'onHeightChanged', paramCount: 0 },
+    { handlerName: 'onHorizontalPaddingChanged', paramCount: 0 },
+    { handlerName: 'onHoverEnabledChanged', paramCount: 0 },
+    { handlerName: 'onHoveredChanged', paramCount: 0 },
+    { handlerName: 'onIconChanged', paramCount: 0 },
+    { handlerName: 'onImplicitBackgroundHeightChanged', paramCount: 0 },
+    { handlerName: 'onImplicitBackgroundWidthChanged', paramCount: 0 },
+    { handlerName: 'onImplicitContentHeightChanged', paramCount: 0 },
+    { handlerName: 'onImplicitContentWidthChanged', paramCount: 0 },
+    { handlerName: 'onImplicitHeightChanged', paramCount: 0 },
+    { handlerName: 'onImplicitIndicatorHeightChanged', paramCount: 0 },
+    { handlerName: 'onImplicitIndicatorWidthChanged', paramCount: 0 },
+    { handlerName: 'onImplicitWidthChanged', paramCount: 0 },
+    { handlerName: 'onIndicatorChanged', paramCount: 0 },
+    { handlerName: 'onLeftInsetChanged', paramCount: 0 },
+    { handlerName: 'onLeftPaddingChanged', paramCount: 0 },
+    { handlerName: 'onLocaleChanged', paramCount: 0 },
+    { handlerName: 'onMirroredChanged', paramCount: 0 },
+    { handlerName: 'onObjectNameChanged', paramCount: 1 },
+    { handlerName: 'onOpacityChanged', paramCount: 0 },
+    { handlerName: 'onPaddingChanged', paramCount: 0 },
+    { handlerName: 'onPaletteChanged', paramCount: 0 },
+    { handlerName: 'onPaletteCreated', paramCount: 0 },
+    { handlerName: 'onParentChanged', paramCount: 1 },
+    { handlerName: 'onPressAndHold', paramCount: 0 },
+    { handlerName: 'onPressXChanged', paramCount: 0 },
+    { handlerName: 'onPressYChanged', paramCount: 0 },
+    { handlerName: 'onPressed', paramCount: 0 },
+    { handlerName: 'onPressedChanged', paramCount: 0 },
+    { handlerName: 'onProgressChanged', paramCount: 0 },
+    { handlerName: 'onReleased', paramCount: 0 },
+    { handlerName: 'onRightInsetChanged', paramCount: 0 },
+    { handlerName: 'onRightPaddingChanged', paramCount: 0 },
+    { handlerName: 'onRotationChanged', paramCount: 0 },
+    { handlerName: 'onScaleChanged', paramCount: 0 },
+    { handlerName: 'onSmoothChanged', paramCount: 1 },
+    { handlerName: 'onSpacingChanged', paramCount: 0 },
+    { handlerName: 'onStateChanged', paramCount: 1 },
+    { handlerName: 'onTextChanged', paramCount: 0 },
+    { handlerName: 'onToggled', paramCount: 0 },
+    { handlerName: 'onTopInsetChanged', paramCount: 0 },
+    { handlerName: 'onTopPaddingChanged', paramCount: 0 },
+    { handlerName: 'onTransformOriginChanged', paramCount: 1 },
+    { handlerName: 'onTransitionChanged', paramCount: 0 },
+    { handlerName: 'onVerticalPaddingChanged', paramCount: 0 },
+    { handlerName: 'onVisibleChanged', paramCount: 0 },
+    { handlerName: 'onVisibleChildrenChanged', paramCount: 0 },
+    { handlerName: 'onVisualFocusChanged', paramCount: 0 },
+    { handlerName: 'onWheelEnabledChanged', paramCount: 0 },
+    { handlerName: 'onWidthChanged', paramCount: 0 },
+    { handlerName: 'onWindowChanged', paramCount: 1 },
+    { handlerName: 'onXChanged', paramCount: 0 },
+    { handlerName: 'onYChanged', paramCount: 0 },
+    { handlerName: 'onZChanged', paramCount: 0 },
+  ],
+  grouped: [
+    {
+      methodName: 'anchors',
+      groupName: 'anchors',
+      properties: [
+        { name: 'alignWhenCentered', hasValue: true, hasBinding: true },
+        { name: 'baseline', hasValue: true, hasBinding: true },
+        { name: 'baselineOffset', hasValue: true, hasBinding: true },
+        { name: 'bottom', hasValue: true, hasBinding: true },
+        { name: 'bottomMargin', hasValue: true, hasBinding: true },
+        { name: 'centerIn', hasValue: true, hasBinding: true },
+        { name: 'fill', hasValue: true, hasBinding: true },
+        { name: 'horizontalCenter', hasValue: true, hasBinding: true },
+        { name: 'horizontalCenterOffset', hasValue: true, hasBinding: true },
+        { name: 'left', hasValue: true, hasBinding: true },
+        { name: 'leftMargin', hasValue: true, hasBinding: true },
+        { name: 'margins', hasValue: true, hasBinding: true },
+        { name: 'right', hasValue: true, hasBinding: true },
+        { name: 'rightMargin', hasValue: true, hasBinding: true },
+        { name: 'top', hasValue: true, hasBinding: true },
+        { name: 'topMargin', hasValue: true, hasBinding: true },
+        { name: 'verticalCenter', hasValue: true, hasBinding: true },
+        { name: 'verticalCenterOffset', hasValue: true, hasBinding: true },
+      ],
+    },
+    {
+      methodName: 'layer',
+      groupName: 'layer',
+      properties: [
+        { name: 'effect', hasValue: true, hasBinding: true },
+        { name: 'enabled', hasValue: true, hasBinding: true },
+        { name: 'format', hasValue: true, hasBinding: true },
+        { name: 'live', hasValue: true, hasBinding: true },
+        { name: 'mipmap', hasValue: true, hasBinding: true },
+        { name: 'samplerName', hasValue: true, hasBinding: true },
+        { name: 'samples', hasValue: true, hasBinding: true },
+        { name: 'smooth', hasValue: true, hasBinding: true },
+        { name: 'sourceRect', hasValue: true, hasBinding: true },
+        { name: 'textureMirroring', hasValue: true, hasBinding: true },
+        { name: 'textureSize', hasValue: true, hasBinding: true },
+        { name: 'wrapMode', hasValue: true, hasBinding: true },
+      ],
+    },
+  ],
+  attached: [
+    {
+      methodName: 'actionGroup',
+      attachedTypeName: 'ActionGroup',
+      properties: [
+        { name: 'group', hasValue: true, hasBinding: true },
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
+      signals: [
+        { handlerName: 'onGroupChanged', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'applicationWindow',
+      attachedTypeName: 'ApplicationWindow',
+      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
+      signals: [
+        { handlerName: 'onActiveFocusControlChanged', paramCount: 0 },
+        { handlerName: 'onContentItemChanged', paramCount: 0 },
+        { handlerName: 'onFooterChanged', paramCount: 0 },
+        { handlerName: 'onHeaderChanged', paramCount: 0 },
+        { handlerName: 'onMenuBarChanged', paramCount: 0 },
+        { handlerName: 'onWindowChanged', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'buttonGroup',
+      attachedTypeName: 'ButtonGroup',
+      properties: [
+        { name: 'group', hasValue: true, hasBinding: true },
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
+      signals: [
+        { handlerName: 'onGroupChanged', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'contextMenu',
+      attachedTypeName: 'ContextMenu',
+      properties: [
+        { name: 'menu', hasValue: true, hasBinding: true },
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
+      signals: [
+        { handlerName: 'onMenuChanged', paramCount: 0 },
+        { handlerName: 'onRequested', paramCount: 1 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'dialogButtonBox',
+      attachedTypeName: 'DialogButtonBox',
+      properties: [
+        { name: 'buttonRole', hasValue: true, hasBinding: true },
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
+      signals: [
+        { handlerName: 'onButtonBoxChanged', paramCount: 0 },
+        { handlerName: 'onButtonRoleChanged', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'overlay',
+      attachedTypeName: 'Overlay',
+      properties: [
+        { name: 'modal', hasValue: true, hasBinding: true },
+        { name: 'modeless', hasValue: true, hasBinding: true },
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
+      signals: [
+        { handlerName: 'onModalChanged', paramCount: 0 },
+        { handlerName: 'onModelessChanged', paramCount: 0 },
+        { handlerName: 'onOverlayChanged', paramCount: 0 },
+        { handlerName: 'onPressed', paramCount: 0 },
+        { handlerName: 'onReleased', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'scrollBar',
+      attachedTypeName: 'ScrollBar',
+      properties: [
+        { name: 'horizontal', hasValue: true, hasBinding: true },
+        { name: 'vertical', hasValue: true, hasBinding: true },
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
+      signals: [
+        { handlerName: 'onHorizontalChanged', paramCount: 0 },
+        { handlerName: 'onVerticalChanged', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'scrollIndicator',
+      attachedTypeName: 'ScrollIndicator',
+      properties: [
+        { name: 'horizontal', hasValue: true, hasBinding: true },
+        { name: 'vertical', hasValue: true, hasBinding: true },
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
+      signals: [
+        { handlerName: 'onHorizontalChanged', paramCount: 0 },
+        { handlerName: 'onVerticalChanged', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'selectionRectangle',
+      attachedTypeName: 'SelectionRectangle',
+      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
+      signals: [
+        { handlerName: 'onControlChanged', paramCount: 0 },
+        { handlerName: 'onDraggingChanged', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'splitHandle',
+      attachedTypeName: 'SplitHandle',
+      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
+      signals: [
+        { handlerName: 'onHoveredChanged', paramCount: 0 },
+        { handlerName: 'onPressedChanged', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'splitView',
+      attachedTypeName: 'SplitView',
+      properties: [
+        { name: 'fillHeight', hasValue: true, hasBinding: true },
+        { name: 'fillWidth', hasValue: true, hasBinding: true },
+        { name: 'maximumHeight', hasValue: true, hasBinding: true },
+        { name: 'maximumWidth', hasValue: true, hasBinding: true },
+        { name: 'minimumHeight', hasValue: true, hasBinding: true },
+        { name: 'minimumWidth', hasValue: true, hasBinding: true },
+        { name: 'preferredHeight', hasValue: true, hasBinding: true },
+        { name: 'preferredWidth', hasValue: true, hasBinding: true },
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
+      signals: [
+        { handlerName: 'onFillHeightChanged', paramCount: 0 },
+        { handlerName: 'onFillWidthChanged', paramCount: 0 },
+        { handlerName: 'onMaximumHeightChanged', paramCount: 0 },
+        { handlerName: 'onMaximumWidthChanged', paramCount: 0 },
+        { handlerName: 'onMinimumHeightChanged', paramCount: 0 },
+        { handlerName: 'onMinimumWidthChanged', paramCount: 0 },
+        { handlerName: 'onPreferredHeightChanged', paramCount: 0 },
+        { handlerName: 'onPreferredWidthChanged', paramCount: 0 },
+        { handlerName: 'onViewChanged', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'stackView',
+      attachedTypeName: 'StackView',
+      properties: [
+        { name: 'visible', hasValue: true, hasBinding: true },
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
+      signals: [
+        { handlerName: 'onActivated', paramCount: 0 },
+        { handlerName: 'onActivating', paramCount: 0 },
+        { handlerName: 'onDeactivated', paramCount: 0 },
+        { handlerName: 'onDeactivating', paramCount: 0 },
+        { handlerName: 'onIndexChanged', paramCount: 0 },
+        { handlerName: 'onRemoved', paramCount: 0 },
+        { handlerName: 'onStatusChanged', paramCount: 0 },
+        { handlerName: 'onViewChanged', paramCount: 0 },
+        { handlerName: 'onVisibleChanged', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'swipeDelegate',
+      attachedTypeName: 'SwipeDelegate',
+      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
+      signals: [
+        { handlerName: 'onClicked', paramCount: 0 },
+        { handlerName: 'onPressedChanged', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'swipeView',
+      attachedTypeName: 'SwipeView',
+      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
+      signals: [
+        { handlerName: 'onIndexChanged', paramCount: 0 },
+        { handlerName: 'onIsCurrentItemChanged', paramCount: 0 },
+        { handlerName: 'onIsNextItemChanged', paramCount: 0 },
+        { handlerName: 'onIsPreviousItemChanged', paramCount: 0 },
+        { handlerName: 'onViewChanged', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'tabBar',
+      attachedTypeName: 'TabBar',
+      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
+      signals: [
+        { handlerName: 'onIndexChanged', paramCount: 0 },
+        { handlerName: 'onPositionChanged', paramCount: 0 },
+        { handlerName: 'onTabBarChanged', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'textArea',
+      attachedTypeName: 'TextArea',
+      properties: [
+        { name: 'flickable', hasValue: true, hasBinding: true },
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
+      signals: [
+        { handlerName: 'onFlickableChanged', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'toolTip',
+      attachedTypeName: 'ToolTip',
+      properties: [
+        { name: 'delay', hasValue: true, hasBinding: true },
+        { name: 'text', hasValue: true, hasBinding: true },
+        { name: 'timeout', hasValue: true, hasBinding: true },
+        { name: 'visible', hasValue: true, hasBinding: true },
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
+      signals: [
+        { handlerName: 'onDelayChanged', paramCount: 0 },
+        { handlerName: 'onTextChanged', paramCount: 0 },
+        { handlerName: 'onTimeoutChanged', paramCount: 0 },
+        { handlerName: 'onVisibleChanged', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'tumbler',
+      attachedTypeName: 'Tumbler',
+      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
+      signals: [
+        { handlerName: 'onDisplacementChanged', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+  ],
+};
+
 export function DelayButton(): DelayButtonBuilder {
-  return new DslBuilderImpl('DelayButton') as unknown as DelayButtonBuilder;
+  return createFluentBuilder('DelayButton', DELAYBUTTON_META) as unknown as DelayButtonBuilder;
 }
 
 export namespace DelayButton {

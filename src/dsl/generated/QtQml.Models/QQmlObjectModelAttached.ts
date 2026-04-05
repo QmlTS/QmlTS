@@ -5,6 +5,6 @@
 export interface ObjectModelAttachedBuilder {
   objectName(value: string): ObjectModelAttachedBuilder;
   objectNameBind(expr: string): ObjectModelAttachedBuilder;
-  onIndexChanged(handler: () => void): ObjectModelAttachedBuilder;
-  onObjectNameChanged(handler: (objectName: string) => void): ObjectModelAttachedBuilder;
+  onIndexChanged(body: string): ObjectModelAttachedBuilder;
+  onObjectNameChanged(body: string): ObjectModelAttachedBuilder;
 }

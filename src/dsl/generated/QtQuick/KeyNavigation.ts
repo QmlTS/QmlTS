@@ -2,7 +2,7 @@
 // Type: Attached type: KeyNavigation
 // Generated from Qt 6.11.0
 
-import type { QmlValue } from '../../runtime/index.js';
+import type { QmlEnumToken } from '../../runtime/index.js';
 import type { ItemBuilder } from './Item.js';
 export interface KeyNavigationAttachedBuilder {
   backtab(value: ItemBuilder): KeyNavigationAttachedBuilder;
@@ -11,7 +11,7 @@ export interface KeyNavigationAttachedBuilder {
   downBind(expr: string): KeyNavigationAttachedBuilder;
   left(value: ItemBuilder): KeyNavigationAttachedBuilder;
   leftBind(expr: string): KeyNavigationAttachedBuilder;
-  priority(value: QmlValue): KeyNavigationAttachedBuilder;
+  priority(value: QmlEnumToken): KeyNavigationAttachedBuilder;
   priorityBind(expr: string): KeyNavigationAttachedBuilder;
   right(value: ItemBuilder): KeyNavigationAttachedBuilder;
   rightBind(expr: string): KeyNavigationAttachedBuilder;
@@ -21,12 +21,12 @@ export interface KeyNavigationAttachedBuilder {
   upBind(expr: string): KeyNavigationAttachedBuilder;
   objectName(value: string): KeyNavigationAttachedBuilder;
   objectNameBind(expr: string): KeyNavigationAttachedBuilder;
-  onBacktabChanged(handler: () => void): KeyNavigationAttachedBuilder;
-  onDownChanged(handler: () => void): KeyNavigationAttachedBuilder;
-  onLeftChanged(handler: () => void): KeyNavigationAttachedBuilder;
-  onPriorityChanged(handler: () => void): KeyNavigationAttachedBuilder;
-  onRightChanged(handler: () => void): KeyNavigationAttachedBuilder;
-  onTabChanged(handler: () => void): KeyNavigationAttachedBuilder;
-  onUpChanged(handler: () => void): KeyNavigationAttachedBuilder;
-  onObjectNameChanged(handler: (objectName: string) => void): KeyNavigationAttachedBuilder;
+  onBacktabChanged(body: string): KeyNavigationAttachedBuilder;
+  onDownChanged(body: string): KeyNavigationAttachedBuilder;
+  onLeftChanged(body: string): KeyNavigationAttachedBuilder;
+  onPriorityChanged(body: string): KeyNavigationAttachedBuilder;
+  onRightChanged(body: string): KeyNavigationAttachedBuilder;
+  onTabChanged(body: string): KeyNavigationAttachedBuilder;
+  onUpChanged(body: string): KeyNavigationAttachedBuilder;
+  onObjectNameChanged(body: string): KeyNavigationAttachedBuilder;
 }

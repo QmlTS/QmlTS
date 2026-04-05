@@ -5,7 +5,7 @@
 export interface SwipeDelegateAttachedBuilder {
   objectName(value: string): SwipeDelegateAttachedBuilder;
   objectNameBind(expr: string): SwipeDelegateAttachedBuilder;
-  onClicked(handler: () => void): SwipeDelegateAttachedBuilder;
-  onPressedChanged(handler: () => void): SwipeDelegateAttachedBuilder;
-  onObjectNameChanged(handler: (objectName: string) => void): SwipeDelegateAttachedBuilder;
+  onClicked(body: string): SwipeDelegateAttachedBuilder;
+  onPressedChanged(body: string): SwipeDelegateAttachedBuilder;
+  onObjectNameChanged(body: string): SwipeDelegateAttachedBuilder;
 }

@@ -7,14 +7,14 @@ export interface StackViewAttachedBuilder {
   visibleBind(expr: string): StackViewAttachedBuilder;
   objectName(value: string): StackViewAttachedBuilder;
   objectNameBind(expr: string): StackViewAttachedBuilder;
-  onActivated(handler: () => void): StackViewAttachedBuilder;
-  onActivating(handler: () => void): StackViewAttachedBuilder;
-  onDeactivated(handler: () => void): StackViewAttachedBuilder;
-  onDeactivating(handler: () => void): StackViewAttachedBuilder;
-  onIndexChanged(handler: () => void): StackViewAttachedBuilder;
-  onRemoved(handler: () => void): StackViewAttachedBuilder;
-  onStatusChanged(handler: () => void): StackViewAttachedBuilder;
-  onViewChanged(handler: () => void): StackViewAttachedBuilder;
-  onVisibleChanged(handler: () => void): StackViewAttachedBuilder;
-  onObjectNameChanged(handler: (objectName: string) => void): StackViewAttachedBuilder;
+  onActivated(body: string): StackViewAttachedBuilder;
+  onActivating(body: string): StackViewAttachedBuilder;
+  onDeactivated(body: string): StackViewAttachedBuilder;
+  onDeactivating(body: string): StackViewAttachedBuilder;
+  onIndexChanged(body: string): StackViewAttachedBuilder;
+  onRemoved(body: string): StackViewAttachedBuilder;
+  onStatusChanged(body: string): StackViewAttachedBuilder;
+  onViewChanged(body: string): StackViewAttachedBuilder;
+  onVisibleChanged(body: string): StackViewAttachedBuilder;
+  onObjectNameChanged(body: string): StackViewAttachedBuilder;
 }

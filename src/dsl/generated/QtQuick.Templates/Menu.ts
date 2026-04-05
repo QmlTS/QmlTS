@@ -2,12 +2,18 @@
 // Type: Menu
 // Generated from Qt 6.11.0
 
-import type { QmlComponent, QmlFont, QmlObjectBuilder, QmlValue } from '../../runtime/index.js';
-import { createEnumToken, DslBuilderImpl } from '../../runtime/index.js';
+import type {
+  QmlComponent,
+  QmlEnumToken,
+  QmlFont,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
+import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { ItemBuilder } from '../QtQuick/Item.js';
 import type { PaletteBuilder } from '../QtQuick/Palette.js';
 import type { TransitionBuilder } from '../QtQuick/Transition.js';
-import type { WindowBuilder } from '../QtQuick/Window.js';
 import type { ContextMenuAttachedBuilder } from './ContextMenu.js';
 import type { ActionGroupAttachedBuilder } from './QQuickActionGroupAttached.js';
 import type { ApplicationWindowAttachedBuilder } from './QQuickApplicationWindowAttached.js';
@@ -43,7 +49,7 @@ export interface MenuBuilder {
   cascadeBind(expr: string): MenuBuilder;
   clip(value: boolean): MenuBuilder;
   clipBind(expr: string): MenuBuilder;
-  closePolicy(value: QmlValue): MenuBuilder;
+  closePolicy(value: QmlEnumToken): MenuBuilder;
   closePolicyBind(expr: string): MenuBuilder;
   contentHeight(value: number): MenuBuilder;
   contentHeightBind(expr: string): MenuBuilder;
@@ -101,7 +107,7 @@ export interface MenuBuilder {
   paletteBind(expr: string): MenuBuilder;
   parent(value: ItemBuilder): MenuBuilder;
   parentBind(expr: string): MenuBuilder;
-  popupType(value: QmlValue): MenuBuilder;
+  popupType(value: QmlEnumToken): MenuBuilder;
   popupTypeBind(expr: string): MenuBuilder;
   rightInset(value: number): MenuBuilder;
   rightInsetBind(expr: string): MenuBuilder;
@@ -121,7 +127,7 @@ export interface MenuBuilder {
   topMarginBind(expr: string): MenuBuilder;
   topPadding(value: number): MenuBuilder;
   topPaddingBind(expr: string): MenuBuilder;
-  transformOrigin(value: QmlValue): MenuBuilder;
+  transformOrigin(value: QmlEnumToken): MenuBuilder;
   transformOriginBind(expr: string): MenuBuilder;
   verticalPadding(value: number): MenuBuilder;
   verticalPaddingBind(expr: string): MenuBuilder;
@@ -135,74 +141,74 @@ export interface MenuBuilder {
   yBind(expr: string): MenuBuilder;
   z(value: number): MenuBuilder;
   zBind(expr: string): MenuBuilder;
-  onAboutToHide(handler: () => void): MenuBuilder;
-  onAboutToShow(handler: () => void): MenuBuilder;
-  onActiveFocusChanged(handler: () => void): MenuBuilder;
-  onAvailableHeightChanged(handler: () => void): MenuBuilder;
-  onAvailableWidthChanged(handler: () => void): MenuBuilder;
-  onBackgroundChanged(handler: () => void): MenuBuilder;
-  onBottomInsetChanged(handler: () => void): MenuBuilder;
-  onBottomMarginChanged(handler: () => void): MenuBuilder;
-  onBottomPaddingChanged(handler: () => void): MenuBuilder;
-  onCascadeChanged(handler: (cascade: boolean) => void): MenuBuilder;
-  onClipChanged(handler: () => void): MenuBuilder;
-  onClosePolicyChanged(handler: () => void): MenuBuilder;
-  onClosed(handler: () => void): MenuBuilder;
-  onContentChildrenChanged(handler: () => void): MenuBuilder;
-  onContentHeightChanged(handler: () => void): MenuBuilder;
-  onContentItemChanged(handler: () => void): MenuBuilder;
-  onContentWidthChanged(handler: () => void): MenuBuilder;
-  onCountChanged(handler: () => void): MenuBuilder;
-  onCurrentIndexChanged(handler: () => void): MenuBuilder;
-  onDelegateChanged(handler: () => void): MenuBuilder;
-  onDimChanged(handler: () => void): MenuBuilder;
-  onEnabledChanged(handler: () => void): MenuBuilder;
-  onEnterChanged(handler: () => void): MenuBuilder;
-  onExitChanged(handler: () => void): MenuBuilder;
-  onFocusChanged(handler: () => void): MenuBuilder;
-  onFontChanged(handler: () => void): MenuBuilder;
-  onHeightChanged(handler: () => void): MenuBuilder;
-  onHorizontalPaddingChanged(handler: () => void): MenuBuilder;
-  onIconChanged(handler: (icon: QmlValue) => void): MenuBuilder;
-  onImplicitBackgroundHeightChanged(handler: () => void): MenuBuilder;
-  onImplicitBackgroundWidthChanged(handler: () => void): MenuBuilder;
-  onImplicitContentHeightChanged(handler: () => void): MenuBuilder;
-  onImplicitContentWidthChanged(handler: () => void): MenuBuilder;
-  onImplicitHeightChanged(handler: () => void): MenuBuilder;
-  onImplicitWidthChanged(handler: () => void): MenuBuilder;
-  onLeftInsetChanged(handler: () => void): MenuBuilder;
-  onLeftMarginChanged(handler: () => void): MenuBuilder;
-  onLeftPaddingChanged(handler: () => void): MenuBuilder;
-  onLocaleChanged(handler: () => void): MenuBuilder;
-  onMarginsChanged(handler: () => void): MenuBuilder;
-  onMirroredChanged(handler: () => void): MenuBuilder;
-  onModalChanged(handler: () => void): MenuBuilder;
-  onObjectNameChanged(handler: (objectName: string) => void): MenuBuilder;
-  onOpacityChanged(handler: () => void): MenuBuilder;
-  onOpened(handler: () => void): MenuBuilder;
-  onOpenedChanged(handler: () => void): MenuBuilder;
-  onOverlapChanged(handler: () => void): MenuBuilder;
-  onPaddingChanged(handler: () => void): MenuBuilder;
-  onPaletteChanged(handler: () => void): MenuBuilder;
-  onPaletteCreated(handler: () => void): MenuBuilder;
-  onParentChanged(handler: () => void): MenuBuilder;
-  onPopupTypeChanged(handler: () => void): MenuBuilder;
-  onRightInsetChanged(handler: () => void): MenuBuilder;
-  onRightMarginChanged(handler: () => void): MenuBuilder;
-  onRightPaddingChanged(handler: () => void): MenuBuilder;
-  onScaleChanged(handler: () => void): MenuBuilder;
-  onSpacingChanged(handler: () => void): MenuBuilder;
-  onTitleChanged(handler: (title: string) => void): MenuBuilder;
-  onTopInsetChanged(handler: () => void): MenuBuilder;
-  onTopMarginChanged(handler: () => void): MenuBuilder;
-  onTopPaddingChanged(handler: () => void): MenuBuilder;
-  onVerticalPaddingChanged(handler: () => void): MenuBuilder;
-  onVisibleChanged(handler: () => void): MenuBuilder;
-  onWidthChanged(handler: () => void): MenuBuilder;
-  onWindowChanged(handler: (window: WindowBuilder) => void): MenuBuilder;
-  onXChanged(handler: () => void): MenuBuilder;
-  onYChanged(handler: () => void): MenuBuilder;
-  onZChanged(handler: () => void): MenuBuilder;
+  onAboutToHide(body: string): MenuBuilder;
+  onAboutToShow(body: string): MenuBuilder;
+  onActiveFocusChanged(body: string): MenuBuilder;
+  onAvailableHeightChanged(body: string): MenuBuilder;
+  onAvailableWidthChanged(body: string): MenuBuilder;
+  onBackgroundChanged(body: string): MenuBuilder;
+  onBottomInsetChanged(body: string): MenuBuilder;
+  onBottomMarginChanged(body: string): MenuBuilder;
+  onBottomPaddingChanged(body: string): MenuBuilder;
+  onCascadeChanged(body: string): MenuBuilder;
+  onClipChanged(body: string): MenuBuilder;
+  onClosePolicyChanged(body: string): MenuBuilder;
+  onClosed(body: string): MenuBuilder;
+  onContentChildrenChanged(body: string): MenuBuilder;
+  onContentHeightChanged(body: string): MenuBuilder;
+  onContentItemChanged(body: string): MenuBuilder;
+  onContentWidthChanged(body: string): MenuBuilder;
+  onCountChanged(body: string): MenuBuilder;
+  onCurrentIndexChanged(body: string): MenuBuilder;
+  onDelegateChanged(body: string): MenuBuilder;
+  onDimChanged(body: string): MenuBuilder;
+  onEnabledChanged(body: string): MenuBuilder;
+  onEnterChanged(body: string): MenuBuilder;
+  onExitChanged(body: string): MenuBuilder;
+  onFocusChanged(body: string): MenuBuilder;
+  onFontChanged(body: string): MenuBuilder;
+  onHeightChanged(body: string): MenuBuilder;
+  onHorizontalPaddingChanged(body: string): MenuBuilder;
+  onIconChanged(body: string): MenuBuilder;
+  onImplicitBackgroundHeightChanged(body: string): MenuBuilder;
+  onImplicitBackgroundWidthChanged(body: string): MenuBuilder;
+  onImplicitContentHeightChanged(body: string): MenuBuilder;
+  onImplicitContentWidthChanged(body: string): MenuBuilder;
+  onImplicitHeightChanged(body: string): MenuBuilder;
+  onImplicitWidthChanged(body: string): MenuBuilder;
+  onLeftInsetChanged(body: string): MenuBuilder;
+  onLeftMarginChanged(body: string): MenuBuilder;
+  onLeftPaddingChanged(body: string): MenuBuilder;
+  onLocaleChanged(body: string): MenuBuilder;
+  onMarginsChanged(body: string): MenuBuilder;
+  onMirroredChanged(body: string): MenuBuilder;
+  onModalChanged(body: string): MenuBuilder;
+  onObjectNameChanged(body: string): MenuBuilder;
+  onOpacityChanged(body: string): MenuBuilder;
+  onOpened(body: string): MenuBuilder;
+  onOpenedChanged(body: string): MenuBuilder;
+  onOverlapChanged(body: string): MenuBuilder;
+  onPaddingChanged(body: string): MenuBuilder;
+  onPaletteChanged(body: string): MenuBuilder;
+  onPaletteCreated(body: string): MenuBuilder;
+  onParentChanged(body: string): MenuBuilder;
+  onPopupTypeChanged(body: string): MenuBuilder;
+  onRightInsetChanged(body: string): MenuBuilder;
+  onRightMarginChanged(body: string): MenuBuilder;
+  onRightPaddingChanged(body: string): MenuBuilder;
+  onScaleChanged(body: string): MenuBuilder;
+  onSpacingChanged(body: string): MenuBuilder;
+  onTitleChanged(body: string): MenuBuilder;
+  onTopInsetChanged(body: string): MenuBuilder;
+  onTopMarginChanged(body: string): MenuBuilder;
+  onTopPaddingChanged(body: string): MenuBuilder;
+  onVerticalPaddingChanged(body: string): MenuBuilder;
+  onVisibleChanged(body: string): MenuBuilder;
+  onWidthChanged(body: string): MenuBuilder;
+  onWindowChanged(body: string): MenuBuilder;
+  onXChanged(body: string): MenuBuilder;
+  onYChanged(body: string): MenuBuilder;
+  onZChanged(body: string): MenuBuilder;
   anchors(setup: (b: AnchorsBuilder) => void): MenuBuilder;
   actionGroup(setup: (b: ActionGroupAttachedBuilder) => void): MenuBuilder;
   applicationWindow(setup: (b: ApplicationWindowAttachedBuilder) => void): MenuBuilder;
@@ -224,8 +230,395 @@ export interface MenuBuilder {
   tumbler(setup: (b: TumblerAttachedBuilder) => void): MenuBuilder;
 }
 
+const MENU_META: TypeMetadata = {
+  typeName: 'Menu',
+  properties: [
+    { name: 'background', hasValue: true, hasBinding: true },
+    { name: 'bottomInset', hasValue: true, hasBinding: true },
+    { name: 'bottomMargin', hasValue: true, hasBinding: true },
+    { name: 'bottomPadding', hasValue: true, hasBinding: true },
+    { name: 'cascade', hasValue: true, hasBinding: true },
+    { name: 'clip', hasValue: true, hasBinding: true },
+    { name: 'closePolicy', hasValue: true, hasBinding: true },
+    { name: 'contentHeight', hasValue: true, hasBinding: true },
+    { name: 'contentItem', hasValue: true, hasBinding: true },
+    { name: 'contentWidth', hasValue: true, hasBinding: true },
+    { name: 'currentIndex', hasValue: true, hasBinding: true },
+    { name: 'delegate', hasValue: true, hasBinding: true },
+    { name: 'dim', hasValue: true, hasBinding: true },
+    { name: 'enabled', hasValue: true, hasBinding: true },
+    { name: 'enter', hasValue: true, hasBinding: true },
+    { name: 'exit', hasValue: true, hasBinding: true },
+    { name: 'focus', hasValue: true, hasBinding: true },
+    { name: 'font', hasValue: true, hasBinding: true },
+    { name: 'height', hasValue: true, hasBinding: true },
+    { name: 'horizontalPadding', hasValue: true, hasBinding: true },
+    { name: 'icon', hasValue: true, hasBinding: true },
+    { name: 'implicitHeight', hasValue: true, hasBinding: true },
+    { name: 'implicitWidth', hasValue: true, hasBinding: true },
+    { name: 'leftInset', hasValue: true, hasBinding: true },
+    { name: 'leftMargin', hasValue: true, hasBinding: true },
+    { name: 'leftPadding', hasValue: true, hasBinding: true },
+    { name: 'locale', hasValue: true, hasBinding: true },
+    { name: 'margins', hasValue: true, hasBinding: true },
+    { name: 'modal', hasValue: true, hasBinding: true },
+    { name: 'objectName', hasValue: true, hasBinding: true },
+    { name: 'opacity', hasValue: true, hasBinding: true },
+    { name: 'overlap', hasValue: true, hasBinding: true },
+    { name: 'padding', hasValue: true, hasBinding: true },
+    { name: 'palette', hasValue: true, hasBinding: true },
+    { name: 'parent', hasValue: true, hasBinding: true },
+    { name: 'popupType', hasValue: true, hasBinding: true },
+    { name: 'rightInset', hasValue: true, hasBinding: true },
+    { name: 'rightMargin', hasValue: true, hasBinding: true },
+    { name: 'rightPadding', hasValue: true, hasBinding: true },
+    { name: 'scale', hasValue: true, hasBinding: true },
+    { name: 'spacing', hasValue: true, hasBinding: true },
+    { name: 'title', hasValue: true, hasBinding: true },
+    { name: 'topInset', hasValue: true, hasBinding: true },
+    { name: 'topMargin', hasValue: true, hasBinding: true },
+    { name: 'topPadding', hasValue: true, hasBinding: true },
+    { name: 'transformOrigin', hasValue: true, hasBinding: true },
+    { name: 'verticalPadding', hasValue: true, hasBinding: true },
+    { name: 'visible', hasValue: true, hasBinding: true },
+    { name: 'width', hasValue: true, hasBinding: true },
+    { name: 'x', hasValue: true, hasBinding: true },
+    { name: 'y', hasValue: true, hasBinding: true },
+    { name: 'z', hasValue: true, hasBinding: true },
+  ],
+  signals: [
+    { handlerName: 'onAboutToHide', paramCount: 0 },
+    { handlerName: 'onAboutToShow', paramCount: 0 },
+    { handlerName: 'onActiveFocusChanged', paramCount: 0 },
+    { handlerName: 'onAvailableHeightChanged', paramCount: 0 },
+    { handlerName: 'onAvailableWidthChanged', paramCount: 0 },
+    { handlerName: 'onBackgroundChanged', paramCount: 0 },
+    { handlerName: 'onBottomInsetChanged', paramCount: 0 },
+    { handlerName: 'onBottomMarginChanged', paramCount: 0 },
+    { handlerName: 'onBottomPaddingChanged', paramCount: 0 },
+    { handlerName: 'onCascadeChanged', paramCount: 1 },
+    { handlerName: 'onClipChanged', paramCount: 0 },
+    { handlerName: 'onClosePolicyChanged', paramCount: 0 },
+    { handlerName: 'onClosed', paramCount: 0 },
+    { handlerName: 'onContentChildrenChanged', paramCount: 0 },
+    { handlerName: 'onContentHeightChanged', paramCount: 0 },
+    { handlerName: 'onContentItemChanged', paramCount: 0 },
+    { handlerName: 'onContentWidthChanged', paramCount: 0 },
+    { handlerName: 'onCountChanged', paramCount: 0 },
+    { handlerName: 'onCurrentIndexChanged', paramCount: 0 },
+    { handlerName: 'onDelegateChanged', paramCount: 0 },
+    { handlerName: 'onDimChanged', paramCount: 0 },
+    { handlerName: 'onEnabledChanged', paramCount: 0 },
+    { handlerName: 'onEnterChanged', paramCount: 0 },
+    { handlerName: 'onExitChanged', paramCount: 0 },
+    { handlerName: 'onFocusChanged', paramCount: 0 },
+    { handlerName: 'onFontChanged', paramCount: 0 },
+    { handlerName: 'onHeightChanged', paramCount: 0 },
+    { handlerName: 'onHorizontalPaddingChanged', paramCount: 0 },
+    { handlerName: 'onIconChanged', paramCount: 1 },
+    { handlerName: 'onImplicitBackgroundHeightChanged', paramCount: 0 },
+    { handlerName: 'onImplicitBackgroundWidthChanged', paramCount: 0 },
+    { handlerName: 'onImplicitContentHeightChanged', paramCount: 0 },
+    { handlerName: 'onImplicitContentWidthChanged', paramCount: 0 },
+    { handlerName: 'onImplicitHeightChanged', paramCount: 0 },
+    { handlerName: 'onImplicitWidthChanged', paramCount: 0 },
+    { handlerName: 'onLeftInsetChanged', paramCount: 0 },
+    { handlerName: 'onLeftMarginChanged', paramCount: 0 },
+    { handlerName: 'onLeftPaddingChanged', paramCount: 0 },
+    { handlerName: 'onLocaleChanged', paramCount: 0 },
+    { handlerName: 'onMarginsChanged', paramCount: 0 },
+    { handlerName: 'onMirroredChanged', paramCount: 0 },
+    { handlerName: 'onModalChanged', paramCount: 0 },
+    { handlerName: 'onObjectNameChanged', paramCount: 1 },
+    { handlerName: 'onOpacityChanged', paramCount: 0 },
+    { handlerName: 'onOpened', paramCount: 0 },
+    { handlerName: 'onOpenedChanged', paramCount: 0 },
+    { handlerName: 'onOverlapChanged', paramCount: 0 },
+    { handlerName: 'onPaddingChanged', paramCount: 0 },
+    { handlerName: 'onPaletteChanged', paramCount: 0 },
+    { handlerName: 'onPaletteCreated', paramCount: 0 },
+    { handlerName: 'onParentChanged', paramCount: 0 },
+    { handlerName: 'onPopupTypeChanged', paramCount: 0 },
+    { handlerName: 'onRightInsetChanged', paramCount: 0 },
+    { handlerName: 'onRightMarginChanged', paramCount: 0 },
+    { handlerName: 'onRightPaddingChanged', paramCount: 0 },
+    { handlerName: 'onScaleChanged', paramCount: 0 },
+    { handlerName: 'onSpacingChanged', paramCount: 0 },
+    { handlerName: 'onTitleChanged', paramCount: 1 },
+    { handlerName: 'onTopInsetChanged', paramCount: 0 },
+    { handlerName: 'onTopMarginChanged', paramCount: 0 },
+    { handlerName: 'onTopPaddingChanged', paramCount: 0 },
+    { handlerName: 'onVerticalPaddingChanged', paramCount: 0 },
+    { handlerName: 'onVisibleChanged', paramCount: 0 },
+    { handlerName: 'onWidthChanged', paramCount: 0 },
+    { handlerName: 'onWindowChanged', paramCount: 1 },
+    { handlerName: 'onXChanged', paramCount: 0 },
+    { handlerName: 'onYChanged', paramCount: 0 },
+    { handlerName: 'onZChanged', paramCount: 0 },
+  ],
+  grouped: [
+    {
+      methodName: 'anchors',
+      groupName: 'anchors',
+      properties: [{ name: 'centerIn', hasValue: true, hasBinding: true }],
+    },
+  ],
+  attached: [
+    {
+      methodName: 'actionGroup',
+      attachedTypeName: 'ActionGroup',
+      properties: [
+        { name: 'group', hasValue: true, hasBinding: true },
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
+      signals: [
+        { handlerName: 'onGroupChanged', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'applicationWindow',
+      attachedTypeName: 'ApplicationWindow',
+      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
+      signals: [
+        { handlerName: 'onActiveFocusControlChanged', paramCount: 0 },
+        { handlerName: 'onContentItemChanged', paramCount: 0 },
+        { handlerName: 'onFooterChanged', paramCount: 0 },
+        { handlerName: 'onHeaderChanged', paramCount: 0 },
+        { handlerName: 'onMenuBarChanged', paramCount: 0 },
+        { handlerName: 'onWindowChanged', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'buttonGroup',
+      attachedTypeName: 'ButtonGroup',
+      properties: [
+        { name: 'group', hasValue: true, hasBinding: true },
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
+      signals: [
+        { handlerName: 'onGroupChanged', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'contextMenu',
+      attachedTypeName: 'ContextMenu',
+      properties: [
+        { name: 'menu', hasValue: true, hasBinding: true },
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
+      signals: [
+        { handlerName: 'onMenuChanged', paramCount: 0 },
+        { handlerName: 'onRequested', paramCount: 1 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'dialogButtonBox',
+      attachedTypeName: 'DialogButtonBox',
+      properties: [
+        { name: 'buttonRole', hasValue: true, hasBinding: true },
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
+      signals: [
+        { handlerName: 'onButtonBoxChanged', paramCount: 0 },
+        { handlerName: 'onButtonRoleChanged', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'overlay',
+      attachedTypeName: 'Overlay',
+      properties: [
+        { name: 'modal', hasValue: true, hasBinding: true },
+        { name: 'modeless', hasValue: true, hasBinding: true },
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
+      signals: [
+        { handlerName: 'onModalChanged', paramCount: 0 },
+        { handlerName: 'onModelessChanged', paramCount: 0 },
+        { handlerName: 'onOverlayChanged', paramCount: 0 },
+        { handlerName: 'onPressed', paramCount: 0 },
+        { handlerName: 'onReleased', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'scrollBar',
+      attachedTypeName: 'ScrollBar',
+      properties: [
+        { name: 'horizontal', hasValue: true, hasBinding: true },
+        { name: 'vertical', hasValue: true, hasBinding: true },
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
+      signals: [
+        { handlerName: 'onHorizontalChanged', paramCount: 0 },
+        { handlerName: 'onVerticalChanged', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'scrollIndicator',
+      attachedTypeName: 'ScrollIndicator',
+      properties: [
+        { name: 'horizontal', hasValue: true, hasBinding: true },
+        { name: 'vertical', hasValue: true, hasBinding: true },
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
+      signals: [
+        { handlerName: 'onHorizontalChanged', paramCount: 0 },
+        { handlerName: 'onVerticalChanged', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'selectionRectangle',
+      attachedTypeName: 'SelectionRectangle',
+      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
+      signals: [
+        { handlerName: 'onControlChanged', paramCount: 0 },
+        { handlerName: 'onDraggingChanged', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'splitHandle',
+      attachedTypeName: 'SplitHandle',
+      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
+      signals: [
+        { handlerName: 'onHoveredChanged', paramCount: 0 },
+        { handlerName: 'onPressedChanged', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'splitView',
+      attachedTypeName: 'SplitView',
+      properties: [
+        { name: 'fillHeight', hasValue: true, hasBinding: true },
+        { name: 'fillWidth', hasValue: true, hasBinding: true },
+        { name: 'maximumHeight', hasValue: true, hasBinding: true },
+        { name: 'maximumWidth', hasValue: true, hasBinding: true },
+        { name: 'minimumHeight', hasValue: true, hasBinding: true },
+        { name: 'minimumWidth', hasValue: true, hasBinding: true },
+        { name: 'preferredHeight', hasValue: true, hasBinding: true },
+        { name: 'preferredWidth', hasValue: true, hasBinding: true },
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
+      signals: [
+        { handlerName: 'onFillHeightChanged', paramCount: 0 },
+        { handlerName: 'onFillWidthChanged', paramCount: 0 },
+        { handlerName: 'onMaximumHeightChanged', paramCount: 0 },
+        { handlerName: 'onMaximumWidthChanged', paramCount: 0 },
+        { handlerName: 'onMinimumHeightChanged', paramCount: 0 },
+        { handlerName: 'onMinimumWidthChanged', paramCount: 0 },
+        { handlerName: 'onPreferredHeightChanged', paramCount: 0 },
+        { handlerName: 'onPreferredWidthChanged', paramCount: 0 },
+        { handlerName: 'onViewChanged', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'stackView',
+      attachedTypeName: 'StackView',
+      properties: [
+        { name: 'visible', hasValue: true, hasBinding: true },
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
+      signals: [
+        { handlerName: 'onActivated', paramCount: 0 },
+        { handlerName: 'onActivating', paramCount: 0 },
+        { handlerName: 'onDeactivated', paramCount: 0 },
+        { handlerName: 'onDeactivating', paramCount: 0 },
+        { handlerName: 'onIndexChanged', paramCount: 0 },
+        { handlerName: 'onRemoved', paramCount: 0 },
+        { handlerName: 'onStatusChanged', paramCount: 0 },
+        { handlerName: 'onViewChanged', paramCount: 0 },
+        { handlerName: 'onVisibleChanged', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'swipeDelegate',
+      attachedTypeName: 'SwipeDelegate',
+      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
+      signals: [
+        { handlerName: 'onClicked', paramCount: 0 },
+        { handlerName: 'onPressedChanged', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'swipeView',
+      attachedTypeName: 'SwipeView',
+      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
+      signals: [
+        { handlerName: 'onIndexChanged', paramCount: 0 },
+        { handlerName: 'onIsCurrentItemChanged', paramCount: 0 },
+        { handlerName: 'onIsNextItemChanged', paramCount: 0 },
+        { handlerName: 'onIsPreviousItemChanged', paramCount: 0 },
+        { handlerName: 'onViewChanged', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'tabBar',
+      attachedTypeName: 'TabBar',
+      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
+      signals: [
+        { handlerName: 'onIndexChanged', paramCount: 0 },
+        { handlerName: 'onPositionChanged', paramCount: 0 },
+        { handlerName: 'onTabBarChanged', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'textArea',
+      attachedTypeName: 'TextArea',
+      properties: [
+        { name: 'flickable', hasValue: true, hasBinding: true },
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
+      signals: [
+        { handlerName: 'onFlickableChanged', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'toolTip',
+      attachedTypeName: 'ToolTip',
+      properties: [
+        { name: 'delay', hasValue: true, hasBinding: true },
+        { name: 'text', hasValue: true, hasBinding: true },
+        { name: 'timeout', hasValue: true, hasBinding: true },
+        { name: 'visible', hasValue: true, hasBinding: true },
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
+      signals: [
+        { handlerName: 'onDelayChanged', paramCount: 0 },
+        { handlerName: 'onTextChanged', paramCount: 0 },
+        { handlerName: 'onTimeoutChanged', paramCount: 0 },
+        { handlerName: 'onVisibleChanged', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'tumbler',
+      attachedTypeName: 'Tumbler',
+      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
+      signals: [
+        { handlerName: 'onDisplacementChanged', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+  ],
+  defaultProperty: 'contentData',
+};
+
 export function Menu(): MenuBuilder {
-  return new DslBuilderImpl('Menu') as unknown as MenuBuilder;
+  return createFluentBuilder('Menu', MENU_META) as unknown as MenuBuilder;
 }
 
 export namespace Menu {

@@ -8,6 +8,6 @@ export interface TextAreaAttachedBuilder {
   flickableBind(expr: string): TextAreaAttachedBuilder;
   objectName(value: string): TextAreaAttachedBuilder;
   objectNameBind(expr: string): TextAreaAttachedBuilder;
-  onFlickableChanged(handler: () => void): TextAreaAttachedBuilder;
-  onObjectNameChanged(handler: (objectName: string) => void): TextAreaAttachedBuilder;
+  onFlickableChanged(body: string): TextAreaAttachedBuilder;
+  onObjectNameChanged(body: string): TextAreaAttachedBuilder;
 }

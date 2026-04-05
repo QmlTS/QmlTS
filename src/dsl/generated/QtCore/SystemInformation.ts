@@ -2,13 +2,13 @@
 // Type: SystemInformation
 // Generated from Qt 6.11.0
 
-import type { QmlValue } from '../../runtime/index.js';
+import type { QmlEnumToken } from '../../runtime/index.js';
 import { createEnumToken } from '../../runtime/index.js';
 export interface SystemInformationInstance {
   readonly bootUniqueId: string;
   readonly buildAbi: string;
   readonly buildCpuArchitecture: string;
-  readonly byteOrder: QmlValue;
+  readonly byteOrder: QmlEnumToken;
   readonly currentCpuArchitecture: string;
   readonly kernelType: string;
   readonly kernelVersion: string;

@@ -120,7 +120,7 @@ describe('Generated DSL Validation', () => {
   test('VL-11: generated files import from runtime correctly', () => {
     const itemContent = readFileSync(join(GENERATED_DIR, 'QtQuick', 'Item.ts'), 'utf-8');
     expect(itemContent).toContain("from '../../runtime/");
-    expect(itemContent).toContain('DslBuilderImpl');
+    expect(itemContent).toContain('createFluentBuilder');
   });
 
   test('VL-12: generated files have no TypeScript syntax errors (smoke test)', () => {

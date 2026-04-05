@@ -5,13 +5,13 @@
 export interface GraphicsInfoAttachedBuilder {
   objectName(value: string): GraphicsInfoAttachedBuilder;
   objectNameBind(expr: string): GraphicsInfoAttachedBuilder;
-  onApiChanged(handler: () => void): GraphicsInfoAttachedBuilder;
-  onMajorVersionChanged(handler: () => void): GraphicsInfoAttachedBuilder;
-  onMinorVersionChanged(handler: () => void): GraphicsInfoAttachedBuilder;
-  onProfileChanged(handler: () => void): GraphicsInfoAttachedBuilder;
-  onRenderableTypeChanged(handler: () => void): GraphicsInfoAttachedBuilder;
-  onShaderCompilationTypeChanged(handler: () => void): GraphicsInfoAttachedBuilder;
-  onShaderSourceTypeChanged(handler: () => void): GraphicsInfoAttachedBuilder;
-  onShaderTypeChanged(handler: () => void): GraphicsInfoAttachedBuilder;
-  onObjectNameChanged(handler: (objectName: string) => void): GraphicsInfoAttachedBuilder;
+  onApiChanged(body: string): GraphicsInfoAttachedBuilder;
+  onMajorVersionChanged(body: string): GraphicsInfoAttachedBuilder;
+  onMinorVersionChanged(body: string): GraphicsInfoAttachedBuilder;
+  onProfileChanged(body: string): GraphicsInfoAttachedBuilder;
+  onRenderableTypeChanged(body: string): GraphicsInfoAttachedBuilder;
+  onShaderCompilationTypeChanged(body: string): GraphicsInfoAttachedBuilder;
+  onShaderSourceTypeChanged(body: string): GraphicsInfoAttachedBuilder;
+  onShaderTypeChanged(body: string): GraphicsInfoAttachedBuilder;
+  onObjectNameChanged(body: string): GraphicsInfoAttachedBuilder;
 }

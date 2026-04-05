@@ -5,6 +5,6 @@
 export interface TumblerAttachedBuilder {
   objectName(value: string): TumblerAttachedBuilder;
   objectNameBind(expr: string): TumblerAttachedBuilder;
-  onDisplacementChanged(handler: () => void): TumblerAttachedBuilder;
-  onObjectNameChanged(handler: (objectName: string) => void): TumblerAttachedBuilder;
+  onDisplacementChanged(body: string): TumblerAttachedBuilder;
+  onObjectNameChanged(body: string): TumblerAttachedBuilder;
 }

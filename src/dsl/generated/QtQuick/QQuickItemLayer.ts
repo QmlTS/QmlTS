@@ -2,13 +2,13 @@
 // Type: Grouped surface: QQuickItemLayer
 // Generated from Qt 6.11.0
 
-import type { QmlComponent, QmlRect, QmlSize, QmlValue } from '../../runtime/index.js';
+import type { QmlComponent, QmlEnumToken, QmlRect, QmlSize } from '../../runtime/index.js';
 export interface LayerBuilder {
   effect(value: QmlComponent): LayerBuilder;
   effectBind(expr: string): LayerBuilder;
   enabled(value: boolean): LayerBuilder;
   enabledBind(expr: string): LayerBuilder;
-  format(value: QmlValue): LayerBuilder;
+  format(value: QmlEnumToken): LayerBuilder;
   formatBind(expr: string): LayerBuilder;
   live(value: boolean): LayerBuilder;
   liveBind(expr: string): LayerBuilder;
@@ -22,10 +22,10 @@ export interface LayerBuilder {
   smoothBind(expr: string): LayerBuilder;
   sourceRect(value: QmlRect): LayerBuilder;
   sourceRectBind(expr: string): LayerBuilder;
-  textureMirroring(value: QmlValue): LayerBuilder;
+  textureMirroring(value: QmlEnumToken): LayerBuilder;
   textureMirroringBind(expr: string): LayerBuilder;
   textureSize(value: QmlSize): LayerBuilder;
   textureSizeBind(expr: string): LayerBuilder;
-  wrapMode(value: QmlValue): LayerBuilder;
+  wrapMode(value: QmlEnumToken): LayerBuilder;
   wrapModeBind(expr: string): LayerBuilder;
 }

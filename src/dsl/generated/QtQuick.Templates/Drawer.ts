@@ -2,12 +2,17 @@
 // Type: Drawer
 // Generated from Qt 6.11.0
 
-import type { QmlFont, QmlObjectBuilder, QmlValue } from '../../runtime/index.js';
-import { createEnumToken, DslBuilderImpl } from '../../runtime/index.js';
+import type {
+  QmlEnumToken,
+  QmlFont,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
+import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { ItemBuilder } from '../QtQuick/Item.js';
 import type { PaletteBuilder } from '../QtQuick/Palette.js';
 import type { TransitionBuilder } from '../QtQuick/Transition.js';
-import type { WindowBuilder } from '../QtQuick/Window.js';
 import type { ContextMenuAttachedBuilder } from './ContextMenu.js';
 import type { ActionGroupAttachedBuilder } from './QQuickActionGroupAttached.js';
 import type { ApplicationWindowAttachedBuilder } from './QQuickApplicationWindowAttached.js';
@@ -41,7 +46,7 @@ export interface DrawerBuilder {
   bottomPaddingBind(expr: string): DrawerBuilder;
   clip(value: boolean): DrawerBuilder;
   clipBind(expr: string): DrawerBuilder;
-  closePolicy(value: QmlValue): DrawerBuilder;
+  closePolicy(value: QmlEnumToken): DrawerBuilder;
   closePolicyBind(expr: string): DrawerBuilder;
   contentHeight(value: number): DrawerBuilder;
   contentHeightBind(expr: string): DrawerBuilder;
@@ -53,7 +58,7 @@ export interface DrawerBuilder {
   dimBind(expr: string): DrawerBuilder;
   dragMargin(value: number): DrawerBuilder;
   dragMarginBind(expr: string): DrawerBuilder;
-  edge(value: QmlValue): DrawerBuilder;
+  edge(value: QmlEnumToken): DrawerBuilder;
   edgeBind(expr: string): DrawerBuilder;
   enabled(value: boolean): DrawerBuilder;
   enabledBind(expr: string): DrawerBuilder;
@@ -97,7 +102,7 @@ export interface DrawerBuilder {
   paletteBind(expr: string): DrawerBuilder;
   parent(value: ItemBuilder): DrawerBuilder;
   parentBind(expr: string): DrawerBuilder;
-  popupType(value: QmlValue): DrawerBuilder;
+  popupType(value: QmlEnumToken): DrawerBuilder;
   popupTypeBind(expr: string): DrawerBuilder;
   position(value: number): DrawerBuilder;
   positionBind(expr: string): DrawerBuilder;
@@ -117,7 +122,7 @@ export interface DrawerBuilder {
   topMarginBind(expr: string): DrawerBuilder;
   topPadding(value: number): DrawerBuilder;
   topPaddingBind(expr: string): DrawerBuilder;
-  transformOrigin(value: QmlValue): DrawerBuilder;
+  transformOrigin(value: QmlEnumToken): DrawerBuilder;
   transformOriginBind(expr: string): DrawerBuilder;
   verticalPadding(value: number): DrawerBuilder;
   verticalPaddingBind(expr: string): DrawerBuilder;
@@ -131,71 +136,71 @@ export interface DrawerBuilder {
   yBind(expr: string): DrawerBuilder;
   z(value: number): DrawerBuilder;
   zBind(expr: string): DrawerBuilder;
-  onAboutToHide(handler: () => void): DrawerBuilder;
-  onAboutToShow(handler: () => void): DrawerBuilder;
-  onActiveFocusChanged(handler: () => void): DrawerBuilder;
-  onAvailableHeightChanged(handler: () => void): DrawerBuilder;
-  onAvailableWidthChanged(handler: () => void): DrawerBuilder;
-  onBackgroundChanged(handler: () => void): DrawerBuilder;
-  onBottomInsetChanged(handler: () => void): DrawerBuilder;
-  onBottomMarginChanged(handler: () => void): DrawerBuilder;
-  onBottomPaddingChanged(handler: () => void): DrawerBuilder;
-  onClipChanged(handler: () => void): DrawerBuilder;
-  onClosePolicyChanged(handler: () => void): DrawerBuilder;
-  onClosed(handler: () => void): DrawerBuilder;
-  onContentChildrenChanged(handler: () => void): DrawerBuilder;
-  onContentHeightChanged(handler: () => void): DrawerBuilder;
-  onContentItemChanged(handler: () => void): DrawerBuilder;
-  onContentWidthChanged(handler: () => void): DrawerBuilder;
-  onDimChanged(handler: () => void): DrawerBuilder;
-  onDragMarginChanged(handler: () => void): DrawerBuilder;
-  onEdgeChanged(handler: () => void): DrawerBuilder;
-  onEnabledChanged(handler: () => void): DrawerBuilder;
-  onEnterChanged(handler: () => void): DrawerBuilder;
-  onExitChanged(handler: () => void): DrawerBuilder;
-  onFocusChanged(handler: () => void): DrawerBuilder;
-  onFontChanged(handler: () => void): DrawerBuilder;
-  onHeightChanged(handler: () => void): DrawerBuilder;
-  onHorizontalPaddingChanged(handler: () => void): DrawerBuilder;
-  onImplicitBackgroundHeightChanged(handler: () => void): DrawerBuilder;
-  onImplicitBackgroundWidthChanged(handler: () => void): DrawerBuilder;
-  onImplicitContentHeightChanged(handler: () => void): DrawerBuilder;
-  onImplicitContentWidthChanged(handler: () => void): DrawerBuilder;
-  onImplicitHeightChanged(handler: () => void): DrawerBuilder;
-  onImplicitWidthChanged(handler: () => void): DrawerBuilder;
-  onInteractiveChanged(handler: () => void): DrawerBuilder;
-  onLeftInsetChanged(handler: () => void): DrawerBuilder;
-  onLeftMarginChanged(handler: () => void): DrawerBuilder;
-  onLeftPaddingChanged(handler: () => void): DrawerBuilder;
-  onLocaleChanged(handler: () => void): DrawerBuilder;
-  onMarginsChanged(handler: () => void): DrawerBuilder;
-  onMirroredChanged(handler: () => void): DrawerBuilder;
-  onModalChanged(handler: () => void): DrawerBuilder;
-  onObjectNameChanged(handler: (objectName: string) => void): DrawerBuilder;
-  onOpacityChanged(handler: () => void): DrawerBuilder;
-  onOpened(handler: () => void): DrawerBuilder;
-  onOpenedChanged(handler: () => void): DrawerBuilder;
-  onPaddingChanged(handler: () => void): DrawerBuilder;
-  onPaletteChanged(handler: () => void): DrawerBuilder;
-  onPaletteCreated(handler: () => void): DrawerBuilder;
-  onParentChanged(handler: () => void): DrawerBuilder;
-  onPopupTypeChanged(handler: () => void): DrawerBuilder;
-  onPositionChanged(handler: () => void): DrawerBuilder;
-  onRightInsetChanged(handler: () => void): DrawerBuilder;
-  onRightMarginChanged(handler: () => void): DrawerBuilder;
-  onRightPaddingChanged(handler: () => void): DrawerBuilder;
-  onScaleChanged(handler: () => void): DrawerBuilder;
-  onSpacingChanged(handler: () => void): DrawerBuilder;
-  onTopInsetChanged(handler: () => void): DrawerBuilder;
-  onTopMarginChanged(handler: () => void): DrawerBuilder;
-  onTopPaddingChanged(handler: () => void): DrawerBuilder;
-  onVerticalPaddingChanged(handler: () => void): DrawerBuilder;
-  onVisibleChanged(handler: () => void): DrawerBuilder;
-  onWidthChanged(handler: () => void): DrawerBuilder;
-  onWindowChanged(handler: (window: WindowBuilder) => void): DrawerBuilder;
-  onXChanged(handler: () => void): DrawerBuilder;
-  onYChanged(handler: () => void): DrawerBuilder;
-  onZChanged(handler: () => void): DrawerBuilder;
+  onAboutToHide(body: string): DrawerBuilder;
+  onAboutToShow(body: string): DrawerBuilder;
+  onActiveFocusChanged(body: string): DrawerBuilder;
+  onAvailableHeightChanged(body: string): DrawerBuilder;
+  onAvailableWidthChanged(body: string): DrawerBuilder;
+  onBackgroundChanged(body: string): DrawerBuilder;
+  onBottomInsetChanged(body: string): DrawerBuilder;
+  onBottomMarginChanged(body: string): DrawerBuilder;
+  onBottomPaddingChanged(body: string): DrawerBuilder;
+  onClipChanged(body: string): DrawerBuilder;
+  onClosePolicyChanged(body: string): DrawerBuilder;
+  onClosed(body: string): DrawerBuilder;
+  onContentChildrenChanged(body: string): DrawerBuilder;
+  onContentHeightChanged(body: string): DrawerBuilder;
+  onContentItemChanged(body: string): DrawerBuilder;
+  onContentWidthChanged(body: string): DrawerBuilder;
+  onDimChanged(body: string): DrawerBuilder;
+  onDragMarginChanged(body: string): DrawerBuilder;
+  onEdgeChanged(body: string): DrawerBuilder;
+  onEnabledChanged(body: string): DrawerBuilder;
+  onEnterChanged(body: string): DrawerBuilder;
+  onExitChanged(body: string): DrawerBuilder;
+  onFocusChanged(body: string): DrawerBuilder;
+  onFontChanged(body: string): DrawerBuilder;
+  onHeightChanged(body: string): DrawerBuilder;
+  onHorizontalPaddingChanged(body: string): DrawerBuilder;
+  onImplicitBackgroundHeightChanged(body: string): DrawerBuilder;
+  onImplicitBackgroundWidthChanged(body: string): DrawerBuilder;
+  onImplicitContentHeightChanged(body: string): DrawerBuilder;
+  onImplicitContentWidthChanged(body: string): DrawerBuilder;
+  onImplicitHeightChanged(body: string): DrawerBuilder;
+  onImplicitWidthChanged(body: string): DrawerBuilder;
+  onInteractiveChanged(body: string): DrawerBuilder;
+  onLeftInsetChanged(body: string): DrawerBuilder;
+  onLeftMarginChanged(body: string): DrawerBuilder;
+  onLeftPaddingChanged(body: string): DrawerBuilder;
+  onLocaleChanged(body: string): DrawerBuilder;
+  onMarginsChanged(body: string): DrawerBuilder;
+  onMirroredChanged(body: string): DrawerBuilder;
+  onModalChanged(body: string): DrawerBuilder;
+  onObjectNameChanged(body: string): DrawerBuilder;
+  onOpacityChanged(body: string): DrawerBuilder;
+  onOpened(body: string): DrawerBuilder;
+  onOpenedChanged(body: string): DrawerBuilder;
+  onPaddingChanged(body: string): DrawerBuilder;
+  onPaletteChanged(body: string): DrawerBuilder;
+  onPaletteCreated(body: string): DrawerBuilder;
+  onParentChanged(body: string): DrawerBuilder;
+  onPopupTypeChanged(body: string): DrawerBuilder;
+  onPositionChanged(body: string): DrawerBuilder;
+  onRightInsetChanged(body: string): DrawerBuilder;
+  onRightMarginChanged(body: string): DrawerBuilder;
+  onRightPaddingChanged(body: string): DrawerBuilder;
+  onScaleChanged(body: string): DrawerBuilder;
+  onSpacingChanged(body: string): DrawerBuilder;
+  onTopInsetChanged(body: string): DrawerBuilder;
+  onTopMarginChanged(body: string): DrawerBuilder;
+  onTopPaddingChanged(body: string): DrawerBuilder;
+  onVerticalPaddingChanged(body: string): DrawerBuilder;
+  onVisibleChanged(body: string): DrawerBuilder;
+  onWidthChanged(body: string): DrawerBuilder;
+  onWindowChanged(body: string): DrawerBuilder;
+  onXChanged(body: string): DrawerBuilder;
+  onYChanged(body: string): DrawerBuilder;
+  onZChanged(body: string): DrawerBuilder;
   anchors(setup: (b: AnchorsBuilder) => void): DrawerBuilder;
   actionGroup(setup: (b: ActionGroupAttachedBuilder) => void): DrawerBuilder;
   applicationWindow(setup: (b: ApplicationWindowAttachedBuilder) => void): DrawerBuilder;
@@ -217,8 +222,390 @@ export interface DrawerBuilder {
   tumbler(setup: (b: TumblerAttachedBuilder) => void): DrawerBuilder;
 }
 
+const DRAWER_META: TypeMetadata = {
+  typeName: 'Drawer',
+  properties: [
+    { name: 'background', hasValue: true, hasBinding: true },
+    { name: 'bottomInset', hasValue: true, hasBinding: true },
+    { name: 'bottomMargin', hasValue: true, hasBinding: true },
+    { name: 'bottomPadding', hasValue: true, hasBinding: true },
+    { name: 'clip', hasValue: true, hasBinding: true },
+    { name: 'closePolicy', hasValue: true, hasBinding: true },
+    { name: 'contentHeight', hasValue: true, hasBinding: true },
+    { name: 'contentItem', hasValue: true, hasBinding: true },
+    { name: 'contentWidth', hasValue: true, hasBinding: true },
+    { name: 'dim', hasValue: true, hasBinding: true },
+    { name: 'dragMargin', hasValue: true, hasBinding: true },
+    { name: 'edge', hasValue: true, hasBinding: true },
+    { name: 'enabled', hasValue: true, hasBinding: true },
+    { name: 'enter', hasValue: true, hasBinding: true },
+    { name: 'exit', hasValue: true, hasBinding: true },
+    { name: 'focus', hasValue: true, hasBinding: true },
+    { name: 'font', hasValue: true, hasBinding: true },
+    { name: 'height', hasValue: true, hasBinding: true },
+    { name: 'horizontalPadding', hasValue: true, hasBinding: true },
+    { name: 'implicitHeight', hasValue: true, hasBinding: true },
+    { name: 'implicitWidth', hasValue: true, hasBinding: true },
+    { name: 'interactive', hasValue: true, hasBinding: true },
+    { name: 'leftInset', hasValue: true, hasBinding: true },
+    { name: 'leftMargin', hasValue: true, hasBinding: true },
+    { name: 'leftPadding', hasValue: true, hasBinding: true },
+    { name: 'locale', hasValue: true, hasBinding: true },
+    { name: 'margins', hasValue: true, hasBinding: true },
+    { name: 'modal', hasValue: true, hasBinding: true },
+    { name: 'objectName', hasValue: true, hasBinding: true },
+    { name: 'opacity', hasValue: true, hasBinding: true },
+    { name: 'padding', hasValue: true, hasBinding: true },
+    { name: 'palette', hasValue: true, hasBinding: true },
+    { name: 'parent', hasValue: true, hasBinding: true },
+    { name: 'popupType', hasValue: true, hasBinding: true },
+    { name: 'position', hasValue: true, hasBinding: true },
+    { name: 'rightInset', hasValue: true, hasBinding: true },
+    { name: 'rightMargin', hasValue: true, hasBinding: true },
+    { name: 'rightPadding', hasValue: true, hasBinding: true },
+    { name: 'scale', hasValue: true, hasBinding: true },
+    { name: 'spacing', hasValue: true, hasBinding: true },
+    { name: 'topInset', hasValue: true, hasBinding: true },
+    { name: 'topMargin', hasValue: true, hasBinding: true },
+    { name: 'topPadding', hasValue: true, hasBinding: true },
+    { name: 'transformOrigin', hasValue: true, hasBinding: true },
+    { name: 'verticalPadding', hasValue: true, hasBinding: true },
+    { name: 'visible', hasValue: true, hasBinding: true },
+    { name: 'width', hasValue: true, hasBinding: true },
+    { name: 'x', hasValue: true, hasBinding: true },
+    { name: 'y', hasValue: true, hasBinding: true },
+    { name: 'z', hasValue: true, hasBinding: true },
+  ],
+  signals: [
+    { handlerName: 'onAboutToHide', paramCount: 0 },
+    { handlerName: 'onAboutToShow', paramCount: 0 },
+    { handlerName: 'onActiveFocusChanged', paramCount: 0 },
+    { handlerName: 'onAvailableHeightChanged', paramCount: 0 },
+    { handlerName: 'onAvailableWidthChanged', paramCount: 0 },
+    { handlerName: 'onBackgroundChanged', paramCount: 0 },
+    { handlerName: 'onBottomInsetChanged', paramCount: 0 },
+    { handlerName: 'onBottomMarginChanged', paramCount: 0 },
+    { handlerName: 'onBottomPaddingChanged', paramCount: 0 },
+    { handlerName: 'onClipChanged', paramCount: 0 },
+    { handlerName: 'onClosePolicyChanged', paramCount: 0 },
+    { handlerName: 'onClosed', paramCount: 0 },
+    { handlerName: 'onContentChildrenChanged', paramCount: 0 },
+    { handlerName: 'onContentHeightChanged', paramCount: 0 },
+    { handlerName: 'onContentItemChanged', paramCount: 0 },
+    { handlerName: 'onContentWidthChanged', paramCount: 0 },
+    { handlerName: 'onDimChanged', paramCount: 0 },
+    { handlerName: 'onDragMarginChanged', paramCount: 0 },
+    { handlerName: 'onEdgeChanged', paramCount: 0 },
+    { handlerName: 'onEnabledChanged', paramCount: 0 },
+    { handlerName: 'onEnterChanged', paramCount: 0 },
+    { handlerName: 'onExitChanged', paramCount: 0 },
+    { handlerName: 'onFocusChanged', paramCount: 0 },
+    { handlerName: 'onFontChanged', paramCount: 0 },
+    { handlerName: 'onHeightChanged', paramCount: 0 },
+    { handlerName: 'onHorizontalPaddingChanged', paramCount: 0 },
+    { handlerName: 'onImplicitBackgroundHeightChanged', paramCount: 0 },
+    { handlerName: 'onImplicitBackgroundWidthChanged', paramCount: 0 },
+    { handlerName: 'onImplicitContentHeightChanged', paramCount: 0 },
+    { handlerName: 'onImplicitContentWidthChanged', paramCount: 0 },
+    { handlerName: 'onImplicitHeightChanged', paramCount: 0 },
+    { handlerName: 'onImplicitWidthChanged', paramCount: 0 },
+    { handlerName: 'onInteractiveChanged', paramCount: 0 },
+    { handlerName: 'onLeftInsetChanged', paramCount: 0 },
+    { handlerName: 'onLeftMarginChanged', paramCount: 0 },
+    { handlerName: 'onLeftPaddingChanged', paramCount: 0 },
+    { handlerName: 'onLocaleChanged', paramCount: 0 },
+    { handlerName: 'onMarginsChanged', paramCount: 0 },
+    { handlerName: 'onMirroredChanged', paramCount: 0 },
+    { handlerName: 'onModalChanged', paramCount: 0 },
+    { handlerName: 'onObjectNameChanged', paramCount: 1 },
+    { handlerName: 'onOpacityChanged', paramCount: 0 },
+    { handlerName: 'onOpened', paramCount: 0 },
+    { handlerName: 'onOpenedChanged', paramCount: 0 },
+    { handlerName: 'onPaddingChanged', paramCount: 0 },
+    { handlerName: 'onPaletteChanged', paramCount: 0 },
+    { handlerName: 'onPaletteCreated', paramCount: 0 },
+    { handlerName: 'onParentChanged', paramCount: 0 },
+    { handlerName: 'onPopupTypeChanged', paramCount: 0 },
+    { handlerName: 'onPositionChanged', paramCount: 0 },
+    { handlerName: 'onRightInsetChanged', paramCount: 0 },
+    { handlerName: 'onRightMarginChanged', paramCount: 0 },
+    { handlerName: 'onRightPaddingChanged', paramCount: 0 },
+    { handlerName: 'onScaleChanged', paramCount: 0 },
+    { handlerName: 'onSpacingChanged', paramCount: 0 },
+    { handlerName: 'onTopInsetChanged', paramCount: 0 },
+    { handlerName: 'onTopMarginChanged', paramCount: 0 },
+    { handlerName: 'onTopPaddingChanged', paramCount: 0 },
+    { handlerName: 'onVerticalPaddingChanged', paramCount: 0 },
+    { handlerName: 'onVisibleChanged', paramCount: 0 },
+    { handlerName: 'onWidthChanged', paramCount: 0 },
+    { handlerName: 'onWindowChanged', paramCount: 1 },
+    { handlerName: 'onXChanged', paramCount: 0 },
+    { handlerName: 'onYChanged', paramCount: 0 },
+    { handlerName: 'onZChanged', paramCount: 0 },
+  ],
+  grouped: [
+    {
+      methodName: 'anchors',
+      groupName: 'anchors',
+      properties: [{ name: 'centerIn', hasValue: true, hasBinding: true }],
+    },
+  ],
+  attached: [
+    {
+      methodName: 'actionGroup',
+      attachedTypeName: 'ActionGroup',
+      properties: [
+        { name: 'group', hasValue: true, hasBinding: true },
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
+      signals: [
+        { handlerName: 'onGroupChanged', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'applicationWindow',
+      attachedTypeName: 'ApplicationWindow',
+      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
+      signals: [
+        { handlerName: 'onActiveFocusControlChanged', paramCount: 0 },
+        { handlerName: 'onContentItemChanged', paramCount: 0 },
+        { handlerName: 'onFooterChanged', paramCount: 0 },
+        { handlerName: 'onHeaderChanged', paramCount: 0 },
+        { handlerName: 'onMenuBarChanged', paramCount: 0 },
+        { handlerName: 'onWindowChanged', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'buttonGroup',
+      attachedTypeName: 'ButtonGroup',
+      properties: [
+        { name: 'group', hasValue: true, hasBinding: true },
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
+      signals: [
+        { handlerName: 'onGroupChanged', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'contextMenu',
+      attachedTypeName: 'ContextMenu',
+      properties: [
+        { name: 'menu', hasValue: true, hasBinding: true },
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
+      signals: [
+        { handlerName: 'onMenuChanged', paramCount: 0 },
+        { handlerName: 'onRequested', paramCount: 1 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'dialogButtonBox',
+      attachedTypeName: 'DialogButtonBox',
+      properties: [
+        { name: 'buttonRole', hasValue: true, hasBinding: true },
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
+      signals: [
+        { handlerName: 'onButtonBoxChanged', paramCount: 0 },
+        { handlerName: 'onButtonRoleChanged', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'overlay',
+      attachedTypeName: 'Overlay',
+      properties: [
+        { name: 'modal', hasValue: true, hasBinding: true },
+        { name: 'modeless', hasValue: true, hasBinding: true },
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
+      signals: [
+        { handlerName: 'onModalChanged', paramCount: 0 },
+        { handlerName: 'onModelessChanged', paramCount: 0 },
+        { handlerName: 'onOverlayChanged', paramCount: 0 },
+        { handlerName: 'onPressed', paramCount: 0 },
+        { handlerName: 'onReleased', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'scrollBar',
+      attachedTypeName: 'ScrollBar',
+      properties: [
+        { name: 'horizontal', hasValue: true, hasBinding: true },
+        { name: 'vertical', hasValue: true, hasBinding: true },
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
+      signals: [
+        { handlerName: 'onHorizontalChanged', paramCount: 0 },
+        { handlerName: 'onVerticalChanged', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'scrollIndicator',
+      attachedTypeName: 'ScrollIndicator',
+      properties: [
+        { name: 'horizontal', hasValue: true, hasBinding: true },
+        { name: 'vertical', hasValue: true, hasBinding: true },
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
+      signals: [
+        { handlerName: 'onHorizontalChanged', paramCount: 0 },
+        { handlerName: 'onVerticalChanged', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'selectionRectangle',
+      attachedTypeName: 'SelectionRectangle',
+      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
+      signals: [
+        { handlerName: 'onControlChanged', paramCount: 0 },
+        { handlerName: 'onDraggingChanged', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'splitHandle',
+      attachedTypeName: 'SplitHandle',
+      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
+      signals: [
+        { handlerName: 'onHoveredChanged', paramCount: 0 },
+        { handlerName: 'onPressedChanged', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'splitView',
+      attachedTypeName: 'SplitView',
+      properties: [
+        { name: 'fillHeight', hasValue: true, hasBinding: true },
+        { name: 'fillWidth', hasValue: true, hasBinding: true },
+        { name: 'maximumHeight', hasValue: true, hasBinding: true },
+        { name: 'maximumWidth', hasValue: true, hasBinding: true },
+        { name: 'minimumHeight', hasValue: true, hasBinding: true },
+        { name: 'minimumWidth', hasValue: true, hasBinding: true },
+        { name: 'preferredHeight', hasValue: true, hasBinding: true },
+        { name: 'preferredWidth', hasValue: true, hasBinding: true },
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
+      signals: [
+        { handlerName: 'onFillHeightChanged', paramCount: 0 },
+        { handlerName: 'onFillWidthChanged', paramCount: 0 },
+        { handlerName: 'onMaximumHeightChanged', paramCount: 0 },
+        { handlerName: 'onMaximumWidthChanged', paramCount: 0 },
+        { handlerName: 'onMinimumHeightChanged', paramCount: 0 },
+        { handlerName: 'onMinimumWidthChanged', paramCount: 0 },
+        { handlerName: 'onPreferredHeightChanged', paramCount: 0 },
+        { handlerName: 'onPreferredWidthChanged', paramCount: 0 },
+        { handlerName: 'onViewChanged', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'stackView',
+      attachedTypeName: 'StackView',
+      properties: [
+        { name: 'visible', hasValue: true, hasBinding: true },
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
+      signals: [
+        { handlerName: 'onActivated', paramCount: 0 },
+        { handlerName: 'onActivating', paramCount: 0 },
+        { handlerName: 'onDeactivated', paramCount: 0 },
+        { handlerName: 'onDeactivating', paramCount: 0 },
+        { handlerName: 'onIndexChanged', paramCount: 0 },
+        { handlerName: 'onRemoved', paramCount: 0 },
+        { handlerName: 'onStatusChanged', paramCount: 0 },
+        { handlerName: 'onViewChanged', paramCount: 0 },
+        { handlerName: 'onVisibleChanged', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'swipeDelegate',
+      attachedTypeName: 'SwipeDelegate',
+      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
+      signals: [
+        { handlerName: 'onClicked', paramCount: 0 },
+        { handlerName: 'onPressedChanged', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'swipeView',
+      attachedTypeName: 'SwipeView',
+      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
+      signals: [
+        { handlerName: 'onIndexChanged', paramCount: 0 },
+        { handlerName: 'onIsCurrentItemChanged', paramCount: 0 },
+        { handlerName: 'onIsNextItemChanged', paramCount: 0 },
+        { handlerName: 'onIsPreviousItemChanged', paramCount: 0 },
+        { handlerName: 'onViewChanged', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'tabBar',
+      attachedTypeName: 'TabBar',
+      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
+      signals: [
+        { handlerName: 'onIndexChanged', paramCount: 0 },
+        { handlerName: 'onPositionChanged', paramCount: 0 },
+        { handlerName: 'onTabBarChanged', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'textArea',
+      attachedTypeName: 'TextArea',
+      properties: [
+        { name: 'flickable', hasValue: true, hasBinding: true },
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
+      signals: [
+        { handlerName: 'onFlickableChanged', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'toolTip',
+      attachedTypeName: 'ToolTip',
+      properties: [
+        { name: 'delay', hasValue: true, hasBinding: true },
+        { name: 'text', hasValue: true, hasBinding: true },
+        { name: 'timeout', hasValue: true, hasBinding: true },
+        { name: 'visible', hasValue: true, hasBinding: true },
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
+      signals: [
+        { handlerName: 'onDelayChanged', paramCount: 0 },
+        { handlerName: 'onTextChanged', paramCount: 0 },
+        { handlerName: 'onTimeoutChanged', paramCount: 0 },
+        { handlerName: 'onVisibleChanged', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'tumbler',
+      attachedTypeName: 'Tumbler',
+      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
+      signals: [
+        { handlerName: 'onDisplacementChanged', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+  ],
+  defaultProperty: 'contentData',
+};
+
 export function Drawer(): DrawerBuilder {
-  return new DslBuilderImpl('Drawer') as unknown as DrawerBuilder;
+  return createFluentBuilder('Drawer', DRAWER_META) as unknown as DrawerBuilder;
 }
 
 export namespace Drawer {

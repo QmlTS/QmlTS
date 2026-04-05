@@ -5,7 +5,7 @@
 export interface PathViewAttachedBuilder {
   objectName(value: string): PathViewAttachedBuilder;
   objectNameBind(expr: string): PathViewAttachedBuilder;
-  onCurrentItemChanged(handler: () => void): PathViewAttachedBuilder;
-  onPathChanged(handler: () => void): PathViewAttachedBuilder;
-  onObjectNameChanged(handler: (objectName: string) => void): PathViewAttachedBuilder;
+  onCurrentItemChanged(body: string): PathViewAttachedBuilder;
+  onPathChanged(body: string): PathViewAttachedBuilder;
+  onObjectNameChanged(body: string): PathViewAttachedBuilder;
 }

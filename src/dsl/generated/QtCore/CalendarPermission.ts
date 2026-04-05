@@ -2,21 +2,39 @@
 // Type: CalendarPermission
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlValue } from '../../runtime/index.js';
-import { DslBuilderImpl } from '../../runtime/index.js';
+import type { QmlEnumToken, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import { createFluentBuilder } from '../../runtime/index.js';
 export interface CalendarPermissionBuilder {
   id(id: string): CalendarPermissionBuilder;
   child(obj: QmlObjectBuilder): CalendarPermissionBuilder;
 
-  accessMode(value: QmlValue): CalendarPermissionBuilder;
+  accessMode(value: QmlEnumToken): CalendarPermissionBuilder;
   accessModeBind(expr: string): CalendarPermissionBuilder;
   objectName(value: string): CalendarPermissionBuilder;
   objectNameBind(expr: string): CalendarPermissionBuilder;
-  onAccessModeChanged(handler: () => void): CalendarPermissionBuilder;
-  onObjectNameChanged(handler: (objectName: string) => void): CalendarPermissionBuilder;
-  onStatusChanged(handler: () => void): CalendarPermissionBuilder;
+  onAccessModeChanged(body: string): CalendarPermissionBuilder;
+  onObjectNameChanged(body: string): CalendarPermissionBuilder;
+  onStatusChanged(body: string): CalendarPermissionBuilder;
 }
 
+const CALENDARPERMISSION_META: TypeMetadata = {
+  typeName: 'CalendarPermission',
+  properties: [
+    { name: 'accessMode', hasValue: true, hasBinding: true },
+    { name: 'objectName', hasValue: true, hasBinding: true },
+  ],
+  signals: [
+    { handlerName: 'onAccessModeChanged', paramCount: 0 },
+    { handlerName: 'onObjectNameChanged', paramCount: 1 },
+    { handlerName: 'onStatusChanged', paramCount: 0 },
+  ],
+  grouped: [],
+  attached: [],
+};
+
 export function CalendarPermission(): CalendarPermissionBuilder {
-  return new DslBuilderImpl('CalendarPermission') as unknown as CalendarPermissionBuilder;
+  return createFluentBuilder(
+    'CalendarPermission',
+    CALENDARPERMISSION_META,
+  ) as unknown as CalendarPermissionBuilder;
 }

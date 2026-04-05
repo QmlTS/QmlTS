@@ -2,8 +2,8 @@
 // Type: AnimatedSprite
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlRect, QmlUrl, QmlValue } from '../../runtime/index.js';
-import { createEnumToken, DslBuilderImpl } from '../../runtime/index.js';
+import type { QmlEnumToken, QmlObjectBuilder, QmlUrl, TypeMetadata } from '../../runtime/index.js';
+import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { QtObjectBuilder } from '../QML/QtObject.js';
 import type { AccessibleAttachedBuilder } from './Accessible.js';
 import type { EnterKeyAttachedBuilder } from './EnterKey.js';
@@ -25,7 +25,6 @@ import type { TableViewAttachedBuilder } from './QQuickTableViewAttached.js';
 import type { WindowAttachedBuilder } from './QQuickWindowAttached.js';
 import type { SafeAreaAttachedBuilder } from './SafeArea.js';
 import type { ViewTransitionAttachedBuilder } from './ViewTransition.js';
-import type { WindowBuilder } from './Window.js';
 export interface AnimatedSpriteBuilder {
   id(id: string): AnimatedSpriteBuilder;
   child(obj: QmlObjectBuilder): AnimatedSpriteBuilder;
@@ -44,11 +43,11 @@ export interface AnimatedSpriteBuilder {
   currentFrameBind(expr: string): AnimatedSpriteBuilder;
   enabled(value: boolean): AnimatedSpriteBuilder;
   enabledBind(expr: string): AnimatedSpriteBuilder;
-  finishBehavior(value: QmlValue): AnimatedSpriteBuilder;
+  finishBehavior(value: QmlEnumToken): AnimatedSpriteBuilder;
   finishBehaviorBind(expr: string): AnimatedSpriteBuilder;
   focus(value: boolean): AnimatedSpriteBuilder;
   focusBind(expr: string): AnimatedSpriteBuilder;
-  focusPolicy(value: QmlValue): AnimatedSpriteBuilder;
+  focusPolicy(value: QmlEnumToken): AnimatedSpriteBuilder;
   focusPolicyBind(expr: string): AnimatedSpriteBuilder;
   frameCount(value: number): AnimatedSpriteBuilder;
   frameCountBind(expr: string): AnimatedSpriteBuilder;
@@ -100,7 +99,7 @@ export interface AnimatedSpriteBuilder {
   sourceBind(expr: string): AnimatedSpriteBuilder;
   state(value: string): AnimatedSpriteBuilder;
   stateBind(expr: string): AnimatedSpriteBuilder;
-  transformOrigin(value: QmlValue): AnimatedSpriteBuilder;
+  transformOrigin(value: QmlEnumToken): AnimatedSpriteBuilder;
   transformOriginBind(expr: string): AnimatedSpriteBuilder;
   visible(value: boolean): AnimatedSpriteBuilder;
   visibleBind(expr: string): AnimatedSpriteBuilder;
@@ -112,54 +111,54 @@ export interface AnimatedSpriteBuilder {
   yBind(expr: string): AnimatedSpriteBuilder;
   z(value: number): AnimatedSpriteBuilder;
   zBind(expr: string): AnimatedSpriteBuilder;
-  onActiveFocusChanged(handler: (arg0: boolean) => void): AnimatedSpriteBuilder;
-  onActiveFocusOnTabChanged(handler: (arg0: boolean) => void): AnimatedSpriteBuilder;
-  onAntialiasingChanged(handler: (arg0: boolean) => void): AnimatedSpriteBuilder;
-  onBaselineOffsetChanged(handler: (arg0: number) => void): AnimatedSpriteBuilder;
-  onChildrenChanged(handler: () => void): AnimatedSpriteBuilder;
-  onChildrenRectChanged(handler: (arg0: QmlRect) => void): AnimatedSpriteBuilder;
-  onClipChanged(handler: (arg0: boolean) => void): AnimatedSpriteBuilder;
-  onContainmentMaskChanged(handler: () => void): AnimatedSpriteBuilder;
-  onCurrentFrameChanged(handler: (arg: number) => void): AnimatedSpriteBuilder;
-  onEnabledChanged(handler: () => void): AnimatedSpriteBuilder;
-  onFinishBehaviorChanged(handler: (arg: QmlValue) => void): AnimatedSpriteBuilder;
-  onFinished(handler: () => void): AnimatedSpriteBuilder;
-  onFocusChanged(handler: (arg0: boolean) => void): AnimatedSpriteBuilder;
-  onFocusPolicyChanged(handler: (arg0: QmlValue) => void): AnimatedSpriteBuilder;
-  onFrameCountChanged(handler: (arg: number) => void): AnimatedSpriteBuilder;
-  onFrameDurationChanged(handler: (arg: number) => void): AnimatedSpriteBuilder;
-  onFrameHeightChanged(handler: (arg: number) => void): AnimatedSpriteBuilder;
-  onFrameRateChanged(handler: (arg: number) => void): AnimatedSpriteBuilder;
-  onFrameSyncChanged(handler: (arg: boolean) => void): AnimatedSpriteBuilder;
-  onFrameWidthChanged(handler: (arg: number) => void): AnimatedSpriteBuilder;
-  onFrameXChanged(handler: (arg: number) => void): AnimatedSpriteBuilder;
-  onFrameYChanged(handler: (arg: number) => void): AnimatedSpriteBuilder;
-  onHeightChanged(handler: () => void): AnimatedSpriteBuilder;
-  onImplicitHeightChanged(handler: () => void): AnimatedSpriteBuilder;
-  onImplicitWidthChanged(handler: () => void): AnimatedSpriteBuilder;
-  onInterpolateChanged(handler: (arg: boolean) => void): AnimatedSpriteBuilder;
-  onLoopsChanged(handler: (arg: number) => void): AnimatedSpriteBuilder;
-  onObjectNameChanged(handler: (objectName: string) => void): AnimatedSpriteBuilder;
-  onOpacityChanged(handler: () => void): AnimatedSpriteBuilder;
-  onPaletteChanged(handler: () => void): AnimatedSpriteBuilder;
-  onPaletteCreated(handler: () => void): AnimatedSpriteBuilder;
-  onParentChanged(handler: (arg0: ItemBuilder) => void): AnimatedSpriteBuilder;
-  onPausedChanged(handler: (arg: boolean) => void): AnimatedSpriteBuilder;
-  onReverseChanged(handler: (arg: boolean) => void): AnimatedSpriteBuilder;
-  onRotationChanged(handler: () => void): AnimatedSpriteBuilder;
-  onRunningChanged(handler: (arg: boolean) => void): AnimatedSpriteBuilder;
-  onScaleChanged(handler: () => void): AnimatedSpriteBuilder;
-  onSmoothChanged(handler: (arg0: boolean) => void): AnimatedSpriteBuilder;
-  onSourceChanged(handler: (arg: QmlUrl) => void): AnimatedSpriteBuilder;
-  onStateChanged(handler: (arg0: string) => void): AnimatedSpriteBuilder;
-  onTransformOriginChanged(handler: (arg0: QmlValue) => void): AnimatedSpriteBuilder;
-  onVisibleChanged(handler: () => void): AnimatedSpriteBuilder;
-  onVisibleChildrenChanged(handler: () => void): AnimatedSpriteBuilder;
-  onWidthChanged(handler: () => void): AnimatedSpriteBuilder;
-  onWindowChanged(handler: (window: WindowBuilder) => void): AnimatedSpriteBuilder;
-  onXChanged(handler: () => void): AnimatedSpriteBuilder;
-  onYChanged(handler: () => void): AnimatedSpriteBuilder;
-  onZChanged(handler: () => void): AnimatedSpriteBuilder;
+  onActiveFocusChanged(body: string): AnimatedSpriteBuilder;
+  onActiveFocusOnTabChanged(body: string): AnimatedSpriteBuilder;
+  onAntialiasingChanged(body: string): AnimatedSpriteBuilder;
+  onBaselineOffsetChanged(body: string): AnimatedSpriteBuilder;
+  onChildrenChanged(body: string): AnimatedSpriteBuilder;
+  onChildrenRectChanged(body: string): AnimatedSpriteBuilder;
+  onClipChanged(body: string): AnimatedSpriteBuilder;
+  onContainmentMaskChanged(body: string): AnimatedSpriteBuilder;
+  onCurrentFrameChanged(body: string): AnimatedSpriteBuilder;
+  onEnabledChanged(body: string): AnimatedSpriteBuilder;
+  onFinishBehaviorChanged(body: string): AnimatedSpriteBuilder;
+  onFinished(body: string): AnimatedSpriteBuilder;
+  onFocusChanged(body: string): AnimatedSpriteBuilder;
+  onFocusPolicyChanged(body: string): AnimatedSpriteBuilder;
+  onFrameCountChanged(body: string): AnimatedSpriteBuilder;
+  onFrameDurationChanged(body: string): AnimatedSpriteBuilder;
+  onFrameHeightChanged(body: string): AnimatedSpriteBuilder;
+  onFrameRateChanged(body: string): AnimatedSpriteBuilder;
+  onFrameSyncChanged(body: string): AnimatedSpriteBuilder;
+  onFrameWidthChanged(body: string): AnimatedSpriteBuilder;
+  onFrameXChanged(body: string): AnimatedSpriteBuilder;
+  onFrameYChanged(body: string): AnimatedSpriteBuilder;
+  onHeightChanged(body: string): AnimatedSpriteBuilder;
+  onImplicitHeightChanged(body: string): AnimatedSpriteBuilder;
+  onImplicitWidthChanged(body: string): AnimatedSpriteBuilder;
+  onInterpolateChanged(body: string): AnimatedSpriteBuilder;
+  onLoopsChanged(body: string): AnimatedSpriteBuilder;
+  onObjectNameChanged(body: string): AnimatedSpriteBuilder;
+  onOpacityChanged(body: string): AnimatedSpriteBuilder;
+  onPaletteChanged(body: string): AnimatedSpriteBuilder;
+  onPaletteCreated(body: string): AnimatedSpriteBuilder;
+  onParentChanged(body: string): AnimatedSpriteBuilder;
+  onPausedChanged(body: string): AnimatedSpriteBuilder;
+  onReverseChanged(body: string): AnimatedSpriteBuilder;
+  onRotationChanged(body: string): AnimatedSpriteBuilder;
+  onRunningChanged(body: string): AnimatedSpriteBuilder;
+  onScaleChanged(body: string): AnimatedSpriteBuilder;
+  onSmoothChanged(body: string): AnimatedSpriteBuilder;
+  onSourceChanged(body: string): AnimatedSpriteBuilder;
+  onStateChanged(body: string): AnimatedSpriteBuilder;
+  onTransformOriginChanged(body: string): AnimatedSpriteBuilder;
+  onVisibleChanged(body: string): AnimatedSpriteBuilder;
+  onVisibleChildrenChanged(body: string): AnimatedSpriteBuilder;
+  onWidthChanged(body: string): AnimatedSpriteBuilder;
+  onWindowChanged(body: string): AnimatedSpriteBuilder;
+  onXChanged(body: string): AnimatedSpriteBuilder;
+  onYChanged(body: string): AnimatedSpriteBuilder;
+  onZChanged(body: string): AnimatedSpriteBuilder;
   anchors(setup: (b: AnchorsBuilder) => void): AnimatedSpriteBuilder;
   layer(setup: (b: LayerBuilder) => void): AnimatedSpriteBuilder;
   accessible(setup: (b: AccessibleAttachedBuilder) => void): AnimatedSpriteBuilder;
@@ -180,8 +179,515 @@ export interface AnimatedSpriteBuilder {
   window(setup: (b: WindowAttachedBuilder) => void): AnimatedSpriteBuilder;
 }
 
+const ANIMATEDSPRITE_META: TypeMetadata = {
+  typeName: 'AnimatedSprite',
+  properties: [
+    { name: 'activeFocusOnTab', hasValue: true, hasBinding: true },
+    { name: 'antialiasing', hasValue: true, hasBinding: true },
+    { name: 'baselineOffset', hasValue: true, hasBinding: true },
+    { name: 'clip', hasValue: true, hasBinding: true },
+    { name: 'containmentMask', hasValue: true, hasBinding: true },
+    { name: 'currentFrame', hasValue: true, hasBinding: true },
+    { name: 'enabled', hasValue: true, hasBinding: true },
+    { name: 'finishBehavior', hasValue: true, hasBinding: true },
+    { name: 'focus', hasValue: true, hasBinding: true },
+    { name: 'focusPolicy', hasValue: true, hasBinding: true },
+    { name: 'frameCount', hasValue: true, hasBinding: true },
+    { name: 'frameDuration', hasValue: true, hasBinding: true },
+    { name: 'frameHeight', hasValue: true, hasBinding: true },
+    { name: 'frameRate', hasValue: true, hasBinding: true },
+    { name: 'frameSync', hasValue: true, hasBinding: true },
+    { name: 'frameWidth', hasValue: true, hasBinding: true },
+    { name: 'frameX', hasValue: true, hasBinding: true },
+    { name: 'frameY', hasValue: true, hasBinding: true },
+    { name: 'height', hasValue: true, hasBinding: true },
+    { name: 'implicitHeight', hasValue: true, hasBinding: true },
+    { name: 'implicitWidth', hasValue: true, hasBinding: true },
+    { name: 'interpolate', hasValue: true, hasBinding: true },
+    { name: 'loops', hasValue: true, hasBinding: true },
+    { name: 'objectName', hasValue: true, hasBinding: true },
+    { name: 'opacity', hasValue: true, hasBinding: true },
+    { name: 'palette', hasValue: true, hasBinding: true },
+    { name: 'parent', hasValue: true, hasBinding: true },
+    { name: 'paused', hasValue: true, hasBinding: true },
+    { name: 'reverse', hasValue: true, hasBinding: true },
+    { name: 'rotation', hasValue: true, hasBinding: true },
+    { name: 'running', hasValue: true, hasBinding: true },
+    { name: 'scale', hasValue: true, hasBinding: true },
+    { name: 'smooth', hasValue: true, hasBinding: true },
+    { name: 'source', hasValue: true, hasBinding: true },
+    { name: 'state', hasValue: true, hasBinding: true },
+    { name: 'transformOrigin', hasValue: true, hasBinding: true },
+    { name: 'visible', hasValue: true, hasBinding: true },
+    { name: 'width', hasValue: true, hasBinding: true },
+    { name: 'x', hasValue: true, hasBinding: true },
+    { name: 'y', hasValue: true, hasBinding: true },
+    { name: 'z', hasValue: true, hasBinding: true },
+  ],
+  signals: [
+    { handlerName: 'onActiveFocusChanged', paramCount: 1 },
+    { handlerName: 'onActiveFocusOnTabChanged', paramCount: 1 },
+    { handlerName: 'onAntialiasingChanged', paramCount: 1 },
+    { handlerName: 'onBaselineOffsetChanged', paramCount: 1 },
+    { handlerName: 'onChildrenChanged', paramCount: 0 },
+    { handlerName: 'onChildrenRectChanged', paramCount: 1 },
+    { handlerName: 'onClipChanged', paramCount: 1 },
+    { handlerName: 'onContainmentMaskChanged', paramCount: 0 },
+    { handlerName: 'onCurrentFrameChanged', paramCount: 1 },
+    { handlerName: 'onEnabledChanged', paramCount: 0 },
+    { handlerName: 'onFinishBehaviorChanged', paramCount: 1 },
+    { handlerName: 'onFinished', paramCount: 0 },
+    { handlerName: 'onFocusChanged', paramCount: 1 },
+    { handlerName: 'onFocusPolicyChanged', paramCount: 1 },
+    { handlerName: 'onFrameCountChanged', paramCount: 1 },
+    { handlerName: 'onFrameDurationChanged', paramCount: 1 },
+    { handlerName: 'onFrameHeightChanged', paramCount: 1 },
+    { handlerName: 'onFrameRateChanged', paramCount: 1 },
+    { handlerName: 'onFrameSyncChanged', paramCount: 1 },
+    { handlerName: 'onFrameWidthChanged', paramCount: 1 },
+    { handlerName: 'onFrameXChanged', paramCount: 1 },
+    { handlerName: 'onFrameYChanged', paramCount: 1 },
+    { handlerName: 'onHeightChanged', paramCount: 0 },
+    { handlerName: 'onImplicitHeightChanged', paramCount: 0 },
+    { handlerName: 'onImplicitWidthChanged', paramCount: 0 },
+    { handlerName: 'onInterpolateChanged', paramCount: 1 },
+    { handlerName: 'onLoopsChanged', paramCount: 1 },
+    { handlerName: 'onObjectNameChanged', paramCount: 1 },
+    { handlerName: 'onOpacityChanged', paramCount: 0 },
+    { handlerName: 'onPaletteChanged', paramCount: 0 },
+    { handlerName: 'onPaletteCreated', paramCount: 0 },
+    { handlerName: 'onParentChanged', paramCount: 1 },
+    { handlerName: 'onPausedChanged', paramCount: 1 },
+    { handlerName: 'onReverseChanged', paramCount: 1 },
+    { handlerName: 'onRotationChanged', paramCount: 0 },
+    { handlerName: 'onRunningChanged', paramCount: 1 },
+    { handlerName: 'onScaleChanged', paramCount: 0 },
+    { handlerName: 'onSmoothChanged', paramCount: 1 },
+    { handlerName: 'onSourceChanged', paramCount: 1 },
+    { handlerName: 'onStateChanged', paramCount: 1 },
+    { handlerName: 'onTransformOriginChanged', paramCount: 1 },
+    { handlerName: 'onVisibleChanged', paramCount: 0 },
+    { handlerName: 'onVisibleChildrenChanged', paramCount: 0 },
+    { handlerName: 'onWidthChanged', paramCount: 0 },
+    { handlerName: 'onWindowChanged', paramCount: 1 },
+    { handlerName: 'onXChanged', paramCount: 0 },
+    { handlerName: 'onYChanged', paramCount: 0 },
+    { handlerName: 'onZChanged', paramCount: 0 },
+  ],
+  grouped: [
+    {
+      methodName: 'anchors',
+      groupName: 'anchors',
+      properties: [
+        { name: 'alignWhenCentered', hasValue: true, hasBinding: true },
+        { name: 'baseline', hasValue: true, hasBinding: true },
+        { name: 'baselineOffset', hasValue: true, hasBinding: true },
+        { name: 'bottom', hasValue: true, hasBinding: true },
+        { name: 'bottomMargin', hasValue: true, hasBinding: true },
+        { name: 'centerIn', hasValue: true, hasBinding: true },
+        { name: 'fill', hasValue: true, hasBinding: true },
+        { name: 'horizontalCenter', hasValue: true, hasBinding: true },
+        { name: 'horizontalCenterOffset', hasValue: true, hasBinding: true },
+        { name: 'left', hasValue: true, hasBinding: true },
+        { name: 'leftMargin', hasValue: true, hasBinding: true },
+        { name: 'margins', hasValue: true, hasBinding: true },
+        { name: 'right', hasValue: true, hasBinding: true },
+        { name: 'rightMargin', hasValue: true, hasBinding: true },
+        { name: 'top', hasValue: true, hasBinding: true },
+        { name: 'topMargin', hasValue: true, hasBinding: true },
+        { name: 'verticalCenter', hasValue: true, hasBinding: true },
+        { name: 'verticalCenterOffset', hasValue: true, hasBinding: true },
+      ],
+    },
+    {
+      methodName: 'layer',
+      groupName: 'layer',
+      properties: [
+        { name: 'effect', hasValue: true, hasBinding: true },
+        { name: 'enabled', hasValue: true, hasBinding: true },
+        { name: 'format', hasValue: true, hasBinding: true },
+        { name: 'live', hasValue: true, hasBinding: true },
+        { name: 'mipmap', hasValue: true, hasBinding: true },
+        { name: 'samplerName', hasValue: true, hasBinding: true },
+        { name: 'samples', hasValue: true, hasBinding: true },
+        { name: 'smooth', hasValue: true, hasBinding: true },
+        { name: 'sourceRect', hasValue: true, hasBinding: true },
+        { name: 'textureMirroring', hasValue: true, hasBinding: true },
+        { name: 'textureSize', hasValue: true, hasBinding: true },
+        { name: 'wrapMode', hasValue: true, hasBinding: true },
+      ],
+    },
+  ],
+  attached: [
+    {
+      methodName: 'accessible',
+      attachedTypeName: 'Accessible',
+      properties: [
+        { name: 'checkStateMixed', hasValue: true, hasBinding: true },
+        { name: 'checkable', hasValue: true, hasBinding: true },
+        { name: 'checked', hasValue: true, hasBinding: true },
+        { name: 'defaultButton', hasValue: true, hasBinding: true },
+        { name: 'description', hasValue: true, hasBinding: true },
+        { name: 'editable', hasValue: true, hasBinding: true },
+        { name: 'focusable', hasValue: true, hasBinding: true },
+        { name: 'focused', hasValue: true, hasBinding: true },
+        { name: 'id', hasValue: true, hasBinding: true },
+        { name: 'ignored', hasValue: true, hasBinding: true },
+        { name: 'labelFor', hasValue: true, hasBinding: true },
+        { name: 'labelledBy', hasValue: true, hasBinding: true },
+        { name: 'multiLine', hasValue: true, hasBinding: true },
+        { name: 'name', hasValue: true, hasBinding: true },
+        { name: 'passwordEdit', hasValue: true, hasBinding: true },
+        { name: 'pressed', hasValue: true, hasBinding: true },
+        { name: 'readOnly', hasValue: true, hasBinding: true },
+        { name: 'role', hasValue: true, hasBinding: true },
+        { name: 'searchEdit', hasValue: true, hasBinding: true },
+        { name: 'selectable', hasValue: true, hasBinding: true },
+        { name: 'selectableText', hasValue: true, hasBinding: true },
+        { name: 'selected', hasValue: true, hasBinding: true },
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
+      signals: [
+        { handlerName: 'onCheckStateMixedChanged', paramCount: 1 },
+        { handlerName: 'onCheckableChanged', paramCount: 1 },
+        { handlerName: 'onCheckedChanged', paramCount: 1 },
+        { handlerName: 'onDecreaseAction', paramCount: 0 },
+        { handlerName: 'onDefaultButtonChanged', paramCount: 1 },
+        { handlerName: 'onDescriptionChanged', paramCount: 0 },
+        { handlerName: 'onEditableChanged', paramCount: 1 },
+        { handlerName: 'onFocusableChanged', paramCount: 1 },
+        { handlerName: 'onFocusedChanged', paramCount: 1 },
+        { handlerName: 'onIdChanged', paramCount: 0 },
+        { handlerName: 'onIgnoredChanged', paramCount: 0 },
+        { handlerName: 'onIncreaseAction', paramCount: 0 },
+        { handlerName: 'onLabelForChanged', paramCount: 0 },
+        { handlerName: 'onLabelledByChanged', paramCount: 0 },
+        { handlerName: 'onMultiLineChanged', paramCount: 1 },
+        { handlerName: 'onNameChanged', paramCount: 0 },
+        { handlerName: 'onNextPageAction', paramCount: 0 },
+        { handlerName: 'onPasswordEditChanged', paramCount: 1 },
+        { handlerName: 'onPressAction', paramCount: 0 },
+        { handlerName: 'onPressedChanged', paramCount: 1 },
+        { handlerName: 'onPreviousPageAction', paramCount: 0 },
+        { handlerName: 'onReadOnlyChanged', paramCount: 1 },
+        { handlerName: 'onRoleChanged', paramCount: 0 },
+        { handlerName: 'onScrollDownAction', paramCount: 0 },
+        { handlerName: 'onScrollLeftAction', paramCount: 0 },
+        { handlerName: 'onScrollRightAction', paramCount: 0 },
+        { handlerName: 'onScrollUpAction', paramCount: 0 },
+        { handlerName: 'onSearchEditChanged', paramCount: 1 },
+        { handlerName: 'onSelectableChanged', paramCount: 1 },
+        { handlerName: 'onSelectableTextChanged', paramCount: 1 },
+        { handlerName: 'onSelectedChanged', paramCount: 1 },
+        { handlerName: 'onToggleAction', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'drag',
+      attachedTypeName: 'Drag',
+      properties: [
+        { name: 'active', hasValue: true, hasBinding: true },
+        { name: 'dragType', hasValue: true, hasBinding: true },
+        { name: 'hotSpot', hasValue: true, hasBinding: true },
+        { name: 'imageSource', hasValue: true, hasBinding: true },
+        { name: 'imageSourceSize', hasValue: true, hasBinding: true },
+        { name: 'keys', hasValue: true, hasBinding: true },
+        { name: 'mimeData', hasValue: true, hasBinding: true },
+        { name: 'proposedAction', hasValue: true, hasBinding: true },
+        { name: 'source', hasValue: true, hasBinding: true },
+        { name: 'supportedActions', hasValue: true, hasBinding: true },
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
+      signals: [
+        { handlerName: 'onActiveChanged', paramCount: 0 },
+        { handlerName: 'onDragFinished', paramCount: 1 },
+        { handlerName: 'onDragStarted', paramCount: 0 },
+        { handlerName: 'onDragTypeChanged', paramCount: 0 },
+        { handlerName: 'onHotSpotChanged', paramCount: 0 },
+        { handlerName: 'onImageSourceChanged', paramCount: 0 },
+        { handlerName: 'onImageSourceSizeChanged', paramCount: 0 },
+        { handlerName: 'onKeysChanged', paramCount: 0 },
+        { handlerName: 'onMimeDataChanged', paramCount: 0 },
+        { handlerName: 'onProposedActionChanged', paramCount: 0 },
+        { handlerName: 'onSourceChanged', paramCount: 0 },
+        { handlerName: 'onSupportedActionsChanged', paramCount: 0 },
+        { handlerName: 'onTargetChanged', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'enterKey',
+      attachedTypeName: 'EnterKey',
+      properties: [
+        { name: 'type', hasValue: true, hasBinding: true },
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
+      signals: [
+        { handlerName: 'onTypeChanged', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'graphicsInfo',
+      attachedTypeName: 'GraphicsInfo',
+      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
+      signals: [
+        { handlerName: 'onApiChanged', paramCount: 0 },
+        { handlerName: 'onMajorVersionChanged', paramCount: 0 },
+        { handlerName: 'onMinorVersionChanged', paramCount: 0 },
+        { handlerName: 'onProfileChanged', paramCount: 0 },
+        { handlerName: 'onRenderableTypeChanged', paramCount: 0 },
+        { handlerName: 'onShaderCompilationTypeChanged', paramCount: 0 },
+        { handlerName: 'onShaderSourceTypeChanged', paramCount: 0 },
+        { handlerName: 'onShaderTypeChanged', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'gridView',
+      attachedTypeName: 'GridView',
+      properties: [
+        { name: 'delayRemove', hasValue: true, hasBinding: true },
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
+      signals: [
+        { handlerName: 'onAdd', paramCount: 0 },
+        { handlerName: 'onCurrentItemChanged', paramCount: 0 },
+        { handlerName: 'onDelayRemoveChanged', paramCount: 0 },
+        { handlerName: 'onNextSectionChanged', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+        { handlerName: 'onPooled', paramCount: 0 },
+        { handlerName: 'onPrevSectionChanged', paramCount: 0 },
+        { handlerName: 'onRemove', paramCount: 0 },
+        { handlerName: 'onReused', paramCount: 0 },
+        { handlerName: 'onSectionChanged', paramCount: 0 },
+        { handlerName: 'onViewChanged', paramCount: 0 },
+      ],
+    },
+    {
+      methodName: 'keyNavigation',
+      attachedTypeName: 'KeyNavigation',
+      properties: [
+        { name: 'backtab', hasValue: true, hasBinding: true },
+        { name: 'down', hasValue: true, hasBinding: true },
+        { name: 'left', hasValue: true, hasBinding: true },
+        { name: 'priority', hasValue: true, hasBinding: true },
+        { name: 'right', hasValue: true, hasBinding: true },
+        { name: 'tab', hasValue: true, hasBinding: true },
+        { name: 'up', hasValue: true, hasBinding: true },
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
+      signals: [
+        { handlerName: 'onBacktabChanged', paramCount: 0 },
+        { handlerName: 'onDownChanged', paramCount: 0 },
+        { handlerName: 'onLeftChanged', paramCount: 0 },
+        { handlerName: 'onPriorityChanged', paramCount: 0 },
+        { handlerName: 'onRightChanged', paramCount: 0 },
+        { handlerName: 'onTabChanged', paramCount: 0 },
+        { handlerName: 'onUpChanged', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'keys',
+      attachedTypeName: 'Keys',
+      properties: [
+        { name: 'enabled', hasValue: true, hasBinding: true },
+        { name: 'priority', hasValue: true, hasBinding: true },
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
+      signals: [
+        { handlerName: 'onAsteriskPressed', paramCount: 1 },
+        { handlerName: 'onBackPressed', paramCount: 1 },
+        { handlerName: 'onBacktabPressed', paramCount: 1 },
+        { handlerName: 'onCallPressed', paramCount: 1 },
+        { handlerName: 'onCancelPressed', paramCount: 1 },
+        { handlerName: 'onContext1Pressed', paramCount: 1 },
+        { handlerName: 'onContext2Pressed', paramCount: 1 },
+        { handlerName: 'onContext3Pressed', paramCount: 1 },
+        { handlerName: 'onContext4Pressed', paramCount: 1 },
+        { handlerName: 'onDeletePressed', paramCount: 1 },
+        { handlerName: 'onDigit0Pressed', paramCount: 1 },
+        { handlerName: 'onDigit1Pressed', paramCount: 1 },
+        { handlerName: 'onDigit2Pressed', paramCount: 1 },
+        { handlerName: 'onDigit3Pressed', paramCount: 1 },
+        { handlerName: 'onDigit4Pressed', paramCount: 1 },
+        { handlerName: 'onDigit5Pressed', paramCount: 1 },
+        { handlerName: 'onDigit6Pressed', paramCount: 1 },
+        { handlerName: 'onDigit7Pressed', paramCount: 1 },
+        { handlerName: 'onDigit8Pressed', paramCount: 1 },
+        { handlerName: 'onDigit9Pressed', paramCount: 1 },
+        { handlerName: 'onDownPressed', paramCount: 1 },
+        { handlerName: 'onEnabledChanged', paramCount: 0 },
+        { handlerName: 'onEnterPressed', paramCount: 1 },
+        { handlerName: 'onEscapePressed', paramCount: 1 },
+        { handlerName: 'onFlipPressed', paramCount: 1 },
+        { handlerName: 'onHangupPressed', paramCount: 1 },
+        { handlerName: 'onLeftPressed', paramCount: 1 },
+        { handlerName: 'onMenuPressed', paramCount: 1 },
+        { handlerName: 'onNoPressed', paramCount: 1 },
+        { handlerName: 'onNumberSignPressed', paramCount: 1 },
+        { handlerName: 'onPressed', paramCount: 1 },
+        { handlerName: 'onPriorityChanged', paramCount: 0 },
+        { handlerName: 'onReleased', paramCount: 1 },
+        { handlerName: 'onReturnPressed', paramCount: 1 },
+        { handlerName: 'onRightPressed', paramCount: 1 },
+        { handlerName: 'onSelectPressed', paramCount: 1 },
+        { handlerName: 'onShortcutOverride', paramCount: 1 },
+        { handlerName: 'onSpacePressed', paramCount: 1 },
+        { handlerName: 'onTabPressed', paramCount: 1 },
+        { handlerName: 'onUpPressed', paramCount: 1 },
+        { handlerName: 'onVolumeDownPressed', paramCount: 1 },
+        { handlerName: 'onVolumeUpPressed', paramCount: 1 },
+        { handlerName: 'onYesPressed', paramCount: 1 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'layoutMirroring',
+      attachedTypeName: 'LayoutMirroring',
+      properties: [
+        { name: 'childrenInherit', hasValue: true, hasBinding: true },
+        { name: 'enabled', hasValue: true, hasBinding: true },
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
+      signals: [
+        { handlerName: 'onChildrenInheritChanged', paramCount: 0 },
+        { handlerName: 'onEnabledChanged', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'listView',
+      attachedTypeName: 'ListView',
+      properties: [
+        { name: 'delayRemove', hasValue: true, hasBinding: true },
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
+      signals: [
+        { handlerName: 'onAdd', paramCount: 0 },
+        { handlerName: 'onCurrentItemChanged', paramCount: 0 },
+        { handlerName: 'onDelayRemoveChanged', paramCount: 0 },
+        { handlerName: 'onNextSectionChanged', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+        { handlerName: 'onPooled', paramCount: 0 },
+        { handlerName: 'onPrevSectionChanged', paramCount: 0 },
+        { handlerName: 'onRemove', paramCount: 0 },
+        { handlerName: 'onReused', paramCount: 0 },
+        { handlerName: 'onSectionChanged', paramCount: 0 },
+        { handlerName: 'onViewChanged', paramCount: 0 },
+      ],
+    },
+    {
+      methodName: 'pathView',
+      attachedTypeName: 'PathView',
+      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
+      signals: [
+        { handlerName: 'onCurrentItemChanged', paramCount: 0 },
+        { handlerName: 'onPathChanged', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'positioner',
+      attachedTypeName: 'Positioner',
+      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
+      signals: [
+        { handlerName: 'onIndexChanged', paramCount: 0 },
+        { handlerName: 'onIsFirstItemChanged', paramCount: 0 },
+        { handlerName: 'onIsLastItemChanged', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'safeArea',
+      attachedTypeName: 'SafeArea',
+      properties: [
+        { name: 'additionalMargins', hasValue: true, hasBinding: true },
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
+      signals: [
+        { handlerName: 'onAdditionalMarginsChanged', paramCount: 0 },
+        { handlerName: 'onMarginsChanged', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'screen',
+      attachedTypeName: 'Screen',
+      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
+      signals: [
+        { handlerName: 'onDesktopGeometryChanged', paramCount: 0 },
+        { handlerName: 'onDevicePixelRatioChanged', paramCount: 0 },
+        { handlerName: 'onHeightChanged', paramCount: 0 },
+        { handlerName: 'onLogicalPixelDensityChanged', paramCount: 0 },
+        { handlerName: 'onManufacturerChanged', paramCount: 0 },
+        { handlerName: 'onModelChanged', paramCount: 0 },
+        { handlerName: 'onNameChanged', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+        { handlerName: 'onOrientationChanged', paramCount: 0 },
+        { handlerName: 'onPixelDensityChanged', paramCount: 0 },
+        { handlerName: 'onPrimaryOrientationChanged', paramCount: 0 },
+        { handlerName: 'onSerialNumberChanged', paramCount: 0 },
+        { handlerName: 'onVirtualXChanged', paramCount: 0 },
+        { handlerName: 'onVirtualYChanged', paramCount: 0 },
+        { handlerName: 'onWidthChanged', paramCount: 0 },
+      ],
+    },
+    {
+      methodName: 'tableView',
+      attachedTypeName: 'TableView',
+      properties: [
+        { name: 'editDelegate', hasValue: true, hasBinding: true },
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
+      signals: [
+        { handlerName: 'onCommit', paramCount: 0 },
+        { handlerName: 'onEditDelegateChanged', paramCount: 0 },
+        { handlerName: 'onPooled', paramCount: 0 },
+        { handlerName: 'onReused', paramCount: 0 },
+        { handlerName: 'onViewChanged', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'viewTransition',
+      attachedTypeName: 'ViewTransition',
+      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
+      signals: [
+        { handlerName: 'onDestinationChanged', paramCount: 0 },
+        { handlerName: 'onIndexChanged', paramCount: 0 },
+        { handlerName: 'onItemChanged', paramCount: 0 },
+        { handlerName: 'onTargetIndexesChanged', paramCount: 0 },
+        { handlerName: 'onTargetItemsChanged', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+    {
+      methodName: 'window',
+      attachedTypeName: 'Window',
+      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
+      signals: [
+        { handlerName: 'onActiveChanged', paramCount: 0 },
+        { handlerName: 'onActiveFocusItemChanged', paramCount: 0 },
+        { handlerName: 'onContentItemChanged', paramCount: 0 },
+        { handlerName: 'onHeightChanged', paramCount: 0 },
+        { handlerName: 'onVisibilityChanged', paramCount: 0 },
+        { handlerName: 'onWidthChanged', paramCount: 0 },
+        { handlerName: 'onWindowChanged', paramCount: 0 },
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
+    },
+  ],
+  defaultProperty: 'data',
+};
+
 export function AnimatedSprite(): AnimatedSpriteBuilder {
-  return new DslBuilderImpl('AnimatedSprite') as unknown as AnimatedSpriteBuilder;
+  return createFluentBuilder(
+    'AnimatedSprite',
+    ANIMATEDSPRITE_META,
+  ) as unknown as AnimatedSpriteBuilder;
 }
 
 export namespace AnimatedSprite {

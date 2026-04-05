@@ -2,7 +2,7 @@
 // Type: Attached type: Accessible
 // Generated from Qt 6.11.0
 
-import type { QmlValue } from '../../runtime/index.js';
+import type { QmlEnumToken } from '../../runtime/index.js';
 import type { ItemBuilder } from './Item.js';
 export interface AccessibleAttachedBuilder {
   checkStateMixed(value: boolean): AccessibleAttachedBuilder;
@@ -39,7 +39,7 @@ export interface AccessibleAttachedBuilder {
   pressedBind(expr: string): AccessibleAttachedBuilder;
   readOnly(value: boolean): AccessibleAttachedBuilder;
   readOnlyBind(expr: string): AccessibleAttachedBuilder;
-  role(value: QmlValue): AccessibleAttachedBuilder;
+  role(value: QmlEnumToken): AccessibleAttachedBuilder;
   roleBind(expr: string): AccessibleAttachedBuilder;
   searchEdit(value: boolean): AccessibleAttachedBuilder;
   searchEditBind(expr: string): AccessibleAttachedBuilder;
@@ -51,37 +51,37 @@ export interface AccessibleAttachedBuilder {
   selectedBind(expr: string): AccessibleAttachedBuilder;
   objectName(value: string): AccessibleAttachedBuilder;
   objectNameBind(expr: string): AccessibleAttachedBuilder;
-  onCheckStateMixedChanged(handler: (arg: boolean) => void): AccessibleAttachedBuilder;
-  onCheckableChanged(handler: (arg: boolean) => void): AccessibleAttachedBuilder;
-  onCheckedChanged(handler: (arg: boolean) => void): AccessibleAttachedBuilder;
-  onDecreaseAction(handler: () => void): AccessibleAttachedBuilder;
-  onDefaultButtonChanged(handler: (arg: boolean) => void): AccessibleAttachedBuilder;
-  onDescriptionChanged(handler: () => void): AccessibleAttachedBuilder;
-  onEditableChanged(handler: (arg: boolean) => void): AccessibleAttachedBuilder;
-  onFocusableChanged(handler: (arg: boolean) => void): AccessibleAttachedBuilder;
-  onFocusedChanged(handler: (arg: boolean) => void): AccessibleAttachedBuilder;
-  onIdChanged(handler: () => void): AccessibleAttachedBuilder;
-  onIgnoredChanged(handler: () => void): AccessibleAttachedBuilder;
-  onIncreaseAction(handler: () => void): AccessibleAttachedBuilder;
-  onLabelForChanged(handler: () => void): AccessibleAttachedBuilder;
-  onLabelledByChanged(handler: () => void): AccessibleAttachedBuilder;
-  onMultiLineChanged(handler: (arg: boolean) => void): AccessibleAttachedBuilder;
-  onNameChanged(handler: () => void): AccessibleAttachedBuilder;
-  onNextPageAction(handler: () => void): AccessibleAttachedBuilder;
-  onPasswordEditChanged(handler: (arg: boolean) => void): AccessibleAttachedBuilder;
-  onPressAction(handler: () => void): AccessibleAttachedBuilder;
-  onPressedChanged(handler: (arg: boolean) => void): AccessibleAttachedBuilder;
-  onPreviousPageAction(handler: () => void): AccessibleAttachedBuilder;
-  onReadOnlyChanged(handler: (arg: boolean) => void): AccessibleAttachedBuilder;
-  onRoleChanged(handler: () => void): AccessibleAttachedBuilder;
-  onScrollDownAction(handler: () => void): AccessibleAttachedBuilder;
-  onScrollLeftAction(handler: () => void): AccessibleAttachedBuilder;
-  onScrollRightAction(handler: () => void): AccessibleAttachedBuilder;
-  onScrollUpAction(handler: () => void): AccessibleAttachedBuilder;
-  onSearchEditChanged(handler: (arg: boolean) => void): AccessibleAttachedBuilder;
-  onSelectableChanged(handler: (arg: boolean) => void): AccessibleAttachedBuilder;
-  onSelectableTextChanged(handler: (arg: boolean) => void): AccessibleAttachedBuilder;
-  onSelectedChanged(handler: (arg: boolean) => void): AccessibleAttachedBuilder;
-  onToggleAction(handler: () => void): AccessibleAttachedBuilder;
-  onObjectNameChanged(handler: (objectName: string) => void): AccessibleAttachedBuilder;
+  onCheckStateMixedChanged(body: string): AccessibleAttachedBuilder;
+  onCheckableChanged(body: string): AccessibleAttachedBuilder;
+  onCheckedChanged(body: string): AccessibleAttachedBuilder;
+  onDecreaseAction(body: string): AccessibleAttachedBuilder;
+  onDefaultButtonChanged(body: string): AccessibleAttachedBuilder;
+  onDescriptionChanged(body: string): AccessibleAttachedBuilder;
+  onEditableChanged(body: string): AccessibleAttachedBuilder;
+  onFocusableChanged(body: string): AccessibleAttachedBuilder;
+  onFocusedChanged(body: string): AccessibleAttachedBuilder;
+  onIdChanged(body: string): AccessibleAttachedBuilder;
+  onIgnoredChanged(body: string): AccessibleAttachedBuilder;
+  onIncreaseAction(body: string): AccessibleAttachedBuilder;
+  onLabelForChanged(body: string): AccessibleAttachedBuilder;
+  onLabelledByChanged(body: string): AccessibleAttachedBuilder;
+  onMultiLineChanged(body: string): AccessibleAttachedBuilder;
+  onNameChanged(body: string): AccessibleAttachedBuilder;
+  onNextPageAction(body: string): AccessibleAttachedBuilder;
+  onPasswordEditChanged(body: string): AccessibleAttachedBuilder;
+  onPressAction(body: string): AccessibleAttachedBuilder;
+  onPressedChanged(body: string): AccessibleAttachedBuilder;
+  onPreviousPageAction(body: string): AccessibleAttachedBuilder;
+  onReadOnlyChanged(body: string): AccessibleAttachedBuilder;
+  onRoleChanged(body: string): AccessibleAttachedBuilder;
+  onScrollDownAction(body: string): AccessibleAttachedBuilder;
+  onScrollLeftAction(body: string): AccessibleAttachedBuilder;
+  onScrollRightAction(body: string): AccessibleAttachedBuilder;
+  onScrollUpAction(body: string): AccessibleAttachedBuilder;
+  onSearchEditChanged(body: string): AccessibleAttachedBuilder;
+  onSelectableChanged(body: string): AccessibleAttachedBuilder;
+  onSelectableTextChanged(body: string): AccessibleAttachedBuilder;
+  onSelectedChanged(body: string): AccessibleAttachedBuilder;
+  onToggleAction(body: string): AccessibleAttachedBuilder;
+  onObjectNameChanged(body: string): AccessibleAttachedBuilder;
 }

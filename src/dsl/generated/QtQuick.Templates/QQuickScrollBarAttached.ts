@@ -10,7 +10,7 @@ export interface ScrollBarAttachedBuilder {
   verticalBind(expr: string): ScrollBarAttachedBuilder;
   objectName(value: string): ScrollBarAttachedBuilder;
   objectNameBind(expr: string): ScrollBarAttachedBuilder;
-  onHorizontalChanged(handler: () => void): ScrollBarAttachedBuilder;
-  onVerticalChanged(handler: () => void): ScrollBarAttachedBuilder;
-  onObjectNameChanged(handler: (objectName: string) => void): ScrollBarAttachedBuilder;
+  onHorizontalChanged(body: string): ScrollBarAttachedBuilder;
+  onVerticalChanged(body: string): ScrollBarAttachedBuilder;
+  onObjectNameChanged(body: string): ScrollBarAttachedBuilder;
 }

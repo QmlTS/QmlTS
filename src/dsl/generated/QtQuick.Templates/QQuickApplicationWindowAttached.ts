@@ -5,11 +5,11 @@
 export interface ApplicationWindowAttachedBuilder {
   objectName(value: string): ApplicationWindowAttachedBuilder;
   objectNameBind(expr: string): ApplicationWindowAttachedBuilder;
-  onActiveFocusControlChanged(handler: () => void): ApplicationWindowAttachedBuilder;
-  onContentItemChanged(handler: () => void): ApplicationWindowAttachedBuilder;
-  onFooterChanged(handler: () => void): ApplicationWindowAttachedBuilder;
-  onHeaderChanged(handler: () => void): ApplicationWindowAttachedBuilder;
-  onMenuBarChanged(handler: () => void): ApplicationWindowAttachedBuilder;
-  onWindowChanged(handler: () => void): ApplicationWindowAttachedBuilder;
-  onObjectNameChanged(handler: (objectName: string) => void): ApplicationWindowAttachedBuilder;
+  onActiveFocusControlChanged(body: string): ApplicationWindowAttachedBuilder;
+  onContentItemChanged(body: string): ApplicationWindowAttachedBuilder;
+  onFooterChanged(body: string): ApplicationWindowAttachedBuilder;
+  onHeaderChanged(body: string): ApplicationWindowAttachedBuilder;
+  onMenuBarChanged(body: string): ApplicationWindowAttachedBuilder;
+  onWindowChanged(body: string): ApplicationWindowAttachedBuilder;
+  onObjectNameChanged(body: string): ApplicationWindowAttachedBuilder;
 }

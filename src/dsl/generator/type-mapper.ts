@@ -1,5 +1,5 @@
 import { QML_TYPE_MAP } from '../runtime/types.js';
-import type { AnalyzedRegistry, AnalyzedType, GeneratorDiagnostic } from './types.js';
+import type { AnalyzedRegistry, AnalyzedType, EnumIndex, GeneratorDiagnostic } from './types.js';
 
 /** Reference to a builder/instance type from another generated file */
 export interface PeerTypeRef {
@@ -16,6 +16,7 @@ export interface PeerTypeRef {
  */
 export class TypeMapper {
   private readonly analyzed: AnalyzedRegistry;
+  private readonly enumIndex: EnumIndex;
   private readonly runtimeImports = new Set<string>();
   private readonly peerTypeRefs = new Map<string, PeerTypeRef>();
   private readonly diagnostics: GeneratorDiagnostic[] = [];
@@ -23,6 +24,7 @@ export class TypeMapper {
 
   constructor(analyzed: AnalyzedRegistry) {
     this.analyzed = analyzed;
+    this.enumIndex = analyzed.enumIndex;
 
     // Build lookup by C++ qualified name and QML name
     for (const [qn, type] of analyzed.allTypes) {
@@ -65,8 +67,9 @@ export class TypeMapper {
     const colonIdx = qmlType.lastIndexOf('::');
     if (colonIdx >= 0) {
       const stripped = qmlType.slice(colonIdx + 2);
-      // This is likely an enum type, just return QmlValue
-      return this.mapType(stripped) || this.fallback(qmlType);
+      // Check if the stripped name is known
+      const strippedResult = this.tryMapKnownType(stripped);
+      if (strippedResult) return strippedResult;
     }
 
     // 6. Check grouped surfaces by qualified name
@@ -75,7 +78,13 @@ export class TypeMapper {
       return grouped.builderName;
     }
 
-    // 7. Fallback
+    // 7. Check enum index — resolved enums become QmlEnumToken
+    if (this.resolveEnum(qmlType)) {
+      this.runtimeImports.add('QmlEnumToken');
+      return 'QmlEnumToken';
+    }
+
+    // 8. Fallback
     return this.fallback(qmlType);
   }
 
@@ -160,6 +169,33 @@ export class TypeMapper {
     if (tsType.startsWith('Qml')) {
       this.runtimeImports.add(tsType);
     }
+  }
+
+  /** Try to map a type string using known static/analyzed/grouped paths (no fallback). */
+  private tryMapKnownType(name: string): string | undefined {
+    const staticMapping = QML_TYPE_MAP[name];
+    if (staticMapping) {
+      this.trackRuntimeImport(staticMapping);
+      return staticMapping;
+    }
+    const analyzed = this.typeNameToAnalyzed.get(name);
+    if (analyzed) return this.mapAnalyzedType(analyzed);
+    if (this.resolveEnum(name)) {
+      this.runtimeImports.add('QmlEnumToken');
+      return 'QmlEnumToken';
+    }
+    return undefined;
+  }
+
+  /** Check if a type reference resolves to a known enum in the index. */
+  private resolveEnum(typeRef: string): boolean {
+    if (this.enumIndex.has(typeRef)) return true;
+    if (typeRef.includes('::')) {
+      const parts = typeRef.split('::');
+      const enumPart = parts[parts.length - 1]!;
+      return this.enumIndex.has(enumPart);
+    }
+    return false;
   }
 
   private fallback(qmlType: string): string {

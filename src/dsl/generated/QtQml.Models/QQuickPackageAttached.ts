@@ -7,5 +7,5 @@ export interface PackageAttachedBuilder {
   nameBind(expr: string): PackageAttachedBuilder;
   objectName(value: string): PackageAttachedBuilder;
   objectNameBind(expr: string): PackageAttachedBuilder;
-  onObjectNameChanged(handler: (objectName: string) => void): PackageAttachedBuilder;
+  onObjectNameChanged(body: string): PackageAttachedBuilder;
 }

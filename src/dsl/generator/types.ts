@@ -24,6 +24,7 @@ export interface AnalyzedRegistry {
   readonly nameConflicts: NameConflict[];
   readonly groupedSurfaces: Map<string, GroupedSurface>;
   readonly attachedSurfaces: Map<string, AttachedSurface>;
+  readonly enumIndex: EnumIndex;
 }
 
 export interface AnalyzedModule {
@@ -136,6 +137,22 @@ export interface NameConflict {
   readonly qualifiedNames: string[];
 }
 
+// ─── Enum Index ─────────────────────────────────────────────────────────
+
+/** Resolution result for an enum type reference found on a property */
+export interface EnumResolution {
+  readonly ownerQualifiedName: string;
+  readonly ownerQmlName: string;
+  readonly enumName: string;
+  readonly moduleUri: string;
+  readonly ambiguous: boolean;
+}
+
+/** Map from enum type reference string → resolution.
+ *  Keys are plain enum names ("Status") and C++ qualified names ("Qt::FocusPolicy").
+ */
+export type EnumIndex = ReadonlyMap<string, EnumResolution>;
+
 // ─── Generator Config & Result ──────────────────────────────────────────
 
 export interface GeneratorConfig {
@@ -143,8 +160,6 @@ export interface GeneratorConfig {
   readonly outputDir: string;
   readonly moduleWhitelist?: string[];
   readonly runtimeImportPath?: string;
-  readonly formatOutput?: boolean;
-  readonly validateOutput?: boolean;
 }
 
 export interface GeneratedFile {

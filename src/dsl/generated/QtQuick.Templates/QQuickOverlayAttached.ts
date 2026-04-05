@@ -10,10 +10,10 @@ export interface OverlayAttachedBuilder {
   modelessBind(expr: string): OverlayAttachedBuilder;
   objectName(value: string): OverlayAttachedBuilder;
   objectNameBind(expr: string): OverlayAttachedBuilder;
-  onModalChanged(handler: () => void): OverlayAttachedBuilder;
-  onModelessChanged(handler: () => void): OverlayAttachedBuilder;
-  onOverlayChanged(handler: () => void): OverlayAttachedBuilder;
-  onPressed(handler: () => void): OverlayAttachedBuilder;
-  onReleased(handler: () => void): OverlayAttachedBuilder;
-  onObjectNameChanged(handler: (objectName: string) => void): OverlayAttachedBuilder;
+  onModalChanged(body: string): OverlayAttachedBuilder;
+  onModelessChanged(body: string): OverlayAttachedBuilder;
+  onOverlayChanged(body: string): OverlayAttachedBuilder;
+  onPressed(body: string): OverlayAttachedBuilder;
+  onReleased(body: string): OverlayAttachedBuilder;
+  onObjectNameChanged(body: string): OverlayAttachedBuilder;
 }
