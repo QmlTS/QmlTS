@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import { createEnumToken } from '../../runtime/index.js';
+import type { ComponentAttachedBuilder } from './QQmlComponentAttached.js';
 export interface EasingInstance {
   objectName: string;
 }
