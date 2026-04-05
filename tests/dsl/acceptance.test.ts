@@ -9,19 +9,24 @@
  */
 import { describe, expect, test } from 'bun:test';
 import { createDocument } from '../../src/ast/builder.js';
+import { Entity } from '../../src/dsl/generated/Qt3D.Core/Entity.js';
+import { ChartView } from '../../src/dsl/generated/QtCharts/ChartView.js';
+import { LineSeries } from '../../src/dsl/generated/QtCharts/LineSeries.js';
 import { Settings } from '../../src/dsl/generated/QtCore/Settings.js';
 import { MediaPlayer } from '../../src/dsl/generated/QtMultimedia/MediaPlayer.js';
+import { CoordinateAnimation } from '../../src/dsl/generated/QtPositioning/CoordinateAnimation.js';
 import { Connections } from '../../src/dsl/generated/QtQml/Connections.js';
 import { Timer } from '../../src/dsl/generated/QtQml/Timer.js';
 import { Column } from '../../src/dsl/generated/QtQuick/Column.js';
 import { Image } from '../../src/dsl/generated/QtQuick/Image.js';
 import { Item } from '../../src/dsl/generated/QtQuick/Item.js';
 import { MouseArea } from '../../src/dsl/generated/QtQuick/MouseArea.js';
-// Import generated DSL factories and namespaces
 import { Rectangle } from '../../src/dsl/generated/QtQuick/Rectangle.js';
 import { Repeater } from '../../src/dsl/generated/QtQuick/Repeater.js';
 import { Row } from '../../src/dsl/generated/QtQuick/Row.js';
 import { Text } from '../../src/dsl/generated/QtQuick/Text.js';
+import { FileDialog } from '../../src/dsl/generated/QtQuick.Dialogs/FileDialog.js';
+import { MultiEffect } from '../../src/dsl/generated/QtQuick.Effects/MultiEffect.js';
 import { ColumnLayout } from '../../src/dsl/generated/QtQuick.Layouts/ColumnLayout.js';
 import { RowLayout } from '../../src/dsl/generated/QtQuick.Layouts/RowLayout.js';
 import { StackLayout } from '../../src/dsl/generated/QtQuick.Layouts/StackLayout.js';
@@ -31,6 +36,12 @@ import { Button } from '../../src/dsl/generated/QtQuick.Templates/Button.js';
 import { Label } from '../../src/dsl/generated/QtQuick.Templates/Label.js';
 import { Slider } from '../../src/dsl/generated/QtQuick.Templates/Slider.js';
 import { TextField } from '../../src/dsl/generated/QtQuick.Templates/TextField.js';
+import { Timeline } from '../../src/dsl/generated/QtQuick.Timeline/Timeline.js';
+import { KeyboardObserver } from '../../src/dsl/generated/QtQuick.VirtualKeyboard.Core/KeyboardObserver.js';
+import { View3D } from '../../src/dsl/generated/QtQuick3D/View3D.js';
+import { StateMachineLoader } from '../../src/dsl/generated/QtScxml/StateMachineLoader.js';
+import { Accelerometer } from '../../src/dsl/generated/QtSensors/Accelerometer.js';
+import { WebEngineView } from '../../src/dsl/generated/QtWebEngine/WebEngineView.js';
 import type { QmlColor } from '../../src/dsl/runtime/types.js';
 import { emit } from '../../src/emitter/emitter.js';
 
@@ -585,5 +596,173 @@ describe('Acceptance: Non-P0 Long-Tail Modules', () => {
     expect(qml).toContain('MediaPlayer {');
     expect(qml).toContain('Button {');
     expect(qml).toContain('Slider {');
+  });
+});
+
+describe('Acceptance: Extended Module Coverage', () => {
+  test('ACC-30: QtCharts — ChartView with LineSeries child', () => {
+    const chart = ChartView()
+      .id('chart')
+      .animationDuration(500)
+      .child(LineSeries().name('Temperature'));
+
+    const doc = createDocument().importModule('QtCharts').root(chart);
+    const qml = emit(doc);
+
+    expect(qml).toContain('ChartView {');
+    expect(qml).toContain('animationDuration: 500');
+    expect(qml).toContain('LineSeries {');
+    expect(qml).toContain('name: "Temperature"');
+  });
+
+  test('ACC-31: Qt3D.Core — Entity with enabled property', () => {
+    const entity = Entity().id('rootEntity').enabled(true);
+
+    const doc = createDocument().importModule('Qt3D.Core').root(entity);
+    const qml = emit(doc);
+
+    expect(qml).toContain('Entity {');
+    expect(qml).toContain('id: rootEntity');
+    expect(qml).toContain('enabled: true');
+  });
+
+  test('ACC-32: QtQuick3D — View3D with dimensions', () => {
+    const view = View3D().id('viewport').width(800).height(600);
+
+    const doc = createDocument().importModule('QtQuick3D').root(view);
+    const qml = emit(doc);
+
+    expect(qml).toContain('View3D {');
+    expect(qml).toContain('id: viewport');
+    expect(qml).toContain('width: 800');
+    expect(qml).toContain('height: 600');
+  });
+
+  test('ACC-33: QtQuick.Dialogs — FileDialog with title and accept label', () => {
+    const dialog = FileDialog().id('openDialog').title('Open File').acceptLabel('Open');
+
+    const doc = createDocument().importModule('QtQuick.Dialogs').root(dialog);
+    const qml = emit(doc);
+
+    expect(qml).toContain('FileDialog {');
+    expect(qml).toContain('title: "Open File"');
+    expect(qml).toContain('acceptLabel: "Open"');
+  });
+
+  test('ACC-34: QtSensors — Accelerometer with active state', () => {
+    const sensor = Accelerometer().id('accel').active(true);
+
+    const doc = createDocument().importModule('QtSensors').root(sensor);
+    const qml = emit(doc);
+
+    expect(qml).toContain('Accelerometer {');
+    expect(qml).toContain('active: true');
+  });
+
+  test('ACC-35: QtWebEngine — WebEngineView with url binding', () => {
+    const webView = WebEngineView().id('browser').urlBind('"https://qt.io"');
+
+    const doc = createDocument().importModule('QtWebEngine').root(webView);
+    const qml = emit(doc);
+
+    expect(qml).toContain('WebEngineView {');
+    expect(qml).toContain('url: "https://qt.io"');
+  });
+
+  test('ACC-36: QtQuick.Timeline — Timeline with frame range', () => {
+    const tl = Timeline().id('timeline').startFrame(0).endFrame(1000).enabled(true);
+
+    const doc = createDocument().importModule('QtQuick.Timeline').root(tl);
+    const qml = emit(doc);
+
+    expect(qml).toContain('Timeline {');
+    expect(qml).toContain('startFrame: 0');
+    expect(qml).toContain('endFrame: 1000');
+    expect(qml).toContain('enabled: true');
+  });
+
+  test('ACC-37: QtScxml — StateMachineLoader with source', () => {
+    const loader = StateMachineLoader().source('qrc:/statemachine.scxml');
+
+    const doc = createDocument().importModule('QtScxml').root(loader);
+    const qml = emit(doc);
+
+    expect(qml).toContain('StateMachineLoader {');
+    expect(qml).toContain('source: "qrc:/statemachine.scxml"');
+  });
+
+  test('ACC-38: QtQuick.VirtualKeyboard — KeyboardObserver with signal and attached type', () => {
+    const observer = KeyboardObserver()
+      .id('kbObserver')
+      .onLayoutChanged('console.log("layout changed")');
+
+    const doc = createDocument().importModule('QtQuick.VirtualKeyboard.Core').root(observer);
+    const qml = emit(doc);
+
+    expect(qml).toContain('KeyboardObserver {');
+    expect(qml).toContain('onLayoutChanged:');
+  });
+
+  test('ACC-39: QtQuick.Effects — MultiEffect with blur', () => {
+    const effect = MultiEffect().blurEnabled(true).blur(0.5);
+
+    const doc = createDocument().importModule('QtQuick.Effects').root(effect);
+    const qml = emit(doc);
+
+    expect(qml).toContain('MultiEffect {');
+    expect(qml).toContain('blurEnabled: true');
+    expect(qml).toContain('blur: 0.5');
+  });
+
+  test('ACC-40: QtPositioning — CoordinateAnimation with basic properties', () => {
+    const anim = CoordinateAnimation().duration(2000).running(true);
+
+    const doc = createDocument().importModule('QtPositioning').root(anim);
+    const qml = emit(doc);
+
+    expect(qml).toContain('CoordinateAnimation {');
+    expect(qml).toContain('duration: 2000');
+    expect(qml).toContain('running: true');
+  });
+
+  test('ACC-41: Complex scene — Qt3D Entity tree', () => {
+    const scene = Entity()
+      .id('sceneRoot')
+      .child(Entity().id('cameraEntity').enabled(true))
+      .child(Entity().id('lightEntity').enabled(true));
+
+    const doc = createDocument().importModule('Qt3D.Core').root(scene);
+    const qml = emit(doc);
+
+    expect(qml).toContain('Entity {');
+    expect(qml).toContain('id: sceneRoot');
+    expect(qml).toContain('id: cameraEntity');
+    expect(qml).toContain('id: lightEntity');
+  });
+
+  test('ACC-42: Complex scene — dashboard mixing charts, 3D, and dialogs', () => {
+    const dashboard = Item()
+      .id('dashboard')
+      .width(1200)
+      .height(800)
+      .child(
+        Row()
+          .spacing(10)
+          .child(ChartView().id('performanceChart').animationDuration(300))
+          .child(View3D().id('preview3d').width(400).height(400)),
+      );
+
+    const doc = createDocument()
+      .importModule('QtQuick')
+      .importModule('QtCharts')
+      .importModule('QtQuick3D')
+      .root(dashboard);
+    const qml = emit(doc);
+
+    expect(qml).toContain('Item {');
+    expect(qml).toContain('ChartView {');
+    expect(qml).toContain('View3D {');
+    expect(qml).toContain('id: performanceChart');
+    expect(qml).toContain('id: preview3d');
   });
 });
