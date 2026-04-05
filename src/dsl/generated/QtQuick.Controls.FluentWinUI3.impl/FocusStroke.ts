@@ -2,8 +2,14 @@
 // Type: FocusStroke
 // Generated from Qt 6.11.0
 
+import type {
+  QmlColor,
+  QmlEnumToken,
+  QmlObjectBuilder,
+  QmlSize,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
-import type { QmlColor, QmlEnumToken, QmlObjectBuilder, QmlSize, TypeMetadata } from '../../runtime/index.js';
 import type { QtObjectBuilder } from '../QML/QtObject.js';
 import type { ItemBuilder } from '../QtQuick/Item.js';
 import type { PaletteBuilder } from '../QtQuick/Palette.js';
@@ -235,8 +241,7 @@ const FOCUSSTROKE_META: TypeMetadata = {
       ],
     },
   ],
-  attached: [
-  ],
+  attached: [],
 };
 
 export function FocusStroke(): FocusStrokeBuilder {
@@ -245,36 +250,108 @@ export function FocusStroke(): FocusStrokeBuilder {
 
 export namespace FocusStroke {
   export namespace Flags {
-    export const ItemClipsChildrenToShape = createEnumToken('FocusStroke', 'Flags', 'ItemClipsChildrenToShape');
-    export const ItemAcceptsInputMethod = createEnumToken('FocusStroke', 'Flags', 'ItemAcceptsInputMethod');
+    export const ItemClipsChildrenToShape = createEnumToken(
+      'FocusStroke',
+      'Flags',
+      'ItemClipsChildrenToShape',
+    );
+    export const ItemAcceptsInputMethod = createEnumToken(
+      'FocusStroke',
+      'Flags',
+      'ItemAcceptsInputMethod',
+    );
     export const ItemIsFocusScope = createEnumToken('FocusStroke', 'Flags', 'ItemIsFocusScope');
     export const ItemHasContents = createEnumToken('FocusStroke', 'Flags', 'ItemHasContents');
     export const ItemAcceptsDrops = createEnumToken('FocusStroke', 'Flags', 'ItemAcceptsDrops');
     export const ItemIsViewport = createEnumToken('FocusStroke', 'Flags', 'ItemIsViewport');
-    export const ItemObservesViewport = createEnumToken('FocusStroke', 'Flags', 'ItemObservesViewport');
+    export const ItemObservesViewport = createEnumToken(
+      'FocusStroke',
+      'Flags',
+      'ItemObservesViewport',
+    );
   }
   export namespace ItemChange {
-    export const ItemChildAddedChange = createEnumToken('FocusStroke', 'ItemChange', 'ItemChildAddedChange');
-    export const ItemChildRemovedChange = createEnumToken('FocusStroke', 'ItemChange', 'ItemChildRemovedChange');
+    export const ItemChildAddedChange = createEnumToken(
+      'FocusStroke',
+      'ItemChange',
+      'ItemChildAddedChange',
+    );
+    export const ItemChildRemovedChange = createEnumToken(
+      'FocusStroke',
+      'ItemChange',
+      'ItemChildRemovedChange',
+    );
     export const ItemSceneChange = createEnumToken('FocusStroke', 'ItemChange', 'ItemSceneChange');
-    export const ItemVisibleHasChanged = createEnumToken('FocusStroke', 'ItemChange', 'ItemVisibleHasChanged');
-    export const ItemParentHasChanged = createEnumToken('FocusStroke', 'ItemChange', 'ItemParentHasChanged');
-    export const ItemOpacityHasChanged = createEnumToken('FocusStroke', 'ItemChange', 'ItemOpacityHasChanged');
-    export const ItemActiveFocusHasChanged = createEnumToken('FocusStroke', 'ItemChange', 'ItemActiveFocusHasChanged');
-    export const ItemRotationHasChanged = createEnumToken('FocusStroke', 'ItemChange', 'ItemRotationHasChanged');
-    export const ItemAntialiasingHasChanged = createEnumToken('FocusStroke', 'ItemChange', 'ItemAntialiasingHasChanged');
-    export const ItemDevicePixelRatioHasChanged = createEnumToken('FocusStroke', 'ItemChange', 'ItemDevicePixelRatioHasChanged');
-    export const ItemEnabledHasChanged = createEnumToken('FocusStroke', 'ItemChange', 'ItemEnabledHasChanged');
-    export const ItemScaleHasChanged = createEnumToken('FocusStroke', 'ItemChange', 'ItemScaleHasChanged');
-    export const ItemTransformHasChanged = createEnumToken('FocusStroke', 'ItemChange', 'ItemTransformHasChanged');
+    export const ItemVisibleHasChanged = createEnumToken(
+      'FocusStroke',
+      'ItemChange',
+      'ItemVisibleHasChanged',
+    );
+    export const ItemParentHasChanged = createEnumToken(
+      'FocusStroke',
+      'ItemChange',
+      'ItemParentHasChanged',
+    );
+    export const ItemOpacityHasChanged = createEnumToken(
+      'FocusStroke',
+      'ItemChange',
+      'ItemOpacityHasChanged',
+    );
+    export const ItemActiveFocusHasChanged = createEnumToken(
+      'FocusStroke',
+      'ItemChange',
+      'ItemActiveFocusHasChanged',
+    );
+    export const ItemRotationHasChanged = createEnumToken(
+      'FocusStroke',
+      'ItemChange',
+      'ItemRotationHasChanged',
+    );
+    export const ItemAntialiasingHasChanged = createEnumToken(
+      'FocusStroke',
+      'ItemChange',
+      'ItemAntialiasingHasChanged',
+    );
+    export const ItemDevicePixelRatioHasChanged = createEnumToken(
+      'FocusStroke',
+      'ItemChange',
+      'ItemDevicePixelRatioHasChanged',
+    );
+    export const ItemEnabledHasChanged = createEnumToken(
+      'FocusStroke',
+      'ItemChange',
+      'ItemEnabledHasChanged',
+    );
+    export const ItemScaleHasChanged = createEnumToken(
+      'FocusStroke',
+      'ItemChange',
+      'ItemScaleHasChanged',
+    );
+    export const ItemTransformHasChanged = createEnumToken(
+      'FocusStroke',
+      'ItemChange',
+      'ItemTransformHasChanged',
+    );
   }
   export namespace PerformanceHints {
-    export const FastFBOResizing = createEnumToken('FocusStroke', 'PerformanceHints', 'FastFBOResizing');
+    export const FastFBOResizing = createEnumToken(
+      'FocusStroke',
+      'PerformanceHints',
+      'FastFBOResizing',
+    );
   }
   export namespace RenderTarget {
     export const Image = createEnumToken('FocusStroke', 'RenderTarget', 'Image');
-    export const FramebufferObject = createEnumToken('FocusStroke', 'RenderTarget', 'FramebufferObject');
-    export const InvertedYFramebufferObject = createEnumToken('FocusStroke', 'RenderTarget', 'InvertedYFramebufferObject');
+    export const FramebufferObject = createEnumToken(
+      'FocusStroke',
+      'RenderTarget',
+      'FramebufferObject',
+    );
+    export const InvertedYFramebufferObject = createEnumToken(
+      'FocusStroke',
+      'RenderTarget',
+      'InvertedYFramebufferObject',
+    );
   }
   export namespace TransformOrigin {
     export const TopLeft = createEnumToken('FocusStroke', 'TransformOrigin', 'TopLeft');

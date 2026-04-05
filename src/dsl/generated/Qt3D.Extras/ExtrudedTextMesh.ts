@@ -2,8 +2,15 @@
 // Type: ExtrudedTextMesh
 // Generated from Qt 6.11.0
 
+import type {
+  QmlEnumToken,
+  QmlFont,
+  QmlObjectBuilder,
+  QmlValue,
+  QmlVector3d,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
-import type { QmlEnumToken, QmlFont, QmlObjectBuilder, QmlValue, QmlVector3d, TypeMetadata } from '../../runtime/index.js';
 import type { GeometryBuilder } from '../Qt3D.Core/Geometry.js';
 import type { GeometryViewBuilder } from '../Qt3D.Core/GeometryView.js';
 export interface ExtrudedTextMeshBuilder {
@@ -140,14 +147,15 @@ const EXTRUDEDTEXTMESH_META: TypeMetadata = {
     { handlerName: 'onVerticesPerPatchChanged', paramCount: 1 },
     { handlerName: 'onViewChanged', paramCount: 1 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function ExtrudedTextMesh(): ExtrudedTextMeshBuilder {
-  return createFluentBuilder('ExtrudedTextMesh', EXTRUDEDTEXTMESH_META) as unknown as ExtrudedTextMeshBuilder;
+  return createFluentBuilder(
+    'ExtrudedTextMesh',
+    EXTRUDEDTEXTMESH_META,
+  ) as unknown as ExtrudedTextMeshBuilder;
 }
 
 export namespace ExtrudedTextMesh {
@@ -157,12 +165,32 @@ export namespace ExtrudedTextMesh {
     export const LineLoop = createEnumToken('ExtrudedTextMesh', 'PrimitiveType', 'LineLoop');
     export const LineStrip = createEnumToken('ExtrudedTextMesh', 'PrimitiveType', 'LineStrip');
     export const Triangles = createEnumToken('ExtrudedTextMesh', 'PrimitiveType', 'Triangles');
-    export const TriangleStrip = createEnumToken('ExtrudedTextMesh', 'PrimitiveType', 'TriangleStrip');
+    export const TriangleStrip = createEnumToken(
+      'ExtrudedTextMesh',
+      'PrimitiveType',
+      'TriangleStrip',
+    );
     export const TriangleFan = createEnumToken('ExtrudedTextMesh', 'PrimitiveType', 'TriangleFan');
-    export const LinesAdjacency = createEnumToken('ExtrudedTextMesh', 'PrimitiveType', 'LinesAdjacency');
-    export const TrianglesAdjacency = createEnumToken('ExtrudedTextMesh', 'PrimitiveType', 'TrianglesAdjacency');
-    export const LineStripAdjacency = createEnumToken('ExtrudedTextMesh', 'PrimitiveType', 'LineStripAdjacency');
-    export const TriangleStripAdjacency = createEnumToken('ExtrudedTextMesh', 'PrimitiveType', 'TriangleStripAdjacency');
+    export const LinesAdjacency = createEnumToken(
+      'ExtrudedTextMesh',
+      'PrimitiveType',
+      'LinesAdjacency',
+    );
+    export const TrianglesAdjacency = createEnumToken(
+      'ExtrudedTextMesh',
+      'PrimitiveType',
+      'TrianglesAdjacency',
+    );
+    export const LineStripAdjacency = createEnumToken(
+      'ExtrudedTextMesh',
+      'PrimitiveType',
+      'LineStripAdjacency',
+    );
+    export const TriangleStripAdjacency = createEnumToken(
+      'ExtrudedTextMesh',
+      'PrimitiveType',
+      'TriangleStripAdjacency',
+    );
     export const Patches = createEnumToken('ExtrudedTextMesh', 'PrimitiveType', 'Patches');
   }
 }

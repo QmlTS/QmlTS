@@ -2,8 +2,13 @@
 // Type: BlendEquationArguments
 // Generated from Qt 6.11.0
 
+import type {
+  QmlEnumToken,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
-import type { QmlEnumToken, QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
 export interface BlendEquationArgumentsBuilder {
   id(id: string): BlendEquationArgumentsBuilder;
   child(obj: QmlObjectBuilder): BlendEquationArgumentsBuilder;
@@ -62,14 +67,15 @@ const BLENDEQUATIONARGUMENTS_META: TypeMetadata = {
     { handlerName: 'onSourceRgbChanged', paramCount: 1 },
     { handlerName: 'onSourceRgbaChanged', paramCount: 1 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function BlendEquationArguments(): BlendEquationArgumentsBuilder {
-  return createFluentBuilder('BlendEquationArguments', BLENDEQUATIONARGUMENTS_META) as unknown as BlendEquationArgumentsBuilder;
+  return createFluentBuilder(
+    'BlendEquationArguments',
+    BLENDEQUATIONARGUMENTS_META,
+  ) as unknown as BlendEquationArgumentsBuilder;
 }
 
 export namespace BlendEquationArguments {
@@ -78,21 +84,85 @@ export namespace BlendEquationArguments {
     export const One = createEnumToken('BlendEquationArguments', 'Blending', 'One');
     export const SourceColor = createEnumToken('BlendEquationArguments', 'Blending', 'SourceColor');
     export const SourceAlpha = createEnumToken('BlendEquationArguments', 'Blending', 'SourceAlpha');
-    export const Source1Alpha = createEnumToken('BlendEquationArguments', 'Blending', 'Source1Alpha');
-    export const Source1Color = createEnumToken('BlendEquationArguments', 'Blending', 'Source1Color');
-    export const DestinationColor = createEnumToken('BlendEquationArguments', 'Blending', 'DestinationColor');
-    export const DestinationAlpha = createEnumToken('BlendEquationArguments', 'Blending', 'DestinationAlpha');
-    export const SourceAlphaSaturate = createEnumToken('BlendEquationArguments', 'Blending', 'SourceAlphaSaturate');
-    export const ConstantColor = createEnumToken('BlendEquationArguments', 'Blending', 'ConstantColor');
-    export const ConstantAlpha = createEnumToken('BlendEquationArguments', 'Blending', 'ConstantAlpha');
-    export const OneMinusSourceColor = createEnumToken('BlendEquationArguments', 'Blending', 'OneMinusSourceColor');
-    export const OneMinusSourceAlpha = createEnumToken('BlendEquationArguments', 'Blending', 'OneMinusSourceAlpha');
-    export const OneMinusDestinationAlpha = createEnumToken('BlendEquationArguments', 'Blending', 'OneMinusDestinationAlpha');
-    export const OneMinusDestinationColor = createEnumToken('BlendEquationArguments', 'Blending', 'OneMinusDestinationColor');
-    export const OneMinusConstantColor = createEnumToken('BlendEquationArguments', 'Blending', 'OneMinusConstantColor');
-    export const OneMinusConstantAlpha = createEnumToken('BlendEquationArguments', 'Blending', 'OneMinusConstantAlpha');
-    export const OneMinusSource1Alpha = createEnumToken('BlendEquationArguments', 'Blending', 'OneMinusSource1Alpha');
-    export const OneMinusSource1Color = createEnumToken('BlendEquationArguments', 'Blending', 'OneMinusSource1Color');
-    export const OneMinusSource1Color0 = createEnumToken('BlendEquationArguments', 'Blending', 'OneMinusSource1Color0');
+    export const Source1Alpha = createEnumToken(
+      'BlendEquationArguments',
+      'Blending',
+      'Source1Alpha',
+    );
+    export const Source1Color = createEnumToken(
+      'BlendEquationArguments',
+      'Blending',
+      'Source1Color',
+    );
+    export const DestinationColor = createEnumToken(
+      'BlendEquationArguments',
+      'Blending',
+      'DestinationColor',
+    );
+    export const DestinationAlpha = createEnumToken(
+      'BlendEquationArguments',
+      'Blending',
+      'DestinationAlpha',
+    );
+    export const SourceAlphaSaturate = createEnumToken(
+      'BlendEquationArguments',
+      'Blending',
+      'SourceAlphaSaturate',
+    );
+    export const ConstantColor = createEnumToken(
+      'BlendEquationArguments',
+      'Blending',
+      'ConstantColor',
+    );
+    export const ConstantAlpha = createEnumToken(
+      'BlendEquationArguments',
+      'Blending',
+      'ConstantAlpha',
+    );
+    export const OneMinusSourceColor = createEnumToken(
+      'BlendEquationArguments',
+      'Blending',
+      'OneMinusSourceColor',
+    );
+    export const OneMinusSourceAlpha = createEnumToken(
+      'BlendEquationArguments',
+      'Blending',
+      'OneMinusSourceAlpha',
+    );
+    export const OneMinusDestinationAlpha = createEnumToken(
+      'BlendEquationArguments',
+      'Blending',
+      'OneMinusDestinationAlpha',
+    );
+    export const OneMinusDestinationColor = createEnumToken(
+      'BlendEquationArguments',
+      'Blending',
+      'OneMinusDestinationColor',
+    );
+    export const OneMinusConstantColor = createEnumToken(
+      'BlendEquationArguments',
+      'Blending',
+      'OneMinusConstantColor',
+    );
+    export const OneMinusConstantAlpha = createEnumToken(
+      'BlendEquationArguments',
+      'Blending',
+      'OneMinusConstantAlpha',
+    );
+    export const OneMinusSource1Alpha = createEnumToken(
+      'BlendEquationArguments',
+      'Blending',
+      'OneMinusSource1Alpha',
+    );
+    export const OneMinusSource1Color = createEnumToken(
+      'BlendEquationArguments',
+      'Blending',
+      'OneMinusSource1Color',
+    );
+    export const OneMinusSource1Color0 = createEnumToken(
+      'BlendEquationArguments',
+      'Blending',
+      'OneMinusSource1Color0',
+    );
   }
 }

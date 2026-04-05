@@ -2,8 +2,8 @@
 // Type: QtObject
 // Generated from Qt 6.11.0
 
-import { createFluentBuilder } from '../../runtime/index.js';
 import type { QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import { createFluentBuilder } from '../../runtime/index.js';
 import type { ComponentAttachedBuilder } from './QQmlComponentAttached.js';
 export interface QtObjectBuilder {
   id(id: string): QtObjectBuilder;
@@ -17,21 +17,14 @@ export interface QtObjectBuilder {
 
 const QTOBJECT_META: TypeMetadata = {
   typeName: 'QtObject',
-  properties: [
-    { name: 'objectName', hasValue: true, hasBinding: true },
-  ],
-  signals: [
-    { handlerName: 'onObjectNameChanged', paramCount: 1 },
-  ],
-  grouped: [
-  ],
+  properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
+  signals: [{ handlerName: 'onObjectNameChanged', paramCount: 1 }],
+  grouped: [],
   attached: [
     {
       methodName: 'component',
       attachedTypeName: 'Component',
-      properties: [
-        { name: 'objectName', hasValue: true, hasBinding: true },
-      ],
+      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
       signals: [
         { handlerName: 'onCompleted', paramCount: 0 },
         { handlerName: 'onDestruction', paramCount: 0 },

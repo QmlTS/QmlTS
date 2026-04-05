@@ -2,8 +2,8 @@
 // Type: RectangleShape
 // Generated from Qt 6.11.0
 
-import { createFluentBuilder } from '../../runtime/index.js';
 import type { QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import { createFluentBuilder } from '../../runtime/index.js';
 import type { ItemParticleAttachedBuilder } from './QQuickItemParticleAttached.js';
 export interface RectangleShapeBuilder {
   id(id: string): RectangleShapeBuilder;
@@ -28,15 +28,12 @@ const RECTANGLESHAPE_META: TypeMetadata = {
     { handlerName: 'onFillChanged', paramCount: 1 },
     { handlerName: 'onObjectNameChanged', paramCount: 1 },
   ],
-  grouped: [
-  ],
+  grouped: [],
   attached: [
     {
       methodName: 'itemParticle',
       attachedTypeName: 'ItemParticle',
-      properties: [
-        { name: 'objectName', hasValue: true, hasBinding: true },
-      ],
+      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
       signals: [
         { handlerName: 'onAttached', paramCount: 0 },
         { handlerName: 'onDetached', paramCount: 0 },
@@ -47,5 +44,8 @@ const RECTANGLESHAPE_META: TypeMetadata = {
 };
 
 export function RectangleShape(): RectangleShapeBuilder {
-  return createFluentBuilder('RectangleShape', RECTANGLESHAPE_META) as unknown as RectangleShapeBuilder;
+  return createFluentBuilder(
+    'RectangleShape',
+    RECTANGLESHAPE_META,
+  ) as unknown as RectangleShapeBuilder;
 }

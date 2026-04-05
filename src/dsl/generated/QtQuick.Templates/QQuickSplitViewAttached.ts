@@ -2,7 +2,6 @@
 // Type: Attached type: SplitView
 // Generated from Qt 6.11.0
 
-
 export interface SplitViewAttachedBuilder {
   fillHeight(value: boolean): SplitViewAttachedBuilder;
   fillHeightBind(expr: string): SplitViewAttachedBuilder;

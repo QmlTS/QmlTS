@@ -2,8 +2,13 @@
 // Type: FrontFace
 // Generated from Qt 6.11.0
 
+import type {
+  QmlEnumToken,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
-import type { QmlEnumToken, QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
 export interface FrontFaceBuilder {
   id(id: string): FrontFaceBuilder;
   child(obj: QmlObjectBuilder): FrontFaceBuilder;
@@ -38,10 +43,8 @@ const FRONTFACE_META: TypeMetadata = {
     { handlerName: 'onObjectNameChanged', paramCount: 1 },
     { handlerName: 'onParentChanged', paramCount: 1 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function FrontFace(): FrontFaceBuilder {
@@ -51,6 +54,10 @@ export function FrontFace(): FrontFaceBuilder {
 export namespace FrontFace {
   export namespace WindingDirection {
     export const ClockWise = createEnumToken('FrontFace', 'WindingDirection', 'ClockWise');
-    export const CounterClockWise = createEnumToken('FrontFace', 'WindingDirection', 'CounterClockWise');
+    export const CounterClockWise = createEnumToken(
+      'FrontFace',
+      'WindingDirection',
+      'CounterClockWise',
+    );
   }
 }

@@ -2,8 +2,8 @@
 // Type: LayerItem
 // Generated from Qt 6.11.0
 
-import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { QmlEnumToken, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { QtObjectBuilder } from '../QML/QtObject.js';
 import type { ItemBuilder } from '../QtQuick/Item.js';
 import type { PaletteBuilder } from '../QtQuick/Palette.js';
@@ -206,8 +206,7 @@ const LAYERITEM_META: TypeMetadata = {
       ],
     },
   ],
-  attached: [
-  ],
+  attached: [],
   defaultProperty: 'data',
 };
 
@@ -217,28 +216,88 @@ export function LayerItem(): LayerItemBuilder {
 
 export namespace LayerItem {
   export namespace Flags {
-    export const ItemClipsChildrenToShape = createEnumToken('LayerItem', 'Flags', 'ItemClipsChildrenToShape');
-    export const ItemAcceptsInputMethod = createEnumToken('LayerItem', 'Flags', 'ItemAcceptsInputMethod');
+    export const ItemClipsChildrenToShape = createEnumToken(
+      'LayerItem',
+      'Flags',
+      'ItemClipsChildrenToShape',
+    );
+    export const ItemAcceptsInputMethod = createEnumToken(
+      'LayerItem',
+      'Flags',
+      'ItemAcceptsInputMethod',
+    );
     export const ItemIsFocusScope = createEnumToken('LayerItem', 'Flags', 'ItemIsFocusScope');
     export const ItemHasContents = createEnumToken('LayerItem', 'Flags', 'ItemHasContents');
     export const ItemAcceptsDrops = createEnumToken('LayerItem', 'Flags', 'ItemAcceptsDrops');
     export const ItemIsViewport = createEnumToken('LayerItem', 'Flags', 'ItemIsViewport');
-    export const ItemObservesViewport = createEnumToken('LayerItem', 'Flags', 'ItemObservesViewport');
+    export const ItemObservesViewport = createEnumToken(
+      'LayerItem',
+      'Flags',
+      'ItemObservesViewport',
+    );
   }
   export namespace ItemChange {
-    export const ItemChildAddedChange = createEnumToken('LayerItem', 'ItemChange', 'ItemChildAddedChange');
-    export const ItemChildRemovedChange = createEnumToken('LayerItem', 'ItemChange', 'ItemChildRemovedChange');
+    export const ItemChildAddedChange = createEnumToken(
+      'LayerItem',
+      'ItemChange',
+      'ItemChildAddedChange',
+    );
+    export const ItemChildRemovedChange = createEnumToken(
+      'LayerItem',
+      'ItemChange',
+      'ItemChildRemovedChange',
+    );
     export const ItemSceneChange = createEnumToken('LayerItem', 'ItemChange', 'ItemSceneChange');
-    export const ItemVisibleHasChanged = createEnumToken('LayerItem', 'ItemChange', 'ItemVisibleHasChanged');
-    export const ItemParentHasChanged = createEnumToken('LayerItem', 'ItemChange', 'ItemParentHasChanged');
-    export const ItemOpacityHasChanged = createEnumToken('LayerItem', 'ItemChange', 'ItemOpacityHasChanged');
-    export const ItemActiveFocusHasChanged = createEnumToken('LayerItem', 'ItemChange', 'ItemActiveFocusHasChanged');
-    export const ItemRotationHasChanged = createEnumToken('LayerItem', 'ItemChange', 'ItemRotationHasChanged');
-    export const ItemAntialiasingHasChanged = createEnumToken('LayerItem', 'ItemChange', 'ItemAntialiasingHasChanged');
-    export const ItemDevicePixelRatioHasChanged = createEnumToken('LayerItem', 'ItemChange', 'ItemDevicePixelRatioHasChanged');
-    export const ItemEnabledHasChanged = createEnumToken('LayerItem', 'ItemChange', 'ItemEnabledHasChanged');
-    export const ItemScaleHasChanged = createEnumToken('LayerItem', 'ItemChange', 'ItemScaleHasChanged');
-    export const ItemTransformHasChanged = createEnumToken('LayerItem', 'ItemChange', 'ItemTransformHasChanged');
+    export const ItemVisibleHasChanged = createEnumToken(
+      'LayerItem',
+      'ItemChange',
+      'ItemVisibleHasChanged',
+    );
+    export const ItemParentHasChanged = createEnumToken(
+      'LayerItem',
+      'ItemChange',
+      'ItemParentHasChanged',
+    );
+    export const ItemOpacityHasChanged = createEnumToken(
+      'LayerItem',
+      'ItemChange',
+      'ItemOpacityHasChanged',
+    );
+    export const ItemActiveFocusHasChanged = createEnumToken(
+      'LayerItem',
+      'ItemChange',
+      'ItemActiveFocusHasChanged',
+    );
+    export const ItemRotationHasChanged = createEnumToken(
+      'LayerItem',
+      'ItemChange',
+      'ItemRotationHasChanged',
+    );
+    export const ItemAntialiasingHasChanged = createEnumToken(
+      'LayerItem',
+      'ItemChange',
+      'ItemAntialiasingHasChanged',
+    );
+    export const ItemDevicePixelRatioHasChanged = createEnumToken(
+      'LayerItem',
+      'ItemChange',
+      'ItemDevicePixelRatioHasChanged',
+    );
+    export const ItemEnabledHasChanged = createEnumToken(
+      'LayerItem',
+      'ItemChange',
+      'ItemEnabledHasChanged',
+    );
+    export const ItemScaleHasChanged = createEnumToken(
+      'LayerItem',
+      'ItemChange',
+      'ItemScaleHasChanged',
+    );
+    export const ItemTransformHasChanged = createEnumToken(
+      'LayerItem',
+      'ItemChange',
+      'ItemTransformHasChanged',
+    );
   }
   export namespace TransformOrigin {
     export const TopLeft = createEnumToken('LayerItem', 'TransformOrigin', 'TopLeft');

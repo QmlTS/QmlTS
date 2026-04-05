@@ -2,8 +2,13 @@
 // Type: AlphaTest
 // Generated from Qt 6.11.0
 
+import type {
+  QmlEnumToken,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
-import type { QmlEnumToken, QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
 export interface AlphaTestBuilder {
   id(id: string): AlphaTestBuilder;
   child(obj: QmlObjectBuilder): AlphaTestBuilder;
@@ -43,10 +48,8 @@ const ALPHATEST_META: TypeMetadata = {
     { handlerName: 'onParentChanged', paramCount: 1 },
     { handlerName: 'onReferenceValueChanged', paramCount: 1 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function AlphaTest(): AlphaTestBuilder {

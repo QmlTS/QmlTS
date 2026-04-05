@@ -2,8 +2,15 @@
 // Type: PlaceholderText
 // Generated from Qt 6.11.0
 
+import type {
+  QmlColor,
+  QmlEnumToken,
+  QmlFont,
+  QmlObjectBuilder,
+  QmlUrl,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
-import type { QmlColor, QmlEnumToken, QmlFont, QmlObjectBuilder, QmlUrl, TypeMetadata } from '../../runtime/index.js';
 import type { QtObjectBuilder } from '../QML/QtObject.js';
 import type { ItemBuilder } from '../QtQuick/Item.js';
 import type { PaletteBuilder } from '../QtQuick/Palette.js';
@@ -343,27 +350,45 @@ const PLACEHOLDERTEXT_META: TypeMetadata = {
       ],
     },
   ],
-  attached: [
-  ],
+  attached: [],
 };
 
 export function PlaceholderText(): PlaceholderTextBuilder {
-  return createFluentBuilder('PlaceholderText', PLACEHOLDERTEXT_META) as unknown as PlaceholderTextBuilder;
+  return createFluentBuilder(
+    'PlaceholderText',
+    PLACEHOLDERTEXT_META,
+  ) as unknown as PlaceholderTextBuilder;
 }
 
 export namespace PlaceholderText {
   export namespace Flags {
-    export const ItemClipsChildrenToShape = createEnumToken('PlaceholderText', 'Flags', 'ItemClipsChildrenToShape');
-    export const ItemAcceptsInputMethod = createEnumToken('PlaceholderText', 'Flags', 'ItemAcceptsInputMethod');
+    export const ItemClipsChildrenToShape = createEnumToken(
+      'PlaceholderText',
+      'Flags',
+      'ItemClipsChildrenToShape',
+    );
+    export const ItemAcceptsInputMethod = createEnumToken(
+      'PlaceholderText',
+      'Flags',
+      'ItemAcceptsInputMethod',
+    );
     export const ItemIsFocusScope = createEnumToken('PlaceholderText', 'Flags', 'ItemIsFocusScope');
     export const ItemHasContents = createEnumToken('PlaceholderText', 'Flags', 'ItemHasContents');
     export const ItemAcceptsDrops = createEnumToken('PlaceholderText', 'Flags', 'ItemAcceptsDrops');
     export const ItemIsViewport = createEnumToken('PlaceholderText', 'Flags', 'ItemIsViewport');
-    export const ItemObservesViewport = createEnumToken('PlaceholderText', 'Flags', 'ItemObservesViewport');
+    export const ItemObservesViewport = createEnumToken(
+      'PlaceholderText',
+      'Flags',
+      'ItemObservesViewport',
+    );
   }
   export namespace FontSizeMode {
     export const FixedSize = createEnumToken('PlaceholderText', 'FontSizeMode', 'FixedSize');
-    export const HorizontalFit = createEnumToken('PlaceholderText', 'FontSizeMode', 'HorizontalFit');
+    export const HorizontalFit = createEnumToken(
+      'PlaceholderText',
+      'FontSizeMode',
+      'HorizontalFit',
+    );
     export const VerticalFit = createEnumToken('PlaceholderText', 'FontSizeMode', 'VerticalFit');
     export const Fit = createEnumToken('PlaceholderText', 'FontSizeMode', 'Fit');
   }
@@ -374,35 +399,119 @@ export namespace PlaceholderText {
     export const AlignJustify = createEnumToken('PlaceholderText', 'HAlignment', 'AlignJustify');
   }
   export namespace ItemChange {
-    export const ItemChildAddedChange = createEnumToken('PlaceholderText', 'ItemChange', 'ItemChildAddedChange');
-    export const ItemChildRemovedChange = createEnumToken('PlaceholderText', 'ItemChange', 'ItemChildRemovedChange');
-    export const ItemSceneChange = createEnumToken('PlaceholderText', 'ItemChange', 'ItemSceneChange');
-    export const ItemVisibleHasChanged = createEnumToken('PlaceholderText', 'ItemChange', 'ItemVisibleHasChanged');
-    export const ItemParentHasChanged = createEnumToken('PlaceholderText', 'ItemChange', 'ItemParentHasChanged');
-    export const ItemOpacityHasChanged = createEnumToken('PlaceholderText', 'ItemChange', 'ItemOpacityHasChanged');
-    export const ItemActiveFocusHasChanged = createEnumToken('PlaceholderText', 'ItemChange', 'ItemActiveFocusHasChanged');
-    export const ItemRotationHasChanged = createEnumToken('PlaceholderText', 'ItemChange', 'ItemRotationHasChanged');
-    export const ItemAntialiasingHasChanged = createEnumToken('PlaceholderText', 'ItemChange', 'ItemAntialiasingHasChanged');
-    export const ItemDevicePixelRatioHasChanged = createEnumToken('PlaceholderText', 'ItemChange', 'ItemDevicePixelRatioHasChanged');
-    export const ItemEnabledHasChanged = createEnumToken('PlaceholderText', 'ItemChange', 'ItemEnabledHasChanged');
-    export const ItemScaleHasChanged = createEnumToken('PlaceholderText', 'ItemChange', 'ItemScaleHasChanged');
-    export const ItemTransformHasChanged = createEnumToken('PlaceholderText', 'ItemChange', 'ItemTransformHasChanged');
+    export const ItemChildAddedChange = createEnumToken(
+      'PlaceholderText',
+      'ItemChange',
+      'ItemChildAddedChange',
+    );
+    export const ItemChildRemovedChange = createEnumToken(
+      'PlaceholderText',
+      'ItemChange',
+      'ItemChildRemovedChange',
+    );
+    export const ItemSceneChange = createEnumToken(
+      'PlaceholderText',
+      'ItemChange',
+      'ItemSceneChange',
+    );
+    export const ItemVisibleHasChanged = createEnumToken(
+      'PlaceholderText',
+      'ItemChange',
+      'ItemVisibleHasChanged',
+    );
+    export const ItemParentHasChanged = createEnumToken(
+      'PlaceholderText',
+      'ItemChange',
+      'ItemParentHasChanged',
+    );
+    export const ItemOpacityHasChanged = createEnumToken(
+      'PlaceholderText',
+      'ItemChange',
+      'ItemOpacityHasChanged',
+    );
+    export const ItemActiveFocusHasChanged = createEnumToken(
+      'PlaceholderText',
+      'ItemChange',
+      'ItemActiveFocusHasChanged',
+    );
+    export const ItemRotationHasChanged = createEnumToken(
+      'PlaceholderText',
+      'ItemChange',
+      'ItemRotationHasChanged',
+    );
+    export const ItemAntialiasingHasChanged = createEnumToken(
+      'PlaceholderText',
+      'ItemChange',
+      'ItemAntialiasingHasChanged',
+    );
+    export const ItemDevicePixelRatioHasChanged = createEnumToken(
+      'PlaceholderText',
+      'ItemChange',
+      'ItemDevicePixelRatioHasChanged',
+    );
+    export const ItemEnabledHasChanged = createEnumToken(
+      'PlaceholderText',
+      'ItemChange',
+      'ItemEnabledHasChanged',
+    );
+    export const ItemScaleHasChanged = createEnumToken(
+      'PlaceholderText',
+      'ItemChange',
+      'ItemScaleHasChanged',
+    );
+    export const ItemTransformHasChanged = createEnumToken(
+      'PlaceholderText',
+      'ItemChange',
+      'ItemTransformHasChanged',
+    );
   }
   export namespace LineHeightMode {
-    export const ProportionalHeight = createEnumToken('PlaceholderText', 'LineHeightMode', 'ProportionalHeight');
+    export const ProportionalHeight = createEnumToken(
+      'PlaceholderText',
+      'LineHeightMode',
+      'ProportionalHeight',
+    );
     export const FixedHeight = createEnumToken('PlaceholderText', 'LineHeightMode', 'FixedHeight');
   }
   export namespace RenderType {
     export const QtRendering = createEnumToken('PlaceholderText', 'RenderType', 'QtRendering');
-    export const NativeRendering = createEnumToken('PlaceholderText', 'RenderType', 'NativeRendering');
-    export const CurveRendering = createEnumToken('PlaceholderText', 'RenderType', 'CurveRendering');
+    export const NativeRendering = createEnumToken(
+      'PlaceholderText',
+      'RenderType',
+      'NativeRendering',
+    );
+    export const CurveRendering = createEnumToken(
+      'PlaceholderText',
+      'RenderType',
+      'CurveRendering',
+    );
   }
   export namespace RenderTypeQuality {
-    export const DefaultRenderTypeQuality = createEnumToken('PlaceholderText', 'RenderTypeQuality', 'DefaultRenderTypeQuality');
-    export const LowRenderTypeQuality = createEnumToken('PlaceholderText', 'RenderTypeQuality', 'LowRenderTypeQuality');
-    export const NormalRenderTypeQuality = createEnumToken('PlaceholderText', 'RenderTypeQuality', 'NormalRenderTypeQuality');
-    export const HighRenderTypeQuality = createEnumToken('PlaceholderText', 'RenderTypeQuality', 'HighRenderTypeQuality');
-    export const VeryHighRenderTypeQuality = createEnumToken('PlaceholderText', 'RenderTypeQuality', 'VeryHighRenderTypeQuality');
+    export const DefaultRenderTypeQuality = createEnumToken(
+      'PlaceholderText',
+      'RenderTypeQuality',
+      'DefaultRenderTypeQuality',
+    );
+    export const LowRenderTypeQuality = createEnumToken(
+      'PlaceholderText',
+      'RenderTypeQuality',
+      'LowRenderTypeQuality',
+    );
+    export const NormalRenderTypeQuality = createEnumToken(
+      'PlaceholderText',
+      'RenderTypeQuality',
+      'NormalRenderTypeQuality',
+    );
+    export const HighRenderTypeQuality = createEnumToken(
+      'PlaceholderText',
+      'RenderTypeQuality',
+      'HighRenderTypeQuality',
+    );
+    export const VeryHighRenderTypeQuality = createEnumToken(
+      'PlaceholderText',
+      'RenderTypeQuality',
+      'VeryHighRenderTypeQuality',
+    );
   }
   export namespace TextElideMode {
     export const ElideLeft = createEnumToken('PlaceholderText', 'TextElideMode', 'ElideLeft');
@@ -443,7 +552,11 @@ export namespace PlaceholderText {
     export const NoWrap = createEnumToken('PlaceholderText', 'WrapMode', 'NoWrap');
     export const WordWrap = createEnumToken('PlaceholderText', 'WrapMode', 'WordWrap');
     export const WrapAnywhere = createEnumToken('PlaceholderText', 'WrapMode', 'WrapAnywhere');
-    export const WrapAtWordBoundaryOrAnywhere = createEnumToken('PlaceholderText', 'WrapMode', 'WrapAtWordBoundaryOrAnywhere');
+    export const WrapAtWordBoundaryOrAnywhere = createEnumToken(
+      'PlaceholderText',
+      'WrapMode',
+      'WrapAtWordBoundaryOrAnywhere',
+    );
     export const Wrap = createEnumToken('PlaceholderText', 'WrapMode', 'Wrap');
   }
 }

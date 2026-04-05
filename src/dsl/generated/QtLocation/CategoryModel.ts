@@ -2,8 +2,8 @@
 // Type: CategoryModel
 // Generated from Qt 6.11.0
 
-import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { PluginBuilder } from './Plugin.js';
 export interface CategoryModelBuilder {
   id(id: string): CategoryModelBuilder;
@@ -70,31 +70,60 @@ const CATEGORYMODEL_META: TypeMetadata = {
     { handlerName: 'onRowsRemoved', paramCount: 3 },
     { handlerName: 'onStatusChanged', paramCount: 0 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function CategoryModel(): CategoryModelBuilder {
-  return createFluentBuilder('CategoryModel', CATEGORYMODEL_META) as unknown as CategoryModelBuilder;
+  return createFluentBuilder(
+    'CategoryModel',
+    CATEGORYMODEL_META,
+  ) as unknown as CategoryModelBuilder;
 }
 
 export namespace CategoryModel {
   export namespace CheckIndexOption {
     export const NoOption = createEnumToken('CategoryModel', 'CheckIndexOption', 'NoOption');
-    export const IndexIsValid = createEnumToken('CategoryModel', 'CheckIndexOption', 'IndexIsValid');
-    export const DoNotUseParent = createEnumToken('CategoryModel', 'CheckIndexOption', 'DoNotUseParent');
-    export const ParentIsInvalid = createEnumToken('CategoryModel', 'CheckIndexOption', 'ParentIsInvalid');
+    export const IndexIsValid = createEnumToken(
+      'CategoryModel',
+      'CheckIndexOption',
+      'IndexIsValid',
+    );
+    export const DoNotUseParent = createEnumToken(
+      'CategoryModel',
+      'CheckIndexOption',
+      'DoNotUseParent',
+    );
+    export const ParentIsInvalid = createEnumToken(
+      'CategoryModel',
+      'CheckIndexOption',
+      'ParentIsInvalid',
+    );
   }
   export namespace LayoutChangeHint {
-    export const NoLayoutChangeHint = createEnumToken('CategoryModel', 'LayoutChangeHint', 'NoLayoutChangeHint');
-    export const VerticalSortHint = createEnumToken('CategoryModel', 'LayoutChangeHint', 'VerticalSortHint');
-    export const HorizontalSortHint = createEnumToken('CategoryModel', 'LayoutChangeHint', 'HorizontalSortHint');
+    export const NoLayoutChangeHint = createEnumToken(
+      'CategoryModel',
+      'LayoutChangeHint',
+      'NoLayoutChangeHint',
+    );
+    export const VerticalSortHint = createEnumToken(
+      'CategoryModel',
+      'LayoutChangeHint',
+      'VerticalSortHint',
+    );
+    export const HorizontalSortHint = createEnumToken(
+      'CategoryModel',
+      'LayoutChangeHint',
+      'HorizontalSortHint',
+    );
   }
   export namespace Roles {
     export const CategoryRole = createEnumToken('CategoryModel', 'Roles', 'CategoryRole');
-    export const ParentCategoryRole = createEnumToken('CategoryModel', 'Roles', 'ParentCategoryRole');
+    export const ParentCategoryRole = createEnumToken(
+      'CategoryModel',
+      'Roles',
+      'ParentCategoryRole',
+    );
   }
   export namespace Status {
     export const Null = createEnumToken('CategoryModel', 'Status', 'Null');

@@ -2,8 +2,8 @@
 // Type: TreeModel
 // Generated from Qt 6.11.0
 
-import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface TreeModelBuilder {
   id(id: string): TreeModelBuilder;
   child(obj: QmlObjectBuilder): TreeModelBuilder;
@@ -64,10 +64,8 @@ const TREEMODEL_META: TypeMetadata = {
     { handlerName: 'onRowsMoved', paramCount: 5 },
     { handlerName: 'onRowsRemoved', paramCount: 3 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
   defaultProperty: 'columns',
 };
 
@@ -79,12 +77,32 @@ export namespace TreeModel {
   export namespace CheckIndexOption {
     export const NoOption = createEnumToken('TreeModel', 'CheckIndexOption', 'NoOption');
     export const IndexIsValid = createEnumToken('TreeModel', 'CheckIndexOption', 'IndexIsValid');
-    export const DoNotUseParent = createEnumToken('TreeModel', 'CheckIndexOption', 'DoNotUseParent');
-    export const ParentIsInvalid = createEnumToken('TreeModel', 'CheckIndexOption', 'ParentIsInvalid');
+    export const DoNotUseParent = createEnumToken(
+      'TreeModel',
+      'CheckIndexOption',
+      'DoNotUseParent',
+    );
+    export const ParentIsInvalid = createEnumToken(
+      'TreeModel',
+      'CheckIndexOption',
+      'ParentIsInvalid',
+    );
   }
   export namespace LayoutChangeHint {
-    export const NoLayoutChangeHint = createEnumToken('TreeModel', 'LayoutChangeHint', 'NoLayoutChangeHint');
-    export const VerticalSortHint = createEnumToken('TreeModel', 'LayoutChangeHint', 'VerticalSortHint');
-    export const HorizontalSortHint = createEnumToken('TreeModel', 'LayoutChangeHint', 'HorizontalSortHint');
+    export const NoLayoutChangeHint = createEnumToken(
+      'TreeModel',
+      'LayoutChangeHint',
+      'NoLayoutChangeHint',
+    );
+    export const VerticalSortHint = createEnumToken(
+      'TreeModel',
+      'LayoutChangeHint',
+      'VerticalSortHint',
+    );
+    export const HorizontalSortHint = createEnumToken(
+      'TreeModel',
+      'LayoutChangeHint',
+      'HorizontalSortHint',
+    );
   }
 }

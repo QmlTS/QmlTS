@@ -2,8 +2,15 @@
 // Type: ValueAxis
 // Generated from Qt 6.11.0
 
+import type {
+  QmlColor,
+  QmlComponent,
+  QmlEnumToken,
+  QmlFont,
+  QmlObjectBuilder,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
-import type { QmlColor, QmlComponent, QmlEnumToken, QmlFont, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
 export interface ValueAxisBuilder {
   id(id: string): ValueAxisBuilder;
   child(obj: QmlObjectBuilder): ValueAxisBuilder;
@@ -149,10 +156,8 @@ const VALUEAXIS_META: TypeMetadata = {
     { handlerName: 'onVisualMinChanged', paramCount: 1 },
     { handlerName: 'onZoomChanged', paramCount: 1 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function ValueAxis(): ValueAxisBuilder {

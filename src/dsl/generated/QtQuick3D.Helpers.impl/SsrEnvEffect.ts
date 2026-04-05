@@ -2,8 +2,8 @@
 // Type: SsrEnvEffect
 // Generated from Qt 6.11.0
 
-import { createFluentBuilder } from '../../runtime/index.js';
 import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import { createFluentBuilder } from '../../runtime/index.js';
 import type { SceneEnvironmentBuilder } from '../QtQuick3D/SceneEnvironment.js';
 export interface SsrEnvEffectBuilder {
   id(id: string): SsrEnvEffectBuilder;
@@ -44,10 +44,8 @@ const SSRENVEFFECT_META: TypeMetadata = {
     { handlerName: 'onParentChanged', paramCount: 0 },
     { handlerName: 'onStateChanged', paramCount: 0 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function SsrEnvEffect(): SsrEnvEffectBuilder {

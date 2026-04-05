@@ -2,8 +2,15 @@
 // Type: HeightFieldShape
 // Generated from Qt 6.11.0
 
+import type {
+  QmlObjectBuilder,
+  QmlQuaternion,
+  QmlUrl,
+  QmlValue,
+  QmlVector3d,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
-import type { QmlObjectBuilder, QmlQuaternion, QmlUrl, QmlValue, QmlVector3d, TypeMetadata } from '../../runtime/index.js';
 import type { ImageBuilder } from '../QtQuick/Image.js';
 export interface HeightFieldShapeBuilder {
   id(id: string): HeightFieldShapeBuilder;
@@ -130,14 +137,15 @@ const HEIGHTFIELDSHAPE_META: TypeMetadata = {
     { handlerName: 'onYChanged', paramCount: 0 },
     { handlerName: 'onZChanged', paramCount: 0 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function HeightFieldShape(): HeightFieldShapeBuilder {
-  return createFluentBuilder('HeightFieldShape', HEIGHTFIELDSHAPE_META) as unknown as HeightFieldShapeBuilder;
+  return createFluentBuilder(
+    'HeightFieldShape',
+    HEIGHTFIELDSHAPE_META,
+  ) as unknown as HeightFieldShapeBuilder;
 }
 
 export namespace HeightFieldShape {

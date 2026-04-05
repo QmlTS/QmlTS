@@ -2,8 +2,8 @@
 // Type: InfiniteGrid
 // Generated from Qt 6.11.0
 
-import { createFluentBuilder } from '../../runtime/index.js';
 import type { QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import { createFluentBuilder } from '../../runtime/index.js';
 export interface InfiniteGridBuilder {
   id(id: string): InfiniteGridBuilder;
   child(obj: QmlObjectBuilder): InfiniteGridBuilder;
@@ -36,10 +36,8 @@ const INFINITEGRID_META: TypeMetadata = {
     { handlerName: 'onObjectNameChanged', paramCount: 1 },
     { handlerName: 'onVisibleChanged', paramCount: 0 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function InfiniteGrid(): InfiniteGridBuilder {

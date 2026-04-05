@@ -2,8 +2,13 @@
 // Type: Emitter
 // Generated from Qt 6.11.0
 
+import type {
+  QmlEnumToken,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
-import type { QmlEnumToken, QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
 import type { QtObjectBuilder } from '../QML/QtObject.js';
 import type { ItemBuilder } from '../QtQuick/Item.js';
 import type { PaletteBuilder } from '../QtQuick/Palette.js';
@@ -285,9 +290,7 @@ const EMITTER_META: TypeMetadata = {
     {
       methodName: 'itemParticle',
       attachedTypeName: 'ItemParticle',
-      properties: [
-        { name: 'objectName', hasValue: true, hasBinding: true },
-      ],
+      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
       signals: [
         { handlerName: 'onAttached', paramCount: 0 },
         { handlerName: 'onDetached', paramCount: 0 },
@@ -304,8 +307,16 @@ export function Emitter(): EmitterBuilder {
 
 export namespace Emitter {
   export namespace Flags {
-    export const ItemClipsChildrenToShape = createEnumToken('Emitter', 'Flags', 'ItemClipsChildrenToShape');
-    export const ItemAcceptsInputMethod = createEnumToken('Emitter', 'Flags', 'ItemAcceptsInputMethod');
+    export const ItemClipsChildrenToShape = createEnumToken(
+      'Emitter',
+      'Flags',
+      'ItemClipsChildrenToShape',
+    );
+    export const ItemAcceptsInputMethod = createEnumToken(
+      'Emitter',
+      'Flags',
+      'ItemAcceptsInputMethod',
+    );
     export const ItemIsFocusScope = createEnumToken('Emitter', 'Flags', 'ItemIsFocusScope');
     export const ItemHasContents = createEnumToken('Emitter', 'Flags', 'ItemHasContents');
     export const ItemAcceptsDrops = createEnumToken('Emitter', 'Flags', 'ItemAcceptsDrops');
@@ -313,19 +324,67 @@ export namespace Emitter {
     export const ItemObservesViewport = createEnumToken('Emitter', 'Flags', 'ItemObservesViewport');
   }
   export namespace ItemChange {
-    export const ItemChildAddedChange = createEnumToken('Emitter', 'ItemChange', 'ItemChildAddedChange');
-    export const ItemChildRemovedChange = createEnumToken('Emitter', 'ItemChange', 'ItemChildRemovedChange');
+    export const ItemChildAddedChange = createEnumToken(
+      'Emitter',
+      'ItemChange',
+      'ItemChildAddedChange',
+    );
+    export const ItemChildRemovedChange = createEnumToken(
+      'Emitter',
+      'ItemChange',
+      'ItemChildRemovedChange',
+    );
     export const ItemSceneChange = createEnumToken('Emitter', 'ItemChange', 'ItemSceneChange');
-    export const ItemVisibleHasChanged = createEnumToken('Emitter', 'ItemChange', 'ItemVisibleHasChanged');
-    export const ItemParentHasChanged = createEnumToken('Emitter', 'ItemChange', 'ItemParentHasChanged');
-    export const ItemOpacityHasChanged = createEnumToken('Emitter', 'ItemChange', 'ItemOpacityHasChanged');
-    export const ItemActiveFocusHasChanged = createEnumToken('Emitter', 'ItemChange', 'ItemActiveFocusHasChanged');
-    export const ItemRotationHasChanged = createEnumToken('Emitter', 'ItemChange', 'ItemRotationHasChanged');
-    export const ItemAntialiasingHasChanged = createEnumToken('Emitter', 'ItemChange', 'ItemAntialiasingHasChanged');
-    export const ItemDevicePixelRatioHasChanged = createEnumToken('Emitter', 'ItemChange', 'ItemDevicePixelRatioHasChanged');
-    export const ItemEnabledHasChanged = createEnumToken('Emitter', 'ItemChange', 'ItemEnabledHasChanged');
-    export const ItemScaleHasChanged = createEnumToken('Emitter', 'ItemChange', 'ItemScaleHasChanged');
-    export const ItemTransformHasChanged = createEnumToken('Emitter', 'ItemChange', 'ItemTransformHasChanged');
+    export const ItemVisibleHasChanged = createEnumToken(
+      'Emitter',
+      'ItemChange',
+      'ItemVisibleHasChanged',
+    );
+    export const ItemParentHasChanged = createEnumToken(
+      'Emitter',
+      'ItemChange',
+      'ItemParentHasChanged',
+    );
+    export const ItemOpacityHasChanged = createEnumToken(
+      'Emitter',
+      'ItemChange',
+      'ItemOpacityHasChanged',
+    );
+    export const ItemActiveFocusHasChanged = createEnumToken(
+      'Emitter',
+      'ItemChange',
+      'ItemActiveFocusHasChanged',
+    );
+    export const ItemRotationHasChanged = createEnumToken(
+      'Emitter',
+      'ItemChange',
+      'ItemRotationHasChanged',
+    );
+    export const ItemAntialiasingHasChanged = createEnumToken(
+      'Emitter',
+      'ItemChange',
+      'ItemAntialiasingHasChanged',
+    );
+    export const ItemDevicePixelRatioHasChanged = createEnumToken(
+      'Emitter',
+      'ItemChange',
+      'ItemDevicePixelRatioHasChanged',
+    );
+    export const ItemEnabledHasChanged = createEnumToken(
+      'Emitter',
+      'ItemChange',
+      'ItemEnabledHasChanged',
+    );
+    export const ItemScaleHasChanged = createEnumToken(
+      'Emitter',
+      'ItemChange',
+      'ItemScaleHasChanged',
+    );
+    export const ItemTransformHasChanged = createEnumToken(
+      'Emitter',
+      'ItemChange',
+      'ItemTransformHasChanged',
+    );
   }
   export namespace Lifetime {
     export const InfiniteLife = createEnumToken('Emitter', 'Lifetime', 'InfiniteLife');

@@ -2,8 +2,15 @@
 // Type: FrustumCamera
 // Generated from Qt 6.11.0
 
+import type {
+  QmlEnumToken,
+  QmlObjectBuilder,
+  QmlQuaternion,
+  QmlValue,
+  QmlVector3d,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
-import type { QmlEnumToken, QmlObjectBuilder, QmlQuaternion, QmlValue, QmlVector3d, TypeMetadata } from '../../runtime/index.js';
 import type { NodeBuilder } from './Node.js';
 export interface FrustumCameraBuilder {
   id(id: string): FrustumCameraBuilder;
@@ -161,20 +168,25 @@ const FRUSTUMCAMERA_META: TypeMetadata = {
     { handlerName: 'onYChanged', paramCount: 0 },
     { handlerName: 'onZChanged', paramCount: 0 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function FrustumCamera(): FrustumCameraBuilder {
-  return createFluentBuilder('FrustumCamera', FRUSTUMCAMERA_META) as unknown as FrustumCameraBuilder;
+  return createFluentBuilder(
+    'FrustumCamera',
+    FRUSTUMCAMERA_META,
+  ) as unknown as FrustumCameraBuilder;
 }
 
 export namespace FrustumCamera {
   export namespace FieldOfViewOrientation {
     export const Vertical = createEnumToken('FrustumCamera', 'FieldOfViewOrientation', 'Vertical');
-    export const Horizontal = createEnumToken('FrustumCamera', 'FieldOfViewOrientation', 'Horizontal');
+    export const Horizontal = createEnumToken(
+      'FrustumCamera',
+      'FieldOfViewOrientation',
+      'Horizontal',
+    );
   }
   export namespace StaticFlags {
     export const None = createEnumToken('FrustumCamera', 'StaticFlags', 'None');

@@ -2,8 +2,8 @@
 // Type: InstanceModel
 // Generated from Qt 6.11.0
 
-import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface InstanceModelBuilder {
   id(id: string): InstanceModelBuilder;
   child(obj: QmlObjectBuilder): InstanceModelBuilder;
@@ -62,26 +62,51 @@ const INSTANCEMODEL_META: TypeMetadata = {
     { handlerName: 'onRowsMoved', paramCount: 5 },
     { handlerName: 'onRowsRemoved', paramCount: 3 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function InstanceModel(): InstanceModelBuilder {
-  return createFluentBuilder('InstanceModel', INSTANCEMODEL_META) as unknown as InstanceModelBuilder;
+  return createFluentBuilder(
+    'InstanceModel',
+    INSTANCEMODEL_META,
+  ) as unknown as InstanceModelBuilder;
 }
 
 export namespace InstanceModel {
   export namespace CheckIndexOption {
     export const NoOption = createEnumToken('InstanceModel', 'CheckIndexOption', 'NoOption');
-    export const IndexIsValid = createEnumToken('InstanceModel', 'CheckIndexOption', 'IndexIsValid');
-    export const DoNotUseParent = createEnumToken('InstanceModel', 'CheckIndexOption', 'DoNotUseParent');
-    export const ParentIsInvalid = createEnumToken('InstanceModel', 'CheckIndexOption', 'ParentIsInvalid');
+    export const IndexIsValid = createEnumToken(
+      'InstanceModel',
+      'CheckIndexOption',
+      'IndexIsValid',
+    );
+    export const DoNotUseParent = createEnumToken(
+      'InstanceModel',
+      'CheckIndexOption',
+      'DoNotUseParent',
+    );
+    export const ParentIsInvalid = createEnumToken(
+      'InstanceModel',
+      'CheckIndexOption',
+      'ParentIsInvalid',
+    );
   }
   export namespace LayoutChangeHint {
-    export const NoLayoutChangeHint = createEnumToken('InstanceModel', 'LayoutChangeHint', 'NoLayoutChangeHint');
-    export const VerticalSortHint = createEnumToken('InstanceModel', 'LayoutChangeHint', 'VerticalSortHint');
-    export const HorizontalSortHint = createEnumToken('InstanceModel', 'LayoutChangeHint', 'HorizontalSortHint');
+    export const NoLayoutChangeHint = createEnumToken(
+      'InstanceModel',
+      'LayoutChangeHint',
+      'NoLayoutChangeHint',
+    );
+    export const VerticalSortHint = createEnumToken(
+      'InstanceModel',
+      'LayoutChangeHint',
+      'VerticalSortHint',
+    );
+    export const HorizontalSortHint = createEnumToken(
+      'InstanceModel',
+      'LayoutChangeHint',
+      'HorizontalSortHint',
+    );
   }
 }

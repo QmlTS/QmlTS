@@ -2,8 +2,8 @@
 // Type: DelegateModelGroup
 // Generated from Qt 6.11.0
 
-import { createFluentBuilder } from '../../runtime/index.js';
 import type { QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import { createFluentBuilder } from '../../runtime/index.js';
 import type { DelegateModelAttachedBuilder } from './QQmlDelegateModelAttached.js';
 import type { ObjectModelAttachedBuilder } from './QQmlObjectModelAttached.js';
 import type { PackageAttachedBuilder } from './QQuickPackageAttached.js';
@@ -41,8 +41,7 @@ const DELEGATEMODELGROUP_META: TypeMetadata = {
     { handlerName: 'onNameChanged', paramCount: 0 },
     { handlerName: 'onObjectNameChanged', paramCount: 1 },
   ],
-  grouped: [
-  ],
+  grouped: [],
   attached: [
     {
       methodName: 'delegateModel',
@@ -62,9 +61,7 @@ const DELEGATEMODELGROUP_META: TypeMetadata = {
     {
       methodName: 'objectModel',
       attachedTypeName: 'ObjectModel',
-      properties: [
-        { name: 'objectName', hasValue: true, hasBinding: true },
-      ],
+      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
       signals: [
         { handlerName: 'onIndexChanged', paramCount: 0 },
         { handlerName: 'onObjectNameChanged', paramCount: 1 },
@@ -77,13 +74,14 @@ const DELEGATEMODELGROUP_META: TypeMetadata = {
         { name: 'name', hasValue: true, hasBinding: true },
         { name: 'objectName', hasValue: true, hasBinding: true },
       ],
-      signals: [
-        { handlerName: 'onObjectNameChanged', paramCount: 1 },
-      ],
+      signals: [{ handlerName: 'onObjectNameChanged', paramCount: 1 }],
     },
   ],
 };
 
 export function DelegateModelGroup(): DelegateModelGroupBuilder {
-  return createFluentBuilder('DelegateModelGroup', DELEGATEMODELGROUP_META) as unknown as DelegateModelGroupBuilder;
+  return createFluentBuilder(
+    'DelegateModelGroup',
+    DELEGATEMODELGROUP_META,
+  ) as unknown as DelegateModelGroupBuilder;
 }

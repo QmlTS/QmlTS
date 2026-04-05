@@ -2,8 +2,15 @@
 // Type: CuboidMesh
 // Generated from Qt 6.11.0
 
+import type {
+  QmlEnumToken,
+  QmlObjectBuilder,
+  QmlSize,
+  QmlValue,
+  QmlVector3d,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
-import type { QmlEnumToken, QmlObjectBuilder, QmlSize, QmlValue, QmlVector3d, TypeMetadata } from '../../runtime/index.js';
 import type { GeometryBuilder } from '../Qt3D.Core/Geometry.js';
 import type { GeometryViewBuilder } from '../Qt3D.Core/GeometryView.js';
 export interface CuboidMeshBuilder {
@@ -155,10 +162,8 @@ const CUBOIDMESH_META: TypeMetadata = {
     { handlerName: 'onYzMeshResolutionChanged', paramCount: 1 },
     { handlerName: 'onZExtentChanged', paramCount: 1 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function CuboidMesh(): CuboidMeshBuilder {
@@ -175,9 +180,21 @@ export namespace CuboidMesh {
     export const TriangleStrip = createEnumToken('CuboidMesh', 'PrimitiveType', 'TriangleStrip');
     export const TriangleFan = createEnumToken('CuboidMesh', 'PrimitiveType', 'TriangleFan');
     export const LinesAdjacency = createEnumToken('CuboidMesh', 'PrimitiveType', 'LinesAdjacency');
-    export const TrianglesAdjacency = createEnumToken('CuboidMesh', 'PrimitiveType', 'TrianglesAdjacency');
-    export const LineStripAdjacency = createEnumToken('CuboidMesh', 'PrimitiveType', 'LineStripAdjacency');
-    export const TriangleStripAdjacency = createEnumToken('CuboidMesh', 'PrimitiveType', 'TriangleStripAdjacency');
+    export const TrianglesAdjacency = createEnumToken(
+      'CuboidMesh',
+      'PrimitiveType',
+      'TrianglesAdjacency',
+    );
+    export const LineStripAdjacency = createEnumToken(
+      'CuboidMesh',
+      'PrimitiveType',
+      'LineStripAdjacency',
+    );
+    export const TriangleStripAdjacency = createEnumToken(
+      'CuboidMesh',
+      'PrimitiveType',
+      'TriangleStripAdjacency',
+    );
     export const Patches = createEnumToken('CuboidMesh', 'PrimitiveType', 'Patches');
   }
 }

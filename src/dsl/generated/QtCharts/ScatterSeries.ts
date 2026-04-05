@@ -2,8 +2,14 @@
 // Type: ScatterSeries
 // Generated from Qt 6.11.0
 
+import type {
+  QmlColor,
+  QmlComponent,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
-import type { QmlColor, QmlComponent, QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
 export interface ScatterSeriesBuilder {
   id(id: string): ScatterSeriesBuilder;
   child(obj: QmlObjectBuilder): ScatterSeriesBuilder;
@@ -159,15 +165,16 @@ const SCATTERSERIES_META: TypeMetadata = {
     { handlerName: 'onVisibleChanged', paramCount: 0 },
     { handlerName: 'onZValueChanged', paramCount: 1 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
   defaultProperty: 'declarativeChildren',
 };
 
 export function ScatterSeries(): ScatterSeriesBuilder {
-  return createFluentBuilder('ScatterSeries', SCATTERSERIES_META) as unknown as ScatterSeriesBuilder;
+  return createFluentBuilder(
+    'ScatterSeries',
+    SCATTERSERIES_META,
+  ) as unknown as ScatterSeriesBuilder;
 }
 
 export namespace ScatterSeries {

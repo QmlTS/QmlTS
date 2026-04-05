@@ -2,8 +2,8 @@
 // Type: TapSensor
 // Generated from Qt 6.11.0
 
-import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { QmlEnumToken, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface TapSensorBuilder {
   id(id: string): TapSensorBuilder;
   child(obj: QmlObjectBuilder): TapSensorBuilder;
@@ -91,10 +91,8 @@ const TAPSENSOR_META: TypeMetadata = {
     { handlerName: 'onSkipDuplicatesChanged', paramCount: 1 },
     { handlerName: 'onUserOrientationChanged', paramCount: 1 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function TapSensor(): TapSensorBuilder {
@@ -103,9 +101,21 @@ export function TapSensor(): TapSensorBuilder {
 
 export namespace TapSensor {
   export namespace AxesOrientationMode {
-    export const FixedOrientation = createEnumToken('TapSensor', 'AxesOrientationMode', 'FixedOrientation');
-    export const AutomaticOrientation = createEnumToken('TapSensor', 'AxesOrientationMode', 'AutomaticOrientation');
-    export const UserOrientation = createEnumToken('TapSensor', 'AxesOrientationMode', 'UserOrientation');
+    export const FixedOrientation = createEnumToken(
+      'TapSensor',
+      'AxesOrientationMode',
+      'FixedOrientation',
+    );
+    export const AutomaticOrientation = createEnumToken(
+      'TapSensor',
+      'AxesOrientationMode',
+      'AutomaticOrientation',
+    );
+    export const UserOrientation = createEnumToken(
+      'TapSensor',
+      'AxesOrientationMode',
+      'UserOrientation',
+    );
   }
   export namespace Feature {
     export const Buffering = createEnumToken('TapSensor', 'Feature', 'Buffering');
@@ -115,6 +125,10 @@ export namespace TapSensor {
     export const AccelerationMode = createEnumToken('TapSensor', 'Feature', 'AccelerationMode');
     export const SkipDuplicates = createEnumToken('TapSensor', 'Feature', 'SkipDuplicates');
     export const AxesOrientation = createEnumToken('TapSensor', 'Feature', 'AxesOrientation');
-    export const PressureSensorTemperature = createEnumToken('TapSensor', 'Feature', 'PressureSensorTemperature');
+    export const PressureSensorTemperature = createEnumToken(
+      'TapSensor',
+      'Feature',
+      'PressureSensorTemperature',
+    );
   }
 }

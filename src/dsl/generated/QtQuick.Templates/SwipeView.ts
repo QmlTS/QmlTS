@@ -2,8 +2,8 @@
 // Type: SwipeView
 // Generated from Qt 6.11.0
 
-import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { QmlEnumToken, QmlFont, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { QtObjectBuilder } from '../QML/QtObject.js';
 import type { ItemBuilder } from '../QtQuick/Item.js';
 import type { PaletteBuilder } from '../QtQuick/Palette.js';
@@ -400,9 +400,7 @@ const SWIPEVIEW_META: TypeMetadata = {
     {
       methodName: 'applicationWindow',
       attachedTypeName: 'ApplicationWindow',
-      properties: [
-        { name: 'objectName', hasValue: true, hasBinding: true },
-      ],
+      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
       signals: [
         { handlerName: 'onActiveFocusControlChanged', paramCount: 0 },
         { handlerName: 'onContentItemChanged', paramCount: 0 },
@@ -499,9 +497,7 @@ const SWIPEVIEW_META: TypeMetadata = {
     {
       methodName: 'selectionRectangle',
       attachedTypeName: 'SelectionRectangle',
-      properties: [
-        { name: 'objectName', hasValue: true, hasBinding: true },
-      ],
+      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
       signals: [
         { handlerName: 'onControlChanged', paramCount: 0 },
         { handlerName: 'onDraggingChanged', paramCount: 0 },
@@ -511,9 +507,7 @@ const SWIPEVIEW_META: TypeMetadata = {
     {
       methodName: 'splitHandle',
       attachedTypeName: 'SplitHandle',
-      properties: [
-        { name: 'objectName', hasValue: true, hasBinding: true },
-      ],
+      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
       signals: [
         { handlerName: 'onHoveredChanged', paramCount: 0 },
         { handlerName: 'onPressedChanged', paramCount: 0 },
@@ -570,9 +564,7 @@ const SWIPEVIEW_META: TypeMetadata = {
     {
       methodName: 'swipeDelegate',
       attachedTypeName: 'SwipeDelegate',
-      properties: [
-        { name: 'objectName', hasValue: true, hasBinding: true },
-      ],
+      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
       signals: [
         { handlerName: 'onClicked', paramCount: 0 },
         { handlerName: 'onPressedChanged', paramCount: 0 },
@@ -582,9 +574,7 @@ const SWIPEVIEW_META: TypeMetadata = {
     {
       methodName: 'swipeView',
       attachedTypeName: 'SwipeView',
-      properties: [
-        { name: 'objectName', hasValue: true, hasBinding: true },
-      ],
+      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
       signals: [
         { handlerName: 'onIndexChanged', paramCount: 0 },
         { handlerName: 'onIsCurrentItemChanged', paramCount: 0 },
@@ -597,9 +587,7 @@ const SWIPEVIEW_META: TypeMetadata = {
     {
       methodName: 'tabBar',
       attachedTypeName: 'TabBar',
-      properties: [
-        { name: 'objectName', hasValue: true, hasBinding: true },
-      ],
+      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
       signals: [
         { handlerName: 'onIndexChanged', paramCount: 0 },
         { handlerName: 'onPositionChanged', paramCount: 0 },
@@ -640,9 +628,7 @@ const SWIPEVIEW_META: TypeMetadata = {
     {
       methodName: 'tumbler',
       attachedTypeName: 'Tumbler',
-      properties: [
-        { name: 'objectName', hasValue: true, hasBinding: true },
-      ],
+      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
       signals: [
         { handlerName: 'onDisplacementChanged', paramCount: 0 },
         { handlerName: 'onObjectNameChanged', paramCount: 1 },
@@ -658,28 +644,88 @@ export function SwipeView(): SwipeViewBuilder {
 
 export namespace SwipeView {
   export namespace Flags {
-    export const ItemClipsChildrenToShape = createEnumToken('SwipeView', 'Flags', 'ItemClipsChildrenToShape');
-    export const ItemAcceptsInputMethod = createEnumToken('SwipeView', 'Flags', 'ItemAcceptsInputMethod');
+    export const ItemClipsChildrenToShape = createEnumToken(
+      'SwipeView',
+      'Flags',
+      'ItemClipsChildrenToShape',
+    );
+    export const ItemAcceptsInputMethod = createEnumToken(
+      'SwipeView',
+      'Flags',
+      'ItemAcceptsInputMethod',
+    );
     export const ItemIsFocusScope = createEnumToken('SwipeView', 'Flags', 'ItemIsFocusScope');
     export const ItemHasContents = createEnumToken('SwipeView', 'Flags', 'ItemHasContents');
     export const ItemAcceptsDrops = createEnumToken('SwipeView', 'Flags', 'ItemAcceptsDrops');
     export const ItemIsViewport = createEnumToken('SwipeView', 'Flags', 'ItemIsViewport');
-    export const ItemObservesViewport = createEnumToken('SwipeView', 'Flags', 'ItemObservesViewport');
+    export const ItemObservesViewport = createEnumToken(
+      'SwipeView',
+      'Flags',
+      'ItemObservesViewport',
+    );
   }
   export namespace ItemChange {
-    export const ItemChildAddedChange = createEnumToken('SwipeView', 'ItemChange', 'ItemChildAddedChange');
-    export const ItemChildRemovedChange = createEnumToken('SwipeView', 'ItemChange', 'ItemChildRemovedChange');
+    export const ItemChildAddedChange = createEnumToken(
+      'SwipeView',
+      'ItemChange',
+      'ItemChildAddedChange',
+    );
+    export const ItemChildRemovedChange = createEnumToken(
+      'SwipeView',
+      'ItemChange',
+      'ItemChildRemovedChange',
+    );
     export const ItemSceneChange = createEnumToken('SwipeView', 'ItemChange', 'ItemSceneChange');
-    export const ItemVisibleHasChanged = createEnumToken('SwipeView', 'ItemChange', 'ItemVisibleHasChanged');
-    export const ItemParentHasChanged = createEnumToken('SwipeView', 'ItemChange', 'ItemParentHasChanged');
-    export const ItemOpacityHasChanged = createEnumToken('SwipeView', 'ItemChange', 'ItemOpacityHasChanged');
-    export const ItemActiveFocusHasChanged = createEnumToken('SwipeView', 'ItemChange', 'ItemActiveFocusHasChanged');
-    export const ItemRotationHasChanged = createEnumToken('SwipeView', 'ItemChange', 'ItemRotationHasChanged');
-    export const ItemAntialiasingHasChanged = createEnumToken('SwipeView', 'ItemChange', 'ItemAntialiasingHasChanged');
-    export const ItemDevicePixelRatioHasChanged = createEnumToken('SwipeView', 'ItemChange', 'ItemDevicePixelRatioHasChanged');
-    export const ItemEnabledHasChanged = createEnumToken('SwipeView', 'ItemChange', 'ItemEnabledHasChanged');
-    export const ItemScaleHasChanged = createEnumToken('SwipeView', 'ItemChange', 'ItemScaleHasChanged');
-    export const ItemTransformHasChanged = createEnumToken('SwipeView', 'ItemChange', 'ItemTransformHasChanged');
+    export const ItemVisibleHasChanged = createEnumToken(
+      'SwipeView',
+      'ItemChange',
+      'ItemVisibleHasChanged',
+    );
+    export const ItemParentHasChanged = createEnumToken(
+      'SwipeView',
+      'ItemChange',
+      'ItemParentHasChanged',
+    );
+    export const ItemOpacityHasChanged = createEnumToken(
+      'SwipeView',
+      'ItemChange',
+      'ItemOpacityHasChanged',
+    );
+    export const ItemActiveFocusHasChanged = createEnumToken(
+      'SwipeView',
+      'ItemChange',
+      'ItemActiveFocusHasChanged',
+    );
+    export const ItemRotationHasChanged = createEnumToken(
+      'SwipeView',
+      'ItemChange',
+      'ItemRotationHasChanged',
+    );
+    export const ItemAntialiasingHasChanged = createEnumToken(
+      'SwipeView',
+      'ItemChange',
+      'ItemAntialiasingHasChanged',
+    );
+    export const ItemDevicePixelRatioHasChanged = createEnumToken(
+      'SwipeView',
+      'ItemChange',
+      'ItemDevicePixelRatioHasChanged',
+    );
+    export const ItemEnabledHasChanged = createEnumToken(
+      'SwipeView',
+      'ItemChange',
+      'ItemEnabledHasChanged',
+    );
+    export const ItemScaleHasChanged = createEnumToken(
+      'SwipeView',
+      'ItemChange',
+      'ItemScaleHasChanged',
+    );
+    export const ItemTransformHasChanged = createEnumToken(
+      'SwipeView',
+      'ItemChange',
+      'ItemTransformHasChanged',
+    );
   }
   export namespace TransformOrigin {
     export const TopLeft = createEnumToken('SwipeView', 'TransformOrigin', 'TopLeft');

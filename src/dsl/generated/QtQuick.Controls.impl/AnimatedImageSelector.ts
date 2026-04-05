@@ -2,8 +2,8 @@
 // Type: AnimatedImageSelector
 // Generated from Qt 6.11.0
 
-import { createFluentBuilder } from '../../runtime/index.js';
 import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import { createFluentBuilder } from '../../runtime/index.js';
 export interface AnimatedImageSelectorBuilder {
   id(id: string): AnimatedImageSelectorBuilder;
   child(obj: QmlObjectBuilder): AnimatedImageSelectorBuilder;
@@ -38,12 +38,13 @@ const ANIMATEDIMAGESELECTOR_META: TypeMetadata = {
     { handlerName: 'onObjectNameChanged', paramCount: 1 },
     { handlerName: 'onSourceChanged', paramCount: 0 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function AnimatedImageSelector(): AnimatedImageSelectorBuilder {
-  return createFluentBuilder('AnimatedImageSelector', ANIMATEDIMAGESELECTOR_META) as unknown as AnimatedImageSelectorBuilder;
+  return createFluentBuilder(
+    'AnimatedImageSelector',
+    ANIMATEDIMAGESELECTOR_META,
+  ) as unknown as AnimatedImageSelectorBuilder;
 }

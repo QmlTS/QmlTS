@@ -2,8 +2,8 @@
 // Type: BoxPlotSeries
 // Generated from Qt 6.11.0
 
-import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface BoxPlotSeriesBuilder {
   id(id: string): BoxPlotSeriesBuilder;
   child(obj: QmlObjectBuilder): BoxPlotSeriesBuilder;
@@ -129,15 +129,16 @@ const BOXPLOTSERIES_META: TypeMetadata = {
     { handlerName: 'onVisibleChanged', paramCount: 0 },
     { handlerName: 'onZValueChanged', paramCount: 1 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
   defaultProperty: 'seriesChildren',
 };
 
 export function BoxPlotSeries(): BoxPlotSeriesBuilder {
-  return createFluentBuilder('BoxPlotSeries', BOXPLOTSERIES_META) as unknown as BoxPlotSeriesBuilder;
+  return createFluentBuilder(
+    'BoxPlotSeries',
+    BOXPLOTSERIES_META,
+  ) as unknown as BoxPlotSeriesBuilder;
 }
 
 export namespace BoxPlotSeries {

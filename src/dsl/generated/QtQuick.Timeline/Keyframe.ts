@@ -2,8 +2,8 @@
 // Type: Keyframe
 // Generated from Qt 6.11.0
 
-import { createFluentBuilder } from '../../runtime/index.js';
 import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import { createFluentBuilder } from '../../runtime/index.js';
 export interface KeyframeBuilder {
   id(id: string): KeyframeBuilder;
   child(obj: QmlObjectBuilder): KeyframeBuilder;
@@ -36,10 +36,8 @@ const KEYFRAME_META: TypeMetadata = {
     { handlerName: 'onObjectNameChanged', paramCount: 1 },
     { handlerName: 'onValueChanged', paramCount: 0 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function Keyframe(): KeyframeBuilder {

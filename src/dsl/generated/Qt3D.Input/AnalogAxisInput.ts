@@ -2,8 +2,8 @@
 // Type: AnalogAxisInput
 // Generated from Qt 6.11.0
 
-import { createFluentBuilder } from '../../runtime/index.js';
 import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import { createFluentBuilder } from '../../runtime/index.js';
 export interface AnalogAxisInputBuilder {
   id(id: string): AnalogAxisInputBuilder;
   child(obj: QmlObjectBuilder): AnalogAxisInputBuilder;
@@ -43,12 +43,13 @@ const ANALOGAXISINPUT_META: TypeMetadata = {
     { handlerName: 'onParentChanged', paramCount: 1 },
     { handlerName: 'onSourceDeviceChanged', paramCount: 1 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function AnalogAxisInput(): AnalogAxisInputBuilder {
-  return createFluentBuilder('AnalogAxisInput', ANALOGAXISINPUT_META) as unknown as AnalogAxisInputBuilder;
+  return createFluentBuilder(
+    'AnalogAxisInput',
+    ANALOGAXISINPUT_META,
+  ) as unknown as AnalogAxisInputBuilder;
 }

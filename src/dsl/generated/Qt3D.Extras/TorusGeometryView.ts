@@ -2,8 +2,13 @@
 // Type: TorusGeometryView
 // Generated from Qt 6.11.0
 
+import type {
+  QmlEnumToken,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
-import type { QmlEnumToken, QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
 import type { GeometryBuilder } from '../Qt3D.Core/Geometry.js';
 export interface TorusGeometryViewBuilder {
   id(id: string): TorusGeometryViewBuilder;
@@ -109,14 +114,15 @@ const TORUSGEOMETRYVIEW_META: TypeMetadata = {
     { handlerName: 'onVertexCountChanged', paramCount: 1 },
     { handlerName: 'onVerticesPerPatchChanged', paramCount: 1 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function TorusGeometryView(): TorusGeometryViewBuilder {
-  return createFluentBuilder('TorusGeometryView', TORUSGEOMETRYVIEW_META) as unknown as TorusGeometryViewBuilder;
+  return createFluentBuilder(
+    'TorusGeometryView',
+    TORUSGEOMETRYVIEW_META,
+  ) as unknown as TorusGeometryViewBuilder;
 }
 
 export namespace TorusGeometryView {
@@ -126,12 +132,32 @@ export namespace TorusGeometryView {
     export const LineLoop = createEnumToken('TorusGeometryView', 'PrimitiveType', 'LineLoop');
     export const LineStrip = createEnumToken('TorusGeometryView', 'PrimitiveType', 'LineStrip');
     export const Triangles = createEnumToken('TorusGeometryView', 'PrimitiveType', 'Triangles');
-    export const TriangleStrip = createEnumToken('TorusGeometryView', 'PrimitiveType', 'TriangleStrip');
+    export const TriangleStrip = createEnumToken(
+      'TorusGeometryView',
+      'PrimitiveType',
+      'TriangleStrip',
+    );
     export const TriangleFan = createEnumToken('TorusGeometryView', 'PrimitiveType', 'TriangleFan');
-    export const LinesAdjacency = createEnumToken('TorusGeometryView', 'PrimitiveType', 'LinesAdjacency');
-    export const TrianglesAdjacency = createEnumToken('TorusGeometryView', 'PrimitiveType', 'TrianglesAdjacency');
-    export const LineStripAdjacency = createEnumToken('TorusGeometryView', 'PrimitiveType', 'LineStripAdjacency');
-    export const TriangleStripAdjacency = createEnumToken('TorusGeometryView', 'PrimitiveType', 'TriangleStripAdjacency');
+    export const LinesAdjacency = createEnumToken(
+      'TorusGeometryView',
+      'PrimitiveType',
+      'LinesAdjacency',
+    );
+    export const TrianglesAdjacency = createEnumToken(
+      'TorusGeometryView',
+      'PrimitiveType',
+      'TrianglesAdjacency',
+    );
+    export const LineStripAdjacency = createEnumToken(
+      'TorusGeometryView',
+      'PrimitiveType',
+      'LineStripAdjacency',
+    );
+    export const TriangleStripAdjacency = createEnumToken(
+      'TorusGeometryView',
+      'PrimitiveType',
+      'TriangleStripAdjacency',
+    );
     export const Patches = createEnumToken('TorusGeometryView', 'PrimitiveType', 'Patches');
   }
 }

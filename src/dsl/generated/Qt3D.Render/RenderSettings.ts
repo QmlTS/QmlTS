@@ -2,8 +2,13 @@
 // Type: RenderSettings
 // Generated from Qt 6.11.0
 
+import type {
+  QmlEnumToken,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
-import type { QmlEnumToken, QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
 import type { FrameGraphNodeBuilder } from './FrameGraphNode.js';
 export interface RenderSettingsBuilder {
   id(id: string): RenderSettingsBuilder;
@@ -53,15 +58,16 @@ const RENDERSETTINGS_META: TypeMetadata = {
     { handlerName: 'onRenderPolicyChanged', paramCount: 1 },
     { handlerName: 'onShareableChanged', paramCount: 1 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
   defaultProperty: 'activeFrameGraph',
 };
 
 export function RenderSettings(): RenderSettingsBuilder {
-  return createFluentBuilder('RenderSettings', RENDERSETTINGS_META) as unknown as RenderSettingsBuilder;
+  return createFluentBuilder(
+    'RenderSettings',
+    RENDERSETTINGS_META,
+  ) as unknown as RenderSettingsBuilder;
 }
 
 export namespace RenderSettings {

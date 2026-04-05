@@ -2,8 +2,8 @@
 // Type: InvokedServices
 // Generated from Qt 6.11.0
 
-import { createFluentBuilder } from '../../runtime/index.js';
 import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import { createFluentBuilder } from '../../runtime/index.js';
 export interface InvokedServicesBuilder {
   id(id: string): InvokedServicesBuilder;
   child(obj: QmlObjectBuilder): InvokedServicesBuilder;
@@ -28,13 +28,14 @@ const INVOKEDSERVICES_META: TypeMetadata = {
     { handlerName: 'onObjectNameChanged', paramCount: 1 },
     { handlerName: 'onStateMachineChanged', paramCount: 0 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
   defaultProperty: 'qmlChildren',
 };
 
 export function InvokedServices(): InvokedServicesBuilder {
-  return createFluentBuilder('InvokedServices', INVOKEDSERVICES_META) as unknown as InvokedServicesBuilder;
+  return createFluentBuilder(
+    'InvokedServices',
+    INVOKEDSERVICES_META,
+  ) as unknown as InvokedServicesBuilder;
 }

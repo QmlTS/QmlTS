@@ -2,8 +2,8 @@
 // Type: MediaPlayer
 // Generated from Qt 6.11.0
 
-import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { QmlObjectBuilder, QmlUrl, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { QtObjectBuilder } from '../QML/QtObject.js';
 import type { AudioOutputBuilder } from './AudioOutput.js';
 export interface MediaPlayerBuilder {
@@ -110,10 +110,8 @@ const MEDIAPLAYER_META: TypeMetadata = {
     { handlerName: 'onTracksChanged', paramCount: 0 },
     { handlerName: 'onVideoOutputChanged', paramCount: 0 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function MediaPlayer(): MediaPlayerBuilder {
@@ -143,9 +141,21 @@ export namespace MediaPlayer {
     export const InvalidMedia = createEnumToken('MediaPlayer', 'MediaStatus', 'InvalidMedia');
   }
   export namespace PitchCompensationAvailability {
-    export const AlwaysOn = createEnumToken('MediaPlayer', 'PitchCompensationAvailability', 'AlwaysOn');
-    export const Available = createEnumToken('MediaPlayer', 'PitchCompensationAvailability', 'Available');
-    export const Unavailable = createEnumToken('MediaPlayer', 'PitchCompensationAvailability', 'Unavailable');
+    export const AlwaysOn = createEnumToken(
+      'MediaPlayer',
+      'PitchCompensationAvailability',
+      'AlwaysOn',
+    );
+    export const Available = createEnumToken(
+      'MediaPlayer',
+      'PitchCompensationAvailability',
+      'Available',
+    );
+    export const Unavailable = createEnumToken(
+      'MediaPlayer',
+      'PitchCompensationAvailability',
+      'Unavailable',
+    );
   }
   export namespace PlaybackState {
     export const StoppedState = createEnumToken('MediaPlayer', 'PlaybackState', 'StoppedState');

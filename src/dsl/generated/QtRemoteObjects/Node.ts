@@ -2,8 +2,8 @@
 // Type: Node
 // Generated from Qt 6.11.0
 
-import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { QmlObjectBuilder, QmlUrl, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface NodeBuilder {
   id(id: string): NodeBuilder;
   child(obj: QmlObjectBuilder): NodeBuilder;
@@ -38,10 +38,8 @@ const NODE_META: TypeMetadata = {
     { handlerName: 'onRemoteObjectAdded', paramCount: 1 },
     { handlerName: 'onRemoteObjectRemoved', paramCount: 1 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function Node(): NodeBuilder {
@@ -52,11 +50,27 @@ export namespace Node {
   export namespace ErrorCode {
     export const NoError = createEnumToken('Node', 'ErrorCode', 'NoError');
     export const RegistryNotAcquired = createEnumToken('Node', 'ErrorCode', 'RegistryNotAcquired');
-    export const RegistryAlreadyHosted = createEnumToken('Node', 'ErrorCode', 'RegistryAlreadyHosted');
+    export const RegistryAlreadyHosted = createEnumToken(
+      'Node',
+      'ErrorCode',
+      'RegistryAlreadyHosted',
+    );
     export const NodeIsNoServer = createEnumToken('Node', 'ErrorCode', 'NodeIsNoServer');
-    export const ServerAlreadyCreated = createEnumToken('Node', 'ErrorCode', 'ServerAlreadyCreated');
-    export const UnintendedRegistryHosting = createEnumToken('Node', 'ErrorCode', 'UnintendedRegistryHosting');
-    export const OperationNotValidOnClientNode = createEnumToken('Node', 'ErrorCode', 'OperationNotValidOnClientNode');
+    export const ServerAlreadyCreated = createEnumToken(
+      'Node',
+      'ErrorCode',
+      'ServerAlreadyCreated',
+    );
+    export const UnintendedRegistryHosting = createEnumToken(
+      'Node',
+      'ErrorCode',
+      'UnintendedRegistryHosting',
+    );
+    export const OperationNotValidOnClientNode = createEnumToken(
+      'Node',
+      'ErrorCode',
+      'OperationNotValidOnClientNode',
+    );
     export const SourceNotRegistered = createEnumToken('Node', 'ErrorCode', 'SourceNotRegistered');
     export const MissingObjectName = createEnumToken('Node', 'ErrorCode', 'MissingObjectName');
     export const HostUrlInvalid = createEnumToken('Node', 'ErrorCode', 'HostUrlInvalid');

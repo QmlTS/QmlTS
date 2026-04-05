@@ -2,8 +2,15 @@
 // Type: AbstractMonthGrid
 // Generated from Qt 6.11.0
 
+import type {
+  QmlComponent,
+  QmlEnumToken,
+  QmlFont,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
-import type { QmlComponent, QmlEnumToken, QmlFont, QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
 import type { QtObjectBuilder } from '../QML/QtObject.js';
 import type { ItemBuilder } from '../QtQuick/Item.js';
 import type { PaletteBuilder } from '../QtQuick/Palette.js';
@@ -207,7 +214,9 @@ export interface AbstractMonthGridBuilder {
   overlay(setup: (b: OverlayAttachedBuilder) => void): AbstractMonthGridBuilder;
   scrollBar(setup: (b: ScrollBarAttachedBuilder) => void): AbstractMonthGridBuilder;
   scrollIndicator(setup: (b: ScrollIndicatorAttachedBuilder) => void): AbstractMonthGridBuilder;
-  selectionRectangle(setup: (b: SelectionRectangleAttachedBuilder) => void): AbstractMonthGridBuilder;
+  selectionRectangle(
+    setup: (b: SelectionRectangleAttachedBuilder) => void,
+  ): AbstractMonthGridBuilder;
   splitHandle(setup: (b: SplitHandleAttachedBuilder) => void): AbstractMonthGridBuilder;
   splitView(setup: (b: SplitViewAttachedBuilder) => void): AbstractMonthGridBuilder;
   stackView(setup: (b: StackViewAttachedBuilder) => void): AbstractMonthGridBuilder;
@@ -402,9 +411,7 @@ const ABSTRACTMONTHGRID_META: TypeMetadata = {
     {
       methodName: 'applicationWindow',
       attachedTypeName: 'ApplicationWindow',
-      properties: [
-        { name: 'objectName', hasValue: true, hasBinding: true },
-      ],
+      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
       signals: [
         { handlerName: 'onActiveFocusControlChanged', paramCount: 0 },
         { handlerName: 'onContentItemChanged', paramCount: 0 },
@@ -501,9 +508,7 @@ const ABSTRACTMONTHGRID_META: TypeMetadata = {
     {
       methodName: 'selectionRectangle',
       attachedTypeName: 'SelectionRectangle',
-      properties: [
-        { name: 'objectName', hasValue: true, hasBinding: true },
-      ],
+      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
       signals: [
         { handlerName: 'onControlChanged', paramCount: 0 },
         { handlerName: 'onDraggingChanged', paramCount: 0 },
@@ -513,9 +518,7 @@ const ABSTRACTMONTHGRID_META: TypeMetadata = {
     {
       methodName: 'splitHandle',
       attachedTypeName: 'SplitHandle',
-      properties: [
-        { name: 'objectName', hasValue: true, hasBinding: true },
-      ],
+      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
       signals: [
         { handlerName: 'onHoveredChanged', paramCount: 0 },
         { handlerName: 'onPressedChanged', paramCount: 0 },
@@ -572,9 +575,7 @@ const ABSTRACTMONTHGRID_META: TypeMetadata = {
     {
       methodName: 'swipeDelegate',
       attachedTypeName: 'SwipeDelegate',
-      properties: [
-        { name: 'objectName', hasValue: true, hasBinding: true },
-      ],
+      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
       signals: [
         { handlerName: 'onClicked', paramCount: 0 },
         { handlerName: 'onPressedChanged', paramCount: 0 },
@@ -584,9 +585,7 @@ const ABSTRACTMONTHGRID_META: TypeMetadata = {
     {
       methodName: 'swipeView',
       attachedTypeName: 'SwipeView',
-      properties: [
-        { name: 'objectName', hasValue: true, hasBinding: true },
-      ],
+      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
       signals: [
         { handlerName: 'onIndexChanged', paramCount: 0 },
         { handlerName: 'onIsCurrentItemChanged', paramCount: 0 },
@@ -599,9 +598,7 @@ const ABSTRACTMONTHGRID_META: TypeMetadata = {
     {
       methodName: 'tabBar',
       attachedTypeName: 'TabBar',
-      properties: [
-        { name: 'objectName', hasValue: true, hasBinding: true },
-      ],
+      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
       signals: [
         { handlerName: 'onIndexChanged', paramCount: 0 },
         { handlerName: 'onPositionChanged', paramCount: 0 },
@@ -642,9 +639,7 @@ const ABSTRACTMONTHGRID_META: TypeMetadata = {
     {
       methodName: 'tumbler',
       attachedTypeName: 'Tumbler',
-      properties: [
-        { name: 'objectName', hasValue: true, hasBinding: true },
-      ],
+      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
       signals: [
         { handlerName: 'onDisplacementChanged', paramCount: 0 },
         { handlerName: 'onObjectNameChanged', paramCount: 1 },
@@ -654,33 +649,108 @@ const ABSTRACTMONTHGRID_META: TypeMetadata = {
 };
 
 export function AbstractMonthGrid(): AbstractMonthGridBuilder {
-  return createFluentBuilder('AbstractMonthGrid', ABSTRACTMONTHGRID_META) as unknown as AbstractMonthGridBuilder;
+  return createFluentBuilder(
+    'AbstractMonthGrid',
+    ABSTRACTMONTHGRID_META,
+  ) as unknown as AbstractMonthGridBuilder;
 }
 
 export namespace AbstractMonthGrid {
   export namespace Flags {
-    export const ItemClipsChildrenToShape = createEnumToken('AbstractMonthGrid', 'Flags', 'ItemClipsChildrenToShape');
-    export const ItemAcceptsInputMethod = createEnumToken('AbstractMonthGrid', 'Flags', 'ItemAcceptsInputMethod');
-    export const ItemIsFocusScope = createEnumToken('AbstractMonthGrid', 'Flags', 'ItemIsFocusScope');
+    export const ItemClipsChildrenToShape = createEnumToken(
+      'AbstractMonthGrid',
+      'Flags',
+      'ItemClipsChildrenToShape',
+    );
+    export const ItemAcceptsInputMethod = createEnumToken(
+      'AbstractMonthGrid',
+      'Flags',
+      'ItemAcceptsInputMethod',
+    );
+    export const ItemIsFocusScope = createEnumToken(
+      'AbstractMonthGrid',
+      'Flags',
+      'ItemIsFocusScope',
+    );
     export const ItemHasContents = createEnumToken('AbstractMonthGrid', 'Flags', 'ItemHasContents');
-    export const ItemAcceptsDrops = createEnumToken('AbstractMonthGrid', 'Flags', 'ItemAcceptsDrops');
+    export const ItemAcceptsDrops = createEnumToken(
+      'AbstractMonthGrid',
+      'Flags',
+      'ItemAcceptsDrops',
+    );
     export const ItemIsViewport = createEnumToken('AbstractMonthGrid', 'Flags', 'ItemIsViewport');
-    export const ItemObservesViewport = createEnumToken('AbstractMonthGrid', 'Flags', 'ItemObservesViewport');
+    export const ItemObservesViewport = createEnumToken(
+      'AbstractMonthGrid',
+      'Flags',
+      'ItemObservesViewport',
+    );
   }
   export namespace ItemChange {
-    export const ItemChildAddedChange = createEnumToken('AbstractMonthGrid', 'ItemChange', 'ItemChildAddedChange');
-    export const ItemChildRemovedChange = createEnumToken('AbstractMonthGrid', 'ItemChange', 'ItemChildRemovedChange');
-    export const ItemSceneChange = createEnumToken('AbstractMonthGrid', 'ItemChange', 'ItemSceneChange');
-    export const ItemVisibleHasChanged = createEnumToken('AbstractMonthGrid', 'ItemChange', 'ItemVisibleHasChanged');
-    export const ItemParentHasChanged = createEnumToken('AbstractMonthGrid', 'ItemChange', 'ItemParentHasChanged');
-    export const ItemOpacityHasChanged = createEnumToken('AbstractMonthGrid', 'ItemChange', 'ItemOpacityHasChanged');
-    export const ItemActiveFocusHasChanged = createEnumToken('AbstractMonthGrid', 'ItemChange', 'ItemActiveFocusHasChanged');
-    export const ItemRotationHasChanged = createEnumToken('AbstractMonthGrid', 'ItemChange', 'ItemRotationHasChanged');
-    export const ItemAntialiasingHasChanged = createEnumToken('AbstractMonthGrid', 'ItemChange', 'ItemAntialiasingHasChanged');
-    export const ItemDevicePixelRatioHasChanged = createEnumToken('AbstractMonthGrid', 'ItemChange', 'ItemDevicePixelRatioHasChanged');
-    export const ItemEnabledHasChanged = createEnumToken('AbstractMonthGrid', 'ItemChange', 'ItemEnabledHasChanged');
-    export const ItemScaleHasChanged = createEnumToken('AbstractMonthGrid', 'ItemChange', 'ItemScaleHasChanged');
-    export const ItemTransformHasChanged = createEnumToken('AbstractMonthGrid', 'ItemChange', 'ItemTransformHasChanged');
+    export const ItemChildAddedChange = createEnumToken(
+      'AbstractMonthGrid',
+      'ItemChange',
+      'ItemChildAddedChange',
+    );
+    export const ItemChildRemovedChange = createEnumToken(
+      'AbstractMonthGrid',
+      'ItemChange',
+      'ItemChildRemovedChange',
+    );
+    export const ItemSceneChange = createEnumToken(
+      'AbstractMonthGrid',
+      'ItemChange',
+      'ItemSceneChange',
+    );
+    export const ItemVisibleHasChanged = createEnumToken(
+      'AbstractMonthGrid',
+      'ItemChange',
+      'ItemVisibleHasChanged',
+    );
+    export const ItemParentHasChanged = createEnumToken(
+      'AbstractMonthGrid',
+      'ItemChange',
+      'ItemParentHasChanged',
+    );
+    export const ItemOpacityHasChanged = createEnumToken(
+      'AbstractMonthGrid',
+      'ItemChange',
+      'ItemOpacityHasChanged',
+    );
+    export const ItemActiveFocusHasChanged = createEnumToken(
+      'AbstractMonthGrid',
+      'ItemChange',
+      'ItemActiveFocusHasChanged',
+    );
+    export const ItemRotationHasChanged = createEnumToken(
+      'AbstractMonthGrid',
+      'ItemChange',
+      'ItemRotationHasChanged',
+    );
+    export const ItemAntialiasingHasChanged = createEnumToken(
+      'AbstractMonthGrid',
+      'ItemChange',
+      'ItemAntialiasingHasChanged',
+    );
+    export const ItemDevicePixelRatioHasChanged = createEnumToken(
+      'AbstractMonthGrid',
+      'ItemChange',
+      'ItemDevicePixelRatioHasChanged',
+    );
+    export const ItemEnabledHasChanged = createEnumToken(
+      'AbstractMonthGrid',
+      'ItemChange',
+      'ItemEnabledHasChanged',
+    );
+    export const ItemScaleHasChanged = createEnumToken(
+      'AbstractMonthGrid',
+      'ItemChange',
+      'ItemScaleHasChanged',
+    );
+    export const ItemTransformHasChanged = createEnumToken(
+      'AbstractMonthGrid',
+      'ItemChange',
+      'ItemTransformHasChanged',
+    );
   }
   export namespace TransformOrigin {
     export const TopLeft = createEnumToken('AbstractMonthGrid', 'TransformOrigin', 'TopLeft');
@@ -691,6 +761,10 @@ export namespace AbstractMonthGrid {
     export const Right = createEnumToken('AbstractMonthGrid', 'TransformOrigin', 'Right');
     export const BottomLeft = createEnumToken('AbstractMonthGrid', 'TransformOrigin', 'BottomLeft');
     export const Bottom = createEnumToken('AbstractMonthGrid', 'TransformOrigin', 'Bottom');
-    export const BottomRight = createEnumToken('AbstractMonthGrid', 'TransformOrigin', 'BottomRight');
+    export const BottomRight = createEnumToken(
+      'AbstractMonthGrid',
+      'TransformOrigin',
+      'BottomRight',
+    );
   }
 }

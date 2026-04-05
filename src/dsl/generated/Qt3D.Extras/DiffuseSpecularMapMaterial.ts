@@ -2,8 +2,8 @@
 // Type: DiffuseSpecularMapMaterial
 // Generated from Qt 6.11.0
 
-import { createFluentBuilder } from '../../runtime/index.js';
 import type { QmlColor, QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import { createFluentBuilder } from '../../runtime/index.js';
 import type { EffectBuilder } from '../Qt3D.Render/Effect.js';
 export interface DiffuseSpecularMapMaterialBuilder {
   id(id: string): DiffuseSpecularMapMaterialBuilder;
@@ -73,12 +73,13 @@ const DIFFUSESPECULARMAPMATERIAL_META: TypeMetadata = {
     { handlerName: 'onSpecularChanged', paramCount: 1 },
     { handlerName: 'onTextureScaleChanged', paramCount: 1 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function DiffuseSpecularMapMaterial(): DiffuseSpecularMapMaterialBuilder {
-  return createFluentBuilder('DiffuseSpecularMapMaterial', DIFFUSESPECULARMAPMATERIAL_META) as unknown as DiffuseSpecularMapMaterialBuilder;
+  return createFluentBuilder(
+    'DiffuseSpecularMapMaterial',
+    DIFFUSESPECULARMAPMATERIAL_META,
+  ) as unknown as DiffuseSpecularMapMaterialBuilder;
 }

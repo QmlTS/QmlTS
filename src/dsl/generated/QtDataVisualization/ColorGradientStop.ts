@@ -2,8 +2,8 @@
 // Type: ColorGradientStop
 // Generated from Qt 6.11.0
 
-import { createFluentBuilder } from '../../runtime/index.js';
 import type { QmlColor, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import { createFluentBuilder } from '../../runtime/index.js';
 export interface ColorGradientStopBuilder {
   id(id: string): ColorGradientStopBuilder;
   child(obj: QmlObjectBuilder): ColorGradientStopBuilder;
@@ -31,12 +31,13 @@ const COLORGRADIENTSTOP_META: TypeMetadata = {
     { handlerName: 'onObjectNameChanged', paramCount: 1 },
     { handlerName: 'onPositionChanged', paramCount: 1 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function ColorGradientStop(): ColorGradientStopBuilder {
-  return createFluentBuilder('ColorGradientStop', COLORGRADIENTSTOP_META) as unknown as ColorGradientStopBuilder;
+  return createFluentBuilder(
+    'ColorGradientStop',
+    COLORGRADIENTSTOP_META,
+  ) as unknown as ColorGradientStopBuilder;
 }

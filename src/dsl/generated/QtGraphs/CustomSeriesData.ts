@@ -2,8 +2,8 @@
 // Type: CustomSeriesData
 // Generated from Qt 6.11.0
 
-import { createFluentBuilder } from '../../runtime/index.js';
 import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import { createFluentBuilder } from '../../runtime/index.js';
 export interface CustomSeriesDataBuilder {
   id(id: string): CustomSeriesDataBuilder;
   child(obj: QmlObjectBuilder): CustomSeriesDataBuilder;
@@ -21,15 +21,14 @@ const CUSTOMSERIESDATA_META: TypeMetadata = {
     { name: 'data', hasValue: true, hasBinding: true },
     { name: 'objectName', hasValue: true, hasBinding: true },
   ],
-  signals: [
-    { handlerName: 'onObjectNameChanged', paramCount: 1 },
-  ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  signals: [{ handlerName: 'onObjectNameChanged', paramCount: 1 }],
+  grouped: [],
+  attached: [],
 };
 
 export function CustomSeriesData(): CustomSeriesDataBuilder {
-  return createFluentBuilder('CustomSeriesData', CUSTOMSERIESDATA_META) as unknown as CustomSeriesDataBuilder;
+  return createFluentBuilder(
+    'CustomSeriesData',
+    CUSTOMSERIESDATA_META,
+  ) as unknown as CustomSeriesDataBuilder;
 }

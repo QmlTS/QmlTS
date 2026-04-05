@@ -2,8 +2,8 @@
 // Type: AreaSeries
 // Generated from Qt 6.11.0
 
-import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { QmlColor, QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { LineSeriesBuilder } from './LineSeries.js';
 export interface AreaSeriesBuilder {
   id(id: string): AreaSeriesBuilder;
@@ -167,10 +167,8 @@ const AREASERIES_META: TypeMetadata = {
     { handlerName: 'onVisibleChanged', paramCount: 0 },
     { handlerName: 'onZValueChanged', paramCount: 1 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function AreaSeries(): AreaSeriesBuilder {

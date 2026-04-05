@@ -2,8 +2,8 @@
 // Type: SyntaxHighlighter
 // Generated from Qt 6.11.0
 
-import { createFluentBuilder } from '../../runtime/index.js';
 import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import { createFluentBuilder } from '../../runtime/index.js';
 export interface SyntaxHighlighterBuilder {
   id(id: string): SyntaxHighlighterBuilder;
   child(obj: QmlObjectBuilder): SyntaxHighlighterBuilder;
@@ -26,12 +26,13 @@ const SYNTAXHIGHLIGHTER_META: TypeMetadata = {
     { handlerName: 'onDocumentChanged', paramCount: 0 },
     { handlerName: 'onObjectNameChanged', paramCount: 1 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function SyntaxHighlighter(): SyntaxHighlighterBuilder {
-  return createFluentBuilder('SyntaxHighlighter', SYNTAXHIGHLIGHTER_META) as unknown as SyntaxHighlighterBuilder;
+  return createFluentBuilder(
+    'SyntaxHighlighter',
+    SYNTAXHIGHLIGHTER_META,
+  ) as unknown as SyntaxHighlighterBuilder;
 }

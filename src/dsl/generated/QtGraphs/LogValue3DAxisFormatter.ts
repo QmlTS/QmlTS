@@ -2,8 +2,8 @@
 // Type: LogValue3DAxisFormatter
 // Generated from Qt 6.11.0
 
-import { createFluentBuilder } from '../../runtime/index.js';
 import type { QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import { createFluentBuilder } from '../../runtime/index.js';
 export interface LogValue3DAxisFormatterBuilder {
   id(id: string): LogValue3DAxisFormatterBuilder;
   child(obj: QmlObjectBuilder): LogValue3DAxisFormatterBuilder;
@@ -36,12 +36,13 @@ const LOGVALUE3DAXISFORMATTER_META: TypeMetadata = {
     { handlerName: 'onEdgeLabelsVisibleChanged', paramCount: 1 },
     { handlerName: 'onObjectNameChanged', paramCount: 1 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function LogValue3DAxisFormatter(): LogValue3DAxisFormatterBuilder {
-  return createFluentBuilder('LogValue3DAxisFormatter', LOGVALUE3DAXISFORMATTER_META) as unknown as LogValue3DAxisFormatterBuilder;
+  return createFluentBuilder(
+    'LogValue3DAxisFormatter',
+    LOGVALUE3DAXISFORMATTER_META,
+  ) as unknown as LogValue3DAxisFormatterBuilder;
 }

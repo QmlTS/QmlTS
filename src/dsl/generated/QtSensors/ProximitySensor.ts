@@ -2,8 +2,8 @@
 // Type: ProximitySensor
 // Generated from Qt 6.11.0
 
-import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { QmlEnumToken, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface ProximitySensorBuilder {
   id(id: string): ProximitySensorBuilder;
   child(obj: QmlObjectBuilder): ProximitySensorBuilder;
@@ -86,30 +86,51 @@ const PROXIMITYSENSOR_META: TypeMetadata = {
     { handlerName: 'onSkipDuplicatesChanged', paramCount: 1 },
     { handlerName: 'onUserOrientationChanged', paramCount: 1 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function ProximitySensor(): ProximitySensorBuilder {
-  return createFluentBuilder('ProximitySensor', PROXIMITYSENSOR_META) as unknown as ProximitySensorBuilder;
+  return createFluentBuilder(
+    'ProximitySensor',
+    PROXIMITYSENSOR_META,
+  ) as unknown as ProximitySensorBuilder;
 }
 
 export namespace ProximitySensor {
   export namespace AxesOrientationMode {
-    export const FixedOrientation = createEnumToken('ProximitySensor', 'AxesOrientationMode', 'FixedOrientation');
-    export const AutomaticOrientation = createEnumToken('ProximitySensor', 'AxesOrientationMode', 'AutomaticOrientation');
-    export const UserOrientation = createEnumToken('ProximitySensor', 'AxesOrientationMode', 'UserOrientation');
+    export const FixedOrientation = createEnumToken(
+      'ProximitySensor',
+      'AxesOrientationMode',
+      'FixedOrientation',
+    );
+    export const AutomaticOrientation = createEnumToken(
+      'ProximitySensor',
+      'AxesOrientationMode',
+      'AutomaticOrientation',
+    );
+    export const UserOrientation = createEnumToken(
+      'ProximitySensor',
+      'AxesOrientationMode',
+      'UserOrientation',
+    );
   }
   export namespace Feature {
     export const Buffering = createEnumToken('ProximitySensor', 'Feature', 'Buffering');
     export const AlwaysOn = createEnumToken('ProximitySensor', 'Feature', 'AlwaysOn');
     export const GeoValues = createEnumToken('ProximitySensor', 'Feature', 'GeoValues');
     export const FieldOfView = createEnumToken('ProximitySensor', 'Feature', 'FieldOfView');
-    export const AccelerationMode = createEnumToken('ProximitySensor', 'Feature', 'AccelerationMode');
+    export const AccelerationMode = createEnumToken(
+      'ProximitySensor',
+      'Feature',
+      'AccelerationMode',
+    );
     export const SkipDuplicates = createEnumToken('ProximitySensor', 'Feature', 'SkipDuplicates');
     export const AxesOrientation = createEnumToken('ProximitySensor', 'Feature', 'AxesOrientation');
-    export const PressureSensorTemperature = createEnumToken('ProximitySensor', 'Feature', 'PressureSensorTemperature');
+    export const PressureSensorTemperature = createEnumToken(
+      'ProximitySensor',
+      'Feature',
+      'PressureSensorTemperature',
+    );
   }
 }

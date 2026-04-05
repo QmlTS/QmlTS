@@ -2,8 +2,8 @@
 // Type: PickingProxy
 // Generated from Qt 6.11.0
 
-import { createFluentBuilder } from '../../runtime/index.js';
 import type { QmlObjectBuilder, QmlValue, QmlVector3d, TypeMetadata } from '../../runtime/index.js';
+import { createFluentBuilder } from '../../runtime/index.js';
 import type { GeometryViewBuilder } from '../Qt3D.Core/GeometryView.js';
 export interface PickingProxyBuilder {
   id(id: string): PickingProxyBuilder;
@@ -64,10 +64,8 @@ const PICKINGPROXY_META: TypeMetadata = {
     { handlerName: 'onShareableChanged', paramCount: 1 },
     { handlerName: 'onViewChanged', paramCount: 1 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function PickingProxy(): PickingProxyBuilder {

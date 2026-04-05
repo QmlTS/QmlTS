@@ -2,7 +2,6 @@
 // Type: Attached type: Component
 // Generated from Qt 6.11.0
 
-
 export interface ComponentAttachedBuilder {
   objectName(value: string): ComponentAttachedBuilder;
   objectNameBind(expr: string): ComponentAttachedBuilder;

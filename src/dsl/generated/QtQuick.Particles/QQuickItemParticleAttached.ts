@@ -2,7 +2,6 @@
 // Type: Attached type: ItemParticle
 // Generated from Qt 6.11.0
 
-
 export interface ItemParticleAttachedBuilder {
   objectName(value: string): ItemParticleAttachedBuilder;
   objectNameBind(expr: string): ItemParticleAttachedBuilder;

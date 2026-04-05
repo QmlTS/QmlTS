@@ -2,8 +2,8 @@
 // Type: SystemTrayIcon
 // Generated from Qt 6.11.0
 
-import { createFluentBuilder } from '../../runtime/index.js';
 import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import { createFluentBuilder } from '../../runtime/index.js';
 import type { MenuBuilder } from './Menu.js';
 export interface SystemTrayIconBuilder {
   id(id: string): SystemTrayIconBuilder;
@@ -48,12 +48,13 @@ const SYSTEMTRAYICON_META: TypeMetadata = {
     { handlerName: 'onTooltipChanged', paramCount: 0 },
     { handlerName: 'onVisibleChanged', paramCount: 0 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function SystemTrayIcon(): SystemTrayIconBuilder {
-  return createFluentBuilder('SystemTrayIcon', SYSTEMTRAYICON_META) as unknown as SystemTrayIconBuilder;
+  return createFluentBuilder(
+    'SystemTrayIcon',
+    SYSTEMTRAYICON_META,
+  ) as unknown as SystemTrayIconBuilder;
 }

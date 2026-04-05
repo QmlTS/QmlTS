@@ -2,8 +2,8 @@
 // Type: TestEvent
 // Generated from Qt 6.11.0
 
-import { createFluentBuilder } from '../../runtime/index.js';
 import type { QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import { createFluentBuilder } from '../../runtime/index.js';
 export interface TestEventBuilder {
   id(id: string): TestEventBuilder;
   child(obj: QmlObjectBuilder): TestEventBuilder;
@@ -15,16 +15,10 @@ export interface TestEventBuilder {
 
 const TESTEVENT_META: TypeMetadata = {
   typeName: 'TestEvent',
-  properties: [
-    { name: 'objectName', hasValue: true, hasBinding: true },
-  ],
-  signals: [
-    { handlerName: 'onObjectNameChanged', paramCount: 1 },
-  ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
+  signals: [{ handlerName: 'onObjectNameChanged', paramCount: 1 }],
+  grouped: [],
+  attached: [],
 };
 
 export function TestEvent(): TestEventBuilder {

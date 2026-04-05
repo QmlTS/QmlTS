@@ -2,8 +2,8 @@
 // Type: TCInputMethod
 // Generated from Qt 6.11.0
 
-import { createFluentBuilder } from '../../runtime/index.js';
 import type { QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import { createFluentBuilder } from '../../runtime/index.js';
 export interface TCInputMethodBuilder {
   id(id: string): TCInputMethodBuilder;
   child(obj: QmlObjectBuilder): TCInputMethodBuilder;
@@ -32,12 +32,13 @@ const TCINPUTMETHOD_META: TypeMetadata = {
     { handlerName: 'onSelectionListsChanged', paramCount: 0 },
     { handlerName: 'onSimplifiedChanged', paramCount: 0 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function TCInputMethod(): TCInputMethodBuilder {
-  return createFluentBuilder('TCInputMethod', TCINPUTMETHOD_META) as unknown as TCInputMethodBuilder;
+  return createFluentBuilder(
+    'TCInputMethod',
+    TCINPUTMETHOD_META,
+  ) as unknown as TCInputMethodBuilder;
 }

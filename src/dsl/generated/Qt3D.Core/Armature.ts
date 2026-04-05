@@ -2,8 +2,8 @@
 // Type: Armature
 // Generated from Qt 6.11.0
 
-import { createFluentBuilder } from '../../runtime/index.js';
 import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import { createFluentBuilder } from '../../runtime/index.js';
 export interface ArmatureBuilder {
   id(id: string): ArmatureBuilder;
   child(obj: QmlObjectBuilder): ArmatureBuilder;
@@ -47,10 +47,8 @@ const ARMATURE_META: TypeMetadata = {
     { handlerName: 'onShareableChanged', paramCount: 1 },
     { handlerName: 'onSkeletonChanged', paramCount: 1 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function Armature(): ArmatureBuilder {

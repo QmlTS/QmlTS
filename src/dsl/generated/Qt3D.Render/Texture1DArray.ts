@@ -2,8 +2,13 @@
 // Type: Texture1DArray
 // Generated from Qt 6.11.0
 
+import type {
+  QmlEnumToken,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
-import type { QmlEnumToken, QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
 export interface Texture1DArrayBuilder {
   id(id: string): Texture1DArrayBuilder;
   child(obj: QmlObjectBuilder): Texture1DArrayBuilder;
@@ -104,51 +109,132 @@ const TEXTURE1DARRAY_META: TypeMetadata = {
     { handlerName: 'onStatusChanged', paramCount: 1 },
     { handlerName: 'onWidthChanged', paramCount: 1 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function Texture1DArray(): Texture1DArrayBuilder {
-  return createFluentBuilder('Texture1DArray', TEXTURE1DARRAY_META) as unknown as Texture1DArrayBuilder;
+  return createFluentBuilder(
+    'Texture1DArray',
+    TEXTURE1DARRAY_META,
+  ) as unknown as Texture1DArrayBuilder;
 }
 
 export namespace Texture1DArray {
   export namespace ComparisonFunction {
-    export const CompareLessEqual = createEnumToken('Texture1DArray', 'ComparisonFunction', 'CompareLessEqual');
-    export const CompareGreaterEqual = createEnumToken('Texture1DArray', 'ComparisonFunction', 'CompareGreaterEqual');
-    export const CompareLess = createEnumToken('Texture1DArray', 'ComparisonFunction', 'CompareLess');
-    export const CompareGreater = createEnumToken('Texture1DArray', 'ComparisonFunction', 'CompareGreater');
-    export const CompareEqual = createEnumToken('Texture1DArray', 'ComparisonFunction', 'CompareEqual');
-    export const CommpareNotEqual = createEnumToken('Texture1DArray', 'ComparisonFunction', 'CommpareNotEqual');
-    export const CompareAlways = createEnumToken('Texture1DArray', 'ComparisonFunction', 'CompareAlways');
-    export const CompareNever = createEnumToken('Texture1DArray', 'ComparisonFunction', 'CompareNever');
+    export const CompareLessEqual = createEnumToken(
+      'Texture1DArray',
+      'ComparisonFunction',
+      'CompareLessEqual',
+    );
+    export const CompareGreaterEqual = createEnumToken(
+      'Texture1DArray',
+      'ComparisonFunction',
+      'CompareGreaterEqual',
+    );
+    export const CompareLess = createEnumToken(
+      'Texture1DArray',
+      'ComparisonFunction',
+      'CompareLess',
+    );
+    export const CompareGreater = createEnumToken(
+      'Texture1DArray',
+      'ComparisonFunction',
+      'CompareGreater',
+    );
+    export const CompareEqual = createEnumToken(
+      'Texture1DArray',
+      'ComparisonFunction',
+      'CompareEqual',
+    );
+    export const CommpareNotEqual = createEnumToken(
+      'Texture1DArray',
+      'ComparisonFunction',
+      'CommpareNotEqual',
+    );
+    export const CompareAlways = createEnumToken(
+      'Texture1DArray',
+      'ComparisonFunction',
+      'CompareAlways',
+    );
+    export const CompareNever = createEnumToken(
+      'Texture1DArray',
+      'ComparisonFunction',
+      'CompareNever',
+    );
   }
   export namespace ComparisonMode {
-    export const CompareRefToTexture = createEnumToken('Texture1DArray', 'ComparisonMode', 'CompareRefToTexture');
+    export const CompareRefToTexture = createEnumToken(
+      'Texture1DArray',
+      'ComparisonMode',
+      'CompareRefToTexture',
+    );
     export const CompareNone = createEnumToken('Texture1DArray', 'ComparisonMode', 'CompareNone');
   }
   export namespace CubeMapFace {
-    export const CubeMapPositiveX = createEnumToken('Texture1DArray', 'CubeMapFace', 'CubeMapPositiveX');
-    export const CubeMapNegativeX = createEnumToken('Texture1DArray', 'CubeMapFace', 'CubeMapNegativeX');
-    export const CubeMapPositiveY = createEnumToken('Texture1DArray', 'CubeMapFace', 'CubeMapPositiveY');
-    export const CubeMapNegativeY = createEnumToken('Texture1DArray', 'CubeMapFace', 'CubeMapNegativeY');
-    export const CubeMapPositiveZ = createEnumToken('Texture1DArray', 'CubeMapFace', 'CubeMapPositiveZ');
-    export const CubeMapNegativeZ = createEnumToken('Texture1DArray', 'CubeMapFace', 'CubeMapNegativeZ');
+    export const CubeMapPositiveX = createEnumToken(
+      'Texture1DArray',
+      'CubeMapFace',
+      'CubeMapPositiveX',
+    );
+    export const CubeMapNegativeX = createEnumToken(
+      'Texture1DArray',
+      'CubeMapFace',
+      'CubeMapNegativeX',
+    );
+    export const CubeMapPositiveY = createEnumToken(
+      'Texture1DArray',
+      'CubeMapFace',
+      'CubeMapPositiveY',
+    );
+    export const CubeMapNegativeY = createEnumToken(
+      'Texture1DArray',
+      'CubeMapFace',
+      'CubeMapNegativeY',
+    );
+    export const CubeMapPositiveZ = createEnumToken(
+      'Texture1DArray',
+      'CubeMapFace',
+      'CubeMapPositiveZ',
+    );
+    export const CubeMapNegativeZ = createEnumToken(
+      'Texture1DArray',
+      'CubeMapFace',
+      'CubeMapNegativeZ',
+    );
     export const AllFaces = createEnumToken('Texture1DArray', 'CubeMapFace', 'AllFaces');
   }
   export namespace Filter {
     export const Nearest = createEnumToken('Texture1DArray', 'Filter', 'Nearest');
     export const Linear = createEnumToken('Texture1DArray', 'Filter', 'Linear');
-    export const NearestMipMapNearest = createEnumToken('Texture1DArray', 'Filter', 'NearestMipMapNearest');
-    export const NearestMipMapLinear = createEnumToken('Texture1DArray', 'Filter', 'NearestMipMapLinear');
-    export const LinearMipMapNearest = createEnumToken('Texture1DArray', 'Filter', 'LinearMipMapNearest');
-    export const LinearMipMapLinear = createEnumToken('Texture1DArray', 'Filter', 'LinearMipMapLinear');
+    export const NearestMipMapNearest = createEnumToken(
+      'Texture1DArray',
+      'Filter',
+      'NearestMipMapNearest',
+    );
+    export const NearestMipMapLinear = createEnumToken(
+      'Texture1DArray',
+      'Filter',
+      'NearestMipMapLinear',
+    );
+    export const LinearMipMapNearest = createEnumToken(
+      'Texture1DArray',
+      'Filter',
+      'LinearMipMapNearest',
+    );
+    export const LinearMipMapLinear = createEnumToken(
+      'Texture1DArray',
+      'Filter',
+      'LinearMipMapLinear',
+    );
   }
   export namespace HandleType {
     export const NoHandle = createEnumToken('Texture1DArray', 'HandleType', 'NoHandle');
-    export const OpenGLTextureId = createEnumToken('Texture1DArray', 'HandleType', 'OpenGLTextureId');
+    export const OpenGLTextureId = createEnumToken(
+      'Texture1DArray',
+      'HandleType',
+      'OpenGLTextureId',
+    );
     export const RHITextureId = createEnumToken('Texture1DArray', 'HandleType', 'RHITextureId');
   }
   export namespace Status {
@@ -165,9 +251,21 @@ export namespace Texture1DArray {
     export const Target2DArray = createEnumToken('Texture1DArray', 'Target', 'Target2DArray');
     export const Target3D = createEnumToken('Texture1DArray', 'Target', 'Target3D');
     export const TargetCubeMap = createEnumToken('Texture1DArray', 'Target', 'TargetCubeMap');
-    export const TargetCubeMapArray = createEnumToken('Texture1DArray', 'Target', 'TargetCubeMapArray');
-    export const Target2DMultisample = createEnumToken('Texture1DArray', 'Target', 'Target2DMultisample');
-    export const Target2DMultisampleArray = createEnumToken('Texture1DArray', 'Target', 'Target2DMultisampleArray');
+    export const TargetCubeMapArray = createEnumToken(
+      'Texture1DArray',
+      'Target',
+      'TargetCubeMapArray',
+    );
+    export const Target2DMultisample = createEnumToken(
+      'Texture1DArray',
+      'Target',
+      'Target2DMultisample',
+    );
+    export const Target2DMultisampleArray = createEnumToken(
+      'Texture1DArray',
+      'Target',
+      'Target2DMultisampleArray',
+    );
     export const TargetRectangle = createEnumToken('Texture1DArray', 'Target', 'TargetRectangle');
     export const TargetBuffer = createEnumToken('Texture1DArray', 'Target', 'TargetBuffer');
   }
@@ -240,36 +338,116 @@ export namespace Texture1DArray {
     export const RGBA_DXT1 = createEnumToken('Texture1DArray', 'TextureFormat', 'RGBA_DXT1');
     export const RGBA_DXT3 = createEnumToken('Texture1DArray', 'TextureFormat', 'RGBA_DXT3');
     export const RGBA_DXT5 = createEnumToken('Texture1DArray', 'TextureFormat', 'RGBA_DXT5');
-    export const R_ATI1N_UNorm = createEnumToken('Texture1DArray', 'TextureFormat', 'R_ATI1N_UNorm');
-    export const R_ATI1N_SNorm = createEnumToken('Texture1DArray', 'TextureFormat', 'R_ATI1N_SNorm');
-    export const RG_ATI2N_UNorm = createEnumToken('Texture1DArray', 'TextureFormat', 'RG_ATI2N_UNorm');
-    export const RG_ATI2N_SNorm = createEnumToken('Texture1DArray', 'TextureFormat', 'RG_ATI2N_SNorm');
-    export const RGB_BP_UNSIGNED_FLOAT = createEnumToken('Texture1DArray', 'TextureFormat', 'RGB_BP_UNSIGNED_FLOAT');
-    export const RGB_BP_SIGNED_FLOAT = createEnumToken('Texture1DArray', 'TextureFormat', 'RGB_BP_SIGNED_FLOAT');
+    export const R_ATI1N_UNorm = createEnumToken(
+      'Texture1DArray',
+      'TextureFormat',
+      'R_ATI1N_UNorm',
+    );
+    export const R_ATI1N_SNorm = createEnumToken(
+      'Texture1DArray',
+      'TextureFormat',
+      'R_ATI1N_SNorm',
+    );
+    export const RG_ATI2N_UNorm = createEnumToken(
+      'Texture1DArray',
+      'TextureFormat',
+      'RG_ATI2N_UNorm',
+    );
+    export const RG_ATI2N_SNorm = createEnumToken(
+      'Texture1DArray',
+      'TextureFormat',
+      'RG_ATI2N_SNorm',
+    );
+    export const RGB_BP_UNSIGNED_FLOAT = createEnumToken(
+      'Texture1DArray',
+      'TextureFormat',
+      'RGB_BP_UNSIGNED_FLOAT',
+    );
+    export const RGB_BP_SIGNED_FLOAT = createEnumToken(
+      'Texture1DArray',
+      'TextureFormat',
+      'RGB_BP_SIGNED_FLOAT',
+    );
     export const RGB_BP_UNorm = createEnumToken('Texture1DArray', 'TextureFormat', 'RGB_BP_UNorm');
-    export const R11_EAC_UNorm = createEnumToken('Texture1DArray', 'TextureFormat', 'R11_EAC_UNorm');
-    export const R11_EAC_SNorm = createEnumToken('Texture1DArray', 'TextureFormat', 'R11_EAC_SNorm');
-    export const RG11_EAC_UNorm = createEnumToken('Texture1DArray', 'TextureFormat', 'RG11_EAC_UNorm');
-    export const RG11_EAC_SNorm = createEnumToken('Texture1DArray', 'TextureFormat', 'RG11_EAC_SNorm');
+    export const R11_EAC_UNorm = createEnumToken(
+      'Texture1DArray',
+      'TextureFormat',
+      'R11_EAC_UNorm',
+    );
+    export const R11_EAC_SNorm = createEnumToken(
+      'Texture1DArray',
+      'TextureFormat',
+      'R11_EAC_SNorm',
+    );
+    export const RG11_EAC_UNorm = createEnumToken(
+      'Texture1DArray',
+      'TextureFormat',
+      'RG11_EAC_UNorm',
+    );
+    export const RG11_EAC_SNorm = createEnumToken(
+      'Texture1DArray',
+      'TextureFormat',
+      'RG11_EAC_SNorm',
+    );
     export const RGB8_ETC2 = createEnumToken('Texture1DArray', 'TextureFormat', 'RGB8_ETC2');
     export const SRGB8_ETC2 = createEnumToken('Texture1DArray', 'TextureFormat', 'SRGB8_ETC2');
-    export const RGB8_PunchThrough_Alpha1_ETC2 = createEnumToken('Texture1DArray', 'TextureFormat', 'RGB8_PunchThrough_Alpha1_ETC2');
-    export const SRGB8_PunchThrough_Alpha1_ETC2 = createEnumToken('Texture1DArray', 'TextureFormat', 'SRGB8_PunchThrough_Alpha1_ETC2');
-    export const RGBA8_ETC2_EAC = createEnumToken('Texture1DArray', 'TextureFormat', 'RGBA8_ETC2_EAC');
-    export const SRGB8_Alpha8_ETC2_EAC = createEnumToken('Texture1DArray', 'TextureFormat', 'SRGB8_Alpha8_ETC2_EAC');
+    export const RGB8_PunchThrough_Alpha1_ETC2 = createEnumToken(
+      'Texture1DArray',
+      'TextureFormat',
+      'RGB8_PunchThrough_Alpha1_ETC2',
+    );
+    export const SRGB8_PunchThrough_Alpha1_ETC2 = createEnumToken(
+      'Texture1DArray',
+      'TextureFormat',
+      'SRGB8_PunchThrough_Alpha1_ETC2',
+    );
+    export const RGBA8_ETC2_EAC = createEnumToken(
+      'Texture1DArray',
+      'TextureFormat',
+      'RGBA8_ETC2_EAC',
+    );
+    export const SRGB8_Alpha8_ETC2_EAC = createEnumToken(
+      'Texture1DArray',
+      'TextureFormat',
+      'SRGB8_Alpha8_ETC2_EAC',
+    );
     export const RGB8_ETC1 = createEnumToken('Texture1DArray', 'TextureFormat', 'RGB8_ETC1');
     export const SRGB8 = createEnumToken('Texture1DArray', 'TextureFormat', 'SRGB8');
     export const SRGB8_Alpha8 = createEnumToken('Texture1DArray', 'TextureFormat', 'SRGB8_Alpha8');
     export const SRGB_DXT1 = createEnumToken('Texture1DArray', 'TextureFormat', 'SRGB_DXT1');
-    export const SRGB_Alpha_DXT1 = createEnumToken('Texture1DArray', 'TextureFormat', 'SRGB_Alpha_DXT1');
-    export const SRGB_Alpha_DXT3 = createEnumToken('Texture1DArray', 'TextureFormat', 'SRGB_Alpha_DXT3');
-    export const SRGB_Alpha_DXT5 = createEnumToken('Texture1DArray', 'TextureFormat', 'SRGB_Alpha_DXT5');
-    export const SRGB_BP_UNorm = createEnumToken('Texture1DArray', 'TextureFormat', 'SRGB_BP_UNorm');
+    export const SRGB_Alpha_DXT1 = createEnumToken(
+      'Texture1DArray',
+      'TextureFormat',
+      'SRGB_Alpha_DXT1',
+    );
+    export const SRGB_Alpha_DXT3 = createEnumToken(
+      'Texture1DArray',
+      'TextureFormat',
+      'SRGB_Alpha_DXT3',
+    );
+    export const SRGB_Alpha_DXT5 = createEnumToken(
+      'Texture1DArray',
+      'TextureFormat',
+      'SRGB_Alpha_DXT5',
+    );
+    export const SRGB_BP_UNorm = createEnumToken(
+      'Texture1DArray',
+      'TextureFormat',
+      'SRGB_BP_UNorm',
+    );
     export const DepthFormat = createEnumToken('Texture1DArray', 'TextureFormat', 'DepthFormat');
     export const AlphaFormat = createEnumToken('Texture1DArray', 'TextureFormat', 'AlphaFormat');
     export const RGBFormat = createEnumToken('Texture1DArray', 'TextureFormat', 'RGBFormat');
     export const RGBAFormat = createEnumToken('Texture1DArray', 'TextureFormat', 'RGBAFormat');
-    export const LuminanceFormat = createEnumToken('Texture1DArray', 'TextureFormat', 'LuminanceFormat');
-    export const LuminanceAlphaFormat = createEnumToken('Texture1DArray', 'TextureFormat', 'LuminanceAlphaFormat');
+    export const LuminanceFormat = createEnumToken(
+      'Texture1DArray',
+      'TextureFormat',
+      'LuminanceFormat',
+    );
+    export const LuminanceAlphaFormat = createEnumToken(
+      'Texture1DArray',
+      'TextureFormat',
+      'LuminanceAlphaFormat',
+    );
   }
 }

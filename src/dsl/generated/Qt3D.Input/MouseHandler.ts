@@ -2,8 +2,8 @@
 // Type: MouseHandler
 // Generated from Qt 6.11.0
 
-import { createFluentBuilder } from '../../runtime/index.js';
 import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import { createFluentBuilder } from '../../runtime/index.js';
 import type { MouseDeviceBuilder } from './MouseDevice.js';
 export interface MouseHandlerBuilder {
   id(id: string): MouseHandlerBuilder;
@@ -68,10 +68,8 @@ const MOUSEHANDLER_META: TypeMetadata = {
     { handlerName: 'onSourceDeviceChanged', paramCount: 1 },
     { handlerName: 'onWheel', paramCount: 1 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function MouseHandler(): MouseHandlerBuilder {

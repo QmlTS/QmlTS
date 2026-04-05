@@ -2,8 +2,8 @@
 // Type: PlaceSearchSuggestionModel
 // Generated from Qt 6.11.0
 
-import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { PluginBuilder } from './Plugin.js';
 export interface PlaceSearchSuggestionModelBuilder {
   id(id: string): PlaceSearchSuggestionModelBuilder;
@@ -86,27 +86,56 @@ const PLACESEARCHSUGGESTIONMODEL_META: TypeMetadata = {
     { handlerName: 'onStatusChanged', paramCount: 0 },
     { handlerName: 'onSuggestionsChanged', paramCount: 0 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function PlaceSearchSuggestionModel(): PlaceSearchSuggestionModelBuilder {
-  return createFluentBuilder('PlaceSearchSuggestionModel', PLACESEARCHSUGGESTIONMODEL_META) as unknown as PlaceSearchSuggestionModelBuilder;
+  return createFluentBuilder(
+    'PlaceSearchSuggestionModel',
+    PLACESEARCHSUGGESTIONMODEL_META,
+  ) as unknown as PlaceSearchSuggestionModelBuilder;
 }
 
 export namespace PlaceSearchSuggestionModel {
   export namespace CheckIndexOption {
-    export const NoOption = createEnumToken('PlaceSearchSuggestionModel', 'CheckIndexOption', 'NoOption');
-    export const IndexIsValid = createEnumToken('PlaceSearchSuggestionModel', 'CheckIndexOption', 'IndexIsValid');
-    export const DoNotUseParent = createEnumToken('PlaceSearchSuggestionModel', 'CheckIndexOption', 'DoNotUseParent');
-    export const ParentIsInvalid = createEnumToken('PlaceSearchSuggestionModel', 'CheckIndexOption', 'ParentIsInvalid');
+    export const NoOption = createEnumToken(
+      'PlaceSearchSuggestionModel',
+      'CheckIndexOption',
+      'NoOption',
+    );
+    export const IndexIsValid = createEnumToken(
+      'PlaceSearchSuggestionModel',
+      'CheckIndexOption',
+      'IndexIsValid',
+    );
+    export const DoNotUseParent = createEnumToken(
+      'PlaceSearchSuggestionModel',
+      'CheckIndexOption',
+      'DoNotUseParent',
+    );
+    export const ParentIsInvalid = createEnumToken(
+      'PlaceSearchSuggestionModel',
+      'CheckIndexOption',
+      'ParentIsInvalid',
+    );
   }
   export namespace LayoutChangeHint {
-    export const NoLayoutChangeHint = createEnumToken('PlaceSearchSuggestionModel', 'LayoutChangeHint', 'NoLayoutChangeHint');
-    export const VerticalSortHint = createEnumToken('PlaceSearchSuggestionModel', 'LayoutChangeHint', 'VerticalSortHint');
-    export const HorizontalSortHint = createEnumToken('PlaceSearchSuggestionModel', 'LayoutChangeHint', 'HorizontalSortHint');
+    export const NoLayoutChangeHint = createEnumToken(
+      'PlaceSearchSuggestionModel',
+      'LayoutChangeHint',
+      'NoLayoutChangeHint',
+    );
+    export const VerticalSortHint = createEnumToken(
+      'PlaceSearchSuggestionModel',
+      'LayoutChangeHint',
+      'VerticalSortHint',
+    );
+    export const HorizontalSortHint = createEnumToken(
+      'PlaceSearchSuggestionModel',
+      'LayoutChangeHint',
+      'HorizontalSortHint',
+    );
   }
   export namespace Status {
     export const Null = createEnumToken('PlaceSearchSuggestionModel', 'Status', 'Null');

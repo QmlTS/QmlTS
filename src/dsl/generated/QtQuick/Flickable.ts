@@ -2,8 +2,8 @@
 // Type: Flickable
 // Generated from Qt 6.11.0
 
-import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { QmlEnumToken, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { QtObjectBuilder } from '../QML/QtObject.js';
 import type { AccessibleAttachedBuilder } from './Accessible.js';
 import type { EnterKeyAttachedBuilder } from './EnterKey.js';
@@ -497,9 +497,7 @@ const FLICKABLE_META: TypeMetadata = {
     {
       methodName: 'graphicsInfo',
       attachedTypeName: 'GraphicsInfo',
-      properties: [
-        { name: 'objectName', hasValue: true, hasBinding: true },
-      ],
+      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
       signals: [
         { handlerName: 'onApiChanged', paramCount: 0 },
         { handlerName: 'onMajorVersionChanged', paramCount: 0 },
@@ -650,9 +648,7 @@ const FLICKABLE_META: TypeMetadata = {
     {
       methodName: 'pathView',
       attachedTypeName: 'PathView',
-      properties: [
-        { name: 'objectName', hasValue: true, hasBinding: true },
-      ],
+      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
       signals: [
         { handlerName: 'onCurrentItemChanged', paramCount: 0 },
         { handlerName: 'onPathChanged', paramCount: 0 },
@@ -662,9 +658,7 @@ const FLICKABLE_META: TypeMetadata = {
     {
       methodName: 'positioner',
       attachedTypeName: 'Positioner',
-      properties: [
-        { name: 'objectName', hasValue: true, hasBinding: true },
-      ],
+      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
       signals: [
         { handlerName: 'onIndexChanged', paramCount: 0 },
         { handlerName: 'onIsFirstItemChanged', paramCount: 0 },
@@ -688,9 +682,7 @@ const FLICKABLE_META: TypeMetadata = {
     {
       methodName: 'screen',
       attachedTypeName: 'Screen',
-      properties: [
-        { name: 'objectName', hasValue: true, hasBinding: true },
-      ],
+      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
       signals: [
         { handlerName: 'onDesktopGeometryChanged', paramCount: 0 },
         { handlerName: 'onDevicePixelRatioChanged', paramCount: 0 },
@@ -728,9 +720,7 @@ const FLICKABLE_META: TypeMetadata = {
     {
       methodName: 'viewTransition',
       attachedTypeName: 'ViewTransition',
-      properties: [
-        { name: 'objectName', hasValue: true, hasBinding: true },
-      ],
+      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
       signals: [
         { handlerName: 'onDestinationChanged', paramCount: 0 },
         { handlerName: 'onIndexChanged', paramCount: 0 },
@@ -743,9 +733,7 @@ const FLICKABLE_META: TypeMetadata = {
     {
       methodName: 'window',
       attachedTypeName: 'Window',
-      properties: [
-        { name: 'objectName', hasValue: true, hasBinding: true },
-      ],
+      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
       signals: [
         { handlerName: 'onActiveChanged', paramCount: 0 },
         { handlerName: 'onActiveFocusItemChanged', paramCount: 0 },
@@ -769,42 +757,134 @@ export namespace Flickable {
   export namespace BoundsBehavior {
     export const StopAtBounds = createEnumToken('Flickable', 'BoundsBehavior', 'StopAtBounds');
     export const DragOverBounds = createEnumToken('Flickable', 'BoundsBehavior', 'DragOverBounds');
-    export const OvershootBounds = createEnumToken('Flickable', 'BoundsBehavior', 'OvershootBounds');
-    export const DragAndOvershootBounds = createEnumToken('Flickable', 'BoundsBehavior', 'DragAndOvershootBounds');
+    export const OvershootBounds = createEnumToken(
+      'Flickable',
+      'BoundsBehavior',
+      'OvershootBounds',
+    );
+    export const DragAndOvershootBounds = createEnumToken(
+      'Flickable',
+      'BoundsBehavior',
+      'DragAndOvershootBounds',
+    );
   }
   export namespace BoundsMovement {
-    export const FollowBoundsBehavior = createEnumToken('Flickable', 'BoundsMovement', 'FollowBoundsBehavior');
+    export const FollowBoundsBehavior = createEnumToken(
+      'Flickable',
+      'BoundsMovement',
+      'FollowBoundsBehavior',
+    );
   }
   export namespace Flags {
-    export const ItemClipsChildrenToShape = createEnumToken('Flickable', 'Flags', 'ItemClipsChildrenToShape');
-    export const ItemAcceptsInputMethod = createEnumToken('Flickable', 'Flags', 'ItemAcceptsInputMethod');
+    export const ItemClipsChildrenToShape = createEnumToken(
+      'Flickable',
+      'Flags',
+      'ItemClipsChildrenToShape',
+    );
+    export const ItemAcceptsInputMethod = createEnumToken(
+      'Flickable',
+      'Flags',
+      'ItemAcceptsInputMethod',
+    );
     export const ItemIsFocusScope = createEnumToken('Flickable', 'Flags', 'ItemIsFocusScope');
     export const ItemHasContents = createEnumToken('Flickable', 'Flags', 'ItemHasContents');
     export const ItemAcceptsDrops = createEnumToken('Flickable', 'Flags', 'ItemAcceptsDrops');
     export const ItemIsViewport = createEnumToken('Flickable', 'Flags', 'ItemIsViewport');
-    export const ItemObservesViewport = createEnumToken('Flickable', 'Flags', 'ItemObservesViewport');
+    export const ItemObservesViewport = createEnumToken(
+      'Flickable',
+      'Flags',
+      'ItemObservesViewport',
+    );
   }
   export namespace FlickableDirection {
-    export const AutoFlickDirection = createEnumToken('Flickable', 'FlickableDirection', 'AutoFlickDirection');
-    export const HorizontalFlick = createEnumToken('Flickable', 'FlickableDirection', 'HorizontalFlick');
-    export const VerticalFlick = createEnumToken('Flickable', 'FlickableDirection', 'VerticalFlick');
-    export const HorizontalAndVerticalFlick = createEnumToken('Flickable', 'FlickableDirection', 'HorizontalAndVerticalFlick');
-    export const AutoFlickIfNeeded = createEnumToken('Flickable', 'FlickableDirection', 'AutoFlickIfNeeded');
+    export const AutoFlickDirection = createEnumToken(
+      'Flickable',
+      'FlickableDirection',
+      'AutoFlickDirection',
+    );
+    export const HorizontalFlick = createEnumToken(
+      'Flickable',
+      'FlickableDirection',
+      'HorizontalFlick',
+    );
+    export const VerticalFlick = createEnumToken(
+      'Flickable',
+      'FlickableDirection',
+      'VerticalFlick',
+    );
+    export const HorizontalAndVerticalFlick = createEnumToken(
+      'Flickable',
+      'FlickableDirection',
+      'HorizontalAndVerticalFlick',
+    );
+    export const AutoFlickIfNeeded = createEnumToken(
+      'Flickable',
+      'FlickableDirection',
+      'AutoFlickIfNeeded',
+    );
   }
   export namespace ItemChange {
-    export const ItemChildAddedChange = createEnumToken('Flickable', 'ItemChange', 'ItemChildAddedChange');
-    export const ItemChildRemovedChange = createEnumToken('Flickable', 'ItemChange', 'ItemChildRemovedChange');
+    export const ItemChildAddedChange = createEnumToken(
+      'Flickable',
+      'ItemChange',
+      'ItemChildAddedChange',
+    );
+    export const ItemChildRemovedChange = createEnumToken(
+      'Flickable',
+      'ItemChange',
+      'ItemChildRemovedChange',
+    );
     export const ItemSceneChange = createEnumToken('Flickable', 'ItemChange', 'ItemSceneChange');
-    export const ItemVisibleHasChanged = createEnumToken('Flickable', 'ItemChange', 'ItemVisibleHasChanged');
-    export const ItemParentHasChanged = createEnumToken('Flickable', 'ItemChange', 'ItemParentHasChanged');
-    export const ItemOpacityHasChanged = createEnumToken('Flickable', 'ItemChange', 'ItemOpacityHasChanged');
-    export const ItemActiveFocusHasChanged = createEnumToken('Flickable', 'ItemChange', 'ItemActiveFocusHasChanged');
-    export const ItemRotationHasChanged = createEnumToken('Flickable', 'ItemChange', 'ItemRotationHasChanged');
-    export const ItemAntialiasingHasChanged = createEnumToken('Flickable', 'ItemChange', 'ItemAntialiasingHasChanged');
-    export const ItemDevicePixelRatioHasChanged = createEnumToken('Flickable', 'ItemChange', 'ItemDevicePixelRatioHasChanged');
-    export const ItemEnabledHasChanged = createEnumToken('Flickable', 'ItemChange', 'ItemEnabledHasChanged');
-    export const ItemScaleHasChanged = createEnumToken('Flickable', 'ItemChange', 'ItemScaleHasChanged');
-    export const ItemTransformHasChanged = createEnumToken('Flickable', 'ItemChange', 'ItemTransformHasChanged');
+    export const ItemVisibleHasChanged = createEnumToken(
+      'Flickable',
+      'ItemChange',
+      'ItemVisibleHasChanged',
+    );
+    export const ItemParentHasChanged = createEnumToken(
+      'Flickable',
+      'ItemChange',
+      'ItemParentHasChanged',
+    );
+    export const ItemOpacityHasChanged = createEnumToken(
+      'Flickable',
+      'ItemChange',
+      'ItemOpacityHasChanged',
+    );
+    export const ItemActiveFocusHasChanged = createEnumToken(
+      'Flickable',
+      'ItemChange',
+      'ItemActiveFocusHasChanged',
+    );
+    export const ItemRotationHasChanged = createEnumToken(
+      'Flickable',
+      'ItemChange',
+      'ItemRotationHasChanged',
+    );
+    export const ItemAntialiasingHasChanged = createEnumToken(
+      'Flickable',
+      'ItemChange',
+      'ItemAntialiasingHasChanged',
+    );
+    export const ItemDevicePixelRatioHasChanged = createEnumToken(
+      'Flickable',
+      'ItemChange',
+      'ItemDevicePixelRatioHasChanged',
+    );
+    export const ItemEnabledHasChanged = createEnumToken(
+      'Flickable',
+      'ItemChange',
+      'ItemEnabledHasChanged',
+    );
+    export const ItemScaleHasChanged = createEnumToken(
+      'Flickable',
+      'ItemChange',
+      'ItemScaleHasChanged',
+    );
+    export const ItemTransformHasChanged = createEnumToken(
+      'Flickable',
+      'ItemChange',
+      'ItemTransformHasChanged',
+    );
   }
   export namespace PositionMode {
     export const AlignLeft = createEnumToken('Flickable', 'PositionMode', 'AlignLeft');

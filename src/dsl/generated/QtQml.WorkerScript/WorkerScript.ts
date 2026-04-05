@@ -2,8 +2,8 @@
 // Type: WorkerScript
 // Generated from Qt 6.11.0
 
-import { createFluentBuilder } from '../../runtime/index.js';
 import type { QmlObjectBuilder, QmlUrl, TypeMetadata } from '../../runtime/index.js';
+import { createFluentBuilder } from '../../runtime/index.js';
 export interface WorkerScriptBuilder {
   id(id: string): WorkerScriptBuilder;
   child(obj: QmlObjectBuilder): WorkerScriptBuilder;
@@ -30,10 +30,8 @@ const WORKERSCRIPT_META: TypeMetadata = {
     { handlerName: 'onReadyChanged', paramCount: 0 },
     { handlerName: 'onSourceChanged', paramCount: 0 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function WorkerScript(): WorkerScriptBuilder {

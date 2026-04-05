@@ -2,8 +2,8 @@
 // Type: StyleFont
 // Generated from Qt 6.11.0
 
-import { createFluentBuilder } from '../../runtime/index.js';
 import type { QmlFont, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import { createFluentBuilder } from '../../runtime/index.js';
 import type { StyleKitAttachedBuilder } from './QQStyleKitAttached.js';
 import type { StyleVariationAttachedBuilder } from './QQStyleKitVariationAttached.js';
 export interface StyleFontBuilder {
@@ -97,8 +97,7 @@ const STYLEFONT_META: TypeMetadata = {
     { handlerName: 'onTextFieldChanged', paramCount: 0 },
     { handlerName: 'onToolBarChanged', paramCount: 0 },
   ],
-  grouped: [
-  ],
+  grouped: [],
   attached: [
     {
       methodName: 'styleKit',

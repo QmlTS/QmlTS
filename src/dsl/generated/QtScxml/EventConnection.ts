@@ -2,8 +2,8 @@
 // Type: EventConnection
 // Generated from Qt 6.11.0
 
-import { createFluentBuilder } from '../../runtime/index.js';
 import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import { createFluentBuilder } from '../../runtime/index.js';
 export interface EventConnectionBuilder {
   id(id: string): EventConnectionBuilder;
   child(obj: QmlObjectBuilder): EventConnectionBuilder;
@@ -33,12 +33,13 @@ const EVENTCONNECTION_META: TypeMetadata = {
     { handlerName: 'onOccurred', paramCount: 1 },
     { handlerName: 'onStateMachineChanged', paramCount: 0 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function EventConnection(): EventConnectionBuilder {
-  return createFluentBuilder('EventConnection', EVENTCONNECTION_META) as unknown as EventConnectionBuilder;
+  return createFluentBuilder(
+    'EventConnection',
+    EVENTCONNECTION_META,
+  ) as unknown as EventConnectionBuilder;
 }

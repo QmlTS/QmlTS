@@ -2,8 +2,13 @@
 // Type: LevelOfDetailLoader
 // Generated from Qt 6.11.0
 
+import type {
+  QmlEnumToken,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
-import type { QmlEnumToken, QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
 import type { CameraBuilder } from '../Qt3D.Render/Camera.js';
 export interface LevelOfDetailLoaderBuilder {
   id(id: string): LevelOfDetailLoaderBuilder;
@@ -68,12 +73,13 @@ const LEVELOFDETAILLOADER_META: TypeMetadata = {
     { handlerName: 'onThresholdsChanged', paramCount: 0 },
     { handlerName: 'onVolumeOverrideChanged', paramCount: 0 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function LevelOfDetailLoader(): LevelOfDetailLoaderBuilder {
-  return createFluentBuilder('LevelOfDetailLoader', LEVELOFDETAILLOADER_META) as unknown as LevelOfDetailLoaderBuilder;
+  return createFluentBuilder(
+    'LevelOfDetailLoader',
+    LEVELOFDETAILLOADER_META,
+  ) as unknown as LevelOfDetailLoaderBuilder;
 }

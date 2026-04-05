@@ -2,8 +2,8 @@
 // Type: Fog
 // Generated from Qt 6.11.0
 
-import { createFluentBuilder } from '../../runtime/index.js';
 import type { QmlColor, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import { createFluentBuilder } from '../../runtime/index.js';
 export interface FogBuilder {
   id(id: string): FogBuilder;
   child(obj: QmlObjectBuilder): FogBuilder;
@@ -88,10 +88,8 @@ const FOG_META: TypeMetadata = {
     { handlerName: 'onTransmitCurveChanged', paramCount: 0 },
     { handlerName: 'onTransmitEnabledChanged', paramCount: 0 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function Fog(): FogBuilder {

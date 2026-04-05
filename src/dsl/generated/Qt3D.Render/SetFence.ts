@@ -2,8 +2,8 @@
 // Type: SetFence
 // Generated from Qt 6.11.0
 
-import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface SetFenceBuilder {
   id(id: string): SetFenceBuilder;
   child(obj: QmlObjectBuilder): SetFenceBuilder;
@@ -37,10 +37,8 @@ const SETFENCE_META: TypeMetadata = {
     { handlerName: 'onObjectNameChanged', paramCount: 1 },
     { handlerName: 'onParentChanged', paramCount: 1 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function SetFence(): SetFenceBuilder {

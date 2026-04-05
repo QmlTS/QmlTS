@@ -2,8 +2,15 @@
 // Type: CategoryAxis
 // Generated from Qt 6.11.0
 
+import type {
+  QmlColor,
+  QmlComponent,
+  QmlEnumToken,
+  QmlFont,
+  QmlObjectBuilder,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
-import type { QmlColor, QmlComponent, QmlEnumToken, QmlFont, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
 export interface CategoryAxisBuilder {
   id(id: string): CategoryAxisBuilder;
   child(obj: QmlObjectBuilder): CategoryAxisBuilder;
@@ -159,10 +166,8 @@ const CATEGORYAXIS_META: TypeMetadata = {
     { handlerName: 'onVisualMinChanged', paramCount: 1 },
     { handlerName: 'onZoomChanged', paramCount: 1 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
   defaultProperty: 'axisChildren',
 };
 
@@ -172,8 +177,16 @@ export function CategoryAxis(): CategoryAxisBuilder {
 
 export namespace CategoryAxis {
   export namespace AxisLabelsPosition {
-    export const AxisLabelsPositionCenter = createEnumToken('CategoryAxis', 'AxisLabelsPosition', 'AxisLabelsPositionCenter');
-    export const AxisLabelsPositionOnValue = createEnumToken('CategoryAxis', 'AxisLabelsPosition', 'AxisLabelsPositionOnValue');
+    export const AxisLabelsPositionCenter = createEnumToken(
+      'CategoryAxis',
+      'AxisLabelsPosition',
+      'AxisLabelsPositionCenter',
+    );
+    export const AxisLabelsPositionOnValue = createEnumToken(
+      'CategoryAxis',
+      'AxisLabelsPosition',
+      'AxisLabelsPositionOnValue',
+    );
   }
   export namespace AxisType {
     export const Value = createEnumToken('CategoryAxis', 'AxisType', 'Value');

@@ -2,8 +2,8 @@
 // Type: TextureMaterial
 // Generated from Qt 6.11.0
 
-import { createFluentBuilder } from '../../runtime/index.js';
 import type { QmlObjectBuilder, QmlValue, QmlVector2d, TypeMetadata } from '../../runtime/index.js';
+import { createFluentBuilder } from '../../runtime/index.js';
 import type { EffectBuilder } from '../Qt3D.Render/Effect.js';
 export interface TextureMaterialBuilder {
   id(id: string): TextureMaterialBuilder;
@@ -68,12 +68,13 @@ const TEXTUREMATERIAL_META: TypeMetadata = {
     { handlerName: 'onTextureOffsetChanged', paramCount: 1 },
     { handlerName: 'onTextureTransformChanged', paramCount: 1 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function TextureMaterial(): TextureMaterialBuilder {
-  return createFluentBuilder('TextureMaterial', TEXTUREMATERIAL_META) as unknown as TextureMaterialBuilder;
+  return createFluentBuilder(
+    'TextureMaterial',
+    TEXTUREMATERIAL_META,
+  ) as unknown as TextureMaterialBuilder;
 }

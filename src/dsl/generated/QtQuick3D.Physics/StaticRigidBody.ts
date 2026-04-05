@@ -2,8 +2,14 @@
 // Type: StaticRigidBody
 // Generated from Qt 6.11.0
 
+import type {
+  QmlObjectBuilder,
+  QmlQuaternion,
+  QmlValue,
+  QmlVector3d,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
-import type { QmlObjectBuilder, QmlQuaternion, QmlValue, QmlVector3d, TypeMetadata } from '../../runtime/index.js';
 import type { PhysicsMaterialBuilder } from './PhysicsMaterial.js';
 export interface StaticRigidBodyBuilder {
   id(id: string): StaticRigidBodyBuilder;
@@ -154,14 +160,15 @@ const STATICRIGIDBODY_META: TypeMetadata = {
     { handlerName: 'onYChanged', paramCount: 0 },
     { handlerName: 'onZChanged', paramCount: 0 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function StaticRigidBody(): StaticRigidBodyBuilder {
-  return createFluentBuilder('StaticRigidBody', STATICRIGIDBODY_META) as unknown as StaticRigidBodyBuilder;
+  return createFluentBuilder(
+    'StaticRigidBody',
+    STATICRIGIDBODY_META,
+  ) as unknown as StaticRigidBodyBuilder;
 }
 
 export namespace StaticRigidBody {

@@ -2,8 +2,8 @@
 // Type: Timer
 // Generated from Qt 6.11.0
 
-import { createFluentBuilder } from '../../runtime/index.js';
 import type { QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import { createFluentBuilder } from '../../runtime/index.js';
 export interface TimerBuilder {
   id(id: string): TimerBuilder;
   child(obj: QmlObjectBuilder): TimerBuilder;
@@ -43,10 +43,8 @@ const TIMER_META: TypeMetadata = {
     { handlerName: 'onTriggered', paramCount: 0 },
     { handlerName: 'onTriggeredOnStartChanged', paramCount: 0 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function Timer(): TimerBuilder {

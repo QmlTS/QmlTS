@@ -2,8 +2,8 @@
 // Type: CameraSelector
 // Generated from Qt 6.11.0
 
-import { createFluentBuilder } from '../../runtime/index.js';
 import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import { createFluentBuilder } from '../../runtime/index.js';
 import type { EntityBuilder } from '../Qt3D.Core/Entity.js';
 export interface CameraSelectorBuilder {
   id(id: string): CameraSelectorBuilder;
@@ -39,12 +39,13 @@ const CAMERASELECTOR_META: TypeMetadata = {
     { handlerName: 'onObjectNameChanged', paramCount: 1 },
     { handlerName: 'onParentChanged', paramCount: 1 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function CameraSelector(): CameraSelectorBuilder {
-  return createFluentBuilder('CameraSelector', CAMERASELECTOR_META) as unknown as CameraSelectorBuilder;
+  return createFluentBuilder(
+    'CameraSelector',
+    CAMERASELECTOR_META,
+  ) as unknown as CameraSelectorBuilder;
 }

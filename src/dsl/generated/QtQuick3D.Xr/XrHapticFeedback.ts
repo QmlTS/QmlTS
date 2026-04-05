@@ -2,8 +2,13 @@
 // Type: XrHapticFeedback
 // Generated from Qt 6.11.0
 
+import type {
+  QmlEnumToken,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
-import type { QmlEnumToken, QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
 export interface XrHapticFeedbackBuilder {
   id(id: string): XrHapticFeedbackBuilder;
   child(obj: QmlObjectBuilder): XrHapticFeedbackBuilder;
@@ -41,14 +46,15 @@ const XRHAPTICFEEDBACK_META: TypeMetadata = {
     { handlerName: 'onObjectNameChanged', paramCount: 1 },
     { handlerName: 'onTriggerChanged', paramCount: 0 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function XrHapticFeedback(): XrHapticFeedbackBuilder {
-  return createFluentBuilder('XrHapticFeedback', XRHAPTICFEEDBACK_META) as unknown as XrHapticFeedbackBuilder;
+  return createFluentBuilder(
+    'XrHapticFeedback',
+    XRHAPTICFEEDBACK_META,
+  ) as unknown as XrHapticFeedbackBuilder;
 }
 
 export namespace XrHapticFeedback {
@@ -57,8 +63,20 @@ export namespace XrHapticFeedback {
     export const TrailingEdge = createEnumToken('XrHapticFeedback', 'Condition', 'TrailingEdge');
   }
   export namespace Controller {
-    export const LeftController = createEnumToken('XrHapticFeedback', 'Controller', 'LeftController');
-    export const RightController = createEnumToken('XrHapticFeedback', 'Controller', 'RightController');
-    export const UnknownController = createEnumToken('XrHapticFeedback', 'Controller', 'UnknownController');
+    export const LeftController = createEnumToken(
+      'XrHapticFeedback',
+      'Controller',
+      'LeftController',
+    );
+    export const RightController = createEnumToken(
+      'XrHapticFeedback',
+      'Controller',
+      'RightController',
+    );
+    export const UnknownController = createEnumToken(
+      'XrHapticFeedback',
+      'Controller',
+      'UnknownController',
+    );
   }
 }

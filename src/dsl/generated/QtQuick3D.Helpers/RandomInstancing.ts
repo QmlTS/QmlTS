@@ -2,8 +2,14 @@
 // Type: RandomInstancing
 // Generated from Qt 6.11.0
 
+import type {
+  QmlEnumToken,
+  QmlObjectBuilder,
+  QmlValue,
+  QmlVector3d,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
-import type { QmlEnumToken, QmlObjectBuilder, QmlValue, QmlVector3d, TypeMetadata } from '../../runtime/index.js';
 import type { InstanceRangeBuilder } from './InstanceRange.js';
 export interface RandomInstancingBuilder {
   id(id: string): RandomInstancingBuilder;
@@ -108,14 +114,15 @@ const RANDOMINSTANCING_META: TypeMetadata = {
     { handlerName: 'onShadowBoundsMinimumChanged', paramCount: 0 },
     { handlerName: 'onStateChanged', paramCount: 0 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function RandomInstancing(): RandomInstancingBuilder {
-  return createFluentBuilder('RandomInstancing', RANDOMINSTANCING_META) as unknown as RandomInstancingBuilder;
+  return createFluentBuilder(
+    'RandomInstancing',
+    RANDOMINSTANCING_META,
+  ) as unknown as RandomInstancingBuilder;
 }
 
 export namespace RandomInstancing {

@@ -2,8 +2,16 @@
 // Type: PolarChartView
 // Generated from Qt 6.11.0
 
+import type {
+  QmlColor,
+  QmlEnumToken,
+  QmlFont,
+  QmlObjectBuilder,
+  QmlRect,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
-import type { QmlColor, QmlEnumToken, QmlFont, QmlObjectBuilder, QmlRect, QmlValue, TypeMetadata } from '../../runtime/index.js';
 import type { QtObjectBuilder } from '../QML/QtObject.js';
 import type { ItemBuilder } from '../QtQuick/Item.js';
 import type { PaletteBuilder } from '../QtQuick/Palette.js';
@@ -278,68 +286,198 @@ const POLARCHARTVIEW_META: TypeMetadata = {
       ],
     },
   ],
-  attached: [
-  ],
+  attached: [],
 };
 
 export function PolarChartView(): PolarChartViewBuilder {
-  return createFluentBuilder('PolarChartView', POLARCHARTVIEW_META) as unknown as PolarChartViewBuilder;
+  return createFluentBuilder(
+    'PolarChartView',
+    POLARCHARTVIEW_META,
+  ) as unknown as PolarChartViewBuilder;
 }
 
 export namespace PolarChartView {
   export namespace Animation {
     export const NoAnimation = createEnumToken('PolarChartView', 'Animation', 'NoAnimation');
-    export const GridAxisAnimations = createEnumToken('PolarChartView', 'Animation', 'GridAxisAnimations');
-    export const SeriesAnimations = createEnumToken('PolarChartView', 'Animation', 'SeriesAnimations');
+    export const GridAxisAnimations = createEnumToken(
+      'PolarChartView',
+      'Animation',
+      'GridAxisAnimations',
+    );
+    export const SeriesAnimations = createEnumToken(
+      'PolarChartView',
+      'Animation',
+      'SeriesAnimations',
+    );
     export const AllAnimations = createEnumToken('PolarChartView', 'Animation', 'AllAnimations');
   }
   export namespace Flags {
-    export const ItemClipsChildrenToShape = createEnumToken('PolarChartView', 'Flags', 'ItemClipsChildrenToShape');
-    export const ItemAcceptsInputMethod = createEnumToken('PolarChartView', 'Flags', 'ItemAcceptsInputMethod');
+    export const ItemClipsChildrenToShape = createEnumToken(
+      'PolarChartView',
+      'Flags',
+      'ItemClipsChildrenToShape',
+    );
+    export const ItemAcceptsInputMethod = createEnumToken(
+      'PolarChartView',
+      'Flags',
+      'ItemAcceptsInputMethod',
+    );
     export const ItemIsFocusScope = createEnumToken('PolarChartView', 'Flags', 'ItemIsFocusScope');
     export const ItemHasContents = createEnumToken('PolarChartView', 'Flags', 'ItemHasContents');
     export const ItemAcceptsDrops = createEnumToken('PolarChartView', 'Flags', 'ItemAcceptsDrops');
     export const ItemIsViewport = createEnumToken('PolarChartView', 'Flags', 'ItemIsViewport');
-    export const ItemObservesViewport = createEnumToken('PolarChartView', 'Flags', 'ItemObservesViewport');
+    export const ItemObservesViewport = createEnumToken(
+      'PolarChartView',
+      'Flags',
+      'ItemObservesViewport',
+    );
   }
   export namespace ItemChange {
-    export const ItemChildAddedChange = createEnumToken('PolarChartView', 'ItemChange', 'ItemChildAddedChange');
-    export const ItemChildRemovedChange = createEnumToken('PolarChartView', 'ItemChange', 'ItemChildRemovedChange');
-    export const ItemSceneChange = createEnumToken('PolarChartView', 'ItemChange', 'ItemSceneChange');
-    export const ItemVisibleHasChanged = createEnumToken('PolarChartView', 'ItemChange', 'ItemVisibleHasChanged');
-    export const ItemParentHasChanged = createEnumToken('PolarChartView', 'ItemChange', 'ItemParentHasChanged');
-    export const ItemOpacityHasChanged = createEnumToken('PolarChartView', 'ItemChange', 'ItemOpacityHasChanged');
-    export const ItemActiveFocusHasChanged = createEnumToken('PolarChartView', 'ItemChange', 'ItemActiveFocusHasChanged');
-    export const ItemRotationHasChanged = createEnumToken('PolarChartView', 'ItemChange', 'ItemRotationHasChanged');
-    export const ItemAntialiasingHasChanged = createEnumToken('PolarChartView', 'ItemChange', 'ItemAntialiasingHasChanged');
-    export const ItemDevicePixelRatioHasChanged = createEnumToken('PolarChartView', 'ItemChange', 'ItemDevicePixelRatioHasChanged');
-    export const ItemEnabledHasChanged = createEnumToken('PolarChartView', 'ItemChange', 'ItemEnabledHasChanged');
-    export const ItemScaleHasChanged = createEnumToken('PolarChartView', 'ItemChange', 'ItemScaleHasChanged');
-    export const ItemTransformHasChanged = createEnumToken('PolarChartView', 'ItemChange', 'ItemTransformHasChanged');
+    export const ItemChildAddedChange = createEnumToken(
+      'PolarChartView',
+      'ItemChange',
+      'ItemChildAddedChange',
+    );
+    export const ItemChildRemovedChange = createEnumToken(
+      'PolarChartView',
+      'ItemChange',
+      'ItemChildRemovedChange',
+    );
+    export const ItemSceneChange = createEnumToken(
+      'PolarChartView',
+      'ItemChange',
+      'ItemSceneChange',
+    );
+    export const ItemVisibleHasChanged = createEnumToken(
+      'PolarChartView',
+      'ItemChange',
+      'ItemVisibleHasChanged',
+    );
+    export const ItemParentHasChanged = createEnumToken(
+      'PolarChartView',
+      'ItemChange',
+      'ItemParentHasChanged',
+    );
+    export const ItemOpacityHasChanged = createEnumToken(
+      'PolarChartView',
+      'ItemChange',
+      'ItemOpacityHasChanged',
+    );
+    export const ItemActiveFocusHasChanged = createEnumToken(
+      'PolarChartView',
+      'ItemChange',
+      'ItemActiveFocusHasChanged',
+    );
+    export const ItemRotationHasChanged = createEnumToken(
+      'PolarChartView',
+      'ItemChange',
+      'ItemRotationHasChanged',
+    );
+    export const ItemAntialiasingHasChanged = createEnumToken(
+      'PolarChartView',
+      'ItemChange',
+      'ItemAntialiasingHasChanged',
+    );
+    export const ItemDevicePixelRatioHasChanged = createEnumToken(
+      'PolarChartView',
+      'ItemChange',
+      'ItemDevicePixelRatioHasChanged',
+    );
+    export const ItemEnabledHasChanged = createEnumToken(
+      'PolarChartView',
+      'ItemChange',
+      'ItemEnabledHasChanged',
+    );
+    export const ItemScaleHasChanged = createEnumToken(
+      'PolarChartView',
+      'ItemChange',
+      'ItemScaleHasChanged',
+    );
+    export const ItemTransformHasChanged = createEnumToken(
+      'PolarChartView',
+      'ItemChange',
+      'ItemTransformHasChanged',
+    );
   }
   export namespace SeriesType {
     export const SeriesTypeLine = createEnumToken('PolarChartView', 'SeriesType', 'SeriesTypeLine');
     export const SeriesTypeArea = createEnumToken('PolarChartView', 'SeriesType', 'SeriesTypeArea');
     export const SeriesTypeBar = createEnumToken('PolarChartView', 'SeriesType', 'SeriesTypeBar');
-    export const SeriesTypeStackedBar = createEnumToken('PolarChartView', 'SeriesType', 'SeriesTypeStackedBar');
-    export const SeriesTypePercentBar = createEnumToken('PolarChartView', 'SeriesType', 'SeriesTypePercentBar');
+    export const SeriesTypeStackedBar = createEnumToken(
+      'PolarChartView',
+      'SeriesType',
+      'SeriesTypeStackedBar',
+    );
+    export const SeriesTypePercentBar = createEnumToken(
+      'PolarChartView',
+      'SeriesType',
+      'SeriesTypePercentBar',
+    );
     export const SeriesTypePie = createEnumToken('PolarChartView', 'SeriesType', 'SeriesTypePie');
-    export const SeriesTypeScatter = createEnumToken('PolarChartView', 'SeriesType', 'SeriesTypeScatter');
-    export const SeriesTypeSpline = createEnumToken('PolarChartView', 'SeriesType', 'SeriesTypeSpline');
-    export const SeriesTypeHorizontalBar = createEnumToken('PolarChartView', 'SeriesType', 'SeriesTypeHorizontalBar');
-    export const SeriesTypeHorizontalStackedBar = createEnumToken('PolarChartView', 'SeriesType', 'SeriesTypeHorizontalStackedBar');
-    export const SeriesTypeHorizontalPercentBar = createEnumToken('PolarChartView', 'SeriesType', 'SeriesTypeHorizontalPercentBar');
-    export const SeriesTypeBoxPlot = createEnumToken('PolarChartView', 'SeriesType', 'SeriesTypeBoxPlot');
-    export const SeriesTypeCandlestick = createEnumToken('PolarChartView', 'SeriesType', 'SeriesTypeCandlestick');
+    export const SeriesTypeScatter = createEnumToken(
+      'PolarChartView',
+      'SeriesType',
+      'SeriesTypeScatter',
+    );
+    export const SeriesTypeSpline = createEnumToken(
+      'PolarChartView',
+      'SeriesType',
+      'SeriesTypeSpline',
+    );
+    export const SeriesTypeHorizontalBar = createEnumToken(
+      'PolarChartView',
+      'SeriesType',
+      'SeriesTypeHorizontalBar',
+    );
+    export const SeriesTypeHorizontalStackedBar = createEnumToken(
+      'PolarChartView',
+      'SeriesType',
+      'SeriesTypeHorizontalStackedBar',
+    );
+    export const SeriesTypeHorizontalPercentBar = createEnumToken(
+      'PolarChartView',
+      'SeriesType',
+      'SeriesTypeHorizontalPercentBar',
+    );
+    export const SeriesTypeBoxPlot = createEnumToken(
+      'PolarChartView',
+      'SeriesType',
+      'SeriesTypeBoxPlot',
+    );
+    export const SeriesTypeCandlestick = createEnumToken(
+      'PolarChartView',
+      'SeriesType',
+      'SeriesTypeCandlestick',
+    );
   }
   export namespace Theme {
     export const ChartThemeLight = createEnumToken('PolarChartView', 'Theme', 'ChartThemeLight');
-    export const ChartThemeBlueCerulean = createEnumToken('PolarChartView', 'Theme', 'ChartThemeBlueCerulean');
+    export const ChartThemeBlueCerulean = createEnumToken(
+      'PolarChartView',
+      'Theme',
+      'ChartThemeBlueCerulean',
+    );
     export const ChartThemeDark = createEnumToken('PolarChartView', 'Theme', 'ChartThemeDark');
-    export const ChartThemeBrownSand = createEnumToken('PolarChartView', 'Theme', 'ChartThemeBrownSand');
-    export const ChartThemeBlueNcs = createEnumToken('PolarChartView', 'Theme', 'ChartThemeBlueNcs');
-    export const ChartThemeHighContrast = createEnumToken('PolarChartView', 'Theme', 'ChartThemeHighContrast');
-    export const ChartThemeBlueIcy = createEnumToken('PolarChartView', 'Theme', 'ChartThemeBlueIcy');
+    export const ChartThemeBrownSand = createEnumToken(
+      'PolarChartView',
+      'Theme',
+      'ChartThemeBrownSand',
+    );
+    export const ChartThemeBlueNcs = createEnumToken(
+      'PolarChartView',
+      'Theme',
+      'ChartThemeBlueNcs',
+    );
+    export const ChartThemeHighContrast = createEnumToken(
+      'PolarChartView',
+      'Theme',
+      'ChartThemeHighContrast',
+    );
+    export const ChartThemeBlueIcy = createEnumToken(
+      'PolarChartView',
+      'Theme',
+      'ChartThemeBlueIcy',
+    );
     export const ChartThemeQt = createEnumToken('PolarChartView', 'Theme', 'ChartThemeQt');
   }
   export namespace TransformOrigin {

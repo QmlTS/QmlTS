@@ -2,8 +2,8 @@
 // Type: CustomControl
 // Generated from Qt 6.11.0
 
-import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { TransitionBuilder } from '../QtQuick/Transition.js';
 import type { StyleKitAttachedBuilder } from './QQStyleKitAttached.js';
 import type { StyleVariationAttachedBuilder } from './QQStyleKitVariationAttached.js';
@@ -88,8 +88,7 @@ const CUSTOMCONTROL_META: TypeMetadata = {
     { handlerName: 'onTransitionChanged', paramCount: 0 },
     { handlerName: 'onVerticalChanged', paramCount: 0 },
   ],
-  grouped: [
-  ],
+  grouped: [],
   attached: [
     {
       methodName: 'styleKit',
@@ -125,7 +124,10 @@ const CUSTOMCONTROL_META: TypeMetadata = {
 };
 
 export function CustomControl(): CustomControlBuilder {
-  return createFluentBuilder('CustomControl', CUSTOMCONTROL_META) as unknown as CustomControlBuilder;
+  return createFluentBuilder(
+    'CustomControl',
+    CUSTOMCONTROL_META,
+  ) as unknown as CustomControlBuilder;
 }
 
 export namespace CustomControl {

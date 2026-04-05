@@ -2,8 +2,8 @@
 // Type: GeoJsonData
 // Generated from Qt 6.11.0
 
-import { createFluentBuilder } from '../../runtime/index.js';
 import type { QmlObjectBuilder, QmlUrl, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import { createFluentBuilder } from '../../runtime/index.js';
 export interface GeoJsonDataBuilder {
   id(id: string): GeoJsonDataBuilder;
   child(obj: QmlObjectBuilder): GeoJsonDataBuilder;
@@ -31,10 +31,8 @@ const GEOJSONDATA_META: TypeMetadata = {
     { handlerName: 'onObjectNameChanged', paramCount: 1 },
     { handlerName: 'onSourceUrlChanged', paramCount: 0 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function GeoJsonData(): GeoJsonDataBuilder {

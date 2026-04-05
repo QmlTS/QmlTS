@@ -2,8 +2,8 @@
 // Type: GrpcHttp2Channel
 // Generated from Qt 6.11.0
 
-import { createFluentBuilder } from '../../runtime/index.js';
 import type { QmlObjectBuilder, QmlUrl, TypeMetadata } from '../../runtime/index.js';
+import { createFluentBuilder } from '../../runtime/index.js';
 import type { GrpcChannelOptionsBuilder } from './GrpcChannelOptions.js';
 export interface GrpcHttp2ChannelBuilder {
   id(id: string): GrpcHttp2ChannelBuilder;
@@ -34,12 +34,13 @@ const GRPCHTTP2CHANNEL_META: TypeMetadata = {
     { handlerName: 'onObjectNameChanged', paramCount: 1 },
     { handlerName: 'onOptionsChanged', paramCount: 0 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function GrpcHttp2Channel(): GrpcHttp2ChannelBuilder {
-  return createFluentBuilder('GrpcHttp2Channel', GRPCHTTP2CHANNEL_META) as unknown as GrpcHttp2ChannelBuilder;
+  return createFluentBuilder(
+    'GrpcHttp2Channel',
+    GRPCHTTP2CHANNEL_META,
+  ) as unknown as GrpcHttp2ChannelBuilder;
 }

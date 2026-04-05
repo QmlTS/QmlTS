@@ -2,8 +2,14 @@
 // Type: PointRotator3D
 // Generated from Qt 6.11.0
 
+import type {
+  QmlObjectBuilder,
+  QmlQuaternion,
+  QmlValue,
+  QmlVector3d,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
-import type { QmlObjectBuilder, QmlQuaternion, QmlValue, QmlVector3d, TypeMetadata } from '../../runtime/index.js';
 import type { ParticleSystem3DBuilder } from './ParticleSystem3D.js';
 export interface PointRotator3DBuilder {
   id(id: string): PointRotator3DBuilder;
@@ -135,14 +141,15 @@ const POINTROTATOR3D_META: TypeMetadata = {
     { handlerName: 'onYChanged', paramCount: 0 },
     { handlerName: 'onZChanged', paramCount: 0 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function PointRotator3D(): PointRotator3DBuilder {
-  return createFluentBuilder('PointRotator3D', POINTROTATOR3D_META) as unknown as PointRotator3DBuilder;
+  return createFluentBuilder(
+    'PointRotator3D',
+    POINTROTATOR3D_META,
+  ) as unknown as PointRotator3DBuilder;
 }
 
 export namespace PointRotator3D {

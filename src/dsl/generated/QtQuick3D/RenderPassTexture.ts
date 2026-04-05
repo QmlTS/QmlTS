@@ -2,8 +2,13 @@
 // Type: RenderPassTexture
 // Generated from Qt 6.11.0
 
+import type {
+  QmlEnumToken,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
-import type { QmlEnumToken, QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
 export interface RenderPassTextureBuilder {
   id(id: string): RenderPassTextureBuilder;
   child(obj: QmlObjectBuilder): RenderPassTextureBuilder;
@@ -36,15 +41,16 @@ const RENDERPASSTEXTURE_META: TypeMetadata = {
     { handlerName: 'onParentChanged', paramCount: 0 },
     { handlerName: 'onStateChanged', paramCount: 0 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
   defaultProperty: 'data',
 };
 
 export function RenderPassTexture(): RenderPassTextureBuilder {
-  return createFluentBuilder('RenderPassTexture', RENDERPASSTEXTURE_META) as unknown as RenderPassTextureBuilder;
+  return createFluentBuilder(
+    'RenderPassTexture',
+    RENDERPASSTEXTURE_META,
+  ) as unknown as RenderPassTextureBuilder;
 }
 
 export namespace RenderPassTexture {
@@ -60,6 +66,10 @@ export namespace RenderPassTexture {
     export const Depth16 = createEnumToken('RenderPassTexture', 'TextureFormat', 'Depth16');
     export const Depth24 = createEnumToken('RenderPassTexture', 'TextureFormat', 'Depth24');
     export const Depth32 = createEnumToken('RenderPassTexture', 'TextureFormat', 'Depth32');
-    export const Depth24Stencil8 = createEnumToken('RenderPassTexture', 'TextureFormat', 'Depth24Stencil8');
+    export const Depth24Stencil8 = createEnumToken(
+      'RenderPassTexture',
+      'TextureFormat',
+      'Depth24Stencil8',
+    );
   }
 }

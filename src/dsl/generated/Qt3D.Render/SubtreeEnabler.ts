@@ -2,8 +2,13 @@
 // Type: SubtreeEnabler
 // Generated from Qt 6.11.0
 
+import type {
+  QmlEnumToken,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
-import type { QmlEnumToken, QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
 export interface SubtreeEnablerBuilder {
   id(id: string): SubtreeEnablerBuilder;
   child(obj: QmlObjectBuilder): SubtreeEnablerBuilder;
@@ -38,14 +43,15 @@ const SUBTREEENABLER_META: TypeMetadata = {
     { handlerName: 'onObjectNameChanged', paramCount: 1 },
     { handlerName: 'onParentChanged', paramCount: 1 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function SubtreeEnabler(): SubtreeEnablerBuilder {
-  return createFluentBuilder('SubtreeEnabler', SUBTREEENABLER_META) as unknown as SubtreeEnablerBuilder;
+  return createFluentBuilder(
+    'SubtreeEnabler',
+    SUBTREEENABLER_META,
+  ) as unknown as SubtreeEnablerBuilder;
 }
 
 export namespace SubtreeEnabler {

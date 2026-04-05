@@ -2,8 +2,8 @@
 // Type: FrameAction
 // Generated from Qt 6.11.0
 
-import { createFluentBuilder } from '../../runtime/index.js';
 import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import { createFluentBuilder } from '../../runtime/index.js';
 export interface FrameActionBuilder {
   id(id: string): FrameActionBuilder;
   child(obj: QmlObjectBuilder): FrameActionBuilder;
@@ -44,10 +44,8 @@ const FRAMEACTION_META: TypeMetadata = {
     { handlerName: 'onShareableChanged', paramCount: 1 },
     { handlerName: 'onTriggered', paramCount: 1 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function FrameAction(): FrameActionBuilder {

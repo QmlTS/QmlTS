@@ -2,8 +2,8 @@
 // Type: TargetDirection
 // Generated from Qt 6.11.0
 
-import { createFluentBuilder } from '../../runtime/index.js';
 import type { QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import { createFluentBuilder } from '../../runtime/index.js';
 import type { ItemBuilder } from '../QtQuick/Item.js';
 import type { ItemParticleAttachedBuilder } from './QQuickItemParticleAttached.js';
 export interface TargetDirectionBuilder {
@@ -59,15 +59,12 @@ const TARGETDIRECTION_META: TypeMetadata = {
     { handlerName: 'onTargetXChanged', paramCount: 1 },
     { handlerName: 'onTargetYChanged', paramCount: 1 },
   ],
-  grouped: [
-  ],
+  grouped: [],
   attached: [
     {
       methodName: 'itemParticle',
       attachedTypeName: 'ItemParticle',
-      properties: [
-        { name: 'objectName', hasValue: true, hasBinding: true },
-      ],
+      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
       signals: [
         { handlerName: 'onAttached', paramCount: 0 },
         { handlerName: 'onDetached', paramCount: 0 },
@@ -78,5 +75,8 @@ const TARGETDIRECTION_META: TypeMetadata = {
 };
 
 export function TargetDirection(): TargetDirectionBuilder {
-  return createFluentBuilder('TargetDirection', TARGETDIRECTION_META) as unknown as TargetDirectionBuilder;
+  return createFluentBuilder(
+    'TargetDirection',
+    TARGETDIRECTION_META,
+  ) as unknown as TargetDirectionBuilder;
 }

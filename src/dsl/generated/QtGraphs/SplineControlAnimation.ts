@@ -2,8 +2,13 @@
 // Type: SplineControlAnimation
 // Generated from Qt 6.11.0
 
+import type {
+  QmlEnumToken,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
-import type { QmlEnumToken, QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
 export interface SplineControlAnimationBuilder {
   id(id: string): SplineControlAnimationBuilder;
   child(obj: QmlObjectBuilder): SplineControlAnimationBuilder;
@@ -57,14 +62,15 @@ const SPLINECONTROLANIMATION_META: TypeMetadata = {
     { handlerName: 'onStateChanged', paramCount: 2 },
     { handlerName: 'onValueChanged', paramCount: 1 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function SplineControlAnimation(): SplineControlAnimationBuilder {
-  return createFluentBuilder('SplineControlAnimation', SPLINECONTROLANIMATION_META) as unknown as SplineControlAnimationBuilder;
+  return createFluentBuilder(
+    'SplineControlAnimation',
+    SPLINECONTROLANIMATION_META,
+  ) as unknown as SplineControlAnimationBuilder;
 }
 
 export namespace SplineControlAnimation {
@@ -77,8 +83,16 @@ export namespace SplineControlAnimation {
     export const Backward = createEnumToken('SplineControlAnimation', 'Direction', 'Backward');
   }
   export namespace GraphAnimationType {
-    export const GraphPoint = createEnumToken('SplineControlAnimation', 'GraphAnimationType', 'GraphPoint');
-    export const ControlPoint = createEnumToken('SplineControlAnimation', 'GraphAnimationType', 'ControlPoint');
+    export const GraphPoint = createEnumToken(
+      'SplineControlAnimation',
+      'GraphAnimationType',
+      'GraphPoint',
+    );
+    export const ControlPoint = createEnumToken(
+      'SplineControlAnimation',
+      'GraphAnimationType',
+      'ControlPoint',
+    );
   }
   export namespace State {
     export const Stopped = createEnumToken('SplineControlAnimation', 'State', 'Stopped');

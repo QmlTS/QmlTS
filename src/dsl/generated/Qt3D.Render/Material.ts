@@ -2,8 +2,8 @@
 // Type: Material
 // Generated from Qt 6.11.0
 
-import { createFluentBuilder } from '../../runtime/index.js';
 import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import { createFluentBuilder } from '../../runtime/index.js';
 import type { EffectBuilder } from './Effect.js';
 export interface MaterialBuilder {
   id(id: string): MaterialBuilder;
@@ -48,10 +48,8 @@ const MATERIAL_META: TypeMetadata = {
     { handlerName: 'onRemovedFromEntity', paramCount: 1 },
     { handlerName: 'onShareableChanged', paramCount: 1 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function Material(): MaterialBuilder {

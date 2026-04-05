@@ -2,8 +2,15 @@
 // Type: MediaRecorder
 // Generated from Qt 6.11.0
 
+import type {
+  QmlEnumToken,
+  QmlObjectBuilder,
+  QmlSize,
+  QmlUrl,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
-import type { QmlEnumToken, QmlObjectBuilder, QmlSize, QmlUrl, QmlValue, TypeMetadata } from '../../runtime/index.js';
 export interface MediaRecorderBuilder {
   id(id: string): MediaRecorderBuilder;
   child(obj: QmlObjectBuilder): MediaRecorderBuilder;
@@ -91,29 +98,50 @@ const MEDIARECORDER_META: TypeMetadata = {
     { handlerName: 'onVideoFrameRateChanged', paramCount: 0 },
     { handlerName: 'onVideoResolutionChanged', paramCount: 0 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function MediaRecorder(): MediaRecorderBuilder {
-  return createFluentBuilder('MediaRecorder', MEDIARECORDER_META) as unknown as MediaRecorderBuilder;
+  return createFluentBuilder(
+    'MediaRecorder',
+    MEDIARECORDER_META,
+  ) as unknown as MediaRecorderBuilder;
 }
 
 export namespace MediaRecorder {
   export namespace EncodingMode {
-    export const ConstantQualityEncoding = createEnumToken('MediaRecorder', 'EncodingMode', 'ConstantQualityEncoding');
-    export const ConstantBitRateEncoding = createEnumToken('MediaRecorder', 'EncodingMode', 'ConstantBitRateEncoding');
-    export const AverageBitRateEncoding = createEnumToken('MediaRecorder', 'EncodingMode', 'AverageBitRateEncoding');
-    export const TwoPassEncoding = createEnumToken('MediaRecorder', 'EncodingMode', 'TwoPassEncoding');
+    export const ConstantQualityEncoding = createEnumToken(
+      'MediaRecorder',
+      'EncodingMode',
+      'ConstantQualityEncoding',
+    );
+    export const ConstantBitRateEncoding = createEnumToken(
+      'MediaRecorder',
+      'EncodingMode',
+      'ConstantBitRateEncoding',
+    );
+    export const AverageBitRateEncoding = createEnumToken(
+      'MediaRecorder',
+      'EncodingMode',
+      'AverageBitRateEncoding',
+    );
+    export const TwoPassEncoding = createEnumToken(
+      'MediaRecorder',
+      'EncodingMode',
+      'TwoPassEncoding',
+    );
   }
   export namespace Error {
     export const NoError = createEnumToken('MediaRecorder', 'Error', 'NoError');
     export const ResourceError = createEnumToken('MediaRecorder', 'Error', 'ResourceError');
     export const FormatError = createEnumToken('MediaRecorder', 'Error', 'FormatError');
     export const OutOfSpaceError = createEnumToken('MediaRecorder', 'Error', 'OutOfSpaceError');
-    export const LocationNotWritable = createEnumToken('MediaRecorder', 'Error', 'LocationNotWritable');
+    export const LocationNotWritable = createEnumToken(
+      'MediaRecorder',
+      'Error',
+      'LocationNotWritable',
+    );
   }
   export namespace Quality {
     export const VeryLowQuality = createEnumToken('MediaRecorder', 'Quality', 'VeryLowQuality');
@@ -124,7 +152,11 @@ export namespace MediaRecorder {
   }
   export namespace RecorderState {
     export const StoppedState = createEnumToken('MediaRecorder', 'RecorderState', 'StoppedState');
-    export const RecordingState = createEnumToken('MediaRecorder', 'RecorderState', 'RecordingState');
+    export const RecordingState = createEnumToken(
+      'MediaRecorder',
+      'RecorderState',
+      'RecordingState',
+    );
     export const PausedState = createEnumToken('MediaRecorder', 'RecorderState', 'PausedState');
   }
 }

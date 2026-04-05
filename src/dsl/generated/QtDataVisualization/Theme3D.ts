@@ -2,8 +2,14 @@
 // Type: Theme3D
 // Generated from Qt 6.11.0
 
+import type {
+  QmlColor,
+  QmlEnumToken,
+  QmlFont,
+  QmlObjectBuilder,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
-import type { QmlColor, QmlEnumToken, QmlFont, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
 import type { ColorGradientBuilder } from './ColorGradient.js';
 export interface Theme3DBuilder {
   id(id: string): Theme3DBuilder;
@@ -126,10 +132,8 @@ const THEME3D_META: TypeMetadata = {
     { handlerName: 'onTypeChanged', paramCount: 1 },
     { handlerName: 'onWindowColorChanged', paramCount: 1 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
   defaultProperty: 'themeChildren',
 };
 
@@ -140,8 +144,16 @@ export function Theme3D(): Theme3DBuilder {
 export namespace Theme3D {
   export namespace ColorStyle {
     export const ColorStyleUniform = createEnumToken('Theme3D', 'ColorStyle', 'ColorStyleUniform');
-    export const ColorStyleObjectGradient = createEnumToken('Theme3D', 'ColorStyle', 'ColorStyleObjectGradient');
-    export const ColorStyleRangeGradient = createEnumToken('Theme3D', 'ColorStyle', 'ColorStyleRangeGradient');
+    export const ColorStyleObjectGradient = createEnumToken(
+      'Theme3D',
+      'ColorStyle',
+      'ColorStyleObjectGradient',
+    );
+    export const ColorStyleRangeGradient = createEnumToken(
+      'Theme3D',
+      'ColorStyle',
+      'ColorStyleRangeGradient',
+    );
   }
   export namespace Theme {
     export const ThemeQt = createEnumToken('Theme3D', 'Theme', 'ThemeQt');

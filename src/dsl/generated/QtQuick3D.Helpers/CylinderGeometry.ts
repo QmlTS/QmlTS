@@ -2,8 +2,8 @@
 // Type: CylinderGeometry
 // Generated from Qt 6.11.0
 
-import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface CylinderGeometryBuilder {
   id(id: string): CylinderGeometryBuilder;
   child(obj: QmlObjectBuilder): CylinderGeometryBuilder;
@@ -64,14 +64,15 @@ const CYLINDERGEOMETRY_META: TypeMetadata = {
     { handlerName: 'onStateChanged', paramCount: 0 },
     { handlerName: 'onStatusChanged', paramCount: 0 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function CylinderGeometry(): CylinderGeometryBuilder {
-  return createFluentBuilder('CylinderGeometry', CYLINDERGEOMETRY_META) as unknown as CylinderGeometryBuilder;
+  return createFluentBuilder(
+    'CylinderGeometry',
+    CYLINDERGEOMETRY_META,
+  ) as unknown as CylinderGeometryBuilder;
 }
 
 export namespace CylinderGeometry {

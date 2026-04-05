@@ -2,8 +2,8 @@
 // Type: AnimationClipLoader
 // Generated from Qt 6.11.0
 
-import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { QmlObjectBuilder, QmlUrl, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface AnimationClipLoaderBuilder {
   id(id: string): AnimationClipLoaderBuilder;
   child(obj: QmlObjectBuilder): AnimationClipLoaderBuilder;
@@ -42,14 +42,15 @@ const ANIMATIONCLIPLOADER_META: TypeMetadata = {
     { handlerName: 'onSourceChanged', paramCount: 1 },
     { handlerName: 'onStatusChanged', paramCount: 1 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function AnimationClipLoader(): AnimationClipLoaderBuilder {
-  return createFluentBuilder('AnimationClipLoader', ANIMATIONCLIPLOADER_META) as unknown as AnimationClipLoaderBuilder;
+  return createFluentBuilder(
+    'AnimationClipLoader',
+    ANIMATIONCLIPLOADER_META,
+  ) as unknown as AnimationClipLoaderBuilder;
 }
 
 export namespace AnimationClipLoader {

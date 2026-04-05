@@ -2,8 +2,13 @@
 // Type: MorphingAnimation
 // Generated from Qt 6.11.0
 
+import type {
+  QmlEnumToken,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
-import type { QmlEnumToken, QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
 import type { GeometryRendererBuilder } from '../Qt3D.Render/GeometryRenderer.js';
 export interface MorphingAnimationBuilder {
   id(id: string): MorphingAnimationBuilder;
@@ -61,21 +66,34 @@ const MORPHINGANIMATION_META: TypeMetadata = {
     { handlerName: 'onTargetNameChanged', paramCount: 1 },
     { handlerName: 'onTargetPositionsChanged', paramCount: 1 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function MorphingAnimation(): MorphingAnimationBuilder {
-  return createFluentBuilder('MorphingAnimation', MORPHINGANIMATION_META) as unknown as MorphingAnimationBuilder;
+  return createFluentBuilder(
+    'MorphingAnimation',
+    MORPHINGANIMATION_META,
+  ) as unknown as MorphingAnimationBuilder;
 }
 
 export namespace MorphingAnimation {
   export namespace AnimationType {
-    export const KeyframeAnimation = createEnumToken('MorphingAnimation', 'AnimationType', 'KeyframeAnimation');
-    export const MorphingAnimation = createEnumToken('MorphingAnimation', 'AnimationType', 'MorphingAnimation');
-    export const VertexBlendAnimation = createEnumToken('MorphingAnimation', 'AnimationType', 'VertexBlendAnimation');
+    export const KeyframeAnimation = createEnumToken(
+      'MorphingAnimation',
+      'AnimationType',
+      'KeyframeAnimation',
+    );
+    export const MorphingAnimation = createEnumToken(
+      'MorphingAnimation',
+      'AnimationType',
+      'MorphingAnimation',
+    );
+    export const VertexBlendAnimation = createEnumToken(
+      'MorphingAnimation',
+      'AnimationType',
+      'VertexBlendAnimation',
+    );
   }
   export namespace Method {
     export const Normalized = createEnumToken('MorphingAnimation', 'Method', 'Normalized');

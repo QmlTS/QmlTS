@@ -2,8 +2,8 @@
 // Type: DispatchCompute
 // Generated from Qt 6.11.0
 
-import { createFluentBuilder } from '../../runtime/index.js';
 import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import { createFluentBuilder } from '../../runtime/index.js';
 export interface DispatchComputeBuilder {
   id(id: string): DispatchComputeBuilder;
   child(obj: QmlObjectBuilder): DispatchComputeBuilder;
@@ -48,12 +48,13 @@ const DISPATCHCOMPUTE_META: TypeMetadata = {
     { handlerName: 'onWorkGroupYChanged', paramCount: 0 },
     { handlerName: 'onWorkGroupZChanged', paramCount: 0 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function DispatchCompute(): DispatchComputeBuilder {
-  return createFluentBuilder('DispatchCompute', DISPATCHCOMPUTE_META) as unknown as DispatchComputeBuilder;
+  return createFluentBuilder(
+    'DispatchCompute',
+    DISPATCHCOMPUTE_META,
+  ) as unknown as DispatchComputeBuilder;
 }

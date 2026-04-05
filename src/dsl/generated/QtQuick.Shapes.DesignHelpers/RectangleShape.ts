@@ -2,8 +2,14 @@
 // Type: RectangleShape
 // Generated from Qt 6.11.0
 
+import type {
+  QmlColor,
+  QmlEnumToken,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
-import type { QmlColor, QmlEnumToken, QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
 import type { QtObjectBuilder } from '../QML/QtObject.js';
 import type { ItemBuilder } from '../QtQuick/Item.js';
 import type { PaletteBuilder } from '../QtQuick/Palette.js';
@@ -371,13 +377,15 @@ const RECTANGLESHAPE_META: TypeMetadata = {
       ],
     },
   ],
-  attached: [
-  ],
+  attached: [],
   defaultProperty: 'data',
 };
 
 export function RectangleShape(): RectangleShapeBuilder {
-  return createFluentBuilder('RectangleShape', RECTANGLESHAPE_META) as unknown as RectangleShapeBuilder;
+  return createFluentBuilder(
+    'RectangleShape',
+    RECTANGLESHAPE_META,
+  ) as unknown as RectangleShapeBuilder;
 }
 
 export namespace RectangleShape {
@@ -387,23 +395,47 @@ export namespace RectangleShape {
     export const Outside = createEnumToken('RectangleShape', 'BorderMode', 'Outside');
   }
   export namespace ContainsMode {
-    export const BoundingRectContains = createEnumToken('RectangleShape', 'ContainsMode', 'BoundingRectContains');
+    export const BoundingRectContains = createEnumToken(
+      'RectangleShape',
+      'ContainsMode',
+      'BoundingRectContains',
+    );
     export const FillContains = createEnumToken('RectangleShape', 'ContainsMode', 'FillContains');
   }
   export namespace FillMode {
     export const NoResize = createEnumToken('RectangleShape', 'FillMode', 'NoResize');
-    export const PreserveAspectFit = createEnumToken('RectangleShape', 'FillMode', 'PreserveAspectFit');
-    export const PreserveAspectCrop = createEnumToken('RectangleShape', 'FillMode', 'PreserveAspectCrop');
+    export const PreserveAspectFit = createEnumToken(
+      'RectangleShape',
+      'FillMode',
+      'PreserveAspectFit',
+    );
+    export const PreserveAspectCrop = createEnumToken(
+      'RectangleShape',
+      'FillMode',
+      'PreserveAspectCrop',
+    );
     export const Stretch = createEnumToken('RectangleShape', 'FillMode', 'Stretch');
   }
   export namespace Flags {
-    export const ItemClipsChildrenToShape = createEnumToken('RectangleShape', 'Flags', 'ItemClipsChildrenToShape');
-    export const ItemAcceptsInputMethod = createEnumToken('RectangleShape', 'Flags', 'ItemAcceptsInputMethod');
+    export const ItemClipsChildrenToShape = createEnumToken(
+      'RectangleShape',
+      'Flags',
+      'ItemClipsChildrenToShape',
+    );
+    export const ItemAcceptsInputMethod = createEnumToken(
+      'RectangleShape',
+      'Flags',
+      'ItemAcceptsInputMethod',
+    );
     export const ItemIsFocusScope = createEnumToken('RectangleShape', 'Flags', 'ItemIsFocusScope');
     export const ItemHasContents = createEnumToken('RectangleShape', 'Flags', 'ItemHasContents');
     export const ItemAcceptsDrops = createEnumToken('RectangleShape', 'Flags', 'ItemAcceptsDrops');
     export const ItemIsViewport = createEnumToken('RectangleShape', 'Flags', 'ItemIsViewport');
-    export const ItemObservesViewport = createEnumToken('RectangleShape', 'Flags', 'ItemObservesViewport');
+    export const ItemObservesViewport = createEnumToken(
+      'RectangleShape',
+      'Flags',
+      'ItemObservesViewport',
+    );
   }
   export namespace HAlignment {
     export const AlignLeft = createEnumToken('RectangleShape', 'HAlignment', 'AlignLeft');
@@ -411,25 +443,89 @@ export namespace RectangleShape {
     export const AlignHCenter = createEnumToken('RectangleShape', 'HAlignment', 'AlignHCenter');
   }
   export namespace ItemChange {
-    export const ItemChildAddedChange = createEnumToken('RectangleShape', 'ItemChange', 'ItemChildAddedChange');
-    export const ItemChildRemovedChange = createEnumToken('RectangleShape', 'ItemChange', 'ItemChildRemovedChange');
-    export const ItemSceneChange = createEnumToken('RectangleShape', 'ItemChange', 'ItemSceneChange');
-    export const ItemVisibleHasChanged = createEnumToken('RectangleShape', 'ItemChange', 'ItemVisibleHasChanged');
-    export const ItemParentHasChanged = createEnumToken('RectangleShape', 'ItemChange', 'ItemParentHasChanged');
-    export const ItemOpacityHasChanged = createEnumToken('RectangleShape', 'ItemChange', 'ItemOpacityHasChanged');
-    export const ItemActiveFocusHasChanged = createEnumToken('RectangleShape', 'ItemChange', 'ItemActiveFocusHasChanged');
-    export const ItemRotationHasChanged = createEnumToken('RectangleShape', 'ItemChange', 'ItemRotationHasChanged');
-    export const ItemAntialiasingHasChanged = createEnumToken('RectangleShape', 'ItemChange', 'ItemAntialiasingHasChanged');
-    export const ItemDevicePixelRatioHasChanged = createEnumToken('RectangleShape', 'ItemChange', 'ItemDevicePixelRatioHasChanged');
-    export const ItemEnabledHasChanged = createEnumToken('RectangleShape', 'ItemChange', 'ItemEnabledHasChanged');
-    export const ItemScaleHasChanged = createEnumToken('RectangleShape', 'ItemChange', 'ItemScaleHasChanged');
-    export const ItemTransformHasChanged = createEnumToken('RectangleShape', 'ItemChange', 'ItemTransformHasChanged');
+    export const ItemChildAddedChange = createEnumToken(
+      'RectangleShape',
+      'ItemChange',
+      'ItemChildAddedChange',
+    );
+    export const ItemChildRemovedChange = createEnumToken(
+      'RectangleShape',
+      'ItemChange',
+      'ItemChildRemovedChange',
+    );
+    export const ItemSceneChange = createEnumToken(
+      'RectangleShape',
+      'ItemChange',
+      'ItemSceneChange',
+    );
+    export const ItemVisibleHasChanged = createEnumToken(
+      'RectangleShape',
+      'ItemChange',
+      'ItemVisibleHasChanged',
+    );
+    export const ItemParentHasChanged = createEnumToken(
+      'RectangleShape',
+      'ItemChange',
+      'ItemParentHasChanged',
+    );
+    export const ItemOpacityHasChanged = createEnumToken(
+      'RectangleShape',
+      'ItemChange',
+      'ItemOpacityHasChanged',
+    );
+    export const ItemActiveFocusHasChanged = createEnumToken(
+      'RectangleShape',
+      'ItemChange',
+      'ItemActiveFocusHasChanged',
+    );
+    export const ItemRotationHasChanged = createEnumToken(
+      'RectangleShape',
+      'ItemChange',
+      'ItemRotationHasChanged',
+    );
+    export const ItemAntialiasingHasChanged = createEnumToken(
+      'RectangleShape',
+      'ItemChange',
+      'ItemAntialiasingHasChanged',
+    );
+    export const ItemDevicePixelRatioHasChanged = createEnumToken(
+      'RectangleShape',
+      'ItemChange',
+      'ItemDevicePixelRatioHasChanged',
+    );
+    export const ItemEnabledHasChanged = createEnumToken(
+      'RectangleShape',
+      'ItemChange',
+      'ItemEnabledHasChanged',
+    );
+    export const ItemScaleHasChanged = createEnumToken(
+      'RectangleShape',
+      'ItemChange',
+      'ItemScaleHasChanged',
+    );
+    export const ItemTransformHasChanged = createEnumToken(
+      'RectangleShape',
+      'ItemChange',
+      'ItemTransformHasChanged',
+    );
   }
   export namespace RendererType {
-    export const UnknownRenderer = createEnumToken('RectangleShape', 'RendererType', 'UnknownRenderer');
-    export const GeometryRenderer = createEnumToken('RectangleShape', 'RendererType', 'GeometryRenderer');
+    export const UnknownRenderer = createEnumToken(
+      'RectangleShape',
+      'RendererType',
+      'UnknownRenderer',
+    );
+    export const GeometryRenderer = createEnumToken(
+      'RectangleShape',
+      'RendererType',
+      'GeometryRenderer',
+    );
     export const NvprRenderer = createEnumToken('RectangleShape', 'RendererType', 'NvprRenderer');
-    export const SoftwareRenderer = createEnumToken('RectangleShape', 'RendererType', 'SoftwareRenderer');
+    export const SoftwareRenderer = createEnumToken(
+      'RectangleShape',
+      'RendererType',
+      'SoftwareRenderer',
+    );
     export const CurveRenderer = createEnumToken('RectangleShape', 'RendererType', 'CurveRenderer');
   }
   export namespace Status {

@@ -2,8 +2,8 @@
 // Type: Container
 // Generated from Qt 6.11.0
 
-import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { QmlEnumToken, QmlFont, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { QtObjectBuilder } from '../QML/QtObject.js';
 import type { ItemBuilder } from '../QtQuick/Item.js';
 import type { PaletteBuilder } from '../QtQuick/Palette.js';
@@ -390,9 +390,7 @@ const CONTAINER_META: TypeMetadata = {
     {
       methodName: 'applicationWindow',
       attachedTypeName: 'ApplicationWindow',
-      properties: [
-        { name: 'objectName', hasValue: true, hasBinding: true },
-      ],
+      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
       signals: [
         { handlerName: 'onActiveFocusControlChanged', paramCount: 0 },
         { handlerName: 'onContentItemChanged', paramCount: 0 },
@@ -489,9 +487,7 @@ const CONTAINER_META: TypeMetadata = {
     {
       methodName: 'selectionRectangle',
       attachedTypeName: 'SelectionRectangle',
-      properties: [
-        { name: 'objectName', hasValue: true, hasBinding: true },
-      ],
+      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
       signals: [
         { handlerName: 'onControlChanged', paramCount: 0 },
         { handlerName: 'onDraggingChanged', paramCount: 0 },
@@ -501,9 +497,7 @@ const CONTAINER_META: TypeMetadata = {
     {
       methodName: 'splitHandle',
       attachedTypeName: 'SplitHandle',
-      properties: [
-        { name: 'objectName', hasValue: true, hasBinding: true },
-      ],
+      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
       signals: [
         { handlerName: 'onHoveredChanged', paramCount: 0 },
         { handlerName: 'onPressedChanged', paramCount: 0 },
@@ -560,9 +554,7 @@ const CONTAINER_META: TypeMetadata = {
     {
       methodName: 'swipeDelegate',
       attachedTypeName: 'SwipeDelegate',
-      properties: [
-        { name: 'objectName', hasValue: true, hasBinding: true },
-      ],
+      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
       signals: [
         { handlerName: 'onClicked', paramCount: 0 },
         { handlerName: 'onPressedChanged', paramCount: 0 },
@@ -572,9 +564,7 @@ const CONTAINER_META: TypeMetadata = {
     {
       methodName: 'swipeView',
       attachedTypeName: 'SwipeView',
-      properties: [
-        { name: 'objectName', hasValue: true, hasBinding: true },
-      ],
+      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
       signals: [
         { handlerName: 'onIndexChanged', paramCount: 0 },
         { handlerName: 'onIsCurrentItemChanged', paramCount: 0 },
@@ -587,9 +577,7 @@ const CONTAINER_META: TypeMetadata = {
     {
       methodName: 'tabBar',
       attachedTypeName: 'TabBar',
-      properties: [
-        { name: 'objectName', hasValue: true, hasBinding: true },
-      ],
+      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
       signals: [
         { handlerName: 'onIndexChanged', paramCount: 0 },
         { handlerName: 'onPositionChanged', paramCount: 0 },
@@ -630,9 +618,7 @@ const CONTAINER_META: TypeMetadata = {
     {
       methodName: 'tumbler',
       attachedTypeName: 'Tumbler',
-      properties: [
-        { name: 'objectName', hasValue: true, hasBinding: true },
-      ],
+      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
       signals: [
         { handlerName: 'onDisplacementChanged', paramCount: 0 },
         { handlerName: 'onObjectNameChanged', paramCount: 1 },
@@ -648,28 +634,88 @@ export function Container(): ContainerBuilder {
 
 export namespace Container {
   export namespace Flags {
-    export const ItemClipsChildrenToShape = createEnumToken('Container', 'Flags', 'ItemClipsChildrenToShape');
-    export const ItemAcceptsInputMethod = createEnumToken('Container', 'Flags', 'ItemAcceptsInputMethod');
+    export const ItemClipsChildrenToShape = createEnumToken(
+      'Container',
+      'Flags',
+      'ItemClipsChildrenToShape',
+    );
+    export const ItemAcceptsInputMethod = createEnumToken(
+      'Container',
+      'Flags',
+      'ItemAcceptsInputMethod',
+    );
     export const ItemIsFocusScope = createEnumToken('Container', 'Flags', 'ItemIsFocusScope');
     export const ItemHasContents = createEnumToken('Container', 'Flags', 'ItemHasContents');
     export const ItemAcceptsDrops = createEnumToken('Container', 'Flags', 'ItemAcceptsDrops');
     export const ItemIsViewport = createEnumToken('Container', 'Flags', 'ItemIsViewport');
-    export const ItemObservesViewport = createEnumToken('Container', 'Flags', 'ItemObservesViewport');
+    export const ItemObservesViewport = createEnumToken(
+      'Container',
+      'Flags',
+      'ItemObservesViewport',
+    );
   }
   export namespace ItemChange {
-    export const ItemChildAddedChange = createEnumToken('Container', 'ItemChange', 'ItemChildAddedChange');
-    export const ItemChildRemovedChange = createEnumToken('Container', 'ItemChange', 'ItemChildRemovedChange');
+    export const ItemChildAddedChange = createEnumToken(
+      'Container',
+      'ItemChange',
+      'ItemChildAddedChange',
+    );
+    export const ItemChildRemovedChange = createEnumToken(
+      'Container',
+      'ItemChange',
+      'ItemChildRemovedChange',
+    );
     export const ItemSceneChange = createEnumToken('Container', 'ItemChange', 'ItemSceneChange');
-    export const ItemVisibleHasChanged = createEnumToken('Container', 'ItemChange', 'ItemVisibleHasChanged');
-    export const ItemParentHasChanged = createEnumToken('Container', 'ItemChange', 'ItemParentHasChanged');
-    export const ItemOpacityHasChanged = createEnumToken('Container', 'ItemChange', 'ItemOpacityHasChanged');
-    export const ItemActiveFocusHasChanged = createEnumToken('Container', 'ItemChange', 'ItemActiveFocusHasChanged');
-    export const ItemRotationHasChanged = createEnumToken('Container', 'ItemChange', 'ItemRotationHasChanged');
-    export const ItemAntialiasingHasChanged = createEnumToken('Container', 'ItemChange', 'ItemAntialiasingHasChanged');
-    export const ItemDevicePixelRatioHasChanged = createEnumToken('Container', 'ItemChange', 'ItemDevicePixelRatioHasChanged');
-    export const ItemEnabledHasChanged = createEnumToken('Container', 'ItemChange', 'ItemEnabledHasChanged');
-    export const ItemScaleHasChanged = createEnumToken('Container', 'ItemChange', 'ItemScaleHasChanged');
-    export const ItemTransformHasChanged = createEnumToken('Container', 'ItemChange', 'ItemTransformHasChanged');
+    export const ItemVisibleHasChanged = createEnumToken(
+      'Container',
+      'ItemChange',
+      'ItemVisibleHasChanged',
+    );
+    export const ItemParentHasChanged = createEnumToken(
+      'Container',
+      'ItemChange',
+      'ItemParentHasChanged',
+    );
+    export const ItemOpacityHasChanged = createEnumToken(
+      'Container',
+      'ItemChange',
+      'ItemOpacityHasChanged',
+    );
+    export const ItemActiveFocusHasChanged = createEnumToken(
+      'Container',
+      'ItemChange',
+      'ItemActiveFocusHasChanged',
+    );
+    export const ItemRotationHasChanged = createEnumToken(
+      'Container',
+      'ItemChange',
+      'ItemRotationHasChanged',
+    );
+    export const ItemAntialiasingHasChanged = createEnumToken(
+      'Container',
+      'ItemChange',
+      'ItemAntialiasingHasChanged',
+    );
+    export const ItemDevicePixelRatioHasChanged = createEnumToken(
+      'Container',
+      'ItemChange',
+      'ItemDevicePixelRatioHasChanged',
+    );
+    export const ItemEnabledHasChanged = createEnumToken(
+      'Container',
+      'ItemChange',
+      'ItemEnabledHasChanged',
+    );
+    export const ItemScaleHasChanged = createEnumToken(
+      'Container',
+      'ItemChange',
+      'ItemScaleHasChanged',
+    );
+    export const ItemTransformHasChanged = createEnumToken(
+      'Container',
+      'ItemChange',
+      'ItemTransformHasChanged',
+    );
   }
   export namespace TransformOrigin {
     export const TopLeft = createEnumToken('Container', 'TransformOrigin', 'TopLeft');

@@ -2,8 +2,15 @@
 // Type: ParticleEmitter3D
 // Generated from Qt 6.11.0
 
+import type {
+  QmlEnumToken,
+  QmlObjectBuilder,
+  QmlQuaternion,
+  QmlValue,
+  QmlVector3d,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
-import type { QmlEnumToken, QmlObjectBuilder, QmlQuaternion, QmlValue, QmlVector3d, TypeMetadata } from '../../runtime/index.js';
 import type { ParticleSystem3DBuilder } from './ParticleSystem3D.js';
 export interface ParticleEmitter3DBuilder {
   id(id: string): ParticleEmitter3DBuilder;
@@ -203,28 +210,37 @@ const PARTICLEEMITTER3D_META: TypeMetadata = {
     { handlerName: 'onYChanged', paramCount: 0 },
     { handlerName: 'onZChanged', paramCount: 0 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function ParticleEmitter3D(): ParticleEmitter3DBuilder {
-  return createFluentBuilder('ParticleEmitter3D', PARTICLEEMITTER3D_META) as unknown as ParticleEmitter3DBuilder;
+  return createFluentBuilder(
+    'ParticleEmitter3D',
+    PARTICLEEMITTER3D_META,
+  ) as unknown as ParticleEmitter3DBuilder;
 }
 
 export namespace ParticleEmitter3D {
   export namespace EmitMode {
     export const Default = createEnumToken('ParticleEmitter3D', 'EmitMode', 'Default');
     export const SurfaceNormal = createEnumToken('ParticleEmitter3D', 'EmitMode', 'SurfaceNormal');
-    export const SurfaceReflected = createEnumToken('ParticleEmitter3D', 'EmitMode', 'SurfaceReflected');
+    export const SurfaceReflected = createEnumToken(
+      'ParticleEmitter3D',
+      'EmitMode',
+      'SurfaceReflected',
+    );
   }
   export namespace StaticFlags {
     export const None = createEnumToken('ParticleEmitter3D', 'StaticFlags', 'None');
   }
   export namespace TransformSpace {
     export const LocalSpace = createEnumToken('ParticleEmitter3D', 'TransformSpace', 'LocalSpace');
-    export const ParentSpace = createEnumToken('ParticleEmitter3D', 'TransformSpace', 'ParentSpace');
+    export const ParentSpace = createEnumToken(
+      'ParticleEmitter3D',
+      'TransformSpace',
+      'ParentSpace',
+    );
     export const SceneSpace = createEnumToken('ParticleEmitter3D', 'TransformSpace', 'SceneSpace');
   }
 }

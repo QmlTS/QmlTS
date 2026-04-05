@@ -2,8 +2,8 @@
 // Type: XrVirtualMouse
 // Generated from Qt 6.11.0
 
-import { createFluentBuilder } from '../../runtime/index.js';
 import type { QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import { createFluentBuilder } from '../../runtime/index.js';
 import type { NodeBuilder } from '../QtQuick3D/Node.js';
 import type { XrViewBuilder } from './XrView.js';
 export interface XrVirtualMouseBuilder {
@@ -73,12 +73,13 @@ const XRVIRTUALMOUSE_META: TypeMetadata = {
     { handlerName: 'onSourceChanged', paramCount: 1 },
     { handlerName: 'onViewChanged', paramCount: 1 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function XrVirtualMouse(): XrVirtualMouseBuilder {
-  return createFluentBuilder('XrVirtualMouse', XRVIRTUALMOUSE_META) as unknown as XrVirtualMouseBuilder;
+  return createFluentBuilder(
+    'XrVirtualMouse',
+    XRVIRTUALMOUSE_META,
+  ) as unknown as XrVirtualMouseBuilder;
 }

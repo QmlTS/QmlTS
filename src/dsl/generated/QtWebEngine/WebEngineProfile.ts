@@ -2,8 +2,8 @@
 // Type: WebEngineProfile
 // Generated from Qt 6.11.0
 
-import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { QmlEnumToken, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface WebEngineProfileBuilder {
   id(id: string): WebEngineProfileBuilder;
   child(obj: QmlObjectBuilder): WebEngineProfileBuilder;
@@ -99,31 +99,68 @@ const WEBENGINEPROFILE_META: TypeMetadata = {
     { handlerName: 'onSpellCheckLanguagesChanged', paramCount: 0 },
     { handlerName: 'onStorageNameChanged', paramCount: 0 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function WebEngineProfile(): WebEngineProfileBuilder {
-  return createFluentBuilder('WebEngineProfile', WEBENGINEPROFILE_META) as unknown as WebEngineProfileBuilder;
+  return createFluentBuilder(
+    'WebEngineProfile',
+    WEBENGINEPROFILE_META,
+  ) as unknown as WebEngineProfileBuilder;
 }
 
 export namespace WebEngineProfile {
   export namespace HttpCacheType {
-    export const MemoryHttpCache = createEnumToken('WebEngineProfile', 'HttpCacheType', 'MemoryHttpCache');
-    export const DiskHttpCache = createEnumToken('WebEngineProfile', 'HttpCacheType', 'DiskHttpCache');
+    export const MemoryHttpCache = createEnumToken(
+      'WebEngineProfile',
+      'HttpCacheType',
+      'MemoryHttpCache',
+    );
+    export const DiskHttpCache = createEnumToken(
+      'WebEngineProfile',
+      'HttpCacheType',
+      'DiskHttpCache',
+    );
     export const NoCache = createEnumToken('WebEngineProfile', 'HttpCacheType', 'NoCache');
   }
   export namespace PersistentCookiesPolicy {
-    export const NoPersistentCookies = createEnumToken('WebEngineProfile', 'PersistentCookiesPolicy', 'NoPersistentCookies');
-    export const AllowPersistentCookies = createEnumToken('WebEngineProfile', 'PersistentCookiesPolicy', 'AllowPersistentCookies');
-    export const ForcePersistentCookies = createEnumToken('WebEngineProfile', 'PersistentCookiesPolicy', 'ForcePersistentCookies');
-    export const OnlyPersistentCookies = createEnumToken('WebEngineProfile', 'PersistentCookiesPolicy', 'OnlyPersistentCookies');
+    export const NoPersistentCookies = createEnumToken(
+      'WebEngineProfile',
+      'PersistentCookiesPolicy',
+      'NoPersistentCookies',
+    );
+    export const AllowPersistentCookies = createEnumToken(
+      'WebEngineProfile',
+      'PersistentCookiesPolicy',
+      'AllowPersistentCookies',
+    );
+    export const ForcePersistentCookies = createEnumToken(
+      'WebEngineProfile',
+      'PersistentCookiesPolicy',
+      'ForcePersistentCookies',
+    );
+    export const OnlyPersistentCookies = createEnumToken(
+      'WebEngineProfile',
+      'PersistentCookiesPolicy',
+      'OnlyPersistentCookies',
+    );
   }
   export namespace PersistentPermissionsPolicy {
-    export const AskEveryTime = createEnumToken('WebEngineProfile', 'PersistentPermissionsPolicy', 'AskEveryTime');
-    export const StoreInMemory = createEnumToken('WebEngineProfile', 'PersistentPermissionsPolicy', 'StoreInMemory');
-    export const StoreOnDisk = createEnumToken('WebEngineProfile', 'PersistentPermissionsPolicy', 'StoreOnDisk');
+    export const AskEveryTime = createEnumToken(
+      'WebEngineProfile',
+      'PersistentPermissionsPolicy',
+      'AskEveryTime',
+    );
+    export const StoreInMemory = createEnumToken(
+      'WebEngineProfile',
+      'PersistentPermissionsPolicy',
+      'StoreInMemory',
+    );
+    export const StoreOnDisk = createEnumToken(
+      'WebEngineProfile',
+      'PersistentPermissionsPolicy',
+      'StoreOnDisk',
+    );
   }
 }

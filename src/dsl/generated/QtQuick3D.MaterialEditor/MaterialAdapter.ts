@@ -2,8 +2,8 @@
 // Type: MaterialAdapter
 // Generated from Qt 6.11.0
 
-import { createFluentBuilder } from '../../runtime/index.js';
 import type { QmlEnumToken, QmlObjectBuilder, QmlUrl, TypeMetadata } from '../../runtime/index.js';
+import { createFluentBuilder } from '../../runtime/index.js';
 import type { NodeBuilder } from '../QtQuick3D/Node.js';
 import type { UniformModelBuilder } from './UniformModel.js';
 export interface MaterialAdapterBuilder {
@@ -88,12 +88,13 @@ const MATERIALADAPTER_META: TypeMetadata = {
     { handlerName: 'onVertexShaderChanged', paramCount: 0 },
     { handlerName: 'onVertexStatusChanged', paramCount: 0 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function MaterialAdapter(): MaterialAdapterBuilder {
-  return createFluentBuilder('MaterialAdapter', MATERIALADAPTER_META) as unknown as MaterialAdapterBuilder;
+  return createFluentBuilder(
+    'MaterialAdapter',
+    MATERIALADAPTER_META,
+  ) as unknown as MaterialAdapterBuilder;
 }

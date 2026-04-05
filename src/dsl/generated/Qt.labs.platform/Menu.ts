@@ -2,8 +2,14 @@
 // Type: Menu
 // Generated from Qt 6.11.0
 
+import type {
+  QmlEnumToken,
+  QmlFont,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
-import type { QmlEnumToken, QmlFont, QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
 export interface MenuBuilder {
   id(id: string): MenuBuilder;
   child(obj: QmlObjectBuilder): MenuBuilder;
@@ -68,10 +74,8 @@ const MENU_META: TypeMetadata = {
     { handlerName: 'onTypeChanged', paramCount: 0 },
     { handlerName: 'onVisibleChanged', paramCount: 0 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
   defaultProperty: 'data',
 };
 

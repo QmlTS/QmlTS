@@ -2,8 +2,13 @@
 // Type: DepthTest
 // Generated from Qt 6.11.0
 
+import type {
+  QmlEnumToken,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
-import type { QmlEnumToken, QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
 export interface DepthTestBuilder {
   id(id: string): DepthTestBuilder;
   child(obj: QmlObjectBuilder): DepthTestBuilder;
@@ -38,10 +43,8 @@ const DEPTHTEST_META: TypeMetadata = {
     { handlerName: 'onObjectNameChanged', paramCount: 1 },
     { handlerName: 'onParentChanged', paramCount: 1 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function DepthTest(): DepthTestBuilder {

@@ -2,8 +2,15 @@
 // Type: CheckLabel
 // Generated from Qt 6.11.0
 
+import type {
+  QmlColor,
+  QmlEnumToken,
+  QmlFont,
+  QmlObjectBuilder,
+  QmlUrl,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
-import type { QmlColor, QmlEnumToken, QmlFont, QmlObjectBuilder, QmlUrl, TypeMetadata } from '../../runtime/index.js';
 import type { QtObjectBuilder } from '../QML/QtObject.js';
 import type { ItemBuilder } from '../QtQuick/Item.js';
 import type { PaletteBuilder } from '../QtQuick/Palette.js';
@@ -343,8 +350,7 @@ const CHECKLABEL_META: TypeMetadata = {
       ],
     },
   ],
-  attached: [
-  ],
+  attached: [],
 };
 
 export function CheckLabel(): CheckLabelBuilder {
@@ -353,13 +359,25 @@ export function CheckLabel(): CheckLabelBuilder {
 
 export namespace CheckLabel {
   export namespace Flags {
-    export const ItemClipsChildrenToShape = createEnumToken('CheckLabel', 'Flags', 'ItemClipsChildrenToShape');
-    export const ItemAcceptsInputMethod = createEnumToken('CheckLabel', 'Flags', 'ItemAcceptsInputMethod');
+    export const ItemClipsChildrenToShape = createEnumToken(
+      'CheckLabel',
+      'Flags',
+      'ItemClipsChildrenToShape',
+    );
+    export const ItemAcceptsInputMethod = createEnumToken(
+      'CheckLabel',
+      'Flags',
+      'ItemAcceptsInputMethod',
+    );
     export const ItemIsFocusScope = createEnumToken('CheckLabel', 'Flags', 'ItemIsFocusScope');
     export const ItemHasContents = createEnumToken('CheckLabel', 'Flags', 'ItemHasContents');
     export const ItemAcceptsDrops = createEnumToken('CheckLabel', 'Flags', 'ItemAcceptsDrops');
     export const ItemIsViewport = createEnumToken('CheckLabel', 'Flags', 'ItemIsViewport');
-    export const ItemObservesViewport = createEnumToken('CheckLabel', 'Flags', 'ItemObservesViewport');
+    export const ItemObservesViewport = createEnumToken(
+      'CheckLabel',
+      'Flags',
+      'ItemObservesViewport',
+    );
   }
   export namespace FontSizeMode {
     export const FixedSize = createEnumToken('CheckLabel', 'FontSizeMode', 'FixedSize');
@@ -374,22 +392,74 @@ export namespace CheckLabel {
     export const AlignJustify = createEnumToken('CheckLabel', 'HAlignment', 'AlignJustify');
   }
   export namespace ItemChange {
-    export const ItemChildAddedChange = createEnumToken('CheckLabel', 'ItemChange', 'ItemChildAddedChange');
-    export const ItemChildRemovedChange = createEnumToken('CheckLabel', 'ItemChange', 'ItemChildRemovedChange');
+    export const ItemChildAddedChange = createEnumToken(
+      'CheckLabel',
+      'ItemChange',
+      'ItemChildAddedChange',
+    );
+    export const ItemChildRemovedChange = createEnumToken(
+      'CheckLabel',
+      'ItemChange',
+      'ItemChildRemovedChange',
+    );
     export const ItemSceneChange = createEnumToken('CheckLabel', 'ItemChange', 'ItemSceneChange');
-    export const ItemVisibleHasChanged = createEnumToken('CheckLabel', 'ItemChange', 'ItemVisibleHasChanged');
-    export const ItemParentHasChanged = createEnumToken('CheckLabel', 'ItemChange', 'ItemParentHasChanged');
-    export const ItemOpacityHasChanged = createEnumToken('CheckLabel', 'ItemChange', 'ItemOpacityHasChanged');
-    export const ItemActiveFocusHasChanged = createEnumToken('CheckLabel', 'ItemChange', 'ItemActiveFocusHasChanged');
-    export const ItemRotationHasChanged = createEnumToken('CheckLabel', 'ItemChange', 'ItemRotationHasChanged');
-    export const ItemAntialiasingHasChanged = createEnumToken('CheckLabel', 'ItemChange', 'ItemAntialiasingHasChanged');
-    export const ItemDevicePixelRatioHasChanged = createEnumToken('CheckLabel', 'ItemChange', 'ItemDevicePixelRatioHasChanged');
-    export const ItemEnabledHasChanged = createEnumToken('CheckLabel', 'ItemChange', 'ItemEnabledHasChanged');
-    export const ItemScaleHasChanged = createEnumToken('CheckLabel', 'ItemChange', 'ItemScaleHasChanged');
-    export const ItemTransformHasChanged = createEnumToken('CheckLabel', 'ItemChange', 'ItemTransformHasChanged');
+    export const ItemVisibleHasChanged = createEnumToken(
+      'CheckLabel',
+      'ItemChange',
+      'ItemVisibleHasChanged',
+    );
+    export const ItemParentHasChanged = createEnumToken(
+      'CheckLabel',
+      'ItemChange',
+      'ItemParentHasChanged',
+    );
+    export const ItemOpacityHasChanged = createEnumToken(
+      'CheckLabel',
+      'ItemChange',
+      'ItemOpacityHasChanged',
+    );
+    export const ItemActiveFocusHasChanged = createEnumToken(
+      'CheckLabel',
+      'ItemChange',
+      'ItemActiveFocusHasChanged',
+    );
+    export const ItemRotationHasChanged = createEnumToken(
+      'CheckLabel',
+      'ItemChange',
+      'ItemRotationHasChanged',
+    );
+    export const ItemAntialiasingHasChanged = createEnumToken(
+      'CheckLabel',
+      'ItemChange',
+      'ItemAntialiasingHasChanged',
+    );
+    export const ItemDevicePixelRatioHasChanged = createEnumToken(
+      'CheckLabel',
+      'ItemChange',
+      'ItemDevicePixelRatioHasChanged',
+    );
+    export const ItemEnabledHasChanged = createEnumToken(
+      'CheckLabel',
+      'ItemChange',
+      'ItemEnabledHasChanged',
+    );
+    export const ItemScaleHasChanged = createEnumToken(
+      'CheckLabel',
+      'ItemChange',
+      'ItemScaleHasChanged',
+    );
+    export const ItemTransformHasChanged = createEnumToken(
+      'CheckLabel',
+      'ItemChange',
+      'ItemTransformHasChanged',
+    );
   }
   export namespace LineHeightMode {
-    export const ProportionalHeight = createEnumToken('CheckLabel', 'LineHeightMode', 'ProportionalHeight');
+    export const ProportionalHeight = createEnumToken(
+      'CheckLabel',
+      'LineHeightMode',
+      'ProportionalHeight',
+    );
     export const FixedHeight = createEnumToken('CheckLabel', 'LineHeightMode', 'FixedHeight');
   }
   export namespace RenderType {
@@ -398,11 +468,31 @@ export namespace CheckLabel {
     export const CurveRendering = createEnumToken('CheckLabel', 'RenderType', 'CurveRendering');
   }
   export namespace RenderTypeQuality {
-    export const DefaultRenderTypeQuality = createEnumToken('CheckLabel', 'RenderTypeQuality', 'DefaultRenderTypeQuality');
-    export const LowRenderTypeQuality = createEnumToken('CheckLabel', 'RenderTypeQuality', 'LowRenderTypeQuality');
-    export const NormalRenderTypeQuality = createEnumToken('CheckLabel', 'RenderTypeQuality', 'NormalRenderTypeQuality');
-    export const HighRenderTypeQuality = createEnumToken('CheckLabel', 'RenderTypeQuality', 'HighRenderTypeQuality');
-    export const VeryHighRenderTypeQuality = createEnumToken('CheckLabel', 'RenderTypeQuality', 'VeryHighRenderTypeQuality');
+    export const DefaultRenderTypeQuality = createEnumToken(
+      'CheckLabel',
+      'RenderTypeQuality',
+      'DefaultRenderTypeQuality',
+    );
+    export const LowRenderTypeQuality = createEnumToken(
+      'CheckLabel',
+      'RenderTypeQuality',
+      'LowRenderTypeQuality',
+    );
+    export const NormalRenderTypeQuality = createEnumToken(
+      'CheckLabel',
+      'RenderTypeQuality',
+      'NormalRenderTypeQuality',
+    );
+    export const HighRenderTypeQuality = createEnumToken(
+      'CheckLabel',
+      'RenderTypeQuality',
+      'HighRenderTypeQuality',
+    );
+    export const VeryHighRenderTypeQuality = createEnumToken(
+      'CheckLabel',
+      'RenderTypeQuality',
+      'VeryHighRenderTypeQuality',
+    );
   }
   export namespace TextElideMode {
     export const ElideLeft = createEnumToken('CheckLabel', 'TextElideMode', 'ElideLeft');
@@ -443,7 +533,11 @@ export namespace CheckLabel {
     export const NoWrap = createEnumToken('CheckLabel', 'WrapMode', 'NoWrap');
     export const WordWrap = createEnumToken('CheckLabel', 'WrapMode', 'WordWrap');
     export const WrapAnywhere = createEnumToken('CheckLabel', 'WrapMode', 'WrapAnywhere');
-    export const WrapAtWordBoundaryOrAnywhere = createEnumToken('CheckLabel', 'WrapMode', 'WrapAtWordBoundaryOrAnywhere');
+    export const WrapAtWordBoundaryOrAnywhere = createEnumToken(
+      'CheckLabel',
+      'WrapMode',
+      'WrapAtWordBoundaryOrAnywhere',
+    );
     export const Wrap = createEnumToken('CheckLabel', 'WrapMode', 'Wrap');
   }
 }

@@ -2,8 +2,13 @@
 // Type: ItemModelSurfaceDataProxy
 // Generated from Qt 6.11.0
 
+import type {
+  QmlEnumToken,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
-import type { QmlEnumToken, QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
 export interface ItemModelSurfaceDataProxyBuilder {
   id(id: string): ItemModelSurfaceDataProxyBuilder;
   child(obj: QmlObjectBuilder): ItemModelSurfaceDataProxyBuilder;
@@ -149,14 +154,15 @@ const ITEMMODELSURFACEDATAPROXY_META: TypeMetadata = {
     { handlerName: 'onZPosRolePatternChanged', paramCount: 1 },
     { handlerName: 'onZPosRoleReplaceChanged', paramCount: 1 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function ItemModelSurfaceDataProxy(): ItemModelSurfaceDataProxyBuilder {
-  return createFluentBuilder('ItemModelSurfaceDataProxy', ITEMMODELSURFACEDATAPROXY_META) as unknown as ItemModelSurfaceDataProxyBuilder;
+  return createFluentBuilder(
+    'ItemModelSurfaceDataProxy',
+    ITEMMODELSURFACEDATAPROXY_META,
+  ) as unknown as ItemModelSurfaceDataProxyBuilder;
 }
 
 export namespace ItemModelSurfaceDataProxy {
@@ -167,9 +173,21 @@ export namespace ItemModelSurfaceDataProxy {
     export const Surface = createEnumToken('ItemModelSurfaceDataProxy', 'DataType', 'Surface');
   }
   export namespace MultiMatchBehavior {
-    export const First = createEnumToken('ItemModelSurfaceDataProxy', 'MultiMatchBehavior', 'First');
+    export const First = createEnumToken(
+      'ItemModelSurfaceDataProxy',
+      'MultiMatchBehavior',
+      'First',
+    );
     export const Last = createEnumToken('ItemModelSurfaceDataProxy', 'MultiMatchBehavior', 'Last');
-    export const Average = createEnumToken('ItemModelSurfaceDataProxy', 'MultiMatchBehavior', 'Average');
-    export const CumulativeY = createEnumToken('ItemModelSurfaceDataProxy', 'MultiMatchBehavior', 'CumulativeY');
+    export const Average = createEnumToken(
+      'ItemModelSurfaceDataProxy',
+      'MultiMatchBehavior',
+      'Average',
+    );
+    export const CumulativeY = createEnumToken(
+      'ItemModelSurfaceDataProxy',
+      'MultiMatchBehavior',
+      'CumulativeY',
+    );
   }
 }

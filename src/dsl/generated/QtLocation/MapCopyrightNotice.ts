@@ -2,8 +2,14 @@
 // Type: MapCopyrightNotice
 // Generated from Qt 6.11.0
 
+import type {
+  QmlColor,
+  QmlEnumToken,
+  QmlObjectBuilder,
+  QmlSize,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
-import type { QmlColor, QmlEnumToken, QmlObjectBuilder, QmlSize, TypeMetadata } from '../../runtime/index.js';
 import type { QtObjectBuilder } from '../QML/QtObject.js';
 import type { ItemBuilder } from '../QtQuick/Item.js';
 import type { PaletteBuilder } from '../QtQuick/Palette.js';
@@ -246,46 +252,136 @@ const MAPCOPYRIGHTNOTICE_META: TypeMetadata = {
       ],
     },
   ],
-  attached: [
-  ],
+  attached: [],
 };
 
 export function MapCopyrightNotice(): MapCopyrightNoticeBuilder {
-  return createFluentBuilder('MapCopyrightNotice', MAPCOPYRIGHTNOTICE_META) as unknown as MapCopyrightNoticeBuilder;
+  return createFluentBuilder(
+    'MapCopyrightNotice',
+    MAPCOPYRIGHTNOTICE_META,
+  ) as unknown as MapCopyrightNoticeBuilder;
 }
 
 export namespace MapCopyrightNotice {
   export namespace Flags {
-    export const ItemClipsChildrenToShape = createEnumToken('MapCopyrightNotice', 'Flags', 'ItemClipsChildrenToShape');
-    export const ItemAcceptsInputMethod = createEnumToken('MapCopyrightNotice', 'Flags', 'ItemAcceptsInputMethod');
-    export const ItemIsFocusScope = createEnumToken('MapCopyrightNotice', 'Flags', 'ItemIsFocusScope');
-    export const ItemHasContents = createEnumToken('MapCopyrightNotice', 'Flags', 'ItemHasContents');
-    export const ItemAcceptsDrops = createEnumToken('MapCopyrightNotice', 'Flags', 'ItemAcceptsDrops');
+    export const ItemClipsChildrenToShape = createEnumToken(
+      'MapCopyrightNotice',
+      'Flags',
+      'ItemClipsChildrenToShape',
+    );
+    export const ItemAcceptsInputMethod = createEnumToken(
+      'MapCopyrightNotice',
+      'Flags',
+      'ItemAcceptsInputMethod',
+    );
+    export const ItemIsFocusScope = createEnumToken(
+      'MapCopyrightNotice',
+      'Flags',
+      'ItemIsFocusScope',
+    );
+    export const ItemHasContents = createEnumToken(
+      'MapCopyrightNotice',
+      'Flags',
+      'ItemHasContents',
+    );
+    export const ItemAcceptsDrops = createEnumToken(
+      'MapCopyrightNotice',
+      'Flags',
+      'ItemAcceptsDrops',
+    );
     export const ItemIsViewport = createEnumToken('MapCopyrightNotice', 'Flags', 'ItemIsViewport');
-    export const ItemObservesViewport = createEnumToken('MapCopyrightNotice', 'Flags', 'ItemObservesViewport');
+    export const ItemObservesViewport = createEnumToken(
+      'MapCopyrightNotice',
+      'Flags',
+      'ItemObservesViewport',
+    );
   }
   export namespace ItemChange {
-    export const ItemChildAddedChange = createEnumToken('MapCopyrightNotice', 'ItemChange', 'ItemChildAddedChange');
-    export const ItemChildRemovedChange = createEnumToken('MapCopyrightNotice', 'ItemChange', 'ItemChildRemovedChange');
-    export const ItemSceneChange = createEnumToken('MapCopyrightNotice', 'ItemChange', 'ItemSceneChange');
-    export const ItemVisibleHasChanged = createEnumToken('MapCopyrightNotice', 'ItemChange', 'ItemVisibleHasChanged');
-    export const ItemParentHasChanged = createEnumToken('MapCopyrightNotice', 'ItemChange', 'ItemParentHasChanged');
-    export const ItemOpacityHasChanged = createEnumToken('MapCopyrightNotice', 'ItemChange', 'ItemOpacityHasChanged');
-    export const ItemActiveFocusHasChanged = createEnumToken('MapCopyrightNotice', 'ItemChange', 'ItemActiveFocusHasChanged');
-    export const ItemRotationHasChanged = createEnumToken('MapCopyrightNotice', 'ItemChange', 'ItemRotationHasChanged');
-    export const ItemAntialiasingHasChanged = createEnumToken('MapCopyrightNotice', 'ItemChange', 'ItemAntialiasingHasChanged');
-    export const ItemDevicePixelRatioHasChanged = createEnumToken('MapCopyrightNotice', 'ItemChange', 'ItemDevicePixelRatioHasChanged');
-    export const ItemEnabledHasChanged = createEnumToken('MapCopyrightNotice', 'ItemChange', 'ItemEnabledHasChanged');
-    export const ItemScaleHasChanged = createEnumToken('MapCopyrightNotice', 'ItemChange', 'ItemScaleHasChanged');
-    export const ItemTransformHasChanged = createEnumToken('MapCopyrightNotice', 'ItemChange', 'ItemTransformHasChanged');
+    export const ItemChildAddedChange = createEnumToken(
+      'MapCopyrightNotice',
+      'ItemChange',
+      'ItemChildAddedChange',
+    );
+    export const ItemChildRemovedChange = createEnumToken(
+      'MapCopyrightNotice',
+      'ItemChange',
+      'ItemChildRemovedChange',
+    );
+    export const ItemSceneChange = createEnumToken(
+      'MapCopyrightNotice',
+      'ItemChange',
+      'ItemSceneChange',
+    );
+    export const ItemVisibleHasChanged = createEnumToken(
+      'MapCopyrightNotice',
+      'ItemChange',
+      'ItemVisibleHasChanged',
+    );
+    export const ItemParentHasChanged = createEnumToken(
+      'MapCopyrightNotice',
+      'ItemChange',
+      'ItemParentHasChanged',
+    );
+    export const ItemOpacityHasChanged = createEnumToken(
+      'MapCopyrightNotice',
+      'ItemChange',
+      'ItemOpacityHasChanged',
+    );
+    export const ItemActiveFocusHasChanged = createEnumToken(
+      'MapCopyrightNotice',
+      'ItemChange',
+      'ItemActiveFocusHasChanged',
+    );
+    export const ItemRotationHasChanged = createEnumToken(
+      'MapCopyrightNotice',
+      'ItemChange',
+      'ItemRotationHasChanged',
+    );
+    export const ItemAntialiasingHasChanged = createEnumToken(
+      'MapCopyrightNotice',
+      'ItemChange',
+      'ItemAntialiasingHasChanged',
+    );
+    export const ItemDevicePixelRatioHasChanged = createEnumToken(
+      'MapCopyrightNotice',
+      'ItemChange',
+      'ItemDevicePixelRatioHasChanged',
+    );
+    export const ItemEnabledHasChanged = createEnumToken(
+      'MapCopyrightNotice',
+      'ItemChange',
+      'ItemEnabledHasChanged',
+    );
+    export const ItemScaleHasChanged = createEnumToken(
+      'MapCopyrightNotice',
+      'ItemChange',
+      'ItemScaleHasChanged',
+    );
+    export const ItemTransformHasChanged = createEnumToken(
+      'MapCopyrightNotice',
+      'ItemChange',
+      'ItemTransformHasChanged',
+    );
   }
   export namespace PerformanceHints {
-    export const FastFBOResizing = createEnumToken('MapCopyrightNotice', 'PerformanceHints', 'FastFBOResizing');
+    export const FastFBOResizing = createEnumToken(
+      'MapCopyrightNotice',
+      'PerformanceHints',
+      'FastFBOResizing',
+    );
   }
   export namespace RenderTarget {
     export const Image = createEnumToken('MapCopyrightNotice', 'RenderTarget', 'Image');
-    export const FramebufferObject = createEnumToken('MapCopyrightNotice', 'RenderTarget', 'FramebufferObject');
-    export const InvertedYFramebufferObject = createEnumToken('MapCopyrightNotice', 'RenderTarget', 'InvertedYFramebufferObject');
+    export const FramebufferObject = createEnumToken(
+      'MapCopyrightNotice',
+      'RenderTarget',
+      'FramebufferObject',
+    );
+    export const InvertedYFramebufferObject = createEnumToken(
+      'MapCopyrightNotice',
+      'RenderTarget',
+      'InvertedYFramebufferObject',
+    );
   }
   export namespace TransformOrigin {
     export const TopLeft = createEnumToken('MapCopyrightNotice', 'TransformOrigin', 'TopLeft');
@@ -294,8 +390,16 @@ export namespace MapCopyrightNotice {
     export const Left = createEnumToken('MapCopyrightNotice', 'TransformOrigin', 'Left');
     export const Center = createEnumToken('MapCopyrightNotice', 'TransformOrigin', 'Center');
     export const Right = createEnumToken('MapCopyrightNotice', 'TransformOrigin', 'Right');
-    export const BottomLeft = createEnumToken('MapCopyrightNotice', 'TransformOrigin', 'BottomLeft');
+    export const BottomLeft = createEnumToken(
+      'MapCopyrightNotice',
+      'TransformOrigin',
+      'BottomLeft',
+    );
     export const Bottom = createEnumToken('MapCopyrightNotice', 'TransformOrigin', 'Bottom');
-    export const BottomRight = createEnumToken('MapCopyrightNotice', 'TransformOrigin', 'BottomRight');
+    export const BottomRight = createEnumToken(
+      'MapCopyrightNotice',
+      'TransformOrigin',
+      'BottomRight',
+    );
   }
 }

@@ -2,8 +2,8 @@
 // Type: GraphicsApiFilter
 // Generated from Qt 6.11.0
 
-import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { QmlEnumToken, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface GraphicsApiFilterBuilder {
   id(id: string): GraphicsApiFilterBuilder;
   child(obj: QmlObjectBuilder): GraphicsApiFilterBuilder;
@@ -53,14 +53,15 @@ const GRAPHICSAPIFILTER_META: TypeMetadata = {
     { handlerName: 'onProfileChanged', paramCount: 1 },
     { handlerName: 'onVendorChanged', paramCount: 1 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function GraphicsApiFilter(): GraphicsApiFilterBuilder {
-  return createFluentBuilder('GraphicsApiFilter', GRAPHICSAPIFILTER_META) as unknown as GraphicsApiFilterBuilder;
+  return createFluentBuilder(
+    'GraphicsApiFilter',
+    GRAPHICSAPIFILTER_META,
+  ) as unknown as GraphicsApiFilterBuilder;
 }
 
 export namespace GraphicsApiFilter {
@@ -74,6 +75,10 @@ export namespace GraphicsApiFilter {
   export namespace OpenGLProfile {
     export const NoProfile = createEnumToken('GraphicsApiFilter', 'OpenGLProfile', 'NoProfile');
     export const CoreProfile = createEnumToken('GraphicsApiFilter', 'OpenGLProfile', 'CoreProfile');
-    export const CompatibilityProfile = createEnumToken('GraphicsApiFilter', 'OpenGLProfile', 'CompatibilityProfile');
+    export const CompatibilityProfile = createEnumToken(
+      'GraphicsApiFilter',
+      'OpenGLProfile',
+      'CompatibilityProfile',
+    );
   }
 }

@@ -2,8 +2,14 @@
 // Type: Shader
 // Generated from Qt 6.11.0
 
+import type {
+  QmlEnumToken,
+  QmlObjectBuilder,
+  QmlUrl,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
-import type { QmlEnumToken, QmlObjectBuilder, QmlUrl, QmlValue, TypeMetadata } from '../../runtime/index.js';
 export interface ShaderBuilder {
   id(id: string): ShaderBuilder;
   child(obj: QmlObjectBuilder): ShaderBuilder;
@@ -43,10 +49,8 @@ const SHADER_META: TypeMetadata = {
     { handlerName: 'onStageChanged', paramCount: 0 },
     { handlerName: 'onStateChanged', paramCount: 0 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
   defaultProperty: 'data',
 };
 

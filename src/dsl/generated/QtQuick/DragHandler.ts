@@ -2,8 +2,13 @@
 // Type: DragHandler
 // Generated from Qt 6.11.0
 
+import type {
+  QmlEnumToken,
+  QmlObjectBuilder,
+  QmlVector2d,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
-import type { QmlEnumToken, QmlObjectBuilder, QmlVector2d, TypeMetadata } from '../../runtime/index.js';
 import type { AccessibleAttachedBuilder } from './Accessible.js';
 import type { EnterKeyAttachedBuilder } from './EnterKey.js';
 import type { GraphicsInfoAttachedBuilder } from './GraphicsInfo.js';
@@ -137,8 +142,7 @@ const DRAGHANDLER_META: TypeMetadata = {
     { handlerName: 'onTargetChanged', paramCount: 0 },
     { handlerName: 'onTranslationChanged', paramCount: 1 },
   ],
-  grouped: [
-  ],
+  grouped: [],
   attached: [
     {
       methodName: 'accessible',
@@ -252,9 +256,7 @@ const DRAGHANDLER_META: TypeMetadata = {
     {
       methodName: 'graphicsInfo',
       attachedTypeName: 'GraphicsInfo',
-      properties: [
-        { name: 'objectName', hasValue: true, hasBinding: true },
-      ],
+      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
       signals: [
         { handlerName: 'onApiChanged', paramCount: 0 },
         { handlerName: 'onMajorVersionChanged', paramCount: 0 },
@@ -405,9 +407,7 @@ const DRAGHANDLER_META: TypeMetadata = {
     {
       methodName: 'pathView',
       attachedTypeName: 'PathView',
-      properties: [
-        { name: 'objectName', hasValue: true, hasBinding: true },
-      ],
+      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
       signals: [
         { handlerName: 'onCurrentItemChanged', paramCount: 0 },
         { handlerName: 'onPathChanged', paramCount: 0 },
@@ -417,9 +417,7 @@ const DRAGHANDLER_META: TypeMetadata = {
     {
       methodName: 'positioner',
       attachedTypeName: 'Positioner',
-      properties: [
-        { name: 'objectName', hasValue: true, hasBinding: true },
-      ],
+      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
       signals: [
         { handlerName: 'onIndexChanged', paramCount: 0 },
         { handlerName: 'onIsFirstItemChanged', paramCount: 0 },
@@ -443,9 +441,7 @@ const DRAGHANDLER_META: TypeMetadata = {
     {
       methodName: 'screen',
       attachedTypeName: 'Screen',
-      properties: [
-        { name: 'objectName', hasValue: true, hasBinding: true },
-      ],
+      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
       signals: [
         { handlerName: 'onDesktopGeometryChanged', paramCount: 0 },
         { handlerName: 'onDevicePixelRatioChanged', paramCount: 0 },
@@ -483,9 +479,7 @@ const DRAGHANDLER_META: TypeMetadata = {
     {
       methodName: 'viewTransition',
       attachedTypeName: 'ViewTransition',
-      properties: [
-        { name: 'objectName', hasValue: true, hasBinding: true },
-      ],
+      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
       signals: [
         { handlerName: 'onDestinationChanged', paramCount: 0 },
         { handlerName: 'onIndexChanged', paramCount: 0 },
@@ -498,9 +492,7 @@ const DRAGHANDLER_META: TypeMetadata = {
     {
       methodName: 'window',
       attachedTypeName: 'Window',
-      properties: [
-        { name: 'objectName', hasValue: true, hasBinding: true },
-      ],
+      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
       signals: [
         { handlerName: 'onActiveChanged', paramCount: 0 },
         { handlerName: 'onActiveFocusItemChanged', paramCount: 0 },
@@ -521,21 +513,65 @@ export function DragHandler(): DragHandlerBuilder {
 
 export namespace DragHandler {
   export namespace GrabPermissions {
-    export const TakeOverForbidden = createEnumToken('DragHandler', 'GrabPermissions', 'TakeOverForbidden');
-    export const CanTakeOverFromHandlersOfSameType = createEnumToken('DragHandler', 'GrabPermissions', 'CanTakeOverFromHandlersOfSameType');
-    export const CanTakeOverFromHandlersOfDifferentType = createEnumToken('DragHandler', 'GrabPermissions', 'CanTakeOverFromHandlersOfDifferentType');
-    export const CanTakeOverFromItems = createEnumToken('DragHandler', 'GrabPermissions', 'CanTakeOverFromItems');
-    export const CanTakeOverFromAnything = createEnumToken('DragHandler', 'GrabPermissions', 'CanTakeOverFromAnything');
-    export const ApprovesTakeOverByHandlersOfSameType = createEnumToken('DragHandler', 'GrabPermissions', 'ApprovesTakeOverByHandlersOfSameType');
-    export const ApprovesTakeOverByHandlersOfDifferentType = createEnumToken('DragHandler', 'GrabPermissions', 'ApprovesTakeOverByHandlersOfDifferentType');
-    export const ApprovesTakeOverByItems = createEnumToken('DragHandler', 'GrabPermissions', 'ApprovesTakeOverByItems');
-    export const ApprovesCancellation = createEnumToken('DragHandler', 'GrabPermissions', 'ApprovesCancellation');
-    export const ApprovesTakeOverByAnything = createEnumToken('DragHandler', 'GrabPermissions', 'ApprovesTakeOverByAnything');
+    export const TakeOverForbidden = createEnumToken(
+      'DragHandler',
+      'GrabPermissions',
+      'TakeOverForbidden',
+    );
+    export const CanTakeOverFromHandlersOfSameType = createEnumToken(
+      'DragHandler',
+      'GrabPermissions',
+      'CanTakeOverFromHandlersOfSameType',
+    );
+    export const CanTakeOverFromHandlersOfDifferentType = createEnumToken(
+      'DragHandler',
+      'GrabPermissions',
+      'CanTakeOverFromHandlersOfDifferentType',
+    );
+    export const CanTakeOverFromItems = createEnumToken(
+      'DragHandler',
+      'GrabPermissions',
+      'CanTakeOverFromItems',
+    );
+    export const CanTakeOverFromAnything = createEnumToken(
+      'DragHandler',
+      'GrabPermissions',
+      'CanTakeOverFromAnything',
+    );
+    export const ApprovesTakeOverByHandlersOfSameType = createEnumToken(
+      'DragHandler',
+      'GrabPermissions',
+      'ApprovesTakeOverByHandlersOfSameType',
+    );
+    export const ApprovesTakeOverByHandlersOfDifferentType = createEnumToken(
+      'DragHandler',
+      'GrabPermissions',
+      'ApprovesTakeOverByHandlersOfDifferentType',
+    );
+    export const ApprovesTakeOverByItems = createEnumToken(
+      'DragHandler',
+      'GrabPermissions',
+      'ApprovesTakeOverByItems',
+    );
+    export const ApprovesCancellation = createEnumToken(
+      'DragHandler',
+      'GrabPermissions',
+      'ApprovesCancellation',
+    );
+    export const ApprovesTakeOverByAnything = createEnumToken(
+      'DragHandler',
+      'GrabPermissions',
+      'ApprovesTakeOverByAnything',
+    );
   }
   export namespace SnapMode {
     export const NoSnap = createEnumToken('DragHandler', 'SnapMode', 'NoSnap');
     export const SnapAuto = createEnumToken('DragHandler', 'SnapMode', 'SnapAuto');
-    export const SnapIfPressedOutsideTarget = createEnumToken('DragHandler', 'SnapMode', 'SnapIfPressedOutsideTarget');
+    export const SnapIfPressedOutsideTarget = createEnumToken(
+      'DragHandler',
+      'SnapMode',
+      'SnapIfPressedOutsideTarget',
+    );
     export const SnapAlways = createEnumToken('DragHandler', 'SnapMode', 'SnapAlways');
   }
 }

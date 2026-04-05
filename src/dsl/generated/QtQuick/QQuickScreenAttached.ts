@@ -2,7 +2,6 @@
 // Type: Attached type: Screen
 // Generated from Qt 6.11.0
 
-
 export interface ScreenAttachedBuilder {
   objectName(value: string): ScreenAttachedBuilder;
   objectNameBind(expr: string): ScreenAttachedBuilder;

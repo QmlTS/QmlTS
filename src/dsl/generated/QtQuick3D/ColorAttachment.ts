@@ -2,8 +2,8 @@
 // Type: ColorAttachment
 // Generated from Qt 6.11.0
 
-import { createFluentBuilder } from '../../runtime/index.js';
 import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import { createFluentBuilder } from '../../runtime/index.js';
 import type { RenderPassTextureBuilder } from './RenderPassTexture.js';
 export interface ColorAttachmentBuilder {
   id(id: string): ColorAttachmentBuilder;
@@ -40,12 +40,13 @@ const COLORATTACHMENT_META: TypeMetadata = {
     { handlerName: 'onParentChanged', paramCount: 0 },
     { handlerName: 'onStateChanged', paramCount: 0 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function ColorAttachment(): ColorAttachmentBuilder {
-  return createFluentBuilder('ColorAttachment', COLORATTACHMENT_META) as unknown as ColorAttachmentBuilder;
+  return createFluentBuilder(
+    'ColorAttachment',
+    COLORATTACHMENT_META,
+  ) as unknown as ColorAttachmentBuilder;
 }

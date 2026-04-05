@@ -2,8 +2,13 @@
 // Type: StyleKitLayoutItem
 // Generated from Qt 6.11.0
 
+import type {
+  QmlEnumToken,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
-import type { QmlEnumToken, QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
 import type { ItemBuilder } from '../QtQuick/Item.js';
 export interface StyleKitLayoutItemBuilder {
   id(id: string): StyleKitLayoutItemBuilder;
@@ -55,12 +60,13 @@ const STYLEKITLAYOUTITEM_META: TypeMetadata = {
     { handlerName: 'onXChanged', paramCount: 0 },
     { handlerName: 'onYChanged', paramCount: 0 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function StyleKitLayoutItem(): StyleKitLayoutItemBuilder {
-  return createFluentBuilder('StyleKitLayoutItem', STYLEKITLAYOUTITEM_META) as unknown as StyleKitLayoutItemBuilder;
+  return createFluentBuilder(
+    'StyleKitLayoutItem',
+    STYLEKITLAYOUTITEM_META,
+  ) as unknown as StyleKitLayoutItemBuilder;
 }

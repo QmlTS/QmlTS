@@ -2,8 +2,8 @@
 // Type: SimpleQuadRenderer
 // Generated from Qt 6.11.0
 
-import { createFluentBuilder } from '../../runtime/index.js';
 import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import { createFluentBuilder } from '../../runtime/index.js';
 import type { TextureBuilder } from '../QtQuick3D/Texture.js';
 export interface SimpleQuadRendererBuilder {
   id(id: string): SimpleQuadRendererBuilder;
@@ -39,12 +39,13 @@ const SIMPLEQUADRENDERER_META: TypeMetadata = {
     { handlerName: 'onStateChanged', paramCount: 0 },
     { handlerName: 'onTextureChanged', paramCount: 0 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function SimpleQuadRenderer(): SimpleQuadRendererBuilder {
-  return createFluentBuilder('SimpleQuadRenderer', SIMPLEQUADRENDERER_META) as unknown as SimpleQuadRendererBuilder;
+  return createFluentBuilder(
+    'SimpleQuadRenderer',
+    SIMPLEQUADRENDERER_META,
+  ) as unknown as SimpleQuadRendererBuilder;
 }

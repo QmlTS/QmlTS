@@ -2,8 +2,16 @@
 // Type: DateTimeAxis
 // Generated from Qt 6.11.0
 
+import type {
+  QmlColor,
+  QmlComponent,
+  QmlDate,
+  QmlEnumToken,
+  QmlFont,
+  QmlObjectBuilder,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
-import type { QmlColor, QmlComponent, QmlDate, QmlEnumToken, QmlFont, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
 export interface DateTimeAxisBuilder {
   id(id: string): DateTimeAxisBuilder;
   child(obj: QmlObjectBuilder): DateTimeAxisBuilder;
@@ -144,10 +152,8 @@ const DATETIMEAXIS_META: TypeMetadata = {
     { handlerName: 'onVisualMinChanged', paramCount: 1 },
     { handlerName: 'onZoomChanged', paramCount: 1 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function DateTimeAxis(): DateTimeAxisBuilder {

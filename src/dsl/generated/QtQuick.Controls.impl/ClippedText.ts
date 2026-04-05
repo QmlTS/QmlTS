@@ -2,8 +2,15 @@
 // Type: ClippedText
 // Generated from Qt 6.11.0
 
+import type {
+  QmlColor,
+  QmlEnumToken,
+  QmlFont,
+  QmlObjectBuilder,
+  QmlUrl,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
-import type { QmlColor, QmlEnumToken, QmlFont, QmlObjectBuilder, QmlUrl, TypeMetadata } from '../../runtime/index.js';
 import type { QtObjectBuilder } from '../QML/QtObject.js';
 import type { ItemBuilder } from '../QtQuick/Item.js';
 import type { PaletteBuilder } from '../QtQuick/Palette.js';
@@ -355,8 +362,7 @@ const CLIPPEDTEXT_META: TypeMetadata = {
       ],
     },
   ],
-  attached: [
-  ],
+  attached: [],
 };
 
 export function ClippedText(): ClippedTextBuilder {
@@ -365,13 +371,25 @@ export function ClippedText(): ClippedTextBuilder {
 
 export namespace ClippedText {
   export namespace Flags {
-    export const ItemClipsChildrenToShape = createEnumToken('ClippedText', 'Flags', 'ItemClipsChildrenToShape');
-    export const ItemAcceptsInputMethod = createEnumToken('ClippedText', 'Flags', 'ItemAcceptsInputMethod');
+    export const ItemClipsChildrenToShape = createEnumToken(
+      'ClippedText',
+      'Flags',
+      'ItemClipsChildrenToShape',
+    );
+    export const ItemAcceptsInputMethod = createEnumToken(
+      'ClippedText',
+      'Flags',
+      'ItemAcceptsInputMethod',
+    );
     export const ItemIsFocusScope = createEnumToken('ClippedText', 'Flags', 'ItemIsFocusScope');
     export const ItemHasContents = createEnumToken('ClippedText', 'Flags', 'ItemHasContents');
     export const ItemAcceptsDrops = createEnumToken('ClippedText', 'Flags', 'ItemAcceptsDrops');
     export const ItemIsViewport = createEnumToken('ClippedText', 'Flags', 'ItemIsViewport');
-    export const ItemObservesViewport = createEnumToken('ClippedText', 'Flags', 'ItemObservesViewport');
+    export const ItemObservesViewport = createEnumToken(
+      'ClippedText',
+      'Flags',
+      'ItemObservesViewport',
+    );
   }
   export namespace FontSizeMode {
     export const FixedSize = createEnumToken('ClippedText', 'FontSizeMode', 'FixedSize');
@@ -386,22 +404,74 @@ export namespace ClippedText {
     export const AlignJustify = createEnumToken('ClippedText', 'HAlignment', 'AlignJustify');
   }
   export namespace ItemChange {
-    export const ItemChildAddedChange = createEnumToken('ClippedText', 'ItemChange', 'ItemChildAddedChange');
-    export const ItemChildRemovedChange = createEnumToken('ClippedText', 'ItemChange', 'ItemChildRemovedChange');
+    export const ItemChildAddedChange = createEnumToken(
+      'ClippedText',
+      'ItemChange',
+      'ItemChildAddedChange',
+    );
+    export const ItemChildRemovedChange = createEnumToken(
+      'ClippedText',
+      'ItemChange',
+      'ItemChildRemovedChange',
+    );
     export const ItemSceneChange = createEnumToken('ClippedText', 'ItemChange', 'ItemSceneChange');
-    export const ItemVisibleHasChanged = createEnumToken('ClippedText', 'ItemChange', 'ItemVisibleHasChanged');
-    export const ItemParentHasChanged = createEnumToken('ClippedText', 'ItemChange', 'ItemParentHasChanged');
-    export const ItemOpacityHasChanged = createEnumToken('ClippedText', 'ItemChange', 'ItemOpacityHasChanged');
-    export const ItemActiveFocusHasChanged = createEnumToken('ClippedText', 'ItemChange', 'ItemActiveFocusHasChanged');
-    export const ItemRotationHasChanged = createEnumToken('ClippedText', 'ItemChange', 'ItemRotationHasChanged');
-    export const ItemAntialiasingHasChanged = createEnumToken('ClippedText', 'ItemChange', 'ItemAntialiasingHasChanged');
-    export const ItemDevicePixelRatioHasChanged = createEnumToken('ClippedText', 'ItemChange', 'ItemDevicePixelRatioHasChanged');
-    export const ItemEnabledHasChanged = createEnumToken('ClippedText', 'ItemChange', 'ItemEnabledHasChanged');
-    export const ItemScaleHasChanged = createEnumToken('ClippedText', 'ItemChange', 'ItemScaleHasChanged');
-    export const ItemTransformHasChanged = createEnumToken('ClippedText', 'ItemChange', 'ItemTransformHasChanged');
+    export const ItemVisibleHasChanged = createEnumToken(
+      'ClippedText',
+      'ItemChange',
+      'ItemVisibleHasChanged',
+    );
+    export const ItemParentHasChanged = createEnumToken(
+      'ClippedText',
+      'ItemChange',
+      'ItemParentHasChanged',
+    );
+    export const ItemOpacityHasChanged = createEnumToken(
+      'ClippedText',
+      'ItemChange',
+      'ItemOpacityHasChanged',
+    );
+    export const ItemActiveFocusHasChanged = createEnumToken(
+      'ClippedText',
+      'ItemChange',
+      'ItemActiveFocusHasChanged',
+    );
+    export const ItemRotationHasChanged = createEnumToken(
+      'ClippedText',
+      'ItemChange',
+      'ItemRotationHasChanged',
+    );
+    export const ItemAntialiasingHasChanged = createEnumToken(
+      'ClippedText',
+      'ItemChange',
+      'ItemAntialiasingHasChanged',
+    );
+    export const ItemDevicePixelRatioHasChanged = createEnumToken(
+      'ClippedText',
+      'ItemChange',
+      'ItemDevicePixelRatioHasChanged',
+    );
+    export const ItemEnabledHasChanged = createEnumToken(
+      'ClippedText',
+      'ItemChange',
+      'ItemEnabledHasChanged',
+    );
+    export const ItemScaleHasChanged = createEnumToken(
+      'ClippedText',
+      'ItemChange',
+      'ItemScaleHasChanged',
+    );
+    export const ItemTransformHasChanged = createEnumToken(
+      'ClippedText',
+      'ItemChange',
+      'ItemTransformHasChanged',
+    );
   }
   export namespace LineHeightMode {
-    export const ProportionalHeight = createEnumToken('ClippedText', 'LineHeightMode', 'ProportionalHeight');
+    export const ProportionalHeight = createEnumToken(
+      'ClippedText',
+      'LineHeightMode',
+      'ProportionalHeight',
+    );
     export const FixedHeight = createEnumToken('ClippedText', 'LineHeightMode', 'FixedHeight');
   }
   export namespace RenderType {
@@ -410,11 +480,31 @@ export namespace ClippedText {
     export const CurveRendering = createEnumToken('ClippedText', 'RenderType', 'CurveRendering');
   }
   export namespace RenderTypeQuality {
-    export const DefaultRenderTypeQuality = createEnumToken('ClippedText', 'RenderTypeQuality', 'DefaultRenderTypeQuality');
-    export const LowRenderTypeQuality = createEnumToken('ClippedText', 'RenderTypeQuality', 'LowRenderTypeQuality');
-    export const NormalRenderTypeQuality = createEnumToken('ClippedText', 'RenderTypeQuality', 'NormalRenderTypeQuality');
-    export const HighRenderTypeQuality = createEnumToken('ClippedText', 'RenderTypeQuality', 'HighRenderTypeQuality');
-    export const VeryHighRenderTypeQuality = createEnumToken('ClippedText', 'RenderTypeQuality', 'VeryHighRenderTypeQuality');
+    export const DefaultRenderTypeQuality = createEnumToken(
+      'ClippedText',
+      'RenderTypeQuality',
+      'DefaultRenderTypeQuality',
+    );
+    export const LowRenderTypeQuality = createEnumToken(
+      'ClippedText',
+      'RenderTypeQuality',
+      'LowRenderTypeQuality',
+    );
+    export const NormalRenderTypeQuality = createEnumToken(
+      'ClippedText',
+      'RenderTypeQuality',
+      'NormalRenderTypeQuality',
+    );
+    export const HighRenderTypeQuality = createEnumToken(
+      'ClippedText',
+      'RenderTypeQuality',
+      'HighRenderTypeQuality',
+    );
+    export const VeryHighRenderTypeQuality = createEnumToken(
+      'ClippedText',
+      'RenderTypeQuality',
+      'VeryHighRenderTypeQuality',
+    );
   }
   export namespace TextElideMode {
     export const ElideLeft = createEnumToken('ClippedText', 'TextElideMode', 'ElideLeft');
@@ -455,7 +545,11 @@ export namespace ClippedText {
     export const NoWrap = createEnumToken('ClippedText', 'WrapMode', 'NoWrap');
     export const WordWrap = createEnumToken('ClippedText', 'WrapMode', 'WordWrap');
     export const WrapAnywhere = createEnumToken('ClippedText', 'WrapMode', 'WrapAnywhere');
-    export const WrapAtWordBoundaryOrAnywhere = createEnumToken('ClippedText', 'WrapMode', 'WrapAtWordBoundaryOrAnywhere');
+    export const WrapAtWordBoundaryOrAnywhere = createEnumToken(
+      'ClippedText',
+      'WrapMode',
+      'WrapAtWordBoundaryOrAnywhere',
+    );
     export const Wrap = createEnumToken('ClippedText', 'WrapMode', 'Wrap');
   }
 }

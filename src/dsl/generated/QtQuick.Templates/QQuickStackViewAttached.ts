@@ -2,7 +2,6 @@
 // Type: Attached type: StackView
 // Generated from Qt 6.11.0
 
-
 export interface StackViewAttachedBuilder {
   visible(value: boolean): StackViewAttachedBuilder;
   visibleBind(expr: string): StackViewAttachedBuilder;

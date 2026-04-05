@@ -2,8 +2,8 @@
 // Type: PdfSearchModel
 // Generated from Qt 6.11.0
 
-import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { PdfDocumentBuilder } from './PdfDocument.js';
 export interface PdfSearchModelBuilder {
   id(id: string): PdfSearchModelBuilder;
@@ -88,27 +88,52 @@ const PDFSEARCHMODEL_META: TypeMetadata = {
     { handlerName: 'onRowsRemoved', paramCount: 3 },
     { handlerName: 'onSearchStringChanged', paramCount: 0 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function PdfSearchModel(): PdfSearchModelBuilder {
-  return createFluentBuilder('PdfSearchModel', PDFSEARCHMODEL_META) as unknown as PdfSearchModelBuilder;
+  return createFluentBuilder(
+    'PdfSearchModel',
+    PDFSEARCHMODEL_META,
+  ) as unknown as PdfSearchModelBuilder;
 }
 
 export namespace PdfSearchModel {
   export namespace CheckIndexOption {
     export const NoOption = createEnumToken('PdfSearchModel', 'CheckIndexOption', 'NoOption');
-    export const IndexIsValid = createEnumToken('PdfSearchModel', 'CheckIndexOption', 'IndexIsValid');
-    export const DoNotUseParent = createEnumToken('PdfSearchModel', 'CheckIndexOption', 'DoNotUseParent');
-    export const ParentIsInvalid = createEnumToken('PdfSearchModel', 'CheckIndexOption', 'ParentIsInvalid');
+    export const IndexIsValid = createEnumToken(
+      'PdfSearchModel',
+      'CheckIndexOption',
+      'IndexIsValid',
+    );
+    export const DoNotUseParent = createEnumToken(
+      'PdfSearchModel',
+      'CheckIndexOption',
+      'DoNotUseParent',
+    );
+    export const ParentIsInvalid = createEnumToken(
+      'PdfSearchModel',
+      'CheckIndexOption',
+      'ParentIsInvalid',
+    );
   }
   export namespace LayoutChangeHint {
-    export const NoLayoutChangeHint = createEnumToken('PdfSearchModel', 'LayoutChangeHint', 'NoLayoutChangeHint');
-    export const VerticalSortHint = createEnumToken('PdfSearchModel', 'LayoutChangeHint', 'VerticalSortHint');
-    export const HorizontalSortHint = createEnumToken('PdfSearchModel', 'LayoutChangeHint', 'HorizontalSortHint');
+    export const NoLayoutChangeHint = createEnumToken(
+      'PdfSearchModel',
+      'LayoutChangeHint',
+      'NoLayoutChangeHint',
+    );
+    export const VerticalSortHint = createEnumToken(
+      'PdfSearchModel',
+      'LayoutChangeHint',
+      'VerticalSortHint',
+    );
+    export const HorizontalSortHint = createEnumToken(
+      'PdfSearchModel',
+      'LayoutChangeHint',
+      'HorizontalSortHint',
+    );
   }
   export namespace Role {
     export const Page = createEnumToken('PdfSearchModel', 'Role', 'Page');

@@ -2,7 +2,6 @@
 // Type: QmlSensors
 // Generated from Qt 6.11.0
 
-
 export interface QmlSensorsInstance {
   objectName: string;
 }

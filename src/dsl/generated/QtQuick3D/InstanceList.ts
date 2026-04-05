@@ -2,8 +2,8 @@
 // Type: InstanceList
 // Generated from Qt 6.11.0
 
-import { createFluentBuilder } from '../../runtime/index.js';
 import type { QmlObjectBuilder, QmlValue, QmlVector3d, TypeMetadata } from '../../runtime/index.js';
+import { createFluentBuilder } from '../../runtime/index.js';
 export interface InstanceListBuilder {
   id(id: string): InstanceListBuilder;
   child(obj: QmlObjectBuilder): InstanceListBuilder;
@@ -64,10 +64,8 @@ const INSTANCELIST_META: TypeMetadata = {
     { handlerName: 'onShadowBoundsMinimumChanged', paramCount: 0 },
     { handlerName: 'onStateChanged', paramCount: 0 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
   defaultProperty: 'instances',
 };
 

@@ -2,8 +2,15 @@
 // Type: AudioRoom
 // Generated from Qt 6.11.0
 
+import type {
+  QmlEnumToken,
+  QmlObjectBuilder,
+  QmlQuaternion,
+  QmlValue,
+  QmlVector3d,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
-import type { QmlEnumToken, QmlObjectBuilder, QmlQuaternion, QmlValue, QmlVector3d, TypeMetadata } from '../../runtime/index.js';
 export interface AudioRoomBuilder {
   id(id: string): AudioRoomBuilder;
   child(obj: QmlObjectBuilder): AudioRoomBuilder;
@@ -152,10 +159,8 @@ const AUDIOROOM_META: TypeMetadata = {
     { handlerName: 'onYChanged', paramCount: 0 },
     { handlerName: 'onZChanged', paramCount: 0 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function AudioRoom(): AudioRoomBuilder {
@@ -165,24 +170,48 @@ export function AudioRoom(): AudioRoomBuilder {
 export namespace AudioRoom {
   export namespace Material {
     export const Transparent = createEnumToken('AudioRoom', 'Material', 'Transparent');
-    export const AcousticCeilingTiles = createEnumToken('AudioRoom', 'Material', 'AcousticCeilingTiles');
+    export const AcousticCeilingTiles = createEnumToken(
+      'AudioRoom',
+      'Material',
+      'AcousticCeilingTiles',
+    );
     export const BrickBare = createEnumToken('AudioRoom', 'Material', 'BrickBare');
     export const BrickPainted = createEnumToken('AudioRoom', 'Material', 'BrickPainted');
-    export const ConcreteBlockCoarse = createEnumToken('AudioRoom', 'Material', 'ConcreteBlockCoarse');
-    export const ConcreteBlockPainted = createEnumToken('AudioRoom', 'Material', 'ConcreteBlockPainted');
+    export const ConcreteBlockCoarse = createEnumToken(
+      'AudioRoom',
+      'Material',
+      'ConcreteBlockCoarse',
+    );
+    export const ConcreteBlockPainted = createEnumToken(
+      'AudioRoom',
+      'Material',
+      'ConcreteBlockPainted',
+    );
     export const CurtainHeavy = createEnumToken('AudioRoom', 'Material', 'CurtainHeavy');
-    export const FiberGlassInsulation = createEnumToken('AudioRoom', 'Material', 'FiberGlassInsulation');
+    export const FiberGlassInsulation = createEnumToken(
+      'AudioRoom',
+      'Material',
+      'FiberGlassInsulation',
+    );
     export const GlassThin = createEnumToken('AudioRoom', 'Material', 'GlassThin');
     export const GlassThick = createEnumToken('AudioRoom', 'Material', 'GlassThick');
     export const Grass = createEnumToken('AudioRoom', 'Material', 'Grass');
-    export const LinoleumOnConcrete = createEnumToken('AudioRoom', 'Material', 'LinoleumOnConcrete');
+    export const LinoleumOnConcrete = createEnumToken(
+      'AudioRoom',
+      'Material',
+      'LinoleumOnConcrete',
+    );
     export const Marble = createEnumToken('AudioRoom', 'Material', 'Marble');
     export const Metal = createEnumToken('AudioRoom', 'Material', 'Metal');
     export const ParquetOnConcrete = createEnumToken('AudioRoom', 'Material', 'ParquetOnConcrete');
     export const PlasterRough = createEnumToken('AudioRoom', 'Material', 'PlasterRough');
     export const PlasterSmooth = createEnumToken('AudioRoom', 'Material', 'PlasterSmooth');
     export const PlywoodPanel = createEnumToken('AudioRoom', 'Material', 'PlywoodPanel');
-    export const PolishedConcreteOrTile = createEnumToken('AudioRoom', 'Material', 'PolishedConcreteOrTile');
+    export const PolishedConcreteOrTile = createEnumToken(
+      'AudioRoom',
+      'Material',
+      'PolishedConcreteOrTile',
+    );
     export const Sheetrock = createEnumToken('AudioRoom', 'Material', 'Sheetrock');
     export const WaterOrIceSurface = createEnumToken('AudioRoom', 'Material', 'WaterOrIceSurface');
     export const WoodCeiling = createEnumToken('AudioRoom', 'Material', 'WoodCeiling');

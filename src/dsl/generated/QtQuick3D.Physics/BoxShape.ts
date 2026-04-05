@@ -2,8 +2,14 @@
 // Type: BoxShape
 // Generated from Qt 6.11.0
 
+import type {
+  QmlObjectBuilder,
+  QmlQuaternion,
+  QmlValue,
+  QmlVector3d,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
-import type { QmlObjectBuilder, QmlQuaternion, QmlValue, QmlVector3d, TypeMetadata } from '../../runtime/index.js';
 export interface BoxShapeBuilder {
   id(id: string): BoxShapeBuilder;
   child(obj: QmlObjectBuilder): BoxShapeBuilder;
@@ -119,10 +125,8 @@ const BOXSHAPE_META: TypeMetadata = {
     { handlerName: 'onYChanged', paramCount: 0 },
     { handlerName: 'onZChanged', paramCount: 0 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function BoxShape(): BoxShapeBuilder {

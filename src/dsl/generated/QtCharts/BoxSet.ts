@@ -2,8 +2,8 @@
 // Type: BoxSet
 // Generated from Qt 6.11.0
 
-import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface BoxSetBuilder {
   id(id: string): BoxSetBuilder;
   child(obj: QmlObjectBuilder): BoxSetBuilder;
@@ -62,10 +62,8 @@ const BOXSET_META: TypeMetadata = {
     { handlerName: 'onValueChanged', paramCount: 1 },
     { handlerName: 'onValuesChanged', paramCount: 0 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function BoxSet(): BoxSetBuilder {

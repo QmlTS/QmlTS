@@ -2,7 +2,6 @@
 // Type: Color
 // Generated from Qt 6.11.0
 
-
 export interface ColorInstance {
   objectName: string;
 }

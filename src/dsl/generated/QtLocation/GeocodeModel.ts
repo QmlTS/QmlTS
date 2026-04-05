@@ -2,8 +2,8 @@
 // Type: GeocodeModel
 // Generated from Qt 6.11.0
 
-import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { PluginBuilder } from './Plugin.js';
 export interface GeocodeModelBuilder {
   id(id: string): GeocodeModelBuilder;
@@ -96,10 +96,8 @@ const GEOCODEMODEL_META: TypeMetadata = {
     { handlerName: 'onRowsRemoved', paramCount: 3 },
     { handlerName: 'onStatusChanged', paramCount: 0 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function GeocodeModel(): GeocodeModelBuilder {
@@ -110,24 +108,68 @@ export namespace GeocodeModel {
   export namespace CheckIndexOption {
     export const NoOption = createEnumToken('GeocodeModel', 'CheckIndexOption', 'NoOption');
     export const IndexIsValid = createEnumToken('GeocodeModel', 'CheckIndexOption', 'IndexIsValid');
-    export const DoNotUseParent = createEnumToken('GeocodeModel', 'CheckIndexOption', 'DoNotUseParent');
-    export const ParentIsInvalid = createEnumToken('GeocodeModel', 'CheckIndexOption', 'ParentIsInvalid');
+    export const DoNotUseParent = createEnumToken(
+      'GeocodeModel',
+      'CheckIndexOption',
+      'DoNotUseParent',
+    );
+    export const ParentIsInvalid = createEnumToken(
+      'GeocodeModel',
+      'CheckIndexOption',
+      'ParentIsInvalid',
+    );
   }
   export namespace GeocodeError {
     export const NoError = createEnumToken('GeocodeModel', 'GeocodeError', 'NoError');
-    export const EngineNotSetError = createEnumToken('GeocodeModel', 'GeocodeError', 'EngineNotSetError');
-    export const CommunicationError = createEnumToken('GeocodeModel', 'GeocodeError', 'CommunicationError');
+    export const EngineNotSetError = createEnumToken(
+      'GeocodeModel',
+      'GeocodeError',
+      'EngineNotSetError',
+    );
+    export const CommunicationError = createEnumToken(
+      'GeocodeModel',
+      'GeocodeError',
+      'CommunicationError',
+    );
     export const ParseError = createEnumToken('GeocodeModel', 'GeocodeError', 'ParseError');
-    export const UnsupportedOptionError = createEnumToken('GeocodeModel', 'GeocodeError', 'UnsupportedOptionError');
-    export const CombinationError = createEnumToken('GeocodeModel', 'GeocodeError', 'CombinationError');
+    export const UnsupportedOptionError = createEnumToken(
+      'GeocodeModel',
+      'GeocodeError',
+      'UnsupportedOptionError',
+    );
+    export const CombinationError = createEnumToken(
+      'GeocodeModel',
+      'GeocodeError',
+      'CombinationError',
+    );
     export const UnknownError = createEnumToken('GeocodeModel', 'GeocodeError', 'UnknownError');
-    export const UnknownParameterError = createEnumToken('GeocodeModel', 'GeocodeError', 'UnknownParameterError');
-    export const MissingRequiredParameterError = createEnumToken('GeocodeModel', 'GeocodeError', 'MissingRequiredParameterError');
+    export const UnknownParameterError = createEnumToken(
+      'GeocodeModel',
+      'GeocodeError',
+      'UnknownParameterError',
+    );
+    export const MissingRequiredParameterError = createEnumToken(
+      'GeocodeModel',
+      'GeocodeError',
+      'MissingRequiredParameterError',
+    );
   }
   export namespace LayoutChangeHint {
-    export const NoLayoutChangeHint = createEnumToken('GeocodeModel', 'LayoutChangeHint', 'NoLayoutChangeHint');
-    export const VerticalSortHint = createEnumToken('GeocodeModel', 'LayoutChangeHint', 'VerticalSortHint');
-    export const HorizontalSortHint = createEnumToken('GeocodeModel', 'LayoutChangeHint', 'HorizontalSortHint');
+    export const NoLayoutChangeHint = createEnumToken(
+      'GeocodeModel',
+      'LayoutChangeHint',
+      'NoLayoutChangeHint',
+    );
+    export const VerticalSortHint = createEnumToken(
+      'GeocodeModel',
+      'LayoutChangeHint',
+      'VerticalSortHint',
+    );
+    export const HorizontalSortHint = createEnumToken(
+      'GeocodeModel',
+      'LayoutChangeHint',
+      'HorizontalSortHint',
+    );
   }
   export namespace Status {
     export const Null = createEnumToken('GeocodeModel', 'Status', 'Null');

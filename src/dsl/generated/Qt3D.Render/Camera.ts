@@ -2,8 +2,15 @@
 // Type: Camera
 // Generated from Qt 6.11.0
 
+import type {
+  QmlEnumToken,
+  QmlMatrix4x4,
+  QmlObjectBuilder,
+  QmlValue,
+  QmlVector3d,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
-import type { QmlEnumToken, QmlMatrix4x4, QmlObjectBuilder, QmlValue, QmlVector3d, TypeMetadata } from '../../runtime/index.js';
 export interface CameraBuilder {
   id(id: string): CameraBuilder;
   child(obj: QmlObjectBuilder): CameraBuilder;
@@ -107,10 +114,8 @@ const CAMERA_META: TypeMetadata = {
     { handlerName: 'onViewMatrixChanged', paramCount: 0 },
     { handlerName: 'onViewVectorChanged', paramCount: 1 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function Camera(): CameraBuilder {
@@ -119,7 +124,15 @@ export function Camera(): CameraBuilder {
 
 export namespace Camera {
   export namespace CameraTranslationOption {
-    export const TranslateViewCenter = createEnumToken('Camera', 'CameraTranslationOption', 'TranslateViewCenter');
-    export const DontTranslateViewCenter = createEnumToken('Camera', 'CameraTranslationOption', 'DontTranslateViewCenter');
+    export const TranslateViewCenter = createEnumToken(
+      'Camera',
+      'CameraTranslationOption',
+      'TranslateViewCenter',
+    );
+    export const DontTranslateViewCenter = createEnumToken(
+      'Camera',
+      'CameraTranslationOption',
+      'DontTranslateViewCenter',
+    );
   }
 }

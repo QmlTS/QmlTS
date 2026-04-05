@@ -2,8 +2,8 @@
 // Type: RenderCapture
 // Generated from Qt 6.11.0
 
-import { createFluentBuilder } from '../../runtime/index.js';
 import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import { createFluentBuilder } from '../../runtime/index.js';
 export interface RenderCaptureBuilder {
   id(id: string): RenderCaptureBuilder;
   child(obj: QmlObjectBuilder): RenderCaptureBuilder;
@@ -33,12 +33,13 @@ const RENDERCAPTURE_META: TypeMetadata = {
     { handlerName: 'onObjectNameChanged', paramCount: 1 },
     { handlerName: 'onParentChanged', paramCount: 1 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function RenderCapture(): RenderCaptureBuilder {
-  return createFluentBuilder('RenderCapture', RENDERCAPTURE_META) as unknown as RenderCaptureBuilder;
+  return createFluentBuilder(
+    'RenderCapture',
+    RENDERCAPTURE_META,
+  ) as unknown as RenderCaptureBuilder;
 }

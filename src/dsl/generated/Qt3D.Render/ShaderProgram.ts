@@ -2,8 +2,13 @@
 // Type: ShaderProgram
 // Generated from Qt 6.11.0
 
+import type {
+  QmlEnumToken,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
-import type { QmlEnumToken, QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
 export interface ShaderProgramBuilder {
   id(id: string): ShaderProgramBuilder;
   child(obj: QmlObjectBuilder): ShaderProgramBuilder;
@@ -72,14 +77,15 @@ const SHADERPROGRAM_META: TypeMetadata = {
     { handlerName: 'onTessellationEvaluationShaderCodeChanged', paramCount: 1 },
     { handlerName: 'onVertexShaderCodeChanged', paramCount: 1 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function ShaderProgram(): ShaderProgramBuilder {
-  return createFluentBuilder('ShaderProgram', SHADERPROGRAM_META) as unknown as ShaderProgramBuilder;
+  return createFluentBuilder(
+    'ShaderProgram',
+    SHADERPROGRAM_META,
+  ) as unknown as ShaderProgramBuilder;
 }
 
 export namespace ShaderProgram {
@@ -90,8 +96,16 @@ export namespace ShaderProgram {
   export namespace ShaderType {
     export const Vertex = createEnumToken('ShaderProgram', 'ShaderType', 'Vertex');
     export const Fragment = createEnumToken('ShaderProgram', 'ShaderType', 'Fragment');
-    export const TessellationControl = createEnumToken('ShaderProgram', 'ShaderType', 'TessellationControl');
-    export const TessellationEvaluation = createEnumToken('ShaderProgram', 'ShaderType', 'TessellationEvaluation');
+    export const TessellationControl = createEnumToken(
+      'ShaderProgram',
+      'ShaderType',
+      'TessellationControl',
+    );
+    export const TessellationEvaluation = createEnumToken(
+      'ShaderProgram',
+      'ShaderType',
+      'TessellationEvaluation',
+    );
     export const Geometry = createEnumToken('ShaderProgram', 'ShaderType', 'Geometry');
     export const Compute = createEnumToken('ShaderProgram', 'ShaderType', 'Compute');
   }

@@ -2,12 +2,12 @@
 // Type: Attached type: FontDialogImpl
 // Generated from Qt 6.11.0
 
+import type { ListViewBuilder } from '../QtQuick/ListView.js';
+import type { TextEditBuilder } from '../QtQuick/TextEdit.js';
 import type { CheckBoxBuilder } from '../QtQuick.Templates/CheckBox.js';
 import type { ComboBoxBuilder } from '../QtQuick.Templates/ComboBox.js';
 import type { DialogButtonBoxBuilder } from '../QtQuick.Templates/DialogButtonBox.js';
 import type { TextFieldBuilder } from '../QtQuick.Templates/TextField.js';
-import type { ListViewBuilder } from '../QtQuick/ListView.js';
-import type { TextEditBuilder } from '../QtQuick/TextEdit.js';
 export interface FontDialogImplAttachedBuilder {
   buttonBox(value: DialogButtonBoxBuilder): FontDialogImplAttachedBuilder;
   buttonBoxBind(expr: string): FontDialogImplAttachedBuilder;

@@ -2,8 +2,8 @@
 // Type: Lightmapper
 // Generated from Qt 6.11.0
 
-import { createFluentBuilder } from '../../runtime/index.js';
 import type { QmlObjectBuilder, QmlUrl, TypeMetadata } from '../../runtime/index.js';
+import { createFluentBuilder } from '../../runtime/index.js';
 export interface LightmapperBuilder {
   id(id: string): LightmapperBuilder;
   child(obj: QmlObjectBuilder): LightmapperBuilder;
@@ -78,10 +78,8 @@ const LIGHTMAPPER_META: TypeMetadata = {
     { handlerName: 'onSourceChanged', paramCount: 0 },
     { handlerName: 'onTexelsPerUnitChanged', paramCount: 0 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function Lightmapper(): LightmapperBuilder {

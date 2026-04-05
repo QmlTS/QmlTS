@@ -2,8 +2,8 @@
 // Type: AmbientLightSensor
 // Generated from Qt 6.11.0
 
-import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { QmlEnumToken, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface AmbientLightSensorBuilder {
   id(id: string): AmbientLightSensorBuilder;
   child(obj: QmlObjectBuilder): AmbientLightSensorBuilder;
@@ -86,30 +86,59 @@ const AMBIENTLIGHTSENSOR_META: TypeMetadata = {
     { handlerName: 'onSkipDuplicatesChanged', paramCount: 1 },
     { handlerName: 'onUserOrientationChanged', paramCount: 1 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function AmbientLightSensor(): AmbientLightSensorBuilder {
-  return createFluentBuilder('AmbientLightSensor', AMBIENTLIGHTSENSOR_META) as unknown as AmbientLightSensorBuilder;
+  return createFluentBuilder(
+    'AmbientLightSensor',
+    AMBIENTLIGHTSENSOR_META,
+  ) as unknown as AmbientLightSensorBuilder;
 }
 
 export namespace AmbientLightSensor {
   export namespace AxesOrientationMode {
-    export const FixedOrientation = createEnumToken('AmbientLightSensor', 'AxesOrientationMode', 'FixedOrientation');
-    export const AutomaticOrientation = createEnumToken('AmbientLightSensor', 'AxesOrientationMode', 'AutomaticOrientation');
-    export const UserOrientation = createEnumToken('AmbientLightSensor', 'AxesOrientationMode', 'UserOrientation');
+    export const FixedOrientation = createEnumToken(
+      'AmbientLightSensor',
+      'AxesOrientationMode',
+      'FixedOrientation',
+    );
+    export const AutomaticOrientation = createEnumToken(
+      'AmbientLightSensor',
+      'AxesOrientationMode',
+      'AutomaticOrientation',
+    );
+    export const UserOrientation = createEnumToken(
+      'AmbientLightSensor',
+      'AxesOrientationMode',
+      'UserOrientation',
+    );
   }
   export namespace Feature {
     export const Buffering = createEnumToken('AmbientLightSensor', 'Feature', 'Buffering');
     export const AlwaysOn = createEnumToken('AmbientLightSensor', 'Feature', 'AlwaysOn');
     export const GeoValues = createEnumToken('AmbientLightSensor', 'Feature', 'GeoValues');
     export const FieldOfView = createEnumToken('AmbientLightSensor', 'Feature', 'FieldOfView');
-    export const AccelerationMode = createEnumToken('AmbientLightSensor', 'Feature', 'AccelerationMode');
-    export const SkipDuplicates = createEnumToken('AmbientLightSensor', 'Feature', 'SkipDuplicates');
-    export const AxesOrientation = createEnumToken('AmbientLightSensor', 'Feature', 'AxesOrientation');
-    export const PressureSensorTemperature = createEnumToken('AmbientLightSensor', 'Feature', 'PressureSensorTemperature');
+    export const AccelerationMode = createEnumToken(
+      'AmbientLightSensor',
+      'Feature',
+      'AccelerationMode',
+    );
+    export const SkipDuplicates = createEnumToken(
+      'AmbientLightSensor',
+      'Feature',
+      'SkipDuplicates',
+    );
+    export const AxesOrientation = createEnumToken(
+      'AmbientLightSensor',
+      'Feature',
+      'AxesOrientation',
+    );
+    export const PressureSensorTemperature = createEnumToken(
+      'AmbientLightSensor',
+      'Feature',
+      'PressureSensorTemperature',
+    );
   }
 }

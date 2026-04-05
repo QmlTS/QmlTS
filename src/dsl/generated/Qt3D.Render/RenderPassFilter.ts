@@ -2,8 +2,8 @@
 // Type: RenderPassFilter
 // Generated from Qt 6.11.0
 
-import { createFluentBuilder } from '../../runtime/index.js';
 import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import { createFluentBuilder } from '../../runtime/index.js';
 export interface RenderPassFilterBuilder {
   id(id: string): RenderPassFilterBuilder;
   child(obj: QmlObjectBuilder): RenderPassFilterBuilder;
@@ -33,12 +33,13 @@ const RENDERPASSFILTER_META: TypeMetadata = {
     { handlerName: 'onObjectNameChanged', paramCount: 1 },
     { handlerName: 'onParentChanged', paramCount: 1 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function RenderPassFilter(): RenderPassFilterBuilder {
-  return createFluentBuilder('RenderPassFilter', RENDERPASSFILTER_META) as unknown as RenderPassFilterBuilder;
+  return createFluentBuilder(
+    'RenderPassFilter',
+    RENDERPASSFILTER_META,
+  ) as unknown as RenderPassFilterBuilder;
 }

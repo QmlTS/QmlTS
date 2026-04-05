@@ -2,8 +2,8 @@
 // Type: HumiditySensor
 // Generated from Qt 6.11.0
 
-import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { QmlEnumToken, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface HumiditySensorBuilder {
   id(id: string): HumiditySensorBuilder;
   child(obj: QmlObjectBuilder): HumiditySensorBuilder;
@@ -86,30 +86,51 @@ const HUMIDITYSENSOR_META: TypeMetadata = {
     { handlerName: 'onSkipDuplicatesChanged', paramCount: 1 },
     { handlerName: 'onUserOrientationChanged', paramCount: 1 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function HumiditySensor(): HumiditySensorBuilder {
-  return createFluentBuilder('HumiditySensor', HUMIDITYSENSOR_META) as unknown as HumiditySensorBuilder;
+  return createFluentBuilder(
+    'HumiditySensor',
+    HUMIDITYSENSOR_META,
+  ) as unknown as HumiditySensorBuilder;
 }
 
 export namespace HumiditySensor {
   export namespace AxesOrientationMode {
-    export const FixedOrientation = createEnumToken('HumiditySensor', 'AxesOrientationMode', 'FixedOrientation');
-    export const AutomaticOrientation = createEnumToken('HumiditySensor', 'AxesOrientationMode', 'AutomaticOrientation');
-    export const UserOrientation = createEnumToken('HumiditySensor', 'AxesOrientationMode', 'UserOrientation');
+    export const FixedOrientation = createEnumToken(
+      'HumiditySensor',
+      'AxesOrientationMode',
+      'FixedOrientation',
+    );
+    export const AutomaticOrientation = createEnumToken(
+      'HumiditySensor',
+      'AxesOrientationMode',
+      'AutomaticOrientation',
+    );
+    export const UserOrientation = createEnumToken(
+      'HumiditySensor',
+      'AxesOrientationMode',
+      'UserOrientation',
+    );
   }
   export namespace Feature {
     export const Buffering = createEnumToken('HumiditySensor', 'Feature', 'Buffering');
     export const AlwaysOn = createEnumToken('HumiditySensor', 'Feature', 'AlwaysOn');
     export const GeoValues = createEnumToken('HumiditySensor', 'Feature', 'GeoValues');
     export const FieldOfView = createEnumToken('HumiditySensor', 'Feature', 'FieldOfView');
-    export const AccelerationMode = createEnumToken('HumiditySensor', 'Feature', 'AccelerationMode');
+    export const AccelerationMode = createEnumToken(
+      'HumiditySensor',
+      'Feature',
+      'AccelerationMode',
+    );
     export const SkipDuplicates = createEnumToken('HumiditySensor', 'Feature', 'SkipDuplicates');
     export const AxesOrientation = createEnumToken('HumiditySensor', 'Feature', 'AxesOrientation');
-    export const PressureSensorTemperature = createEnumToken('HumiditySensor', 'Feature', 'PressureSensorTemperature');
+    export const PressureSensorTemperature = createEnumToken(
+      'HumiditySensor',
+      'Feature',
+      'PressureSensorTemperature',
+    );
   }
 }

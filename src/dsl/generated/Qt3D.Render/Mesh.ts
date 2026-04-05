@@ -2,8 +2,15 @@
 // Type: Mesh
 // Generated from Qt 6.11.0
 
+import type {
+  QmlEnumToken,
+  QmlObjectBuilder,
+  QmlUrl,
+  QmlValue,
+  QmlVector3d,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
-import type { QmlEnumToken, QmlObjectBuilder, QmlUrl, QmlValue, QmlVector3d, TypeMetadata } from '../../runtime/index.js';
 import type { GeometryBuilder } from '../Qt3D.Core/Geometry.js';
 import type { GeometryViewBuilder } from '../Qt3D.Core/GeometryView.js';
 export interface MeshBuilder {
@@ -137,10 +144,8 @@ const MESH_META: TypeMetadata = {
     { handlerName: 'onVerticesPerPatchChanged', paramCount: 1 },
     { handlerName: 'onViewChanged', paramCount: 1 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function Mesh(): MeshBuilder {
@@ -157,9 +162,21 @@ export namespace Mesh {
     export const TriangleStrip = createEnumToken('Mesh', 'PrimitiveType', 'TriangleStrip');
     export const TriangleFan = createEnumToken('Mesh', 'PrimitiveType', 'TriangleFan');
     export const LinesAdjacency = createEnumToken('Mesh', 'PrimitiveType', 'LinesAdjacency');
-    export const TrianglesAdjacency = createEnumToken('Mesh', 'PrimitiveType', 'TrianglesAdjacency');
-    export const LineStripAdjacency = createEnumToken('Mesh', 'PrimitiveType', 'LineStripAdjacency');
-    export const TriangleStripAdjacency = createEnumToken('Mesh', 'PrimitiveType', 'TriangleStripAdjacency');
+    export const TrianglesAdjacency = createEnumToken(
+      'Mesh',
+      'PrimitiveType',
+      'TrianglesAdjacency',
+    );
+    export const LineStripAdjacency = createEnumToken(
+      'Mesh',
+      'PrimitiveType',
+      'LineStripAdjacency',
+    );
+    export const TriangleStripAdjacency = createEnumToken(
+      'Mesh',
+      'PrimitiveType',
+      'TriangleStripAdjacency',
+    );
     export const Patches = createEnumToken('Mesh', 'PrimitiveType', 'Patches');
   }
   export namespace Status {

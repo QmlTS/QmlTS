@@ -2,8 +2,14 @@
 // Type: GeometryRenderer
 // Generated from Qt 6.11.0
 
+import type {
+  QmlEnumToken,
+  QmlObjectBuilder,
+  QmlValue,
+  QmlVector3d,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
-import type { QmlEnumToken, QmlObjectBuilder, QmlValue, QmlVector3d, TypeMetadata } from '../../runtime/index.js';
 import type { GeometryBuilder } from '../Qt3D.Core/Geometry.js';
 import type { GeometryViewBuilder } from '../Qt3D.Core/GeometryView.js';
 export interface GeometryRendererBuilder {
@@ -125,14 +131,15 @@ const GEOMETRYRENDERER_META: TypeMetadata = {
     { handlerName: 'onVerticesPerPatchChanged', paramCount: 1 },
     { handlerName: 'onViewChanged', paramCount: 1 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function GeometryRenderer(): GeometryRendererBuilder {
-  return createFluentBuilder('GeometryRenderer', GEOMETRYRENDERER_META) as unknown as GeometryRendererBuilder;
+  return createFluentBuilder(
+    'GeometryRenderer',
+    GEOMETRYRENDERER_META,
+  ) as unknown as GeometryRendererBuilder;
 }
 
 export namespace GeometryRenderer {
@@ -142,12 +149,32 @@ export namespace GeometryRenderer {
     export const LineLoop = createEnumToken('GeometryRenderer', 'PrimitiveType', 'LineLoop');
     export const LineStrip = createEnumToken('GeometryRenderer', 'PrimitiveType', 'LineStrip');
     export const Triangles = createEnumToken('GeometryRenderer', 'PrimitiveType', 'Triangles');
-    export const TriangleStrip = createEnumToken('GeometryRenderer', 'PrimitiveType', 'TriangleStrip');
+    export const TriangleStrip = createEnumToken(
+      'GeometryRenderer',
+      'PrimitiveType',
+      'TriangleStrip',
+    );
     export const TriangleFan = createEnumToken('GeometryRenderer', 'PrimitiveType', 'TriangleFan');
-    export const LinesAdjacency = createEnumToken('GeometryRenderer', 'PrimitiveType', 'LinesAdjacency');
-    export const TrianglesAdjacency = createEnumToken('GeometryRenderer', 'PrimitiveType', 'TrianglesAdjacency');
-    export const LineStripAdjacency = createEnumToken('GeometryRenderer', 'PrimitiveType', 'LineStripAdjacency');
-    export const TriangleStripAdjacency = createEnumToken('GeometryRenderer', 'PrimitiveType', 'TriangleStripAdjacency');
+    export const LinesAdjacency = createEnumToken(
+      'GeometryRenderer',
+      'PrimitiveType',
+      'LinesAdjacency',
+    );
+    export const TrianglesAdjacency = createEnumToken(
+      'GeometryRenderer',
+      'PrimitiveType',
+      'TrianglesAdjacency',
+    );
+    export const LineStripAdjacency = createEnumToken(
+      'GeometryRenderer',
+      'PrimitiveType',
+      'LineStripAdjacency',
+    );
+    export const TriangleStripAdjacency = createEnumToken(
+      'GeometryRenderer',
+      'PrimitiveType',
+      'TriangleStripAdjacency',
+    );
     export const Patches = createEnumToken('GeometryRenderer', 'PrimitiveType', 'Patches');
   }
 }

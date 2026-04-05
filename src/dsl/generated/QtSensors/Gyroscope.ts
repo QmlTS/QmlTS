@@ -2,8 +2,8 @@
 // Type: Gyroscope
 // Generated from Qt 6.11.0
 
-import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { QmlEnumToken, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface GyroscopeBuilder {
   id(id: string): GyroscopeBuilder;
   child(obj: QmlObjectBuilder): GyroscopeBuilder;
@@ -86,10 +86,8 @@ const GYROSCOPE_META: TypeMetadata = {
     { handlerName: 'onSkipDuplicatesChanged', paramCount: 1 },
     { handlerName: 'onUserOrientationChanged', paramCount: 1 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function Gyroscope(): GyroscopeBuilder {
@@ -98,9 +96,21 @@ export function Gyroscope(): GyroscopeBuilder {
 
 export namespace Gyroscope {
   export namespace AxesOrientationMode {
-    export const FixedOrientation = createEnumToken('Gyroscope', 'AxesOrientationMode', 'FixedOrientation');
-    export const AutomaticOrientation = createEnumToken('Gyroscope', 'AxesOrientationMode', 'AutomaticOrientation');
-    export const UserOrientation = createEnumToken('Gyroscope', 'AxesOrientationMode', 'UserOrientation');
+    export const FixedOrientation = createEnumToken(
+      'Gyroscope',
+      'AxesOrientationMode',
+      'FixedOrientation',
+    );
+    export const AutomaticOrientation = createEnumToken(
+      'Gyroscope',
+      'AxesOrientationMode',
+      'AutomaticOrientation',
+    );
+    export const UserOrientation = createEnumToken(
+      'Gyroscope',
+      'AxesOrientationMode',
+      'UserOrientation',
+    );
   }
   export namespace Feature {
     export const Buffering = createEnumToken('Gyroscope', 'Feature', 'Buffering');
@@ -110,6 +120,10 @@ export namespace Gyroscope {
     export const AccelerationMode = createEnumToken('Gyroscope', 'Feature', 'AccelerationMode');
     export const SkipDuplicates = createEnumToken('Gyroscope', 'Feature', 'SkipDuplicates');
     export const AxesOrientation = createEnumToken('Gyroscope', 'Feature', 'AxesOrientation');
-    export const PressureSensorTemperature = createEnumToken('Gyroscope', 'Feature', 'PressureSensorTemperature');
+    export const PressureSensorTemperature = createEnumToken(
+      'Gyroscope',
+      'Feature',
+      'PressureSensorTemperature',
+    );
   }
 }

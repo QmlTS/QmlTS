@@ -2,7 +2,6 @@
 // Type: Attached type: Package
 // Generated from Qt 6.11.0
 
-
 export interface PackageAttachedBuilder {
   name(value: string): PackageAttachedBuilder;
   nameBind(expr: string): PackageAttachedBuilder;

@@ -2,8 +2,14 @@
 // Type: ColorDialog
 // Generated from Qt 6.11.0
 
+import type {
+  QmlColor,
+  QmlEnumToken,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
-import type { QmlColor, QmlEnumToken, QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
 export interface ColorDialogBuilder {
   id(id: string): ColorDialogBuilder;
   child(obj: QmlObjectBuilder): ColorDialogBuilder;
@@ -70,10 +76,8 @@ const COLORDIALOG_META: TypeMetadata = {
     { handlerName: 'onTitleChanged', paramCount: 0 },
     { handlerName: 'onVisibleChanged', paramCount: 0 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
   defaultProperty: 'data',
 };
 

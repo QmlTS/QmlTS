@@ -2,8 +2,13 @@
 // Type: HistoryState
 // Generated from Qt 6.11.0
 
+import type {
+  QmlEnumToken,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
-import type { QmlEnumToken, QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
 export interface HistoryStateBuilder {
   id(id: string): HistoryStateBuilder;
   child(obj: QmlObjectBuilder): HistoryStateBuilder;
@@ -42,10 +47,8 @@ const HISTORYSTATE_META: TypeMetadata = {
     { handlerName: 'onHistoryTypeChanged', paramCount: 0 },
     { handlerName: 'onObjectNameChanged', paramCount: 1 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function HistoryState(): HistoryStateBuilder {

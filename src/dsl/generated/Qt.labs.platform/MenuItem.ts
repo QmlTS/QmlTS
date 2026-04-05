@@ -2,8 +2,14 @@
 // Type: MenuItem
 // Generated from Qt 6.11.0
 
+import type {
+  QmlEnumToken,
+  QmlFont,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
-import type { QmlEnumToken, QmlFont, QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
 import type { MenuItemGroupBuilder } from './MenuItemGroup.js';
 export interface MenuItemBuilder {
   id(id: string): MenuItemBuilder;
@@ -85,10 +91,8 @@ const MENUITEM_META: TypeMetadata = {
     { handlerName: 'onTriggered', paramCount: 0 },
     { handlerName: 'onVisibleChanged', paramCount: 0 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function MenuItem(): MenuItemBuilder {

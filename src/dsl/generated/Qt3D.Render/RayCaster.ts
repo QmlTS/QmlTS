@@ -2,8 +2,14 @@
 // Type: RayCaster
 // Generated from Qt 6.11.0
 
+import type {
+  QmlEnumToken,
+  QmlObjectBuilder,
+  QmlValue,
+  QmlVector3d,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
-import type { QmlEnumToken, QmlObjectBuilder, QmlValue, QmlVector3d, TypeMetadata } from '../../runtime/index.js';
 export interface RayCasterBuilder {
   id(id: string): RayCasterBuilder;
   child(obj: QmlObjectBuilder): RayCasterBuilder;
@@ -69,10 +75,8 @@ const RAYCASTER_META: TypeMetadata = {
     { handlerName: 'onRunModeChanged', paramCount: 1 },
     { handlerName: 'onShareableChanged', paramCount: 1 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function RayCaster(): RayCasterBuilder {
@@ -81,10 +85,26 @@ export function RayCaster(): RayCasterBuilder {
 
 export namespace RayCaster {
   export namespace FilterMode {
-    export const AcceptAnyMatchingLayers = createEnumToken('RayCaster', 'FilterMode', 'AcceptAnyMatchingLayers');
-    export const AcceptAllMatchingLayers = createEnumToken('RayCaster', 'FilterMode', 'AcceptAllMatchingLayers');
-    export const DiscardAnyMatchingLayers = createEnumToken('RayCaster', 'FilterMode', 'DiscardAnyMatchingLayers');
-    export const DiscardAllMatchingLayers = createEnumToken('RayCaster', 'FilterMode', 'DiscardAllMatchingLayers');
+    export const AcceptAnyMatchingLayers = createEnumToken(
+      'RayCaster',
+      'FilterMode',
+      'AcceptAnyMatchingLayers',
+    );
+    export const AcceptAllMatchingLayers = createEnumToken(
+      'RayCaster',
+      'FilterMode',
+      'AcceptAllMatchingLayers',
+    );
+    export const DiscardAnyMatchingLayers = createEnumToken(
+      'RayCaster',
+      'FilterMode',
+      'DiscardAnyMatchingLayers',
+    );
+    export const DiscardAllMatchingLayers = createEnumToken(
+      'RayCaster',
+      'FilterMode',
+      'DiscardAllMatchingLayers',
+    );
   }
   export namespace RunMode {
     export const Continuous = createEnumToken('RayCaster', 'RunMode', 'Continuous');

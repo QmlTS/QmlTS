@@ -2,8 +2,8 @@
 // Type: RenderTargetSelector
 // Generated from Qt 6.11.0
 
-import { createFluentBuilder } from '../../runtime/index.js';
 import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import { createFluentBuilder } from '../../runtime/index.js';
 import type { RenderTargetBuilder } from './RenderTarget.js';
 export interface RenderTargetSelectorBuilder {
   id(id: string): RenderTargetSelectorBuilder;
@@ -39,12 +39,13 @@ const RENDERTARGETSELECTOR_META: TypeMetadata = {
     { handlerName: 'onParentChanged', paramCount: 1 },
     { handlerName: 'onTargetChanged', paramCount: 1 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function RenderTargetSelector(): RenderTargetSelectorBuilder {
-  return createFluentBuilder('RenderTargetSelector', RENDERTARGETSELECTOR_META) as unknown as RenderTargetSelectorBuilder;
+  return createFluentBuilder(
+    'RenderTargetSelector',
+    RENDERTARGETSELECTOR_META,
+  ) as unknown as RenderTargetSelectorBuilder;
 }

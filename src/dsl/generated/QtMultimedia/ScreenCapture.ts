@@ -2,8 +2,8 @@
 // Type: ScreenCapture
 // Generated from Qt 6.11.0
 
-import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface ScreenCaptureBuilder {
   id(id: string): ScreenCaptureBuilder;
   child(obj: QmlObjectBuilder): ScreenCaptureBuilder;
@@ -35,21 +35,26 @@ const SCREENCAPTURE_META: TypeMetadata = {
     { handlerName: 'onObjectNameChanged', paramCount: 1 },
     { handlerName: 'onScreenChanged', paramCount: 1 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function ScreenCapture(): ScreenCaptureBuilder {
-  return createFluentBuilder('ScreenCapture', SCREENCAPTURE_META) as unknown as ScreenCaptureBuilder;
+  return createFluentBuilder(
+    'ScreenCapture',
+    SCREENCAPTURE_META,
+  ) as unknown as ScreenCaptureBuilder;
 }
 
 export namespace ScreenCapture {
   export namespace Error {
     export const NoError = createEnumToken('ScreenCapture', 'Error', 'NoError');
     export const InternalError = createEnumToken('ScreenCapture', 'Error', 'InternalError');
-    export const CapturingNotSupported = createEnumToken('ScreenCapture', 'Error', 'CapturingNotSupported');
+    export const CapturingNotSupported = createEnumToken(
+      'ScreenCapture',
+      'Error',
+      'CapturingNotSupported',
+    );
     export const CaptureFailed = createEnumToken('ScreenCapture', 'Error', 'CaptureFailed');
     export const NotFound = createEnumToken('ScreenCapture', 'Error', 'NotFound');
   }

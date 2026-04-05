@@ -2,8 +2,8 @@
 // Type: DebugSettings
 // Generated from Qt 6.11.0
 
-import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { QmlEnumToken, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface DebugSettingsBuilder {
   id(id: string): DebugSettingsBuilder;
   child(obj: QmlObjectBuilder): DebugSettingsBuilder;
@@ -73,30 +73,67 @@ const DEBUGSETTINGS_META: TypeMetadata = {
     { handlerName: 'onObjectNameChanged', paramCount: 1 },
     { handlerName: 'onWireframeEnabledChanged', paramCount: 0 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function DebugSettings(): DebugSettingsBuilder {
-  return createFluentBuilder('DebugSettings', DEBUGSETTINGS_META) as unknown as DebugSettingsBuilder;
+  return createFluentBuilder(
+    'DebugSettings',
+    DEBUGSETTINGS_META,
+  ) as unknown as DebugSettingsBuilder;
 }
 
 export namespace DebugSettings {
   export namespace QQuick3DMaterialOverrides {
     export const None = createEnumToken('DebugSettings', 'QQuick3DMaterialOverrides', 'None');
-    export const BaseColor = createEnumToken('DebugSettings', 'QQuick3DMaterialOverrides', 'BaseColor');
-    export const Roughness = createEnumToken('DebugSettings', 'QQuick3DMaterialOverrides', 'Roughness');
-    export const Metalness = createEnumToken('DebugSettings', 'QQuick3DMaterialOverrides', 'Metalness');
+    export const BaseColor = createEnumToken(
+      'DebugSettings',
+      'QQuick3DMaterialOverrides',
+      'BaseColor',
+    );
+    export const Roughness = createEnumToken(
+      'DebugSettings',
+      'QQuick3DMaterialOverrides',
+      'Roughness',
+    );
+    export const Metalness = createEnumToken(
+      'DebugSettings',
+      'QQuick3DMaterialOverrides',
+      'Metalness',
+    );
     export const Diffuse = createEnumToken('DebugSettings', 'QQuick3DMaterialOverrides', 'Diffuse');
-    export const Specular = createEnumToken('DebugSettings', 'QQuick3DMaterialOverrides', 'Specular');
-    export const ShadowOcclusion = createEnumToken('DebugSettings', 'QQuick3DMaterialOverrides', 'ShadowOcclusion');
-    export const Emission = createEnumToken('DebugSettings', 'QQuick3DMaterialOverrides', 'Emission');
-    export const AmbientOcclusion = createEnumToken('DebugSettings', 'QQuick3DMaterialOverrides', 'AmbientOcclusion');
+    export const Specular = createEnumToken(
+      'DebugSettings',
+      'QQuick3DMaterialOverrides',
+      'Specular',
+    );
+    export const ShadowOcclusion = createEnumToken(
+      'DebugSettings',
+      'QQuick3DMaterialOverrides',
+      'ShadowOcclusion',
+    );
+    export const Emission = createEnumToken(
+      'DebugSettings',
+      'QQuick3DMaterialOverrides',
+      'Emission',
+    );
+    export const AmbientOcclusion = createEnumToken(
+      'DebugSettings',
+      'QQuick3DMaterialOverrides',
+      'AmbientOcclusion',
+    );
     export const Normals = createEnumToken('DebugSettings', 'QQuick3DMaterialOverrides', 'Normals');
-    export const Tangents = createEnumToken('DebugSettings', 'QQuick3DMaterialOverrides', 'Tangents');
-    export const Binormals = createEnumToken('DebugSettings', 'QQuick3DMaterialOverrides', 'Binormals');
+    export const Tangents = createEnumToken(
+      'DebugSettings',
+      'QQuick3DMaterialOverrides',
+      'Tangents',
+    );
+    export const Binormals = createEnumToken(
+      'DebugSettings',
+      'QQuick3DMaterialOverrides',
+      'Binormals',
+    );
     export const F0 = createEnumToken('DebugSettings', 'QQuick3DMaterialOverrides', 'F0');
   }
 }

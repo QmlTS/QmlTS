@@ -14,7 +14,7 @@ export * from './ClipBlendValue.js';
 export * from './Clock.js';
 export * from './KeyframeAnimation.js';
 export * from './LerpClipBlend.js';
-export * from './MorphTarget.js';
 export * from './MorphingAnimation.js';
+export * from './MorphTarget.js';
 export * from './SkeletonMapping.js';
 export * from './VertexBlendAnimation.js';

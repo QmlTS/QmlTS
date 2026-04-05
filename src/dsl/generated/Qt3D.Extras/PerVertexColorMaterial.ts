@@ -2,8 +2,8 @@
 // Type: PerVertexColorMaterial
 // Generated from Qt 6.11.0
 
-import { createFluentBuilder } from '../../runtime/index.js';
 import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import { createFluentBuilder } from '../../runtime/index.js';
 import type { EffectBuilder } from '../Qt3D.Render/Effect.js';
 export interface PerVertexColorMaterialBuilder {
   id(id: string): PerVertexColorMaterialBuilder;
@@ -48,12 +48,13 @@ const PERVERTEXCOLORMATERIAL_META: TypeMetadata = {
     { handlerName: 'onRemovedFromEntity', paramCount: 1 },
     { handlerName: 'onShareableChanged', paramCount: 1 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function PerVertexColorMaterial(): PerVertexColorMaterialBuilder {
-  return createFluentBuilder('PerVertexColorMaterial', PERVERTEXCOLORMATERIAL_META) as unknown as PerVertexColorMaterialBuilder;
+  return createFluentBuilder(
+    'PerVertexColorMaterial',
+    PERVERTEXCOLORMATERIAL_META,
+  ) as unknown as PerVertexColorMaterialBuilder;
 }

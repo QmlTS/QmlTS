@@ -2,8 +2,13 @@
 // Type: HBarModelMapper
 // Generated from Qt 6.11.0
 
+import type {
+  QmlEnumToken,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
-import type { QmlEnumToken, QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
 export interface HBarModelMapperBuilder {
   id(id: string): HBarModelMapperBuilder;
   child(obj: QmlObjectBuilder): HBarModelMapperBuilder;
@@ -80,12 +85,13 @@ const HBARMODELMAPPER_META: TypeMetadata = {
     { handlerName: 'onSeriesChanged', paramCount: 0 },
     { handlerName: 'onSeriesReplaced', paramCount: 0 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function HBarModelMapper(): HBarModelMapperBuilder {
-  return createFluentBuilder('HBarModelMapper', HBARMODELMAPPER_META) as unknown as HBarModelMapperBuilder;
+  return createFluentBuilder(
+    'HBarModelMapper',
+    HBARMODELMAPPER_META,
+  ) as unknown as HBarModelMapperBuilder;
 }

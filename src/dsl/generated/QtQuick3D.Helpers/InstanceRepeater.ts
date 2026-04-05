@@ -2,8 +2,16 @@
 // Type: InstanceRepeater
 // Generated from Qt 6.11.0
 
+import type {
+  QmlComponent,
+  QmlEnumToken,
+  QmlObjectBuilder,
+  QmlQuaternion,
+  QmlValue,
+  QmlVector3d,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
-import type { QmlComponent, QmlEnumToken, QmlObjectBuilder, QmlQuaternion, QmlValue, QmlVector3d, TypeMetadata } from '../../runtime/index.js';
 export interface InstanceRepeaterBuilder {
   id(id: string): InstanceRepeaterBuilder;
   child(obj: QmlObjectBuilder): InstanceRepeaterBuilder;
@@ -133,15 +141,16 @@ const INSTANCEREPEATER_META: TypeMetadata = {
     { handlerName: 'onYChanged', paramCount: 0 },
     { handlerName: 'onZChanged', paramCount: 0 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
   defaultProperty: 'delegate',
 };
 
 export function InstanceRepeater(): InstanceRepeaterBuilder {
-  return createFluentBuilder('InstanceRepeater', INSTANCEREPEATER_META) as unknown as InstanceRepeaterBuilder;
+  return createFluentBuilder(
+    'InstanceRepeater',
+    INSTANCEREPEATER_META,
+  ) as unknown as InstanceRepeaterBuilder;
 }
 
 export namespace InstanceRepeater {

@@ -2,8 +2,8 @@
 // Type: ImageSelector
 // Generated from Qt 6.11.0
 
-import { createFluentBuilder } from '../../runtime/index.js';
 import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import { createFluentBuilder } from '../../runtime/index.js';
 export interface ImageSelectorBuilder {
   id(id: string): ImageSelectorBuilder;
   child(obj: QmlObjectBuilder): ImageSelectorBuilder;
@@ -38,12 +38,13 @@ const IMAGESELECTOR_META: TypeMetadata = {
     { handlerName: 'onObjectNameChanged', paramCount: 1 },
     { handlerName: 'onSourceChanged', paramCount: 0 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function ImageSelector(): ImageSelectorBuilder {
-  return createFluentBuilder('ImageSelector', IMAGESELECTOR_META) as unknown as ImageSelectorBuilder;
+  return createFluentBuilder(
+    'ImageSelector',
+    IMAGESELECTOR_META,
+  ) as unknown as ImageSelectorBuilder;
 }

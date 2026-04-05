@@ -2,8 +2,8 @@
 // Type: Light3D
 // Generated from Qt 6.11.0
 
-import { createFluentBuilder } from '../../runtime/index.js';
 import type { QmlObjectBuilder, QmlVector3d, TypeMetadata } from '../../runtime/index.js';
+import { createFluentBuilder } from '../../runtime/index.js';
 export interface Light3DBuilder {
   id(id: string): Light3DBuilder;
   child(obj: QmlObjectBuilder): Light3DBuilder;
@@ -31,10 +31,8 @@ const LIGHT3D_META: TypeMetadata = {
     { handlerName: 'onObjectNameChanged', paramCount: 1 },
     { handlerName: 'onPositionChanged', paramCount: 1 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function Light3D(): Light3DBuilder {

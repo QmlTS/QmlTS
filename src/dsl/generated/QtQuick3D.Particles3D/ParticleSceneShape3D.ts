@@ -2,8 +2,8 @@
 // Type: ParticleSceneShape3D
 // Generated from Qt 6.11.0
 
-import { createFluentBuilder } from '../../runtime/index.js';
 import type { QmlObjectBuilder, QmlVector3d, TypeMetadata } from '../../runtime/index.js';
+import { createFluentBuilder } from '../../runtime/index.js';
 import type { NodeBuilder } from '../QtQuick3D/Node.js';
 export interface ParticleSceneShape3DBuilder {
   id(id: string): ParticleSceneShape3DBuilder;
@@ -49,12 +49,13 @@ const PARTICLESCENESHAPE3D_META: TypeMetadata = {
     { handlerName: 'onSceneExtentsChanged', paramCount: 0 },
     { handlerName: 'onShapeResolutionChanged', paramCount: 0 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function ParticleSceneShape3D(): ParticleSceneShape3DBuilder {
-  return createFluentBuilder('ParticleSceneShape3D', PARTICLESCENESHAPE3D_META) as unknown as ParticleSceneShape3DBuilder;
+  return createFluentBuilder(
+    'ParticleSceneShape3D',
+    PARTICLESCENESHAPE3D_META,
+  ) as unknown as ParticleSceneShape3DBuilder;
 }

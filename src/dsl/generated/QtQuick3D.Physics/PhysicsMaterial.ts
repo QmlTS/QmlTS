@@ -2,8 +2,8 @@
 // Type: PhysicsMaterial
 // Generated from Qt 6.11.0
 
-import { createFluentBuilder } from '../../runtime/index.js';
 import type { QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import { createFluentBuilder } from '../../runtime/index.js';
 export interface PhysicsMaterialBuilder {
   id(id: string): PhysicsMaterialBuilder;
   child(obj: QmlObjectBuilder): PhysicsMaterialBuilder;
@@ -36,12 +36,13 @@ const PHYSICSMATERIAL_META: TypeMetadata = {
     { handlerName: 'onRestitutionChanged', paramCount: 0 },
     { handlerName: 'onStaticFrictionChanged', paramCount: 0 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function PhysicsMaterial(): PhysicsMaterialBuilder {
-  return createFluentBuilder('PhysicsMaterial', PHYSICSMATERIAL_META) as unknown as PhysicsMaterialBuilder;
+  return createFluentBuilder(
+    'PhysicsMaterial',
+    PHYSICSMATERIAL_META,
+  ) as unknown as PhysicsMaterialBuilder;
 }

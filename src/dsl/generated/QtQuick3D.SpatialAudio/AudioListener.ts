@@ -2,8 +2,14 @@
 // Type: AudioListener
 // Generated from Qt 6.11.0
 
+import type {
+  QmlObjectBuilder,
+  QmlQuaternion,
+  QmlValue,
+  QmlVector3d,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
-import type { QmlObjectBuilder, QmlQuaternion, QmlValue, QmlVector3d, TypeMetadata } from '../../runtime/index.js';
 export interface AudioListenerBuilder {
   id(id: string): AudioListenerBuilder;
   child(obj: QmlObjectBuilder): AudioListenerBuilder;
@@ -107,14 +113,15 @@ const AUDIOLISTENER_META: TypeMetadata = {
     { handlerName: 'onYChanged', paramCount: 0 },
     { handlerName: 'onZChanged', paramCount: 0 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function AudioListener(): AudioListenerBuilder {
-  return createFluentBuilder('AudioListener', AUDIOLISTENER_META) as unknown as AudioListenerBuilder;
+  return createFluentBuilder(
+    'AudioListener',
+    AUDIOLISTENER_META,
+  ) as unknown as AudioListenerBuilder;
 }
 
 export namespace AudioListener {

@@ -2,7 +2,6 @@
 // Type: Attached type: DelegateModel
 // Generated from Qt 6.11.0
 
-
 export interface DelegateModelAttachedBuilder {
   groups(value: string[]): DelegateModelAttachedBuilder;
   groupsBind(expr: string): DelegateModelAttachedBuilder;

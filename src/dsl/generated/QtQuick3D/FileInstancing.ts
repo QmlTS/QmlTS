@@ -2,8 +2,14 @@
 // Type: FileInstancing
 // Generated from Qt 6.11.0
 
+import type {
+  QmlObjectBuilder,
+  QmlUrl,
+  QmlValue,
+  QmlVector3d,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
-import type { QmlObjectBuilder, QmlUrl, QmlValue, QmlVector3d, TypeMetadata } from '../../runtime/index.js';
 export interface FileInstancingBuilder {
   id(id: string): FileInstancingBuilder;
   child(obj: QmlObjectBuilder): FileInstancingBuilder;
@@ -69,12 +75,13 @@ const FILEINSTANCING_META: TypeMetadata = {
     { handlerName: 'onSourceChanged', paramCount: 0 },
     { handlerName: 'onStateChanged', paramCount: 0 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function FileInstancing(): FileInstancingBuilder {
-  return createFluentBuilder('FileInstancing', FILEINSTANCING_META) as unknown as FileInstancingBuilder;
+  return createFluentBuilder(
+    'FileInstancing',
+    FILEINSTANCING_META,
+  ) as unknown as FileInstancingBuilder;
 }

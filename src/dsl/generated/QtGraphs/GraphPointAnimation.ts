@@ -2,8 +2,13 @@
 // Type: GraphPointAnimation
 // Generated from Qt 6.11.0
 
+import type {
+  QmlEnumToken,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
-import type { QmlEnumToken, QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
 export interface GraphPointAnimationBuilder {
   id(id: string): GraphPointAnimationBuilder;
   child(obj: QmlObjectBuilder): GraphPointAnimationBuilder;
@@ -57,14 +62,15 @@ const GRAPHPOINTANIMATION_META: TypeMetadata = {
     { handlerName: 'onStateChanged', paramCount: 2 },
     { handlerName: 'onValueChanged', paramCount: 1 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function GraphPointAnimation(): GraphPointAnimationBuilder {
-  return createFluentBuilder('GraphPointAnimation', GRAPHPOINTANIMATION_META) as unknown as GraphPointAnimationBuilder;
+  return createFluentBuilder(
+    'GraphPointAnimation',
+    GRAPHPOINTANIMATION_META,
+  ) as unknown as GraphPointAnimationBuilder;
 }
 
 export namespace GraphPointAnimation {
@@ -77,8 +83,16 @@ export namespace GraphPointAnimation {
     export const Backward = createEnumToken('GraphPointAnimation', 'Direction', 'Backward');
   }
   export namespace GraphAnimationType {
-    export const GraphPoint = createEnumToken('GraphPointAnimation', 'GraphAnimationType', 'GraphPoint');
-    export const ControlPoint = createEnumToken('GraphPointAnimation', 'GraphAnimationType', 'ControlPoint');
+    export const GraphPoint = createEnumToken(
+      'GraphPointAnimation',
+      'GraphAnimationType',
+      'GraphPoint',
+    );
+    export const ControlPoint = createEnumToken(
+      'GraphPointAnimation',
+      'GraphAnimationType',
+      'ControlPoint',
+    );
   }
   export namespace State {
     export const Stopped = createEnumToken('GraphPointAnimation', 'State', 'Stopped');

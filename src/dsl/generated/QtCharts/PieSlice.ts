@@ -2,8 +2,14 @@
 // Type: PieSlice
 // Generated from Qt 6.11.0
 
+import type {
+  QmlColor,
+  QmlEnumToken,
+  QmlFont,
+  QmlObjectBuilder,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
-import type { QmlColor, QmlEnumToken, QmlFont, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
 export interface PieSliceBuilder {
   id(id: string): PieSliceBuilder;
   child(obj: QmlObjectBuilder): PieSliceBuilder;
@@ -109,10 +115,8 @@ const PIESLICE_META: TypeMetadata = {
     { handlerName: 'onSubSlicesSumChanged', paramCount: 1 },
     { handlerName: 'onValueChanged', paramCount: 0 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function PieSlice(): PieSliceBuilder {
@@ -122,8 +126,16 @@ export function PieSlice(): PieSliceBuilder {
 export namespace PieSlice {
   export namespace LabelPosition {
     export const Outside = createEnumToken('PieSlice', 'LabelPosition', 'Outside');
-    export const InsideHorizontal = createEnumToken('PieSlice', 'LabelPosition', 'InsideHorizontal');
-    export const InsideTangential = createEnumToken('PieSlice', 'LabelPosition', 'InsideTangential');
+    export const InsideHorizontal = createEnumToken(
+      'PieSlice',
+      'LabelPosition',
+      'InsideHorizontal',
+    );
+    export const InsideTangential = createEnumToken(
+      'PieSlice',
+      'LabelPosition',
+      'InsideTangential',
+    );
     export const InsideNormal = createEnumToken('PieSlice', 'LabelPosition', 'InsideNormal');
   }
 }

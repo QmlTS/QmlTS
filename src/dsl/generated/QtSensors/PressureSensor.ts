@@ -2,8 +2,8 @@
 // Type: PressureSensor
 // Generated from Qt 6.11.0
 
-import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { QmlEnumToken, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface PressureSensorBuilder {
   id(id: string): PressureSensorBuilder;
   child(obj: QmlObjectBuilder): PressureSensorBuilder;
@@ -86,30 +86,51 @@ const PRESSURESENSOR_META: TypeMetadata = {
     { handlerName: 'onSkipDuplicatesChanged', paramCount: 1 },
     { handlerName: 'onUserOrientationChanged', paramCount: 1 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function PressureSensor(): PressureSensorBuilder {
-  return createFluentBuilder('PressureSensor', PRESSURESENSOR_META) as unknown as PressureSensorBuilder;
+  return createFluentBuilder(
+    'PressureSensor',
+    PRESSURESENSOR_META,
+  ) as unknown as PressureSensorBuilder;
 }
 
 export namespace PressureSensor {
   export namespace AxesOrientationMode {
-    export const FixedOrientation = createEnumToken('PressureSensor', 'AxesOrientationMode', 'FixedOrientation');
-    export const AutomaticOrientation = createEnumToken('PressureSensor', 'AxesOrientationMode', 'AutomaticOrientation');
-    export const UserOrientation = createEnumToken('PressureSensor', 'AxesOrientationMode', 'UserOrientation');
+    export const FixedOrientation = createEnumToken(
+      'PressureSensor',
+      'AxesOrientationMode',
+      'FixedOrientation',
+    );
+    export const AutomaticOrientation = createEnumToken(
+      'PressureSensor',
+      'AxesOrientationMode',
+      'AutomaticOrientation',
+    );
+    export const UserOrientation = createEnumToken(
+      'PressureSensor',
+      'AxesOrientationMode',
+      'UserOrientation',
+    );
   }
   export namespace Feature {
     export const Buffering = createEnumToken('PressureSensor', 'Feature', 'Buffering');
     export const AlwaysOn = createEnumToken('PressureSensor', 'Feature', 'AlwaysOn');
     export const GeoValues = createEnumToken('PressureSensor', 'Feature', 'GeoValues');
     export const FieldOfView = createEnumToken('PressureSensor', 'Feature', 'FieldOfView');
-    export const AccelerationMode = createEnumToken('PressureSensor', 'Feature', 'AccelerationMode');
+    export const AccelerationMode = createEnumToken(
+      'PressureSensor',
+      'Feature',
+      'AccelerationMode',
+    );
     export const SkipDuplicates = createEnumToken('PressureSensor', 'Feature', 'SkipDuplicates');
     export const AxesOrientation = createEnumToken('PressureSensor', 'Feature', 'AxesOrientation');
-    export const PressureSensorTemperature = createEnumToken('PressureSensor', 'Feature', 'PressureSensorTemperature');
+    export const PressureSensorTemperature = createEnumToken(
+      'PressureSensor',
+      'Feature',
+      'PressureSensorTemperature',
+    );
   }
 }

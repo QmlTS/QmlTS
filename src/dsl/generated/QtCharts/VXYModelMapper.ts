@@ -2,8 +2,13 @@
 // Type: VXYModelMapper
 // Generated from Qt 6.11.0
 
+import type {
+  QmlEnumToken,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
-import type { QmlEnumToken, QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
 export interface VXYModelMapperBuilder {
   id(id: string): VXYModelMapperBuilder;
   child(obj: QmlObjectBuilder): VXYModelMapperBuilder;
@@ -80,12 +85,13 @@ const VXYMODELMAPPER_META: TypeMetadata = {
     { handlerName: 'onYColumnChanged', paramCount: 0 },
     { handlerName: 'onYSectionChanged', paramCount: 0 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function VXYModelMapper(): VXYModelMapperBuilder {
-  return createFluentBuilder('VXYModelMapper', VXYMODELMAPPER_META) as unknown as VXYModelMapperBuilder;
+  return createFluentBuilder(
+    'VXYModelMapper',
+    VXYMODELMAPPER_META,
+  ) as unknown as VXYModelMapperBuilder;
 }

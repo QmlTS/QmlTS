@@ -2,8 +2,13 @@
 // Type: RasterMode
 // Generated from Qt 6.11.0
 
+import type {
+  QmlEnumToken,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
-import type { QmlEnumToken, QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
 export interface RasterModeBuilder {
   id(id: string): RasterModeBuilder;
   child(obj: QmlObjectBuilder): RasterModeBuilder;
@@ -43,10 +48,8 @@ const RASTERMODE_META: TypeMetadata = {
     { handlerName: 'onParentChanged', paramCount: 1 },
     { handlerName: 'onRasterModeChanged', paramCount: 1 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function RasterMode(): RasterModeBuilder {

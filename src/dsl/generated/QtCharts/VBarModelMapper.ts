@@ -2,8 +2,13 @@
 // Type: VBarModelMapper
 // Generated from Qt 6.11.0
 
+import type {
+  QmlEnumToken,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
-import type { QmlEnumToken, QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
 export interface VBarModelMapperBuilder {
   id(id: string): VBarModelMapperBuilder;
   child(obj: QmlObjectBuilder): VBarModelMapperBuilder;
@@ -80,12 +85,13 @@ const VBARMODELMAPPER_META: TypeMetadata = {
     { handlerName: 'onSeriesChanged', paramCount: 0 },
     { handlerName: 'onSeriesReplaced', paramCount: 0 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function VBarModelMapper(): VBarModelMapperBuilder {
-  return createFluentBuilder('VBarModelMapper', VBARMODELMAPPER_META) as unknown as VBarModelMapperBuilder;
+  return createFluentBuilder(
+    'VBarModelMapper',
+    VBARMODELMAPPER_META,
+  ) as unknown as VBarModelMapperBuilder;
 }

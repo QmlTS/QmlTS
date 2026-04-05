@@ -2,8 +2,8 @@
 // Type: TableModel
 // Generated from Qt 6.11.0
 
-import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface TableModelBuilder {
   id(id: string): TableModelBuilder;
   child(obj: QmlObjectBuilder): TableModelBuilder;
@@ -66,10 +66,8 @@ const TABLEMODEL_META: TypeMetadata = {
     { handlerName: 'onRowsMoved', paramCount: 5 },
     { handlerName: 'onRowsRemoved', paramCount: 3 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
   defaultProperty: 'columns',
 };
 
@@ -81,12 +79,32 @@ export namespace TableModel {
   export namespace CheckIndexOption {
     export const NoOption = createEnumToken('TableModel', 'CheckIndexOption', 'NoOption');
     export const IndexIsValid = createEnumToken('TableModel', 'CheckIndexOption', 'IndexIsValid');
-    export const DoNotUseParent = createEnumToken('TableModel', 'CheckIndexOption', 'DoNotUseParent');
-    export const ParentIsInvalid = createEnumToken('TableModel', 'CheckIndexOption', 'ParentIsInvalid');
+    export const DoNotUseParent = createEnumToken(
+      'TableModel',
+      'CheckIndexOption',
+      'DoNotUseParent',
+    );
+    export const ParentIsInvalid = createEnumToken(
+      'TableModel',
+      'CheckIndexOption',
+      'ParentIsInvalid',
+    );
   }
   export namespace LayoutChangeHint {
-    export const NoLayoutChangeHint = createEnumToken('TableModel', 'LayoutChangeHint', 'NoLayoutChangeHint');
-    export const VerticalSortHint = createEnumToken('TableModel', 'LayoutChangeHint', 'VerticalSortHint');
-    export const HorizontalSortHint = createEnumToken('TableModel', 'LayoutChangeHint', 'HorizontalSortHint');
+    export const NoLayoutChangeHint = createEnumToken(
+      'TableModel',
+      'LayoutChangeHint',
+      'NoLayoutChangeHint',
+    );
+    export const VerticalSortHint = createEnumToken(
+      'TableModel',
+      'LayoutChangeHint',
+      'VerticalSortHint',
+    );
+    export const HorizontalSortHint = createEnumToken(
+      'TableModel',
+      'LayoutChangeHint',
+      'HorizontalSortHint',
+    );
   }
 }

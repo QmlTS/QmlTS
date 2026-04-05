@@ -2,8 +2,8 @@
 // Type: DynamicBurst3D
 // Generated from Qt 6.11.0
 
-import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { QmlEnumToken, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface DynamicBurst3DBuilder {
   id(id: string): DynamicBurst3DBuilder;
   child(obj: QmlObjectBuilder): DynamicBurst3DBuilder;
@@ -51,14 +51,15 @@ const DYNAMICBURST3D_META: TypeMetadata = {
     { handlerName: 'onTimeChanged', paramCount: 0 },
     { handlerName: 'onTriggerModeChanged', paramCount: 0 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function DynamicBurst3D(): DynamicBurst3DBuilder {
-  return createFluentBuilder('DynamicBurst3D', DYNAMICBURST3D_META) as unknown as DynamicBurst3DBuilder;
+  return createFluentBuilder(
+    'DynamicBurst3D',
+    DYNAMICBURST3D_META,
+  ) as unknown as DynamicBurst3DBuilder;
 }
 
 export namespace DynamicBurst3D {

@@ -2,8 +2,8 @@
 // Type: WebSocket
 // Generated from Qt 6.11.0
 
-import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { QmlObjectBuilder, QmlUrl, TypeMetadata } from '../../runtime/index.js';
+import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface WebSocketBuilder {
   id(id: string): WebSocketBuilder;
   child(obj: QmlObjectBuilder): WebSocketBuilder;
@@ -48,10 +48,8 @@ const WEBSOCKET_META: TypeMetadata = {
     { handlerName: 'onTextMessageReceived', paramCount: 1 },
     { handlerName: 'onUrlChanged', paramCount: 0 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function WebSocket(): WebSocketBuilder {

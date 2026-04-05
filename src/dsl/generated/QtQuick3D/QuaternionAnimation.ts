@@ -2,8 +2,14 @@
 // Type: QuaternionAnimation
 // Generated from Qt 6.11.0
 
+import type {
+  QmlEnumToken,
+  QmlObjectBuilder,
+  QmlQuaternion,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
-import type { QmlEnumToken, QmlObjectBuilder, QmlQuaternion, QmlValue, TypeMetadata } from '../../runtime/index.js';
 import type { QtObjectBuilder } from '../QML/QtObject.js';
 export interface QuaternionAnimationBuilder {
   id(id: string): QuaternionAnimationBuilder;
@@ -118,14 +124,15 @@ const QUATERNIONANIMATION_META: TypeMetadata = {
     { handlerName: 'onToZRotationChanged', paramCount: 1 },
     { handlerName: 'onTypeChanged', paramCount: 1 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function QuaternionAnimation(): QuaternionAnimationBuilder {
-  return createFluentBuilder('QuaternionAnimation', QUATERNIONANIMATION_META) as unknown as QuaternionAnimationBuilder;
+  return createFluentBuilder(
+    'QuaternionAnimation',
+    QUATERNIONANIMATION_META,
+  ) as unknown as QuaternionAnimationBuilder;
 }
 
 export namespace QuaternionAnimation {

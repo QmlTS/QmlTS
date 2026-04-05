@@ -2,8 +2,8 @@
 // Type: LightSensor
 // Generated from Qt 6.11.0
 
-import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { QmlEnumToken, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface LightSensorBuilder {
   id(id: string): LightSensorBuilder;
   child(obj: QmlObjectBuilder): LightSensorBuilder;
@@ -88,10 +88,8 @@ const LIGHTSENSOR_META: TypeMetadata = {
     { handlerName: 'onSkipDuplicatesChanged', paramCount: 1 },
     { handlerName: 'onUserOrientationChanged', paramCount: 1 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function LightSensor(): LightSensorBuilder {
@@ -100,9 +98,21 @@ export function LightSensor(): LightSensorBuilder {
 
 export namespace LightSensor {
   export namespace AxesOrientationMode {
-    export const FixedOrientation = createEnumToken('LightSensor', 'AxesOrientationMode', 'FixedOrientation');
-    export const AutomaticOrientation = createEnumToken('LightSensor', 'AxesOrientationMode', 'AutomaticOrientation');
-    export const UserOrientation = createEnumToken('LightSensor', 'AxesOrientationMode', 'UserOrientation');
+    export const FixedOrientation = createEnumToken(
+      'LightSensor',
+      'AxesOrientationMode',
+      'FixedOrientation',
+    );
+    export const AutomaticOrientation = createEnumToken(
+      'LightSensor',
+      'AxesOrientationMode',
+      'AutomaticOrientation',
+    );
+    export const UserOrientation = createEnumToken(
+      'LightSensor',
+      'AxesOrientationMode',
+      'UserOrientation',
+    );
   }
   export namespace Feature {
     export const Buffering = createEnumToken('LightSensor', 'Feature', 'Buffering');
@@ -112,6 +122,10 @@ export namespace LightSensor {
     export const AccelerationMode = createEnumToken('LightSensor', 'Feature', 'AccelerationMode');
     export const SkipDuplicates = createEnumToken('LightSensor', 'Feature', 'SkipDuplicates');
     export const AxesOrientation = createEnumToken('LightSensor', 'Feature', 'AxesOrientation');
-    export const PressureSensorTemperature = createEnumToken('LightSensor', 'Feature', 'PressureSensorTemperature');
+    export const PressureSensorTemperature = createEnumToken(
+      'LightSensor',
+      'Feature',
+      'PressureSensorTemperature',
+    );
   }
 }

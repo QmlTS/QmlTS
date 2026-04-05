@@ -2,8 +2,14 @@
 // Type: HeightFieldGeometry
 // Generated from Qt 6.11.0
 
+import type {
+  QmlObjectBuilder,
+  QmlUrl,
+  QmlValue,
+  QmlVector3d,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
-import type { QmlObjectBuilder, QmlUrl, QmlValue, QmlVector3d, TypeMetadata } from '../../runtime/index.js';
 export interface HeightFieldGeometryBuilder {
   id(id: string): HeightFieldGeometryBuilder;
   child(obj: QmlObjectBuilder): HeightFieldGeometryBuilder;
@@ -55,12 +61,13 @@ const HEIGHTFIELDGEOMETRY_META: TypeMetadata = {
     { handlerName: 'onSourceChanged', paramCount: 0 },
     { handlerName: 'onStateChanged', paramCount: 0 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function HeightFieldGeometry(): HeightFieldGeometryBuilder {
-  return createFluentBuilder('HeightFieldGeometry', HEIGHTFIELDGEOMETRY_META) as unknown as HeightFieldGeometryBuilder;
+  return createFluentBuilder(
+    'HeightFieldGeometry',
+    HEIGHTFIELDGEOMETRY_META,
+  ) as unknown as HeightFieldGeometryBuilder;
 }

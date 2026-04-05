@@ -2,8 +2,8 @@
 // Type: PathInterpolated
 // Generated from Qt 6.11.0
 
-import { createFluentBuilder } from '../../runtime/index.js';
 import type { QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import { createFluentBuilder } from '../../runtime/index.js';
 export interface PathInterpolatedBuilder {
   id(id: string): PathInterpolatedBuilder;
   child(obj: QmlObjectBuilder): PathInterpolatedBuilder;
@@ -53,12 +53,13 @@ const PATHINTERPOLATED_META: TypeMetadata = {
     { handlerName: 'onXChanged', paramCount: 0 },
     { handlerName: 'onYChanged', paramCount: 0 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function PathInterpolated(): PathInterpolatedBuilder {
-  return createFluentBuilder('PathInterpolated', PATHINTERPOLATED_META) as unknown as PathInterpolatedBuilder;
+  return createFluentBuilder(
+    'PathInterpolated',
+    PATHINTERPOLATED_META,
+  ) as unknown as PathInterpolatedBuilder;
 }

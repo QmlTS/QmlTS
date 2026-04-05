@@ -2,8 +2,8 @@
 // Type: SaturationLightnessPickerCanvas
 // Generated from Qt 6.11.0
 
-import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { QmlEnumToken, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { QtObjectBuilder } from '../QML/QtObject.js';
 import type { ItemBuilder } from '../QtQuick/Item.js';
 import type { PaletteBuilder } from '../QtQuick/Palette.js';
@@ -104,11 +104,21 @@ export interface SaturationLightnessPickerCanvasBuilder {
   onZChanged(body: string): SaturationLightnessPickerCanvasBuilder;
   anchors(setup: (b: AnchorsBuilder) => void): SaturationLightnessPickerCanvasBuilder;
   layer(setup: (b: LayerBuilder) => void): SaturationLightnessPickerCanvasBuilder;
-  colorDialogImpl(setup: (b: ColorDialogImplAttachedBuilder) => void): SaturationLightnessPickerCanvasBuilder;
-  fileDialogImpl(setup: (b: FileDialogImplAttachedBuilder) => void): SaturationLightnessPickerCanvasBuilder;
-  folderDialogImpl(setup: (b: FolderDialogImplAttachedBuilder) => void): SaturationLightnessPickerCanvasBuilder;
-  fontDialogImpl(setup: (b: FontDialogImplAttachedBuilder) => void): SaturationLightnessPickerCanvasBuilder;
-  messageDialogImpl(setup: (b: MessageDialogImplAttachedBuilder) => void): SaturationLightnessPickerCanvasBuilder;
+  colorDialogImpl(
+    setup: (b: ColorDialogImplAttachedBuilder) => void,
+  ): SaturationLightnessPickerCanvasBuilder;
+  fileDialogImpl(
+    setup: (b: FileDialogImplAttachedBuilder) => void,
+  ): SaturationLightnessPickerCanvasBuilder;
+  folderDialogImpl(
+    setup: (b: FolderDialogImplAttachedBuilder) => void,
+  ): SaturationLightnessPickerCanvasBuilder;
+  fontDialogImpl(
+    setup: (b: FontDialogImplAttachedBuilder) => void,
+  ): SaturationLightnessPickerCanvasBuilder;
+  messageDialogImpl(
+    setup: (b: MessageDialogImplAttachedBuilder) => void,
+  ): SaturationLightnessPickerCanvasBuilder;
 }
 
 const SATURATIONLIGHTNESSPICKERCANVAS_META: TypeMetadata = {
@@ -333,43 +343,158 @@ const SATURATIONLIGHTNESSPICKERCANVAS_META: TypeMetadata = {
 };
 
 export function SaturationLightnessPickerCanvas(): SaturationLightnessPickerCanvasBuilder {
-  return createFluentBuilder('SaturationLightnessPickerCanvas', SATURATIONLIGHTNESSPICKERCANVAS_META) as unknown as SaturationLightnessPickerCanvasBuilder;
+  return createFluentBuilder(
+    'SaturationLightnessPickerCanvas',
+    SATURATIONLIGHTNESSPICKERCANVAS_META,
+  ) as unknown as SaturationLightnessPickerCanvasBuilder;
 }
 
 export namespace SaturationLightnessPickerCanvas {
   export namespace Flags {
-    export const ItemClipsChildrenToShape = createEnumToken('SaturationLightnessPickerCanvas', 'Flags', 'ItemClipsChildrenToShape');
-    export const ItemAcceptsInputMethod = createEnumToken('SaturationLightnessPickerCanvas', 'Flags', 'ItemAcceptsInputMethod');
-    export const ItemIsFocusScope = createEnumToken('SaturationLightnessPickerCanvas', 'Flags', 'ItemIsFocusScope');
-    export const ItemHasContents = createEnumToken('SaturationLightnessPickerCanvas', 'Flags', 'ItemHasContents');
-    export const ItemAcceptsDrops = createEnumToken('SaturationLightnessPickerCanvas', 'Flags', 'ItemAcceptsDrops');
-    export const ItemIsViewport = createEnumToken('SaturationLightnessPickerCanvas', 'Flags', 'ItemIsViewport');
-    export const ItemObservesViewport = createEnumToken('SaturationLightnessPickerCanvas', 'Flags', 'ItemObservesViewport');
+    export const ItemClipsChildrenToShape = createEnumToken(
+      'SaturationLightnessPickerCanvas',
+      'Flags',
+      'ItemClipsChildrenToShape',
+    );
+    export const ItemAcceptsInputMethod = createEnumToken(
+      'SaturationLightnessPickerCanvas',
+      'Flags',
+      'ItemAcceptsInputMethod',
+    );
+    export const ItemIsFocusScope = createEnumToken(
+      'SaturationLightnessPickerCanvas',
+      'Flags',
+      'ItemIsFocusScope',
+    );
+    export const ItemHasContents = createEnumToken(
+      'SaturationLightnessPickerCanvas',
+      'Flags',
+      'ItemHasContents',
+    );
+    export const ItemAcceptsDrops = createEnumToken(
+      'SaturationLightnessPickerCanvas',
+      'Flags',
+      'ItemAcceptsDrops',
+    );
+    export const ItemIsViewport = createEnumToken(
+      'SaturationLightnessPickerCanvas',
+      'Flags',
+      'ItemIsViewport',
+    );
+    export const ItemObservesViewport = createEnumToken(
+      'SaturationLightnessPickerCanvas',
+      'Flags',
+      'ItemObservesViewport',
+    );
   }
   export namespace ItemChange {
-    export const ItemChildAddedChange = createEnumToken('SaturationLightnessPickerCanvas', 'ItemChange', 'ItemChildAddedChange');
-    export const ItemChildRemovedChange = createEnumToken('SaturationLightnessPickerCanvas', 'ItemChange', 'ItemChildRemovedChange');
-    export const ItemSceneChange = createEnumToken('SaturationLightnessPickerCanvas', 'ItemChange', 'ItemSceneChange');
-    export const ItemVisibleHasChanged = createEnumToken('SaturationLightnessPickerCanvas', 'ItemChange', 'ItemVisibleHasChanged');
-    export const ItemParentHasChanged = createEnumToken('SaturationLightnessPickerCanvas', 'ItemChange', 'ItemParentHasChanged');
-    export const ItemOpacityHasChanged = createEnumToken('SaturationLightnessPickerCanvas', 'ItemChange', 'ItemOpacityHasChanged');
-    export const ItemActiveFocusHasChanged = createEnumToken('SaturationLightnessPickerCanvas', 'ItemChange', 'ItemActiveFocusHasChanged');
-    export const ItemRotationHasChanged = createEnumToken('SaturationLightnessPickerCanvas', 'ItemChange', 'ItemRotationHasChanged');
-    export const ItemAntialiasingHasChanged = createEnumToken('SaturationLightnessPickerCanvas', 'ItemChange', 'ItemAntialiasingHasChanged');
-    export const ItemDevicePixelRatioHasChanged = createEnumToken('SaturationLightnessPickerCanvas', 'ItemChange', 'ItemDevicePixelRatioHasChanged');
-    export const ItemEnabledHasChanged = createEnumToken('SaturationLightnessPickerCanvas', 'ItemChange', 'ItemEnabledHasChanged');
-    export const ItemScaleHasChanged = createEnumToken('SaturationLightnessPickerCanvas', 'ItemChange', 'ItemScaleHasChanged');
-    export const ItemTransformHasChanged = createEnumToken('SaturationLightnessPickerCanvas', 'ItemChange', 'ItemTransformHasChanged');
+    export const ItemChildAddedChange = createEnumToken(
+      'SaturationLightnessPickerCanvas',
+      'ItemChange',
+      'ItemChildAddedChange',
+    );
+    export const ItemChildRemovedChange = createEnumToken(
+      'SaturationLightnessPickerCanvas',
+      'ItemChange',
+      'ItemChildRemovedChange',
+    );
+    export const ItemSceneChange = createEnumToken(
+      'SaturationLightnessPickerCanvas',
+      'ItemChange',
+      'ItemSceneChange',
+    );
+    export const ItemVisibleHasChanged = createEnumToken(
+      'SaturationLightnessPickerCanvas',
+      'ItemChange',
+      'ItemVisibleHasChanged',
+    );
+    export const ItemParentHasChanged = createEnumToken(
+      'SaturationLightnessPickerCanvas',
+      'ItemChange',
+      'ItemParentHasChanged',
+    );
+    export const ItemOpacityHasChanged = createEnumToken(
+      'SaturationLightnessPickerCanvas',
+      'ItemChange',
+      'ItemOpacityHasChanged',
+    );
+    export const ItemActiveFocusHasChanged = createEnumToken(
+      'SaturationLightnessPickerCanvas',
+      'ItemChange',
+      'ItemActiveFocusHasChanged',
+    );
+    export const ItemRotationHasChanged = createEnumToken(
+      'SaturationLightnessPickerCanvas',
+      'ItemChange',
+      'ItemRotationHasChanged',
+    );
+    export const ItemAntialiasingHasChanged = createEnumToken(
+      'SaturationLightnessPickerCanvas',
+      'ItemChange',
+      'ItemAntialiasingHasChanged',
+    );
+    export const ItemDevicePixelRatioHasChanged = createEnumToken(
+      'SaturationLightnessPickerCanvas',
+      'ItemChange',
+      'ItemDevicePixelRatioHasChanged',
+    );
+    export const ItemEnabledHasChanged = createEnumToken(
+      'SaturationLightnessPickerCanvas',
+      'ItemChange',
+      'ItemEnabledHasChanged',
+    );
+    export const ItemScaleHasChanged = createEnumToken(
+      'SaturationLightnessPickerCanvas',
+      'ItemChange',
+      'ItemScaleHasChanged',
+    );
+    export const ItemTransformHasChanged = createEnumToken(
+      'SaturationLightnessPickerCanvas',
+      'ItemChange',
+      'ItemTransformHasChanged',
+    );
   }
   export namespace TransformOrigin {
-    export const TopLeft = createEnumToken('SaturationLightnessPickerCanvas', 'TransformOrigin', 'TopLeft');
+    export const TopLeft = createEnumToken(
+      'SaturationLightnessPickerCanvas',
+      'TransformOrigin',
+      'TopLeft',
+    );
     export const Top = createEnumToken('SaturationLightnessPickerCanvas', 'TransformOrigin', 'Top');
-    export const TopRight = createEnumToken('SaturationLightnessPickerCanvas', 'TransformOrigin', 'TopRight');
-    export const Left = createEnumToken('SaturationLightnessPickerCanvas', 'TransformOrigin', 'Left');
-    export const Center = createEnumToken('SaturationLightnessPickerCanvas', 'TransformOrigin', 'Center');
-    export const Right = createEnumToken('SaturationLightnessPickerCanvas', 'TransformOrigin', 'Right');
-    export const BottomLeft = createEnumToken('SaturationLightnessPickerCanvas', 'TransformOrigin', 'BottomLeft');
-    export const Bottom = createEnumToken('SaturationLightnessPickerCanvas', 'TransformOrigin', 'Bottom');
-    export const BottomRight = createEnumToken('SaturationLightnessPickerCanvas', 'TransformOrigin', 'BottomRight');
+    export const TopRight = createEnumToken(
+      'SaturationLightnessPickerCanvas',
+      'TransformOrigin',
+      'TopRight',
+    );
+    export const Left = createEnumToken(
+      'SaturationLightnessPickerCanvas',
+      'TransformOrigin',
+      'Left',
+    );
+    export const Center = createEnumToken(
+      'SaturationLightnessPickerCanvas',
+      'TransformOrigin',
+      'Center',
+    );
+    export const Right = createEnumToken(
+      'SaturationLightnessPickerCanvas',
+      'TransformOrigin',
+      'Right',
+    );
+    export const BottomLeft = createEnumToken(
+      'SaturationLightnessPickerCanvas',
+      'TransformOrigin',
+      'BottomLeft',
+    );
+    export const Bottom = createEnumToken(
+      'SaturationLightnessPickerCanvas',
+      'TransformOrigin',
+      'Bottom',
+    );
+    export const BottomRight = createEnumToken(
+      'SaturationLightnessPickerCanvas',
+      'TransformOrigin',
+      'BottomRight',
+    );
   }
 }

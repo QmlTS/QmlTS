@@ -2,8 +2,16 @@
 // Type: InstanceListEntry
 // Generated from Qt 6.11.0
 
+import type {
+  QmlColor,
+  QmlObjectBuilder,
+  QmlQuaternion,
+  QmlValue,
+  QmlVector3d,
+  QmlVector4d,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
-import type { QmlColor, QmlObjectBuilder, QmlQuaternion, QmlValue, QmlVector3d, QmlVector4d, TypeMetadata } from '../../runtime/index.js';
 export interface InstanceListEntryBuilder {
   id(id: string): InstanceListEntryBuilder;
   child(obj: QmlObjectBuilder): InstanceListEntryBuilder;
@@ -65,13 +73,14 @@ const INSTANCELISTENTRY_META: TypeMetadata = {
     { handlerName: 'onScaleChanged', paramCount: 0 },
     { handlerName: 'onStateChanged', paramCount: 0 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
   defaultProperty: 'data',
 };
 
 export function InstanceListEntry(): InstanceListEntryBuilder {
-  return createFluentBuilder('InstanceListEntry', INSTANCELISTENTRY_META) as unknown as InstanceListEntryBuilder;
+  return createFluentBuilder(
+    'InstanceListEntry',
+    INSTANCELISTENTRY_META,
+  ) as unknown as InstanceListEntryBuilder;
 }

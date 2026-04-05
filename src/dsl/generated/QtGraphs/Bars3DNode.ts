@@ -2,8 +2,16 @@
 // Type: Bars3DNode
 // Generated from Qt 6.11.0
 
+import type {
+  QmlEnumToken,
+  QmlObjectBuilder,
+  QmlQuaternion,
+  QmlSize,
+  QmlValue,
+  QmlVector3d,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
-import type { QmlEnumToken, QmlObjectBuilder, QmlQuaternion, QmlSize, QmlValue, QmlVector3d, TypeMetadata } from '../../runtime/index.js';
 import type { Category3DAxisBuilder } from './Category3DAxis.js';
 import type { GraphsThemeBuilder } from './GraphsTheme.js';
 import type { Value3DAxisBuilder } from './Value3DAxis.js';
@@ -221,10 +229,8 @@ const BARS3DNODE_META: TypeMetadata = {
     { handlerName: 'onYChanged', paramCount: 0 },
     { handlerName: 'onZChanged', paramCount: 0 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
   defaultProperty: 'seriesList',
 };
 

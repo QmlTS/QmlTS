@@ -2,8 +2,14 @@
 // Type: RegularPolygonShape
 // Generated from Qt 6.11.0
 
+import type {
+  QmlColor,
+  QmlEnumToken,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
-import type { QmlColor, QmlEnumToken, QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
 import type { QtObjectBuilder } from '../QML/QtObject.js';
 import type { ItemBuilder } from '../QtQuick/Item.js';
 import type { PaletteBuilder } from '../QtQuick/Palette.js';
@@ -300,61 +306,179 @@ const REGULARPOLYGONSHAPE_META: TypeMetadata = {
       ],
     },
   ],
-  attached: [
-  ],
+  attached: [],
   defaultProperty: 'data',
 };
 
 export function RegularPolygonShape(): RegularPolygonShapeBuilder {
-  return createFluentBuilder('RegularPolygonShape', REGULARPOLYGONSHAPE_META) as unknown as RegularPolygonShapeBuilder;
+  return createFluentBuilder(
+    'RegularPolygonShape',
+    REGULARPOLYGONSHAPE_META,
+  ) as unknown as RegularPolygonShapeBuilder;
 }
 
 export namespace RegularPolygonShape {
   export namespace ContainsMode {
-    export const BoundingRectContains = createEnumToken('RegularPolygonShape', 'ContainsMode', 'BoundingRectContains');
-    export const FillContains = createEnumToken('RegularPolygonShape', 'ContainsMode', 'FillContains');
+    export const BoundingRectContains = createEnumToken(
+      'RegularPolygonShape',
+      'ContainsMode',
+      'BoundingRectContains',
+    );
+    export const FillContains = createEnumToken(
+      'RegularPolygonShape',
+      'ContainsMode',
+      'FillContains',
+    );
   }
   export namespace FillMode {
     export const NoResize = createEnumToken('RegularPolygonShape', 'FillMode', 'NoResize');
-    export const PreserveAspectFit = createEnumToken('RegularPolygonShape', 'FillMode', 'PreserveAspectFit');
-    export const PreserveAspectCrop = createEnumToken('RegularPolygonShape', 'FillMode', 'PreserveAspectCrop');
+    export const PreserveAspectFit = createEnumToken(
+      'RegularPolygonShape',
+      'FillMode',
+      'PreserveAspectFit',
+    );
+    export const PreserveAspectCrop = createEnumToken(
+      'RegularPolygonShape',
+      'FillMode',
+      'PreserveAspectCrop',
+    );
     export const Stretch = createEnumToken('RegularPolygonShape', 'FillMode', 'Stretch');
   }
   export namespace Flags {
-    export const ItemClipsChildrenToShape = createEnumToken('RegularPolygonShape', 'Flags', 'ItemClipsChildrenToShape');
-    export const ItemAcceptsInputMethod = createEnumToken('RegularPolygonShape', 'Flags', 'ItemAcceptsInputMethod');
-    export const ItemIsFocusScope = createEnumToken('RegularPolygonShape', 'Flags', 'ItemIsFocusScope');
-    export const ItemHasContents = createEnumToken('RegularPolygonShape', 'Flags', 'ItemHasContents');
-    export const ItemAcceptsDrops = createEnumToken('RegularPolygonShape', 'Flags', 'ItemAcceptsDrops');
+    export const ItemClipsChildrenToShape = createEnumToken(
+      'RegularPolygonShape',
+      'Flags',
+      'ItemClipsChildrenToShape',
+    );
+    export const ItemAcceptsInputMethod = createEnumToken(
+      'RegularPolygonShape',
+      'Flags',
+      'ItemAcceptsInputMethod',
+    );
+    export const ItemIsFocusScope = createEnumToken(
+      'RegularPolygonShape',
+      'Flags',
+      'ItemIsFocusScope',
+    );
+    export const ItemHasContents = createEnumToken(
+      'RegularPolygonShape',
+      'Flags',
+      'ItemHasContents',
+    );
+    export const ItemAcceptsDrops = createEnumToken(
+      'RegularPolygonShape',
+      'Flags',
+      'ItemAcceptsDrops',
+    );
     export const ItemIsViewport = createEnumToken('RegularPolygonShape', 'Flags', 'ItemIsViewport');
-    export const ItemObservesViewport = createEnumToken('RegularPolygonShape', 'Flags', 'ItemObservesViewport');
+    export const ItemObservesViewport = createEnumToken(
+      'RegularPolygonShape',
+      'Flags',
+      'ItemObservesViewport',
+    );
   }
   export namespace HAlignment {
     export const AlignLeft = createEnumToken('RegularPolygonShape', 'HAlignment', 'AlignLeft');
     export const AlignRight = createEnumToken('RegularPolygonShape', 'HAlignment', 'AlignRight');
-    export const AlignHCenter = createEnumToken('RegularPolygonShape', 'HAlignment', 'AlignHCenter');
+    export const AlignHCenter = createEnumToken(
+      'RegularPolygonShape',
+      'HAlignment',
+      'AlignHCenter',
+    );
   }
   export namespace ItemChange {
-    export const ItemChildAddedChange = createEnumToken('RegularPolygonShape', 'ItemChange', 'ItemChildAddedChange');
-    export const ItemChildRemovedChange = createEnumToken('RegularPolygonShape', 'ItemChange', 'ItemChildRemovedChange');
-    export const ItemSceneChange = createEnumToken('RegularPolygonShape', 'ItemChange', 'ItemSceneChange');
-    export const ItemVisibleHasChanged = createEnumToken('RegularPolygonShape', 'ItemChange', 'ItemVisibleHasChanged');
-    export const ItemParentHasChanged = createEnumToken('RegularPolygonShape', 'ItemChange', 'ItemParentHasChanged');
-    export const ItemOpacityHasChanged = createEnumToken('RegularPolygonShape', 'ItemChange', 'ItemOpacityHasChanged');
-    export const ItemActiveFocusHasChanged = createEnumToken('RegularPolygonShape', 'ItemChange', 'ItemActiveFocusHasChanged');
-    export const ItemRotationHasChanged = createEnumToken('RegularPolygonShape', 'ItemChange', 'ItemRotationHasChanged');
-    export const ItemAntialiasingHasChanged = createEnumToken('RegularPolygonShape', 'ItemChange', 'ItemAntialiasingHasChanged');
-    export const ItemDevicePixelRatioHasChanged = createEnumToken('RegularPolygonShape', 'ItemChange', 'ItemDevicePixelRatioHasChanged');
-    export const ItemEnabledHasChanged = createEnumToken('RegularPolygonShape', 'ItemChange', 'ItemEnabledHasChanged');
-    export const ItemScaleHasChanged = createEnumToken('RegularPolygonShape', 'ItemChange', 'ItemScaleHasChanged');
-    export const ItemTransformHasChanged = createEnumToken('RegularPolygonShape', 'ItemChange', 'ItemTransformHasChanged');
+    export const ItemChildAddedChange = createEnumToken(
+      'RegularPolygonShape',
+      'ItemChange',
+      'ItemChildAddedChange',
+    );
+    export const ItemChildRemovedChange = createEnumToken(
+      'RegularPolygonShape',
+      'ItemChange',
+      'ItemChildRemovedChange',
+    );
+    export const ItemSceneChange = createEnumToken(
+      'RegularPolygonShape',
+      'ItemChange',
+      'ItemSceneChange',
+    );
+    export const ItemVisibleHasChanged = createEnumToken(
+      'RegularPolygonShape',
+      'ItemChange',
+      'ItemVisibleHasChanged',
+    );
+    export const ItemParentHasChanged = createEnumToken(
+      'RegularPolygonShape',
+      'ItemChange',
+      'ItemParentHasChanged',
+    );
+    export const ItemOpacityHasChanged = createEnumToken(
+      'RegularPolygonShape',
+      'ItemChange',
+      'ItemOpacityHasChanged',
+    );
+    export const ItemActiveFocusHasChanged = createEnumToken(
+      'RegularPolygonShape',
+      'ItemChange',
+      'ItemActiveFocusHasChanged',
+    );
+    export const ItemRotationHasChanged = createEnumToken(
+      'RegularPolygonShape',
+      'ItemChange',
+      'ItemRotationHasChanged',
+    );
+    export const ItemAntialiasingHasChanged = createEnumToken(
+      'RegularPolygonShape',
+      'ItemChange',
+      'ItemAntialiasingHasChanged',
+    );
+    export const ItemDevicePixelRatioHasChanged = createEnumToken(
+      'RegularPolygonShape',
+      'ItemChange',
+      'ItemDevicePixelRatioHasChanged',
+    );
+    export const ItemEnabledHasChanged = createEnumToken(
+      'RegularPolygonShape',
+      'ItemChange',
+      'ItemEnabledHasChanged',
+    );
+    export const ItemScaleHasChanged = createEnumToken(
+      'RegularPolygonShape',
+      'ItemChange',
+      'ItemScaleHasChanged',
+    );
+    export const ItemTransformHasChanged = createEnumToken(
+      'RegularPolygonShape',
+      'ItemChange',
+      'ItemTransformHasChanged',
+    );
   }
   export namespace RendererType {
-    export const UnknownRenderer = createEnumToken('RegularPolygonShape', 'RendererType', 'UnknownRenderer');
-    export const GeometryRenderer = createEnumToken('RegularPolygonShape', 'RendererType', 'GeometryRenderer');
-    export const NvprRenderer = createEnumToken('RegularPolygonShape', 'RendererType', 'NvprRenderer');
-    export const SoftwareRenderer = createEnumToken('RegularPolygonShape', 'RendererType', 'SoftwareRenderer');
-    export const CurveRenderer = createEnumToken('RegularPolygonShape', 'RendererType', 'CurveRenderer');
+    export const UnknownRenderer = createEnumToken(
+      'RegularPolygonShape',
+      'RendererType',
+      'UnknownRenderer',
+    );
+    export const GeometryRenderer = createEnumToken(
+      'RegularPolygonShape',
+      'RendererType',
+      'GeometryRenderer',
+    );
+    export const NvprRenderer = createEnumToken(
+      'RegularPolygonShape',
+      'RendererType',
+      'NvprRenderer',
+    );
+    export const SoftwareRenderer = createEnumToken(
+      'RegularPolygonShape',
+      'RendererType',
+      'SoftwareRenderer',
+    );
+    export const CurveRenderer = createEnumToken(
+      'RegularPolygonShape',
+      'RendererType',
+      'CurveRenderer',
+    );
   }
   export namespace Status {
     export const Null = createEnumToken('RegularPolygonShape', 'Status', 'Null');
@@ -368,13 +492,25 @@ export namespace RegularPolygonShape {
     export const Left = createEnumToken('RegularPolygonShape', 'TransformOrigin', 'Left');
     export const Center = createEnumToken('RegularPolygonShape', 'TransformOrigin', 'Center');
     export const Right = createEnumToken('RegularPolygonShape', 'TransformOrigin', 'Right');
-    export const BottomLeft = createEnumToken('RegularPolygonShape', 'TransformOrigin', 'BottomLeft');
+    export const BottomLeft = createEnumToken(
+      'RegularPolygonShape',
+      'TransformOrigin',
+      'BottomLeft',
+    );
     export const Bottom = createEnumToken('RegularPolygonShape', 'TransformOrigin', 'Bottom');
-    export const BottomRight = createEnumToken('RegularPolygonShape', 'TransformOrigin', 'BottomRight');
+    export const BottomRight = createEnumToken(
+      'RegularPolygonShape',
+      'TransformOrigin',
+      'BottomRight',
+    );
   }
   export namespace VAlignment {
     export const AlignTop = createEnumToken('RegularPolygonShape', 'VAlignment', 'AlignTop');
     export const AlignBottom = createEnumToken('RegularPolygonShape', 'VAlignment', 'AlignBottom');
-    export const AlignVCenter = createEnumToken('RegularPolygonShape', 'VAlignment', 'AlignVCenter');
+    export const AlignVCenter = createEnumToken(
+      'RegularPolygonShape',
+      'VAlignment',
+      'AlignVCenter',
+    );
   }
 }

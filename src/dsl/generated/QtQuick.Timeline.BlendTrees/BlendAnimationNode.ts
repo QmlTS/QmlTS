@@ -2,8 +2,8 @@
 // Type: BlendAnimationNode
 // Generated from Qt 6.11.0
 
-import { createFluentBuilder } from '../../runtime/index.js';
 import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import { createFluentBuilder } from '../../runtime/index.js';
 export interface BlendAnimationNodeBuilder {
   id(id: string): BlendAnimationNodeBuilder;
   child(obj: QmlObjectBuilder): BlendAnimationNodeBuilder;
@@ -43,12 +43,13 @@ const BLENDANIMATIONNODE_META: TypeMetadata = {
     { handlerName: 'onSource2Changed', paramCount: 0 },
     { handlerName: 'onWeightChanged', paramCount: 0 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function BlendAnimationNode(): BlendAnimationNodeBuilder {
-  return createFluentBuilder('BlendAnimationNode', BLENDANIMATIONNODE_META) as unknown as BlendAnimationNodeBuilder;
+  return createFluentBuilder(
+    'BlendAnimationNode',
+    BLENDANIMATIONNODE_META,
+  ) as unknown as BlendAnimationNodeBuilder;
 }

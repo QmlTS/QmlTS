@@ -2,8 +2,8 @@
 // Type: XYPoint
 // Generated from Qt 6.11.0
 
-import { createFluentBuilder } from '../../runtime/index.js';
 import type { QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import { createFluentBuilder } from '../../runtime/index.js';
 export interface XYPointBuilder {
   id(id: string): XYPointBuilder;
   child(obj: QmlObjectBuilder): XYPointBuilder;
@@ -24,13 +24,9 @@ const XYPOINT_META: TypeMetadata = {
     { name: 'x', hasValue: true, hasBinding: true },
     { name: 'y', hasValue: true, hasBinding: true },
   ],
-  signals: [
-    { handlerName: 'onObjectNameChanged', paramCount: 1 },
-  ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  signals: [{ handlerName: 'onObjectNameChanged', paramCount: 1 }],
+  grouped: [],
+  attached: [],
 };
 
 export function XYPoint(): XYPointBuilder {

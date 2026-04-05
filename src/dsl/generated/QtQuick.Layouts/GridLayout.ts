@@ -2,8 +2,8 @@
 // Type: GridLayout
 // Generated from Qt 6.11.0
 
-import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { QmlEnumToken, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { QtObjectBuilder } from '../QML/QtObject.js';
 import type { ItemBuilder } from '../QtQuick/Item.js';
 import type { PaletteBuilder } from '../QtQuick/Palette.js';
@@ -318,9 +318,7 @@ const GRIDLAYOUT_META: TypeMetadata = {
     {
       methodName: 'stackLayout',
       attachedTypeName: 'StackLayout',
-      properties: [
-        { name: 'objectName', hasValue: true, hasBinding: true },
-      ],
+      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
       signals: [
         { handlerName: 'onIndexChanged', paramCount: 0 },
         { handlerName: 'onIsCurrentItemChanged', paramCount: 0 },
@@ -337,36 +335,104 @@ export function GridLayout(): GridLayoutBuilder {
 
 export namespace GridLayout {
   export namespace Flags {
-    export const ItemClipsChildrenToShape = createEnumToken('GridLayout', 'Flags', 'ItemClipsChildrenToShape');
-    export const ItemAcceptsInputMethod = createEnumToken('GridLayout', 'Flags', 'ItemAcceptsInputMethod');
+    export const ItemClipsChildrenToShape = createEnumToken(
+      'GridLayout',
+      'Flags',
+      'ItemClipsChildrenToShape',
+    );
+    export const ItemAcceptsInputMethod = createEnumToken(
+      'GridLayout',
+      'Flags',
+      'ItemAcceptsInputMethod',
+    );
     export const ItemIsFocusScope = createEnumToken('GridLayout', 'Flags', 'ItemIsFocusScope');
     export const ItemHasContents = createEnumToken('GridLayout', 'Flags', 'ItemHasContents');
     export const ItemAcceptsDrops = createEnumToken('GridLayout', 'Flags', 'ItemAcceptsDrops');
     export const ItemIsViewport = createEnumToken('GridLayout', 'Flags', 'ItemIsViewport');
-    export const ItemObservesViewport = createEnumToken('GridLayout', 'Flags', 'ItemObservesViewport');
+    export const ItemObservesViewport = createEnumToken(
+      'GridLayout',
+      'Flags',
+      'ItemObservesViewport',
+    );
   }
   export namespace Flow {
     export const LeftToRight = createEnumToken('GridLayout', 'Flow', 'LeftToRight');
     export const TopToBottom = createEnumToken('GridLayout', 'Flow', 'TopToBottom');
   }
   export namespace ItemChange {
-    export const ItemChildAddedChange = createEnumToken('GridLayout', 'ItemChange', 'ItemChildAddedChange');
-    export const ItemChildRemovedChange = createEnumToken('GridLayout', 'ItemChange', 'ItemChildRemovedChange');
+    export const ItemChildAddedChange = createEnumToken(
+      'GridLayout',
+      'ItemChange',
+      'ItemChildAddedChange',
+    );
+    export const ItemChildRemovedChange = createEnumToken(
+      'GridLayout',
+      'ItemChange',
+      'ItemChildRemovedChange',
+    );
     export const ItemSceneChange = createEnumToken('GridLayout', 'ItemChange', 'ItemSceneChange');
-    export const ItemVisibleHasChanged = createEnumToken('GridLayout', 'ItemChange', 'ItemVisibleHasChanged');
-    export const ItemParentHasChanged = createEnumToken('GridLayout', 'ItemChange', 'ItemParentHasChanged');
-    export const ItemOpacityHasChanged = createEnumToken('GridLayout', 'ItemChange', 'ItemOpacityHasChanged');
-    export const ItemActiveFocusHasChanged = createEnumToken('GridLayout', 'ItemChange', 'ItemActiveFocusHasChanged');
-    export const ItemRotationHasChanged = createEnumToken('GridLayout', 'ItemChange', 'ItemRotationHasChanged');
-    export const ItemAntialiasingHasChanged = createEnumToken('GridLayout', 'ItemChange', 'ItemAntialiasingHasChanged');
-    export const ItemDevicePixelRatioHasChanged = createEnumToken('GridLayout', 'ItemChange', 'ItemDevicePixelRatioHasChanged');
-    export const ItemEnabledHasChanged = createEnumToken('GridLayout', 'ItemChange', 'ItemEnabledHasChanged');
-    export const ItemScaleHasChanged = createEnumToken('GridLayout', 'ItemChange', 'ItemScaleHasChanged');
-    export const ItemTransformHasChanged = createEnumToken('GridLayout', 'ItemChange', 'ItemTransformHasChanged');
+    export const ItemVisibleHasChanged = createEnumToken(
+      'GridLayout',
+      'ItemChange',
+      'ItemVisibleHasChanged',
+    );
+    export const ItemParentHasChanged = createEnumToken(
+      'GridLayout',
+      'ItemChange',
+      'ItemParentHasChanged',
+    );
+    export const ItemOpacityHasChanged = createEnumToken(
+      'GridLayout',
+      'ItemChange',
+      'ItemOpacityHasChanged',
+    );
+    export const ItemActiveFocusHasChanged = createEnumToken(
+      'GridLayout',
+      'ItemChange',
+      'ItemActiveFocusHasChanged',
+    );
+    export const ItemRotationHasChanged = createEnumToken(
+      'GridLayout',
+      'ItemChange',
+      'ItemRotationHasChanged',
+    );
+    export const ItemAntialiasingHasChanged = createEnumToken(
+      'GridLayout',
+      'ItemChange',
+      'ItemAntialiasingHasChanged',
+    );
+    export const ItemDevicePixelRatioHasChanged = createEnumToken(
+      'GridLayout',
+      'ItemChange',
+      'ItemDevicePixelRatioHasChanged',
+    );
+    export const ItemEnabledHasChanged = createEnumToken(
+      'GridLayout',
+      'ItemChange',
+      'ItemEnabledHasChanged',
+    );
+    export const ItemScaleHasChanged = createEnumToken(
+      'GridLayout',
+      'ItemChange',
+      'ItemScaleHasChanged',
+    );
+    export const ItemTransformHasChanged = createEnumToken(
+      'GridLayout',
+      'ItemChange',
+      'ItemTransformHasChanged',
+    );
   }
   export namespace SizePolicy {
-    export const SizePolicyImplicit = createEnumToken('GridLayout', 'SizePolicy', 'SizePolicyImplicit');
-    export const SizePolicyExplicit = createEnumToken('GridLayout', 'SizePolicy', 'SizePolicyExplicit');
+    export const SizePolicyImplicit = createEnumToken(
+      'GridLayout',
+      'SizePolicy',
+      'SizePolicyImplicit',
+    );
+    export const SizePolicyExplicit = createEnumToken(
+      'GridLayout',
+      'SizePolicy',
+      'SizePolicyExplicit',
+    );
   }
   export namespace TransformOrigin {
     export const TopLeft = createEnumToken('GridLayout', 'TransformOrigin', 'TopLeft');

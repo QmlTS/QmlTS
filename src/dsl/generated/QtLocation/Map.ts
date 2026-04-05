@@ -2,8 +2,15 @@
 // Type: Map
 // Generated from Qt 6.11.0
 
+import type {
+  QmlColor,
+  QmlEnumToken,
+  QmlObjectBuilder,
+  QmlRect,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
-import type { QmlColor, QmlEnumToken, QmlObjectBuilder, QmlRect, QmlValue, TypeMetadata } from '../../runtime/index.js';
 import type { QtObjectBuilder } from '../QML/QtObject.js';
 import type { ItemBuilder } from '../QtQuick/Item.js';
 import type { PaletteBuilder } from '../QtQuick/Palette.js';
@@ -304,8 +311,7 @@ const MAP_META: TypeMetadata = {
       ],
     },
   ],
-  attached: [
-  ],
+  attached: [],
   defaultProperty: 'data',
 };
 
@@ -315,7 +321,11 @@ export function Map(): MapBuilder {
 
 export namespace Map {
   export namespace Flags {
-    export const ItemClipsChildrenToShape = createEnumToken('Map', 'Flags', 'ItemClipsChildrenToShape');
+    export const ItemClipsChildrenToShape = createEnumToken(
+      'Map',
+      'Flags',
+      'ItemClipsChildrenToShape',
+    );
     export const ItemAcceptsInputMethod = createEnumToken('Map', 'Flags', 'ItemAcceptsInputMethod');
     export const ItemIsFocusScope = createEnumToken('Map', 'Flags', 'ItemIsFocusScope');
     export const ItemHasContents = createEnumToken('Map', 'Flags', 'ItemHasContents');
@@ -324,19 +334,63 @@ export namespace Map {
     export const ItemObservesViewport = createEnumToken('Map', 'Flags', 'ItemObservesViewport');
   }
   export namespace ItemChange {
-    export const ItemChildAddedChange = createEnumToken('Map', 'ItemChange', 'ItemChildAddedChange');
-    export const ItemChildRemovedChange = createEnumToken('Map', 'ItemChange', 'ItemChildRemovedChange');
+    export const ItemChildAddedChange = createEnumToken(
+      'Map',
+      'ItemChange',
+      'ItemChildAddedChange',
+    );
+    export const ItemChildRemovedChange = createEnumToken(
+      'Map',
+      'ItemChange',
+      'ItemChildRemovedChange',
+    );
     export const ItemSceneChange = createEnumToken('Map', 'ItemChange', 'ItemSceneChange');
-    export const ItemVisibleHasChanged = createEnumToken('Map', 'ItemChange', 'ItemVisibleHasChanged');
-    export const ItemParentHasChanged = createEnumToken('Map', 'ItemChange', 'ItemParentHasChanged');
-    export const ItemOpacityHasChanged = createEnumToken('Map', 'ItemChange', 'ItemOpacityHasChanged');
-    export const ItemActiveFocusHasChanged = createEnumToken('Map', 'ItemChange', 'ItemActiveFocusHasChanged');
-    export const ItemRotationHasChanged = createEnumToken('Map', 'ItemChange', 'ItemRotationHasChanged');
-    export const ItemAntialiasingHasChanged = createEnumToken('Map', 'ItemChange', 'ItemAntialiasingHasChanged');
-    export const ItemDevicePixelRatioHasChanged = createEnumToken('Map', 'ItemChange', 'ItemDevicePixelRatioHasChanged');
-    export const ItemEnabledHasChanged = createEnumToken('Map', 'ItemChange', 'ItemEnabledHasChanged');
+    export const ItemVisibleHasChanged = createEnumToken(
+      'Map',
+      'ItemChange',
+      'ItemVisibleHasChanged',
+    );
+    export const ItemParentHasChanged = createEnumToken(
+      'Map',
+      'ItemChange',
+      'ItemParentHasChanged',
+    );
+    export const ItemOpacityHasChanged = createEnumToken(
+      'Map',
+      'ItemChange',
+      'ItemOpacityHasChanged',
+    );
+    export const ItemActiveFocusHasChanged = createEnumToken(
+      'Map',
+      'ItemChange',
+      'ItemActiveFocusHasChanged',
+    );
+    export const ItemRotationHasChanged = createEnumToken(
+      'Map',
+      'ItemChange',
+      'ItemRotationHasChanged',
+    );
+    export const ItemAntialiasingHasChanged = createEnumToken(
+      'Map',
+      'ItemChange',
+      'ItemAntialiasingHasChanged',
+    );
+    export const ItemDevicePixelRatioHasChanged = createEnumToken(
+      'Map',
+      'ItemChange',
+      'ItemDevicePixelRatioHasChanged',
+    );
+    export const ItemEnabledHasChanged = createEnumToken(
+      'Map',
+      'ItemChange',
+      'ItemEnabledHasChanged',
+    );
     export const ItemScaleHasChanged = createEnumToken('Map', 'ItemChange', 'ItemScaleHasChanged');
-    export const ItemTransformHasChanged = createEnumToken('Map', 'ItemChange', 'ItemTransformHasChanged');
+    export const ItemTransformHasChanged = createEnumToken(
+      'Map',
+      'ItemChange',
+      'ItemTransformHasChanged',
+    );
   }
   export namespace TransformOrigin {
     export const TopLeft = createEnumToken('Map', 'TransformOrigin', 'TopLeft');

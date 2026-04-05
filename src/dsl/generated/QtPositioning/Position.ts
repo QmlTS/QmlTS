@@ -2,8 +2,8 @@
 // Type: Position
 // Generated from Qt 6.11.0
 
-import { createFluentBuilder } from '../../runtime/index.js';
 import type { QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import { createFluentBuilder } from '../../runtime/index.js';
 export interface PositionBuilder {
   id(id: string): PositionBuilder;
   child(obj: QmlObjectBuilder): PositionBuilder;
@@ -15,16 +15,10 @@ export interface PositionBuilder {
 
 const POSITION_META: TypeMetadata = {
   typeName: 'Position',
-  properties: [
-    { name: 'objectName', hasValue: true, hasBinding: true },
-  ],
-  signals: [
-    { handlerName: 'onObjectNameChanged', paramCount: 1 },
-  ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
+  signals: [{ handlerName: 'onObjectNameChanged', paramCount: 1 }],
+  grouped: [],
+  attached: [],
 };
 
 export function Position(): PositionBuilder {

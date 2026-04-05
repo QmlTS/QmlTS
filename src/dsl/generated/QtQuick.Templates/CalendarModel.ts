@@ -2,8 +2,8 @@
 // Type: CalendarModel
 // Generated from Qt 6.11.0
 
-import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { QmlDate, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { ContextMenuAttachedBuilder } from './ContextMenu.js';
 import type { ActionGroupAttachedBuilder } from './QQuickActionGroupAttached.js';
 import type { ApplicationWindowAttachedBuilder } from './QQuickApplicationWindowAttached.js';
@@ -105,8 +105,7 @@ const CALENDARMODEL_META: TypeMetadata = {
     { handlerName: 'onRowsRemoved', paramCount: 3 },
     { handlerName: 'onToChanged', paramCount: 0 },
   ],
-  grouped: [
-  ],
+  grouped: [],
   attached: [
     {
       methodName: 'actionGroup',
@@ -123,9 +122,7 @@ const CALENDARMODEL_META: TypeMetadata = {
     {
       methodName: 'applicationWindow',
       attachedTypeName: 'ApplicationWindow',
-      properties: [
-        { name: 'objectName', hasValue: true, hasBinding: true },
-      ],
+      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
       signals: [
         { handlerName: 'onActiveFocusControlChanged', paramCount: 0 },
         { handlerName: 'onContentItemChanged', paramCount: 0 },
@@ -222,9 +219,7 @@ const CALENDARMODEL_META: TypeMetadata = {
     {
       methodName: 'selectionRectangle',
       attachedTypeName: 'SelectionRectangle',
-      properties: [
-        { name: 'objectName', hasValue: true, hasBinding: true },
-      ],
+      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
       signals: [
         { handlerName: 'onControlChanged', paramCount: 0 },
         { handlerName: 'onDraggingChanged', paramCount: 0 },
@@ -234,9 +229,7 @@ const CALENDARMODEL_META: TypeMetadata = {
     {
       methodName: 'splitHandle',
       attachedTypeName: 'SplitHandle',
-      properties: [
-        { name: 'objectName', hasValue: true, hasBinding: true },
-      ],
+      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
       signals: [
         { handlerName: 'onHoveredChanged', paramCount: 0 },
         { handlerName: 'onPressedChanged', paramCount: 0 },
@@ -293,9 +286,7 @@ const CALENDARMODEL_META: TypeMetadata = {
     {
       methodName: 'swipeDelegate',
       attachedTypeName: 'SwipeDelegate',
-      properties: [
-        { name: 'objectName', hasValue: true, hasBinding: true },
-      ],
+      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
       signals: [
         { handlerName: 'onClicked', paramCount: 0 },
         { handlerName: 'onPressedChanged', paramCount: 0 },
@@ -305,9 +296,7 @@ const CALENDARMODEL_META: TypeMetadata = {
     {
       methodName: 'swipeView',
       attachedTypeName: 'SwipeView',
-      properties: [
-        { name: 'objectName', hasValue: true, hasBinding: true },
-      ],
+      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
       signals: [
         { handlerName: 'onIndexChanged', paramCount: 0 },
         { handlerName: 'onIsCurrentItemChanged', paramCount: 0 },
@@ -320,9 +309,7 @@ const CALENDARMODEL_META: TypeMetadata = {
     {
       methodName: 'tabBar',
       attachedTypeName: 'TabBar',
-      properties: [
-        { name: 'objectName', hasValue: true, hasBinding: true },
-      ],
+      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
       signals: [
         { handlerName: 'onIndexChanged', paramCount: 0 },
         { handlerName: 'onPositionChanged', paramCount: 0 },
@@ -363,9 +350,7 @@ const CALENDARMODEL_META: TypeMetadata = {
     {
       methodName: 'tumbler',
       attachedTypeName: 'Tumbler',
-      properties: [
-        { name: 'objectName', hasValue: true, hasBinding: true },
-      ],
+      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
       signals: [
         { handlerName: 'onDisplacementChanged', paramCount: 0 },
         { handlerName: 'onObjectNameChanged', paramCount: 1 },
@@ -375,19 +360,46 @@ const CALENDARMODEL_META: TypeMetadata = {
 };
 
 export function CalendarModel(): CalendarModelBuilder {
-  return createFluentBuilder('CalendarModel', CALENDARMODEL_META) as unknown as CalendarModelBuilder;
+  return createFluentBuilder(
+    'CalendarModel',
+    CALENDARMODEL_META,
+  ) as unknown as CalendarModelBuilder;
 }
 
 export namespace CalendarModel {
   export namespace CheckIndexOption {
     export const NoOption = createEnumToken('CalendarModel', 'CheckIndexOption', 'NoOption');
-    export const IndexIsValid = createEnumToken('CalendarModel', 'CheckIndexOption', 'IndexIsValid');
-    export const DoNotUseParent = createEnumToken('CalendarModel', 'CheckIndexOption', 'DoNotUseParent');
-    export const ParentIsInvalid = createEnumToken('CalendarModel', 'CheckIndexOption', 'ParentIsInvalid');
+    export const IndexIsValid = createEnumToken(
+      'CalendarModel',
+      'CheckIndexOption',
+      'IndexIsValid',
+    );
+    export const DoNotUseParent = createEnumToken(
+      'CalendarModel',
+      'CheckIndexOption',
+      'DoNotUseParent',
+    );
+    export const ParentIsInvalid = createEnumToken(
+      'CalendarModel',
+      'CheckIndexOption',
+      'ParentIsInvalid',
+    );
   }
   export namespace LayoutChangeHint {
-    export const NoLayoutChangeHint = createEnumToken('CalendarModel', 'LayoutChangeHint', 'NoLayoutChangeHint');
-    export const VerticalSortHint = createEnumToken('CalendarModel', 'LayoutChangeHint', 'VerticalSortHint');
-    export const HorizontalSortHint = createEnumToken('CalendarModel', 'LayoutChangeHint', 'HorizontalSortHint');
+    export const NoLayoutChangeHint = createEnumToken(
+      'CalendarModel',
+      'LayoutChangeHint',
+      'NoLayoutChangeHint',
+    );
+    export const VerticalSortHint = createEnumToken(
+      'CalendarModel',
+      'LayoutChangeHint',
+      'VerticalSortHint',
+    );
+    export const HorizontalSortHint = createEnumToken(
+      'CalendarModel',
+      'LayoutChangeHint',
+      'HorizontalSortHint',
+    );
   }
 }

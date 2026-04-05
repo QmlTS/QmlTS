@@ -2,8 +2,8 @@
 // Type: WebSocketServer
 // Generated from Qt 6.11.0
 
-import { createFluentBuilder } from '../../runtime/index.js';
 import type { QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import { createFluentBuilder } from '../../runtime/index.js';
 export interface WebSocketServerBuilder {
   id(id: string): WebSocketServerBuilder;
   child(obj: QmlObjectBuilder): WebSocketServerBuilder;
@@ -57,12 +57,13 @@ const WEBSOCKETSERVER_META: TypeMetadata = {
     { handlerName: 'onSupportedSubprotocolsChanged', paramCount: 1 },
     { handlerName: 'onUrlChanged', paramCount: 1 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function WebSocketServer(): WebSocketServerBuilder {
-  return createFluentBuilder('WebSocketServer', WEBSOCKETSERVER_META) as unknown as WebSocketServerBuilder;
+  return createFluentBuilder(
+    'WebSocketServer',
+    WEBSOCKETSERVER_META,
+  ) as unknown as WebSocketServerBuilder;
 }

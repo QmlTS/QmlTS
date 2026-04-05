@@ -2,8 +2,8 @@
 // Type: SphereGeometry
 // Generated from Qt 6.11.0
 
-import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface SphereGeometryBuilder {
   id(id: string): SphereGeometryBuilder;
   child(obj: QmlObjectBuilder): SphereGeometryBuilder;
@@ -59,14 +59,15 @@ const SPHEREGEOMETRY_META: TypeMetadata = {
     { handlerName: 'onStateChanged', paramCount: 0 },
     { handlerName: 'onStatusChanged', paramCount: 0 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function SphereGeometry(): SphereGeometryBuilder {
-  return createFluentBuilder('SphereGeometry', SPHEREGEOMETRY_META) as unknown as SphereGeometryBuilder;
+  return createFluentBuilder(
+    'SphereGeometry',
+    SPHEREGEOMETRY_META,
+  ) as unknown as SphereGeometryBuilder;
 }
 
 export namespace SphereGeometry {

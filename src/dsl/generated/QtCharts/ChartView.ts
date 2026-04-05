@@ -2,8 +2,16 @@
 // Type: ChartView
 // Generated from Qt 6.11.0
 
+import type {
+  QmlColor,
+  QmlEnumToken,
+  QmlFont,
+  QmlObjectBuilder,
+  QmlRect,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
-import type { QmlColor, QmlEnumToken, QmlFont, QmlObjectBuilder, QmlRect, QmlValue, TypeMetadata } from '../../runtime/index.js';
 import type { QtObjectBuilder } from '../QML/QtObject.js';
 import type { ItemBuilder } from '../QtQuick/Item.js';
 import type { PaletteBuilder } from '../QtQuick/Palette.js';
@@ -278,8 +286,7 @@ const CHARTVIEW_META: TypeMetadata = {
       ],
     },
   ],
-  attached: [
-  ],
+  attached: [],
   defaultProperty: 'data',
 };
 
@@ -290,56 +297,160 @@ export function ChartView(): ChartViewBuilder {
 export namespace ChartView {
   export namespace Animation {
     export const NoAnimation = createEnumToken('ChartView', 'Animation', 'NoAnimation');
-    export const GridAxisAnimations = createEnumToken('ChartView', 'Animation', 'GridAxisAnimations');
+    export const GridAxisAnimations = createEnumToken(
+      'ChartView',
+      'Animation',
+      'GridAxisAnimations',
+    );
     export const SeriesAnimations = createEnumToken('ChartView', 'Animation', 'SeriesAnimations');
     export const AllAnimations = createEnumToken('ChartView', 'Animation', 'AllAnimations');
   }
   export namespace Flags {
-    export const ItemClipsChildrenToShape = createEnumToken('ChartView', 'Flags', 'ItemClipsChildrenToShape');
-    export const ItemAcceptsInputMethod = createEnumToken('ChartView', 'Flags', 'ItemAcceptsInputMethod');
+    export const ItemClipsChildrenToShape = createEnumToken(
+      'ChartView',
+      'Flags',
+      'ItemClipsChildrenToShape',
+    );
+    export const ItemAcceptsInputMethod = createEnumToken(
+      'ChartView',
+      'Flags',
+      'ItemAcceptsInputMethod',
+    );
     export const ItemIsFocusScope = createEnumToken('ChartView', 'Flags', 'ItemIsFocusScope');
     export const ItemHasContents = createEnumToken('ChartView', 'Flags', 'ItemHasContents');
     export const ItemAcceptsDrops = createEnumToken('ChartView', 'Flags', 'ItemAcceptsDrops');
     export const ItemIsViewport = createEnumToken('ChartView', 'Flags', 'ItemIsViewport');
-    export const ItemObservesViewport = createEnumToken('ChartView', 'Flags', 'ItemObservesViewport');
+    export const ItemObservesViewport = createEnumToken(
+      'ChartView',
+      'Flags',
+      'ItemObservesViewport',
+    );
   }
   export namespace ItemChange {
-    export const ItemChildAddedChange = createEnumToken('ChartView', 'ItemChange', 'ItemChildAddedChange');
-    export const ItemChildRemovedChange = createEnumToken('ChartView', 'ItemChange', 'ItemChildRemovedChange');
+    export const ItemChildAddedChange = createEnumToken(
+      'ChartView',
+      'ItemChange',
+      'ItemChildAddedChange',
+    );
+    export const ItemChildRemovedChange = createEnumToken(
+      'ChartView',
+      'ItemChange',
+      'ItemChildRemovedChange',
+    );
     export const ItemSceneChange = createEnumToken('ChartView', 'ItemChange', 'ItemSceneChange');
-    export const ItemVisibleHasChanged = createEnumToken('ChartView', 'ItemChange', 'ItemVisibleHasChanged');
-    export const ItemParentHasChanged = createEnumToken('ChartView', 'ItemChange', 'ItemParentHasChanged');
-    export const ItemOpacityHasChanged = createEnumToken('ChartView', 'ItemChange', 'ItemOpacityHasChanged');
-    export const ItemActiveFocusHasChanged = createEnumToken('ChartView', 'ItemChange', 'ItemActiveFocusHasChanged');
-    export const ItemRotationHasChanged = createEnumToken('ChartView', 'ItemChange', 'ItemRotationHasChanged');
-    export const ItemAntialiasingHasChanged = createEnumToken('ChartView', 'ItemChange', 'ItemAntialiasingHasChanged');
-    export const ItemDevicePixelRatioHasChanged = createEnumToken('ChartView', 'ItemChange', 'ItemDevicePixelRatioHasChanged');
-    export const ItemEnabledHasChanged = createEnumToken('ChartView', 'ItemChange', 'ItemEnabledHasChanged');
-    export const ItemScaleHasChanged = createEnumToken('ChartView', 'ItemChange', 'ItemScaleHasChanged');
-    export const ItemTransformHasChanged = createEnumToken('ChartView', 'ItemChange', 'ItemTransformHasChanged');
+    export const ItemVisibleHasChanged = createEnumToken(
+      'ChartView',
+      'ItemChange',
+      'ItemVisibleHasChanged',
+    );
+    export const ItemParentHasChanged = createEnumToken(
+      'ChartView',
+      'ItemChange',
+      'ItemParentHasChanged',
+    );
+    export const ItemOpacityHasChanged = createEnumToken(
+      'ChartView',
+      'ItemChange',
+      'ItemOpacityHasChanged',
+    );
+    export const ItemActiveFocusHasChanged = createEnumToken(
+      'ChartView',
+      'ItemChange',
+      'ItemActiveFocusHasChanged',
+    );
+    export const ItemRotationHasChanged = createEnumToken(
+      'ChartView',
+      'ItemChange',
+      'ItemRotationHasChanged',
+    );
+    export const ItemAntialiasingHasChanged = createEnumToken(
+      'ChartView',
+      'ItemChange',
+      'ItemAntialiasingHasChanged',
+    );
+    export const ItemDevicePixelRatioHasChanged = createEnumToken(
+      'ChartView',
+      'ItemChange',
+      'ItemDevicePixelRatioHasChanged',
+    );
+    export const ItemEnabledHasChanged = createEnumToken(
+      'ChartView',
+      'ItemChange',
+      'ItemEnabledHasChanged',
+    );
+    export const ItemScaleHasChanged = createEnumToken(
+      'ChartView',
+      'ItemChange',
+      'ItemScaleHasChanged',
+    );
+    export const ItemTransformHasChanged = createEnumToken(
+      'ChartView',
+      'ItemChange',
+      'ItemTransformHasChanged',
+    );
   }
   export namespace SeriesType {
     export const SeriesTypeLine = createEnumToken('ChartView', 'SeriesType', 'SeriesTypeLine');
     export const SeriesTypeArea = createEnumToken('ChartView', 'SeriesType', 'SeriesTypeArea');
     export const SeriesTypeBar = createEnumToken('ChartView', 'SeriesType', 'SeriesTypeBar');
-    export const SeriesTypeStackedBar = createEnumToken('ChartView', 'SeriesType', 'SeriesTypeStackedBar');
-    export const SeriesTypePercentBar = createEnumToken('ChartView', 'SeriesType', 'SeriesTypePercentBar');
+    export const SeriesTypeStackedBar = createEnumToken(
+      'ChartView',
+      'SeriesType',
+      'SeriesTypeStackedBar',
+    );
+    export const SeriesTypePercentBar = createEnumToken(
+      'ChartView',
+      'SeriesType',
+      'SeriesTypePercentBar',
+    );
     export const SeriesTypePie = createEnumToken('ChartView', 'SeriesType', 'SeriesTypePie');
-    export const SeriesTypeScatter = createEnumToken('ChartView', 'SeriesType', 'SeriesTypeScatter');
+    export const SeriesTypeScatter = createEnumToken(
+      'ChartView',
+      'SeriesType',
+      'SeriesTypeScatter',
+    );
     export const SeriesTypeSpline = createEnumToken('ChartView', 'SeriesType', 'SeriesTypeSpline');
-    export const SeriesTypeHorizontalBar = createEnumToken('ChartView', 'SeriesType', 'SeriesTypeHorizontalBar');
-    export const SeriesTypeHorizontalStackedBar = createEnumToken('ChartView', 'SeriesType', 'SeriesTypeHorizontalStackedBar');
-    export const SeriesTypeHorizontalPercentBar = createEnumToken('ChartView', 'SeriesType', 'SeriesTypeHorizontalPercentBar');
-    export const SeriesTypeBoxPlot = createEnumToken('ChartView', 'SeriesType', 'SeriesTypeBoxPlot');
-    export const SeriesTypeCandlestick = createEnumToken('ChartView', 'SeriesType', 'SeriesTypeCandlestick');
+    export const SeriesTypeHorizontalBar = createEnumToken(
+      'ChartView',
+      'SeriesType',
+      'SeriesTypeHorizontalBar',
+    );
+    export const SeriesTypeHorizontalStackedBar = createEnumToken(
+      'ChartView',
+      'SeriesType',
+      'SeriesTypeHorizontalStackedBar',
+    );
+    export const SeriesTypeHorizontalPercentBar = createEnumToken(
+      'ChartView',
+      'SeriesType',
+      'SeriesTypeHorizontalPercentBar',
+    );
+    export const SeriesTypeBoxPlot = createEnumToken(
+      'ChartView',
+      'SeriesType',
+      'SeriesTypeBoxPlot',
+    );
+    export const SeriesTypeCandlestick = createEnumToken(
+      'ChartView',
+      'SeriesType',
+      'SeriesTypeCandlestick',
+    );
   }
   export namespace Theme {
     export const ChartThemeLight = createEnumToken('ChartView', 'Theme', 'ChartThemeLight');
-    export const ChartThemeBlueCerulean = createEnumToken('ChartView', 'Theme', 'ChartThemeBlueCerulean');
+    export const ChartThemeBlueCerulean = createEnumToken(
+      'ChartView',
+      'Theme',
+      'ChartThemeBlueCerulean',
+    );
     export const ChartThemeDark = createEnumToken('ChartView', 'Theme', 'ChartThemeDark');
     export const ChartThemeBrownSand = createEnumToken('ChartView', 'Theme', 'ChartThemeBrownSand');
     export const ChartThemeBlueNcs = createEnumToken('ChartView', 'Theme', 'ChartThemeBlueNcs');
-    export const ChartThemeHighContrast = createEnumToken('ChartView', 'Theme', 'ChartThemeHighContrast');
+    export const ChartThemeHighContrast = createEnumToken(
+      'ChartView',
+      'Theme',
+      'ChartThemeHighContrast',
+    );
     export const ChartThemeBlueIcy = createEnumToken('ChartView', 'Theme', 'ChartThemeBlueIcy');
     export const ChartThemeQt = createEnumToken('ChartView', 'Theme', 'ChartThemeQt');
   }

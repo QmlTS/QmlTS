@@ -2,7 +2,6 @@
 // Type: Attached type: StackLayout
 // Generated from Qt 6.11.0
 
-
 export interface StackLayoutAttachedBuilder {
   objectName(value: string): StackLayoutAttachedBuilder;
   objectNameBind(expr: string): StackLayoutAttachedBuilder;

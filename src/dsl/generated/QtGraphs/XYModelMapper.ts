@@ -2,8 +2,13 @@
 // Type: XYModelMapper
 // Generated from Qt 6.11.0
 
+import type {
+  QmlEnumToken,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
-import type { QmlEnumToken, QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
 export interface XYModelMapperBuilder {
   id(id: string): XYModelMapperBuilder;
   child(obj: QmlObjectBuilder): XYModelMapperBuilder;
@@ -56,12 +61,13 @@ const XYMODELMAPPER_META: TypeMetadata = {
     { handlerName: 'onXSectionChanged', paramCount: 0 },
     { handlerName: 'onYSectionChanged', paramCount: 0 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function XYModelMapper(): XYModelMapperBuilder {
-  return createFluentBuilder('XYModelMapper', XYMODELMAPPER_META) as unknown as XYModelMapperBuilder;
+  return createFluentBuilder(
+    'XYModelMapper',
+    XYMODELMAPPER_META,
+  ) as unknown as XYModelMapperBuilder;
 }

@@ -2,8 +2,13 @@
 // Type: ParticleShape3D
 // Generated from Qt 6.11.0
 
+import type {
+  QmlEnumToken,
+  QmlObjectBuilder,
+  QmlVector3d,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
-import type { QmlEnumToken, QmlObjectBuilder, QmlVector3d, TypeMetadata } from '../../runtime/index.js';
 export interface ParticleShape3DBuilder {
   id(id: string): ParticleShape3DBuilder;
   child(obj: QmlObjectBuilder): ParticleShape3DBuilder;
@@ -36,14 +41,15 @@ const PARTICLESHAPE3D_META: TypeMetadata = {
     { handlerName: 'onObjectNameChanged', paramCount: 1 },
     { handlerName: 'onTypeChanged', paramCount: 0 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function ParticleShape3D(): ParticleShape3DBuilder {
-  return createFluentBuilder('ParticleShape3D', PARTICLESHAPE3D_META) as unknown as ParticleShape3DBuilder;
+  return createFluentBuilder(
+    'ParticleShape3D',
+    PARTICLESHAPE3D_META,
+  ) as unknown as ParticleShape3DBuilder;
 }
 
 export namespace ParticleShape3D {

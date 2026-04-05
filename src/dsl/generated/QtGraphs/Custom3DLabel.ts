@@ -2,8 +2,15 @@
 // Type: Custom3DLabel
 // Generated from Qt 6.11.0
 
+import type {
+  QmlColor,
+  QmlFont,
+  QmlObjectBuilder,
+  QmlQuaternion,
+  QmlVector3d,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
-import type { QmlColor, QmlFont, QmlObjectBuilder, QmlQuaternion, QmlVector3d, TypeMetadata } from '../../runtime/index.js';
 export interface Custom3DLabelBuilder {
   id(id: string): Custom3DLabelBuilder;
   child(obj: QmlObjectBuilder): Custom3DLabelBuilder;
@@ -108,12 +115,13 @@ const CUSTOM3DLABEL_META: TypeMetadata = {
     { handlerName: 'onTextureFileChanged', paramCount: 1 },
     { handlerName: 'onVisibleChanged', paramCount: 1 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function Custom3DLabel(): Custom3DLabelBuilder {
-  return createFluentBuilder('Custom3DLabel', CUSTOM3DLABEL_META) as unknown as Custom3DLabelBuilder;
+  return createFluentBuilder(
+    'Custom3DLabel',
+    CUSTOM3DLABEL_META,
+  ) as unknown as Custom3DLabelBuilder;
 }

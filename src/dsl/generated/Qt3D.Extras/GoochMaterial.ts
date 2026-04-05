@@ -2,8 +2,8 @@
 // Type: GoochMaterial
 // Generated from Qt 6.11.0
 
-import { createFluentBuilder } from '../../runtime/index.js';
 import type { QmlColor, QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import { createFluentBuilder } from '../../runtime/index.js';
 import type { EffectBuilder } from '../Qt3D.Render/Effect.js';
 export interface GoochMaterialBuilder {
   id(id: string): GoochMaterialBuilder;
@@ -83,12 +83,13 @@ const GOOCHMATERIAL_META: TypeMetadata = {
     { handlerName: 'onSpecularChanged', paramCount: 1 },
     { handlerName: 'onWarmChanged', paramCount: 1 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function GoochMaterial(): GoochMaterialBuilder {
-  return createFluentBuilder('GoochMaterial', GOOCHMATERIAL_META) as unknown as GoochMaterialBuilder;
+  return createFluentBuilder(
+    'GoochMaterial',
+    GOOCHMATERIAL_META,
+  ) as unknown as GoochMaterialBuilder;
 }

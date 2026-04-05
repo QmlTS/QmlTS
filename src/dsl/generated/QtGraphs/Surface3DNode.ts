@@ -2,8 +2,15 @@
 // Type: Surface3DNode
 // Generated from Qt 6.11.0
 
+import type {
+  QmlEnumToken,
+  QmlObjectBuilder,
+  QmlQuaternion,
+  QmlValue,
+  QmlVector3d,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
-import type { QmlEnumToken, QmlObjectBuilder, QmlQuaternion, QmlValue, QmlVector3d, TypeMetadata } from '../../runtime/index.js';
 import type { GraphsThemeBuilder } from './GraphsTheme.js';
 import type { Value3DAxisBuilder } from './Value3DAxis.js';
 export interface Surface3DNodeBuilder {
@@ -190,15 +197,16 @@ const SURFACE3DNODE_META: TypeMetadata = {
     { handlerName: 'onYChanged', paramCount: 0 },
     { handlerName: 'onZChanged', paramCount: 0 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
   defaultProperty: 'seriesList',
 };
 
 export function Surface3DNode(): Surface3DNodeBuilder {
-  return createFluentBuilder('Surface3DNode', SURFACE3DNODE_META) as unknown as Surface3DNodeBuilder;
+  return createFluentBuilder(
+    'Surface3DNode',
+    SURFACE3DNODE_META,
+  ) as unknown as Surface3DNodeBuilder;
 }
 
 export namespace Surface3DNode {

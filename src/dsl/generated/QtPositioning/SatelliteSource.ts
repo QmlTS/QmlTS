@@ -2,8 +2,8 @@
 // Type: SatelliteSource
 // Generated from Qt 6.11.0
 
-import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface SatelliteSourceBuilder {
   id(id: string): SatelliteSourceBuilder;
   child(obj: QmlObjectBuilder): SatelliteSourceBuilder;
@@ -44,15 +44,16 @@ const SATELLITESOURCE_META: TypeMetadata = {
     { handlerName: 'onUpdateIntervalChanged', paramCount: 0 },
     { handlerName: 'onValidityChanged', paramCount: 0 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
   defaultProperty: 'parameters',
 };
 
 export function SatelliteSource(): SatelliteSourceBuilder {
-  return createFluentBuilder('SatelliteSource', SATELLITESOURCE_META) as unknown as SatelliteSourceBuilder;
+  return createFluentBuilder(
+    'SatelliteSource',
+    SATELLITESOURCE_META,
+  ) as unknown as SatelliteSourceBuilder;
 }
 
 export namespace SatelliteSource {
@@ -60,7 +61,15 @@ export namespace SatelliteSource {
     export const AccessError = createEnumToken('SatelliteSource', 'SourceError', 'AccessError');
     export const ClosedError = createEnumToken('SatelliteSource', 'SourceError', 'ClosedError');
     export const NoError = createEnumToken('SatelliteSource', 'SourceError', 'NoError');
-    export const UnknownSourceError = createEnumToken('SatelliteSource', 'SourceError', 'UnknownSourceError');
-    export const UpdateTimeoutError = createEnumToken('SatelliteSource', 'SourceError', 'UpdateTimeoutError');
+    export const UnknownSourceError = createEnumToken(
+      'SatelliteSource',
+      'SourceError',
+      'UnknownSourceError',
+    );
+    export const UpdateTimeoutError = createEnumToken(
+      'SatelliteSource',
+      'SourceError',
+      'UpdateTimeoutError',
+    );
   }
 }

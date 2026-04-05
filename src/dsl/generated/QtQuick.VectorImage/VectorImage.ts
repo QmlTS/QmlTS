@@ -2,8 +2,8 @@
 // Type: VectorImage
 // Generated from Qt 6.11.0
 
-import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { QmlEnumToken, QmlObjectBuilder, QmlUrl, TypeMetadata } from '../../runtime/index.js';
+import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { QtObjectBuilder } from '../QML/QtObject.js';
 import type { ItemBuilder } from '../QtQuick/Item.js';
 import type { PaletteBuilder } from '../QtQuick/Palette.js';
@@ -239,8 +239,7 @@ const VECTORIMAGE_META: TypeMetadata = {
       ],
     },
   ],
-  attached: [
-  ],
+  attached: [],
   defaultProperty: 'data',
 };
 
@@ -251,36 +250,108 @@ export function VectorImage(): VectorImageBuilder {
 export namespace VectorImage {
   export namespace FillMode {
     export const NoResize = createEnumToken('VectorImage', 'FillMode', 'NoResize');
-    export const PreserveAspectFit = createEnumToken('VectorImage', 'FillMode', 'PreserveAspectFit');
-    export const PreserveAspectCrop = createEnumToken('VectorImage', 'FillMode', 'PreserveAspectCrop');
+    export const PreserveAspectFit = createEnumToken(
+      'VectorImage',
+      'FillMode',
+      'PreserveAspectFit',
+    );
+    export const PreserveAspectCrop = createEnumToken(
+      'VectorImage',
+      'FillMode',
+      'PreserveAspectCrop',
+    );
     export const Stretch = createEnumToken('VectorImage', 'FillMode', 'Stretch');
   }
   export namespace Flags {
-    export const ItemClipsChildrenToShape = createEnumToken('VectorImage', 'Flags', 'ItemClipsChildrenToShape');
-    export const ItemAcceptsInputMethod = createEnumToken('VectorImage', 'Flags', 'ItemAcceptsInputMethod');
+    export const ItemClipsChildrenToShape = createEnumToken(
+      'VectorImage',
+      'Flags',
+      'ItemClipsChildrenToShape',
+    );
+    export const ItemAcceptsInputMethod = createEnumToken(
+      'VectorImage',
+      'Flags',
+      'ItemAcceptsInputMethod',
+    );
     export const ItemIsFocusScope = createEnumToken('VectorImage', 'Flags', 'ItemIsFocusScope');
     export const ItemHasContents = createEnumToken('VectorImage', 'Flags', 'ItemHasContents');
     export const ItemAcceptsDrops = createEnumToken('VectorImage', 'Flags', 'ItemAcceptsDrops');
     export const ItemIsViewport = createEnumToken('VectorImage', 'Flags', 'ItemIsViewport');
-    export const ItemObservesViewport = createEnumToken('VectorImage', 'Flags', 'ItemObservesViewport');
+    export const ItemObservesViewport = createEnumToken(
+      'VectorImage',
+      'Flags',
+      'ItemObservesViewport',
+    );
   }
   export namespace ItemChange {
-    export const ItemChildAddedChange = createEnumToken('VectorImage', 'ItemChange', 'ItemChildAddedChange');
-    export const ItemChildRemovedChange = createEnumToken('VectorImage', 'ItemChange', 'ItemChildRemovedChange');
+    export const ItemChildAddedChange = createEnumToken(
+      'VectorImage',
+      'ItemChange',
+      'ItemChildAddedChange',
+    );
+    export const ItemChildRemovedChange = createEnumToken(
+      'VectorImage',
+      'ItemChange',
+      'ItemChildRemovedChange',
+    );
     export const ItemSceneChange = createEnumToken('VectorImage', 'ItemChange', 'ItemSceneChange');
-    export const ItemVisibleHasChanged = createEnumToken('VectorImage', 'ItemChange', 'ItemVisibleHasChanged');
-    export const ItemParentHasChanged = createEnumToken('VectorImage', 'ItemChange', 'ItemParentHasChanged');
-    export const ItemOpacityHasChanged = createEnumToken('VectorImage', 'ItemChange', 'ItemOpacityHasChanged');
-    export const ItemActiveFocusHasChanged = createEnumToken('VectorImage', 'ItemChange', 'ItemActiveFocusHasChanged');
-    export const ItemRotationHasChanged = createEnumToken('VectorImage', 'ItemChange', 'ItemRotationHasChanged');
-    export const ItemAntialiasingHasChanged = createEnumToken('VectorImage', 'ItemChange', 'ItemAntialiasingHasChanged');
-    export const ItemDevicePixelRatioHasChanged = createEnumToken('VectorImage', 'ItemChange', 'ItemDevicePixelRatioHasChanged');
-    export const ItemEnabledHasChanged = createEnumToken('VectorImage', 'ItemChange', 'ItemEnabledHasChanged');
-    export const ItemScaleHasChanged = createEnumToken('VectorImage', 'ItemChange', 'ItemScaleHasChanged');
-    export const ItemTransformHasChanged = createEnumToken('VectorImage', 'ItemChange', 'ItemTransformHasChanged');
+    export const ItemVisibleHasChanged = createEnumToken(
+      'VectorImage',
+      'ItemChange',
+      'ItemVisibleHasChanged',
+    );
+    export const ItemParentHasChanged = createEnumToken(
+      'VectorImage',
+      'ItemChange',
+      'ItemParentHasChanged',
+    );
+    export const ItemOpacityHasChanged = createEnumToken(
+      'VectorImage',
+      'ItemChange',
+      'ItemOpacityHasChanged',
+    );
+    export const ItemActiveFocusHasChanged = createEnumToken(
+      'VectorImage',
+      'ItemChange',
+      'ItemActiveFocusHasChanged',
+    );
+    export const ItemRotationHasChanged = createEnumToken(
+      'VectorImage',
+      'ItemChange',
+      'ItemRotationHasChanged',
+    );
+    export const ItemAntialiasingHasChanged = createEnumToken(
+      'VectorImage',
+      'ItemChange',
+      'ItemAntialiasingHasChanged',
+    );
+    export const ItemDevicePixelRatioHasChanged = createEnumToken(
+      'VectorImage',
+      'ItemChange',
+      'ItemDevicePixelRatioHasChanged',
+    );
+    export const ItemEnabledHasChanged = createEnumToken(
+      'VectorImage',
+      'ItemChange',
+      'ItemEnabledHasChanged',
+    );
+    export const ItemScaleHasChanged = createEnumToken(
+      'VectorImage',
+      'ItemChange',
+      'ItemScaleHasChanged',
+    );
+    export const ItemTransformHasChanged = createEnumToken(
+      'VectorImage',
+      'ItemChange',
+      'ItemTransformHasChanged',
+    );
   }
   export namespace RendererType {
-    export const GeometryRenderer = createEnumToken('VectorImage', 'RendererType', 'GeometryRenderer');
+    export const GeometryRenderer = createEnumToken(
+      'VectorImage',
+      'RendererType',
+      'GeometryRenderer',
+    );
     export const CurveRenderer = createEnumToken('VectorImage', 'RendererType', 'CurveRenderer');
   }
   export namespace TransformOrigin {

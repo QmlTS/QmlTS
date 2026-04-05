@@ -2,8 +2,13 @@
 // Type: HPieModelMapper
 // Generated from Qt 6.11.0
 
+import type {
+  QmlEnumToken,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
-import type { QmlEnumToken, QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
 import type { PieSeriesBuilder } from '../QtGraphs/PieSeries.js';
 export interface HPieModelMapperBuilder {
   id(id: string): HPieModelMapperBuilder;
@@ -81,12 +86,13 @@ const HPIEMODELMAPPER_META: TypeMetadata = {
     { handlerName: 'onValuesRowChanged', paramCount: 0 },
     { handlerName: 'onValuesSectionChanged', paramCount: 0 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function HPieModelMapper(): HPieModelMapperBuilder {
-  return createFluentBuilder('HPieModelMapper', HPIEMODELMAPPER_META) as unknown as HPieModelMapperBuilder;
+  return createFluentBuilder(
+    'HPieModelMapper',
+    HPIEMODELMAPPER_META,
+  ) as unknown as HPieModelMapperBuilder;
 }

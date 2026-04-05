@@ -2,8 +2,13 @@
 // Type: PointSize
 // Generated from Qt 6.11.0
 
+import type {
+  QmlEnumToken,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
-import type { QmlEnumToken, QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
 export interface PointSizeBuilder {
   id(id: string): PointSizeBuilder;
   child(obj: QmlObjectBuilder): PointSizeBuilder;
@@ -43,10 +48,8 @@ const POINTSIZE_META: TypeMetadata = {
     { handlerName: 'onSizeModeChanged', paramCount: 1 },
     { handlerName: 'onValueChanged', paramCount: 1 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function PointSize(): PointSizeBuilder {

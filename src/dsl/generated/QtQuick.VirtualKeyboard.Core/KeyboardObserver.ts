@@ -2,8 +2,8 @@
 // Type: KeyboardObserver
 // Generated from Qt 6.11.0
 
-import { createFluentBuilder } from '../../runtime/index.js';
 import type { QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import { createFluentBuilder } from '../../runtime/index.js';
 import type { EnterKeyActionAttachedBuilder } from './EnterKeyActionAttachedType.js';
 import type { VirtualKeyboardAttachedBuilder } from './VirtualKeyboardAttachedType.js';
 export interface KeyboardObserverBuilder {
@@ -20,15 +20,12 @@ export interface KeyboardObserverBuilder {
 
 const KEYBOARDOBSERVER_META: TypeMetadata = {
   typeName: 'KeyboardObserver',
-  properties: [
-    { name: 'objectName', hasValue: true, hasBinding: true },
-  ],
+  properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
   signals: [
     { handlerName: 'onLayoutChanged', paramCount: 0 },
     { handlerName: 'onObjectNameChanged', paramCount: 1 },
   ],
-  grouped: [
-  ],
+  grouped: [],
   attached: [
     {
       methodName: 'enterKeyAction',
@@ -62,5 +59,8 @@ const KEYBOARDOBSERVER_META: TypeMetadata = {
 };
 
 export function KeyboardObserver(): KeyboardObserverBuilder {
-  return createFluentBuilder('KeyboardObserver', KEYBOARDOBSERVER_META) as unknown as KeyboardObserverBuilder;
+  return createFluentBuilder(
+    'KeyboardObserver',
+    KEYBOARDOBSERVER_META,
+  ) as unknown as KeyboardObserverBuilder;
 }

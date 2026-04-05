@@ -2,8 +2,16 @@
 // Type: PdfPageImage
 // Generated from Qt 6.11.0
 
+import type {
+  QmlEnumToken,
+  QmlObjectBuilder,
+  QmlRect,
+  QmlSize,
+  QmlUrl,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
-import type { QmlEnumToken, QmlObjectBuilder, QmlRect, QmlSize, QmlUrl, QmlValue, TypeMetadata } from '../../runtime/index.js';
 import type { QtObjectBuilder } from '../QML/QtObject.js';
 import type { ItemBuilder } from '../QtQuick/Item.js';
 import type { PaletteBuilder } from '../QtQuick/Palette.js';
@@ -287,8 +295,7 @@ const PDFPAGEIMAGE_META: TypeMetadata = {
       ],
     },
   ],
-  attached: [
-  ],
+  attached: [],
 };
 
 export function PdfPageImage(): PdfPageImageBuilder {
@@ -298,21 +305,41 @@ export function PdfPageImage(): PdfPageImageBuilder {
 export namespace PdfPageImage {
   export namespace FillMode {
     export const Stretch = createEnumToken('PdfPageImage', 'FillMode', 'Stretch');
-    export const PreserveAspectFit = createEnumToken('PdfPageImage', 'FillMode', 'PreserveAspectFit');
-    export const PreserveAspectCrop = createEnumToken('PdfPageImage', 'FillMode', 'PreserveAspectCrop');
+    export const PreserveAspectFit = createEnumToken(
+      'PdfPageImage',
+      'FillMode',
+      'PreserveAspectFit',
+    );
+    export const PreserveAspectCrop = createEnumToken(
+      'PdfPageImage',
+      'FillMode',
+      'PreserveAspectCrop',
+    );
     export const Tile = createEnumToken('PdfPageImage', 'FillMode', 'Tile');
     export const TileVertically = createEnumToken('PdfPageImage', 'FillMode', 'TileVertically');
     export const TileHorizontally = createEnumToken('PdfPageImage', 'FillMode', 'TileHorizontally');
     export const Pad = createEnumToken('PdfPageImage', 'FillMode', 'Pad');
   }
   export namespace Flags {
-    export const ItemClipsChildrenToShape = createEnumToken('PdfPageImage', 'Flags', 'ItemClipsChildrenToShape');
-    export const ItemAcceptsInputMethod = createEnumToken('PdfPageImage', 'Flags', 'ItemAcceptsInputMethod');
+    export const ItemClipsChildrenToShape = createEnumToken(
+      'PdfPageImage',
+      'Flags',
+      'ItemClipsChildrenToShape',
+    );
+    export const ItemAcceptsInputMethod = createEnumToken(
+      'PdfPageImage',
+      'Flags',
+      'ItemAcceptsInputMethod',
+    );
     export const ItemIsFocusScope = createEnumToken('PdfPageImage', 'Flags', 'ItemIsFocusScope');
     export const ItemHasContents = createEnumToken('PdfPageImage', 'Flags', 'ItemHasContents');
     export const ItemAcceptsDrops = createEnumToken('PdfPageImage', 'Flags', 'ItemAcceptsDrops');
     export const ItemIsViewport = createEnumToken('PdfPageImage', 'Flags', 'ItemIsViewport');
-    export const ItemObservesViewport = createEnumToken('PdfPageImage', 'Flags', 'ItemObservesViewport');
+    export const ItemObservesViewport = createEnumToken(
+      'PdfPageImage',
+      'Flags',
+      'ItemObservesViewport',
+    );
   }
   export namespace HAlignment {
     export const AlignLeft = createEnumToken('PdfPageImage', 'HAlignment', 'AlignLeft');
@@ -320,24 +347,76 @@ export namespace PdfPageImage {
     export const AlignHCenter = createEnumToken('PdfPageImage', 'HAlignment', 'AlignHCenter');
   }
   export namespace ItemChange {
-    export const ItemChildAddedChange = createEnumToken('PdfPageImage', 'ItemChange', 'ItemChildAddedChange');
-    export const ItemChildRemovedChange = createEnumToken('PdfPageImage', 'ItemChange', 'ItemChildRemovedChange');
+    export const ItemChildAddedChange = createEnumToken(
+      'PdfPageImage',
+      'ItemChange',
+      'ItemChildAddedChange',
+    );
+    export const ItemChildRemovedChange = createEnumToken(
+      'PdfPageImage',
+      'ItemChange',
+      'ItemChildRemovedChange',
+    );
     export const ItemSceneChange = createEnumToken('PdfPageImage', 'ItemChange', 'ItemSceneChange');
-    export const ItemVisibleHasChanged = createEnumToken('PdfPageImage', 'ItemChange', 'ItemVisibleHasChanged');
-    export const ItemParentHasChanged = createEnumToken('PdfPageImage', 'ItemChange', 'ItemParentHasChanged');
-    export const ItemOpacityHasChanged = createEnumToken('PdfPageImage', 'ItemChange', 'ItemOpacityHasChanged');
-    export const ItemActiveFocusHasChanged = createEnumToken('PdfPageImage', 'ItemChange', 'ItemActiveFocusHasChanged');
-    export const ItemRotationHasChanged = createEnumToken('PdfPageImage', 'ItemChange', 'ItemRotationHasChanged');
-    export const ItemAntialiasingHasChanged = createEnumToken('PdfPageImage', 'ItemChange', 'ItemAntialiasingHasChanged');
-    export const ItemDevicePixelRatioHasChanged = createEnumToken('PdfPageImage', 'ItemChange', 'ItemDevicePixelRatioHasChanged');
-    export const ItemEnabledHasChanged = createEnumToken('PdfPageImage', 'ItemChange', 'ItemEnabledHasChanged');
-    export const ItemScaleHasChanged = createEnumToken('PdfPageImage', 'ItemChange', 'ItemScaleHasChanged');
-    export const ItemTransformHasChanged = createEnumToken('PdfPageImage', 'ItemChange', 'ItemTransformHasChanged');
+    export const ItemVisibleHasChanged = createEnumToken(
+      'PdfPageImage',
+      'ItemChange',
+      'ItemVisibleHasChanged',
+    );
+    export const ItemParentHasChanged = createEnumToken(
+      'PdfPageImage',
+      'ItemChange',
+      'ItemParentHasChanged',
+    );
+    export const ItemOpacityHasChanged = createEnumToken(
+      'PdfPageImage',
+      'ItemChange',
+      'ItemOpacityHasChanged',
+    );
+    export const ItemActiveFocusHasChanged = createEnumToken(
+      'PdfPageImage',
+      'ItemChange',
+      'ItemActiveFocusHasChanged',
+    );
+    export const ItemRotationHasChanged = createEnumToken(
+      'PdfPageImage',
+      'ItemChange',
+      'ItemRotationHasChanged',
+    );
+    export const ItemAntialiasingHasChanged = createEnumToken(
+      'PdfPageImage',
+      'ItemChange',
+      'ItemAntialiasingHasChanged',
+    );
+    export const ItemDevicePixelRatioHasChanged = createEnumToken(
+      'PdfPageImage',
+      'ItemChange',
+      'ItemDevicePixelRatioHasChanged',
+    );
+    export const ItemEnabledHasChanged = createEnumToken(
+      'PdfPageImage',
+      'ItemChange',
+      'ItemEnabledHasChanged',
+    );
+    export const ItemScaleHasChanged = createEnumToken(
+      'PdfPageImage',
+      'ItemChange',
+      'ItemScaleHasChanged',
+    );
+    export const ItemTransformHasChanged = createEnumToken(
+      'PdfPageImage',
+      'ItemChange',
+      'ItemTransformHasChanged',
+    );
   }
   export namespace LoadPixmapOptions {
     export const NoOption = createEnumToken('PdfPageImage', 'LoadPixmapOptions', 'NoOption');
     export const HandleDPR = createEnumToken('PdfPageImage', 'LoadPixmapOptions', 'HandleDPR');
-    export const UseProviderOptions = createEnumToken('PdfPageImage', 'LoadPixmapOptions', 'UseProviderOptions');
+    export const UseProviderOptions = createEnumToken(
+      'PdfPageImage',
+      'LoadPixmapOptions',
+      'UseProviderOptions',
+    );
   }
   export namespace Status {
     export const Null = createEnumToken('PdfPageImage', 'Status', 'Null');

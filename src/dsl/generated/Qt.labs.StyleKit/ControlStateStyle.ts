@@ -2,8 +2,8 @@
 // Type: ControlStateStyle
 // Generated from Qt 6.11.0
 
-import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { TransitionBuilder } from '../QtQuick/Transition.js';
 import type { StyleKitAttachedBuilder } from './QQStyleKitAttached.js';
 import type { StyleVariationAttachedBuilder } from './QQStyleKitVariationAttached.js';
@@ -83,8 +83,7 @@ const CONTROLSTATESTYLE_META: TypeMetadata = {
     { handlerName: 'onTransitionChanged', paramCount: 0 },
     { handlerName: 'onVerticalChanged', paramCount: 0 },
   ],
-  grouped: [
-  ],
+  grouped: [],
   attached: [
     {
       methodName: 'styleKit',
@@ -120,7 +119,10 @@ const CONTROLSTATESTYLE_META: TypeMetadata = {
 };
 
 export function ControlStateStyle(): ControlStateStyleBuilder {
-  return createFluentBuilder('ControlStateStyle', CONTROLSTATESTYLE_META) as unknown as ControlStateStyleBuilder;
+  return createFluentBuilder(
+    'ControlStateStyle',
+    CONTROLSTATESTYLE_META,
+  ) as unknown as ControlStateStyleBuilder;
 }
 
 export namespace ControlStateStyle {

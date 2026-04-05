@@ -2,8 +2,8 @@
 // Type: VideoSink
 // Generated from Qt 6.11.0
 
-import { createFluentBuilder } from '../../runtime/index.js';
 import type { QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import { createFluentBuilder } from '../../runtime/index.js';
 export interface VideoSinkBuilder {
   id(id: string): VideoSinkBuilder;
   child(obj: QmlObjectBuilder): VideoSinkBuilder;
@@ -30,10 +30,8 @@ const VIDEOSINK_META: TypeMetadata = {
     { handlerName: 'onVideoFrameChanged', paramCount: 0 },
     { handlerName: 'onVideoSizeChanged', paramCount: 0 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function VideoSink(): VideoSinkBuilder {

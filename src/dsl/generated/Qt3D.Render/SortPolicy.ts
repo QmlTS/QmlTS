@@ -2,8 +2,8 @@
 // Type: SortPolicy
 // Generated from Qt 6.11.0
 
-import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface SortPolicyBuilder {
   id(id: string): SortPolicyBuilder;
   child(obj: QmlObjectBuilder): SortPolicyBuilder;
@@ -38,10 +38,8 @@ const SORTPOLICY_META: TypeMetadata = {
     { handlerName: 'onParentChanged', paramCount: 1 },
     { handlerName: 'onSortTypesChanged', paramCount: 1 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function SortPolicy(): SortPolicyBuilder {

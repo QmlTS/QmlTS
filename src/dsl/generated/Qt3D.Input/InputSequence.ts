@@ -2,8 +2,8 @@
 // Type: InputSequence
 // Generated from Qt 6.11.0
 
-import { createFluentBuilder } from '../../runtime/index.js';
 import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import { createFluentBuilder } from '../../runtime/index.js';
 export interface InputSequenceBuilder {
   id(id: string): InputSequenceBuilder;
   child(obj: QmlObjectBuilder): InputSequenceBuilder;
@@ -43,12 +43,13 @@ const INPUTSEQUENCE_META: TypeMetadata = {
     { handlerName: 'onParentChanged', paramCount: 1 },
     { handlerName: 'onTimeoutChanged', paramCount: 1 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function InputSequence(): InputSequenceBuilder {
-  return createFluentBuilder('InputSequence', INPUTSEQUENCE_META) as unknown as InputSequenceBuilder;
+  return createFluentBuilder(
+    'InputSequence',
+    INPUTSEQUENCE_META,
+  ) as unknown as InputSequenceBuilder;
 }

@@ -2,8 +2,15 @@
 // Type: XrController
 // Generated from Qt 6.11.0
 
+import type {
+  QmlEnumToken,
+  QmlObjectBuilder,
+  QmlQuaternion,
+  QmlValue,
+  QmlVector3d,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
-import type { QmlEnumToken, QmlObjectBuilder, QmlQuaternion, QmlValue, QmlVector3d, TypeMetadata } from '../../runtime/index.js';
 export interface XrControllerBuilder {
   id(id: string): XrControllerBuilder;
   child(obj: QmlObjectBuilder): XrControllerBuilder;
@@ -129,10 +136,8 @@ const XRCONTROLLER_META: TypeMetadata = {
     { handlerName: 'onYChanged', paramCount: 0 },
     { handlerName: 'onZChanged', paramCount: 0 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function XrController(): XrControllerBuilder {
@@ -148,7 +153,11 @@ export namespace XrController {
     export const RightController = createEnumToken('XrController', 'Controller', 'RightController');
     export const LeftHand = createEnumToken('XrController', 'Controller', 'LeftHand');
     export const RightHand = createEnumToken('XrController', 'Controller', 'RightHand');
-    export const UnknownController = createEnumToken('XrController', 'Controller', 'UnknownController');
+    export const UnknownController = createEnumToken(
+      'XrController',
+      'Controller',
+      'UnknownController',
+    );
   }
   export namespace HandPoseSpace {
     export const GripPose = createEnumToken('XrController', 'HandPoseSpace', 'GripPose');

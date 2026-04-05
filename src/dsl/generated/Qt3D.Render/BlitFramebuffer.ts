@@ -2,8 +2,14 @@
 // Type: BlitFramebuffer
 // Generated from Qt 6.11.0
 
+import type {
+  QmlEnumToken,
+  QmlObjectBuilder,
+  QmlRect,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
-import type { QmlEnumToken, QmlObjectBuilder, QmlRect, QmlValue, TypeMetadata } from '../../runtime/index.js';
 import type { RenderTargetBuilder } from './RenderTarget.js';
 export interface BlitFramebufferBuilder {
   id(id: string): BlitFramebufferBuilder;
@@ -69,14 +75,15 @@ const BLITFRAMEBUFFER_META: TypeMetadata = {
     { handlerName: 'onSourceChanged', paramCount: 0 },
     { handlerName: 'onSourceRectChanged', paramCount: 0 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function BlitFramebuffer(): BlitFramebufferBuilder {
-  return createFluentBuilder('BlitFramebuffer', BLITFRAMEBUFFER_META) as unknown as BlitFramebufferBuilder;
+  return createFluentBuilder(
+    'BlitFramebuffer',
+    BLITFRAMEBUFFER_META,
+  ) as unknown as BlitFramebufferBuilder;
 }
 
 export namespace BlitFramebuffer {

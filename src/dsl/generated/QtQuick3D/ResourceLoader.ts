@@ -2,8 +2,8 @@
 // Type: ResourceLoader
 // Generated from Qt 6.11.0
 
-import { createFluentBuilder } from '../../runtime/index.js';
 import type { QmlObjectBuilder, QmlUrl, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import { createFluentBuilder } from '../../runtime/index.js';
 export interface ResourceLoaderBuilder {
   id(id: string): ResourceLoaderBuilder;
   child(obj: QmlObjectBuilder): ResourceLoaderBuilder;
@@ -38,13 +38,14 @@ const RESOURCELOADER_META: TypeMetadata = {
     { handlerName: 'onParentChanged', paramCount: 0 },
     { handlerName: 'onStateChanged', paramCount: 0 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
   defaultProperty: 'data',
 };
 
 export function ResourceLoader(): ResourceLoaderBuilder {
-  return createFluentBuilder('ResourceLoader', RESOURCELOADER_META) as unknown as ResourceLoaderBuilder;
+  return createFluentBuilder(
+    'ResourceLoader',
+    RESOURCELOADER_META,
+  ) as unknown as ResourceLoaderBuilder;
 }

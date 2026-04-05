@@ -2,8 +2,8 @@
 // Type: NormalDiffuseMapMaterial
 // Generated from Qt 6.11.0
 
-import { createFluentBuilder } from '../../runtime/index.js';
 import type { QmlColor, QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import { createFluentBuilder } from '../../runtime/index.js';
 import type { EffectBuilder } from '../Qt3D.Render/Effect.js';
 export interface NormalDiffuseMapMaterialBuilder {
   id(id: string): NormalDiffuseMapMaterialBuilder;
@@ -78,12 +78,13 @@ const NORMALDIFFUSEMAPMATERIAL_META: TypeMetadata = {
     { handlerName: 'onSpecularChanged', paramCount: 1 },
     { handlerName: 'onTextureScaleChanged', paramCount: 1 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function NormalDiffuseMapMaterial(): NormalDiffuseMapMaterialBuilder {
-  return createFluentBuilder('NormalDiffuseMapMaterial', NORMALDIFFUSEMAPMATERIAL_META) as unknown as NormalDiffuseMapMaterialBuilder;
+  return createFluentBuilder(
+    'NormalDiffuseMapMaterial',
+    NORMALDIFFUSEMAPMATERIAL_META,
+  ) as unknown as NormalDiffuseMapMaterialBuilder;
 }

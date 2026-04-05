@@ -2,9 +2,9 @@
 // Type: ShaderProgramBuilder
 // Generated from Qt 6.11.0
 
-import { createFluentBuilder } from '../../runtime/index.js';
 import type { QmlObjectBuilder, QmlUrl, QmlValue, TypeMetadata } from '../../runtime/index.js';
-import type { ShaderProgramBuilder } from './ShaderProgram.js';
+import { createFluentBuilder } from '../../runtime/index.js';
+import type { ShaderProgramBuilder as ShaderProgramBuilder_Ref } from './ShaderProgram.js';
 export interface ShaderProgramBuilderBuilder {
   id(id: string): ShaderProgramBuilderBuilder;
   child(obj: QmlObjectBuilder): ShaderProgramBuilderBuilder;
@@ -23,7 +23,7 @@ export interface ShaderProgramBuilderBuilder {
   objectNameBind(expr: string): ShaderProgramBuilderBuilder;
   parent(value: QmlValue): ShaderProgramBuilderBuilder;
   parentBind(expr: string): ShaderProgramBuilderBuilder;
-  shaderProgram(value: ShaderProgramBuilder): ShaderProgramBuilderBuilder;
+  shaderProgram(value: ShaderProgramBuilder_Ref): ShaderProgramBuilderBuilder;
   shaderProgramBind(expr: string): ShaderProgramBuilderBuilder;
   tessellationControlShaderGraph(value: QmlUrl): ShaderProgramBuilderBuilder;
   tessellationControlShaderGraphBind(expr: string): ShaderProgramBuilderBuilder;
@@ -86,12 +86,13 @@ const SHADERPROGRAMBUILDER_META: TypeMetadata = {
     { handlerName: 'onVertexShaderCodeChanged', paramCount: 1 },
     { handlerName: 'onVertexShaderGraphChanged', paramCount: 1 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function ShaderProgramBuilder(): ShaderProgramBuilderBuilder {
-  return createFluentBuilder('ShaderProgramBuilder', SHADERPROGRAMBUILDER_META) as unknown as ShaderProgramBuilderBuilder;
+  return createFluentBuilder(
+    'ShaderProgramBuilder',
+    SHADERPROGRAMBUILDER_META,
+  ) as unknown as ShaderProgramBuilderBuilder;
 }

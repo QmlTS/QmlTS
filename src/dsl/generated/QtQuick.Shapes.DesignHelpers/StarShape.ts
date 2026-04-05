@@ -2,8 +2,14 @@
 // Type: StarShape
 // Generated from Qt 6.11.0
 
+import type {
+  QmlColor,
+  QmlEnumToken,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
-import type { QmlColor, QmlEnumToken, QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
 import type { QtObjectBuilder } from '../QML/QtObject.js';
 import type { ItemBuilder } from '../QtQuick/Item.js';
 import type { PaletteBuilder } from '../QtQuick/Palette.js';
@@ -305,8 +311,7 @@ const STARSHAPE_META: TypeMetadata = {
       ],
     },
   ],
-  attached: [
-  ],
+  attached: [],
   defaultProperty: 'data',
 };
 
@@ -316,23 +321,43 @@ export function StarShape(): StarShapeBuilder {
 
 export namespace StarShape {
   export namespace ContainsMode {
-    export const BoundingRectContains = createEnumToken('StarShape', 'ContainsMode', 'BoundingRectContains');
+    export const BoundingRectContains = createEnumToken(
+      'StarShape',
+      'ContainsMode',
+      'BoundingRectContains',
+    );
     export const FillContains = createEnumToken('StarShape', 'ContainsMode', 'FillContains');
   }
   export namespace FillMode {
     export const NoResize = createEnumToken('StarShape', 'FillMode', 'NoResize');
     export const PreserveAspectFit = createEnumToken('StarShape', 'FillMode', 'PreserveAspectFit');
-    export const PreserveAspectCrop = createEnumToken('StarShape', 'FillMode', 'PreserveAspectCrop');
+    export const PreserveAspectCrop = createEnumToken(
+      'StarShape',
+      'FillMode',
+      'PreserveAspectCrop',
+    );
     export const Stretch = createEnumToken('StarShape', 'FillMode', 'Stretch');
   }
   export namespace Flags {
-    export const ItemClipsChildrenToShape = createEnumToken('StarShape', 'Flags', 'ItemClipsChildrenToShape');
-    export const ItemAcceptsInputMethod = createEnumToken('StarShape', 'Flags', 'ItemAcceptsInputMethod');
+    export const ItemClipsChildrenToShape = createEnumToken(
+      'StarShape',
+      'Flags',
+      'ItemClipsChildrenToShape',
+    );
+    export const ItemAcceptsInputMethod = createEnumToken(
+      'StarShape',
+      'Flags',
+      'ItemAcceptsInputMethod',
+    );
     export const ItemIsFocusScope = createEnumToken('StarShape', 'Flags', 'ItemIsFocusScope');
     export const ItemHasContents = createEnumToken('StarShape', 'Flags', 'ItemHasContents');
     export const ItemAcceptsDrops = createEnumToken('StarShape', 'Flags', 'ItemAcceptsDrops');
     export const ItemIsViewport = createEnumToken('StarShape', 'Flags', 'ItemIsViewport');
-    export const ItemObservesViewport = createEnumToken('StarShape', 'Flags', 'ItemObservesViewport');
+    export const ItemObservesViewport = createEnumToken(
+      'StarShape',
+      'Flags',
+      'ItemObservesViewport',
+    );
   }
   export namespace HAlignment {
     export const AlignLeft = createEnumToken('StarShape', 'HAlignment', 'AlignLeft');
@@ -340,25 +365,81 @@ export namespace StarShape {
     export const AlignHCenter = createEnumToken('StarShape', 'HAlignment', 'AlignHCenter');
   }
   export namespace ItemChange {
-    export const ItemChildAddedChange = createEnumToken('StarShape', 'ItemChange', 'ItemChildAddedChange');
-    export const ItemChildRemovedChange = createEnumToken('StarShape', 'ItemChange', 'ItemChildRemovedChange');
+    export const ItemChildAddedChange = createEnumToken(
+      'StarShape',
+      'ItemChange',
+      'ItemChildAddedChange',
+    );
+    export const ItemChildRemovedChange = createEnumToken(
+      'StarShape',
+      'ItemChange',
+      'ItemChildRemovedChange',
+    );
     export const ItemSceneChange = createEnumToken('StarShape', 'ItemChange', 'ItemSceneChange');
-    export const ItemVisibleHasChanged = createEnumToken('StarShape', 'ItemChange', 'ItemVisibleHasChanged');
-    export const ItemParentHasChanged = createEnumToken('StarShape', 'ItemChange', 'ItemParentHasChanged');
-    export const ItemOpacityHasChanged = createEnumToken('StarShape', 'ItemChange', 'ItemOpacityHasChanged');
-    export const ItemActiveFocusHasChanged = createEnumToken('StarShape', 'ItemChange', 'ItemActiveFocusHasChanged');
-    export const ItemRotationHasChanged = createEnumToken('StarShape', 'ItemChange', 'ItemRotationHasChanged');
-    export const ItemAntialiasingHasChanged = createEnumToken('StarShape', 'ItemChange', 'ItemAntialiasingHasChanged');
-    export const ItemDevicePixelRatioHasChanged = createEnumToken('StarShape', 'ItemChange', 'ItemDevicePixelRatioHasChanged');
-    export const ItemEnabledHasChanged = createEnumToken('StarShape', 'ItemChange', 'ItemEnabledHasChanged');
-    export const ItemScaleHasChanged = createEnumToken('StarShape', 'ItemChange', 'ItemScaleHasChanged');
-    export const ItemTransformHasChanged = createEnumToken('StarShape', 'ItemChange', 'ItemTransformHasChanged');
+    export const ItemVisibleHasChanged = createEnumToken(
+      'StarShape',
+      'ItemChange',
+      'ItemVisibleHasChanged',
+    );
+    export const ItemParentHasChanged = createEnumToken(
+      'StarShape',
+      'ItemChange',
+      'ItemParentHasChanged',
+    );
+    export const ItemOpacityHasChanged = createEnumToken(
+      'StarShape',
+      'ItemChange',
+      'ItemOpacityHasChanged',
+    );
+    export const ItemActiveFocusHasChanged = createEnumToken(
+      'StarShape',
+      'ItemChange',
+      'ItemActiveFocusHasChanged',
+    );
+    export const ItemRotationHasChanged = createEnumToken(
+      'StarShape',
+      'ItemChange',
+      'ItemRotationHasChanged',
+    );
+    export const ItemAntialiasingHasChanged = createEnumToken(
+      'StarShape',
+      'ItemChange',
+      'ItemAntialiasingHasChanged',
+    );
+    export const ItemDevicePixelRatioHasChanged = createEnumToken(
+      'StarShape',
+      'ItemChange',
+      'ItemDevicePixelRatioHasChanged',
+    );
+    export const ItemEnabledHasChanged = createEnumToken(
+      'StarShape',
+      'ItemChange',
+      'ItemEnabledHasChanged',
+    );
+    export const ItemScaleHasChanged = createEnumToken(
+      'StarShape',
+      'ItemChange',
+      'ItemScaleHasChanged',
+    );
+    export const ItemTransformHasChanged = createEnumToken(
+      'StarShape',
+      'ItemChange',
+      'ItemTransformHasChanged',
+    );
   }
   export namespace RendererType {
     export const UnknownRenderer = createEnumToken('StarShape', 'RendererType', 'UnknownRenderer');
-    export const GeometryRenderer = createEnumToken('StarShape', 'RendererType', 'GeometryRenderer');
+    export const GeometryRenderer = createEnumToken(
+      'StarShape',
+      'RendererType',
+      'GeometryRenderer',
+    );
     export const NvprRenderer = createEnumToken('StarShape', 'RendererType', 'NvprRenderer');
-    export const SoftwareRenderer = createEnumToken('StarShape', 'RendererType', 'SoftwareRenderer');
+    export const SoftwareRenderer = createEnumToken(
+      'StarShape',
+      'RendererType',
+      'SoftwareRenderer',
+    );
     export const CurveRenderer = createEnumToken('StarShape', 'RendererType', 'CurveRenderer');
   }
   export namespace Status {

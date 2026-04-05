@@ -2,8 +2,8 @@
 // Type: AnimationGroup
 // Generated from Qt 6.11.0
 
-import { createFluentBuilder } from '../../runtime/index.js';
 import type { QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import { createFluentBuilder } from '../../runtime/index.js';
 export interface AnimationGroupBuilder {
   id(id: string): AnimationGroupBuilder;
   child(obj: QmlObjectBuilder): AnimationGroupBuilder;
@@ -33,12 +33,13 @@ const ANIMATIONGROUP_META: TypeMetadata = {
     { handlerName: 'onObjectNameChanged', paramCount: 1 },
     { handlerName: 'onPositionChanged', paramCount: 1 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function AnimationGroup(): AnimationGroupBuilder {
-  return createFluentBuilder('AnimationGroup', ANIMATIONGROUP_META) as unknown as AnimationGroupBuilder;
+  return createFluentBuilder(
+    'AnimationGroup',
+    ANIMATIONGROUP_META,
+  ) as unknown as AnimationGroupBuilder;
 }

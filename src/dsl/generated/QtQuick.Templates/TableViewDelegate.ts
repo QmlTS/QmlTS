@@ -2,8 +2,14 @@
 // Type: TableViewDelegate
 // Generated from Qt 6.11.0
 
+import type {
+  QmlEnumToken,
+  QmlFont,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
-import type { QmlEnumToken, QmlFont, QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
 import type { QtObjectBuilder } from '../QML/QtObject.js';
 import type { ItemBuilder } from '../QtQuick/Item.js';
 import type { PaletteBuilder } from '../QtQuick/Palette.js';
@@ -253,7 +259,9 @@ export interface TableViewDelegateBuilder {
   overlay(setup: (b: OverlayAttachedBuilder) => void): TableViewDelegateBuilder;
   scrollBar(setup: (b: ScrollBarAttachedBuilder) => void): TableViewDelegateBuilder;
   scrollIndicator(setup: (b: ScrollIndicatorAttachedBuilder) => void): TableViewDelegateBuilder;
-  selectionRectangle(setup: (b: SelectionRectangleAttachedBuilder) => void): TableViewDelegateBuilder;
+  selectionRectangle(
+    setup: (b: SelectionRectangleAttachedBuilder) => void,
+  ): TableViewDelegateBuilder;
   splitHandle(setup: (b: SplitHandleAttachedBuilder) => void): TableViewDelegateBuilder;
   splitView(setup: (b: SplitViewAttachedBuilder) => void): TableViewDelegateBuilder;
   stackView(setup: (b: StackViewAttachedBuilder) => void): TableViewDelegateBuilder;
@@ -480,9 +488,7 @@ const TABLEVIEWDELEGATE_META: TypeMetadata = {
     {
       methodName: 'applicationWindow',
       attachedTypeName: 'ApplicationWindow',
-      properties: [
-        { name: 'objectName', hasValue: true, hasBinding: true },
-      ],
+      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
       signals: [
         { handlerName: 'onActiveFocusControlChanged', paramCount: 0 },
         { handlerName: 'onContentItemChanged', paramCount: 0 },
@@ -579,9 +585,7 @@ const TABLEVIEWDELEGATE_META: TypeMetadata = {
     {
       methodName: 'selectionRectangle',
       attachedTypeName: 'SelectionRectangle',
-      properties: [
-        { name: 'objectName', hasValue: true, hasBinding: true },
-      ],
+      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
       signals: [
         { handlerName: 'onControlChanged', paramCount: 0 },
         { handlerName: 'onDraggingChanged', paramCount: 0 },
@@ -591,9 +595,7 @@ const TABLEVIEWDELEGATE_META: TypeMetadata = {
     {
       methodName: 'splitHandle',
       attachedTypeName: 'SplitHandle',
-      properties: [
-        { name: 'objectName', hasValue: true, hasBinding: true },
-      ],
+      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
       signals: [
         { handlerName: 'onHoveredChanged', paramCount: 0 },
         { handlerName: 'onPressedChanged', paramCount: 0 },
@@ -650,9 +652,7 @@ const TABLEVIEWDELEGATE_META: TypeMetadata = {
     {
       methodName: 'swipeDelegate',
       attachedTypeName: 'SwipeDelegate',
-      properties: [
-        { name: 'objectName', hasValue: true, hasBinding: true },
-      ],
+      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
       signals: [
         { handlerName: 'onClicked', paramCount: 0 },
         { handlerName: 'onPressedChanged', paramCount: 0 },
@@ -662,9 +662,7 @@ const TABLEVIEWDELEGATE_META: TypeMetadata = {
     {
       methodName: 'swipeView',
       attachedTypeName: 'SwipeView',
-      properties: [
-        { name: 'objectName', hasValue: true, hasBinding: true },
-      ],
+      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
       signals: [
         { handlerName: 'onIndexChanged', paramCount: 0 },
         { handlerName: 'onIsCurrentItemChanged', paramCount: 0 },
@@ -677,9 +675,7 @@ const TABLEVIEWDELEGATE_META: TypeMetadata = {
     {
       methodName: 'tabBar',
       attachedTypeName: 'TabBar',
-      properties: [
-        { name: 'objectName', hasValue: true, hasBinding: true },
-      ],
+      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
       signals: [
         { handlerName: 'onIndexChanged', paramCount: 0 },
         { handlerName: 'onPositionChanged', paramCount: 0 },
@@ -720,9 +716,7 @@ const TABLEVIEWDELEGATE_META: TypeMetadata = {
     {
       methodName: 'tumbler',
       attachedTypeName: 'Tumbler',
-      properties: [
-        { name: 'objectName', hasValue: true, hasBinding: true },
-      ],
+      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
       signals: [
         { handlerName: 'onDisplacementChanged', paramCount: 0 },
         { handlerName: 'onObjectNameChanged', paramCount: 1 },
@@ -732,7 +726,10 @@ const TABLEVIEWDELEGATE_META: TypeMetadata = {
 };
 
 export function TableViewDelegate(): TableViewDelegateBuilder {
-  return createFluentBuilder('TableViewDelegate', TABLEVIEWDELEGATE_META) as unknown as TableViewDelegateBuilder;
+  return createFluentBuilder(
+    'TableViewDelegate',
+    TABLEVIEWDELEGATE_META,
+  ) as unknown as TableViewDelegateBuilder;
 }
 
 export namespace TableViewDelegate {
@@ -743,28 +740,100 @@ export namespace TableViewDelegate {
     export const TextUnderIcon = createEnumToken('TableViewDelegate', 'Display', 'TextUnderIcon');
   }
   export namespace Flags {
-    export const ItemClipsChildrenToShape = createEnumToken('TableViewDelegate', 'Flags', 'ItemClipsChildrenToShape');
-    export const ItemAcceptsInputMethod = createEnumToken('TableViewDelegate', 'Flags', 'ItemAcceptsInputMethod');
-    export const ItemIsFocusScope = createEnumToken('TableViewDelegate', 'Flags', 'ItemIsFocusScope');
+    export const ItemClipsChildrenToShape = createEnumToken(
+      'TableViewDelegate',
+      'Flags',
+      'ItemClipsChildrenToShape',
+    );
+    export const ItemAcceptsInputMethod = createEnumToken(
+      'TableViewDelegate',
+      'Flags',
+      'ItemAcceptsInputMethod',
+    );
+    export const ItemIsFocusScope = createEnumToken(
+      'TableViewDelegate',
+      'Flags',
+      'ItemIsFocusScope',
+    );
     export const ItemHasContents = createEnumToken('TableViewDelegate', 'Flags', 'ItemHasContents');
-    export const ItemAcceptsDrops = createEnumToken('TableViewDelegate', 'Flags', 'ItemAcceptsDrops');
+    export const ItemAcceptsDrops = createEnumToken(
+      'TableViewDelegate',
+      'Flags',
+      'ItemAcceptsDrops',
+    );
     export const ItemIsViewport = createEnumToken('TableViewDelegate', 'Flags', 'ItemIsViewport');
-    export const ItemObservesViewport = createEnumToken('TableViewDelegate', 'Flags', 'ItemObservesViewport');
+    export const ItemObservesViewport = createEnumToken(
+      'TableViewDelegate',
+      'Flags',
+      'ItemObservesViewport',
+    );
   }
   export namespace ItemChange {
-    export const ItemChildAddedChange = createEnumToken('TableViewDelegate', 'ItemChange', 'ItemChildAddedChange');
-    export const ItemChildRemovedChange = createEnumToken('TableViewDelegate', 'ItemChange', 'ItemChildRemovedChange');
-    export const ItemSceneChange = createEnumToken('TableViewDelegate', 'ItemChange', 'ItemSceneChange');
-    export const ItemVisibleHasChanged = createEnumToken('TableViewDelegate', 'ItemChange', 'ItemVisibleHasChanged');
-    export const ItemParentHasChanged = createEnumToken('TableViewDelegate', 'ItemChange', 'ItemParentHasChanged');
-    export const ItemOpacityHasChanged = createEnumToken('TableViewDelegate', 'ItemChange', 'ItemOpacityHasChanged');
-    export const ItemActiveFocusHasChanged = createEnumToken('TableViewDelegate', 'ItemChange', 'ItemActiveFocusHasChanged');
-    export const ItemRotationHasChanged = createEnumToken('TableViewDelegate', 'ItemChange', 'ItemRotationHasChanged');
-    export const ItemAntialiasingHasChanged = createEnumToken('TableViewDelegate', 'ItemChange', 'ItemAntialiasingHasChanged');
-    export const ItemDevicePixelRatioHasChanged = createEnumToken('TableViewDelegate', 'ItemChange', 'ItemDevicePixelRatioHasChanged');
-    export const ItemEnabledHasChanged = createEnumToken('TableViewDelegate', 'ItemChange', 'ItemEnabledHasChanged');
-    export const ItemScaleHasChanged = createEnumToken('TableViewDelegate', 'ItemChange', 'ItemScaleHasChanged');
-    export const ItemTransformHasChanged = createEnumToken('TableViewDelegate', 'ItemChange', 'ItemTransformHasChanged');
+    export const ItemChildAddedChange = createEnumToken(
+      'TableViewDelegate',
+      'ItemChange',
+      'ItemChildAddedChange',
+    );
+    export const ItemChildRemovedChange = createEnumToken(
+      'TableViewDelegate',
+      'ItemChange',
+      'ItemChildRemovedChange',
+    );
+    export const ItemSceneChange = createEnumToken(
+      'TableViewDelegate',
+      'ItemChange',
+      'ItemSceneChange',
+    );
+    export const ItemVisibleHasChanged = createEnumToken(
+      'TableViewDelegate',
+      'ItemChange',
+      'ItemVisibleHasChanged',
+    );
+    export const ItemParentHasChanged = createEnumToken(
+      'TableViewDelegate',
+      'ItemChange',
+      'ItemParentHasChanged',
+    );
+    export const ItemOpacityHasChanged = createEnumToken(
+      'TableViewDelegate',
+      'ItemChange',
+      'ItemOpacityHasChanged',
+    );
+    export const ItemActiveFocusHasChanged = createEnumToken(
+      'TableViewDelegate',
+      'ItemChange',
+      'ItemActiveFocusHasChanged',
+    );
+    export const ItemRotationHasChanged = createEnumToken(
+      'TableViewDelegate',
+      'ItemChange',
+      'ItemRotationHasChanged',
+    );
+    export const ItemAntialiasingHasChanged = createEnumToken(
+      'TableViewDelegate',
+      'ItemChange',
+      'ItemAntialiasingHasChanged',
+    );
+    export const ItemDevicePixelRatioHasChanged = createEnumToken(
+      'TableViewDelegate',
+      'ItemChange',
+      'ItemDevicePixelRatioHasChanged',
+    );
+    export const ItemEnabledHasChanged = createEnumToken(
+      'TableViewDelegate',
+      'ItemChange',
+      'ItemEnabledHasChanged',
+    );
+    export const ItemScaleHasChanged = createEnumToken(
+      'TableViewDelegate',
+      'ItemChange',
+      'ItemScaleHasChanged',
+    );
+    export const ItemTransformHasChanged = createEnumToken(
+      'TableViewDelegate',
+      'ItemChange',
+      'ItemTransformHasChanged',
+    );
   }
   export namespace TransformOrigin {
     export const TopLeft = createEnumToken('TableViewDelegate', 'TransformOrigin', 'TopLeft');
@@ -775,6 +844,10 @@ export namespace TableViewDelegate {
     export const Right = createEnumToken('TableViewDelegate', 'TransformOrigin', 'Right');
     export const BottomLeft = createEnumToken('TableViewDelegate', 'TransformOrigin', 'BottomLeft');
     export const Bottom = createEnumToken('TableViewDelegate', 'TransformOrigin', 'Bottom');
-    export const BottomRight = createEnumToken('TableViewDelegate', 'TransformOrigin', 'BottomRight');
+    export const BottomRight = createEnumToken(
+      'TableViewDelegate',
+      'TransformOrigin',
+      'BottomRight',
+    );
   }
 }

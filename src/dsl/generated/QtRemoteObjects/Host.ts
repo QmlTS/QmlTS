@@ -2,8 +2,8 @@
 // Type: Host
 // Generated from Qt 6.11.0
 
-import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { QmlObjectBuilder, QmlUrl, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface HostBuilder {
   id(id: string): HostBuilder;
   child(obj: QmlObjectBuilder): HostBuilder;
@@ -43,10 +43,8 @@ const HOST_META: TypeMetadata = {
     { handlerName: 'onRemoteObjectAdded', paramCount: 1 },
     { handlerName: 'onRemoteObjectRemoved', paramCount: 1 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function Host(): HostBuilder {
@@ -55,17 +53,41 @@ export function Host(): HostBuilder {
 
 export namespace Host {
   export namespace AllowedSchemas {
-    export const BuiltInSchemasOnly = createEnumToken('Host', 'AllowedSchemas', 'BuiltInSchemasOnly');
-    export const AllowExternalRegistration = createEnumToken('Host', 'AllowedSchemas', 'AllowExternalRegistration');
+    export const BuiltInSchemasOnly = createEnumToken(
+      'Host',
+      'AllowedSchemas',
+      'BuiltInSchemasOnly',
+    );
+    export const AllowExternalRegistration = createEnumToken(
+      'Host',
+      'AllowedSchemas',
+      'AllowExternalRegistration',
+    );
   }
   export namespace ErrorCode {
     export const NoError = createEnumToken('Host', 'ErrorCode', 'NoError');
     export const RegistryNotAcquired = createEnumToken('Host', 'ErrorCode', 'RegistryNotAcquired');
-    export const RegistryAlreadyHosted = createEnumToken('Host', 'ErrorCode', 'RegistryAlreadyHosted');
+    export const RegistryAlreadyHosted = createEnumToken(
+      'Host',
+      'ErrorCode',
+      'RegistryAlreadyHosted',
+    );
     export const NodeIsNoServer = createEnumToken('Host', 'ErrorCode', 'NodeIsNoServer');
-    export const ServerAlreadyCreated = createEnumToken('Host', 'ErrorCode', 'ServerAlreadyCreated');
-    export const UnintendedRegistryHosting = createEnumToken('Host', 'ErrorCode', 'UnintendedRegistryHosting');
-    export const OperationNotValidOnClientNode = createEnumToken('Host', 'ErrorCode', 'OperationNotValidOnClientNode');
+    export const ServerAlreadyCreated = createEnumToken(
+      'Host',
+      'ErrorCode',
+      'ServerAlreadyCreated',
+    );
+    export const UnintendedRegistryHosting = createEnumToken(
+      'Host',
+      'ErrorCode',
+      'UnintendedRegistryHosting',
+    );
+    export const OperationNotValidOnClientNode = createEnumToken(
+      'Host',
+      'ErrorCode',
+      'OperationNotValidOnClientNode',
+    );
     export const SourceNotRegistered = createEnumToken('Host', 'ErrorCode', 'SourceNotRegistered');
     export const MissingObjectName = createEnumToken('Host', 'ErrorCode', 'MissingObjectName');
     export const HostUrlInvalid = createEnumToken('Host', 'ErrorCode', 'HostUrlInvalid');

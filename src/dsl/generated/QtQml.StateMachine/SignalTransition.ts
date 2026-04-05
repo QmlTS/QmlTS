@@ -2,8 +2,13 @@
 // Type: SignalTransition
 // Generated from Qt 6.11.0
 
+import type {
+  QmlEnumToken,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
-import type { QmlEnumToken, QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
 import type { QtObjectBuilder } from '../QML/QtObject.js';
 export interface SignalTransitionBuilder {
   id(id: string): SignalTransitionBuilder;
@@ -56,19 +61,28 @@ const SIGNALTRANSITION_META: TypeMetadata = {
     { handlerName: 'onTargetStatesChanged', paramCount: 0 },
     { handlerName: 'onTriggered', paramCount: 0 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function SignalTransition(): SignalTransitionBuilder {
-  return createFluentBuilder('SignalTransition', SIGNALTRANSITION_META) as unknown as SignalTransitionBuilder;
+  return createFluentBuilder(
+    'SignalTransition',
+    SIGNALTRANSITION_META,
+  ) as unknown as SignalTransitionBuilder;
 }
 
 export namespace SignalTransition {
   export namespace TransitionType {
-    export const ExternalTransition = createEnumToken('SignalTransition', 'TransitionType', 'ExternalTransition');
-    export const InternalTransition = createEnumToken('SignalTransition', 'TransitionType', 'InternalTransition');
+    export const ExternalTransition = createEnumToken(
+      'SignalTransition',
+      'TransitionType',
+      'ExternalTransition',
+    );
+    export const InternalTransition = createEnumToken(
+      'SignalTransition',
+      'TransitionType',
+      'InternalTransition',
+    );
   }
 }

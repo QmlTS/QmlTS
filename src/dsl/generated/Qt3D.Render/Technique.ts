@@ -2,8 +2,8 @@
 // Type: Technique
 // Generated from Qt 6.11.0
 
-import { createFluentBuilder } from '../../runtime/index.js';
 import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import { createFluentBuilder } from '../../runtime/index.js';
 export interface TechniqueBuilder {
   id(id: string): TechniqueBuilder;
   child(obj: QmlObjectBuilder): TechniqueBuilder;
@@ -33,10 +33,8 @@ const TECHNIQUE_META: TypeMetadata = {
     { handlerName: 'onObjectNameChanged', paramCount: 1 },
     { handlerName: 'onParentChanged', paramCount: 1 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function Technique(): TechniqueBuilder {

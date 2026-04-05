@@ -2,8 +2,8 @@
 // Type: CameraPermission
 // Generated from Qt 6.11.0
 
-import { createFluentBuilder } from '../../runtime/index.js';
 import type { QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import { createFluentBuilder } from '../../runtime/index.js';
 export interface CameraPermissionBuilder {
   id(id: string): CameraPermissionBuilder;
   child(obj: QmlObjectBuilder): CameraPermissionBuilder;
@@ -16,19 +16,18 @@ export interface CameraPermissionBuilder {
 
 const CAMERAPERMISSION_META: TypeMetadata = {
   typeName: 'CameraPermission',
-  properties: [
-    { name: 'objectName', hasValue: true, hasBinding: true },
-  ],
+  properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
   signals: [
     { handlerName: 'onObjectNameChanged', paramCount: 1 },
     { handlerName: 'onStatusChanged', paramCount: 0 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function CameraPermission(): CameraPermissionBuilder {
-  return createFluentBuilder('CameraPermission', CAMERAPERMISSION_META) as unknown as CameraPermissionBuilder;
+  return createFluentBuilder(
+    'CameraPermission',
+    CAMERAPERMISSION_META,
+  ) as unknown as CameraPermissionBuilder;
 }

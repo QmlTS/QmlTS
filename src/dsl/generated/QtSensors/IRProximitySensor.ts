@@ -2,8 +2,8 @@
 // Type: IRProximitySensor
 // Generated from Qt 6.11.0
 
-import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { QmlEnumToken, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface IRProximitySensorBuilder {
   id(id: string): IRProximitySensorBuilder;
   child(obj: QmlObjectBuilder): IRProximitySensorBuilder;
@@ -86,30 +86,55 @@ const IRPROXIMITYSENSOR_META: TypeMetadata = {
     { handlerName: 'onSkipDuplicatesChanged', paramCount: 1 },
     { handlerName: 'onUserOrientationChanged', paramCount: 1 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function IRProximitySensor(): IRProximitySensorBuilder {
-  return createFluentBuilder('IRProximitySensor', IRPROXIMITYSENSOR_META) as unknown as IRProximitySensorBuilder;
+  return createFluentBuilder(
+    'IRProximitySensor',
+    IRPROXIMITYSENSOR_META,
+  ) as unknown as IRProximitySensorBuilder;
 }
 
 export namespace IRProximitySensor {
   export namespace AxesOrientationMode {
-    export const FixedOrientation = createEnumToken('IRProximitySensor', 'AxesOrientationMode', 'FixedOrientation');
-    export const AutomaticOrientation = createEnumToken('IRProximitySensor', 'AxesOrientationMode', 'AutomaticOrientation');
-    export const UserOrientation = createEnumToken('IRProximitySensor', 'AxesOrientationMode', 'UserOrientation');
+    export const FixedOrientation = createEnumToken(
+      'IRProximitySensor',
+      'AxesOrientationMode',
+      'FixedOrientation',
+    );
+    export const AutomaticOrientation = createEnumToken(
+      'IRProximitySensor',
+      'AxesOrientationMode',
+      'AutomaticOrientation',
+    );
+    export const UserOrientation = createEnumToken(
+      'IRProximitySensor',
+      'AxesOrientationMode',
+      'UserOrientation',
+    );
   }
   export namespace Feature {
     export const Buffering = createEnumToken('IRProximitySensor', 'Feature', 'Buffering');
     export const AlwaysOn = createEnumToken('IRProximitySensor', 'Feature', 'AlwaysOn');
     export const GeoValues = createEnumToken('IRProximitySensor', 'Feature', 'GeoValues');
     export const FieldOfView = createEnumToken('IRProximitySensor', 'Feature', 'FieldOfView');
-    export const AccelerationMode = createEnumToken('IRProximitySensor', 'Feature', 'AccelerationMode');
+    export const AccelerationMode = createEnumToken(
+      'IRProximitySensor',
+      'Feature',
+      'AccelerationMode',
+    );
     export const SkipDuplicates = createEnumToken('IRProximitySensor', 'Feature', 'SkipDuplicates');
-    export const AxesOrientation = createEnumToken('IRProximitySensor', 'Feature', 'AxesOrientation');
-    export const PressureSensorTemperature = createEnumToken('IRProximitySensor', 'Feature', 'PressureSensorTemperature');
+    export const AxesOrientation = createEnumToken(
+      'IRProximitySensor',
+      'Feature',
+      'AxesOrientation',
+    );
+    export const PressureSensorTemperature = createEnumToken(
+      'IRProximitySensor',
+      'Feature',
+      'PressureSensorTemperature',
+    );
   }
 }

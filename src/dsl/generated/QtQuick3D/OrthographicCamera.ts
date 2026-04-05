@@ -2,8 +2,14 @@
 // Type: OrthographicCamera
 // Generated from Qt 6.11.0
 
+import type {
+  QmlObjectBuilder,
+  QmlQuaternion,
+  QmlValue,
+  QmlVector3d,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
-import type { QmlObjectBuilder, QmlQuaternion, QmlValue, QmlVector3d, TypeMetadata } from '../../runtime/index.js';
 import type { NodeBuilder } from './Node.js';
 export interface OrthographicCameraBuilder {
   id(id: string): OrthographicCameraBuilder;
@@ -143,14 +149,15 @@ const ORTHOGRAPHICCAMERA_META: TypeMetadata = {
     { handlerName: 'onYChanged', paramCount: 0 },
     { handlerName: 'onZChanged', paramCount: 0 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function OrthographicCamera(): OrthographicCameraBuilder {
-  return createFluentBuilder('OrthographicCamera', ORTHOGRAPHICCAMERA_META) as unknown as OrthographicCameraBuilder;
+  return createFluentBuilder(
+    'OrthographicCamera',
+    ORTHOGRAPHICCAMERA_META,
+  ) as unknown as OrthographicCameraBuilder;
 }
 
 export namespace OrthographicCamera {
@@ -159,7 +166,11 @@ export namespace OrthographicCamera {
   }
   export namespace TransformSpace {
     export const LocalSpace = createEnumToken('OrthographicCamera', 'TransformSpace', 'LocalSpace');
-    export const ParentSpace = createEnumToken('OrthographicCamera', 'TransformSpace', 'ParentSpace');
+    export const ParentSpace = createEnumToken(
+      'OrthographicCamera',
+      'TransformSpace',
+      'ParentSpace',
+    );
     export const SceneSpace = createEnumToken('OrthographicCamera', 'TransformSpace', 'SceneSpace');
   }
 }

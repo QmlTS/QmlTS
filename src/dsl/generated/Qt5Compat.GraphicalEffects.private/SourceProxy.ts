@@ -2,8 +2,8 @@
 // Type: SourceProxy
 // Generated from Qt 6.11.0
 
-import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { QmlEnumToken, QmlObjectBuilder, QmlRect, TypeMetadata } from '../../runtime/index.js';
+import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { QtObjectBuilder } from '../QML/QtObject.js';
 import type { ItemBuilder } from '../QtQuick/Item.js';
 import type { PaletteBuilder } from '../QtQuick/Palette.js';
@@ -223,8 +223,7 @@ const SOURCEPROXY_META: TypeMetadata = {
       ],
     },
   ],
-  attached: [
-  ],
+  attached: [],
   defaultProperty: 'data',
 };
 
@@ -234,33 +233,105 @@ export function SourceProxy(): SourceProxyBuilder {
 
 export namespace SourceProxy {
   export namespace Flags {
-    export const ItemClipsChildrenToShape = createEnumToken('SourceProxy', 'Flags', 'ItemClipsChildrenToShape');
-    export const ItemAcceptsInputMethod = createEnumToken('SourceProxy', 'Flags', 'ItemAcceptsInputMethod');
+    export const ItemClipsChildrenToShape = createEnumToken(
+      'SourceProxy',
+      'Flags',
+      'ItemClipsChildrenToShape',
+    );
+    export const ItemAcceptsInputMethod = createEnumToken(
+      'SourceProxy',
+      'Flags',
+      'ItemAcceptsInputMethod',
+    );
     export const ItemIsFocusScope = createEnumToken('SourceProxy', 'Flags', 'ItemIsFocusScope');
     export const ItemHasContents = createEnumToken('SourceProxy', 'Flags', 'ItemHasContents');
     export const ItemAcceptsDrops = createEnumToken('SourceProxy', 'Flags', 'ItemAcceptsDrops');
     export const ItemIsViewport = createEnumToken('SourceProxy', 'Flags', 'ItemIsViewport');
-    export const ItemObservesViewport = createEnumToken('SourceProxy', 'Flags', 'ItemObservesViewport');
+    export const ItemObservesViewport = createEnumToken(
+      'SourceProxy',
+      'Flags',
+      'ItemObservesViewport',
+    );
   }
   export namespace Interpolation {
-    export const AnyInterpolation = createEnumToken('SourceProxy', 'Interpolation', 'AnyInterpolation');
-    export const NearestInterpolation = createEnumToken('SourceProxy', 'Interpolation', 'NearestInterpolation');
-    export const LinearInterpolation = createEnumToken('SourceProxy', 'Interpolation', 'LinearInterpolation');
+    export const AnyInterpolation = createEnumToken(
+      'SourceProxy',
+      'Interpolation',
+      'AnyInterpolation',
+    );
+    export const NearestInterpolation = createEnumToken(
+      'SourceProxy',
+      'Interpolation',
+      'NearestInterpolation',
+    );
+    export const LinearInterpolation = createEnumToken(
+      'SourceProxy',
+      'Interpolation',
+      'LinearInterpolation',
+    );
   }
   export namespace ItemChange {
-    export const ItemChildAddedChange = createEnumToken('SourceProxy', 'ItemChange', 'ItemChildAddedChange');
-    export const ItemChildRemovedChange = createEnumToken('SourceProxy', 'ItemChange', 'ItemChildRemovedChange');
+    export const ItemChildAddedChange = createEnumToken(
+      'SourceProxy',
+      'ItemChange',
+      'ItemChildAddedChange',
+    );
+    export const ItemChildRemovedChange = createEnumToken(
+      'SourceProxy',
+      'ItemChange',
+      'ItemChildRemovedChange',
+    );
     export const ItemSceneChange = createEnumToken('SourceProxy', 'ItemChange', 'ItemSceneChange');
-    export const ItemVisibleHasChanged = createEnumToken('SourceProxy', 'ItemChange', 'ItemVisibleHasChanged');
-    export const ItemParentHasChanged = createEnumToken('SourceProxy', 'ItemChange', 'ItemParentHasChanged');
-    export const ItemOpacityHasChanged = createEnumToken('SourceProxy', 'ItemChange', 'ItemOpacityHasChanged');
-    export const ItemActiveFocusHasChanged = createEnumToken('SourceProxy', 'ItemChange', 'ItemActiveFocusHasChanged');
-    export const ItemRotationHasChanged = createEnumToken('SourceProxy', 'ItemChange', 'ItemRotationHasChanged');
-    export const ItemAntialiasingHasChanged = createEnumToken('SourceProxy', 'ItemChange', 'ItemAntialiasingHasChanged');
-    export const ItemDevicePixelRatioHasChanged = createEnumToken('SourceProxy', 'ItemChange', 'ItemDevicePixelRatioHasChanged');
-    export const ItemEnabledHasChanged = createEnumToken('SourceProxy', 'ItemChange', 'ItemEnabledHasChanged');
-    export const ItemScaleHasChanged = createEnumToken('SourceProxy', 'ItemChange', 'ItemScaleHasChanged');
-    export const ItemTransformHasChanged = createEnumToken('SourceProxy', 'ItemChange', 'ItemTransformHasChanged');
+    export const ItemVisibleHasChanged = createEnumToken(
+      'SourceProxy',
+      'ItemChange',
+      'ItemVisibleHasChanged',
+    );
+    export const ItemParentHasChanged = createEnumToken(
+      'SourceProxy',
+      'ItemChange',
+      'ItemParentHasChanged',
+    );
+    export const ItemOpacityHasChanged = createEnumToken(
+      'SourceProxy',
+      'ItemChange',
+      'ItemOpacityHasChanged',
+    );
+    export const ItemActiveFocusHasChanged = createEnumToken(
+      'SourceProxy',
+      'ItemChange',
+      'ItemActiveFocusHasChanged',
+    );
+    export const ItemRotationHasChanged = createEnumToken(
+      'SourceProxy',
+      'ItemChange',
+      'ItemRotationHasChanged',
+    );
+    export const ItemAntialiasingHasChanged = createEnumToken(
+      'SourceProxy',
+      'ItemChange',
+      'ItemAntialiasingHasChanged',
+    );
+    export const ItemDevicePixelRatioHasChanged = createEnumToken(
+      'SourceProxy',
+      'ItemChange',
+      'ItemDevicePixelRatioHasChanged',
+    );
+    export const ItemEnabledHasChanged = createEnumToken(
+      'SourceProxy',
+      'ItemChange',
+      'ItemEnabledHasChanged',
+    );
+    export const ItemScaleHasChanged = createEnumToken(
+      'SourceProxy',
+      'ItemChange',
+      'ItemScaleHasChanged',
+    );
+    export const ItemTransformHasChanged = createEnumToken(
+      'SourceProxy',
+      'ItemChange',
+      'ItemTransformHasChanged',
+    );
   }
   export namespace TransformOrigin {
     export const TopLeft = createEnumToken('SourceProxy', 'TransformOrigin', 'TopLeft');

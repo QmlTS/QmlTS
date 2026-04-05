@@ -2,8 +2,8 @@
 // Type: AnimationController
 // Generated from Qt 6.11.0
 
-import { createFluentBuilder } from '../../runtime/index.js';
 import type { QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import { createFluentBuilder } from '../../runtime/index.js';
 import type { EntityBuilder } from '../Qt3D.Core/Entity.js';
 export interface AnimationControllerBuilder {
   id(id: string): AnimationControllerBuilder;
@@ -52,12 +52,13 @@ const ANIMATIONCONTROLLER_META: TypeMetadata = {
     { handlerName: 'onPositionScaleChanged', paramCount: 1 },
     { handlerName: 'onRecursiveChanged', paramCount: 1 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function AnimationController(): AnimationControllerBuilder {
-  return createFluentBuilder('AnimationController', ANIMATIONCONTROLLER_META) as unknown as AnimationControllerBuilder;
+  return createFluentBuilder(
+    'AnimationController',
+    ANIMATIONCONTROLLER_META,
+  ) as unknown as AnimationControllerBuilder;
 }

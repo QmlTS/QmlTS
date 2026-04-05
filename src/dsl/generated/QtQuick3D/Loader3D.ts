@@ -2,8 +2,16 @@
 // Type: Loader3D
 // Generated from Qt 6.11.0
 
+import type {
+  QmlComponent,
+  QmlObjectBuilder,
+  QmlQuaternion,
+  QmlUrl,
+  QmlValue,
+  QmlVector3d,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
-import type { QmlComponent, QmlObjectBuilder, QmlQuaternion, QmlUrl, QmlValue, QmlVector3d, TypeMetadata } from '../../runtime/index.js';
 export interface Loader3DBuilder {
   id(id: string): Loader3DBuilder;
   child(obj: QmlObjectBuilder): Loader3DBuilder;
@@ -135,10 +143,8 @@ const LOADER3D_META: TypeMetadata = {
     { handlerName: 'onYChanged', paramCount: 0 },
     { handlerName: 'onZChanged', paramCount: 0 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function Loader3D(): Loader3DBuilder {

@@ -2,8 +2,8 @@
 // Type: SpriteGrid
 // Generated from Qt 6.11.0
 
-import { createFluentBuilder } from '../../runtime/index.js';
 import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import { createFluentBuilder } from '../../runtime/index.js';
 export interface SpriteGridBuilder {
   id(id: string): SpriteGridBuilder;
   child(obj: QmlObjectBuilder): SpriteGridBuilder;
@@ -55,10 +55,8 @@ const SPRITEGRID_META: TypeMetadata = {
     { handlerName: 'onTextureChanged', paramCount: 1 },
     { handlerName: 'onTextureTransformChanged', paramCount: 1 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function SpriteGrid(): SpriteGridBuilder {

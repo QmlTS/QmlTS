@@ -2,8 +2,14 @@
 // Type: DelegateModel
 // Generated from Qt 6.11.0
 
+import type {
+  QmlComponent,
+  QmlEnumToken,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
-import type { QmlComponent, QmlEnumToken, QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
 import type { DelegateModelAttachedBuilder } from './QQmlDelegateModelAttached.js';
 import type { ObjectModelAttachedBuilder } from './QQmlObjectModelAttached.js';
 import type { PackageAttachedBuilder } from './QQuickPackageAttached.js';
@@ -68,8 +74,7 @@ const DELEGATEMODEL_META: TypeMetadata = {
     { handlerName: 'onObjectNameChanged', paramCount: 1 },
     { handlerName: 'onRootIndexChanged', paramCount: 0 },
   ],
-  grouped: [
-  ],
+  grouped: [],
   attached: [
     {
       methodName: 'delegateModel',
@@ -89,9 +94,7 @@ const DELEGATEMODEL_META: TypeMetadata = {
     {
       methodName: 'objectModel',
       attachedTypeName: 'ObjectModel',
-      properties: [
-        { name: 'objectName', hasValue: true, hasBinding: true },
-      ],
+      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
       signals: [
         { handlerName: 'onIndexChanged', paramCount: 0 },
         { handlerName: 'onObjectNameChanged', paramCount: 1 },
@@ -104,21 +107,26 @@ const DELEGATEMODEL_META: TypeMetadata = {
         { name: 'name', hasValue: true, hasBinding: true },
         { name: 'objectName', hasValue: true, hasBinding: true },
       ],
-      signals: [
-        { handlerName: 'onObjectNameChanged', paramCount: 1 },
-      ],
+      signals: [{ handlerName: 'onObjectNameChanged', paramCount: 1 }],
     },
   ],
   defaultProperty: 'delegate',
 };
 
 export function DelegateModel(): DelegateModelBuilder {
-  return createFluentBuilder('DelegateModel', DELEGATEMODEL_META) as unknown as DelegateModelBuilder;
+  return createFluentBuilder(
+    'DelegateModel',
+    DELEGATEMODEL_META,
+  ) as unknown as DelegateModelBuilder;
 }
 
 export namespace DelegateModel {
   export namespace DelegateModelAccess {
-    export const Qt5ReadWrite = createEnumToken('DelegateModel', 'DelegateModelAccess', 'Qt5ReadWrite');
+    export const Qt5ReadWrite = createEnumToken(
+      'DelegateModel',
+      'DelegateModelAccess',
+      'Qt5ReadWrite',
+    );
     export const ReadOnly = createEnumToken('DelegateModel', 'DelegateModelAccess', 'ReadOnly');
     export const ReadWrite = createEnumToken('DelegateModel', 'DelegateModelAccess', 'ReadWrite');
   }

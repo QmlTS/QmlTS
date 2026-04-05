@@ -2,8 +2,8 @@
 // Type: TableModelColumn
 // Generated from Qt 6.11.0
 
-import { createFluentBuilder } from '../../runtime/index.js';
 import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import { createFluentBuilder } from '../../runtime/index.js';
 export interface TableModelColumnBuilder {
   id(id: string): TableModelColumnBuilder;
   child(obj: QmlObjectBuilder): TableModelColumnBuilder;
@@ -93,12 +93,13 @@ const TABLEMODELCOLUMN_META: TypeMetadata = {
     { handlerName: 'onToolTipChanged', paramCount: 0 },
     { handlerName: 'onWhatsThisChanged', paramCount: 0 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function TableModelColumn(): TableModelColumnBuilder {
-  return createFluentBuilder('TableModelColumn', TABLEMODELCOLUMN_META) as unknown as TableModelColumnBuilder;
+  return createFluentBuilder(
+    'TableModelColumn',
+    TABLEMODELCOLUMN_META,
+  ) as unknown as TableModelColumnBuilder;
 }

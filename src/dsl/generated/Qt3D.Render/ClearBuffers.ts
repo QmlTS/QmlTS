@@ -2,8 +2,14 @@
 // Type: ClearBuffers
 // Generated from Qt 6.11.0
 
+import type {
+  QmlColor,
+  QmlEnumToken,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
-import type { QmlColor, QmlEnumToken, QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
 import type { RenderTargetOutputBuilder } from './RenderTargetOutput.js';
 export interface ClearBuffersBuilder {
   id(id: string): ClearBuffersBuilder;
@@ -59,10 +65,8 @@ const CLEARBUFFERS_META: TypeMetadata = {
     { handlerName: 'onObjectNameChanged', paramCount: 1 },
     { handlerName: 'onParentChanged', paramCount: 1 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function ClearBuffers(): ClearBuffersBuilder {
@@ -75,9 +79,21 @@ export namespace ClearBuffers {
     export const ColorBuffer = createEnumToken('ClearBuffers', 'BufferType', 'ColorBuffer');
     export const DepthBuffer = createEnumToken('ClearBuffers', 'BufferType', 'DepthBuffer');
     export const StencilBuffer = createEnumToken('ClearBuffers', 'BufferType', 'StencilBuffer');
-    export const DepthStencilBuffer = createEnumToken('ClearBuffers', 'BufferType', 'DepthStencilBuffer');
-    export const ColorDepthBuffer = createEnumToken('ClearBuffers', 'BufferType', 'ColorDepthBuffer');
-    export const ColorDepthStencilBuffer = createEnumToken('ClearBuffers', 'BufferType', 'ColorDepthStencilBuffer');
+    export const DepthStencilBuffer = createEnumToken(
+      'ClearBuffers',
+      'BufferType',
+      'DepthStencilBuffer',
+    );
+    export const ColorDepthBuffer = createEnumToken(
+      'ClearBuffers',
+      'BufferType',
+      'ColorDepthBuffer',
+    );
+    export const ColorDepthStencilBuffer = createEnumToken(
+      'ClearBuffers',
+      'BufferType',
+      'ColorDepthStencilBuffer',
+    );
     export const AllBuffers = createEnumToken('ClearBuffers', 'BufferType', 'AllBuffers');
   }
 }

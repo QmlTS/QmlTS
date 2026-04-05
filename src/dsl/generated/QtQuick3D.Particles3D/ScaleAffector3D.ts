@@ -2,8 +2,15 @@
 // Type: ScaleAffector3D
 // Generated from Qt 6.11.0
 
+import type {
+  QmlEnumToken,
+  QmlObjectBuilder,
+  QmlQuaternion,
+  QmlValue,
+  QmlVector3d,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
-import type { QmlEnumToken, QmlObjectBuilder, QmlQuaternion, QmlValue, QmlVector3d, TypeMetadata } from '../../runtime/index.js';
 import type { ParticleSystem3DBuilder } from './ParticleSystem3D.js';
 export interface ScaleAffector3DBuilder {
   id(id: string): ScaleAffector3DBuilder;
@@ -145,14 +152,15 @@ const SCALEAFFECTOR3D_META: TypeMetadata = {
     { handlerName: 'onYChanged', paramCount: 0 },
     { handlerName: 'onZChanged', paramCount: 0 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function ScaleAffector3D(): ScaleAffector3DBuilder {
-  return createFluentBuilder('ScaleAffector3D', SCALEAFFECTOR3D_META) as unknown as ScaleAffector3DBuilder;
+  return createFluentBuilder(
+    'ScaleAffector3D',
+    SCALEAFFECTOR3D_META,
+  ) as unknown as ScaleAffector3DBuilder;
 }
 
 export namespace ScaleAffector3D {

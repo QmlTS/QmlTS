@@ -2,12 +2,12 @@
 // Type: FontDialogImpl
 // Generated from Qt 6.11.0
 
-import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { QmlEnumToken, QmlFont, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
-import type { AnchorsBuilder } from '../QtQuick.Templates/QQuickPopupAnchors.js';
+import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { ItemBuilder } from '../QtQuick/Item.js';
 import type { PaletteBuilder } from '../QtQuick/Palette.js';
 import type { TransitionBuilder } from '../QtQuick/Transition.js';
+import type { AnchorsBuilder } from '../QtQuick.Templates/QQuickPopupAnchors.js';
 import type { ColorDialogImplAttachedBuilder } from './QQuickColorDialogImplAttached.js';
 import type { FileDialogImplAttachedBuilder } from './QQuickFileDialogImplAttached.js';
 import type { FolderDialogImplAttachedBuilder } from './QQuickFolderDialogImplAttached.js';
@@ -347,9 +347,7 @@ const FONTDIALOGIMPL_META: TypeMetadata = {
     {
       methodName: 'anchors',
       groupName: 'anchors',
-      properties: [
-        { name: 'centerIn', hasValue: true, hasBinding: true },
-      ],
+      properties: [{ name: 'centerIn', hasValue: true, hasBinding: true }],
     },
   ],
   attached: [
@@ -465,16 +463,35 @@ const FONTDIALOGIMPL_META: TypeMetadata = {
 };
 
 export function FontDialogImpl(): FontDialogImplBuilder {
-  return createFluentBuilder('FontDialogImpl', FONTDIALOGIMPL_META) as unknown as FontDialogImplBuilder;
+  return createFluentBuilder(
+    'FontDialogImpl',
+    FONTDIALOGIMPL_META,
+  ) as unknown as FontDialogImplBuilder;
 }
 
 export namespace FontDialogImpl {
   export namespace ClosePolicy {
     export const NoAutoClose = createEnumToken('FontDialogImpl', 'ClosePolicy', 'NoAutoClose');
-    export const CloseOnPressOutside = createEnumToken('FontDialogImpl', 'ClosePolicy', 'CloseOnPressOutside');
-    export const CloseOnPressOutsideParent = createEnumToken('FontDialogImpl', 'ClosePolicy', 'CloseOnPressOutsideParent');
-    export const CloseOnReleaseOutside = createEnumToken('FontDialogImpl', 'ClosePolicy', 'CloseOnReleaseOutside');
-    export const CloseOnReleaseOutsideParent = createEnumToken('FontDialogImpl', 'ClosePolicy', 'CloseOnReleaseOutsideParent');
+    export const CloseOnPressOutside = createEnumToken(
+      'FontDialogImpl',
+      'ClosePolicy',
+      'CloseOnPressOutside',
+    );
+    export const CloseOnPressOutsideParent = createEnumToken(
+      'FontDialogImpl',
+      'ClosePolicy',
+      'CloseOnPressOutsideParent',
+    );
+    export const CloseOnReleaseOutside = createEnumToken(
+      'FontDialogImpl',
+      'ClosePolicy',
+      'CloseOnReleaseOutside',
+    );
+    export const CloseOnReleaseOutsideParent = createEnumToken(
+      'FontDialogImpl',
+      'ClosePolicy',
+      'CloseOnReleaseOutsideParent',
+    );
     export const CloseOnEscape = createEnumToken('FontDialogImpl', 'ClosePolicy', 'CloseOnEscape');
   }
   export namespace PopupType {

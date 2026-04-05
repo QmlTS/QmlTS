@@ -2,8 +2,8 @@
 // Type: ScissorTest
 // Generated from Qt 6.11.0
 
-import { createFluentBuilder } from '../../runtime/index.js';
 import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import { createFluentBuilder } from '../../runtime/index.js';
 export interface ScissorTestBuilder {
   id(id: string): ScissorTestBuilder;
   child(obj: QmlObjectBuilder): ScissorTestBuilder;
@@ -53,10 +53,8 @@ const SCISSORTEST_META: TypeMetadata = {
     { handlerName: 'onParentChanged', paramCount: 1 },
     { handlerName: 'onWidthChanged', paramCount: 1 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function ScissorTest(): ScissorTestBuilder {

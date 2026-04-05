@@ -2,8 +2,16 @@
 // Type: ForwardRenderer
 // Generated from Qt 6.11.0
 
+import type {
+  QmlColor,
+  QmlEnumToken,
+  QmlObjectBuilder,
+  QmlRect,
+  QmlSize,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
-import type { QmlColor, QmlEnumToken, QmlObjectBuilder, QmlRect, QmlSize, QmlValue, TypeMetadata } from '../../runtime/index.js';
 import type { QtObjectBuilder } from '../QML/QtObject.js';
 import type { EntityBuilder } from '../Qt3D.Core/Entity.js';
 export interface ForwardRendererBuilder {
@@ -83,12 +91,13 @@ const FORWARDRENDERER_META: TypeMetadata = {
     { handlerName: 'onSurfaceChanged', paramCount: 1 },
     { handlerName: 'onViewportRectChanged', paramCount: 1 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function ForwardRenderer(): ForwardRendererBuilder {
-  return createFluentBuilder('ForwardRenderer', FORWARDRENDERER_META) as unknown as ForwardRendererBuilder;
+  return createFluentBuilder(
+    'ForwardRenderer',
+    FORWARDRENDERER_META,
+  ) as unknown as ForwardRendererBuilder;
 }

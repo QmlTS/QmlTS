@@ -2,8 +2,8 @@
 // Type: AddDefine
 // Generated from Qt 6.11.0
 
-import { createFluentBuilder } from '../../runtime/index.js';
 import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import { createFluentBuilder } from '../../runtime/index.js';
 export interface AddDefineBuilder {
   id(id: string): AddDefineBuilder;
   child(obj: QmlObjectBuilder): AddDefineBuilder;
@@ -39,10 +39,8 @@ const ADDDEFINE_META: TypeMetadata = {
     { handlerName: 'onParentChanged', paramCount: 0 },
     { handlerName: 'onStateChanged', paramCount: 0 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function AddDefine(): AddDefineBuilder {

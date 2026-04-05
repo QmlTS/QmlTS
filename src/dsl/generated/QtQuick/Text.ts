@@ -2,8 +2,15 @@
 // Type: Text
 // Generated from Qt 6.11.0
 
+import type {
+  QmlColor,
+  QmlEnumToken,
+  QmlFont,
+  QmlObjectBuilder,
+  QmlUrl,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
-import type { QmlColor, QmlEnumToken, QmlFont, QmlObjectBuilder, QmlUrl, TypeMetadata } from '../../runtime/index.js';
 import type { QtObjectBuilder } from '../QML/QtObject.js';
 import type { AccessibleAttachedBuilder } from './Accessible.js';
 import type { EnterKeyAttachedBuilder } from './EnterKey.js';
@@ -488,9 +495,7 @@ const TEXT_META: TypeMetadata = {
     {
       methodName: 'graphicsInfo',
       attachedTypeName: 'GraphicsInfo',
-      properties: [
-        { name: 'objectName', hasValue: true, hasBinding: true },
-      ],
+      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
       signals: [
         { handlerName: 'onApiChanged', paramCount: 0 },
         { handlerName: 'onMajorVersionChanged', paramCount: 0 },
@@ -641,9 +646,7 @@ const TEXT_META: TypeMetadata = {
     {
       methodName: 'pathView',
       attachedTypeName: 'PathView',
-      properties: [
-        { name: 'objectName', hasValue: true, hasBinding: true },
-      ],
+      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
       signals: [
         { handlerName: 'onCurrentItemChanged', paramCount: 0 },
         { handlerName: 'onPathChanged', paramCount: 0 },
@@ -653,9 +656,7 @@ const TEXT_META: TypeMetadata = {
     {
       methodName: 'positioner',
       attachedTypeName: 'Positioner',
-      properties: [
-        { name: 'objectName', hasValue: true, hasBinding: true },
-      ],
+      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
       signals: [
         { handlerName: 'onIndexChanged', paramCount: 0 },
         { handlerName: 'onIsFirstItemChanged', paramCount: 0 },
@@ -679,9 +680,7 @@ const TEXT_META: TypeMetadata = {
     {
       methodName: 'screen',
       attachedTypeName: 'Screen',
-      properties: [
-        { name: 'objectName', hasValue: true, hasBinding: true },
-      ],
+      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
       signals: [
         { handlerName: 'onDesktopGeometryChanged', paramCount: 0 },
         { handlerName: 'onDevicePixelRatioChanged', paramCount: 0 },
@@ -719,9 +718,7 @@ const TEXT_META: TypeMetadata = {
     {
       methodName: 'viewTransition',
       attachedTypeName: 'ViewTransition',
-      properties: [
-        { name: 'objectName', hasValue: true, hasBinding: true },
-      ],
+      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
       signals: [
         { handlerName: 'onDestinationChanged', paramCount: 0 },
         { handlerName: 'onIndexChanged', paramCount: 0 },
@@ -734,9 +731,7 @@ const TEXT_META: TypeMetadata = {
     {
       methodName: 'window',
       attachedTypeName: 'Window',
-      properties: [
-        { name: 'objectName', hasValue: true, hasBinding: true },
-      ],
+      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
       signals: [
         { handlerName: 'onActiveChanged', paramCount: 0 },
         { handlerName: 'onActiveFocusItemChanged', paramCount: 0 },
@@ -757,8 +752,16 @@ export function Text(): TextBuilder {
 
 export namespace Text {
   export namespace Flags {
-    export const ItemClipsChildrenToShape = createEnumToken('Text', 'Flags', 'ItemClipsChildrenToShape');
-    export const ItemAcceptsInputMethod = createEnumToken('Text', 'Flags', 'ItemAcceptsInputMethod');
+    export const ItemClipsChildrenToShape = createEnumToken(
+      'Text',
+      'Flags',
+      'ItemClipsChildrenToShape',
+    );
+    export const ItemAcceptsInputMethod = createEnumToken(
+      'Text',
+      'Flags',
+      'ItemAcceptsInputMethod',
+    );
     export const ItemIsFocusScope = createEnumToken('Text', 'Flags', 'ItemIsFocusScope');
     export const ItemHasContents = createEnumToken('Text', 'Flags', 'ItemHasContents');
     export const ItemAcceptsDrops = createEnumToken('Text', 'Flags', 'ItemAcceptsDrops');
@@ -778,22 +781,70 @@ export namespace Text {
     export const AlignJustify = createEnumToken('Text', 'HAlignment', 'AlignJustify');
   }
   export namespace ItemChange {
-    export const ItemChildAddedChange = createEnumToken('Text', 'ItemChange', 'ItemChildAddedChange');
-    export const ItemChildRemovedChange = createEnumToken('Text', 'ItemChange', 'ItemChildRemovedChange');
+    export const ItemChildAddedChange = createEnumToken(
+      'Text',
+      'ItemChange',
+      'ItemChildAddedChange',
+    );
+    export const ItemChildRemovedChange = createEnumToken(
+      'Text',
+      'ItemChange',
+      'ItemChildRemovedChange',
+    );
     export const ItemSceneChange = createEnumToken('Text', 'ItemChange', 'ItemSceneChange');
-    export const ItemVisibleHasChanged = createEnumToken('Text', 'ItemChange', 'ItemVisibleHasChanged');
-    export const ItemParentHasChanged = createEnumToken('Text', 'ItemChange', 'ItemParentHasChanged');
-    export const ItemOpacityHasChanged = createEnumToken('Text', 'ItemChange', 'ItemOpacityHasChanged');
-    export const ItemActiveFocusHasChanged = createEnumToken('Text', 'ItemChange', 'ItemActiveFocusHasChanged');
-    export const ItemRotationHasChanged = createEnumToken('Text', 'ItemChange', 'ItemRotationHasChanged');
-    export const ItemAntialiasingHasChanged = createEnumToken('Text', 'ItemChange', 'ItemAntialiasingHasChanged');
-    export const ItemDevicePixelRatioHasChanged = createEnumToken('Text', 'ItemChange', 'ItemDevicePixelRatioHasChanged');
-    export const ItemEnabledHasChanged = createEnumToken('Text', 'ItemChange', 'ItemEnabledHasChanged');
+    export const ItemVisibleHasChanged = createEnumToken(
+      'Text',
+      'ItemChange',
+      'ItemVisibleHasChanged',
+    );
+    export const ItemParentHasChanged = createEnumToken(
+      'Text',
+      'ItemChange',
+      'ItemParentHasChanged',
+    );
+    export const ItemOpacityHasChanged = createEnumToken(
+      'Text',
+      'ItemChange',
+      'ItemOpacityHasChanged',
+    );
+    export const ItemActiveFocusHasChanged = createEnumToken(
+      'Text',
+      'ItemChange',
+      'ItemActiveFocusHasChanged',
+    );
+    export const ItemRotationHasChanged = createEnumToken(
+      'Text',
+      'ItemChange',
+      'ItemRotationHasChanged',
+    );
+    export const ItemAntialiasingHasChanged = createEnumToken(
+      'Text',
+      'ItemChange',
+      'ItemAntialiasingHasChanged',
+    );
+    export const ItemDevicePixelRatioHasChanged = createEnumToken(
+      'Text',
+      'ItemChange',
+      'ItemDevicePixelRatioHasChanged',
+    );
+    export const ItemEnabledHasChanged = createEnumToken(
+      'Text',
+      'ItemChange',
+      'ItemEnabledHasChanged',
+    );
     export const ItemScaleHasChanged = createEnumToken('Text', 'ItemChange', 'ItemScaleHasChanged');
-    export const ItemTransformHasChanged = createEnumToken('Text', 'ItemChange', 'ItemTransformHasChanged');
+    export const ItemTransformHasChanged = createEnumToken(
+      'Text',
+      'ItemChange',
+      'ItemTransformHasChanged',
+    );
   }
   export namespace LineHeightMode {
-    export const ProportionalHeight = createEnumToken('Text', 'LineHeightMode', 'ProportionalHeight');
+    export const ProportionalHeight = createEnumToken(
+      'Text',
+      'LineHeightMode',
+      'ProportionalHeight',
+    );
     export const FixedHeight = createEnumToken('Text', 'LineHeightMode', 'FixedHeight');
   }
   export namespace RenderType {
@@ -802,11 +853,31 @@ export namespace Text {
     export const CurveRendering = createEnumToken('Text', 'RenderType', 'CurveRendering');
   }
   export namespace RenderTypeQuality {
-    export const DefaultRenderTypeQuality = createEnumToken('Text', 'RenderTypeQuality', 'DefaultRenderTypeQuality');
-    export const LowRenderTypeQuality = createEnumToken('Text', 'RenderTypeQuality', 'LowRenderTypeQuality');
-    export const NormalRenderTypeQuality = createEnumToken('Text', 'RenderTypeQuality', 'NormalRenderTypeQuality');
-    export const HighRenderTypeQuality = createEnumToken('Text', 'RenderTypeQuality', 'HighRenderTypeQuality');
-    export const VeryHighRenderTypeQuality = createEnumToken('Text', 'RenderTypeQuality', 'VeryHighRenderTypeQuality');
+    export const DefaultRenderTypeQuality = createEnumToken(
+      'Text',
+      'RenderTypeQuality',
+      'DefaultRenderTypeQuality',
+    );
+    export const LowRenderTypeQuality = createEnumToken(
+      'Text',
+      'RenderTypeQuality',
+      'LowRenderTypeQuality',
+    );
+    export const NormalRenderTypeQuality = createEnumToken(
+      'Text',
+      'RenderTypeQuality',
+      'NormalRenderTypeQuality',
+    );
+    export const HighRenderTypeQuality = createEnumToken(
+      'Text',
+      'RenderTypeQuality',
+      'HighRenderTypeQuality',
+    );
+    export const VeryHighRenderTypeQuality = createEnumToken(
+      'Text',
+      'RenderTypeQuality',
+      'VeryHighRenderTypeQuality',
+    );
   }
   export namespace TextElideMode {
     export const ElideLeft = createEnumToken('Text', 'TextElideMode', 'ElideLeft');
@@ -847,7 +918,11 @@ export namespace Text {
     export const NoWrap = createEnumToken('Text', 'WrapMode', 'NoWrap');
     export const WordWrap = createEnumToken('Text', 'WrapMode', 'WordWrap');
     export const WrapAnywhere = createEnumToken('Text', 'WrapMode', 'WrapAnywhere');
-    export const WrapAtWordBoundaryOrAnywhere = createEnumToken('Text', 'WrapMode', 'WrapAtWordBoundaryOrAnywhere');
+    export const WrapAtWordBoundaryOrAnywhere = createEnumToken(
+      'Text',
+      'WrapMode',
+      'WrapAtWordBoundaryOrAnywhere',
+    );
     export const Wrap = createEnumToken('Text', 'WrapMode', 'Wrap');
   }
 }

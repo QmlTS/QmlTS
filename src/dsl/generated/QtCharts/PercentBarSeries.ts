@@ -2,8 +2,13 @@
 // Type: PercentBarSeries
 // Generated from Qt 6.11.0
 
+import type {
+  QmlEnumToken,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
-import type { QmlEnumToken, QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
 export interface PercentBarSeriesBuilder {
   id(id: string): PercentBarSeriesBuilder;
   child(obj: QmlObjectBuilder): PercentBarSeriesBuilder;
@@ -132,23 +137,40 @@ const PERCENTBARSERIES_META: TypeMetadata = {
     { handlerName: 'onVisibleChanged', paramCount: 0 },
     { handlerName: 'onZValueChanged', paramCount: 1 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
   defaultProperty: 'seriesChildren',
 };
 
 export function PercentBarSeries(): PercentBarSeriesBuilder {
-  return createFluentBuilder('PercentBarSeries', PERCENTBARSERIES_META) as unknown as PercentBarSeriesBuilder;
+  return createFluentBuilder(
+    'PercentBarSeries',
+    PERCENTBARSERIES_META,
+  ) as unknown as PercentBarSeriesBuilder;
 }
 
 export namespace PercentBarSeries {
   export namespace LabelsPosition {
-    export const LabelsCenter = createEnumToken('PercentBarSeries', 'LabelsPosition', 'LabelsCenter');
-    export const LabelsInsideEnd = createEnumToken('PercentBarSeries', 'LabelsPosition', 'LabelsInsideEnd');
-    export const LabelsInsideBase = createEnumToken('PercentBarSeries', 'LabelsPosition', 'LabelsInsideBase');
-    export const LabelsOutsideEnd = createEnumToken('PercentBarSeries', 'LabelsPosition', 'LabelsOutsideEnd');
+    export const LabelsCenter = createEnumToken(
+      'PercentBarSeries',
+      'LabelsPosition',
+      'LabelsCenter',
+    );
+    export const LabelsInsideEnd = createEnumToken(
+      'PercentBarSeries',
+      'LabelsPosition',
+      'LabelsInsideEnd',
+    );
+    export const LabelsInsideBase = createEnumToken(
+      'PercentBarSeries',
+      'LabelsPosition',
+      'LabelsInsideBase',
+    );
+    export const LabelsOutsideEnd = createEnumToken(
+      'PercentBarSeries',
+      'LabelsPosition',
+      'LabelsOutsideEnd',
+    );
   }
   export namespace SeriesType {
     export const Line = createEnumToken('PercentBarSeries', 'SeriesType', 'Line');

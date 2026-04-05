@@ -2,8 +2,8 @@
 // Type: ClipPlane
 // Generated from Qt 6.11.0
 
-import { createFluentBuilder } from '../../runtime/index.js';
 import type { QmlObjectBuilder, QmlValue, QmlVector3d, TypeMetadata } from '../../runtime/index.js';
+import { createFluentBuilder } from '../../runtime/index.js';
 export interface ClipPlaneBuilder {
   id(id: string): ClipPlaneBuilder;
   child(obj: QmlObjectBuilder): ClipPlaneBuilder;
@@ -48,10 +48,8 @@ const CLIPPLANE_META: TypeMetadata = {
     { handlerName: 'onParentChanged', paramCount: 1 },
     { handlerName: 'onPlaneIndexChanged', paramCount: 1 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function ClipPlane(): ClipPlaneBuilder {

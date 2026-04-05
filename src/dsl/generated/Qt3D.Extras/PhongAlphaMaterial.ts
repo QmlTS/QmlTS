@@ -2,8 +2,14 @@
 // Type: PhongAlphaMaterial
 // Generated from Qt 6.11.0
 
+import type {
+  QmlColor,
+  QmlEnumToken,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
-import type { QmlColor, QmlEnumToken, QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
 import type { EffectBuilder } from '../Qt3D.Render/Effect.js';
 export interface PhongAlphaMaterialBuilder {
   id(id: string): PhongAlphaMaterialBuilder;
@@ -98,12 +104,13 @@ const PHONGALPHAMATERIAL_META: TypeMetadata = {
     { handlerName: 'onSourceRgbArgChanged', paramCount: 1 },
     { handlerName: 'onSpecularChanged', paramCount: 1 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function PhongAlphaMaterial(): PhongAlphaMaterialBuilder {
-  return createFluentBuilder('PhongAlphaMaterial', PHONGALPHAMATERIAL_META) as unknown as PhongAlphaMaterialBuilder;
+  return createFluentBuilder(
+    'PhongAlphaMaterial',
+    PHONGALPHAMATERIAL_META,
+  ) as unknown as PhongAlphaMaterialBuilder;
 }

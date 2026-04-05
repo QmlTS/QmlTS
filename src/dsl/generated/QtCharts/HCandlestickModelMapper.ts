@@ -2,8 +2,8 @@
 // Type: HCandlestickModelMapper
 // Generated from Qt 6.11.0
 
-import { createFluentBuilder } from '../../runtime/index.js';
 import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import { createFluentBuilder } from '../../runtime/index.js';
 export interface HCandlestickModelMapperBuilder {
   id(id: string): HCandlestickModelMapperBuilder;
   child(obj: QmlObjectBuilder): HCandlestickModelMapperBuilder;
@@ -66,12 +66,13 @@ const HCANDLESTICKMODELMAPPER_META: TypeMetadata = {
     { handlerName: 'onSeriesReplaced', paramCount: 0 },
     { handlerName: 'onTimestampColumnChanged', paramCount: 0 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function HCandlestickModelMapper(): HCandlestickModelMapperBuilder {
-  return createFluentBuilder('HCandlestickModelMapper', HCANDLESTICKMODELMAPPER_META) as unknown as HCandlestickModelMapperBuilder;
+  return createFluentBuilder(
+    'HCandlestickModelMapper',
+    HCANDLESTICKMODELMAPPER_META,
+  ) as unknown as HCandlestickModelMapperBuilder;
 }

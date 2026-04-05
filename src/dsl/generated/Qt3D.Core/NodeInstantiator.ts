@@ -2,8 +2,13 @@
 // Type: NodeInstantiator
 // Generated from Qt 6.11.0
 
+import type {
+  QmlComponent,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
-import type { QmlComponent, QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
 export interface NodeInstantiatorBuilder {
   id(id: string): NodeInstantiatorBuilder;
   child(obj: QmlObjectBuilder): NodeInstantiatorBuilder;
@@ -61,13 +66,14 @@ const NODEINSTANTIATOR_META: TypeMetadata = {
     { handlerName: 'onObjectRemoved', paramCount: 2 },
     { handlerName: 'onParentChanged', paramCount: 1 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
   defaultProperty: 'delegate',
 };
 
 export function NodeInstantiator(): NodeInstantiatorBuilder {
-  return createFluentBuilder('NodeInstantiator', NODEINSTANTIATOR_META) as unknown as NodeInstantiatorBuilder;
+  return createFluentBuilder(
+    'NodeInstantiator',
+    NODEINSTANTIATOR_META,
+  ) as unknown as NodeInstantiatorBuilder;
 }

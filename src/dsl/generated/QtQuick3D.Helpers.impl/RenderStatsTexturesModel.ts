@@ -2,8 +2,8 @@
 // Type: RenderStatsTexturesModel
 // Generated from Qt 6.11.0
 
-import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface RenderStatsTexturesModelBuilder {
   id(id: string): RenderStatsTexturesModelBuilder;
   child(obj: QmlObjectBuilder): RenderStatsTexturesModelBuilder;
@@ -62,26 +62,55 @@ const RENDERSTATSTEXTURESMODEL_META: TypeMetadata = {
     { handlerName: 'onRowsRemoved', paramCount: 3 },
     { handlerName: 'onTextureDataChanged', paramCount: 0 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function RenderStatsTexturesModel(): RenderStatsTexturesModelBuilder {
-  return createFluentBuilder('RenderStatsTexturesModel', RENDERSTATSTEXTURESMODEL_META) as unknown as RenderStatsTexturesModelBuilder;
+  return createFluentBuilder(
+    'RenderStatsTexturesModel',
+    RENDERSTATSTEXTURESMODEL_META,
+  ) as unknown as RenderStatsTexturesModelBuilder;
 }
 
 export namespace RenderStatsTexturesModel {
   export namespace CheckIndexOption {
-    export const NoOption = createEnumToken('RenderStatsTexturesModel', 'CheckIndexOption', 'NoOption');
-    export const IndexIsValid = createEnumToken('RenderStatsTexturesModel', 'CheckIndexOption', 'IndexIsValid');
-    export const DoNotUseParent = createEnumToken('RenderStatsTexturesModel', 'CheckIndexOption', 'DoNotUseParent');
-    export const ParentIsInvalid = createEnumToken('RenderStatsTexturesModel', 'CheckIndexOption', 'ParentIsInvalid');
+    export const NoOption = createEnumToken(
+      'RenderStatsTexturesModel',
+      'CheckIndexOption',
+      'NoOption',
+    );
+    export const IndexIsValid = createEnumToken(
+      'RenderStatsTexturesModel',
+      'CheckIndexOption',
+      'IndexIsValid',
+    );
+    export const DoNotUseParent = createEnumToken(
+      'RenderStatsTexturesModel',
+      'CheckIndexOption',
+      'DoNotUseParent',
+    );
+    export const ParentIsInvalid = createEnumToken(
+      'RenderStatsTexturesModel',
+      'CheckIndexOption',
+      'ParentIsInvalid',
+    );
   }
   export namespace LayoutChangeHint {
-    export const NoLayoutChangeHint = createEnumToken('RenderStatsTexturesModel', 'LayoutChangeHint', 'NoLayoutChangeHint');
-    export const VerticalSortHint = createEnumToken('RenderStatsTexturesModel', 'LayoutChangeHint', 'VerticalSortHint');
-    export const HorizontalSortHint = createEnumToken('RenderStatsTexturesModel', 'LayoutChangeHint', 'HorizontalSortHint');
+    export const NoLayoutChangeHint = createEnumToken(
+      'RenderStatsTexturesModel',
+      'LayoutChangeHint',
+      'NoLayoutChangeHint',
+    );
+    export const VerticalSortHint = createEnumToken(
+      'RenderStatsTexturesModel',
+      'LayoutChangeHint',
+      'VerticalSortHint',
+    );
+    export const HorizontalSortHint = createEnumToken(
+      'RenderStatsTexturesModel',
+      'LayoutChangeHint',
+      'HorizontalSortHint',
+    );
   }
 }

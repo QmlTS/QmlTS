@@ -2,8 +2,13 @@
 // Type: CylinderGeometryView
 // Generated from Qt 6.11.0
 
+import type {
+  QmlEnumToken,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
-import type { QmlEnumToken, QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
 import type { GeometryBuilder } from '../Qt3D.Core/Geometry.js';
 export interface CylinderGeometryViewBuilder {
   id(id: string): CylinderGeometryViewBuilder;
@@ -109,14 +114,15 @@ const CYLINDERGEOMETRYVIEW_META: TypeMetadata = {
     { handlerName: 'onVertexCountChanged', paramCount: 1 },
     { handlerName: 'onVerticesPerPatchChanged', paramCount: 1 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function CylinderGeometryView(): CylinderGeometryViewBuilder {
-  return createFluentBuilder('CylinderGeometryView', CYLINDERGEOMETRYVIEW_META) as unknown as CylinderGeometryViewBuilder;
+  return createFluentBuilder(
+    'CylinderGeometryView',
+    CYLINDERGEOMETRYVIEW_META,
+  ) as unknown as CylinderGeometryViewBuilder;
 }
 
 export namespace CylinderGeometryView {
@@ -126,12 +132,36 @@ export namespace CylinderGeometryView {
     export const LineLoop = createEnumToken('CylinderGeometryView', 'PrimitiveType', 'LineLoop');
     export const LineStrip = createEnumToken('CylinderGeometryView', 'PrimitiveType', 'LineStrip');
     export const Triangles = createEnumToken('CylinderGeometryView', 'PrimitiveType', 'Triangles');
-    export const TriangleStrip = createEnumToken('CylinderGeometryView', 'PrimitiveType', 'TriangleStrip');
-    export const TriangleFan = createEnumToken('CylinderGeometryView', 'PrimitiveType', 'TriangleFan');
-    export const LinesAdjacency = createEnumToken('CylinderGeometryView', 'PrimitiveType', 'LinesAdjacency');
-    export const TrianglesAdjacency = createEnumToken('CylinderGeometryView', 'PrimitiveType', 'TrianglesAdjacency');
-    export const LineStripAdjacency = createEnumToken('CylinderGeometryView', 'PrimitiveType', 'LineStripAdjacency');
-    export const TriangleStripAdjacency = createEnumToken('CylinderGeometryView', 'PrimitiveType', 'TriangleStripAdjacency');
+    export const TriangleStrip = createEnumToken(
+      'CylinderGeometryView',
+      'PrimitiveType',
+      'TriangleStrip',
+    );
+    export const TriangleFan = createEnumToken(
+      'CylinderGeometryView',
+      'PrimitiveType',
+      'TriangleFan',
+    );
+    export const LinesAdjacency = createEnumToken(
+      'CylinderGeometryView',
+      'PrimitiveType',
+      'LinesAdjacency',
+    );
+    export const TrianglesAdjacency = createEnumToken(
+      'CylinderGeometryView',
+      'PrimitiveType',
+      'TrianglesAdjacency',
+    );
+    export const LineStripAdjacency = createEnumToken(
+      'CylinderGeometryView',
+      'PrimitiveType',
+      'LineStripAdjacency',
+    );
+    export const TriangleStripAdjacency = createEnumToken(
+      'CylinderGeometryView',
+      'PrimitiveType',
+      'TriangleStripAdjacency',
+    );
     export const Patches = createEnumToken('CylinderGeometryView', 'PrimitiveType', 'Patches');
   }
 }

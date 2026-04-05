@@ -2,8 +2,13 @@
 // Type: CapsuleGeometry
 // Generated from Qt 6.11.0
 
+import type {
+  QmlEnumToken,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
-import type { QmlEnumToken, QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
 export interface CapsuleGeometryBuilder {
   id(id: string): CapsuleGeometryBuilder;
   child(obj: QmlObjectBuilder): CapsuleGeometryBuilder;
@@ -84,14 +89,15 @@ const CAPSULEGEOMETRY_META: TypeMetadata = {
     { handlerName: 'onStatusChanged', paramCount: 0 },
     { handlerName: 'onUvProfileChanged', paramCount: 0 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function CapsuleGeometry(): CapsuleGeometryBuilder {
-  return createFluentBuilder('CapsuleGeometry', CAPSULEGEOMETRY_META) as unknown as CapsuleGeometryBuilder;
+  return createFluentBuilder(
+    'CapsuleGeometry',
+    CAPSULEGEOMETRY_META,
+  ) as unknown as CapsuleGeometryBuilder;
 }
 
 export namespace CapsuleGeometry {

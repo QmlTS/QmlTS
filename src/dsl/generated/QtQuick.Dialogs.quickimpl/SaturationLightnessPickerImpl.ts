@@ -2,8 +2,14 @@
 // Type: SaturationLightnessPickerImpl
 // Generated from Qt 6.11.0
 
+import type {
+  QmlColor,
+  QmlEnumToken,
+  QmlFont,
+  QmlObjectBuilder,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
-import type { QmlColor, QmlEnumToken, QmlFont, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
 import type { QtObjectBuilder } from '../QML/QtObject.js';
 import type { ItemBuilder } from '../QtQuick/Item.js';
 import type { PaletteBuilder } from '../QtQuick/Palette.js';
@@ -189,11 +195,21 @@ export interface SaturationLightnessPickerImplBuilder {
   onZChanged(body: string): SaturationLightnessPickerImplBuilder;
   anchors(setup: (b: AnchorsBuilder) => void): SaturationLightnessPickerImplBuilder;
   layer(setup: (b: LayerBuilder) => void): SaturationLightnessPickerImplBuilder;
-  colorDialogImpl(setup: (b: ColorDialogImplAttachedBuilder) => void): SaturationLightnessPickerImplBuilder;
-  fileDialogImpl(setup: (b: FileDialogImplAttachedBuilder) => void): SaturationLightnessPickerImplBuilder;
-  folderDialogImpl(setup: (b: FolderDialogImplAttachedBuilder) => void): SaturationLightnessPickerImplBuilder;
-  fontDialogImpl(setup: (b: FontDialogImplAttachedBuilder) => void): SaturationLightnessPickerImplBuilder;
-  messageDialogImpl(setup: (b: MessageDialogImplAttachedBuilder) => void): SaturationLightnessPickerImplBuilder;
+  colorDialogImpl(
+    setup: (b: ColorDialogImplAttachedBuilder) => void,
+  ): SaturationLightnessPickerImplBuilder;
+  fileDialogImpl(
+    setup: (b: FileDialogImplAttachedBuilder) => void,
+  ): SaturationLightnessPickerImplBuilder;
+  folderDialogImpl(
+    setup: (b: FolderDialogImplAttachedBuilder) => void,
+  ): SaturationLightnessPickerImplBuilder;
+  fontDialogImpl(
+    setup: (b: FontDialogImplAttachedBuilder) => void,
+  ): SaturationLightnessPickerImplBuilder;
+  messageDialogImpl(
+    setup: (b: MessageDialogImplAttachedBuilder) => void,
+  ): SaturationLightnessPickerImplBuilder;
 }
 
 const SATURATIONLIGHTNESSPICKERIMPL_META: TypeMetadata = {
@@ -476,43 +492,154 @@ const SATURATIONLIGHTNESSPICKERIMPL_META: TypeMetadata = {
 };
 
 export function SaturationLightnessPickerImpl(): SaturationLightnessPickerImplBuilder {
-  return createFluentBuilder('SaturationLightnessPickerImpl', SATURATIONLIGHTNESSPICKERIMPL_META) as unknown as SaturationLightnessPickerImplBuilder;
+  return createFluentBuilder(
+    'SaturationLightnessPickerImpl',
+    SATURATIONLIGHTNESSPICKERIMPL_META,
+  ) as unknown as SaturationLightnessPickerImplBuilder;
 }
 
 export namespace SaturationLightnessPickerImpl {
   export namespace Flags {
-    export const ItemClipsChildrenToShape = createEnumToken('SaturationLightnessPickerImpl', 'Flags', 'ItemClipsChildrenToShape');
-    export const ItemAcceptsInputMethod = createEnumToken('SaturationLightnessPickerImpl', 'Flags', 'ItemAcceptsInputMethod');
-    export const ItemIsFocusScope = createEnumToken('SaturationLightnessPickerImpl', 'Flags', 'ItemIsFocusScope');
-    export const ItemHasContents = createEnumToken('SaturationLightnessPickerImpl', 'Flags', 'ItemHasContents');
-    export const ItemAcceptsDrops = createEnumToken('SaturationLightnessPickerImpl', 'Flags', 'ItemAcceptsDrops');
-    export const ItemIsViewport = createEnumToken('SaturationLightnessPickerImpl', 'Flags', 'ItemIsViewport');
-    export const ItemObservesViewport = createEnumToken('SaturationLightnessPickerImpl', 'Flags', 'ItemObservesViewport');
+    export const ItemClipsChildrenToShape = createEnumToken(
+      'SaturationLightnessPickerImpl',
+      'Flags',
+      'ItemClipsChildrenToShape',
+    );
+    export const ItemAcceptsInputMethod = createEnumToken(
+      'SaturationLightnessPickerImpl',
+      'Flags',
+      'ItemAcceptsInputMethod',
+    );
+    export const ItemIsFocusScope = createEnumToken(
+      'SaturationLightnessPickerImpl',
+      'Flags',
+      'ItemIsFocusScope',
+    );
+    export const ItemHasContents = createEnumToken(
+      'SaturationLightnessPickerImpl',
+      'Flags',
+      'ItemHasContents',
+    );
+    export const ItemAcceptsDrops = createEnumToken(
+      'SaturationLightnessPickerImpl',
+      'Flags',
+      'ItemAcceptsDrops',
+    );
+    export const ItemIsViewport = createEnumToken(
+      'SaturationLightnessPickerImpl',
+      'Flags',
+      'ItemIsViewport',
+    );
+    export const ItemObservesViewport = createEnumToken(
+      'SaturationLightnessPickerImpl',
+      'Flags',
+      'ItemObservesViewport',
+    );
   }
   export namespace ItemChange {
-    export const ItemChildAddedChange = createEnumToken('SaturationLightnessPickerImpl', 'ItemChange', 'ItemChildAddedChange');
-    export const ItemChildRemovedChange = createEnumToken('SaturationLightnessPickerImpl', 'ItemChange', 'ItemChildRemovedChange');
-    export const ItemSceneChange = createEnumToken('SaturationLightnessPickerImpl', 'ItemChange', 'ItemSceneChange');
-    export const ItemVisibleHasChanged = createEnumToken('SaturationLightnessPickerImpl', 'ItemChange', 'ItemVisibleHasChanged');
-    export const ItemParentHasChanged = createEnumToken('SaturationLightnessPickerImpl', 'ItemChange', 'ItemParentHasChanged');
-    export const ItemOpacityHasChanged = createEnumToken('SaturationLightnessPickerImpl', 'ItemChange', 'ItemOpacityHasChanged');
-    export const ItemActiveFocusHasChanged = createEnumToken('SaturationLightnessPickerImpl', 'ItemChange', 'ItemActiveFocusHasChanged');
-    export const ItemRotationHasChanged = createEnumToken('SaturationLightnessPickerImpl', 'ItemChange', 'ItemRotationHasChanged');
-    export const ItemAntialiasingHasChanged = createEnumToken('SaturationLightnessPickerImpl', 'ItemChange', 'ItemAntialiasingHasChanged');
-    export const ItemDevicePixelRatioHasChanged = createEnumToken('SaturationLightnessPickerImpl', 'ItemChange', 'ItemDevicePixelRatioHasChanged');
-    export const ItemEnabledHasChanged = createEnumToken('SaturationLightnessPickerImpl', 'ItemChange', 'ItemEnabledHasChanged');
-    export const ItemScaleHasChanged = createEnumToken('SaturationLightnessPickerImpl', 'ItemChange', 'ItemScaleHasChanged');
-    export const ItemTransformHasChanged = createEnumToken('SaturationLightnessPickerImpl', 'ItemChange', 'ItemTransformHasChanged');
+    export const ItemChildAddedChange = createEnumToken(
+      'SaturationLightnessPickerImpl',
+      'ItemChange',
+      'ItemChildAddedChange',
+    );
+    export const ItemChildRemovedChange = createEnumToken(
+      'SaturationLightnessPickerImpl',
+      'ItemChange',
+      'ItemChildRemovedChange',
+    );
+    export const ItemSceneChange = createEnumToken(
+      'SaturationLightnessPickerImpl',
+      'ItemChange',
+      'ItemSceneChange',
+    );
+    export const ItemVisibleHasChanged = createEnumToken(
+      'SaturationLightnessPickerImpl',
+      'ItemChange',
+      'ItemVisibleHasChanged',
+    );
+    export const ItemParentHasChanged = createEnumToken(
+      'SaturationLightnessPickerImpl',
+      'ItemChange',
+      'ItemParentHasChanged',
+    );
+    export const ItemOpacityHasChanged = createEnumToken(
+      'SaturationLightnessPickerImpl',
+      'ItemChange',
+      'ItemOpacityHasChanged',
+    );
+    export const ItemActiveFocusHasChanged = createEnumToken(
+      'SaturationLightnessPickerImpl',
+      'ItemChange',
+      'ItemActiveFocusHasChanged',
+    );
+    export const ItemRotationHasChanged = createEnumToken(
+      'SaturationLightnessPickerImpl',
+      'ItemChange',
+      'ItemRotationHasChanged',
+    );
+    export const ItemAntialiasingHasChanged = createEnumToken(
+      'SaturationLightnessPickerImpl',
+      'ItemChange',
+      'ItemAntialiasingHasChanged',
+    );
+    export const ItemDevicePixelRatioHasChanged = createEnumToken(
+      'SaturationLightnessPickerImpl',
+      'ItemChange',
+      'ItemDevicePixelRatioHasChanged',
+    );
+    export const ItemEnabledHasChanged = createEnumToken(
+      'SaturationLightnessPickerImpl',
+      'ItemChange',
+      'ItemEnabledHasChanged',
+    );
+    export const ItemScaleHasChanged = createEnumToken(
+      'SaturationLightnessPickerImpl',
+      'ItemChange',
+      'ItemScaleHasChanged',
+    );
+    export const ItemTransformHasChanged = createEnumToken(
+      'SaturationLightnessPickerImpl',
+      'ItemChange',
+      'ItemTransformHasChanged',
+    );
   }
   export namespace TransformOrigin {
-    export const TopLeft = createEnumToken('SaturationLightnessPickerImpl', 'TransformOrigin', 'TopLeft');
+    export const TopLeft = createEnumToken(
+      'SaturationLightnessPickerImpl',
+      'TransformOrigin',
+      'TopLeft',
+    );
     export const Top = createEnumToken('SaturationLightnessPickerImpl', 'TransformOrigin', 'Top');
-    export const TopRight = createEnumToken('SaturationLightnessPickerImpl', 'TransformOrigin', 'TopRight');
+    export const TopRight = createEnumToken(
+      'SaturationLightnessPickerImpl',
+      'TransformOrigin',
+      'TopRight',
+    );
     export const Left = createEnumToken('SaturationLightnessPickerImpl', 'TransformOrigin', 'Left');
-    export const Center = createEnumToken('SaturationLightnessPickerImpl', 'TransformOrigin', 'Center');
-    export const Right = createEnumToken('SaturationLightnessPickerImpl', 'TransformOrigin', 'Right');
-    export const BottomLeft = createEnumToken('SaturationLightnessPickerImpl', 'TransformOrigin', 'BottomLeft');
-    export const Bottom = createEnumToken('SaturationLightnessPickerImpl', 'TransformOrigin', 'Bottom');
-    export const BottomRight = createEnumToken('SaturationLightnessPickerImpl', 'TransformOrigin', 'BottomRight');
+    export const Center = createEnumToken(
+      'SaturationLightnessPickerImpl',
+      'TransformOrigin',
+      'Center',
+    );
+    export const Right = createEnumToken(
+      'SaturationLightnessPickerImpl',
+      'TransformOrigin',
+      'Right',
+    );
+    export const BottomLeft = createEnumToken(
+      'SaturationLightnessPickerImpl',
+      'TransformOrigin',
+      'BottomLeft',
+    );
+    export const Bottom = createEnumToken(
+      'SaturationLightnessPickerImpl',
+      'TransformOrigin',
+      'Bottom',
+    );
+    export const BottomRight = createEnumToken(
+      'SaturationLightnessPickerImpl',
+      'TransformOrigin',
+      'BottomRight',
+    );
   }
 }

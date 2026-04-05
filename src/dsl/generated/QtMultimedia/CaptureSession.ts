@@ -2,8 +2,8 @@
 // Type: CaptureSession
 // Generated from Qt 6.11.0
 
-import { createFluentBuilder } from '../../runtime/index.js';
 import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import { createFluentBuilder } from '../../runtime/index.js';
 import type { QtObjectBuilder } from '../QML/QtObject.js';
 import type { AudioInputBuilder } from './AudioInput.js';
 import type { AudioOutputBuilder } from './AudioOutput.js';
@@ -77,12 +77,13 @@ const CAPTURESESSION_META: TypeMetadata = {
     { handlerName: 'onVideoOutputChanged', paramCount: 0 },
     { handlerName: 'onWindowCaptureChanged', paramCount: 0 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function CaptureSession(): CaptureSessionBuilder {
-  return createFluentBuilder('CaptureSession', CAPTURESESSION_META) as unknown as CaptureSessionBuilder;
+  return createFluentBuilder(
+    'CaptureSession',
+    CAPTURESESSION_META,
+  ) as unknown as CaptureSessionBuilder;
 }

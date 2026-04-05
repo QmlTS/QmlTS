@@ -2,8 +2,8 @@
 // Type: ConeGeometry
 // Generated from Qt 6.11.0
 
-import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface ConeGeometryBuilder {
   id(id: string): ConeGeometryBuilder;
   child(obj: QmlObjectBuilder): ConeGeometryBuilder;
@@ -69,10 +69,8 @@ const CONEGEOMETRY_META: TypeMetadata = {
     { handlerName: 'onStatusChanged', paramCount: 0 },
     { handlerName: 'onTopRadiusChanged', paramCount: 0 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function ConeGeometry(): ConeGeometryBuilder {

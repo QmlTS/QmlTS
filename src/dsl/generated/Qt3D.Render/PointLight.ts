@@ -2,8 +2,8 @@
 // Type: PointLight
 // Generated from Qt 6.11.0
 
-import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { QmlColor, QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface PointLightBuilder {
   id(id: string): PointLightBuilder;
   child(obj: QmlObjectBuilder): PointLightBuilder;
@@ -67,10 +67,8 @@ const POINTLIGHT_META: TypeMetadata = {
     { handlerName: 'onRemovedFromEntity', paramCount: 1 },
     { handlerName: 'onShareableChanged', paramCount: 1 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function PointLight(): PointLightBuilder {

@@ -2,8 +2,13 @@
 // Type: DelegateChoice
 // Generated from Qt 6.11.0
 
+import type {
+  QmlComponent,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
-import type { QmlComponent, QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
 import type { DelegateModelAttachedBuilder } from './QQmlDelegateModelAttached.js';
 import type { ObjectModelAttachedBuilder } from './QQmlObjectModelAttached.js';
 import type { PackageAttachedBuilder } from './QQuickPackageAttached.js';
@@ -54,8 +59,7 @@ const DELEGATECHOICE_META: TypeMetadata = {
     { handlerName: 'onRoleValueChanged', paramCount: 0 },
     { handlerName: 'onRowChanged', paramCount: 0 },
   ],
-  grouped: [
-  ],
+  grouped: [],
   attached: [
     {
       methodName: 'delegateModel',
@@ -75,9 +79,7 @@ const DELEGATECHOICE_META: TypeMetadata = {
     {
       methodName: 'objectModel',
       attachedTypeName: 'ObjectModel',
-      properties: [
-        { name: 'objectName', hasValue: true, hasBinding: true },
-      ],
+      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
       signals: [
         { handlerName: 'onIndexChanged', paramCount: 0 },
         { handlerName: 'onObjectNameChanged', paramCount: 1 },
@@ -90,14 +92,15 @@ const DELEGATECHOICE_META: TypeMetadata = {
         { name: 'name', hasValue: true, hasBinding: true },
         { name: 'objectName', hasValue: true, hasBinding: true },
       ],
-      signals: [
-        { handlerName: 'onObjectNameChanged', paramCount: 1 },
-      ],
+      signals: [{ handlerName: 'onObjectNameChanged', paramCount: 1 }],
     },
   ],
   defaultProperty: 'delegate',
 };
 
 export function DelegateChoice(): DelegateChoiceBuilder {
-  return createFluentBuilder('DelegateChoice', DELEGATECHOICE_META) as unknown as DelegateChoiceBuilder;
+  return createFluentBuilder(
+    'DelegateChoice',
+    DELEGATECHOICE_META,
+  ) as unknown as DelegateChoiceBuilder;
 }

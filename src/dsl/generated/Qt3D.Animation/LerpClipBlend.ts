@@ -2,8 +2,8 @@
 // Type: LerpClipBlend
 // Generated from Qt 6.11.0
 
-import { createFluentBuilder } from '../../runtime/index.js';
 import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import { createFluentBuilder } from '../../runtime/index.js';
 export interface LerpClipBlendBuilder {
   id(id: string): LerpClipBlendBuilder;
   child(obj: QmlObjectBuilder): LerpClipBlendBuilder;
@@ -48,12 +48,13 @@ const LERPCLIPBLEND_META: TypeMetadata = {
     { handlerName: 'onParentChanged', paramCount: 1 },
     { handlerName: 'onStartClipChanged', paramCount: 1 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function LerpClipBlend(): LerpClipBlendBuilder {
-  return createFluentBuilder('LerpClipBlend', LERPCLIPBLEND_META) as unknown as LerpClipBlendBuilder;
+  return createFluentBuilder(
+    'LerpClipBlend',
+    LERPCLIPBLEND_META,
+  ) as unknown as LerpClipBlendBuilder;
 }

@@ -2,8 +2,8 @@
 // Type: OrientationSensor
 // Generated from Qt 6.11.0
 
-import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { QmlEnumToken, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface OrientationSensorBuilder {
   id(id: string): OrientationSensorBuilder;
   child(obj: QmlObjectBuilder): OrientationSensorBuilder;
@@ -86,30 +86,55 @@ const ORIENTATIONSENSOR_META: TypeMetadata = {
     { handlerName: 'onSkipDuplicatesChanged', paramCount: 1 },
     { handlerName: 'onUserOrientationChanged', paramCount: 1 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function OrientationSensor(): OrientationSensorBuilder {
-  return createFluentBuilder('OrientationSensor', ORIENTATIONSENSOR_META) as unknown as OrientationSensorBuilder;
+  return createFluentBuilder(
+    'OrientationSensor',
+    ORIENTATIONSENSOR_META,
+  ) as unknown as OrientationSensorBuilder;
 }
 
 export namespace OrientationSensor {
   export namespace AxesOrientationMode {
-    export const FixedOrientation = createEnumToken('OrientationSensor', 'AxesOrientationMode', 'FixedOrientation');
-    export const AutomaticOrientation = createEnumToken('OrientationSensor', 'AxesOrientationMode', 'AutomaticOrientation');
-    export const UserOrientation = createEnumToken('OrientationSensor', 'AxesOrientationMode', 'UserOrientation');
+    export const FixedOrientation = createEnumToken(
+      'OrientationSensor',
+      'AxesOrientationMode',
+      'FixedOrientation',
+    );
+    export const AutomaticOrientation = createEnumToken(
+      'OrientationSensor',
+      'AxesOrientationMode',
+      'AutomaticOrientation',
+    );
+    export const UserOrientation = createEnumToken(
+      'OrientationSensor',
+      'AxesOrientationMode',
+      'UserOrientation',
+    );
   }
   export namespace Feature {
     export const Buffering = createEnumToken('OrientationSensor', 'Feature', 'Buffering');
     export const AlwaysOn = createEnumToken('OrientationSensor', 'Feature', 'AlwaysOn');
     export const GeoValues = createEnumToken('OrientationSensor', 'Feature', 'GeoValues');
     export const FieldOfView = createEnumToken('OrientationSensor', 'Feature', 'FieldOfView');
-    export const AccelerationMode = createEnumToken('OrientationSensor', 'Feature', 'AccelerationMode');
+    export const AccelerationMode = createEnumToken(
+      'OrientationSensor',
+      'Feature',
+      'AccelerationMode',
+    );
     export const SkipDuplicates = createEnumToken('OrientationSensor', 'Feature', 'SkipDuplicates');
-    export const AxesOrientation = createEnumToken('OrientationSensor', 'Feature', 'AxesOrientation');
-    export const PressureSensorTemperature = createEnumToken('OrientationSensor', 'Feature', 'PressureSensorTemperature');
+    export const AxesOrientation = createEnumToken(
+      'OrientationSensor',
+      'Feature',
+      'AxesOrientation',
+    );
+    export const PressureSensorTemperature = createEnumToken(
+      'OrientationSensor',
+      'Feature',
+      'PressureSensorTemperature',
+    );
   }
 }

@@ -2,8 +2,15 @@
 // Type: PerspectiveCamera
 // Generated from Qt 6.11.0
 
+import type {
+  QmlEnumToken,
+  QmlObjectBuilder,
+  QmlQuaternion,
+  QmlValue,
+  QmlVector3d,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
-import type { QmlEnumToken, QmlObjectBuilder, QmlQuaternion, QmlValue, QmlVector3d, TypeMetadata } from '../../runtime/index.js';
 import type { NodeBuilder } from './Node.js';
 export interface PerspectiveCameraBuilder {
   id(id: string): PerspectiveCameraBuilder;
@@ -143,27 +150,40 @@ const PERSPECTIVECAMERA_META: TypeMetadata = {
     { handlerName: 'onYChanged', paramCount: 0 },
     { handlerName: 'onZChanged', paramCount: 0 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function PerspectiveCamera(): PerspectiveCameraBuilder {
-  return createFluentBuilder('PerspectiveCamera', PERSPECTIVECAMERA_META) as unknown as PerspectiveCameraBuilder;
+  return createFluentBuilder(
+    'PerspectiveCamera',
+    PERSPECTIVECAMERA_META,
+  ) as unknown as PerspectiveCameraBuilder;
 }
 
 export namespace PerspectiveCamera {
   export namespace FieldOfViewOrientation {
-    export const Vertical = createEnumToken('PerspectiveCamera', 'FieldOfViewOrientation', 'Vertical');
-    export const Horizontal = createEnumToken('PerspectiveCamera', 'FieldOfViewOrientation', 'Horizontal');
+    export const Vertical = createEnumToken(
+      'PerspectiveCamera',
+      'FieldOfViewOrientation',
+      'Vertical',
+    );
+    export const Horizontal = createEnumToken(
+      'PerspectiveCamera',
+      'FieldOfViewOrientation',
+      'Horizontal',
+    );
   }
   export namespace StaticFlags {
     export const None = createEnumToken('PerspectiveCamera', 'StaticFlags', 'None');
   }
   export namespace TransformSpace {
     export const LocalSpace = createEnumToken('PerspectiveCamera', 'TransformSpace', 'LocalSpace');
-    export const ParentSpace = createEnumToken('PerspectiveCamera', 'TransformSpace', 'ParentSpace');
+    export const ParentSpace = createEnumToken(
+      'PerspectiveCamera',
+      'TransformSpace',
+      'ParentSpace',
+    );
     export const SceneSpace = createEnumToken('PerspectiveCamera', 'TransformSpace', 'SceneSpace');
   }
 }

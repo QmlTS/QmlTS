@@ -2,8 +2,8 @@
 // Type: RouteModel
 // Generated from Qt 6.11.0
 
-import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { QmlEnumToken, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { PluginBuilder } from './Plugin.js';
 import type { RouteQueryBuilder } from './RouteQuery.js';
 export interface RouteModelBuilder {
@@ -89,10 +89,8 @@ const ROUTEMODEL_META: TypeMetadata = {
     { handlerName: 'onRowsRemoved', paramCount: 3 },
     { handlerName: 'onStatusChanged', paramCount: 0 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function RouteModel(): RouteModelBuilder {
@@ -103,23 +101,63 @@ export namespace RouteModel {
   export namespace CheckIndexOption {
     export const NoOption = createEnumToken('RouteModel', 'CheckIndexOption', 'NoOption');
     export const IndexIsValid = createEnumToken('RouteModel', 'CheckIndexOption', 'IndexIsValid');
-    export const DoNotUseParent = createEnumToken('RouteModel', 'CheckIndexOption', 'DoNotUseParent');
-    export const ParentIsInvalid = createEnumToken('RouteModel', 'CheckIndexOption', 'ParentIsInvalid');
+    export const DoNotUseParent = createEnumToken(
+      'RouteModel',
+      'CheckIndexOption',
+      'DoNotUseParent',
+    );
+    export const ParentIsInvalid = createEnumToken(
+      'RouteModel',
+      'CheckIndexOption',
+      'ParentIsInvalid',
+    );
   }
   export namespace LayoutChangeHint {
-    export const NoLayoutChangeHint = createEnumToken('RouteModel', 'LayoutChangeHint', 'NoLayoutChangeHint');
-    export const VerticalSortHint = createEnumToken('RouteModel', 'LayoutChangeHint', 'VerticalSortHint');
-    export const HorizontalSortHint = createEnumToken('RouteModel', 'LayoutChangeHint', 'HorizontalSortHint');
+    export const NoLayoutChangeHint = createEnumToken(
+      'RouteModel',
+      'LayoutChangeHint',
+      'NoLayoutChangeHint',
+    );
+    export const VerticalSortHint = createEnumToken(
+      'RouteModel',
+      'LayoutChangeHint',
+      'VerticalSortHint',
+    );
+    export const HorizontalSortHint = createEnumToken(
+      'RouteModel',
+      'LayoutChangeHint',
+      'HorizontalSortHint',
+    );
   }
   export namespace RouteError {
     export const NoError = createEnumToken('RouteModel', 'RouteError', 'NoError');
-    export const EngineNotSetError = createEnumToken('RouteModel', 'RouteError', 'EngineNotSetError');
-    export const CommunicationError = createEnumToken('RouteModel', 'RouteError', 'CommunicationError');
+    export const EngineNotSetError = createEnumToken(
+      'RouteModel',
+      'RouteError',
+      'EngineNotSetError',
+    );
+    export const CommunicationError = createEnumToken(
+      'RouteModel',
+      'RouteError',
+      'CommunicationError',
+    );
     export const ParseError = createEnumToken('RouteModel', 'RouteError', 'ParseError');
-    export const UnsupportedOptionError = createEnumToken('RouteModel', 'RouteError', 'UnsupportedOptionError');
+    export const UnsupportedOptionError = createEnumToken(
+      'RouteModel',
+      'RouteError',
+      'UnsupportedOptionError',
+    );
     export const UnknownError = createEnumToken('RouteModel', 'RouteError', 'UnknownError');
-    export const UnknownParameterError = createEnumToken('RouteModel', 'RouteError', 'UnknownParameterError');
-    export const MissingRequiredParameterError = createEnumToken('RouteModel', 'RouteError', 'MissingRequiredParameterError');
+    export const UnknownParameterError = createEnumToken(
+      'RouteModel',
+      'RouteError',
+      'UnknownParameterError',
+    );
+    export const MissingRequiredParameterError = createEnumToken(
+      'RouteModel',
+      'RouteError',
+      'MissingRequiredParameterError',
+    );
   }
   export namespace Status {
     export const Null = createEnumToken('RouteModel', 'Status', 'Null');

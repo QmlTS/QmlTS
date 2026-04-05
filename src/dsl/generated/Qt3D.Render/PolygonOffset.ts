@@ -2,8 +2,8 @@
 // Type: PolygonOffset
 // Generated from Qt 6.11.0
 
-import { createFluentBuilder } from '../../runtime/index.js';
 import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import { createFluentBuilder } from '../../runtime/index.js';
 export interface PolygonOffsetBuilder {
   id(id: string): PolygonOffsetBuilder;
   child(obj: QmlObjectBuilder): PolygonOffsetBuilder;
@@ -43,12 +43,13 @@ const POLYGONOFFSET_META: TypeMetadata = {
     { handlerName: 'onParentChanged', paramCount: 1 },
     { handlerName: 'onScaleFactorChanged', paramCount: 1 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function PolygonOffset(): PolygonOffsetBuilder {
-  return createFluentBuilder('PolygonOffset', POLYGONOFFSET_META) as unknown as PolygonOffsetBuilder;
+  return createFluentBuilder(
+    'PolygonOffset',
+    POLYGONOFFSET_META,
+  ) as unknown as PolygonOffsetBuilder;
 }

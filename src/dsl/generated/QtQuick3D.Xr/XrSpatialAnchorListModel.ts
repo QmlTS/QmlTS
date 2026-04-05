@@ -2,8 +2,8 @@
 // Type: XrSpatialAnchorListModel
 // Generated from Qt 6.11.0
 
-import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { QmlEnumToken, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface XrSpatialAnchorListModelBuilder {
   id(id: string): XrSpatialAnchorListModelBuilder;
   child(obj: QmlObjectBuilder): XrSpatialAnchorListModelBuilder;
@@ -77,51 +77,116 @@ const XRSPATIALANCHORLISTMODEL_META: TypeMetadata = {
     { handlerName: 'onRowsMoved', paramCount: 5 },
     { handlerName: 'onRowsRemoved', paramCount: 3 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function XrSpatialAnchorListModel(): XrSpatialAnchorListModelBuilder {
-  return createFluentBuilder('XrSpatialAnchorListModel', XRSPATIALANCHORLISTMODEL_META) as unknown as XrSpatialAnchorListModelBuilder;
+  return createFluentBuilder(
+    'XrSpatialAnchorListModel',
+    XRSPATIALANCHORLISTMODEL_META,
+  ) as unknown as XrSpatialAnchorListModelBuilder;
 }
 
 export namespace XrSpatialAnchorListModel {
   export namespace CheckIndexOption {
-    export const NoOption = createEnumToken('XrSpatialAnchorListModel', 'CheckIndexOption', 'NoOption');
-    export const IndexIsValid = createEnumToken('XrSpatialAnchorListModel', 'CheckIndexOption', 'IndexIsValid');
-    export const DoNotUseParent = createEnumToken('XrSpatialAnchorListModel', 'CheckIndexOption', 'DoNotUseParent');
-    export const ParentIsInvalid = createEnumToken('XrSpatialAnchorListModel', 'CheckIndexOption', 'ParentIsInvalid');
+    export const NoOption = createEnumToken(
+      'XrSpatialAnchorListModel',
+      'CheckIndexOption',
+      'NoOption',
+    );
+    export const IndexIsValid = createEnumToken(
+      'XrSpatialAnchorListModel',
+      'CheckIndexOption',
+      'IndexIsValid',
+    );
+    export const DoNotUseParent = createEnumToken(
+      'XrSpatialAnchorListModel',
+      'CheckIndexOption',
+      'DoNotUseParent',
+    );
+    export const ParentIsInvalid = createEnumToken(
+      'XrSpatialAnchorListModel',
+      'CheckIndexOption',
+      'ParentIsInvalid',
+    );
   }
   export namespace ClassificationFlag {
     export const Wall = createEnumToken('XrSpatialAnchorListModel', 'ClassificationFlag', 'Wall');
-    export const Ceiling = createEnumToken('XrSpatialAnchorListModel', 'ClassificationFlag', 'Ceiling');
+    export const Ceiling = createEnumToken(
+      'XrSpatialAnchorListModel',
+      'ClassificationFlag',
+      'Ceiling',
+    );
     export const Floor = createEnumToken('XrSpatialAnchorListModel', 'ClassificationFlag', 'Floor');
     export const Table = createEnumToken('XrSpatialAnchorListModel', 'ClassificationFlag', 'Table');
     export const Seat = createEnumToken('XrSpatialAnchorListModel', 'ClassificationFlag', 'Seat');
-    export const Window = createEnumToken('XrSpatialAnchorListModel', 'ClassificationFlag', 'Window');
+    export const Window = createEnumToken(
+      'XrSpatialAnchorListModel',
+      'ClassificationFlag',
+      'Window',
+    );
     export const Door = createEnumToken('XrSpatialAnchorListModel', 'ClassificationFlag', 'Door');
     export const Other = createEnumToken('XrSpatialAnchorListModel', 'ClassificationFlag', 'Other');
   }
   export namespace ClassificationFlags {
     export const Wall = createEnumToken('XrSpatialAnchorListModel', 'ClassificationFlags', 'Wall');
-    export const Ceiling = createEnumToken('XrSpatialAnchorListModel', 'ClassificationFlags', 'Ceiling');
-    export const Floor = createEnumToken('XrSpatialAnchorListModel', 'ClassificationFlags', 'Floor');
-    export const Table = createEnumToken('XrSpatialAnchorListModel', 'ClassificationFlags', 'Table');
+    export const Ceiling = createEnumToken(
+      'XrSpatialAnchorListModel',
+      'ClassificationFlags',
+      'Ceiling',
+    );
+    export const Floor = createEnumToken(
+      'XrSpatialAnchorListModel',
+      'ClassificationFlags',
+      'Floor',
+    );
+    export const Table = createEnumToken(
+      'XrSpatialAnchorListModel',
+      'ClassificationFlags',
+      'Table',
+    );
     export const Seat = createEnumToken('XrSpatialAnchorListModel', 'ClassificationFlags', 'Seat');
-    export const Window = createEnumToken('XrSpatialAnchorListModel', 'ClassificationFlags', 'Window');
+    export const Window = createEnumToken(
+      'XrSpatialAnchorListModel',
+      'ClassificationFlags',
+      'Window',
+    );
     export const Door = createEnumToken('XrSpatialAnchorListModel', 'ClassificationFlags', 'Door');
-    export const Other = createEnumToken('XrSpatialAnchorListModel', 'ClassificationFlags', 'Other');
+    export const Other = createEnumToken(
+      'XrSpatialAnchorListModel',
+      'ClassificationFlags',
+      'Other',
+    );
   }
   export namespace FilterMode {
     export const All = createEnumToken('XrSpatialAnchorListModel', 'FilterMode', 'All');
-    export const Classification = createEnumToken('XrSpatialAnchorListModel', 'FilterMode', 'Classification');
-    export const Identifier = createEnumToken('XrSpatialAnchorListModel', 'FilterMode', 'Identifier');
+    export const Classification = createEnumToken(
+      'XrSpatialAnchorListModel',
+      'FilterMode',
+      'Classification',
+    );
+    export const Identifier = createEnumToken(
+      'XrSpatialAnchorListModel',
+      'FilterMode',
+      'Identifier',
+    );
   }
   export namespace LayoutChangeHint {
-    export const NoLayoutChangeHint = createEnumToken('XrSpatialAnchorListModel', 'LayoutChangeHint', 'NoLayoutChangeHint');
-    export const VerticalSortHint = createEnumToken('XrSpatialAnchorListModel', 'LayoutChangeHint', 'VerticalSortHint');
-    export const HorizontalSortHint = createEnumToken('XrSpatialAnchorListModel', 'LayoutChangeHint', 'HorizontalSortHint');
+    export const NoLayoutChangeHint = createEnumToken(
+      'XrSpatialAnchorListModel',
+      'LayoutChangeHint',
+      'NoLayoutChangeHint',
+    );
+    export const VerticalSortHint = createEnumToken(
+      'XrSpatialAnchorListModel',
+      'LayoutChangeHint',
+      'VerticalSortHint',
+    );
+    export const HorizontalSortHint = createEnumToken(
+      'XrSpatialAnchorListModel',
+      'LayoutChangeHint',
+      'HorizontalSortHint',
+    );
   }
 }

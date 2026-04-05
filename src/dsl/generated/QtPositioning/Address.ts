@@ -2,8 +2,8 @@
 // Type: Address
 // Generated from Qt 6.11.0
 
-import { createFluentBuilder } from '../../runtime/index.js';
 import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import { createFluentBuilder } from '../../runtime/index.js';
 export interface AddressBuilder {
   id(id: string): AddressBuilder;
   child(obj: QmlObjectBuilder): AddressBuilder;
@@ -76,10 +76,8 @@ const ADDRESS_META: TypeMetadata = {
     { handlerName: 'onStreetNumberChanged', paramCount: 0 },
     { handlerName: 'onTextChanged', paramCount: 0 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function Address(): AddressBuilder {

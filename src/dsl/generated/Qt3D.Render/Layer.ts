@@ -2,8 +2,8 @@
 // Type: Layer
 // Generated from Qt 6.11.0
 
-import { createFluentBuilder } from '../../runtime/index.js';
 import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import { createFluentBuilder } from '../../runtime/index.js';
 export interface LayerBuilder {
   id(id: string): LayerBuilder;
   child(obj: QmlObjectBuilder): LayerBuilder;
@@ -47,10 +47,8 @@ const LAYER_META: TypeMetadata = {
     { handlerName: 'onRemovedFromEntity', paramCount: 1 },
     { handlerName: 'onShareableChanged', paramCount: 1 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function Layer(): LayerBuilder {

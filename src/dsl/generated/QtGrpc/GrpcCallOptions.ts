@@ -2,8 +2,8 @@
 // Type: GrpcCallOptions
 // Generated from Qt 6.11.0
 
-import { createFluentBuilder } from '../../runtime/index.js';
 import type { QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import { createFluentBuilder } from '../../runtime/index.js';
 import type { GrpcMetadataBuilder } from './GrpcMetadata.js';
 export interface GrpcCallOptionsBuilder {
   id(id: string): GrpcCallOptionsBuilder;
@@ -32,12 +32,13 @@ const GRPCCALLOPTIONS_META: TypeMetadata = {
     { handlerName: 'onMetadataChanged', paramCount: 0 },
     { handlerName: 'onObjectNameChanged', paramCount: 1 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function GrpcCallOptions(): GrpcCallOptionsBuilder {
-  return createFluentBuilder('GrpcCallOptions', GRPCCALLOPTIONS_META) as unknown as GrpcCallOptionsBuilder;
+  return createFluentBuilder(
+    'GrpcCallOptions',
+    GRPCCALLOPTIONS_META,
+  ) as unknown as GrpcCallOptionsBuilder;
 }

@@ -2,8 +2,15 @@
 // Type: Transform
 // Generated from Qt 6.11.0
 
+import type {
+  QmlMatrix4x4,
+  QmlObjectBuilder,
+  QmlQuaternion,
+  QmlValue,
+  QmlVector3d,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
-import type { QmlMatrix4x4, QmlObjectBuilder, QmlQuaternion, QmlValue, QmlVector3d, TypeMetadata } from '../../runtime/index.js';
 export interface TransformBuilder {
   id(id: string): TransformBuilder;
   child(obj: QmlObjectBuilder): TransformBuilder;
@@ -84,10 +91,8 @@ const TRANSFORM_META: TypeMetadata = {
     { handlerName: 'onTranslationChanged', paramCount: 1 },
     { handlerName: 'onWorldMatrixChanged', paramCount: 1 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function Transform(): TransformBuilder {

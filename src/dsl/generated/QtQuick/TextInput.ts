@@ -2,8 +2,16 @@
 // Type: TextInput
 // Generated from Qt 6.11.0
 
+import type {
+  QmlColor,
+  QmlComponent,
+  QmlEnumToken,
+  QmlFont,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
-import type { QmlColor, QmlComponent, QmlEnumToken, QmlFont, QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
 import type { QtObjectBuilder } from '../QML/QtObject.js';
 import type { AccessibleAttachedBuilder } from './Accessible.js';
 import type { EnterKeyAttachedBuilder } from './EnterKey.js';
@@ -530,9 +538,7 @@ const TEXTINPUT_META: TypeMetadata = {
     {
       methodName: 'graphicsInfo',
       attachedTypeName: 'GraphicsInfo',
-      properties: [
-        { name: 'objectName', hasValue: true, hasBinding: true },
-      ],
+      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
       signals: [
         { handlerName: 'onApiChanged', paramCount: 0 },
         { handlerName: 'onMajorVersionChanged', paramCount: 0 },
@@ -683,9 +689,7 @@ const TEXTINPUT_META: TypeMetadata = {
     {
       methodName: 'pathView',
       attachedTypeName: 'PathView',
-      properties: [
-        { name: 'objectName', hasValue: true, hasBinding: true },
-      ],
+      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
       signals: [
         { handlerName: 'onCurrentItemChanged', paramCount: 0 },
         { handlerName: 'onPathChanged', paramCount: 0 },
@@ -695,9 +699,7 @@ const TEXTINPUT_META: TypeMetadata = {
     {
       methodName: 'positioner',
       attachedTypeName: 'Positioner',
-      properties: [
-        { name: 'objectName', hasValue: true, hasBinding: true },
-      ],
+      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
       signals: [
         { handlerName: 'onIndexChanged', paramCount: 0 },
         { handlerName: 'onIsFirstItemChanged', paramCount: 0 },
@@ -721,9 +723,7 @@ const TEXTINPUT_META: TypeMetadata = {
     {
       methodName: 'screen',
       attachedTypeName: 'Screen',
-      properties: [
-        { name: 'objectName', hasValue: true, hasBinding: true },
-      ],
+      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
       signals: [
         { handlerName: 'onDesktopGeometryChanged', paramCount: 0 },
         { handlerName: 'onDevicePixelRatioChanged', paramCount: 0 },
@@ -761,9 +761,7 @@ const TEXTINPUT_META: TypeMetadata = {
     {
       methodName: 'viewTransition',
       attachedTypeName: 'ViewTransition',
-      properties: [
-        { name: 'objectName', hasValue: true, hasBinding: true },
-      ],
+      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
       signals: [
         { handlerName: 'onDestinationChanged', paramCount: 0 },
         { handlerName: 'onIndexChanged', paramCount: 0 },
@@ -776,9 +774,7 @@ const TEXTINPUT_META: TypeMetadata = {
     {
       methodName: 'window',
       attachedTypeName: 'Window',
-      properties: [
-        { name: 'objectName', hasValue: true, hasBinding: true },
-      ],
+      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
       signals: [
         { handlerName: 'onActiveChanged', paramCount: 0 },
         { handlerName: 'onActiveFocusItemChanged', paramCount: 0 },
@@ -799,23 +795,47 @@ export function TextInput(): TextInputBuilder {
 
 export namespace TextInput {
   export namespace CursorPosition {
-    export const CursorBetweenCharacters = createEnumToken('TextInput', 'CursorPosition', 'CursorBetweenCharacters');
-    export const CursorOnCharacter = createEnumToken('TextInput', 'CursorPosition', 'CursorOnCharacter');
+    export const CursorBetweenCharacters = createEnumToken(
+      'TextInput',
+      'CursorPosition',
+      'CursorBetweenCharacters',
+    );
+    export const CursorOnCharacter = createEnumToken(
+      'TextInput',
+      'CursorPosition',
+      'CursorOnCharacter',
+    );
   }
   export namespace EchoMode {
     export const Normal = createEnumToken('TextInput', 'EchoMode', 'Normal');
     export const NoEcho = createEnumToken('TextInput', 'EchoMode', 'NoEcho');
     export const Password = createEnumToken('TextInput', 'EchoMode', 'Password');
-    export const PasswordEchoOnEdit = createEnumToken('TextInput', 'EchoMode', 'PasswordEchoOnEdit');
+    export const PasswordEchoOnEdit = createEnumToken(
+      'TextInput',
+      'EchoMode',
+      'PasswordEchoOnEdit',
+    );
   }
   export namespace Flags {
-    export const ItemClipsChildrenToShape = createEnumToken('TextInput', 'Flags', 'ItemClipsChildrenToShape');
-    export const ItemAcceptsInputMethod = createEnumToken('TextInput', 'Flags', 'ItemAcceptsInputMethod');
+    export const ItemClipsChildrenToShape = createEnumToken(
+      'TextInput',
+      'Flags',
+      'ItemClipsChildrenToShape',
+    );
+    export const ItemAcceptsInputMethod = createEnumToken(
+      'TextInput',
+      'Flags',
+      'ItemAcceptsInputMethod',
+    );
     export const ItemIsFocusScope = createEnumToken('TextInput', 'Flags', 'ItemIsFocusScope');
     export const ItemHasContents = createEnumToken('TextInput', 'Flags', 'ItemHasContents');
     export const ItemAcceptsDrops = createEnumToken('TextInput', 'Flags', 'ItemAcceptsDrops');
     export const ItemIsViewport = createEnumToken('TextInput', 'Flags', 'ItemIsViewport');
-    export const ItemObservesViewport = createEnumToken('TextInput', 'Flags', 'ItemObservesViewport');
+    export const ItemObservesViewport = createEnumToken(
+      'TextInput',
+      'Flags',
+      'ItemObservesViewport',
+    );
   }
   export namespace HAlignment {
     export const AlignLeft = createEnumToken('TextInput', 'HAlignment', 'AlignLeft');
@@ -823,19 +843,67 @@ export namespace TextInput {
     export const AlignHCenter = createEnumToken('TextInput', 'HAlignment', 'AlignHCenter');
   }
   export namespace ItemChange {
-    export const ItemChildAddedChange = createEnumToken('TextInput', 'ItemChange', 'ItemChildAddedChange');
-    export const ItemChildRemovedChange = createEnumToken('TextInput', 'ItemChange', 'ItemChildRemovedChange');
+    export const ItemChildAddedChange = createEnumToken(
+      'TextInput',
+      'ItemChange',
+      'ItemChildAddedChange',
+    );
+    export const ItemChildRemovedChange = createEnumToken(
+      'TextInput',
+      'ItemChange',
+      'ItemChildRemovedChange',
+    );
     export const ItemSceneChange = createEnumToken('TextInput', 'ItemChange', 'ItemSceneChange');
-    export const ItemVisibleHasChanged = createEnumToken('TextInput', 'ItemChange', 'ItemVisibleHasChanged');
-    export const ItemParentHasChanged = createEnumToken('TextInput', 'ItemChange', 'ItemParentHasChanged');
-    export const ItemOpacityHasChanged = createEnumToken('TextInput', 'ItemChange', 'ItemOpacityHasChanged');
-    export const ItemActiveFocusHasChanged = createEnumToken('TextInput', 'ItemChange', 'ItemActiveFocusHasChanged');
-    export const ItemRotationHasChanged = createEnumToken('TextInput', 'ItemChange', 'ItemRotationHasChanged');
-    export const ItemAntialiasingHasChanged = createEnumToken('TextInput', 'ItemChange', 'ItemAntialiasingHasChanged');
-    export const ItemDevicePixelRatioHasChanged = createEnumToken('TextInput', 'ItemChange', 'ItemDevicePixelRatioHasChanged');
-    export const ItemEnabledHasChanged = createEnumToken('TextInput', 'ItemChange', 'ItemEnabledHasChanged');
-    export const ItemScaleHasChanged = createEnumToken('TextInput', 'ItemChange', 'ItemScaleHasChanged');
-    export const ItemTransformHasChanged = createEnumToken('TextInput', 'ItemChange', 'ItemTransformHasChanged');
+    export const ItemVisibleHasChanged = createEnumToken(
+      'TextInput',
+      'ItemChange',
+      'ItemVisibleHasChanged',
+    );
+    export const ItemParentHasChanged = createEnumToken(
+      'TextInput',
+      'ItemChange',
+      'ItemParentHasChanged',
+    );
+    export const ItemOpacityHasChanged = createEnumToken(
+      'TextInput',
+      'ItemChange',
+      'ItemOpacityHasChanged',
+    );
+    export const ItemActiveFocusHasChanged = createEnumToken(
+      'TextInput',
+      'ItemChange',
+      'ItemActiveFocusHasChanged',
+    );
+    export const ItemRotationHasChanged = createEnumToken(
+      'TextInput',
+      'ItemChange',
+      'ItemRotationHasChanged',
+    );
+    export const ItemAntialiasingHasChanged = createEnumToken(
+      'TextInput',
+      'ItemChange',
+      'ItemAntialiasingHasChanged',
+    );
+    export const ItemDevicePixelRatioHasChanged = createEnumToken(
+      'TextInput',
+      'ItemChange',
+      'ItemDevicePixelRatioHasChanged',
+    );
+    export const ItemEnabledHasChanged = createEnumToken(
+      'TextInput',
+      'ItemChange',
+      'ItemEnabledHasChanged',
+    );
+    export const ItemScaleHasChanged = createEnumToken(
+      'TextInput',
+      'ItemChange',
+      'ItemScaleHasChanged',
+    );
+    export const ItemTransformHasChanged = createEnumToken(
+      'TextInput',
+      'ItemChange',
+      'ItemTransformHasChanged',
+    );
   }
   export namespace RenderType {
     export const QtRendering = createEnumToken('TextInput', 'RenderType', 'QtRendering');
@@ -843,7 +911,11 @@ export namespace TextInput {
     export const CurveRendering = createEnumToken('TextInput', 'RenderType', 'CurveRendering');
   }
   export namespace SelectionMode {
-    export const SelectCharacters = createEnumToken('TextInput', 'SelectionMode', 'SelectCharacters');
+    export const SelectCharacters = createEnumToken(
+      'TextInput',
+      'SelectionMode',
+      'SelectCharacters',
+    );
     export const SelectWords = createEnumToken('TextInput', 'SelectionMode', 'SelectWords');
   }
   export namespace TransformOrigin {
@@ -866,7 +938,11 @@ export namespace TextInput {
     export const NoWrap = createEnumToken('TextInput', 'WrapMode', 'NoWrap');
     export const WordWrap = createEnumToken('TextInput', 'WrapMode', 'WordWrap');
     export const WrapAnywhere = createEnumToken('TextInput', 'WrapMode', 'WrapAnywhere');
-    export const WrapAtWordBoundaryOrAnywhere = createEnumToken('TextInput', 'WrapMode', 'WrapAtWordBoundaryOrAnywhere');
+    export const WrapAtWordBoundaryOrAnywhere = createEnumToken(
+      'TextInput',
+      'WrapMode',
+      'WrapAtWordBoundaryOrAnywhere',
+    );
     export const Wrap = createEnumToken('TextInput', 'WrapMode', 'Wrap');
   }
 }

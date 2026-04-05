@@ -2,8 +2,14 @@
 // Type: DirectionalLight
 // Generated from Qt 6.11.0
 
+import type {
+  QmlColor,
+  QmlObjectBuilder,
+  QmlValue,
+  QmlVector3d,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
-import type { QmlColor, QmlObjectBuilder, QmlValue, QmlVector3d, TypeMetadata } from '../../runtime/index.js';
 export interface DirectionalLightBuilder {
   id(id: string): DirectionalLightBuilder;
   child(obj: QmlObjectBuilder): DirectionalLightBuilder;
@@ -57,14 +63,15 @@ const DIRECTIONALLIGHT_META: TypeMetadata = {
     { handlerName: 'onShareableChanged', paramCount: 1 },
     { handlerName: 'onWorldDirectionChanged', paramCount: 1 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function DirectionalLight(): DirectionalLightBuilder {
-  return createFluentBuilder('DirectionalLight', DIRECTIONALLIGHT_META) as unknown as DirectionalLightBuilder;
+  return createFluentBuilder(
+    'DirectionalLight',
+    DIRECTIONALLIGHT_META,
+  ) as unknown as DirectionalLightBuilder;
 }
 
 export namespace DirectionalLight {

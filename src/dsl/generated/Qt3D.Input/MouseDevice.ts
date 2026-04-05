@@ -2,8 +2,8 @@
 // Type: MouseDevice
 // Generated from Qt 6.11.0
 
-import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface MouseDeviceBuilder {
   id(id: string): MouseDeviceBuilder;
   child(obj: QmlObjectBuilder): MouseDeviceBuilder;
@@ -43,10 +43,8 @@ const MOUSEDEVICE_META: TypeMetadata = {
     { handlerName: 'onSensitivityChanged', paramCount: 1 },
     { handlerName: 'onUpdateAxesContinuouslyChanged', paramCount: 1 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function MouseDevice(): MouseDeviceBuilder {

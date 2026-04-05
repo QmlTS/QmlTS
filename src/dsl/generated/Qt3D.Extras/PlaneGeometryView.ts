@@ -2,8 +2,14 @@
 // Type: PlaneGeometryView
 // Generated from Qt 6.11.0
 
+import type {
+  QmlEnumToken,
+  QmlObjectBuilder,
+  QmlSize,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
-import type { QmlEnumToken, QmlObjectBuilder, QmlSize, QmlValue, TypeMetadata } from '../../runtime/index.js';
 import type { GeometryBuilder } from '../Qt3D.Core/Geometry.js';
 export interface PlaneGeometryViewBuilder {
   id(id: string): PlaneGeometryViewBuilder;
@@ -109,14 +115,15 @@ const PLANEGEOMETRYVIEW_META: TypeMetadata = {
     { handlerName: 'onVerticesPerPatchChanged', paramCount: 1 },
     { handlerName: 'onWidthChanged', paramCount: 1 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function PlaneGeometryView(): PlaneGeometryViewBuilder {
-  return createFluentBuilder('PlaneGeometryView', PLANEGEOMETRYVIEW_META) as unknown as PlaneGeometryViewBuilder;
+  return createFluentBuilder(
+    'PlaneGeometryView',
+    PLANEGEOMETRYVIEW_META,
+  ) as unknown as PlaneGeometryViewBuilder;
 }
 
 export namespace PlaneGeometryView {
@@ -126,12 +133,32 @@ export namespace PlaneGeometryView {
     export const LineLoop = createEnumToken('PlaneGeometryView', 'PrimitiveType', 'LineLoop');
     export const LineStrip = createEnumToken('PlaneGeometryView', 'PrimitiveType', 'LineStrip');
     export const Triangles = createEnumToken('PlaneGeometryView', 'PrimitiveType', 'Triangles');
-    export const TriangleStrip = createEnumToken('PlaneGeometryView', 'PrimitiveType', 'TriangleStrip');
+    export const TriangleStrip = createEnumToken(
+      'PlaneGeometryView',
+      'PrimitiveType',
+      'TriangleStrip',
+    );
     export const TriangleFan = createEnumToken('PlaneGeometryView', 'PrimitiveType', 'TriangleFan');
-    export const LinesAdjacency = createEnumToken('PlaneGeometryView', 'PrimitiveType', 'LinesAdjacency');
-    export const TrianglesAdjacency = createEnumToken('PlaneGeometryView', 'PrimitiveType', 'TrianglesAdjacency');
-    export const LineStripAdjacency = createEnumToken('PlaneGeometryView', 'PrimitiveType', 'LineStripAdjacency');
-    export const TriangleStripAdjacency = createEnumToken('PlaneGeometryView', 'PrimitiveType', 'TriangleStripAdjacency');
+    export const LinesAdjacency = createEnumToken(
+      'PlaneGeometryView',
+      'PrimitiveType',
+      'LinesAdjacency',
+    );
+    export const TrianglesAdjacency = createEnumToken(
+      'PlaneGeometryView',
+      'PrimitiveType',
+      'TrianglesAdjacency',
+    );
+    export const LineStripAdjacency = createEnumToken(
+      'PlaneGeometryView',
+      'PrimitiveType',
+      'LineStripAdjacency',
+    );
+    export const TriangleStripAdjacency = createEnumToken(
+      'PlaneGeometryView',
+      'PrimitiveType',
+      'TriangleStripAdjacency',
+    );
     export const Patches = createEnumToken('PlaneGeometryView', 'PrimitiveType', 'Patches');
   }
 }

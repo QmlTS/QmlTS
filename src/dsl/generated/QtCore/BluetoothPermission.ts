@@ -2,8 +2,8 @@
 // Type: BluetoothPermission
 // Generated from Qt 6.11.0
 
-import { createFluentBuilder } from '../../runtime/index.js';
 import type { QmlEnumToken, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import { createFluentBuilder } from '../../runtime/index.js';
 export interface BluetoothPermissionBuilder {
   id(id: string): BluetoothPermissionBuilder;
   child(obj: QmlObjectBuilder): BluetoothPermissionBuilder;
@@ -28,12 +28,13 @@ const BLUETOOTHPERMISSION_META: TypeMetadata = {
     { handlerName: 'onObjectNameChanged', paramCount: 1 },
     { handlerName: 'onStatusChanged', paramCount: 0 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function BluetoothPermission(): BluetoothPermissionBuilder {
-  return createFluentBuilder('BluetoothPermission', BLUETOOTHPERMISSION_META) as unknown as BluetoothPermissionBuilder;
+  return createFluentBuilder(
+    'BluetoothPermission',
+    BLUETOOTHPERMISSION_META,
+  ) as unknown as BluetoothPermissionBuilder;
 }

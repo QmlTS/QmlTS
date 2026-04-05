@@ -2,8 +2,8 @@
 // Type: ShaderDataArray
 // Generated from Qt 6.11.0
 
-import { createFluentBuilder } from '../../runtime/index.js';
 import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import { createFluentBuilder } from '../../runtime/index.js';
 export interface ShaderDataArrayBuilder {
   id(id: string): ShaderDataArrayBuilder;
   child(obj: QmlObjectBuilder): ShaderDataArrayBuilder;
@@ -33,13 +33,14 @@ const SHADERDATAARRAY_META: TypeMetadata = {
     { handlerName: 'onObjectNameChanged', paramCount: 1 },
     { handlerName: 'onParentChanged', paramCount: 1 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
   defaultProperty: 'values',
 };
 
 export function ShaderDataArray(): ShaderDataArrayBuilder {
-  return createFluentBuilder('ShaderDataArray', SHADERDATAARRAY_META) as unknown as ShaderDataArrayBuilder;
+  return createFluentBuilder(
+    'ShaderDataArray',
+    SHADERDATAARRAY_META,
+  ) as unknown as ShaderDataArrayBuilder;
 }

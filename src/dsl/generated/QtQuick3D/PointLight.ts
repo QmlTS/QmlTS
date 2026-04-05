@@ -2,8 +2,16 @@
 // Type: PointLight
 // Generated from Qt 6.11.0
 
+import type {
+  QmlColor,
+  QmlEnumToken,
+  QmlObjectBuilder,
+  QmlQuaternion,
+  QmlValue,
+  QmlVector3d,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
-import type { QmlColor, QmlEnumToken, QmlObjectBuilder, QmlQuaternion, QmlValue, QmlVector3d, TypeMetadata } from '../../runtime/index.js';
 import type { NodeBuilder } from './Node.js';
 export interface PointLightBuilder {
   id(id: string): PointLightBuilder;
@@ -193,10 +201,8 @@ const POINTLIGHT_META: TypeMetadata = {
     { handlerName: 'onYChanged', paramCount: 0 },
     { handlerName: 'onZChanged', paramCount: 0 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function PointLight(): PointLightBuilder {
@@ -205,16 +211,44 @@ export function PointLight(): PointLightBuilder {
 
 export namespace PointLight {
   export namespace QSSGBakeMode {
-    export const BakeModeDisabled = createEnumToken('PointLight', 'QSSGBakeMode', 'BakeModeDisabled');
-    export const BakeModeIndirect = createEnumToken('PointLight', 'QSSGBakeMode', 'BakeModeIndirect');
+    export const BakeModeDisabled = createEnumToken(
+      'PointLight',
+      'QSSGBakeMode',
+      'BakeModeDisabled',
+    );
+    export const BakeModeIndirect = createEnumToken(
+      'PointLight',
+      'QSSGBakeMode',
+      'BakeModeIndirect',
+    );
     export const BakeModeAll = createEnumToken('PointLight', 'QSSGBakeMode', 'BakeModeAll');
   }
   export namespace QSSGShadowMapQuality {
-    export const ShadowMapQualityLow = createEnumToken('PointLight', 'QSSGShadowMapQuality', 'ShadowMapQualityLow');
-    export const ShadowMapQualityMedium = createEnumToken('PointLight', 'QSSGShadowMapQuality', 'ShadowMapQualityMedium');
-    export const ShadowMapQualityHigh = createEnumToken('PointLight', 'QSSGShadowMapQuality', 'ShadowMapQualityHigh');
-    export const ShadowMapQualityVeryHigh = createEnumToken('PointLight', 'QSSGShadowMapQuality', 'ShadowMapQualityVeryHigh');
-    export const ShadowMapQualityUltra = createEnumToken('PointLight', 'QSSGShadowMapQuality', 'ShadowMapQualityUltra');
+    export const ShadowMapQualityLow = createEnumToken(
+      'PointLight',
+      'QSSGShadowMapQuality',
+      'ShadowMapQualityLow',
+    );
+    export const ShadowMapQualityMedium = createEnumToken(
+      'PointLight',
+      'QSSGShadowMapQuality',
+      'ShadowMapQualityMedium',
+    );
+    export const ShadowMapQualityHigh = createEnumToken(
+      'PointLight',
+      'QSSGShadowMapQuality',
+      'ShadowMapQualityHigh',
+    );
+    export const ShadowMapQualityVeryHigh = createEnumToken(
+      'PointLight',
+      'QSSGShadowMapQuality',
+      'ShadowMapQualityVeryHigh',
+    );
+    export const ShadowMapQualityUltra = createEnumToken(
+      'PointLight',
+      'QSSGShadowMapQuality',
+      'ShadowMapQualityUltra',
+    );
   }
   export namespace QSSGSoftShadowQuality {
     export const Hard = createEnumToken('PointLight', 'QSSGSoftShadowQuality', 'Hard');

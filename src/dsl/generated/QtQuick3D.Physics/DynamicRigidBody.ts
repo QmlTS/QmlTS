@@ -2,8 +2,15 @@
 // Type: DynamicRigidBody
 // Generated from Qt 6.11.0
 
+import type {
+  QmlEnumToken,
+  QmlObjectBuilder,
+  QmlQuaternion,
+  QmlValue,
+  QmlVector3d,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
-import type { QmlEnumToken, QmlObjectBuilder, QmlQuaternion, QmlValue, QmlVector3d, TypeMetadata } from '../../runtime/index.js';
 import type { PhysicsMaterialBuilder } from './PhysicsMaterial.js';
 export interface DynamicRigidBodyBuilder {
   id(id: string): DynamicRigidBodyBuilder;
@@ -234,14 +241,15 @@ const DYNAMICRIGIDBODY_META: TypeMetadata = {
     { handlerName: 'onYChanged', paramCount: 0 },
     { handlerName: 'onZChanged', paramCount: 0 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function DynamicRigidBody(): DynamicRigidBodyBuilder {
-  return createFluentBuilder('DynamicRigidBody', DYNAMICRIGIDBODY_META) as unknown as DynamicRigidBodyBuilder;
+  return createFluentBuilder(
+    'DynamicRigidBody',
+    DYNAMICRIGIDBODY_META,
+  ) as unknown as DynamicRigidBodyBuilder;
 }
 
 export namespace DynamicRigidBody {
@@ -255,8 +263,16 @@ export namespace DynamicRigidBody {
     export const DefaultDensity = createEnumToken('DynamicRigidBody', 'MassMode', 'DefaultDensity');
     export const CustomDensity = createEnumToken('DynamicRigidBody', 'MassMode', 'CustomDensity');
     export const Mass = createEnumToken('DynamicRigidBody', 'MassMode', 'Mass');
-    export const MassAndInertiaTensor = createEnumToken('DynamicRigidBody', 'MassMode', 'MassAndInertiaTensor');
-    export const MassAndInertiaMatrix = createEnumToken('DynamicRigidBody', 'MassMode', 'MassAndInertiaMatrix');
+    export const MassAndInertiaTensor = createEnumToken(
+      'DynamicRigidBody',
+      'MassMode',
+      'MassAndInertiaTensor',
+    );
+    export const MassAndInertiaMatrix = createEnumToken(
+      'DynamicRigidBody',
+      'MassMode',
+      'MassAndInertiaMatrix',
+    );
   }
   export namespace StaticFlags {
     export const None = createEnumToken('DynamicRigidBody', 'StaticFlags', 'None');

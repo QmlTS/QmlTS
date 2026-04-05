@@ -2,12 +2,12 @@
 // Type: MessageDialogImpl
 // Generated from Qt 6.11.0
 
-import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { QmlEnumToken, QmlFont, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
-import type { AnchorsBuilder } from '../QtQuick.Templates/QQuickPopupAnchors.js';
+import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { ItemBuilder } from '../QtQuick/Item.js';
 import type { PaletteBuilder } from '../QtQuick/Palette.js';
 import type { TransitionBuilder } from '../QtQuick/Transition.js';
+import type { AnchorsBuilder } from '../QtQuick.Templates/QQuickPopupAnchors.js';
 import type { ColorDialogImplAttachedBuilder } from './QQuickColorDialogImplAttached.js';
 import type { FileDialogImplAttachedBuilder } from './QQuickFileDialogImplAttached.js';
 import type { FolderDialogImplAttachedBuilder } from './QQuickFolderDialogImplAttached.js';
@@ -346,9 +346,7 @@ const MESSAGEDIALOGIMPL_META: TypeMetadata = {
     {
       methodName: 'anchors',
       groupName: 'anchors',
-      properties: [
-        { name: 'centerIn', hasValue: true, hasBinding: true },
-      ],
+      properties: [{ name: 'centerIn', hasValue: true, hasBinding: true }],
     },
   ],
   attached: [
@@ -464,17 +462,40 @@ const MESSAGEDIALOGIMPL_META: TypeMetadata = {
 };
 
 export function MessageDialogImpl(): MessageDialogImplBuilder {
-  return createFluentBuilder('MessageDialogImpl', MESSAGEDIALOGIMPL_META) as unknown as MessageDialogImplBuilder;
+  return createFluentBuilder(
+    'MessageDialogImpl',
+    MESSAGEDIALOGIMPL_META,
+  ) as unknown as MessageDialogImplBuilder;
 }
 
 export namespace MessageDialogImpl {
   export namespace ClosePolicy {
     export const NoAutoClose = createEnumToken('MessageDialogImpl', 'ClosePolicy', 'NoAutoClose');
-    export const CloseOnPressOutside = createEnumToken('MessageDialogImpl', 'ClosePolicy', 'CloseOnPressOutside');
-    export const CloseOnPressOutsideParent = createEnumToken('MessageDialogImpl', 'ClosePolicy', 'CloseOnPressOutsideParent');
-    export const CloseOnReleaseOutside = createEnumToken('MessageDialogImpl', 'ClosePolicy', 'CloseOnReleaseOutside');
-    export const CloseOnReleaseOutsideParent = createEnumToken('MessageDialogImpl', 'ClosePolicy', 'CloseOnReleaseOutsideParent');
-    export const CloseOnEscape = createEnumToken('MessageDialogImpl', 'ClosePolicy', 'CloseOnEscape');
+    export const CloseOnPressOutside = createEnumToken(
+      'MessageDialogImpl',
+      'ClosePolicy',
+      'CloseOnPressOutside',
+    );
+    export const CloseOnPressOutsideParent = createEnumToken(
+      'MessageDialogImpl',
+      'ClosePolicy',
+      'CloseOnPressOutsideParent',
+    );
+    export const CloseOnReleaseOutside = createEnumToken(
+      'MessageDialogImpl',
+      'ClosePolicy',
+      'CloseOnReleaseOutside',
+    );
+    export const CloseOnReleaseOutsideParent = createEnumToken(
+      'MessageDialogImpl',
+      'ClosePolicy',
+      'CloseOnReleaseOutsideParent',
+    );
+    export const CloseOnEscape = createEnumToken(
+      'MessageDialogImpl',
+      'ClosePolicy',
+      'CloseOnEscape',
+    );
   }
   export namespace PopupType {
     export const Item = createEnumToken('MessageDialogImpl', 'PopupType', 'Item');
@@ -494,6 +515,10 @@ export namespace MessageDialogImpl {
     export const Right = createEnumToken('MessageDialogImpl', 'TransformOrigin', 'Right');
     export const BottomLeft = createEnumToken('MessageDialogImpl', 'TransformOrigin', 'BottomLeft');
     export const Bottom = createEnumToken('MessageDialogImpl', 'TransformOrigin', 'Bottom');
-    export const BottomRight = createEnumToken('MessageDialogImpl', 'TransformOrigin', 'BottomRight');
+    export const BottomRight = createEnumToken(
+      'MessageDialogImpl',
+      'TransformOrigin',
+      'BottomRight',
+    );
   }
 }

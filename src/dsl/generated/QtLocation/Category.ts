@@ -2,8 +2,13 @@
 // Type: Category
 // Generated from Qt 6.11.0
 
+import type {
+  QmlEnumToken,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
-import type { QmlEnumToken, QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
 import type { PluginBuilder } from './Plugin.js';
 export interface CategoryBuilder {
   id(id: string): CategoryBuilder;
@@ -52,10 +57,8 @@ const CATEGORY_META: TypeMetadata = {
     { handlerName: 'onStatusChanged', paramCount: 0 },
     { handlerName: 'onVisibilityChanged', paramCount: 0 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function Category(): CategoryBuilder {
@@ -70,7 +73,11 @@ export namespace Category {
     export const Error = createEnumToken('Category', 'Status', 'Error');
   }
   export namespace Visibility {
-    export const UnspecifiedVisibility = createEnumToken('Category', 'Visibility', 'UnspecifiedVisibility');
+    export const UnspecifiedVisibility = createEnumToken(
+      'Category',
+      'Visibility',
+      'UnspecifiedVisibility',
+    );
     export const DeviceVisibility = createEnumToken('Category', 'Visibility', 'DeviceVisibility');
     export const PrivateVisibility = createEnumToken('Category', 'Visibility', 'PrivateVisibility');
     export const PublicVisibility = createEnumToken('Category', 'Visibility', 'PublicVisibility');

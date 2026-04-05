@@ -2,8 +2,8 @@
 // Type: ContactsPermission
 // Generated from Qt 6.11.0
 
-import { createFluentBuilder } from '../../runtime/index.js';
 import type { QmlEnumToken, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import { createFluentBuilder } from '../../runtime/index.js';
 export interface ContactsPermissionBuilder {
   id(id: string): ContactsPermissionBuilder;
   child(obj: QmlObjectBuilder): ContactsPermissionBuilder;
@@ -28,12 +28,13 @@ const CONTACTSPERMISSION_META: TypeMetadata = {
     { handlerName: 'onObjectNameChanged', paramCount: 1 },
     { handlerName: 'onStatusChanged', paramCount: 0 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function ContactsPermission(): ContactsPermissionBuilder {
-  return createFluentBuilder('ContactsPermission', CONTACTSPERMISSION_META) as unknown as ContactsPermissionBuilder;
+  return createFluentBuilder(
+    'ContactsPermission',
+    CONTACTSPERMISSION_META,
+  ) as unknown as ContactsPermissionBuilder;
 }

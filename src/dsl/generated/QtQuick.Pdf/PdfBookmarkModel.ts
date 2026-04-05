@@ -2,8 +2,8 @@
 // Type: PdfBookmarkModel
 // Generated from Qt 6.11.0
 
-import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { PdfDocumentBuilder } from './PdfDocument.js';
 export interface PdfBookmarkModelBuilder {
   id(id: string): PdfBookmarkModelBuilder;
@@ -63,27 +63,52 @@ const PDFBOOKMARKMODEL_META: TypeMetadata = {
     { handlerName: 'onRowsMoved', paramCount: 5 },
     { handlerName: 'onRowsRemoved', paramCount: 3 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function PdfBookmarkModel(): PdfBookmarkModelBuilder {
-  return createFluentBuilder('PdfBookmarkModel', PDFBOOKMARKMODEL_META) as unknown as PdfBookmarkModelBuilder;
+  return createFluentBuilder(
+    'PdfBookmarkModel',
+    PDFBOOKMARKMODEL_META,
+  ) as unknown as PdfBookmarkModelBuilder;
 }
 
 export namespace PdfBookmarkModel {
   export namespace CheckIndexOption {
     export const NoOption = createEnumToken('PdfBookmarkModel', 'CheckIndexOption', 'NoOption');
-    export const IndexIsValid = createEnumToken('PdfBookmarkModel', 'CheckIndexOption', 'IndexIsValid');
-    export const DoNotUseParent = createEnumToken('PdfBookmarkModel', 'CheckIndexOption', 'DoNotUseParent');
-    export const ParentIsInvalid = createEnumToken('PdfBookmarkModel', 'CheckIndexOption', 'ParentIsInvalid');
+    export const IndexIsValid = createEnumToken(
+      'PdfBookmarkModel',
+      'CheckIndexOption',
+      'IndexIsValid',
+    );
+    export const DoNotUseParent = createEnumToken(
+      'PdfBookmarkModel',
+      'CheckIndexOption',
+      'DoNotUseParent',
+    );
+    export const ParentIsInvalid = createEnumToken(
+      'PdfBookmarkModel',
+      'CheckIndexOption',
+      'ParentIsInvalid',
+    );
   }
   export namespace LayoutChangeHint {
-    export const NoLayoutChangeHint = createEnumToken('PdfBookmarkModel', 'LayoutChangeHint', 'NoLayoutChangeHint');
-    export const VerticalSortHint = createEnumToken('PdfBookmarkModel', 'LayoutChangeHint', 'VerticalSortHint');
-    export const HorizontalSortHint = createEnumToken('PdfBookmarkModel', 'LayoutChangeHint', 'HorizontalSortHint');
+    export const NoLayoutChangeHint = createEnumToken(
+      'PdfBookmarkModel',
+      'LayoutChangeHint',
+      'NoLayoutChangeHint',
+    );
+    export const VerticalSortHint = createEnumToken(
+      'PdfBookmarkModel',
+      'LayoutChangeHint',
+      'VerticalSortHint',
+    );
+    export const HorizontalSortHint = createEnumToken(
+      'PdfBookmarkModel',
+      'LayoutChangeHint',
+      'HorizontalSortHint',
+    );
   }
   export namespace Role {
     export const Title = createEnumToken('PdfBookmarkModel', 'Role', 'Title');

@@ -2,8 +2,16 @@
 // Type: NinePatchImage
 // Generated from Qt 6.11.0
 
+import type {
+  QmlEnumToken,
+  QmlObjectBuilder,
+  QmlRect,
+  QmlSize,
+  QmlUrl,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
-import type { QmlEnumToken, QmlObjectBuilder, QmlRect, QmlSize, QmlUrl, QmlValue, TypeMetadata } from '../../runtime/index.js';
 import type { QtObjectBuilder } from '../QML/QtObject.js';
 import type { ItemBuilder } from '../QtQuick/Item.js';
 import type { PaletteBuilder } from '../QtQuick/Palette.js';
@@ -297,32 +305,58 @@ const NINEPATCHIMAGE_META: TypeMetadata = {
       ],
     },
   ],
-  attached: [
-  ],
+  attached: [],
 };
 
 export function NinePatchImage(): NinePatchImageBuilder {
-  return createFluentBuilder('NinePatchImage', NINEPATCHIMAGE_META) as unknown as NinePatchImageBuilder;
+  return createFluentBuilder(
+    'NinePatchImage',
+    NINEPATCHIMAGE_META,
+  ) as unknown as NinePatchImageBuilder;
 }
 
 export namespace NinePatchImage {
   export namespace FillMode {
     export const Stretch = createEnumToken('NinePatchImage', 'FillMode', 'Stretch');
-    export const PreserveAspectFit = createEnumToken('NinePatchImage', 'FillMode', 'PreserveAspectFit');
-    export const PreserveAspectCrop = createEnumToken('NinePatchImage', 'FillMode', 'PreserveAspectCrop');
+    export const PreserveAspectFit = createEnumToken(
+      'NinePatchImage',
+      'FillMode',
+      'PreserveAspectFit',
+    );
+    export const PreserveAspectCrop = createEnumToken(
+      'NinePatchImage',
+      'FillMode',
+      'PreserveAspectCrop',
+    );
     export const Tile = createEnumToken('NinePatchImage', 'FillMode', 'Tile');
     export const TileVertically = createEnumToken('NinePatchImage', 'FillMode', 'TileVertically');
-    export const TileHorizontally = createEnumToken('NinePatchImage', 'FillMode', 'TileHorizontally');
+    export const TileHorizontally = createEnumToken(
+      'NinePatchImage',
+      'FillMode',
+      'TileHorizontally',
+    );
     export const Pad = createEnumToken('NinePatchImage', 'FillMode', 'Pad');
   }
   export namespace Flags {
-    export const ItemClipsChildrenToShape = createEnumToken('NinePatchImage', 'Flags', 'ItemClipsChildrenToShape');
-    export const ItemAcceptsInputMethod = createEnumToken('NinePatchImage', 'Flags', 'ItemAcceptsInputMethod');
+    export const ItemClipsChildrenToShape = createEnumToken(
+      'NinePatchImage',
+      'Flags',
+      'ItemClipsChildrenToShape',
+    );
+    export const ItemAcceptsInputMethod = createEnumToken(
+      'NinePatchImage',
+      'Flags',
+      'ItemAcceptsInputMethod',
+    );
     export const ItemIsFocusScope = createEnumToken('NinePatchImage', 'Flags', 'ItemIsFocusScope');
     export const ItemHasContents = createEnumToken('NinePatchImage', 'Flags', 'ItemHasContents');
     export const ItemAcceptsDrops = createEnumToken('NinePatchImage', 'Flags', 'ItemAcceptsDrops');
     export const ItemIsViewport = createEnumToken('NinePatchImage', 'Flags', 'ItemIsViewport');
-    export const ItemObservesViewport = createEnumToken('NinePatchImage', 'Flags', 'ItemObservesViewport');
+    export const ItemObservesViewport = createEnumToken(
+      'NinePatchImage',
+      'Flags',
+      'ItemObservesViewport',
+    );
   }
   export namespace HAlignment {
     export const AlignLeft = createEnumToken('NinePatchImage', 'HAlignment', 'AlignLeft');
@@ -330,24 +364,80 @@ export namespace NinePatchImage {
     export const AlignHCenter = createEnumToken('NinePatchImage', 'HAlignment', 'AlignHCenter');
   }
   export namespace ItemChange {
-    export const ItemChildAddedChange = createEnumToken('NinePatchImage', 'ItemChange', 'ItemChildAddedChange');
-    export const ItemChildRemovedChange = createEnumToken('NinePatchImage', 'ItemChange', 'ItemChildRemovedChange');
-    export const ItemSceneChange = createEnumToken('NinePatchImage', 'ItemChange', 'ItemSceneChange');
-    export const ItemVisibleHasChanged = createEnumToken('NinePatchImage', 'ItemChange', 'ItemVisibleHasChanged');
-    export const ItemParentHasChanged = createEnumToken('NinePatchImage', 'ItemChange', 'ItemParentHasChanged');
-    export const ItemOpacityHasChanged = createEnumToken('NinePatchImage', 'ItemChange', 'ItemOpacityHasChanged');
-    export const ItemActiveFocusHasChanged = createEnumToken('NinePatchImage', 'ItemChange', 'ItemActiveFocusHasChanged');
-    export const ItemRotationHasChanged = createEnumToken('NinePatchImage', 'ItemChange', 'ItemRotationHasChanged');
-    export const ItemAntialiasingHasChanged = createEnumToken('NinePatchImage', 'ItemChange', 'ItemAntialiasingHasChanged');
-    export const ItemDevicePixelRatioHasChanged = createEnumToken('NinePatchImage', 'ItemChange', 'ItemDevicePixelRatioHasChanged');
-    export const ItemEnabledHasChanged = createEnumToken('NinePatchImage', 'ItemChange', 'ItemEnabledHasChanged');
-    export const ItemScaleHasChanged = createEnumToken('NinePatchImage', 'ItemChange', 'ItemScaleHasChanged');
-    export const ItemTransformHasChanged = createEnumToken('NinePatchImage', 'ItemChange', 'ItemTransformHasChanged');
+    export const ItemChildAddedChange = createEnumToken(
+      'NinePatchImage',
+      'ItemChange',
+      'ItemChildAddedChange',
+    );
+    export const ItemChildRemovedChange = createEnumToken(
+      'NinePatchImage',
+      'ItemChange',
+      'ItemChildRemovedChange',
+    );
+    export const ItemSceneChange = createEnumToken(
+      'NinePatchImage',
+      'ItemChange',
+      'ItemSceneChange',
+    );
+    export const ItemVisibleHasChanged = createEnumToken(
+      'NinePatchImage',
+      'ItemChange',
+      'ItemVisibleHasChanged',
+    );
+    export const ItemParentHasChanged = createEnumToken(
+      'NinePatchImage',
+      'ItemChange',
+      'ItemParentHasChanged',
+    );
+    export const ItemOpacityHasChanged = createEnumToken(
+      'NinePatchImage',
+      'ItemChange',
+      'ItemOpacityHasChanged',
+    );
+    export const ItemActiveFocusHasChanged = createEnumToken(
+      'NinePatchImage',
+      'ItemChange',
+      'ItemActiveFocusHasChanged',
+    );
+    export const ItemRotationHasChanged = createEnumToken(
+      'NinePatchImage',
+      'ItemChange',
+      'ItemRotationHasChanged',
+    );
+    export const ItemAntialiasingHasChanged = createEnumToken(
+      'NinePatchImage',
+      'ItemChange',
+      'ItemAntialiasingHasChanged',
+    );
+    export const ItemDevicePixelRatioHasChanged = createEnumToken(
+      'NinePatchImage',
+      'ItemChange',
+      'ItemDevicePixelRatioHasChanged',
+    );
+    export const ItemEnabledHasChanged = createEnumToken(
+      'NinePatchImage',
+      'ItemChange',
+      'ItemEnabledHasChanged',
+    );
+    export const ItemScaleHasChanged = createEnumToken(
+      'NinePatchImage',
+      'ItemChange',
+      'ItemScaleHasChanged',
+    );
+    export const ItemTransformHasChanged = createEnumToken(
+      'NinePatchImage',
+      'ItemChange',
+      'ItemTransformHasChanged',
+    );
   }
   export namespace LoadPixmapOptions {
     export const NoOption = createEnumToken('NinePatchImage', 'LoadPixmapOptions', 'NoOption');
     export const HandleDPR = createEnumToken('NinePatchImage', 'LoadPixmapOptions', 'HandleDPR');
-    export const UseProviderOptions = createEnumToken('NinePatchImage', 'LoadPixmapOptions', 'UseProviderOptions');
+    export const UseProviderOptions = createEnumToken(
+      'NinePatchImage',
+      'LoadPixmapOptions',
+      'UseProviderOptions',
+    );
   }
   export namespace Status {
     export const Null = createEnumToken('NinePatchImage', 'Status', 'Null');

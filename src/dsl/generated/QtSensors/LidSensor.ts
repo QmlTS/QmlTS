@@ -2,8 +2,8 @@
 // Type: LidSensor
 // Generated from Qt 6.11.0
 
-import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { QmlEnumToken, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface LidSensorBuilder {
   id(id: string): LidSensorBuilder;
   child(obj: QmlObjectBuilder): LidSensorBuilder;
@@ -86,10 +86,8 @@ const LIDSENSOR_META: TypeMetadata = {
     { handlerName: 'onSkipDuplicatesChanged', paramCount: 1 },
     { handlerName: 'onUserOrientationChanged', paramCount: 1 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function LidSensor(): LidSensorBuilder {
@@ -98,9 +96,21 @@ export function LidSensor(): LidSensorBuilder {
 
 export namespace LidSensor {
   export namespace AxesOrientationMode {
-    export const FixedOrientation = createEnumToken('LidSensor', 'AxesOrientationMode', 'FixedOrientation');
-    export const AutomaticOrientation = createEnumToken('LidSensor', 'AxesOrientationMode', 'AutomaticOrientation');
-    export const UserOrientation = createEnumToken('LidSensor', 'AxesOrientationMode', 'UserOrientation');
+    export const FixedOrientation = createEnumToken(
+      'LidSensor',
+      'AxesOrientationMode',
+      'FixedOrientation',
+    );
+    export const AutomaticOrientation = createEnumToken(
+      'LidSensor',
+      'AxesOrientationMode',
+      'AutomaticOrientation',
+    );
+    export const UserOrientation = createEnumToken(
+      'LidSensor',
+      'AxesOrientationMode',
+      'UserOrientation',
+    );
   }
   export namespace Feature {
     export const Buffering = createEnumToken('LidSensor', 'Feature', 'Buffering');
@@ -110,6 +120,10 @@ export namespace LidSensor {
     export const AccelerationMode = createEnumToken('LidSensor', 'Feature', 'AccelerationMode');
     export const SkipDuplicates = createEnumToken('LidSensor', 'Feature', 'SkipDuplicates');
     export const AxesOrientation = createEnumToken('LidSensor', 'Feature', 'AxesOrientation');
-    export const PressureSensorTemperature = createEnumToken('LidSensor', 'Feature', 'PressureSensorTemperature');
+    export const PressureSensorTemperature = createEnumToken(
+      'LidSensor',
+      'Feature',
+      'PressureSensorTemperature',
+    );
   }
 }

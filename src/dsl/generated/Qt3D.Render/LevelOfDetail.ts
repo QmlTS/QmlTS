@@ -2,8 +2,13 @@
 // Type: LevelOfDetail
 // Generated from Qt 6.11.0
 
+import type {
+  QmlEnumToken,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
-import type { QmlEnumToken, QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
 import type { CameraBuilder } from './Camera.js';
 export interface LevelOfDetailBuilder {
   id(id: string): LevelOfDetailBuilder;
@@ -68,19 +73,28 @@ const LEVELOFDETAIL_META: TypeMetadata = {
     { handlerName: 'onThresholdsChanged', paramCount: 1 },
     { handlerName: 'onVolumeOverrideChanged', paramCount: 1 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function LevelOfDetail(): LevelOfDetailBuilder {
-  return createFluentBuilder('LevelOfDetail', LEVELOFDETAIL_META) as unknown as LevelOfDetailBuilder;
+  return createFluentBuilder(
+    'LevelOfDetail',
+    LEVELOFDETAIL_META,
+  ) as unknown as LevelOfDetailBuilder;
 }
 
 export namespace LevelOfDetail {
   export namespace ThresholdType {
-    export const DistanceToCameraThreshold = createEnumToken('LevelOfDetail', 'ThresholdType', 'DistanceToCameraThreshold');
-    export const ProjectedScreenPixelSizeThreshold = createEnumToken('LevelOfDetail', 'ThresholdType', 'ProjectedScreenPixelSizeThreshold');
+    export const DistanceToCameraThreshold = createEnumToken(
+      'LevelOfDetail',
+      'ThresholdType',
+      'DistanceToCameraThreshold',
+    );
+    export const ProjectedScreenPixelSizeThreshold = createEnumToken(
+      'LevelOfDetail',
+      'ThresholdType',
+      'ProjectedScreenPixelSizeThreshold',
+    );
   }
 }

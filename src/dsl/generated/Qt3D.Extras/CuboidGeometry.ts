@@ -2,8 +2,8 @@
 // Type: CuboidGeometry
 // Generated from Qt 6.11.0
 
-import { createFluentBuilder } from '../../runtime/index.js';
 import type { QmlObjectBuilder, QmlSize, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import { createFluentBuilder } from '../../runtime/index.js';
 import type { AttributeBuilder } from '../Qt3D.Core/Attribute.js';
 export interface CuboidGeometryBuilder {
   id(id: string): CuboidGeometryBuilder;
@@ -73,12 +73,13 @@ const CUBOIDGEOMETRY_META: TypeMetadata = {
     { handlerName: 'onYzMeshResolutionChanged', paramCount: 1 },
     { handlerName: 'onZExtentChanged', paramCount: 1 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function CuboidGeometry(): CuboidGeometryBuilder {
-  return createFluentBuilder('CuboidGeometry', CUBOIDGEOMETRY_META) as unknown as CuboidGeometryBuilder;
+  return createFluentBuilder(
+    'CuboidGeometry',
+    CUBOIDGEOMETRY_META,
+  ) as unknown as CuboidGeometryBuilder;
 }

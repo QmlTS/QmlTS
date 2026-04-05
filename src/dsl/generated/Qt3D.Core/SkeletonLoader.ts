@@ -2,8 +2,8 @@
 // Type: SkeletonLoader
 // Generated from Qt 6.11.0
 
-import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { QmlObjectBuilder, QmlUrl, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface SkeletonLoaderBuilder {
   id(id: string): SkeletonLoaderBuilder;
   child(obj: QmlObjectBuilder): SkeletonLoaderBuilder;
@@ -49,14 +49,15 @@ const SKELETONLOADER_META: TypeMetadata = {
     { handlerName: 'onSourceChanged', paramCount: 1 },
     { handlerName: 'onStatusChanged', paramCount: 1 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function SkeletonLoader(): SkeletonLoaderBuilder {
-  return createFluentBuilder('SkeletonLoader', SKELETONLOADER_META) as unknown as SkeletonLoaderBuilder;
+  return createFluentBuilder(
+    'SkeletonLoader',
+    SKELETONLOADER_META,
+  ) as unknown as SkeletonLoaderBuilder;
 }
 
 export namespace SkeletonLoader {

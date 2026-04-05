@@ -2,8 +2,16 @@
 // Type: ProceduralMesh
 // Generated from Qt 6.11.0
 
+import type {
+  QmlEnumToken,
+  QmlObjectBuilder,
+  QmlValue,
+  QmlVector2d,
+  QmlVector3d,
+  QmlVector4d,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
-import type { QmlEnumToken, QmlObjectBuilder, QmlValue, QmlVector2d, QmlVector3d, QmlVector4d, TypeMetadata } from '../../runtime/index.js';
 export interface ProceduralMeshBuilder {
   id(id: string): ProceduralMeshBuilder;
   child(obj: QmlObjectBuilder): ProceduralMeshBuilder;
@@ -92,14 +100,15 @@ const PROCEDURALMESH_META: TypeMetadata = {
     { handlerName: 'onUv1sChanged', paramCount: 0 },
     { handlerName: 'onWeightsChanged', paramCount: 0 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function ProceduralMesh(): ProceduralMeshBuilder {
-  return createFluentBuilder('ProceduralMesh', PROCEDURALMESH_META) as unknown as ProceduralMeshBuilder;
+  return createFluentBuilder(
+    'ProceduralMesh',
+    PROCEDURALMESH_META,
+  ) as unknown as ProceduralMeshBuilder;
 }
 
 export namespace ProceduralMesh {
@@ -107,7 +116,11 @@ export namespace ProceduralMesh {
     export const Points = createEnumToken('ProceduralMesh', 'PrimitiveMode', 'Points');
     export const LineStrip = createEnumToken('ProceduralMesh', 'PrimitiveMode', 'LineStrip');
     export const Lines = createEnumToken('ProceduralMesh', 'PrimitiveMode', 'Lines');
-    export const TriangleStrip = createEnumToken('ProceduralMesh', 'PrimitiveMode', 'TriangleStrip');
+    export const TriangleStrip = createEnumToken(
+      'ProceduralMesh',
+      'PrimitiveMode',
+      'TriangleStrip',
+    );
     export const TriangleFan = createEnumToken('ProceduralMesh', 'PrimitiveMode', 'TriangleFan');
     export const Triangles = createEnumToken('ProceduralMesh', 'PrimitiveMode', 'Triangles');
   }

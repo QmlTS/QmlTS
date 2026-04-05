@@ -2,8 +2,15 @@
 // Type: ConvexMeshShape
 // Generated from Qt 6.11.0
 
+import type {
+  QmlObjectBuilder,
+  QmlQuaternion,
+  QmlUrl,
+  QmlValue,
+  QmlVector3d,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
-import type { QmlObjectBuilder, QmlQuaternion, QmlUrl, QmlValue, QmlVector3d, TypeMetadata } from '../../runtime/index.js';
 export interface ConvexMeshShapeBuilder {
   id(id: string): ConvexMeshShapeBuilder;
   child(obj: QmlObjectBuilder): ConvexMeshShapeBuilder;
@@ -124,14 +131,15 @@ const CONVEXMESHSHAPE_META: TypeMetadata = {
     { handlerName: 'onYChanged', paramCount: 0 },
     { handlerName: 'onZChanged', paramCount: 0 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function ConvexMeshShape(): ConvexMeshShapeBuilder {
-  return createFluentBuilder('ConvexMeshShape', CONVEXMESHSHAPE_META) as unknown as ConvexMeshShapeBuilder;
+  return createFluentBuilder(
+    'ConvexMeshShape',
+    CONVEXMESHSHAPE_META,
+  ) as unknown as ConvexMeshShapeBuilder;
 }
 
 export namespace ConvexMeshShape {

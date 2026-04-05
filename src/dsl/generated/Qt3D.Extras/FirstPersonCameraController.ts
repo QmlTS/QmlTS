@@ -2,8 +2,8 @@
 // Type: FirstPersonCameraController
 // Generated from Qt 6.11.0
 
-import { createFluentBuilder } from '../../runtime/index.js';
 import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import { createFluentBuilder } from '../../runtime/index.js';
 import type { CameraBuilder } from '../Qt3D.Render/Camera.js';
 export interface FirstPersonCameraControllerBuilder {
   id(id: string): FirstPersonCameraControllerBuilder;
@@ -59,12 +59,13 @@ const FIRSTPERSONCAMERACONTROLLER_META: TypeMetadata = {
     { handlerName: 'onObjectNameChanged', paramCount: 1 },
     { handlerName: 'onParentChanged', paramCount: 1 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function FirstPersonCameraController(): FirstPersonCameraControllerBuilder {
-  return createFluentBuilder('FirstPersonCameraController', FIRSTPERSONCAMERACONTROLLER_META) as unknown as FirstPersonCameraControllerBuilder;
+  return createFluentBuilder(
+    'FirstPersonCameraController',
+    FIRSTPERSONCAMERACONTROLLER_META,
+  ) as unknown as FirstPersonCameraControllerBuilder;
 }

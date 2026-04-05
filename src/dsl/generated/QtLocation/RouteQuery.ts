@@ -2,8 +2,14 @@
 // Type: RouteQuery
 // Generated from Qt 6.11.0
 
+import type {
+  QmlDate,
+  QmlEnumToken,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
-import type { QmlDate, QmlEnumToken, QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
 export interface RouteQueryBuilder {
   id(id: string): RouteQueryBuilder;
   child(obj: QmlObjectBuilder): RouteQueryBuilder;
@@ -65,10 +71,8 @@ const ROUTEQUERY_META: TypeMetadata = {
     { handlerName: 'onTravelModesChanged', paramCount: 0 },
     { handlerName: 'onWaypointsChanged', paramCount: 0 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function RouteQuery(): RouteQueryBuilder {
@@ -80,20 +84,48 @@ export namespace RouteQuery {
     export const NoFeature = createEnumToken('RouteQuery', 'FeatureTypes', 'NoFeature');
     export const TollFeature = createEnumToken('RouteQuery', 'FeatureTypes', 'TollFeature');
     export const HighwayFeature = createEnumToken('RouteQuery', 'FeatureTypes', 'HighwayFeature');
-    export const PublicTransitFeature = createEnumToken('RouteQuery', 'FeatureTypes', 'PublicTransitFeature');
+    export const PublicTransitFeature = createEnumToken(
+      'RouteQuery',
+      'FeatureTypes',
+      'PublicTransitFeature',
+    );
     export const FerryFeature = createEnumToken('RouteQuery', 'FeatureTypes', 'FerryFeature');
     export const TunnelFeature = createEnumToken('RouteQuery', 'FeatureTypes', 'TunnelFeature');
     export const DirtRoadFeature = createEnumToken('RouteQuery', 'FeatureTypes', 'DirtRoadFeature');
     export const ParksFeature = createEnumToken('RouteQuery', 'FeatureTypes', 'ParksFeature');
-    export const MotorPoolLaneFeature = createEnumToken('RouteQuery', 'FeatureTypes', 'MotorPoolLaneFeature');
+    export const MotorPoolLaneFeature = createEnumToken(
+      'RouteQuery',
+      'FeatureTypes',
+      'MotorPoolLaneFeature',
+    );
     export const TrafficFeature = createEnumToken('RouteQuery', 'FeatureTypes', 'TrafficFeature');
   }
   export namespace FeatureWeight {
-    export const NeutralFeatureWeight = createEnumToken('RouteQuery', 'FeatureWeight', 'NeutralFeatureWeight');
-    export const PreferFeatureWeight = createEnumToken('RouteQuery', 'FeatureWeight', 'PreferFeatureWeight');
-    export const RequireFeatureWeight = createEnumToken('RouteQuery', 'FeatureWeight', 'RequireFeatureWeight');
-    export const AvoidFeatureWeight = createEnumToken('RouteQuery', 'FeatureWeight', 'AvoidFeatureWeight');
-    export const DisallowFeatureWeight = createEnumToken('RouteQuery', 'FeatureWeight', 'DisallowFeatureWeight');
+    export const NeutralFeatureWeight = createEnumToken(
+      'RouteQuery',
+      'FeatureWeight',
+      'NeutralFeatureWeight',
+    );
+    export const PreferFeatureWeight = createEnumToken(
+      'RouteQuery',
+      'FeatureWeight',
+      'PreferFeatureWeight',
+    );
+    export const RequireFeatureWeight = createEnumToken(
+      'RouteQuery',
+      'FeatureWeight',
+      'RequireFeatureWeight',
+    );
+    export const AvoidFeatureWeight = createEnumToken(
+      'RouteQuery',
+      'FeatureWeight',
+      'AvoidFeatureWeight',
+    );
+    export const DisallowFeatureWeight = createEnumToken(
+      'RouteQuery',
+      'FeatureWeight',
+      'DisallowFeatureWeight',
+    );
   }
   export namespace ManeuverDetail {
     export const NoManeuvers = createEnumToken('RouteQuery', 'ManeuverDetail', 'NoManeuvers');
@@ -101,40 +133,88 @@ export namespace RouteQuery {
   }
   export namespace ManeuverDetails {
     export const NoManeuvers = createEnumToken('RouteQuery', 'ManeuverDetails', 'NoManeuvers');
-    export const BasicManeuvers = createEnumToken('RouteQuery', 'ManeuverDetails', 'BasicManeuvers');
+    export const BasicManeuvers = createEnumToken(
+      'RouteQuery',
+      'ManeuverDetails',
+      'BasicManeuvers',
+    );
   }
   export namespace RouteOptimization {
-    export const ShortestRoute = createEnumToken('RouteQuery', 'RouteOptimization', 'ShortestRoute');
+    export const ShortestRoute = createEnumToken(
+      'RouteQuery',
+      'RouteOptimization',
+      'ShortestRoute',
+    );
     export const FastestRoute = createEnumToken('RouteQuery', 'RouteOptimization', 'FastestRoute');
-    export const MostEconomicRoute = createEnumToken('RouteQuery', 'RouteOptimization', 'MostEconomicRoute');
-    export const MostScenicRoute = createEnumToken('RouteQuery', 'RouteOptimization', 'MostScenicRoute');
+    export const MostEconomicRoute = createEnumToken(
+      'RouteQuery',
+      'RouteOptimization',
+      'MostEconomicRoute',
+    );
+    export const MostScenicRoute = createEnumToken(
+      'RouteQuery',
+      'RouteOptimization',
+      'MostScenicRoute',
+    );
   }
   export namespace RouteOptimizations {
-    export const ShortestRoute = createEnumToken('RouteQuery', 'RouteOptimizations', 'ShortestRoute');
+    export const ShortestRoute = createEnumToken(
+      'RouteQuery',
+      'RouteOptimizations',
+      'ShortestRoute',
+    );
     export const FastestRoute = createEnumToken('RouteQuery', 'RouteOptimizations', 'FastestRoute');
-    export const MostEconomicRoute = createEnumToken('RouteQuery', 'RouteOptimizations', 'MostEconomicRoute');
-    export const MostScenicRoute = createEnumToken('RouteQuery', 'RouteOptimizations', 'MostScenicRoute');
+    export const MostEconomicRoute = createEnumToken(
+      'RouteQuery',
+      'RouteOptimizations',
+      'MostEconomicRoute',
+    );
+    export const MostScenicRoute = createEnumToken(
+      'RouteQuery',
+      'RouteOptimizations',
+      'MostScenicRoute',
+    );
   }
   export namespace SegmentDetail {
     export const NoSegmentData = createEnumToken('RouteQuery', 'SegmentDetail', 'NoSegmentData');
-    export const BasicSegmentData = createEnumToken('RouteQuery', 'SegmentDetail', 'BasicSegmentData');
+    export const BasicSegmentData = createEnumToken(
+      'RouteQuery',
+      'SegmentDetail',
+      'BasicSegmentData',
+    );
   }
   export namespace SegmentDetails {
     export const NoSegmentData = createEnumToken('RouteQuery', 'SegmentDetails', 'NoSegmentData');
-    export const BasicSegmentData = createEnumToken('RouteQuery', 'SegmentDetails', 'BasicSegmentData');
+    export const BasicSegmentData = createEnumToken(
+      'RouteQuery',
+      'SegmentDetails',
+      'BasicSegmentData',
+    );
   }
   export namespace TravelMode {
     export const CarTravel = createEnumToken('RouteQuery', 'TravelMode', 'CarTravel');
     export const PedestrianTravel = createEnumToken('RouteQuery', 'TravelMode', 'PedestrianTravel');
     export const BicycleTravel = createEnumToken('RouteQuery', 'TravelMode', 'BicycleTravel');
-    export const PublicTransitTravel = createEnumToken('RouteQuery', 'TravelMode', 'PublicTransitTravel');
+    export const PublicTransitTravel = createEnumToken(
+      'RouteQuery',
+      'TravelMode',
+      'PublicTransitTravel',
+    );
     export const TruckTravel = createEnumToken('RouteQuery', 'TravelMode', 'TruckTravel');
   }
   export namespace TravelModes {
     export const CarTravel = createEnumToken('RouteQuery', 'TravelModes', 'CarTravel');
-    export const PedestrianTravel = createEnumToken('RouteQuery', 'TravelModes', 'PedestrianTravel');
+    export const PedestrianTravel = createEnumToken(
+      'RouteQuery',
+      'TravelModes',
+      'PedestrianTravel',
+    );
     export const BicycleTravel = createEnumToken('RouteQuery', 'TravelModes', 'BicycleTravel');
-    export const PublicTransitTravel = createEnumToken('RouteQuery', 'TravelModes', 'PublicTransitTravel');
+    export const PublicTransitTravel = createEnumToken(
+      'RouteQuery',
+      'TravelModes',
+      'PublicTransitTravel',
+    );
     export const TruckTravel = createEnumToken('RouteQuery', 'TravelModes', 'TruckTravel');
   }
 }

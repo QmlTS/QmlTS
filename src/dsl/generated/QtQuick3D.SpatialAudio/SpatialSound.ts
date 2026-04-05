@@ -2,8 +2,16 @@
 // Type: SpatialSound
 // Generated from Qt 6.11.0
 
+import type {
+  QmlEnumToken,
+  QmlObjectBuilder,
+  QmlQuaternion,
+  QmlUrl,
+  QmlValue,
+  QmlVector3d,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
-import type { QmlEnumToken, QmlObjectBuilder, QmlQuaternion, QmlUrl, QmlValue, QmlVector3d, TypeMetadata } from '../../runtime/index.js';
 export interface SpatialSoundBuilder {
   id(id: string): SpatialSoundBuilder;
   child(obj: QmlObjectBuilder): SpatialSoundBuilder;
@@ -167,10 +175,8 @@ const SPATIALSOUND_META: TypeMetadata = {
     { handlerName: 'onYChanged', paramCount: 0 },
     { handlerName: 'onZChanged', paramCount: 0 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function SpatialSound(): SpatialSoundBuilder {
@@ -181,7 +187,11 @@ export namespace SpatialSound {
   export namespace DistanceModel {
     export const Logarithmic = createEnumToken('SpatialSound', 'DistanceModel', 'Logarithmic');
     export const Linear = createEnumToken('SpatialSound', 'DistanceModel', 'Linear');
-    export const ManualAttenuation = createEnumToken('SpatialSound', 'DistanceModel', 'ManualAttenuation');
+    export const ManualAttenuation = createEnumToken(
+      'SpatialSound',
+      'DistanceModel',
+      'ManualAttenuation',
+    );
   }
   export namespace Loops {
     export const Infinite = createEnumToken('SpatialSound', 'Loops', 'Infinite');

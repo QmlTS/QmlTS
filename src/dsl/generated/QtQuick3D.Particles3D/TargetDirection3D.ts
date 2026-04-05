@@ -2,8 +2,8 @@
 // Type: TargetDirection3D
 // Generated from Qt 6.11.0
 
-import { createFluentBuilder } from '../../runtime/index.js';
 import type { QmlObjectBuilder, QmlVector3d, TypeMetadata } from '../../runtime/index.js';
+import { createFluentBuilder } from '../../runtime/index.js';
 export interface TargetDirection3DBuilder {
   id(id: string): TargetDirection3DBuilder;
   child(obj: QmlObjectBuilder): TargetDirection3DBuilder;
@@ -46,12 +46,13 @@ const TARGETDIRECTION3D_META: TypeMetadata = {
     { handlerName: 'onPositionChanged', paramCount: 0 },
     { handlerName: 'onPositionVariationChanged', paramCount: 0 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function TargetDirection3D(): TargetDirection3DBuilder {
-  return createFluentBuilder('TargetDirection3D', TARGETDIRECTION3D_META) as unknown as TargetDirection3DBuilder;
+  return createFluentBuilder(
+    'TargetDirection3D',
+    TARGETDIRECTION3D_META,
+  ) as unknown as TargetDirection3DBuilder;
 }

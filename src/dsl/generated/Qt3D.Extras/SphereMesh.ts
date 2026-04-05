@@ -2,8 +2,14 @@
 // Type: SphereMesh
 // Generated from Qt 6.11.0
 
+import type {
+  QmlEnumToken,
+  QmlObjectBuilder,
+  QmlValue,
+  QmlVector3d,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
-import type { QmlEnumToken, QmlObjectBuilder, QmlValue, QmlVector3d, TypeMetadata } from '../../runtime/index.js';
 import type { GeometryBuilder } from '../Qt3D.Core/Geometry.js';
 import type { GeometryViewBuilder } from '../Qt3D.Core/GeometryView.js';
 export interface SphereMeshBuilder {
@@ -145,10 +151,8 @@ const SPHEREMESH_META: TypeMetadata = {
     { handlerName: 'onVerticesPerPatchChanged', paramCount: 1 },
     { handlerName: 'onViewChanged', paramCount: 1 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function SphereMesh(): SphereMeshBuilder {
@@ -165,9 +169,21 @@ export namespace SphereMesh {
     export const TriangleStrip = createEnumToken('SphereMesh', 'PrimitiveType', 'TriangleStrip');
     export const TriangleFan = createEnumToken('SphereMesh', 'PrimitiveType', 'TriangleFan');
     export const LinesAdjacency = createEnumToken('SphereMesh', 'PrimitiveType', 'LinesAdjacency');
-    export const TrianglesAdjacency = createEnumToken('SphereMesh', 'PrimitiveType', 'TrianglesAdjacency');
-    export const LineStripAdjacency = createEnumToken('SphereMesh', 'PrimitiveType', 'LineStripAdjacency');
-    export const TriangleStripAdjacency = createEnumToken('SphereMesh', 'PrimitiveType', 'TriangleStripAdjacency');
+    export const TrianglesAdjacency = createEnumToken(
+      'SphereMesh',
+      'PrimitiveType',
+      'TrianglesAdjacency',
+    );
+    export const LineStripAdjacency = createEnumToken(
+      'SphereMesh',
+      'PrimitiveType',
+      'LineStripAdjacency',
+    );
+    export const TriangleStripAdjacency = createEnumToken(
+      'SphereMesh',
+      'PrimitiveType',
+      'TriangleStripAdjacency',
+    );
     export const Patches = createEnumToken('SphereMesh', 'PrimitiveType', 'Patches');
   }
 }

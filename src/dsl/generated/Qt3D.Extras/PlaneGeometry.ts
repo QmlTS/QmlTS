@@ -2,8 +2,8 @@
 // Type: PlaneGeometry
 // Generated from Qt 6.11.0
 
-import { createFluentBuilder } from '../../runtime/index.js';
 import type { QmlObjectBuilder, QmlSize, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import { createFluentBuilder } from '../../runtime/index.js';
 import type { AttributeBuilder } from '../Qt3D.Core/Attribute.js';
 export interface PlaneGeometryBuilder {
   id(id: string): PlaneGeometryBuilder;
@@ -63,12 +63,13 @@ const PLANEGEOMETRY_META: TypeMetadata = {
     { handlerName: 'onResolutionChanged', paramCount: 1 },
     { handlerName: 'onWidthChanged', paramCount: 1 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function PlaneGeometry(): PlaneGeometryBuilder {
-  return createFluentBuilder('PlaneGeometry', PLANEGEOMETRY_META) as unknown as PlaneGeometryBuilder;
+  return createFluentBuilder(
+    'PlaneGeometry',
+    PLANEGEOMETRY_META,
+  ) as unknown as PlaneGeometryBuilder;
 }

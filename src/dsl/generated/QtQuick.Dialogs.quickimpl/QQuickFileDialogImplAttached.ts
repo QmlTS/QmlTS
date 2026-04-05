@@ -2,12 +2,12 @@
 // Type: Attached type: FileDialogImpl
 // Generated from Qt 6.11.0
 
+import type { ListViewBuilder } from '../QtQuick/ListView.js';
 import type { ComboBoxBuilder } from '../QtQuick.Templates/ComboBox.js';
 import type { DialogBuilder } from '../QtQuick.Templates/Dialog.js';
 import type { DialogButtonBoxBuilder } from '../QtQuick.Templates/DialogButtonBox.js';
 import type { LabelBuilder } from '../QtQuick.Templates/Label.js';
 import type { TextFieldBuilder } from '../QtQuick.Templates/TextField.js';
-import type { ListViewBuilder } from '../QtQuick/ListView.js';
 import type { FolderBreadcrumbBarBuilder } from './FolderBreadcrumbBar.js';
 import type { SideBarBuilder } from './SideBar.js';
 export interface FileDialogImplAttachedBuilder {

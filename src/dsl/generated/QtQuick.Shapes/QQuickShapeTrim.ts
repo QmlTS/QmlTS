@@ -2,7 +2,6 @@
 // Type: Grouped surface: QQuickShapeTrim
 // Generated from Qt 6.11.0
 
-
 export interface TrimBuilder {
   end(value: number): TrimBuilder;
   endBind(expr: string): TrimBuilder;

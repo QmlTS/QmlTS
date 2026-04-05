@@ -2,8 +2,8 @@
 // Type: VBoxPlotModelMapper
 // Generated from Qt 6.11.0
 
-import { createFluentBuilder } from '../../runtime/index.js';
 import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import { createFluentBuilder } from '../../runtime/index.js';
 export interface VBoxPlotModelMapperBuilder {
   id(id: string): VBoxPlotModelMapperBuilder;
   child(obj: QmlObjectBuilder): VBoxPlotModelMapperBuilder;
@@ -51,12 +51,13 @@ const VBOXPLOTMODELMAPPER_META: TypeMetadata = {
     { handlerName: 'onRowCountChanged', paramCount: 0 },
     { handlerName: 'onSeriesReplaced', paramCount: 0 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function VBoxPlotModelMapper(): VBoxPlotModelMapperBuilder {
-  return createFluentBuilder('VBoxPlotModelMapper', VBOXPLOTMODELMAPPER_META) as unknown as VBoxPlotModelMapperBuilder;
+  return createFluentBuilder(
+    'VBoxPlotModelMapper',
+    VBOXPLOTMODELMAPPER_META,
+  ) as unknown as VBoxPlotModelMapperBuilder;
 }

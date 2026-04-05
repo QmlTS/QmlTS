@@ -2,8 +2,8 @@
 // Type: VCandlestickModelMapper
 // Generated from Qt 6.11.0
 
-import { createFluentBuilder } from '../../runtime/index.js';
 import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import { createFluentBuilder } from '../../runtime/index.js';
 export interface VCandlestickModelMapperBuilder {
   id(id: string): VCandlestickModelMapperBuilder;
   child(obj: QmlObjectBuilder): VCandlestickModelMapperBuilder;
@@ -66,12 +66,13 @@ const VCANDLESTICKMODELMAPPER_META: TypeMetadata = {
     { handlerName: 'onSeriesReplaced', paramCount: 0 },
     { handlerName: 'onTimestampRowChanged', paramCount: 0 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function VCandlestickModelMapper(): VCandlestickModelMapperBuilder {
-  return createFluentBuilder('VCandlestickModelMapper', VCANDLESTICKMODELMAPPER_META) as unknown as VCandlestickModelMapperBuilder;
+  return createFluentBuilder(
+    'VCandlestickModelMapper',
+    VCANDLESTICKMODELMAPPER_META,
+  ) as unknown as VCandlestickModelMapperBuilder;
 }

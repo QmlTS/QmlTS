@@ -2,8 +2,8 @@
 // Type: RenderStatsMeshesModel
 // Generated from Qt 6.11.0
 
-import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface RenderStatsMeshesModelBuilder {
   id(id: string): RenderStatsMeshesModelBuilder;
   child(obj: QmlObjectBuilder): RenderStatsMeshesModelBuilder;
@@ -62,26 +62,55 @@ const RENDERSTATSMESHESMODEL_META: TypeMetadata = {
     { handlerName: 'onRowsMoved', paramCount: 5 },
     { handlerName: 'onRowsRemoved', paramCount: 3 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function RenderStatsMeshesModel(): RenderStatsMeshesModelBuilder {
-  return createFluentBuilder('RenderStatsMeshesModel', RENDERSTATSMESHESMODEL_META) as unknown as RenderStatsMeshesModelBuilder;
+  return createFluentBuilder(
+    'RenderStatsMeshesModel',
+    RENDERSTATSMESHESMODEL_META,
+  ) as unknown as RenderStatsMeshesModelBuilder;
 }
 
 export namespace RenderStatsMeshesModel {
   export namespace CheckIndexOption {
-    export const NoOption = createEnumToken('RenderStatsMeshesModel', 'CheckIndexOption', 'NoOption');
-    export const IndexIsValid = createEnumToken('RenderStatsMeshesModel', 'CheckIndexOption', 'IndexIsValid');
-    export const DoNotUseParent = createEnumToken('RenderStatsMeshesModel', 'CheckIndexOption', 'DoNotUseParent');
-    export const ParentIsInvalid = createEnumToken('RenderStatsMeshesModel', 'CheckIndexOption', 'ParentIsInvalid');
+    export const NoOption = createEnumToken(
+      'RenderStatsMeshesModel',
+      'CheckIndexOption',
+      'NoOption',
+    );
+    export const IndexIsValid = createEnumToken(
+      'RenderStatsMeshesModel',
+      'CheckIndexOption',
+      'IndexIsValid',
+    );
+    export const DoNotUseParent = createEnumToken(
+      'RenderStatsMeshesModel',
+      'CheckIndexOption',
+      'DoNotUseParent',
+    );
+    export const ParentIsInvalid = createEnumToken(
+      'RenderStatsMeshesModel',
+      'CheckIndexOption',
+      'ParentIsInvalid',
+    );
   }
   export namespace LayoutChangeHint {
-    export const NoLayoutChangeHint = createEnumToken('RenderStatsMeshesModel', 'LayoutChangeHint', 'NoLayoutChangeHint');
-    export const VerticalSortHint = createEnumToken('RenderStatsMeshesModel', 'LayoutChangeHint', 'VerticalSortHint');
-    export const HorizontalSortHint = createEnumToken('RenderStatsMeshesModel', 'LayoutChangeHint', 'HorizontalSortHint');
+    export const NoLayoutChangeHint = createEnumToken(
+      'RenderStatsMeshesModel',
+      'LayoutChangeHint',
+      'NoLayoutChangeHint',
+    );
+    export const VerticalSortHint = createEnumToken(
+      'RenderStatsMeshesModel',
+      'LayoutChangeHint',
+      'VerticalSortHint',
+    );
+    export const HorizontalSortHint = createEnumToken(
+      'RenderStatsMeshesModel',
+      'LayoutChangeHint',
+      'HorizontalSortHint',
+    );
   }
 }

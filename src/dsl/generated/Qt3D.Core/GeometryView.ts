@@ -2,8 +2,13 @@
 // Type: GeometryView
 // Generated from Qt 6.11.0
 
+import type {
+  QmlEnumToken,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
-import type { QmlEnumToken, QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
 import type { GeometryBuilder } from './Geometry.js';
 export interface GeometryViewBuilder {
   id(id: string): GeometryViewBuilder;
@@ -89,10 +94,8 @@ const GEOMETRYVIEW_META: TypeMetadata = {
     { handlerName: 'onVertexCountChanged', paramCount: 1 },
     { handlerName: 'onVerticesPerPatchChanged', paramCount: 1 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function GeometryView(): GeometryViewBuilder {
@@ -108,10 +111,26 @@ export namespace GeometryView {
     export const Triangles = createEnumToken('GeometryView', 'PrimitiveType', 'Triangles');
     export const TriangleStrip = createEnumToken('GeometryView', 'PrimitiveType', 'TriangleStrip');
     export const TriangleFan = createEnumToken('GeometryView', 'PrimitiveType', 'TriangleFan');
-    export const LinesAdjacency = createEnumToken('GeometryView', 'PrimitiveType', 'LinesAdjacency');
-    export const TrianglesAdjacency = createEnumToken('GeometryView', 'PrimitiveType', 'TrianglesAdjacency');
-    export const LineStripAdjacency = createEnumToken('GeometryView', 'PrimitiveType', 'LineStripAdjacency');
-    export const TriangleStripAdjacency = createEnumToken('GeometryView', 'PrimitiveType', 'TriangleStripAdjacency');
+    export const LinesAdjacency = createEnumToken(
+      'GeometryView',
+      'PrimitiveType',
+      'LinesAdjacency',
+    );
+    export const TrianglesAdjacency = createEnumToken(
+      'GeometryView',
+      'PrimitiveType',
+      'TrianglesAdjacency',
+    );
+    export const LineStripAdjacency = createEnumToken(
+      'GeometryView',
+      'PrimitiveType',
+      'LineStripAdjacency',
+    );
+    export const TriangleStripAdjacency = createEnumToken(
+      'GeometryView',
+      'PrimitiveType',
+      'TriangleStripAdjacency',
+    );
     export const Patches = createEnumToken('GeometryView', 'PrimitiveType', 'Patches');
   }
 }

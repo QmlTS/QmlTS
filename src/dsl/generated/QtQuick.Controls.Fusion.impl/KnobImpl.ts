@@ -2,8 +2,14 @@
 // Type: KnobImpl
 // Generated from Qt 6.11.0
 
+import type {
+  QmlColor,
+  QmlEnumToken,
+  QmlObjectBuilder,
+  QmlSize,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
-import type { QmlColor, QmlEnumToken, QmlObjectBuilder, QmlSize, TypeMetadata } from '../../runtime/index.js';
 import type { QtObjectBuilder } from '../QML/QtObject.js';
 import type { ItemBuilder } from '../QtQuick/Item.js';
 import type { PaletteBuilder } from '../QtQuick/Palette.js';
@@ -229,8 +235,7 @@ const KNOBIMPL_META: TypeMetadata = {
       ],
     },
   ],
-  attached: [
-  ],
+  attached: [],
 };
 
 export function KnobImpl(): KnobImplBuilder {
@@ -239,36 +244,108 @@ export function KnobImpl(): KnobImplBuilder {
 
 export namespace KnobImpl {
   export namespace Flags {
-    export const ItemClipsChildrenToShape = createEnumToken('KnobImpl', 'Flags', 'ItemClipsChildrenToShape');
-    export const ItemAcceptsInputMethod = createEnumToken('KnobImpl', 'Flags', 'ItemAcceptsInputMethod');
+    export const ItemClipsChildrenToShape = createEnumToken(
+      'KnobImpl',
+      'Flags',
+      'ItemClipsChildrenToShape',
+    );
+    export const ItemAcceptsInputMethod = createEnumToken(
+      'KnobImpl',
+      'Flags',
+      'ItemAcceptsInputMethod',
+    );
     export const ItemIsFocusScope = createEnumToken('KnobImpl', 'Flags', 'ItemIsFocusScope');
     export const ItemHasContents = createEnumToken('KnobImpl', 'Flags', 'ItemHasContents');
     export const ItemAcceptsDrops = createEnumToken('KnobImpl', 'Flags', 'ItemAcceptsDrops');
     export const ItemIsViewport = createEnumToken('KnobImpl', 'Flags', 'ItemIsViewport');
-    export const ItemObservesViewport = createEnumToken('KnobImpl', 'Flags', 'ItemObservesViewport');
+    export const ItemObservesViewport = createEnumToken(
+      'KnobImpl',
+      'Flags',
+      'ItemObservesViewport',
+    );
   }
   export namespace ItemChange {
-    export const ItemChildAddedChange = createEnumToken('KnobImpl', 'ItemChange', 'ItemChildAddedChange');
-    export const ItemChildRemovedChange = createEnumToken('KnobImpl', 'ItemChange', 'ItemChildRemovedChange');
+    export const ItemChildAddedChange = createEnumToken(
+      'KnobImpl',
+      'ItemChange',
+      'ItemChildAddedChange',
+    );
+    export const ItemChildRemovedChange = createEnumToken(
+      'KnobImpl',
+      'ItemChange',
+      'ItemChildRemovedChange',
+    );
     export const ItemSceneChange = createEnumToken('KnobImpl', 'ItemChange', 'ItemSceneChange');
-    export const ItemVisibleHasChanged = createEnumToken('KnobImpl', 'ItemChange', 'ItemVisibleHasChanged');
-    export const ItemParentHasChanged = createEnumToken('KnobImpl', 'ItemChange', 'ItemParentHasChanged');
-    export const ItemOpacityHasChanged = createEnumToken('KnobImpl', 'ItemChange', 'ItemOpacityHasChanged');
-    export const ItemActiveFocusHasChanged = createEnumToken('KnobImpl', 'ItemChange', 'ItemActiveFocusHasChanged');
-    export const ItemRotationHasChanged = createEnumToken('KnobImpl', 'ItemChange', 'ItemRotationHasChanged');
-    export const ItemAntialiasingHasChanged = createEnumToken('KnobImpl', 'ItemChange', 'ItemAntialiasingHasChanged');
-    export const ItemDevicePixelRatioHasChanged = createEnumToken('KnobImpl', 'ItemChange', 'ItemDevicePixelRatioHasChanged');
-    export const ItemEnabledHasChanged = createEnumToken('KnobImpl', 'ItemChange', 'ItemEnabledHasChanged');
-    export const ItemScaleHasChanged = createEnumToken('KnobImpl', 'ItemChange', 'ItemScaleHasChanged');
-    export const ItemTransformHasChanged = createEnumToken('KnobImpl', 'ItemChange', 'ItemTransformHasChanged');
+    export const ItemVisibleHasChanged = createEnumToken(
+      'KnobImpl',
+      'ItemChange',
+      'ItemVisibleHasChanged',
+    );
+    export const ItemParentHasChanged = createEnumToken(
+      'KnobImpl',
+      'ItemChange',
+      'ItemParentHasChanged',
+    );
+    export const ItemOpacityHasChanged = createEnumToken(
+      'KnobImpl',
+      'ItemChange',
+      'ItemOpacityHasChanged',
+    );
+    export const ItemActiveFocusHasChanged = createEnumToken(
+      'KnobImpl',
+      'ItemChange',
+      'ItemActiveFocusHasChanged',
+    );
+    export const ItemRotationHasChanged = createEnumToken(
+      'KnobImpl',
+      'ItemChange',
+      'ItemRotationHasChanged',
+    );
+    export const ItemAntialiasingHasChanged = createEnumToken(
+      'KnobImpl',
+      'ItemChange',
+      'ItemAntialiasingHasChanged',
+    );
+    export const ItemDevicePixelRatioHasChanged = createEnumToken(
+      'KnobImpl',
+      'ItemChange',
+      'ItemDevicePixelRatioHasChanged',
+    );
+    export const ItemEnabledHasChanged = createEnumToken(
+      'KnobImpl',
+      'ItemChange',
+      'ItemEnabledHasChanged',
+    );
+    export const ItemScaleHasChanged = createEnumToken(
+      'KnobImpl',
+      'ItemChange',
+      'ItemScaleHasChanged',
+    );
+    export const ItemTransformHasChanged = createEnumToken(
+      'KnobImpl',
+      'ItemChange',
+      'ItemTransformHasChanged',
+    );
   }
   export namespace PerformanceHints {
-    export const FastFBOResizing = createEnumToken('KnobImpl', 'PerformanceHints', 'FastFBOResizing');
+    export const FastFBOResizing = createEnumToken(
+      'KnobImpl',
+      'PerformanceHints',
+      'FastFBOResizing',
+    );
   }
   export namespace RenderTarget {
     export const Image = createEnumToken('KnobImpl', 'RenderTarget', 'Image');
-    export const FramebufferObject = createEnumToken('KnobImpl', 'RenderTarget', 'FramebufferObject');
-    export const InvertedYFramebufferObject = createEnumToken('KnobImpl', 'RenderTarget', 'InvertedYFramebufferObject');
+    export const FramebufferObject = createEnumToken(
+      'KnobImpl',
+      'RenderTarget',
+      'FramebufferObject',
+    );
+    export const InvertedYFramebufferObject = createEnumToken(
+      'KnobImpl',
+      'RenderTarget',
+      'InvertedYFramebufferObject',
+    );
   }
   export namespace TransformOrigin {
     export const TopLeft = createEnumToken('KnobImpl', 'TransformOrigin', 'TopLeft');

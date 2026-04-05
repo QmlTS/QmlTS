@@ -2,8 +2,8 @@
 // Type: BakedLightmap
 // Generated from Qt 6.11.0
 
-import { createFluentBuilder } from '../../runtime/index.js';
 import type { QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import { createFluentBuilder } from '../../runtime/index.js';
 export interface BakedLightmapBuilder {
   id(id: string): BakedLightmapBuilder;
   child(obj: QmlObjectBuilder): BakedLightmapBuilder;
@@ -38,12 +38,13 @@ const BAKEDLIGHTMAP_META: TypeMetadata = {
     { handlerName: 'onLoadPrefixChanged', paramCount: 0 },
     { handlerName: 'onObjectNameChanged', paramCount: 1 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function BakedLightmap(): BakedLightmapBuilder {
-  return createFluentBuilder('BakedLightmap', BAKEDLIGHTMAP_META) as unknown as BakedLightmapBuilder;
+  return createFluentBuilder(
+    'BakedLightmap',
+    BAKEDLIGHTMAP_META,
+  ) as unknown as BakedLightmapBuilder;
 }

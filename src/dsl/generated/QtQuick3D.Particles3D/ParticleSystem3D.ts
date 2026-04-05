@@ -2,8 +2,14 @@
 // Type: ParticleSystem3D
 // Generated from Qt 6.11.0
 
+import type {
+  QmlObjectBuilder,
+  QmlQuaternion,
+  QmlValue,
+  QmlVector3d,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
-import type { QmlObjectBuilder, QmlQuaternion, QmlValue, QmlVector3d, TypeMetadata } from '../../runtime/index.js';
 import type { LoggingDataBuilder } from './QQuick3DParticleSystemLogging.js';
 export interface ParticleSystem3DBuilder {
   id(id: string): ParticleSystem3DBuilder;
@@ -150,17 +156,17 @@ const PARTICLESYSTEM3D_META: TypeMetadata = {
     {
       methodName: 'loggingData',
       groupName: 'loggingData',
-      properties: [
-        { name: 'loggingInterval', hasValue: true, hasBinding: true },
-      ],
+      properties: [{ name: 'loggingInterval', hasValue: true, hasBinding: true }],
     },
   ],
-  attached: [
-  ],
+  attached: [],
 };
 
 export function ParticleSystem3D(): ParticleSystem3DBuilder {
-  return createFluentBuilder('ParticleSystem3D', PARTICLESYSTEM3D_META) as unknown as ParticleSystem3DBuilder;
+  return createFluentBuilder(
+    'ParticleSystem3D',
+    PARTICLESYSTEM3D_META,
+  ) as unknown as ParticleSystem3DBuilder;
 }
 
 export namespace ParticleSystem3D {

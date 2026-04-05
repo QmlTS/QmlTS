@@ -2,8 +2,14 @@
 // Type: MaterialTextContainer
 // Generated from Qt 6.11.0
 
+import type {
+  QmlColor,
+  QmlEnumToken,
+  QmlObjectBuilder,
+  QmlSize,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
-import type { QmlColor, QmlEnumToken, QmlObjectBuilder, QmlSize, TypeMetadata } from '../../runtime/index.js';
 import type { QtObjectBuilder } from '../QML/QtObject.js';
 import type { ItemBuilder } from '../QtQuick/Item.js';
 import type { PaletteBuilder } from '../QtQuick/Palette.js';
@@ -269,52 +275,162 @@ const MATERIALTEXTCONTAINER_META: TypeMetadata = {
       ],
     },
   ],
-  attached: [
-  ],
+  attached: [],
 };
 
 export function MaterialTextContainer(): MaterialTextContainerBuilder {
-  return createFluentBuilder('MaterialTextContainer', MATERIALTEXTCONTAINER_META) as unknown as MaterialTextContainerBuilder;
+  return createFluentBuilder(
+    'MaterialTextContainer',
+    MATERIALTEXTCONTAINER_META,
+  ) as unknown as MaterialTextContainerBuilder;
 }
 
 export namespace MaterialTextContainer {
   export namespace Flags {
-    export const ItemClipsChildrenToShape = createEnumToken('MaterialTextContainer', 'Flags', 'ItemClipsChildrenToShape');
-    export const ItemAcceptsInputMethod = createEnumToken('MaterialTextContainer', 'Flags', 'ItemAcceptsInputMethod');
-    export const ItemIsFocusScope = createEnumToken('MaterialTextContainer', 'Flags', 'ItemIsFocusScope');
-    export const ItemHasContents = createEnumToken('MaterialTextContainer', 'Flags', 'ItemHasContents');
-    export const ItemAcceptsDrops = createEnumToken('MaterialTextContainer', 'Flags', 'ItemAcceptsDrops');
-    export const ItemIsViewport = createEnumToken('MaterialTextContainer', 'Flags', 'ItemIsViewport');
-    export const ItemObservesViewport = createEnumToken('MaterialTextContainer', 'Flags', 'ItemObservesViewport');
+    export const ItemClipsChildrenToShape = createEnumToken(
+      'MaterialTextContainer',
+      'Flags',
+      'ItemClipsChildrenToShape',
+    );
+    export const ItemAcceptsInputMethod = createEnumToken(
+      'MaterialTextContainer',
+      'Flags',
+      'ItemAcceptsInputMethod',
+    );
+    export const ItemIsFocusScope = createEnumToken(
+      'MaterialTextContainer',
+      'Flags',
+      'ItemIsFocusScope',
+    );
+    export const ItemHasContents = createEnumToken(
+      'MaterialTextContainer',
+      'Flags',
+      'ItemHasContents',
+    );
+    export const ItemAcceptsDrops = createEnumToken(
+      'MaterialTextContainer',
+      'Flags',
+      'ItemAcceptsDrops',
+    );
+    export const ItemIsViewport = createEnumToken(
+      'MaterialTextContainer',
+      'Flags',
+      'ItemIsViewport',
+    );
+    export const ItemObservesViewport = createEnumToken(
+      'MaterialTextContainer',
+      'Flags',
+      'ItemObservesViewport',
+    );
   }
   export namespace ItemChange {
-    export const ItemChildAddedChange = createEnumToken('MaterialTextContainer', 'ItemChange', 'ItemChildAddedChange');
-    export const ItemChildRemovedChange = createEnumToken('MaterialTextContainer', 'ItemChange', 'ItemChildRemovedChange');
-    export const ItemSceneChange = createEnumToken('MaterialTextContainer', 'ItemChange', 'ItemSceneChange');
-    export const ItemVisibleHasChanged = createEnumToken('MaterialTextContainer', 'ItemChange', 'ItemVisibleHasChanged');
-    export const ItemParentHasChanged = createEnumToken('MaterialTextContainer', 'ItemChange', 'ItemParentHasChanged');
-    export const ItemOpacityHasChanged = createEnumToken('MaterialTextContainer', 'ItemChange', 'ItemOpacityHasChanged');
-    export const ItemActiveFocusHasChanged = createEnumToken('MaterialTextContainer', 'ItemChange', 'ItemActiveFocusHasChanged');
-    export const ItemRotationHasChanged = createEnumToken('MaterialTextContainer', 'ItemChange', 'ItemRotationHasChanged');
-    export const ItemAntialiasingHasChanged = createEnumToken('MaterialTextContainer', 'ItemChange', 'ItemAntialiasingHasChanged');
-    export const ItemDevicePixelRatioHasChanged = createEnumToken('MaterialTextContainer', 'ItemChange', 'ItemDevicePixelRatioHasChanged');
-    export const ItemEnabledHasChanged = createEnumToken('MaterialTextContainer', 'ItemChange', 'ItemEnabledHasChanged');
-    export const ItemScaleHasChanged = createEnumToken('MaterialTextContainer', 'ItemChange', 'ItemScaleHasChanged');
-    export const ItemTransformHasChanged = createEnumToken('MaterialTextContainer', 'ItemChange', 'ItemTransformHasChanged');
+    export const ItemChildAddedChange = createEnumToken(
+      'MaterialTextContainer',
+      'ItemChange',
+      'ItemChildAddedChange',
+    );
+    export const ItemChildRemovedChange = createEnumToken(
+      'MaterialTextContainer',
+      'ItemChange',
+      'ItemChildRemovedChange',
+    );
+    export const ItemSceneChange = createEnumToken(
+      'MaterialTextContainer',
+      'ItemChange',
+      'ItemSceneChange',
+    );
+    export const ItemVisibleHasChanged = createEnumToken(
+      'MaterialTextContainer',
+      'ItemChange',
+      'ItemVisibleHasChanged',
+    );
+    export const ItemParentHasChanged = createEnumToken(
+      'MaterialTextContainer',
+      'ItemChange',
+      'ItemParentHasChanged',
+    );
+    export const ItemOpacityHasChanged = createEnumToken(
+      'MaterialTextContainer',
+      'ItemChange',
+      'ItemOpacityHasChanged',
+    );
+    export const ItemActiveFocusHasChanged = createEnumToken(
+      'MaterialTextContainer',
+      'ItemChange',
+      'ItemActiveFocusHasChanged',
+    );
+    export const ItemRotationHasChanged = createEnumToken(
+      'MaterialTextContainer',
+      'ItemChange',
+      'ItemRotationHasChanged',
+    );
+    export const ItemAntialiasingHasChanged = createEnumToken(
+      'MaterialTextContainer',
+      'ItemChange',
+      'ItemAntialiasingHasChanged',
+    );
+    export const ItemDevicePixelRatioHasChanged = createEnumToken(
+      'MaterialTextContainer',
+      'ItemChange',
+      'ItemDevicePixelRatioHasChanged',
+    );
+    export const ItemEnabledHasChanged = createEnumToken(
+      'MaterialTextContainer',
+      'ItemChange',
+      'ItemEnabledHasChanged',
+    );
+    export const ItemScaleHasChanged = createEnumToken(
+      'MaterialTextContainer',
+      'ItemChange',
+      'ItemScaleHasChanged',
+    );
+    export const ItemTransformHasChanged = createEnumToken(
+      'MaterialTextContainer',
+      'ItemChange',
+      'ItemTransformHasChanged',
+    );
   }
   export namespace PerformanceHints {
-    export const FastFBOResizing = createEnumToken('MaterialTextContainer', 'PerformanceHints', 'FastFBOResizing');
+    export const FastFBOResizing = createEnumToken(
+      'MaterialTextContainer',
+      'PerformanceHints',
+      'FastFBOResizing',
+    );
   }
   export namespace PlaceHolderHAlignment {
-    export const AlignLeft = createEnumToken('MaterialTextContainer', 'PlaceHolderHAlignment', 'AlignLeft');
-    export const AlignRight = createEnumToken('MaterialTextContainer', 'PlaceHolderHAlignment', 'AlignRight');
-    export const AlignHCenter = createEnumToken('MaterialTextContainer', 'PlaceHolderHAlignment', 'AlignHCenter');
-    export const AlignJustify = createEnumToken('MaterialTextContainer', 'PlaceHolderHAlignment', 'AlignJustify');
+    export const AlignLeft = createEnumToken(
+      'MaterialTextContainer',
+      'PlaceHolderHAlignment',
+      'AlignLeft',
+    );
+    export const AlignRight = createEnumToken(
+      'MaterialTextContainer',
+      'PlaceHolderHAlignment',
+      'AlignRight',
+    );
+    export const AlignHCenter = createEnumToken(
+      'MaterialTextContainer',
+      'PlaceHolderHAlignment',
+      'AlignHCenter',
+    );
+    export const AlignJustify = createEnumToken(
+      'MaterialTextContainer',
+      'PlaceHolderHAlignment',
+      'AlignJustify',
+    );
   }
   export namespace RenderTarget {
     export const Image = createEnumToken('MaterialTextContainer', 'RenderTarget', 'Image');
-    export const FramebufferObject = createEnumToken('MaterialTextContainer', 'RenderTarget', 'FramebufferObject');
-    export const InvertedYFramebufferObject = createEnumToken('MaterialTextContainer', 'RenderTarget', 'InvertedYFramebufferObject');
+    export const FramebufferObject = createEnumToken(
+      'MaterialTextContainer',
+      'RenderTarget',
+      'FramebufferObject',
+    );
+    export const InvertedYFramebufferObject = createEnumToken(
+      'MaterialTextContainer',
+      'RenderTarget',
+      'InvertedYFramebufferObject',
+    );
   }
   export namespace TransformOrigin {
     export const TopLeft = createEnumToken('MaterialTextContainer', 'TransformOrigin', 'TopLeft');
@@ -323,8 +439,16 @@ export namespace MaterialTextContainer {
     export const Left = createEnumToken('MaterialTextContainer', 'TransformOrigin', 'Left');
     export const Center = createEnumToken('MaterialTextContainer', 'TransformOrigin', 'Center');
     export const Right = createEnumToken('MaterialTextContainer', 'TransformOrigin', 'Right');
-    export const BottomLeft = createEnumToken('MaterialTextContainer', 'TransformOrigin', 'BottomLeft');
+    export const BottomLeft = createEnumToken(
+      'MaterialTextContainer',
+      'TransformOrigin',
+      'BottomLeft',
+    );
     export const Bottom = createEnumToken('MaterialTextContainer', 'TransformOrigin', 'Bottom');
-    export const BottomRight = createEnumToken('MaterialTextContainer', 'TransformOrigin', 'BottomRight');
+    export const BottomRight = createEnumToken(
+      'MaterialTextContainer',
+      'TransformOrigin',
+      'BottomRight',
+    );
   }
 }

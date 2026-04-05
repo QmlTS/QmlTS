@@ -2,8 +2,8 @@
 // Type: NormalDiffuseMapAlphaMaterial
 // Generated from Qt 6.11.0
 
-import { createFluentBuilder } from '../../runtime/index.js';
 import type { QmlColor, QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import { createFluentBuilder } from '../../runtime/index.js';
 import type { EffectBuilder } from '../Qt3D.Render/Effect.js';
 export interface NormalDiffuseMapAlphaMaterialBuilder {
   id(id: string): NormalDiffuseMapAlphaMaterialBuilder;
@@ -78,12 +78,13 @@ const NORMALDIFFUSEMAPALPHAMATERIAL_META: TypeMetadata = {
     { handlerName: 'onSpecularChanged', paramCount: 1 },
     { handlerName: 'onTextureScaleChanged', paramCount: 1 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function NormalDiffuseMapAlphaMaterial(): NormalDiffuseMapAlphaMaterialBuilder {
-  return createFluentBuilder('NormalDiffuseMapAlphaMaterial', NORMALDIFFUSEMAPALPHAMATERIAL_META) as unknown as NormalDiffuseMapAlphaMaterialBuilder;
+  return createFluentBuilder(
+    'NormalDiffuseMapAlphaMaterial',
+    NORMALDIFFUSEMAPALPHAMATERIAL_META,
+  ) as unknown as NormalDiffuseMapAlphaMaterialBuilder;
 }

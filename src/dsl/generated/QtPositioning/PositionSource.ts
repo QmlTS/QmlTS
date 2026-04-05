@@ -2,8 +2,8 @@
 // Type: PositionSource
 // Generated from Qt 6.11.0
 
-import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { QmlEnumToken, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface PositionSourceBuilder {
   id(id: string): PositionSourceBuilder;
   child(obj: QmlObjectBuilder): PositionSourceBuilder;
@@ -49,35 +49,76 @@ const POSITIONSOURCE_META: TypeMetadata = {
     { handlerName: 'onUpdateIntervalChanged', paramCount: 0 },
     { handlerName: 'onValidityChanged', paramCount: 0 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
   defaultProperty: 'parameters',
 };
 
 export function PositionSource(): PositionSourceBuilder {
-  return createFluentBuilder('PositionSource', POSITIONSOURCE_META) as unknown as PositionSourceBuilder;
+  return createFluentBuilder(
+    'PositionSource',
+    POSITIONSOURCE_META,
+  ) as unknown as PositionSourceBuilder;
 }
 
 export namespace PositionSource {
   export namespace PositioningMethod {
-    export const NoPositioningMethods = createEnumToken('PositionSource', 'PositioningMethod', 'NoPositioningMethods');
-    export const SatellitePositioningMethods = createEnumToken('PositionSource', 'PositioningMethod', 'SatellitePositioningMethods');
-    export const NonSatellitePositioningMethods = createEnumToken('PositionSource', 'PositioningMethod', 'NonSatellitePositioningMethods');
-    export const AllPositioningMethods = createEnumToken('PositionSource', 'PositioningMethod', 'AllPositioningMethods');
+    export const NoPositioningMethods = createEnumToken(
+      'PositionSource',
+      'PositioningMethod',
+      'NoPositioningMethods',
+    );
+    export const SatellitePositioningMethods = createEnumToken(
+      'PositionSource',
+      'PositioningMethod',
+      'SatellitePositioningMethods',
+    );
+    export const NonSatellitePositioningMethods = createEnumToken(
+      'PositionSource',
+      'PositioningMethod',
+      'NonSatellitePositioningMethods',
+    );
+    export const AllPositioningMethods = createEnumToken(
+      'PositionSource',
+      'PositioningMethod',
+      'AllPositioningMethods',
+    );
   }
   export namespace PositioningMethods {
-    export const NoPositioningMethods = createEnumToken('PositionSource', 'PositioningMethods', 'NoPositioningMethods');
-    export const SatellitePositioningMethods = createEnumToken('PositionSource', 'PositioningMethods', 'SatellitePositioningMethods');
-    export const NonSatellitePositioningMethods = createEnumToken('PositionSource', 'PositioningMethods', 'NonSatellitePositioningMethods');
-    export const AllPositioningMethods = createEnumToken('PositionSource', 'PositioningMethods', 'AllPositioningMethods');
+    export const NoPositioningMethods = createEnumToken(
+      'PositionSource',
+      'PositioningMethods',
+      'NoPositioningMethods',
+    );
+    export const SatellitePositioningMethods = createEnumToken(
+      'PositionSource',
+      'PositioningMethods',
+      'SatellitePositioningMethods',
+    );
+    export const NonSatellitePositioningMethods = createEnumToken(
+      'PositionSource',
+      'PositioningMethods',
+      'NonSatellitePositioningMethods',
+    );
+    export const AllPositioningMethods = createEnumToken(
+      'PositionSource',
+      'PositioningMethods',
+      'AllPositioningMethods',
+    );
   }
   export namespace SourceError {
     export const AccessError = createEnumToken('PositionSource', 'SourceError', 'AccessError');
     export const ClosedError = createEnumToken('PositionSource', 'SourceError', 'ClosedError');
-    export const UnknownSourceError = createEnumToken('PositionSource', 'SourceError', 'UnknownSourceError');
+    export const UnknownSourceError = createEnumToken(
+      'PositionSource',
+      'SourceError',
+      'UnknownSourceError',
+    );
     export const NoError = createEnumToken('PositionSource', 'SourceError', 'NoError');
-    export const UpdateTimeoutError = createEnumToken('PositionSource', 'SourceError', 'UpdateTimeoutError');
+    export const UpdateTimeoutError = createEnumToken(
+      'PositionSource',
+      'SourceError',
+      'UpdateTimeoutError',
+    );
   }
 }

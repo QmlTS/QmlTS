@@ -2,8 +2,8 @@
 // Type: CapsuleGeometry
 // Generated from Qt 6.11.0
 
-import { createFluentBuilder } from '../../runtime/index.js';
 import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import { createFluentBuilder } from '../../runtime/index.js';
 export interface CapsuleGeometryBuilder {
   id(id: string): CapsuleGeometryBuilder;
   child(obj: QmlObjectBuilder): CapsuleGeometryBuilder;
@@ -72,12 +72,13 @@ const CAPSULEGEOMETRY_META: TypeMetadata = {
     { handlerName: 'onRingsChanged', paramCount: 0 },
     { handlerName: 'onStateChanged', paramCount: 0 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function CapsuleGeometry(): CapsuleGeometryBuilder {
-  return createFluentBuilder('CapsuleGeometry', CAPSULEGEOMETRY_META) as unknown as CapsuleGeometryBuilder;
+  return createFluentBuilder(
+    'CapsuleGeometry',
+    CAPSULEGEOMETRY_META,
+  ) as unknown as CapsuleGeometryBuilder;
 }

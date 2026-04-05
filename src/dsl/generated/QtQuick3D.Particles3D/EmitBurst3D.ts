@@ -2,8 +2,8 @@
 // Type: EmitBurst3D
 // Generated from Qt 6.11.0
 
-import { createFluentBuilder } from '../../runtime/index.js';
 import type { QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import { createFluentBuilder } from '../../runtime/index.js';
 export interface EmitBurst3DBuilder {
   id(id: string): EmitBurst3DBuilder;
   child(obj: QmlObjectBuilder): EmitBurst3DBuilder;
@@ -36,10 +36,8 @@ const EMITBURST3D_META: TypeMetadata = {
     { handlerName: 'onObjectNameChanged', paramCount: 1 },
     { handlerName: 'onTimeChanged', paramCount: 0 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function EmitBurst3D(): EmitBurst3DBuilder {

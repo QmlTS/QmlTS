@@ -2,8 +2,15 @@
 // Type: TrailEmitter3D
 // Generated from Qt 6.11.0
 
+import type {
+  QmlEnumToken,
+  QmlObjectBuilder,
+  QmlQuaternion,
+  QmlValue,
+  QmlVector3d,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
-import type { QmlEnumToken, QmlObjectBuilder, QmlQuaternion, QmlValue, QmlVector3d, TypeMetadata } from '../../runtime/index.js';
 import type { ParticleSystem3DBuilder } from './ParticleSystem3D.js';
 export interface TrailEmitter3DBuilder {
   id(id: string): TrailEmitter3DBuilder;
@@ -208,21 +215,26 @@ const TRAILEMITTER3D_META: TypeMetadata = {
     { handlerName: 'onYChanged', paramCount: 0 },
     { handlerName: 'onZChanged', paramCount: 0 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function TrailEmitter3D(): TrailEmitter3DBuilder {
-  return createFluentBuilder('TrailEmitter3D', TRAILEMITTER3D_META) as unknown as TrailEmitter3DBuilder;
+  return createFluentBuilder(
+    'TrailEmitter3D',
+    TRAILEMITTER3D_META,
+  ) as unknown as TrailEmitter3DBuilder;
 }
 
 export namespace TrailEmitter3D {
   export namespace EmitMode {
     export const Default = createEnumToken('TrailEmitter3D', 'EmitMode', 'Default');
     export const SurfaceNormal = createEnumToken('TrailEmitter3D', 'EmitMode', 'SurfaceNormal');
-    export const SurfaceReflected = createEnumToken('TrailEmitter3D', 'EmitMode', 'SurfaceReflected');
+    export const SurfaceReflected = createEnumToken(
+      'TrailEmitter3D',
+      'EmitMode',
+      'SurfaceReflected',
+    );
   }
   export namespace StaticFlags {
     export const None = createEnumToken('TrailEmitter3D', 'StaticFlags', 'None');

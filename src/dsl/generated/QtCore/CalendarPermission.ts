@@ -2,8 +2,8 @@
 // Type: CalendarPermission
 // Generated from Qt 6.11.0
 
-import { createFluentBuilder } from '../../runtime/index.js';
 import type { QmlEnumToken, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import { createFluentBuilder } from '../../runtime/index.js';
 export interface CalendarPermissionBuilder {
   id(id: string): CalendarPermissionBuilder;
   child(obj: QmlObjectBuilder): CalendarPermissionBuilder;
@@ -28,12 +28,13 @@ const CALENDARPERMISSION_META: TypeMetadata = {
     { handlerName: 'onObjectNameChanged', paramCount: 1 },
     { handlerName: 'onStatusChanged', paramCount: 0 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function CalendarPermission(): CalendarPermissionBuilder {
-  return createFluentBuilder('CalendarPermission', CALENDARPERMISSION_META) as unknown as CalendarPermissionBuilder;
+  return createFluentBuilder(
+    'CalendarPermission',
+    CALENDARPERMISSION_META,
+  ) as unknown as CalendarPermissionBuilder;
 }

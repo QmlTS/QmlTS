@@ -2,8 +2,8 @@
 // Type: Value3DAxis
 // Generated from Qt 6.11.0
 
-import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { Value3DAxisFormatterBuilder } from './Value3DAxisFormatter.js';
 export interface Value3DAxisBuilder {
   id(id: string): Value3DAxisBuilder;
@@ -113,10 +113,8 @@ const VALUE3DAXIS_META: TypeMetadata = {
     { handlerName: 'onTitleOffsetChanged', paramCount: 1 },
     { handlerName: 'onTitleVisibleChanged', paramCount: 1 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function Value3DAxis(): Value3DAxisBuilder {

@@ -2,8 +2,8 @@
 // Type: ButtonAxisInput
 // Generated from Qt 6.11.0
 
-import { createFluentBuilder } from '../../runtime/index.js';
 import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import { createFluentBuilder } from '../../runtime/index.js';
 export interface ButtonAxisInputBuilder {
   id(id: string): ButtonAxisInputBuilder;
   child(obj: QmlObjectBuilder): ButtonAxisInputBuilder;
@@ -58,12 +58,13 @@ const BUTTONAXISINPUT_META: TypeMetadata = {
     { handlerName: 'onScaleChanged', paramCount: 1 },
     { handlerName: 'onSourceDeviceChanged', paramCount: 1 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function ButtonAxisInput(): ButtonAxisInputBuilder {
-  return createFluentBuilder('ButtonAxisInput', BUTTONAXISINPUT_META) as unknown as ButtonAxisInputBuilder;
+  return createFluentBuilder(
+    'ButtonAxisInput',
+    BUTTONAXISINPUT_META,
+  ) as unknown as ButtonAxisInputBuilder;
 }

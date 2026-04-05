@@ -2,8 +2,13 @@
 // Type: Surface3D
 // Generated from Qt 6.11.0
 
+import type {
+  QmlEnumToken,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
-import type { QmlEnumToken, QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
 import type { QtObjectBuilder } from '../QML/QtObject.js';
 import type { Value3DAxisBuilder } from '../QtGraphs/Value3DAxis.js';
 import type { ItemBuilder } from '../QtQuick/Item.js';
@@ -322,8 +327,7 @@ const SURFACE3D_META: TypeMetadata = {
       ],
     },
   ],
-  attached: [
-  ],
+  attached: [],
   defaultProperty: 'seriesList',
 };
 
@@ -335,80 +339,252 @@ export namespace Surface3D {
   export namespace ElementType {
     export const ElementNone = createEnumToken('Surface3D', 'ElementType', 'ElementNone');
     export const ElementSeries = createEnumToken('Surface3D', 'ElementType', 'ElementSeries');
-    export const ElementAxisXLabel = createEnumToken('Surface3D', 'ElementType', 'ElementAxisXLabel');
-    export const ElementAxisYLabel = createEnumToken('Surface3D', 'ElementType', 'ElementAxisYLabel');
-    export const ElementAxisZLabel = createEnumToken('Surface3D', 'ElementType', 'ElementAxisZLabel');
-    export const ElementCustomItem = createEnumToken('Surface3D', 'ElementType', 'ElementCustomItem');
+    export const ElementAxisXLabel = createEnumToken(
+      'Surface3D',
+      'ElementType',
+      'ElementAxisXLabel',
+    );
+    export const ElementAxisYLabel = createEnumToken(
+      'Surface3D',
+      'ElementType',
+      'ElementAxisYLabel',
+    );
+    export const ElementAxisZLabel = createEnumToken(
+      'Surface3D',
+      'ElementType',
+      'ElementAxisZLabel',
+    );
+    export const ElementCustomItem = createEnumToken(
+      'Surface3D',
+      'ElementType',
+      'ElementCustomItem',
+    );
   }
   export namespace Flags {
-    export const ItemClipsChildrenToShape = createEnumToken('Surface3D', 'Flags', 'ItemClipsChildrenToShape');
-    export const ItemAcceptsInputMethod = createEnumToken('Surface3D', 'Flags', 'ItemAcceptsInputMethod');
+    export const ItemClipsChildrenToShape = createEnumToken(
+      'Surface3D',
+      'Flags',
+      'ItemClipsChildrenToShape',
+    );
+    export const ItemAcceptsInputMethod = createEnumToken(
+      'Surface3D',
+      'Flags',
+      'ItemAcceptsInputMethod',
+    );
     export const ItemIsFocusScope = createEnumToken('Surface3D', 'Flags', 'ItemIsFocusScope');
     export const ItemHasContents = createEnumToken('Surface3D', 'Flags', 'ItemHasContents');
     export const ItemAcceptsDrops = createEnumToken('Surface3D', 'Flags', 'ItemAcceptsDrops');
     export const ItemIsViewport = createEnumToken('Surface3D', 'Flags', 'ItemIsViewport');
-    export const ItemObservesViewport = createEnumToken('Surface3D', 'Flags', 'ItemObservesViewport');
+    export const ItemObservesViewport = createEnumToken(
+      'Surface3D',
+      'Flags',
+      'ItemObservesViewport',
+    );
   }
   export namespace ItemChange {
-    export const ItemChildAddedChange = createEnumToken('Surface3D', 'ItemChange', 'ItemChildAddedChange');
-    export const ItemChildRemovedChange = createEnumToken('Surface3D', 'ItemChange', 'ItemChildRemovedChange');
+    export const ItemChildAddedChange = createEnumToken(
+      'Surface3D',
+      'ItemChange',
+      'ItemChildAddedChange',
+    );
+    export const ItemChildRemovedChange = createEnumToken(
+      'Surface3D',
+      'ItemChange',
+      'ItemChildRemovedChange',
+    );
     export const ItemSceneChange = createEnumToken('Surface3D', 'ItemChange', 'ItemSceneChange');
-    export const ItemVisibleHasChanged = createEnumToken('Surface3D', 'ItemChange', 'ItemVisibleHasChanged');
-    export const ItemParentHasChanged = createEnumToken('Surface3D', 'ItemChange', 'ItemParentHasChanged');
-    export const ItemOpacityHasChanged = createEnumToken('Surface3D', 'ItemChange', 'ItemOpacityHasChanged');
-    export const ItemActiveFocusHasChanged = createEnumToken('Surface3D', 'ItemChange', 'ItemActiveFocusHasChanged');
-    export const ItemRotationHasChanged = createEnumToken('Surface3D', 'ItemChange', 'ItemRotationHasChanged');
-    export const ItemAntialiasingHasChanged = createEnumToken('Surface3D', 'ItemChange', 'ItemAntialiasingHasChanged');
-    export const ItemDevicePixelRatioHasChanged = createEnumToken('Surface3D', 'ItemChange', 'ItemDevicePixelRatioHasChanged');
-    export const ItemEnabledHasChanged = createEnumToken('Surface3D', 'ItemChange', 'ItemEnabledHasChanged');
-    export const ItemScaleHasChanged = createEnumToken('Surface3D', 'ItemChange', 'ItemScaleHasChanged');
-    export const ItemTransformHasChanged = createEnumToken('Surface3D', 'ItemChange', 'ItemTransformHasChanged');
+    export const ItemVisibleHasChanged = createEnumToken(
+      'Surface3D',
+      'ItemChange',
+      'ItemVisibleHasChanged',
+    );
+    export const ItemParentHasChanged = createEnumToken(
+      'Surface3D',
+      'ItemChange',
+      'ItemParentHasChanged',
+    );
+    export const ItemOpacityHasChanged = createEnumToken(
+      'Surface3D',
+      'ItemChange',
+      'ItemOpacityHasChanged',
+    );
+    export const ItemActiveFocusHasChanged = createEnumToken(
+      'Surface3D',
+      'ItemChange',
+      'ItemActiveFocusHasChanged',
+    );
+    export const ItemRotationHasChanged = createEnumToken(
+      'Surface3D',
+      'ItemChange',
+      'ItemRotationHasChanged',
+    );
+    export const ItemAntialiasingHasChanged = createEnumToken(
+      'Surface3D',
+      'ItemChange',
+      'ItemAntialiasingHasChanged',
+    );
+    export const ItemDevicePixelRatioHasChanged = createEnumToken(
+      'Surface3D',
+      'ItemChange',
+      'ItemDevicePixelRatioHasChanged',
+    );
+    export const ItemEnabledHasChanged = createEnumToken(
+      'Surface3D',
+      'ItemChange',
+      'ItemEnabledHasChanged',
+    );
+    export const ItemScaleHasChanged = createEnumToken(
+      'Surface3D',
+      'ItemChange',
+      'ItemScaleHasChanged',
+    );
+    export const ItemTransformHasChanged = createEnumToken(
+      'Surface3D',
+      'ItemChange',
+      'ItemTransformHasChanged',
+    );
   }
   export namespace OptimizationHint {
-    export const OptimizationDefault = createEnumToken('Surface3D', 'OptimizationHint', 'OptimizationDefault');
-    export const OptimizationStatic = createEnumToken('Surface3D', 'OptimizationHint', 'OptimizationStatic');
+    export const OptimizationDefault = createEnumToken(
+      'Surface3D',
+      'OptimizationHint',
+      'OptimizationDefault',
+    );
+    export const OptimizationStatic = createEnumToken(
+      'Surface3D',
+      'OptimizationHint',
+      'OptimizationStatic',
+    );
   }
   export namespace OptimizationHints {
-    export const OptimizationDefault = createEnumToken('Surface3D', 'OptimizationHints', 'OptimizationDefault');
-    export const OptimizationStatic = createEnumToken('Surface3D', 'OptimizationHints', 'OptimizationStatic');
+    export const OptimizationDefault = createEnumToken(
+      'Surface3D',
+      'OptimizationHints',
+      'OptimizationDefault',
+    );
+    export const OptimizationStatic = createEnumToken(
+      'Surface3D',
+      'OptimizationHints',
+      'OptimizationStatic',
+    );
   }
   export namespace RenderingMode {
-    export const RenderDirectToBackground = createEnumToken('Surface3D', 'RenderingMode', 'RenderDirectToBackground');
-    export const RenderDirectToBackground_NoClear = createEnumToken('Surface3D', 'RenderingMode', 'RenderDirectToBackground_NoClear');
+    export const RenderDirectToBackground = createEnumToken(
+      'Surface3D',
+      'RenderingMode',
+      'RenderDirectToBackground',
+    );
+    export const RenderDirectToBackground_NoClear = createEnumToken(
+      'Surface3D',
+      'RenderingMode',
+      'RenderDirectToBackground_NoClear',
+    );
     export const RenderIndirect = createEnumToken('Surface3D', 'RenderingMode', 'RenderIndirect');
   }
   export namespace SelectionFlag {
     export const SelectionNone = createEnumToken('Surface3D', 'SelectionFlag', 'SelectionNone');
     export const SelectionItem = createEnumToken('Surface3D', 'SelectionFlag', 'SelectionItem');
     export const SelectionRow = createEnumToken('Surface3D', 'SelectionFlag', 'SelectionRow');
-    export const SelectionItemAndRow = createEnumToken('Surface3D', 'SelectionFlag', 'SelectionItemAndRow');
+    export const SelectionItemAndRow = createEnumToken(
+      'Surface3D',
+      'SelectionFlag',
+      'SelectionItemAndRow',
+    );
     export const SelectionColumn = createEnumToken('Surface3D', 'SelectionFlag', 'SelectionColumn');
-    export const SelectionItemAndColumn = createEnumToken('Surface3D', 'SelectionFlag', 'SelectionItemAndColumn');
-    export const SelectionRowAndColumn = createEnumToken('Surface3D', 'SelectionFlag', 'SelectionRowAndColumn');
-    export const SelectionItemRowAndColumn = createEnumToken('Surface3D', 'SelectionFlag', 'SelectionItemRowAndColumn');
+    export const SelectionItemAndColumn = createEnumToken(
+      'Surface3D',
+      'SelectionFlag',
+      'SelectionItemAndColumn',
+    );
+    export const SelectionRowAndColumn = createEnumToken(
+      'Surface3D',
+      'SelectionFlag',
+      'SelectionRowAndColumn',
+    );
+    export const SelectionItemRowAndColumn = createEnumToken(
+      'Surface3D',
+      'SelectionFlag',
+      'SelectionItemRowAndColumn',
+    );
     export const SelectionSlice = createEnumToken('Surface3D', 'SelectionFlag', 'SelectionSlice');
-    export const SelectionMultiSeries = createEnumToken('Surface3D', 'SelectionFlag', 'SelectionMultiSeries');
+    export const SelectionMultiSeries = createEnumToken(
+      'Surface3D',
+      'SelectionFlag',
+      'SelectionMultiSeries',
+    );
   }
   export namespace SelectionFlags {
     export const SelectionNone = createEnumToken('Surface3D', 'SelectionFlags', 'SelectionNone');
     export const SelectionItem = createEnumToken('Surface3D', 'SelectionFlags', 'SelectionItem');
     export const SelectionRow = createEnumToken('Surface3D', 'SelectionFlags', 'SelectionRow');
-    export const SelectionItemAndRow = createEnumToken('Surface3D', 'SelectionFlags', 'SelectionItemAndRow');
-    export const SelectionColumn = createEnumToken('Surface3D', 'SelectionFlags', 'SelectionColumn');
-    export const SelectionItemAndColumn = createEnumToken('Surface3D', 'SelectionFlags', 'SelectionItemAndColumn');
-    export const SelectionRowAndColumn = createEnumToken('Surface3D', 'SelectionFlags', 'SelectionRowAndColumn');
-    export const SelectionItemRowAndColumn = createEnumToken('Surface3D', 'SelectionFlags', 'SelectionItemRowAndColumn');
+    export const SelectionItemAndRow = createEnumToken(
+      'Surface3D',
+      'SelectionFlags',
+      'SelectionItemAndRow',
+    );
+    export const SelectionColumn = createEnumToken(
+      'Surface3D',
+      'SelectionFlags',
+      'SelectionColumn',
+    );
+    export const SelectionItemAndColumn = createEnumToken(
+      'Surface3D',
+      'SelectionFlags',
+      'SelectionItemAndColumn',
+    );
+    export const SelectionRowAndColumn = createEnumToken(
+      'Surface3D',
+      'SelectionFlags',
+      'SelectionRowAndColumn',
+    );
+    export const SelectionItemRowAndColumn = createEnumToken(
+      'Surface3D',
+      'SelectionFlags',
+      'SelectionItemRowAndColumn',
+    );
     export const SelectionSlice = createEnumToken('Surface3D', 'SelectionFlags', 'SelectionSlice');
-    export const SelectionMultiSeries = createEnumToken('Surface3D', 'SelectionFlags', 'SelectionMultiSeries');
+    export const SelectionMultiSeries = createEnumToken(
+      'Surface3D',
+      'SelectionFlags',
+      'SelectionMultiSeries',
+    );
   }
   export namespace ShadowQuality {
-    export const ShadowQualityNone = createEnumToken('Surface3D', 'ShadowQuality', 'ShadowQualityNone');
-    export const ShadowQualityLow = createEnumToken('Surface3D', 'ShadowQuality', 'ShadowQualityLow');
-    export const ShadowQualityMedium = createEnumToken('Surface3D', 'ShadowQuality', 'ShadowQualityMedium');
-    export const ShadowQualityHigh = createEnumToken('Surface3D', 'ShadowQuality', 'ShadowQualityHigh');
-    export const ShadowQualitySoftLow = createEnumToken('Surface3D', 'ShadowQuality', 'ShadowQualitySoftLow');
-    export const ShadowQualitySoftMedium = createEnumToken('Surface3D', 'ShadowQuality', 'ShadowQualitySoftMedium');
-    export const ShadowQualitySoftHigh = createEnumToken('Surface3D', 'ShadowQuality', 'ShadowQualitySoftHigh');
+    export const ShadowQualityNone = createEnumToken(
+      'Surface3D',
+      'ShadowQuality',
+      'ShadowQualityNone',
+    );
+    export const ShadowQualityLow = createEnumToken(
+      'Surface3D',
+      'ShadowQuality',
+      'ShadowQualityLow',
+    );
+    export const ShadowQualityMedium = createEnumToken(
+      'Surface3D',
+      'ShadowQuality',
+      'ShadowQualityMedium',
+    );
+    export const ShadowQualityHigh = createEnumToken(
+      'Surface3D',
+      'ShadowQuality',
+      'ShadowQualityHigh',
+    );
+    export const ShadowQualitySoftLow = createEnumToken(
+      'Surface3D',
+      'ShadowQuality',
+      'ShadowQualitySoftLow',
+    );
+    export const ShadowQualitySoftMedium = createEnumToken(
+      'Surface3D',
+      'ShadowQuality',
+      'ShadowQualitySoftMedium',
+    );
+    export const ShadowQualitySoftHigh = createEnumToken(
+      'Surface3D',
+      'ShadowQuality',
+      'ShadowQualitySoftHigh',
+    );
   }
   export namespace TransformOrigin {
     export const TopLeft = createEnumToken('Surface3D', 'TransformOrigin', 'TopLeft');

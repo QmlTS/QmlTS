@@ -2,8 +2,14 @@
 // Type: FocusRectangle
 // Generated from Qt 6.11.0
 
+import type {
+  QmlColor,
+  QmlEnumToken,
+  QmlObjectBuilder,
+  QmlSize,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
-import type { QmlColor, QmlEnumToken, QmlObjectBuilder, QmlSize, TypeMetadata } from '../../runtime/index.js';
 import type { QtObjectBuilder } from '../QML/QtObject.js';
 import type { ItemBuilder } from '../QtQuick/Item.js';
 import type { PaletteBuilder } from '../QtQuick/Palette.js';
@@ -229,46 +235,124 @@ const FOCUSRECTANGLE_META: TypeMetadata = {
       ],
     },
   ],
-  attached: [
-  ],
+  attached: [],
 };
 
 export function FocusRectangle(): FocusRectangleBuilder {
-  return createFluentBuilder('FocusRectangle', FOCUSRECTANGLE_META) as unknown as FocusRectangleBuilder;
+  return createFluentBuilder(
+    'FocusRectangle',
+    FOCUSRECTANGLE_META,
+  ) as unknown as FocusRectangleBuilder;
 }
 
 export namespace FocusRectangle {
   export namespace Flags {
-    export const ItemClipsChildrenToShape = createEnumToken('FocusRectangle', 'Flags', 'ItemClipsChildrenToShape');
-    export const ItemAcceptsInputMethod = createEnumToken('FocusRectangle', 'Flags', 'ItemAcceptsInputMethod');
+    export const ItemClipsChildrenToShape = createEnumToken(
+      'FocusRectangle',
+      'Flags',
+      'ItemClipsChildrenToShape',
+    );
+    export const ItemAcceptsInputMethod = createEnumToken(
+      'FocusRectangle',
+      'Flags',
+      'ItemAcceptsInputMethod',
+    );
     export const ItemIsFocusScope = createEnumToken('FocusRectangle', 'Flags', 'ItemIsFocusScope');
     export const ItemHasContents = createEnumToken('FocusRectangle', 'Flags', 'ItemHasContents');
     export const ItemAcceptsDrops = createEnumToken('FocusRectangle', 'Flags', 'ItemAcceptsDrops');
     export const ItemIsViewport = createEnumToken('FocusRectangle', 'Flags', 'ItemIsViewport');
-    export const ItemObservesViewport = createEnumToken('FocusRectangle', 'Flags', 'ItemObservesViewport');
+    export const ItemObservesViewport = createEnumToken(
+      'FocusRectangle',
+      'Flags',
+      'ItemObservesViewport',
+    );
   }
   export namespace ItemChange {
-    export const ItemChildAddedChange = createEnumToken('FocusRectangle', 'ItemChange', 'ItemChildAddedChange');
-    export const ItemChildRemovedChange = createEnumToken('FocusRectangle', 'ItemChange', 'ItemChildRemovedChange');
-    export const ItemSceneChange = createEnumToken('FocusRectangle', 'ItemChange', 'ItemSceneChange');
-    export const ItemVisibleHasChanged = createEnumToken('FocusRectangle', 'ItemChange', 'ItemVisibleHasChanged');
-    export const ItemParentHasChanged = createEnumToken('FocusRectangle', 'ItemChange', 'ItemParentHasChanged');
-    export const ItemOpacityHasChanged = createEnumToken('FocusRectangle', 'ItemChange', 'ItemOpacityHasChanged');
-    export const ItemActiveFocusHasChanged = createEnumToken('FocusRectangle', 'ItemChange', 'ItemActiveFocusHasChanged');
-    export const ItemRotationHasChanged = createEnumToken('FocusRectangle', 'ItemChange', 'ItemRotationHasChanged');
-    export const ItemAntialiasingHasChanged = createEnumToken('FocusRectangle', 'ItemChange', 'ItemAntialiasingHasChanged');
-    export const ItemDevicePixelRatioHasChanged = createEnumToken('FocusRectangle', 'ItemChange', 'ItemDevicePixelRatioHasChanged');
-    export const ItemEnabledHasChanged = createEnumToken('FocusRectangle', 'ItemChange', 'ItemEnabledHasChanged');
-    export const ItemScaleHasChanged = createEnumToken('FocusRectangle', 'ItemChange', 'ItemScaleHasChanged');
-    export const ItemTransformHasChanged = createEnumToken('FocusRectangle', 'ItemChange', 'ItemTransformHasChanged');
+    export const ItemChildAddedChange = createEnumToken(
+      'FocusRectangle',
+      'ItemChange',
+      'ItemChildAddedChange',
+    );
+    export const ItemChildRemovedChange = createEnumToken(
+      'FocusRectangle',
+      'ItemChange',
+      'ItemChildRemovedChange',
+    );
+    export const ItemSceneChange = createEnumToken(
+      'FocusRectangle',
+      'ItemChange',
+      'ItemSceneChange',
+    );
+    export const ItemVisibleHasChanged = createEnumToken(
+      'FocusRectangle',
+      'ItemChange',
+      'ItemVisibleHasChanged',
+    );
+    export const ItemParentHasChanged = createEnumToken(
+      'FocusRectangle',
+      'ItemChange',
+      'ItemParentHasChanged',
+    );
+    export const ItemOpacityHasChanged = createEnumToken(
+      'FocusRectangle',
+      'ItemChange',
+      'ItemOpacityHasChanged',
+    );
+    export const ItemActiveFocusHasChanged = createEnumToken(
+      'FocusRectangle',
+      'ItemChange',
+      'ItemActiveFocusHasChanged',
+    );
+    export const ItemRotationHasChanged = createEnumToken(
+      'FocusRectangle',
+      'ItemChange',
+      'ItemRotationHasChanged',
+    );
+    export const ItemAntialiasingHasChanged = createEnumToken(
+      'FocusRectangle',
+      'ItemChange',
+      'ItemAntialiasingHasChanged',
+    );
+    export const ItemDevicePixelRatioHasChanged = createEnumToken(
+      'FocusRectangle',
+      'ItemChange',
+      'ItemDevicePixelRatioHasChanged',
+    );
+    export const ItemEnabledHasChanged = createEnumToken(
+      'FocusRectangle',
+      'ItemChange',
+      'ItemEnabledHasChanged',
+    );
+    export const ItemScaleHasChanged = createEnumToken(
+      'FocusRectangle',
+      'ItemChange',
+      'ItemScaleHasChanged',
+    );
+    export const ItemTransformHasChanged = createEnumToken(
+      'FocusRectangle',
+      'ItemChange',
+      'ItemTransformHasChanged',
+    );
   }
   export namespace PerformanceHints {
-    export const FastFBOResizing = createEnumToken('FocusRectangle', 'PerformanceHints', 'FastFBOResizing');
+    export const FastFBOResizing = createEnumToken(
+      'FocusRectangle',
+      'PerformanceHints',
+      'FastFBOResizing',
+    );
   }
   export namespace RenderTarget {
     export const Image = createEnumToken('FocusRectangle', 'RenderTarget', 'Image');
-    export const FramebufferObject = createEnumToken('FocusRectangle', 'RenderTarget', 'FramebufferObject');
-    export const InvertedYFramebufferObject = createEnumToken('FocusRectangle', 'RenderTarget', 'InvertedYFramebufferObject');
+    export const FramebufferObject = createEnumToken(
+      'FocusRectangle',
+      'RenderTarget',
+      'FramebufferObject',
+    );
+    export const InvertedYFramebufferObject = createEnumToken(
+      'FocusRectangle',
+      'RenderTarget',
+      'InvertedYFramebufferObject',
+    );
   }
   export namespace TransformOrigin {
     export const TopLeft = createEnumToken('FocusRectangle', 'TransformOrigin', 'TopLeft');

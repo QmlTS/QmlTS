@@ -2,8 +2,8 @@
 // Type: BoundingVolume
 // Generated from Qt 6.11.0
 
-import { createFluentBuilder } from '../../runtime/index.js';
 import type { QmlObjectBuilder, QmlValue, QmlVector3d, TypeMetadata } from '../../runtime/index.js';
+import { createFluentBuilder } from '../../runtime/index.js';
 import type { GeometryViewBuilder } from './GeometryView.js';
 export interface BoundingVolumeBuilder {
   id(id: string): BoundingVolumeBuilder;
@@ -64,12 +64,13 @@ const BOUNDINGVOLUME_META: TypeMetadata = {
     { handlerName: 'onShareableChanged', paramCount: 1 },
     { handlerName: 'onViewChanged', paramCount: 1 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function BoundingVolume(): BoundingVolumeBuilder {
-  return createFluentBuilder('BoundingVolume', BOUNDINGVOLUME_META) as unknown as BoundingVolumeBuilder;
+  return createFluentBuilder(
+    'BoundingVolume',
+    BOUNDINGVOLUME_META,
+  ) as unknown as BoundingVolumeBuilder;
 }

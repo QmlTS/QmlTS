@@ -2,8 +2,13 @@
 // Type: KeyframeAnimation
 // Generated from Qt 6.11.0
 
+import type {
+  QmlEnumToken,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
-import type { QmlEnumToken, QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
 import type { TransformBuilder } from '../Qt3D.Core/Transform.js';
 export interface KeyframeAnimationBuilder {
   id(id: string): KeyframeAnimationBuilder;
@@ -64,21 +69,34 @@ const KEYFRAMEANIMATION_META: TypeMetadata = {
     { handlerName: 'onTargetChanged', paramCount: 1 },
     { handlerName: 'onTargetNameChanged', paramCount: 1 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function KeyframeAnimation(): KeyframeAnimationBuilder {
-  return createFluentBuilder('KeyframeAnimation', KEYFRAMEANIMATION_META) as unknown as KeyframeAnimationBuilder;
+  return createFluentBuilder(
+    'KeyframeAnimation',
+    KEYFRAMEANIMATION_META,
+  ) as unknown as KeyframeAnimationBuilder;
 }
 
 export namespace KeyframeAnimation {
   export namespace AnimationType {
-    export const KeyframeAnimation = createEnumToken('KeyframeAnimation', 'AnimationType', 'KeyframeAnimation');
-    export const MorphingAnimation = createEnumToken('KeyframeAnimation', 'AnimationType', 'MorphingAnimation');
-    export const VertexBlendAnimation = createEnumToken('KeyframeAnimation', 'AnimationType', 'VertexBlendAnimation');
+    export const KeyframeAnimation = createEnumToken(
+      'KeyframeAnimation',
+      'AnimationType',
+      'KeyframeAnimation',
+    );
+    export const MorphingAnimation = createEnumToken(
+      'KeyframeAnimation',
+      'AnimationType',
+      'MorphingAnimation',
+    );
+    export const VertexBlendAnimation = createEnumToken(
+      'KeyframeAnimation',
+      'AnimationType',
+      'VertexBlendAnimation',
+    );
   }
   export namespace RepeatMode {
     export const None = createEnumToken('KeyframeAnimation', 'RepeatMode', 'None');

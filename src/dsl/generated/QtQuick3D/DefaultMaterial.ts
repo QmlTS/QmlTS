@@ -2,8 +2,15 @@
 // Type: DefaultMaterial
 // Generated from Qt 6.11.0
 
+import type {
+  QmlColor,
+  QmlEnumToken,
+  QmlObjectBuilder,
+  QmlValue,
+  QmlVector3d,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
-import type { QmlColor, QmlEnumToken, QmlObjectBuilder, QmlValue, QmlVector3d, TypeMetadata } from '../../runtime/index.js';
 import type { TextureBuilder } from './Texture.js';
 export interface DefaultMaterialBuilder {
   id(id: string): DefaultMaterialBuilder;
@@ -194,14 +201,15 @@ const DEFAULTMATERIAL_META: TypeMetadata = {
     { handlerName: 'onTranslucentFalloffChanged', paramCount: 1 },
     { handlerName: 'onVertexColorsEnabledChanged', paramCount: 1 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function DefaultMaterial(): DefaultMaterialBuilder {
-  return createFluentBuilder('DefaultMaterial', DEFAULTMATERIAL_META) as unknown as DefaultMaterialBuilder;
+  return createFluentBuilder(
+    'DefaultMaterial',
+    DEFAULTMATERIAL_META,
+  ) as unknown as DefaultMaterialBuilder;
 }
 
 export namespace DefaultMaterial {
@@ -211,19 +219,47 @@ export namespace DefaultMaterial {
     export const Multiply = createEnumToken('DefaultMaterial', 'BlendMode', 'Multiply');
   }
   export namespace CullMode {
-    export const BackFaceCulling = createEnumToken('DefaultMaterial', 'CullMode', 'BackFaceCulling');
-    export const FrontFaceCulling = createEnumToken('DefaultMaterial', 'CullMode', 'FrontFaceCulling');
+    export const BackFaceCulling = createEnumToken(
+      'DefaultMaterial',
+      'CullMode',
+      'BackFaceCulling',
+    );
+    export const FrontFaceCulling = createEnumToken(
+      'DefaultMaterial',
+      'CullMode',
+      'FrontFaceCulling',
+    );
     export const NoCulling = createEnumToken('DefaultMaterial', 'CullMode', 'NoCulling');
   }
   export namespace DepthDrawMode {
-    export const OpaqueOnlyDepthDraw = createEnumToken('DefaultMaterial', 'DepthDrawMode', 'OpaqueOnlyDepthDraw');
-    export const AlwaysDepthDraw = createEnumToken('DefaultMaterial', 'DepthDrawMode', 'AlwaysDepthDraw');
-    export const NeverDepthDraw = createEnumToken('DefaultMaterial', 'DepthDrawMode', 'NeverDepthDraw');
-    export const OpaquePrePassDepthDraw = createEnumToken('DefaultMaterial', 'DepthDrawMode', 'OpaquePrePassDepthDraw');
+    export const OpaqueOnlyDepthDraw = createEnumToken(
+      'DefaultMaterial',
+      'DepthDrawMode',
+      'OpaqueOnlyDepthDraw',
+    );
+    export const AlwaysDepthDraw = createEnumToken(
+      'DefaultMaterial',
+      'DepthDrawMode',
+      'AlwaysDepthDraw',
+    );
+    export const NeverDepthDraw = createEnumToken(
+      'DefaultMaterial',
+      'DepthDrawMode',
+      'NeverDepthDraw',
+    );
+    export const OpaquePrePassDepthDraw = createEnumToken(
+      'DefaultMaterial',
+      'DepthDrawMode',
+      'OpaquePrePassDepthDraw',
+    );
   }
   export namespace Lighting {
     export const NoLighting = createEnumToken('DefaultMaterial', 'Lighting', 'NoLighting');
-    export const FragmentLighting = createEnumToken('DefaultMaterial', 'Lighting', 'FragmentLighting');
+    export const FragmentLighting = createEnumToken(
+      'DefaultMaterial',
+      'Lighting',
+      'FragmentLighting',
+    );
   }
   export namespace SpecularModel {
     export const Default = createEnumToken('DefaultMaterial', 'SpecularModel', 'Default');
@@ -237,30 +273,118 @@ export namespace DefaultMaterial {
   }
   export namespace VertexColorMask {
     export const NoMask = createEnumToken('DefaultMaterial', 'VertexColorMask', 'NoMask');
-    export const RoughnessMask = createEnumToken('DefaultMaterial', 'VertexColorMask', 'RoughnessMask');
-    export const NormalStrengthMask = createEnumToken('DefaultMaterial', 'VertexColorMask', 'NormalStrengthMask');
-    export const SpecularAmountMask = createEnumToken('DefaultMaterial', 'VertexColorMask', 'SpecularAmountMask');
-    export const ClearcoatAmountMask = createEnumToken('DefaultMaterial', 'VertexColorMask', 'ClearcoatAmountMask');
-    export const ClearcoatRoughnessAmountMask = createEnumToken('DefaultMaterial', 'VertexColorMask', 'ClearcoatRoughnessAmountMask');
-    export const ClearcoatNormalStrengthMask = createEnumToken('DefaultMaterial', 'VertexColorMask', 'ClearcoatNormalStrengthMask');
-    export const HeightAmountMask = createEnumToken('DefaultMaterial', 'VertexColorMask', 'HeightAmountMask');
-    export const MetalnessMask = createEnumToken('DefaultMaterial', 'VertexColorMask', 'MetalnessMask');
-    export const OcclusionAmountMask = createEnumToken('DefaultMaterial', 'VertexColorMask', 'OcclusionAmountMask');
-    export const ThicknessFactorMask = createEnumToken('DefaultMaterial', 'VertexColorMask', 'ThicknessFactorMask');
-    export const TransmissionFactorMask = createEnumToken('DefaultMaterial', 'VertexColorMask', 'TransmissionFactorMask');
+    export const RoughnessMask = createEnumToken(
+      'DefaultMaterial',
+      'VertexColorMask',
+      'RoughnessMask',
+    );
+    export const NormalStrengthMask = createEnumToken(
+      'DefaultMaterial',
+      'VertexColorMask',
+      'NormalStrengthMask',
+    );
+    export const SpecularAmountMask = createEnumToken(
+      'DefaultMaterial',
+      'VertexColorMask',
+      'SpecularAmountMask',
+    );
+    export const ClearcoatAmountMask = createEnumToken(
+      'DefaultMaterial',
+      'VertexColorMask',
+      'ClearcoatAmountMask',
+    );
+    export const ClearcoatRoughnessAmountMask = createEnumToken(
+      'DefaultMaterial',
+      'VertexColorMask',
+      'ClearcoatRoughnessAmountMask',
+    );
+    export const ClearcoatNormalStrengthMask = createEnumToken(
+      'DefaultMaterial',
+      'VertexColorMask',
+      'ClearcoatNormalStrengthMask',
+    );
+    export const HeightAmountMask = createEnumToken(
+      'DefaultMaterial',
+      'VertexColorMask',
+      'HeightAmountMask',
+    );
+    export const MetalnessMask = createEnumToken(
+      'DefaultMaterial',
+      'VertexColorMask',
+      'MetalnessMask',
+    );
+    export const OcclusionAmountMask = createEnumToken(
+      'DefaultMaterial',
+      'VertexColorMask',
+      'OcclusionAmountMask',
+    );
+    export const ThicknessFactorMask = createEnumToken(
+      'DefaultMaterial',
+      'VertexColorMask',
+      'ThicknessFactorMask',
+    );
+    export const TransmissionFactorMask = createEnumToken(
+      'DefaultMaterial',
+      'VertexColorMask',
+      'TransmissionFactorMask',
+    );
   }
   export namespace VertexColorMaskFlags {
     export const NoMask = createEnumToken('DefaultMaterial', 'VertexColorMaskFlags', 'NoMask');
-    export const RoughnessMask = createEnumToken('DefaultMaterial', 'VertexColorMaskFlags', 'RoughnessMask');
-    export const NormalStrengthMask = createEnumToken('DefaultMaterial', 'VertexColorMaskFlags', 'NormalStrengthMask');
-    export const SpecularAmountMask = createEnumToken('DefaultMaterial', 'VertexColorMaskFlags', 'SpecularAmountMask');
-    export const ClearcoatAmountMask = createEnumToken('DefaultMaterial', 'VertexColorMaskFlags', 'ClearcoatAmountMask');
-    export const ClearcoatRoughnessAmountMask = createEnumToken('DefaultMaterial', 'VertexColorMaskFlags', 'ClearcoatRoughnessAmountMask');
-    export const ClearcoatNormalStrengthMask = createEnumToken('DefaultMaterial', 'VertexColorMaskFlags', 'ClearcoatNormalStrengthMask');
-    export const HeightAmountMask = createEnumToken('DefaultMaterial', 'VertexColorMaskFlags', 'HeightAmountMask');
-    export const MetalnessMask = createEnumToken('DefaultMaterial', 'VertexColorMaskFlags', 'MetalnessMask');
-    export const OcclusionAmountMask = createEnumToken('DefaultMaterial', 'VertexColorMaskFlags', 'OcclusionAmountMask');
-    export const ThicknessFactorMask = createEnumToken('DefaultMaterial', 'VertexColorMaskFlags', 'ThicknessFactorMask');
-    export const TransmissionFactorMask = createEnumToken('DefaultMaterial', 'VertexColorMaskFlags', 'TransmissionFactorMask');
+    export const RoughnessMask = createEnumToken(
+      'DefaultMaterial',
+      'VertexColorMaskFlags',
+      'RoughnessMask',
+    );
+    export const NormalStrengthMask = createEnumToken(
+      'DefaultMaterial',
+      'VertexColorMaskFlags',
+      'NormalStrengthMask',
+    );
+    export const SpecularAmountMask = createEnumToken(
+      'DefaultMaterial',
+      'VertexColorMaskFlags',
+      'SpecularAmountMask',
+    );
+    export const ClearcoatAmountMask = createEnumToken(
+      'DefaultMaterial',
+      'VertexColorMaskFlags',
+      'ClearcoatAmountMask',
+    );
+    export const ClearcoatRoughnessAmountMask = createEnumToken(
+      'DefaultMaterial',
+      'VertexColorMaskFlags',
+      'ClearcoatRoughnessAmountMask',
+    );
+    export const ClearcoatNormalStrengthMask = createEnumToken(
+      'DefaultMaterial',
+      'VertexColorMaskFlags',
+      'ClearcoatNormalStrengthMask',
+    );
+    export const HeightAmountMask = createEnumToken(
+      'DefaultMaterial',
+      'VertexColorMaskFlags',
+      'HeightAmountMask',
+    );
+    export const MetalnessMask = createEnumToken(
+      'DefaultMaterial',
+      'VertexColorMaskFlags',
+      'MetalnessMask',
+    );
+    export const OcclusionAmountMask = createEnumToken(
+      'DefaultMaterial',
+      'VertexColorMaskFlags',
+      'OcclusionAmountMask',
+    );
+    export const ThicknessFactorMask = createEnumToken(
+      'DefaultMaterial',
+      'VertexColorMaskFlags',
+      'ThicknessFactorMask',
+    );
+    export const TransmissionFactorMask = createEnumToken(
+      'DefaultMaterial',
+      'VertexColorMaskFlags',
+      'TransmissionFactorMask',
+    );
   }
 }

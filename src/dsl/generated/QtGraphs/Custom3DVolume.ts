@@ -2,8 +2,14 @@
 // Type: Custom3DVolume
 // Generated from Qt 6.11.0
 
+import type {
+  QmlColor,
+  QmlObjectBuilder,
+  QmlQuaternion,
+  QmlVector3d,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
-import type { QmlColor, QmlObjectBuilder, QmlQuaternion, QmlVector3d, TypeMetadata } from '../../runtime/index.js';
 export interface Custom3DVolumeBuilder {
   id(id: string): Custom3DVolumeBuilder;
   child(obj: QmlObjectBuilder): Custom3DVolumeBuilder;
@@ -160,12 +166,13 @@ const CUSTOM3DVOLUME_META: TypeMetadata = {
     { handlerName: 'onUseHighDefShaderChanged', paramCount: 1 },
     { handlerName: 'onVisibleChanged', paramCount: 1 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function Custom3DVolume(): Custom3DVolumeBuilder {
-  return createFluentBuilder('Custom3DVolume', CUSTOM3DVOLUME_META) as unknown as Custom3DVolumeBuilder;
+  return createFluentBuilder(
+    'Custom3DVolume',
+    CUSTOM3DVOLUME_META,
+  ) as unknown as Custom3DVolumeBuilder;
 }

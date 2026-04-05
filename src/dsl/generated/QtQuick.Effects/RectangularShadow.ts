@@ -2,8 +2,14 @@
 // Type: RectangularShadow
 // Generated from Qt 6.11.0
 
+import type {
+  QmlColor,
+  QmlEnumToken,
+  QmlObjectBuilder,
+  QmlVector2d,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
-import type { QmlColor, QmlEnumToken, QmlObjectBuilder, QmlVector2d, TypeMetadata } from '../../runtime/index.js';
 import type { QtObjectBuilder } from '../QML/QtObject.js';
 import type { ItemBuilder } from '../QtQuick/Item.js';
 import type { PaletteBuilder } from '../QtQuick/Palette.js';
@@ -259,39 +265,113 @@ const RECTANGULARSHADOW_META: TypeMetadata = {
       ],
     },
   ],
-  attached: [
-  ],
+  attached: [],
   defaultProperty: 'data',
 };
 
 export function RectangularShadow(): RectangularShadowBuilder {
-  return createFluentBuilder('RectangularShadow', RECTANGULARSHADOW_META) as unknown as RectangularShadowBuilder;
+  return createFluentBuilder(
+    'RectangularShadow',
+    RECTANGULARSHADOW_META,
+  ) as unknown as RectangularShadowBuilder;
 }
 
 export namespace RectangularShadow {
   export namespace Flags {
-    export const ItemClipsChildrenToShape = createEnumToken('RectangularShadow', 'Flags', 'ItemClipsChildrenToShape');
-    export const ItemAcceptsInputMethod = createEnumToken('RectangularShadow', 'Flags', 'ItemAcceptsInputMethod');
-    export const ItemIsFocusScope = createEnumToken('RectangularShadow', 'Flags', 'ItemIsFocusScope');
+    export const ItemClipsChildrenToShape = createEnumToken(
+      'RectangularShadow',
+      'Flags',
+      'ItemClipsChildrenToShape',
+    );
+    export const ItemAcceptsInputMethod = createEnumToken(
+      'RectangularShadow',
+      'Flags',
+      'ItemAcceptsInputMethod',
+    );
+    export const ItemIsFocusScope = createEnumToken(
+      'RectangularShadow',
+      'Flags',
+      'ItemIsFocusScope',
+    );
     export const ItemHasContents = createEnumToken('RectangularShadow', 'Flags', 'ItemHasContents');
-    export const ItemAcceptsDrops = createEnumToken('RectangularShadow', 'Flags', 'ItemAcceptsDrops');
+    export const ItemAcceptsDrops = createEnumToken(
+      'RectangularShadow',
+      'Flags',
+      'ItemAcceptsDrops',
+    );
     export const ItemIsViewport = createEnumToken('RectangularShadow', 'Flags', 'ItemIsViewport');
-    export const ItemObservesViewport = createEnumToken('RectangularShadow', 'Flags', 'ItemObservesViewport');
+    export const ItemObservesViewport = createEnumToken(
+      'RectangularShadow',
+      'Flags',
+      'ItemObservesViewport',
+    );
   }
   export namespace ItemChange {
-    export const ItemChildAddedChange = createEnumToken('RectangularShadow', 'ItemChange', 'ItemChildAddedChange');
-    export const ItemChildRemovedChange = createEnumToken('RectangularShadow', 'ItemChange', 'ItemChildRemovedChange');
-    export const ItemSceneChange = createEnumToken('RectangularShadow', 'ItemChange', 'ItemSceneChange');
-    export const ItemVisibleHasChanged = createEnumToken('RectangularShadow', 'ItemChange', 'ItemVisibleHasChanged');
-    export const ItemParentHasChanged = createEnumToken('RectangularShadow', 'ItemChange', 'ItemParentHasChanged');
-    export const ItemOpacityHasChanged = createEnumToken('RectangularShadow', 'ItemChange', 'ItemOpacityHasChanged');
-    export const ItemActiveFocusHasChanged = createEnumToken('RectangularShadow', 'ItemChange', 'ItemActiveFocusHasChanged');
-    export const ItemRotationHasChanged = createEnumToken('RectangularShadow', 'ItemChange', 'ItemRotationHasChanged');
-    export const ItemAntialiasingHasChanged = createEnumToken('RectangularShadow', 'ItemChange', 'ItemAntialiasingHasChanged');
-    export const ItemDevicePixelRatioHasChanged = createEnumToken('RectangularShadow', 'ItemChange', 'ItemDevicePixelRatioHasChanged');
-    export const ItemEnabledHasChanged = createEnumToken('RectangularShadow', 'ItemChange', 'ItemEnabledHasChanged');
-    export const ItemScaleHasChanged = createEnumToken('RectangularShadow', 'ItemChange', 'ItemScaleHasChanged');
-    export const ItemTransformHasChanged = createEnumToken('RectangularShadow', 'ItemChange', 'ItemTransformHasChanged');
+    export const ItemChildAddedChange = createEnumToken(
+      'RectangularShadow',
+      'ItemChange',
+      'ItemChildAddedChange',
+    );
+    export const ItemChildRemovedChange = createEnumToken(
+      'RectangularShadow',
+      'ItemChange',
+      'ItemChildRemovedChange',
+    );
+    export const ItemSceneChange = createEnumToken(
+      'RectangularShadow',
+      'ItemChange',
+      'ItemSceneChange',
+    );
+    export const ItemVisibleHasChanged = createEnumToken(
+      'RectangularShadow',
+      'ItemChange',
+      'ItemVisibleHasChanged',
+    );
+    export const ItemParentHasChanged = createEnumToken(
+      'RectangularShadow',
+      'ItemChange',
+      'ItemParentHasChanged',
+    );
+    export const ItemOpacityHasChanged = createEnumToken(
+      'RectangularShadow',
+      'ItemChange',
+      'ItemOpacityHasChanged',
+    );
+    export const ItemActiveFocusHasChanged = createEnumToken(
+      'RectangularShadow',
+      'ItemChange',
+      'ItemActiveFocusHasChanged',
+    );
+    export const ItemRotationHasChanged = createEnumToken(
+      'RectangularShadow',
+      'ItemChange',
+      'ItemRotationHasChanged',
+    );
+    export const ItemAntialiasingHasChanged = createEnumToken(
+      'RectangularShadow',
+      'ItemChange',
+      'ItemAntialiasingHasChanged',
+    );
+    export const ItemDevicePixelRatioHasChanged = createEnumToken(
+      'RectangularShadow',
+      'ItemChange',
+      'ItemDevicePixelRatioHasChanged',
+    );
+    export const ItemEnabledHasChanged = createEnumToken(
+      'RectangularShadow',
+      'ItemChange',
+      'ItemEnabledHasChanged',
+    );
+    export const ItemScaleHasChanged = createEnumToken(
+      'RectangularShadow',
+      'ItemChange',
+      'ItemScaleHasChanged',
+    );
+    export const ItemTransformHasChanged = createEnumToken(
+      'RectangularShadow',
+      'ItemChange',
+      'ItemTransformHasChanged',
+    );
   }
   export namespace TransformOrigin {
     export const TopLeft = createEnumToken('RectangularShadow', 'TransformOrigin', 'TopLeft');
@@ -302,6 +382,10 @@ export namespace RectangularShadow {
     export const Right = createEnumToken('RectangularShadow', 'TransformOrigin', 'Right');
     export const BottomLeft = createEnumToken('RectangularShadow', 'TransformOrigin', 'BottomLeft');
     export const Bottom = createEnumToken('RectangularShadow', 'TransformOrigin', 'Bottom');
-    export const BottomRight = createEnumToken('RectangularShadow', 'TransformOrigin', 'BottomRight');
+    export const BottomRight = createEnumToken(
+      'RectangularShadow',
+      'TransformOrigin',
+      'BottomRight',
+    );
   }
 }

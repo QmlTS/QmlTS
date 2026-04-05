@@ -2,7 +2,6 @@
 // Type: Attached type: SelectionRectangle
 // Generated from Qt 6.11.0
 
-
 export interface SelectionRectangleAttachedBuilder {
   objectName(value: string): SelectionRectangleAttachedBuilder;
   objectNameBind(expr: string): SelectionRectangleAttachedBuilder;

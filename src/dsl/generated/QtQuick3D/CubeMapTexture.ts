@@ -2,8 +2,14 @@
 // Type: CubeMapTexture
 // Generated from Qt 6.11.0
 
+import type {
+  QmlEnumToken,
+  QmlObjectBuilder,
+  QmlUrl,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
-import type { QmlEnumToken, QmlObjectBuilder, QmlUrl, QmlValue, TypeMetadata } from '../../runtime/index.js';
 import type { ItemBuilder } from '../QtQuick/Item.js';
 export interface CubeMapTextureBuilder {
   id(id: string): CubeMapTextureBuilder;
@@ -149,14 +155,15 @@ const CUBEMAPTEXTURE_META: TypeMetadata = {
     { handlerName: 'onTextureProviderChanged', paramCount: 0 },
     { handlerName: 'onVerticalTilingChanged', paramCount: 0 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function CubeMapTexture(): CubeMapTextureBuilder {
-  return createFluentBuilder('CubeMapTexture', CUBEMAPTEXTURE_META) as unknown as CubeMapTextureBuilder;
+  return createFluentBuilder(
+    'CubeMapTexture',
+    CUBEMAPTEXTURE_META,
+  ) as unknown as CubeMapTextureBuilder;
 }
 
 export namespace CubeMapTexture {

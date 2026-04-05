@@ -2,8 +2,13 @@
 // Type: Skin
 // Generated from Qt 6.11.0
 
+import type {
+  QmlMatrix4x4,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
-import type { QmlMatrix4x4, QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
 export interface SkinBuilder {
   id(id: string): SkinBuilder;
   child(obj: QmlObjectBuilder): SkinBuilder;
@@ -38,10 +43,8 @@ const SKIN_META: TypeMetadata = {
     { handlerName: 'onParentChanged', paramCount: 0 },
     { handlerName: 'onStateChanged', paramCount: 0 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
   defaultProperty: 'data',
 };
 

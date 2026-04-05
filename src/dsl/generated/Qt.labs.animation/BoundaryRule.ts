@@ -2,8 +2,13 @@
 // Type: BoundaryRule
 // Generated from Qt 6.11.0
 
+import type {
+  QmlEnumToken,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
-import type { QmlEnumToken, QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
 export interface BoundaryRuleBuilder {
   id(id: string): BoundaryRuleBuilder;
   child(obj: QmlObjectBuilder): BoundaryRuleBuilder;
@@ -72,10 +77,8 @@ const BOUNDARYRULE_META: TypeMetadata = {
     { handlerName: 'onReturnDurationChanged', paramCount: 0 },
     { handlerName: 'onReturnedToBounds', paramCount: 0 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function BoundaryRule(): BoundaryRuleBuilder {

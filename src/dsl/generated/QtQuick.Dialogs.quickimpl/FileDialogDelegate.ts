@@ -2,15 +2,22 @@
 // Type: FileDialogDelegate
 // Generated from Qt 6.11.0
 
+import type {
+  QmlEnumToken,
+  QmlFont,
+  QmlObjectBuilder,
+  QmlUrl,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
-import type { QmlEnumToken, QmlFont, QmlObjectBuilder, QmlUrl, QmlValue, TypeMetadata } from '../../runtime/index.js';
 import type { QtObjectBuilder } from '../QML/QtObject.js';
-import type { ActionBuilder } from '../QtQuick.Templates/Action.js';
-import type { DialogBuilder } from '../QtQuick.Templates/Dialog.js';
 import type { ItemBuilder } from '../QtQuick/Item.js';
 import type { PaletteBuilder } from '../QtQuick/Palette.js';
 import type { AnchorsBuilder } from '../QtQuick/QQuickAnchors.js';
 import type { LayerBuilder } from '../QtQuick/QQuickItemLayer.js';
+import type { ActionBuilder } from '../QtQuick.Templates/Action.js';
+import type { DialogBuilder } from '../QtQuick.Templates/Dialog.js';
 import type { ColorDialogImplAttachedBuilder } from './QQuickColorDialogImplAttached.js';
 import type { FileDialogImplAttachedBuilder } from './QQuickFileDialogImplAttached.js';
 import type { FolderDialogImplAttachedBuilder } from './QQuickFolderDialogImplAttached.js';
@@ -230,7 +237,9 @@ export interface FileDialogDelegateBuilder {
   fileDialogImpl(setup: (b: FileDialogImplAttachedBuilder) => void): FileDialogDelegateBuilder;
   folderDialogImpl(setup: (b: FolderDialogImplAttachedBuilder) => void): FileDialogDelegateBuilder;
   fontDialogImpl(setup: (b: FontDialogImplAttachedBuilder) => void): FileDialogDelegateBuilder;
-  messageDialogImpl(setup: (b: MessageDialogImplAttachedBuilder) => void): FileDialogDelegateBuilder;
+  messageDialogImpl(
+    setup: (b: MessageDialogImplAttachedBuilder) => void,
+  ): FileDialogDelegateBuilder;
 }
 
 const FILEDIALOGDELEGATE_META: TypeMetadata = {
@@ -541,39 +550,122 @@ const FILEDIALOGDELEGATE_META: TypeMetadata = {
 };
 
 export function FileDialogDelegate(): FileDialogDelegateBuilder {
-  return createFluentBuilder('FileDialogDelegate', FILEDIALOGDELEGATE_META) as unknown as FileDialogDelegateBuilder;
+  return createFluentBuilder(
+    'FileDialogDelegate',
+    FILEDIALOGDELEGATE_META,
+  ) as unknown as FileDialogDelegateBuilder;
 }
 
 export namespace FileDialogDelegate {
   export namespace Display {
     export const IconOnly = createEnumToken('FileDialogDelegate', 'Display', 'IconOnly');
     export const TextOnly = createEnumToken('FileDialogDelegate', 'Display', 'TextOnly');
-    export const TextBesideIcon = createEnumToken('FileDialogDelegate', 'Display', 'TextBesideIcon');
+    export const TextBesideIcon = createEnumToken(
+      'FileDialogDelegate',
+      'Display',
+      'TextBesideIcon',
+    );
     export const TextUnderIcon = createEnumToken('FileDialogDelegate', 'Display', 'TextUnderIcon');
   }
   export namespace Flags {
-    export const ItemClipsChildrenToShape = createEnumToken('FileDialogDelegate', 'Flags', 'ItemClipsChildrenToShape');
-    export const ItemAcceptsInputMethod = createEnumToken('FileDialogDelegate', 'Flags', 'ItemAcceptsInputMethod');
-    export const ItemIsFocusScope = createEnumToken('FileDialogDelegate', 'Flags', 'ItemIsFocusScope');
-    export const ItemHasContents = createEnumToken('FileDialogDelegate', 'Flags', 'ItemHasContents');
-    export const ItemAcceptsDrops = createEnumToken('FileDialogDelegate', 'Flags', 'ItemAcceptsDrops');
+    export const ItemClipsChildrenToShape = createEnumToken(
+      'FileDialogDelegate',
+      'Flags',
+      'ItemClipsChildrenToShape',
+    );
+    export const ItemAcceptsInputMethod = createEnumToken(
+      'FileDialogDelegate',
+      'Flags',
+      'ItemAcceptsInputMethod',
+    );
+    export const ItemIsFocusScope = createEnumToken(
+      'FileDialogDelegate',
+      'Flags',
+      'ItemIsFocusScope',
+    );
+    export const ItemHasContents = createEnumToken(
+      'FileDialogDelegate',
+      'Flags',
+      'ItemHasContents',
+    );
+    export const ItemAcceptsDrops = createEnumToken(
+      'FileDialogDelegate',
+      'Flags',
+      'ItemAcceptsDrops',
+    );
     export const ItemIsViewport = createEnumToken('FileDialogDelegate', 'Flags', 'ItemIsViewport');
-    export const ItemObservesViewport = createEnumToken('FileDialogDelegate', 'Flags', 'ItemObservesViewport');
+    export const ItemObservesViewport = createEnumToken(
+      'FileDialogDelegate',
+      'Flags',
+      'ItemObservesViewport',
+    );
   }
   export namespace ItemChange {
-    export const ItemChildAddedChange = createEnumToken('FileDialogDelegate', 'ItemChange', 'ItemChildAddedChange');
-    export const ItemChildRemovedChange = createEnumToken('FileDialogDelegate', 'ItemChange', 'ItemChildRemovedChange');
-    export const ItemSceneChange = createEnumToken('FileDialogDelegate', 'ItemChange', 'ItemSceneChange');
-    export const ItemVisibleHasChanged = createEnumToken('FileDialogDelegate', 'ItemChange', 'ItemVisibleHasChanged');
-    export const ItemParentHasChanged = createEnumToken('FileDialogDelegate', 'ItemChange', 'ItemParentHasChanged');
-    export const ItemOpacityHasChanged = createEnumToken('FileDialogDelegate', 'ItemChange', 'ItemOpacityHasChanged');
-    export const ItemActiveFocusHasChanged = createEnumToken('FileDialogDelegate', 'ItemChange', 'ItemActiveFocusHasChanged');
-    export const ItemRotationHasChanged = createEnumToken('FileDialogDelegate', 'ItemChange', 'ItemRotationHasChanged');
-    export const ItemAntialiasingHasChanged = createEnumToken('FileDialogDelegate', 'ItemChange', 'ItemAntialiasingHasChanged');
-    export const ItemDevicePixelRatioHasChanged = createEnumToken('FileDialogDelegate', 'ItemChange', 'ItemDevicePixelRatioHasChanged');
-    export const ItemEnabledHasChanged = createEnumToken('FileDialogDelegate', 'ItemChange', 'ItemEnabledHasChanged');
-    export const ItemScaleHasChanged = createEnumToken('FileDialogDelegate', 'ItemChange', 'ItemScaleHasChanged');
-    export const ItemTransformHasChanged = createEnumToken('FileDialogDelegate', 'ItemChange', 'ItemTransformHasChanged');
+    export const ItemChildAddedChange = createEnumToken(
+      'FileDialogDelegate',
+      'ItemChange',
+      'ItemChildAddedChange',
+    );
+    export const ItemChildRemovedChange = createEnumToken(
+      'FileDialogDelegate',
+      'ItemChange',
+      'ItemChildRemovedChange',
+    );
+    export const ItemSceneChange = createEnumToken(
+      'FileDialogDelegate',
+      'ItemChange',
+      'ItemSceneChange',
+    );
+    export const ItemVisibleHasChanged = createEnumToken(
+      'FileDialogDelegate',
+      'ItemChange',
+      'ItemVisibleHasChanged',
+    );
+    export const ItemParentHasChanged = createEnumToken(
+      'FileDialogDelegate',
+      'ItemChange',
+      'ItemParentHasChanged',
+    );
+    export const ItemOpacityHasChanged = createEnumToken(
+      'FileDialogDelegate',
+      'ItemChange',
+      'ItemOpacityHasChanged',
+    );
+    export const ItemActiveFocusHasChanged = createEnumToken(
+      'FileDialogDelegate',
+      'ItemChange',
+      'ItemActiveFocusHasChanged',
+    );
+    export const ItemRotationHasChanged = createEnumToken(
+      'FileDialogDelegate',
+      'ItemChange',
+      'ItemRotationHasChanged',
+    );
+    export const ItemAntialiasingHasChanged = createEnumToken(
+      'FileDialogDelegate',
+      'ItemChange',
+      'ItemAntialiasingHasChanged',
+    );
+    export const ItemDevicePixelRatioHasChanged = createEnumToken(
+      'FileDialogDelegate',
+      'ItemChange',
+      'ItemDevicePixelRatioHasChanged',
+    );
+    export const ItemEnabledHasChanged = createEnumToken(
+      'FileDialogDelegate',
+      'ItemChange',
+      'ItemEnabledHasChanged',
+    );
+    export const ItemScaleHasChanged = createEnumToken(
+      'FileDialogDelegate',
+      'ItemChange',
+      'ItemScaleHasChanged',
+    );
+    export const ItemTransformHasChanged = createEnumToken(
+      'FileDialogDelegate',
+      'ItemChange',
+      'ItemTransformHasChanged',
+    );
   }
   export namespace TransformOrigin {
     export const TopLeft = createEnumToken('FileDialogDelegate', 'TransformOrigin', 'TopLeft');
@@ -582,8 +674,16 @@ export namespace FileDialogDelegate {
     export const Left = createEnumToken('FileDialogDelegate', 'TransformOrigin', 'Left');
     export const Center = createEnumToken('FileDialogDelegate', 'TransformOrigin', 'Center');
     export const Right = createEnumToken('FileDialogDelegate', 'TransformOrigin', 'Right');
-    export const BottomLeft = createEnumToken('FileDialogDelegate', 'TransformOrigin', 'BottomLeft');
+    export const BottomLeft = createEnumToken(
+      'FileDialogDelegate',
+      'TransformOrigin',
+      'BottomLeft',
+    );
     export const Bottom = createEnumToken('FileDialogDelegate', 'TransformOrigin', 'Bottom');
-    export const BottomRight = createEnumToken('FileDialogDelegate', 'TransformOrigin', 'BottomRight');
+    export const BottomRight = createEnumToken(
+      'FileDialogDelegate',
+      'TransformOrigin',
+      'BottomRight',
+    );
   }
 }

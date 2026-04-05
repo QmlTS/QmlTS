@@ -2,12 +2,18 @@
 // Type: ColorDialogImpl
 // Generated from Qt 6.11.0
 
+import type {
+  QmlColor,
+  QmlEnumToken,
+  QmlFont,
+  QmlObjectBuilder,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
-import type { QmlColor, QmlEnumToken, QmlFont, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
-import type { AnchorsBuilder } from '../QtQuick.Templates/QQuickPopupAnchors.js';
 import type { ItemBuilder } from '../QtQuick/Item.js';
 import type { PaletteBuilder } from '../QtQuick/Palette.js';
 import type { TransitionBuilder } from '../QtQuick/Transition.js';
+import type { AnchorsBuilder } from '../QtQuick.Templates/QQuickPopupAnchors.js';
 import type { ColorDialogImplAttachedBuilder } from './QQuickColorDialogImplAttached.js';
 import type { FileDialogImplAttachedBuilder } from './QQuickFileDialogImplAttached.js';
 import type { FolderDialogImplAttachedBuilder } from './QQuickFolderDialogImplAttached.js';
@@ -374,9 +380,7 @@ const COLORDIALOGIMPL_META: TypeMetadata = {
     {
       methodName: 'anchors',
       groupName: 'anchors',
-      properties: [
-        { name: 'centerIn', hasValue: true, hasBinding: true },
-      ],
+      properties: [{ name: 'centerIn', hasValue: true, hasBinding: true }],
     },
   ],
   attached: [
@@ -492,16 +496,35 @@ const COLORDIALOGIMPL_META: TypeMetadata = {
 };
 
 export function ColorDialogImpl(): ColorDialogImplBuilder {
-  return createFluentBuilder('ColorDialogImpl', COLORDIALOGIMPL_META) as unknown as ColorDialogImplBuilder;
+  return createFluentBuilder(
+    'ColorDialogImpl',
+    COLORDIALOGIMPL_META,
+  ) as unknown as ColorDialogImplBuilder;
 }
 
 export namespace ColorDialogImpl {
   export namespace ClosePolicy {
     export const NoAutoClose = createEnumToken('ColorDialogImpl', 'ClosePolicy', 'NoAutoClose');
-    export const CloseOnPressOutside = createEnumToken('ColorDialogImpl', 'ClosePolicy', 'CloseOnPressOutside');
-    export const CloseOnPressOutsideParent = createEnumToken('ColorDialogImpl', 'ClosePolicy', 'CloseOnPressOutsideParent');
-    export const CloseOnReleaseOutside = createEnumToken('ColorDialogImpl', 'ClosePolicy', 'CloseOnReleaseOutside');
-    export const CloseOnReleaseOutsideParent = createEnumToken('ColorDialogImpl', 'ClosePolicy', 'CloseOnReleaseOutsideParent');
+    export const CloseOnPressOutside = createEnumToken(
+      'ColorDialogImpl',
+      'ClosePolicy',
+      'CloseOnPressOutside',
+    );
+    export const CloseOnPressOutsideParent = createEnumToken(
+      'ColorDialogImpl',
+      'ClosePolicy',
+      'CloseOnPressOutsideParent',
+    );
+    export const CloseOnReleaseOutside = createEnumToken(
+      'ColorDialogImpl',
+      'ClosePolicy',
+      'CloseOnReleaseOutside',
+    );
+    export const CloseOnReleaseOutsideParent = createEnumToken(
+      'ColorDialogImpl',
+      'ClosePolicy',
+      'CloseOnReleaseOutsideParent',
+    );
     export const CloseOnEscape = createEnumToken('ColorDialogImpl', 'ClosePolicy', 'CloseOnEscape');
   }
   export namespace PopupType {

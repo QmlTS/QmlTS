@@ -2,8 +2,8 @@
 // Type: XmlListModel
 // Generated from Qt 6.11.0
 
-import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { QmlObjectBuilder, QmlUrl, TypeMetadata } from '../../runtime/index.js';
+import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface XmlListModelBuilder {
   id(id: string): XmlListModelBuilder;
   child(obj: QmlObjectBuilder): XmlListModelBuilder;
@@ -73,10 +73,8 @@ const XMLLISTMODEL_META: TypeMetadata = {
     { handlerName: 'onSourceChanged', paramCount: 0 },
     { handlerName: 'onStatusChanged', paramCount: 1 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
   defaultProperty: 'roles',
 };
 
@@ -88,13 +86,33 @@ export namespace XmlListModel {
   export namespace CheckIndexOption {
     export const NoOption = createEnumToken('XmlListModel', 'CheckIndexOption', 'NoOption');
     export const IndexIsValid = createEnumToken('XmlListModel', 'CheckIndexOption', 'IndexIsValid');
-    export const DoNotUseParent = createEnumToken('XmlListModel', 'CheckIndexOption', 'DoNotUseParent');
-    export const ParentIsInvalid = createEnumToken('XmlListModel', 'CheckIndexOption', 'ParentIsInvalid');
+    export const DoNotUseParent = createEnumToken(
+      'XmlListModel',
+      'CheckIndexOption',
+      'DoNotUseParent',
+    );
+    export const ParentIsInvalid = createEnumToken(
+      'XmlListModel',
+      'CheckIndexOption',
+      'ParentIsInvalid',
+    );
   }
   export namespace LayoutChangeHint {
-    export const NoLayoutChangeHint = createEnumToken('XmlListModel', 'LayoutChangeHint', 'NoLayoutChangeHint');
-    export const VerticalSortHint = createEnumToken('XmlListModel', 'LayoutChangeHint', 'VerticalSortHint');
-    export const HorizontalSortHint = createEnumToken('XmlListModel', 'LayoutChangeHint', 'HorizontalSortHint');
+    export const NoLayoutChangeHint = createEnumToken(
+      'XmlListModel',
+      'LayoutChangeHint',
+      'NoLayoutChangeHint',
+    );
+    export const VerticalSortHint = createEnumToken(
+      'XmlListModel',
+      'LayoutChangeHint',
+      'VerticalSortHint',
+    );
+    export const HorizontalSortHint = createEnumToken(
+      'XmlListModel',
+      'LayoutChangeHint',
+      'HorizontalSortHint',
+    );
   }
   export namespace Status {
     export const Null = createEnumToken('XmlListModel', 'Status', 'Null');

@@ -2,8 +2,8 @@
 // Type: WrapMode
 // Generated from Qt 6.11.0
 
-import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { QmlEnumToken, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface WrapModeBuilder {
   id(id: string): WrapModeBuilder;
   child(obj: QmlObjectBuilder): WrapModeBuilder;
@@ -36,10 +36,8 @@ const WRAPMODE_META: TypeMetadata = {
     { handlerName: 'onYChanged', paramCount: 1 },
     { handlerName: 'onZChanged', paramCount: 1 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function WrapMode(): WrapModeBuilder {

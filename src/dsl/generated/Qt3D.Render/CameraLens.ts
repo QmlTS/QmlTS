@@ -2,8 +2,14 @@
 // Type: CameraLens
 // Generated from Qt 6.11.0
 
+import type {
+  QmlEnumToken,
+  QmlMatrix4x4,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
-import type { QmlEnumToken, QmlMatrix4x4, QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
 export interface CameraLensBuilder {
   id(id: string): CameraLensBuilder;
   child(obj: QmlObjectBuilder): CameraLensBuilder;
@@ -99,10 +105,8 @@ const CAMERALENS_META: TypeMetadata = {
     { handlerName: 'onTopChanged', paramCount: 1 },
     { handlerName: 'onViewSphere', paramCount: 2 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function CameraLens(): CameraLensBuilder {
@@ -111,9 +115,25 @@ export function CameraLens(): CameraLensBuilder {
 
 export namespace CameraLens {
   export namespace ProjectionType {
-    export const OrthographicProjection = createEnumToken('CameraLens', 'ProjectionType', 'OrthographicProjection');
-    export const PerspectiveProjection = createEnumToken('CameraLens', 'ProjectionType', 'PerspectiveProjection');
-    export const FrustumProjection = createEnumToken('CameraLens', 'ProjectionType', 'FrustumProjection');
-    export const CustomProjection = createEnumToken('CameraLens', 'ProjectionType', 'CustomProjection');
+    export const OrthographicProjection = createEnumToken(
+      'CameraLens',
+      'ProjectionType',
+      'OrthographicProjection',
+    );
+    export const PerspectiveProjection = createEnumToken(
+      'CameraLens',
+      'ProjectionType',
+      'PerspectiveProjection',
+    );
+    export const FrustumProjection = createEnumToken(
+      'CameraLens',
+      'ProjectionType',
+      'FrustumProjection',
+    );
+    export const CustomProjection = createEnumToken(
+      'CameraLens',
+      'ProjectionType',
+      'CustomProjection',
+    );
   }
 }

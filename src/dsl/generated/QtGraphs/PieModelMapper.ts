@@ -2,8 +2,13 @@
 // Type: PieModelMapper
 // Generated from Qt 6.11.0
 
+import type {
+  QmlEnumToken,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
-import type { QmlEnumToken, QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
 import type { PieSeriesBuilder } from './PieSeries.js';
 export interface PieModelMapperBuilder {
   id(id: string): PieModelMapperBuilder;
@@ -57,12 +62,13 @@ const PIEMODELMAPPER_META: TypeMetadata = {
     { handlerName: 'onSeriesChanged', paramCount: 0 },
     { handlerName: 'onValuesSectionChanged', paramCount: 0 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function PieModelMapper(): PieModelMapperBuilder {
-  return createFluentBuilder('PieModelMapper', PIEMODELMAPPER_META) as unknown as PieModelMapperBuilder;
+  return createFluentBuilder(
+    'PieModelMapper',
+    PIEMODELMAPPER_META,
+  ) as unknown as PieModelMapperBuilder;
 }

@@ -2,8 +2,8 @@
 // Type: NetworkInformation
 // Generated from Qt 6.11.0
 
-import { createEnumToken } from '../../runtime/index.js';
 import type { QmlEnumToken } from '../../runtime/index.js';
+import { createEnumToken } from '../../runtime/index.js';
 export interface NetworkInformationInstance {
   readonly isBehindCaptivePortal: boolean;
   readonly isMetered: boolean;
@@ -20,12 +20,20 @@ export namespace NetworkInformation {
   export namespace Features {
     export const Reachability = createEnumToken('NetworkInformation', 'Features', 'Reachability');
     export const CaptivePortal = createEnumToken('NetworkInformation', 'Features', 'CaptivePortal');
-    export const TransportMedium = createEnumToken('NetworkInformation', 'Features', 'TransportMedium');
+    export const TransportMedium = createEnumToken(
+      'NetworkInformation',
+      'Features',
+      'TransportMedium',
+    );
     export const Metered = createEnumToken('NetworkInformation', 'Features', 'Metered');
   }
   export namespace Reachability {
     export const Unknown = createEnumToken('NetworkInformation', 'Reachability', 'Unknown');
-    export const Disconnected = createEnumToken('NetworkInformation', 'Reachability', 'Disconnected');
+    export const Disconnected = createEnumToken(
+      'NetworkInformation',
+      'Reachability',
+      'Disconnected',
+    );
     export const Local = createEnumToken('NetworkInformation', 'Reachability', 'Local');
     export const Site = createEnumToken('NetworkInformation', 'Reachability', 'Site');
     export const Online = createEnumToken('NetworkInformation', 'Reachability', 'Online');

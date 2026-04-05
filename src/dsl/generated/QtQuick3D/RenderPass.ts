@@ -2,8 +2,15 @@
 // Type: RenderPass
 // Generated from Qt 6.11.0
 
+import type {
+  QmlColor,
+  QmlEnumToken,
+  QmlObjectBuilder,
+  QmlUrl,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
-import type { QmlColor, QmlEnumToken, QmlObjectBuilder, QmlUrl, QmlValue, TypeMetadata } from '../../runtime/index.js';
 export interface RenderPassBuilder {
   id(id: string): RenderPassBuilder;
   child(obj: QmlObjectBuilder): RenderPassBuilder;
@@ -75,10 +82,8 @@ const RENDERPASS_META: TypeMetadata = {
     { handlerName: 'onStateChanged', paramCount: 0 },
     { handlerName: 'onStencilClearValueChanged', paramCount: 0 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
   defaultProperty: 'data',
 };
 
@@ -88,9 +93,21 @@ export function RenderPass(): RenderPassBuilder {
 
 export namespace RenderPass {
   export namespace MaterialModes {
-    export const OriginalMaterial = createEnumToken('RenderPass', 'MaterialModes', 'OriginalMaterial');
-    export const AugmentMaterial = createEnumToken('RenderPass', 'MaterialModes', 'AugmentMaterial');
-    export const OverrideMaterial = createEnumToken('RenderPass', 'MaterialModes', 'OverrideMaterial');
+    export const OriginalMaterial = createEnumToken(
+      'RenderPass',
+      'MaterialModes',
+      'OriginalMaterial',
+    );
+    export const AugmentMaterial = createEnumToken(
+      'RenderPass',
+      'MaterialModes',
+      'AugmentMaterial',
+    );
+    export const OverrideMaterial = createEnumToken(
+      'RenderPass',
+      'MaterialModes',
+      'OverrideMaterial',
+    );
   }
   export namespace PassMode {
     export const UserPass = createEnumToken('RenderPass', 'PassMode', 'UserPass');
@@ -99,8 +116,20 @@ export namespace RenderPass {
   }
   export namespace RenderTargetFlags {
     export const None = createEnumToken('RenderPass', 'RenderTargetFlags', 'None');
-    export const PreserveColorContents = createEnumToken('RenderPass', 'RenderTargetFlags', 'PreserveColorContents');
-    export const PreserveDepthStencilContents = createEnumToken('RenderPass', 'RenderTargetFlags', 'PreserveDepthStencilContents');
-    export const DoNotStoreDepthStencilContents = createEnumToken('RenderPass', 'RenderTargetFlags', 'DoNotStoreDepthStencilContents');
+    export const PreserveColorContents = createEnumToken(
+      'RenderPass',
+      'RenderTargetFlags',
+      'PreserveColorContents',
+    );
+    export const PreserveDepthStencilContents = createEnumToken(
+      'RenderPass',
+      'RenderTargetFlags',
+      'PreserveDepthStencilContents',
+    );
+    export const DoNotStoreDepthStencilContents = createEnumToken(
+      'RenderPass',
+      'RenderTargetFlags',
+      'DoNotStoreDepthStencilContents',
+    );
   }
 }

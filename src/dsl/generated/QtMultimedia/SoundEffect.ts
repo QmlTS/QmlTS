@@ -2,8 +2,8 @@
 // Type: SoundEffect
 // Generated from Qt 6.11.0
 
-import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { QmlObjectBuilder, QmlUrl, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface SoundEffectBuilder {
   id(id: string): SoundEffectBuilder;
   child(obj: QmlObjectBuilder): SoundEffectBuilder;
@@ -54,10 +54,8 @@ const SOUNDEFFECT_META: TypeMetadata = {
     { handlerName: 'onStatusChanged', paramCount: 0 },
     { handlerName: 'onVolumeChanged', paramCount: 0 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function SoundEffect(): SoundEffectBuilder {

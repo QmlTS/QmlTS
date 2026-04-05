@@ -2,8 +2,8 @@
 // Type: NinePatchImageSelector
 // Generated from Qt 6.11.0
 
-import { createFluentBuilder } from '../../runtime/index.js';
 import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import { createFluentBuilder } from '../../runtime/index.js';
 export interface NinePatchImageSelectorBuilder {
   id(id: string): NinePatchImageSelectorBuilder;
   child(obj: QmlObjectBuilder): NinePatchImageSelectorBuilder;
@@ -38,12 +38,13 @@ const NINEPATCHIMAGESELECTOR_META: TypeMetadata = {
     { handlerName: 'onObjectNameChanged', paramCount: 1 },
     { handlerName: 'onSourceChanged', paramCount: 0 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function NinePatchImageSelector(): NinePatchImageSelectorBuilder {
-  return createFluentBuilder('NinePatchImageSelector', NINEPATCHIMAGESELECTOR_META) as unknown as NinePatchImageSelectorBuilder;
+  return createFluentBuilder(
+    'NinePatchImageSelector',
+    NINEPATCHIMAGESELECTOR_META,
+  ) as unknown as NinePatchImageSelectorBuilder;
 }

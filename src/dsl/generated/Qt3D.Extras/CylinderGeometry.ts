@@ -2,8 +2,8 @@
 // Type: CylinderGeometry
 // Generated from Qt 6.11.0
 
-import { createFluentBuilder } from '../../runtime/index.js';
 import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import { createFluentBuilder } from '../../runtime/index.js';
 import type { AttributeBuilder } from '../Qt3D.Core/Attribute.js';
 export interface CylinderGeometryBuilder {
   id(id: string): CylinderGeometryBuilder;
@@ -63,12 +63,13 @@ const CYLINDERGEOMETRY_META: TypeMetadata = {
     { handlerName: 'onRingsChanged', paramCount: 1 },
     { handlerName: 'onSlicesChanged', paramCount: 1 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function CylinderGeometry(): CylinderGeometryBuilder {
-  return createFluentBuilder('CylinderGeometry', CYLINDERGEOMETRY_META) as unknown as CylinderGeometryBuilder;
+  return createFluentBuilder(
+    'CylinderGeometry',
+    CYLINDERGEOMETRY_META,
+  ) as unknown as CylinderGeometryBuilder;
 }

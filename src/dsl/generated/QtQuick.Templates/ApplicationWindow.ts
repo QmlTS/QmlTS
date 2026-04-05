@@ -2,8 +2,15 @@
 // Type: ApplicationWindow
 // Generated from Qt 6.11.0
 
+import type {
+  QmlColor,
+  QmlEnumToken,
+  QmlFont,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
-import type { QmlColor, QmlEnumToken, QmlFont, QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
 import type { ItemBuilder } from '../QtQuick/Item.js';
 import type { PaletteBuilder } from '../QtQuick/Palette.js';
 import type { ContextMenuAttachedBuilder } from './ContextMenu.js';
@@ -149,7 +156,9 @@ export interface ApplicationWindowBuilder {
   overlay(setup: (b: OverlayAttachedBuilder) => void): ApplicationWindowBuilder;
   scrollBar(setup: (b: ScrollBarAttachedBuilder) => void): ApplicationWindowBuilder;
   scrollIndicator(setup: (b: ScrollIndicatorAttachedBuilder) => void): ApplicationWindowBuilder;
-  selectionRectangle(setup: (b: SelectionRectangleAttachedBuilder) => void): ApplicationWindowBuilder;
+  selectionRectangle(
+    setup: (b: SelectionRectangleAttachedBuilder) => void,
+  ): ApplicationWindowBuilder;
   splitHandle(setup: (b: SplitHandleAttachedBuilder) => void): ApplicationWindowBuilder;
   splitView(setup: (b: SplitViewAttachedBuilder) => void): ApplicationWindowBuilder;
   stackView(setup: (b: StackViewAttachedBuilder) => void): ApplicationWindowBuilder;
@@ -250,8 +259,7 @@ const APPLICATIONWINDOW_META: TypeMetadata = {
     { handlerName: 'onXChanged', paramCount: 1 },
     { handlerName: 'onYChanged', paramCount: 1 },
   ],
-  grouped: [
-  ],
+  grouped: [],
   attached: [
     {
       methodName: 'actionGroup',
@@ -268,9 +276,7 @@ const APPLICATIONWINDOW_META: TypeMetadata = {
     {
       methodName: 'applicationWindow',
       attachedTypeName: 'ApplicationWindow',
-      properties: [
-        { name: 'objectName', hasValue: true, hasBinding: true },
-      ],
+      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
       signals: [
         { handlerName: 'onActiveFocusControlChanged', paramCount: 0 },
         { handlerName: 'onContentItemChanged', paramCount: 0 },
@@ -367,9 +373,7 @@ const APPLICATIONWINDOW_META: TypeMetadata = {
     {
       methodName: 'selectionRectangle',
       attachedTypeName: 'SelectionRectangle',
-      properties: [
-        { name: 'objectName', hasValue: true, hasBinding: true },
-      ],
+      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
       signals: [
         { handlerName: 'onControlChanged', paramCount: 0 },
         { handlerName: 'onDraggingChanged', paramCount: 0 },
@@ -379,9 +383,7 @@ const APPLICATIONWINDOW_META: TypeMetadata = {
     {
       methodName: 'splitHandle',
       attachedTypeName: 'SplitHandle',
-      properties: [
-        { name: 'objectName', hasValue: true, hasBinding: true },
-      ],
+      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
       signals: [
         { handlerName: 'onHoveredChanged', paramCount: 0 },
         { handlerName: 'onPressedChanged', paramCount: 0 },
@@ -438,9 +440,7 @@ const APPLICATIONWINDOW_META: TypeMetadata = {
     {
       methodName: 'swipeDelegate',
       attachedTypeName: 'SwipeDelegate',
-      properties: [
-        { name: 'objectName', hasValue: true, hasBinding: true },
-      ],
+      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
       signals: [
         { handlerName: 'onClicked', paramCount: 0 },
         { handlerName: 'onPressedChanged', paramCount: 0 },
@@ -450,9 +450,7 @@ const APPLICATIONWINDOW_META: TypeMetadata = {
     {
       methodName: 'swipeView',
       attachedTypeName: 'SwipeView',
-      properties: [
-        { name: 'objectName', hasValue: true, hasBinding: true },
-      ],
+      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
       signals: [
         { handlerName: 'onIndexChanged', paramCount: 0 },
         { handlerName: 'onIsCurrentItemChanged', paramCount: 0 },
@@ -465,9 +463,7 @@ const APPLICATIONWINDOW_META: TypeMetadata = {
     {
       methodName: 'tabBar',
       attachedTypeName: 'TabBar',
-      properties: [
-        { name: 'objectName', hasValue: true, hasBinding: true },
-      ],
+      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
       signals: [
         { handlerName: 'onIndexChanged', paramCount: 0 },
         { handlerName: 'onPositionChanged', paramCount: 0 },
@@ -508,9 +504,7 @@ const APPLICATIONWINDOW_META: TypeMetadata = {
     {
       methodName: 'tumbler',
       attachedTypeName: 'Tumbler',
-      properties: [
-        { name: 'objectName', hasValue: true, hasBinding: true },
-      ],
+      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
       signals: [
         { handlerName: 'onDisplacementChanged', paramCount: 0 },
         { handlerName: 'onObjectNameChanged', paramCount: 1 },
@@ -521,32 +515,83 @@ const APPLICATIONWINDOW_META: TypeMetadata = {
 };
 
 export function ApplicationWindow(): ApplicationWindowBuilder {
-  return createFluentBuilder('ApplicationWindow', APPLICATIONWINDOW_META) as unknown as ApplicationWindowBuilder;
+  return createFluentBuilder(
+    'ApplicationWindow',
+    APPLICATIONWINDOW_META,
+  ) as unknown as ApplicationWindowBuilder;
 }
 
 export namespace ApplicationWindow {
   export namespace AncestorMode {
-    export const ExcludeTransients = createEnumToken('ApplicationWindow', 'AncestorMode', 'ExcludeTransients');
-    export const IncludeTransients = createEnumToken('ApplicationWindow', 'AncestorMode', 'IncludeTransients');
+    export const ExcludeTransients = createEnumToken(
+      'ApplicationWindow',
+      'AncestorMode',
+      'ExcludeTransients',
+    );
+    export const IncludeTransients = createEnumToken(
+      'ApplicationWindow',
+      'AncestorMode',
+      'IncludeTransients',
+    );
   }
   export namespace CreateTextureOptions {
-    export const TextureHasAlphaChannel = createEnumToken('ApplicationWindow', 'CreateTextureOptions', 'TextureHasAlphaChannel');
-    export const TextureHasMipmaps = createEnumToken('ApplicationWindow', 'CreateTextureOptions', 'TextureHasMipmaps');
-    export const TextureOwnsGLTexture = createEnumToken('ApplicationWindow', 'CreateTextureOptions', 'TextureOwnsGLTexture');
-    export const TextureCanUseAtlas = createEnumToken('ApplicationWindow', 'CreateTextureOptions', 'TextureCanUseAtlas');
-    export const TextureIsOpaque = createEnumToken('ApplicationWindow', 'CreateTextureOptions', 'TextureIsOpaque');
+    export const TextureHasAlphaChannel = createEnumToken(
+      'ApplicationWindow',
+      'CreateTextureOptions',
+      'TextureHasAlphaChannel',
+    );
+    export const TextureHasMipmaps = createEnumToken(
+      'ApplicationWindow',
+      'CreateTextureOptions',
+      'TextureHasMipmaps',
+    );
+    export const TextureOwnsGLTexture = createEnumToken(
+      'ApplicationWindow',
+      'CreateTextureOptions',
+      'TextureOwnsGLTexture',
+    );
+    export const TextureCanUseAtlas = createEnumToken(
+      'ApplicationWindow',
+      'CreateTextureOptions',
+      'TextureCanUseAtlas',
+    );
+    export const TextureIsOpaque = createEnumToken(
+      'ApplicationWindow',
+      'CreateTextureOptions',
+      'TextureIsOpaque',
+    );
   }
   export namespace SceneGraphError {
-    export const ContextNotAvailable = createEnumToken('ApplicationWindow', 'SceneGraphError', 'ContextNotAvailable');
+    export const ContextNotAvailable = createEnumToken(
+      'ApplicationWindow',
+      'SceneGraphError',
+      'ContextNotAvailable',
+    );
   }
   export namespace TextRenderType {
-    export const QtTextRendering = createEnumToken('ApplicationWindow', 'TextRenderType', 'QtTextRendering');
-    export const NativeTextRendering = createEnumToken('ApplicationWindow', 'TextRenderType', 'NativeTextRendering');
-    export const CurveTextRendering = createEnumToken('ApplicationWindow', 'TextRenderType', 'CurveTextRendering');
+    export const QtTextRendering = createEnumToken(
+      'ApplicationWindow',
+      'TextRenderType',
+      'QtTextRendering',
+    );
+    export const NativeTextRendering = createEnumToken(
+      'ApplicationWindow',
+      'TextRenderType',
+      'NativeTextRendering',
+    );
+    export const CurveTextRendering = createEnumToken(
+      'ApplicationWindow',
+      'TextRenderType',
+      'CurveTextRendering',
+    );
   }
   export namespace Visibility {
     export const Hidden = createEnumToken('ApplicationWindow', 'Visibility', 'Hidden');
-    export const AutomaticVisibility = createEnumToken('ApplicationWindow', 'Visibility', 'AutomaticVisibility');
+    export const AutomaticVisibility = createEnumToken(
+      'ApplicationWindow',
+      'Visibility',
+      'AutomaticVisibility',
+    );
     export const Windowed = createEnumToken('ApplicationWindow', 'Visibility', 'Windowed');
     export const Minimized = createEnumToken('ApplicationWindow', 'Visibility', 'Minimized');
     export const Maximized = createEnumToken('ApplicationWindow', 'Visibility', 'Maximized');

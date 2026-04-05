@@ -2,8 +2,14 @@
 // Type: ScreenRayCaster
 // Generated from Qt 6.11.0
 
+import type {
+  QmlEnumToken,
+  QmlObjectBuilder,
+  QmlPoint,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
-import type { QmlEnumToken, QmlObjectBuilder, QmlPoint, QmlValue, TypeMetadata } from '../../runtime/index.js';
 export interface ScreenRayCasterBuilder {
   id(id: string): ScreenRayCasterBuilder;
   child(obj: QmlObjectBuilder): ScreenRayCasterBuilder;
@@ -59,22 +65,39 @@ const SCREENRAYCASTER_META: TypeMetadata = {
     { handlerName: 'onRunModeChanged', paramCount: 1 },
     { handlerName: 'onShareableChanged', paramCount: 1 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function ScreenRayCaster(): ScreenRayCasterBuilder {
-  return createFluentBuilder('ScreenRayCaster', SCREENRAYCASTER_META) as unknown as ScreenRayCasterBuilder;
+  return createFluentBuilder(
+    'ScreenRayCaster',
+    SCREENRAYCASTER_META,
+  ) as unknown as ScreenRayCasterBuilder;
 }
 
 export namespace ScreenRayCaster {
   export namespace FilterMode {
-    export const AcceptAnyMatchingLayers = createEnumToken('ScreenRayCaster', 'FilterMode', 'AcceptAnyMatchingLayers');
-    export const AcceptAllMatchingLayers = createEnumToken('ScreenRayCaster', 'FilterMode', 'AcceptAllMatchingLayers');
-    export const DiscardAnyMatchingLayers = createEnumToken('ScreenRayCaster', 'FilterMode', 'DiscardAnyMatchingLayers');
-    export const DiscardAllMatchingLayers = createEnumToken('ScreenRayCaster', 'FilterMode', 'DiscardAllMatchingLayers');
+    export const AcceptAnyMatchingLayers = createEnumToken(
+      'ScreenRayCaster',
+      'FilterMode',
+      'AcceptAnyMatchingLayers',
+    );
+    export const AcceptAllMatchingLayers = createEnumToken(
+      'ScreenRayCaster',
+      'FilterMode',
+      'AcceptAllMatchingLayers',
+    );
+    export const DiscardAnyMatchingLayers = createEnumToken(
+      'ScreenRayCaster',
+      'FilterMode',
+      'DiscardAnyMatchingLayers',
+    );
+    export const DiscardAllMatchingLayers = createEnumToken(
+      'ScreenRayCaster',
+      'FilterMode',
+      'DiscardAllMatchingLayers',
+    );
   }
   export namespace RunMode {
     export const Continuous = createEnumToken('ScreenRayCaster', 'RunMode', 'Continuous');

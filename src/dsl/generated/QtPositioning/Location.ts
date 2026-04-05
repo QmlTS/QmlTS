@@ -2,8 +2,8 @@
 // Type: Location
 // Generated from Qt 6.11.0
 
-import { createFluentBuilder } from '../../runtime/index.js';
 import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import { createFluentBuilder } from '../../runtime/index.js';
 import type { AddressBuilder } from './Address.js';
 export interface LocationBuilder {
   id(id: string): LocationBuilder;
@@ -34,13 +34,9 @@ const LOCATION_META: TypeMetadata = {
     { name: 'location', hasValue: true, hasBinding: true },
     { name: 'objectName', hasValue: true, hasBinding: true },
   ],
-  signals: [
-    { handlerName: 'onObjectNameChanged', paramCount: 1 },
-  ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  signals: [{ handlerName: 'onObjectNameChanged', paramCount: 1 }],
+  grouped: [],
+  attached: [],
 };
 
 export function Location(): LocationBuilder {

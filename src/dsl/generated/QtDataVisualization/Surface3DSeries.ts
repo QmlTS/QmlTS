@@ -2,8 +2,16 @@
 // Type: Surface3DSeries
 // Generated from Qt 6.11.0
 
+import type {
+  QmlColor,
+  QmlEnumToken,
+  QmlObjectBuilder,
+  QmlPoint,
+  QmlQuaternion,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
-import type { QmlColor, QmlEnumToken, QmlObjectBuilder, QmlPoint, QmlQuaternion, QmlValue, TypeMetadata } from '../../runtime/index.js';
 import type { Value3DAxisBuilder } from '../QtGraphs/Value3DAxis.js';
 import type { ColorGradientBuilder } from './ColorGradient.js';
 export interface Surface3DSeriesBuilder {
@@ -167,23 +175,32 @@ const SURFACE3DSERIES_META: TypeMetadata = {
     { handlerName: 'onVisibleChanged', paramCount: 1 },
     { handlerName: 'onWireframeColorChanged', paramCount: 1 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
   defaultProperty: 'seriesChildren',
 };
 
 export function Surface3DSeries(): Surface3DSeriesBuilder {
-  return createFluentBuilder('Surface3DSeries', SURFACE3DSERIES_META) as unknown as Surface3DSeriesBuilder;
+  return createFluentBuilder(
+    'Surface3DSeries',
+    SURFACE3DSERIES_META,
+  ) as unknown as Surface3DSeriesBuilder;
 }
 
 export namespace Surface3DSeries {
   export namespace DrawFlag {
     export const DrawWireframe = createEnumToken('Surface3DSeries', 'DrawFlag', 'DrawWireframe');
     export const DrawSurface = createEnumToken('Surface3DSeries', 'DrawFlag', 'DrawSurface');
-    export const DrawSurfaceAndWireframe = createEnumToken('Surface3DSeries', 'DrawFlag', 'DrawSurfaceAndWireframe');
-    export const DrawFilledSurface = createEnumToken('Surface3DSeries', 'DrawFlag', 'DrawFilledSurface');
+    export const DrawSurfaceAndWireframe = createEnumToken(
+      'Surface3DSeries',
+      'DrawFlag',
+      'DrawSurfaceAndWireframe',
+    );
+    export const DrawFilledSurface = createEnumToken(
+      'Surface3DSeries',
+      'DrawFlag',
+      'DrawFilledSurface',
+    );
   }
   export namespace LightingMode {
     export const Shaded = createEnumToken('Surface3DSeries', 'LightingMode', 'Shaded');

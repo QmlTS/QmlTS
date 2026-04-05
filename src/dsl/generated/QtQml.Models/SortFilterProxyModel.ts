@@ -2,8 +2,8 @@
 // Type: SortFilterProxyModel
 // Generated from Qt 6.11.0
 
-import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { DelegateModelAttachedBuilder } from './QQmlDelegateModelAttached.js';
 import type { ObjectModelAttachedBuilder } from './QQmlObjectModelAttached.js';
 import type { PackageAttachedBuilder } from './QQuickPackageAttached.js';
@@ -94,8 +94,7 @@ const SORTFILTERPROXYMODEL_META: TypeMetadata = {
     { handlerName: 'onSortersChanged', paramCount: 0 },
     { handlerName: 'onSourceModelChanged', paramCount: 0 },
   ],
-  grouped: [
-  ],
+  grouped: [],
   attached: [
     {
       methodName: 'delegateModel',
@@ -115,9 +114,7 @@ const SORTFILTERPROXYMODEL_META: TypeMetadata = {
     {
       methodName: 'objectModel',
       attachedTypeName: 'ObjectModel',
-      properties: [
-        { name: 'objectName', hasValue: true, hasBinding: true },
-      ],
+      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
       signals: [
         { handlerName: 'onIndexChanged', paramCount: 0 },
         { handlerName: 'onObjectNameChanged', paramCount: 1 },
@@ -130,27 +127,52 @@ const SORTFILTERPROXYMODEL_META: TypeMetadata = {
         { name: 'name', hasValue: true, hasBinding: true },
         { name: 'objectName', hasValue: true, hasBinding: true },
       ],
-      signals: [
-        { handlerName: 'onObjectNameChanged', paramCount: 1 },
-      ],
+      signals: [{ handlerName: 'onObjectNameChanged', paramCount: 1 }],
     },
   ],
 };
 
 export function SortFilterProxyModel(): SortFilterProxyModelBuilder {
-  return createFluentBuilder('SortFilterProxyModel', SORTFILTERPROXYMODEL_META) as unknown as SortFilterProxyModelBuilder;
+  return createFluentBuilder(
+    'SortFilterProxyModel',
+    SORTFILTERPROXYMODEL_META,
+  ) as unknown as SortFilterProxyModelBuilder;
 }
 
 export namespace SortFilterProxyModel {
   export namespace CheckIndexOption {
     export const NoOption = createEnumToken('SortFilterProxyModel', 'CheckIndexOption', 'NoOption');
-    export const IndexIsValid = createEnumToken('SortFilterProxyModel', 'CheckIndexOption', 'IndexIsValid');
-    export const DoNotUseParent = createEnumToken('SortFilterProxyModel', 'CheckIndexOption', 'DoNotUseParent');
-    export const ParentIsInvalid = createEnumToken('SortFilterProxyModel', 'CheckIndexOption', 'ParentIsInvalid');
+    export const IndexIsValid = createEnumToken(
+      'SortFilterProxyModel',
+      'CheckIndexOption',
+      'IndexIsValid',
+    );
+    export const DoNotUseParent = createEnumToken(
+      'SortFilterProxyModel',
+      'CheckIndexOption',
+      'DoNotUseParent',
+    );
+    export const ParentIsInvalid = createEnumToken(
+      'SortFilterProxyModel',
+      'CheckIndexOption',
+      'ParentIsInvalid',
+    );
   }
   export namespace LayoutChangeHint {
-    export const NoLayoutChangeHint = createEnumToken('SortFilterProxyModel', 'LayoutChangeHint', 'NoLayoutChangeHint');
-    export const VerticalSortHint = createEnumToken('SortFilterProxyModel', 'LayoutChangeHint', 'VerticalSortHint');
-    export const HorizontalSortHint = createEnumToken('SortFilterProxyModel', 'LayoutChangeHint', 'HorizontalSortHint');
+    export const NoLayoutChangeHint = createEnumToken(
+      'SortFilterProxyModel',
+      'LayoutChangeHint',
+      'NoLayoutChangeHint',
+    );
+    export const VerticalSortHint = createEnumToken(
+      'SortFilterProxyModel',
+      'LayoutChangeHint',
+      'VerticalSortHint',
+    );
+    export const HorizontalSortHint = createEnumToken(
+      'SortFilterProxyModel',
+      'LayoutChangeHint',
+      'HorizontalSortHint',
+    );
   }
 }

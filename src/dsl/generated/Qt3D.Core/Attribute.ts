@@ -2,8 +2,13 @@
 // Type: Attribute
 // Generated from Qt 6.11.0
 
+import type {
+  QmlEnumToken,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
-import type { QmlEnumToken, QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
 export interface AttributeBuilder {
   id(id: string): AttributeBuilder;
   child(obj: QmlObjectBuilder): AttributeBuilder;
@@ -82,10 +87,8 @@ const ATTRIBUTE_META: TypeMetadata = {
     { handlerName: 'onVertexBaseTypeChanged', paramCount: 1 },
     { handlerName: 'onVertexSizeChanged', paramCount: 1 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function Attribute(): AttributeBuilder {
@@ -96,7 +99,11 @@ export namespace Attribute {
   export namespace AttributeType {
     export const VertexAttribute = createEnumToken('Attribute', 'AttributeType', 'VertexAttribute');
     export const IndexAttribute = createEnumToken('Attribute', 'AttributeType', 'IndexAttribute');
-    export const DrawIndirectAttribute = createEnumToken('Attribute', 'AttributeType', 'DrawIndirectAttribute');
+    export const DrawIndirectAttribute = createEnumToken(
+      'Attribute',
+      'AttributeType',
+      'DrawIndirectAttribute',
+    );
   }
   export namespace VertexBaseType {
     export const Byte = createEnumToken('Attribute', 'VertexBaseType', 'Byte');

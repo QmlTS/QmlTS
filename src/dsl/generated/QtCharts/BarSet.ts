@@ -2,8 +2,8 @@
 // Type: BarSet
 // Generated from Qt 6.11.0
 
-import { createFluentBuilder } from '../../runtime/index.js';
 import type { QmlColor, QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import { createFluentBuilder } from '../../runtime/index.js';
 export interface BarSetBuilder {
   id(id: string): BarSetBuilder;
   child(obj: QmlObjectBuilder): BarSetBuilder;
@@ -79,10 +79,8 @@ const BARSET_META: TypeMetadata = {
     { handlerName: 'onValuesChanged', paramCount: 0 },
     { handlerName: 'onValuesRemoved', paramCount: 2 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function BarSet(): BarSetBuilder {

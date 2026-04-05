@@ -2,8 +2,16 @@
 // Type: SpriteParticle3D
 // Generated from Qt 6.11.0
 
+import type {
+  QmlColor,
+  QmlEnumToken,
+  QmlObjectBuilder,
+  QmlValue,
+  QmlVector3d,
+  QmlVector4d,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
-import type { QmlColor, QmlEnumToken, QmlObjectBuilder, QmlValue, QmlVector3d, QmlVector4d, TypeMetadata } from '../../runtime/index.js';
 import type { TextureBuilder } from '../QtQuick3D/Texture.js';
 import type { SpriteSequence3DBuilder } from './SpriteSequence3D.js';
 export interface SpriteParticle3DBuilder {
@@ -144,21 +152,30 @@ const SPRITEPARTICLE3D_META: TypeMetadata = {
     { handlerName: 'onSystemChanged', paramCount: 0 },
     { handlerName: 'onUnifiedColorVariationChanged', paramCount: 0 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function SpriteParticle3D(): SpriteParticle3DBuilder {
-  return createFluentBuilder('SpriteParticle3D', SPRITEPARTICLE3D_META) as unknown as SpriteParticle3DBuilder;
+  return createFluentBuilder(
+    'SpriteParticle3D',
+    SPRITEPARTICLE3D_META,
+  ) as unknown as SpriteParticle3DBuilder;
 }
 
 export namespace SpriteParticle3D {
   export namespace AlignMode {
     export const AlignNone = createEnumToken('SpriteParticle3D', 'AlignMode', 'AlignNone');
-    export const AlignTowardsTarget = createEnumToken('SpriteParticle3D', 'AlignMode', 'AlignTowardsTarget');
-    export const AlignTowardsStartVelocity = createEnumToken('SpriteParticle3D', 'AlignMode', 'AlignTowardsStartVelocity');
+    export const AlignTowardsTarget = createEnumToken(
+      'SpriteParticle3D',
+      'AlignMode',
+      'AlignTowardsTarget',
+    );
+    export const AlignTowardsStartVelocity = createEnumToken(
+      'SpriteParticle3D',
+      'AlignMode',
+      'AlignTowardsStartVelocity',
+    );
   }
   export namespace BlendMode {
     export const SourceOver = createEnumToken('SpriteParticle3D', 'BlendMode', 'SourceOver');

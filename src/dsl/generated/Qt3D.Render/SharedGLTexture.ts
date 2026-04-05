@@ -2,8 +2,13 @@
 // Type: SharedGLTexture
 // Generated from Qt 6.11.0
 
+import type {
+  QmlEnumToken,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
-import type { QmlEnumToken, QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
 export interface SharedGLTextureBuilder {
   id(id: string): SharedGLTextureBuilder;
   child(obj: QmlObjectBuilder): SharedGLTextureBuilder;
@@ -109,51 +114,132 @@ const SHAREDGLTEXTURE_META: TypeMetadata = {
     { handlerName: 'onTextureIdChanged', paramCount: 1 },
     { handlerName: 'onWidthChanged', paramCount: 1 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function SharedGLTexture(): SharedGLTextureBuilder {
-  return createFluentBuilder('SharedGLTexture', SHAREDGLTEXTURE_META) as unknown as SharedGLTextureBuilder;
+  return createFluentBuilder(
+    'SharedGLTexture',
+    SHAREDGLTEXTURE_META,
+  ) as unknown as SharedGLTextureBuilder;
 }
 
 export namespace SharedGLTexture {
   export namespace ComparisonFunction {
-    export const CompareLessEqual = createEnumToken('SharedGLTexture', 'ComparisonFunction', 'CompareLessEqual');
-    export const CompareGreaterEqual = createEnumToken('SharedGLTexture', 'ComparisonFunction', 'CompareGreaterEqual');
-    export const CompareLess = createEnumToken('SharedGLTexture', 'ComparisonFunction', 'CompareLess');
-    export const CompareGreater = createEnumToken('SharedGLTexture', 'ComparisonFunction', 'CompareGreater');
-    export const CompareEqual = createEnumToken('SharedGLTexture', 'ComparisonFunction', 'CompareEqual');
-    export const CommpareNotEqual = createEnumToken('SharedGLTexture', 'ComparisonFunction', 'CommpareNotEqual');
-    export const CompareAlways = createEnumToken('SharedGLTexture', 'ComparisonFunction', 'CompareAlways');
-    export const CompareNever = createEnumToken('SharedGLTexture', 'ComparisonFunction', 'CompareNever');
+    export const CompareLessEqual = createEnumToken(
+      'SharedGLTexture',
+      'ComparisonFunction',
+      'CompareLessEqual',
+    );
+    export const CompareGreaterEqual = createEnumToken(
+      'SharedGLTexture',
+      'ComparisonFunction',
+      'CompareGreaterEqual',
+    );
+    export const CompareLess = createEnumToken(
+      'SharedGLTexture',
+      'ComparisonFunction',
+      'CompareLess',
+    );
+    export const CompareGreater = createEnumToken(
+      'SharedGLTexture',
+      'ComparisonFunction',
+      'CompareGreater',
+    );
+    export const CompareEqual = createEnumToken(
+      'SharedGLTexture',
+      'ComparisonFunction',
+      'CompareEqual',
+    );
+    export const CommpareNotEqual = createEnumToken(
+      'SharedGLTexture',
+      'ComparisonFunction',
+      'CommpareNotEqual',
+    );
+    export const CompareAlways = createEnumToken(
+      'SharedGLTexture',
+      'ComparisonFunction',
+      'CompareAlways',
+    );
+    export const CompareNever = createEnumToken(
+      'SharedGLTexture',
+      'ComparisonFunction',
+      'CompareNever',
+    );
   }
   export namespace ComparisonMode {
-    export const CompareRefToTexture = createEnumToken('SharedGLTexture', 'ComparisonMode', 'CompareRefToTexture');
+    export const CompareRefToTexture = createEnumToken(
+      'SharedGLTexture',
+      'ComparisonMode',
+      'CompareRefToTexture',
+    );
     export const CompareNone = createEnumToken('SharedGLTexture', 'ComparisonMode', 'CompareNone');
   }
   export namespace CubeMapFace {
-    export const CubeMapPositiveX = createEnumToken('SharedGLTexture', 'CubeMapFace', 'CubeMapPositiveX');
-    export const CubeMapNegativeX = createEnumToken('SharedGLTexture', 'CubeMapFace', 'CubeMapNegativeX');
-    export const CubeMapPositiveY = createEnumToken('SharedGLTexture', 'CubeMapFace', 'CubeMapPositiveY');
-    export const CubeMapNegativeY = createEnumToken('SharedGLTexture', 'CubeMapFace', 'CubeMapNegativeY');
-    export const CubeMapPositiveZ = createEnumToken('SharedGLTexture', 'CubeMapFace', 'CubeMapPositiveZ');
-    export const CubeMapNegativeZ = createEnumToken('SharedGLTexture', 'CubeMapFace', 'CubeMapNegativeZ');
+    export const CubeMapPositiveX = createEnumToken(
+      'SharedGLTexture',
+      'CubeMapFace',
+      'CubeMapPositiveX',
+    );
+    export const CubeMapNegativeX = createEnumToken(
+      'SharedGLTexture',
+      'CubeMapFace',
+      'CubeMapNegativeX',
+    );
+    export const CubeMapPositiveY = createEnumToken(
+      'SharedGLTexture',
+      'CubeMapFace',
+      'CubeMapPositiveY',
+    );
+    export const CubeMapNegativeY = createEnumToken(
+      'SharedGLTexture',
+      'CubeMapFace',
+      'CubeMapNegativeY',
+    );
+    export const CubeMapPositiveZ = createEnumToken(
+      'SharedGLTexture',
+      'CubeMapFace',
+      'CubeMapPositiveZ',
+    );
+    export const CubeMapNegativeZ = createEnumToken(
+      'SharedGLTexture',
+      'CubeMapFace',
+      'CubeMapNegativeZ',
+    );
     export const AllFaces = createEnumToken('SharedGLTexture', 'CubeMapFace', 'AllFaces');
   }
   export namespace Filter {
     export const Nearest = createEnumToken('SharedGLTexture', 'Filter', 'Nearest');
     export const Linear = createEnumToken('SharedGLTexture', 'Filter', 'Linear');
-    export const NearestMipMapNearest = createEnumToken('SharedGLTexture', 'Filter', 'NearestMipMapNearest');
-    export const NearestMipMapLinear = createEnumToken('SharedGLTexture', 'Filter', 'NearestMipMapLinear');
-    export const LinearMipMapNearest = createEnumToken('SharedGLTexture', 'Filter', 'LinearMipMapNearest');
-    export const LinearMipMapLinear = createEnumToken('SharedGLTexture', 'Filter', 'LinearMipMapLinear');
+    export const NearestMipMapNearest = createEnumToken(
+      'SharedGLTexture',
+      'Filter',
+      'NearestMipMapNearest',
+    );
+    export const NearestMipMapLinear = createEnumToken(
+      'SharedGLTexture',
+      'Filter',
+      'NearestMipMapLinear',
+    );
+    export const LinearMipMapNearest = createEnumToken(
+      'SharedGLTexture',
+      'Filter',
+      'LinearMipMapNearest',
+    );
+    export const LinearMipMapLinear = createEnumToken(
+      'SharedGLTexture',
+      'Filter',
+      'LinearMipMapLinear',
+    );
   }
   export namespace HandleType {
     export const NoHandle = createEnumToken('SharedGLTexture', 'HandleType', 'NoHandle');
-    export const OpenGLTextureId = createEnumToken('SharedGLTexture', 'HandleType', 'OpenGLTextureId');
+    export const OpenGLTextureId = createEnumToken(
+      'SharedGLTexture',
+      'HandleType',
+      'OpenGLTextureId',
+    );
     export const RHITextureId = createEnumToken('SharedGLTexture', 'HandleType', 'RHITextureId');
   }
   export namespace Status {
@@ -170,9 +256,21 @@ export namespace SharedGLTexture {
     export const Target2DArray = createEnumToken('SharedGLTexture', 'Target', 'Target2DArray');
     export const Target3D = createEnumToken('SharedGLTexture', 'Target', 'Target3D');
     export const TargetCubeMap = createEnumToken('SharedGLTexture', 'Target', 'TargetCubeMap');
-    export const TargetCubeMapArray = createEnumToken('SharedGLTexture', 'Target', 'TargetCubeMapArray');
-    export const Target2DMultisample = createEnumToken('SharedGLTexture', 'Target', 'Target2DMultisample');
-    export const Target2DMultisampleArray = createEnumToken('SharedGLTexture', 'Target', 'Target2DMultisampleArray');
+    export const TargetCubeMapArray = createEnumToken(
+      'SharedGLTexture',
+      'Target',
+      'TargetCubeMapArray',
+    );
+    export const Target2DMultisample = createEnumToken(
+      'SharedGLTexture',
+      'Target',
+      'Target2DMultisample',
+    );
+    export const Target2DMultisampleArray = createEnumToken(
+      'SharedGLTexture',
+      'Target',
+      'Target2DMultisampleArray',
+    );
     export const TargetRectangle = createEnumToken('SharedGLTexture', 'Target', 'TargetRectangle');
     export const TargetBuffer = createEnumToken('SharedGLTexture', 'Target', 'TargetBuffer');
   }
@@ -245,36 +343,116 @@ export namespace SharedGLTexture {
     export const RGBA_DXT1 = createEnumToken('SharedGLTexture', 'TextureFormat', 'RGBA_DXT1');
     export const RGBA_DXT3 = createEnumToken('SharedGLTexture', 'TextureFormat', 'RGBA_DXT3');
     export const RGBA_DXT5 = createEnumToken('SharedGLTexture', 'TextureFormat', 'RGBA_DXT5');
-    export const R_ATI1N_UNorm = createEnumToken('SharedGLTexture', 'TextureFormat', 'R_ATI1N_UNorm');
-    export const R_ATI1N_SNorm = createEnumToken('SharedGLTexture', 'TextureFormat', 'R_ATI1N_SNorm');
-    export const RG_ATI2N_UNorm = createEnumToken('SharedGLTexture', 'TextureFormat', 'RG_ATI2N_UNorm');
-    export const RG_ATI2N_SNorm = createEnumToken('SharedGLTexture', 'TextureFormat', 'RG_ATI2N_SNorm');
-    export const RGB_BP_UNSIGNED_FLOAT = createEnumToken('SharedGLTexture', 'TextureFormat', 'RGB_BP_UNSIGNED_FLOAT');
-    export const RGB_BP_SIGNED_FLOAT = createEnumToken('SharedGLTexture', 'TextureFormat', 'RGB_BP_SIGNED_FLOAT');
+    export const R_ATI1N_UNorm = createEnumToken(
+      'SharedGLTexture',
+      'TextureFormat',
+      'R_ATI1N_UNorm',
+    );
+    export const R_ATI1N_SNorm = createEnumToken(
+      'SharedGLTexture',
+      'TextureFormat',
+      'R_ATI1N_SNorm',
+    );
+    export const RG_ATI2N_UNorm = createEnumToken(
+      'SharedGLTexture',
+      'TextureFormat',
+      'RG_ATI2N_UNorm',
+    );
+    export const RG_ATI2N_SNorm = createEnumToken(
+      'SharedGLTexture',
+      'TextureFormat',
+      'RG_ATI2N_SNorm',
+    );
+    export const RGB_BP_UNSIGNED_FLOAT = createEnumToken(
+      'SharedGLTexture',
+      'TextureFormat',
+      'RGB_BP_UNSIGNED_FLOAT',
+    );
+    export const RGB_BP_SIGNED_FLOAT = createEnumToken(
+      'SharedGLTexture',
+      'TextureFormat',
+      'RGB_BP_SIGNED_FLOAT',
+    );
     export const RGB_BP_UNorm = createEnumToken('SharedGLTexture', 'TextureFormat', 'RGB_BP_UNorm');
-    export const R11_EAC_UNorm = createEnumToken('SharedGLTexture', 'TextureFormat', 'R11_EAC_UNorm');
-    export const R11_EAC_SNorm = createEnumToken('SharedGLTexture', 'TextureFormat', 'R11_EAC_SNorm');
-    export const RG11_EAC_UNorm = createEnumToken('SharedGLTexture', 'TextureFormat', 'RG11_EAC_UNorm');
-    export const RG11_EAC_SNorm = createEnumToken('SharedGLTexture', 'TextureFormat', 'RG11_EAC_SNorm');
+    export const R11_EAC_UNorm = createEnumToken(
+      'SharedGLTexture',
+      'TextureFormat',
+      'R11_EAC_UNorm',
+    );
+    export const R11_EAC_SNorm = createEnumToken(
+      'SharedGLTexture',
+      'TextureFormat',
+      'R11_EAC_SNorm',
+    );
+    export const RG11_EAC_UNorm = createEnumToken(
+      'SharedGLTexture',
+      'TextureFormat',
+      'RG11_EAC_UNorm',
+    );
+    export const RG11_EAC_SNorm = createEnumToken(
+      'SharedGLTexture',
+      'TextureFormat',
+      'RG11_EAC_SNorm',
+    );
     export const RGB8_ETC2 = createEnumToken('SharedGLTexture', 'TextureFormat', 'RGB8_ETC2');
     export const SRGB8_ETC2 = createEnumToken('SharedGLTexture', 'TextureFormat', 'SRGB8_ETC2');
-    export const RGB8_PunchThrough_Alpha1_ETC2 = createEnumToken('SharedGLTexture', 'TextureFormat', 'RGB8_PunchThrough_Alpha1_ETC2');
-    export const SRGB8_PunchThrough_Alpha1_ETC2 = createEnumToken('SharedGLTexture', 'TextureFormat', 'SRGB8_PunchThrough_Alpha1_ETC2');
-    export const RGBA8_ETC2_EAC = createEnumToken('SharedGLTexture', 'TextureFormat', 'RGBA8_ETC2_EAC');
-    export const SRGB8_Alpha8_ETC2_EAC = createEnumToken('SharedGLTexture', 'TextureFormat', 'SRGB8_Alpha8_ETC2_EAC');
+    export const RGB8_PunchThrough_Alpha1_ETC2 = createEnumToken(
+      'SharedGLTexture',
+      'TextureFormat',
+      'RGB8_PunchThrough_Alpha1_ETC2',
+    );
+    export const SRGB8_PunchThrough_Alpha1_ETC2 = createEnumToken(
+      'SharedGLTexture',
+      'TextureFormat',
+      'SRGB8_PunchThrough_Alpha1_ETC2',
+    );
+    export const RGBA8_ETC2_EAC = createEnumToken(
+      'SharedGLTexture',
+      'TextureFormat',
+      'RGBA8_ETC2_EAC',
+    );
+    export const SRGB8_Alpha8_ETC2_EAC = createEnumToken(
+      'SharedGLTexture',
+      'TextureFormat',
+      'SRGB8_Alpha8_ETC2_EAC',
+    );
     export const RGB8_ETC1 = createEnumToken('SharedGLTexture', 'TextureFormat', 'RGB8_ETC1');
     export const SRGB8 = createEnumToken('SharedGLTexture', 'TextureFormat', 'SRGB8');
     export const SRGB8_Alpha8 = createEnumToken('SharedGLTexture', 'TextureFormat', 'SRGB8_Alpha8');
     export const SRGB_DXT1 = createEnumToken('SharedGLTexture', 'TextureFormat', 'SRGB_DXT1');
-    export const SRGB_Alpha_DXT1 = createEnumToken('SharedGLTexture', 'TextureFormat', 'SRGB_Alpha_DXT1');
-    export const SRGB_Alpha_DXT3 = createEnumToken('SharedGLTexture', 'TextureFormat', 'SRGB_Alpha_DXT3');
-    export const SRGB_Alpha_DXT5 = createEnumToken('SharedGLTexture', 'TextureFormat', 'SRGB_Alpha_DXT5');
-    export const SRGB_BP_UNorm = createEnumToken('SharedGLTexture', 'TextureFormat', 'SRGB_BP_UNorm');
+    export const SRGB_Alpha_DXT1 = createEnumToken(
+      'SharedGLTexture',
+      'TextureFormat',
+      'SRGB_Alpha_DXT1',
+    );
+    export const SRGB_Alpha_DXT3 = createEnumToken(
+      'SharedGLTexture',
+      'TextureFormat',
+      'SRGB_Alpha_DXT3',
+    );
+    export const SRGB_Alpha_DXT5 = createEnumToken(
+      'SharedGLTexture',
+      'TextureFormat',
+      'SRGB_Alpha_DXT5',
+    );
+    export const SRGB_BP_UNorm = createEnumToken(
+      'SharedGLTexture',
+      'TextureFormat',
+      'SRGB_BP_UNorm',
+    );
     export const DepthFormat = createEnumToken('SharedGLTexture', 'TextureFormat', 'DepthFormat');
     export const AlphaFormat = createEnumToken('SharedGLTexture', 'TextureFormat', 'AlphaFormat');
     export const RGBFormat = createEnumToken('SharedGLTexture', 'TextureFormat', 'RGBFormat');
     export const RGBAFormat = createEnumToken('SharedGLTexture', 'TextureFormat', 'RGBAFormat');
-    export const LuminanceFormat = createEnumToken('SharedGLTexture', 'TextureFormat', 'LuminanceFormat');
-    export const LuminanceAlphaFormat = createEnumToken('SharedGLTexture', 'TextureFormat', 'LuminanceAlphaFormat');
+    export const LuminanceFormat = createEnumToken(
+      'SharedGLTexture',
+      'TextureFormat',
+      'LuminanceFormat',
+    );
+    export const LuminanceAlphaFormat = createEnumToken(
+      'SharedGLTexture',
+      'TextureFormat',
+      'LuminanceAlphaFormat',
+    );
   }
 }

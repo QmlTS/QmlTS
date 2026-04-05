@@ -2,8 +2,13 @@
 // Type: Buffer
 // Generated from Qt 6.11.0
 
+import type {
+  QmlEnumToken,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
-import type { QmlEnumToken, QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
 export interface BufferBuilder {
   id(id: string): BufferBuilder;
   child(obj: QmlObjectBuilder): BufferBuilder;
@@ -53,10 +58,8 @@ const BUFFER_META: TypeMetadata = {
     { handlerName: 'onParentChanged', paramCount: 0 },
     { handlerName: 'onStateChanged', paramCount: 0 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
   defaultProperty: 'data',
 };
 
@@ -67,12 +70,20 @@ export function Buffer(): BufferBuilder {
 export namespace Buffer {
   export namespace AllocateBufferFlagValues {
     export const None = createEnumToken('Buffer', 'AllocateBufferFlagValues', 'None');
-    export const SceneLifetime = createEnumToken('Buffer', 'AllocateBufferFlagValues', 'SceneLifetime');
+    export const SceneLifetime = createEnumToken(
+      'Buffer',
+      'AllocateBufferFlagValues',
+      'SceneLifetime',
+    );
   }
   export namespace TextureCoordOperation {
     export const Unknown = createEnumToken('Buffer', 'TextureCoordOperation', 'Unknown');
     export const ClampToEdge = createEnumToken('Buffer', 'TextureCoordOperation', 'ClampToEdge');
-    export const MirroredRepeat = createEnumToken('Buffer', 'TextureCoordOperation', 'MirroredRepeat');
+    export const MirroredRepeat = createEnumToken(
+      'Buffer',
+      'TextureCoordOperation',
+      'MirroredRepeat',
+    );
     export const Repeat = createEnumToken('Buffer', 'TextureCoordOperation', 'Repeat');
   }
   export namespace TextureFilterOperation {

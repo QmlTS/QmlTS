@@ -2,8 +2,8 @@
 // Type: StateMachineLoader
 // Generated from Qt 6.11.0
 
-import { createFluentBuilder } from '../../runtime/index.js';
 import type { QmlObjectBuilder, QmlUrl, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import { createFluentBuilder } from '../../runtime/index.js';
 export interface StateMachineLoaderBuilder {
   id(id: string): StateMachineLoaderBuilder;
   child(obj: QmlObjectBuilder): StateMachineLoaderBuilder;
@@ -38,12 +38,13 @@ const STATEMACHINELOADER_META: TypeMetadata = {
     { handlerName: 'onSourceChanged', paramCount: 0 },
     { handlerName: 'onStateMachineChanged', paramCount: 0 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function StateMachineLoader(): StateMachineLoaderBuilder {
-  return createFluentBuilder('StateMachineLoader', STATEMACHINELOADER_META) as unknown as StateMachineLoaderBuilder;
+  return createFluentBuilder(
+    'StateMachineLoader',
+    STATEMACHINELOADER_META,
+  ) as unknown as StateMachineLoaderBuilder;
 }

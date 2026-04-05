@@ -2,8 +2,16 @@
 // Type: LineParticle3D
 // Generated from Qt 6.11.0
 
+import type {
+  QmlColor,
+  QmlEnumToken,
+  QmlObjectBuilder,
+  QmlValue,
+  QmlVector3d,
+  QmlVector4d,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
-import type { QmlColor, QmlEnumToken, QmlObjectBuilder, QmlValue, QmlVector3d, QmlVector4d, TypeMetadata } from '../../runtime/index.js';
 import type { TextureBuilder } from '../QtQuick3D/Texture.js';
 import type { SpriteSequence3DBuilder } from './SpriteSequence3D.js';
 export interface LineParticle3DBuilder {
@@ -189,21 +197,30 @@ const LINEPARTICLE3D_META: TypeMetadata = {
     { handlerName: 'onTexcoordMultiplierChanged', paramCount: 0 },
     { handlerName: 'onUnifiedColorVariationChanged', paramCount: 0 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function LineParticle3D(): LineParticle3DBuilder {
-  return createFluentBuilder('LineParticle3D', LINEPARTICLE3D_META) as unknown as LineParticle3DBuilder;
+  return createFluentBuilder(
+    'LineParticle3D',
+    LINEPARTICLE3D_META,
+  ) as unknown as LineParticle3DBuilder;
 }
 
 export namespace LineParticle3D {
   export namespace AlignMode {
     export const AlignNone = createEnumToken('LineParticle3D', 'AlignMode', 'AlignNone');
-    export const AlignTowardsTarget = createEnumToken('LineParticle3D', 'AlignMode', 'AlignTowardsTarget');
-    export const AlignTowardsStartVelocity = createEnumToken('LineParticle3D', 'AlignMode', 'AlignTowardsStartVelocity');
+    export const AlignTowardsTarget = createEnumToken(
+      'LineParticle3D',
+      'AlignMode',
+      'AlignTowardsTarget',
+    );
+    export const AlignTowardsStartVelocity = createEnumToken(
+      'LineParticle3D',
+      'AlignMode',
+      'AlignTowardsStartVelocity',
+    );
   }
   export namespace BlendMode {
     export const SourceOver = createEnumToken('LineParticle3D', 'BlendMode', 'SourceOver');

@@ -2,8 +2,8 @@
 // Type: SphereGeometry
 // Generated from Qt 6.11.0
 
-import { createFluentBuilder } from '../../runtime/index.js';
 import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import { createFluentBuilder } from '../../runtime/index.js';
 import type { AttributeBuilder } from '../Qt3D.Core/Attribute.js';
 export interface SphereGeometryBuilder {
   id(id: string): SphereGeometryBuilder;
@@ -63,12 +63,13 @@ const SPHEREGEOMETRY_META: TypeMetadata = {
     { handlerName: 'onRingsChanged', paramCount: 1 },
     { handlerName: 'onSlicesChanged', paramCount: 1 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function SphereGeometry(): SphereGeometryBuilder {
-  return createFluentBuilder('SphereGeometry', SPHEREGEOMETRY_META) as unknown as SphereGeometryBuilder;
+  return createFluentBuilder(
+    'SphereGeometry',
+    SPHEREGEOMETRY_META,
+  ) as unknown as SphereGeometryBuilder;
 }

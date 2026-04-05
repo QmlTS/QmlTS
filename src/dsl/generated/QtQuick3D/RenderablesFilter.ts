@@ -2,8 +2,13 @@
 // Type: RenderablesFilter
 // Generated from Qt 6.11.0
 
+import type {
+  QmlEnumToken,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
-import type { QmlEnumToken, QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
 export interface RenderablesFilterBuilder {
   id(id: string): RenderablesFilterBuilder;
   child(obj: QmlObjectBuilder): RenderablesFilterBuilder;
@@ -39,20 +44,25 @@ const RENDERABLESFILTER_META: TypeMetadata = {
     { handlerName: 'onParentChanged', paramCount: 0 },
     { handlerName: 'onStateChanged', paramCount: 0 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function RenderablesFilter(): RenderablesFilterBuilder {
-  return createFluentBuilder('RenderablesFilter', RENDERABLESFILTER_META) as unknown as RenderablesFilterBuilder;
+  return createFluentBuilder(
+    'RenderablesFilter',
+    RENDERABLESFILTER_META,
+  ) as unknown as RenderablesFilterBuilder;
 }
 
 export namespace RenderablesFilter {
   export namespace RenderableTypes {
     export const None = createEnumToken('RenderablesFilter', 'RenderableTypes', 'None');
     export const Opaque = createEnumToken('RenderablesFilter', 'RenderableTypes', 'Opaque');
-    export const Transparent = createEnumToken('RenderablesFilter', 'RenderableTypes', 'Transparent');
+    export const Transparent = createEnumToken(
+      'RenderablesFilter',
+      'RenderableTypes',
+      'Transparent',
+    );
   }
 }

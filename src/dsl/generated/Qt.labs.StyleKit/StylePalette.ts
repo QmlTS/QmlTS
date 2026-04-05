@@ -2,8 +2,8 @@
 // Type: StylePalette
 // Generated from Qt 6.11.0
 
-import { createFluentBuilder } from '../../runtime/index.js';
 import type { QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import { createFluentBuilder } from '../../runtime/index.js';
 import type { StyleKitAttachedBuilder } from './QQStyleKitAttached.js';
 import type { StyleVariationAttachedBuilder } from './QQStyleKitVariationAttached.js';
 export interface StylePaletteBuilder {
@@ -34,9 +34,7 @@ export interface StylePaletteBuilder {
 
 const STYLEPALETTE_META: TypeMetadata = {
   typeName: 'StylePalette',
-  properties: [
-    { name: 'objectName', hasValue: true, hasBinding: true },
-  ],
+  properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
   signals: [
     { handlerName: 'onButtonChanged', paramCount: 0 },
     { handlerName: 'onCheckBoxChanged', paramCount: 0 },
@@ -55,8 +53,7 @@ const STYLEPALETTE_META: TypeMetadata = {
     { handlerName: 'onTextFieldChanged', paramCount: 0 },
     { handlerName: 'onToolBarChanged', paramCount: 0 },
   ],
-  grouped: [
-  ],
+  grouped: [],
   attached: [
     {
       methodName: 'styleKit',

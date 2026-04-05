@@ -2,8 +2,13 @@
 // Type: TimeoutTransition
 // Generated from Qt 6.11.0
 
+import type {
+  QmlEnumToken,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
-import type { QmlEnumToken, QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
 import type { QtObjectBuilder } from '../QML/QtObject.js';
 export interface TimeoutTransitionBuilder {
   id(id: string): TimeoutTransitionBuilder;
@@ -50,19 +55,28 @@ const TIMEOUTTRANSITION_META: TypeMetadata = {
     { handlerName: 'onTargetStatesChanged', paramCount: 0 },
     { handlerName: 'onTriggered', paramCount: 0 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function TimeoutTransition(): TimeoutTransitionBuilder {
-  return createFluentBuilder('TimeoutTransition', TIMEOUTTRANSITION_META) as unknown as TimeoutTransitionBuilder;
+  return createFluentBuilder(
+    'TimeoutTransition',
+    TIMEOUTTRANSITION_META,
+  ) as unknown as TimeoutTransitionBuilder;
 }
 
 export namespace TimeoutTransition {
   export namespace TransitionType {
-    export const ExternalTransition = createEnumToken('TimeoutTransition', 'TransitionType', 'ExternalTransition');
-    export const InternalTransition = createEnumToken('TimeoutTransition', 'TransitionType', 'InternalTransition');
+    export const ExternalTransition = createEnumToken(
+      'TimeoutTransition',
+      'TransitionType',
+      'ExternalTransition',
+    );
+    export const InternalTransition = createEnumToken(
+      'TimeoutTransition',
+      'TransitionType',
+      'InternalTransition',
+    );
   }
 }

@@ -2,8 +2,8 @@
 // Type: Theme
 // Generated from Qt 6.11.0
 
-import { createFluentBuilder } from '../../runtime/index.js';
 import type { QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import { createFluentBuilder } from '../../runtime/index.js';
 import type { ControlStyleBuilder } from './ControlStyle.js';
 import type { StyleKitAttachedBuilder } from './QQStyleKitAttached.js';
 import type { StyleVariationAttachedBuilder } from './QQStyleKitVariationAttached.js';
@@ -182,8 +182,7 @@ const THEME_META: TypeMetadata = {
     { handlerName: 'onToolButtonChanged', paramCount: 0 },
     { handlerName: 'onToolSeparatorChanged', paramCount: 0 },
   ],
-  grouped: [
-  ],
+  grouped: [],
   attached: [
     {
       methodName: 'styleKit',

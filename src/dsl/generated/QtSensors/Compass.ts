@@ -2,8 +2,8 @@
 // Type: Compass
 // Generated from Qt 6.11.0
 
-import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { QmlEnumToken, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface CompassBuilder {
   id(id: string): CompassBuilder;
   child(obj: QmlObjectBuilder): CompassBuilder;
@@ -86,10 +86,8 @@ const COMPASS_META: TypeMetadata = {
     { handlerName: 'onSkipDuplicatesChanged', paramCount: 1 },
     { handlerName: 'onUserOrientationChanged', paramCount: 1 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function Compass(): CompassBuilder {
@@ -98,9 +96,21 @@ export function Compass(): CompassBuilder {
 
 export namespace Compass {
   export namespace AxesOrientationMode {
-    export const FixedOrientation = createEnumToken('Compass', 'AxesOrientationMode', 'FixedOrientation');
-    export const AutomaticOrientation = createEnumToken('Compass', 'AxesOrientationMode', 'AutomaticOrientation');
-    export const UserOrientation = createEnumToken('Compass', 'AxesOrientationMode', 'UserOrientation');
+    export const FixedOrientation = createEnumToken(
+      'Compass',
+      'AxesOrientationMode',
+      'FixedOrientation',
+    );
+    export const AutomaticOrientation = createEnumToken(
+      'Compass',
+      'AxesOrientationMode',
+      'AutomaticOrientation',
+    );
+    export const UserOrientation = createEnumToken(
+      'Compass',
+      'AxesOrientationMode',
+      'UserOrientation',
+    );
   }
   export namespace Feature {
     export const Buffering = createEnumToken('Compass', 'Feature', 'Buffering');
@@ -110,6 +120,10 @@ export namespace Compass {
     export const AccelerationMode = createEnumToken('Compass', 'Feature', 'AccelerationMode');
     export const SkipDuplicates = createEnumToken('Compass', 'Feature', 'SkipDuplicates');
     export const AxesOrientation = createEnumToken('Compass', 'Feature', 'AxesOrientation');
-    export const PressureSensorTemperature = createEnumToken('Compass', 'Feature', 'PressureSensorTemperature');
+    export const PressureSensorTemperature = createEnumToken(
+      'Compass',
+      'Feature',
+      'PressureSensorTemperature',
+    );
   }
 }

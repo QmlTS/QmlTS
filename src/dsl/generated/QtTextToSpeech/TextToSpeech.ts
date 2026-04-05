@@ -2,8 +2,8 @@
 // Type: TextToSpeech
 // Generated from Qt 6.11.0
 
-import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { VoiceSelectorAttachedBuilder } from './VoiceSelector.js';
 export interface TextToSpeechBuilder {
   id(id: string): TextToSpeechBuilder;
@@ -66,8 +66,7 @@ const TEXTTOSPEECH_META: TypeMetadata = {
     { handlerName: 'onVoiceChanged', paramCount: 1 },
     { handlerName: 'onVolumeChanged', paramCount: 1 },
   ],
-  grouped: [
-  ],
+  grouped: [],
   attached: [
     {
       methodName: 'voiceSelector',
@@ -108,7 +107,11 @@ export namespace TextToSpeech {
     export const None = createEnumToken('TextToSpeech', 'Capabilities', 'None');
     export const Speak = createEnumToken('TextToSpeech', 'Capabilities', 'Speak');
     export const PauseResume = createEnumToken('TextToSpeech', 'Capabilities', 'PauseResume');
-    export const WordByWordProgress = createEnumToken('TextToSpeech', 'Capabilities', 'WordByWordProgress');
+    export const WordByWordProgress = createEnumToken(
+      'TextToSpeech',
+      'Capabilities',
+      'WordByWordProgress',
+    );
     export const Synthesize = createEnumToken('TextToSpeech', 'Capabilities', 'Synthesize');
   }
   export namespace ErrorReason {

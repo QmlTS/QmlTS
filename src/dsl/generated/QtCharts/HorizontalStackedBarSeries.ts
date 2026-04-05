@@ -2,8 +2,13 @@
 // Type: HorizontalStackedBarSeries
 // Generated from Qt 6.11.0
 
+import type {
+  QmlEnumToken,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
-import type { QmlEnumToken, QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
 export interface HorizontalStackedBarSeriesBuilder {
   id(id: string): HorizontalStackedBarSeriesBuilder;
   child(obj: QmlObjectBuilder): HorizontalStackedBarSeriesBuilder;
@@ -132,23 +137,40 @@ const HORIZONTALSTACKEDBARSERIES_META: TypeMetadata = {
     { handlerName: 'onVisibleChanged', paramCount: 0 },
     { handlerName: 'onZValueChanged', paramCount: 1 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
   defaultProperty: 'seriesChildren',
 };
 
 export function HorizontalStackedBarSeries(): HorizontalStackedBarSeriesBuilder {
-  return createFluentBuilder('HorizontalStackedBarSeries', HORIZONTALSTACKEDBARSERIES_META) as unknown as HorizontalStackedBarSeriesBuilder;
+  return createFluentBuilder(
+    'HorizontalStackedBarSeries',
+    HORIZONTALSTACKEDBARSERIES_META,
+  ) as unknown as HorizontalStackedBarSeriesBuilder;
 }
 
 export namespace HorizontalStackedBarSeries {
   export namespace LabelsPosition {
-    export const LabelsCenter = createEnumToken('HorizontalStackedBarSeries', 'LabelsPosition', 'LabelsCenter');
-    export const LabelsInsideEnd = createEnumToken('HorizontalStackedBarSeries', 'LabelsPosition', 'LabelsInsideEnd');
-    export const LabelsInsideBase = createEnumToken('HorizontalStackedBarSeries', 'LabelsPosition', 'LabelsInsideBase');
-    export const LabelsOutsideEnd = createEnumToken('HorizontalStackedBarSeries', 'LabelsPosition', 'LabelsOutsideEnd');
+    export const LabelsCenter = createEnumToken(
+      'HorizontalStackedBarSeries',
+      'LabelsPosition',
+      'LabelsCenter',
+    );
+    export const LabelsInsideEnd = createEnumToken(
+      'HorizontalStackedBarSeries',
+      'LabelsPosition',
+      'LabelsInsideEnd',
+    );
+    export const LabelsInsideBase = createEnumToken(
+      'HorizontalStackedBarSeries',
+      'LabelsPosition',
+      'LabelsInsideBase',
+    );
+    export const LabelsOutsideEnd = createEnumToken(
+      'HorizontalStackedBarSeries',
+      'LabelsPosition',
+      'LabelsOutsideEnd',
+    );
   }
   export namespace SeriesType {
     export const Line = createEnumToken('HorizontalStackedBarSeries', 'SeriesType', 'Line');

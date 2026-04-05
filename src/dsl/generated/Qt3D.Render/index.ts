@@ -68,7 +68,7 @@ export * from './SetFence.js';
 export * from './ShaderData.js';
 export * from './ShaderDataArray.js';
 export * from './ShaderImage.js';
-export { ShaderProgramBuilder, ShaderProgram } from './ShaderProgram.js';
+export { ShaderProgram, ShaderProgramBuilder } from './ShaderProgram.js';
 export { ShaderProgramBuilderBuilder } from './ShaderProgramBuilder.js';
 export * from './SharedGLTexture.js';
 export * from './SortPolicy.js';

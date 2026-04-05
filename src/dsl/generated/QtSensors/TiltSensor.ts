@@ -2,8 +2,8 @@
 // Type: TiltSensor
 // Generated from Qt 6.11.0
 
-import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { QmlEnumToken, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface TiltSensorBuilder {
   id(id: string): TiltSensorBuilder;
   child(obj: QmlObjectBuilder): TiltSensorBuilder;
@@ -86,10 +86,8 @@ const TILTSENSOR_META: TypeMetadata = {
     { handlerName: 'onSkipDuplicatesChanged', paramCount: 1 },
     { handlerName: 'onUserOrientationChanged', paramCount: 1 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function TiltSensor(): TiltSensorBuilder {
@@ -98,9 +96,21 @@ export function TiltSensor(): TiltSensorBuilder {
 
 export namespace TiltSensor {
   export namespace AxesOrientationMode {
-    export const FixedOrientation = createEnumToken('TiltSensor', 'AxesOrientationMode', 'FixedOrientation');
-    export const AutomaticOrientation = createEnumToken('TiltSensor', 'AxesOrientationMode', 'AutomaticOrientation');
-    export const UserOrientation = createEnumToken('TiltSensor', 'AxesOrientationMode', 'UserOrientation');
+    export const FixedOrientation = createEnumToken(
+      'TiltSensor',
+      'AxesOrientationMode',
+      'FixedOrientation',
+    );
+    export const AutomaticOrientation = createEnumToken(
+      'TiltSensor',
+      'AxesOrientationMode',
+      'AutomaticOrientation',
+    );
+    export const UserOrientation = createEnumToken(
+      'TiltSensor',
+      'AxesOrientationMode',
+      'UserOrientation',
+    );
   }
   export namespace Feature {
     export const Buffering = createEnumToken('TiltSensor', 'Feature', 'Buffering');
@@ -110,6 +120,10 @@ export namespace TiltSensor {
     export const AccelerationMode = createEnumToken('TiltSensor', 'Feature', 'AccelerationMode');
     export const SkipDuplicates = createEnumToken('TiltSensor', 'Feature', 'SkipDuplicates');
     export const AxesOrientation = createEnumToken('TiltSensor', 'Feature', 'AxesOrientation');
-    export const PressureSensorTemperature = createEnumToken('TiltSensor', 'Feature', 'PressureSensorTemperature');
+    export const PressureSensorTemperature = createEnumToken(
+      'TiltSensor',
+      'Feature',
+      'PressureSensorTemperature',
+    );
   }
 }

@@ -2,8 +2,8 @@
 // Type: AudioInput
 // Generated from Qt 6.11.0
 
-import { createFluentBuilder } from '../../runtime/index.js';
 import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import { createFluentBuilder } from '../../runtime/index.js';
 export interface AudioInputBuilder {
   id(id: string): AudioInputBuilder;
   child(obj: QmlObjectBuilder): AudioInputBuilder;
@@ -36,10 +36,8 @@ const AUDIOINPUT_META: TypeMetadata = {
     { handlerName: 'onObjectNameChanged', paramCount: 1 },
     { handlerName: 'onVolumeChanged', paramCount: 1 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function AudioInput(): AudioInputBuilder {

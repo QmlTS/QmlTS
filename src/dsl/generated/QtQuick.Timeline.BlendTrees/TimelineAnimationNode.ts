@@ -2,8 +2,8 @@
 // Type: TimelineAnimationNode
 // Generated from Qt 6.11.0
 
-import { createFluentBuilder } from '../../runtime/index.js';
 import type { QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import { createFluentBuilder } from '../../runtime/index.js';
 import type { TimelineBuilder } from '../QtQuick.Timeline/Timeline.js';
 import type { TimelineAnimationBuilder } from '../QtQuick.Timeline/TimelineAnimation.js';
 export interface TimelineAnimationNodeBuilder {
@@ -45,12 +45,13 @@ const TIMELINEANIMATIONNODE_META: TypeMetadata = {
     { handlerName: 'onOutputEnabledChanged', paramCount: 0 },
     { handlerName: 'onTimelineChanged', paramCount: 0 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function TimelineAnimationNode(): TimelineAnimationNodeBuilder {
-  return createFluentBuilder('TimelineAnimationNode', TIMELINEANIMATIONNODE_META) as unknown as TimelineAnimationNodeBuilder;
+  return createFluentBuilder(
+    'TimelineAnimationNode',
+    TIMELINEANIMATIONNODE_META,
+  ) as unknown as TimelineAnimationNodeBuilder;
 }

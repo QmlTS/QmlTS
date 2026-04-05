@@ -2,8 +2,13 @@
 // Type: BusyIndicatorImpl
 // Generated from Qt 6.11.0
 
+import type {
+  QmlColor,
+  QmlEnumToken,
+  QmlObjectBuilder,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
-import type { QmlColor, QmlEnumToken, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
 import type { QtObjectBuilder } from '../QML/QtObject.js';
 import type { ItemBuilder } from '../QtQuick/Item.js';
 import type { PaletteBuilder } from '../QtQuick/Palette.js';
@@ -213,39 +218,113 @@ const BUSYINDICATORIMPL_META: TypeMetadata = {
       ],
     },
   ],
-  attached: [
-  ],
+  attached: [],
   defaultProperty: 'data',
 };
 
 export function BusyIndicatorImpl(): BusyIndicatorImplBuilder {
-  return createFluentBuilder('BusyIndicatorImpl', BUSYINDICATORIMPL_META) as unknown as BusyIndicatorImplBuilder;
+  return createFluentBuilder(
+    'BusyIndicatorImpl',
+    BUSYINDICATORIMPL_META,
+  ) as unknown as BusyIndicatorImplBuilder;
 }
 
 export namespace BusyIndicatorImpl {
   export namespace Flags {
-    export const ItemClipsChildrenToShape = createEnumToken('BusyIndicatorImpl', 'Flags', 'ItemClipsChildrenToShape');
-    export const ItemAcceptsInputMethod = createEnumToken('BusyIndicatorImpl', 'Flags', 'ItemAcceptsInputMethod');
-    export const ItemIsFocusScope = createEnumToken('BusyIndicatorImpl', 'Flags', 'ItemIsFocusScope');
+    export const ItemClipsChildrenToShape = createEnumToken(
+      'BusyIndicatorImpl',
+      'Flags',
+      'ItemClipsChildrenToShape',
+    );
+    export const ItemAcceptsInputMethod = createEnumToken(
+      'BusyIndicatorImpl',
+      'Flags',
+      'ItemAcceptsInputMethod',
+    );
+    export const ItemIsFocusScope = createEnumToken(
+      'BusyIndicatorImpl',
+      'Flags',
+      'ItemIsFocusScope',
+    );
     export const ItemHasContents = createEnumToken('BusyIndicatorImpl', 'Flags', 'ItemHasContents');
-    export const ItemAcceptsDrops = createEnumToken('BusyIndicatorImpl', 'Flags', 'ItemAcceptsDrops');
+    export const ItemAcceptsDrops = createEnumToken(
+      'BusyIndicatorImpl',
+      'Flags',
+      'ItemAcceptsDrops',
+    );
     export const ItemIsViewport = createEnumToken('BusyIndicatorImpl', 'Flags', 'ItemIsViewport');
-    export const ItemObservesViewport = createEnumToken('BusyIndicatorImpl', 'Flags', 'ItemObservesViewport');
+    export const ItemObservesViewport = createEnumToken(
+      'BusyIndicatorImpl',
+      'Flags',
+      'ItemObservesViewport',
+    );
   }
   export namespace ItemChange {
-    export const ItemChildAddedChange = createEnumToken('BusyIndicatorImpl', 'ItemChange', 'ItemChildAddedChange');
-    export const ItemChildRemovedChange = createEnumToken('BusyIndicatorImpl', 'ItemChange', 'ItemChildRemovedChange');
-    export const ItemSceneChange = createEnumToken('BusyIndicatorImpl', 'ItemChange', 'ItemSceneChange');
-    export const ItemVisibleHasChanged = createEnumToken('BusyIndicatorImpl', 'ItemChange', 'ItemVisibleHasChanged');
-    export const ItemParentHasChanged = createEnumToken('BusyIndicatorImpl', 'ItemChange', 'ItemParentHasChanged');
-    export const ItemOpacityHasChanged = createEnumToken('BusyIndicatorImpl', 'ItemChange', 'ItemOpacityHasChanged');
-    export const ItemActiveFocusHasChanged = createEnumToken('BusyIndicatorImpl', 'ItemChange', 'ItemActiveFocusHasChanged');
-    export const ItemRotationHasChanged = createEnumToken('BusyIndicatorImpl', 'ItemChange', 'ItemRotationHasChanged');
-    export const ItemAntialiasingHasChanged = createEnumToken('BusyIndicatorImpl', 'ItemChange', 'ItemAntialiasingHasChanged');
-    export const ItemDevicePixelRatioHasChanged = createEnumToken('BusyIndicatorImpl', 'ItemChange', 'ItemDevicePixelRatioHasChanged');
-    export const ItemEnabledHasChanged = createEnumToken('BusyIndicatorImpl', 'ItemChange', 'ItemEnabledHasChanged');
-    export const ItemScaleHasChanged = createEnumToken('BusyIndicatorImpl', 'ItemChange', 'ItemScaleHasChanged');
-    export const ItemTransformHasChanged = createEnumToken('BusyIndicatorImpl', 'ItemChange', 'ItemTransformHasChanged');
+    export const ItemChildAddedChange = createEnumToken(
+      'BusyIndicatorImpl',
+      'ItemChange',
+      'ItemChildAddedChange',
+    );
+    export const ItemChildRemovedChange = createEnumToken(
+      'BusyIndicatorImpl',
+      'ItemChange',
+      'ItemChildRemovedChange',
+    );
+    export const ItemSceneChange = createEnumToken(
+      'BusyIndicatorImpl',
+      'ItemChange',
+      'ItemSceneChange',
+    );
+    export const ItemVisibleHasChanged = createEnumToken(
+      'BusyIndicatorImpl',
+      'ItemChange',
+      'ItemVisibleHasChanged',
+    );
+    export const ItemParentHasChanged = createEnumToken(
+      'BusyIndicatorImpl',
+      'ItemChange',
+      'ItemParentHasChanged',
+    );
+    export const ItemOpacityHasChanged = createEnumToken(
+      'BusyIndicatorImpl',
+      'ItemChange',
+      'ItemOpacityHasChanged',
+    );
+    export const ItemActiveFocusHasChanged = createEnumToken(
+      'BusyIndicatorImpl',
+      'ItemChange',
+      'ItemActiveFocusHasChanged',
+    );
+    export const ItemRotationHasChanged = createEnumToken(
+      'BusyIndicatorImpl',
+      'ItemChange',
+      'ItemRotationHasChanged',
+    );
+    export const ItemAntialiasingHasChanged = createEnumToken(
+      'BusyIndicatorImpl',
+      'ItemChange',
+      'ItemAntialiasingHasChanged',
+    );
+    export const ItemDevicePixelRatioHasChanged = createEnumToken(
+      'BusyIndicatorImpl',
+      'ItemChange',
+      'ItemDevicePixelRatioHasChanged',
+    );
+    export const ItemEnabledHasChanged = createEnumToken(
+      'BusyIndicatorImpl',
+      'ItemChange',
+      'ItemEnabledHasChanged',
+    );
+    export const ItemScaleHasChanged = createEnumToken(
+      'BusyIndicatorImpl',
+      'ItemChange',
+      'ItemScaleHasChanged',
+    );
+    export const ItemTransformHasChanged = createEnumToken(
+      'BusyIndicatorImpl',
+      'ItemChange',
+      'ItemTransformHasChanged',
+    );
   }
   export namespace TransformOrigin {
     export const TopLeft = createEnumToken('BusyIndicatorImpl', 'TransformOrigin', 'TopLeft');
@@ -256,6 +335,10 @@ export namespace BusyIndicatorImpl {
     export const Right = createEnumToken('BusyIndicatorImpl', 'TransformOrigin', 'Right');
     export const BottomLeft = createEnumToken('BusyIndicatorImpl', 'TransformOrigin', 'BottomLeft');
     export const Bottom = createEnumToken('BusyIndicatorImpl', 'TransformOrigin', 'Bottom');
-    export const BottomRight = createEnumToken('BusyIndicatorImpl', 'TransformOrigin', 'BottomRight');
+    export const BottomRight = createEnumToken(
+      'BusyIndicatorImpl',
+      'TransformOrigin',
+      'BottomRight',
+    );
   }
 }

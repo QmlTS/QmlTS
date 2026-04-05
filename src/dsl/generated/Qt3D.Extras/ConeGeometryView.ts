@@ -2,8 +2,13 @@
 // Type: ConeGeometryView
 // Generated from Qt 6.11.0
 
+import type {
+  QmlEnumToken,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
-import type { QmlEnumToken, QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
 import type { GeometryBuilder } from '../Qt3D.Core/Geometry.js';
 export interface ConeGeometryViewBuilder {
   id(id: string): ConeGeometryViewBuilder;
@@ -124,14 +129,15 @@ const CONEGEOMETRYVIEW_META: TypeMetadata = {
     { handlerName: 'onVertexCountChanged', paramCount: 1 },
     { handlerName: 'onVerticesPerPatchChanged', paramCount: 1 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function ConeGeometryView(): ConeGeometryViewBuilder {
-  return createFluentBuilder('ConeGeometryView', CONEGEOMETRYVIEW_META) as unknown as ConeGeometryViewBuilder;
+  return createFluentBuilder(
+    'ConeGeometryView',
+    CONEGEOMETRYVIEW_META,
+  ) as unknown as ConeGeometryViewBuilder;
 }
 
 export namespace ConeGeometryView {
@@ -141,12 +147,32 @@ export namespace ConeGeometryView {
     export const LineLoop = createEnumToken('ConeGeometryView', 'PrimitiveType', 'LineLoop');
     export const LineStrip = createEnumToken('ConeGeometryView', 'PrimitiveType', 'LineStrip');
     export const Triangles = createEnumToken('ConeGeometryView', 'PrimitiveType', 'Triangles');
-    export const TriangleStrip = createEnumToken('ConeGeometryView', 'PrimitiveType', 'TriangleStrip');
+    export const TriangleStrip = createEnumToken(
+      'ConeGeometryView',
+      'PrimitiveType',
+      'TriangleStrip',
+    );
     export const TriangleFan = createEnumToken('ConeGeometryView', 'PrimitiveType', 'TriangleFan');
-    export const LinesAdjacency = createEnumToken('ConeGeometryView', 'PrimitiveType', 'LinesAdjacency');
-    export const TrianglesAdjacency = createEnumToken('ConeGeometryView', 'PrimitiveType', 'TrianglesAdjacency');
-    export const LineStripAdjacency = createEnumToken('ConeGeometryView', 'PrimitiveType', 'LineStripAdjacency');
-    export const TriangleStripAdjacency = createEnumToken('ConeGeometryView', 'PrimitiveType', 'TriangleStripAdjacency');
+    export const LinesAdjacency = createEnumToken(
+      'ConeGeometryView',
+      'PrimitiveType',
+      'LinesAdjacency',
+    );
+    export const TrianglesAdjacency = createEnumToken(
+      'ConeGeometryView',
+      'PrimitiveType',
+      'TrianglesAdjacency',
+    );
+    export const LineStripAdjacency = createEnumToken(
+      'ConeGeometryView',
+      'PrimitiveType',
+      'LineStripAdjacency',
+    );
+    export const TriangleStripAdjacency = createEnumToken(
+      'ConeGeometryView',
+      'PrimitiveType',
+      'TriangleStripAdjacency',
+    );
     export const Patches = createEnumToken('ConeGeometryView', 'PrimitiveType', 'Patches');
   }
 }

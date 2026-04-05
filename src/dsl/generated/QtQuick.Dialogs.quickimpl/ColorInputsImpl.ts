@@ -2,8 +2,15 @@
 // Type: ColorInputsImpl
 // Generated from Qt 6.11.0
 
+import type {
+  QmlColor,
+  QmlComponent,
+  QmlEnumToken,
+  QmlFont,
+  QmlObjectBuilder,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
-import type { QmlColor, QmlComponent, QmlEnumToken, QmlFont, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
 import type { QtObjectBuilder } from '../QML/QtObject.js';
 import type { ItemBuilder } from '../QtQuick/Item.js';
 import type { PaletteBuilder } from '../QtQuick/Palette.js';
@@ -486,33 +493,100 @@ const COLORINPUTSIMPL_META: TypeMetadata = {
 };
 
 export function ColorInputsImpl(): ColorInputsImplBuilder {
-  return createFluentBuilder('ColorInputsImpl', COLORINPUTSIMPL_META) as unknown as ColorInputsImplBuilder;
+  return createFluentBuilder(
+    'ColorInputsImpl',
+    COLORINPUTSIMPL_META,
+  ) as unknown as ColorInputsImplBuilder;
 }
 
 export namespace ColorInputsImpl {
   export namespace Flags {
-    export const ItemClipsChildrenToShape = createEnumToken('ColorInputsImpl', 'Flags', 'ItemClipsChildrenToShape');
-    export const ItemAcceptsInputMethod = createEnumToken('ColorInputsImpl', 'Flags', 'ItemAcceptsInputMethod');
+    export const ItemClipsChildrenToShape = createEnumToken(
+      'ColorInputsImpl',
+      'Flags',
+      'ItemClipsChildrenToShape',
+    );
+    export const ItemAcceptsInputMethod = createEnumToken(
+      'ColorInputsImpl',
+      'Flags',
+      'ItemAcceptsInputMethod',
+    );
     export const ItemIsFocusScope = createEnumToken('ColorInputsImpl', 'Flags', 'ItemIsFocusScope');
     export const ItemHasContents = createEnumToken('ColorInputsImpl', 'Flags', 'ItemHasContents');
     export const ItemAcceptsDrops = createEnumToken('ColorInputsImpl', 'Flags', 'ItemAcceptsDrops');
     export const ItemIsViewport = createEnumToken('ColorInputsImpl', 'Flags', 'ItemIsViewport');
-    export const ItemObservesViewport = createEnumToken('ColorInputsImpl', 'Flags', 'ItemObservesViewport');
+    export const ItemObservesViewport = createEnumToken(
+      'ColorInputsImpl',
+      'Flags',
+      'ItemObservesViewport',
+    );
   }
   export namespace ItemChange {
-    export const ItemChildAddedChange = createEnumToken('ColorInputsImpl', 'ItemChange', 'ItemChildAddedChange');
-    export const ItemChildRemovedChange = createEnumToken('ColorInputsImpl', 'ItemChange', 'ItemChildRemovedChange');
-    export const ItemSceneChange = createEnumToken('ColorInputsImpl', 'ItemChange', 'ItemSceneChange');
-    export const ItemVisibleHasChanged = createEnumToken('ColorInputsImpl', 'ItemChange', 'ItemVisibleHasChanged');
-    export const ItemParentHasChanged = createEnumToken('ColorInputsImpl', 'ItemChange', 'ItemParentHasChanged');
-    export const ItemOpacityHasChanged = createEnumToken('ColorInputsImpl', 'ItemChange', 'ItemOpacityHasChanged');
-    export const ItemActiveFocusHasChanged = createEnumToken('ColorInputsImpl', 'ItemChange', 'ItemActiveFocusHasChanged');
-    export const ItemRotationHasChanged = createEnumToken('ColorInputsImpl', 'ItemChange', 'ItemRotationHasChanged');
-    export const ItemAntialiasingHasChanged = createEnumToken('ColorInputsImpl', 'ItemChange', 'ItemAntialiasingHasChanged');
-    export const ItemDevicePixelRatioHasChanged = createEnumToken('ColorInputsImpl', 'ItemChange', 'ItemDevicePixelRatioHasChanged');
-    export const ItemEnabledHasChanged = createEnumToken('ColorInputsImpl', 'ItemChange', 'ItemEnabledHasChanged');
-    export const ItemScaleHasChanged = createEnumToken('ColorInputsImpl', 'ItemChange', 'ItemScaleHasChanged');
-    export const ItemTransformHasChanged = createEnumToken('ColorInputsImpl', 'ItemChange', 'ItemTransformHasChanged');
+    export const ItemChildAddedChange = createEnumToken(
+      'ColorInputsImpl',
+      'ItemChange',
+      'ItemChildAddedChange',
+    );
+    export const ItemChildRemovedChange = createEnumToken(
+      'ColorInputsImpl',
+      'ItemChange',
+      'ItemChildRemovedChange',
+    );
+    export const ItemSceneChange = createEnumToken(
+      'ColorInputsImpl',
+      'ItemChange',
+      'ItemSceneChange',
+    );
+    export const ItemVisibleHasChanged = createEnumToken(
+      'ColorInputsImpl',
+      'ItemChange',
+      'ItemVisibleHasChanged',
+    );
+    export const ItemParentHasChanged = createEnumToken(
+      'ColorInputsImpl',
+      'ItemChange',
+      'ItemParentHasChanged',
+    );
+    export const ItemOpacityHasChanged = createEnumToken(
+      'ColorInputsImpl',
+      'ItemChange',
+      'ItemOpacityHasChanged',
+    );
+    export const ItemActiveFocusHasChanged = createEnumToken(
+      'ColorInputsImpl',
+      'ItemChange',
+      'ItemActiveFocusHasChanged',
+    );
+    export const ItemRotationHasChanged = createEnumToken(
+      'ColorInputsImpl',
+      'ItemChange',
+      'ItemRotationHasChanged',
+    );
+    export const ItemAntialiasingHasChanged = createEnumToken(
+      'ColorInputsImpl',
+      'ItemChange',
+      'ItemAntialiasingHasChanged',
+    );
+    export const ItemDevicePixelRatioHasChanged = createEnumToken(
+      'ColorInputsImpl',
+      'ItemChange',
+      'ItemDevicePixelRatioHasChanged',
+    );
+    export const ItemEnabledHasChanged = createEnumToken(
+      'ColorInputsImpl',
+      'ItemChange',
+      'ItemEnabledHasChanged',
+    );
+    export const ItemScaleHasChanged = createEnumToken(
+      'ColorInputsImpl',
+      'ItemChange',
+      'ItemScaleHasChanged',
+    );
+    export const ItemTransformHasChanged = createEnumToken(
+      'ColorInputsImpl',
+      'ItemChange',
+      'ItemTransformHasChanged',
+    );
   }
   export namespace Mode {
     export const Hex = createEnumToken('ColorInputsImpl', 'Mode', 'Hex');

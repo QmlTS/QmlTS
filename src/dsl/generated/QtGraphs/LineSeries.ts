@@ -2,8 +2,15 @@
 // Type: LineSeries
 // Generated from Qt 6.11.0
 
+import type {
+  QmlColor,
+  QmlComponent,
+  QmlEnumToken,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
-import type { QmlColor, QmlComponent, QmlEnumToken, QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
 export interface LineSeriesBuilder {
   id(id: string): LineSeriesBuilder;
   child(obj: QmlObjectBuilder): LineSeriesBuilder;
@@ -159,10 +166,8 @@ const LINESERIES_META: TypeMetadata = {
     { handlerName: 'onWidthChanged', paramCount: 0 },
     { handlerName: 'onZValueChanged', paramCount: 1 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function LineSeries(): LineSeriesBuilder {

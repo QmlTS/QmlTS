@@ -2,8 +2,13 @@
 // Type: GrpcChannelOptions
 // Generated from Qt 6.11.0
 
+import type {
+  QmlEnumToken,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
-import type { QmlEnumToken, QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
 import type { GrpcMetadataBuilder } from './GrpcMetadata.js';
 export interface GrpcChannelOptionsBuilder {
   id(id: string): GrpcChannelOptionsBuilder;
@@ -42,12 +47,13 @@ const GRPCCHANNELOPTIONS_META: TypeMetadata = {
     { handlerName: 'onSerializationFormatChanged', paramCount: 0 },
     { handlerName: 'onSslConfigurationChanged', paramCount: 0 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function GrpcChannelOptions(): GrpcChannelOptionsBuilder {
-  return createFluentBuilder('GrpcChannelOptions', GRPCCHANNELOPTIONS_META) as unknown as GrpcChannelOptionsBuilder;
+  return createFluentBuilder(
+    'GrpcChannelOptions',
+    GRPCCHANNELOPTIONS_META,
+  ) as unknown as GrpcChannelOptionsBuilder;
 }

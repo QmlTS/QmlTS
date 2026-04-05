@@ -2,8 +2,15 @@
 // Type: LottieAnimation
 // Generated from Qt 6.11.0
 
+import type {
+  QmlColor,
+  QmlEnumToken,
+  QmlObjectBuilder,
+  QmlSize,
+  QmlUrl,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
-import type { QmlColor, QmlEnumToken, QmlObjectBuilder, QmlSize, QmlUrl, TypeMetadata } from '../../runtime/index.js';
 import type { QtObjectBuilder } from '../QML/QtObject.js';
 import type { ItemBuilder } from '../QtQuick/Item.js';
 import type { PaletteBuilder } from '../QtQuick/Palette.js';
@@ -270,12 +277,14 @@ const LOTTIEANIMATION_META: TypeMetadata = {
       ],
     },
   ],
-  attached: [
-  ],
+  attached: [],
 };
 
 export function LottieAnimation(): LottieAnimationBuilder {
-  return createFluentBuilder('LottieAnimation', LOTTIEANIMATION_META) as unknown as LottieAnimationBuilder;
+  return createFluentBuilder(
+    'LottieAnimation',
+    LOTTIEANIMATION_META,
+  ) as unknown as LottieAnimationBuilder;
 }
 
 export namespace LottieAnimation {
@@ -284,34 +293,102 @@ export namespace LottieAnimation {
     export const Reverse = createEnumToken('LottieAnimation', 'Direction', 'Reverse');
   }
   export namespace Flags {
-    export const ItemClipsChildrenToShape = createEnumToken('LottieAnimation', 'Flags', 'ItemClipsChildrenToShape');
-    export const ItemAcceptsInputMethod = createEnumToken('LottieAnimation', 'Flags', 'ItemAcceptsInputMethod');
+    export const ItemClipsChildrenToShape = createEnumToken(
+      'LottieAnimation',
+      'Flags',
+      'ItemClipsChildrenToShape',
+    );
+    export const ItemAcceptsInputMethod = createEnumToken(
+      'LottieAnimation',
+      'Flags',
+      'ItemAcceptsInputMethod',
+    );
     export const ItemIsFocusScope = createEnumToken('LottieAnimation', 'Flags', 'ItemIsFocusScope');
     export const ItemHasContents = createEnumToken('LottieAnimation', 'Flags', 'ItemHasContents');
     export const ItemAcceptsDrops = createEnumToken('LottieAnimation', 'Flags', 'ItemAcceptsDrops');
     export const ItemIsViewport = createEnumToken('LottieAnimation', 'Flags', 'ItemIsViewport');
-    export const ItemObservesViewport = createEnumToken('LottieAnimation', 'Flags', 'ItemObservesViewport');
+    export const ItemObservesViewport = createEnumToken(
+      'LottieAnimation',
+      'Flags',
+      'ItemObservesViewport',
+    );
   }
   export namespace ItemChange {
-    export const ItemChildAddedChange = createEnumToken('LottieAnimation', 'ItemChange', 'ItemChildAddedChange');
-    export const ItemChildRemovedChange = createEnumToken('LottieAnimation', 'ItemChange', 'ItemChildRemovedChange');
-    export const ItemSceneChange = createEnumToken('LottieAnimation', 'ItemChange', 'ItemSceneChange');
-    export const ItemVisibleHasChanged = createEnumToken('LottieAnimation', 'ItemChange', 'ItemVisibleHasChanged');
-    export const ItemParentHasChanged = createEnumToken('LottieAnimation', 'ItemChange', 'ItemParentHasChanged');
-    export const ItemOpacityHasChanged = createEnumToken('LottieAnimation', 'ItemChange', 'ItemOpacityHasChanged');
-    export const ItemActiveFocusHasChanged = createEnumToken('LottieAnimation', 'ItemChange', 'ItemActiveFocusHasChanged');
-    export const ItemRotationHasChanged = createEnumToken('LottieAnimation', 'ItemChange', 'ItemRotationHasChanged');
-    export const ItemAntialiasingHasChanged = createEnumToken('LottieAnimation', 'ItemChange', 'ItemAntialiasingHasChanged');
-    export const ItemDevicePixelRatioHasChanged = createEnumToken('LottieAnimation', 'ItemChange', 'ItemDevicePixelRatioHasChanged');
-    export const ItemEnabledHasChanged = createEnumToken('LottieAnimation', 'ItemChange', 'ItemEnabledHasChanged');
-    export const ItemScaleHasChanged = createEnumToken('LottieAnimation', 'ItemChange', 'ItemScaleHasChanged');
-    export const ItemTransformHasChanged = createEnumToken('LottieAnimation', 'ItemChange', 'ItemTransformHasChanged');
+    export const ItemChildAddedChange = createEnumToken(
+      'LottieAnimation',
+      'ItemChange',
+      'ItemChildAddedChange',
+    );
+    export const ItemChildRemovedChange = createEnumToken(
+      'LottieAnimation',
+      'ItemChange',
+      'ItemChildRemovedChange',
+    );
+    export const ItemSceneChange = createEnumToken(
+      'LottieAnimation',
+      'ItemChange',
+      'ItemSceneChange',
+    );
+    export const ItemVisibleHasChanged = createEnumToken(
+      'LottieAnimation',
+      'ItemChange',
+      'ItemVisibleHasChanged',
+    );
+    export const ItemParentHasChanged = createEnumToken(
+      'LottieAnimation',
+      'ItemChange',
+      'ItemParentHasChanged',
+    );
+    export const ItemOpacityHasChanged = createEnumToken(
+      'LottieAnimation',
+      'ItemChange',
+      'ItemOpacityHasChanged',
+    );
+    export const ItemActiveFocusHasChanged = createEnumToken(
+      'LottieAnimation',
+      'ItemChange',
+      'ItemActiveFocusHasChanged',
+    );
+    export const ItemRotationHasChanged = createEnumToken(
+      'LottieAnimation',
+      'ItemChange',
+      'ItemRotationHasChanged',
+    );
+    export const ItemAntialiasingHasChanged = createEnumToken(
+      'LottieAnimation',
+      'ItemChange',
+      'ItemAntialiasingHasChanged',
+    );
+    export const ItemDevicePixelRatioHasChanged = createEnumToken(
+      'LottieAnimation',
+      'ItemChange',
+      'ItemDevicePixelRatioHasChanged',
+    );
+    export const ItemEnabledHasChanged = createEnumToken(
+      'LottieAnimation',
+      'ItemChange',
+      'ItemEnabledHasChanged',
+    );
+    export const ItemScaleHasChanged = createEnumToken(
+      'LottieAnimation',
+      'ItemChange',
+      'ItemScaleHasChanged',
+    );
+    export const ItemTransformHasChanged = createEnumToken(
+      'LottieAnimation',
+      'ItemChange',
+      'ItemTransformHasChanged',
+    );
   }
   export namespace LoopCount {
     export const Infinite = createEnumToken('LottieAnimation', 'LoopCount', 'Infinite');
   }
   export namespace PerformanceHints {
-    export const FastFBOResizing = createEnumToken('LottieAnimation', 'PerformanceHints', 'FastFBOResizing');
+    export const FastFBOResizing = createEnumToken(
+      'LottieAnimation',
+      'PerformanceHints',
+      'FastFBOResizing',
+    );
   }
   export namespace Quality {
     export const LowQuality = createEnumToken('LottieAnimation', 'Quality', 'LowQuality');
@@ -320,8 +397,16 @@ export namespace LottieAnimation {
   }
   export namespace RenderTarget {
     export const Image = createEnumToken('LottieAnimation', 'RenderTarget', 'Image');
-    export const FramebufferObject = createEnumToken('LottieAnimation', 'RenderTarget', 'FramebufferObject');
-    export const InvertedYFramebufferObject = createEnumToken('LottieAnimation', 'RenderTarget', 'InvertedYFramebufferObject');
+    export const FramebufferObject = createEnumToken(
+      'LottieAnimation',
+      'RenderTarget',
+      'FramebufferObject',
+    );
+    export const InvertedYFramebufferObject = createEnumToken(
+      'LottieAnimation',
+      'RenderTarget',
+      'InvertedYFramebufferObject',
+    );
   }
   export namespace Status {
     export const Null = createEnumToken('LottieAnimation', 'Status', 'Null');

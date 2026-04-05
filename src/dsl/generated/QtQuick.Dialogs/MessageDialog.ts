@@ -2,8 +2,13 @@
 // Type: MessageDialog
 // Generated from Qt 6.11.0
 
+import type {
+  QmlEnumToken,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
-import type { QmlEnumToken, QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
 export interface MessageDialogBuilder {
   id(id: string): MessageDialogBuilder;
   child(obj: QmlObjectBuilder): MessageDialogBuilder;
@@ -82,15 +87,16 @@ const MESSAGEDIALOG_META: TypeMetadata = {
     { handlerName: 'onTitleChanged', paramCount: 0 },
     { handlerName: 'onVisibleChanged', paramCount: 0 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
   defaultProperty: 'data',
 };
 
 export function MessageDialog(): MessageDialogBuilder {
-  return createFluentBuilder('MessageDialog', MESSAGEDIALOG_META) as unknown as MessageDialogBuilder;
+  return createFluentBuilder(
+    'MessageDialog',
+    MESSAGEDIALOG_META,
+  ) as unknown as MessageDialogBuilder;
 }
 
 export namespace MessageDialog {

@@ -2,7 +2,6 @@
 // Type: Grouped surface: QQuickVectorImageAnimations
 // Generated from Qt 6.11.0
 
-
 export interface AnimationsBuilder {
   loops(value: number): AnimationsBuilder;
   loopsBind(expr: string): AnimationsBuilder;

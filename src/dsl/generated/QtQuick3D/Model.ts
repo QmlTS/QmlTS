@@ -2,8 +2,16 @@
 // Type: Model
 // Generated from Qt 6.11.0
 
+import type {
+  QmlMatrix4x4,
+  QmlObjectBuilder,
+  QmlQuaternion,
+  QmlUrl,
+  QmlValue,
+  QmlVector3d,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
-import type { QmlMatrix4x4, QmlObjectBuilder, QmlQuaternion, QmlUrl, QmlValue, QmlVector3d, TypeMetadata } from '../../runtime/index.js';
 import type { BakedLightmapBuilder } from './BakedLightmap.js';
 import type { NodeBuilder } from './Node.js';
 import type { SkeletonBuilder } from './Skeleton.js';
@@ -225,10 +233,8 @@ const MODEL_META: TypeMetadata = {
     { handlerName: 'onYChanged', paramCount: 0 },
     { handlerName: 'onZChanged', paramCount: 0 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function Model(): ModelBuilder {

@@ -2,8 +2,8 @@
 // Type: Timeline
 // Generated from Qt 6.11.0
 
-import { createFluentBuilder } from '../../runtime/index.js';
 import type { QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import { createFluentBuilder } from '../../runtime/index.js';
 export interface TimelineBuilder {
   id(id: string): TimelineBuilder;
   child(obj: QmlObjectBuilder): TimelineBuilder;
@@ -41,10 +41,8 @@ const TIMELINE_META: TypeMetadata = {
     { handlerName: 'onObjectNameChanged', paramCount: 1 },
     { handlerName: 'onStartFrameChanged', paramCount: 0 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
   defaultProperty: 'keyframeGroups',
 };
 

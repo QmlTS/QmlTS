@@ -2,8 +2,8 @@
 // Type: FolderListModel
 // Generated from Qt 6.11.0
 
-import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { QmlEnumToken, QmlObjectBuilder, QmlUrl, TypeMetadata } from '../../runtime/index.js';
+import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface FolderListModelBuilder {
   id(id: string): FolderListModelBuilder;
   child(obj: QmlObjectBuilder): FolderListModelBuilder;
@@ -128,27 +128,52 @@ const FOLDERLISTMODEL_META: TypeMetadata = {
     { handlerName: 'onSortReversedChanged', paramCount: 0 },
     { handlerName: 'onStatusChanged', paramCount: 0 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function FolderListModel(): FolderListModelBuilder {
-  return createFluentBuilder('FolderListModel', FOLDERLISTMODEL_META) as unknown as FolderListModelBuilder;
+  return createFluentBuilder(
+    'FolderListModel',
+    FOLDERLISTMODEL_META,
+  ) as unknown as FolderListModelBuilder;
 }
 
 export namespace FolderListModel {
   export namespace CheckIndexOption {
     export const NoOption = createEnumToken('FolderListModel', 'CheckIndexOption', 'NoOption');
-    export const IndexIsValid = createEnumToken('FolderListModel', 'CheckIndexOption', 'IndexIsValid');
-    export const DoNotUseParent = createEnumToken('FolderListModel', 'CheckIndexOption', 'DoNotUseParent');
-    export const ParentIsInvalid = createEnumToken('FolderListModel', 'CheckIndexOption', 'ParentIsInvalid');
+    export const IndexIsValid = createEnumToken(
+      'FolderListModel',
+      'CheckIndexOption',
+      'IndexIsValid',
+    );
+    export const DoNotUseParent = createEnumToken(
+      'FolderListModel',
+      'CheckIndexOption',
+      'DoNotUseParent',
+    );
+    export const ParentIsInvalid = createEnumToken(
+      'FolderListModel',
+      'CheckIndexOption',
+      'ParentIsInvalid',
+    );
   }
   export namespace LayoutChangeHint {
-    export const NoLayoutChangeHint = createEnumToken('FolderListModel', 'LayoutChangeHint', 'NoLayoutChangeHint');
-    export const VerticalSortHint = createEnumToken('FolderListModel', 'LayoutChangeHint', 'VerticalSortHint');
-    export const HorizontalSortHint = createEnumToken('FolderListModel', 'LayoutChangeHint', 'HorizontalSortHint');
+    export const NoLayoutChangeHint = createEnumToken(
+      'FolderListModel',
+      'LayoutChangeHint',
+      'NoLayoutChangeHint',
+    );
+    export const VerticalSortHint = createEnumToken(
+      'FolderListModel',
+      'LayoutChangeHint',
+      'VerticalSortHint',
+    );
+    export const HorizontalSortHint = createEnumToken(
+      'FolderListModel',
+      'LayoutChangeHint',
+      'HorizontalSortHint',
+    );
   }
   export namespace SortField {
     export const Unsorted = createEnumToken('FolderListModel', 'SortField', 'Unsorted');

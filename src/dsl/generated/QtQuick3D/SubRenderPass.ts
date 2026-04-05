@@ -2,8 +2,8 @@
 // Type: SubRenderPass
 // Generated from Qt 6.11.0
 
-import { createFluentBuilder } from '../../runtime/index.js';
 import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import { createFluentBuilder } from '../../runtime/index.js';
 import type { RenderPassBuilder } from './RenderPass.js';
 export interface SubRenderPassBuilder {
   id(id: string): SubRenderPassBuilder;
@@ -39,12 +39,13 @@ const SUBRENDERPASS_META: TypeMetadata = {
     { handlerName: 'onRenderPassChanged', paramCount: 0 },
     { handlerName: 'onStateChanged', paramCount: 0 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function SubRenderPass(): SubRenderPassBuilder {
-  return createFluentBuilder('SubRenderPass', SUBRENDERPASS_META) as unknown as SubRenderPassBuilder;
+  return createFluentBuilder(
+    'SubRenderPass',
+    SUBRENDERPASS_META,
+  ) as unknown as SubRenderPassBuilder;
 }

@@ -2,8 +2,15 @@
 // Type: RuntimeLoader
 // Generated from Qt 6.11.0
 
+import type {
+  QmlObjectBuilder,
+  QmlQuaternion,
+  QmlUrl,
+  QmlValue,
+  QmlVector3d,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
-import type { QmlObjectBuilder, QmlQuaternion, QmlUrl, QmlValue, QmlVector3d, TypeMetadata } from '../../runtime/index.js';
 export interface RuntimeLoaderBuilder {
   id(id: string): RuntimeLoaderBuilder;
   child(obj: QmlObjectBuilder): RuntimeLoaderBuilder;
@@ -123,14 +130,15 @@ const RUNTIMELOADER_META: TypeMetadata = {
     { handlerName: 'onYChanged', paramCount: 0 },
     { handlerName: 'onZChanged', paramCount: 0 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function RuntimeLoader(): RuntimeLoaderBuilder {
-  return createFluentBuilder('RuntimeLoader', RUNTIMELOADER_META) as unknown as RuntimeLoaderBuilder;
+  return createFluentBuilder(
+    'RuntimeLoader',
+    RUNTIMELOADER_META,
+  ) as unknown as RuntimeLoaderBuilder;
 }
 
 export namespace RuntimeLoader {

@@ -2,8 +2,8 @@
 // Type: ItemSelectionModel
 // Generated from Qt 6.11.0
 
-import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { DelegateModelAttachedBuilder } from './QQmlDelegateModelAttached.js';
 import type { ObjectModelAttachedBuilder } from './QQmlObjectModelAttached.js';
 import type { PackageAttachedBuilder } from './QQuickPackageAttached.js';
@@ -40,8 +40,7 @@ const ITEMSELECTIONMODEL_META: TypeMetadata = {
     { handlerName: 'onObjectNameChanged', paramCount: 1 },
     { handlerName: 'onSelectionChanged', paramCount: 2 },
   ],
-  grouped: [
-  ],
+  grouped: [],
   attached: [
     {
       methodName: 'delegateModel',
@@ -61,9 +60,7 @@ const ITEMSELECTIONMODEL_META: TypeMetadata = {
     {
       methodName: 'objectModel',
       attachedTypeName: 'ObjectModel',
-      properties: [
-        { name: 'objectName', hasValue: true, hasBinding: true },
-      ],
+      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
       signals: [
         { handlerName: 'onIndexChanged', paramCount: 0 },
         { handlerName: 'onObjectNameChanged', paramCount: 1 },
@@ -76,15 +73,16 @@ const ITEMSELECTIONMODEL_META: TypeMetadata = {
         { name: 'name', hasValue: true, hasBinding: true },
         { name: 'objectName', hasValue: true, hasBinding: true },
       ],
-      signals: [
-        { handlerName: 'onObjectNameChanged', paramCount: 1 },
-      ],
+      signals: [{ handlerName: 'onObjectNameChanged', paramCount: 1 }],
     },
   ],
 };
 
 export function ItemSelectionModel(): ItemSelectionModelBuilder {
-  return createFluentBuilder('ItemSelectionModel', ITEMSELECTIONMODEL_META) as unknown as ItemSelectionModelBuilder;
+  return createFluentBuilder(
+    'ItemSelectionModel',
+    ITEMSELECTIONMODEL_META,
+  ) as unknown as ItemSelectionModelBuilder;
 }
 
 export namespace ItemSelectionModel {
@@ -97,8 +95,20 @@ export namespace ItemSelectionModel {
     export const Current = createEnumToken('ItemSelectionModel', 'SelectionFlags', 'Current');
     export const Rows = createEnumToken('ItemSelectionModel', 'SelectionFlags', 'Rows');
     export const Columns = createEnumToken('ItemSelectionModel', 'SelectionFlags', 'Columns');
-    export const SelectCurrent = createEnumToken('ItemSelectionModel', 'SelectionFlags', 'SelectCurrent');
-    export const ToggleCurrent = createEnumToken('ItemSelectionModel', 'SelectionFlags', 'ToggleCurrent');
-    export const ClearAndSelect = createEnumToken('ItemSelectionModel', 'SelectionFlags', 'ClearAndSelect');
+    export const SelectCurrent = createEnumToken(
+      'ItemSelectionModel',
+      'SelectionFlags',
+      'SelectCurrent',
+    );
+    export const ToggleCurrent = createEnumToken(
+      'ItemSelectionModel',
+      'SelectionFlags',
+      'ToggleCurrent',
+    );
+    export const ClearAndSelect = createEnumToken(
+      'ItemSelectionModel',
+      'SelectionFlags',
+      'ClearAndSelect',
+    );
   }
 }

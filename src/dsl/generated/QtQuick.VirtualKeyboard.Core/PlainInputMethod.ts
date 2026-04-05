@@ -2,8 +2,8 @@
 // Type: PlainInputMethod
 // Generated from Qt 6.11.0
 
-import { createFluentBuilder } from '../../runtime/index.js';
 import type { QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import { createFluentBuilder } from '../../runtime/index.js';
 import type { EnterKeyActionAttachedBuilder } from './EnterKeyActionAttachedType.js';
 import type { VirtualKeyboardAttachedBuilder } from './VirtualKeyboardAttachedType.js';
 export interface PlainInputMethodBuilder {
@@ -22,17 +22,14 @@ export interface PlainInputMethodBuilder {
 
 const PLAININPUTMETHOD_META: TypeMetadata = {
   typeName: 'PlainInputMethod',
-  properties: [
-    { name: 'objectName', hasValue: true, hasBinding: true },
-  ],
+  properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
   signals: [
     { handlerName: 'onObjectNameChanged', paramCount: 1 },
     { handlerName: 'onSelectionListActiveItemChanged', paramCount: 2 },
     { handlerName: 'onSelectionListChanged', paramCount: 1 },
     { handlerName: 'onSelectionListsChanged', paramCount: 0 },
   ],
-  grouped: [
-  ],
+  grouped: [],
   attached: [
     {
       methodName: 'enterKeyAction',
@@ -66,5 +63,8 @@ const PLAININPUTMETHOD_META: TypeMetadata = {
 };
 
 export function PlainInputMethod(): PlainInputMethodBuilder {
-  return createFluentBuilder('PlainInputMethod', PLAININPUTMETHOD_META) as unknown as PlainInputMethodBuilder;
+  return createFluentBuilder(
+    'PlainInputMethod',
+    PLAININPUTMETHOD_META,
+  ) as unknown as PlainInputMethodBuilder;
 }

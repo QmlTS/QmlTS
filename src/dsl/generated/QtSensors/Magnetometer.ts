@@ -2,8 +2,8 @@
 // Type: Magnetometer
 // Generated from Qt 6.11.0
 
-import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { QmlEnumToken, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface MagnetometerBuilder {
   id(id: string): MagnetometerBuilder;
   child(obj: QmlObjectBuilder): MagnetometerBuilder;
@@ -91,10 +91,8 @@ const MAGNETOMETER_META: TypeMetadata = {
     { handlerName: 'onSkipDuplicatesChanged', paramCount: 1 },
     { handlerName: 'onUserOrientationChanged', paramCount: 1 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function Magnetometer(): MagnetometerBuilder {
@@ -103,9 +101,21 @@ export function Magnetometer(): MagnetometerBuilder {
 
 export namespace Magnetometer {
   export namespace AxesOrientationMode {
-    export const FixedOrientation = createEnumToken('Magnetometer', 'AxesOrientationMode', 'FixedOrientation');
-    export const AutomaticOrientation = createEnumToken('Magnetometer', 'AxesOrientationMode', 'AutomaticOrientation');
-    export const UserOrientation = createEnumToken('Magnetometer', 'AxesOrientationMode', 'UserOrientation');
+    export const FixedOrientation = createEnumToken(
+      'Magnetometer',
+      'AxesOrientationMode',
+      'FixedOrientation',
+    );
+    export const AutomaticOrientation = createEnumToken(
+      'Magnetometer',
+      'AxesOrientationMode',
+      'AutomaticOrientation',
+    );
+    export const UserOrientation = createEnumToken(
+      'Magnetometer',
+      'AxesOrientationMode',
+      'UserOrientation',
+    );
   }
   export namespace Feature {
     export const Buffering = createEnumToken('Magnetometer', 'Feature', 'Buffering');
@@ -115,6 +125,10 @@ export namespace Magnetometer {
     export const AccelerationMode = createEnumToken('Magnetometer', 'Feature', 'AccelerationMode');
     export const SkipDuplicates = createEnumToken('Magnetometer', 'Feature', 'SkipDuplicates');
     export const AxesOrientation = createEnumToken('Magnetometer', 'Feature', 'AxesOrientation');
-    export const PressureSensorTemperature = createEnumToken('Magnetometer', 'Feature', 'PressureSensorTemperature');
+    export const PressureSensorTemperature = createEnumToken(
+      'Magnetometer',
+      'Feature',
+      'PressureSensorTemperature',
+    );
   }
 }

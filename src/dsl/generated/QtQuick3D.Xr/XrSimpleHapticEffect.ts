@@ -2,8 +2,8 @@
 // Type: XrSimpleHapticEffect
 // Generated from Qt 6.11.0
 
-import { createFluentBuilder } from '../../runtime/index.js';
 import type { QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import { createFluentBuilder } from '../../runtime/index.js';
 export interface XrSimpleHapticEffectBuilder {
   id(id: string): XrSimpleHapticEffectBuilder;
   child(obj: QmlObjectBuilder): XrSimpleHapticEffectBuilder;
@@ -36,12 +36,13 @@ const XRSIMPLEHAPTICEFFECT_META: TypeMetadata = {
     { handlerName: 'onFrequencyChanged', paramCount: 0 },
     { handlerName: 'onObjectNameChanged', paramCount: 1 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function XrSimpleHapticEffect(): XrSimpleHapticEffectBuilder {
-  return createFluentBuilder('XrSimpleHapticEffect', XRSIMPLEHAPTICEFFECT_META) as unknown as XrSimpleHapticEffectBuilder;
+  return createFluentBuilder(
+    'XrSimpleHapticEffect',
+    XRSIMPLEHAPTICEFFECT_META,
+  ) as unknown as XrSimpleHapticEffectBuilder;
 }

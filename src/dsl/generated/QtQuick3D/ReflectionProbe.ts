@@ -2,8 +2,16 @@
 // Type: ReflectionProbe
 // Generated from Qt 6.11.0
 
+import type {
+  QmlColor,
+  QmlEnumToken,
+  QmlObjectBuilder,
+  QmlQuaternion,
+  QmlValue,
+  QmlVector3d,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
-import type { QmlColor, QmlEnumToken, QmlObjectBuilder, QmlQuaternion, QmlValue, QmlVector3d, TypeMetadata } from '../../runtime/index.js';
 import type { CubeMapTextureBuilder } from './CubeMapTexture.js';
 export interface ReflectionProbeBuilder {
   id(id: string): ReflectionProbeBuilder;
@@ -153,14 +161,15 @@ const REFLECTIONPROBE_META: TypeMetadata = {
     { handlerName: 'onYChanged', paramCount: 0 },
     { handlerName: 'onZChanged', paramCount: 0 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function ReflectionProbe(): ReflectionProbeBuilder {
-  return createFluentBuilder('ReflectionProbe', REFLECTIONPROBE_META) as unknown as ReflectionProbeBuilder;
+  return createFluentBuilder(
+    'ReflectionProbe',
+    REFLECTIONPROBE_META,
+  ) as unknown as ReflectionProbeBuilder;
 }
 
 export namespace ReflectionProbe {
@@ -172,13 +181,29 @@ export namespace ReflectionProbe {
     export const VeryHigh = createEnumToken('ReflectionProbe', 'ReflectionQuality', 'VeryHigh');
   }
   export namespace ReflectionRefreshMode {
-    export const FirstFrame = createEnumToken('ReflectionProbe', 'ReflectionRefreshMode', 'FirstFrame');
-    export const EveryFrame = createEnumToken('ReflectionProbe', 'ReflectionRefreshMode', 'EveryFrame');
+    export const FirstFrame = createEnumToken(
+      'ReflectionProbe',
+      'ReflectionRefreshMode',
+      'FirstFrame',
+    );
+    export const EveryFrame = createEnumToken(
+      'ReflectionProbe',
+      'ReflectionRefreshMode',
+      'EveryFrame',
+    );
   }
   export namespace ReflectionTimeSlicing {
     export const None = createEnumToken('ReflectionProbe', 'ReflectionTimeSlicing', 'None');
-    export const AllFacesAtOnce = createEnumToken('ReflectionProbe', 'ReflectionTimeSlicing', 'AllFacesAtOnce');
-    export const IndividualFaces = createEnumToken('ReflectionProbe', 'ReflectionTimeSlicing', 'IndividualFaces');
+    export const AllFacesAtOnce = createEnumToken(
+      'ReflectionProbe',
+      'ReflectionTimeSlicing',
+      'AllFacesAtOnce',
+    );
+    export const IndividualFaces = createEnumToken(
+      'ReflectionProbe',
+      'ReflectionTimeSlicing',
+      'IndividualFaces',
+    );
   }
   export namespace StaticFlags {
     export const None = createEnumToken('ReflectionProbe', 'StaticFlags', 'None');

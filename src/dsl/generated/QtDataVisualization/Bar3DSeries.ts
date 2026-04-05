@@ -2,8 +2,16 @@
 // Type: Bar3DSeries
 // Generated from Qt 6.11.0
 
+import type {
+  QmlColor,
+  QmlEnumToken,
+  QmlObjectBuilder,
+  QmlPoint,
+  QmlQuaternion,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
-import type { QmlColor, QmlEnumToken, QmlObjectBuilder, QmlPoint, QmlQuaternion, QmlValue, TypeMetadata } from '../../runtime/index.js';
 import type { Category3DAxisBuilder } from '../QtGraphs/Category3DAxis.js';
 import type { Value3DAxisBuilder } from '../QtGraphs/Value3DAxis.js';
 import type { ColorGradientBuilder } from './ColorGradient.js';
@@ -168,10 +176,8 @@ const BAR3DSERIES_META: TypeMetadata = {
     { handlerName: 'onValueColoringEnabledChanged', paramCount: 1 },
     { handlerName: 'onVisibleChanged', paramCount: 1 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
   defaultProperty: 'seriesChildren',
 };
 

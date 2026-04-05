@@ -2,8 +2,14 @@
 // Type: TextureImage
 // Generated from Qt 6.11.0
 
+import type {
+  QmlEnumToken,
+  QmlObjectBuilder,
+  QmlUrl,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
-import type { QmlEnumToken, QmlObjectBuilder, QmlUrl, QmlValue, TypeMetadata } from '../../runtime/index.js';
 export interface TextureImageBuilder {
   id(id: string): TextureImageBuilder;
   child(obj: QmlObjectBuilder): TextureImageBuilder;
@@ -60,10 +66,8 @@ const TEXTUREIMAGE_META: TypeMetadata = {
     { handlerName: 'onSourceChanged', paramCount: 1 },
     { handlerName: 'onStatusChanged', paramCount: 1 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function TextureImage(): TextureImageBuilder {

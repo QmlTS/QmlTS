@@ -2,8 +2,8 @@
 // Type: CandlestickSet
 // Generated from Qt 6.11.0
 
-import { createFluentBuilder } from '../../runtime/index.js';
 import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import { createFluentBuilder } from '../../runtime/index.js';
 export interface CandlestickSetBuilder {
   id(id: string): CandlestickSetBuilder;
   child(obj: QmlObjectBuilder): CandlestickSetBuilder;
@@ -71,12 +71,13 @@ const CANDLESTICKSET_META: TypeMetadata = {
     { handlerName: 'onReleased', paramCount: 0 },
     { handlerName: 'onTimestampChanged', paramCount: 0 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function CandlestickSet(): CandlestickSetBuilder {
-  return createFluentBuilder('CandlestickSet', CANDLESTICKSET_META) as unknown as CandlestickSetBuilder;
+  return createFluentBuilder(
+    'CandlestickSet',
+    CANDLESTICKSET_META,
+  ) as unknown as CandlestickSetBuilder;
 }

@@ -2,8 +2,15 @@
 // Type: PlaneMesh
 // Generated from Qt 6.11.0
 
+import type {
+  QmlEnumToken,
+  QmlObjectBuilder,
+  QmlSize,
+  QmlValue,
+  QmlVector3d,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
-import type { QmlEnumToken, QmlObjectBuilder, QmlSize, QmlValue, QmlVector3d, TypeMetadata } from '../../runtime/index.js';
 import type { GeometryBuilder } from '../Qt3D.Core/Geometry.js';
 import type { GeometryViewBuilder } from '../Qt3D.Core/GeometryView.js';
 export interface PlaneMeshBuilder {
@@ -145,10 +152,8 @@ const PLANEMESH_META: TypeMetadata = {
     { handlerName: 'onViewChanged', paramCount: 1 },
     { handlerName: 'onWidthChanged', paramCount: 1 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function PlaneMesh(): PlaneMeshBuilder {
@@ -165,9 +170,21 @@ export namespace PlaneMesh {
     export const TriangleStrip = createEnumToken('PlaneMesh', 'PrimitiveType', 'TriangleStrip');
     export const TriangleFan = createEnumToken('PlaneMesh', 'PrimitiveType', 'TriangleFan');
     export const LinesAdjacency = createEnumToken('PlaneMesh', 'PrimitiveType', 'LinesAdjacency');
-    export const TrianglesAdjacency = createEnumToken('PlaneMesh', 'PrimitiveType', 'TrianglesAdjacency');
-    export const LineStripAdjacency = createEnumToken('PlaneMesh', 'PrimitiveType', 'LineStripAdjacency');
-    export const TriangleStripAdjacency = createEnumToken('PlaneMesh', 'PrimitiveType', 'TriangleStripAdjacency');
+    export const TrianglesAdjacency = createEnumToken(
+      'PlaneMesh',
+      'PrimitiveType',
+      'TrianglesAdjacency',
+    );
+    export const LineStripAdjacency = createEnumToken(
+      'PlaneMesh',
+      'PrimitiveType',
+      'LineStripAdjacency',
+    );
+    export const TriangleStripAdjacency = createEnumToken(
+      'PlaneMesh',
+      'PrimitiveType',
+      'TriangleStripAdjacency',
+    );
     export const Patches = createEnumToken('PlaneMesh', 'PrimitiveType', 'Patches');
   }
 }

@@ -2,8 +2,8 @@
 // Type: ConeGeometry
 // Generated from Qt 6.11.0
 
-import { createFluentBuilder } from '../../runtime/index.js';
 import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import { createFluentBuilder } from '../../runtime/index.js';
 import type { AttributeBuilder } from '../Qt3D.Core/Attribute.js';
 export interface ConeGeometryBuilder {
   id(id: string): ConeGeometryBuilder;
@@ -78,10 +78,8 @@ const CONEGEOMETRY_META: TypeMetadata = {
     { handlerName: 'onSlicesChanged', paramCount: 1 },
     { handlerName: 'onTopRadiusChanged', paramCount: 1 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function ConeGeometry(): ConeGeometryBuilder {

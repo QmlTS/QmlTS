@@ -2,8 +2,8 @@
 // Type: AmbientSound
 // Generated from Qt 6.11.0
 
-import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { QmlObjectBuilder, QmlUrl, TypeMetadata } from '../../runtime/index.js';
+import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface AmbientSoundBuilder {
   id(id: string): AmbientSoundBuilder;
   child(obj: QmlObjectBuilder): AmbientSoundBuilder;
@@ -41,10 +41,8 @@ const AMBIENTSOUND_META: TypeMetadata = {
     { handlerName: 'onSourceChanged', paramCount: 0 },
     { handlerName: 'onVolumeChanged', paramCount: 0 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function AmbientSound(): AmbientSoundBuilder {

@@ -2,8 +2,8 @@
 // Type: Synchronizer
 // Generated from Qt 6.11.0
 
-import { createFluentBuilder } from '../../runtime/index.js';
 import type { QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import { createFluentBuilder } from '../../runtime/index.js';
 import type { QtObjectBuilder } from '../QML/QtObject.js';
 export interface SynchronizerBuilder {
   id(id: string): SynchronizerBuilder;
@@ -46,10 +46,8 @@ const SYNCHRONIZER_META: TypeMetadata = {
     { handlerName: 'onValueBounced', paramCount: 2 },
     { handlerName: 'onValueIgnored', paramCount: 2 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function Synchronizer(): SynchronizerBuilder {

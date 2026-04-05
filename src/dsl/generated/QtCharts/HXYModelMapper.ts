@@ -2,8 +2,13 @@
 // Type: HXYModelMapper
 // Generated from Qt 6.11.0
 
+import type {
+  QmlEnumToken,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
-import type { QmlEnumToken, QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
 export interface HXYModelMapperBuilder {
   id(id: string): HXYModelMapperBuilder;
   child(obj: QmlObjectBuilder): HXYModelMapperBuilder;
@@ -80,12 +85,13 @@ const HXYMODELMAPPER_META: TypeMetadata = {
     { handlerName: 'onYRowChanged', paramCount: 0 },
     { handlerName: 'onYSectionChanged', paramCount: 0 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function HXYModelMapper(): HXYModelMapperBuilder {
-  return createFluentBuilder('HXYModelMapper', HXYMODELMAPPER_META) as unknown as HXYModelMapperBuilder;
+  return createFluentBuilder(
+    'HXYModelMapper',
+    HXYMODELMAPPER_META,
+  ) as unknown as HXYModelMapperBuilder;
 }

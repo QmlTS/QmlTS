@@ -2,8 +2,8 @@
 // Type: ItemModelScatterDataProxy
 // Generated from Qt 6.11.0
 
-import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface ItemModelScatterDataProxyBuilder {
   id(id: string): ItemModelScatterDataProxyBuilder;
   child(obj: QmlObjectBuilder): ItemModelScatterDataProxyBuilder;
@@ -117,14 +117,15 @@ const ITEMMODELSCATTERDATAPROXY_META: TypeMetadata = {
     { handlerName: 'onZPosRolePatternChanged', paramCount: 1 },
     { handlerName: 'onZPosRoleReplaceChanged', paramCount: 1 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function ItemModelScatterDataProxy(): ItemModelScatterDataProxyBuilder {
-  return createFluentBuilder('ItemModelScatterDataProxy', ITEMMODELSCATTERDATAPROXY_META) as unknown as ItemModelScatterDataProxyBuilder;
+  return createFluentBuilder(
+    'ItemModelScatterDataProxy',
+    ITEMMODELSCATTERDATAPROXY_META,
+  ) as unknown as ItemModelScatterDataProxyBuilder;
 }
 
 export namespace ItemModelScatterDataProxy {

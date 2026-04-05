@@ -2,7 +2,6 @@
 // Type: Attached type: ToolTip
 // Generated from Qt 6.11.0
 
-
 export interface ToolTipAttachedBuilder {
   delay(value: number): ToolTipAttachedBuilder;
   delayBind(expr: string): ToolTipAttachedBuilder;

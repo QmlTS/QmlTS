@@ -47,6 +47,10 @@ export namespace ContentLayer {
     export const Layer29 = createEnumToken('ContentLayer', 'LayerFlags', 'Layer29');
     export const Layer30 = createEnumToken('ContentLayer', 'LayerFlags', 'Layer30');
     export const Layer31 = createEnumToken('ContentLayer', 'LayerFlags', 'Layer31');
-    export const ReservedLayerMask = createEnumToken('ContentLayer', 'LayerFlags', 'ReservedLayerMask');
+    export const ReservedLayerMask = createEnumToken(
+      'ContentLayer',
+      'LayerFlags',
+      'ReservedLayerMask',
+    );
   }
 }

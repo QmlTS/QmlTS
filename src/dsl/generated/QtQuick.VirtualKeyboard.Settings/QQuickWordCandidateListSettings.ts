@@ -2,7 +2,6 @@
 // Type: Grouped surface: QtVirtualKeyboard::QQuickWordCandidateListSettings
 // Generated from Qt 6.11.0
 
-
 export interface WordCandidateListBuilder {
   alwaysVisible(value: boolean): WordCandidateListBuilder;
   alwaysVisibleBind(expr: string): WordCandidateListBuilder;

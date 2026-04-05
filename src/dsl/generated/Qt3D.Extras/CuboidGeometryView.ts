@@ -2,8 +2,14 @@
 // Type: CuboidGeometryView
 // Generated from Qt 6.11.0
 
+import type {
+  QmlEnumToken,
+  QmlObjectBuilder,
+  QmlSize,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
-import type { QmlEnumToken, QmlObjectBuilder, QmlSize, QmlValue, TypeMetadata } from '../../runtime/index.js';
 import type { GeometryBuilder } from '../Qt3D.Core/Geometry.js';
 export interface CuboidGeometryViewBuilder {
   id(id: string): CuboidGeometryViewBuilder;
@@ -119,14 +125,15 @@ const CUBOIDGEOMETRYVIEW_META: TypeMetadata = {
     { handlerName: 'onYzMeshResolutionChanged', paramCount: 1 },
     { handlerName: 'onZExtentChanged', paramCount: 1 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function CuboidGeometryView(): CuboidGeometryViewBuilder {
-  return createFluentBuilder('CuboidGeometryView', CUBOIDGEOMETRYVIEW_META) as unknown as CuboidGeometryViewBuilder;
+  return createFluentBuilder(
+    'CuboidGeometryView',
+    CUBOIDGEOMETRYVIEW_META,
+  ) as unknown as CuboidGeometryViewBuilder;
 }
 
 export namespace CuboidGeometryView {
@@ -136,12 +143,36 @@ export namespace CuboidGeometryView {
     export const LineLoop = createEnumToken('CuboidGeometryView', 'PrimitiveType', 'LineLoop');
     export const LineStrip = createEnumToken('CuboidGeometryView', 'PrimitiveType', 'LineStrip');
     export const Triangles = createEnumToken('CuboidGeometryView', 'PrimitiveType', 'Triangles');
-    export const TriangleStrip = createEnumToken('CuboidGeometryView', 'PrimitiveType', 'TriangleStrip');
-    export const TriangleFan = createEnumToken('CuboidGeometryView', 'PrimitiveType', 'TriangleFan');
-    export const LinesAdjacency = createEnumToken('CuboidGeometryView', 'PrimitiveType', 'LinesAdjacency');
-    export const TrianglesAdjacency = createEnumToken('CuboidGeometryView', 'PrimitiveType', 'TrianglesAdjacency');
-    export const LineStripAdjacency = createEnumToken('CuboidGeometryView', 'PrimitiveType', 'LineStripAdjacency');
-    export const TriangleStripAdjacency = createEnumToken('CuboidGeometryView', 'PrimitiveType', 'TriangleStripAdjacency');
+    export const TriangleStrip = createEnumToken(
+      'CuboidGeometryView',
+      'PrimitiveType',
+      'TriangleStrip',
+    );
+    export const TriangleFan = createEnumToken(
+      'CuboidGeometryView',
+      'PrimitiveType',
+      'TriangleFan',
+    );
+    export const LinesAdjacency = createEnumToken(
+      'CuboidGeometryView',
+      'PrimitiveType',
+      'LinesAdjacency',
+    );
+    export const TrianglesAdjacency = createEnumToken(
+      'CuboidGeometryView',
+      'PrimitiveType',
+      'TrianglesAdjacency',
+    );
+    export const LineStripAdjacency = createEnumToken(
+      'CuboidGeometryView',
+      'PrimitiveType',
+      'LineStripAdjacency',
+    );
+    export const TriangleStripAdjacency = createEnumToken(
+      'CuboidGeometryView',
+      'PrimitiveType',
+      'TriangleStripAdjacency',
+    );
     export const Patches = createEnumToken('CuboidGeometryView', 'PrimitiveType', 'Patches');
   }
 }

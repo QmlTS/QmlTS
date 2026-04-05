@@ -2,8 +2,8 @@
 // Type: CandlestickSeries
 // Generated from Qt 6.11.0
 
-import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { QmlColor, QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface CandlestickSeriesBuilder {
   id(id: string): CandlestickSeriesBuilder;
   child(obj: QmlObjectBuilder): CandlestickSeriesBuilder;
@@ -159,15 +159,16 @@ const CANDLESTICKSERIES_META: TypeMetadata = {
     { handlerName: 'onVisibleChanged', paramCount: 0 },
     { handlerName: 'onZValueChanged', paramCount: 1 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
   defaultProperty: 'seriesChildren',
 };
 
 export function CandlestickSeries(): CandlestickSeriesBuilder {
-  return createFluentBuilder('CandlestickSeries', CANDLESTICKSERIES_META) as unknown as CandlestickSeriesBuilder;
+  return createFluentBuilder(
+    'CandlestickSeries',
+    CANDLESTICKSERIES_META,
+  ) as unknown as CandlestickSeriesBuilder;
 }
 
 export namespace CandlestickSeries {

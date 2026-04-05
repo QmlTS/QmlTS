@@ -2,8 +2,16 @@
 // Type: ShapePath
 // Generated from Qt 6.11.0
 
+import type {
+  QmlColor,
+  QmlEnumToken,
+  QmlMatrix4x4,
+  QmlObjectBuilder,
+  QmlSize,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
-import type { QmlColor, QmlEnumToken, QmlMatrix4x4, QmlObjectBuilder, QmlSize, QmlValue, TypeMetadata } from '../../runtime/index.js';
 import type { ItemBuilder } from '../QtQuick/Item.js';
 import type { TrimBuilder } from './QQuickShapeTrim.js';
 export interface ShapePathBuilder {
@@ -139,8 +147,7 @@ const SHAPEPATH_META: TypeMetadata = {
       ],
     },
   ],
-  attached: [
-  ],
+  attached: [],
   defaultProperty: 'pathElements',
 };
 
@@ -169,8 +176,16 @@ export namespace ShapePath {
     export const PathConvex = createEnumToken('ShapePath', 'PathHints', 'PathConvex');
     export const PathFillOnRight = createEnumToken('ShapePath', 'PathHints', 'PathFillOnRight');
     export const PathSolid = createEnumToken('ShapePath', 'PathHints', 'PathSolid');
-    export const PathNonIntersecting = createEnumToken('ShapePath', 'PathHints', 'PathNonIntersecting');
-    export const PathNonOverlappingControlPointTriangles = createEnumToken('ShapePath', 'PathHints', 'PathNonOverlappingControlPointTriangles');
+    export const PathNonIntersecting = createEnumToken(
+      'ShapePath',
+      'PathHints',
+      'PathNonIntersecting',
+    );
+    export const PathNonOverlappingControlPointTriangles = createEnumToken(
+      'ShapePath',
+      'PathHints',
+      'PathNonOverlappingControlPointTriangles',
+    );
   }
   export namespace StrokeStyle {
     export const SolidLine = createEnumToken('ShapePath', 'StrokeStyle', 'SolidLine');

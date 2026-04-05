@@ -2,8 +2,13 @@
 // Type: DelegateContainer
 // Generated from Qt 6.11.0
 
+import type {
+  QmlEnumToken,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
-import type { QmlEnumToken, QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
 import type { QtObjectBuilder } from '../QML/QtObject.js';
 import type { ItemBuilder } from '../QtQuick/Item.js';
 import type { PaletteBuilder } from '../QtQuick/Palette.js';
@@ -218,39 +223,113 @@ const DELEGATECONTAINER_META: TypeMetadata = {
       ],
     },
   ],
-  attached: [
-  ],
+  attached: [],
   defaultProperty: 'data',
 };
 
 export function DelegateContainer(): DelegateContainerBuilder {
-  return createFluentBuilder('DelegateContainer', DELEGATECONTAINER_META) as unknown as DelegateContainerBuilder;
+  return createFluentBuilder(
+    'DelegateContainer',
+    DELEGATECONTAINER_META,
+  ) as unknown as DelegateContainerBuilder;
 }
 
 export namespace DelegateContainer {
   export namespace Flags {
-    export const ItemClipsChildrenToShape = createEnumToken('DelegateContainer', 'Flags', 'ItemClipsChildrenToShape');
-    export const ItemAcceptsInputMethod = createEnumToken('DelegateContainer', 'Flags', 'ItemAcceptsInputMethod');
-    export const ItemIsFocusScope = createEnumToken('DelegateContainer', 'Flags', 'ItemIsFocusScope');
+    export const ItemClipsChildrenToShape = createEnumToken(
+      'DelegateContainer',
+      'Flags',
+      'ItemClipsChildrenToShape',
+    );
+    export const ItemAcceptsInputMethod = createEnumToken(
+      'DelegateContainer',
+      'Flags',
+      'ItemAcceptsInputMethod',
+    );
+    export const ItemIsFocusScope = createEnumToken(
+      'DelegateContainer',
+      'Flags',
+      'ItemIsFocusScope',
+    );
     export const ItemHasContents = createEnumToken('DelegateContainer', 'Flags', 'ItemHasContents');
-    export const ItemAcceptsDrops = createEnumToken('DelegateContainer', 'Flags', 'ItemAcceptsDrops');
+    export const ItemAcceptsDrops = createEnumToken(
+      'DelegateContainer',
+      'Flags',
+      'ItemAcceptsDrops',
+    );
     export const ItemIsViewport = createEnumToken('DelegateContainer', 'Flags', 'ItemIsViewport');
-    export const ItemObservesViewport = createEnumToken('DelegateContainer', 'Flags', 'ItemObservesViewport');
+    export const ItemObservesViewport = createEnumToken(
+      'DelegateContainer',
+      'Flags',
+      'ItemObservesViewport',
+    );
   }
   export namespace ItemChange {
-    export const ItemChildAddedChange = createEnumToken('DelegateContainer', 'ItemChange', 'ItemChildAddedChange');
-    export const ItemChildRemovedChange = createEnumToken('DelegateContainer', 'ItemChange', 'ItemChildRemovedChange');
-    export const ItemSceneChange = createEnumToken('DelegateContainer', 'ItemChange', 'ItemSceneChange');
-    export const ItemVisibleHasChanged = createEnumToken('DelegateContainer', 'ItemChange', 'ItemVisibleHasChanged');
-    export const ItemParentHasChanged = createEnumToken('DelegateContainer', 'ItemChange', 'ItemParentHasChanged');
-    export const ItemOpacityHasChanged = createEnumToken('DelegateContainer', 'ItemChange', 'ItemOpacityHasChanged');
-    export const ItemActiveFocusHasChanged = createEnumToken('DelegateContainer', 'ItemChange', 'ItemActiveFocusHasChanged');
-    export const ItemRotationHasChanged = createEnumToken('DelegateContainer', 'ItemChange', 'ItemRotationHasChanged');
-    export const ItemAntialiasingHasChanged = createEnumToken('DelegateContainer', 'ItemChange', 'ItemAntialiasingHasChanged');
-    export const ItemDevicePixelRatioHasChanged = createEnumToken('DelegateContainer', 'ItemChange', 'ItemDevicePixelRatioHasChanged');
-    export const ItemEnabledHasChanged = createEnumToken('DelegateContainer', 'ItemChange', 'ItemEnabledHasChanged');
-    export const ItemScaleHasChanged = createEnumToken('DelegateContainer', 'ItemChange', 'ItemScaleHasChanged');
-    export const ItemTransformHasChanged = createEnumToken('DelegateContainer', 'ItemChange', 'ItemTransformHasChanged');
+    export const ItemChildAddedChange = createEnumToken(
+      'DelegateContainer',
+      'ItemChange',
+      'ItemChildAddedChange',
+    );
+    export const ItemChildRemovedChange = createEnumToken(
+      'DelegateContainer',
+      'ItemChange',
+      'ItemChildRemovedChange',
+    );
+    export const ItemSceneChange = createEnumToken(
+      'DelegateContainer',
+      'ItemChange',
+      'ItemSceneChange',
+    );
+    export const ItemVisibleHasChanged = createEnumToken(
+      'DelegateContainer',
+      'ItemChange',
+      'ItemVisibleHasChanged',
+    );
+    export const ItemParentHasChanged = createEnumToken(
+      'DelegateContainer',
+      'ItemChange',
+      'ItemParentHasChanged',
+    );
+    export const ItemOpacityHasChanged = createEnumToken(
+      'DelegateContainer',
+      'ItemChange',
+      'ItemOpacityHasChanged',
+    );
+    export const ItemActiveFocusHasChanged = createEnumToken(
+      'DelegateContainer',
+      'ItemChange',
+      'ItemActiveFocusHasChanged',
+    );
+    export const ItemRotationHasChanged = createEnumToken(
+      'DelegateContainer',
+      'ItemChange',
+      'ItemRotationHasChanged',
+    );
+    export const ItemAntialiasingHasChanged = createEnumToken(
+      'DelegateContainer',
+      'ItemChange',
+      'ItemAntialiasingHasChanged',
+    );
+    export const ItemDevicePixelRatioHasChanged = createEnumToken(
+      'DelegateContainer',
+      'ItemChange',
+      'ItemDevicePixelRatioHasChanged',
+    );
+    export const ItemEnabledHasChanged = createEnumToken(
+      'DelegateContainer',
+      'ItemChange',
+      'ItemEnabledHasChanged',
+    );
+    export const ItemScaleHasChanged = createEnumToken(
+      'DelegateContainer',
+      'ItemChange',
+      'ItemScaleHasChanged',
+    );
+    export const ItemTransformHasChanged = createEnumToken(
+      'DelegateContainer',
+      'ItemChange',
+      'ItemTransformHasChanged',
+    );
   }
   export namespace TransformOrigin {
     export const TopLeft = createEnumToken('DelegateContainer', 'TransformOrigin', 'TopLeft');
@@ -261,6 +340,10 @@ export namespace DelegateContainer {
     export const Right = createEnumToken('DelegateContainer', 'TransformOrigin', 'Right');
     export const BottomLeft = createEnumToken('DelegateContainer', 'TransformOrigin', 'BottomLeft');
     export const Bottom = createEnumToken('DelegateContainer', 'TransformOrigin', 'Bottom');
-    export const BottomRight = createEnumToken('DelegateContainer', 'TransformOrigin', 'BottomRight');
+    export const BottomRight = createEnumToken(
+      'DelegateContainer',
+      'TransformOrigin',
+      'BottomRight',
+    );
   }
 }

@@ -2,8 +2,14 @@
 // Type: CharacterController
 // Generated from Qt 6.11.0
 
+import type {
+  QmlObjectBuilder,
+  QmlQuaternion,
+  QmlValue,
+  QmlVector3d,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
-import type { QmlObjectBuilder, QmlQuaternion, QmlValue, QmlVector3d, TypeMetadata } from '../../runtime/index.js';
 import type { PhysicsMaterialBuilder } from './PhysicsMaterial.js';
 export interface CharacterControllerBuilder {
   id(id: string): CharacterControllerBuilder;
@@ -178,14 +184,15 @@ const CHARACTERCONTROLLER_META: TypeMetadata = {
     { handlerName: 'onYChanged', paramCount: 0 },
     { handlerName: 'onZChanged', paramCount: 0 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function CharacterController(): CharacterControllerBuilder {
-  return createFluentBuilder('CharacterController', CHARACTERCONTROLLER_META) as unknown as CharacterControllerBuilder;
+  return createFluentBuilder(
+    'CharacterController',
+    CHARACTERCONTROLLER_META,
+  ) as unknown as CharacterControllerBuilder;
 }
 
 export namespace CharacterController {
@@ -199,8 +206,20 @@ export namespace CharacterController {
     export const None = createEnumToken('CharacterController', 'StaticFlags', 'None');
   }
   export namespace TransformSpace {
-    export const LocalSpace = createEnumToken('CharacterController', 'TransformSpace', 'LocalSpace');
-    export const ParentSpace = createEnumToken('CharacterController', 'TransformSpace', 'ParentSpace');
-    export const SceneSpace = createEnumToken('CharacterController', 'TransformSpace', 'SceneSpace');
+    export const LocalSpace = createEnumToken(
+      'CharacterController',
+      'TransformSpace',
+      'LocalSpace',
+    );
+    export const ParentSpace = createEnumToken(
+      'CharacterController',
+      'TransformSpace',
+      'ParentSpace',
+    );
+    export const SceneSpace = createEnumToken(
+      'CharacterController',
+      'TransformSpace',
+      'SceneSpace',
+    );
   }
 }

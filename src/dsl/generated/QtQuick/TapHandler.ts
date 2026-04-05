@@ -2,8 +2,8 @@
 // Type: TapHandler
 // Generated from Qt 6.11.0
 
-import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { QmlEnumToken, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { AccessibleAttachedBuilder } from './Accessible.js';
 import type { EnterKeyAttachedBuilder } from './EnterKey.js';
 import type { GraphicsInfoAttachedBuilder } from './GraphicsInfo.js';
@@ -146,8 +146,7 @@ const TAPHANDLER_META: TypeMetadata = {
     { handlerName: 'onTargetChanged', paramCount: 0 },
     { handlerName: 'onTimeHeldChanged', paramCount: 0 },
   ],
-  grouped: [
-  ],
+  grouped: [],
   attached: [
     {
       methodName: 'accessible',
@@ -261,9 +260,7 @@ const TAPHANDLER_META: TypeMetadata = {
     {
       methodName: 'graphicsInfo',
       attachedTypeName: 'GraphicsInfo',
-      properties: [
-        { name: 'objectName', hasValue: true, hasBinding: true },
-      ],
+      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
       signals: [
         { handlerName: 'onApiChanged', paramCount: 0 },
         { handlerName: 'onMajorVersionChanged', paramCount: 0 },
@@ -414,9 +411,7 @@ const TAPHANDLER_META: TypeMetadata = {
     {
       methodName: 'pathView',
       attachedTypeName: 'PathView',
-      properties: [
-        { name: 'objectName', hasValue: true, hasBinding: true },
-      ],
+      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
       signals: [
         { handlerName: 'onCurrentItemChanged', paramCount: 0 },
         { handlerName: 'onPathChanged', paramCount: 0 },
@@ -426,9 +421,7 @@ const TAPHANDLER_META: TypeMetadata = {
     {
       methodName: 'positioner',
       attachedTypeName: 'Positioner',
-      properties: [
-        { name: 'objectName', hasValue: true, hasBinding: true },
-      ],
+      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
       signals: [
         { handlerName: 'onIndexChanged', paramCount: 0 },
         { handlerName: 'onIsFirstItemChanged', paramCount: 0 },
@@ -452,9 +445,7 @@ const TAPHANDLER_META: TypeMetadata = {
     {
       methodName: 'screen',
       attachedTypeName: 'Screen',
-      properties: [
-        { name: 'objectName', hasValue: true, hasBinding: true },
-      ],
+      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
       signals: [
         { handlerName: 'onDesktopGeometryChanged', paramCount: 0 },
         { handlerName: 'onDevicePixelRatioChanged', paramCount: 0 },
@@ -492,9 +483,7 @@ const TAPHANDLER_META: TypeMetadata = {
     {
       methodName: 'viewTransition',
       attachedTypeName: 'ViewTransition',
-      properties: [
-        { name: 'objectName', hasValue: true, hasBinding: true },
-      ],
+      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
       signals: [
         { handlerName: 'onDestinationChanged', paramCount: 0 },
         { handlerName: 'onIndexChanged', paramCount: 0 },
@@ -507,9 +496,7 @@ const TAPHANDLER_META: TypeMetadata = {
     {
       methodName: 'window',
       attachedTypeName: 'Window',
-      properties: [
-        { name: 'objectName', hasValue: true, hasBinding: true },
-      ],
+      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
       signals: [
         { handlerName: 'onActiveChanged', paramCount: 0 },
         { handlerName: 'onActiveFocusItemChanged', paramCount: 0 },
@@ -537,19 +524,67 @@ export namespace TapHandler {
   export namespace GesturePolicy {
     export const DragThreshold = createEnumToken('TapHandler', 'GesturePolicy', 'DragThreshold');
     export const WithinBounds = createEnumToken('TapHandler', 'GesturePolicy', 'WithinBounds');
-    export const ReleaseWithinBounds = createEnumToken('TapHandler', 'GesturePolicy', 'ReleaseWithinBounds');
-    export const DragWithinBounds = createEnumToken('TapHandler', 'GesturePolicy', 'DragWithinBounds');
+    export const ReleaseWithinBounds = createEnumToken(
+      'TapHandler',
+      'GesturePolicy',
+      'ReleaseWithinBounds',
+    );
+    export const DragWithinBounds = createEnumToken(
+      'TapHandler',
+      'GesturePolicy',
+      'DragWithinBounds',
+    );
   }
   export namespace GrabPermissions {
-    export const TakeOverForbidden = createEnumToken('TapHandler', 'GrabPermissions', 'TakeOverForbidden');
-    export const CanTakeOverFromHandlersOfSameType = createEnumToken('TapHandler', 'GrabPermissions', 'CanTakeOverFromHandlersOfSameType');
-    export const CanTakeOverFromHandlersOfDifferentType = createEnumToken('TapHandler', 'GrabPermissions', 'CanTakeOverFromHandlersOfDifferentType');
-    export const CanTakeOverFromItems = createEnumToken('TapHandler', 'GrabPermissions', 'CanTakeOverFromItems');
-    export const CanTakeOverFromAnything = createEnumToken('TapHandler', 'GrabPermissions', 'CanTakeOverFromAnything');
-    export const ApprovesTakeOverByHandlersOfSameType = createEnumToken('TapHandler', 'GrabPermissions', 'ApprovesTakeOverByHandlersOfSameType');
-    export const ApprovesTakeOverByHandlersOfDifferentType = createEnumToken('TapHandler', 'GrabPermissions', 'ApprovesTakeOverByHandlersOfDifferentType');
-    export const ApprovesTakeOverByItems = createEnumToken('TapHandler', 'GrabPermissions', 'ApprovesTakeOverByItems');
-    export const ApprovesCancellation = createEnumToken('TapHandler', 'GrabPermissions', 'ApprovesCancellation');
-    export const ApprovesTakeOverByAnything = createEnumToken('TapHandler', 'GrabPermissions', 'ApprovesTakeOverByAnything');
+    export const TakeOverForbidden = createEnumToken(
+      'TapHandler',
+      'GrabPermissions',
+      'TakeOverForbidden',
+    );
+    export const CanTakeOverFromHandlersOfSameType = createEnumToken(
+      'TapHandler',
+      'GrabPermissions',
+      'CanTakeOverFromHandlersOfSameType',
+    );
+    export const CanTakeOverFromHandlersOfDifferentType = createEnumToken(
+      'TapHandler',
+      'GrabPermissions',
+      'CanTakeOverFromHandlersOfDifferentType',
+    );
+    export const CanTakeOverFromItems = createEnumToken(
+      'TapHandler',
+      'GrabPermissions',
+      'CanTakeOverFromItems',
+    );
+    export const CanTakeOverFromAnything = createEnumToken(
+      'TapHandler',
+      'GrabPermissions',
+      'CanTakeOverFromAnything',
+    );
+    export const ApprovesTakeOverByHandlersOfSameType = createEnumToken(
+      'TapHandler',
+      'GrabPermissions',
+      'ApprovesTakeOverByHandlersOfSameType',
+    );
+    export const ApprovesTakeOverByHandlersOfDifferentType = createEnumToken(
+      'TapHandler',
+      'GrabPermissions',
+      'ApprovesTakeOverByHandlersOfDifferentType',
+    );
+    export const ApprovesTakeOverByItems = createEnumToken(
+      'TapHandler',
+      'GrabPermissions',
+      'ApprovesTakeOverByItems',
+    );
+    export const ApprovesCancellation = createEnumToken(
+      'TapHandler',
+      'GrabPermissions',
+      'ApprovesCancellation',
+    );
+    export const ApprovesTakeOverByAnything = createEnumToken(
+      'TapHandler',
+      'GrabPermissions',
+      'ApprovesTakeOverByAnything',
+    );
   }
 }

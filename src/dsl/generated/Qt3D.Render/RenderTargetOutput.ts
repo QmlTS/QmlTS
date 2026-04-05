@@ -2,8 +2,13 @@
 // Type: RenderTargetOutput
 // Generated from Qt 6.11.0
 
+import type {
+  QmlEnumToken,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
-import type { QmlEnumToken, QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
 export interface RenderTargetOutputBuilder {
   id(id: string): RenderTargetOutputBuilder;
   child(obj: QmlObjectBuilder): RenderTargetOutputBuilder;
@@ -58,14 +63,15 @@ const RENDERTARGETOUTPUT_META: TypeMetadata = {
     { handlerName: 'onParentChanged', paramCount: 1 },
     { handlerName: 'onTextureChanged', paramCount: 1 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function RenderTargetOutput(): RenderTargetOutputBuilder {
-  return createFluentBuilder('RenderTargetOutput', RENDERTARGETOUTPUT_META) as unknown as RenderTargetOutputBuilder;
+  return createFluentBuilder(
+    'RenderTargetOutput',
+    RENDERTARGETOUTPUT_META,
+  ) as unknown as RenderTargetOutputBuilder;
 }
 
 export namespace RenderTargetOutput {
@@ -88,7 +94,11 @@ export namespace RenderTargetOutput {
     export const Color15 = createEnumToken('RenderTargetOutput', 'AttachmentPoint', 'Color15');
     export const Depth = createEnumToken('RenderTargetOutput', 'AttachmentPoint', 'Depth');
     export const Stencil = createEnumToken('RenderTargetOutput', 'AttachmentPoint', 'Stencil');
-    export const DepthStencil = createEnumToken('RenderTargetOutput', 'AttachmentPoint', 'DepthStencil');
+    export const DepthStencil = createEnumToken(
+      'RenderTargetOutput',
+      'AttachmentPoint',
+      'DepthStencil',
+    );
     export const Left = createEnumToken('RenderTargetOutput', 'AttachmentPoint', 'Left');
     export const Right = createEnumToken('RenderTargetOutput', 'AttachmentPoint', 'Right');
   }

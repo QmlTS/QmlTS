@@ -2,8 +2,13 @@
 // Type: PlaceSearchModel
 // Generated from Qt 6.11.0
 
+import type {
+  QmlEnumToken,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
-import type { QmlEnumToken, QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
 import type { PluginBuilder } from './Plugin.js';
 export interface PlaceSearchModelBuilder {
   id(id: string): PlaceSearchModelBuilder;
@@ -118,37 +123,86 @@ const PLACESEARCHMODEL_META: TypeMetadata = {
     { handlerName: 'onStatusChanged', paramCount: 0 },
     { handlerName: 'onVisibilityScopeChanged', paramCount: 0 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function PlaceSearchModel(): PlaceSearchModelBuilder {
-  return createFluentBuilder('PlaceSearchModel', PLACESEARCHMODEL_META) as unknown as PlaceSearchModelBuilder;
+  return createFluentBuilder(
+    'PlaceSearchModel',
+    PLACESEARCHMODEL_META,
+  ) as unknown as PlaceSearchModelBuilder;
 }
 
 export namespace PlaceSearchModel {
   export namespace CheckIndexOption {
     export const NoOption = createEnumToken('PlaceSearchModel', 'CheckIndexOption', 'NoOption');
-    export const IndexIsValid = createEnumToken('PlaceSearchModel', 'CheckIndexOption', 'IndexIsValid');
-    export const DoNotUseParent = createEnumToken('PlaceSearchModel', 'CheckIndexOption', 'DoNotUseParent');
-    export const ParentIsInvalid = createEnumToken('PlaceSearchModel', 'CheckIndexOption', 'ParentIsInvalid');
+    export const IndexIsValid = createEnumToken(
+      'PlaceSearchModel',
+      'CheckIndexOption',
+      'IndexIsValid',
+    );
+    export const DoNotUseParent = createEnumToken(
+      'PlaceSearchModel',
+      'CheckIndexOption',
+      'DoNotUseParent',
+    );
+    export const ParentIsInvalid = createEnumToken(
+      'PlaceSearchModel',
+      'CheckIndexOption',
+      'ParentIsInvalid',
+    );
   }
   export namespace LayoutChangeHint {
-    export const NoLayoutChangeHint = createEnumToken('PlaceSearchModel', 'LayoutChangeHint', 'NoLayoutChangeHint');
-    export const VerticalSortHint = createEnumToken('PlaceSearchModel', 'LayoutChangeHint', 'VerticalSortHint');
-    export const HorizontalSortHint = createEnumToken('PlaceSearchModel', 'LayoutChangeHint', 'HorizontalSortHint');
+    export const NoLayoutChangeHint = createEnumToken(
+      'PlaceSearchModel',
+      'LayoutChangeHint',
+      'NoLayoutChangeHint',
+    );
+    export const VerticalSortHint = createEnumToken(
+      'PlaceSearchModel',
+      'LayoutChangeHint',
+      'VerticalSortHint',
+    );
+    export const HorizontalSortHint = createEnumToken(
+      'PlaceSearchModel',
+      'LayoutChangeHint',
+      'HorizontalSortHint',
+    );
   }
   export namespace RelevanceHint {
-    export const UnspecifiedHint = createEnumToken('PlaceSearchModel', 'RelevanceHint', 'UnspecifiedHint');
-    export const DistanceHint = createEnumToken('PlaceSearchModel', 'RelevanceHint', 'DistanceHint');
-    export const LexicalPlaceNameHint = createEnumToken('PlaceSearchModel', 'RelevanceHint', 'LexicalPlaceNameHint');
+    export const UnspecifiedHint = createEnumToken(
+      'PlaceSearchModel',
+      'RelevanceHint',
+      'UnspecifiedHint',
+    );
+    export const DistanceHint = createEnumToken(
+      'PlaceSearchModel',
+      'RelevanceHint',
+      'DistanceHint',
+    );
+    export const LexicalPlaceNameHint = createEnumToken(
+      'PlaceSearchModel',
+      'RelevanceHint',
+      'LexicalPlaceNameHint',
+    );
   }
   export namespace SearchResultType {
-    export const UnknownSearchResult = createEnumToken('PlaceSearchModel', 'SearchResultType', 'UnknownSearchResult');
-    export const PlaceResult = createEnumToken('PlaceSearchModel', 'SearchResultType', 'PlaceResult');
-    export const ProposedSearchResult = createEnumToken('PlaceSearchModel', 'SearchResultType', 'ProposedSearchResult');
+    export const UnknownSearchResult = createEnumToken(
+      'PlaceSearchModel',
+      'SearchResultType',
+      'UnknownSearchResult',
+    );
+    export const PlaceResult = createEnumToken(
+      'PlaceSearchModel',
+      'SearchResultType',
+      'PlaceResult',
+    );
+    export const ProposedSearchResult = createEnumToken(
+      'PlaceSearchModel',
+      'SearchResultType',
+      'ProposedSearchResult',
+    );
   }
   export namespace Status {
     export const Null = createEnumToken('PlaceSearchModel', 'Status', 'Null');

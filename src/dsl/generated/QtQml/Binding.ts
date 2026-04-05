@@ -2,8 +2,13 @@
 // Type: Binding
 // Generated from Qt 6.11.0
 
+import type {
+  QmlEnumToken,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
-import type { QmlEnumToken, QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
 import type { QtObjectBuilder } from '../QML/QtObject.js';
 export interface BindingBuilder {
   id(id: string): BindingBuilder;
@@ -52,10 +57,8 @@ const BINDING_META: TypeMetadata = {
     { handlerName: 'onValueChanged', paramCount: 0 },
     { handlerName: 'onWhenChanged', paramCount: 0 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function Binding(): BindingBuilder {
@@ -67,6 +70,10 @@ export namespace Binding {
     export const RestoreNone = createEnumToken('Binding', 'RestorationMode', 'RestoreNone');
     export const RestoreBinding = createEnumToken('Binding', 'RestorationMode', 'RestoreBinding');
     export const RestoreValue = createEnumToken('Binding', 'RestorationMode', 'RestoreValue');
-    export const RestoreBindingOrValue = createEnumToken('Binding', 'RestorationMode', 'RestoreBindingOrValue');
+    export const RestoreBindingOrValue = createEnumToken(
+      'Binding',
+      'RestorationMode',
+      'RestoreBindingOrValue',
+    );
   }
 }

@@ -2,8 +2,17 @@
 // Type: XrHandModel
 // Generated from Qt 6.11.0
 
+import type {
+  QmlEnumToken,
+  QmlMatrix4x4,
+  QmlObjectBuilder,
+  QmlQuaternion,
+  QmlUrl,
+  QmlValue,
+  QmlVector3d,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
-import type { QmlEnumToken, QmlMatrix4x4, QmlObjectBuilder, QmlQuaternion, QmlUrl, QmlValue, QmlVector3d, TypeMetadata } from '../../runtime/index.js';
 import type { BakedLightmapBuilder } from '../QtQuick3D/BakedLightmap.js';
 import type { NodeBuilder } from '../QtQuick3D/Node.js';
 import type { SkeletonBuilder } from '../QtQuick3D/Skeleton.js';
@@ -232,10 +241,8 @@ const XRHANDMODEL_META: TypeMetadata = {
     { handlerName: 'onYChanged', paramCount: 0 },
     { handlerName: 'onZChanged', paramCount: 0 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function XrHandModel(): XrHandModelBuilder {

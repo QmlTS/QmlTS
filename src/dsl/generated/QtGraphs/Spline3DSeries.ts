@@ -2,8 +2,16 @@
 // Type: Spline3DSeries
 // Generated from Qt 6.11.0
 
+import type {
+  QmlColor,
+  QmlEnumToken,
+  QmlObjectBuilder,
+  QmlQuaternion,
+  QmlValue,
+  QmlVector3d,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
-import type { QmlColor, QmlEnumToken, QmlObjectBuilder, QmlQuaternion, QmlValue, QmlVector3d, TypeMetadata } from '../../runtime/index.js';
 import type { GradientBuilder } from '../QtQuick/Gradient.js';
 import type { Value3DAxisBuilder } from './Value3DAxis.js';
 export interface Spline3DSeriesBuilder {
@@ -175,15 +183,16 @@ const SPLINE3DSERIES_META: TypeMetadata = {
     { handlerName: 'onUserDefinedMeshChanged', paramCount: 1 },
     { handlerName: 'onVisibleChanged', paramCount: 1 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
   defaultProperty: 'seriesChildren',
 };
 
 export function Spline3DSeries(): Spline3DSeriesBuilder {
-  return createFluentBuilder('Spline3DSeries', SPLINE3DSERIES_META) as unknown as Spline3DSeriesBuilder;
+  return createFluentBuilder(
+    'Spline3DSeries',
+    SPLINE3DSERIES_META,
+  ) as unknown as Spline3DSeriesBuilder;
 }
 
 export namespace Spline3DSeries {

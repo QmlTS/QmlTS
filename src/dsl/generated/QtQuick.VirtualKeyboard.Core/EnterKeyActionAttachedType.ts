@@ -2,7 +2,6 @@
 // Type: Attached type: EnterKeyAction
 // Generated from Qt 6.11.0
 
-
 export interface EnterKeyActionAttachedBuilder {
   actionId(value: number): EnterKeyActionAttachedBuilder;
   actionIdBind(expr: string): EnterKeyActionAttachedBuilder;

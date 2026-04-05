@@ -2,8 +2,15 @@
 // Type: MnemonicLabel
 // Generated from Qt 6.11.0
 
+import type {
+  QmlColor,
+  QmlEnumToken,
+  QmlFont,
+  QmlObjectBuilder,
+  QmlUrl,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
-import type { QmlColor, QmlEnumToken, QmlFont, QmlObjectBuilder, QmlUrl, TypeMetadata } from '../../runtime/index.js';
 import type { QtObjectBuilder } from '../QML/QtObject.js';
 import type { ItemBuilder } from '../QtQuick/Item.js';
 import type { PaletteBuilder } from '../QtQuick/Palette.js';
@@ -346,23 +353,37 @@ const MNEMONICLABEL_META: TypeMetadata = {
       ],
     },
   ],
-  attached: [
-  ],
+  attached: [],
 };
 
 export function MnemonicLabel(): MnemonicLabelBuilder {
-  return createFluentBuilder('MnemonicLabel', MNEMONICLABEL_META) as unknown as MnemonicLabelBuilder;
+  return createFluentBuilder(
+    'MnemonicLabel',
+    MNEMONICLABEL_META,
+  ) as unknown as MnemonicLabelBuilder;
 }
 
 export namespace MnemonicLabel {
   export namespace Flags {
-    export const ItemClipsChildrenToShape = createEnumToken('MnemonicLabel', 'Flags', 'ItemClipsChildrenToShape');
-    export const ItemAcceptsInputMethod = createEnumToken('MnemonicLabel', 'Flags', 'ItemAcceptsInputMethod');
+    export const ItemClipsChildrenToShape = createEnumToken(
+      'MnemonicLabel',
+      'Flags',
+      'ItemClipsChildrenToShape',
+    );
+    export const ItemAcceptsInputMethod = createEnumToken(
+      'MnemonicLabel',
+      'Flags',
+      'ItemAcceptsInputMethod',
+    );
     export const ItemIsFocusScope = createEnumToken('MnemonicLabel', 'Flags', 'ItemIsFocusScope');
     export const ItemHasContents = createEnumToken('MnemonicLabel', 'Flags', 'ItemHasContents');
     export const ItemAcceptsDrops = createEnumToken('MnemonicLabel', 'Flags', 'ItemAcceptsDrops');
     export const ItemIsViewport = createEnumToken('MnemonicLabel', 'Flags', 'ItemIsViewport');
-    export const ItemObservesViewport = createEnumToken('MnemonicLabel', 'Flags', 'ItemObservesViewport');
+    export const ItemObservesViewport = createEnumToken(
+      'MnemonicLabel',
+      'Flags',
+      'ItemObservesViewport',
+    );
   }
   export namespace FontSizeMode {
     export const FixedSize = createEnumToken('MnemonicLabel', 'FontSizeMode', 'FixedSize');
@@ -377,35 +398,115 @@ export namespace MnemonicLabel {
     export const AlignJustify = createEnumToken('MnemonicLabel', 'HAlignment', 'AlignJustify');
   }
   export namespace ItemChange {
-    export const ItemChildAddedChange = createEnumToken('MnemonicLabel', 'ItemChange', 'ItemChildAddedChange');
-    export const ItemChildRemovedChange = createEnumToken('MnemonicLabel', 'ItemChange', 'ItemChildRemovedChange');
-    export const ItemSceneChange = createEnumToken('MnemonicLabel', 'ItemChange', 'ItemSceneChange');
-    export const ItemVisibleHasChanged = createEnumToken('MnemonicLabel', 'ItemChange', 'ItemVisibleHasChanged');
-    export const ItemParentHasChanged = createEnumToken('MnemonicLabel', 'ItemChange', 'ItemParentHasChanged');
-    export const ItemOpacityHasChanged = createEnumToken('MnemonicLabel', 'ItemChange', 'ItemOpacityHasChanged');
-    export const ItemActiveFocusHasChanged = createEnumToken('MnemonicLabel', 'ItemChange', 'ItemActiveFocusHasChanged');
-    export const ItemRotationHasChanged = createEnumToken('MnemonicLabel', 'ItemChange', 'ItemRotationHasChanged');
-    export const ItemAntialiasingHasChanged = createEnumToken('MnemonicLabel', 'ItemChange', 'ItemAntialiasingHasChanged');
-    export const ItemDevicePixelRatioHasChanged = createEnumToken('MnemonicLabel', 'ItemChange', 'ItemDevicePixelRatioHasChanged');
-    export const ItemEnabledHasChanged = createEnumToken('MnemonicLabel', 'ItemChange', 'ItemEnabledHasChanged');
-    export const ItemScaleHasChanged = createEnumToken('MnemonicLabel', 'ItemChange', 'ItemScaleHasChanged');
-    export const ItemTransformHasChanged = createEnumToken('MnemonicLabel', 'ItemChange', 'ItemTransformHasChanged');
+    export const ItemChildAddedChange = createEnumToken(
+      'MnemonicLabel',
+      'ItemChange',
+      'ItemChildAddedChange',
+    );
+    export const ItemChildRemovedChange = createEnumToken(
+      'MnemonicLabel',
+      'ItemChange',
+      'ItemChildRemovedChange',
+    );
+    export const ItemSceneChange = createEnumToken(
+      'MnemonicLabel',
+      'ItemChange',
+      'ItemSceneChange',
+    );
+    export const ItemVisibleHasChanged = createEnumToken(
+      'MnemonicLabel',
+      'ItemChange',
+      'ItemVisibleHasChanged',
+    );
+    export const ItemParentHasChanged = createEnumToken(
+      'MnemonicLabel',
+      'ItemChange',
+      'ItemParentHasChanged',
+    );
+    export const ItemOpacityHasChanged = createEnumToken(
+      'MnemonicLabel',
+      'ItemChange',
+      'ItemOpacityHasChanged',
+    );
+    export const ItemActiveFocusHasChanged = createEnumToken(
+      'MnemonicLabel',
+      'ItemChange',
+      'ItemActiveFocusHasChanged',
+    );
+    export const ItemRotationHasChanged = createEnumToken(
+      'MnemonicLabel',
+      'ItemChange',
+      'ItemRotationHasChanged',
+    );
+    export const ItemAntialiasingHasChanged = createEnumToken(
+      'MnemonicLabel',
+      'ItemChange',
+      'ItemAntialiasingHasChanged',
+    );
+    export const ItemDevicePixelRatioHasChanged = createEnumToken(
+      'MnemonicLabel',
+      'ItemChange',
+      'ItemDevicePixelRatioHasChanged',
+    );
+    export const ItemEnabledHasChanged = createEnumToken(
+      'MnemonicLabel',
+      'ItemChange',
+      'ItemEnabledHasChanged',
+    );
+    export const ItemScaleHasChanged = createEnumToken(
+      'MnemonicLabel',
+      'ItemChange',
+      'ItemScaleHasChanged',
+    );
+    export const ItemTransformHasChanged = createEnumToken(
+      'MnemonicLabel',
+      'ItemChange',
+      'ItemTransformHasChanged',
+    );
   }
   export namespace LineHeightMode {
-    export const ProportionalHeight = createEnumToken('MnemonicLabel', 'LineHeightMode', 'ProportionalHeight');
+    export const ProportionalHeight = createEnumToken(
+      'MnemonicLabel',
+      'LineHeightMode',
+      'ProportionalHeight',
+    );
     export const FixedHeight = createEnumToken('MnemonicLabel', 'LineHeightMode', 'FixedHeight');
   }
   export namespace RenderType {
     export const QtRendering = createEnumToken('MnemonicLabel', 'RenderType', 'QtRendering');
-    export const NativeRendering = createEnumToken('MnemonicLabel', 'RenderType', 'NativeRendering');
+    export const NativeRendering = createEnumToken(
+      'MnemonicLabel',
+      'RenderType',
+      'NativeRendering',
+    );
     export const CurveRendering = createEnumToken('MnemonicLabel', 'RenderType', 'CurveRendering');
   }
   export namespace RenderTypeQuality {
-    export const DefaultRenderTypeQuality = createEnumToken('MnemonicLabel', 'RenderTypeQuality', 'DefaultRenderTypeQuality');
-    export const LowRenderTypeQuality = createEnumToken('MnemonicLabel', 'RenderTypeQuality', 'LowRenderTypeQuality');
-    export const NormalRenderTypeQuality = createEnumToken('MnemonicLabel', 'RenderTypeQuality', 'NormalRenderTypeQuality');
-    export const HighRenderTypeQuality = createEnumToken('MnemonicLabel', 'RenderTypeQuality', 'HighRenderTypeQuality');
-    export const VeryHighRenderTypeQuality = createEnumToken('MnemonicLabel', 'RenderTypeQuality', 'VeryHighRenderTypeQuality');
+    export const DefaultRenderTypeQuality = createEnumToken(
+      'MnemonicLabel',
+      'RenderTypeQuality',
+      'DefaultRenderTypeQuality',
+    );
+    export const LowRenderTypeQuality = createEnumToken(
+      'MnemonicLabel',
+      'RenderTypeQuality',
+      'LowRenderTypeQuality',
+    );
+    export const NormalRenderTypeQuality = createEnumToken(
+      'MnemonicLabel',
+      'RenderTypeQuality',
+      'NormalRenderTypeQuality',
+    );
+    export const HighRenderTypeQuality = createEnumToken(
+      'MnemonicLabel',
+      'RenderTypeQuality',
+      'HighRenderTypeQuality',
+    );
+    export const VeryHighRenderTypeQuality = createEnumToken(
+      'MnemonicLabel',
+      'RenderTypeQuality',
+      'VeryHighRenderTypeQuality',
+    );
   }
   export namespace TextElideMode {
     export const ElideLeft = createEnumToken('MnemonicLabel', 'TextElideMode', 'ElideLeft');
@@ -446,7 +547,11 @@ export namespace MnemonicLabel {
     export const NoWrap = createEnumToken('MnemonicLabel', 'WrapMode', 'NoWrap');
     export const WordWrap = createEnumToken('MnemonicLabel', 'WrapMode', 'WordWrap');
     export const WrapAnywhere = createEnumToken('MnemonicLabel', 'WrapMode', 'WrapAnywhere');
-    export const WrapAtWordBoundaryOrAnywhere = createEnumToken('MnemonicLabel', 'WrapMode', 'WrapAtWordBoundaryOrAnywhere');
+    export const WrapAtWordBoundaryOrAnywhere = createEnumToken(
+      'MnemonicLabel',
+      'WrapMode',
+      'WrapAtWordBoundaryOrAnywhere',
+    );
     export const Wrap = createEnumToken('MnemonicLabel', 'WrapMode', 'Wrap');
   }
 }

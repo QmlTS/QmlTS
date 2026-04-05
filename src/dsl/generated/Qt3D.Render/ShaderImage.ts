@@ -2,8 +2,13 @@
 // Type: ShaderImage
 // Generated from Qt 6.11.0
 
+import type {
+  QmlEnumToken,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
-import type { QmlEnumToken, QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
 export interface ShaderImageBuilder {
   id(id: string): ShaderImageBuilder;
   child(obj: QmlObjectBuilder): ShaderImageBuilder;
@@ -63,10 +68,8 @@ const SHADERIMAGE_META: TypeMetadata = {
     { handlerName: 'onParentChanged', paramCount: 1 },
     { handlerName: 'onTextureChanged', paramCount: 1 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function ShaderImage(): ShaderImageBuilder {

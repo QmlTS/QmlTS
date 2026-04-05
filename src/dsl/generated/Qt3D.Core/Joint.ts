@@ -2,8 +2,15 @@
 // Type: Joint
 // Generated from Qt 6.11.0
 
+import type {
+  QmlMatrix4x4,
+  QmlObjectBuilder,
+  QmlQuaternion,
+  QmlValue,
+  QmlVector3d,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
-import type { QmlMatrix4x4, QmlObjectBuilder, QmlQuaternion, QmlValue, QmlVector3d, TypeMetadata } from '../../runtime/index.js';
 export interface JointBuilder {
   id(id: string): JointBuilder;
   child(obj: QmlObjectBuilder): JointBuilder;
@@ -73,10 +80,8 @@ const JOINT_META: TypeMetadata = {
     { handlerName: 'onScaleChanged', paramCount: 1 },
     { handlerName: 'onTranslationChanged', paramCount: 1 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function Joint(): JointBuilder {

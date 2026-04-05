@@ -2,8 +2,8 @@
 // Type: WebEngineProfilePrototype
 // Generated from Qt 6.11.0
 
-import { createFluentBuilder } from '../../runtime/index.js';
 import type { QmlEnumToken, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import { createFluentBuilder } from '../../runtime/index.js';
 export interface WebEngineProfilePrototypeBuilder {
   id(id: string): WebEngineProfilePrototypeBuilder;
   child(obj: QmlObjectBuilder): WebEngineProfilePrototypeBuilder;
@@ -42,15 +42,14 @@ const WEBENGINEPROFILEPROTOTYPE_META: TypeMetadata = {
     { name: 'persistentStoragePath', hasValue: true, hasBinding: true },
     { name: 'storageName', hasValue: true, hasBinding: true },
   ],
-  signals: [
-    { handlerName: 'onObjectNameChanged', paramCount: 1 },
-  ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  signals: [{ handlerName: 'onObjectNameChanged', paramCount: 1 }],
+  grouped: [],
+  attached: [],
 };
 
 export function WebEngineProfilePrototype(): WebEngineProfilePrototypeBuilder {
-  return createFluentBuilder('WebEngineProfilePrototype', WEBENGINEPROFILEPROTOTYPE_META) as unknown as WebEngineProfilePrototypeBuilder;
+  return createFluentBuilder(
+    'WebEngineProfilePrototype',
+    WEBENGINEPROFILEPROTOTYPE_META,
+  ) as unknown as WebEngineProfilePrototypeBuilder;
 }

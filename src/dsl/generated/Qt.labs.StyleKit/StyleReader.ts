@@ -2,8 +2,8 @@
 // Type: StyleReader
 // Generated from Qt 6.11.0
 
-import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { PaletteBuilder } from '../QtQuick/Palette.js';
 import type { TransitionBuilder } from '../QtQuick/Transition.js';
 import type { StyleKitAttachedBuilder } from './QQStyleKitAttached.js';
@@ -185,7 +185,11 @@ export namespace StyleReader {
     export const Unspecified = createEnumToken('StyleReader', 'ControlType', 'Unspecified');
     export const Control = createEnumToken('StyleReader', 'ControlType', 'Control');
     export const AbstractButton = createEnumToken('StyleReader', 'ControlType', 'AbstractButton');
-    export const ApplicationWindow = createEnumToken('StyleReader', 'ControlType', 'ApplicationWindow');
+    export const ApplicationWindow = createEnumToken(
+      'StyleReader',
+      'ControlType',
+      'ApplicationWindow',
+    );
     export const Button = createEnumToken('StyleReader', 'ControlType', 'Button');
     export const CheckBox = createEnumToken('StyleReader', 'ControlType', 'CheckBox');
     export const ComboBox = createEnumToken('StyleReader', 'ControlType', 'ComboBox');

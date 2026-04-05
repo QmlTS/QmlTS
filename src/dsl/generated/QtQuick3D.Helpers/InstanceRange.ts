@@ -2,8 +2,8 @@
 // Type: InstanceRange
 // Generated from Qt 6.11.0
 
-import { createFluentBuilder } from '../../runtime/index.js';
 import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import { createFluentBuilder } from '../../runtime/index.js';
 export interface InstanceRangeBuilder {
   id(id: string): InstanceRangeBuilder;
   child(obj: QmlObjectBuilder): InstanceRangeBuilder;
@@ -50,13 +50,14 @@ const INSTANCERANGE_META: TypeMetadata = {
     { handlerName: 'onStateChanged', paramCount: 0 },
     { handlerName: 'onToChanged', paramCount: 0 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
   defaultProperty: 'data',
 };
 
 export function InstanceRange(): InstanceRangeBuilder {
-  return createFluentBuilder('InstanceRange', INSTANCERANGE_META) as unknown as InstanceRangeBuilder;
+  return createFluentBuilder(
+    'InstanceRange',
+    INSTANCERANGE_META,
+  ) as unknown as InstanceRangeBuilder;
 }

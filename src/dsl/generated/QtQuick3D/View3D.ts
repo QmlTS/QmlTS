@@ -2,8 +2,13 @@
 // Type: View3D
 // Generated from Qt 6.11.0
 
+import type {
+  QmlEnumToken,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
-import type { QmlEnumToken, QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
 import type { QtObjectBuilder } from '../QML/QtObject.js';
 import type { ItemBuilder } from '../QtQuick/Item.js';
 import type { PaletteBuilder } from '../QtQuick/Palette.js';
@@ -250,8 +255,7 @@ const VIEW3D_META: TypeMetadata = {
       ],
     },
   ],
-  attached: [
-  ],
+  attached: [],
   defaultProperty: 'data',
 };
 
@@ -261,8 +265,16 @@ export function View3D(): View3DBuilder {
 
 export namespace View3D {
   export namespace Flags {
-    export const ItemClipsChildrenToShape = createEnumToken('View3D', 'Flags', 'ItemClipsChildrenToShape');
-    export const ItemAcceptsInputMethod = createEnumToken('View3D', 'Flags', 'ItemAcceptsInputMethod');
+    export const ItemClipsChildrenToShape = createEnumToken(
+      'View3D',
+      'Flags',
+      'ItemClipsChildrenToShape',
+    );
+    export const ItemAcceptsInputMethod = createEnumToken(
+      'View3D',
+      'Flags',
+      'ItemAcceptsInputMethod',
+    );
     export const ItemIsFocusScope = createEnumToken('View3D', 'Flags', 'ItemIsFocusScope');
     export const ItemHasContents = createEnumToken('View3D', 'Flags', 'ItemHasContents');
     export const ItemAcceptsDrops = createEnumToken('View3D', 'Flags', 'ItemAcceptsDrops');
@@ -270,19 +282,67 @@ export namespace View3D {
     export const ItemObservesViewport = createEnumToken('View3D', 'Flags', 'ItemObservesViewport');
   }
   export namespace ItemChange {
-    export const ItemChildAddedChange = createEnumToken('View3D', 'ItemChange', 'ItemChildAddedChange');
-    export const ItemChildRemovedChange = createEnumToken('View3D', 'ItemChange', 'ItemChildRemovedChange');
+    export const ItemChildAddedChange = createEnumToken(
+      'View3D',
+      'ItemChange',
+      'ItemChildAddedChange',
+    );
+    export const ItemChildRemovedChange = createEnumToken(
+      'View3D',
+      'ItemChange',
+      'ItemChildRemovedChange',
+    );
     export const ItemSceneChange = createEnumToken('View3D', 'ItemChange', 'ItemSceneChange');
-    export const ItemVisibleHasChanged = createEnumToken('View3D', 'ItemChange', 'ItemVisibleHasChanged');
-    export const ItemParentHasChanged = createEnumToken('View3D', 'ItemChange', 'ItemParentHasChanged');
-    export const ItemOpacityHasChanged = createEnumToken('View3D', 'ItemChange', 'ItemOpacityHasChanged');
-    export const ItemActiveFocusHasChanged = createEnumToken('View3D', 'ItemChange', 'ItemActiveFocusHasChanged');
-    export const ItemRotationHasChanged = createEnumToken('View3D', 'ItemChange', 'ItemRotationHasChanged');
-    export const ItemAntialiasingHasChanged = createEnumToken('View3D', 'ItemChange', 'ItemAntialiasingHasChanged');
-    export const ItemDevicePixelRatioHasChanged = createEnumToken('View3D', 'ItemChange', 'ItemDevicePixelRatioHasChanged');
-    export const ItemEnabledHasChanged = createEnumToken('View3D', 'ItemChange', 'ItemEnabledHasChanged');
-    export const ItemScaleHasChanged = createEnumToken('View3D', 'ItemChange', 'ItemScaleHasChanged');
-    export const ItemTransformHasChanged = createEnumToken('View3D', 'ItemChange', 'ItemTransformHasChanged');
+    export const ItemVisibleHasChanged = createEnumToken(
+      'View3D',
+      'ItemChange',
+      'ItemVisibleHasChanged',
+    );
+    export const ItemParentHasChanged = createEnumToken(
+      'View3D',
+      'ItemChange',
+      'ItemParentHasChanged',
+    );
+    export const ItemOpacityHasChanged = createEnumToken(
+      'View3D',
+      'ItemChange',
+      'ItemOpacityHasChanged',
+    );
+    export const ItemActiveFocusHasChanged = createEnumToken(
+      'View3D',
+      'ItemChange',
+      'ItemActiveFocusHasChanged',
+    );
+    export const ItemRotationHasChanged = createEnumToken(
+      'View3D',
+      'ItemChange',
+      'ItemRotationHasChanged',
+    );
+    export const ItemAntialiasingHasChanged = createEnumToken(
+      'View3D',
+      'ItemChange',
+      'ItemAntialiasingHasChanged',
+    );
+    export const ItemDevicePixelRatioHasChanged = createEnumToken(
+      'View3D',
+      'ItemChange',
+      'ItemDevicePixelRatioHasChanged',
+    );
+    export const ItemEnabledHasChanged = createEnumToken(
+      'View3D',
+      'ItemChange',
+      'ItemEnabledHasChanged',
+    );
+    export const ItemScaleHasChanged = createEnumToken(
+      'View3D',
+      'ItemChange',
+      'ItemScaleHasChanged',
+    );
+    export const ItemTransformHasChanged = createEnumToken(
+      'View3D',
+      'ItemChange',
+      'ItemTransformHasChanged',
+    );
   }
   export namespace RenderMode {
     export const Offscreen = createEnumToken('View3D', 'RenderMode', 'Offscreen');
@@ -292,11 +352,19 @@ export namespace View3D {
   }
   export namespace RenderOverride {
     export const None = createEnumToken('View3D', 'RenderOverride', 'None');
-    export const DisableInternalPasses = createEnumToken('View3D', 'RenderOverride', 'DisableInternalPasses');
+    export const DisableInternalPasses = createEnumToken(
+      'View3D',
+      'RenderOverride',
+      'DisableInternalPasses',
+    );
   }
   export namespace RenderOverrides {
     export const None = createEnumToken('View3D', 'RenderOverrides', 'None');
-    export const DisableInternalPasses = createEnumToken('View3D', 'RenderOverrides', 'DisableInternalPasses');
+    export const DisableInternalPasses = createEnumToken(
+      'View3D',
+      'RenderOverrides',
+      'DisableInternalPasses',
+    );
   }
   export namespace TransformOrigin {
     export const TopLeft = createEnumToken('View3D', 'TransformOrigin', 'TopLeft');

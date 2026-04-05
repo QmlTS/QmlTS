@@ -2,8 +2,16 @@
 // Type: SceneEnvironment
 // Generated from Qt 6.11.0
 
+import type {
+  QmlColor,
+  QmlEnumToken,
+  QmlObjectBuilder,
+  QmlRect,
+  QmlValue,
+  QmlVector3d,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
-import type { QmlColor, QmlEnumToken, QmlObjectBuilder, QmlRect, QmlValue, QmlVector3d, TypeMetadata } from '../../runtime/index.js';
 import type { CubeMapTextureBuilder } from './CubeMapTexture.js';
 import type { DebugSettingsBuilder } from './DebugSettings.js';
 import type { FogBuilder } from './Fog.js';
@@ -183,50 +191,139 @@ const SCENEENVIRONMENT_META: TypeMetadata = {
     { handlerName: 'onTemporalAAStrengthChanged', paramCount: 0 },
     { handlerName: 'onTonemapModeChanged', paramCount: 0 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
   defaultProperty: 'data',
 };
 
 export function SceneEnvironment(): SceneEnvironmentBuilder {
-  return createFluentBuilder('SceneEnvironment', SCENEENVIRONMENT_META) as unknown as SceneEnvironmentBuilder;
+  return createFluentBuilder(
+    'SceneEnvironment',
+    SCENEENVIRONMENT_META,
+  ) as unknown as SceneEnvironmentBuilder;
 }
 
 export namespace SceneEnvironment {
   export namespace QQuick3DEnvironmentAAModeValues {
-    export const NoAA = createEnumToken('SceneEnvironment', 'QQuick3DEnvironmentAAModeValues', 'NoAA');
-    export const SSAA = createEnumToken('SceneEnvironment', 'QQuick3DEnvironmentAAModeValues', 'SSAA');
-    export const MSAA = createEnumToken('SceneEnvironment', 'QQuick3DEnvironmentAAModeValues', 'MSAA');
-    export const ProgressiveAA = createEnumToken('SceneEnvironment', 'QQuick3DEnvironmentAAModeValues', 'ProgressiveAA');
+    export const NoAA = createEnumToken(
+      'SceneEnvironment',
+      'QQuick3DEnvironmentAAModeValues',
+      'NoAA',
+    );
+    export const SSAA = createEnumToken(
+      'SceneEnvironment',
+      'QQuick3DEnvironmentAAModeValues',
+      'SSAA',
+    );
+    export const MSAA = createEnumToken(
+      'SceneEnvironment',
+      'QQuick3DEnvironmentAAModeValues',
+      'MSAA',
+    );
+    export const ProgressiveAA = createEnumToken(
+      'SceneEnvironment',
+      'QQuick3DEnvironmentAAModeValues',
+      'ProgressiveAA',
+    );
   }
   export namespace QQuick3DEnvironmentAAQualityValues {
-    export const Medium = createEnumToken('SceneEnvironment', 'QQuick3DEnvironmentAAQualityValues', 'Medium');
-    export const High = createEnumToken('SceneEnvironment', 'QQuick3DEnvironmentAAQualityValues', 'High');
-    export const VeryHigh = createEnumToken('SceneEnvironment', 'QQuick3DEnvironmentAAQualityValues', 'VeryHigh');
+    export const Medium = createEnumToken(
+      'SceneEnvironment',
+      'QQuick3DEnvironmentAAQualityValues',
+      'Medium',
+    );
+    export const High = createEnumToken(
+      'SceneEnvironment',
+      'QQuick3DEnvironmentAAQualityValues',
+      'High',
+    );
+    export const VeryHigh = createEnumToken(
+      'SceneEnvironment',
+      'QQuick3DEnvironmentAAQualityValues',
+      'VeryHigh',
+    );
   }
   export namespace QQuick3DEnvironmentBackgroundTypes {
-    export const Transparent = createEnumToken('SceneEnvironment', 'QQuick3DEnvironmentBackgroundTypes', 'Transparent');
-    export const Unspecified = createEnumToken('SceneEnvironment', 'QQuick3DEnvironmentBackgroundTypes', 'Unspecified');
-    export const Color = createEnumToken('SceneEnvironment', 'QQuick3DEnvironmentBackgroundTypes', 'Color');
-    export const SkyBox = createEnumToken('SceneEnvironment', 'QQuick3DEnvironmentBackgroundTypes', 'SkyBox');
-    export const SkyBoxCubeMap = createEnumToken('SceneEnvironment', 'QQuick3DEnvironmentBackgroundTypes', 'SkyBoxCubeMap');
+    export const Transparent = createEnumToken(
+      'SceneEnvironment',
+      'QQuick3DEnvironmentBackgroundTypes',
+      'Transparent',
+    );
+    export const Unspecified = createEnumToken(
+      'SceneEnvironment',
+      'QQuick3DEnvironmentBackgroundTypes',
+      'Unspecified',
+    );
+    export const Color = createEnumToken(
+      'SceneEnvironment',
+      'QQuick3DEnvironmentBackgroundTypes',
+      'Color',
+    );
+    export const SkyBox = createEnumToken(
+      'SceneEnvironment',
+      'QQuick3DEnvironmentBackgroundTypes',
+      'SkyBox',
+    );
+    export const SkyBoxCubeMap = createEnumToken(
+      'SceneEnvironment',
+      'QQuick3DEnvironmentBackgroundTypes',
+      'SkyBoxCubeMap',
+    );
   }
   export namespace QQuick3DEnvironmentOITMethod {
-    export const OITNone = createEnumToken('SceneEnvironment', 'QQuick3DEnvironmentOITMethod', 'OITNone');
-    export const OITWeightedBlended = createEnumToken('SceneEnvironment', 'QQuick3DEnvironmentOITMethod', 'OITWeightedBlended');
-    export const OITLinkedList = createEnumToken('SceneEnvironment', 'QQuick3DEnvironmentOITMethod', 'OITLinkedList');
+    export const OITNone = createEnumToken(
+      'SceneEnvironment',
+      'QQuick3DEnvironmentOITMethod',
+      'OITNone',
+    );
+    export const OITWeightedBlended = createEnumToken(
+      'SceneEnvironment',
+      'QQuick3DEnvironmentOITMethod',
+      'OITWeightedBlended',
+    );
+    export const OITLinkedList = createEnumToken(
+      'SceneEnvironment',
+      'QQuick3DEnvironmentOITMethod',
+      'OITLinkedList',
+    );
   }
   export namespace QQuick3DEnvironmentTemporalAAMode {
-    export const TAADefault = createEnumToken('SceneEnvironment', 'QQuick3DEnvironmentTemporalAAMode', 'TAADefault');
-    export const TAAMotionVector = createEnumToken('SceneEnvironment', 'QQuick3DEnvironmentTemporalAAMode', 'TAAMotionVector');
+    export const TAADefault = createEnumToken(
+      'SceneEnvironment',
+      'QQuick3DEnvironmentTemporalAAMode',
+      'TAADefault',
+    );
+    export const TAAMotionVector = createEnumToken(
+      'SceneEnvironment',
+      'QQuick3DEnvironmentTemporalAAMode',
+      'TAAMotionVector',
+    );
   }
   export namespace QQuick3DEnvironmentTonemapModes {
-    export const TonemapModeNone = createEnumToken('SceneEnvironment', 'QQuick3DEnvironmentTonemapModes', 'TonemapModeNone');
-    export const TonemapModeLinear = createEnumToken('SceneEnvironment', 'QQuick3DEnvironmentTonemapModes', 'TonemapModeLinear');
-    export const TonemapModeAces = createEnumToken('SceneEnvironment', 'QQuick3DEnvironmentTonemapModes', 'TonemapModeAces');
-    export const TonemapModeHejlDawson = createEnumToken('SceneEnvironment', 'QQuick3DEnvironmentTonemapModes', 'TonemapModeHejlDawson');
-    export const TonemapModeFilmic = createEnumToken('SceneEnvironment', 'QQuick3DEnvironmentTonemapModes', 'TonemapModeFilmic');
+    export const TonemapModeNone = createEnumToken(
+      'SceneEnvironment',
+      'QQuick3DEnvironmentTonemapModes',
+      'TonemapModeNone',
+    );
+    export const TonemapModeLinear = createEnumToken(
+      'SceneEnvironment',
+      'QQuick3DEnvironmentTonemapModes',
+      'TonemapModeLinear',
+    );
+    export const TonemapModeAces = createEnumToken(
+      'SceneEnvironment',
+      'QQuick3DEnvironmentTonemapModes',
+      'TonemapModeAces',
+    );
+    export const TonemapModeHejlDawson = createEnumToken(
+      'SceneEnvironment',
+      'QQuick3DEnvironmentTonemapModes',
+      'TonemapModeHejlDawson',
+    );
+    export const TonemapModeFilmic = createEnumToken(
+      'SceneEnvironment',
+      'QQuick3DEnvironmentTonemapModes',
+      'TonemapModeFilmic',
+    );
   }
 }

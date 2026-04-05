@@ -2,8 +2,14 @@
 // Type: InputHandler3D
 // Generated from Qt 6.11.0
 
+import type {
+  QmlEnumToken,
+  QmlObjectBuilder,
+  QmlPoint,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
-import type { QmlEnumToken, QmlObjectBuilder, QmlPoint, QmlValue, TypeMetadata } from '../../runtime/index.js';
 export interface InputHandler3DBuilder {
   id(id: string): InputHandler3DBuilder;
   child(obj: QmlObjectBuilder): InputHandler3DBuilder;
@@ -56,20 +62,29 @@ const INPUTHANDLER3D_META: TypeMetadata = {
     { handlerName: 'onZoomAtTargetEnabledChanged', paramCount: 1 },
     { handlerName: 'onZoomEnabledChanged', paramCount: 1 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function InputHandler3D(): InputHandler3DBuilder {
-  return createFluentBuilder('InputHandler3D', INPUTHANDLER3D_META) as unknown as InputHandler3DBuilder;
+  return createFluentBuilder(
+    'InputHandler3D',
+    INPUTHANDLER3D_META,
+  ) as unknown as InputHandler3DBuilder;
 }
 
 export namespace InputHandler3D {
   export namespace InputView {
     export const InputViewNone = createEnumToken('InputHandler3D', 'InputView', 'InputViewNone');
-    export const InputViewOnPrimary = createEnumToken('InputHandler3D', 'InputView', 'InputViewOnPrimary');
-    export const InputViewOnSecondary = createEnumToken('InputHandler3D', 'InputView', 'InputViewOnSecondary');
+    export const InputViewOnPrimary = createEnumToken(
+      'InputHandler3D',
+      'InputView',
+      'InputViewOnPrimary',
+    );
+    export const InputViewOnSecondary = createEnumToken(
+      'InputHandler3D',
+      'InputView',
+      'InputViewOnSecondary',
+    );
   }
 }

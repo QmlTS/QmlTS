@@ -2,8 +2,8 @@
 // Type: TorusGeometry
 // Generated from Qt 6.11.0
 
-import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface TorusGeometryBuilder {
   id(id: string): TorusGeometryBuilder;
   child(obj: QmlObjectBuilder): TorusGeometryBuilder;
@@ -64,14 +64,15 @@ const TORUSGEOMETRY_META: TypeMetadata = {
     { handlerName: 'onStatusChanged', paramCount: 0 },
     { handlerName: 'onTubeRadiusChanged', paramCount: 0 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function TorusGeometry(): TorusGeometryBuilder {
-  return createFluentBuilder('TorusGeometry', TORUSGEOMETRY_META) as unknown as TorusGeometryBuilder;
+  return createFluentBuilder(
+    'TorusGeometry',
+    TORUSGEOMETRY_META,
+  ) as unknown as TorusGeometryBuilder;
 }
 
 export namespace TorusGeometry {

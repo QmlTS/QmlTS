@@ -2,8 +2,13 @@
 // Type: Texture3D
 // Generated from Qt 6.11.0
 
+import type {
+  QmlEnumToken,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
-import type { QmlEnumToken, QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
 export interface Texture3DBuilder {
   id(id: string): Texture3DBuilder;
   child(obj: QmlObjectBuilder): Texture3DBuilder;
@@ -104,10 +109,8 @@ const TEXTURE3D_META: TypeMetadata = {
     { handlerName: 'onStatusChanged', paramCount: 1 },
     { handlerName: 'onWidthChanged', paramCount: 1 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function Texture3D(): Texture3DBuilder {
@@ -116,17 +119,41 @@ export function Texture3D(): Texture3DBuilder {
 
 export namespace Texture3D {
   export namespace ComparisonFunction {
-    export const CompareLessEqual = createEnumToken('Texture3D', 'ComparisonFunction', 'CompareLessEqual');
-    export const CompareGreaterEqual = createEnumToken('Texture3D', 'ComparisonFunction', 'CompareGreaterEqual');
+    export const CompareLessEqual = createEnumToken(
+      'Texture3D',
+      'ComparisonFunction',
+      'CompareLessEqual',
+    );
+    export const CompareGreaterEqual = createEnumToken(
+      'Texture3D',
+      'ComparisonFunction',
+      'CompareGreaterEqual',
+    );
     export const CompareLess = createEnumToken('Texture3D', 'ComparisonFunction', 'CompareLess');
-    export const CompareGreater = createEnumToken('Texture3D', 'ComparisonFunction', 'CompareGreater');
+    export const CompareGreater = createEnumToken(
+      'Texture3D',
+      'ComparisonFunction',
+      'CompareGreater',
+    );
     export const CompareEqual = createEnumToken('Texture3D', 'ComparisonFunction', 'CompareEqual');
-    export const CommpareNotEqual = createEnumToken('Texture3D', 'ComparisonFunction', 'CommpareNotEqual');
-    export const CompareAlways = createEnumToken('Texture3D', 'ComparisonFunction', 'CompareAlways');
+    export const CommpareNotEqual = createEnumToken(
+      'Texture3D',
+      'ComparisonFunction',
+      'CommpareNotEqual',
+    );
+    export const CompareAlways = createEnumToken(
+      'Texture3D',
+      'ComparisonFunction',
+      'CompareAlways',
+    );
     export const CompareNever = createEnumToken('Texture3D', 'ComparisonFunction', 'CompareNever');
   }
   export namespace ComparisonMode {
-    export const CompareRefToTexture = createEnumToken('Texture3D', 'ComparisonMode', 'CompareRefToTexture');
+    export const CompareRefToTexture = createEnumToken(
+      'Texture3D',
+      'ComparisonMode',
+      'CompareRefToTexture',
+    );
     export const CompareNone = createEnumToken('Texture3D', 'ComparisonMode', 'CompareNone');
   }
   export namespace CubeMapFace {
@@ -141,9 +168,21 @@ export namespace Texture3D {
   export namespace Filter {
     export const Nearest = createEnumToken('Texture3D', 'Filter', 'Nearest');
     export const Linear = createEnumToken('Texture3D', 'Filter', 'Linear');
-    export const NearestMipMapNearest = createEnumToken('Texture3D', 'Filter', 'NearestMipMapNearest');
-    export const NearestMipMapLinear = createEnumToken('Texture3D', 'Filter', 'NearestMipMapLinear');
-    export const LinearMipMapNearest = createEnumToken('Texture3D', 'Filter', 'LinearMipMapNearest');
+    export const NearestMipMapNearest = createEnumToken(
+      'Texture3D',
+      'Filter',
+      'NearestMipMapNearest',
+    );
+    export const NearestMipMapLinear = createEnumToken(
+      'Texture3D',
+      'Filter',
+      'NearestMipMapLinear',
+    );
+    export const LinearMipMapNearest = createEnumToken(
+      'Texture3D',
+      'Filter',
+      'LinearMipMapNearest',
+    );
     export const LinearMipMapLinear = createEnumToken('Texture3D', 'Filter', 'LinearMipMapLinear');
   }
   export namespace HandleType {
@@ -166,8 +205,16 @@ export namespace Texture3D {
     export const Target3D = createEnumToken('Texture3D', 'Target', 'Target3D');
     export const TargetCubeMap = createEnumToken('Texture3D', 'Target', 'TargetCubeMap');
     export const TargetCubeMapArray = createEnumToken('Texture3D', 'Target', 'TargetCubeMapArray');
-    export const Target2DMultisample = createEnumToken('Texture3D', 'Target', 'Target2DMultisample');
-    export const Target2DMultisampleArray = createEnumToken('Texture3D', 'Target', 'Target2DMultisampleArray');
+    export const Target2DMultisample = createEnumToken(
+      'Texture3D',
+      'Target',
+      'Target2DMultisample',
+    );
+    export const Target2DMultisampleArray = createEnumToken(
+      'Texture3D',
+      'Target',
+      'Target2DMultisampleArray',
+    );
     export const TargetRectangle = createEnumToken('Texture3D', 'Target', 'TargetRectangle');
     export const TargetBuffer = createEnumToken('Texture3D', 'Target', 'TargetBuffer');
   }
@@ -244,8 +291,16 @@ export namespace Texture3D {
     export const R_ATI1N_SNorm = createEnumToken('Texture3D', 'TextureFormat', 'R_ATI1N_SNorm');
     export const RG_ATI2N_UNorm = createEnumToken('Texture3D', 'TextureFormat', 'RG_ATI2N_UNorm');
     export const RG_ATI2N_SNorm = createEnumToken('Texture3D', 'TextureFormat', 'RG_ATI2N_SNorm');
-    export const RGB_BP_UNSIGNED_FLOAT = createEnumToken('Texture3D', 'TextureFormat', 'RGB_BP_UNSIGNED_FLOAT');
-    export const RGB_BP_SIGNED_FLOAT = createEnumToken('Texture3D', 'TextureFormat', 'RGB_BP_SIGNED_FLOAT');
+    export const RGB_BP_UNSIGNED_FLOAT = createEnumToken(
+      'Texture3D',
+      'TextureFormat',
+      'RGB_BP_UNSIGNED_FLOAT',
+    );
+    export const RGB_BP_SIGNED_FLOAT = createEnumToken(
+      'Texture3D',
+      'TextureFormat',
+      'RGB_BP_SIGNED_FLOAT',
+    );
     export const RGB_BP_UNorm = createEnumToken('Texture3D', 'TextureFormat', 'RGB_BP_UNorm');
     export const R11_EAC_UNorm = createEnumToken('Texture3D', 'TextureFormat', 'R11_EAC_UNorm');
     export const R11_EAC_SNorm = createEnumToken('Texture3D', 'TextureFormat', 'R11_EAC_SNorm');
@@ -253,10 +308,22 @@ export namespace Texture3D {
     export const RG11_EAC_SNorm = createEnumToken('Texture3D', 'TextureFormat', 'RG11_EAC_SNorm');
     export const RGB8_ETC2 = createEnumToken('Texture3D', 'TextureFormat', 'RGB8_ETC2');
     export const SRGB8_ETC2 = createEnumToken('Texture3D', 'TextureFormat', 'SRGB8_ETC2');
-    export const RGB8_PunchThrough_Alpha1_ETC2 = createEnumToken('Texture3D', 'TextureFormat', 'RGB8_PunchThrough_Alpha1_ETC2');
-    export const SRGB8_PunchThrough_Alpha1_ETC2 = createEnumToken('Texture3D', 'TextureFormat', 'SRGB8_PunchThrough_Alpha1_ETC2');
+    export const RGB8_PunchThrough_Alpha1_ETC2 = createEnumToken(
+      'Texture3D',
+      'TextureFormat',
+      'RGB8_PunchThrough_Alpha1_ETC2',
+    );
+    export const SRGB8_PunchThrough_Alpha1_ETC2 = createEnumToken(
+      'Texture3D',
+      'TextureFormat',
+      'SRGB8_PunchThrough_Alpha1_ETC2',
+    );
     export const RGBA8_ETC2_EAC = createEnumToken('Texture3D', 'TextureFormat', 'RGBA8_ETC2_EAC');
-    export const SRGB8_Alpha8_ETC2_EAC = createEnumToken('Texture3D', 'TextureFormat', 'SRGB8_Alpha8_ETC2_EAC');
+    export const SRGB8_Alpha8_ETC2_EAC = createEnumToken(
+      'Texture3D',
+      'TextureFormat',
+      'SRGB8_Alpha8_ETC2_EAC',
+    );
     export const RGB8_ETC1 = createEnumToken('Texture3D', 'TextureFormat', 'RGB8_ETC1');
     export const SRGB8 = createEnumToken('Texture3D', 'TextureFormat', 'SRGB8');
     export const SRGB8_Alpha8 = createEnumToken('Texture3D', 'TextureFormat', 'SRGB8_Alpha8');
@@ -270,6 +337,10 @@ export namespace Texture3D {
     export const RGBFormat = createEnumToken('Texture3D', 'TextureFormat', 'RGBFormat');
     export const RGBAFormat = createEnumToken('Texture3D', 'TextureFormat', 'RGBAFormat');
     export const LuminanceFormat = createEnumToken('Texture3D', 'TextureFormat', 'LuminanceFormat');
-    export const LuminanceAlphaFormat = createEnumToken('Texture3D', 'TextureFormat', 'LuminanceAlphaFormat');
+    export const LuminanceAlphaFormat = createEnumToken(
+      'Texture3D',
+      'TextureFormat',
+      'LuminanceAlphaFormat',
+    );
   }
 }

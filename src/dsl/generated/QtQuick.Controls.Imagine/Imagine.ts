@@ -2,7 +2,6 @@
 // Type: Attached type: Imagine
 // Generated from Qt 6.11.0
 
-
 export interface ImagineAttachedBuilder {
   path(value: string): ImagineAttachedBuilder;
   pathBind(expr: string): ImagineAttachedBuilder;

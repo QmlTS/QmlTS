@@ -2,8 +2,8 @@
 // Type: LinearGradient
 // Generated from Qt 6.11.0
 
-import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { QmlEnumToken, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface LinearGradientBuilder {
   id(id: string): LinearGradientBuilder;
   child(obj: QmlObjectBuilder): LinearGradientBuilder;
@@ -53,15 +53,16 @@ const LINEARGRADIENT_META: TypeMetadata = {
     { handlerName: 'onY1Changed', paramCount: 0 },
     { handlerName: 'onY2Changed', paramCount: 0 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
   defaultProperty: 'stops',
 };
 
 export function LinearGradient(): LinearGradientBuilder {
-  return createFluentBuilder('LinearGradient', LINEARGRADIENT_META) as unknown as LinearGradientBuilder;
+  return createFluentBuilder(
+    'LinearGradient',
+    LINEARGRADIENT_META,
+  ) as unknown as LinearGradientBuilder;
 }
 
 export namespace LinearGradient {

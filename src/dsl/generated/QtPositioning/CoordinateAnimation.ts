@@ -2,8 +2,13 @@
 // Type: CoordinateAnimation
 // Generated from Qt 6.11.0
 
+import type {
+  QmlEnumToken,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
-import type { QmlEnumToken, QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
 import type { QtObjectBuilder } from '../QML/QtObject.js';
 export interface CoordinateAnimationBuilder {
   id(id: string): CoordinateAnimationBuilder;
@@ -88,14 +93,15 @@ const COORDINATEANIMATION_META: TypeMetadata = {
     { handlerName: 'onTargetChanged', paramCount: 0 },
     { handlerName: 'onToChanged', paramCount: 0 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function CoordinateAnimation(): CoordinateAnimationBuilder {
-  return createFluentBuilder('CoordinateAnimation', COORDINATEANIMATION_META) as unknown as CoordinateAnimationBuilder;
+  return createFluentBuilder(
+    'CoordinateAnimation',
+    COORDINATEANIMATION_META,
+  ) as unknown as CoordinateAnimationBuilder;
 }
 
 export namespace CoordinateAnimation {

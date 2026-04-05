@@ -2,8 +2,14 @@
 // Type: EllipseShape
 // Generated from Qt 6.11.0
 
+import type {
+  QmlColor,
+  QmlEnumToken,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
-import type { QmlColor, QmlEnumToken, QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
 import type { QtObjectBuilder } from '../QML/QtObject.js';
 import type { ItemBuilder } from '../QtQuick/Item.js';
 import type { PaletteBuilder } from '../QtQuick/Palette.js';
@@ -320,8 +326,7 @@ const ELLIPSESHAPE_META: TypeMetadata = {
       ],
     },
   ],
-  attached: [
-  ],
+  attached: [],
   defaultProperty: 'data',
 };
 
@@ -336,23 +341,47 @@ export namespace EllipseShape {
     export const Outside = createEnumToken('EllipseShape', 'BorderMode', 'Outside');
   }
   export namespace ContainsMode {
-    export const BoundingRectContains = createEnumToken('EllipseShape', 'ContainsMode', 'BoundingRectContains');
+    export const BoundingRectContains = createEnumToken(
+      'EllipseShape',
+      'ContainsMode',
+      'BoundingRectContains',
+    );
     export const FillContains = createEnumToken('EllipseShape', 'ContainsMode', 'FillContains');
   }
   export namespace FillMode {
     export const NoResize = createEnumToken('EllipseShape', 'FillMode', 'NoResize');
-    export const PreserveAspectFit = createEnumToken('EllipseShape', 'FillMode', 'PreserveAspectFit');
-    export const PreserveAspectCrop = createEnumToken('EllipseShape', 'FillMode', 'PreserveAspectCrop');
+    export const PreserveAspectFit = createEnumToken(
+      'EllipseShape',
+      'FillMode',
+      'PreserveAspectFit',
+    );
+    export const PreserveAspectCrop = createEnumToken(
+      'EllipseShape',
+      'FillMode',
+      'PreserveAspectCrop',
+    );
     export const Stretch = createEnumToken('EllipseShape', 'FillMode', 'Stretch');
   }
   export namespace Flags {
-    export const ItemClipsChildrenToShape = createEnumToken('EllipseShape', 'Flags', 'ItemClipsChildrenToShape');
-    export const ItemAcceptsInputMethod = createEnumToken('EllipseShape', 'Flags', 'ItemAcceptsInputMethod');
+    export const ItemClipsChildrenToShape = createEnumToken(
+      'EllipseShape',
+      'Flags',
+      'ItemClipsChildrenToShape',
+    );
+    export const ItemAcceptsInputMethod = createEnumToken(
+      'EllipseShape',
+      'Flags',
+      'ItemAcceptsInputMethod',
+    );
     export const ItemIsFocusScope = createEnumToken('EllipseShape', 'Flags', 'ItemIsFocusScope');
     export const ItemHasContents = createEnumToken('EllipseShape', 'Flags', 'ItemHasContents');
     export const ItemAcceptsDrops = createEnumToken('EllipseShape', 'Flags', 'ItemAcceptsDrops');
     export const ItemIsViewport = createEnumToken('EllipseShape', 'Flags', 'ItemIsViewport');
-    export const ItemObservesViewport = createEnumToken('EllipseShape', 'Flags', 'ItemObservesViewport');
+    export const ItemObservesViewport = createEnumToken(
+      'EllipseShape',
+      'Flags',
+      'ItemObservesViewport',
+    );
   }
   export namespace HAlignment {
     export const AlignLeft = createEnumToken('EllipseShape', 'HAlignment', 'AlignLeft');
@@ -360,25 +389,85 @@ export namespace EllipseShape {
     export const AlignHCenter = createEnumToken('EllipseShape', 'HAlignment', 'AlignHCenter');
   }
   export namespace ItemChange {
-    export const ItemChildAddedChange = createEnumToken('EllipseShape', 'ItemChange', 'ItemChildAddedChange');
-    export const ItemChildRemovedChange = createEnumToken('EllipseShape', 'ItemChange', 'ItemChildRemovedChange');
+    export const ItemChildAddedChange = createEnumToken(
+      'EllipseShape',
+      'ItemChange',
+      'ItemChildAddedChange',
+    );
+    export const ItemChildRemovedChange = createEnumToken(
+      'EllipseShape',
+      'ItemChange',
+      'ItemChildRemovedChange',
+    );
     export const ItemSceneChange = createEnumToken('EllipseShape', 'ItemChange', 'ItemSceneChange');
-    export const ItemVisibleHasChanged = createEnumToken('EllipseShape', 'ItemChange', 'ItemVisibleHasChanged');
-    export const ItemParentHasChanged = createEnumToken('EllipseShape', 'ItemChange', 'ItemParentHasChanged');
-    export const ItemOpacityHasChanged = createEnumToken('EllipseShape', 'ItemChange', 'ItemOpacityHasChanged');
-    export const ItemActiveFocusHasChanged = createEnumToken('EllipseShape', 'ItemChange', 'ItemActiveFocusHasChanged');
-    export const ItemRotationHasChanged = createEnumToken('EllipseShape', 'ItemChange', 'ItemRotationHasChanged');
-    export const ItemAntialiasingHasChanged = createEnumToken('EllipseShape', 'ItemChange', 'ItemAntialiasingHasChanged');
-    export const ItemDevicePixelRatioHasChanged = createEnumToken('EllipseShape', 'ItemChange', 'ItemDevicePixelRatioHasChanged');
-    export const ItemEnabledHasChanged = createEnumToken('EllipseShape', 'ItemChange', 'ItemEnabledHasChanged');
-    export const ItemScaleHasChanged = createEnumToken('EllipseShape', 'ItemChange', 'ItemScaleHasChanged');
-    export const ItemTransformHasChanged = createEnumToken('EllipseShape', 'ItemChange', 'ItemTransformHasChanged');
+    export const ItemVisibleHasChanged = createEnumToken(
+      'EllipseShape',
+      'ItemChange',
+      'ItemVisibleHasChanged',
+    );
+    export const ItemParentHasChanged = createEnumToken(
+      'EllipseShape',
+      'ItemChange',
+      'ItemParentHasChanged',
+    );
+    export const ItemOpacityHasChanged = createEnumToken(
+      'EllipseShape',
+      'ItemChange',
+      'ItemOpacityHasChanged',
+    );
+    export const ItemActiveFocusHasChanged = createEnumToken(
+      'EllipseShape',
+      'ItemChange',
+      'ItemActiveFocusHasChanged',
+    );
+    export const ItemRotationHasChanged = createEnumToken(
+      'EllipseShape',
+      'ItemChange',
+      'ItemRotationHasChanged',
+    );
+    export const ItemAntialiasingHasChanged = createEnumToken(
+      'EllipseShape',
+      'ItemChange',
+      'ItemAntialiasingHasChanged',
+    );
+    export const ItemDevicePixelRatioHasChanged = createEnumToken(
+      'EllipseShape',
+      'ItemChange',
+      'ItemDevicePixelRatioHasChanged',
+    );
+    export const ItemEnabledHasChanged = createEnumToken(
+      'EllipseShape',
+      'ItemChange',
+      'ItemEnabledHasChanged',
+    );
+    export const ItemScaleHasChanged = createEnumToken(
+      'EllipseShape',
+      'ItemChange',
+      'ItemScaleHasChanged',
+    );
+    export const ItemTransformHasChanged = createEnumToken(
+      'EllipseShape',
+      'ItemChange',
+      'ItemTransformHasChanged',
+    );
   }
   export namespace RendererType {
-    export const UnknownRenderer = createEnumToken('EllipseShape', 'RendererType', 'UnknownRenderer');
-    export const GeometryRenderer = createEnumToken('EllipseShape', 'RendererType', 'GeometryRenderer');
+    export const UnknownRenderer = createEnumToken(
+      'EllipseShape',
+      'RendererType',
+      'UnknownRenderer',
+    );
+    export const GeometryRenderer = createEnumToken(
+      'EllipseShape',
+      'RendererType',
+      'GeometryRenderer',
+    );
     export const NvprRenderer = createEnumToken('EllipseShape', 'RendererType', 'NvprRenderer');
-    export const SoftwareRenderer = createEnumToken('EllipseShape', 'RendererType', 'SoftwareRenderer');
+    export const SoftwareRenderer = createEnumToken(
+      'EllipseShape',
+      'RendererType',
+      'SoftwareRenderer',
+    );
     export const CurveRenderer = createEnumToken('EllipseShape', 'RendererType', 'CurveRenderer');
   }
   export namespace Status {

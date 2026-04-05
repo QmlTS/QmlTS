@@ -2,8 +2,8 @@
 // Type: BlendedClipAnimator
 // Generated from Qt 6.11.0
 
-import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { ChannelMapperBuilder } from './ChannelMapper.js';
 import type { ClockBuilder } from './Clock.js';
 export interface BlendedClipAnimatorBuilder {
@@ -74,14 +74,15 @@ const BLENDEDCLIPANIMATOR_META: TypeMetadata = {
     { handlerName: 'onRunningChanged', paramCount: 1 },
     { handlerName: 'onShareableChanged', paramCount: 1 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function BlendedClipAnimator(): BlendedClipAnimatorBuilder {
-  return createFluentBuilder('BlendedClipAnimator', BLENDEDCLIPANIMATOR_META) as unknown as BlendedClipAnimatorBuilder;
+  return createFluentBuilder(
+    'BlendedClipAnimator',
+    BLENDEDCLIPANIMATOR_META,
+  ) as unknown as BlendedClipAnimatorBuilder;
 }
 
 export namespace BlendedClipAnimator {

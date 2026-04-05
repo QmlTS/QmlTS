@@ -2,8 +2,8 @@
 // Type: LoggingCategory
 // Generated from Qt 6.11.0
 
-import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { QmlEnumToken, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface LoggingCategoryBuilder {
   id(id: string): LoggingCategoryBuilder;
   child(obj: QmlObjectBuilder): LoggingCategoryBuilder;
@@ -24,17 +24,16 @@ const LOGGINGCATEGORY_META: TypeMetadata = {
     { name: 'name', hasValue: true, hasBinding: true },
     { name: 'objectName', hasValue: true, hasBinding: true },
   ],
-  signals: [
-    { handlerName: 'onObjectNameChanged', paramCount: 1 },
-  ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  signals: [{ handlerName: 'onObjectNameChanged', paramCount: 1 }],
+  grouped: [],
+  attached: [],
 };
 
 export function LoggingCategory(): LoggingCategoryBuilder {
-  return createFluentBuilder('LoggingCategory', LOGGINGCATEGORY_META) as unknown as LoggingCategoryBuilder;
+  return createFluentBuilder(
+    'LoggingCategory',
+    LOGGINGCATEGORY_META,
+  ) as unknown as LoggingCategoryBuilder;
 }
 
 export namespace LoggingCategory {

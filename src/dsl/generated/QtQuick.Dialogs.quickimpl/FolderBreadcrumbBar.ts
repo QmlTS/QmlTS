@@ -2,16 +2,22 @@
 // Type: FolderBreadcrumbBar
 // Generated from Qt 6.11.0
 
+import type {
+  QmlComponent,
+  QmlEnumToken,
+  QmlFont,
+  QmlObjectBuilder,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
-import type { QmlComponent, QmlEnumToken, QmlFont, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
 import type { QtObjectBuilder } from '../QML/QtObject.js';
-import type { AbstractButtonBuilder } from '../QtQuick.Templates/AbstractButton.js';
-import type { DialogBuilder } from '../QtQuick.Templates/Dialog.js';
-import type { TextFieldBuilder } from '../QtQuick.Templates/TextField.js';
 import type { ItemBuilder } from '../QtQuick/Item.js';
 import type { PaletteBuilder } from '../QtQuick/Palette.js';
 import type { AnchorsBuilder } from '../QtQuick/QQuickAnchors.js';
 import type { LayerBuilder } from '../QtQuick/QQuickItemLayer.js';
+import type { AbstractButtonBuilder } from '../QtQuick.Templates/AbstractButton.js';
+import type { DialogBuilder } from '../QtQuick.Templates/Dialog.js';
+import type { TextFieldBuilder } from '../QtQuick.Templates/TextField.js';
 import type { ColorDialogImplAttachedBuilder } from './QQuickColorDialogImplAttached.js';
 import type { FileDialogImplAttachedBuilder } from './QQuickFileDialogImplAttached.js';
 import type { FolderDialogImplAttachedBuilder } from './QQuickFolderDialogImplAttached.js';
@@ -204,7 +210,9 @@ export interface FolderBreadcrumbBarBuilder {
   fileDialogImpl(setup: (b: FileDialogImplAttachedBuilder) => void): FolderBreadcrumbBarBuilder;
   folderDialogImpl(setup: (b: FolderDialogImplAttachedBuilder) => void): FolderBreadcrumbBarBuilder;
   fontDialogImpl(setup: (b: FontDialogImplAttachedBuilder) => void): FolderBreadcrumbBarBuilder;
-  messageDialogImpl(setup: (b: MessageDialogImplAttachedBuilder) => void): FolderBreadcrumbBarBuilder;
+  messageDialogImpl(
+    setup: (b: MessageDialogImplAttachedBuilder) => void,
+  ): FolderBreadcrumbBarBuilder;
 }
 
 const FOLDERBREADCRUMBBAR_META: TypeMetadata = {
@@ -495,33 +503,112 @@ const FOLDERBREADCRUMBBAR_META: TypeMetadata = {
 };
 
 export function FolderBreadcrumbBar(): FolderBreadcrumbBarBuilder {
-  return createFluentBuilder('FolderBreadcrumbBar', FOLDERBREADCRUMBBAR_META) as unknown as FolderBreadcrumbBarBuilder;
+  return createFluentBuilder(
+    'FolderBreadcrumbBar',
+    FOLDERBREADCRUMBBAR_META,
+  ) as unknown as FolderBreadcrumbBarBuilder;
 }
 
 export namespace FolderBreadcrumbBar {
   export namespace Flags {
-    export const ItemClipsChildrenToShape = createEnumToken('FolderBreadcrumbBar', 'Flags', 'ItemClipsChildrenToShape');
-    export const ItemAcceptsInputMethod = createEnumToken('FolderBreadcrumbBar', 'Flags', 'ItemAcceptsInputMethod');
-    export const ItemIsFocusScope = createEnumToken('FolderBreadcrumbBar', 'Flags', 'ItemIsFocusScope');
-    export const ItemHasContents = createEnumToken('FolderBreadcrumbBar', 'Flags', 'ItemHasContents');
-    export const ItemAcceptsDrops = createEnumToken('FolderBreadcrumbBar', 'Flags', 'ItemAcceptsDrops');
+    export const ItemClipsChildrenToShape = createEnumToken(
+      'FolderBreadcrumbBar',
+      'Flags',
+      'ItemClipsChildrenToShape',
+    );
+    export const ItemAcceptsInputMethod = createEnumToken(
+      'FolderBreadcrumbBar',
+      'Flags',
+      'ItemAcceptsInputMethod',
+    );
+    export const ItemIsFocusScope = createEnumToken(
+      'FolderBreadcrumbBar',
+      'Flags',
+      'ItemIsFocusScope',
+    );
+    export const ItemHasContents = createEnumToken(
+      'FolderBreadcrumbBar',
+      'Flags',
+      'ItemHasContents',
+    );
+    export const ItemAcceptsDrops = createEnumToken(
+      'FolderBreadcrumbBar',
+      'Flags',
+      'ItemAcceptsDrops',
+    );
     export const ItemIsViewport = createEnumToken('FolderBreadcrumbBar', 'Flags', 'ItemIsViewport');
-    export const ItemObservesViewport = createEnumToken('FolderBreadcrumbBar', 'Flags', 'ItemObservesViewport');
+    export const ItemObservesViewport = createEnumToken(
+      'FolderBreadcrumbBar',
+      'Flags',
+      'ItemObservesViewport',
+    );
   }
   export namespace ItemChange {
-    export const ItemChildAddedChange = createEnumToken('FolderBreadcrumbBar', 'ItemChange', 'ItemChildAddedChange');
-    export const ItemChildRemovedChange = createEnumToken('FolderBreadcrumbBar', 'ItemChange', 'ItemChildRemovedChange');
-    export const ItemSceneChange = createEnumToken('FolderBreadcrumbBar', 'ItemChange', 'ItemSceneChange');
-    export const ItemVisibleHasChanged = createEnumToken('FolderBreadcrumbBar', 'ItemChange', 'ItemVisibleHasChanged');
-    export const ItemParentHasChanged = createEnumToken('FolderBreadcrumbBar', 'ItemChange', 'ItemParentHasChanged');
-    export const ItemOpacityHasChanged = createEnumToken('FolderBreadcrumbBar', 'ItemChange', 'ItemOpacityHasChanged');
-    export const ItemActiveFocusHasChanged = createEnumToken('FolderBreadcrumbBar', 'ItemChange', 'ItemActiveFocusHasChanged');
-    export const ItemRotationHasChanged = createEnumToken('FolderBreadcrumbBar', 'ItemChange', 'ItemRotationHasChanged');
-    export const ItemAntialiasingHasChanged = createEnumToken('FolderBreadcrumbBar', 'ItemChange', 'ItemAntialiasingHasChanged');
-    export const ItemDevicePixelRatioHasChanged = createEnumToken('FolderBreadcrumbBar', 'ItemChange', 'ItemDevicePixelRatioHasChanged');
-    export const ItemEnabledHasChanged = createEnumToken('FolderBreadcrumbBar', 'ItemChange', 'ItemEnabledHasChanged');
-    export const ItemScaleHasChanged = createEnumToken('FolderBreadcrumbBar', 'ItemChange', 'ItemScaleHasChanged');
-    export const ItemTransformHasChanged = createEnumToken('FolderBreadcrumbBar', 'ItemChange', 'ItemTransformHasChanged');
+    export const ItemChildAddedChange = createEnumToken(
+      'FolderBreadcrumbBar',
+      'ItemChange',
+      'ItemChildAddedChange',
+    );
+    export const ItemChildRemovedChange = createEnumToken(
+      'FolderBreadcrumbBar',
+      'ItemChange',
+      'ItemChildRemovedChange',
+    );
+    export const ItemSceneChange = createEnumToken(
+      'FolderBreadcrumbBar',
+      'ItemChange',
+      'ItemSceneChange',
+    );
+    export const ItemVisibleHasChanged = createEnumToken(
+      'FolderBreadcrumbBar',
+      'ItemChange',
+      'ItemVisibleHasChanged',
+    );
+    export const ItemParentHasChanged = createEnumToken(
+      'FolderBreadcrumbBar',
+      'ItemChange',
+      'ItemParentHasChanged',
+    );
+    export const ItemOpacityHasChanged = createEnumToken(
+      'FolderBreadcrumbBar',
+      'ItemChange',
+      'ItemOpacityHasChanged',
+    );
+    export const ItemActiveFocusHasChanged = createEnumToken(
+      'FolderBreadcrumbBar',
+      'ItemChange',
+      'ItemActiveFocusHasChanged',
+    );
+    export const ItemRotationHasChanged = createEnumToken(
+      'FolderBreadcrumbBar',
+      'ItemChange',
+      'ItemRotationHasChanged',
+    );
+    export const ItemAntialiasingHasChanged = createEnumToken(
+      'FolderBreadcrumbBar',
+      'ItemChange',
+      'ItemAntialiasingHasChanged',
+    );
+    export const ItemDevicePixelRatioHasChanged = createEnumToken(
+      'FolderBreadcrumbBar',
+      'ItemChange',
+      'ItemDevicePixelRatioHasChanged',
+    );
+    export const ItemEnabledHasChanged = createEnumToken(
+      'FolderBreadcrumbBar',
+      'ItemChange',
+      'ItemEnabledHasChanged',
+    );
+    export const ItemScaleHasChanged = createEnumToken(
+      'FolderBreadcrumbBar',
+      'ItemChange',
+      'ItemScaleHasChanged',
+    );
+    export const ItemTransformHasChanged = createEnumToken(
+      'FolderBreadcrumbBar',
+      'ItemChange',
+      'ItemTransformHasChanged',
+    );
   }
   export namespace TransformOrigin {
     export const TopLeft = createEnumToken('FolderBreadcrumbBar', 'TransformOrigin', 'TopLeft');
@@ -530,8 +617,16 @@ export namespace FolderBreadcrumbBar {
     export const Left = createEnumToken('FolderBreadcrumbBar', 'TransformOrigin', 'Left');
     export const Center = createEnumToken('FolderBreadcrumbBar', 'TransformOrigin', 'Center');
     export const Right = createEnumToken('FolderBreadcrumbBar', 'TransformOrigin', 'Right');
-    export const BottomLeft = createEnumToken('FolderBreadcrumbBar', 'TransformOrigin', 'BottomLeft');
+    export const BottomLeft = createEnumToken(
+      'FolderBreadcrumbBar',
+      'TransformOrigin',
+      'BottomLeft',
+    );
     export const Bottom = createEnumToken('FolderBreadcrumbBar', 'TransformOrigin', 'Bottom');
-    export const BottomRight = createEnumToken('FolderBreadcrumbBar', 'TransformOrigin', 'BottomRight');
+    export const BottomRight = createEnumToken(
+      'FolderBreadcrumbBar',
+      'TransformOrigin',
+      'BottomRight',
+    );
   }
 }

@@ -2,8 +2,13 @@
 // Type: AudioEngine
 // Generated from Qt 6.11.0
 
+import type {
+  QmlEnumToken,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
-import type { QmlEnumToken, QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
 export interface AudioEngineBuilder {
   id(id: string): AudioEngineBuilder;
   child(obj: QmlObjectBuilder): AudioEngineBuilder;
@@ -41,10 +46,8 @@ const AUDIOENGINE_META: TypeMetadata = {
     { handlerName: 'onOutputDeviceChanged', paramCount: 0 },
     { handlerName: 'onOutputModeChanged', paramCount: 0 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function AudioEngine(): AudioEngineBuilder {

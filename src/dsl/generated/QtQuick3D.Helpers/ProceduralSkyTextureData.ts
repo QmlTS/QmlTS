@@ -2,8 +2,14 @@
 // Type: ProceduralSkyTextureData
 // Generated from Qt 6.11.0
 
+import type {
+  QmlColor,
+  QmlEnumToken,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
-import type { QmlColor, QmlEnumToken, QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
 export interface ProceduralSkyTextureDataBuilder {
   id(id: string): ProceduralSkyTextureDataBuilder;
   child(obj: QmlObjectBuilder): ProceduralSkyTextureDataBuilder;
@@ -115,14 +121,15 @@ const PROCEDURALSKYTEXTUREDATA_META: TypeMetadata = {
     { handlerName: 'onTextureDataNodeDirty', paramCount: 0 },
     { handlerName: 'onTextureQualityChanged', paramCount: 1 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function ProceduralSkyTextureData(): ProceduralSkyTextureDataBuilder {
-  return createFluentBuilder('ProceduralSkyTextureData', PROCEDURALSKYTEXTUREDATA_META) as unknown as ProceduralSkyTextureDataBuilder;
+  return createFluentBuilder(
+    'ProceduralSkyTextureData',
+    PROCEDURALSKYTEXTUREDATA_META,
+  ) as unknown as ProceduralSkyTextureDataBuilder;
 }
 
 export namespace ProceduralSkyTextureData {
@@ -166,9 +173,25 @@ export namespace ProceduralSkyTextureData {
     export const ASTC_12x12 = createEnumToken('ProceduralSkyTextureData', 'Format', 'ASTC_12x12');
   }
   export namespace SkyTextureQuality {
-    export const SkyTextureQualityLow = createEnumToken('ProceduralSkyTextureData', 'SkyTextureQuality', 'SkyTextureQualityLow');
-    export const SkyTextureQualityMedium = createEnumToken('ProceduralSkyTextureData', 'SkyTextureQuality', 'SkyTextureQualityMedium');
-    export const SkyTextureQualityHigh = createEnumToken('ProceduralSkyTextureData', 'SkyTextureQuality', 'SkyTextureQualityHigh');
-    export const SkyTextureQualityVeryHigh = createEnumToken('ProceduralSkyTextureData', 'SkyTextureQuality', 'SkyTextureQualityVeryHigh');
+    export const SkyTextureQualityLow = createEnumToken(
+      'ProceduralSkyTextureData',
+      'SkyTextureQuality',
+      'SkyTextureQualityLow',
+    );
+    export const SkyTextureQualityMedium = createEnumToken(
+      'ProceduralSkyTextureData',
+      'SkyTextureQuality',
+      'SkyTextureQualityMedium',
+    );
+    export const SkyTextureQualityHigh = createEnumToken(
+      'ProceduralSkyTextureData',
+      'SkyTextureQuality',
+      'SkyTextureQualityHigh',
+    );
+    export const SkyTextureQualityVeryHigh = createEnumToken(
+      'ProceduralSkyTextureData',
+      'SkyTextureQuality',
+      'SkyTextureQualityVeryHigh',
+    );
   }
 }

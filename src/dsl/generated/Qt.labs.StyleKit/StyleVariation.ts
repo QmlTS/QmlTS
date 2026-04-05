@@ -2,8 +2,8 @@
 // Type: StyleVariation
 // Generated from Qt 6.11.0
 
-import { createFluentBuilder } from '../../runtime/index.js';
 import type { QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import { createFluentBuilder } from '../../runtime/index.js';
 import type { ControlStyleBuilder } from './ControlStyle.js';
 import type { StyleKitAttachedBuilder } from './QQStyleKitAttached.js';
 import type { StyleVariationAttachedBuilder } from './QQStyleKitVariationAttached.js';
@@ -183,8 +183,7 @@ const STYLEVARIATION_META: TypeMetadata = {
     { handlerName: 'onToolButtonChanged', paramCount: 0 },
     { handlerName: 'onToolSeparatorChanged', paramCount: 0 },
   ],
-  grouped: [
-  ],
+  grouped: [],
   attached: [
     {
       methodName: 'styleKit',
@@ -221,5 +220,8 @@ const STYLEVARIATION_META: TypeMetadata = {
 };
 
 export function StyleVariation(): StyleVariationBuilder {
-  return createFluentBuilder('StyleVariation', STYLEVARIATION_META) as unknown as StyleVariationBuilder;
+  return createFluentBuilder(
+    'StyleVariation',
+    STYLEVARIATION_META,
+  ) as unknown as StyleVariationBuilder;
 }

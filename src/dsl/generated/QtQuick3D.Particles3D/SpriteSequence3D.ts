@@ -2,8 +2,8 @@
 // Type: SpriteSequence3D
 // Generated from Qt 6.11.0
 
-import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { QmlEnumToken, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface SpriteSequence3DBuilder {
   id(id: string): SpriteSequence3DBuilder;
   child(obj: QmlObjectBuilder): SpriteSequence3DBuilder;
@@ -56,14 +56,15 @@ const SPRITESEQUENCE3D_META: TypeMetadata = {
     { handlerName: 'onObjectNameChanged', paramCount: 1 },
     { handlerName: 'onRandomStartChanged', paramCount: 0 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function SpriteSequence3D(): SpriteSequence3DBuilder {
-  return createFluentBuilder('SpriteSequence3D', SPRITESEQUENCE3D_META) as unknown as SpriteSequence3DBuilder;
+  return createFluentBuilder(
+    'SpriteSequence3D',
+    SPRITESEQUENCE3D_META,
+  ) as unknown as SpriteSequence3DBuilder;
 }
 
 export namespace SpriteSequence3D {
@@ -71,7 +72,15 @@ export namespace SpriteSequence3D {
     export const Normal = createEnumToken('SpriteSequence3D', 'AnimationDirection', 'Normal');
     export const Reverse = createEnumToken('SpriteSequence3D', 'AnimationDirection', 'Reverse');
     export const Alternate = createEnumToken('SpriteSequence3D', 'AnimationDirection', 'Alternate');
-    export const AlternateReverse = createEnumToken('SpriteSequence3D', 'AnimationDirection', 'AlternateReverse');
-    export const SingleFrame = createEnumToken('SpriteSequence3D', 'AnimationDirection', 'SingleFrame');
+    export const AlternateReverse = createEnumToken(
+      'SpriteSequence3D',
+      'AnimationDirection',
+      'AlternateReverse',
+    );
+    export const SingleFrame = createEnumToken(
+      'SpriteSequence3D',
+      'AnimationDirection',
+      'SingleFrame',
+    );
   }
 }

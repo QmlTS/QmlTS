@@ -2,8 +2,15 @@
 // Type: GraphsTheme
 // Generated from Qt 6.11.0
 
+import type {
+  QmlColor,
+  QmlEnumToken,
+  QmlFont,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
-import type { QmlColor, QmlEnumToken, QmlFont, QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
 import type { GradientBuilder } from '../QtQuick/Gradient.js';
 export interface GraphsThemeBuilder {
   id(id: string): GraphsThemeBuilder;
@@ -170,10 +177,8 @@ const GRAPHSTHEME_META: TypeMetadata = {
     { handlerName: 'onThemeChanged', paramCount: 1 },
     { handlerName: 'onUpdate', paramCount: 0 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
   defaultProperty: 'themeChildren',
 };
 

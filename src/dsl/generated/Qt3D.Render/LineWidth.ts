@@ -2,8 +2,8 @@
 // Type: LineWidth
 // Generated from Qt 6.11.0
 
-import { createFluentBuilder } from '../../runtime/index.js';
 import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import { createFluentBuilder } from '../../runtime/index.js';
 export interface LineWidthBuilder {
   id(id: string): LineWidthBuilder;
   child(obj: QmlObjectBuilder): LineWidthBuilder;
@@ -43,10 +43,8 @@ const LINEWIDTH_META: TypeMetadata = {
     { handlerName: 'onSmoothChanged', paramCount: 1 },
     { handlerName: 'onValueChanged', paramCount: 1 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function LineWidth(): LineWidthBuilder {

@@ -2,8 +2,14 @@
 // Type: Camera
 // Generated from Qt 6.11.0
 
+import type {
+  QmlEnumToken,
+  QmlObjectBuilder,
+  QmlPoint,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
-import type { QmlEnumToken, QmlObjectBuilder, QmlPoint, QmlValue, TypeMetadata } from '../../runtime/index.js';
 export interface CameraBuilder {
   id(id: string): CameraBuilder;
   child(obj: QmlObjectBuilder): CameraBuilder;
@@ -122,10 +128,8 @@ const CAMERA_META: TypeMetadata = {
     { handlerName: 'onWhiteBalanceModeChanged', paramCount: 0 },
     { handlerName: 'onZoomFactorChanged', paramCount: 1 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function Camera(): CameraBuilder {
@@ -147,18 +151,34 @@ export namespace Camera {
     export const ExposureBeach = createEnumToken('Camera', 'ExposureMode', 'ExposureBeach');
     export const ExposureAction = createEnumToken('Camera', 'ExposureMode', 'ExposureAction');
     export const ExposureLandscape = createEnumToken('Camera', 'ExposureMode', 'ExposureLandscape');
-    export const ExposureNightPortrait = createEnumToken('Camera', 'ExposureMode', 'ExposureNightPortrait');
+    export const ExposureNightPortrait = createEnumToken(
+      'Camera',
+      'ExposureMode',
+      'ExposureNightPortrait',
+    );
     export const ExposureTheatre = createEnumToken('Camera', 'ExposureMode', 'ExposureTheatre');
     export const ExposureSunset = createEnumToken('Camera', 'ExposureMode', 'ExposureSunset');
-    export const ExposureSteadyPhoto = createEnumToken('Camera', 'ExposureMode', 'ExposureSteadyPhoto');
+    export const ExposureSteadyPhoto = createEnumToken(
+      'Camera',
+      'ExposureMode',
+      'ExposureSteadyPhoto',
+    );
     export const ExposureFireworks = createEnumToken('Camera', 'ExposureMode', 'ExposureFireworks');
     export const ExposureParty = createEnumToken('Camera', 'ExposureMode', 'ExposureParty');
-    export const ExposureCandlelight = createEnumToken('Camera', 'ExposureMode', 'ExposureCandlelight');
+    export const ExposureCandlelight = createEnumToken(
+      'Camera',
+      'ExposureMode',
+      'ExposureCandlelight',
+    );
     export const ExposureBarcode = createEnumToken('Camera', 'ExposureMode', 'ExposureBarcode');
   }
   export namespace Features {
     export const ColorTemperature = createEnumToken('Camera', 'Features', 'ColorTemperature');
-    export const ExposureCompensation = createEnumToken('Camera', 'Features', 'ExposureCompensation');
+    export const ExposureCompensation = createEnumToken(
+      'Camera',
+      'Features',
+      'ExposureCompensation',
+    );
     export const IsoSensitivity = createEnumToken('Camera', 'Features', 'IsoSensitivity');
     export const ManualExposureTime = createEnumToken('Camera', 'Features', 'ManualExposureTime');
     export const CustomFocusPoint = createEnumToken('Camera', 'Features', 'CustomFocusPoint');
@@ -173,7 +193,11 @@ export namespace Camera {
     export const FocusModeAuto = createEnumToken('Camera', 'FocusMode', 'FocusModeAuto');
     export const FocusModeAutoNear = createEnumToken('Camera', 'FocusMode', 'FocusModeAutoNear');
     export const FocusModeAutoFar = createEnumToken('Camera', 'FocusMode', 'FocusModeAutoFar');
-    export const FocusModeHyperfocal = createEnumToken('Camera', 'FocusMode', 'FocusModeHyperfocal');
+    export const FocusModeHyperfocal = createEnumToken(
+      'Camera',
+      'FocusMode',
+      'FocusModeHyperfocal',
+    );
     export const FocusModeInfinity = createEnumToken('Camera', 'FocusMode', 'FocusModeInfinity');
     export const FocusModeManual = createEnumToken('Camera', 'FocusMode', 'FocusModeManual');
   }
@@ -183,14 +207,50 @@ export namespace Camera {
     export const TorchAuto = createEnumToken('Camera', 'TorchMode', 'TorchAuto');
   }
   export namespace WhiteBalanceMode {
-    export const WhiteBalanceAuto = createEnumToken('Camera', 'WhiteBalanceMode', 'WhiteBalanceAuto');
-    export const WhiteBalanceManual = createEnumToken('Camera', 'WhiteBalanceMode', 'WhiteBalanceManual');
-    export const WhiteBalanceSunlight = createEnumToken('Camera', 'WhiteBalanceMode', 'WhiteBalanceSunlight');
-    export const WhiteBalanceCloudy = createEnumToken('Camera', 'WhiteBalanceMode', 'WhiteBalanceCloudy');
-    export const WhiteBalanceShade = createEnumToken('Camera', 'WhiteBalanceMode', 'WhiteBalanceShade');
-    export const WhiteBalanceTungsten = createEnumToken('Camera', 'WhiteBalanceMode', 'WhiteBalanceTungsten');
-    export const WhiteBalanceFluorescent = createEnumToken('Camera', 'WhiteBalanceMode', 'WhiteBalanceFluorescent');
-    export const WhiteBalanceFlash = createEnumToken('Camera', 'WhiteBalanceMode', 'WhiteBalanceFlash');
-    export const WhiteBalanceSunset = createEnumToken('Camera', 'WhiteBalanceMode', 'WhiteBalanceSunset');
+    export const WhiteBalanceAuto = createEnumToken(
+      'Camera',
+      'WhiteBalanceMode',
+      'WhiteBalanceAuto',
+    );
+    export const WhiteBalanceManual = createEnumToken(
+      'Camera',
+      'WhiteBalanceMode',
+      'WhiteBalanceManual',
+    );
+    export const WhiteBalanceSunlight = createEnumToken(
+      'Camera',
+      'WhiteBalanceMode',
+      'WhiteBalanceSunlight',
+    );
+    export const WhiteBalanceCloudy = createEnumToken(
+      'Camera',
+      'WhiteBalanceMode',
+      'WhiteBalanceCloudy',
+    );
+    export const WhiteBalanceShade = createEnumToken(
+      'Camera',
+      'WhiteBalanceMode',
+      'WhiteBalanceShade',
+    );
+    export const WhiteBalanceTungsten = createEnumToken(
+      'Camera',
+      'WhiteBalanceMode',
+      'WhiteBalanceTungsten',
+    );
+    export const WhiteBalanceFluorescent = createEnumToken(
+      'Camera',
+      'WhiteBalanceMode',
+      'WhiteBalanceFluorescent',
+    );
+    export const WhiteBalanceFlash = createEnumToken(
+      'Camera',
+      'WhiteBalanceMode',
+      'WhiteBalanceFlash',
+    );
+    export const WhiteBalanceSunset = createEnumToken(
+      'Camera',
+      'WhiteBalanceMode',
+      'WhiteBalanceSunset',
+    );
   }
 }

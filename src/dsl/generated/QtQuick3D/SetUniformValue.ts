@@ -2,8 +2,8 @@
 // Type: SetUniformValue
 // Generated from Qt 6.11.0
 
-import { createFluentBuilder } from '../../runtime/index.js';
 import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import { createFluentBuilder } from '../../runtime/index.js';
 export interface SetUniformValueBuilder {
   id(id: string): SetUniformValueBuilder;
   child(obj: QmlObjectBuilder): SetUniformValueBuilder;
@@ -39,12 +39,13 @@ const SETUNIFORMVALUE_META: TypeMetadata = {
     { handlerName: 'onParentChanged', paramCount: 0 },
     { handlerName: 'onStateChanged', paramCount: 0 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function SetUniformValue(): SetUniformValueBuilder {
-  return createFluentBuilder('SetUniformValue', SETUNIFORMVALUE_META) as unknown as SetUniformValueBuilder;
+  return createFluentBuilder(
+    'SetUniformValue',
+    SETUNIFORMVALUE_META,
+  ) as unknown as SetUniformValueBuilder;
 }

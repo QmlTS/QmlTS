@@ -2,8 +2,8 @@
 // Type: HeightMapSurfaceDataProxy
 // Generated from Qt 6.11.0
 
-import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface HeightMapSurfaceDataProxyBuilder {
   id(id: string): HeightMapSurfaceDataProxyBuilder;
   child(obj: QmlObjectBuilder): HeightMapSurfaceDataProxyBuilder;
@@ -84,14 +84,15 @@ const HEIGHTMAPSURFACEDATAPROXY_META: TypeMetadata = {
     { handlerName: 'onRowsRemoved', paramCount: 2 },
     { handlerName: 'onSeriesChanged', paramCount: 1 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function HeightMapSurfaceDataProxy(): HeightMapSurfaceDataProxyBuilder {
-  return createFluentBuilder('HeightMapSurfaceDataProxy', HEIGHTMAPSURFACEDATAPROXY_META) as unknown as HeightMapSurfaceDataProxyBuilder;
+  return createFluentBuilder(
+    'HeightMapSurfaceDataProxy',
+    HEIGHTMAPSURFACEDATAPROXY_META,
+  ) as unknown as HeightMapSurfaceDataProxyBuilder;
 }
 
 export namespace HeightMapSurfaceDataProxy {

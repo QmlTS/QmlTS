@@ -2,8 +2,8 @@
 // Type: PdfDocument
 // Generated from Qt 6.11.0
 
-import { createFluentBuilder } from '../../runtime/index.js';
 import type { QmlObjectBuilder, QmlUrl, TypeMetadata } from '../../runtime/index.js';
+import { createFluentBuilder } from '../../runtime/index.js';
 export interface PdfDocumentBuilder {
   id(id: string): PdfDocumentBuilder;
   child(obj: QmlObjectBuilder): PdfDocumentBuilder;
@@ -30,10 +30,8 @@ const PDFDOCUMENT_META: TypeMetadata = {
     { handlerName: 'onObjectNameChanged', paramCount: 1 },
     { handlerName: 'onSourceChanged', paramCount: 0 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function PdfDocument(): PdfDocumentBuilder {

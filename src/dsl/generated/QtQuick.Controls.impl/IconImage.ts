@@ -2,8 +2,17 @@
 // Type: IconImage
 // Generated from Qt 6.11.0
 
+import type {
+  QmlColor,
+  QmlEnumToken,
+  QmlObjectBuilder,
+  QmlRect,
+  QmlSize,
+  QmlUrl,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
-import type { QmlColor, QmlEnumToken, QmlObjectBuilder, QmlRect, QmlSize, QmlUrl, QmlValue, TypeMetadata } from '../../runtime/index.js';
 import type { QtObjectBuilder } from '../QML/QtObject.js';
 import type { ItemBuilder } from '../QtQuick/Item.js';
 import type { PaletteBuilder } from '../QtQuick/Palette.js';
@@ -291,8 +300,7 @@ const ICONIMAGE_META: TypeMetadata = {
       ],
     },
   ],
-  attached: [
-  ],
+  attached: [],
 };
 
 export function IconImage(): IconImageBuilder {
@@ -303,20 +311,36 @@ export namespace IconImage {
   export namespace FillMode {
     export const Stretch = createEnumToken('IconImage', 'FillMode', 'Stretch');
     export const PreserveAspectFit = createEnumToken('IconImage', 'FillMode', 'PreserveAspectFit');
-    export const PreserveAspectCrop = createEnumToken('IconImage', 'FillMode', 'PreserveAspectCrop');
+    export const PreserveAspectCrop = createEnumToken(
+      'IconImage',
+      'FillMode',
+      'PreserveAspectCrop',
+    );
     export const Tile = createEnumToken('IconImage', 'FillMode', 'Tile');
     export const TileVertically = createEnumToken('IconImage', 'FillMode', 'TileVertically');
     export const TileHorizontally = createEnumToken('IconImage', 'FillMode', 'TileHorizontally');
     export const Pad = createEnumToken('IconImage', 'FillMode', 'Pad');
   }
   export namespace Flags {
-    export const ItemClipsChildrenToShape = createEnumToken('IconImage', 'Flags', 'ItemClipsChildrenToShape');
-    export const ItemAcceptsInputMethod = createEnumToken('IconImage', 'Flags', 'ItemAcceptsInputMethod');
+    export const ItemClipsChildrenToShape = createEnumToken(
+      'IconImage',
+      'Flags',
+      'ItemClipsChildrenToShape',
+    );
+    export const ItemAcceptsInputMethod = createEnumToken(
+      'IconImage',
+      'Flags',
+      'ItemAcceptsInputMethod',
+    );
     export const ItemIsFocusScope = createEnumToken('IconImage', 'Flags', 'ItemIsFocusScope');
     export const ItemHasContents = createEnumToken('IconImage', 'Flags', 'ItemHasContents');
     export const ItemAcceptsDrops = createEnumToken('IconImage', 'Flags', 'ItemAcceptsDrops');
     export const ItemIsViewport = createEnumToken('IconImage', 'Flags', 'ItemIsViewport');
-    export const ItemObservesViewport = createEnumToken('IconImage', 'Flags', 'ItemObservesViewport');
+    export const ItemObservesViewport = createEnumToken(
+      'IconImage',
+      'Flags',
+      'ItemObservesViewport',
+    );
   }
   export namespace HAlignment {
     export const AlignLeft = createEnumToken('IconImage', 'HAlignment', 'AlignLeft');
@@ -324,24 +348,76 @@ export namespace IconImage {
     export const AlignHCenter = createEnumToken('IconImage', 'HAlignment', 'AlignHCenter');
   }
   export namespace ItemChange {
-    export const ItemChildAddedChange = createEnumToken('IconImage', 'ItemChange', 'ItemChildAddedChange');
-    export const ItemChildRemovedChange = createEnumToken('IconImage', 'ItemChange', 'ItemChildRemovedChange');
+    export const ItemChildAddedChange = createEnumToken(
+      'IconImage',
+      'ItemChange',
+      'ItemChildAddedChange',
+    );
+    export const ItemChildRemovedChange = createEnumToken(
+      'IconImage',
+      'ItemChange',
+      'ItemChildRemovedChange',
+    );
     export const ItemSceneChange = createEnumToken('IconImage', 'ItemChange', 'ItemSceneChange');
-    export const ItemVisibleHasChanged = createEnumToken('IconImage', 'ItemChange', 'ItemVisibleHasChanged');
-    export const ItemParentHasChanged = createEnumToken('IconImage', 'ItemChange', 'ItemParentHasChanged');
-    export const ItemOpacityHasChanged = createEnumToken('IconImage', 'ItemChange', 'ItemOpacityHasChanged');
-    export const ItemActiveFocusHasChanged = createEnumToken('IconImage', 'ItemChange', 'ItemActiveFocusHasChanged');
-    export const ItemRotationHasChanged = createEnumToken('IconImage', 'ItemChange', 'ItemRotationHasChanged');
-    export const ItemAntialiasingHasChanged = createEnumToken('IconImage', 'ItemChange', 'ItemAntialiasingHasChanged');
-    export const ItemDevicePixelRatioHasChanged = createEnumToken('IconImage', 'ItemChange', 'ItemDevicePixelRatioHasChanged');
-    export const ItemEnabledHasChanged = createEnumToken('IconImage', 'ItemChange', 'ItemEnabledHasChanged');
-    export const ItemScaleHasChanged = createEnumToken('IconImage', 'ItemChange', 'ItemScaleHasChanged');
-    export const ItemTransformHasChanged = createEnumToken('IconImage', 'ItemChange', 'ItemTransformHasChanged');
+    export const ItemVisibleHasChanged = createEnumToken(
+      'IconImage',
+      'ItemChange',
+      'ItemVisibleHasChanged',
+    );
+    export const ItemParentHasChanged = createEnumToken(
+      'IconImage',
+      'ItemChange',
+      'ItemParentHasChanged',
+    );
+    export const ItemOpacityHasChanged = createEnumToken(
+      'IconImage',
+      'ItemChange',
+      'ItemOpacityHasChanged',
+    );
+    export const ItemActiveFocusHasChanged = createEnumToken(
+      'IconImage',
+      'ItemChange',
+      'ItemActiveFocusHasChanged',
+    );
+    export const ItemRotationHasChanged = createEnumToken(
+      'IconImage',
+      'ItemChange',
+      'ItemRotationHasChanged',
+    );
+    export const ItemAntialiasingHasChanged = createEnumToken(
+      'IconImage',
+      'ItemChange',
+      'ItemAntialiasingHasChanged',
+    );
+    export const ItemDevicePixelRatioHasChanged = createEnumToken(
+      'IconImage',
+      'ItemChange',
+      'ItemDevicePixelRatioHasChanged',
+    );
+    export const ItemEnabledHasChanged = createEnumToken(
+      'IconImage',
+      'ItemChange',
+      'ItemEnabledHasChanged',
+    );
+    export const ItemScaleHasChanged = createEnumToken(
+      'IconImage',
+      'ItemChange',
+      'ItemScaleHasChanged',
+    );
+    export const ItemTransformHasChanged = createEnumToken(
+      'IconImage',
+      'ItemChange',
+      'ItemTransformHasChanged',
+    );
   }
   export namespace LoadPixmapOptions {
     export const NoOption = createEnumToken('IconImage', 'LoadPixmapOptions', 'NoOption');
     export const HandleDPR = createEnumToken('IconImage', 'LoadPixmapOptions', 'HandleDPR');
-    export const UseProviderOptions = createEnumToken('IconImage', 'LoadPixmapOptions', 'UseProviderOptions');
+    export const UseProviderOptions = createEnumToken(
+      'IconImage',
+      'LoadPixmapOptions',
+      'UseProviderOptions',
+    );
   }
   export namespace Status {
     export const Null = createEnumToken('IconImage', 'Status', 'Null');

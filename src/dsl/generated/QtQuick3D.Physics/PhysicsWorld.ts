@@ -2,8 +2,8 @@
 // Type: PhysicsWorld
 // Generated from Qt 6.11.0
 
-import { createFluentBuilder } from '../../runtime/index.js';
 import type { QmlObjectBuilder, QmlVector3d, TypeMetadata } from '../../runtime/index.js';
+import { createFluentBuilder } from '../../runtime/index.js';
 import type { NodeBuilder } from '../QtQuick3D/Node.js';
 export interface PhysicsWorldBuilder {
   id(id: string): PhysicsWorldBuilder;
@@ -94,10 +94,8 @@ const PHYSICSWORLD_META: TypeMetadata = {
     { handlerName: 'onTypicalSpeedChanged', paramCount: 1 },
     { handlerName: 'onViewportChanged', paramCount: 1 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function PhysicsWorld(): PhysicsWorldBuilder {

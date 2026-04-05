@@ -2,8 +2,8 @@
 // Type: ParticleModelShape3D
 // Generated from Qt 6.11.0
 
-import { createFluentBuilder } from '../../runtime/index.js';
 import type { QmlComponent, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import { createFluentBuilder } from '../../runtime/index.js';
 export interface ParticleModelShape3DBuilder {
   id(id: string): ParticleModelShape3DBuilder;
   child(obj: QmlObjectBuilder): ParticleModelShape3DBuilder;
@@ -31,12 +31,13 @@ const PARTICLEMODELSHAPE3D_META: TypeMetadata = {
     { handlerName: 'onFillChanged', paramCount: 0 },
     { handlerName: 'onObjectNameChanged', paramCount: 1 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function ParticleModelShape3D(): ParticleModelShape3DBuilder {
-  return createFluentBuilder('ParticleModelShape3D', PARTICLEMODELSHAPE3D_META) as unknown as ParticleModelShape3DBuilder;
+  return createFluentBuilder(
+    'ParticleModelShape3D',
+    PARTICLEMODELSHAPE3D_META,
+  ) as unknown as ParticleModelShape3DBuilder;
 }

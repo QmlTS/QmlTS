@@ -2,8 +2,8 @@
 // Type: Scene3D
 // Generated from Qt 6.11.0
 
-import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { QmlEnumToken, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { QtObjectBuilder } from '../QML/QtObject.js';
 import type { EntityBuilder } from '../Qt3D.Core/Entity.js';
 import type { ItemBuilder } from '../QtQuick/Item.js';
@@ -235,8 +235,7 @@ const SCENE3D_META: TypeMetadata = {
       ],
     },
   ],
-  attached: [
-  ],
+  attached: [],
   defaultProperty: 'entity',
 };
 
@@ -246,16 +245,32 @@ export function Scene3D(): Scene3DBuilder {
 
 export namespace Scene3D {
   export namespace CameraAspectRatioMode {
-    export const AutomaticAspectRatio = createEnumToken('Scene3D', 'CameraAspectRatioMode', 'AutomaticAspectRatio');
-    export const UserAspectRatio = createEnumToken('Scene3D', 'CameraAspectRatioMode', 'UserAspectRatio');
+    export const AutomaticAspectRatio = createEnumToken(
+      'Scene3D',
+      'CameraAspectRatioMode',
+      'AutomaticAspectRatio',
+    );
+    export const UserAspectRatio = createEnumToken(
+      'Scene3D',
+      'CameraAspectRatioMode',
+      'UserAspectRatio',
+    );
   }
   export namespace CompositingMode {
     export const FBO = createEnumToken('Scene3D', 'CompositingMode', 'FBO');
     export const Underlay = createEnumToken('Scene3D', 'CompositingMode', 'Underlay');
   }
   export namespace Flags {
-    export const ItemClipsChildrenToShape = createEnumToken('Scene3D', 'Flags', 'ItemClipsChildrenToShape');
-    export const ItemAcceptsInputMethod = createEnumToken('Scene3D', 'Flags', 'ItemAcceptsInputMethod');
+    export const ItemClipsChildrenToShape = createEnumToken(
+      'Scene3D',
+      'Flags',
+      'ItemClipsChildrenToShape',
+    );
+    export const ItemAcceptsInputMethod = createEnumToken(
+      'Scene3D',
+      'Flags',
+      'ItemAcceptsInputMethod',
+    );
     export const ItemIsFocusScope = createEnumToken('Scene3D', 'Flags', 'ItemIsFocusScope');
     export const ItemHasContents = createEnumToken('Scene3D', 'Flags', 'ItemHasContents');
     export const ItemAcceptsDrops = createEnumToken('Scene3D', 'Flags', 'ItemAcceptsDrops');
@@ -263,19 +278,67 @@ export namespace Scene3D {
     export const ItemObservesViewport = createEnumToken('Scene3D', 'Flags', 'ItemObservesViewport');
   }
   export namespace ItemChange {
-    export const ItemChildAddedChange = createEnumToken('Scene3D', 'ItemChange', 'ItemChildAddedChange');
-    export const ItemChildRemovedChange = createEnumToken('Scene3D', 'ItemChange', 'ItemChildRemovedChange');
+    export const ItemChildAddedChange = createEnumToken(
+      'Scene3D',
+      'ItemChange',
+      'ItemChildAddedChange',
+    );
+    export const ItemChildRemovedChange = createEnumToken(
+      'Scene3D',
+      'ItemChange',
+      'ItemChildRemovedChange',
+    );
     export const ItemSceneChange = createEnumToken('Scene3D', 'ItemChange', 'ItemSceneChange');
-    export const ItemVisibleHasChanged = createEnumToken('Scene3D', 'ItemChange', 'ItemVisibleHasChanged');
-    export const ItemParentHasChanged = createEnumToken('Scene3D', 'ItemChange', 'ItemParentHasChanged');
-    export const ItemOpacityHasChanged = createEnumToken('Scene3D', 'ItemChange', 'ItemOpacityHasChanged');
-    export const ItemActiveFocusHasChanged = createEnumToken('Scene3D', 'ItemChange', 'ItemActiveFocusHasChanged');
-    export const ItemRotationHasChanged = createEnumToken('Scene3D', 'ItemChange', 'ItemRotationHasChanged');
-    export const ItemAntialiasingHasChanged = createEnumToken('Scene3D', 'ItemChange', 'ItemAntialiasingHasChanged');
-    export const ItemDevicePixelRatioHasChanged = createEnumToken('Scene3D', 'ItemChange', 'ItemDevicePixelRatioHasChanged');
-    export const ItemEnabledHasChanged = createEnumToken('Scene3D', 'ItemChange', 'ItemEnabledHasChanged');
-    export const ItemScaleHasChanged = createEnumToken('Scene3D', 'ItemChange', 'ItemScaleHasChanged');
-    export const ItemTransformHasChanged = createEnumToken('Scene3D', 'ItemChange', 'ItemTransformHasChanged');
+    export const ItemVisibleHasChanged = createEnumToken(
+      'Scene3D',
+      'ItemChange',
+      'ItemVisibleHasChanged',
+    );
+    export const ItemParentHasChanged = createEnumToken(
+      'Scene3D',
+      'ItemChange',
+      'ItemParentHasChanged',
+    );
+    export const ItemOpacityHasChanged = createEnumToken(
+      'Scene3D',
+      'ItemChange',
+      'ItemOpacityHasChanged',
+    );
+    export const ItemActiveFocusHasChanged = createEnumToken(
+      'Scene3D',
+      'ItemChange',
+      'ItemActiveFocusHasChanged',
+    );
+    export const ItemRotationHasChanged = createEnumToken(
+      'Scene3D',
+      'ItemChange',
+      'ItemRotationHasChanged',
+    );
+    export const ItemAntialiasingHasChanged = createEnumToken(
+      'Scene3D',
+      'ItemChange',
+      'ItemAntialiasingHasChanged',
+    );
+    export const ItemDevicePixelRatioHasChanged = createEnumToken(
+      'Scene3D',
+      'ItemChange',
+      'ItemDevicePixelRatioHasChanged',
+    );
+    export const ItemEnabledHasChanged = createEnumToken(
+      'Scene3D',
+      'ItemChange',
+      'ItemEnabledHasChanged',
+    );
+    export const ItemScaleHasChanged = createEnumToken(
+      'Scene3D',
+      'ItemChange',
+      'ItemScaleHasChanged',
+    );
+    export const ItemTransformHasChanged = createEnumToken(
+      'Scene3D',
+      'ItemChange',
+      'ItemTransformHasChanged',
+    );
   }
   export namespace TransformOrigin {
     export const TopLeft = createEnumToken('Scene3D', 'TransformOrigin', 'TopLeft');

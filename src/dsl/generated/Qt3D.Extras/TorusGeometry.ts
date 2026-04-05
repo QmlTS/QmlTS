@@ -2,8 +2,8 @@
 // Type: TorusGeometry
 // Generated from Qt 6.11.0
 
-import { createFluentBuilder } from '../../runtime/index.js';
 import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import { createFluentBuilder } from '../../runtime/index.js';
 import type { AttributeBuilder } from '../Qt3D.Core/Attribute.js';
 export interface TorusGeometryBuilder {
   id(id: string): TorusGeometryBuilder;
@@ -63,12 +63,13 @@ const TORUSGEOMETRY_META: TypeMetadata = {
     { handlerName: 'onRingsChanged', paramCount: 1 },
     { handlerName: 'onSlicesChanged', paramCount: 1 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function TorusGeometry(): TorusGeometryBuilder {
-  return createFluentBuilder('TorusGeometry', TORUSGEOMETRY_META) as unknown as TorusGeometryBuilder;
+  return createFluentBuilder(
+    'TorusGeometry',
+    TORUSGEOMETRY_META,
+  ) as unknown as TorusGeometryBuilder;
 }

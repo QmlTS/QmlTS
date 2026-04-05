@@ -2,8 +2,14 @@
 // Type: ShaderEffectSource
 // Generated from Qt 6.11.0
 
+import type {
+  QmlEnumToken,
+  QmlObjectBuilder,
+  QmlRect,
+  QmlSize,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
-import type { QmlEnumToken, QmlObjectBuilder, QmlRect, QmlSize, TypeMetadata } from '../../runtime/index.js';
 import type { QtObjectBuilder } from '../QML/QtObject.js';
 import type { AccessibleAttachedBuilder } from './Accessible.js';
 import type { EnterKeyAttachedBuilder } from './EnterKey.js';
@@ -406,9 +412,7 @@ const SHADEREFFECTSOURCE_META: TypeMetadata = {
     {
       methodName: 'graphicsInfo',
       attachedTypeName: 'GraphicsInfo',
-      properties: [
-        { name: 'objectName', hasValue: true, hasBinding: true },
-      ],
+      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
       signals: [
         { handlerName: 'onApiChanged', paramCount: 0 },
         { handlerName: 'onMajorVersionChanged', paramCount: 0 },
@@ -559,9 +563,7 @@ const SHADEREFFECTSOURCE_META: TypeMetadata = {
     {
       methodName: 'pathView',
       attachedTypeName: 'PathView',
-      properties: [
-        { name: 'objectName', hasValue: true, hasBinding: true },
-      ],
+      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
       signals: [
         { handlerName: 'onCurrentItemChanged', paramCount: 0 },
         { handlerName: 'onPathChanged', paramCount: 0 },
@@ -571,9 +573,7 @@ const SHADEREFFECTSOURCE_META: TypeMetadata = {
     {
       methodName: 'positioner',
       attachedTypeName: 'Positioner',
-      properties: [
-        { name: 'objectName', hasValue: true, hasBinding: true },
-      ],
+      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
       signals: [
         { handlerName: 'onIndexChanged', paramCount: 0 },
         { handlerName: 'onIsFirstItemChanged', paramCount: 0 },
@@ -597,9 +597,7 @@ const SHADEREFFECTSOURCE_META: TypeMetadata = {
     {
       methodName: 'screen',
       attachedTypeName: 'Screen',
-      properties: [
-        { name: 'objectName', hasValue: true, hasBinding: true },
-      ],
+      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
       signals: [
         { handlerName: 'onDesktopGeometryChanged', paramCount: 0 },
         { handlerName: 'onDevicePixelRatioChanged', paramCount: 0 },
@@ -637,9 +635,7 @@ const SHADEREFFECTSOURCE_META: TypeMetadata = {
     {
       methodName: 'viewTransition',
       attachedTypeName: 'ViewTransition',
-      properties: [
-        { name: 'objectName', hasValue: true, hasBinding: true },
-      ],
+      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
       signals: [
         { handlerName: 'onDestinationChanged', paramCount: 0 },
         { handlerName: 'onIndexChanged', paramCount: 0 },
@@ -652,9 +648,7 @@ const SHADEREFFECTSOURCE_META: TypeMetadata = {
     {
       methodName: 'window',
       attachedTypeName: 'Window',
-      properties: [
-        { name: 'objectName', hasValue: true, hasBinding: true },
-      ],
+      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
       signals: [
         { handlerName: 'onActiveChanged', paramCount: 0 },
         { handlerName: 'onActiveFocusItemChanged', paramCount: 0 },
@@ -671,18 +665,45 @@ const SHADEREFFECTSOURCE_META: TypeMetadata = {
 };
 
 export function ShaderEffectSource(): ShaderEffectSourceBuilder {
-  return createFluentBuilder('ShaderEffectSource', SHADEREFFECTSOURCE_META) as unknown as ShaderEffectSourceBuilder;
+  return createFluentBuilder(
+    'ShaderEffectSource',
+    SHADEREFFECTSOURCE_META,
+  ) as unknown as ShaderEffectSourceBuilder;
 }
 
 export namespace ShaderEffectSource {
   export namespace Flags {
-    export const ItemClipsChildrenToShape = createEnumToken('ShaderEffectSource', 'Flags', 'ItemClipsChildrenToShape');
-    export const ItemAcceptsInputMethod = createEnumToken('ShaderEffectSource', 'Flags', 'ItemAcceptsInputMethod');
-    export const ItemIsFocusScope = createEnumToken('ShaderEffectSource', 'Flags', 'ItemIsFocusScope');
-    export const ItemHasContents = createEnumToken('ShaderEffectSource', 'Flags', 'ItemHasContents');
-    export const ItemAcceptsDrops = createEnumToken('ShaderEffectSource', 'Flags', 'ItemAcceptsDrops');
+    export const ItemClipsChildrenToShape = createEnumToken(
+      'ShaderEffectSource',
+      'Flags',
+      'ItemClipsChildrenToShape',
+    );
+    export const ItemAcceptsInputMethod = createEnumToken(
+      'ShaderEffectSource',
+      'Flags',
+      'ItemAcceptsInputMethod',
+    );
+    export const ItemIsFocusScope = createEnumToken(
+      'ShaderEffectSource',
+      'Flags',
+      'ItemIsFocusScope',
+    );
+    export const ItemHasContents = createEnumToken(
+      'ShaderEffectSource',
+      'Flags',
+      'ItemHasContents',
+    );
+    export const ItemAcceptsDrops = createEnumToken(
+      'ShaderEffectSource',
+      'Flags',
+      'ItemAcceptsDrops',
+    );
     export const ItemIsViewport = createEnumToken('ShaderEffectSource', 'Flags', 'ItemIsViewport');
-    export const ItemObservesViewport = createEnumToken('ShaderEffectSource', 'Flags', 'ItemObservesViewport');
+    export const ItemObservesViewport = createEnumToken(
+      'ShaderEffectSource',
+      'Flags',
+      'ItemObservesViewport',
+    );
   }
   export namespace Format {
     export const RGBA8 = createEnumToken('ShaderEffectSource', 'Format', 'RGBA8');
@@ -693,24 +714,88 @@ export namespace ShaderEffectSource {
     export const RGBA = createEnumToken('ShaderEffectSource', 'Format', 'RGBA');
   }
   export namespace ItemChange {
-    export const ItemChildAddedChange = createEnumToken('ShaderEffectSource', 'ItemChange', 'ItemChildAddedChange');
-    export const ItemChildRemovedChange = createEnumToken('ShaderEffectSource', 'ItemChange', 'ItemChildRemovedChange');
-    export const ItemSceneChange = createEnumToken('ShaderEffectSource', 'ItemChange', 'ItemSceneChange');
-    export const ItemVisibleHasChanged = createEnumToken('ShaderEffectSource', 'ItemChange', 'ItemVisibleHasChanged');
-    export const ItemParentHasChanged = createEnumToken('ShaderEffectSource', 'ItemChange', 'ItemParentHasChanged');
-    export const ItemOpacityHasChanged = createEnumToken('ShaderEffectSource', 'ItemChange', 'ItemOpacityHasChanged');
-    export const ItemActiveFocusHasChanged = createEnumToken('ShaderEffectSource', 'ItemChange', 'ItemActiveFocusHasChanged');
-    export const ItemRotationHasChanged = createEnumToken('ShaderEffectSource', 'ItemChange', 'ItemRotationHasChanged');
-    export const ItemAntialiasingHasChanged = createEnumToken('ShaderEffectSource', 'ItemChange', 'ItemAntialiasingHasChanged');
-    export const ItemDevicePixelRatioHasChanged = createEnumToken('ShaderEffectSource', 'ItemChange', 'ItemDevicePixelRatioHasChanged');
-    export const ItemEnabledHasChanged = createEnumToken('ShaderEffectSource', 'ItemChange', 'ItemEnabledHasChanged');
-    export const ItemScaleHasChanged = createEnumToken('ShaderEffectSource', 'ItemChange', 'ItemScaleHasChanged');
-    export const ItemTransformHasChanged = createEnumToken('ShaderEffectSource', 'ItemChange', 'ItemTransformHasChanged');
+    export const ItemChildAddedChange = createEnumToken(
+      'ShaderEffectSource',
+      'ItemChange',
+      'ItemChildAddedChange',
+    );
+    export const ItemChildRemovedChange = createEnumToken(
+      'ShaderEffectSource',
+      'ItemChange',
+      'ItemChildRemovedChange',
+    );
+    export const ItemSceneChange = createEnumToken(
+      'ShaderEffectSource',
+      'ItemChange',
+      'ItemSceneChange',
+    );
+    export const ItemVisibleHasChanged = createEnumToken(
+      'ShaderEffectSource',
+      'ItemChange',
+      'ItemVisibleHasChanged',
+    );
+    export const ItemParentHasChanged = createEnumToken(
+      'ShaderEffectSource',
+      'ItemChange',
+      'ItemParentHasChanged',
+    );
+    export const ItemOpacityHasChanged = createEnumToken(
+      'ShaderEffectSource',
+      'ItemChange',
+      'ItemOpacityHasChanged',
+    );
+    export const ItemActiveFocusHasChanged = createEnumToken(
+      'ShaderEffectSource',
+      'ItemChange',
+      'ItemActiveFocusHasChanged',
+    );
+    export const ItemRotationHasChanged = createEnumToken(
+      'ShaderEffectSource',
+      'ItemChange',
+      'ItemRotationHasChanged',
+    );
+    export const ItemAntialiasingHasChanged = createEnumToken(
+      'ShaderEffectSource',
+      'ItemChange',
+      'ItemAntialiasingHasChanged',
+    );
+    export const ItemDevicePixelRatioHasChanged = createEnumToken(
+      'ShaderEffectSource',
+      'ItemChange',
+      'ItemDevicePixelRatioHasChanged',
+    );
+    export const ItemEnabledHasChanged = createEnumToken(
+      'ShaderEffectSource',
+      'ItemChange',
+      'ItemEnabledHasChanged',
+    );
+    export const ItemScaleHasChanged = createEnumToken(
+      'ShaderEffectSource',
+      'ItemChange',
+      'ItemScaleHasChanged',
+    );
+    export const ItemTransformHasChanged = createEnumToken(
+      'ShaderEffectSource',
+      'ItemChange',
+      'ItemTransformHasChanged',
+    );
   }
   export namespace TextureMirroring {
-    export const NoMirroring = createEnumToken('ShaderEffectSource', 'TextureMirroring', 'NoMirroring');
-    export const MirrorHorizontally = createEnumToken('ShaderEffectSource', 'TextureMirroring', 'MirrorHorizontally');
-    export const MirrorVertically = createEnumToken('ShaderEffectSource', 'TextureMirroring', 'MirrorVertically');
+    export const NoMirroring = createEnumToken(
+      'ShaderEffectSource',
+      'TextureMirroring',
+      'NoMirroring',
+    );
+    export const MirrorHorizontally = createEnumToken(
+      'ShaderEffectSource',
+      'TextureMirroring',
+      'MirrorHorizontally',
+    );
+    export const MirrorVertically = createEnumToken(
+      'ShaderEffectSource',
+      'TextureMirroring',
+      'MirrorVertically',
+    );
   }
   export namespace TransformOrigin {
     export const TopLeft = createEnumToken('ShaderEffectSource', 'TransformOrigin', 'TopLeft');
@@ -719,14 +804,30 @@ export namespace ShaderEffectSource {
     export const Left = createEnumToken('ShaderEffectSource', 'TransformOrigin', 'Left');
     export const Center = createEnumToken('ShaderEffectSource', 'TransformOrigin', 'Center');
     export const Right = createEnumToken('ShaderEffectSource', 'TransformOrigin', 'Right');
-    export const BottomLeft = createEnumToken('ShaderEffectSource', 'TransformOrigin', 'BottomLeft');
+    export const BottomLeft = createEnumToken(
+      'ShaderEffectSource',
+      'TransformOrigin',
+      'BottomLeft',
+    );
     export const Bottom = createEnumToken('ShaderEffectSource', 'TransformOrigin', 'Bottom');
-    export const BottomRight = createEnumToken('ShaderEffectSource', 'TransformOrigin', 'BottomRight');
+    export const BottomRight = createEnumToken(
+      'ShaderEffectSource',
+      'TransformOrigin',
+      'BottomRight',
+    );
   }
   export namespace WrapMode {
     export const ClampToEdge = createEnumToken('ShaderEffectSource', 'WrapMode', 'ClampToEdge');
-    export const RepeatHorizontally = createEnumToken('ShaderEffectSource', 'WrapMode', 'RepeatHorizontally');
-    export const RepeatVertically = createEnumToken('ShaderEffectSource', 'WrapMode', 'RepeatVertically');
+    export const RepeatHorizontally = createEnumToken(
+      'ShaderEffectSource',
+      'WrapMode',
+      'RepeatHorizontally',
+    );
+    export const RepeatVertically = createEnumToken(
+      'ShaderEffectSource',
+      'WrapMode',
+      'RepeatVertically',
+    );
     export const Repeat = createEnumToken('ShaderEffectSource', 'WrapMode', 'Repeat');
   }
 }

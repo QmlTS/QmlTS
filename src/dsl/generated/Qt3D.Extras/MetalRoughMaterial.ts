@@ -2,8 +2,8 @@
 // Type: MetalRoughMaterial
 // Generated from Qt 6.11.0
 
-import { createFluentBuilder } from '../../runtime/index.js';
 import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import { createFluentBuilder } from '../../runtime/index.js';
 import type { EffectBuilder } from '../Qt3D.Render/Effect.js';
 export interface MetalRoughMaterialBuilder {
   id(id: string): MetalRoughMaterialBuilder;
@@ -78,12 +78,13 @@ const METALROUGHMATERIAL_META: TypeMetadata = {
     { handlerName: 'onShareableChanged', paramCount: 1 },
     { handlerName: 'onTextureScaleChanged', paramCount: 1 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function MetalRoughMaterial(): MetalRoughMaterialBuilder {
-  return createFluentBuilder('MetalRoughMaterial', METALROUGHMATERIAL_META) as unknown as MetalRoughMaterialBuilder;
+  return createFluentBuilder(
+    'MetalRoughMaterial',
+    METALROUGHMATERIAL_META,
+  ) as unknown as MetalRoughMaterialBuilder;
 }

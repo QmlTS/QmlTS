@@ -2,8 +2,15 @@
 // Type: BarCategoryAxis
 // Generated from Qt 6.11.0
 
+import type {
+  QmlColor,
+  QmlComponent,
+  QmlEnumToken,
+  QmlFont,
+  QmlObjectBuilder,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
-import type { QmlColor, QmlComponent, QmlEnumToken, QmlFont, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
 export interface BarCategoryAxisBuilder {
   id(id: string): BarCategoryAxisBuilder;
   child(obj: QmlObjectBuilder): BarCategoryAxisBuilder;
@@ -124,14 +131,15 @@ const BARCATEGORYAXIS_META: TypeMetadata = {
     { handlerName: 'onUpdate', paramCount: 0 },
     { handlerName: 'onVisibleChanged', paramCount: 1 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function BarCategoryAxis(): BarCategoryAxisBuilder {
-  return createFluentBuilder('BarCategoryAxis', BARCATEGORYAXIS_META) as unknown as BarCategoryAxisBuilder;
+  return createFluentBuilder(
+    'BarCategoryAxis',
+    BARCATEGORYAXIS_META,
+  ) as unknown as BarCategoryAxisBuilder;
 }
 
 export namespace BarCategoryAxis {

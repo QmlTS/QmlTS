@@ -2,8 +2,13 @@
 // Type: WaitFence
 // Generated from Qt 6.11.0
 
+import type {
+  QmlEnumToken,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
-import type { QmlEnumToken, QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
 export interface WaitFenceBuilder {
   id(id: string): WaitFenceBuilder;
   child(obj: QmlObjectBuilder): WaitFenceBuilder;
@@ -53,10 +58,8 @@ const WAITFENCE_META: TypeMetadata = {
     { handlerName: 'onTimeoutChanged', paramCount: 1 },
     { handlerName: 'onWaitOnCPUChanged', paramCount: 1 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function WaitFence(): WaitFenceBuilder {

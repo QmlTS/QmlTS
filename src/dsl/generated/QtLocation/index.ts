@@ -3,8 +3,8 @@
 
 export * from './Category.js';
 export * from './CategoryModel.js';
-export * from './GeoJsonData.js';
 export * from './GeocodeModel.js';
+export * from './GeoJsonData.js';
 export * from './Map.js';
 export * from './MapCircle.js';
 export * from './MapCopyrightNotice.js';

@@ -2,8 +2,8 @@
 // Type: AnimationClip
 // Generated from Qt 6.11.0
 
-import { createFluentBuilder } from '../../runtime/index.js';
 import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import { createFluentBuilder } from '../../runtime/index.js';
 export interface AnimationClipBuilder {
   id(id: string): AnimationClipBuilder;
   child(obj: QmlObjectBuilder): AnimationClipBuilder;
@@ -40,12 +40,13 @@ const ANIMATIONCLIP_META: TypeMetadata = {
     { handlerName: 'onObjectNameChanged', paramCount: 1 },
     { handlerName: 'onParentChanged', paramCount: 1 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function AnimationClip(): AnimationClipBuilder {
-  return createFluentBuilder('AnimationClip', ANIMATIONCLIP_META) as unknown as AnimationClipBuilder;
+  return createFluentBuilder(
+    'AnimationClip',
+    ANIMATIONCLIP_META,
+  ) as unknown as AnimationClipBuilder;
 }

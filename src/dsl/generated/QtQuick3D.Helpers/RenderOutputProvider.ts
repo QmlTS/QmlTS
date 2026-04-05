@@ -2,8 +2,13 @@
 // Type: RenderOutputProvider
 // Generated from Qt 6.11.0
 
+import type {
+  QmlEnumToken,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
-import type { QmlEnumToken, QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
 import type { RenderPassBuilder } from '../QtQuick3D/RenderPass.js';
 export interface RenderOutputProviderBuilder {
   id(id: string): RenderOutputProviderBuilder;
@@ -54,38 +59,91 @@ const RENDEROUTPUTPROVIDER_META: TypeMetadata = {
     { handlerName: 'onStateChanged', paramCount: 0 },
     { handlerName: 'onTextureSourceChanged', paramCount: 0 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function RenderOutputProvider(): RenderOutputProviderBuilder {
-  return createFluentBuilder('RenderOutputProvider', RENDEROUTPUTPROVIDER_META) as unknown as RenderOutputProviderBuilder;
+  return createFluentBuilder(
+    'RenderOutputProvider',
+    RENDEROUTPUTPROVIDER_META,
+  ) as unknown as RenderOutputProviderBuilder;
 }
 
 export namespace RenderOutputProvider {
   export namespace AttachmentSelector {
-    export const Attachment0 = createEnumToken('RenderOutputProvider', 'AttachmentSelector', 'Attachment0');
-    export const Attachment1 = createEnumToken('RenderOutputProvider', 'AttachmentSelector', 'Attachment1');
-    export const Attachment2 = createEnumToken('RenderOutputProvider', 'AttachmentSelector', 'Attachment2');
-    export const Attachment3 = createEnumToken('RenderOutputProvider', 'AttachmentSelector', 'Attachment3');
+    export const Attachment0 = createEnumToken(
+      'RenderOutputProvider',
+      'AttachmentSelector',
+      'Attachment0',
+    );
+    export const Attachment1 = createEnumToken(
+      'RenderOutputProvider',
+      'AttachmentSelector',
+      'Attachment1',
+    );
+    export const Attachment2 = createEnumToken(
+      'RenderOutputProvider',
+      'AttachmentSelector',
+      'Attachment2',
+    );
+    export const Attachment3 = createEnumToken(
+      'RenderOutputProvider',
+      'AttachmentSelector',
+      'Attachment3',
+    );
   }
   export namespace SamplerHint {
     export const Sampler2D = createEnumToken('RenderOutputProvider', 'SamplerHint', 'Sampler2D');
-    export const Sampler2DArray = createEnumToken('RenderOutputProvider', 'SamplerHint', 'Sampler2DArray');
+    export const Sampler2DArray = createEnumToken(
+      'RenderOutputProvider',
+      'SamplerHint',
+      'Sampler2DArray',
+    );
     export const Sampler3D = createEnumToken('RenderOutputProvider', 'SamplerHint', 'Sampler3D');
-    export const SamplerCube = createEnumToken('RenderOutputProvider', 'SamplerHint', 'SamplerCube');
-    export const SamplerCubeArray = createEnumToken('RenderOutputProvider', 'SamplerHint', 'SamplerCubeArray');
-    export const SamplerBuffer = createEnumToken('RenderOutputProvider', 'SamplerHint', 'SamplerBuffer');
+    export const SamplerCube = createEnumToken(
+      'RenderOutputProvider',
+      'SamplerHint',
+      'SamplerCube',
+    );
+    export const SamplerCubeArray = createEnumToken(
+      'RenderOutputProvider',
+      'SamplerHint',
+      'SamplerCubeArray',
+    );
+    export const SamplerBuffer = createEnumToken(
+      'RenderOutputProvider',
+      'SamplerHint',
+      'SamplerBuffer',
+    );
   }
   export namespace TextureSource {
     export const None = createEnumToken('RenderOutputProvider', 'TextureSource', 'None');
-    export const UserPassTexture = createEnumToken('RenderOutputProvider', 'TextureSource', 'UserPassTexture');
+    export const UserPassTexture = createEnumToken(
+      'RenderOutputProvider',
+      'TextureSource',
+      'UserPassTexture',
+    );
     export const AoTexture = createEnumToken('RenderOutputProvider', 'TextureSource', 'AoTexture');
-    export const DepthTexture = createEnumToken('RenderOutputProvider', 'TextureSource', 'DepthTexture');
-    export const ScreenTexture = createEnumToken('RenderOutputProvider', 'TextureSource', 'ScreenTexture');
-    export const NormalTexture = createEnumToken('RenderOutputProvider', 'TextureSource', 'NormalTexture');
-    export const MotionVectorTexture = createEnumToken('RenderOutputProvider', 'TextureSource', 'MotionVectorTexture');
+    export const DepthTexture = createEnumToken(
+      'RenderOutputProvider',
+      'TextureSource',
+      'DepthTexture',
+    );
+    export const ScreenTexture = createEnumToken(
+      'RenderOutputProvider',
+      'TextureSource',
+      'ScreenTexture',
+    );
+    export const NormalTexture = createEnumToken(
+      'RenderOutputProvider',
+      'TextureSource',
+      'NormalTexture',
+    );
+    export const MotionVectorTexture = createEnumToken(
+      'RenderOutputProvider',
+      'TextureSource',
+      'MotionVectorTexture',
+    );
   }
 }

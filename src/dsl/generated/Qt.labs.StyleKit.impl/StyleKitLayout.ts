@@ -2,8 +2,8 @@
 // Type: StyleKitLayout
 // Generated from Qt 6.11.0
 
-import { createFluentBuilder } from '../../runtime/index.js';
 import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import { createFluentBuilder } from '../../runtime/index.js';
 import type { ItemBuilder } from '../QtQuick/Item.js';
 export interface StyleKitLayoutBuilder {
   id(id: string): StyleKitLayoutBuilder;
@@ -57,13 +57,14 @@ const STYLEKITLAYOUT_META: TypeMetadata = {
     { handlerName: 'onPaddingChanged', paramCount: 0 },
     { handlerName: 'onSpacingChanged', paramCount: 0 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
   defaultProperty: 'layoutItems',
 };
 
 export function StyleKitLayout(): StyleKitLayoutBuilder {
-  return createFluentBuilder('StyleKitLayout', STYLEKITLAYOUT_META) as unknown as StyleKitLayoutBuilder;
+  return createFluentBuilder(
+    'StyleKitLayout',
+    STYLEKITLAYOUT_META,
+  ) as unknown as StyleKitLayoutBuilder;
 }

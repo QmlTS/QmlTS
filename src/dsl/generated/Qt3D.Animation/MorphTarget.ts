@@ -2,8 +2,8 @@
 // Type: MorphTarget
 // Generated from Qt 6.11.0
 
-import { createFluentBuilder } from '../../runtime/index.js';
 import type { QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import { createFluentBuilder } from '../../runtime/index.js';
 export interface MorphTargetBuilder {
   id(id: string): MorphTargetBuilder;
   child(obj: QmlObjectBuilder): MorphTargetBuilder;
@@ -16,17 +16,13 @@ export interface MorphTargetBuilder {
 
 const MORPHTARGET_META: TypeMetadata = {
   typeName: 'MorphTarget',
-  properties: [
-    { name: 'objectName', hasValue: true, hasBinding: true },
-  ],
+  properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
   signals: [
     { handlerName: 'onAttributeNamesChanged', paramCount: 1 },
     { handlerName: 'onObjectNameChanged', paramCount: 1 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function MorphTarget(): MorphTargetBuilder {

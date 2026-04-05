@@ -2,8 +2,8 @@
 // Type: DepthTextureAttachment
 // Generated from Qt 6.11.0
 
-import { createFluentBuilder } from '../../runtime/index.js';
 import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import { createFluentBuilder } from '../../runtime/index.js';
 import type { RenderPassTextureBuilder } from './RenderPassTexture.js';
 export interface DepthTextureAttachmentBuilder {
   id(id: string): DepthTextureAttachmentBuilder;
@@ -37,12 +37,13 @@ const DEPTHTEXTUREATTACHMENT_META: TypeMetadata = {
     { handlerName: 'onParentChanged', paramCount: 0 },
     { handlerName: 'onStateChanged', paramCount: 0 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function DepthTextureAttachment(): DepthTextureAttachmentBuilder {
-  return createFluentBuilder('DepthTextureAttachment', DEPTHTEXTUREATTACHMENT_META) as unknown as DepthTextureAttachmentBuilder;
+  return createFluentBuilder(
+    'DepthTextureAttachment',
+    DEPTHTEXTUREATTACHMENT_META,
+  ) as unknown as DepthTextureAttachmentBuilder;
 }

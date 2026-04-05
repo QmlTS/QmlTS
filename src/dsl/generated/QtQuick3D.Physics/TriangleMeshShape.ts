@@ -2,8 +2,15 @@
 // Type: TriangleMeshShape
 // Generated from Qt 6.11.0
 
+import type {
+  QmlObjectBuilder,
+  QmlQuaternion,
+  QmlUrl,
+  QmlValue,
+  QmlVector3d,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
-import type { QmlObjectBuilder, QmlQuaternion, QmlUrl, QmlValue, QmlVector3d, TypeMetadata } from '../../runtime/index.js';
 export interface TriangleMeshShapeBuilder {
   id(id: string): TriangleMeshShapeBuilder;
   child(obj: QmlObjectBuilder): TriangleMeshShapeBuilder;
@@ -124,14 +131,15 @@ const TRIANGLEMESHSHAPE_META: TypeMetadata = {
     { handlerName: 'onYChanged', paramCount: 0 },
     { handlerName: 'onZChanged', paramCount: 0 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function TriangleMeshShape(): TriangleMeshShapeBuilder {
-  return createFluentBuilder('TriangleMeshShape', TRIANGLEMESHSHAPE_META) as unknown as TriangleMeshShapeBuilder;
+  return createFluentBuilder(
+    'TriangleMeshShape',
+    TRIANGLEMESHSHAPE_META,
+  ) as unknown as TriangleMeshShapeBuilder;
 }
 
 export namespace TriangleMeshShape {
@@ -140,7 +148,11 @@ export namespace TriangleMeshShape {
   }
   export namespace TransformSpace {
     export const LocalSpace = createEnumToken('TriangleMeshShape', 'TransformSpace', 'LocalSpace');
-    export const ParentSpace = createEnumToken('TriangleMeshShape', 'TransformSpace', 'ParentSpace');
+    export const ParentSpace = createEnumToken(
+      'TriangleMeshShape',
+      'TransformSpace',
+      'ParentSpace',
+    );
     export const SceneSpace = createEnumToken('TriangleMeshShape', 'TransformSpace', 'SceneSpace');
   }
 }

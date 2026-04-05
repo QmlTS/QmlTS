@@ -2,8 +2,8 @@
 // Type: Category3DAxis
 // Generated from Qt 6.11.0
 
-import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface Category3DAxisBuilder {
   id(id: string): Category3DAxisBuilder;
   child(obj: QmlObjectBuilder): Category3DAxisBuilder;
@@ -89,14 +89,15 @@ const CATEGORY3DAXIS_META: TypeMetadata = {
     { handlerName: 'onTitleOffsetChanged', paramCount: 1 },
     { handlerName: 'onTitleVisibleChanged', paramCount: 1 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function Category3DAxis(): Category3DAxisBuilder {
-  return createFluentBuilder('Category3DAxis', CATEGORY3DAXIS_META) as unknown as Category3DAxisBuilder;
+  return createFluentBuilder(
+    'Category3DAxis',
+    CATEGORY3DAXIS_META,
+  ) as unknown as Category3DAxisBuilder;
 }
 
 export namespace Category3DAxis {

@@ -2,8 +2,8 @@
 // Type: CumulativeDirection
 // Generated from Qt 6.11.0
 
-import { createFluentBuilder } from '../../runtime/index.js';
 import type { QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import { createFluentBuilder } from '../../runtime/index.js';
 import type { ItemParticleAttachedBuilder } from './QQuickItemParticleAttached.js';
 export interface CumulativeDirectionBuilder {
   id(id: string): CumulativeDirectionBuilder;
@@ -17,21 +17,14 @@ export interface CumulativeDirectionBuilder {
 
 const CUMULATIVEDIRECTION_META: TypeMetadata = {
   typeName: 'CumulativeDirection',
-  properties: [
-    { name: 'objectName', hasValue: true, hasBinding: true },
-  ],
-  signals: [
-    { handlerName: 'onObjectNameChanged', paramCount: 1 },
-  ],
-  grouped: [
-  ],
+  properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
+  signals: [{ handlerName: 'onObjectNameChanged', paramCount: 1 }],
+  grouped: [],
   attached: [
     {
       methodName: 'itemParticle',
       attachedTypeName: 'ItemParticle',
-      properties: [
-        { name: 'objectName', hasValue: true, hasBinding: true },
-      ],
+      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
       signals: [
         { handlerName: 'onAttached', paramCount: 0 },
         { handlerName: 'onDetached', paramCount: 0 },
@@ -43,5 +36,8 @@ const CUMULATIVEDIRECTION_META: TypeMetadata = {
 };
 
 export function CumulativeDirection(): CumulativeDirectionBuilder {
-  return createFluentBuilder('CumulativeDirection', CUMULATIVEDIRECTION_META) as unknown as CumulativeDirectionBuilder;
+  return createFluentBuilder(
+    'CumulativeDirection',
+    CUMULATIVEDIRECTION_META,
+  ) as unknown as CumulativeDirectionBuilder;
 }

@@ -2,8 +2,8 @@
 // Type: KeyboardHandler
 // Generated from Qt 6.11.0
 
-import { createFluentBuilder } from '../../runtime/index.js';
 import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import { createFluentBuilder } from '../../runtime/index.js';
 import type { KeyboardDeviceBuilder } from './KeyboardDevice.js';
 export interface KeyboardHandlerBuilder {
   id(id: string): KeyboardHandlerBuilder;
@@ -133,12 +133,13 @@ const KEYBOARDHANDLER_META: TypeMetadata = {
     { handlerName: 'onVolumeUpPressed', paramCount: 1 },
     { handlerName: 'onYesPressed', paramCount: 1 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function KeyboardHandler(): KeyboardHandlerBuilder {
-  return createFluentBuilder('KeyboardHandler', KEYBOARDHANDLER_META) as unknown as KeyboardHandlerBuilder;
+  return createFluentBuilder(
+    'KeyboardHandler',
+    KEYBOARDHANDLER_META,
+  ) as unknown as KeyboardHandlerBuilder;
 }

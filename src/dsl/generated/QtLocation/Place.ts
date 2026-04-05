@@ -2,8 +2,13 @@
 // Type: Place
 // Generated from Qt 6.11.0
 
+import type {
+  QmlEnumToken,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
-import type { QmlEnumToken, QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
 import type { LocationBuilder } from '../QtPositioning/Location.js';
 import type { PluginBuilder } from './Plugin.js';
 export interface PlaceBuilder {
@@ -100,10 +105,8 @@ const PLACE_META: TypeMetadata = {
     { handlerName: 'onSupplierChanged', paramCount: 0 },
     { handlerName: 'onVisibilityChanged', paramCount: 0 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function Place(): PlaceBuilder {
@@ -119,7 +122,11 @@ export namespace Place {
     export const Error = createEnumToken('Place', 'Status', 'Error');
   }
   export namespace Visibility {
-    export const UnspecifiedVisibility = createEnumToken('Place', 'Visibility', 'UnspecifiedVisibility');
+    export const UnspecifiedVisibility = createEnumToken(
+      'Place',
+      'Visibility',
+      'UnspecifiedVisibility',
+    );
     export const DeviceVisibility = createEnumToken('Place', 'Visibility', 'DeviceVisibility');
     export const PrivateVisibility = createEnumToken('Place', 'Visibility', 'PrivateVisibility');
     export const PublicVisibility = createEnumToken('Place', 'Visibility', 'PublicVisibility');

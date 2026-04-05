@@ -2,8 +2,8 @@
 // Type: Color
 // Generated from Qt 6.11.0
 
-import { createFluentBuilder } from '../../runtime/index.js';
 import type { QmlColor, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import { createFluentBuilder } from '../../runtime/index.js';
 export interface ColorBuilder {
   id(id: string): ColorBuilder;
   child(obj: QmlObjectBuilder): ColorBuilder;
@@ -26,10 +26,8 @@ const COLOR_META: TypeMetadata = {
     { handlerName: 'onColorChanged', paramCount: 1 },
     { handlerName: 'onObjectNameChanged', paramCount: 1 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function Color(): ColorBuilder {

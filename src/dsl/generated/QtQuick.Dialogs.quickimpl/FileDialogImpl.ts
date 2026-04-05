@@ -2,12 +2,18 @@
 // Type: FileDialogImpl
 // Generated from Qt 6.11.0
 
+import type {
+  QmlEnumToken,
+  QmlFont,
+  QmlObjectBuilder,
+  QmlUrl,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
-import type { QmlEnumToken, QmlFont, QmlObjectBuilder, QmlUrl, TypeMetadata } from '../../runtime/index.js';
-import type { AnchorsBuilder } from '../QtQuick.Templates/QQuickPopupAnchors.js';
 import type { ItemBuilder } from '../QtQuick/Item.js';
 import type { PaletteBuilder } from '../QtQuick/Palette.js';
 import type { TransitionBuilder } from '../QtQuick/Transition.js';
+import type { AnchorsBuilder } from '../QtQuick.Templates/QQuickPopupAnchors.js';
 import type { ColorDialogImplAttachedBuilder } from './QQuickColorDialogImplAttached.js';
 import type { FileDialogImplAttachedBuilder } from './QQuickFileDialogImplAttached.js';
 import type { SelectedNameFilterBuilder } from './QQuickFileNameFilter.js';
@@ -361,16 +367,12 @@ const FILEDIALOGIMPL_META: TypeMetadata = {
     {
       methodName: 'anchors',
       groupName: 'anchors',
-      properties: [
-        { name: 'centerIn', hasValue: true, hasBinding: true },
-      ],
+      properties: [{ name: 'centerIn', hasValue: true, hasBinding: true }],
     },
     {
       methodName: 'selectedNameFilter',
       groupName: 'selectedNameFilter',
-      properties: [
-        { name: 'index', hasValue: true, hasBinding: true },
-      ],
+      properties: [{ name: 'index', hasValue: true, hasBinding: true }],
     },
   ],
   attached: [
@@ -486,16 +488,35 @@ const FILEDIALOGIMPL_META: TypeMetadata = {
 };
 
 export function FileDialogImpl(): FileDialogImplBuilder {
-  return createFluentBuilder('FileDialogImpl', FILEDIALOGIMPL_META) as unknown as FileDialogImplBuilder;
+  return createFluentBuilder(
+    'FileDialogImpl',
+    FILEDIALOGIMPL_META,
+  ) as unknown as FileDialogImplBuilder;
 }
 
 export namespace FileDialogImpl {
   export namespace ClosePolicy {
     export const NoAutoClose = createEnumToken('FileDialogImpl', 'ClosePolicy', 'NoAutoClose');
-    export const CloseOnPressOutside = createEnumToken('FileDialogImpl', 'ClosePolicy', 'CloseOnPressOutside');
-    export const CloseOnPressOutsideParent = createEnumToken('FileDialogImpl', 'ClosePolicy', 'CloseOnPressOutsideParent');
-    export const CloseOnReleaseOutside = createEnumToken('FileDialogImpl', 'ClosePolicy', 'CloseOnReleaseOutside');
-    export const CloseOnReleaseOutsideParent = createEnumToken('FileDialogImpl', 'ClosePolicy', 'CloseOnReleaseOutsideParent');
+    export const CloseOnPressOutside = createEnumToken(
+      'FileDialogImpl',
+      'ClosePolicy',
+      'CloseOnPressOutside',
+    );
+    export const CloseOnPressOutsideParent = createEnumToken(
+      'FileDialogImpl',
+      'ClosePolicy',
+      'CloseOnPressOutsideParent',
+    );
+    export const CloseOnReleaseOutside = createEnumToken(
+      'FileDialogImpl',
+      'ClosePolicy',
+      'CloseOnReleaseOutside',
+    );
+    export const CloseOnReleaseOutsideParent = createEnumToken(
+      'FileDialogImpl',
+      'ClosePolicy',
+      'CloseOnReleaseOutsideParent',
+    );
     export const CloseOnEscape = createEnumToken('FileDialogImpl', 'ClosePolicy', 'CloseOnEscape');
   }
   export namespace PopupType {

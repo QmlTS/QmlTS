@@ -2,8 +2,8 @@
 // Type: Accelerometer
 // Generated from Qt 6.11.0
 
-import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { QmlEnumToken, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface AccelerometerBuilder {
   id(id: string): AccelerometerBuilder;
   child(obj: QmlObjectBuilder): AccelerometerBuilder;
@@ -91,14 +91,15 @@ const ACCELEROMETER_META: TypeMetadata = {
     { handlerName: 'onSkipDuplicatesChanged', paramCount: 1 },
     { handlerName: 'onUserOrientationChanged', paramCount: 1 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function Accelerometer(): AccelerometerBuilder {
-  return createFluentBuilder('Accelerometer', ACCELEROMETER_META) as unknown as AccelerometerBuilder;
+  return createFluentBuilder(
+    'Accelerometer',
+    ACCELEROMETER_META,
+  ) as unknown as AccelerometerBuilder;
 }
 
 export namespace Accelerometer {
@@ -108,9 +109,21 @@ export namespace Accelerometer {
     export const User = createEnumToken('Accelerometer', 'AccelerationMode', 'User');
   }
   export namespace AxesOrientationMode {
-    export const FixedOrientation = createEnumToken('Accelerometer', 'AxesOrientationMode', 'FixedOrientation');
-    export const AutomaticOrientation = createEnumToken('Accelerometer', 'AxesOrientationMode', 'AutomaticOrientation');
-    export const UserOrientation = createEnumToken('Accelerometer', 'AxesOrientationMode', 'UserOrientation');
+    export const FixedOrientation = createEnumToken(
+      'Accelerometer',
+      'AxesOrientationMode',
+      'FixedOrientation',
+    );
+    export const AutomaticOrientation = createEnumToken(
+      'Accelerometer',
+      'AxesOrientationMode',
+      'AutomaticOrientation',
+    );
+    export const UserOrientation = createEnumToken(
+      'Accelerometer',
+      'AxesOrientationMode',
+      'UserOrientation',
+    );
   }
   export namespace Feature {
     export const Buffering = createEnumToken('Accelerometer', 'Feature', 'Buffering');
@@ -120,6 +133,10 @@ export namespace Accelerometer {
     export const AccelerationMode = createEnumToken('Accelerometer', 'Feature', 'AccelerationMode');
     export const SkipDuplicates = createEnumToken('Accelerometer', 'Feature', 'SkipDuplicates');
     export const AxesOrientation = createEnumToken('Accelerometer', 'Feature', 'AxesOrientation');
-    export const PressureSensorTemperature = createEnumToken('Accelerometer', 'Feature', 'PressureSensorTemperature');
+    export const PressureSensorTemperature = createEnumToken(
+      'Accelerometer',
+      'Feature',
+      'PressureSensorTemperature',
+    );
   }
 }

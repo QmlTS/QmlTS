@@ -2,8 +2,14 @@
 // Type: PlaneGeometry
 // Generated from Qt 6.11.0
 
+import type {
+  QmlEnumToken,
+  QmlObjectBuilder,
+  QmlSize,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
-import type { QmlEnumToken, QmlObjectBuilder, QmlSize, QmlValue, TypeMetadata } from '../../runtime/index.js';
 export interface PlaneGeometryBuilder {
   id(id: string): PlaneGeometryBuilder;
   child(obj: QmlObjectBuilder): PlaneGeometryBuilder;
@@ -74,14 +80,15 @@ const PLANEGEOMETRY_META: TypeMetadata = {
     { handlerName: 'onStatusChanged', paramCount: 0 },
     { handlerName: 'onWidthChanged', paramCount: 0 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function PlaneGeometry(): PlaneGeometryBuilder {
-  return createFluentBuilder('PlaneGeometry', PLANEGEOMETRY_META) as unknown as PlaneGeometryBuilder;
+  return createFluentBuilder(
+    'PlaneGeometry',
+    PLANEGEOMETRY_META,
+  ) as unknown as PlaneGeometryBuilder;
 }
 
 export namespace PlaneGeometry {

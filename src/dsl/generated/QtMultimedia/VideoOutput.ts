@@ -2,8 +2,8 @@
 // Type: VideoOutput
 // Generated from Qt 6.11.0
 
-import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { QmlEnumToken, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { QtObjectBuilder } from '../QML/QtObject.js';
 import type { ItemBuilder } from '../QtQuick/Item.js';
 import type { PaletteBuilder } from '../QtQuick/Palette.js';
@@ -234,13 +234,10 @@ const VIDEOOUTPUT_META: TypeMetadata = {
     {
       methodName: 'videoSink',
       groupName: 'videoSink',
-      properties: [
-        { name: 'subtitleText', hasValue: true, hasBinding: true },
-      ],
+      properties: [{ name: 'subtitleText', hasValue: true, hasBinding: true }],
     },
   ],
-  attached: [
-  ],
+  attached: [],
   defaultProperty: 'data',
 };
 
@@ -251,36 +248,108 @@ export function VideoOutput(): VideoOutputBuilder {
 export namespace VideoOutput {
   export namespace EndOfStreamPolicy {
     export const ClearOutput = createEnumToken('VideoOutput', 'EndOfStreamPolicy', 'ClearOutput');
-    export const KeepLastFrame = createEnumToken('VideoOutput', 'EndOfStreamPolicy', 'KeepLastFrame');
+    export const KeepLastFrame = createEnumToken(
+      'VideoOutput',
+      'EndOfStreamPolicy',
+      'KeepLastFrame',
+    );
   }
   export namespace FillMode {
     export const Stretch = createEnumToken('VideoOutput', 'FillMode', 'Stretch');
-    export const PreserveAspectFit = createEnumToken('VideoOutput', 'FillMode', 'PreserveAspectFit');
-    export const PreserveAspectCrop = createEnumToken('VideoOutput', 'FillMode', 'PreserveAspectCrop');
+    export const PreserveAspectFit = createEnumToken(
+      'VideoOutput',
+      'FillMode',
+      'PreserveAspectFit',
+    );
+    export const PreserveAspectCrop = createEnumToken(
+      'VideoOutput',
+      'FillMode',
+      'PreserveAspectCrop',
+    );
   }
   export namespace Flags {
-    export const ItemClipsChildrenToShape = createEnumToken('VideoOutput', 'Flags', 'ItemClipsChildrenToShape');
-    export const ItemAcceptsInputMethod = createEnumToken('VideoOutput', 'Flags', 'ItemAcceptsInputMethod');
+    export const ItemClipsChildrenToShape = createEnumToken(
+      'VideoOutput',
+      'Flags',
+      'ItemClipsChildrenToShape',
+    );
+    export const ItemAcceptsInputMethod = createEnumToken(
+      'VideoOutput',
+      'Flags',
+      'ItemAcceptsInputMethod',
+    );
     export const ItemIsFocusScope = createEnumToken('VideoOutput', 'Flags', 'ItemIsFocusScope');
     export const ItemHasContents = createEnumToken('VideoOutput', 'Flags', 'ItemHasContents');
     export const ItemAcceptsDrops = createEnumToken('VideoOutput', 'Flags', 'ItemAcceptsDrops');
     export const ItemIsViewport = createEnumToken('VideoOutput', 'Flags', 'ItemIsViewport');
-    export const ItemObservesViewport = createEnumToken('VideoOutput', 'Flags', 'ItemObservesViewport');
+    export const ItemObservesViewport = createEnumToken(
+      'VideoOutput',
+      'Flags',
+      'ItemObservesViewport',
+    );
   }
   export namespace ItemChange {
-    export const ItemChildAddedChange = createEnumToken('VideoOutput', 'ItemChange', 'ItemChildAddedChange');
-    export const ItemChildRemovedChange = createEnumToken('VideoOutput', 'ItemChange', 'ItemChildRemovedChange');
+    export const ItemChildAddedChange = createEnumToken(
+      'VideoOutput',
+      'ItemChange',
+      'ItemChildAddedChange',
+    );
+    export const ItemChildRemovedChange = createEnumToken(
+      'VideoOutput',
+      'ItemChange',
+      'ItemChildRemovedChange',
+    );
     export const ItemSceneChange = createEnumToken('VideoOutput', 'ItemChange', 'ItemSceneChange');
-    export const ItemVisibleHasChanged = createEnumToken('VideoOutput', 'ItemChange', 'ItemVisibleHasChanged');
-    export const ItemParentHasChanged = createEnumToken('VideoOutput', 'ItemChange', 'ItemParentHasChanged');
-    export const ItemOpacityHasChanged = createEnumToken('VideoOutput', 'ItemChange', 'ItemOpacityHasChanged');
-    export const ItemActiveFocusHasChanged = createEnumToken('VideoOutput', 'ItemChange', 'ItemActiveFocusHasChanged');
-    export const ItemRotationHasChanged = createEnumToken('VideoOutput', 'ItemChange', 'ItemRotationHasChanged');
-    export const ItemAntialiasingHasChanged = createEnumToken('VideoOutput', 'ItemChange', 'ItemAntialiasingHasChanged');
-    export const ItemDevicePixelRatioHasChanged = createEnumToken('VideoOutput', 'ItemChange', 'ItemDevicePixelRatioHasChanged');
-    export const ItemEnabledHasChanged = createEnumToken('VideoOutput', 'ItemChange', 'ItemEnabledHasChanged');
-    export const ItemScaleHasChanged = createEnumToken('VideoOutput', 'ItemChange', 'ItemScaleHasChanged');
-    export const ItemTransformHasChanged = createEnumToken('VideoOutput', 'ItemChange', 'ItemTransformHasChanged');
+    export const ItemVisibleHasChanged = createEnumToken(
+      'VideoOutput',
+      'ItemChange',
+      'ItemVisibleHasChanged',
+    );
+    export const ItemParentHasChanged = createEnumToken(
+      'VideoOutput',
+      'ItemChange',
+      'ItemParentHasChanged',
+    );
+    export const ItemOpacityHasChanged = createEnumToken(
+      'VideoOutput',
+      'ItemChange',
+      'ItemOpacityHasChanged',
+    );
+    export const ItemActiveFocusHasChanged = createEnumToken(
+      'VideoOutput',
+      'ItemChange',
+      'ItemActiveFocusHasChanged',
+    );
+    export const ItemRotationHasChanged = createEnumToken(
+      'VideoOutput',
+      'ItemChange',
+      'ItemRotationHasChanged',
+    );
+    export const ItemAntialiasingHasChanged = createEnumToken(
+      'VideoOutput',
+      'ItemChange',
+      'ItemAntialiasingHasChanged',
+    );
+    export const ItemDevicePixelRatioHasChanged = createEnumToken(
+      'VideoOutput',
+      'ItemChange',
+      'ItemDevicePixelRatioHasChanged',
+    );
+    export const ItemEnabledHasChanged = createEnumToken(
+      'VideoOutput',
+      'ItemChange',
+      'ItemEnabledHasChanged',
+    );
+    export const ItemScaleHasChanged = createEnumToken(
+      'VideoOutput',
+      'ItemChange',
+      'ItemScaleHasChanged',
+    );
+    export const ItemTransformHasChanged = createEnumToken(
+      'VideoOutput',
+      'ItemChange',
+      'ItemTransformHasChanged',
+    );
   }
   export namespace TransformOrigin {
     export const TopLeft = createEnumToken('VideoOutput', 'TransformOrigin', 'TopLeft');

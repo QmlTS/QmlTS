@@ -2,8 +2,14 @@
 // Type: PipelineStateOverride
 // Generated from Qt 6.11.0
 
+import type {
+  QmlEnumToken,
+  QmlObjectBuilder,
+  QmlRect,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
-import type { QmlEnumToken, QmlObjectBuilder, QmlRect, QmlValue, TypeMetadata } from '../../runtime/index.js';
 export interface PipelineStateOverrideBuilder {
   id(id: string): PipelineStateOverrideBuilder;
   child(obj: QmlObjectBuilder): PipelineStateOverrideBuilder;
@@ -133,14 +139,15 @@ const PIPELINESTATEOVERRIDE_META: TypeMetadata = {
     { handlerName: 'onUsesStencilReferenceChanged', paramCount: 0 },
     { handlerName: 'onViewportChanged', paramCount: 0 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function PipelineStateOverride(): PipelineStateOverrideBuilder {
-  return createFluentBuilder('PipelineStateOverride', PIPELINESTATEOVERRIDE_META) as unknown as PipelineStateOverrideBuilder;
+  return createFluentBuilder(
+    'PipelineStateOverride',
+    PIPELINESTATEOVERRIDE_META,
+  ) as unknown as PipelineStateOverrideBuilder;
 }
 
 export namespace PipelineStateOverride {
@@ -148,10 +155,22 @@ export namespace PipelineStateOverride {
     export const Never = createEnumToken('PipelineStateOverride', 'CompareOperation', 'Never');
     export const Less = createEnumToken('PipelineStateOverride', 'CompareOperation', 'Less');
     export const Equal = createEnumToken('PipelineStateOverride', 'CompareOperation', 'Equal');
-    export const LessOrEqual = createEnumToken('PipelineStateOverride', 'CompareOperation', 'LessOrEqual');
+    export const LessOrEqual = createEnumToken(
+      'PipelineStateOverride',
+      'CompareOperation',
+      'LessOrEqual',
+    );
     export const Greater = createEnumToken('PipelineStateOverride', 'CompareOperation', 'Greater');
-    export const NotEqual = createEnumToken('PipelineStateOverride', 'CompareOperation', 'NotEqual');
-    export const GreaterOrEqual = createEnumToken('PipelineStateOverride', 'CompareOperation', 'GreaterOrEqual');
+    export const NotEqual = createEnumToken(
+      'PipelineStateOverride',
+      'CompareOperation',
+      'NotEqual',
+    );
+    export const GreaterOrEqual = createEnumToken(
+      'PipelineStateOverride',
+      'CompareOperation',
+      'GreaterOrEqual',
+    );
     export const Always = createEnumToken('PipelineStateOverride', 'CompareOperation', 'Always');
   }
   export namespace CullMode {

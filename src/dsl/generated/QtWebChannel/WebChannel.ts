@@ -2,8 +2,8 @@
 // Type: WebChannel
 // Generated from Qt 6.11.0
 
-import { createFluentBuilder } from '../../runtime/index.js';
 import type { QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import { createFluentBuilder } from '../../runtime/index.js';
 import type { WebChannelAttachedBuilder } from './QQmlWebChannelAttached.js';
 export interface WebChannelBuilder {
   id(id: string): WebChannelBuilder;
@@ -31,8 +31,7 @@ const WEBCHANNEL_META: TypeMetadata = {
     { handlerName: 'onBlockUpdatesChanged', paramCount: 1 },
     { handlerName: 'onObjectNameChanged', paramCount: 1 },
   ],
-  grouped: [
-  ],
+  grouped: [],
   attached: [
     {
       methodName: 'webChannel',

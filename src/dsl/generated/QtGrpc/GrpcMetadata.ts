@@ -2,8 +2,8 @@
 // Type: GrpcMetadata
 // Generated from Qt 6.11.0
 
-import { createFluentBuilder } from '../../runtime/index.js';
 import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import { createFluentBuilder } from '../../runtime/index.js';
 export interface GrpcMetadataBuilder {
   id(id: string): GrpcMetadataBuilder;
   child(obj: QmlObjectBuilder): GrpcMetadataBuilder;
@@ -26,10 +26,8 @@ const GRPCMETADATA_META: TypeMetadata = {
     { handlerName: 'onDataChanged', paramCount: 0 },
     { handlerName: 'onObjectNameChanged', paramCount: 1 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function GrpcMetadata(): GrpcMetadataBuilder {

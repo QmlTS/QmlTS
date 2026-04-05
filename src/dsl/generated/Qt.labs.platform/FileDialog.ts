@@ -2,8 +2,14 @@
 // Type: FileDialog
 // Generated from Qt 6.11.0
 
+import type {
+  QmlEnumToken,
+  QmlObjectBuilder,
+  QmlUrl,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
-import type { QmlEnumToken, QmlObjectBuilder, QmlUrl, QmlValue, TypeMetadata } from '../../runtime/index.js';
 import type { SelectedNameFilterBuilder } from './QQuickLabsPlatformFileNameFilter.js';
 export interface FileDialogBuilder {
   id(id: string): FileDialogBuilder;
@@ -116,13 +122,10 @@ const FILEDIALOG_META: TypeMetadata = {
     {
       methodName: 'selectedNameFilter',
       groupName: 'selectedNameFilter',
-      properties: [
-        { name: 'index', hasValue: true, hasBinding: true },
-      ],
+      properties: [{ name: 'index', hasValue: true, hasBinding: true }],
     },
   ],
-  attached: [
-  ],
+  attached: [],
   defaultProperty: 'data',
 };
 

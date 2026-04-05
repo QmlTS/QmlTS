@@ -2,8 +2,15 @@
 // Type: XrItem
 // Generated from Qt 6.11.0
 
+import type {
+  QmlColor,
+  QmlObjectBuilder,
+  QmlQuaternion,
+  QmlValue,
+  QmlVector3d,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
-import type { QmlColor, QmlObjectBuilder, QmlQuaternion, QmlValue, QmlVector3d, TypeMetadata } from '../../runtime/index.js';
 import type { ItemBuilder } from '../QtQuick/Item.js';
 export interface XrItemBuilder {
   id(id: string): XrItemBuilder;
@@ -150,10 +157,8 @@ const XRITEM_META: TypeMetadata = {
     { handlerName: 'onYChanged', paramCount: 0 },
     { handlerName: 'onZChanged', paramCount: 0 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function XrItem(): XrItemBuilder {

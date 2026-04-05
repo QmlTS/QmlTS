@@ -2,8 +2,8 @@
 // Type: KeyframeGroup
 // Generated from Qt 6.11.0
 
-import { createFluentBuilder } from '../../runtime/index.js';
 import type { QmlObjectBuilder, QmlUrl, TypeMetadata } from '../../runtime/index.js';
+import { createFluentBuilder } from '../../runtime/index.js';
 import type { QtObjectBuilder } from '../QML/QtObject.js';
 export interface KeyframeGroupBuilder {
   id(id: string): KeyframeGroupBuilder;
@@ -37,13 +37,14 @@ const KEYFRAMEGROUP_META: TypeMetadata = {
     { handlerName: 'onPropertyChanged', paramCount: 0 },
     { handlerName: 'onTargetChanged', paramCount: 0 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
   defaultProperty: 'keyframes',
 };
 
 export function KeyframeGroup(): KeyframeGroupBuilder {
-  return createFluentBuilder('KeyframeGroup', KEYFRAMEGROUP_META) as unknown as KeyframeGroupBuilder;
+  return createFluentBuilder(
+    'KeyframeGroup',
+    KEYFRAMEGROUP_META,
+  ) as unknown as KeyframeGroupBuilder;
 }

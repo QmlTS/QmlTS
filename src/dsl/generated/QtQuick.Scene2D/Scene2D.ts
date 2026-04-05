@@ -2,8 +2,13 @@
 // Type: Scene2D
 // Generated from Qt 6.11.0
 
+import type {
+  QmlEnumToken,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
-import type { QmlEnumToken, QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
 import type { RenderTargetOutputBuilder } from '../Qt3D.Render/RenderTargetOutput.js';
 import type { ItemBuilder } from '../QtQuick/Item.js';
 export interface Scene2DBuilder {
@@ -55,10 +60,8 @@ const SCENE2D_META: TypeMetadata = {
     { handlerName: 'onParentChanged', paramCount: 1 },
     { handlerName: 'onRenderPolicyChanged', paramCount: 1 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
   defaultProperty: 'item',
 };
 

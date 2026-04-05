@@ -2,8 +2,8 @@
 // Type: WavefrontMesh
 // Generated from Qt 6.11.0
 
-import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { QmlObjectBuilder, QmlUrl, QmlVector3d, TypeMetadata } from '../../runtime/index.js';
+import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface WavefrontMeshBuilder {
   id(id: string): WavefrontMeshBuilder;
   child(obj: QmlObjectBuilder): WavefrontMeshBuilder;
@@ -40,28 +40,61 @@ const WAVEFRONTMESH_META: TypeMetadata = {
     { handlerName: 'onProjectionPlaneWChanged', paramCount: 0 },
     { handlerName: 'onSourceChanged', paramCount: 0 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function WavefrontMesh(): WavefrontMeshBuilder {
-  return createFluentBuilder('WavefrontMesh', WAVEFRONTMESH_META) as unknown as WavefrontMeshBuilder;
+  return createFluentBuilder(
+    'WavefrontMesh',
+    WAVEFRONTMESH_META,
+  ) as unknown as WavefrontMeshBuilder;
 }
 
 export namespace WavefrontMesh {
   export namespace Error {
     export const NoError = createEnumToken('WavefrontMesh', 'Error', 'NoError');
-    export const InvalidSourceError = createEnumToken('WavefrontMesh', 'Error', 'InvalidSourceError');
-    export const UnsupportedFaceShapeError = createEnumToken('WavefrontMesh', 'Error', 'UnsupportedFaceShapeError');
-    export const UnsupportedIndexSizeError = createEnumToken('WavefrontMesh', 'Error', 'UnsupportedIndexSizeError');
+    export const InvalidSourceError = createEnumToken(
+      'WavefrontMesh',
+      'Error',
+      'InvalidSourceError',
+    );
+    export const UnsupportedFaceShapeError = createEnumToken(
+      'WavefrontMesh',
+      'Error',
+      'UnsupportedFaceShapeError',
+    );
+    export const UnsupportedIndexSizeError = createEnumToken(
+      'WavefrontMesh',
+      'Error',
+      'UnsupportedIndexSizeError',
+    );
     export const FileNotFoundError = createEnumToken('WavefrontMesh', 'Error', 'FileNotFoundError');
     export const NoAttributesError = createEnumToken('WavefrontMesh', 'Error', 'NoAttributesError');
-    export const MissingPositionAttributeError = createEnumToken('WavefrontMesh', 'Error', 'MissingPositionAttributeError');
-    export const MissingTextureCoordinateAttributeError = createEnumToken('WavefrontMesh', 'Error', 'MissingTextureCoordinateAttributeError');
-    export const MissingPositionAndTextureCoordinateAttributesError = createEnumToken('WavefrontMesh', 'Error', 'MissingPositionAndTextureCoordinateAttributesError');
-    export const TooManyAttributesError = createEnumToken('WavefrontMesh', 'Error', 'TooManyAttributesError');
-    export const InvalidPlaneDefinitionError = createEnumToken('WavefrontMesh', 'Error', 'InvalidPlaneDefinitionError');
+    export const MissingPositionAttributeError = createEnumToken(
+      'WavefrontMesh',
+      'Error',
+      'MissingPositionAttributeError',
+    );
+    export const MissingTextureCoordinateAttributeError = createEnumToken(
+      'WavefrontMesh',
+      'Error',
+      'MissingTextureCoordinateAttributeError',
+    );
+    export const MissingPositionAndTextureCoordinateAttributesError = createEnumToken(
+      'WavefrontMesh',
+      'Error',
+      'MissingPositionAndTextureCoordinateAttributesError',
+    );
+    export const TooManyAttributesError = createEnumToken(
+      'WavefrontMesh',
+      'Error',
+      'TooManyAttributesError',
+    );
+    export const InvalidPlaneDefinitionError = createEnumToken(
+      'WavefrontMesh',
+      'Error',
+      'InvalidPlaneDefinitionError',
+    );
   }
 }

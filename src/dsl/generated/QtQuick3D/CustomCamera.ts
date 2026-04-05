@@ -2,8 +2,15 @@
 // Type: CustomCamera
 // Generated from Qt 6.11.0
 
+import type {
+  QmlMatrix4x4,
+  QmlObjectBuilder,
+  QmlQuaternion,
+  QmlValue,
+  QmlVector3d,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
-import type { QmlMatrix4x4, QmlObjectBuilder, QmlQuaternion, QmlValue, QmlVector3d, TypeMetadata } from '../../runtime/index.js';
 import type { NodeBuilder } from './Node.js';
 export interface CustomCameraBuilder {
   id(id: string): CustomCameraBuilder;
@@ -128,10 +135,8 @@ const CUSTOMCAMERA_META: TypeMetadata = {
     { handlerName: 'onYChanged', paramCount: 0 },
     { handlerName: 'onZChanged', paramCount: 0 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function CustomCamera(): CustomCameraBuilder {

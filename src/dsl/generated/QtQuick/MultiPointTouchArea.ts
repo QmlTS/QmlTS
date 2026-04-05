@@ -2,8 +2,8 @@
 // Type: MultiPointTouchArea
 // Generated from Qt 6.11.0
 
-import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { QmlEnumToken, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { QtObjectBuilder } from '../QML/QtObject.js';
 import type { AccessibleAttachedBuilder } from './Accessible.js';
 import type { EnterKeyAttachedBuilder } from './EnterKey.js';
@@ -376,9 +376,7 @@ const MULTIPOINTTOUCHAREA_META: TypeMetadata = {
     {
       methodName: 'graphicsInfo',
       attachedTypeName: 'GraphicsInfo',
-      properties: [
-        { name: 'objectName', hasValue: true, hasBinding: true },
-      ],
+      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
       signals: [
         { handlerName: 'onApiChanged', paramCount: 0 },
         { handlerName: 'onMajorVersionChanged', paramCount: 0 },
@@ -529,9 +527,7 @@ const MULTIPOINTTOUCHAREA_META: TypeMetadata = {
     {
       methodName: 'pathView',
       attachedTypeName: 'PathView',
-      properties: [
-        { name: 'objectName', hasValue: true, hasBinding: true },
-      ],
+      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
       signals: [
         { handlerName: 'onCurrentItemChanged', paramCount: 0 },
         { handlerName: 'onPathChanged', paramCount: 0 },
@@ -541,9 +537,7 @@ const MULTIPOINTTOUCHAREA_META: TypeMetadata = {
     {
       methodName: 'positioner',
       attachedTypeName: 'Positioner',
-      properties: [
-        { name: 'objectName', hasValue: true, hasBinding: true },
-      ],
+      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
       signals: [
         { handlerName: 'onIndexChanged', paramCount: 0 },
         { handlerName: 'onIsFirstItemChanged', paramCount: 0 },
@@ -567,9 +561,7 @@ const MULTIPOINTTOUCHAREA_META: TypeMetadata = {
     {
       methodName: 'screen',
       attachedTypeName: 'Screen',
-      properties: [
-        { name: 'objectName', hasValue: true, hasBinding: true },
-      ],
+      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
       signals: [
         { handlerName: 'onDesktopGeometryChanged', paramCount: 0 },
         { handlerName: 'onDevicePixelRatioChanged', paramCount: 0 },
@@ -607,9 +599,7 @@ const MULTIPOINTTOUCHAREA_META: TypeMetadata = {
     {
       methodName: 'viewTransition',
       attachedTypeName: 'ViewTransition',
-      properties: [
-        { name: 'objectName', hasValue: true, hasBinding: true },
-      ],
+      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
       signals: [
         { handlerName: 'onDestinationChanged', paramCount: 0 },
         { handlerName: 'onIndexChanged', paramCount: 0 },
@@ -622,9 +612,7 @@ const MULTIPOINTTOUCHAREA_META: TypeMetadata = {
     {
       methodName: 'window',
       attachedTypeName: 'Window',
-      properties: [
-        { name: 'objectName', hasValue: true, hasBinding: true },
-      ],
+      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
       signals: [
         { handlerName: 'onActiveChanged', paramCount: 0 },
         { handlerName: 'onActiveFocusItemChanged', paramCount: 0 },
@@ -641,33 +629,112 @@ const MULTIPOINTTOUCHAREA_META: TypeMetadata = {
 };
 
 export function MultiPointTouchArea(): MultiPointTouchAreaBuilder {
-  return createFluentBuilder('MultiPointTouchArea', MULTIPOINTTOUCHAREA_META) as unknown as MultiPointTouchAreaBuilder;
+  return createFluentBuilder(
+    'MultiPointTouchArea',
+    MULTIPOINTTOUCHAREA_META,
+  ) as unknown as MultiPointTouchAreaBuilder;
 }
 
 export namespace MultiPointTouchArea {
   export namespace Flags {
-    export const ItemClipsChildrenToShape = createEnumToken('MultiPointTouchArea', 'Flags', 'ItemClipsChildrenToShape');
-    export const ItemAcceptsInputMethod = createEnumToken('MultiPointTouchArea', 'Flags', 'ItemAcceptsInputMethod');
-    export const ItemIsFocusScope = createEnumToken('MultiPointTouchArea', 'Flags', 'ItemIsFocusScope');
-    export const ItemHasContents = createEnumToken('MultiPointTouchArea', 'Flags', 'ItemHasContents');
-    export const ItemAcceptsDrops = createEnumToken('MultiPointTouchArea', 'Flags', 'ItemAcceptsDrops');
+    export const ItemClipsChildrenToShape = createEnumToken(
+      'MultiPointTouchArea',
+      'Flags',
+      'ItemClipsChildrenToShape',
+    );
+    export const ItemAcceptsInputMethod = createEnumToken(
+      'MultiPointTouchArea',
+      'Flags',
+      'ItemAcceptsInputMethod',
+    );
+    export const ItemIsFocusScope = createEnumToken(
+      'MultiPointTouchArea',
+      'Flags',
+      'ItemIsFocusScope',
+    );
+    export const ItemHasContents = createEnumToken(
+      'MultiPointTouchArea',
+      'Flags',
+      'ItemHasContents',
+    );
+    export const ItemAcceptsDrops = createEnumToken(
+      'MultiPointTouchArea',
+      'Flags',
+      'ItemAcceptsDrops',
+    );
     export const ItemIsViewport = createEnumToken('MultiPointTouchArea', 'Flags', 'ItemIsViewport');
-    export const ItemObservesViewport = createEnumToken('MultiPointTouchArea', 'Flags', 'ItemObservesViewport');
+    export const ItemObservesViewport = createEnumToken(
+      'MultiPointTouchArea',
+      'Flags',
+      'ItemObservesViewport',
+    );
   }
   export namespace ItemChange {
-    export const ItemChildAddedChange = createEnumToken('MultiPointTouchArea', 'ItemChange', 'ItemChildAddedChange');
-    export const ItemChildRemovedChange = createEnumToken('MultiPointTouchArea', 'ItemChange', 'ItemChildRemovedChange');
-    export const ItemSceneChange = createEnumToken('MultiPointTouchArea', 'ItemChange', 'ItemSceneChange');
-    export const ItemVisibleHasChanged = createEnumToken('MultiPointTouchArea', 'ItemChange', 'ItemVisibleHasChanged');
-    export const ItemParentHasChanged = createEnumToken('MultiPointTouchArea', 'ItemChange', 'ItemParentHasChanged');
-    export const ItemOpacityHasChanged = createEnumToken('MultiPointTouchArea', 'ItemChange', 'ItemOpacityHasChanged');
-    export const ItemActiveFocusHasChanged = createEnumToken('MultiPointTouchArea', 'ItemChange', 'ItemActiveFocusHasChanged');
-    export const ItemRotationHasChanged = createEnumToken('MultiPointTouchArea', 'ItemChange', 'ItemRotationHasChanged');
-    export const ItemAntialiasingHasChanged = createEnumToken('MultiPointTouchArea', 'ItemChange', 'ItemAntialiasingHasChanged');
-    export const ItemDevicePixelRatioHasChanged = createEnumToken('MultiPointTouchArea', 'ItemChange', 'ItemDevicePixelRatioHasChanged');
-    export const ItemEnabledHasChanged = createEnumToken('MultiPointTouchArea', 'ItemChange', 'ItemEnabledHasChanged');
-    export const ItemScaleHasChanged = createEnumToken('MultiPointTouchArea', 'ItemChange', 'ItemScaleHasChanged');
-    export const ItemTransformHasChanged = createEnumToken('MultiPointTouchArea', 'ItemChange', 'ItemTransformHasChanged');
+    export const ItemChildAddedChange = createEnumToken(
+      'MultiPointTouchArea',
+      'ItemChange',
+      'ItemChildAddedChange',
+    );
+    export const ItemChildRemovedChange = createEnumToken(
+      'MultiPointTouchArea',
+      'ItemChange',
+      'ItemChildRemovedChange',
+    );
+    export const ItemSceneChange = createEnumToken(
+      'MultiPointTouchArea',
+      'ItemChange',
+      'ItemSceneChange',
+    );
+    export const ItemVisibleHasChanged = createEnumToken(
+      'MultiPointTouchArea',
+      'ItemChange',
+      'ItemVisibleHasChanged',
+    );
+    export const ItemParentHasChanged = createEnumToken(
+      'MultiPointTouchArea',
+      'ItemChange',
+      'ItemParentHasChanged',
+    );
+    export const ItemOpacityHasChanged = createEnumToken(
+      'MultiPointTouchArea',
+      'ItemChange',
+      'ItemOpacityHasChanged',
+    );
+    export const ItemActiveFocusHasChanged = createEnumToken(
+      'MultiPointTouchArea',
+      'ItemChange',
+      'ItemActiveFocusHasChanged',
+    );
+    export const ItemRotationHasChanged = createEnumToken(
+      'MultiPointTouchArea',
+      'ItemChange',
+      'ItemRotationHasChanged',
+    );
+    export const ItemAntialiasingHasChanged = createEnumToken(
+      'MultiPointTouchArea',
+      'ItemChange',
+      'ItemAntialiasingHasChanged',
+    );
+    export const ItemDevicePixelRatioHasChanged = createEnumToken(
+      'MultiPointTouchArea',
+      'ItemChange',
+      'ItemDevicePixelRatioHasChanged',
+    );
+    export const ItemEnabledHasChanged = createEnumToken(
+      'MultiPointTouchArea',
+      'ItemChange',
+      'ItemEnabledHasChanged',
+    );
+    export const ItemScaleHasChanged = createEnumToken(
+      'MultiPointTouchArea',
+      'ItemChange',
+      'ItemScaleHasChanged',
+    );
+    export const ItemTransformHasChanged = createEnumToken(
+      'MultiPointTouchArea',
+      'ItemChange',
+      'ItemTransformHasChanged',
+    );
   }
   export namespace TransformOrigin {
     export const TopLeft = createEnumToken('MultiPointTouchArea', 'TransformOrigin', 'TopLeft');
@@ -676,8 +743,16 @@ export namespace MultiPointTouchArea {
     export const Left = createEnumToken('MultiPointTouchArea', 'TransformOrigin', 'Left');
     export const Center = createEnumToken('MultiPointTouchArea', 'TransformOrigin', 'Center');
     export const Right = createEnumToken('MultiPointTouchArea', 'TransformOrigin', 'Right');
-    export const BottomLeft = createEnumToken('MultiPointTouchArea', 'TransformOrigin', 'BottomLeft');
+    export const BottomLeft = createEnumToken(
+      'MultiPointTouchArea',
+      'TransformOrigin',
+      'BottomLeft',
+    );
     export const Bottom = createEnumToken('MultiPointTouchArea', 'TransformOrigin', 'Bottom');
-    export const BottomRight = createEnumToken('MultiPointTouchArea', 'TransformOrigin', 'BottomRight');
+    export const BottomRight = createEnumToken(
+      'MultiPointTouchArea',
+      'TransformOrigin',
+      'BottomRight',
+    );
   }
 }

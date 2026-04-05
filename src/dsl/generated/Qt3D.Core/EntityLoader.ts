@@ -2,8 +2,14 @@
 // Type: EntityLoader
 // Generated from Qt 6.11.0
 
+import type {
+  QmlComponent,
+  QmlObjectBuilder,
+  QmlUrl,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
-import type { QmlComponent, QmlObjectBuilder, QmlUrl, QmlValue, TypeMetadata } from '../../runtime/index.js';
 export interface EntityLoaderBuilder {
   id(id: string): EntityLoaderBuilder;
   child(obj: QmlObjectBuilder): EntityLoaderBuilder;
@@ -47,10 +53,8 @@ const ENTITYLOADER_META: TypeMetadata = {
     { handlerName: 'onSourceComponentChanged', paramCount: 0 },
     { handlerName: 'onStatusChanged', paramCount: 1 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function EntityLoader(): EntityLoaderBuilder {

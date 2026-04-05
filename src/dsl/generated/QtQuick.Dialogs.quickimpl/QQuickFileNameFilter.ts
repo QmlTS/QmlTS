@@ -2,7 +2,6 @@
 // Type: Grouped surface: QQuickFileNameFilter
 // Generated from Qt 6.11.0
 
-
 export interface SelectedNameFilterBuilder {
   index(value: number): SelectedNameFilterBuilder;
   indexBind(expr: string): SelectedNameFilterBuilder;

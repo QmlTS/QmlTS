@@ -2,8 +2,8 @@
 // Type: XmlListModelRole
 // Generated from Qt 6.11.0
 
-import { createFluentBuilder } from '../../runtime/index.js';
 import type { QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import { createFluentBuilder } from '../../runtime/index.js';
 export interface XmlListModelRoleBuilder {
   id(id: string): XmlListModelRoleBuilder;
   child(obj: QmlObjectBuilder): XmlListModelRoleBuilder;
@@ -36,12 +36,13 @@ const XMLLISTMODELROLE_META: TypeMetadata = {
     { handlerName: 'onNameChanged', paramCount: 0 },
     { handlerName: 'onObjectNameChanged', paramCount: 1 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function XmlListModelRole(): XmlListModelRoleBuilder {
-  return createFluentBuilder('XmlListModelRole', XMLLISTMODELROLE_META) as unknown as XmlListModelRoleBuilder;
+  return createFluentBuilder(
+    'XmlListModelRole',
+    XMLLISTMODELROLE_META,
+  ) as unknown as XmlListModelRoleBuilder;
 }

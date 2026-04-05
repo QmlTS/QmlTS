@@ -2,8 +2,17 @@
 // Type: ModelBlendParticle3D
 // Generated from Qt 6.11.0
 
+import type {
+  QmlColor,
+  QmlComponent,
+  QmlEnumToken,
+  QmlObjectBuilder,
+  QmlValue,
+  QmlVector3d,
+  QmlVector4d,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
-import type { QmlColor, QmlComponent, QmlEnumToken, QmlObjectBuilder, QmlValue, QmlVector3d, QmlVector4d, TypeMetadata } from '../../runtime/index.js';
 import type { NodeBuilder } from '../QtQuick3D/Node.js';
 export interface ModelBlendParticle3DBuilder {
   id(id: string): ModelBlendParticle3DBuilder;
@@ -128,21 +137,30 @@ const MODELBLENDPARTICLE3D_META: TypeMetadata = {
     { handlerName: 'onSystemChanged', paramCount: 0 },
     { handlerName: 'onUnifiedColorVariationChanged', paramCount: 0 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function ModelBlendParticle3D(): ModelBlendParticle3DBuilder {
-  return createFluentBuilder('ModelBlendParticle3D', MODELBLENDPARTICLE3D_META) as unknown as ModelBlendParticle3DBuilder;
+  return createFluentBuilder(
+    'ModelBlendParticle3D',
+    MODELBLENDPARTICLE3D_META,
+  ) as unknown as ModelBlendParticle3DBuilder;
 }
 
 export namespace ModelBlendParticle3D {
   export namespace AlignMode {
     export const AlignNone = createEnumToken('ModelBlendParticle3D', 'AlignMode', 'AlignNone');
-    export const AlignTowardsTarget = createEnumToken('ModelBlendParticle3D', 'AlignMode', 'AlignTowardsTarget');
-    export const AlignTowardsStartVelocity = createEnumToken('ModelBlendParticle3D', 'AlignMode', 'AlignTowardsStartVelocity');
+    export const AlignTowardsTarget = createEnumToken(
+      'ModelBlendParticle3D',
+      'AlignMode',
+      'AlignTowardsTarget',
+    );
+    export const AlignTowardsStartVelocity = createEnumToken(
+      'ModelBlendParticle3D',
+      'AlignMode',
+      'AlignTowardsStartVelocity',
+    );
   }
   export namespace FadeType {
     export const FadeNone = createEnumToken('ModelBlendParticle3D', 'FadeType', 'FadeNone');
@@ -150,9 +168,17 @@ export namespace ModelBlendParticle3D {
     export const FadeScale = createEnumToken('ModelBlendParticle3D', 'FadeType', 'FadeScale');
   }
   export namespace ModelBlendEmitMode {
-    export const Sequential = createEnumToken('ModelBlendParticle3D', 'ModelBlendEmitMode', 'Sequential');
+    export const Sequential = createEnumToken(
+      'ModelBlendParticle3D',
+      'ModelBlendEmitMode',
+      'Sequential',
+    );
     export const Random = createEnumToken('ModelBlendParticle3D', 'ModelBlendEmitMode', 'Random');
-    export const Activation = createEnumToken('ModelBlendParticle3D', 'ModelBlendEmitMode', 'Activation');
+    export const Activation = createEnumToken(
+      'ModelBlendParticle3D',
+      'ModelBlendEmitMode',
+      'Activation',
+    );
   }
   export namespace ModelBlendMode {
     export const Explode = createEnumToken('ModelBlendParticle3D', 'ModelBlendMode', 'Explode');

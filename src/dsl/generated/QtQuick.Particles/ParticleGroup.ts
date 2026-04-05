@@ -2,8 +2,8 @@
 // Type: ParticleGroup
 // Generated from Qt 6.11.0
 
-import { createFluentBuilder } from '../../runtime/index.js';
 import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import { createFluentBuilder } from '../../runtime/index.js';
 import type { ParticleSystemBuilder } from './ParticleSystem.js';
 import type { ItemParticleAttachedBuilder } from './QQuickItemParticleAttached.js';
 export interface ParticleGroupBuilder {
@@ -56,15 +56,12 @@ const PARTICLEGROUP_META: TypeMetadata = {
     { handlerName: 'onSystemChanged', paramCount: 1 },
     { handlerName: 'onToChanged', paramCount: 1 },
   ],
-  grouped: [
-  ],
+  grouped: [],
   attached: [
     {
       methodName: 'itemParticle',
       attachedTypeName: 'ItemParticle',
-      properties: [
-        { name: 'objectName', hasValue: true, hasBinding: true },
-      ],
+      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
       signals: [
         { handlerName: 'onAttached', paramCount: 0 },
         { handlerName: 'onDetached', paramCount: 0 },
@@ -76,5 +73,8 @@ const PARTICLEGROUP_META: TypeMetadata = {
 };
 
 export function ParticleGroup(): ParticleGroupBuilder {
-  return createFluentBuilder('ParticleGroup', PARTICLEGROUP_META) as unknown as ParticleGroupBuilder;
+  return createFluentBuilder(
+    'ParticleGroup',
+    PARTICLEGROUP_META,
+  ) as unknown as ParticleGroupBuilder;
 }

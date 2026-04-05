@@ -2,8 +2,8 @@
 // Type: UniformModel
 // Generated from Qt 6.11.0
 
-import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface UniformModelBuilder {
   id(id: string): UniformModelBuilder;
   child(obj: QmlObjectBuilder): UniformModelBuilder;
@@ -33,9 +33,7 @@ export interface UniformModelBuilder {
 
 const UNIFORMMODEL_META: TypeMetadata = {
   typeName: 'UniformModel',
-  properties: [
-    { name: 'objectName', hasValue: true, hasBinding: true },
-  ],
+  properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
   signals: [
     { handlerName: 'onColumnsAboutToBeInserted', paramCount: 3 },
     { handlerName: 'onColumnsAboutToBeMoved', paramCount: 5 },
@@ -57,10 +55,8 @@ const UNIFORMMODEL_META: TypeMetadata = {
     { handlerName: 'onRowsMoved', paramCount: 5 },
     { handlerName: 'onRowsRemoved', paramCount: 3 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function UniformModel(): UniformModelBuilder {
@@ -71,13 +67,33 @@ export namespace UniformModel {
   export namespace CheckIndexOption {
     export const NoOption = createEnumToken('UniformModel', 'CheckIndexOption', 'NoOption');
     export const IndexIsValid = createEnumToken('UniformModel', 'CheckIndexOption', 'IndexIsValid');
-    export const DoNotUseParent = createEnumToken('UniformModel', 'CheckIndexOption', 'DoNotUseParent');
-    export const ParentIsInvalid = createEnumToken('UniformModel', 'CheckIndexOption', 'ParentIsInvalid');
+    export const DoNotUseParent = createEnumToken(
+      'UniformModel',
+      'CheckIndexOption',
+      'DoNotUseParent',
+    );
+    export const ParentIsInvalid = createEnumToken(
+      'UniformModel',
+      'CheckIndexOption',
+      'ParentIsInvalid',
+    );
   }
   export namespace LayoutChangeHint {
-    export const NoLayoutChangeHint = createEnumToken('UniformModel', 'LayoutChangeHint', 'NoLayoutChangeHint');
-    export const VerticalSortHint = createEnumToken('UniformModel', 'LayoutChangeHint', 'VerticalSortHint');
-    export const HorizontalSortHint = createEnumToken('UniformModel', 'LayoutChangeHint', 'HorizontalSortHint');
+    export const NoLayoutChangeHint = createEnumToken(
+      'UniformModel',
+      'LayoutChangeHint',
+      'NoLayoutChangeHint',
+    );
+    export const VerticalSortHint = createEnumToken(
+      'UniformModel',
+      'LayoutChangeHint',
+      'VerticalSortHint',
+    );
+    export const HorizontalSortHint = createEnumToken(
+      'UniformModel',
+      'LayoutChangeHint',
+      'HorizontalSortHint',
+    );
   }
   export namespace UniformType {
     export const Bool = createEnumToken('UniformModel', 'UniformType', 'Bool');

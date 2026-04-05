@@ -2,8 +2,17 @@
 // Type: ModelParticle3D
 // Generated from Qt 6.11.0
 
+import type {
+  QmlColor,
+  QmlComponent,
+  QmlEnumToken,
+  QmlObjectBuilder,
+  QmlValue,
+  QmlVector3d,
+  QmlVector4d,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
-import type { QmlColor, QmlComponent, QmlEnumToken, QmlObjectBuilder, QmlValue, QmlVector3d, QmlVector4d, TypeMetadata } from '../../runtime/index.js';
 export interface ModelParticle3DBuilder {
   id(id: string): ModelParticle3DBuilder;
   child(obj: QmlObjectBuilder): ModelParticle3DBuilder;
@@ -102,22 +111,31 @@ const MODELPARTICLE3D_META: TypeMetadata = {
     { handlerName: 'onSystemChanged', paramCount: 0 },
     { handlerName: 'onUnifiedColorVariationChanged', paramCount: 0 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
   defaultProperty: 'delegate',
 };
 
 export function ModelParticle3D(): ModelParticle3DBuilder {
-  return createFluentBuilder('ModelParticle3D', MODELPARTICLE3D_META) as unknown as ModelParticle3DBuilder;
+  return createFluentBuilder(
+    'ModelParticle3D',
+    MODELPARTICLE3D_META,
+  ) as unknown as ModelParticle3DBuilder;
 }
 
 export namespace ModelParticle3D {
   export namespace AlignMode {
     export const AlignNone = createEnumToken('ModelParticle3D', 'AlignMode', 'AlignNone');
-    export const AlignTowardsTarget = createEnumToken('ModelParticle3D', 'AlignMode', 'AlignTowardsTarget');
-    export const AlignTowardsStartVelocity = createEnumToken('ModelParticle3D', 'AlignMode', 'AlignTowardsStartVelocity');
+    export const AlignTowardsTarget = createEnumToken(
+      'ModelParticle3D',
+      'AlignMode',
+      'AlignTowardsTarget',
+    );
+    export const AlignTowardsStartVelocity = createEnumToken(
+      'ModelParticle3D',
+      'AlignMode',
+      'AlignTowardsStartVelocity',
+    );
   }
   export namespace FadeType {
     export const FadeNone = createEnumToken('ModelParticle3D', 'FadeType', 'FadeNone');

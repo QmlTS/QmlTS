@@ -2,8 +2,14 @@
 // Type: SpotLight
 // Generated from Qt 6.11.0
 
+import type {
+  QmlColor,
+  QmlObjectBuilder,
+  QmlValue,
+  QmlVector3d,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
-import type { QmlColor, QmlObjectBuilder, QmlValue, QmlVector3d, TypeMetadata } from '../../runtime/index.js';
 export interface SpotLightBuilder {
   id(id: string): SpotLightBuilder;
   child(obj: QmlObjectBuilder): SpotLightBuilder;
@@ -77,10 +83,8 @@ const SPOTLIGHT_META: TypeMetadata = {
     { handlerName: 'onRemovedFromEntity', paramCount: 1 },
     { handlerName: 'onShareableChanged', paramCount: 1 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function SpotLight(): SpotLightBuilder {

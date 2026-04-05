@@ -2,8 +2,8 @@
 // Type: StyleKitDebug
 // Generated from Qt 6.11.0
 
-import { createFluentBuilder } from '../../runtime/index.js';
 import type { QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import { createFluentBuilder } from '../../runtime/index.js';
 import type { ItemBuilder } from '../QtQuick/Item.js';
 import type { StyleKitAttachedBuilder } from './QQStyleKitAttached.js';
 import type { StyleVariationAttachedBuilder } from './QQStyleKitVariationAttached.js';
@@ -36,8 +36,7 @@ const STYLEKITDEBUG_META: TypeMetadata = {
     { handlerName: 'onFilterChanged', paramCount: 0 },
     { handlerName: 'onObjectNameChanged', paramCount: 1 },
   ],
-  grouped: [
-  ],
+  grouped: [],
   attached: [
     {
       methodName: 'styleKit',
@@ -73,5 +72,8 @@ const STYLEKITDEBUG_META: TypeMetadata = {
 };
 
 export function StyleKitDebug(): StyleKitDebugBuilder {
-  return createFluentBuilder('StyleKitDebug', STYLEKITDEBUG_META) as unknown as StyleKitDebugBuilder;
+  return createFluentBuilder(
+    'StyleKitDebug',
+    STYLEKITDEBUG_META,
+  ) as unknown as StyleKitDebugBuilder;
 }

@@ -2,8 +2,8 @@
 // Type: ColorOpacityAnimation
 // Generated from Qt 6.11.0
 
-import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { QtObjectBuilder } from '../QML/QtObject.js';
 export interface ColorOpacityAnimationBuilder {
   id(id: string): ColorOpacityAnimationBuilder;
@@ -83,14 +83,15 @@ const COLOROPACITYANIMATION_META: TypeMetadata = {
     { handlerName: 'onTargetChanged', paramCount: 0 },
     { handlerName: 'onToChanged', paramCount: 0 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function ColorOpacityAnimation(): ColorOpacityAnimationBuilder {
-  return createFluentBuilder('ColorOpacityAnimation', COLOROPACITYANIMATION_META) as unknown as ColorOpacityAnimationBuilder;
+  return createFluentBuilder(
+    'ColorOpacityAnimation',
+    COLOROPACITYANIMATION_META,
+  ) as unknown as ColorOpacityAnimationBuilder;
 }
 
 export namespace ColorOpacityAnimation {

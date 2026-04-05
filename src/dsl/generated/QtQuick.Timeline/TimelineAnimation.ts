@@ -2,8 +2,8 @@
 // Type: TimelineAnimation
 // Generated from Qt 6.11.0
 
-import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { QtObjectBuilder } from '../QML/QtObject.js';
 export interface TimelineAnimationBuilder {
   id(id: string): TimelineAnimationBuilder;
@@ -88,14 +88,15 @@ const TIMELINEANIMATION_META: TypeMetadata = {
     { handlerName: 'onTargetChanged', paramCount: 0 },
     { handlerName: 'onToChanged', paramCount: 0 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function TimelineAnimation(): TimelineAnimationBuilder {
-  return createFluentBuilder('TimelineAnimation', TIMELINEANIMATION_META) as unknown as TimelineAnimationBuilder;
+  return createFluentBuilder(
+    'TimelineAnimation',
+    TIMELINEANIMATION_META,
+  ) as unknown as TimelineAnimationBuilder;
 }
 
 export namespace TimelineAnimation {

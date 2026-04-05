@@ -2,8 +2,8 @@
 // Type: Clock
 // Generated from Qt 6.11.0
 
-import { createFluentBuilder } from '../../runtime/index.js';
 import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import { createFluentBuilder } from '../../runtime/index.js';
 export interface ClockBuilder {
   id(id: string): ClockBuilder;
   child(obj: QmlObjectBuilder): ClockBuilder;
@@ -38,10 +38,8 @@ const CLOCK_META: TypeMetadata = {
     { handlerName: 'onParentChanged', paramCount: 1 },
     { handlerName: 'onPlaybackRateChanged', paramCount: 1 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function Clock(): ClockBuilder {

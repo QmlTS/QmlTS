@@ -2,8 +2,14 @@
 // Type: GridView
 // Generated from Qt 6.11.0
 
+import type {
+  QmlComponent,
+  QmlEnumToken,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
-import type { QmlComponent, QmlEnumToken, QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
 import type { QtObjectBuilder } from '../QML/QtObject.js';
 import type { AccessibleAttachedBuilder } from './Accessible.js';
 import type { EnterKeyAttachedBuilder } from './EnterKey.js';
@@ -669,9 +675,7 @@ const GRIDVIEW_META: TypeMetadata = {
     {
       methodName: 'graphicsInfo',
       attachedTypeName: 'GraphicsInfo',
-      properties: [
-        { name: 'objectName', hasValue: true, hasBinding: true },
-      ],
+      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
       signals: [
         { handlerName: 'onApiChanged', paramCount: 0 },
         { handlerName: 'onMajorVersionChanged', paramCount: 0 },
@@ -822,9 +826,7 @@ const GRIDVIEW_META: TypeMetadata = {
     {
       methodName: 'pathView',
       attachedTypeName: 'PathView',
-      properties: [
-        { name: 'objectName', hasValue: true, hasBinding: true },
-      ],
+      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
       signals: [
         { handlerName: 'onCurrentItemChanged', paramCount: 0 },
         { handlerName: 'onPathChanged', paramCount: 0 },
@@ -834,9 +836,7 @@ const GRIDVIEW_META: TypeMetadata = {
     {
       methodName: 'positioner',
       attachedTypeName: 'Positioner',
-      properties: [
-        { name: 'objectName', hasValue: true, hasBinding: true },
-      ],
+      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
       signals: [
         { handlerName: 'onIndexChanged', paramCount: 0 },
         { handlerName: 'onIsFirstItemChanged', paramCount: 0 },
@@ -860,9 +860,7 @@ const GRIDVIEW_META: TypeMetadata = {
     {
       methodName: 'screen',
       attachedTypeName: 'Screen',
-      properties: [
-        { name: 'objectName', hasValue: true, hasBinding: true },
-      ],
+      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
       signals: [
         { handlerName: 'onDesktopGeometryChanged', paramCount: 0 },
         { handlerName: 'onDevicePixelRatioChanged', paramCount: 0 },
@@ -900,9 +898,7 @@ const GRIDVIEW_META: TypeMetadata = {
     {
       methodName: 'viewTransition',
       attachedTypeName: 'ViewTransition',
-      properties: [
-        { name: 'objectName', hasValue: true, hasBinding: true },
-      ],
+      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
       signals: [
         { handlerName: 'onDestinationChanged', paramCount: 0 },
         { handlerName: 'onIndexChanged', paramCount: 0 },
@@ -915,9 +911,7 @@ const GRIDVIEW_META: TypeMetadata = {
     {
       methodName: 'window',
       attachedTypeName: 'Window',
-      properties: [
-        { name: 'objectName', hasValue: true, hasBinding: true },
-      ],
+      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
       signals: [
         { handlerName: 'onActiveChanged', paramCount: 0 },
         { handlerName: 'onActiveFocusItemChanged', paramCount: 0 },
@@ -942,56 +936,156 @@ export namespace GridView {
     export const StopAtBounds = createEnumToken('GridView', 'BoundsBehavior', 'StopAtBounds');
     export const DragOverBounds = createEnumToken('GridView', 'BoundsBehavior', 'DragOverBounds');
     export const OvershootBounds = createEnumToken('GridView', 'BoundsBehavior', 'OvershootBounds');
-    export const DragAndOvershootBounds = createEnumToken('GridView', 'BoundsBehavior', 'DragAndOvershootBounds');
+    export const DragAndOvershootBounds = createEnumToken(
+      'GridView',
+      'BoundsBehavior',
+      'DragAndOvershootBounds',
+    );
   }
   export namespace BoundsMovement {
-    export const FollowBoundsBehavior = createEnumToken('GridView', 'BoundsMovement', 'FollowBoundsBehavior');
+    export const FollowBoundsBehavior = createEnumToken(
+      'GridView',
+      'BoundsMovement',
+      'FollowBoundsBehavior',
+    );
   }
   export namespace Flags {
-    export const ItemClipsChildrenToShape = createEnumToken('GridView', 'Flags', 'ItemClipsChildrenToShape');
-    export const ItemAcceptsInputMethod = createEnumToken('GridView', 'Flags', 'ItemAcceptsInputMethod');
+    export const ItemClipsChildrenToShape = createEnumToken(
+      'GridView',
+      'Flags',
+      'ItemClipsChildrenToShape',
+    );
+    export const ItemAcceptsInputMethod = createEnumToken(
+      'GridView',
+      'Flags',
+      'ItemAcceptsInputMethod',
+    );
     export const ItemIsFocusScope = createEnumToken('GridView', 'Flags', 'ItemIsFocusScope');
     export const ItemHasContents = createEnumToken('GridView', 'Flags', 'ItemHasContents');
     export const ItemAcceptsDrops = createEnumToken('GridView', 'Flags', 'ItemAcceptsDrops');
     export const ItemIsViewport = createEnumToken('GridView', 'Flags', 'ItemIsViewport');
-    export const ItemObservesViewport = createEnumToken('GridView', 'Flags', 'ItemObservesViewport');
+    export const ItemObservesViewport = createEnumToken(
+      'GridView',
+      'Flags',
+      'ItemObservesViewport',
+    );
   }
   export namespace FlickableDirection {
-    export const AutoFlickDirection = createEnumToken('GridView', 'FlickableDirection', 'AutoFlickDirection');
-    export const HorizontalFlick = createEnumToken('GridView', 'FlickableDirection', 'HorizontalFlick');
+    export const AutoFlickDirection = createEnumToken(
+      'GridView',
+      'FlickableDirection',
+      'AutoFlickDirection',
+    );
+    export const HorizontalFlick = createEnumToken(
+      'GridView',
+      'FlickableDirection',
+      'HorizontalFlick',
+    );
     export const VerticalFlick = createEnumToken('GridView', 'FlickableDirection', 'VerticalFlick');
-    export const HorizontalAndVerticalFlick = createEnumToken('GridView', 'FlickableDirection', 'HorizontalAndVerticalFlick');
-    export const AutoFlickIfNeeded = createEnumToken('GridView', 'FlickableDirection', 'AutoFlickIfNeeded');
+    export const HorizontalAndVerticalFlick = createEnumToken(
+      'GridView',
+      'FlickableDirection',
+      'HorizontalAndVerticalFlick',
+    );
+    export const AutoFlickIfNeeded = createEnumToken(
+      'GridView',
+      'FlickableDirection',
+      'AutoFlickIfNeeded',
+    );
   }
   export namespace Flow {
     export const FlowLeftToRight = createEnumToken('GridView', 'Flow', 'FlowLeftToRight');
     export const FlowTopToBottom = createEnumToken('GridView', 'Flow', 'FlowTopToBottom');
   }
   export namespace HighlightRangeMode {
-    export const NoHighlightRange = createEnumToken('GridView', 'HighlightRangeMode', 'NoHighlightRange');
+    export const NoHighlightRange = createEnumToken(
+      'GridView',
+      'HighlightRangeMode',
+      'NoHighlightRange',
+    );
     export const ApplyRange = createEnumToken('GridView', 'HighlightRangeMode', 'ApplyRange');
-    export const StrictlyEnforceRange = createEnumToken('GridView', 'HighlightRangeMode', 'StrictlyEnforceRange');
+    export const StrictlyEnforceRange = createEnumToken(
+      'GridView',
+      'HighlightRangeMode',
+      'StrictlyEnforceRange',
+    );
   }
   export namespace ItemChange {
-    export const ItemChildAddedChange = createEnumToken('GridView', 'ItemChange', 'ItemChildAddedChange');
-    export const ItemChildRemovedChange = createEnumToken('GridView', 'ItemChange', 'ItemChildRemovedChange');
+    export const ItemChildAddedChange = createEnumToken(
+      'GridView',
+      'ItemChange',
+      'ItemChildAddedChange',
+    );
+    export const ItemChildRemovedChange = createEnumToken(
+      'GridView',
+      'ItemChange',
+      'ItemChildRemovedChange',
+    );
     export const ItemSceneChange = createEnumToken('GridView', 'ItemChange', 'ItemSceneChange');
-    export const ItemVisibleHasChanged = createEnumToken('GridView', 'ItemChange', 'ItemVisibleHasChanged');
-    export const ItemParentHasChanged = createEnumToken('GridView', 'ItemChange', 'ItemParentHasChanged');
-    export const ItemOpacityHasChanged = createEnumToken('GridView', 'ItemChange', 'ItemOpacityHasChanged');
-    export const ItemActiveFocusHasChanged = createEnumToken('GridView', 'ItemChange', 'ItemActiveFocusHasChanged');
-    export const ItemRotationHasChanged = createEnumToken('GridView', 'ItemChange', 'ItemRotationHasChanged');
-    export const ItemAntialiasingHasChanged = createEnumToken('GridView', 'ItemChange', 'ItemAntialiasingHasChanged');
-    export const ItemDevicePixelRatioHasChanged = createEnumToken('GridView', 'ItemChange', 'ItemDevicePixelRatioHasChanged');
-    export const ItemEnabledHasChanged = createEnumToken('GridView', 'ItemChange', 'ItemEnabledHasChanged');
-    export const ItemScaleHasChanged = createEnumToken('GridView', 'ItemChange', 'ItemScaleHasChanged');
-    export const ItemTransformHasChanged = createEnumToken('GridView', 'ItemChange', 'ItemTransformHasChanged');
+    export const ItemVisibleHasChanged = createEnumToken(
+      'GridView',
+      'ItemChange',
+      'ItemVisibleHasChanged',
+    );
+    export const ItemParentHasChanged = createEnumToken(
+      'GridView',
+      'ItemChange',
+      'ItemParentHasChanged',
+    );
+    export const ItemOpacityHasChanged = createEnumToken(
+      'GridView',
+      'ItemChange',
+      'ItemOpacityHasChanged',
+    );
+    export const ItemActiveFocusHasChanged = createEnumToken(
+      'GridView',
+      'ItemChange',
+      'ItemActiveFocusHasChanged',
+    );
+    export const ItemRotationHasChanged = createEnumToken(
+      'GridView',
+      'ItemChange',
+      'ItemRotationHasChanged',
+    );
+    export const ItemAntialiasingHasChanged = createEnumToken(
+      'GridView',
+      'ItemChange',
+      'ItemAntialiasingHasChanged',
+    );
+    export const ItemDevicePixelRatioHasChanged = createEnumToken(
+      'GridView',
+      'ItemChange',
+      'ItemDevicePixelRatioHasChanged',
+    );
+    export const ItemEnabledHasChanged = createEnumToken(
+      'GridView',
+      'ItemChange',
+      'ItemEnabledHasChanged',
+    );
+    export const ItemScaleHasChanged = createEnumToken(
+      'GridView',
+      'ItemChange',
+      'ItemScaleHasChanged',
+    );
+    export const ItemTransformHasChanged = createEnumToken(
+      'GridView',
+      'ItemChange',
+      'ItemTransformHasChanged',
+    );
   }
   export namespace LayoutDirection {
     export const LeftToRight = createEnumToken('GridView', 'LayoutDirection', 'LeftToRight');
     export const RightToLeft = createEnumToken('GridView', 'LayoutDirection', 'RightToLeft');
-    export const VerticalTopToBottom = createEnumToken('GridView', 'LayoutDirection', 'VerticalTopToBottom');
-    export const VerticalBottomToTop = createEnumToken('GridView', 'LayoutDirection', 'VerticalBottomToTop');
+    export const VerticalTopToBottom = createEnumToken(
+      'GridView',
+      'LayoutDirection',
+      'VerticalTopToBottom',
+    );
+    export const VerticalBottomToTop = createEnumToken(
+      'GridView',
+      'LayoutDirection',
+      'VerticalBottomToTop',
+    );
   }
   export namespace PositionMode {
     export const Beginning = createEnumToken('GridView', 'PositionMode', 'Beginning');
@@ -1018,7 +1112,15 @@ export namespace GridView {
     export const BottomRight = createEnumToken('GridView', 'TransformOrigin', 'BottomRight');
   }
   export namespace VerticalLayoutDirection {
-    export const TopToBottom = createEnumToken('GridView', 'VerticalLayoutDirection', 'TopToBottom');
-    export const BottomToTop = createEnumToken('GridView', 'VerticalLayoutDirection', 'BottomToTop');
+    export const TopToBottom = createEnumToken(
+      'GridView',
+      'VerticalLayoutDirection',
+      'TopToBottom',
+    );
+    export const BottomToTop = createEnumToken(
+      'GridView',
+      'VerticalLayoutDirection',
+      'BottomToTop',
+    );
   }
 }

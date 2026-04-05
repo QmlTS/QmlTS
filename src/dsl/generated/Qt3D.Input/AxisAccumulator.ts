@@ -2,8 +2,13 @@
 // Type: AxisAccumulator
 // Generated from Qt 6.11.0
 
+import type {
+  QmlEnumToken,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
-import type { QmlEnumToken, QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
 import type { AxisBuilder } from './Axis.js';
 export interface AxisAccumulatorBuilder {
   id(id: string): AxisAccumulatorBuilder;
@@ -62,19 +67,24 @@ const AXISACCUMULATOR_META: TypeMetadata = {
     { handlerName: 'onValueChanged', paramCount: 1 },
     { handlerName: 'onVelocityChanged', paramCount: 1 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function AxisAccumulator(): AxisAccumulatorBuilder {
-  return createFluentBuilder('AxisAccumulator', AXISACCUMULATOR_META) as unknown as AxisAccumulatorBuilder;
+  return createFluentBuilder(
+    'AxisAccumulator',
+    AXISACCUMULATOR_META,
+  ) as unknown as AxisAccumulatorBuilder;
 }
 
 export namespace AxisAccumulator {
   export namespace SourceAxisType {
     export const Velocity = createEnumToken('AxisAccumulator', 'SourceAxisType', 'Velocity');
-    export const Acceleration = createEnumToken('AxisAccumulator', 'SourceAxisType', 'Acceleration');
+    export const Acceleration = createEnumToken(
+      'AxisAccumulator',
+      'SourceAxisType',
+      'Acceleration',
+    );
   }
 }

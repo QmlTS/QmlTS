@@ -2,8 +2,8 @@
 // Type: OrbitCameraController
 // Generated from Qt 6.11.0
 
-import { createFluentBuilder } from '../../runtime/index.js';
 import type { QmlObjectBuilder, QmlValue, QmlVector3d, TypeMetadata } from '../../runtime/index.js';
+import { createFluentBuilder } from '../../runtime/index.js';
 import type { CameraBuilder } from '../Qt3D.Render/Camera.js';
 export interface OrbitCameraControllerBuilder {
   id(id: string): OrbitCameraControllerBuilder;
@@ -94,12 +94,13 @@ const ORBITCAMERACONTROLLER_META: TypeMetadata = {
     { handlerName: 'onZoomInLimitChanged', paramCount: 0 },
     { handlerName: 'onZoomTranslateViewCenterChanged', paramCount: 1 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function OrbitCameraController(): OrbitCameraControllerBuilder {
-  return createFluentBuilder('OrbitCameraController', ORBITCAMERACONTROLLER_META) as unknown as OrbitCameraControllerBuilder;
+  return createFluentBuilder(
+    'OrbitCameraController',
+    ORBITCAMERACONTROLLER_META,
+  ) as unknown as OrbitCameraControllerBuilder;
 }

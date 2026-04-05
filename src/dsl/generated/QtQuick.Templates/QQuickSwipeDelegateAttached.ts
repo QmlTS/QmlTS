@@ -2,7 +2,6 @@
 // Type: Attached type: SwipeDelegate
 // Generated from Qt 6.11.0
 
-
 export interface SwipeDelegateAttachedBuilder {
   objectName(value: string): SwipeDelegateAttachedBuilder;
   objectNameBind(expr: string): SwipeDelegateAttachedBuilder;

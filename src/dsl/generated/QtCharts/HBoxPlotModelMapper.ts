@@ -2,8 +2,8 @@
 // Type: HBoxPlotModelMapper
 // Generated from Qt 6.11.0
 
-import { createFluentBuilder } from '../../runtime/index.js';
 import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import { createFluentBuilder } from '../../runtime/index.js';
 export interface HBoxPlotModelMapperBuilder {
   id(id: string): HBoxPlotModelMapperBuilder;
   child(obj: QmlObjectBuilder): HBoxPlotModelMapperBuilder;
@@ -51,12 +51,13 @@ const HBOXPLOTMODELMAPPER_META: TypeMetadata = {
     { handlerName: 'onObjectNameChanged', paramCount: 1 },
     { handlerName: 'onSeriesReplaced', paramCount: 0 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function HBoxPlotModelMapper(): HBoxPlotModelMapperBuilder {
-  return createFluentBuilder('HBoxPlotModelMapper', HBOXPLOTMODELMAPPER_META) as unknown as HBoxPlotModelMapperBuilder;
+  return createFluentBuilder(
+    'HBoxPlotModelMapper',
+    HBOXPLOTMODELMAPPER_META,
+  ) as unknown as HBoxPlotModelMapperBuilder;
 }

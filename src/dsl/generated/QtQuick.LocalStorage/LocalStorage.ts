@@ -2,7 +2,6 @@
 // Type: LocalStorage
 // Generated from Qt 6.11.0
 
-
 export interface LocalStorageInstance {
   objectName: string;
 }

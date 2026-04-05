@@ -2,8 +2,8 @@
 // Type: RenderSurfaceSelector
 // Generated from Qt 6.11.0
 
-import { createFluentBuilder } from '../../runtime/index.js';
 import type { QmlObjectBuilder, QmlSize, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import { createFluentBuilder } from '../../runtime/index.js';
 import type { QtObjectBuilder } from '../QML/QtObject.js';
 export interface RenderSurfaceSelectorBuilder {
   id(id: string): RenderSurfaceSelectorBuilder;
@@ -49,12 +49,13 @@ const RENDERSURFACESELECTOR_META: TypeMetadata = {
     { handlerName: 'onSurfaceChanged', paramCount: 1 },
     { handlerName: 'onSurfacePixelRatioChanged', paramCount: 1 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function RenderSurfaceSelector(): RenderSurfaceSelectorBuilder {
-  return createFluentBuilder('RenderSurfaceSelector', RENDERSURFACESELECTOR_META) as unknown as RenderSurfaceSelectorBuilder;
+  return createFluentBuilder(
+    'RenderSurfaceSelector',
+    RENDERSURFACESELECTOR_META,
+  ) as unknown as RenderSurfaceSelectorBuilder;
 }

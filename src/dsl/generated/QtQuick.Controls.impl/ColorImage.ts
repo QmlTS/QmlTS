@@ -2,8 +2,17 @@
 // Type: ColorImage
 // Generated from Qt 6.11.0
 
+import type {
+  QmlColor,
+  QmlEnumToken,
+  QmlObjectBuilder,
+  QmlRect,
+  QmlSize,
+  QmlUrl,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
-import type { QmlColor, QmlEnumToken, QmlObjectBuilder, QmlRect, QmlSize, QmlUrl, QmlValue, TypeMetadata } from '../../runtime/index.js';
 import type { QtObjectBuilder } from '../QML/QtObject.js';
 import type { ItemBuilder } from '../QtQuick/Item.js';
 import type { PaletteBuilder } from '../QtQuick/Palette.js';
@@ -291,8 +300,7 @@ const COLORIMAGE_META: TypeMetadata = {
       ],
     },
   ],
-  attached: [
-  ],
+  attached: [],
 };
 
 export function ColorImage(): ColorImageBuilder {
@@ -303,20 +311,36 @@ export namespace ColorImage {
   export namespace FillMode {
     export const Stretch = createEnumToken('ColorImage', 'FillMode', 'Stretch');
     export const PreserveAspectFit = createEnumToken('ColorImage', 'FillMode', 'PreserveAspectFit');
-    export const PreserveAspectCrop = createEnumToken('ColorImage', 'FillMode', 'PreserveAspectCrop');
+    export const PreserveAspectCrop = createEnumToken(
+      'ColorImage',
+      'FillMode',
+      'PreserveAspectCrop',
+    );
     export const Tile = createEnumToken('ColorImage', 'FillMode', 'Tile');
     export const TileVertically = createEnumToken('ColorImage', 'FillMode', 'TileVertically');
     export const TileHorizontally = createEnumToken('ColorImage', 'FillMode', 'TileHorizontally');
     export const Pad = createEnumToken('ColorImage', 'FillMode', 'Pad');
   }
   export namespace Flags {
-    export const ItemClipsChildrenToShape = createEnumToken('ColorImage', 'Flags', 'ItemClipsChildrenToShape');
-    export const ItemAcceptsInputMethod = createEnumToken('ColorImage', 'Flags', 'ItemAcceptsInputMethod');
+    export const ItemClipsChildrenToShape = createEnumToken(
+      'ColorImage',
+      'Flags',
+      'ItemClipsChildrenToShape',
+    );
+    export const ItemAcceptsInputMethod = createEnumToken(
+      'ColorImage',
+      'Flags',
+      'ItemAcceptsInputMethod',
+    );
     export const ItemIsFocusScope = createEnumToken('ColorImage', 'Flags', 'ItemIsFocusScope');
     export const ItemHasContents = createEnumToken('ColorImage', 'Flags', 'ItemHasContents');
     export const ItemAcceptsDrops = createEnumToken('ColorImage', 'Flags', 'ItemAcceptsDrops');
     export const ItemIsViewport = createEnumToken('ColorImage', 'Flags', 'ItemIsViewport');
-    export const ItemObservesViewport = createEnumToken('ColorImage', 'Flags', 'ItemObservesViewport');
+    export const ItemObservesViewport = createEnumToken(
+      'ColorImage',
+      'Flags',
+      'ItemObservesViewport',
+    );
   }
   export namespace HAlignment {
     export const AlignLeft = createEnumToken('ColorImage', 'HAlignment', 'AlignLeft');
@@ -324,24 +348,76 @@ export namespace ColorImage {
     export const AlignHCenter = createEnumToken('ColorImage', 'HAlignment', 'AlignHCenter');
   }
   export namespace ItemChange {
-    export const ItemChildAddedChange = createEnumToken('ColorImage', 'ItemChange', 'ItemChildAddedChange');
-    export const ItemChildRemovedChange = createEnumToken('ColorImage', 'ItemChange', 'ItemChildRemovedChange');
+    export const ItemChildAddedChange = createEnumToken(
+      'ColorImage',
+      'ItemChange',
+      'ItemChildAddedChange',
+    );
+    export const ItemChildRemovedChange = createEnumToken(
+      'ColorImage',
+      'ItemChange',
+      'ItemChildRemovedChange',
+    );
     export const ItemSceneChange = createEnumToken('ColorImage', 'ItemChange', 'ItemSceneChange');
-    export const ItemVisibleHasChanged = createEnumToken('ColorImage', 'ItemChange', 'ItemVisibleHasChanged');
-    export const ItemParentHasChanged = createEnumToken('ColorImage', 'ItemChange', 'ItemParentHasChanged');
-    export const ItemOpacityHasChanged = createEnumToken('ColorImage', 'ItemChange', 'ItemOpacityHasChanged');
-    export const ItemActiveFocusHasChanged = createEnumToken('ColorImage', 'ItemChange', 'ItemActiveFocusHasChanged');
-    export const ItemRotationHasChanged = createEnumToken('ColorImage', 'ItemChange', 'ItemRotationHasChanged');
-    export const ItemAntialiasingHasChanged = createEnumToken('ColorImage', 'ItemChange', 'ItemAntialiasingHasChanged');
-    export const ItemDevicePixelRatioHasChanged = createEnumToken('ColorImage', 'ItemChange', 'ItemDevicePixelRatioHasChanged');
-    export const ItemEnabledHasChanged = createEnumToken('ColorImage', 'ItemChange', 'ItemEnabledHasChanged');
-    export const ItemScaleHasChanged = createEnumToken('ColorImage', 'ItemChange', 'ItemScaleHasChanged');
-    export const ItemTransformHasChanged = createEnumToken('ColorImage', 'ItemChange', 'ItemTransformHasChanged');
+    export const ItemVisibleHasChanged = createEnumToken(
+      'ColorImage',
+      'ItemChange',
+      'ItemVisibleHasChanged',
+    );
+    export const ItemParentHasChanged = createEnumToken(
+      'ColorImage',
+      'ItemChange',
+      'ItemParentHasChanged',
+    );
+    export const ItemOpacityHasChanged = createEnumToken(
+      'ColorImage',
+      'ItemChange',
+      'ItemOpacityHasChanged',
+    );
+    export const ItemActiveFocusHasChanged = createEnumToken(
+      'ColorImage',
+      'ItemChange',
+      'ItemActiveFocusHasChanged',
+    );
+    export const ItemRotationHasChanged = createEnumToken(
+      'ColorImage',
+      'ItemChange',
+      'ItemRotationHasChanged',
+    );
+    export const ItemAntialiasingHasChanged = createEnumToken(
+      'ColorImage',
+      'ItemChange',
+      'ItemAntialiasingHasChanged',
+    );
+    export const ItemDevicePixelRatioHasChanged = createEnumToken(
+      'ColorImage',
+      'ItemChange',
+      'ItemDevicePixelRatioHasChanged',
+    );
+    export const ItemEnabledHasChanged = createEnumToken(
+      'ColorImage',
+      'ItemChange',
+      'ItemEnabledHasChanged',
+    );
+    export const ItemScaleHasChanged = createEnumToken(
+      'ColorImage',
+      'ItemChange',
+      'ItemScaleHasChanged',
+    );
+    export const ItemTransformHasChanged = createEnumToken(
+      'ColorImage',
+      'ItemChange',
+      'ItemTransformHasChanged',
+    );
   }
   export namespace LoadPixmapOptions {
     export const NoOption = createEnumToken('ColorImage', 'LoadPixmapOptions', 'NoOption');
     export const HandleDPR = createEnumToken('ColorImage', 'LoadPixmapOptions', 'HandleDPR');
-    export const UseProviderOptions = createEnumToken('ColorImage', 'LoadPixmapOptions', 'UseProviderOptions');
+    export const UseProviderOptions = createEnumToken(
+      'ColorImage',
+      'LoadPixmapOptions',
+      'UseProviderOptions',
+    );
   }
   export namespace Status {
     export const Null = createEnumToken('ColorImage', 'Status', 'Null');

@@ -2,8 +2,8 @@
 // Type: SceneLoader
 // Generated from Qt 6.11.0
 
-import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { QmlObjectBuilder, QmlUrl, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface SceneLoaderBuilder {
   id(id: string): SceneLoaderBuilder;
   child(obj: QmlObjectBuilder): SceneLoaderBuilder;
@@ -49,10 +49,8 @@ const SCENELOADER_META: TypeMetadata = {
     { handlerName: 'onSourceChanged', paramCount: 1 },
     { handlerName: 'onStatusChanged', paramCount: 1 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function SceneLoader(): SceneLoaderBuilder {
@@ -61,12 +59,32 @@ export function SceneLoader(): SceneLoaderBuilder {
 
 export namespace SceneLoader {
   export namespace ComponentType {
-    export const UnknownComponent = createEnumToken('SceneLoader', 'ComponentType', 'UnknownComponent');
-    export const GeometryRendererComponent = createEnumToken('SceneLoader', 'ComponentType', 'GeometryRendererComponent');
-    export const TransformComponent = createEnumToken('SceneLoader', 'ComponentType', 'TransformComponent');
-    export const MaterialComponent = createEnumToken('SceneLoader', 'ComponentType', 'MaterialComponent');
+    export const UnknownComponent = createEnumToken(
+      'SceneLoader',
+      'ComponentType',
+      'UnknownComponent',
+    );
+    export const GeometryRendererComponent = createEnumToken(
+      'SceneLoader',
+      'ComponentType',
+      'GeometryRendererComponent',
+    );
+    export const TransformComponent = createEnumToken(
+      'SceneLoader',
+      'ComponentType',
+      'TransformComponent',
+    );
+    export const MaterialComponent = createEnumToken(
+      'SceneLoader',
+      'ComponentType',
+      'MaterialComponent',
+    );
     export const LightComponent = createEnumToken('SceneLoader', 'ComponentType', 'LightComponent');
-    export const CameraLensComponent = createEnumToken('SceneLoader', 'ComponentType', 'CameraLensComponent');
+    export const CameraLensComponent = createEnumToken(
+      'SceneLoader',
+      'ComponentType',
+      'CameraLensComponent',
+    );
   }
   export namespace Status {
     export const None = createEnumToken('SceneLoader', 'Status', 'None');

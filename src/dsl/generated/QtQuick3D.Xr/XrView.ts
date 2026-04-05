@@ -2,8 +2,15 @@
 // Type: XrView
 // Generated from Qt 6.11.0
 
+import type {
+  QmlEnumToken,
+  QmlObjectBuilder,
+  QmlQuaternion,
+  QmlValue,
+  QmlVector3d,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
-import type { QmlEnumToken, QmlObjectBuilder, QmlQuaternion, QmlValue, QmlVector3d, TypeMetadata } from '../../runtime/index.js';
 import type { SceneEnvironmentBuilder } from '../QtQuick3D/SceneEnvironment.js';
 import type { XrOriginBuilder } from './XrOrigin.js';
 export interface XrViewBuilder {
@@ -152,10 +159,8 @@ const XRVIEW_META: TypeMetadata = {
     { handlerName: 'onYChanged', paramCount: 0 },
     { handlerName: 'onZChanged', paramCount: 0 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function XrView(): XrViewBuilder {
@@ -170,10 +175,26 @@ export namespace XrView {
     export const HighFoveation = createEnumToken('XrView', 'FoveationLevel', 'HighFoveation');
   }
   export namespace ReferenceSpace {
-    export const ReferenceSpaceUnknown = createEnumToken('XrView', 'ReferenceSpace', 'ReferenceSpaceUnknown');
-    export const ReferenceSpaceLocal = createEnumToken('XrView', 'ReferenceSpace', 'ReferenceSpaceLocal');
-    export const ReferenceSpaceStage = createEnumToken('XrView', 'ReferenceSpace', 'ReferenceSpaceStage');
-    export const ReferenceSpaceLocalFloor = createEnumToken('XrView', 'ReferenceSpace', 'ReferenceSpaceLocalFloor');
+    export const ReferenceSpaceUnknown = createEnumToken(
+      'XrView',
+      'ReferenceSpace',
+      'ReferenceSpaceUnknown',
+    );
+    export const ReferenceSpaceLocal = createEnumToken(
+      'XrView',
+      'ReferenceSpace',
+      'ReferenceSpaceLocal',
+    );
+    export const ReferenceSpaceStage = createEnumToken(
+      'XrView',
+      'ReferenceSpace',
+      'ReferenceSpaceStage',
+    );
+    export const ReferenceSpaceLocalFloor = createEnumToken(
+      'XrView',
+      'ReferenceSpace',
+      'ReferenceSpaceLocalFloor',
+    );
   }
   export namespace StaticFlags {
     export const None = createEnumToken('XrView', 'StaticFlags', 'None');

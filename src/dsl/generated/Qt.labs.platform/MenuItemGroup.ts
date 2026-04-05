@@ -2,8 +2,8 @@
 // Type: MenuItemGroup
 // Generated from Qt 6.11.0
 
-import { createFluentBuilder } from '../../runtime/index.js';
 import type { QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import { createFluentBuilder } from '../../runtime/index.js';
 import type { MenuItemBuilder } from './MenuItem.js';
 export interface MenuItemGroupBuilder {
   id(id: string): MenuItemGroupBuilder;
@@ -48,12 +48,13 @@ const MENUITEMGROUP_META: TypeMetadata = {
     { handlerName: 'onTriggered', paramCount: 1 },
     { handlerName: 'onVisibleChanged', paramCount: 0 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function MenuItemGroup(): MenuItemGroupBuilder {
-  return createFluentBuilder('MenuItemGroup', MENUITEMGROUP_META) as unknown as MenuItemGroupBuilder;
+  return createFluentBuilder(
+    'MenuItemGroup',
+    MENUITEMGROUP_META,
+  ) as unknown as MenuItemGroupBuilder;
 }

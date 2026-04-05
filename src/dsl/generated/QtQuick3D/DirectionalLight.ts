@@ -2,8 +2,16 @@
 // Type: DirectionalLight
 // Generated from Qt 6.11.0
 
+import type {
+  QmlColor,
+  QmlEnumToken,
+  QmlObjectBuilder,
+  QmlQuaternion,
+  QmlValue,
+  QmlVector3d,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
-import type { QmlColor, QmlEnumToken, QmlObjectBuilder, QmlQuaternion, QmlValue, QmlVector3d, TypeMetadata } from '../../runtime/index.js';
 import type { NodeBuilder } from './Node.js';
 export interface DirectionalLightBuilder {
   id(id: string): DirectionalLightBuilder;
@@ -208,28 +216,57 @@ const DIRECTIONALLIGHT_META: TypeMetadata = {
     { handlerName: 'onYChanged', paramCount: 0 },
     { handlerName: 'onZChanged', paramCount: 0 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function DirectionalLight(): DirectionalLightBuilder {
-  return createFluentBuilder('DirectionalLight', DIRECTIONALLIGHT_META) as unknown as DirectionalLightBuilder;
+  return createFluentBuilder(
+    'DirectionalLight',
+    DIRECTIONALLIGHT_META,
+  ) as unknown as DirectionalLightBuilder;
 }
 
 export namespace DirectionalLight {
   export namespace QSSGBakeMode {
-    export const BakeModeDisabled = createEnumToken('DirectionalLight', 'QSSGBakeMode', 'BakeModeDisabled');
-    export const BakeModeIndirect = createEnumToken('DirectionalLight', 'QSSGBakeMode', 'BakeModeIndirect');
+    export const BakeModeDisabled = createEnumToken(
+      'DirectionalLight',
+      'QSSGBakeMode',
+      'BakeModeDisabled',
+    );
+    export const BakeModeIndirect = createEnumToken(
+      'DirectionalLight',
+      'QSSGBakeMode',
+      'BakeModeIndirect',
+    );
     export const BakeModeAll = createEnumToken('DirectionalLight', 'QSSGBakeMode', 'BakeModeAll');
   }
   export namespace QSSGShadowMapQuality {
-    export const ShadowMapQualityLow = createEnumToken('DirectionalLight', 'QSSGShadowMapQuality', 'ShadowMapQualityLow');
-    export const ShadowMapQualityMedium = createEnumToken('DirectionalLight', 'QSSGShadowMapQuality', 'ShadowMapQualityMedium');
-    export const ShadowMapQualityHigh = createEnumToken('DirectionalLight', 'QSSGShadowMapQuality', 'ShadowMapQualityHigh');
-    export const ShadowMapQualityVeryHigh = createEnumToken('DirectionalLight', 'QSSGShadowMapQuality', 'ShadowMapQualityVeryHigh');
-    export const ShadowMapQualityUltra = createEnumToken('DirectionalLight', 'QSSGShadowMapQuality', 'ShadowMapQualityUltra');
+    export const ShadowMapQualityLow = createEnumToken(
+      'DirectionalLight',
+      'QSSGShadowMapQuality',
+      'ShadowMapQualityLow',
+    );
+    export const ShadowMapQualityMedium = createEnumToken(
+      'DirectionalLight',
+      'QSSGShadowMapQuality',
+      'ShadowMapQualityMedium',
+    );
+    export const ShadowMapQualityHigh = createEnumToken(
+      'DirectionalLight',
+      'QSSGShadowMapQuality',
+      'ShadowMapQualityHigh',
+    );
+    export const ShadowMapQualityVeryHigh = createEnumToken(
+      'DirectionalLight',
+      'QSSGShadowMapQuality',
+      'ShadowMapQualityVeryHigh',
+    );
+    export const ShadowMapQualityUltra = createEnumToken(
+      'DirectionalLight',
+      'QSSGShadowMapQuality',
+      'ShadowMapQualityUltra',
+    );
   }
   export namespace QSSGSoftShadowQuality {
     export const Hard = createEnumToken('DirectionalLight', 'QSSGSoftShadowQuality', 'Hard');

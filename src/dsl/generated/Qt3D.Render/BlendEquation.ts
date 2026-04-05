@@ -2,8 +2,13 @@
 // Type: BlendEquation
 // Generated from Qt 6.11.0
 
+import type {
+  QmlEnumToken,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
-import type { QmlEnumToken, QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
 export interface BlendEquationBuilder {
   id(id: string): BlendEquationBuilder;
   child(obj: QmlObjectBuilder): BlendEquationBuilder;
@@ -38,21 +43,26 @@ const BLENDEQUATION_META: TypeMetadata = {
     { handlerName: 'onObjectNameChanged', paramCount: 1 },
     { handlerName: 'onParentChanged', paramCount: 1 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function BlendEquation(): BlendEquationBuilder {
-  return createFluentBuilder('BlendEquation', BLENDEQUATION_META) as unknown as BlendEquationBuilder;
+  return createFluentBuilder(
+    'BlendEquation',
+    BLENDEQUATION_META,
+  ) as unknown as BlendEquationBuilder;
 }
 
 export namespace BlendEquation {
   export namespace BlendFunction {
     export const Add = createEnumToken('BlendEquation', 'BlendFunction', 'Add');
     export const Subtract = createEnumToken('BlendEquation', 'BlendFunction', 'Subtract');
-    export const ReverseSubtract = createEnumToken('BlendEquation', 'BlendFunction', 'ReverseSubtract');
+    export const ReverseSubtract = createEnumToken(
+      'BlendEquation',
+      'BlendFunction',
+      'ReverseSubtract',
+    );
     export const Min = createEnumToken('BlendEquation', 'BlendFunction', 'Min');
     export const Max = createEnumToken('BlendEquation', 'BlendFunction', 'Max');
   }

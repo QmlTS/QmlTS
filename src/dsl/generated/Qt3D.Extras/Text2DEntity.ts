@@ -2,8 +2,15 @@
 // Type: Text2DEntity
 // Generated from Qt 6.11.0
 
+import type {
+  QmlColor,
+  QmlEnumToken,
+  QmlFont,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
-import type { QmlColor, QmlEnumToken, QmlFont, QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
 export interface Text2DEntityBuilder {
   id(id: string): Text2DEntityBuilder;
   child(obj: QmlObjectBuilder): Text2DEntityBuilder;
@@ -61,10 +68,8 @@ const TEXT2DENTITY_META: TypeMetadata = {
     { handlerName: 'onTextChanged', paramCount: 1 },
     { handlerName: 'onWidthChanged', paramCount: 1 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function Text2DEntity(): Text2DEntityBuilder {

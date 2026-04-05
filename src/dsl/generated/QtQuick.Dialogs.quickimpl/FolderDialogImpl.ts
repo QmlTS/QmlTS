@@ -2,12 +2,18 @@
 // Type: FolderDialogImpl
 // Generated from Qt 6.11.0
 
+import type {
+  QmlEnumToken,
+  QmlFont,
+  QmlObjectBuilder,
+  QmlUrl,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
-import type { QmlEnumToken, QmlFont, QmlObjectBuilder, QmlUrl, TypeMetadata } from '../../runtime/index.js';
-import type { AnchorsBuilder } from '../QtQuick.Templates/QQuickPopupAnchors.js';
 import type { ItemBuilder } from '../QtQuick/Item.js';
 import type { PaletteBuilder } from '../QtQuick/Palette.js';
 import type { TransitionBuilder } from '../QtQuick/Transition.js';
+import type { AnchorsBuilder } from '../QtQuick.Templates/QQuickPopupAnchors.js';
 import type { ColorDialogImplAttachedBuilder } from './QQuickColorDialogImplAttached.js';
 import type { FileDialogImplAttachedBuilder } from './QQuickFileDialogImplAttached.js';
 import type { FolderDialogImplAttachedBuilder } from './QQuickFolderDialogImplAttached.js';
@@ -352,9 +358,7 @@ const FOLDERDIALOGIMPL_META: TypeMetadata = {
     {
       methodName: 'anchors',
       groupName: 'anchors',
-      properties: [
-        { name: 'centerIn', hasValue: true, hasBinding: true },
-      ],
+      properties: [{ name: 'centerIn', hasValue: true, hasBinding: true }],
     },
   ],
   attached: [
@@ -470,17 +474,40 @@ const FOLDERDIALOGIMPL_META: TypeMetadata = {
 };
 
 export function FolderDialogImpl(): FolderDialogImplBuilder {
-  return createFluentBuilder('FolderDialogImpl', FOLDERDIALOGIMPL_META) as unknown as FolderDialogImplBuilder;
+  return createFluentBuilder(
+    'FolderDialogImpl',
+    FOLDERDIALOGIMPL_META,
+  ) as unknown as FolderDialogImplBuilder;
 }
 
 export namespace FolderDialogImpl {
   export namespace ClosePolicy {
     export const NoAutoClose = createEnumToken('FolderDialogImpl', 'ClosePolicy', 'NoAutoClose');
-    export const CloseOnPressOutside = createEnumToken('FolderDialogImpl', 'ClosePolicy', 'CloseOnPressOutside');
-    export const CloseOnPressOutsideParent = createEnumToken('FolderDialogImpl', 'ClosePolicy', 'CloseOnPressOutsideParent');
-    export const CloseOnReleaseOutside = createEnumToken('FolderDialogImpl', 'ClosePolicy', 'CloseOnReleaseOutside');
-    export const CloseOnReleaseOutsideParent = createEnumToken('FolderDialogImpl', 'ClosePolicy', 'CloseOnReleaseOutsideParent');
-    export const CloseOnEscape = createEnumToken('FolderDialogImpl', 'ClosePolicy', 'CloseOnEscape');
+    export const CloseOnPressOutside = createEnumToken(
+      'FolderDialogImpl',
+      'ClosePolicy',
+      'CloseOnPressOutside',
+    );
+    export const CloseOnPressOutsideParent = createEnumToken(
+      'FolderDialogImpl',
+      'ClosePolicy',
+      'CloseOnPressOutsideParent',
+    );
+    export const CloseOnReleaseOutside = createEnumToken(
+      'FolderDialogImpl',
+      'ClosePolicy',
+      'CloseOnReleaseOutside',
+    );
+    export const CloseOnReleaseOutsideParent = createEnumToken(
+      'FolderDialogImpl',
+      'ClosePolicy',
+      'CloseOnReleaseOutsideParent',
+    );
+    export const CloseOnEscape = createEnumToken(
+      'FolderDialogImpl',
+      'ClosePolicy',
+      'CloseOnEscape',
+    );
   }
   export namespace PopupType {
     export const Item = createEnumToken('FolderDialogImpl', 'PopupType', 'Item');
@@ -500,6 +527,10 @@ export namespace FolderDialogImpl {
     export const Right = createEnumToken('FolderDialogImpl', 'TransformOrigin', 'Right');
     export const BottomLeft = createEnumToken('FolderDialogImpl', 'TransformOrigin', 'BottomLeft');
     export const Bottom = createEnumToken('FolderDialogImpl', 'TransformOrigin', 'Bottom');
-    export const BottomRight = createEnumToken('FolderDialogImpl', 'TransformOrigin', 'BottomRight');
+    export const BottomRight = createEnumToken(
+      'FolderDialogImpl',
+      'TransformOrigin',
+      'BottomRight',
+    );
   }
 }

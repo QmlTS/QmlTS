@@ -17,9 +17,9 @@ import { Column } from '../../src/dsl/generated/QtQuick/Column.js';
 import { Image } from '../../src/dsl/generated/QtQuick/Image.js';
 import { Item } from '../../src/dsl/generated/QtQuick/Item.js';
 import { MouseArea } from '../../src/dsl/generated/QtQuick/MouseArea.js';
-import { Repeater } from '../../src/dsl/generated/QtQuick/Repeater.js';
 // Import generated DSL factories and namespaces
 import { Rectangle } from '../../src/dsl/generated/QtQuick/Rectangle.js';
+import { Repeater } from '../../src/dsl/generated/QtQuick/Repeater.js';
 import { Row } from '../../src/dsl/generated/QtQuick/Row.js';
 import { Text } from '../../src/dsl/generated/QtQuick/Text.js';
 import { ColumnLayout } from '../../src/dsl/generated/QtQuick.Layouts/ColumnLayout.js';

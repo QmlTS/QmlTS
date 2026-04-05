@@ -2,8 +2,8 @@
 // Type: VectorDirection3D
 // Generated from Qt 6.11.0
 
-import { createFluentBuilder } from '../../runtime/index.js';
 import type { QmlObjectBuilder, QmlVector3d, TypeMetadata } from '../../runtime/index.js';
+import { createFluentBuilder } from '../../runtime/index.js';
 export interface VectorDirection3DBuilder {
   id(id: string): VectorDirection3DBuilder;
   child(obj: QmlObjectBuilder): VectorDirection3DBuilder;
@@ -36,12 +36,13 @@ const VECTORDIRECTION3D_META: TypeMetadata = {
     { handlerName: 'onNormalizedChanged', paramCount: 0 },
     { handlerName: 'onObjectNameChanged', paramCount: 1 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function VectorDirection3D(): VectorDirection3DBuilder {
-  return createFluentBuilder('VectorDirection3D', VECTORDIRECTION3D_META) as unknown as VectorDirection3DBuilder;
+  return createFluentBuilder(
+    'VectorDirection3D',
+    VECTORDIRECTION3D_META,
+  ) as unknown as VectorDirection3DBuilder;
 }

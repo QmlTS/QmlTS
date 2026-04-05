@@ -2,8 +2,8 @@
 // Type: CuboidGeometry
 // Generated from Qt 6.11.0
 
-import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { QmlObjectBuilder, QmlSize, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface CuboidGeometryBuilder {
   id(id: string): CuboidGeometryBuilder;
   child(obj: QmlObjectBuilder): CuboidGeometryBuilder;
@@ -74,14 +74,15 @@ const CUBOIDGEOMETRY_META: TypeMetadata = {
     { handlerName: 'onYzMeshResolutionChanged', paramCount: 0 },
     { handlerName: 'onZExtentChanged', paramCount: 0 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function CuboidGeometry(): CuboidGeometryBuilder {
-  return createFluentBuilder('CuboidGeometry', CUBOIDGEOMETRY_META) as unknown as CuboidGeometryBuilder;
+  return createFluentBuilder(
+    'CuboidGeometry',
+    CUBOIDGEOMETRY_META,
+  ) as unknown as CuboidGeometryBuilder;
 }
 
 export namespace CuboidGeometry {

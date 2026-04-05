@@ -2,8 +2,13 @@
 // Type: ItemModelBarDataProxy
 // Generated from Qt 6.11.0
 
+import type {
+  QmlEnumToken,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
-import type { QmlEnumToken, QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
 export interface ItemModelBarDataProxyBuilder {
   id(id: string): ItemModelBarDataProxyBuilder;
   child(obj: QmlObjectBuilder): ItemModelBarDataProxyBuilder;
@@ -134,14 +139,15 @@ const ITEMMODELBARDATAPROXY_META: TypeMetadata = {
     { handlerName: 'onValueRolePatternChanged', paramCount: 1 },
     { handlerName: 'onValueRoleReplaceChanged', paramCount: 1 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function ItemModelBarDataProxy(): ItemModelBarDataProxyBuilder {
-  return createFluentBuilder('ItemModelBarDataProxy', ITEMMODELBARDATAPROXY_META) as unknown as ItemModelBarDataProxyBuilder;
+  return createFluentBuilder(
+    'ItemModelBarDataProxy',
+    ITEMMODELBARDATAPROXY_META,
+  ) as unknown as ItemModelBarDataProxyBuilder;
 }
 
 export namespace ItemModelBarDataProxy {
@@ -154,8 +160,16 @@ export namespace ItemModelBarDataProxy {
   export namespace MultiMatchBehavior {
     export const First = createEnumToken('ItemModelBarDataProxy', 'MultiMatchBehavior', 'First');
     export const Last = createEnumToken('ItemModelBarDataProxy', 'MultiMatchBehavior', 'Last');
-    export const Average = createEnumToken('ItemModelBarDataProxy', 'MultiMatchBehavior', 'Average');
-    export const Cumulative = createEnumToken('ItemModelBarDataProxy', 'MultiMatchBehavior', 'Cumulative');
+    export const Average = createEnumToken(
+      'ItemModelBarDataProxy',
+      'MultiMatchBehavior',
+      'Average',
+    );
+    export const Cumulative = createEnumToken(
+      'ItemModelBarDataProxy',
+      'MultiMatchBehavior',
+      'Cumulative',
+    );
   }
   export namespace RemoveLabels {
     export const No = createEnumToken('ItemModelBarDataProxy', 'RemoveLabels', 'No');

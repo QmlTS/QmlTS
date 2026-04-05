@@ -2,8 +2,14 @@
 // Type: MenuSeparator
 // Generated from Qt 6.11.0
 
+import type {
+  QmlEnumToken,
+  QmlFont,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
-import type { QmlEnumToken, QmlFont, QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
 import type { MenuItemGroupBuilder } from './MenuItemGroup.js';
 export interface MenuSeparatorBuilder {
   id(id: string): MenuSeparatorBuilder;
@@ -85,12 +91,13 @@ const MENUSEPARATOR_META: TypeMetadata = {
     { handlerName: 'onTriggered', paramCount: 0 },
     { handlerName: 'onVisibleChanged', paramCount: 0 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function MenuSeparator(): MenuSeparatorBuilder {
-  return createFluentBuilder('MenuSeparator', MENUSEPARATOR_META) as unknown as MenuSeparatorBuilder;
+  return createFluentBuilder(
+    'MenuSeparator',
+    MENUSEPARATOR_META,
+  ) as unknown as MenuSeparatorBuilder;
 }

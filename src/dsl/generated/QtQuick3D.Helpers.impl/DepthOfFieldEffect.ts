@@ -2,8 +2,8 @@
 // Type: DepthOfFieldEffect
 // Generated from Qt 6.11.0
 
-import { createFluentBuilder } from '../../runtime/index.js';
 import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import { createFluentBuilder } from '../../runtime/index.js';
 import type { SceneEnvironmentBuilder } from '../QtQuick3D/SceneEnvironment.js';
 export interface DepthOfFieldEffectBuilder {
   id(id: string): DepthOfFieldEffectBuilder;
@@ -44,12 +44,13 @@ const DEPTHOFFIELDEFFECT_META: TypeMetadata = {
     { handlerName: 'onParentChanged', paramCount: 0 },
     { handlerName: 'onStateChanged', paramCount: 0 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function DepthOfFieldEffect(): DepthOfFieldEffectBuilder {
-  return createFluentBuilder('DepthOfFieldEffect', DEPTHOFFIELDEFFECT_META) as unknown as DepthOfFieldEffectBuilder;
+  return createFluentBuilder(
+    'DepthOfFieldEffect',
+    DEPTHOFFIELDEFFECT_META,
+  ) as unknown as DepthOfFieldEffectBuilder;
 }

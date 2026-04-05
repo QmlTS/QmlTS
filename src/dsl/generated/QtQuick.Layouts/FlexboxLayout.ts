@@ -2,8 +2,8 @@
 // Type: FlexboxLayout
 // Generated from Qt 6.11.0
 
-import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { QmlEnumToken, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { QtObjectBuilder } from '../QML/QtObject.js';
 import type { ItemBuilder } from '../QtQuick/Item.js';
 import type { PaletteBuilder } from '../QtQuick/Palette.js';
@@ -320,9 +320,7 @@ const FLEXBOXLAYOUT_META: TypeMetadata = {
     {
       methodName: 'stackLayout',
       attachedTypeName: 'StackLayout',
-      properties: [
-        { name: 'objectName', hasValue: true, hasBinding: true },
-      ],
+      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
       signals: [
         { handlerName: 'onIndexChanged', paramCount: 0 },
         { handlerName: 'onIsCurrentItemChanged', paramCount: 0 },
@@ -334,33 +332,72 @@ const FLEXBOXLAYOUT_META: TypeMetadata = {
 };
 
 export function FlexboxLayout(): FlexboxLayoutBuilder {
-  return createFluentBuilder('FlexboxLayout', FLEXBOXLAYOUT_META) as unknown as FlexboxLayoutBuilder;
+  return createFluentBuilder(
+    'FlexboxLayout',
+    FLEXBOXLAYOUT_META,
+  ) as unknown as FlexboxLayoutBuilder;
 }
 
 export namespace FlexboxLayout {
   export namespace Flags {
-    export const ItemClipsChildrenToShape = createEnumToken('FlexboxLayout', 'Flags', 'ItemClipsChildrenToShape');
-    export const ItemAcceptsInputMethod = createEnumToken('FlexboxLayout', 'Flags', 'ItemAcceptsInputMethod');
+    export const ItemClipsChildrenToShape = createEnumToken(
+      'FlexboxLayout',
+      'Flags',
+      'ItemClipsChildrenToShape',
+    );
+    export const ItemAcceptsInputMethod = createEnumToken(
+      'FlexboxLayout',
+      'Flags',
+      'ItemAcceptsInputMethod',
+    );
     export const ItemIsFocusScope = createEnumToken('FlexboxLayout', 'Flags', 'ItemIsFocusScope');
     export const ItemHasContents = createEnumToken('FlexboxLayout', 'Flags', 'ItemHasContents');
     export const ItemAcceptsDrops = createEnumToken('FlexboxLayout', 'Flags', 'ItemAcceptsDrops');
     export const ItemIsViewport = createEnumToken('FlexboxLayout', 'Flags', 'ItemIsViewport');
-    export const ItemObservesViewport = createEnumToken('FlexboxLayout', 'Flags', 'ItemObservesViewport');
+    export const ItemObservesViewport = createEnumToken(
+      'FlexboxLayout',
+      'Flags',
+      'ItemObservesViewport',
+    );
   }
   export namespace FlexboxAlignment {
     export const AlignAuto = createEnumToken('FlexboxLayout', 'FlexboxAlignment', 'AlignAuto');
     export const AlignStart = createEnumToken('FlexboxLayout', 'FlexboxAlignment', 'AlignStart');
     export const AlignCenter = createEnumToken('FlexboxLayout', 'FlexboxAlignment', 'AlignCenter');
     export const AlignEnd = createEnumToken('FlexboxLayout', 'FlexboxAlignment', 'AlignEnd');
-    export const AlignStretch = createEnumToken('FlexboxLayout', 'FlexboxAlignment', 'AlignStretch');
-    export const AlignBaseline = createEnumToken('FlexboxLayout', 'FlexboxAlignment', 'AlignBaseline');
-    export const AlignSpaceBetween = createEnumToken('FlexboxLayout', 'FlexboxAlignment', 'AlignSpaceBetween');
-    export const AlignSpaceAround = createEnumToken('FlexboxLayout', 'FlexboxAlignment', 'AlignSpaceAround');
-    export const AlignSpaceEvenly = createEnumToken('FlexboxLayout', 'FlexboxAlignment', 'AlignSpaceEvenly');
+    export const AlignStretch = createEnumToken(
+      'FlexboxLayout',
+      'FlexboxAlignment',
+      'AlignStretch',
+    );
+    export const AlignBaseline = createEnumToken(
+      'FlexboxLayout',
+      'FlexboxAlignment',
+      'AlignBaseline',
+    );
+    export const AlignSpaceBetween = createEnumToken(
+      'FlexboxLayout',
+      'FlexboxAlignment',
+      'AlignSpaceBetween',
+    );
+    export const AlignSpaceAround = createEnumToken(
+      'FlexboxLayout',
+      'FlexboxAlignment',
+      'AlignSpaceAround',
+    );
+    export const AlignSpaceEvenly = createEnumToken(
+      'FlexboxLayout',
+      'FlexboxAlignment',
+      'AlignSpaceEvenly',
+    );
   }
   export namespace FlexboxDirection {
     export const Column = createEnumToken('FlexboxLayout', 'FlexboxDirection', 'Column');
-    export const ColumnReverse = createEnumToken('FlexboxLayout', 'FlexboxDirection', 'ColumnReverse');
+    export const ColumnReverse = createEnumToken(
+      'FlexboxLayout',
+      'FlexboxDirection',
+      'ColumnReverse',
+    );
     export const Row = createEnumToken('FlexboxLayout', 'FlexboxDirection', 'Row');
     export const RowReverse = createEnumToken('FlexboxLayout', 'FlexboxDirection', 'RowReverse');
   }
@@ -380,11 +417,27 @@ export namespace FlexboxLayout {
   }
   export namespace FlexboxJustify {
     export const JustifyStart = createEnumToken('FlexboxLayout', 'FlexboxJustify', 'JustifyStart');
-    export const JustifyCenter = createEnumToken('FlexboxLayout', 'FlexboxJustify', 'JustifyCenter');
+    export const JustifyCenter = createEnumToken(
+      'FlexboxLayout',
+      'FlexboxJustify',
+      'JustifyCenter',
+    );
     export const JustifyEnd = createEnumToken('FlexboxLayout', 'FlexboxJustify', 'JustifyEnd');
-    export const JustifySpaceBetween = createEnumToken('FlexboxLayout', 'FlexboxJustify', 'JustifySpaceBetween');
-    export const JustifySpaceAround = createEnumToken('FlexboxLayout', 'FlexboxJustify', 'JustifySpaceAround');
-    export const JustifySpaceEvenly = createEnumToken('FlexboxLayout', 'FlexboxJustify', 'JustifySpaceEvenly');
+    export const JustifySpaceBetween = createEnumToken(
+      'FlexboxLayout',
+      'FlexboxJustify',
+      'JustifySpaceBetween',
+    );
+    export const JustifySpaceAround = createEnumToken(
+      'FlexboxLayout',
+      'FlexboxJustify',
+      'JustifySpaceAround',
+    );
+    export const JustifySpaceEvenly = createEnumToken(
+      'FlexboxLayout',
+      'FlexboxJustify',
+      'JustifySpaceEvenly',
+    );
   }
   export namespace FlexboxWrap {
     export const NoWrap = createEnumToken('FlexboxLayout', 'FlexboxWrap', 'NoWrap');
@@ -392,23 +445,83 @@ export namespace FlexboxLayout {
     export const WrapReverse = createEnumToken('FlexboxLayout', 'FlexboxWrap', 'WrapReverse');
   }
   export namespace ItemChange {
-    export const ItemChildAddedChange = createEnumToken('FlexboxLayout', 'ItemChange', 'ItemChildAddedChange');
-    export const ItemChildRemovedChange = createEnumToken('FlexboxLayout', 'ItemChange', 'ItemChildRemovedChange');
-    export const ItemSceneChange = createEnumToken('FlexboxLayout', 'ItemChange', 'ItemSceneChange');
-    export const ItemVisibleHasChanged = createEnumToken('FlexboxLayout', 'ItemChange', 'ItemVisibleHasChanged');
-    export const ItemParentHasChanged = createEnumToken('FlexboxLayout', 'ItemChange', 'ItemParentHasChanged');
-    export const ItemOpacityHasChanged = createEnumToken('FlexboxLayout', 'ItemChange', 'ItemOpacityHasChanged');
-    export const ItemActiveFocusHasChanged = createEnumToken('FlexboxLayout', 'ItemChange', 'ItemActiveFocusHasChanged');
-    export const ItemRotationHasChanged = createEnumToken('FlexboxLayout', 'ItemChange', 'ItemRotationHasChanged');
-    export const ItemAntialiasingHasChanged = createEnumToken('FlexboxLayout', 'ItemChange', 'ItemAntialiasingHasChanged');
-    export const ItemDevicePixelRatioHasChanged = createEnumToken('FlexboxLayout', 'ItemChange', 'ItemDevicePixelRatioHasChanged');
-    export const ItemEnabledHasChanged = createEnumToken('FlexboxLayout', 'ItemChange', 'ItemEnabledHasChanged');
-    export const ItemScaleHasChanged = createEnumToken('FlexboxLayout', 'ItemChange', 'ItemScaleHasChanged');
-    export const ItemTransformHasChanged = createEnumToken('FlexboxLayout', 'ItemChange', 'ItemTransformHasChanged');
+    export const ItemChildAddedChange = createEnumToken(
+      'FlexboxLayout',
+      'ItemChange',
+      'ItemChildAddedChange',
+    );
+    export const ItemChildRemovedChange = createEnumToken(
+      'FlexboxLayout',
+      'ItemChange',
+      'ItemChildRemovedChange',
+    );
+    export const ItemSceneChange = createEnumToken(
+      'FlexboxLayout',
+      'ItemChange',
+      'ItemSceneChange',
+    );
+    export const ItemVisibleHasChanged = createEnumToken(
+      'FlexboxLayout',
+      'ItemChange',
+      'ItemVisibleHasChanged',
+    );
+    export const ItemParentHasChanged = createEnumToken(
+      'FlexboxLayout',
+      'ItemChange',
+      'ItemParentHasChanged',
+    );
+    export const ItemOpacityHasChanged = createEnumToken(
+      'FlexboxLayout',
+      'ItemChange',
+      'ItemOpacityHasChanged',
+    );
+    export const ItemActiveFocusHasChanged = createEnumToken(
+      'FlexboxLayout',
+      'ItemChange',
+      'ItemActiveFocusHasChanged',
+    );
+    export const ItemRotationHasChanged = createEnumToken(
+      'FlexboxLayout',
+      'ItemChange',
+      'ItemRotationHasChanged',
+    );
+    export const ItemAntialiasingHasChanged = createEnumToken(
+      'FlexboxLayout',
+      'ItemChange',
+      'ItemAntialiasingHasChanged',
+    );
+    export const ItemDevicePixelRatioHasChanged = createEnumToken(
+      'FlexboxLayout',
+      'ItemChange',
+      'ItemDevicePixelRatioHasChanged',
+    );
+    export const ItemEnabledHasChanged = createEnumToken(
+      'FlexboxLayout',
+      'ItemChange',
+      'ItemEnabledHasChanged',
+    );
+    export const ItemScaleHasChanged = createEnumToken(
+      'FlexboxLayout',
+      'ItemChange',
+      'ItemScaleHasChanged',
+    );
+    export const ItemTransformHasChanged = createEnumToken(
+      'FlexboxLayout',
+      'ItemChange',
+      'ItemTransformHasChanged',
+    );
   }
   export namespace SizePolicy {
-    export const SizePolicyImplicit = createEnumToken('FlexboxLayout', 'SizePolicy', 'SizePolicyImplicit');
-    export const SizePolicyExplicit = createEnumToken('FlexboxLayout', 'SizePolicy', 'SizePolicyExplicit');
+    export const SizePolicyImplicit = createEnumToken(
+      'FlexboxLayout',
+      'SizePolicy',
+      'SizePolicyImplicit',
+    );
+    export const SizePolicyExplicit = createEnumToken(
+      'FlexboxLayout',
+      'SizePolicy',
+      'SizePolicyExplicit',
+    );
   }
   export namespace TransformOrigin {
     export const TopLeft = createEnumToken('FlexboxLayout', 'TransformOrigin', 'TopLeft');

@@ -2,8 +2,8 @@
 // Type: SpriteSheet
 // Generated from Qt 6.11.0
 
-import { createFluentBuilder } from '../../runtime/index.js';
 import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import { createFluentBuilder } from '../../runtime/index.js';
 import type { SpriteItemBuilder } from './SpriteItem.js';
 export interface SpriteSheetBuilder {
   id(id: string): SpriteSheetBuilder;
@@ -51,10 +51,8 @@ const SPRITESHEET_META: TypeMetadata = {
     { handlerName: 'onTextureChanged', paramCount: 1 },
     { handlerName: 'onTextureTransformChanged', paramCount: 1 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function SpriteSheet(): SpriteSheetBuilder {

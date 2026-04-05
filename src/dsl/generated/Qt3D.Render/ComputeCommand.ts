@@ -2,8 +2,13 @@
 // Type: ComputeCommand
 // Generated from Qt 6.11.0
 
+import type {
+  QmlEnumToken,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
-import type { QmlEnumToken, QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
 export interface ComputeCommandBuilder {
   id(id: string): ComputeCommandBuilder;
   child(obj: QmlObjectBuilder): ComputeCommandBuilder;
@@ -62,14 +67,15 @@ const COMPUTECOMMAND_META: TypeMetadata = {
     { handlerName: 'onWorkGroupYChanged', paramCount: 0 },
     { handlerName: 'onWorkGroupZChanged', paramCount: 0 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function ComputeCommand(): ComputeCommandBuilder {
-  return createFluentBuilder('ComputeCommand', COMPUTECOMMAND_META) as unknown as ComputeCommandBuilder;
+  return createFluentBuilder(
+    'ComputeCommand',
+    COMPUTECOMMAND_META,
+  ) as unknown as ComputeCommandBuilder;
 }
 
 export namespace ComputeCommand {

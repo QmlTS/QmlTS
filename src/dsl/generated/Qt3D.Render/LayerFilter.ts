@@ -2,8 +2,13 @@
 // Type: LayerFilter
 // Generated from Qt 6.11.0
 
+import type {
+  QmlEnumToken,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
-import type { QmlEnumToken, QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
 export interface LayerFilterBuilder {
   id(id: string): LayerFilterBuilder;
   child(obj: QmlObjectBuilder): LayerFilterBuilder;
@@ -38,10 +43,8 @@ const LAYERFILTER_META: TypeMetadata = {
     { handlerName: 'onObjectNameChanged', paramCount: 1 },
     { handlerName: 'onParentChanged', paramCount: 1 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function LayerFilter(): LayerFilterBuilder {
@@ -50,9 +53,25 @@ export function LayerFilter(): LayerFilterBuilder {
 
 export namespace LayerFilter {
   export namespace FilterMode {
-    export const AcceptAnyMatchingLayers = createEnumToken('LayerFilter', 'FilterMode', 'AcceptAnyMatchingLayers');
-    export const AcceptAllMatchingLayers = createEnumToken('LayerFilter', 'FilterMode', 'AcceptAllMatchingLayers');
-    export const DiscardAnyMatchingLayers = createEnumToken('LayerFilter', 'FilterMode', 'DiscardAnyMatchingLayers');
-    export const DiscardAllMatchingLayers = createEnumToken('LayerFilter', 'FilterMode', 'DiscardAllMatchingLayers');
+    export const AcceptAnyMatchingLayers = createEnumToken(
+      'LayerFilter',
+      'FilterMode',
+      'AcceptAnyMatchingLayers',
+    );
+    export const AcceptAllMatchingLayers = createEnumToken(
+      'LayerFilter',
+      'FilterMode',
+      'AcceptAllMatchingLayers',
+    );
+    export const DiscardAnyMatchingLayers = createEnumToken(
+      'LayerFilter',
+      'FilterMode',
+      'DiscardAnyMatchingLayers',
+    );
+    export const DiscardAllMatchingLayers = createEnumToken(
+      'LayerFilter',
+      'FilterMode',
+      'DiscardAllMatchingLayers',
+    );
   }
 }

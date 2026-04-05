@@ -2,8 +2,13 @@
 // Type: VPieModelMapper
 // Generated from Qt 6.11.0
 
+import type {
+  QmlEnumToken,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
-import type { QmlEnumToken, QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
 import type { PieSeriesBuilder } from '../QtGraphs/PieSeries.js';
 export interface VPieModelMapperBuilder {
   id(id: string): VPieModelMapperBuilder;
@@ -81,12 +86,13 @@ const VPIEMODELMAPPER_META: TypeMetadata = {
     { handlerName: 'onValuesColumnChanged', paramCount: 0 },
     { handlerName: 'onValuesSectionChanged', paramCount: 0 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function VPieModelMapper(): VPieModelMapperBuilder {
-  return createFluentBuilder('VPieModelMapper', VPIEMODELMAPPER_META) as unknown as VPieModelMapperBuilder;
+  return createFluentBuilder(
+    'VPieModelMapper',
+    VPIEMODELMAPPER_META,
+  ) as unknown as VPieModelMapperBuilder;
 }

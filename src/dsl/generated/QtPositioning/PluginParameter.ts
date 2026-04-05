@@ -2,8 +2,8 @@
 // Type: PluginParameter
 // Generated from Qt 6.11.0
 
-import { createFluentBuilder } from '../../runtime/index.js';
 import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import { createFluentBuilder } from '../../runtime/index.js';
 export interface PluginParameterBuilder {
   id(id: string): PluginParameterBuilder;
   child(obj: QmlObjectBuilder): PluginParameterBuilder;
@@ -33,12 +33,13 @@ const PLUGINPARAMETER_META: TypeMetadata = {
     { handlerName: 'onObjectNameChanged', paramCount: 1 },
     { handlerName: 'onValueChanged', paramCount: 1 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function PluginParameter(): PluginParameterBuilder {
-  return createFluentBuilder('PluginParameter', PLUGINPARAMETER_META) as unknown as PluginParameterBuilder;
+  return createFluentBuilder(
+    'PluginParameter',
+    PLUGINPARAMETER_META,
+  ) as unknown as PluginParameterBuilder;
 }

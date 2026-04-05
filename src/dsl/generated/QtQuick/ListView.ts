@@ -2,8 +2,14 @@
 // Type: ListView
 // Generated from Qt 6.11.0
 
+import type {
+  QmlComponent,
+  QmlEnumToken,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
-import type { QmlComponent, QmlEnumToken, QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
 import type { QtObjectBuilder } from '../QML/QtObject.js';
 import type { AccessibleAttachedBuilder } from './Accessible.js';
 import type { EnterKeyAttachedBuilder } from './EnterKey.js';
@@ -691,9 +697,7 @@ const LISTVIEW_META: TypeMetadata = {
     {
       methodName: 'graphicsInfo',
       attachedTypeName: 'GraphicsInfo',
-      properties: [
-        { name: 'objectName', hasValue: true, hasBinding: true },
-      ],
+      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
       signals: [
         { handlerName: 'onApiChanged', paramCount: 0 },
         { handlerName: 'onMajorVersionChanged', paramCount: 0 },
@@ -844,9 +848,7 @@ const LISTVIEW_META: TypeMetadata = {
     {
       methodName: 'pathView',
       attachedTypeName: 'PathView',
-      properties: [
-        { name: 'objectName', hasValue: true, hasBinding: true },
-      ],
+      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
       signals: [
         { handlerName: 'onCurrentItemChanged', paramCount: 0 },
         { handlerName: 'onPathChanged', paramCount: 0 },
@@ -856,9 +858,7 @@ const LISTVIEW_META: TypeMetadata = {
     {
       methodName: 'positioner',
       attachedTypeName: 'Positioner',
-      properties: [
-        { name: 'objectName', hasValue: true, hasBinding: true },
-      ],
+      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
       signals: [
         { handlerName: 'onIndexChanged', paramCount: 0 },
         { handlerName: 'onIsFirstItemChanged', paramCount: 0 },
@@ -882,9 +882,7 @@ const LISTVIEW_META: TypeMetadata = {
     {
       methodName: 'screen',
       attachedTypeName: 'Screen',
-      properties: [
-        { name: 'objectName', hasValue: true, hasBinding: true },
-      ],
+      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
       signals: [
         { handlerName: 'onDesktopGeometryChanged', paramCount: 0 },
         { handlerName: 'onDevicePixelRatioChanged', paramCount: 0 },
@@ -922,9 +920,7 @@ const LISTVIEW_META: TypeMetadata = {
     {
       methodName: 'viewTransition',
       attachedTypeName: 'ViewTransition',
-      properties: [
-        { name: 'objectName', hasValue: true, hasBinding: true },
-      ],
+      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
       signals: [
         { handlerName: 'onDestinationChanged', paramCount: 0 },
         { handlerName: 'onIndexChanged', paramCount: 0 },
@@ -937,9 +933,7 @@ const LISTVIEW_META: TypeMetadata = {
     {
       methodName: 'window',
       attachedTypeName: 'Window',
-      properties: [
-        { name: 'objectName', hasValue: true, hasBinding: true },
-      ],
+      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
       signals: [
         { handlerName: 'onActiveChanged', paramCount: 0 },
         { handlerName: 'onActiveFocusItemChanged', paramCount: 0 },
@@ -964,62 +958,170 @@ export namespace ListView {
     export const StopAtBounds = createEnumToken('ListView', 'BoundsBehavior', 'StopAtBounds');
     export const DragOverBounds = createEnumToken('ListView', 'BoundsBehavior', 'DragOverBounds');
     export const OvershootBounds = createEnumToken('ListView', 'BoundsBehavior', 'OvershootBounds');
-    export const DragAndOvershootBounds = createEnumToken('ListView', 'BoundsBehavior', 'DragAndOvershootBounds');
+    export const DragAndOvershootBounds = createEnumToken(
+      'ListView',
+      'BoundsBehavior',
+      'DragAndOvershootBounds',
+    );
   }
   export namespace BoundsMovement {
-    export const FollowBoundsBehavior = createEnumToken('ListView', 'BoundsMovement', 'FollowBoundsBehavior');
+    export const FollowBoundsBehavior = createEnumToken(
+      'ListView',
+      'BoundsMovement',
+      'FollowBoundsBehavior',
+    );
   }
   export namespace Flags {
-    export const ItemClipsChildrenToShape = createEnumToken('ListView', 'Flags', 'ItemClipsChildrenToShape');
-    export const ItemAcceptsInputMethod = createEnumToken('ListView', 'Flags', 'ItemAcceptsInputMethod');
+    export const ItemClipsChildrenToShape = createEnumToken(
+      'ListView',
+      'Flags',
+      'ItemClipsChildrenToShape',
+    );
+    export const ItemAcceptsInputMethod = createEnumToken(
+      'ListView',
+      'Flags',
+      'ItemAcceptsInputMethod',
+    );
     export const ItemIsFocusScope = createEnumToken('ListView', 'Flags', 'ItemIsFocusScope');
     export const ItemHasContents = createEnumToken('ListView', 'Flags', 'ItemHasContents');
     export const ItemAcceptsDrops = createEnumToken('ListView', 'Flags', 'ItemAcceptsDrops');
     export const ItemIsViewport = createEnumToken('ListView', 'Flags', 'ItemIsViewport');
-    export const ItemObservesViewport = createEnumToken('ListView', 'Flags', 'ItemObservesViewport');
+    export const ItemObservesViewport = createEnumToken(
+      'ListView',
+      'Flags',
+      'ItemObservesViewport',
+    );
   }
   export namespace FlickableDirection {
-    export const AutoFlickDirection = createEnumToken('ListView', 'FlickableDirection', 'AutoFlickDirection');
-    export const HorizontalFlick = createEnumToken('ListView', 'FlickableDirection', 'HorizontalFlick');
+    export const AutoFlickDirection = createEnumToken(
+      'ListView',
+      'FlickableDirection',
+      'AutoFlickDirection',
+    );
+    export const HorizontalFlick = createEnumToken(
+      'ListView',
+      'FlickableDirection',
+      'HorizontalFlick',
+    );
     export const VerticalFlick = createEnumToken('ListView', 'FlickableDirection', 'VerticalFlick');
-    export const HorizontalAndVerticalFlick = createEnumToken('ListView', 'FlickableDirection', 'HorizontalAndVerticalFlick');
-    export const AutoFlickIfNeeded = createEnumToken('ListView', 'FlickableDirection', 'AutoFlickIfNeeded');
+    export const HorizontalAndVerticalFlick = createEnumToken(
+      'ListView',
+      'FlickableDirection',
+      'HorizontalAndVerticalFlick',
+    );
+    export const AutoFlickIfNeeded = createEnumToken(
+      'ListView',
+      'FlickableDirection',
+      'AutoFlickIfNeeded',
+    );
   }
   export namespace FooterPositioning {
     export const InlineFooter = createEnumToken('ListView', 'FooterPositioning', 'InlineFooter');
     export const OverlayFooter = createEnumToken('ListView', 'FooterPositioning', 'OverlayFooter');
-    export const PullBackFooter = createEnumToken('ListView', 'FooterPositioning', 'PullBackFooter');
+    export const PullBackFooter = createEnumToken(
+      'ListView',
+      'FooterPositioning',
+      'PullBackFooter',
+    );
   }
   export namespace HeaderPositioning {
     export const InlineHeader = createEnumToken('ListView', 'HeaderPositioning', 'InlineHeader');
     export const OverlayHeader = createEnumToken('ListView', 'HeaderPositioning', 'OverlayHeader');
-    export const PullBackHeader = createEnumToken('ListView', 'HeaderPositioning', 'PullBackHeader');
+    export const PullBackHeader = createEnumToken(
+      'ListView',
+      'HeaderPositioning',
+      'PullBackHeader',
+    );
   }
   export namespace HighlightRangeMode {
-    export const NoHighlightRange = createEnumToken('ListView', 'HighlightRangeMode', 'NoHighlightRange');
+    export const NoHighlightRange = createEnumToken(
+      'ListView',
+      'HighlightRangeMode',
+      'NoHighlightRange',
+    );
     export const ApplyRange = createEnumToken('ListView', 'HighlightRangeMode', 'ApplyRange');
-    export const StrictlyEnforceRange = createEnumToken('ListView', 'HighlightRangeMode', 'StrictlyEnforceRange');
+    export const StrictlyEnforceRange = createEnumToken(
+      'ListView',
+      'HighlightRangeMode',
+      'StrictlyEnforceRange',
+    );
   }
   export namespace ItemChange {
-    export const ItemChildAddedChange = createEnumToken('ListView', 'ItemChange', 'ItemChildAddedChange');
-    export const ItemChildRemovedChange = createEnumToken('ListView', 'ItemChange', 'ItemChildRemovedChange');
+    export const ItemChildAddedChange = createEnumToken(
+      'ListView',
+      'ItemChange',
+      'ItemChildAddedChange',
+    );
+    export const ItemChildRemovedChange = createEnumToken(
+      'ListView',
+      'ItemChange',
+      'ItemChildRemovedChange',
+    );
     export const ItemSceneChange = createEnumToken('ListView', 'ItemChange', 'ItemSceneChange');
-    export const ItemVisibleHasChanged = createEnumToken('ListView', 'ItemChange', 'ItemVisibleHasChanged');
-    export const ItemParentHasChanged = createEnumToken('ListView', 'ItemChange', 'ItemParentHasChanged');
-    export const ItemOpacityHasChanged = createEnumToken('ListView', 'ItemChange', 'ItemOpacityHasChanged');
-    export const ItemActiveFocusHasChanged = createEnumToken('ListView', 'ItemChange', 'ItemActiveFocusHasChanged');
-    export const ItemRotationHasChanged = createEnumToken('ListView', 'ItemChange', 'ItemRotationHasChanged');
-    export const ItemAntialiasingHasChanged = createEnumToken('ListView', 'ItemChange', 'ItemAntialiasingHasChanged');
-    export const ItemDevicePixelRatioHasChanged = createEnumToken('ListView', 'ItemChange', 'ItemDevicePixelRatioHasChanged');
-    export const ItemEnabledHasChanged = createEnumToken('ListView', 'ItemChange', 'ItemEnabledHasChanged');
-    export const ItemScaleHasChanged = createEnumToken('ListView', 'ItemChange', 'ItemScaleHasChanged');
-    export const ItemTransformHasChanged = createEnumToken('ListView', 'ItemChange', 'ItemTransformHasChanged');
+    export const ItemVisibleHasChanged = createEnumToken(
+      'ListView',
+      'ItemChange',
+      'ItemVisibleHasChanged',
+    );
+    export const ItemParentHasChanged = createEnumToken(
+      'ListView',
+      'ItemChange',
+      'ItemParentHasChanged',
+    );
+    export const ItemOpacityHasChanged = createEnumToken(
+      'ListView',
+      'ItemChange',
+      'ItemOpacityHasChanged',
+    );
+    export const ItemActiveFocusHasChanged = createEnumToken(
+      'ListView',
+      'ItemChange',
+      'ItemActiveFocusHasChanged',
+    );
+    export const ItemRotationHasChanged = createEnumToken(
+      'ListView',
+      'ItemChange',
+      'ItemRotationHasChanged',
+    );
+    export const ItemAntialiasingHasChanged = createEnumToken(
+      'ListView',
+      'ItemChange',
+      'ItemAntialiasingHasChanged',
+    );
+    export const ItemDevicePixelRatioHasChanged = createEnumToken(
+      'ListView',
+      'ItemChange',
+      'ItemDevicePixelRatioHasChanged',
+    );
+    export const ItemEnabledHasChanged = createEnumToken(
+      'ListView',
+      'ItemChange',
+      'ItemEnabledHasChanged',
+    );
+    export const ItemScaleHasChanged = createEnumToken(
+      'ListView',
+      'ItemChange',
+      'ItemScaleHasChanged',
+    );
+    export const ItemTransformHasChanged = createEnumToken(
+      'ListView',
+      'ItemChange',
+      'ItemTransformHasChanged',
+    );
   }
   export namespace LayoutDirection {
     export const LeftToRight = createEnumToken('ListView', 'LayoutDirection', 'LeftToRight');
     export const RightToLeft = createEnumToken('ListView', 'LayoutDirection', 'RightToLeft');
-    export const VerticalTopToBottom = createEnumToken('ListView', 'LayoutDirection', 'VerticalTopToBottom');
-    export const VerticalBottomToTop = createEnumToken('ListView', 'LayoutDirection', 'VerticalBottomToTop');
+    export const VerticalTopToBottom = createEnumToken(
+      'ListView',
+      'LayoutDirection',
+      'VerticalTopToBottom',
+    );
+    export const VerticalBottomToTop = createEnumToken(
+      'ListView',
+      'LayoutDirection',
+      'VerticalBottomToTop',
+    );
   }
   export namespace Orientation {
     export const Horizontal = createEnumToken('ListView', 'Orientation', 'Horizontal');
@@ -1050,7 +1152,15 @@ export namespace ListView {
     export const BottomRight = createEnumToken('ListView', 'TransformOrigin', 'BottomRight');
   }
   export namespace VerticalLayoutDirection {
-    export const TopToBottom = createEnumToken('ListView', 'VerticalLayoutDirection', 'TopToBottom');
-    export const BottomToTop = createEnumToken('ListView', 'VerticalLayoutDirection', 'BottomToTop');
+    export const TopToBottom = createEnumToken(
+      'ListView',
+      'VerticalLayoutDirection',
+      'TopToBottom',
+    );
+    export const BottomToTop = createEnumToken(
+      'ListView',
+      'VerticalLayoutDirection',
+      'BottomToTop',
+    );
   }
 }

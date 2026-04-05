@@ -2,8 +2,13 @@
 // Type: ImageCapture
 // Generated from Qt 6.11.0
 
+import type {
+  QmlEnumToken,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
-import type { QmlEnumToken, QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
 export interface ImageCaptureBuilder {
   id(id: string): ImageCaptureBuilder;
   child(obj: QmlObjectBuilder): ImageCaptureBuilder;
@@ -56,10 +61,8 @@ const IMAGECAPTURE_META: TypeMetadata = {
     { handlerName: 'onReadyForCaptureChanged', paramCount: 1 },
     { handlerName: 'onResolutionChanged', paramCount: 0 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function ImageCapture(): ImageCaptureBuilder {
@@ -72,11 +75,19 @@ export namespace ImageCapture {
     export const NotReadyError = createEnumToken('ImageCapture', 'Error', 'NotReadyError');
     export const ResourceError = createEnumToken('ImageCapture', 'Error', 'ResourceError');
     export const OutOfSpaceError = createEnumToken('ImageCapture', 'Error', 'OutOfSpaceError');
-    export const NotSupportedFeatureError = createEnumToken('ImageCapture', 'Error', 'NotSupportedFeatureError');
+    export const NotSupportedFeatureError = createEnumToken(
+      'ImageCapture',
+      'Error',
+      'NotSupportedFeatureError',
+    );
     export const FormatError = createEnumToken('ImageCapture', 'Error', 'FormatError');
   }
   export namespace FileFormat {
-    export const UnspecifiedFormat = createEnumToken('ImageCapture', 'FileFormat', 'UnspecifiedFormat');
+    export const UnspecifiedFormat = createEnumToken(
+      'ImageCapture',
+      'FileFormat',
+      'UnspecifiedFormat',
+    );
     export const JPEG = createEnumToken('ImageCapture', 'FileFormat', 'JPEG');
     export const PNG = createEnumToken('ImageCapture', 'FileFormat', 'PNG');
     export const WebP = createEnumToken('ImageCapture', 'FileFormat', 'WebP');

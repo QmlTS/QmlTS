@@ -2,8 +2,8 @@
 // Type: ObjectPicker
 // Generated from Qt 6.11.0
 
-import { createFluentBuilder } from '../../runtime/index.js';
 import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import { createFluentBuilder } from '../../runtime/index.js';
 export interface ObjectPickerBuilder {
   id(id: string): ObjectPickerBuilder;
   child(obj: QmlObjectBuilder): ObjectPickerBuilder;
@@ -73,10 +73,8 @@ const OBJECTPICKER_META: TypeMetadata = {
     { handlerName: 'onRemovedFromEntity', paramCount: 1 },
     { handlerName: 'onShareableChanged', paramCount: 1 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function ObjectPicker(): ObjectPickerBuilder {

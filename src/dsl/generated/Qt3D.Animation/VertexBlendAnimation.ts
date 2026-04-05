@@ -2,8 +2,8 @@
 // Type: VertexBlendAnimation
 // Generated from Qt 6.11.0
 
-import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { GeometryRendererBuilder } from '../Qt3D.Render/GeometryRenderer.js';
 export interface VertexBlendAnimationBuilder {
   id(id: string): VertexBlendAnimationBuilder;
@@ -51,20 +51,33 @@ const VERTEXBLENDANIMATION_META: TypeMetadata = {
     { handlerName: 'onTargetNameChanged', paramCount: 1 },
     { handlerName: 'onTargetPositionsChanged', paramCount: 1 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function VertexBlendAnimation(): VertexBlendAnimationBuilder {
-  return createFluentBuilder('VertexBlendAnimation', VERTEXBLENDANIMATION_META) as unknown as VertexBlendAnimationBuilder;
+  return createFluentBuilder(
+    'VertexBlendAnimation',
+    VERTEXBLENDANIMATION_META,
+  ) as unknown as VertexBlendAnimationBuilder;
 }
 
 export namespace VertexBlendAnimation {
   export namespace AnimationType {
-    export const KeyframeAnimation = createEnumToken('VertexBlendAnimation', 'AnimationType', 'KeyframeAnimation');
-    export const MorphingAnimation = createEnumToken('VertexBlendAnimation', 'AnimationType', 'MorphingAnimation');
-    export const VertexBlendAnimation = createEnumToken('VertexBlendAnimation', 'AnimationType', 'VertexBlendAnimation');
+    export const KeyframeAnimation = createEnumToken(
+      'VertexBlendAnimation',
+      'AnimationType',
+      'KeyframeAnimation',
+    );
+    export const MorphingAnimation = createEnumToken(
+      'VertexBlendAnimation',
+      'AnimationType',
+      'MorphingAnimation',
+    );
+    export const VertexBlendAnimation = createEnumToken(
+      'VertexBlendAnimation',
+      'AnimationType',
+      'VertexBlendAnimation',
+    );
   }
 }

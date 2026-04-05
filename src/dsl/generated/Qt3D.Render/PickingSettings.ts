@@ -2,8 +2,13 @@
 // Type: PickingSettings
 // Generated from Qt 6.11.0
 
+import type {
+  QmlEnumToken,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
-import type { QmlEnumToken, QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
 export interface PickingSettingsBuilder {
   id(id: string): PickingSettingsBuilder;
   child(obj: QmlObjectBuilder): PickingSettingsBuilder;
@@ -53,32 +58,61 @@ const PICKINGSETTINGS_META: TypeMetadata = {
     { handlerName: 'onPickResultModeChanged', paramCount: 1 },
     { handlerName: 'onWorldSpaceToleranceChanged', paramCount: 1 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function PickingSettings(): PickingSettingsBuilder {
-  return createFluentBuilder('PickingSettings', PICKINGSETTINGS_META) as unknown as PickingSettingsBuilder;
+  return createFluentBuilder(
+    'PickingSettings',
+    PICKINGSETTINGS_META,
+  ) as unknown as PickingSettingsBuilder;
 }
 
 export namespace PickingSettings {
   export namespace FaceOrientationPickingMode {
-    export const FrontFace = createEnumToken('PickingSettings', 'FaceOrientationPickingMode', 'FrontFace');
-    export const BackFace = createEnumToken('PickingSettings', 'FaceOrientationPickingMode', 'BackFace');
-    export const FrontAndBackFace = createEnumToken('PickingSettings', 'FaceOrientationPickingMode', 'FrontAndBackFace');
+    export const FrontFace = createEnumToken(
+      'PickingSettings',
+      'FaceOrientationPickingMode',
+      'FrontFace',
+    );
+    export const BackFace = createEnumToken(
+      'PickingSettings',
+      'FaceOrientationPickingMode',
+      'BackFace',
+    );
+    export const FrontAndBackFace = createEnumToken(
+      'PickingSettings',
+      'FaceOrientationPickingMode',
+      'FrontAndBackFace',
+    );
   }
   export namespace PickMethod {
-    export const BoundingVolumePicking = createEnumToken('PickingSettings', 'PickMethod', 'BoundingVolumePicking');
-    export const TrianglePicking = createEnumToken('PickingSettings', 'PickMethod', 'TrianglePicking');
+    export const BoundingVolumePicking = createEnumToken(
+      'PickingSettings',
+      'PickMethod',
+      'BoundingVolumePicking',
+    );
+    export const TrianglePicking = createEnumToken(
+      'PickingSettings',
+      'PickMethod',
+      'TrianglePicking',
+    );
     export const LinePicking = createEnumToken('PickingSettings', 'PickMethod', 'LinePicking');
     export const PointPicking = createEnumToken('PickingSettings', 'PickMethod', 'PointPicking');
-    export const PrimitivePicking = createEnumToken('PickingSettings', 'PickMethod', 'PrimitivePicking');
+    export const PrimitivePicking = createEnumToken(
+      'PickingSettings',
+      'PickMethod',
+      'PrimitivePicking',
+    );
   }
   export namespace PickResultMode {
     export const NearestPick = createEnumToken('PickingSettings', 'PickResultMode', 'NearestPick');
     export const AllPicks = createEnumToken('PickingSettings', 'PickResultMode', 'AllPicks');
-    export const NearestPriorityPick = createEnumToken('PickingSettings', 'PickResultMode', 'NearestPriorityPick');
+    export const NearestPriorityPick = createEnumToken(
+      'PickingSettings',
+      'PickResultMode',
+      'NearestPriorityPick',
+    );
   }
 }

@@ -2,8 +2,8 @@
 // Type: ColorMask
 // Generated from Qt 6.11.0
 
-import { createFluentBuilder } from '../../runtime/index.js';
 import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import { createFluentBuilder } from '../../runtime/index.js';
 export interface ColorMaskBuilder {
   id(id: string): ColorMaskBuilder;
   child(obj: QmlObjectBuilder): ColorMaskBuilder;
@@ -53,10 +53,8 @@ const COLORMASK_META: TypeMetadata = {
     { handlerName: 'onParentChanged', paramCount: 1 },
     { handlerName: 'onRedMaskedChanged', paramCount: 1 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function ColorMask(): ColorMaskBuilder {

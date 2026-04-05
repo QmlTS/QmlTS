@@ -2,8 +2,8 @@
 // Type: ExtrudedTextGeometry
 // Generated from Qt 6.11.0
 
-import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { QmlFont, QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface ExtrudedTextGeometryBuilder {
   id(id: string): ExtrudedTextGeometryBuilder;
   child(obj: QmlObjectBuilder): ExtrudedTextGeometryBuilder;
@@ -64,14 +64,15 @@ const EXTRUDEDTEXTGEOMETRY_META: TypeMetadata = {
     { handlerName: 'onStatusChanged', paramCount: 0 },
     { handlerName: 'onTextChanged', paramCount: 0 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function ExtrudedTextGeometry(): ExtrudedTextGeometryBuilder {
-  return createFluentBuilder('ExtrudedTextGeometry', EXTRUDEDTEXTGEOMETRY_META) as unknown as ExtrudedTextGeometryBuilder;
+  return createFluentBuilder(
+    'ExtrudedTextGeometry',
+    EXTRUDEDTEXTGEOMETRY_META,
+  ) as unknown as ExtrudedTextGeometryBuilder;
 }
 
 export namespace ExtrudedTextGeometry {

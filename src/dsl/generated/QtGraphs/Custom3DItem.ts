@@ -2,8 +2,13 @@
 // Type: Custom3DItem
 // Generated from Qt 6.11.0
 
+import type {
+  QmlObjectBuilder,
+  QmlQuaternion,
+  QmlVector3d,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
-import type { QmlObjectBuilder, QmlQuaternion, QmlVector3d, TypeMetadata } from '../../runtime/index.js';
 export interface Custom3DItemBuilder {
   id(id: string): Custom3DItemBuilder;
   child(obj: QmlObjectBuilder): Custom3DItemBuilder;
@@ -73,10 +78,8 @@ const CUSTOM3DITEM_META: TypeMetadata = {
     { handlerName: 'onTextureFileChanged', paramCount: 1 },
     { handlerName: 'onVisibleChanged', paramCount: 1 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
 };
 
 export function Custom3DItem(): Custom3DItemBuilder {

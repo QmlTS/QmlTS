@@ -2,8 +2,13 @@
 // Type: State
 // Generated from Qt 6.11.0
 
+import type {
+  QmlEnumToken,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
-import type { QmlEnumToken, QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
 export interface StateBuilder {
   id(id: string): StateBuilder;
   child(obj: QmlObjectBuilder): StateBuilder;
@@ -48,10 +53,8 @@ const STATE_META: TypeMetadata = {
     { handlerName: 'onObjectNameChanged', paramCount: 1 },
     { handlerName: 'onPropertiesAssigned', paramCount: 0 },
   ],
-  grouped: [
-  ],
-  attached: [
-  ],
+  grouped: [],
+  attached: [],
   defaultProperty: 'children',
 };
 
@@ -65,7 +68,11 @@ export namespace State {
     export const ParallelStates = createEnumToken('State', 'ChildMode', 'ParallelStates');
   }
   export namespace RestorePolicy {
-    export const DontRestoreProperties = createEnumToken('State', 'RestorePolicy', 'DontRestoreProperties');
+    export const DontRestoreProperties = createEnumToken(
+      'State',
+      'RestorePolicy',
+      'DontRestoreProperties',
+    );
     export const RestoreProperties = createEnumToken('State', 'RestorePolicy', 'RestoreProperties');
   }
 }
