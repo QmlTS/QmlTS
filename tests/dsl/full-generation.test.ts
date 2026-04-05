@@ -14,7 +14,6 @@ const P0_MODULES = [
   'QtQml',
   'QtQml.Models',
   'QtQuick',
-  'QtQuick.Controls.Basic',
   'QtQuick.Templates',
   'QtQuick.Layouts',
   'QtCore',
@@ -32,9 +31,8 @@ describe('Full Generation Acceptance', () => {
       expect(p0Result.success).toBe(true);
     });
 
-    test('FG-02: P0 processes whitelisted modules with exportable types', () => {
-      // QtQuick.Controls.Basic has only non-creatable types, so it's excluded
-      expect(p0Result.stats.modulesProcessed).toBeGreaterThanOrEqual(7);
+    test('FG-02: P0 processes all whitelisted modules', () => {
+      expect(p0Result.stats.modulesProcessed).toBe(7);
     });
 
     test('FG-03: P0 generates substantial type count', () => {
@@ -157,9 +155,9 @@ describe('Full Generation Acceptance', () => {
       expect(errors.length).toBe(0);
     });
 
-    test('FG-34: all-modules warning budget (<10)', () => {
+    test('FG-34: all-modules has zero warnings', () => {
       const warnings = allResult.diagnostics.filter((d) => d.level === 'warning');
-      expect(warnings.length).toBeLessThan(10);
+      expect(warnings.length).toBe(0);
     });
 
     test('FG-35: generates 500+ files', () => {

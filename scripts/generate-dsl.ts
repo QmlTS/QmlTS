@@ -24,7 +24,6 @@ const P0_MODULES = [
   'QtQml',
   'QtQml.Models',
   'QtQuick',
-  'QtQuick.Controls.Basic',
   'QtQuick.Templates',
   'QtQuick.Layouts',
   'QtCore',

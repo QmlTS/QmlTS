@@ -132,9 +132,9 @@ describe('Written-Output Full Generation Validation', () => {
     expect(exitCode).toBe(0);
   }, 60_000);
 
-  test('WO-08: warning count below budget', () => {
+  test('WO-08: zero warnings', () => {
     const warnings = result.diagnostics.filter((d) => d.level === 'warning');
-    expect(warnings.length).toBeLessThan(10);
+    expect(warnings.length).toBe(0);
   });
 
   test('WO-09: zero errors', () => {
