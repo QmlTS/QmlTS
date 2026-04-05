@@ -1,7 +1,6 @@
 import type { PeerTypeRef, TypeMapper } from './type-mapper.js';
 import type {
   AnalyzedRegistry,
-  AnalyzedSignal,
   AnalyzedType,
   AttachedSurface,
   GroupedSurface,
@@ -101,8 +100,7 @@ export class CodeEmitter {
     // Signal handlers
     for (const sig of surface.signals) {
       const handlerName = `on${capitalize(sig.name)}`;
-      const params = this.formatSignalParams(sig);
-      lines.push(`  ${handlerName}(handler: ${params}): ${builderName};`);
+      lines.push(`  ${handlerName}(body: string): ${builderName};`);
     }
     lines.push('}');
 
@@ -156,8 +154,7 @@ export class CodeEmitter {
     // Signal handlers
     for (const sig of sortedByName(allSignals)) {
       const handlerName = `on${capitalize(sig.name)}`;
-      const params = this.formatSignalParams(sig);
-      lines.push(`  ${handlerName}(handler: ${params}): ${builderName};`);
+      lines.push(`  ${handlerName}(body: string): ${builderName};`);
     }
 
     // Grouped property methods
@@ -192,9 +189,14 @@ export class CodeEmitter {
     lines.push('}');
     lines.push('');
 
+    // ─── TypeMetadata ───────────────────────────────────────────────────
+    const metaConstName = `${type.qmlName.toUpperCase()}_META`;
+    this.emitTypeMetadata(metaConstName, type, lines);
+    lines.push('');
+
     // ─── Factory function ───────────────────────────────────────────────
     lines.push(`export function ${type.qmlName}(): ${builderName} {`);
-    lines.push(`  return new DslBuilderImpl('${type.qmlName}') as unknown as ${builderName};`);
+    lines.push(`  return createFluentBuilder('${type.qmlName}', ${metaConstName}) as ${builderName};`);
     lines.push('}');
 
     // ─── Enum namespace ─────────────────────────────────────────────────
@@ -284,19 +286,6 @@ export class CodeEmitter {
     return this.emitCreatable(type);
   }
 
-  private formatSignalParams(sig: AnalyzedSignal): string {
-    if (sig.parameters.length === 0) {
-      return '() => void';
-    }
-    const params = sig.parameters
-      .map((p, i) => {
-        const name = p.name || `arg${i}`;
-        return `${safeName(name)}: ${this.mapper.mapType(p.type)}`;
-      })
-      .join(', ');
-    return `(${params}) => void`;
-  }
-
   /** Emit nested enum namespace: TypeName.EnumName.MemberName */
   private emitEnumNamespace(
     typeName: string,
@@ -314,6 +303,95 @@ export class CodeEmitter {
       lines.push('  }');
     }
     lines.push('}');
+  }
+
+  /** Emit TypeMetadata constant for Proxy-based runtime dispatch */
+  private emitTypeMetadata(
+    constName: string,
+    type: AnalyzedType,
+    lines: string[],
+  ): void {
+    const allProps = [...type.ownProperties, ...type.inheritedProperties];
+    const allSignals = [...type.ownSignals, ...type.inheritedSignals];
+
+    lines.push(`const ${constName}: TypeMetadata = {`);
+    lines.push(`  typeName: '${type.qmlName}',`);
+
+    // Properties (writable only)
+    lines.push('  properties: [');
+    for (const prop of sortedByName(allProps)) {
+      if (prop.readonly) continue;
+      lines.push(`    { name: '${prop.name}', hasValue: true, hasBinding: true },`);
+    }
+    lines.push('  ],');
+
+    // Signals
+    lines.push('  signals: [');
+    for (const sig of sortedByName(allSignals)) {
+      const handlerName = `on${capitalize(sig.name)}`;
+      lines.push(`    { handlerName: '${handlerName}', paramCount: ${sig.parameters.length} },`);
+    }
+    lines.push('  ],');
+
+    // Grouped
+    lines.push('  grouped: [');
+    for (const ref of type.groupedProperties) {
+      const surface = this.analyzed.groupedSurfaces.get(ref.surfaceQualifiedName);
+      if (!surface) continue;
+      lines.push('    {');
+      lines.push(`      methodName: '${ref.propertyName}',`);
+      lines.push(`      groupName: '${ref.propertyName}',`);
+      lines.push('      properties: [');
+      for (const p of surface.properties) {
+        if (p.readonly) continue;
+        lines.push(`        { name: '${p.name}', hasValue: true, hasBinding: true },`);
+      }
+      lines.push('      ],');
+      lines.push('    },');
+    }
+    lines.push('  ],');
+
+    // Attached
+    lines.push('  attached: [');
+    const usedNames = new Set<string>();
+    for (const prop of sortedByName(allProps)) {
+      if (!prop.readonly) usedNames.add(safeName(prop.name));
+    }
+    for (const ref of type.groupedProperties) {
+      usedNames.add(ref.propertyName);
+    }
+    for (const ref of type.attachedTypes) {
+      const surface = this.analyzed.attachedSurfaces.get(ref.attachedQualifiedName);
+      if (!surface) continue;
+      let methodName = ref.methodName;
+      if (usedNames.has(methodName)) {
+        methodName = `${methodName}Attached`;
+      }
+      lines.push('    {');
+      lines.push(`      methodName: '${methodName}',`);
+      lines.push(`      attachedTypeName: '${surface.ownerQmlName}',`);
+      lines.push('      properties: [');
+      for (const p of surface.properties) {
+        if (p.readonly) continue;
+        lines.push(`        { name: '${p.name}', hasValue: true, hasBinding: true },`);
+      }
+      lines.push('      ],');
+      lines.push('      signals: [');
+      for (const sig of surface.signals) {
+        const handlerName = `on${capitalize(sig.name)}`;
+        lines.push(`        { handlerName: '${handlerName}', paramCount: ${sig.parameters.length} },`);
+      }
+      lines.push('      ],');
+      lines.push('    },');
+    }
+    lines.push('  ],');
+
+    // Default property
+    if (type.defaultProperty) {
+      lines.push(`  defaultProperty: '${type.defaultProperty}',`);
+    }
+
+    lines.push('};');
   }
 
   /**
@@ -387,14 +465,14 @@ export class CodeEmitter {
     const lines: string[] = [];
 
     // Value imports (used at runtime)
-    const valueImports = ['DslBuilderImpl'];
+    const valueImports = ['createFluentBuilder'];
     if (needsEnumToken) {
       valueImports.push('createEnumToken');
     }
     valueImports.sort();
 
     // Type-only imports (used only in type positions)
-    const typeImports = ['QmlObjectBuilder', ...runtimeImports];
+    const typeImports = ['QmlObjectBuilder', 'TypeMetadata', ...runtimeImports];
     typeImports.sort();
 
     lines.push(`import { ${valueImports.join(', ')} } from '../../runtime/index.js';`);
