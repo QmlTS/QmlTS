@@ -3,8 +3,16 @@ import type { AttachedMeta, GroupedMeta, TypeMetadata } from './metadata.js';
 import { createPropertyCollector } from './property-collector.js';
 
 const BUILTIN_METHODS = new Set([
-  'id', 'child', 'build', '__typeName', 'addRawMember',
-  'setProp', 'setBinding', 'handleSignal', 'addGrouped', 'addAttached',
+  'id',
+  'child',
+  'build',
+  '__typeName',
+  'addRawMember',
+  'setProp',
+  'setBinding',
+  'handleSignal',
+  'addGrouped',
+  'addAttached',
 ]);
 
 /**

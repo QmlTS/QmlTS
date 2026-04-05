@@ -3,10 +3,9 @@
  * Verifies the CLI script works end-to-end with various flag combinations.
  */
 import { afterAll, beforeAll, describe, expect, test } from 'bun:test';
-import { existsSync, readdirSync, rmSync } from 'node:fs';
-import { join } from 'node:path';
+import { existsSync, mkdtempSync, readdirSync, rmSync } from 'node:fs';
 import { tmpdir } from 'node:os';
-import { mkdtempSync } from 'node:fs';
+import { join } from 'node:path';
 
 const SCRIPT = join(import.meta.dir, '..', '..', 'scripts', 'generate-dsl.ts');
 const PROJECT_ROOT = join(import.meta.dir, '..', '..');
@@ -27,7 +26,9 @@ afterAll(() => {
   }
 });
 
-async function runCli(args: string[]): Promise<{ exitCode: number; stdout: string; stderr: string }> {
+async function runCli(
+  args: string[],
+): Promise<{ exitCode: number; stdout: string; stderr: string }> {
   const proc = Bun.spawn(['bun', 'run', SCRIPT, ...args], {
     cwd: PROJECT_ROOT,
     stdout: 'pipe',
@@ -68,10 +69,7 @@ describe('CLI Smoke Tests', () => {
 
   test('CLI-03: --all generates many modules', async () => {
     const outDir = join(tempBase, 'cli-03');
-    const { exitCode, stdout } = await runCli([
-      '--all',
-      `--output-dir=${outDir}`,
-    ]);
+    const { exitCode, stdout } = await runCli(['--all', `--output-dir=${outDir}`]);
 
     expect(exitCode).toBe(0);
     expect(stdout).toContain('Generation complete');
@@ -82,10 +80,7 @@ describe('CLI Smoke Tests', () => {
 
   test('CLI-04: output contains expected stats', async () => {
     const outDir = join(tempBase, 'cli-04');
-    const { exitCode, stdout } = await runCli([
-      `--output-dir=${outDir}`,
-      '--modules=QtQuick',
-    ]);
+    const { exitCode, stdout } = await runCli([`--output-dir=${outDir}`, '--modules=QtQuick']);
 
     expect(exitCode).toBe(0);
     expect(stdout).toContain('Creatables:');
@@ -96,10 +91,7 @@ describe('CLI Smoke Tests', () => {
 
   test('CLI-05: multiple --modules comma-separated', async () => {
     const outDir = join(tempBase, 'cli-05');
-    const { exitCode } = await runCli([
-      `--output-dir=${outDir}`,
-      '--modules=QtQuick,QtQml',
-    ]);
+    const { exitCode } = await runCli([`--output-dir=${outDir}`, '--modules=QtQuick,QtQml']);
 
     expect(exitCode).toBe(0);
     expect(existsSync(join(outDir, 'QtQuick', 'index.ts'))).toBe(true);

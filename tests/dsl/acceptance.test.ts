@@ -299,7 +299,10 @@ describe('Acceptance: QtQuick.Layouts', () => {
       .child(Rectangle().width(100).height(50))
       .child(Rectangle().width(100).height(50));
 
-    const doc = createDocument().importModule('QtQuick').importModule('QtQuick.Layouts').root(layout);
+    const doc = createDocument()
+      .importModule('QtQuick')
+      .importModule('QtQuick.Layouts')
+      .root(layout);
     const qml = emit(doc);
 
     expect(qml).toContain('ColumnLayout {');
@@ -316,7 +319,10 @@ describe('Acceptance: QtQuick.Layouts', () => {
       ]);
 
     const layout = RowLayout().child(rect);
-    const doc = createDocument().importModule('QtQuick').importModule('QtQuick.Layouts').root(layout);
+    const doc = createDocument()
+      .importModule('QtQuick')
+      .importModule('QtQuick.Layouts')
+      .root(layout);
     const qml = emit(doc);
 
     expect(qml).toContain('RowLayout {');
@@ -328,9 +334,7 @@ describe('Acceptance: QtQuick.Layouts', () => {
     const layout = ColumnLayout().spacingBind('parent.height / 10');
 
     const node = layout.build();
-    const binding = node.members.find(
-      (m) => m.kind === 'Binding' && m.property === 'spacing',
-    );
+    const binding = node.members.find((m) => m.kind === 'Binding' && m.property === 'spacing');
     expect(binding).toBeDefined();
     if (binding && binding.kind === 'Binding') {
       expect(binding.value.kind).toBe('expression');
@@ -340,16 +344,12 @@ describe('Acceptance: QtQuick.Layouts', () => {
 
 // ─── P0 Module Expansion: QtQml ────────────────────────────────────────
 
-import { Timer } from '../../src/dsl/generated/QtQml/Timer.js';
 import { Connections } from '../../src/dsl/generated/QtQml/Connections.js';
+import { Timer } from '../../src/dsl/generated/QtQml/Timer.js';
 
 describe('Acceptance: QtQml', () => {
   test('ACC-16: Timer with interval and signal handler', () => {
-    const timer = Timer()
-      .interval(1000)
-      .repeat(true)
-      .running(true)
-      .onTriggered('count++');
+    const timer = Timer().interval(1000).repeat(true).running(true).onTriggered('count++');
 
     const doc = createDocument().importModule('QtQml').root(timer);
     const qml = emit(doc);
@@ -362,9 +362,7 @@ describe('Acceptance: QtQml', () => {
   });
 
   test('ACC-17: Connections with target binding and signal handler', () => {
-    const conn = Connections()
-      .targetBind('myButton')
-      .handleSignal('onClicked', 'handleClick()');
+    const conn = Connections().targetBind('myButton').handleSignal('onClicked', 'handleClick()');
 
     const doc = createDocument().importModule('QtQml').root(conn);
     const qml = emit(doc);
@@ -381,8 +379,7 @@ import { Settings } from '../../src/dsl/generated/QtCore/Settings.js';
 
 describe('Acceptance: QtCore', () => {
   test('ACC-18: Settings with category', () => {
-    const settings = Settings()
-      .category('app');
+    const settings = Settings().category('app');
 
     const doc = createDocument().importModule('QtCore').root(settings);
     const qml = emit(doc);
@@ -395,15 +392,13 @@ describe('Acceptance: QtCore', () => {
 // ─── P0 Module Expansion: QtQuick.Templates ────────────────────────────
 
 import { Button } from '../../src/dsl/generated/QtQuick.Templates/Button.js';
+import { Label } from '../../src/dsl/generated/QtQuick.Templates/Label.js';
 import { Slider } from '../../src/dsl/generated/QtQuick.Templates/Slider.js';
 import { TextField } from '../../src/dsl/generated/QtQuick.Templates/TextField.js';
-import { Label } from '../../src/dsl/generated/QtQuick.Templates/Label.js';
 
 describe('Acceptance: QtQuick.Templates', () => {
   test('ACC-19: Button with text and click handler', () => {
-    const btn = Button()
-      .text('Click Me')
-      .onClicked('doSomething()');
+    const btn = Button().text('Click Me').onClicked('doSomething()');
 
     const doc = createDocument().importModule('QtQuick.Controls').root(btn);
     const qml = emit(doc);
@@ -414,11 +409,7 @@ describe('Acceptance: QtQuick.Templates', () => {
   });
 
   test('ACC-20: Slider with range and step', () => {
-    const slider = Slider()
-      .from(0)
-      .to(100)
-      .value(50)
-      .stepSize(5);
+    const slider = Slider().from(0).to(100).value(50).stepSize(5);
 
     const doc = createDocument().importModule('QtQuick.Controls').root(slider);
     const qml = emit(doc);
@@ -431,9 +422,7 @@ describe('Acceptance: QtQuick.Templates', () => {
   });
 
   test('ACC-21: TextField with placeholder and id', () => {
-    const field = TextField()
-      .id('nameField')
-      .placeholderText('Enter name...');
+    const field = TextField().id('nameField').placeholderText('Enter name...');
 
     const doc = createDocument().importModule('QtQuick.Controls').root(field);
     const qml = emit(doc);
@@ -444,8 +433,7 @@ describe('Acceptance: QtQuick.Templates', () => {
   });
 
   test('ACC-22: Label with text and wrapping', () => {
-    const label = Label()
-      .text('Hello World');
+    const label = Label().text('Hello World');
 
     const doc = createDocument().importModule('QtQuick.Controls').root(label);
     const qml = emit(doc);
@@ -457,9 +445,7 @@ describe('Acceptance: QtQuick.Templates', () => {
   test('ACC-23: Complex form layout with Controls and Layouts', () => {
     const form = ColumnLayout()
       .spacing(16)
-      .child(
-        Label().text('Username:'),
-      )
+      .child(Label().text('Username:'))
       .child(
         TextField()
           .id('usernameField')
