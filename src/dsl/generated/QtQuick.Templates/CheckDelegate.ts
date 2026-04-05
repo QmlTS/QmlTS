@@ -106,7 +106,7 @@ export interface CheckDelegateBuilder {
   leftInsetBind(expr: string): CheckDelegateBuilder;
   leftPadding(value: number): CheckDelegateBuilder;
   leftPaddingBind(expr: string): CheckDelegateBuilder;
-  locale(value: QmlValue): CheckDelegateBuilder;
+  locale(value: string): CheckDelegateBuilder;
   localeBind(expr: string): CheckDelegateBuilder;
   nextCheckState(value: QmlValue): CheckDelegateBuilder;
   nextCheckStateBind(expr: string): CheckDelegateBuilder;

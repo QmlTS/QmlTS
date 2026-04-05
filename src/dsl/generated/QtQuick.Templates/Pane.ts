@@ -2,13 +2,7 @@
 // Type: Pane
 // Generated from Qt 6.11.0
 
-import type {
-  QmlEnumToken,
-  QmlFont,
-  QmlObjectBuilder,
-  QmlValue,
-  TypeMetadata,
-} from '../../runtime/index.js';
+import type { QmlEnumToken, QmlFont, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { QtObjectBuilder } from '../QML/QtObject.js';
 import type { ItemBuilder } from '../QtQuick/Item.js';
@@ -83,7 +77,7 @@ export interface PaneBuilder {
   leftInsetBind(expr: string): PaneBuilder;
   leftPadding(value: number): PaneBuilder;
   leftPaddingBind(expr: string): PaneBuilder;
-  locale(value: QmlValue): PaneBuilder;
+  locale(value: string): PaneBuilder;
   localeBind(expr: string): PaneBuilder;
   objectName(value: string): PaneBuilder;
   objectNameBind(expr: string): PaneBuilder;

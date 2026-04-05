@@ -88,7 +88,7 @@ export interface DoubleSpinBoxBuilder {
   leftInsetBind(expr: string): DoubleSpinBoxBuilder;
   leftPadding(value: number): DoubleSpinBoxBuilder;
   leftPaddingBind(expr: string): DoubleSpinBoxBuilder;
-  locale(value: QmlValue): DoubleSpinBoxBuilder;
+  locale(value: string): DoubleSpinBoxBuilder;
   localeBind(expr: string): DoubleSpinBoxBuilder;
   objectName(value: string): DoubleSpinBoxBuilder;
   objectNameBind(expr: string): DoubleSpinBoxBuilder;

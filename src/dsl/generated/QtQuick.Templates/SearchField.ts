@@ -88,7 +88,7 @@ export interface SearchFieldBuilder {
   leftPaddingBind(expr: string): SearchFieldBuilder;
   live(value: boolean): SearchFieldBuilder;
   liveBind(expr: string): SearchFieldBuilder;
-  locale(value: QmlValue): SearchFieldBuilder;
+  locale(value: string): SearchFieldBuilder;
   localeBind(expr: string): SearchFieldBuilder;
   objectName(value: string): SearchFieldBuilder;
   objectNameBind(expr: string): SearchFieldBuilder;

@@ -157,9 +157,9 @@ describe('Full Generation Acceptance', () => {
       expect(errors.length).toBe(0);
     });
 
-    test('FG-34: all-modules warning budget (<500)', () => {
+    test('FG-34: all-modules warning budget (<300)', () => {
       const warnings = allResult.diagnostics.filter((d) => d.level === 'warning');
-      expect(warnings.length).toBeLessThan(500);
+      expect(warnings.length).toBeLessThan(300);
     });
 
     test('FG-35: generates 500+ files', () => {

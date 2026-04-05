@@ -82,7 +82,7 @@ export interface AbstractDayOfWeekRowBuilder {
   leftInsetBind(expr: string): AbstractDayOfWeekRowBuilder;
   leftPadding(value: number): AbstractDayOfWeekRowBuilder;
   leftPaddingBind(expr: string): AbstractDayOfWeekRowBuilder;
-  locale(value: QmlValue): AbstractDayOfWeekRowBuilder;
+  locale(value: string): AbstractDayOfWeekRowBuilder;
   localeBind(expr: string): AbstractDayOfWeekRowBuilder;
   objectName(value: string): AbstractDayOfWeekRowBuilder;
   objectNameBind(expr: string): AbstractDayOfWeekRowBuilder;

@@ -108,7 +108,7 @@ export interface MenuItemBuilder {
   leftInsetBind(expr: string): MenuItemBuilder;
   leftPadding(value: number): MenuItemBuilder;
   leftPaddingBind(expr: string): MenuItemBuilder;
-  locale(value: QmlValue): MenuItemBuilder;
+  locale(value: string): MenuItemBuilder;
   localeBind(expr: string): MenuItemBuilder;
   objectName(value: string): MenuItemBuilder;
   objectNameBind(expr: string): MenuItemBuilder;

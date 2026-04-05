@@ -5,6 +5,7 @@ import type { AnalyzedRegistry, AnalyzedType, EnumIndex, GeneratorDiagnostic } f
 export interface PeerTypeRef {
   readonly tsName: string;
   readonly qmlName: string;
+  readonly emitFileName: string;
   readonly moduleUri: string;
 }
 
@@ -47,7 +48,8 @@ export class TypeMapper {
     // 2. Check list types (QList<X>, list<X>)
     const listMatch = qmlType.match(/^(?:QList|list)<(.+)>$/);
     if (listMatch) {
-      const inner = this.mapType(listMatch[1]!);
+      const innerType = listMatch[1]!.trim();
+      const inner = this.mapType(innerType);
       return `${inner}[]`;
     }
 
@@ -67,9 +69,15 @@ export class TypeMapper {
     const colonIdx = qmlType.lastIndexOf('::');
     if (colonIdx >= 0) {
       const stripped = qmlType.slice(colonIdx + 2);
-      // Check if the stripped name is known
       const strippedResult = this.tryMapKnownType(stripped);
       if (strippedResult) return strippedResult;
+    }
+
+    // 5b. Strip pointer suffix and retry (e.g. QBarSet* → QBarSet)
+    if (qmlType.endsWith('*')) {
+      const baseType = qmlType.slice(0, -1).trim();
+      const result = this.tryMapKnownType(baseType);
+      if (result) return result;
     }
 
     // 6. Check grouped surfaces by qualified name
@@ -114,39 +122,43 @@ export class TypeMapper {
   private mapAnalyzedType(type: AnalyzedType): string {
     switch (type.classification) {
       case 'creatable-object': {
-        const tsName = `${type.qmlName}Builder`;
+        const tsName = `${type.dslSymbolName}Builder`;
         this.peerTypeRefs.set(tsName, {
           tsName,
           qmlName: type.qmlName,
+          emitFileName: type.emitFileName,
           moduleUri: type.moduleUri,
         });
         return tsName;
       }
       case 'singleton': {
-        const tsName = `${type.qmlName}Instance`;
+        const tsName = `${type.dslSymbolName}Instance`;
         this.peerTypeRefs.set(tsName, {
           tsName,
           qmlName: type.qmlName,
+          emitFileName: type.emitFileName,
           moduleUri: type.moduleUri,
         });
         return tsName;
       }
       case 'grouped-surface': {
         const surface = this.analyzed.groupedSurfaces.get(type.qualifiedName);
-        const tsName = surface ? surface.builderName : `${type.qmlName}Builder`;
+        const tsName = surface ? surface.builderName : `${type.dslSymbolName}Builder`;
         this.peerTypeRefs.set(tsName, {
           tsName,
           qmlName: surface ? surface.qmlName : type.qmlName,
+          emitFileName: type.emitFileName,
           moduleUri: type.moduleUri,
         });
         return tsName;
       }
       case 'attached-type': {
         const attached = this.analyzed.attachedSurfaces.get(type.qualifiedName);
-        const tsName = attached ? attached.builderName : `${type.qmlName}Builder`;
+        const tsName = attached ? attached.builderName : `${type.dslSymbolName}Builder`;
         this.peerTypeRefs.set(tsName, {
           tsName,
           qmlName: attached ? attached.ownerQmlName : type.qmlName,
+          emitFileName: type.emitFileName,
           moduleUri: type.moduleUri,
         });
         return tsName;

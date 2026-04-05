@@ -103,7 +103,7 @@ export interface ComboBoxBuilder {
   leftInsetBind(expr: string): ComboBoxBuilder;
   leftPadding(value: number): ComboBoxBuilder;
   leftPaddingBind(expr: string): ComboBoxBuilder;
-  locale(value: QmlValue): ComboBoxBuilder;
+  locale(value: string): ComboBoxBuilder;
   localeBind(expr: string): ComboBoxBuilder;
   model(value: QmlValue): ComboBoxBuilder;
   modelBind(expr: string): ComboBoxBuilder;

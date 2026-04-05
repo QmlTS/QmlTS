@@ -7,7 +7,6 @@ import type {
   QmlEnumToken,
   QmlFont,
   QmlObjectBuilder,
-  QmlValue,
   TypeMetadata,
 } from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
@@ -88,7 +87,7 @@ export interface SplitViewBuilder {
   leftInsetBind(expr: string): SplitViewBuilder;
   leftPadding(value: number): SplitViewBuilder;
   leftPaddingBind(expr: string): SplitViewBuilder;
-  locale(value: QmlValue): SplitViewBuilder;
+  locale(value: string): SplitViewBuilder;
   localeBind(expr: string): SplitViewBuilder;
   objectName(value: string): SplitViewBuilder;
   objectNameBind(expr: string): SplitViewBuilder;

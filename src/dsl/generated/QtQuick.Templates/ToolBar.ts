@@ -2,13 +2,7 @@
 // Type: ToolBar
 // Generated from Qt 6.11.0
 
-import type {
-  QmlEnumToken,
-  QmlFont,
-  QmlObjectBuilder,
-  QmlValue,
-  TypeMetadata,
-} from '../../runtime/index.js';
+import type { QmlEnumToken, QmlFont, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { QtObjectBuilder } from '../QML/QtObject.js';
 import type { ItemBuilder } from '../QtQuick/Item.js';
@@ -83,7 +77,7 @@ export interface ToolBarBuilder {
   leftInsetBind(expr: string): ToolBarBuilder;
   leftPadding(value: number): ToolBarBuilder;
   leftPaddingBind(expr: string): ToolBarBuilder;
-  locale(value: QmlValue): ToolBarBuilder;
+  locale(value: string): ToolBarBuilder;
   localeBind(expr: string): ToolBarBuilder;
   objectName(value: string): ToolBarBuilder;
   objectNameBind(expr: string): ToolBarBuilder;

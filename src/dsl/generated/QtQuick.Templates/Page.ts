@@ -2,13 +2,7 @@
 // Type: Page
 // Generated from Qt 6.11.0
 
-import type {
-  QmlEnumToken,
-  QmlFont,
-  QmlObjectBuilder,
-  QmlValue,
-  TypeMetadata,
-} from '../../runtime/index.js';
+import type { QmlEnumToken, QmlFont, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { QtObjectBuilder } from '../QML/QtObject.js';
 import type { ItemBuilder } from '../QtQuick/Item.js';
@@ -87,7 +81,7 @@ export interface PageBuilder {
   leftInsetBind(expr: string): PageBuilder;
   leftPadding(value: number): PageBuilder;
   leftPaddingBind(expr: string): PageBuilder;
-  locale(value: QmlValue): PageBuilder;
+  locale(value: string): PageBuilder;
   localeBind(expr: string): PageBuilder;
   objectName(value: string): PageBuilder;
   objectNameBind(expr: string): PageBuilder;

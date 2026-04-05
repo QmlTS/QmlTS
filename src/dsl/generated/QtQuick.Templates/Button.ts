@@ -106,7 +106,7 @@ export interface ButtonBuilder {
   leftInsetBind(expr: string): ButtonBuilder;
   leftPadding(value: number): ButtonBuilder;
   leftPaddingBind(expr: string): ButtonBuilder;
-  locale(value: QmlValue): ButtonBuilder;
+  locale(value: string): ButtonBuilder;
   localeBind(expr: string): ButtonBuilder;
   objectName(value: string): ButtonBuilder;
   objectNameBind(expr: string): ButtonBuilder;

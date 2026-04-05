@@ -36,6 +36,10 @@ export interface AnalyzedModule {
 export interface AnalyzedType {
   readonly qualifiedName: string;
   readonly qmlName: string;
+  /** Filesystem/import-safe name — no :: or special chars */
+  readonly emitFileName: string;
+  /** Public DSL symbol name (factory, builder interface, enum namespace) */
+  readonly dslSymbolName: string;
   readonly moduleUri: string;
   readonly classification: TypeClassification;
   readonly baseType?: string;

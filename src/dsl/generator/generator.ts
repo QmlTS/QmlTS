@@ -59,7 +59,7 @@ export function generate(config: GeneratorConfig): GeneratorResult {
 
         const code = codeEmitter.emitType(type);
         files.push({
-          relativePath: `${mod.directoryName}/${type.qmlName}.ts`,
+          relativePath: `${mod.directoryName}/${type.emitFileName}.ts`,
           content: code,
         });
 

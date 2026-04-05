@@ -105,7 +105,7 @@ export interface SwipeDelegateBuilder {
   leftInsetBind(expr: string): SwipeDelegateBuilder;
   leftPadding(value: number): SwipeDelegateBuilder;
   leftPaddingBind(expr: string): SwipeDelegateBuilder;
-  locale(value: QmlValue): SwipeDelegateBuilder;
+  locale(value: string): SwipeDelegateBuilder;
   localeBind(expr: string): SwipeDelegateBuilder;
   objectName(value: string): SwipeDelegateBuilder;
   objectNameBind(expr: string): SwipeDelegateBuilder;

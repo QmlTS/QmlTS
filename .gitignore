@@ -39,6 +39,9 @@ coverage/
 *.log
 npm-debug.log*
 
+# Full DSL generation output (stabilization)
+.generated-full/
+
 # DSL generated output (only P0 snapshot is committed)
 # When running `bun run generate:dsl --all`, extra module directories appear.
 # The P0 modules are explicitly tracked via `git add -f`.

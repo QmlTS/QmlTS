@@ -104,7 +104,7 @@ export interface ItemDelegateBuilder {
   leftInsetBind(expr: string): ItemDelegateBuilder;
   leftPadding(value: number): ItemDelegateBuilder;
   leftPaddingBind(expr: string): ItemDelegateBuilder;
-  locale(value: QmlValue): ItemDelegateBuilder;
+  locale(value: string): ItemDelegateBuilder;
   localeBind(expr: string): ItemDelegateBuilder;
   objectName(value: string): ItemDelegateBuilder;
   objectNameBind(expr: string): ItemDelegateBuilder;

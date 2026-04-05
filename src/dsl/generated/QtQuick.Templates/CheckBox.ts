@@ -104,7 +104,7 @@ export interface CheckBoxBuilder {
   leftInsetBind(expr: string): CheckBoxBuilder;
   leftPadding(value: number): CheckBoxBuilder;
   leftPaddingBind(expr: string): CheckBoxBuilder;
-  locale(value: QmlValue): CheckBoxBuilder;
+  locale(value: string): CheckBoxBuilder;
   localeBind(expr: string): CheckBoxBuilder;
   nextCheckState(value: QmlValue): CheckBoxBuilder;
   nextCheckStateBind(expr: string): CheckBoxBuilder;

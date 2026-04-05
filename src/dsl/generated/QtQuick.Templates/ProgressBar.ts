@@ -2,13 +2,7 @@
 // Type: ProgressBar
 // Generated from Qt 6.11.0
 
-import type {
-  QmlEnumToken,
-  QmlFont,
-  QmlObjectBuilder,
-  QmlValue,
-  TypeMetadata,
-} from '../../runtime/index.js';
+import type { QmlEnumToken, QmlFont, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { QtObjectBuilder } from '../QML/QtObject.js';
 import type { ItemBuilder } from '../QtQuick/Item.js';
@@ -83,7 +77,7 @@ export interface ProgressBarBuilder {
   leftInsetBind(expr: string): ProgressBarBuilder;
   leftPadding(value: number): ProgressBarBuilder;
   leftPaddingBind(expr: string): ProgressBarBuilder;
-  locale(value: QmlValue): ProgressBarBuilder;
+  locale(value: string): ProgressBarBuilder;
   localeBind(expr: string): ProgressBarBuilder;
   objectName(value: string): ProgressBarBuilder;
   objectNameBind(expr: string): ProgressBarBuilder;

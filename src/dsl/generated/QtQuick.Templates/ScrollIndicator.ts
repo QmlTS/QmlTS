@@ -2,13 +2,7 @@
 // Type: ScrollIndicator
 // Generated from Qt 6.11.0
 
-import type {
-  QmlEnumToken,
-  QmlFont,
-  QmlObjectBuilder,
-  QmlValue,
-  TypeMetadata,
-} from '../../runtime/index.js';
+import type { QmlEnumToken, QmlFont, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { QtObjectBuilder } from '../QML/QtObject.js';
 import type { ItemBuilder } from '../QtQuick/Item.js';
@@ -81,7 +75,7 @@ export interface ScrollIndicatorBuilder {
   leftInsetBind(expr: string): ScrollIndicatorBuilder;
   leftPadding(value: number): ScrollIndicatorBuilder;
   leftPaddingBind(expr: string): ScrollIndicatorBuilder;
-  locale(value: QmlValue): ScrollIndicatorBuilder;
+  locale(value: string): ScrollIndicatorBuilder;
   localeBind(expr: string): ScrollIndicatorBuilder;
   minimumSize(value: number): ScrollIndicatorBuilder;
   minimumSizeBind(expr: string): ScrollIndicatorBuilder;

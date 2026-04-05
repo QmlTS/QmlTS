@@ -28,8 +28,6 @@ describe('Generated DSL Validation', () => {
       registryPath: SNAPSHOT_PATH,
       outputDir: '',
       moduleWhitelist: P0_MODULES,
-      formatOutput: false,
-      validateOutput: false,
     });
     for (const mod of result.stats.modulesProcessed > 0 ? P0_MODULES : []) {
       const dir = join(GENERATED_DIR, mod);
@@ -73,8 +71,6 @@ describe('Generated DSL Validation', () => {
       registryPath: SNAPSHOT_PATH,
       outputDir: '',
       moduleWhitelist: P0_MODULES,
-      formatOutput: false,
-      validateOutput: false,
     });
     expect(result.success).toBe(true);
 
@@ -140,8 +136,6 @@ describe('Generated DSL Validation', () => {
       registryPath: SNAPSHOT_PATH,
       outputDir: '',
       moduleWhitelist: P0_MODULES,
-      formatOutput: false,
-      validateOutput: false,
     });
     expect(result.stats.creatableTypes).toBeGreaterThan(200);
     expect(result.stats.singletonTypes).toBeGreaterThan(0);

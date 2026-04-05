@@ -2,13 +2,7 @@
 // Type: Popup
 // Generated from Qt 6.11.0
 
-import type {
-  QmlEnumToken,
-  QmlFont,
-  QmlObjectBuilder,
-  QmlValue,
-  TypeMetadata,
-} from '../../runtime/index.js';
+import type { QmlEnumToken, QmlFont, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { ItemBuilder } from '../QtQuick/Item.js';
 import type { PaletteBuilder } from '../QtQuick/Palette.js';
@@ -80,7 +74,7 @@ export interface PopupBuilder {
   leftMarginBind(expr: string): PopupBuilder;
   leftPadding(value: number): PopupBuilder;
   leftPaddingBind(expr: string): PopupBuilder;
-  locale(value: QmlValue): PopupBuilder;
+  locale(value: string): PopupBuilder;
   localeBind(expr: string): PopupBuilder;
   margins(value: number): PopupBuilder;
   marginsBind(expr: string): PopupBuilder;

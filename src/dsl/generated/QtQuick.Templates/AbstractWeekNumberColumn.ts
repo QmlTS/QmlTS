@@ -82,7 +82,7 @@ export interface AbstractWeekNumberColumnBuilder {
   leftInsetBind(expr: string): AbstractWeekNumberColumnBuilder;
   leftPadding(value: number): AbstractWeekNumberColumnBuilder;
   leftPaddingBind(expr: string): AbstractWeekNumberColumnBuilder;
-  locale(value: QmlValue): AbstractWeekNumberColumnBuilder;
+  locale(value: string): AbstractWeekNumberColumnBuilder;
   localeBind(expr: string): AbstractWeekNumberColumnBuilder;
   month(value: number): AbstractWeekNumberColumnBuilder;
   monthBind(expr: string): AbstractWeekNumberColumnBuilder;

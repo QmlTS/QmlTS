@@ -102,7 +102,7 @@ export interface RadioButtonBuilder {
   leftInsetBind(expr: string): RadioButtonBuilder;
   leftPadding(value: number): RadioButtonBuilder;
   leftPaddingBind(expr: string): RadioButtonBuilder;
-  locale(value: QmlValue): RadioButtonBuilder;
+  locale(value: string): RadioButtonBuilder;
   localeBind(expr: string): RadioButtonBuilder;
   objectName(value: string): RadioButtonBuilder;
   objectNameBind(expr: string): RadioButtonBuilder;

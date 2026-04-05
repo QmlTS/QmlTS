@@ -2,13 +2,7 @@
 // Type: Dialog
 // Generated from Qt 6.11.0
 
-import type {
-  QmlEnumToken,
-  QmlFont,
-  QmlObjectBuilder,
-  QmlValue,
-  TypeMetadata,
-} from '../../runtime/index.js';
+import type { QmlEnumToken, QmlFont, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { ItemBuilder } from '../QtQuick/Item.js';
 import type { PaletteBuilder } from '../QtQuick/Palette.js';
@@ -84,7 +78,7 @@ export interface DialogBuilder {
   leftMarginBind(expr: string): DialogBuilder;
   leftPadding(value: number): DialogBuilder;
   leftPaddingBind(expr: string): DialogBuilder;
-  locale(value: QmlValue): DialogBuilder;
+  locale(value: string): DialogBuilder;
   localeBind(expr: string): DialogBuilder;
   margins(value: number): DialogBuilder;
   marginsBind(expr: string): DialogBuilder;

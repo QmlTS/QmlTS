@@ -102,7 +102,7 @@ export interface SwitchBuilder {
   leftInsetBind(expr: string): SwitchBuilder;
   leftPadding(value: number): SwitchBuilder;
   leftPaddingBind(expr: string): SwitchBuilder;
-  locale(value: QmlValue): SwitchBuilder;
+  locale(value: string): SwitchBuilder;
   localeBind(expr: string): SwitchBuilder;
   objectName(value: string): SwitchBuilder;
   objectNameBind(expr: string): SwitchBuilder;

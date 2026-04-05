@@ -106,7 +106,7 @@ export interface ToolButtonBuilder {
   leftInsetBind(expr: string): ToolButtonBuilder;
   leftPadding(value: number): ToolButtonBuilder;
   leftPaddingBind(expr: string): ToolButtonBuilder;
-  locale(value: QmlValue): ToolButtonBuilder;
+  locale(value: string): ToolButtonBuilder;
   localeBind(expr: string): ToolButtonBuilder;
   objectName(value: string): ToolButtonBuilder;
   objectNameBind(expr: string): ToolButtonBuilder;

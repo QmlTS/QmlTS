@@ -82,7 +82,7 @@ export interface StackViewBuilder {
   leftInsetBind(expr: string): StackViewBuilder;
   leftPadding(value: number): StackViewBuilder;
   leftPaddingBind(expr: string): StackViewBuilder;
-  locale(value: QmlValue): StackViewBuilder;
+  locale(value: string): StackViewBuilder;
   localeBind(expr: string): StackViewBuilder;
   objectName(value: string): StackViewBuilder;
   objectNameBind(expr: string): StackViewBuilder;

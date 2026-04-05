@@ -7,7 +7,6 @@ import type {
   QmlEnumToken,
   QmlFont,
   QmlObjectBuilder,
-  QmlValue,
   TypeMetadata,
 } from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
@@ -97,7 +96,7 @@ export interface DialogButtonBoxBuilder {
   leftInsetBind(expr: string): DialogButtonBoxBuilder;
   leftPadding(value: number): DialogButtonBoxBuilder;
   leftPaddingBind(expr: string): DialogButtonBoxBuilder;
-  locale(value: QmlValue): DialogButtonBoxBuilder;
+  locale(value: string): DialogButtonBoxBuilder;
   localeBind(expr: string): DialogButtonBoxBuilder;
   objectName(value: string): DialogButtonBoxBuilder;
   objectNameBind(expr: string): DialogButtonBoxBuilder;

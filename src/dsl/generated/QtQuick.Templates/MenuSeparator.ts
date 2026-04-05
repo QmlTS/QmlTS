@@ -2,13 +2,7 @@
 // Type: MenuSeparator
 // Generated from Qt 6.11.0
 
-import type {
-  QmlEnumToken,
-  QmlFont,
-  QmlObjectBuilder,
-  QmlValue,
-  TypeMetadata,
-} from '../../runtime/index.js';
+import type { QmlEnumToken, QmlFont, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { QtObjectBuilder } from '../QML/QtObject.js';
 import type { ItemBuilder } from '../QtQuick/Item.js';
@@ -79,7 +73,7 @@ export interface MenuSeparatorBuilder {
   leftInsetBind(expr: string): MenuSeparatorBuilder;
   leftPadding(value: number): MenuSeparatorBuilder;
   leftPaddingBind(expr: string): MenuSeparatorBuilder;
-  locale(value: QmlValue): MenuSeparatorBuilder;
+  locale(value: string): MenuSeparatorBuilder;
   localeBind(expr: string): MenuSeparatorBuilder;
   objectName(value: string): MenuSeparatorBuilder;
   objectNameBind(expr: string): MenuSeparatorBuilder;

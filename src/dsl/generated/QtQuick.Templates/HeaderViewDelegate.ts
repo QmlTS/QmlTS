@@ -111,7 +111,7 @@ export interface HeaderViewDelegateBuilder {
   leftInsetBind(expr: string): HeaderViewDelegateBuilder;
   leftPadding(value: number): HeaderViewDelegateBuilder;
   leftPaddingBind(expr: string): HeaderViewDelegateBuilder;
-  locale(value: QmlValue): HeaderViewDelegateBuilder;
+  locale(value: string): HeaderViewDelegateBuilder;
   localeBind(expr: string): HeaderViewDelegateBuilder;
   model(value: QmlValue): HeaderViewDelegateBuilder;
   modelBind(expr: string): HeaderViewDelegateBuilder;

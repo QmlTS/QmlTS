@@ -55,7 +55,7 @@ export interface ApplicationWindowBuilder {
   heightBind(expr: string): ApplicationWindowBuilder;
   leftPadding(value: number): ApplicationWindowBuilder;
   leftPaddingBind(expr: string): ApplicationWindowBuilder;
-  locale(value: QmlValue): ApplicationWindowBuilder;
+  locale(value: string): ApplicationWindowBuilder;
   localeBind(expr: string): ApplicationWindowBuilder;
   maximumHeight(value: number): ApplicationWindowBuilder;
   maximumHeightBind(expr: string): ApplicationWindowBuilder;

@@ -105,7 +105,7 @@ export interface DelayButtonBuilder {
   leftInsetBind(expr: string): DelayButtonBuilder;
   leftPadding(value: number): DelayButtonBuilder;
   leftPaddingBind(expr: string): DelayButtonBuilder;
-  locale(value: QmlValue): DelayButtonBuilder;
+  locale(value: string): DelayButtonBuilder;
   localeBind(expr: string): DelayButtonBuilder;
   objectName(value: string): DelayButtonBuilder;
   objectNameBind(expr: string): DelayButtonBuilder;
