@@ -104,4 +104,42 @@ describe('CLI Smoke Tests', () => {
     expect(existsSync(join(outDir, 'QtQuick', 'index.ts'))).toBe(true);
     expect(existsSync(join(outDir, 'QtQml', 'index.ts'))).toBe(true);
   }, 30_000);
+
+  test('CLI-06: --format runs Biome formatting', async () => {
+    const outDir = join(tempBase, 'cli-06');
+    const { exitCode, stdout } = await runCli([
+      `--output-dir=${outDir}`,
+      '--modules=QtQml',
+      '--format',
+    ]);
+
+    expect(exitCode).toBe(0);
+    expect(stdout).toContain('Formatting');
+  }, 30_000);
+
+  test('CLI-07: --validate runs TypeScript validation', async () => {
+    const outDir = join(tempBase, 'cli-07');
+    const { exitCode, stdout } = await runCli([
+      `--output-dir=${outDir}`,
+      '--modules=QtQml',
+      '--validate',
+    ]);
+
+    expect(exitCode).toBe(0);
+    expect(stdout).toContain('Validat');
+  }, 60_000);
+
+  test('CLI-08: --format --validate combined', async () => {
+    const outDir = join(tempBase, 'cli-08');
+    const { exitCode, stdout } = await runCli([
+      `--output-dir=${outDir}`,
+      '--modules=QtQml',
+      '--format',
+      '--validate',
+    ]);
+
+    expect(exitCode).toBe(0);
+    expect(stdout).toContain('Formatting');
+    expect(stdout).toContain('Validat');
+  }, 60_000);
 });
