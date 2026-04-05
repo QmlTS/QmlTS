@@ -166,13 +166,19 @@ export function analyze(
   // ─── Pass 4: build analyzed types ─────────────────────────────────────
   const allAnalyzedTypes = new Map<string, AnalyzedType>();
 
-  // Resolve emit-name collisions across all target types
-  const emitNames = resolveEmitNameCollisions(
-    targetTypes.map((qt) => ({
-      qualifiedName: qt.qualifiedName,
-      qmlName: qt.qmlName,
-    })),
-  );
+  // Resolve emit-name collisions per module because generated files are
+  // module-scoped. Types in different output directories should not affect
+  // each other's emitted file names.
+  const emitNamesByModule = new Map<string, Map<string, string>>();
+  for (const uri of targetModuleUris) {
+    const moduleTypes = targetTypes
+      .filter((qt) => qt.moduleUri === uri)
+      .map((qt) => ({
+        qualifiedName: qt.qualifiedName,
+        qmlName: qt.qmlName,
+      }));
+    emitNamesByModule.set(uri, resolveEmitNameCollisions(moduleTypes));
+  }
 
   for (const type of targetTypes) {
     const classification = classifyType(type);
@@ -208,7 +214,9 @@ export function analyze(
       }
     }
 
-    const emitFileName = emitNames.get(type.qualifiedName) ?? deriveEmitFileName(type.qmlName);
+    const emitFileName =
+      emitNamesByModule.get(type.moduleUri)?.get(type.qualifiedName) ??
+      deriveEmitFileName(type.qmlName);
     const dslSymbolName = type.qmlName.includes('::') ? emitFileName : type.qmlName;
 
     const analyzed: AnalyzedType = {

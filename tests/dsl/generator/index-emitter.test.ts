@@ -3,6 +3,7 @@ import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { analyze } from '../../../src/dsl/generator/analyzer.js';
 import { IndexEmitter } from '../../../src/dsl/generator/index-emitter.js';
+import type { AnalyzedRegistry, AnalyzedType } from '../../../src/dsl/generator/types.js';
 import { RegistryQuery } from '../../../src/registry/registry-query.js';
 import { RegistrySnapshot } from '../../../src/registry/snapshot.js';
 import type { QmlRegistry } from '../../../src/registry/types.js';
@@ -62,5 +63,45 @@ describe('IndexEmitter', () => {
     expect(files.some((f) => f.relativePath === 'QtQuick/index.ts')).toBe(true);
     expect(files.some((f) => f.relativePath === 'QtQuick.Layouts/index.ts')).toBe(true);
     expect(files.some((f) => f.relativePath === 'index.ts')).toBe(true);
+  });
+
+  test('IE-06: duplicated symbols keep a deterministic winner', () => {
+    const makeType = (qualifiedName: string, emitFileName: string): AnalyzedType => ({
+      qualifiedName,
+      qmlName: 'Internal::Thing',
+      emitFileName,
+      dslSymbolName: 'Thing',
+      moduleUri: 'Test.Module',
+      classification: 'creatable-object',
+      ownProperties: [],
+      inheritedProperties: [],
+      ownSignals: [],
+      inheritedSignals: [],
+      ownMethods: [],
+      inheritedMethods: [],
+      ownEnums: [],
+      inheritedEnums: [],
+      groupedProperties: [],
+      attachedTypes: [],
+    });
+
+    const mod = {
+      uri: 'Test.Module',
+      directoryName: 'Test.Module',
+      types: [makeType('A', 'AlphaThing'), makeType('B', 'BetaThing')],
+    };
+    const emitter = new IndexEmitter({
+      qtVersion: 'test',
+      modules: [mod],
+      allTypes: new Map(),
+      nameConflicts: [],
+      groupedSurfaces: new Map(),
+      attachedSurfaces: new Map(),
+      enumIndex: new Map(),
+    } as AnalyzedRegistry);
+
+    const code = emitter.emitModuleIndex(mod);
+    expect(code).toContain("export { ThingBuilder, Thing } from './AlphaThing.js';");
+    expect(code).not.toContain("export { ThingBuilder, Thing } from './BetaThing.js';");
   });
 });

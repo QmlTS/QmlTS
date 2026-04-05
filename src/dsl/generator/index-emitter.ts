@@ -22,18 +22,18 @@ export class IndexEmitter {
       a.emitFileName < b.emitFileName ? -1 : a.emitFileName > b.emitFileName ? 1 : 0,
     );
 
-    // Detect conflicts: a type's builder/instance name may collide with
-    // another type's factory/dslSymbolName in the same module
-    const conflicting = this.detectIntraModuleConflicts(sorted);
+    // Resolve duplicate public symbols deterministically so we never drop a
+    // module export completely when two files expose the same symbol.
+    const exportPlan = this.buildModuleExportPlan(sorted);
 
     for (const type of sorted) {
-      const conflictSymbols = conflicting.get(type.emitFileName);
-      if (conflictSymbols && conflictSymbols.size > 0) {
-        // Use explicit named re-exports, excluding duplicated symbols
-        const symbols = this.getExportedSymbols(type).filter((s) => !conflictSymbols.has(s));
-        if (symbols.length > 0) {
-          lines.push(`export { ${symbols.join(', ')} } from './${type.emitFileName}.js';`);
-        }
+      const symbols = exportPlan.exportedSymbolsByFile.get(type.emitFileName) ?? [];
+      if (symbols.length === 0) {
+        continue;
+      }
+
+      if (exportPlan.filesWithConflicts.has(type.emitFileName)) {
+        lines.push(`export { ${symbols.join(', ')} } from './${type.emitFileName}.js';`);
       } else {
         lines.push(`export * from './${type.emitFileName}.js';`);
       }
@@ -43,17 +43,22 @@ export class IndexEmitter {
   }
 
   /**
-   * Detect emit-file names whose `export *` would produce duplicate symbols.
-   * Returns a map from emitFileName → set of symbol names that are duplicated.
+   * Build a deterministic export plan for one module.
+   *
+   * For duplicated symbols, the lexicographically-first emit file wins and
+   * keeps the symbol; other files re-export only their remaining unique
+   * symbols. This preserves the module public API instead of dropping the
+   * duplicated symbol from every owner.
    */
-  private detectIntraModuleConflicts(types: AnalyzedType[]): Map<string, Set<string>> {
-    // Collect all symbols each file would export via `export *`
+  private buildModuleExportPlan(types: AnalyzedType[]): {
+    exportedSymbolsByFile: Map<string, string[]>;
+    filesWithConflicts: Set<string>;
+  } {
     const fileSymbols = new Map<string, string[]>();
     for (const type of types) {
       fileSymbols.set(type.emitFileName, this.getExportedSymbols(type));
     }
 
-    // Find symbols exported by more than one file
     const symbolOwners = new Map<string, string[]>();
     for (const [fileName, symbols] of fileSymbols) {
       for (const sym of symbols) {
@@ -66,21 +71,38 @@ export class IndexEmitter {
       }
     }
 
-    const conflicting = new Map<string, Set<string>>();
+    const retainedSymbols = new Map<string, Set<string>>();
+    for (const [fileName, symbols] of fileSymbols) {
+      retainedSymbols.set(fileName, new Set(symbols));
+    }
+
+    const filesWithConflicts = new Set<string>();
     for (const [sym, owners] of symbolOwners) {
       if (owners.length > 1) {
-        for (const owner of owners) {
-          const existing = conflicting.get(owner);
-          if (existing) {
-            existing.add(sym);
-          } else {
-            conflicting.set(owner, new Set([sym]));
+        const sortedOwners = [...owners].sort();
+        const winner = sortedOwners[0]!;
+        for (const owner of sortedOwners) {
+          filesWithConflicts.add(owner);
+          if (owner !== winner) {
+            retainedSymbols.get(owner)?.delete(sym);
           }
         }
       }
     }
 
-    return conflicting;
+    const exportedSymbolsByFile = new Map<string, string[]>();
+    for (const [fileName, symbols] of fileSymbols) {
+      const kept = retainedSymbols.get(fileName) ?? new Set<string>();
+      exportedSymbolsByFile.set(
+        fileName,
+        symbols.filter((sym) => kept.has(sym)),
+      );
+    }
+
+    return {
+      exportedSymbolsByFile,
+      filesWithConflicts,
+    };
   }
 
   /** Get the public symbols exported by a type file */
