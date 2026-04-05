@@ -7,7 +7,6 @@ import type {
   QmlEnumToken,
   QmlFont,
   QmlObjectBuilder,
-  QmlValue,
   TypeMetadata,
 } from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
@@ -82,7 +81,7 @@ export interface SelectionRectangleBuilder {
   leftInsetBind(expr: string): SelectionRectangleBuilder;
   leftPadding(value: number): SelectionRectangleBuilder;
   leftPaddingBind(expr: string): SelectionRectangleBuilder;
-  locale(value: QmlValue): SelectionRectangleBuilder;
+  locale(value: string): SelectionRectangleBuilder;
   localeBind(expr: string): SelectionRectangleBuilder;
   objectName(value: string): SelectionRectangleBuilder;
   objectNameBind(expr: string): SelectionRectangleBuilder;

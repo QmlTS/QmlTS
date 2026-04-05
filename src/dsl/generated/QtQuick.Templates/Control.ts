@@ -2,13 +2,7 @@
 // Type: Control
 // Generated from Qt 6.11.0
 
-import type {
-  QmlEnumToken,
-  QmlFont,
-  QmlObjectBuilder,
-  QmlValue,
-  TypeMetadata,
-} from '../../runtime/index.js';
+import type { QmlEnumToken, QmlFont, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { QtObjectBuilder } from '../QML/QtObject.js';
 import type { ItemBuilder } from '../QtQuick/Item.js';
@@ -79,7 +73,7 @@ export interface ControlBuilder {
   leftInsetBind(expr: string): ControlBuilder;
   leftPadding(value: number): ControlBuilder;
   leftPaddingBind(expr: string): ControlBuilder;
-  locale(value: QmlValue): ControlBuilder;
+  locale(value: string): ControlBuilder;
   localeBind(expr: string): ControlBuilder;
   objectName(value: string): ControlBuilder;
   objectNameBind(expr: string): ControlBuilder;

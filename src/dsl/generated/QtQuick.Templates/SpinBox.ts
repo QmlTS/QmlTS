@@ -88,7 +88,7 @@ export interface SpinBoxBuilder {
   leftPaddingBind(expr: string): SpinBoxBuilder;
   live(value: boolean): SpinBoxBuilder;
   liveBind(expr: string): SpinBoxBuilder;
-  locale(value: QmlValue): SpinBoxBuilder;
+  locale(value: string): SpinBoxBuilder;
   localeBind(expr: string): SpinBoxBuilder;
   objectName(value: string): SpinBoxBuilder;
   objectNameBind(expr: string): SpinBoxBuilder;

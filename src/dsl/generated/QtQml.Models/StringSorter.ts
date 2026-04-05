@@ -2,12 +2,7 @@
 // Type: StringSorter
 // Generated from Qt 6.11.0
 
-import type {
-  QmlEnumToken,
-  QmlObjectBuilder,
-  QmlValue,
-  TypeMetadata,
-} from '../../runtime/index.js';
+import type { QmlEnumToken, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 import type { DelegateModelAttachedBuilder } from './QQmlDelegateModelAttached.js';
 import type { ObjectModelAttachedBuilder } from './QQmlObjectModelAttached.js';
@@ -24,7 +19,7 @@ export interface StringSorterBuilder {
   enabledBind(expr: string): StringSorterBuilder;
   ignorePunctuation(value: boolean): StringSorterBuilder;
   ignorePunctuationBind(expr: string): StringSorterBuilder;
-  locale(value: QmlValue): StringSorterBuilder;
+  locale(value: string): StringSorterBuilder;
   localeBind(expr: string): StringSorterBuilder;
   numericMode(value: boolean): StringSorterBuilder;
   numericModeBind(expr: string): StringSorterBuilder;

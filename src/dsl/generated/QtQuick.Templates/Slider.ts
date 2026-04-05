@@ -2,13 +2,7 @@
 // Type: Slider
 // Generated from Qt 6.11.0
 
-import type {
-  QmlEnumToken,
-  QmlFont,
-  QmlObjectBuilder,
-  QmlValue,
-  TypeMetadata,
-} from '../../runtime/index.js';
+import type { QmlEnumToken, QmlFont, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { QtObjectBuilder } from '../QML/QtObject.js';
 import type { ItemBuilder } from '../QtQuick/Item.js';
@@ -85,7 +79,7 @@ export interface SliderBuilder {
   leftPaddingBind(expr: string): SliderBuilder;
   live(value: boolean): SliderBuilder;
   liveBind(expr: string): SliderBuilder;
-  locale(value: QmlValue): SliderBuilder;
+  locale(value: string): SliderBuilder;
   localeBind(expr: string): SliderBuilder;
   objectName(value: string): SliderBuilder;
   objectNameBind(expr: string): SliderBuilder;

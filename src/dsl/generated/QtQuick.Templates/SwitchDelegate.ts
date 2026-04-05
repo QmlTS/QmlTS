@@ -104,7 +104,7 @@ export interface SwitchDelegateBuilder {
   leftInsetBind(expr: string): SwitchDelegateBuilder;
   leftPadding(value: number): SwitchDelegateBuilder;
   leftPaddingBind(expr: string): SwitchDelegateBuilder;
-  locale(value: QmlValue): SwitchDelegateBuilder;
+  locale(value: string): SwitchDelegateBuilder;
   localeBind(expr: string): SwitchDelegateBuilder;
   objectName(value: string): SwitchDelegateBuilder;
   objectNameBind(expr: string): SwitchDelegateBuilder;

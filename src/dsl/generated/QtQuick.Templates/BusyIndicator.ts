@@ -2,13 +2,7 @@
 // Type: BusyIndicator
 // Generated from Qt 6.11.0
 
-import type {
-  QmlEnumToken,
-  QmlFont,
-  QmlObjectBuilder,
-  QmlValue,
-  TypeMetadata,
-} from '../../runtime/index.js';
+import type { QmlEnumToken, QmlFont, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { QtObjectBuilder } from '../QML/QtObject.js';
 import type { ItemBuilder } from '../QtQuick/Item.js';
@@ -79,7 +73,7 @@ export interface BusyIndicatorBuilder {
   leftInsetBind(expr: string): BusyIndicatorBuilder;
   leftPadding(value: number): BusyIndicatorBuilder;
   leftPaddingBind(expr: string): BusyIndicatorBuilder;
-  locale(value: QmlValue): BusyIndicatorBuilder;
+  locale(value: string): BusyIndicatorBuilder;
   localeBind(expr: string): BusyIndicatorBuilder;
   objectName(value: string): BusyIndicatorBuilder;
   objectNameBind(expr: string): BusyIndicatorBuilder;

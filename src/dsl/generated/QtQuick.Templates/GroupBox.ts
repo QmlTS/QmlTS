@@ -2,13 +2,7 @@
 // Type: GroupBox
 // Generated from Qt 6.11.0
 
-import type {
-  QmlEnumToken,
-  QmlFont,
-  QmlObjectBuilder,
-  QmlValue,
-  TypeMetadata,
-} from '../../runtime/index.js';
+import type { QmlEnumToken, QmlFont, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { QtObjectBuilder } from '../QML/QtObject.js';
 import type { ItemBuilder } from '../QtQuick/Item.js';
@@ -85,7 +79,7 @@ export interface GroupBoxBuilder {
   leftInsetBind(expr: string): GroupBoxBuilder;
   leftPadding(value: number): GroupBoxBuilder;
   leftPaddingBind(expr: string): GroupBoxBuilder;
-  locale(value: QmlValue): GroupBoxBuilder;
+  locale(value: string): GroupBoxBuilder;
   localeBind(expr: string): GroupBoxBuilder;
   objectName(value: string): GroupBoxBuilder;
   objectNameBind(expr: string): GroupBoxBuilder;

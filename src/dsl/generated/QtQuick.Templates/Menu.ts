@@ -89,7 +89,7 @@ export interface MenuBuilder {
   leftMarginBind(expr: string): MenuBuilder;
   leftPadding(value: number): MenuBuilder;
   leftPaddingBind(expr: string): MenuBuilder;
-  locale(value: QmlValue): MenuBuilder;
+  locale(value: string): MenuBuilder;
   localeBind(expr: string): MenuBuilder;
   margins(value: number): MenuBuilder;
   marginsBind(expr: string): MenuBuilder;

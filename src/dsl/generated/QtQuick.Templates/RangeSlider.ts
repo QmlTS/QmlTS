@@ -2,13 +2,7 @@
 // Type: RangeSlider
 // Generated from Qt 6.11.0
 
-import type {
-  QmlEnumToken,
-  QmlFont,
-  QmlObjectBuilder,
-  QmlValue,
-  TypeMetadata,
-} from '../../runtime/index.js';
+import type { QmlEnumToken, QmlFont, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { QtObjectBuilder } from '../QML/QtObject.js';
 import type { ItemBuilder } from '../QtQuick/Item.js';
@@ -84,7 +78,7 @@ export interface RangeSliderBuilder {
   leftPaddingBind(expr: string): RangeSliderBuilder;
   live(value: boolean): RangeSliderBuilder;
   liveBind(expr: string): RangeSliderBuilder;
-  locale(value: QmlValue): RangeSliderBuilder;
+  locale(value: string): RangeSliderBuilder;
   localeBind(expr: string): RangeSliderBuilder;
   objectName(value: string): RangeSliderBuilder;
   objectNameBind(expr: string): RangeSliderBuilder;

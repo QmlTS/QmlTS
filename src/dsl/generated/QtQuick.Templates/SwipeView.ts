@@ -2,13 +2,7 @@
 // Type: SwipeView
 // Generated from Qt 6.11.0
 
-import type {
-  QmlEnumToken,
-  QmlFont,
-  QmlObjectBuilder,
-  QmlValue,
-  TypeMetadata,
-} from '../../runtime/index.js';
+import type { QmlEnumToken, QmlFont, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { QtObjectBuilder } from '../QML/QtObject.js';
 import type { ItemBuilder } from '../QtQuick/Item.js';
@@ -87,7 +81,7 @@ export interface SwipeViewBuilder {
   leftInsetBind(expr: string): SwipeViewBuilder;
   leftPadding(value: number): SwipeViewBuilder;
   leftPaddingBind(expr: string): SwipeViewBuilder;
-  locale(value: QmlValue): SwipeViewBuilder;
+  locale(value: string): SwipeViewBuilder;
   localeBind(expr: string): SwipeViewBuilder;
   objectName(value: string): SwipeViewBuilder;
   objectNameBind(expr: string): SwipeViewBuilder;

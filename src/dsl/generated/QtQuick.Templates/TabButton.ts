@@ -102,7 +102,7 @@ export interface TabButtonBuilder {
   leftInsetBind(expr: string): TabButtonBuilder;
   leftPadding(value: number): TabButtonBuilder;
   leftPaddingBind(expr: string): TabButtonBuilder;
-  locale(value: QmlValue): TabButtonBuilder;
+  locale(value: string): TabButtonBuilder;
   localeBind(expr: string): TabButtonBuilder;
   objectName(value: string): TabButtonBuilder;
   objectNameBind(expr: string): TabButtonBuilder;

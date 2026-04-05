@@ -82,7 +82,7 @@ export interface AbstractMonthGridBuilder {
   leftInsetBind(expr: string): AbstractMonthGridBuilder;
   leftPadding(value: number): AbstractMonthGridBuilder;
   leftPaddingBind(expr: string): AbstractMonthGridBuilder;
-  locale(value: QmlValue): AbstractMonthGridBuilder;
+  locale(value: string): AbstractMonthGridBuilder;
   localeBind(expr: string): AbstractMonthGridBuilder;
   month(value: number): AbstractMonthGridBuilder;
   monthBind(expr: string): AbstractMonthGridBuilder;

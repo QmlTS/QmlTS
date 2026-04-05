@@ -7,7 +7,6 @@ import type {
   QmlEnumToken,
   QmlFont,
   QmlObjectBuilder,
-  QmlValue,
   TypeMetadata,
 } from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
@@ -88,7 +87,7 @@ export interface MenuBarBuilder {
   leftInsetBind(expr: string): MenuBarBuilder;
   leftPadding(value: number): MenuBarBuilder;
   leftPaddingBind(expr: string): MenuBarBuilder;
-  locale(value: QmlValue): MenuBarBuilder;
+  locale(value: string): MenuBarBuilder;
   localeBind(expr: string): MenuBarBuilder;
   objectName(value: string): MenuBarBuilder;
   objectNameBind(expr: string): MenuBarBuilder;

@@ -7,7 +7,6 @@ import type {
   QmlEnumToken,
   QmlFont,
   QmlObjectBuilder,
-  QmlValue,
   TypeMetadata,
 } from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
@@ -88,7 +87,7 @@ export interface PageIndicatorBuilder {
   leftInsetBind(expr: string): PageIndicatorBuilder;
   leftPadding(value: number): PageIndicatorBuilder;
   leftPaddingBind(expr: string): PageIndicatorBuilder;
-  locale(value: QmlValue): PageIndicatorBuilder;
+  locale(value: string): PageIndicatorBuilder;
   localeBind(expr: string): PageIndicatorBuilder;
   objectName(value: string): PageIndicatorBuilder;
   objectNameBind(expr: string): PageIndicatorBuilder;

@@ -106,7 +106,7 @@ export interface RoundButtonBuilder {
   leftInsetBind(expr: string): RoundButtonBuilder;
   leftPadding(value: number): RoundButtonBuilder;
   leftPaddingBind(expr: string): RoundButtonBuilder;
-  locale(value: QmlValue): RoundButtonBuilder;
+  locale(value: string): RoundButtonBuilder;
   localeBind(expr: string): RoundButtonBuilder;
   objectName(value: string): RoundButtonBuilder;
   objectNameBind(expr: string): RoundButtonBuilder;

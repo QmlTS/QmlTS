@@ -2,13 +2,7 @@
 // Type: Dial
 // Generated from Qt 6.11.0
 
-import type {
-  QmlEnumToken,
-  QmlFont,
-  QmlObjectBuilder,
-  QmlValue,
-  TypeMetadata,
-} from '../../runtime/index.js';
+import type { QmlEnumToken, QmlFont, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { QtObjectBuilder } from '../QML/QtObject.js';
 import type { ItemBuilder } from '../QtQuick/Item.js';
@@ -89,7 +83,7 @@ export interface DialBuilder {
   leftPaddingBind(expr: string): DialBuilder;
   live(value: boolean): DialBuilder;
   liveBind(expr: string): DialBuilder;
-  locale(value: QmlValue): DialBuilder;
+  locale(value: string): DialBuilder;
   localeBind(expr: string): DialBuilder;
   objectName(value: string): DialBuilder;
   objectNameBind(expr: string): DialBuilder;

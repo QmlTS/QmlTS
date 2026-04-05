@@ -2,13 +2,7 @@
 // Type: ToolSeparator
 // Generated from Qt 6.11.0
 
-import type {
-  QmlEnumToken,
-  QmlFont,
-  QmlObjectBuilder,
-  QmlValue,
-  TypeMetadata,
-} from '../../runtime/index.js';
+import type { QmlEnumToken, QmlFont, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { QtObjectBuilder } from '../QML/QtObject.js';
 import type { ItemBuilder } from '../QtQuick/Item.js';
@@ -79,7 +73,7 @@ export interface ToolSeparatorBuilder {
   leftInsetBind(expr: string): ToolSeparatorBuilder;
   leftPadding(value: number): ToolSeparatorBuilder;
   leftPaddingBind(expr: string): ToolSeparatorBuilder;
-  locale(value: QmlValue): ToolSeparatorBuilder;
+  locale(value: string): ToolSeparatorBuilder;
   localeBind(expr: string): ToolSeparatorBuilder;
   objectName(value: string): ToolSeparatorBuilder;
   objectNameBind(expr: string): ToolSeparatorBuilder;

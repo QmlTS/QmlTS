@@ -121,7 +121,7 @@ export interface TreeViewDelegateBuilder {
   leftMarginBind(expr: string): TreeViewDelegateBuilder;
   leftPadding(value: number): TreeViewDelegateBuilder;
   leftPaddingBind(expr: string): TreeViewDelegateBuilder;
-  locale(value: QmlValue): TreeViewDelegateBuilder;
+  locale(value: string): TreeViewDelegateBuilder;
   localeBind(expr: string): TreeViewDelegateBuilder;
   objectName(value: string): TreeViewDelegateBuilder;
   objectNameBind(expr: string): TreeViewDelegateBuilder;

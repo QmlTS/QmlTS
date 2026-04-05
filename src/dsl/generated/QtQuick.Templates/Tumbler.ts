@@ -86,7 +86,7 @@ export interface TumblerBuilder {
   leftInsetBind(expr: string): TumblerBuilder;
   leftPadding(value: number): TumblerBuilder;
   leftPaddingBind(expr: string): TumblerBuilder;
-  locale(value: QmlValue): TumblerBuilder;
+  locale(value: string): TumblerBuilder;
   localeBind(expr: string): TumblerBuilder;
   model(value: QmlValue): TumblerBuilder;
   modelBind(expr: string): TumblerBuilder;

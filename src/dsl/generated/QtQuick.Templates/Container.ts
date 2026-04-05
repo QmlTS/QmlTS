@@ -2,13 +2,7 @@
 // Type: Container
 // Generated from Qt 6.11.0
 
-import type {
-  QmlEnumToken,
-  QmlFont,
-  QmlObjectBuilder,
-  QmlValue,
-  TypeMetadata,
-} from '../../runtime/index.js';
+import type { QmlEnumToken, QmlFont, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { QtObjectBuilder } from '../QML/QtObject.js';
 import type { ItemBuilder } from '../QtQuick/Item.js';
@@ -85,7 +79,7 @@ export interface ContainerBuilder {
   leftInsetBind(expr: string): ContainerBuilder;
   leftPadding(value: number): ContainerBuilder;
   leftPaddingBind(expr: string): ContainerBuilder;
-  locale(value: QmlValue): ContainerBuilder;
+  locale(value: string): ContainerBuilder;
   localeBind(expr: string): ContainerBuilder;
   objectName(value: string): ContainerBuilder;
   objectNameBind(expr: string): ContainerBuilder;

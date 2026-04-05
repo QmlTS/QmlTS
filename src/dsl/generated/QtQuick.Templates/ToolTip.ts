@@ -2,13 +2,7 @@
 // Type: ToolTip
 // Generated from Qt 6.11.0
 
-import type {
-  QmlEnumToken,
-  QmlFont,
-  QmlObjectBuilder,
-  QmlValue,
-  TypeMetadata,
-} from '../../runtime/index.js';
+import type { QmlEnumToken, QmlFont, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { ItemBuilder } from '../QtQuick/Item.js';
 import type { PaletteBuilder } from '../QtQuick/Palette.js';
@@ -82,7 +76,7 @@ export interface ToolTipBuilder {
   leftMarginBind(expr: string): ToolTipBuilder;
   leftPadding(value: number): ToolTipBuilder;
   leftPaddingBind(expr: string): ToolTipBuilder;
-  locale(value: QmlValue): ToolTipBuilder;
+  locale(value: string): ToolTipBuilder;
   localeBind(expr: string): ToolTipBuilder;
   margins(value: number): ToolTipBuilder;
   marginsBind(expr: string): ToolTipBuilder;

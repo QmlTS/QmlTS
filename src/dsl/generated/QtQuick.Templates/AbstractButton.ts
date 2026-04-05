@@ -102,7 +102,7 @@ export interface AbstractButtonBuilder {
   leftInsetBind(expr: string): AbstractButtonBuilder;
   leftPadding(value: number): AbstractButtonBuilder;
   leftPaddingBind(expr: string): AbstractButtonBuilder;
-  locale(value: QmlValue): AbstractButtonBuilder;
+  locale(value: string): AbstractButtonBuilder;
   localeBind(expr: string): AbstractButtonBuilder;
   objectName(value: string): AbstractButtonBuilder;
   objectNameBind(expr: string): AbstractButtonBuilder;

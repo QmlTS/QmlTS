@@ -109,7 +109,7 @@ export interface TableViewDelegateBuilder {
   leftInsetBind(expr: string): TableViewDelegateBuilder;
   leftPadding(value: number): TableViewDelegateBuilder;
   leftPaddingBind(expr: string): TableViewDelegateBuilder;
-  locale(value: QmlValue): TableViewDelegateBuilder;
+  locale(value: string): TableViewDelegateBuilder;
   localeBind(expr: string): TableViewDelegateBuilder;
   objectName(value: string): TableViewDelegateBuilder;
   objectNameBind(expr: string): TableViewDelegateBuilder;

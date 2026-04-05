@@ -104,7 +104,7 @@ export interface RadioDelegateBuilder {
   leftInsetBind(expr: string): RadioDelegateBuilder;
   leftPadding(value: number): RadioDelegateBuilder;
   leftPaddingBind(expr: string): RadioDelegateBuilder;
-  locale(value: QmlValue): RadioDelegateBuilder;
+  locale(value: string): RadioDelegateBuilder;
   localeBind(expr: string): RadioDelegateBuilder;
   objectName(value: string): RadioDelegateBuilder;
   objectNameBind(expr: string): RadioDelegateBuilder;
