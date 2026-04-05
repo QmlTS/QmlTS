@@ -54,9 +54,7 @@ const defaultOutputDir = useAll
   ? join(import.meta.dir, '..', '.generated-full')
   : join(import.meta.dir, '..', 'src', 'dsl', 'generated');
 
-const outputDir = outputDirArg
-  ? outputDirArg.replace('--output-dir=', '')
-  : defaultOutputDir;
+const outputDir = outputDirArg ? outputDirArg.replace('--output-dir=', '') : defaultOutputDir;
 
 async function main(): Promise<void> {
   console.log('Generating DSL...');

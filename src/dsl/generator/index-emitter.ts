@@ -30,8 +30,7 @@ export class IndexEmitter {
       const conflictSymbols = conflicting.get(type.emitFileName);
       if (conflictSymbols && conflictSymbols.size > 0) {
         // Use explicit named re-exports, excluding duplicated symbols
-        const symbols = this.getExportedSymbols(type)
-          .filter((s) => !conflictSymbols.has(s));
+        const symbols = this.getExportedSymbols(type).filter((s) => !conflictSymbols.has(s));
         if (symbols.length > 0) {
           lines.push(`export { ${symbols.join(', ')} } from './${type.emitFileName}.js';`);
         }
