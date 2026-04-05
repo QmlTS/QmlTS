@@ -2,8 +2,8 @@
 // Type: ScrollView
 // Generated from Qt 6.11.0
 
-import type { QmlEnumToken, QmlFont, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
+import type { QmlEnumToken, QmlFont, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
 import type { QtObjectBuilder } from '../QML/QtObject.js';
 import type { ItemBuilder } from '../QtQuick/Item.js';
 import type { PaletteBuilder } from '../QtQuick/Palette.js';
@@ -385,7 +385,9 @@ const SCROLLVIEW_META: TypeMetadata = {
     {
       methodName: 'applicationWindow',
       attachedTypeName: 'ApplicationWindow',
-      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
+      properties: [
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
       signals: [
         { handlerName: 'onActiveFocusControlChanged', paramCount: 0 },
         { handlerName: 'onContentItemChanged', paramCount: 0 },
@@ -482,7 +484,9 @@ const SCROLLVIEW_META: TypeMetadata = {
     {
       methodName: 'selectionRectangle',
       attachedTypeName: 'SelectionRectangle',
-      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
+      properties: [
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
       signals: [
         { handlerName: 'onControlChanged', paramCount: 0 },
         { handlerName: 'onDraggingChanged', paramCount: 0 },
@@ -492,7 +496,9 @@ const SCROLLVIEW_META: TypeMetadata = {
     {
       methodName: 'splitHandle',
       attachedTypeName: 'SplitHandle',
-      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
+      properties: [
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
       signals: [
         { handlerName: 'onHoveredChanged', paramCount: 0 },
         { handlerName: 'onPressedChanged', paramCount: 0 },
@@ -549,7 +555,9 @@ const SCROLLVIEW_META: TypeMetadata = {
     {
       methodName: 'swipeDelegate',
       attachedTypeName: 'SwipeDelegate',
-      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
+      properties: [
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
       signals: [
         { handlerName: 'onClicked', paramCount: 0 },
         { handlerName: 'onPressedChanged', paramCount: 0 },
@@ -559,7 +567,9 @@ const SCROLLVIEW_META: TypeMetadata = {
     {
       methodName: 'swipeView',
       attachedTypeName: 'SwipeView',
-      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
+      properties: [
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
       signals: [
         { handlerName: 'onIndexChanged', paramCount: 0 },
         { handlerName: 'onIsCurrentItemChanged', paramCount: 0 },
@@ -572,7 +582,9 @@ const SCROLLVIEW_META: TypeMetadata = {
     {
       methodName: 'tabBar',
       attachedTypeName: 'TabBar',
-      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
+      properties: [
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
       signals: [
         { handlerName: 'onIndexChanged', paramCount: 0 },
         { handlerName: 'onPositionChanged', paramCount: 0 },
@@ -613,7 +625,9 @@ const SCROLLVIEW_META: TypeMetadata = {
     {
       methodName: 'tumbler',
       attachedTypeName: 'Tumbler',
-      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
+      properties: [
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
       signals: [
         { handlerName: 'onDisplacementChanged', paramCount: 0 },
         { handlerName: 'onObjectNameChanged', paramCount: 1 },
@@ -629,88 +643,28 @@ export function ScrollView(): ScrollViewBuilder {
 
 export namespace ScrollView {
   export namespace Flags {
-    export const ItemClipsChildrenToShape = createEnumToken(
-      'ScrollView',
-      'Flags',
-      'ItemClipsChildrenToShape',
-    );
-    export const ItemAcceptsInputMethod = createEnumToken(
-      'ScrollView',
-      'Flags',
-      'ItemAcceptsInputMethod',
-    );
+    export const ItemClipsChildrenToShape = createEnumToken('ScrollView', 'Flags', 'ItemClipsChildrenToShape');
+    export const ItemAcceptsInputMethod = createEnumToken('ScrollView', 'Flags', 'ItemAcceptsInputMethod');
     export const ItemIsFocusScope = createEnumToken('ScrollView', 'Flags', 'ItemIsFocusScope');
     export const ItemHasContents = createEnumToken('ScrollView', 'Flags', 'ItemHasContents');
     export const ItemAcceptsDrops = createEnumToken('ScrollView', 'Flags', 'ItemAcceptsDrops');
     export const ItemIsViewport = createEnumToken('ScrollView', 'Flags', 'ItemIsViewport');
-    export const ItemObservesViewport = createEnumToken(
-      'ScrollView',
-      'Flags',
-      'ItemObservesViewport',
-    );
+    export const ItemObservesViewport = createEnumToken('ScrollView', 'Flags', 'ItemObservesViewport');
   }
   export namespace ItemChange {
-    export const ItemChildAddedChange = createEnumToken(
-      'ScrollView',
-      'ItemChange',
-      'ItemChildAddedChange',
-    );
-    export const ItemChildRemovedChange = createEnumToken(
-      'ScrollView',
-      'ItemChange',
-      'ItemChildRemovedChange',
-    );
+    export const ItemChildAddedChange = createEnumToken('ScrollView', 'ItemChange', 'ItemChildAddedChange');
+    export const ItemChildRemovedChange = createEnumToken('ScrollView', 'ItemChange', 'ItemChildRemovedChange');
     export const ItemSceneChange = createEnumToken('ScrollView', 'ItemChange', 'ItemSceneChange');
-    export const ItemVisibleHasChanged = createEnumToken(
-      'ScrollView',
-      'ItemChange',
-      'ItemVisibleHasChanged',
-    );
-    export const ItemParentHasChanged = createEnumToken(
-      'ScrollView',
-      'ItemChange',
-      'ItemParentHasChanged',
-    );
-    export const ItemOpacityHasChanged = createEnumToken(
-      'ScrollView',
-      'ItemChange',
-      'ItemOpacityHasChanged',
-    );
-    export const ItemActiveFocusHasChanged = createEnumToken(
-      'ScrollView',
-      'ItemChange',
-      'ItemActiveFocusHasChanged',
-    );
-    export const ItemRotationHasChanged = createEnumToken(
-      'ScrollView',
-      'ItemChange',
-      'ItemRotationHasChanged',
-    );
-    export const ItemAntialiasingHasChanged = createEnumToken(
-      'ScrollView',
-      'ItemChange',
-      'ItemAntialiasingHasChanged',
-    );
-    export const ItemDevicePixelRatioHasChanged = createEnumToken(
-      'ScrollView',
-      'ItemChange',
-      'ItemDevicePixelRatioHasChanged',
-    );
-    export const ItemEnabledHasChanged = createEnumToken(
-      'ScrollView',
-      'ItemChange',
-      'ItemEnabledHasChanged',
-    );
-    export const ItemScaleHasChanged = createEnumToken(
-      'ScrollView',
-      'ItemChange',
-      'ItemScaleHasChanged',
-    );
-    export const ItemTransformHasChanged = createEnumToken(
-      'ScrollView',
-      'ItemChange',
-      'ItemTransformHasChanged',
-    );
+    export const ItemVisibleHasChanged = createEnumToken('ScrollView', 'ItemChange', 'ItemVisibleHasChanged');
+    export const ItemParentHasChanged = createEnumToken('ScrollView', 'ItemChange', 'ItemParentHasChanged');
+    export const ItemOpacityHasChanged = createEnumToken('ScrollView', 'ItemChange', 'ItemOpacityHasChanged');
+    export const ItemActiveFocusHasChanged = createEnumToken('ScrollView', 'ItemChange', 'ItemActiveFocusHasChanged');
+    export const ItemRotationHasChanged = createEnumToken('ScrollView', 'ItemChange', 'ItemRotationHasChanged');
+    export const ItemAntialiasingHasChanged = createEnumToken('ScrollView', 'ItemChange', 'ItemAntialiasingHasChanged');
+    export const ItemDevicePixelRatioHasChanged = createEnumToken('ScrollView', 'ItemChange', 'ItemDevicePixelRatioHasChanged');
+    export const ItemEnabledHasChanged = createEnumToken('ScrollView', 'ItemChange', 'ItemEnabledHasChanged');
+    export const ItemScaleHasChanged = createEnumToken('ScrollView', 'ItemChange', 'ItemScaleHasChanged');
+    export const ItemTransformHasChanged = createEnumToken('ScrollView', 'ItemChange', 'ItemTransformHasChanged');
   }
   export namespace TransformOrigin {
     export const TopLeft = createEnumToken('ScrollView', 'TransformOrigin', 'TopLeft');

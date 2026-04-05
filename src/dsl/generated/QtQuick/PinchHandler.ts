@@ -2,13 +2,8 @@
 // Type: PinchHandler
 // Generated from Qt 6.11.0
 
-import type {
-  QmlEnumToken,
-  QmlObjectBuilder,
-  QmlPoint,
-  TypeMetadata,
-} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
+import type { QmlEnumToken, QmlObjectBuilder, QmlPoint, TypeMetadata } from '../../runtime/index.js';
 import type { AccessibleAttachedBuilder } from './Accessible.js';
 import type { EnterKeyAttachedBuilder } from './EnterKey.js';
 import type { GraphicsInfoAttachedBuilder } from './GraphicsInfo.js';
@@ -169,7 +164,8 @@ const PINCHHANDLER_META: TypeMetadata = {
     { handlerName: 'onTranslationChanged', paramCount: 1 },
     { handlerName: 'onUpdated', paramCount: 0 },
   ],
-  grouped: [],
+  grouped: [
+  ],
   attached: [
     {
       methodName: 'accessible',
@@ -283,7 +279,9 @@ const PINCHHANDLER_META: TypeMetadata = {
     {
       methodName: 'graphicsInfo',
       attachedTypeName: 'GraphicsInfo',
-      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
+      properties: [
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
       signals: [
         { handlerName: 'onApiChanged', paramCount: 0 },
         { handlerName: 'onMajorVersionChanged', paramCount: 0 },
@@ -434,7 +432,9 @@ const PINCHHANDLER_META: TypeMetadata = {
     {
       methodName: 'pathView',
       attachedTypeName: 'PathView',
-      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
+      properties: [
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
       signals: [
         { handlerName: 'onCurrentItemChanged', paramCount: 0 },
         { handlerName: 'onPathChanged', paramCount: 0 },
@@ -444,7 +444,9 @@ const PINCHHANDLER_META: TypeMetadata = {
     {
       methodName: 'positioner',
       attachedTypeName: 'Positioner',
-      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
+      properties: [
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
       signals: [
         { handlerName: 'onIndexChanged', paramCount: 0 },
         { handlerName: 'onIsFirstItemChanged', paramCount: 0 },
@@ -468,7 +470,9 @@ const PINCHHANDLER_META: TypeMetadata = {
     {
       methodName: 'screen',
       attachedTypeName: 'Screen',
-      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
+      properties: [
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
       signals: [
         { handlerName: 'onDesktopGeometryChanged', paramCount: 0 },
         { handlerName: 'onDevicePixelRatioChanged', paramCount: 0 },
@@ -506,7 +510,9 @@ const PINCHHANDLER_META: TypeMetadata = {
     {
       methodName: 'viewTransition',
       attachedTypeName: 'ViewTransition',
-      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
+      properties: [
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
       signals: [
         { handlerName: 'onDestinationChanged', paramCount: 0 },
         { handlerName: 'onIndexChanged', paramCount: 0 },
@@ -519,7 +525,9 @@ const PINCHHANDLER_META: TypeMetadata = {
     {
       methodName: 'window',
       attachedTypeName: 'Window',
-      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
+      properties: [
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
       signals: [
         { handlerName: 'onActiveChanged', paramCount: 0 },
         { handlerName: 'onActiveFocusItemChanged', paramCount: 0 },
@@ -540,55 +548,15 @@ export function PinchHandler(): PinchHandlerBuilder {
 
 export namespace PinchHandler {
   export namespace GrabPermissions {
-    export const TakeOverForbidden = createEnumToken(
-      'PinchHandler',
-      'GrabPermissions',
-      'TakeOverForbidden',
-    );
-    export const CanTakeOverFromHandlersOfSameType = createEnumToken(
-      'PinchHandler',
-      'GrabPermissions',
-      'CanTakeOverFromHandlersOfSameType',
-    );
-    export const CanTakeOverFromHandlersOfDifferentType = createEnumToken(
-      'PinchHandler',
-      'GrabPermissions',
-      'CanTakeOverFromHandlersOfDifferentType',
-    );
-    export const CanTakeOverFromItems = createEnumToken(
-      'PinchHandler',
-      'GrabPermissions',
-      'CanTakeOverFromItems',
-    );
-    export const CanTakeOverFromAnything = createEnumToken(
-      'PinchHandler',
-      'GrabPermissions',
-      'CanTakeOverFromAnything',
-    );
-    export const ApprovesTakeOverByHandlersOfSameType = createEnumToken(
-      'PinchHandler',
-      'GrabPermissions',
-      'ApprovesTakeOverByHandlersOfSameType',
-    );
-    export const ApprovesTakeOverByHandlersOfDifferentType = createEnumToken(
-      'PinchHandler',
-      'GrabPermissions',
-      'ApprovesTakeOverByHandlersOfDifferentType',
-    );
-    export const ApprovesTakeOverByItems = createEnumToken(
-      'PinchHandler',
-      'GrabPermissions',
-      'ApprovesTakeOverByItems',
-    );
-    export const ApprovesCancellation = createEnumToken(
-      'PinchHandler',
-      'GrabPermissions',
-      'ApprovesCancellation',
-    );
-    export const ApprovesTakeOverByAnything = createEnumToken(
-      'PinchHandler',
-      'GrabPermissions',
-      'ApprovesTakeOverByAnything',
-    );
+    export const TakeOverForbidden = createEnumToken('PinchHandler', 'GrabPermissions', 'TakeOverForbidden');
+    export const CanTakeOverFromHandlersOfSameType = createEnumToken('PinchHandler', 'GrabPermissions', 'CanTakeOverFromHandlersOfSameType');
+    export const CanTakeOverFromHandlersOfDifferentType = createEnumToken('PinchHandler', 'GrabPermissions', 'CanTakeOverFromHandlersOfDifferentType');
+    export const CanTakeOverFromItems = createEnumToken('PinchHandler', 'GrabPermissions', 'CanTakeOverFromItems');
+    export const CanTakeOverFromAnything = createEnumToken('PinchHandler', 'GrabPermissions', 'CanTakeOverFromAnything');
+    export const ApprovesTakeOverByHandlersOfSameType = createEnumToken('PinchHandler', 'GrabPermissions', 'ApprovesTakeOverByHandlersOfSameType');
+    export const ApprovesTakeOverByHandlersOfDifferentType = createEnumToken('PinchHandler', 'GrabPermissions', 'ApprovesTakeOverByHandlersOfDifferentType');
+    export const ApprovesTakeOverByItems = createEnumToken('PinchHandler', 'GrabPermissions', 'ApprovesTakeOverByItems');
+    export const ApprovesCancellation = createEnumToken('PinchHandler', 'GrabPermissions', 'ApprovesCancellation');
+    export const ApprovesTakeOverByAnything = createEnumToken('PinchHandler', 'GrabPermissions', 'ApprovesTakeOverByAnything');
   }
 }

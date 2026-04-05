@@ -2,6 +2,7 @@
 // Type: Attached type: GraphicsInfo
 // Generated from Qt 6.11.0
 
+
 export interface GraphicsInfoAttachedBuilder {
   objectName(value: string): GraphicsInfoAttachedBuilder;
   objectNameBind(expr: string): GraphicsInfoAttachedBuilder;

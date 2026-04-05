@@ -2,8 +2,8 @@
 // Type: FunctionSorter
 // Generated from Qt 6.11.0
 
-import type { QmlEnumToken, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
+import type { QmlEnumToken, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
 import type { DelegateModelAttachedBuilder } from './QQmlDelegateModelAttached.js';
 import type { ObjectModelAttachedBuilder } from './QQmlObjectModelAttached.js';
 import type { PackageAttachedBuilder } from './QQuickPackageAttached.js';
@@ -51,7 +51,8 @@ const FUNCTIONSORTER_META: TypeMetadata = {
     { handlerName: 'onPriorityChanged', paramCount: 0 },
     { handlerName: 'onSortOrderChanged', paramCount: 0 },
   ],
-  grouped: [],
+  grouped: [
+  ],
   attached: [
     {
       methodName: 'delegateModel',
@@ -71,7 +72,9 @@ const FUNCTIONSORTER_META: TypeMetadata = {
     {
       methodName: 'objectModel',
       attachedTypeName: 'ObjectModel',
-      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
+      properties: [
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
       signals: [
         { handlerName: 'onIndexChanged', paramCount: 0 },
         { handlerName: 'onObjectNameChanged', paramCount: 1 },
@@ -84,14 +87,13 @@ const FUNCTIONSORTER_META: TypeMetadata = {
         { name: 'name', hasValue: true, hasBinding: true },
         { name: 'objectName', hasValue: true, hasBinding: true },
       ],
-      signals: [{ handlerName: 'onObjectNameChanged', paramCount: 1 }],
+      signals: [
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
     },
   ],
 };
 
 export function FunctionSorter(): FunctionSorterBuilder {
-  return createFluentBuilder(
-    'FunctionSorter',
-    FUNCTIONSORTER_META,
-  ) as unknown as FunctionSorterBuilder;
+  return createFluentBuilder('FunctionSorter', FUNCTIONSORTER_META) as unknown as FunctionSorterBuilder;
 }

@@ -2,14 +2,8 @@
 // Type: ToolButton
 // Generated from Qt 6.11.0
 
-import type {
-  QmlEnumToken,
-  QmlFont,
-  QmlObjectBuilder,
-  QmlValue,
-  TypeMetadata,
-} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
+import type { QmlEnumToken, QmlFont, QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
 import type { QtObjectBuilder } from '../QML/QtObject.js';
 import type { ItemBuilder } from '../QtQuick/Item.js';
 import type { PaletteBuilder } from '../QtQuick/Palette.js';
@@ -470,7 +464,9 @@ const TOOLBUTTON_META: TypeMetadata = {
     {
       methodName: 'applicationWindow',
       attachedTypeName: 'ApplicationWindow',
-      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
+      properties: [
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
       signals: [
         { handlerName: 'onActiveFocusControlChanged', paramCount: 0 },
         { handlerName: 'onContentItemChanged', paramCount: 0 },
@@ -567,7 +563,9 @@ const TOOLBUTTON_META: TypeMetadata = {
     {
       methodName: 'selectionRectangle',
       attachedTypeName: 'SelectionRectangle',
-      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
+      properties: [
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
       signals: [
         { handlerName: 'onControlChanged', paramCount: 0 },
         { handlerName: 'onDraggingChanged', paramCount: 0 },
@@ -577,7 +575,9 @@ const TOOLBUTTON_META: TypeMetadata = {
     {
       methodName: 'splitHandle',
       attachedTypeName: 'SplitHandle',
-      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
+      properties: [
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
       signals: [
         { handlerName: 'onHoveredChanged', paramCount: 0 },
         { handlerName: 'onPressedChanged', paramCount: 0 },
@@ -634,7 +634,9 @@ const TOOLBUTTON_META: TypeMetadata = {
     {
       methodName: 'swipeDelegate',
       attachedTypeName: 'SwipeDelegate',
-      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
+      properties: [
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
       signals: [
         { handlerName: 'onClicked', paramCount: 0 },
         { handlerName: 'onPressedChanged', paramCount: 0 },
@@ -644,7 +646,9 @@ const TOOLBUTTON_META: TypeMetadata = {
     {
       methodName: 'swipeView',
       attachedTypeName: 'SwipeView',
-      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
+      properties: [
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
       signals: [
         { handlerName: 'onIndexChanged', paramCount: 0 },
         { handlerName: 'onIsCurrentItemChanged', paramCount: 0 },
@@ -657,7 +661,9 @@ const TOOLBUTTON_META: TypeMetadata = {
     {
       methodName: 'tabBar',
       attachedTypeName: 'TabBar',
-      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
+      properties: [
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
       signals: [
         { handlerName: 'onIndexChanged', paramCount: 0 },
         { handlerName: 'onPositionChanged', paramCount: 0 },
@@ -698,7 +704,9 @@ const TOOLBUTTON_META: TypeMetadata = {
     {
       methodName: 'tumbler',
       attachedTypeName: 'Tumbler',
-      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
+      properties: [
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
       signals: [
         { handlerName: 'onDisplacementChanged', paramCount: 0 },
         { handlerName: 'onObjectNameChanged', paramCount: 1 },
@@ -719,88 +727,28 @@ export namespace ToolButton {
     export const TextUnderIcon = createEnumToken('ToolButton', 'Display', 'TextUnderIcon');
   }
   export namespace Flags {
-    export const ItemClipsChildrenToShape = createEnumToken(
-      'ToolButton',
-      'Flags',
-      'ItemClipsChildrenToShape',
-    );
-    export const ItemAcceptsInputMethod = createEnumToken(
-      'ToolButton',
-      'Flags',
-      'ItemAcceptsInputMethod',
-    );
+    export const ItemClipsChildrenToShape = createEnumToken('ToolButton', 'Flags', 'ItemClipsChildrenToShape');
+    export const ItemAcceptsInputMethod = createEnumToken('ToolButton', 'Flags', 'ItemAcceptsInputMethod');
     export const ItemIsFocusScope = createEnumToken('ToolButton', 'Flags', 'ItemIsFocusScope');
     export const ItemHasContents = createEnumToken('ToolButton', 'Flags', 'ItemHasContents');
     export const ItemAcceptsDrops = createEnumToken('ToolButton', 'Flags', 'ItemAcceptsDrops');
     export const ItemIsViewport = createEnumToken('ToolButton', 'Flags', 'ItemIsViewport');
-    export const ItemObservesViewport = createEnumToken(
-      'ToolButton',
-      'Flags',
-      'ItemObservesViewport',
-    );
+    export const ItemObservesViewport = createEnumToken('ToolButton', 'Flags', 'ItemObservesViewport');
   }
   export namespace ItemChange {
-    export const ItemChildAddedChange = createEnumToken(
-      'ToolButton',
-      'ItemChange',
-      'ItemChildAddedChange',
-    );
-    export const ItemChildRemovedChange = createEnumToken(
-      'ToolButton',
-      'ItemChange',
-      'ItemChildRemovedChange',
-    );
+    export const ItemChildAddedChange = createEnumToken('ToolButton', 'ItemChange', 'ItemChildAddedChange');
+    export const ItemChildRemovedChange = createEnumToken('ToolButton', 'ItemChange', 'ItemChildRemovedChange');
     export const ItemSceneChange = createEnumToken('ToolButton', 'ItemChange', 'ItemSceneChange');
-    export const ItemVisibleHasChanged = createEnumToken(
-      'ToolButton',
-      'ItemChange',
-      'ItemVisibleHasChanged',
-    );
-    export const ItemParentHasChanged = createEnumToken(
-      'ToolButton',
-      'ItemChange',
-      'ItemParentHasChanged',
-    );
-    export const ItemOpacityHasChanged = createEnumToken(
-      'ToolButton',
-      'ItemChange',
-      'ItemOpacityHasChanged',
-    );
-    export const ItemActiveFocusHasChanged = createEnumToken(
-      'ToolButton',
-      'ItemChange',
-      'ItemActiveFocusHasChanged',
-    );
-    export const ItemRotationHasChanged = createEnumToken(
-      'ToolButton',
-      'ItemChange',
-      'ItemRotationHasChanged',
-    );
-    export const ItemAntialiasingHasChanged = createEnumToken(
-      'ToolButton',
-      'ItemChange',
-      'ItemAntialiasingHasChanged',
-    );
-    export const ItemDevicePixelRatioHasChanged = createEnumToken(
-      'ToolButton',
-      'ItemChange',
-      'ItemDevicePixelRatioHasChanged',
-    );
-    export const ItemEnabledHasChanged = createEnumToken(
-      'ToolButton',
-      'ItemChange',
-      'ItemEnabledHasChanged',
-    );
-    export const ItemScaleHasChanged = createEnumToken(
-      'ToolButton',
-      'ItemChange',
-      'ItemScaleHasChanged',
-    );
-    export const ItemTransformHasChanged = createEnumToken(
-      'ToolButton',
-      'ItemChange',
-      'ItemTransformHasChanged',
-    );
+    export const ItemVisibleHasChanged = createEnumToken('ToolButton', 'ItemChange', 'ItemVisibleHasChanged');
+    export const ItemParentHasChanged = createEnumToken('ToolButton', 'ItemChange', 'ItemParentHasChanged');
+    export const ItemOpacityHasChanged = createEnumToken('ToolButton', 'ItemChange', 'ItemOpacityHasChanged');
+    export const ItemActiveFocusHasChanged = createEnumToken('ToolButton', 'ItemChange', 'ItemActiveFocusHasChanged');
+    export const ItemRotationHasChanged = createEnumToken('ToolButton', 'ItemChange', 'ItemRotationHasChanged');
+    export const ItemAntialiasingHasChanged = createEnumToken('ToolButton', 'ItemChange', 'ItemAntialiasingHasChanged');
+    export const ItemDevicePixelRatioHasChanged = createEnumToken('ToolButton', 'ItemChange', 'ItemDevicePixelRatioHasChanged');
+    export const ItemEnabledHasChanged = createEnumToken('ToolButton', 'ItemChange', 'ItemEnabledHasChanged');
+    export const ItemScaleHasChanged = createEnumToken('ToolButton', 'ItemChange', 'ItemScaleHasChanged');
+    export const ItemTransformHasChanged = createEnumToken('ToolButton', 'ItemChange', 'ItemTransformHasChanged');
   }
   export namespace TransformOrigin {
     export const TopLeft = createEnumToken('ToolButton', 'TransformOrigin', 'TopLeft');

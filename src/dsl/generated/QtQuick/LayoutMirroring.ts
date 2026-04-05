@@ -2,6 +2,7 @@
 // Type: Attached type: LayoutMirroring
 // Generated from Qt 6.11.0
 
+
 export interface LayoutMirroringAttachedBuilder {
   childrenInherit(value: boolean): LayoutMirroringAttachedBuilder;
   childrenInheritBind(expr: string): LayoutMirroringAttachedBuilder;

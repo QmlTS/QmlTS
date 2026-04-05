@@ -2,8 +2,8 @@
 // Type: PinchArea
 // Generated from Qt 6.11.0
 
-import type { QmlEnumToken, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
+import type { QmlEnumToken, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
 import type { QtObjectBuilder } from '../QML/QtObject.js';
 import type { AccessibleAttachedBuilder } from './Accessible.js';
 import type { EnterKeyAttachedBuilder } from './EnterKey.js';
@@ -357,7 +357,9 @@ const PINCHAREA_META: TypeMetadata = {
     {
       methodName: 'graphicsInfo',
       attachedTypeName: 'GraphicsInfo',
-      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
+      properties: [
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
       signals: [
         { handlerName: 'onApiChanged', paramCount: 0 },
         { handlerName: 'onMajorVersionChanged', paramCount: 0 },
@@ -508,7 +510,9 @@ const PINCHAREA_META: TypeMetadata = {
     {
       methodName: 'pathView',
       attachedTypeName: 'PathView',
-      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
+      properties: [
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
       signals: [
         { handlerName: 'onCurrentItemChanged', paramCount: 0 },
         { handlerName: 'onPathChanged', paramCount: 0 },
@@ -518,7 +522,9 @@ const PINCHAREA_META: TypeMetadata = {
     {
       methodName: 'positioner',
       attachedTypeName: 'Positioner',
-      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
+      properties: [
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
       signals: [
         { handlerName: 'onIndexChanged', paramCount: 0 },
         { handlerName: 'onIsFirstItemChanged', paramCount: 0 },
@@ -542,7 +548,9 @@ const PINCHAREA_META: TypeMetadata = {
     {
       methodName: 'screen',
       attachedTypeName: 'Screen',
-      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
+      properties: [
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
       signals: [
         { handlerName: 'onDesktopGeometryChanged', paramCount: 0 },
         { handlerName: 'onDevicePixelRatioChanged', paramCount: 0 },
@@ -580,7 +588,9 @@ const PINCHAREA_META: TypeMetadata = {
     {
       methodName: 'viewTransition',
       attachedTypeName: 'ViewTransition',
-      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
+      properties: [
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
       signals: [
         { handlerName: 'onDestinationChanged', paramCount: 0 },
         { handlerName: 'onIndexChanged', paramCount: 0 },
@@ -593,7 +603,9 @@ const PINCHAREA_META: TypeMetadata = {
     {
       methodName: 'window',
       attachedTypeName: 'Window',
-      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
+      properties: [
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
       signals: [
         { handlerName: 'onActiveChanged', paramCount: 0 },
         { handlerName: 'onActiveFocusItemChanged', paramCount: 0 },
@@ -615,88 +627,28 @@ export function PinchArea(): PinchAreaBuilder {
 
 export namespace PinchArea {
   export namespace Flags {
-    export const ItemClipsChildrenToShape = createEnumToken(
-      'PinchArea',
-      'Flags',
-      'ItemClipsChildrenToShape',
-    );
-    export const ItemAcceptsInputMethod = createEnumToken(
-      'PinchArea',
-      'Flags',
-      'ItemAcceptsInputMethod',
-    );
+    export const ItemClipsChildrenToShape = createEnumToken('PinchArea', 'Flags', 'ItemClipsChildrenToShape');
+    export const ItemAcceptsInputMethod = createEnumToken('PinchArea', 'Flags', 'ItemAcceptsInputMethod');
     export const ItemIsFocusScope = createEnumToken('PinchArea', 'Flags', 'ItemIsFocusScope');
     export const ItemHasContents = createEnumToken('PinchArea', 'Flags', 'ItemHasContents');
     export const ItemAcceptsDrops = createEnumToken('PinchArea', 'Flags', 'ItemAcceptsDrops');
     export const ItemIsViewport = createEnumToken('PinchArea', 'Flags', 'ItemIsViewport');
-    export const ItemObservesViewport = createEnumToken(
-      'PinchArea',
-      'Flags',
-      'ItemObservesViewport',
-    );
+    export const ItemObservesViewport = createEnumToken('PinchArea', 'Flags', 'ItemObservesViewport');
   }
   export namespace ItemChange {
-    export const ItemChildAddedChange = createEnumToken(
-      'PinchArea',
-      'ItemChange',
-      'ItemChildAddedChange',
-    );
-    export const ItemChildRemovedChange = createEnumToken(
-      'PinchArea',
-      'ItemChange',
-      'ItemChildRemovedChange',
-    );
+    export const ItemChildAddedChange = createEnumToken('PinchArea', 'ItemChange', 'ItemChildAddedChange');
+    export const ItemChildRemovedChange = createEnumToken('PinchArea', 'ItemChange', 'ItemChildRemovedChange');
     export const ItemSceneChange = createEnumToken('PinchArea', 'ItemChange', 'ItemSceneChange');
-    export const ItemVisibleHasChanged = createEnumToken(
-      'PinchArea',
-      'ItemChange',
-      'ItemVisibleHasChanged',
-    );
-    export const ItemParentHasChanged = createEnumToken(
-      'PinchArea',
-      'ItemChange',
-      'ItemParentHasChanged',
-    );
-    export const ItemOpacityHasChanged = createEnumToken(
-      'PinchArea',
-      'ItemChange',
-      'ItemOpacityHasChanged',
-    );
-    export const ItemActiveFocusHasChanged = createEnumToken(
-      'PinchArea',
-      'ItemChange',
-      'ItemActiveFocusHasChanged',
-    );
-    export const ItemRotationHasChanged = createEnumToken(
-      'PinchArea',
-      'ItemChange',
-      'ItemRotationHasChanged',
-    );
-    export const ItemAntialiasingHasChanged = createEnumToken(
-      'PinchArea',
-      'ItemChange',
-      'ItemAntialiasingHasChanged',
-    );
-    export const ItemDevicePixelRatioHasChanged = createEnumToken(
-      'PinchArea',
-      'ItemChange',
-      'ItemDevicePixelRatioHasChanged',
-    );
-    export const ItemEnabledHasChanged = createEnumToken(
-      'PinchArea',
-      'ItemChange',
-      'ItemEnabledHasChanged',
-    );
-    export const ItemScaleHasChanged = createEnumToken(
-      'PinchArea',
-      'ItemChange',
-      'ItemScaleHasChanged',
-    );
-    export const ItemTransformHasChanged = createEnumToken(
-      'PinchArea',
-      'ItemChange',
-      'ItemTransformHasChanged',
-    );
+    export const ItemVisibleHasChanged = createEnumToken('PinchArea', 'ItemChange', 'ItemVisibleHasChanged');
+    export const ItemParentHasChanged = createEnumToken('PinchArea', 'ItemChange', 'ItemParentHasChanged');
+    export const ItemOpacityHasChanged = createEnumToken('PinchArea', 'ItemChange', 'ItemOpacityHasChanged');
+    export const ItemActiveFocusHasChanged = createEnumToken('PinchArea', 'ItemChange', 'ItemActiveFocusHasChanged');
+    export const ItemRotationHasChanged = createEnumToken('PinchArea', 'ItemChange', 'ItemRotationHasChanged');
+    export const ItemAntialiasingHasChanged = createEnumToken('PinchArea', 'ItemChange', 'ItemAntialiasingHasChanged');
+    export const ItemDevicePixelRatioHasChanged = createEnumToken('PinchArea', 'ItemChange', 'ItemDevicePixelRatioHasChanged');
+    export const ItemEnabledHasChanged = createEnumToken('PinchArea', 'ItemChange', 'ItemEnabledHasChanged');
+    export const ItemScaleHasChanged = createEnumToken('PinchArea', 'ItemChange', 'ItemScaleHasChanged');
+    export const ItemTransformHasChanged = createEnumToken('PinchArea', 'ItemChange', 'ItemTransformHasChanged');
   }
   export namespace TransformOrigin {
     export const TopLeft = createEnumToken('PinchArea', 'TransformOrigin', 'TopLeft');

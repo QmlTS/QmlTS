@@ -2,6 +2,7 @@
 // Type: Grouped surface: QQmlApplication
 // Generated from Qt 6.11.0
 
+
 export interface ApplicationBuilder {
   domain(value: string): ApplicationBuilder;
   domainBind(expr: string): ApplicationBuilder;

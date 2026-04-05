@@ -2,8 +2,8 @@
 // Type: RowLayout
 // Generated from Qt 6.11.0
 
-import type { QmlEnumToken, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
+import type { QmlEnumToken, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
 import type { QtObjectBuilder } from '../QML/QtObject.js';
 import type { ItemBuilder } from '../QtQuick/Item.js';
 import type { PaletteBuilder } from '../QtQuick/Palette.js';
@@ -293,7 +293,9 @@ const ROWLAYOUT_META: TypeMetadata = {
     {
       methodName: 'stackLayout',
       attachedTypeName: 'StackLayout',
-      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
+      properties: [
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
       signals: [
         { handlerName: 'onIndexChanged', paramCount: 0 },
         { handlerName: 'onIsCurrentItemChanged', paramCount: 0 },
@@ -310,100 +312,32 @@ export function RowLayout(): RowLayoutBuilder {
 
 export namespace RowLayout {
   export namespace Flags {
-    export const ItemClipsChildrenToShape = createEnumToken(
-      'RowLayout',
-      'Flags',
-      'ItemClipsChildrenToShape',
-    );
-    export const ItemAcceptsInputMethod = createEnumToken(
-      'RowLayout',
-      'Flags',
-      'ItemAcceptsInputMethod',
-    );
+    export const ItemClipsChildrenToShape = createEnumToken('RowLayout', 'Flags', 'ItemClipsChildrenToShape');
+    export const ItemAcceptsInputMethod = createEnumToken('RowLayout', 'Flags', 'ItemAcceptsInputMethod');
     export const ItemIsFocusScope = createEnumToken('RowLayout', 'Flags', 'ItemIsFocusScope');
     export const ItemHasContents = createEnumToken('RowLayout', 'Flags', 'ItemHasContents');
     export const ItemAcceptsDrops = createEnumToken('RowLayout', 'Flags', 'ItemAcceptsDrops');
     export const ItemIsViewport = createEnumToken('RowLayout', 'Flags', 'ItemIsViewport');
-    export const ItemObservesViewport = createEnumToken(
-      'RowLayout',
-      'Flags',
-      'ItemObservesViewport',
-    );
+    export const ItemObservesViewport = createEnumToken('RowLayout', 'Flags', 'ItemObservesViewport');
   }
   export namespace ItemChange {
-    export const ItemChildAddedChange = createEnumToken(
-      'RowLayout',
-      'ItemChange',
-      'ItemChildAddedChange',
-    );
-    export const ItemChildRemovedChange = createEnumToken(
-      'RowLayout',
-      'ItemChange',
-      'ItemChildRemovedChange',
-    );
+    export const ItemChildAddedChange = createEnumToken('RowLayout', 'ItemChange', 'ItemChildAddedChange');
+    export const ItemChildRemovedChange = createEnumToken('RowLayout', 'ItemChange', 'ItemChildRemovedChange');
     export const ItemSceneChange = createEnumToken('RowLayout', 'ItemChange', 'ItemSceneChange');
-    export const ItemVisibleHasChanged = createEnumToken(
-      'RowLayout',
-      'ItemChange',
-      'ItemVisibleHasChanged',
-    );
-    export const ItemParentHasChanged = createEnumToken(
-      'RowLayout',
-      'ItemChange',
-      'ItemParentHasChanged',
-    );
-    export const ItemOpacityHasChanged = createEnumToken(
-      'RowLayout',
-      'ItemChange',
-      'ItemOpacityHasChanged',
-    );
-    export const ItemActiveFocusHasChanged = createEnumToken(
-      'RowLayout',
-      'ItemChange',
-      'ItemActiveFocusHasChanged',
-    );
-    export const ItemRotationHasChanged = createEnumToken(
-      'RowLayout',
-      'ItemChange',
-      'ItemRotationHasChanged',
-    );
-    export const ItemAntialiasingHasChanged = createEnumToken(
-      'RowLayout',
-      'ItemChange',
-      'ItemAntialiasingHasChanged',
-    );
-    export const ItemDevicePixelRatioHasChanged = createEnumToken(
-      'RowLayout',
-      'ItemChange',
-      'ItemDevicePixelRatioHasChanged',
-    );
-    export const ItemEnabledHasChanged = createEnumToken(
-      'RowLayout',
-      'ItemChange',
-      'ItemEnabledHasChanged',
-    );
-    export const ItemScaleHasChanged = createEnumToken(
-      'RowLayout',
-      'ItemChange',
-      'ItemScaleHasChanged',
-    );
-    export const ItemTransformHasChanged = createEnumToken(
-      'RowLayout',
-      'ItemChange',
-      'ItemTransformHasChanged',
-    );
+    export const ItemVisibleHasChanged = createEnumToken('RowLayout', 'ItemChange', 'ItemVisibleHasChanged');
+    export const ItemParentHasChanged = createEnumToken('RowLayout', 'ItemChange', 'ItemParentHasChanged');
+    export const ItemOpacityHasChanged = createEnumToken('RowLayout', 'ItemChange', 'ItemOpacityHasChanged');
+    export const ItemActiveFocusHasChanged = createEnumToken('RowLayout', 'ItemChange', 'ItemActiveFocusHasChanged');
+    export const ItemRotationHasChanged = createEnumToken('RowLayout', 'ItemChange', 'ItemRotationHasChanged');
+    export const ItemAntialiasingHasChanged = createEnumToken('RowLayout', 'ItemChange', 'ItemAntialiasingHasChanged');
+    export const ItemDevicePixelRatioHasChanged = createEnumToken('RowLayout', 'ItemChange', 'ItemDevicePixelRatioHasChanged');
+    export const ItemEnabledHasChanged = createEnumToken('RowLayout', 'ItemChange', 'ItemEnabledHasChanged');
+    export const ItemScaleHasChanged = createEnumToken('RowLayout', 'ItemChange', 'ItemScaleHasChanged');
+    export const ItemTransformHasChanged = createEnumToken('RowLayout', 'ItemChange', 'ItemTransformHasChanged');
   }
   export namespace SizePolicy {
-    export const SizePolicyImplicit = createEnumToken(
-      'RowLayout',
-      'SizePolicy',
-      'SizePolicyImplicit',
-    );
-    export const SizePolicyExplicit = createEnumToken(
-      'RowLayout',
-      'SizePolicy',
-      'SizePolicyExplicit',
-    );
+    export const SizePolicyImplicit = createEnumToken('RowLayout', 'SizePolicy', 'SizePolicyImplicit');
+    export const SizePolicyExplicit = createEnumToken('RowLayout', 'SizePolicy', 'SizePolicyExplicit');
   }
   export namespace TransformOrigin {
     export const TopLeft = createEnumToken('RowLayout', 'TransformOrigin', 'TopLeft');

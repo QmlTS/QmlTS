@@ -2,14 +2,8 @@
 // Type: TreeViewDelegate
 // Generated from Qt 6.11.0
 
-import type {
-  QmlEnumToken,
-  QmlFont,
-  QmlObjectBuilder,
-  QmlValue,
-  TypeMetadata,
-} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
+import type { QmlEnumToken, QmlFont, QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
 import type { QtObjectBuilder } from '../QML/QtObject.js';
 import type { ItemBuilder } from '../QtQuick/Item.js';
 import type { PaletteBuilder } from '../QtQuick/Palette.js';
@@ -280,9 +274,7 @@ export interface TreeViewDelegateBuilder {
   overlay(setup: (b: OverlayAttachedBuilder) => void): TreeViewDelegateBuilder;
   scrollBar(setup: (b: ScrollBarAttachedBuilder) => void): TreeViewDelegateBuilder;
   scrollIndicator(setup: (b: ScrollIndicatorAttachedBuilder) => void): TreeViewDelegateBuilder;
-  selectionRectangle(
-    setup: (b: SelectionRectangleAttachedBuilder) => void,
-  ): TreeViewDelegateBuilder;
+  selectionRectangle(setup: (b: SelectionRectangleAttachedBuilder) => void): TreeViewDelegateBuilder;
   splitHandle(setup: (b: SplitHandleAttachedBuilder) => void): TreeViewDelegateBuilder;
   splitView(setup: (b: SplitViewAttachedBuilder) => void): TreeViewDelegateBuilder;
   stackView(setup: (b: StackViewAttachedBuilder) => void): TreeViewDelegateBuilder;
@@ -523,7 +515,9 @@ const TREEVIEWDELEGATE_META: TypeMetadata = {
     {
       methodName: 'applicationWindow',
       attachedTypeName: 'ApplicationWindow',
-      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
+      properties: [
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
       signals: [
         { handlerName: 'onActiveFocusControlChanged', paramCount: 0 },
         { handlerName: 'onContentItemChanged', paramCount: 0 },
@@ -620,7 +614,9 @@ const TREEVIEWDELEGATE_META: TypeMetadata = {
     {
       methodName: 'selectionRectangle',
       attachedTypeName: 'SelectionRectangle',
-      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
+      properties: [
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
       signals: [
         { handlerName: 'onControlChanged', paramCount: 0 },
         { handlerName: 'onDraggingChanged', paramCount: 0 },
@@ -630,7 +626,9 @@ const TREEVIEWDELEGATE_META: TypeMetadata = {
     {
       methodName: 'splitHandle',
       attachedTypeName: 'SplitHandle',
-      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
+      properties: [
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
       signals: [
         { handlerName: 'onHoveredChanged', paramCount: 0 },
         { handlerName: 'onPressedChanged', paramCount: 0 },
@@ -687,7 +685,9 @@ const TREEVIEWDELEGATE_META: TypeMetadata = {
     {
       methodName: 'swipeDelegate',
       attachedTypeName: 'SwipeDelegate',
-      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
+      properties: [
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
       signals: [
         { handlerName: 'onClicked', paramCount: 0 },
         { handlerName: 'onPressedChanged', paramCount: 0 },
@@ -697,7 +697,9 @@ const TREEVIEWDELEGATE_META: TypeMetadata = {
     {
       methodName: 'swipeView',
       attachedTypeName: 'SwipeView',
-      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
+      properties: [
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
       signals: [
         { handlerName: 'onIndexChanged', paramCount: 0 },
         { handlerName: 'onIsCurrentItemChanged', paramCount: 0 },
@@ -710,7 +712,9 @@ const TREEVIEWDELEGATE_META: TypeMetadata = {
     {
       methodName: 'tabBar',
       attachedTypeName: 'TabBar',
-      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
+      properties: [
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
       signals: [
         { handlerName: 'onIndexChanged', paramCount: 0 },
         { handlerName: 'onPositionChanged', paramCount: 0 },
@@ -751,7 +755,9 @@ const TREEVIEWDELEGATE_META: TypeMetadata = {
     {
       methodName: 'tumbler',
       attachedTypeName: 'Tumbler',
-      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
+      properties: [
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
       signals: [
         { handlerName: 'onDisplacementChanged', paramCount: 0 },
         { handlerName: 'onObjectNameChanged', paramCount: 1 },
@@ -761,10 +767,7 @@ const TREEVIEWDELEGATE_META: TypeMetadata = {
 };
 
 export function TreeViewDelegate(): TreeViewDelegateBuilder {
-  return createFluentBuilder(
-    'TreeViewDelegate',
-    TREEVIEWDELEGATE_META,
-  ) as unknown as TreeViewDelegateBuilder;
+  return createFluentBuilder('TreeViewDelegate', TREEVIEWDELEGATE_META) as unknown as TreeViewDelegateBuilder;
 }
 
 export namespace TreeViewDelegate {
@@ -775,100 +778,28 @@ export namespace TreeViewDelegate {
     export const TextUnderIcon = createEnumToken('TreeViewDelegate', 'Display', 'TextUnderIcon');
   }
   export namespace Flags {
-    export const ItemClipsChildrenToShape = createEnumToken(
-      'TreeViewDelegate',
-      'Flags',
-      'ItemClipsChildrenToShape',
-    );
-    export const ItemAcceptsInputMethod = createEnumToken(
-      'TreeViewDelegate',
-      'Flags',
-      'ItemAcceptsInputMethod',
-    );
-    export const ItemIsFocusScope = createEnumToken(
-      'TreeViewDelegate',
-      'Flags',
-      'ItemIsFocusScope',
-    );
+    export const ItemClipsChildrenToShape = createEnumToken('TreeViewDelegate', 'Flags', 'ItemClipsChildrenToShape');
+    export const ItemAcceptsInputMethod = createEnumToken('TreeViewDelegate', 'Flags', 'ItemAcceptsInputMethod');
+    export const ItemIsFocusScope = createEnumToken('TreeViewDelegate', 'Flags', 'ItemIsFocusScope');
     export const ItemHasContents = createEnumToken('TreeViewDelegate', 'Flags', 'ItemHasContents');
-    export const ItemAcceptsDrops = createEnumToken(
-      'TreeViewDelegate',
-      'Flags',
-      'ItemAcceptsDrops',
-    );
+    export const ItemAcceptsDrops = createEnumToken('TreeViewDelegate', 'Flags', 'ItemAcceptsDrops');
     export const ItemIsViewport = createEnumToken('TreeViewDelegate', 'Flags', 'ItemIsViewport');
-    export const ItemObservesViewport = createEnumToken(
-      'TreeViewDelegate',
-      'Flags',
-      'ItemObservesViewport',
-    );
+    export const ItemObservesViewport = createEnumToken('TreeViewDelegate', 'Flags', 'ItemObservesViewport');
   }
   export namespace ItemChange {
-    export const ItemChildAddedChange = createEnumToken(
-      'TreeViewDelegate',
-      'ItemChange',
-      'ItemChildAddedChange',
-    );
-    export const ItemChildRemovedChange = createEnumToken(
-      'TreeViewDelegate',
-      'ItemChange',
-      'ItemChildRemovedChange',
-    );
-    export const ItemSceneChange = createEnumToken(
-      'TreeViewDelegate',
-      'ItemChange',
-      'ItemSceneChange',
-    );
-    export const ItemVisibleHasChanged = createEnumToken(
-      'TreeViewDelegate',
-      'ItemChange',
-      'ItemVisibleHasChanged',
-    );
-    export const ItemParentHasChanged = createEnumToken(
-      'TreeViewDelegate',
-      'ItemChange',
-      'ItemParentHasChanged',
-    );
-    export const ItemOpacityHasChanged = createEnumToken(
-      'TreeViewDelegate',
-      'ItemChange',
-      'ItemOpacityHasChanged',
-    );
-    export const ItemActiveFocusHasChanged = createEnumToken(
-      'TreeViewDelegate',
-      'ItemChange',
-      'ItemActiveFocusHasChanged',
-    );
-    export const ItemRotationHasChanged = createEnumToken(
-      'TreeViewDelegate',
-      'ItemChange',
-      'ItemRotationHasChanged',
-    );
-    export const ItemAntialiasingHasChanged = createEnumToken(
-      'TreeViewDelegate',
-      'ItemChange',
-      'ItemAntialiasingHasChanged',
-    );
-    export const ItemDevicePixelRatioHasChanged = createEnumToken(
-      'TreeViewDelegate',
-      'ItemChange',
-      'ItemDevicePixelRatioHasChanged',
-    );
-    export const ItemEnabledHasChanged = createEnumToken(
-      'TreeViewDelegate',
-      'ItemChange',
-      'ItemEnabledHasChanged',
-    );
-    export const ItemScaleHasChanged = createEnumToken(
-      'TreeViewDelegate',
-      'ItemChange',
-      'ItemScaleHasChanged',
-    );
-    export const ItemTransformHasChanged = createEnumToken(
-      'TreeViewDelegate',
-      'ItemChange',
-      'ItemTransformHasChanged',
-    );
+    export const ItemChildAddedChange = createEnumToken('TreeViewDelegate', 'ItemChange', 'ItemChildAddedChange');
+    export const ItemChildRemovedChange = createEnumToken('TreeViewDelegate', 'ItemChange', 'ItemChildRemovedChange');
+    export const ItemSceneChange = createEnumToken('TreeViewDelegate', 'ItemChange', 'ItemSceneChange');
+    export const ItemVisibleHasChanged = createEnumToken('TreeViewDelegate', 'ItemChange', 'ItemVisibleHasChanged');
+    export const ItemParentHasChanged = createEnumToken('TreeViewDelegate', 'ItemChange', 'ItemParentHasChanged');
+    export const ItemOpacityHasChanged = createEnumToken('TreeViewDelegate', 'ItemChange', 'ItemOpacityHasChanged');
+    export const ItemActiveFocusHasChanged = createEnumToken('TreeViewDelegate', 'ItemChange', 'ItemActiveFocusHasChanged');
+    export const ItemRotationHasChanged = createEnumToken('TreeViewDelegate', 'ItemChange', 'ItemRotationHasChanged');
+    export const ItemAntialiasingHasChanged = createEnumToken('TreeViewDelegate', 'ItemChange', 'ItemAntialiasingHasChanged');
+    export const ItemDevicePixelRatioHasChanged = createEnumToken('TreeViewDelegate', 'ItemChange', 'ItemDevicePixelRatioHasChanged');
+    export const ItemEnabledHasChanged = createEnumToken('TreeViewDelegate', 'ItemChange', 'ItemEnabledHasChanged');
+    export const ItemScaleHasChanged = createEnumToken('TreeViewDelegate', 'ItemChange', 'ItemScaleHasChanged');
+    export const ItemTransformHasChanged = createEnumToken('TreeViewDelegate', 'ItemChange', 'ItemTransformHasChanged');
   }
   export namespace TransformOrigin {
     export const TopLeft = createEnumToken('TreeViewDelegate', 'TransformOrigin', 'TopLeft');
@@ -879,10 +810,6 @@ export namespace TreeViewDelegate {
     export const Right = createEnumToken('TreeViewDelegate', 'TransformOrigin', 'Right');
     export const BottomLeft = createEnumToken('TreeViewDelegate', 'TransformOrigin', 'BottomLeft');
     export const Bottom = createEnumToken('TreeViewDelegate', 'TransformOrigin', 'Bottom');
-    export const BottomRight = createEnumToken(
-      'TreeViewDelegate',
-      'TransformOrigin',
-      'BottomRight',
-    );
+    export const BottomRight = createEnumToken('TreeViewDelegate', 'TransformOrigin', 'BottomRight');
   }
 }

@@ -41,7 +41,7 @@ async function runCli(
 }
 
 describe('CLI Smoke Tests', () => {
-  test('CLI-01: default (P0 modules) runs successfully', async () => {
+  test('CLI-01: default (all modules) runs successfully', async () => {
     const outDir = join(tempBase, 'cli-01');
     const { exitCode, stdout } = await runCli([`--output-dir=${outDir}`]);
 
@@ -51,7 +51,10 @@ describe('CLI Smoke Tests', () => {
     expect(stdout).toContain('Types:');
     expect(existsSync(join(outDir, 'index.ts'))).toBe(true);
     expect(existsSync(join(outDir, 'QtQuick', 'Rectangle.ts'))).toBe(true);
-  }, 30_000);
+    // Default now generates all modules
+    const dirs = readdirSync(outDir, { withFileTypes: true }).filter((d) => d.isDirectory());
+    expect(dirs.length).toBeGreaterThan(20);
+  }, 60_000);
 
   test('CLI-02: --modules=QtQuick.Layouts generates only that module', async () => {
     const outDir = join(tempBase, 'cli-02');
@@ -67,15 +70,19 @@ describe('CLI Smoke Tests', () => {
     expect(existsSync(join(outDir, 'QtQuick', 'Rectangle.ts'))).toBe(false);
   }, 30_000);
 
-  test('CLI-03: --all generates many modules', async () => {
+  test('CLI-03: default generates all Qt modules', async () => {
     const outDir = join(tempBase, 'cli-03');
-    const { exitCode, stdout } = await runCli(['--all', `--output-dir=${outDir}`]);
+    const { exitCode, stdout } = await runCli([`--output-dir=${outDir}`]);
 
     expect(exitCode).toBe(0);
     expect(stdout).toContain('Generation complete');
-    // Should have many module directories
-    const dirs = readdirSync(outDir, { withFileTypes: true }).filter((d) => d.isDirectory());
-    expect(dirs.length).toBeGreaterThan(20);
+    // Should include non-core modules like Qt3D, QtCharts, etc.
+    const dirs = readdirSync(outDir, { withFileTypes: true })
+      .filter((d) => d.isDirectory())
+      .map((d) => d.name);
+    expect(dirs).toContain('QtQuick');
+    expect(dirs).toContain('QtCore');
+    expect(dirs.length).toBeGreaterThan(50);
   }, 60_000);
 
   test('CLI-04: output contains expected stats', async () => {

@@ -2,8 +2,8 @@
 // Type: PathInterpolator
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
+import type { QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
 import type { AccessibleAttachedBuilder } from './Accessible.js';
 import type { EnterKeyAttachedBuilder } from './EnterKey.js';
 import type { GraphicsInfoAttachedBuilder } from './GraphicsInfo.js';
@@ -70,7 +70,8 @@ const PATHINTERPOLATOR_META: TypeMetadata = {
     { handlerName: 'onXChanged', paramCount: 0 },
     { handlerName: 'onYChanged', paramCount: 0 },
   ],
-  grouped: [],
+  grouped: [
+  ],
   attached: [
     {
       methodName: 'accessible',
@@ -184,7 +185,9 @@ const PATHINTERPOLATOR_META: TypeMetadata = {
     {
       methodName: 'graphicsInfo',
       attachedTypeName: 'GraphicsInfo',
-      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
+      properties: [
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
       signals: [
         { handlerName: 'onApiChanged', paramCount: 0 },
         { handlerName: 'onMajorVersionChanged', paramCount: 0 },
@@ -335,7 +338,9 @@ const PATHINTERPOLATOR_META: TypeMetadata = {
     {
       methodName: 'pathView',
       attachedTypeName: 'PathView',
-      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
+      properties: [
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
       signals: [
         { handlerName: 'onCurrentItemChanged', paramCount: 0 },
         { handlerName: 'onPathChanged', paramCount: 0 },
@@ -345,7 +350,9 @@ const PATHINTERPOLATOR_META: TypeMetadata = {
     {
       methodName: 'positioner',
       attachedTypeName: 'Positioner',
-      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
+      properties: [
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
       signals: [
         { handlerName: 'onIndexChanged', paramCount: 0 },
         { handlerName: 'onIsFirstItemChanged', paramCount: 0 },
@@ -369,7 +376,9 @@ const PATHINTERPOLATOR_META: TypeMetadata = {
     {
       methodName: 'screen',
       attachedTypeName: 'Screen',
-      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
+      properties: [
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
       signals: [
         { handlerName: 'onDesktopGeometryChanged', paramCount: 0 },
         { handlerName: 'onDevicePixelRatioChanged', paramCount: 0 },
@@ -407,7 +416,9 @@ const PATHINTERPOLATOR_META: TypeMetadata = {
     {
       methodName: 'viewTransition',
       attachedTypeName: 'ViewTransition',
-      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
+      properties: [
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
       signals: [
         { handlerName: 'onDestinationChanged', paramCount: 0 },
         { handlerName: 'onIndexChanged', paramCount: 0 },
@@ -420,7 +431,9 @@ const PATHINTERPOLATOR_META: TypeMetadata = {
     {
       methodName: 'window',
       attachedTypeName: 'Window',
-      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
+      properties: [
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
       signals: [
         { handlerName: 'onActiveChanged', paramCount: 0 },
         { handlerName: 'onActiveFocusItemChanged', paramCount: 0 },
@@ -436,8 +449,5 @@ const PATHINTERPOLATOR_META: TypeMetadata = {
 };
 
 export function PathInterpolator(): PathInterpolatorBuilder {
-  return createFluentBuilder(
-    'PathInterpolator',
-    PATHINTERPOLATOR_META,
-  ) as unknown as PathInterpolatorBuilder;
+  return createFluentBuilder('PathInterpolator', PATHINTERPOLATOR_META) as unknown as PathInterpolatorBuilder;
 }

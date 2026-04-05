@@ -2,16 +2,8 @@
 // Type: TextField
 // Generated from Qt 6.11.0
 
-import type {
-  QmlColor,
-  QmlComponent,
-  QmlEnumToken,
-  QmlFont,
-  QmlObjectBuilder,
-  QmlValue,
-  TypeMetadata,
-} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
+import type { QmlColor, QmlComponent, QmlEnumToken, QmlFont, QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
 import type { QtObjectBuilder } from '../QML/QtObject.js';
 import type { ItemBuilder } from '../QtQuick/Item.js';
 import type { PaletteBuilder } from '../QtQuick/Palette.js';
@@ -512,7 +504,9 @@ const TEXTFIELD_META: TypeMetadata = {
     {
       methodName: 'applicationWindow',
       attachedTypeName: 'ApplicationWindow',
-      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
+      properties: [
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
       signals: [
         { handlerName: 'onActiveFocusControlChanged', paramCount: 0 },
         { handlerName: 'onContentItemChanged', paramCount: 0 },
@@ -609,7 +603,9 @@ const TEXTFIELD_META: TypeMetadata = {
     {
       methodName: 'selectionRectangle',
       attachedTypeName: 'SelectionRectangle',
-      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
+      properties: [
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
       signals: [
         { handlerName: 'onControlChanged', paramCount: 0 },
         { handlerName: 'onDraggingChanged', paramCount: 0 },
@@ -619,7 +615,9 @@ const TEXTFIELD_META: TypeMetadata = {
     {
       methodName: 'splitHandle',
       attachedTypeName: 'SplitHandle',
-      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
+      properties: [
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
       signals: [
         { handlerName: 'onHoveredChanged', paramCount: 0 },
         { handlerName: 'onPressedChanged', paramCount: 0 },
@@ -676,7 +674,9 @@ const TEXTFIELD_META: TypeMetadata = {
     {
       methodName: 'swipeDelegate',
       attachedTypeName: 'SwipeDelegate',
-      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
+      properties: [
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
       signals: [
         { handlerName: 'onClicked', paramCount: 0 },
         { handlerName: 'onPressedChanged', paramCount: 0 },
@@ -686,7 +686,9 @@ const TEXTFIELD_META: TypeMetadata = {
     {
       methodName: 'swipeView',
       attachedTypeName: 'SwipeView',
-      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
+      properties: [
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
       signals: [
         { handlerName: 'onIndexChanged', paramCount: 0 },
         { handlerName: 'onIsCurrentItemChanged', paramCount: 0 },
@@ -699,7 +701,9 @@ const TEXTFIELD_META: TypeMetadata = {
     {
       methodName: 'tabBar',
       attachedTypeName: 'TabBar',
-      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
+      properties: [
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
       signals: [
         { handlerName: 'onIndexChanged', paramCount: 0 },
         { handlerName: 'onPositionChanged', paramCount: 0 },
@@ -740,7 +744,9 @@ const TEXTFIELD_META: TypeMetadata = {
     {
       methodName: 'tumbler',
       attachedTypeName: 'Tumbler',
-      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
+      properties: [
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
       signals: [
         { handlerName: 'onDisplacementChanged', paramCount: 0 },
         { handlerName: 'onObjectNameChanged', paramCount: 1 },
@@ -755,47 +761,23 @@ export function TextField(): TextFieldBuilder {
 
 export namespace TextField {
   export namespace CursorPosition {
-    export const CursorBetweenCharacters = createEnumToken(
-      'TextField',
-      'CursorPosition',
-      'CursorBetweenCharacters',
-    );
-    export const CursorOnCharacter = createEnumToken(
-      'TextField',
-      'CursorPosition',
-      'CursorOnCharacter',
-    );
+    export const CursorBetweenCharacters = createEnumToken('TextField', 'CursorPosition', 'CursorBetweenCharacters');
+    export const CursorOnCharacter = createEnumToken('TextField', 'CursorPosition', 'CursorOnCharacter');
   }
   export namespace EchoMode {
     export const Normal = createEnumToken('TextField', 'EchoMode', 'Normal');
     export const NoEcho = createEnumToken('TextField', 'EchoMode', 'NoEcho');
     export const Password = createEnumToken('TextField', 'EchoMode', 'Password');
-    export const PasswordEchoOnEdit = createEnumToken(
-      'TextField',
-      'EchoMode',
-      'PasswordEchoOnEdit',
-    );
+    export const PasswordEchoOnEdit = createEnumToken('TextField', 'EchoMode', 'PasswordEchoOnEdit');
   }
   export namespace Flags {
-    export const ItemClipsChildrenToShape = createEnumToken(
-      'TextField',
-      'Flags',
-      'ItemClipsChildrenToShape',
-    );
-    export const ItemAcceptsInputMethod = createEnumToken(
-      'TextField',
-      'Flags',
-      'ItemAcceptsInputMethod',
-    );
+    export const ItemClipsChildrenToShape = createEnumToken('TextField', 'Flags', 'ItemClipsChildrenToShape');
+    export const ItemAcceptsInputMethod = createEnumToken('TextField', 'Flags', 'ItemAcceptsInputMethod');
     export const ItemIsFocusScope = createEnumToken('TextField', 'Flags', 'ItemIsFocusScope');
     export const ItemHasContents = createEnumToken('TextField', 'Flags', 'ItemHasContents');
     export const ItemAcceptsDrops = createEnumToken('TextField', 'Flags', 'ItemAcceptsDrops');
     export const ItemIsViewport = createEnumToken('TextField', 'Flags', 'ItemIsViewport');
-    export const ItemObservesViewport = createEnumToken(
-      'TextField',
-      'Flags',
-      'ItemObservesViewport',
-    );
+    export const ItemObservesViewport = createEnumToken('TextField', 'Flags', 'ItemObservesViewport');
   }
   export namespace HAlignment {
     export const AlignLeft = createEnumToken('TextField', 'HAlignment', 'AlignLeft');
@@ -803,67 +785,19 @@ export namespace TextField {
     export const AlignHCenter = createEnumToken('TextField', 'HAlignment', 'AlignHCenter');
   }
   export namespace ItemChange {
-    export const ItemChildAddedChange = createEnumToken(
-      'TextField',
-      'ItemChange',
-      'ItemChildAddedChange',
-    );
-    export const ItemChildRemovedChange = createEnumToken(
-      'TextField',
-      'ItemChange',
-      'ItemChildRemovedChange',
-    );
+    export const ItemChildAddedChange = createEnumToken('TextField', 'ItemChange', 'ItemChildAddedChange');
+    export const ItemChildRemovedChange = createEnumToken('TextField', 'ItemChange', 'ItemChildRemovedChange');
     export const ItemSceneChange = createEnumToken('TextField', 'ItemChange', 'ItemSceneChange');
-    export const ItemVisibleHasChanged = createEnumToken(
-      'TextField',
-      'ItemChange',
-      'ItemVisibleHasChanged',
-    );
-    export const ItemParentHasChanged = createEnumToken(
-      'TextField',
-      'ItemChange',
-      'ItemParentHasChanged',
-    );
-    export const ItemOpacityHasChanged = createEnumToken(
-      'TextField',
-      'ItemChange',
-      'ItemOpacityHasChanged',
-    );
-    export const ItemActiveFocusHasChanged = createEnumToken(
-      'TextField',
-      'ItemChange',
-      'ItemActiveFocusHasChanged',
-    );
-    export const ItemRotationHasChanged = createEnumToken(
-      'TextField',
-      'ItemChange',
-      'ItemRotationHasChanged',
-    );
-    export const ItemAntialiasingHasChanged = createEnumToken(
-      'TextField',
-      'ItemChange',
-      'ItemAntialiasingHasChanged',
-    );
-    export const ItemDevicePixelRatioHasChanged = createEnumToken(
-      'TextField',
-      'ItemChange',
-      'ItemDevicePixelRatioHasChanged',
-    );
-    export const ItemEnabledHasChanged = createEnumToken(
-      'TextField',
-      'ItemChange',
-      'ItemEnabledHasChanged',
-    );
-    export const ItemScaleHasChanged = createEnumToken(
-      'TextField',
-      'ItemChange',
-      'ItemScaleHasChanged',
-    );
-    export const ItemTransformHasChanged = createEnumToken(
-      'TextField',
-      'ItemChange',
-      'ItemTransformHasChanged',
-    );
+    export const ItemVisibleHasChanged = createEnumToken('TextField', 'ItemChange', 'ItemVisibleHasChanged');
+    export const ItemParentHasChanged = createEnumToken('TextField', 'ItemChange', 'ItemParentHasChanged');
+    export const ItemOpacityHasChanged = createEnumToken('TextField', 'ItemChange', 'ItemOpacityHasChanged');
+    export const ItemActiveFocusHasChanged = createEnumToken('TextField', 'ItemChange', 'ItemActiveFocusHasChanged');
+    export const ItemRotationHasChanged = createEnumToken('TextField', 'ItemChange', 'ItemRotationHasChanged');
+    export const ItemAntialiasingHasChanged = createEnumToken('TextField', 'ItemChange', 'ItemAntialiasingHasChanged');
+    export const ItemDevicePixelRatioHasChanged = createEnumToken('TextField', 'ItemChange', 'ItemDevicePixelRatioHasChanged');
+    export const ItemEnabledHasChanged = createEnumToken('TextField', 'ItemChange', 'ItemEnabledHasChanged');
+    export const ItemScaleHasChanged = createEnumToken('TextField', 'ItemChange', 'ItemScaleHasChanged');
+    export const ItemTransformHasChanged = createEnumToken('TextField', 'ItemChange', 'ItemTransformHasChanged');
   }
   export namespace RenderType {
     export const QtRendering = createEnumToken('TextField', 'RenderType', 'QtRendering');
@@ -871,11 +805,7 @@ export namespace TextField {
     export const CurveRendering = createEnumToken('TextField', 'RenderType', 'CurveRendering');
   }
   export namespace SelectionMode {
-    export const SelectCharacters = createEnumToken(
-      'TextField',
-      'SelectionMode',
-      'SelectCharacters',
-    );
+    export const SelectCharacters = createEnumToken('TextField', 'SelectionMode', 'SelectCharacters');
     export const SelectWords = createEnumToken('TextField', 'SelectionMode', 'SelectWords');
   }
   export namespace TransformOrigin {
@@ -898,11 +828,7 @@ export namespace TextField {
     export const NoWrap = createEnumToken('TextField', 'WrapMode', 'NoWrap');
     export const WordWrap = createEnumToken('TextField', 'WrapMode', 'WordWrap');
     export const WrapAnywhere = createEnumToken('TextField', 'WrapMode', 'WrapAnywhere');
-    export const WrapAtWordBoundaryOrAnywhere = createEnumToken(
-      'TextField',
-      'WrapMode',
-      'WrapAtWordBoundaryOrAnywhere',
-    );
+    export const WrapAtWordBoundaryOrAnywhere = createEnumToken('TextField', 'WrapMode', 'WrapAtWordBoundaryOrAnywhere');
     export const Wrap = createEnumToken('TextField', 'WrapMode', 'Wrap');
   }
 }

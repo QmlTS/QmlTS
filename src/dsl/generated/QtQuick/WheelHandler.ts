@@ -2,8 +2,8 @@
 // Type: WheelHandler
 // Generated from Qt 6.11.0
 
-import type { QmlEnumToken, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
+import type { QmlEnumToken, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
 import type { AccessibleAttachedBuilder } from './Accessible.js';
 import type { EnterKeyAttachedBuilder } from './EnterKey.js';
 import type { GraphicsInfoAttachedBuilder } from './GraphicsInfo.js';
@@ -164,7 +164,8 @@ const WHEELHANDLER_META: TypeMetadata = {
     { handlerName: 'onTargetTransformAroundCursorChanged', paramCount: 0 },
     { handlerName: 'onWheel', paramCount: 1 },
   ],
-  grouped: [],
+  grouped: [
+  ],
   attached: [
     {
       methodName: 'accessible',
@@ -278,7 +279,9 @@ const WHEELHANDLER_META: TypeMetadata = {
     {
       methodName: 'graphicsInfo',
       attachedTypeName: 'GraphicsInfo',
-      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
+      properties: [
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
       signals: [
         { handlerName: 'onApiChanged', paramCount: 0 },
         { handlerName: 'onMajorVersionChanged', paramCount: 0 },
@@ -429,7 +432,9 @@ const WHEELHANDLER_META: TypeMetadata = {
     {
       methodName: 'pathView',
       attachedTypeName: 'PathView',
-      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
+      properties: [
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
       signals: [
         { handlerName: 'onCurrentItemChanged', paramCount: 0 },
         { handlerName: 'onPathChanged', paramCount: 0 },
@@ -439,7 +444,9 @@ const WHEELHANDLER_META: TypeMetadata = {
     {
       methodName: 'positioner',
       attachedTypeName: 'Positioner',
-      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
+      properties: [
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
       signals: [
         { handlerName: 'onIndexChanged', paramCount: 0 },
         { handlerName: 'onIsFirstItemChanged', paramCount: 0 },
@@ -463,7 +470,9 @@ const WHEELHANDLER_META: TypeMetadata = {
     {
       methodName: 'screen',
       attachedTypeName: 'Screen',
-      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
+      properties: [
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
       signals: [
         { handlerName: 'onDesktopGeometryChanged', paramCount: 0 },
         { handlerName: 'onDevicePixelRatioChanged', paramCount: 0 },
@@ -501,7 +510,9 @@ const WHEELHANDLER_META: TypeMetadata = {
     {
       methodName: 'viewTransition',
       attachedTypeName: 'ViewTransition',
-      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
+      properties: [
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
       signals: [
         { handlerName: 'onDestinationChanged', paramCount: 0 },
         { handlerName: 'onIndexChanged', paramCount: 0 },
@@ -514,7 +525,9 @@ const WHEELHANDLER_META: TypeMetadata = {
     {
       methodName: 'window',
       attachedTypeName: 'Window',
-      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
+      properties: [
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
       signals: [
         { handlerName: 'onActiveChanged', paramCount: 0 },
         { handlerName: 'onActiveFocusItemChanged', paramCount: 0 },
@@ -535,55 +548,15 @@ export function WheelHandler(): WheelHandlerBuilder {
 
 export namespace WheelHandler {
   export namespace GrabPermissions {
-    export const TakeOverForbidden = createEnumToken(
-      'WheelHandler',
-      'GrabPermissions',
-      'TakeOverForbidden',
-    );
-    export const CanTakeOverFromHandlersOfSameType = createEnumToken(
-      'WheelHandler',
-      'GrabPermissions',
-      'CanTakeOverFromHandlersOfSameType',
-    );
-    export const CanTakeOverFromHandlersOfDifferentType = createEnumToken(
-      'WheelHandler',
-      'GrabPermissions',
-      'CanTakeOverFromHandlersOfDifferentType',
-    );
-    export const CanTakeOverFromItems = createEnumToken(
-      'WheelHandler',
-      'GrabPermissions',
-      'CanTakeOverFromItems',
-    );
-    export const CanTakeOverFromAnything = createEnumToken(
-      'WheelHandler',
-      'GrabPermissions',
-      'CanTakeOverFromAnything',
-    );
-    export const ApprovesTakeOverByHandlersOfSameType = createEnumToken(
-      'WheelHandler',
-      'GrabPermissions',
-      'ApprovesTakeOverByHandlersOfSameType',
-    );
-    export const ApprovesTakeOverByHandlersOfDifferentType = createEnumToken(
-      'WheelHandler',
-      'GrabPermissions',
-      'ApprovesTakeOverByHandlersOfDifferentType',
-    );
-    export const ApprovesTakeOverByItems = createEnumToken(
-      'WheelHandler',
-      'GrabPermissions',
-      'ApprovesTakeOverByItems',
-    );
-    export const ApprovesCancellation = createEnumToken(
-      'WheelHandler',
-      'GrabPermissions',
-      'ApprovesCancellation',
-    );
-    export const ApprovesTakeOverByAnything = createEnumToken(
-      'WheelHandler',
-      'GrabPermissions',
-      'ApprovesTakeOverByAnything',
-    );
+    export const TakeOverForbidden = createEnumToken('WheelHandler', 'GrabPermissions', 'TakeOverForbidden');
+    export const CanTakeOverFromHandlersOfSameType = createEnumToken('WheelHandler', 'GrabPermissions', 'CanTakeOverFromHandlersOfSameType');
+    export const CanTakeOverFromHandlersOfDifferentType = createEnumToken('WheelHandler', 'GrabPermissions', 'CanTakeOverFromHandlersOfDifferentType');
+    export const CanTakeOverFromItems = createEnumToken('WheelHandler', 'GrabPermissions', 'CanTakeOverFromItems');
+    export const CanTakeOverFromAnything = createEnumToken('WheelHandler', 'GrabPermissions', 'CanTakeOverFromAnything');
+    export const ApprovesTakeOverByHandlersOfSameType = createEnumToken('WheelHandler', 'GrabPermissions', 'ApprovesTakeOverByHandlersOfSameType');
+    export const ApprovesTakeOverByHandlersOfDifferentType = createEnumToken('WheelHandler', 'GrabPermissions', 'ApprovesTakeOverByHandlersOfDifferentType');
+    export const ApprovesTakeOverByItems = createEnumToken('WheelHandler', 'GrabPermissions', 'ApprovesTakeOverByItems');
+    export const ApprovesCancellation = createEnumToken('WheelHandler', 'GrabPermissions', 'ApprovesCancellation');
+    export const ApprovesTakeOverByAnything = createEnumToken('WheelHandler', 'GrabPermissions', 'ApprovesTakeOverByAnything');
   }
 }

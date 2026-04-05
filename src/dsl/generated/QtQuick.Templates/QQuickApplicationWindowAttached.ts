@@ -2,6 +2,7 @@
 // Type: Attached type: ApplicationWindow
 // Generated from Qt 6.11.0
 
+
 export interface ApplicationWindowAttachedBuilder {
   objectName(value: string): ApplicationWindowAttachedBuilder;
   objectNameBind(expr: string): ApplicationWindowAttachedBuilder;

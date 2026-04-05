@@ -39,19 +39,8 @@ coverage/
 *.log
 npm-debug.log*
 
-# Full DSL generation output (stabilization)
+# Full DSL generation output (temporary/exploratory runs)
 .generated-full/
 
-# DSL generated output (only P0 snapshot is committed)
-# When running `bun run generate:dsl --all`, extra module directories appear.
-# The P0 modules are explicitly tracked via `git add -f`.
-# To regenerate P0: `bun run generate:dsl` then commit changes.
-src/dsl/generated/*
-!src/dsl/generated/QML/
-!src/dsl/generated/QtCore/
-!src/dsl/generated/QtQml/
-!src/dsl/generated/QtQml.Models/
-!src/dsl/generated/QtQuick/
-!src/dsl/generated/QtQuick.Layouts/
-!src/dsl/generated/QtQuick.Templates/
-!src/dsl/generated/index.ts
+# DSL generated output — full version-bound snapshot is committed.
+# To regenerate: `bun run generate:dsl` then commit changes.

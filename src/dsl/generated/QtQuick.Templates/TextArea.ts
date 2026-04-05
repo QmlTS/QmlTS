@@ -2,16 +2,8 @@
 // Type: TextArea
 // Generated from Qt 6.11.0
 
-import type {
-  QmlColor,
-  QmlComponent,
-  QmlEnumToken,
-  QmlFont,
-  QmlObjectBuilder,
-  QmlUrl,
-  TypeMetadata,
-} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
+import type { QmlColor, QmlComponent, QmlEnumToken, QmlFont, QmlObjectBuilder, QmlUrl, TypeMetadata } from '../../runtime/index.js';
 import type { QtObjectBuilder } from '../QML/QtObject.js';
 import type { ItemBuilder } from '../QtQuick/Item.js';
 import type { PaletteBuilder } from '../QtQuick/Palette.js';
@@ -502,7 +494,9 @@ const TEXTAREA_META: TypeMetadata = {
     {
       methodName: 'applicationWindow',
       attachedTypeName: 'ApplicationWindow',
-      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
+      properties: [
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
       signals: [
         { handlerName: 'onActiveFocusControlChanged', paramCount: 0 },
         { handlerName: 'onContentItemChanged', paramCount: 0 },
@@ -599,7 +593,9 @@ const TEXTAREA_META: TypeMetadata = {
     {
       methodName: 'selectionRectangle',
       attachedTypeName: 'SelectionRectangle',
-      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
+      properties: [
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
       signals: [
         { handlerName: 'onControlChanged', paramCount: 0 },
         { handlerName: 'onDraggingChanged', paramCount: 0 },
@@ -609,7 +605,9 @@ const TEXTAREA_META: TypeMetadata = {
     {
       methodName: 'splitHandle',
       attachedTypeName: 'SplitHandle',
-      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
+      properties: [
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
       signals: [
         { handlerName: 'onHoveredChanged', paramCount: 0 },
         { handlerName: 'onPressedChanged', paramCount: 0 },
@@ -666,7 +664,9 @@ const TEXTAREA_META: TypeMetadata = {
     {
       methodName: 'swipeDelegate',
       attachedTypeName: 'SwipeDelegate',
-      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
+      properties: [
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
       signals: [
         { handlerName: 'onClicked', paramCount: 0 },
         { handlerName: 'onPressedChanged', paramCount: 0 },
@@ -676,7 +676,9 @@ const TEXTAREA_META: TypeMetadata = {
     {
       methodName: 'swipeView',
       attachedTypeName: 'SwipeView',
-      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
+      properties: [
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
       signals: [
         { handlerName: 'onIndexChanged', paramCount: 0 },
         { handlerName: 'onIsCurrentItemChanged', paramCount: 0 },
@@ -689,7 +691,9 @@ const TEXTAREA_META: TypeMetadata = {
     {
       methodName: 'tabBar',
       attachedTypeName: 'TabBar',
-      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
+      properties: [
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
       signals: [
         { handlerName: 'onIndexChanged', paramCount: 0 },
         { handlerName: 'onPositionChanged', paramCount: 0 },
@@ -730,7 +734,9 @@ const TEXTAREA_META: TypeMetadata = {
     {
       methodName: 'tumbler',
       attachedTypeName: 'Tumbler',
-      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
+      properties: [
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
       signals: [
         { handlerName: 'onDisplacementChanged', paramCount: 0 },
         { handlerName: 'onObjectNameChanged', paramCount: 1 },
@@ -745,25 +751,13 @@ export function TextArea(): TextAreaBuilder {
 
 export namespace TextArea {
   export namespace Flags {
-    export const ItemClipsChildrenToShape = createEnumToken(
-      'TextArea',
-      'Flags',
-      'ItemClipsChildrenToShape',
-    );
-    export const ItemAcceptsInputMethod = createEnumToken(
-      'TextArea',
-      'Flags',
-      'ItemAcceptsInputMethod',
-    );
+    export const ItemClipsChildrenToShape = createEnumToken('TextArea', 'Flags', 'ItemClipsChildrenToShape');
+    export const ItemAcceptsInputMethod = createEnumToken('TextArea', 'Flags', 'ItemAcceptsInputMethod');
     export const ItemIsFocusScope = createEnumToken('TextArea', 'Flags', 'ItemIsFocusScope');
     export const ItemHasContents = createEnumToken('TextArea', 'Flags', 'ItemHasContents');
     export const ItemAcceptsDrops = createEnumToken('TextArea', 'Flags', 'ItemAcceptsDrops');
     export const ItemIsViewport = createEnumToken('TextArea', 'Flags', 'ItemIsViewport');
-    export const ItemObservesViewport = createEnumToken(
-      'TextArea',
-      'Flags',
-      'ItemObservesViewport',
-    );
+    export const ItemObservesViewport = createEnumToken('TextArea', 'Flags', 'ItemObservesViewport');
   }
   export namespace HAlignment {
     export const AlignLeft = createEnumToken('TextArea', 'HAlignment', 'AlignLeft');
@@ -772,67 +766,19 @@ export namespace TextArea {
     export const AlignJustify = createEnumToken('TextArea', 'HAlignment', 'AlignJustify');
   }
   export namespace ItemChange {
-    export const ItemChildAddedChange = createEnumToken(
-      'TextArea',
-      'ItemChange',
-      'ItemChildAddedChange',
-    );
-    export const ItemChildRemovedChange = createEnumToken(
-      'TextArea',
-      'ItemChange',
-      'ItemChildRemovedChange',
-    );
+    export const ItemChildAddedChange = createEnumToken('TextArea', 'ItemChange', 'ItemChildAddedChange');
+    export const ItemChildRemovedChange = createEnumToken('TextArea', 'ItemChange', 'ItemChildRemovedChange');
     export const ItemSceneChange = createEnumToken('TextArea', 'ItemChange', 'ItemSceneChange');
-    export const ItemVisibleHasChanged = createEnumToken(
-      'TextArea',
-      'ItemChange',
-      'ItemVisibleHasChanged',
-    );
-    export const ItemParentHasChanged = createEnumToken(
-      'TextArea',
-      'ItemChange',
-      'ItemParentHasChanged',
-    );
-    export const ItemOpacityHasChanged = createEnumToken(
-      'TextArea',
-      'ItemChange',
-      'ItemOpacityHasChanged',
-    );
-    export const ItemActiveFocusHasChanged = createEnumToken(
-      'TextArea',
-      'ItemChange',
-      'ItemActiveFocusHasChanged',
-    );
-    export const ItemRotationHasChanged = createEnumToken(
-      'TextArea',
-      'ItemChange',
-      'ItemRotationHasChanged',
-    );
-    export const ItemAntialiasingHasChanged = createEnumToken(
-      'TextArea',
-      'ItemChange',
-      'ItemAntialiasingHasChanged',
-    );
-    export const ItemDevicePixelRatioHasChanged = createEnumToken(
-      'TextArea',
-      'ItemChange',
-      'ItemDevicePixelRatioHasChanged',
-    );
-    export const ItemEnabledHasChanged = createEnumToken(
-      'TextArea',
-      'ItemChange',
-      'ItemEnabledHasChanged',
-    );
-    export const ItemScaleHasChanged = createEnumToken(
-      'TextArea',
-      'ItemChange',
-      'ItemScaleHasChanged',
-    );
-    export const ItemTransformHasChanged = createEnumToken(
-      'TextArea',
-      'ItemChange',
-      'ItemTransformHasChanged',
-    );
+    export const ItemVisibleHasChanged = createEnumToken('TextArea', 'ItemChange', 'ItemVisibleHasChanged');
+    export const ItemParentHasChanged = createEnumToken('TextArea', 'ItemChange', 'ItemParentHasChanged');
+    export const ItemOpacityHasChanged = createEnumToken('TextArea', 'ItemChange', 'ItemOpacityHasChanged');
+    export const ItemActiveFocusHasChanged = createEnumToken('TextArea', 'ItemChange', 'ItemActiveFocusHasChanged');
+    export const ItemRotationHasChanged = createEnumToken('TextArea', 'ItemChange', 'ItemRotationHasChanged');
+    export const ItemAntialiasingHasChanged = createEnumToken('TextArea', 'ItemChange', 'ItemAntialiasingHasChanged');
+    export const ItemDevicePixelRatioHasChanged = createEnumToken('TextArea', 'ItemChange', 'ItemDevicePixelRatioHasChanged');
+    export const ItemEnabledHasChanged = createEnumToken('TextArea', 'ItemChange', 'ItemEnabledHasChanged');
+    export const ItemScaleHasChanged = createEnumToken('TextArea', 'ItemChange', 'ItemScaleHasChanged');
+    export const ItemTransformHasChanged = createEnumToken('TextArea', 'ItemChange', 'ItemTransformHasChanged');
   }
   export namespace RenderType {
     export const QtRendering = createEnumToken('TextArea', 'RenderType', 'QtRendering');
@@ -840,11 +786,7 @@ export namespace TextArea {
     export const CurveRendering = createEnumToken('TextArea', 'RenderType', 'CurveRendering');
   }
   export namespace SelectionMode {
-    export const SelectCharacters = createEnumToken(
-      'TextArea',
-      'SelectionMode',
-      'SelectCharacters',
-    );
+    export const SelectCharacters = createEnumToken('TextArea', 'SelectionMode', 'SelectCharacters');
     export const SelectWords = createEnumToken('TextArea', 'SelectionMode', 'SelectWords');
   }
   export namespace TextFormat {
@@ -873,11 +815,7 @@ export namespace TextArea {
     export const NoWrap = createEnumToken('TextArea', 'WrapMode', 'NoWrap');
     export const WordWrap = createEnumToken('TextArea', 'WrapMode', 'WordWrap');
     export const WrapAnywhere = createEnumToken('TextArea', 'WrapMode', 'WrapAnywhere');
-    export const WrapAtWordBoundaryOrAnywhere = createEnumToken(
-      'TextArea',
-      'WrapMode',
-      'WrapAtWordBoundaryOrAnywhere',
-    );
+    export const WrapAtWordBoundaryOrAnywhere = createEnumToken('TextArea', 'WrapMode', 'WrapAtWordBoundaryOrAnywhere');
     export const Wrap = createEnumToken('TextArea', 'WrapMode', 'Wrap');
   }
 }

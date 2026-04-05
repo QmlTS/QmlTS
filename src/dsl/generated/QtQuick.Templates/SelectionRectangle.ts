@@ -2,14 +2,8 @@
 // Type: SelectionRectangle
 // Generated from Qt 6.11.0
 
-import type {
-  QmlComponent,
-  QmlEnumToken,
-  QmlFont,
-  QmlObjectBuilder,
-  TypeMetadata,
-} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
+import type { QmlComponent, QmlEnumToken, QmlFont, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
 import type { QtObjectBuilder } from '../QML/QtObject.js';
 import type { ItemBuilder } from '../QtQuick/Item.js';
 import type { PaletteBuilder } from '../QtQuick/Palette.js';
@@ -201,18 +195,14 @@ export interface SelectionRectangleBuilder {
   anchors(setup: (b: AnchorsBuilder) => void): SelectionRectangleBuilder;
   layer(setup: (b: LayerBuilder) => void): SelectionRectangleBuilder;
   actionGroup(setup: (b: ActionGroupAttachedBuilder) => void): SelectionRectangleBuilder;
-  applicationWindow(
-    setup: (b: ApplicationWindowAttachedBuilder) => void,
-  ): SelectionRectangleBuilder;
+  applicationWindow(setup: (b: ApplicationWindowAttachedBuilder) => void): SelectionRectangleBuilder;
   buttonGroup(setup: (b: ButtonGroupAttachedBuilder) => void): SelectionRectangleBuilder;
   contextMenu(setup: (b: ContextMenuAttachedBuilder) => void): SelectionRectangleBuilder;
   dialogButtonBox(setup: (b: DialogButtonBoxAttachedBuilder) => void): SelectionRectangleBuilder;
   overlay(setup: (b: OverlayAttachedBuilder) => void): SelectionRectangleBuilder;
   scrollBar(setup: (b: ScrollBarAttachedBuilder) => void): SelectionRectangleBuilder;
   scrollIndicator(setup: (b: ScrollIndicatorAttachedBuilder) => void): SelectionRectangleBuilder;
-  selectionRectangle(
-    setup: (b: SelectionRectangleAttachedBuilder) => void,
-  ): SelectionRectangleBuilder;
+  selectionRectangle(setup: (b: SelectionRectangleAttachedBuilder) => void): SelectionRectangleBuilder;
   splitHandle(setup: (b: SplitHandleAttachedBuilder) => void): SelectionRectangleBuilder;
   splitView(setup: (b: SplitViewAttachedBuilder) => void): SelectionRectangleBuilder;
   stackView(setup: (b: StackViewAttachedBuilder) => void): SelectionRectangleBuilder;
@@ -403,7 +393,9 @@ const SELECTIONRECTANGLE_META: TypeMetadata = {
     {
       methodName: 'applicationWindow',
       attachedTypeName: 'ApplicationWindow',
-      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
+      properties: [
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
       signals: [
         { handlerName: 'onActiveFocusControlChanged', paramCount: 0 },
         { handlerName: 'onContentItemChanged', paramCount: 0 },
@@ -500,7 +492,9 @@ const SELECTIONRECTANGLE_META: TypeMetadata = {
     {
       methodName: 'selectionRectangle',
       attachedTypeName: 'SelectionRectangle',
-      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
+      properties: [
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
       signals: [
         { handlerName: 'onControlChanged', paramCount: 0 },
         { handlerName: 'onDraggingChanged', paramCount: 0 },
@@ -510,7 +504,9 @@ const SELECTIONRECTANGLE_META: TypeMetadata = {
     {
       methodName: 'splitHandle',
       attachedTypeName: 'SplitHandle',
-      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
+      properties: [
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
       signals: [
         { handlerName: 'onHoveredChanged', paramCount: 0 },
         { handlerName: 'onPressedChanged', paramCount: 0 },
@@ -567,7 +563,9 @@ const SELECTIONRECTANGLE_META: TypeMetadata = {
     {
       methodName: 'swipeDelegate',
       attachedTypeName: 'SwipeDelegate',
-      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
+      properties: [
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
       signals: [
         { handlerName: 'onClicked', paramCount: 0 },
         { handlerName: 'onPressedChanged', paramCount: 0 },
@@ -577,7 +575,9 @@ const SELECTIONRECTANGLE_META: TypeMetadata = {
     {
       methodName: 'swipeView',
       attachedTypeName: 'SwipeView',
-      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
+      properties: [
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
       signals: [
         { handlerName: 'onIndexChanged', paramCount: 0 },
         { handlerName: 'onIsCurrentItemChanged', paramCount: 0 },
@@ -590,7 +590,9 @@ const SELECTIONRECTANGLE_META: TypeMetadata = {
     {
       methodName: 'tabBar',
       attachedTypeName: 'TabBar',
-      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
+      properties: [
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
       signals: [
         { handlerName: 'onIndexChanged', paramCount: 0 },
         { handlerName: 'onPositionChanged', paramCount: 0 },
@@ -631,7 +633,9 @@ const SELECTIONRECTANGLE_META: TypeMetadata = {
     {
       methodName: 'tumbler',
       attachedTypeName: 'Tumbler',
-      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
+      properties: [
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
       signals: [
         { handlerName: 'onDisplacementChanged', paramCount: 0 },
         { handlerName: 'onObjectNameChanged', paramCount: 1 },
@@ -641,120 +645,37 @@ const SELECTIONRECTANGLE_META: TypeMetadata = {
 };
 
 export function SelectionRectangle(): SelectionRectangleBuilder {
-  return createFluentBuilder(
-    'SelectionRectangle',
-    SELECTIONRECTANGLE_META,
-  ) as unknown as SelectionRectangleBuilder;
+  return createFluentBuilder('SelectionRectangle', SELECTIONRECTANGLE_META) as unknown as SelectionRectangleBuilder;
 }
 
 export namespace SelectionRectangle {
   export namespace Flags {
-    export const ItemClipsChildrenToShape = createEnumToken(
-      'SelectionRectangle',
-      'Flags',
-      'ItemClipsChildrenToShape',
-    );
-    export const ItemAcceptsInputMethod = createEnumToken(
-      'SelectionRectangle',
-      'Flags',
-      'ItemAcceptsInputMethod',
-    );
-    export const ItemIsFocusScope = createEnumToken(
-      'SelectionRectangle',
-      'Flags',
-      'ItemIsFocusScope',
-    );
-    export const ItemHasContents = createEnumToken(
-      'SelectionRectangle',
-      'Flags',
-      'ItemHasContents',
-    );
-    export const ItemAcceptsDrops = createEnumToken(
-      'SelectionRectangle',
-      'Flags',
-      'ItemAcceptsDrops',
-    );
+    export const ItemClipsChildrenToShape = createEnumToken('SelectionRectangle', 'Flags', 'ItemClipsChildrenToShape');
+    export const ItemAcceptsInputMethod = createEnumToken('SelectionRectangle', 'Flags', 'ItemAcceptsInputMethod');
+    export const ItemIsFocusScope = createEnumToken('SelectionRectangle', 'Flags', 'ItemIsFocusScope');
+    export const ItemHasContents = createEnumToken('SelectionRectangle', 'Flags', 'ItemHasContents');
+    export const ItemAcceptsDrops = createEnumToken('SelectionRectangle', 'Flags', 'ItemAcceptsDrops');
     export const ItemIsViewport = createEnumToken('SelectionRectangle', 'Flags', 'ItemIsViewport');
-    export const ItemObservesViewport = createEnumToken(
-      'SelectionRectangle',
-      'Flags',
-      'ItemObservesViewport',
-    );
+    export const ItemObservesViewport = createEnumToken('SelectionRectangle', 'Flags', 'ItemObservesViewport');
   }
   export namespace ItemChange {
-    export const ItemChildAddedChange = createEnumToken(
-      'SelectionRectangle',
-      'ItemChange',
-      'ItemChildAddedChange',
-    );
-    export const ItemChildRemovedChange = createEnumToken(
-      'SelectionRectangle',
-      'ItemChange',
-      'ItemChildRemovedChange',
-    );
-    export const ItemSceneChange = createEnumToken(
-      'SelectionRectangle',
-      'ItemChange',
-      'ItemSceneChange',
-    );
-    export const ItemVisibleHasChanged = createEnumToken(
-      'SelectionRectangle',
-      'ItemChange',
-      'ItemVisibleHasChanged',
-    );
-    export const ItemParentHasChanged = createEnumToken(
-      'SelectionRectangle',
-      'ItemChange',
-      'ItemParentHasChanged',
-    );
-    export const ItemOpacityHasChanged = createEnumToken(
-      'SelectionRectangle',
-      'ItemChange',
-      'ItemOpacityHasChanged',
-    );
-    export const ItemActiveFocusHasChanged = createEnumToken(
-      'SelectionRectangle',
-      'ItemChange',
-      'ItemActiveFocusHasChanged',
-    );
-    export const ItemRotationHasChanged = createEnumToken(
-      'SelectionRectangle',
-      'ItemChange',
-      'ItemRotationHasChanged',
-    );
-    export const ItemAntialiasingHasChanged = createEnumToken(
-      'SelectionRectangle',
-      'ItemChange',
-      'ItemAntialiasingHasChanged',
-    );
-    export const ItemDevicePixelRatioHasChanged = createEnumToken(
-      'SelectionRectangle',
-      'ItemChange',
-      'ItemDevicePixelRatioHasChanged',
-    );
-    export const ItemEnabledHasChanged = createEnumToken(
-      'SelectionRectangle',
-      'ItemChange',
-      'ItemEnabledHasChanged',
-    );
-    export const ItemScaleHasChanged = createEnumToken(
-      'SelectionRectangle',
-      'ItemChange',
-      'ItemScaleHasChanged',
-    );
-    export const ItemTransformHasChanged = createEnumToken(
-      'SelectionRectangle',
-      'ItemChange',
-      'ItemTransformHasChanged',
-    );
+    export const ItemChildAddedChange = createEnumToken('SelectionRectangle', 'ItemChange', 'ItemChildAddedChange');
+    export const ItemChildRemovedChange = createEnumToken('SelectionRectangle', 'ItemChange', 'ItemChildRemovedChange');
+    export const ItemSceneChange = createEnumToken('SelectionRectangle', 'ItemChange', 'ItemSceneChange');
+    export const ItemVisibleHasChanged = createEnumToken('SelectionRectangle', 'ItemChange', 'ItemVisibleHasChanged');
+    export const ItemParentHasChanged = createEnumToken('SelectionRectangle', 'ItemChange', 'ItemParentHasChanged');
+    export const ItemOpacityHasChanged = createEnumToken('SelectionRectangle', 'ItemChange', 'ItemOpacityHasChanged');
+    export const ItemActiveFocusHasChanged = createEnumToken('SelectionRectangle', 'ItemChange', 'ItemActiveFocusHasChanged');
+    export const ItemRotationHasChanged = createEnumToken('SelectionRectangle', 'ItemChange', 'ItemRotationHasChanged');
+    export const ItemAntialiasingHasChanged = createEnumToken('SelectionRectangle', 'ItemChange', 'ItemAntialiasingHasChanged');
+    export const ItemDevicePixelRatioHasChanged = createEnumToken('SelectionRectangle', 'ItemChange', 'ItemDevicePixelRatioHasChanged');
+    export const ItemEnabledHasChanged = createEnumToken('SelectionRectangle', 'ItemChange', 'ItemEnabledHasChanged');
+    export const ItemScaleHasChanged = createEnumToken('SelectionRectangle', 'ItemChange', 'ItemScaleHasChanged');
+    export const ItemTransformHasChanged = createEnumToken('SelectionRectangle', 'ItemChange', 'ItemTransformHasChanged');
   }
   export namespace SelectionMode {
     export const Drag = createEnumToken('SelectionRectangle', 'SelectionMode', 'Drag');
-    export const PressAndHold = createEnumToken(
-      'SelectionRectangle',
-      'SelectionMode',
-      'PressAndHold',
-    );
+    export const PressAndHold = createEnumToken('SelectionRectangle', 'SelectionMode', 'PressAndHold');
     export const Auto = createEnumToken('SelectionRectangle', 'SelectionMode', 'Auto');
   }
   export namespace TransformOrigin {
@@ -764,16 +685,8 @@ export namespace SelectionRectangle {
     export const Left = createEnumToken('SelectionRectangle', 'TransformOrigin', 'Left');
     export const Center = createEnumToken('SelectionRectangle', 'TransformOrigin', 'Center');
     export const Right = createEnumToken('SelectionRectangle', 'TransformOrigin', 'Right');
-    export const BottomLeft = createEnumToken(
-      'SelectionRectangle',
-      'TransformOrigin',
-      'BottomLeft',
-    );
+    export const BottomLeft = createEnumToken('SelectionRectangle', 'TransformOrigin', 'BottomLeft');
     export const Bottom = createEnumToken('SelectionRectangle', 'TransformOrigin', 'Bottom');
-    export const BottomRight = createEnumToken(
-      'SelectionRectangle',
-      'TransformOrigin',
-      'BottomRight',
-    );
+    export const BottomRight = createEnumToken('SelectionRectangle', 'TransformOrigin', 'BottomRight');
   }
 }

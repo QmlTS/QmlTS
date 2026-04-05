@@ -14,16 +14,14 @@ export class IndexEmitter {
   emitModuleIndex(mod: AnalyzedModule): string {
     const lines: string[] = ['// AUTO-GENERATED — DO NOT EDIT', `// Module: ${mod.uri}`, ''];
 
-    const exportableTypes = mod.types.filter(
-      (t) => t.classification === 'creatable-object' || t.classification === 'singleton',
-    );
+    // Collect ALL types that produce generated files
+    const allExportable = mod.types.filter((t) => this.typeHasGeneratedFile(t));
 
-    const sorted = [...exportableTypes].sort((a, b) =>
+    const sorted = [...allExportable].sort((a, b) =>
       a.emitFileName < b.emitFileName ? -1 : a.emitFileName > b.emitFileName ? 1 : 0,
     );
 
-    // Resolve duplicate public symbols deterministically so we never drop a
-    // module export completely when two files expose the same symbol.
+    // Resolve duplicate public symbols deterministically across ALL file types
     const exportPlan = this.buildModuleExportPlan(sorted);
 
     for (const type of sorted) {
@@ -115,8 +113,27 @@ export class IndexEmitter {
       symbols.push(`${type.dslSymbolName}Instance`);
       symbols.push(type.dslSymbolName); // const or function
     }
-    // Enum namespace shares the same name as the factory/const
+    // Grouped surface files export a Builder interface using the surface's builderName
+    const grouped = this.analyzed.groupedSurfaces.get(type.qualifiedName);
+    if (grouped) {
+      if (!symbols.includes(grouped.builderName)) symbols.push(grouped.builderName);
+    }
+    // Attached surface files export an AttachedBuilder interface
+    const attached = this.analyzed.attachedSurfaces.get(type.qualifiedName);
+    if (attached) {
+      if (!symbols.includes(attached.builderName)) symbols.push(attached.builderName);
+    }
     return symbols;
+  }
+
+  /** Check if a type produces a generated file */
+  private typeHasGeneratedFile(type: AnalyzedType): boolean {
+    if (type.classification === 'creatable-object' || type.classification === 'singleton') {
+      return true;
+    }
+    if (this.analyzed.attachedSurfaces.has(type.qualifiedName)) return true;
+    if (this.analyzed.groupedSurfaces.has(type.qualifiedName)) return true;
+    return false;
   }
 
   /** Emit the top-level index.ts that re-exports all modules */
@@ -128,7 +145,7 @@ export class IndexEmitter {
     ];
 
     const sorted = [...this.analyzed.modules]
-      .filter((mod) => this.hasExportableTypes(mod))
+      .filter((mod) => this.hasGeneratedFiles(mod))
       .sort((a, b) => (a.uri < b.uri ? -1 : a.uri > b.uri ? 1 : 0));
 
     for (const mod of sorted) {
@@ -147,12 +164,23 @@ export class IndexEmitter {
     );
   }
 
+  /** Check if a module has any generated files (including attached/grouped-only modules) */
+  private hasGeneratedFiles(mod: AnalyzedModule): boolean {
+    if (this.hasExportableTypes(mod)) return true;
+    // Modules with only attached or grouped surface types also get files
+    for (const t of mod.types) {
+      if (this.analyzed.attachedSurfaces.has(t.qualifiedName)) return true;
+      if (this.analyzed.groupedSurfaces.has(t.qualifiedName)) return true;
+    }
+    return false;
+  }
+
   /** Get all generated index files */
   getGeneratedFiles(): GeneratedFile[] {
     const files: GeneratedFile[] = [];
 
     for (const mod of this.analyzed.modules) {
-      if (!this.hasExportableTypes(mod)) continue;
+      if (!this.hasGeneratedFiles(mod)) continue;
       files.push({
         relativePath: `${mod.directoryName}/index.ts`,
         content: this.emitModuleIndex(mod),

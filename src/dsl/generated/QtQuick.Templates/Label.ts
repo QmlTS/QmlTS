@@ -2,15 +2,8 @@
 // Type: Label
 // Generated from Qt 6.11.0
 
-import type {
-  QmlColor,
-  QmlEnumToken,
-  QmlFont,
-  QmlObjectBuilder,
-  QmlUrl,
-  TypeMetadata,
-} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
+import type { QmlColor, QmlEnumToken, QmlFont, QmlObjectBuilder, QmlUrl, TypeMetadata } from '../../runtime/index.js';
 import type { QtObjectBuilder } from '../QML/QtObject.js';
 import type { ItemBuilder } from '../QtQuick/Item.js';
 import type { PaletteBuilder } from '../QtQuick/Palette.js';
@@ -431,7 +424,9 @@ const LABEL_META: TypeMetadata = {
     {
       methodName: 'applicationWindow',
       attachedTypeName: 'ApplicationWindow',
-      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
+      properties: [
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
       signals: [
         { handlerName: 'onActiveFocusControlChanged', paramCount: 0 },
         { handlerName: 'onContentItemChanged', paramCount: 0 },
@@ -528,7 +523,9 @@ const LABEL_META: TypeMetadata = {
     {
       methodName: 'selectionRectangle',
       attachedTypeName: 'SelectionRectangle',
-      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
+      properties: [
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
       signals: [
         { handlerName: 'onControlChanged', paramCount: 0 },
         { handlerName: 'onDraggingChanged', paramCount: 0 },
@@ -538,7 +535,9 @@ const LABEL_META: TypeMetadata = {
     {
       methodName: 'splitHandle',
       attachedTypeName: 'SplitHandle',
-      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
+      properties: [
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
       signals: [
         { handlerName: 'onHoveredChanged', paramCount: 0 },
         { handlerName: 'onPressedChanged', paramCount: 0 },
@@ -595,7 +594,9 @@ const LABEL_META: TypeMetadata = {
     {
       methodName: 'swipeDelegate',
       attachedTypeName: 'SwipeDelegate',
-      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
+      properties: [
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
       signals: [
         { handlerName: 'onClicked', paramCount: 0 },
         { handlerName: 'onPressedChanged', paramCount: 0 },
@@ -605,7 +606,9 @@ const LABEL_META: TypeMetadata = {
     {
       methodName: 'swipeView',
       attachedTypeName: 'SwipeView',
-      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
+      properties: [
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
       signals: [
         { handlerName: 'onIndexChanged', paramCount: 0 },
         { handlerName: 'onIsCurrentItemChanged', paramCount: 0 },
@@ -618,7 +621,9 @@ const LABEL_META: TypeMetadata = {
     {
       methodName: 'tabBar',
       attachedTypeName: 'TabBar',
-      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
+      properties: [
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
       signals: [
         { handlerName: 'onIndexChanged', paramCount: 0 },
         { handlerName: 'onPositionChanged', paramCount: 0 },
@@ -659,7 +664,9 @@ const LABEL_META: TypeMetadata = {
     {
       methodName: 'tumbler',
       attachedTypeName: 'Tumbler',
-      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
+      properties: [
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
       signals: [
         { handlerName: 'onDisplacementChanged', paramCount: 0 },
         { handlerName: 'onObjectNameChanged', paramCount: 1 },
@@ -674,16 +681,8 @@ export function Label(): LabelBuilder {
 
 export namespace Label {
   export namespace Flags {
-    export const ItemClipsChildrenToShape = createEnumToken(
-      'Label',
-      'Flags',
-      'ItemClipsChildrenToShape',
-    );
-    export const ItemAcceptsInputMethod = createEnumToken(
-      'Label',
-      'Flags',
-      'ItemAcceptsInputMethod',
-    );
+    export const ItemClipsChildrenToShape = createEnumToken('Label', 'Flags', 'ItemClipsChildrenToShape');
+    export const ItemAcceptsInputMethod = createEnumToken('Label', 'Flags', 'ItemAcceptsInputMethod');
     export const ItemIsFocusScope = createEnumToken('Label', 'Flags', 'ItemIsFocusScope');
     export const ItemHasContents = createEnumToken('Label', 'Flags', 'ItemHasContents');
     export const ItemAcceptsDrops = createEnumToken('Label', 'Flags', 'ItemAcceptsDrops');
@@ -703,74 +702,22 @@ export namespace Label {
     export const AlignJustify = createEnumToken('Label', 'HAlignment', 'AlignJustify');
   }
   export namespace ItemChange {
-    export const ItemChildAddedChange = createEnumToken(
-      'Label',
-      'ItemChange',
-      'ItemChildAddedChange',
-    );
-    export const ItemChildRemovedChange = createEnumToken(
-      'Label',
-      'ItemChange',
-      'ItemChildRemovedChange',
-    );
+    export const ItemChildAddedChange = createEnumToken('Label', 'ItemChange', 'ItemChildAddedChange');
+    export const ItemChildRemovedChange = createEnumToken('Label', 'ItemChange', 'ItemChildRemovedChange');
     export const ItemSceneChange = createEnumToken('Label', 'ItemChange', 'ItemSceneChange');
-    export const ItemVisibleHasChanged = createEnumToken(
-      'Label',
-      'ItemChange',
-      'ItemVisibleHasChanged',
-    );
-    export const ItemParentHasChanged = createEnumToken(
-      'Label',
-      'ItemChange',
-      'ItemParentHasChanged',
-    );
-    export const ItemOpacityHasChanged = createEnumToken(
-      'Label',
-      'ItemChange',
-      'ItemOpacityHasChanged',
-    );
-    export const ItemActiveFocusHasChanged = createEnumToken(
-      'Label',
-      'ItemChange',
-      'ItemActiveFocusHasChanged',
-    );
-    export const ItemRotationHasChanged = createEnumToken(
-      'Label',
-      'ItemChange',
-      'ItemRotationHasChanged',
-    );
-    export const ItemAntialiasingHasChanged = createEnumToken(
-      'Label',
-      'ItemChange',
-      'ItemAntialiasingHasChanged',
-    );
-    export const ItemDevicePixelRatioHasChanged = createEnumToken(
-      'Label',
-      'ItemChange',
-      'ItemDevicePixelRatioHasChanged',
-    );
-    export const ItemEnabledHasChanged = createEnumToken(
-      'Label',
-      'ItemChange',
-      'ItemEnabledHasChanged',
-    );
-    export const ItemScaleHasChanged = createEnumToken(
-      'Label',
-      'ItemChange',
-      'ItemScaleHasChanged',
-    );
-    export const ItemTransformHasChanged = createEnumToken(
-      'Label',
-      'ItemChange',
-      'ItemTransformHasChanged',
-    );
+    export const ItemVisibleHasChanged = createEnumToken('Label', 'ItemChange', 'ItemVisibleHasChanged');
+    export const ItemParentHasChanged = createEnumToken('Label', 'ItemChange', 'ItemParentHasChanged');
+    export const ItemOpacityHasChanged = createEnumToken('Label', 'ItemChange', 'ItemOpacityHasChanged');
+    export const ItemActiveFocusHasChanged = createEnumToken('Label', 'ItemChange', 'ItemActiveFocusHasChanged');
+    export const ItemRotationHasChanged = createEnumToken('Label', 'ItemChange', 'ItemRotationHasChanged');
+    export const ItemAntialiasingHasChanged = createEnumToken('Label', 'ItemChange', 'ItemAntialiasingHasChanged');
+    export const ItemDevicePixelRatioHasChanged = createEnumToken('Label', 'ItemChange', 'ItemDevicePixelRatioHasChanged');
+    export const ItemEnabledHasChanged = createEnumToken('Label', 'ItemChange', 'ItemEnabledHasChanged');
+    export const ItemScaleHasChanged = createEnumToken('Label', 'ItemChange', 'ItemScaleHasChanged');
+    export const ItemTransformHasChanged = createEnumToken('Label', 'ItemChange', 'ItemTransformHasChanged');
   }
   export namespace LineHeightMode {
-    export const ProportionalHeight = createEnumToken(
-      'Label',
-      'LineHeightMode',
-      'ProportionalHeight',
-    );
+    export const ProportionalHeight = createEnumToken('Label', 'LineHeightMode', 'ProportionalHeight');
     export const FixedHeight = createEnumToken('Label', 'LineHeightMode', 'FixedHeight');
   }
   export namespace RenderType {
@@ -779,31 +726,11 @@ export namespace Label {
     export const CurveRendering = createEnumToken('Label', 'RenderType', 'CurveRendering');
   }
   export namespace RenderTypeQuality {
-    export const DefaultRenderTypeQuality = createEnumToken(
-      'Label',
-      'RenderTypeQuality',
-      'DefaultRenderTypeQuality',
-    );
-    export const LowRenderTypeQuality = createEnumToken(
-      'Label',
-      'RenderTypeQuality',
-      'LowRenderTypeQuality',
-    );
-    export const NormalRenderTypeQuality = createEnumToken(
-      'Label',
-      'RenderTypeQuality',
-      'NormalRenderTypeQuality',
-    );
-    export const HighRenderTypeQuality = createEnumToken(
-      'Label',
-      'RenderTypeQuality',
-      'HighRenderTypeQuality',
-    );
-    export const VeryHighRenderTypeQuality = createEnumToken(
-      'Label',
-      'RenderTypeQuality',
-      'VeryHighRenderTypeQuality',
-    );
+    export const DefaultRenderTypeQuality = createEnumToken('Label', 'RenderTypeQuality', 'DefaultRenderTypeQuality');
+    export const LowRenderTypeQuality = createEnumToken('Label', 'RenderTypeQuality', 'LowRenderTypeQuality');
+    export const NormalRenderTypeQuality = createEnumToken('Label', 'RenderTypeQuality', 'NormalRenderTypeQuality');
+    export const HighRenderTypeQuality = createEnumToken('Label', 'RenderTypeQuality', 'HighRenderTypeQuality');
+    export const VeryHighRenderTypeQuality = createEnumToken('Label', 'RenderTypeQuality', 'VeryHighRenderTypeQuality');
   }
   export namespace TextElideMode {
     export const ElideLeft = createEnumToken('Label', 'TextElideMode', 'ElideLeft');
@@ -844,11 +771,7 @@ export namespace Label {
     export const NoWrap = createEnumToken('Label', 'WrapMode', 'NoWrap');
     export const WordWrap = createEnumToken('Label', 'WrapMode', 'WordWrap');
     export const WrapAnywhere = createEnumToken('Label', 'WrapMode', 'WrapAnywhere');
-    export const WrapAtWordBoundaryOrAnywhere = createEnumToken(
-      'Label',
-      'WrapMode',
-      'WrapAtWordBoundaryOrAnywhere',
-    );
+    export const WrapAtWordBoundaryOrAnywhere = createEnumToken('Label', 'WrapMode', 'WrapAtWordBoundaryOrAnywhere');
     export const Wrap = createEnumToken('Label', 'WrapMode', 'Wrap');
   }
 }

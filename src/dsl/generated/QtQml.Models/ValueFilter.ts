@@ -2,8 +2,8 @@
 // Type: ValueFilter
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
+import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
 import type { DelegateModelAttachedBuilder } from './QQmlDelegateModelAttached.js';
 import type { ObjectModelAttachedBuilder } from './QQmlObjectModelAttached.js';
 import type { PackageAttachedBuilder } from './QQuickPackageAttached.js';
@@ -56,7 +56,8 @@ const VALUEFILTER_META: TypeMetadata = {
     { handlerName: 'onRoleNameChanged', paramCount: 0 },
     { handlerName: 'onValueChanged', paramCount: 0 },
   ],
-  grouped: [],
+  grouped: [
+  ],
   attached: [
     {
       methodName: 'delegateModel',
@@ -76,7 +77,9 @@ const VALUEFILTER_META: TypeMetadata = {
     {
       methodName: 'objectModel',
       attachedTypeName: 'ObjectModel',
-      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
+      properties: [
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
       signals: [
         { handlerName: 'onIndexChanged', paramCount: 0 },
         { handlerName: 'onObjectNameChanged', paramCount: 1 },
@@ -89,7 +92,9 @@ const VALUEFILTER_META: TypeMetadata = {
         { name: 'name', hasValue: true, hasBinding: true },
         { name: 'objectName', hasValue: true, hasBinding: true },
       ],
-      signals: [{ handlerName: 'onObjectNameChanged', paramCount: 1 }],
+      signals: [
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
     },
   ],
 };

@@ -2,15 +2,8 @@
 // Type: AbstractWeekNumberColumn
 // Generated from Qt 6.11.0
 
-import type {
-  QmlComponent,
-  QmlEnumToken,
-  QmlFont,
-  QmlObjectBuilder,
-  QmlValue,
-  TypeMetadata,
-} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
+import type { QmlComponent, QmlEnumToken, QmlFont, QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
 import type { QtObjectBuilder } from '../QML/QtObject.js';
 import type { ItemBuilder } from '../QtQuick/Item.js';
 import type { PaletteBuilder } from '../QtQuick/Palette.js';
@@ -200,22 +193,14 @@ export interface AbstractWeekNumberColumnBuilder {
   anchors(setup: (b: AnchorsBuilder) => void): AbstractWeekNumberColumnBuilder;
   layer(setup: (b: LayerBuilder) => void): AbstractWeekNumberColumnBuilder;
   actionGroup(setup: (b: ActionGroupAttachedBuilder) => void): AbstractWeekNumberColumnBuilder;
-  applicationWindow(
-    setup: (b: ApplicationWindowAttachedBuilder) => void,
-  ): AbstractWeekNumberColumnBuilder;
+  applicationWindow(setup: (b: ApplicationWindowAttachedBuilder) => void): AbstractWeekNumberColumnBuilder;
   buttonGroup(setup: (b: ButtonGroupAttachedBuilder) => void): AbstractWeekNumberColumnBuilder;
   contextMenu(setup: (b: ContextMenuAttachedBuilder) => void): AbstractWeekNumberColumnBuilder;
-  dialogButtonBox(
-    setup: (b: DialogButtonBoxAttachedBuilder) => void,
-  ): AbstractWeekNumberColumnBuilder;
+  dialogButtonBox(setup: (b: DialogButtonBoxAttachedBuilder) => void): AbstractWeekNumberColumnBuilder;
   overlay(setup: (b: OverlayAttachedBuilder) => void): AbstractWeekNumberColumnBuilder;
   scrollBar(setup: (b: ScrollBarAttachedBuilder) => void): AbstractWeekNumberColumnBuilder;
-  scrollIndicator(
-    setup: (b: ScrollIndicatorAttachedBuilder) => void,
-  ): AbstractWeekNumberColumnBuilder;
-  selectionRectangle(
-    setup: (b: SelectionRectangleAttachedBuilder) => void,
-  ): AbstractWeekNumberColumnBuilder;
+  scrollIndicator(setup: (b: ScrollIndicatorAttachedBuilder) => void): AbstractWeekNumberColumnBuilder;
+  selectionRectangle(setup: (b: SelectionRectangleAttachedBuilder) => void): AbstractWeekNumberColumnBuilder;
   splitHandle(setup: (b: SplitHandleAttachedBuilder) => void): AbstractWeekNumberColumnBuilder;
   splitView(setup: (b: SplitViewAttachedBuilder) => void): AbstractWeekNumberColumnBuilder;
   stackView(setup: (b: StackViewAttachedBuilder) => void): AbstractWeekNumberColumnBuilder;
@@ -404,7 +389,9 @@ const ABSTRACTWEEKNUMBERCOLUMN_META: TypeMetadata = {
     {
       methodName: 'applicationWindow',
       attachedTypeName: 'ApplicationWindow',
-      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
+      properties: [
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
       signals: [
         { handlerName: 'onActiveFocusControlChanged', paramCount: 0 },
         { handlerName: 'onContentItemChanged', paramCount: 0 },
@@ -501,7 +488,9 @@ const ABSTRACTWEEKNUMBERCOLUMN_META: TypeMetadata = {
     {
       methodName: 'selectionRectangle',
       attachedTypeName: 'SelectionRectangle',
-      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
+      properties: [
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
       signals: [
         { handlerName: 'onControlChanged', paramCount: 0 },
         { handlerName: 'onDraggingChanged', paramCount: 0 },
@@ -511,7 +500,9 @@ const ABSTRACTWEEKNUMBERCOLUMN_META: TypeMetadata = {
     {
       methodName: 'splitHandle',
       attachedTypeName: 'SplitHandle',
-      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
+      properties: [
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
       signals: [
         { handlerName: 'onHoveredChanged', paramCount: 0 },
         { handlerName: 'onPressedChanged', paramCount: 0 },
@@ -568,7 +559,9 @@ const ABSTRACTWEEKNUMBERCOLUMN_META: TypeMetadata = {
     {
       methodName: 'swipeDelegate',
       attachedTypeName: 'SwipeDelegate',
-      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
+      properties: [
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
       signals: [
         { handlerName: 'onClicked', paramCount: 0 },
         { handlerName: 'onPressedChanged', paramCount: 0 },
@@ -578,7 +571,9 @@ const ABSTRACTWEEKNUMBERCOLUMN_META: TypeMetadata = {
     {
       methodName: 'swipeView',
       attachedTypeName: 'SwipeView',
-      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
+      properties: [
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
       signals: [
         { handlerName: 'onIndexChanged', paramCount: 0 },
         { handlerName: 'onIsCurrentItemChanged', paramCount: 0 },
@@ -591,7 +586,9 @@ const ABSTRACTWEEKNUMBERCOLUMN_META: TypeMetadata = {
     {
       methodName: 'tabBar',
       attachedTypeName: 'TabBar',
-      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
+      properties: [
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
       signals: [
         { handlerName: 'onIndexChanged', paramCount: 0 },
         { handlerName: 'onPositionChanged', paramCount: 0 },
@@ -632,7 +629,9 @@ const ABSTRACTWEEKNUMBERCOLUMN_META: TypeMetadata = {
     {
       methodName: 'tumbler',
       attachedTypeName: 'Tumbler',
-      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
+      properties: [
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
       signals: [
         { handlerName: 'onDisplacementChanged', paramCount: 0 },
         { handlerName: 'onObjectNameChanged', paramCount: 1 },
@@ -642,142 +641,43 @@ const ABSTRACTWEEKNUMBERCOLUMN_META: TypeMetadata = {
 };
 
 export function AbstractWeekNumberColumn(): AbstractWeekNumberColumnBuilder {
-  return createFluentBuilder(
-    'AbstractWeekNumberColumn',
-    ABSTRACTWEEKNUMBERCOLUMN_META,
-  ) as unknown as AbstractWeekNumberColumnBuilder;
+  return createFluentBuilder('AbstractWeekNumberColumn', ABSTRACTWEEKNUMBERCOLUMN_META) as unknown as AbstractWeekNumberColumnBuilder;
 }
 
 export namespace AbstractWeekNumberColumn {
   export namespace Flags {
-    export const ItemClipsChildrenToShape = createEnumToken(
-      'AbstractWeekNumberColumn',
-      'Flags',
-      'ItemClipsChildrenToShape',
-    );
-    export const ItemAcceptsInputMethod = createEnumToken(
-      'AbstractWeekNumberColumn',
-      'Flags',
-      'ItemAcceptsInputMethod',
-    );
-    export const ItemIsFocusScope = createEnumToken(
-      'AbstractWeekNumberColumn',
-      'Flags',
-      'ItemIsFocusScope',
-    );
-    export const ItemHasContents = createEnumToken(
-      'AbstractWeekNumberColumn',
-      'Flags',
-      'ItemHasContents',
-    );
-    export const ItemAcceptsDrops = createEnumToken(
-      'AbstractWeekNumberColumn',
-      'Flags',
-      'ItemAcceptsDrops',
-    );
-    export const ItemIsViewport = createEnumToken(
-      'AbstractWeekNumberColumn',
-      'Flags',
-      'ItemIsViewport',
-    );
-    export const ItemObservesViewport = createEnumToken(
-      'AbstractWeekNumberColumn',
-      'Flags',
-      'ItemObservesViewport',
-    );
+    export const ItemClipsChildrenToShape = createEnumToken('AbstractWeekNumberColumn', 'Flags', 'ItemClipsChildrenToShape');
+    export const ItemAcceptsInputMethod = createEnumToken('AbstractWeekNumberColumn', 'Flags', 'ItemAcceptsInputMethod');
+    export const ItemIsFocusScope = createEnumToken('AbstractWeekNumberColumn', 'Flags', 'ItemIsFocusScope');
+    export const ItemHasContents = createEnumToken('AbstractWeekNumberColumn', 'Flags', 'ItemHasContents');
+    export const ItemAcceptsDrops = createEnumToken('AbstractWeekNumberColumn', 'Flags', 'ItemAcceptsDrops');
+    export const ItemIsViewport = createEnumToken('AbstractWeekNumberColumn', 'Flags', 'ItemIsViewport');
+    export const ItemObservesViewport = createEnumToken('AbstractWeekNumberColumn', 'Flags', 'ItemObservesViewport');
   }
   export namespace ItemChange {
-    export const ItemChildAddedChange = createEnumToken(
-      'AbstractWeekNumberColumn',
-      'ItemChange',
-      'ItemChildAddedChange',
-    );
-    export const ItemChildRemovedChange = createEnumToken(
-      'AbstractWeekNumberColumn',
-      'ItemChange',
-      'ItemChildRemovedChange',
-    );
-    export const ItemSceneChange = createEnumToken(
-      'AbstractWeekNumberColumn',
-      'ItemChange',
-      'ItemSceneChange',
-    );
-    export const ItemVisibleHasChanged = createEnumToken(
-      'AbstractWeekNumberColumn',
-      'ItemChange',
-      'ItemVisibleHasChanged',
-    );
-    export const ItemParentHasChanged = createEnumToken(
-      'AbstractWeekNumberColumn',
-      'ItemChange',
-      'ItemParentHasChanged',
-    );
-    export const ItemOpacityHasChanged = createEnumToken(
-      'AbstractWeekNumberColumn',
-      'ItemChange',
-      'ItemOpacityHasChanged',
-    );
-    export const ItemActiveFocusHasChanged = createEnumToken(
-      'AbstractWeekNumberColumn',
-      'ItemChange',
-      'ItemActiveFocusHasChanged',
-    );
-    export const ItemRotationHasChanged = createEnumToken(
-      'AbstractWeekNumberColumn',
-      'ItemChange',
-      'ItemRotationHasChanged',
-    );
-    export const ItemAntialiasingHasChanged = createEnumToken(
-      'AbstractWeekNumberColumn',
-      'ItemChange',
-      'ItemAntialiasingHasChanged',
-    );
-    export const ItemDevicePixelRatioHasChanged = createEnumToken(
-      'AbstractWeekNumberColumn',
-      'ItemChange',
-      'ItemDevicePixelRatioHasChanged',
-    );
-    export const ItemEnabledHasChanged = createEnumToken(
-      'AbstractWeekNumberColumn',
-      'ItemChange',
-      'ItemEnabledHasChanged',
-    );
-    export const ItemScaleHasChanged = createEnumToken(
-      'AbstractWeekNumberColumn',
-      'ItemChange',
-      'ItemScaleHasChanged',
-    );
-    export const ItemTransformHasChanged = createEnumToken(
-      'AbstractWeekNumberColumn',
-      'ItemChange',
-      'ItemTransformHasChanged',
-    );
+    export const ItemChildAddedChange = createEnumToken('AbstractWeekNumberColumn', 'ItemChange', 'ItemChildAddedChange');
+    export const ItemChildRemovedChange = createEnumToken('AbstractWeekNumberColumn', 'ItemChange', 'ItemChildRemovedChange');
+    export const ItemSceneChange = createEnumToken('AbstractWeekNumberColumn', 'ItemChange', 'ItemSceneChange');
+    export const ItemVisibleHasChanged = createEnumToken('AbstractWeekNumberColumn', 'ItemChange', 'ItemVisibleHasChanged');
+    export const ItemParentHasChanged = createEnumToken('AbstractWeekNumberColumn', 'ItemChange', 'ItemParentHasChanged');
+    export const ItemOpacityHasChanged = createEnumToken('AbstractWeekNumberColumn', 'ItemChange', 'ItemOpacityHasChanged');
+    export const ItemActiveFocusHasChanged = createEnumToken('AbstractWeekNumberColumn', 'ItemChange', 'ItemActiveFocusHasChanged');
+    export const ItemRotationHasChanged = createEnumToken('AbstractWeekNumberColumn', 'ItemChange', 'ItemRotationHasChanged');
+    export const ItemAntialiasingHasChanged = createEnumToken('AbstractWeekNumberColumn', 'ItemChange', 'ItemAntialiasingHasChanged');
+    export const ItemDevicePixelRatioHasChanged = createEnumToken('AbstractWeekNumberColumn', 'ItemChange', 'ItemDevicePixelRatioHasChanged');
+    export const ItemEnabledHasChanged = createEnumToken('AbstractWeekNumberColumn', 'ItemChange', 'ItemEnabledHasChanged');
+    export const ItemScaleHasChanged = createEnumToken('AbstractWeekNumberColumn', 'ItemChange', 'ItemScaleHasChanged');
+    export const ItemTransformHasChanged = createEnumToken('AbstractWeekNumberColumn', 'ItemChange', 'ItemTransformHasChanged');
   }
   export namespace TransformOrigin {
-    export const TopLeft = createEnumToken(
-      'AbstractWeekNumberColumn',
-      'TransformOrigin',
-      'TopLeft',
-    );
+    export const TopLeft = createEnumToken('AbstractWeekNumberColumn', 'TransformOrigin', 'TopLeft');
     export const Top = createEnumToken('AbstractWeekNumberColumn', 'TransformOrigin', 'Top');
-    export const TopRight = createEnumToken(
-      'AbstractWeekNumberColumn',
-      'TransformOrigin',
-      'TopRight',
-    );
+    export const TopRight = createEnumToken('AbstractWeekNumberColumn', 'TransformOrigin', 'TopRight');
     export const Left = createEnumToken('AbstractWeekNumberColumn', 'TransformOrigin', 'Left');
     export const Center = createEnumToken('AbstractWeekNumberColumn', 'TransformOrigin', 'Center');
     export const Right = createEnumToken('AbstractWeekNumberColumn', 'TransformOrigin', 'Right');
-    export const BottomLeft = createEnumToken(
-      'AbstractWeekNumberColumn',
-      'TransformOrigin',
-      'BottomLeft',
-    );
+    export const BottomLeft = createEnumToken('AbstractWeekNumberColumn', 'TransformOrigin', 'BottomLeft');
     export const Bottom = createEnumToken('AbstractWeekNumberColumn', 'TransformOrigin', 'Bottom');
-    export const BottomRight = createEnumToken(
-      'AbstractWeekNumberColumn',
-      'TransformOrigin',
-      'BottomRight',
-    );
+    export const BottomRight = createEnumToken('AbstractWeekNumberColumn', 'TransformOrigin', 'BottomRight');
   }
 }

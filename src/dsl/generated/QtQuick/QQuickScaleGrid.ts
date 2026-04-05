@@ -2,6 +2,7 @@
 // Type: Grouped surface: QQuickScaleGrid
 // Generated from Qt 6.11.0
 
+
 export interface BorderBuilder {
   bottom(value: number): BorderBuilder;
   bottomBind(expr: string): BorderBuilder;

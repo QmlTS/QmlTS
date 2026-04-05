@@ -2,8 +2,8 @@
 // Type: Popup
 // Generated from Qt 6.11.0
 
-import type { QmlEnumToken, QmlFont, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
+import type { QmlEnumToken, QmlFont, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
 import type { ItemBuilder } from '../QtQuick/Item.js';
 import type { PaletteBuilder } from '../QtQuick/Palette.js';
 import type { TransitionBuilder } from '../QtQuick/Transition.js';
@@ -321,7 +321,9 @@ const POPUP_META: TypeMetadata = {
     {
       methodName: 'anchors',
       groupName: 'anchors',
-      properties: [{ name: 'centerIn', hasValue: true, hasBinding: true }],
+      properties: [
+        { name: 'centerIn', hasValue: true, hasBinding: true },
+      ],
     },
   ],
   attached: [
@@ -340,7 +342,9 @@ const POPUP_META: TypeMetadata = {
     {
       methodName: 'applicationWindow',
       attachedTypeName: 'ApplicationWindow',
-      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
+      properties: [
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
       signals: [
         { handlerName: 'onActiveFocusControlChanged', paramCount: 0 },
         { handlerName: 'onContentItemChanged', paramCount: 0 },
@@ -437,7 +441,9 @@ const POPUP_META: TypeMetadata = {
     {
       methodName: 'selectionRectangle',
       attachedTypeName: 'SelectionRectangle',
-      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
+      properties: [
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
       signals: [
         { handlerName: 'onControlChanged', paramCount: 0 },
         { handlerName: 'onDraggingChanged', paramCount: 0 },
@@ -447,7 +453,9 @@ const POPUP_META: TypeMetadata = {
     {
       methodName: 'splitHandle',
       attachedTypeName: 'SplitHandle',
-      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
+      properties: [
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
       signals: [
         { handlerName: 'onHoveredChanged', paramCount: 0 },
         { handlerName: 'onPressedChanged', paramCount: 0 },
@@ -504,7 +512,9 @@ const POPUP_META: TypeMetadata = {
     {
       methodName: 'swipeDelegate',
       attachedTypeName: 'SwipeDelegate',
-      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
+      properties: [
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
       signals: [
         { handlerName: 'onClicked', paramCount: 0 },
         { handlerName: 'onPressedChanged', paramCount: 0 },
@@ -514,7 +524,9 @@ const POPUP_META: TypeMetadata = {
     {
       methodName: 'swipeView',
       attachedTypeName: 'SwipeView',
-      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
+      properties: [
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
       signals: [
         { handlerName: 'onIndexChanged', paramCount: 0 },
         { handlerName: 'onIsCurrentItemChanged', paramCount: 0 },
@@ -527,7 +539,9 @@ const POPUP_META: TypeMetadata = {
     {
       methodName: 'tabBar',
       attachedTypeName: 'TabBar',
-      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
+      properties: [
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
       signals: [
         { handlerName: 'onIndexChanged', paramCount: 0 },
         { handlerName: 'onPositionChanged', paramCount: 0 },
@@ -568,7 +582,9 @@ const POPUP_META: TypeMetadata = {
     {
       methodName: 'tumbler',
       attachedTypeName: 'Tumbler',
-      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
+      properties: [
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
       signals: [
         { handlerName: 'onDisplacementChanged', paramCount: 0 },
         { handlerName: 'onObjectNameChanged', paramCount: 1 },
@@ -585,26 +601,10 @@ export function Popup(): PopupBuilder {
 export namespace Popup {
   export namespace ClosePolicy {
     export const NoAutoClose = createEnumToken('Popup', 'ClosePolicy', 'NoAutoClose');
-    export const CloseOnPressOutside = createEnumToken(
-      'Popup',
-      'ClosePolicy',
-      'CloseOnPressOutside',
-    );
-    export const CloseOnPressOutsideParent = createEnumToken(
-      'Popup',
-      'ClosePolicy',
-      'CloseOnPressOutsideParent',
-    );
-    export const CloseOnReleaseOutside = createEnumToken(
-      'Popup',
-      'ClosePolicy',
-      'CloseOnReleaseOutside',
-    );
-    export const CloseOnReleaseOutsideParent = createEnumToken(
-      'Popup',
-      'ClosePolicy',
-      'CloseOnReleaseOutsideParent',
-    );
+    export const CloseOnPressOutside = createEnumToken('Popup', 'ClosePolicy', 'CloseOnPressOutside');
+    export const CloseOnPressOutsideParent = createEnumToken('Popup', 'ClosePolicy', 'CloseOnPressOutsideParent');
+    export const CloseOnReleaseOutside = createEnumToken('Popup', 'ClosePolicy', 'CloseOnReleaseOutside');
+    export const CloseOnReleaseOutsideParent = createEnumToken('Popup', 'ClosePolicy', 'CloseOnReleaseOutsideParent');
     export const CloseOnEscape = createEnumToken('Popup', 'ClosePolicy', 'CloseOnEscape');
   }
   export namespace PopupType {

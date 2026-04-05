@@ -2,8 +2,8 @@
 // Type: ColumnLayout
 // Generated from Qt 6.11.0
 
-import type { QmlEnumToken, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
+import type { QmlEnumToken, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
 import type { QtObjectBuilder } from '../QML/QtObject.js';
 import type { ItemBuilder } from '../QtQuick/Item.js';
 import type { PaletteBuilder } from '../QtQuick/Palette.js';
@@ -293,7 +293,9 @@ const COLUMNLAYOUT_META: TypeMetadata = {
     {
       methodName: 'stackLayout',
       attachedTypeName: 'StackLayout',
-      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
+      properties: [
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
       signals: [
         { handlerName: 'onIndexChanged', paramCount: 0 },
         { handlerName: 'onIsCurrentItemChanged', paramCount: 0 },
@@ -310,100 +312,32 @@ export function ColumnLayout(): ColumnLayoutBuilder {
 
 export namespace ColumnLayout {
   export namespace Flags {
-    export const ItemClipsChildrenToShape = createEnumToken(
-      'ColumnLayout',
-      'Flags',
-      'ItemClipsChildrenToShape',
-    );
-    export const ItemAcceptsInputMethod = createEnumToken(
-      'ColumnLayout',
-      'Flags',
-      'ItemAcceptsInputMethod',
-    );
+    export const ItemClipsChildrenToShape = createEnumToken('ColumnLayout', 'Flags', 'ItemClipsChildrenToShape');
+    export const ItemAcceptsInputMethod = createEnumToken('ColumnLayout', 'Flags', 'ItemAcceptsInputMethod');
     export const ItemIsFocusScope = createEnumToken('ColumnLayout', 'Flags', 'ItemIsFocusScope');
     export const ItemHasContents = createEnumToken('ColumnLayout', 'Flags', 'ItemHasContents');
     export const ItemAcceptsDrops = createEnumToken('ColumnLayout', 'Flags', 'ItemAcceptsDrops');
     export const ItemIsViewport = createEnumToken('ColumnLayout', 'Flags', 'ItemIsViewport');
-    export const ItemObservesViewport = createEnumToken(
-      'ColumnLayout',
-      'Flags',
-      'ItemObservesViewport',
-    );
+    export const ItemObservesViewport = createEnumToken('ColumnLayout', 'Flags', 'ItemObservesViewport');
   }
   export namespace ItemChange {
-    export const ItemChildAddedChange = createEnumToken(
-      'ColumnLayout',
-      'ItemChange',
-      'ItemChildAddedChange',
-    );
-    export const ItemChildRemovedChange = createEnumToken(
-      'ColumnLayout',
-      'ItemChange',
-      'ItemChildRemovedChange',
-    );
+    export const ItemChildAddedChange = createEnumToken('ColumnLayout', 'ItemChange', 'ItemChildAddedChange');
+    export const ItemChildRemovedChange = createEnumToken('ColumnLayout', 'ItemChange', 'ItemChildRemovedChange');
     export const ItemSceneChange = createEnumToken('ColumnLayout', 'ItemChange', 'ItemSceneChange');
-    export const ItemVisibleHasChanged = createEnumToken(
-      'ColumnLayout',
-      'ItemChange',
-      'ItemVisibleHasChanged',
-    );
-    export const ItemParentHasChanged = createEnumToken(
-      'ColumnLayout',
-      'ItemChange',
-      'ItemParentHasChanged',
-    );
-    export const ItemOpacityHasChanged = createEnumToken(
-      'ColumnLayout',
-      'ItemChange',
-      'ItemOpacityHasChanged',
-    );
-    export const ItemActiveFocusHasChanged = createEnumToken(
-      'ColumnLayout',
-      'ItemChange',
-      'ItemActiveFocusHasChanged',
-    );
-    export const ItemRotationHasChanged = createEnumToken(
-      'ColumnLayout',
-      'ItemChange',
-      'ItemRotationHasChanged',
-    );
-    export const ItemAntialiasingHasChanged = createEnumToken(
-      'ColumnLayout',
-      'ItemChange',
-      'ItemAntialiasingHasChanged',
-    );
-    export const ItemDevicePixelRatioHasChanged = createEnumToken(
-      'ColumnLayout',
-      'ItemChange',
-      'ItemDevicePixelRatioHasChanged',
-    );
-    export const ItemEnabledHasChanged = createEnumToken(
-      'ColumnLayout',
-      'ItemChange',
-      'ItemEnabledHasChanged',
-    );
-    export const ItemScaleHasChanged = createEnumToken(
-      'ColumnLayout',
-      'ItemChange',
-      'ItemScaleHasChanged',
-    );
-    export const ItemTransformHasChanged = createEnumToken(
-      'ColumnLayout',
-      'ItemChange',
-      'ItemTransformHasChanged',
-    );
+    export const ItemVisibleHasChanged = createEnumToken('ColumnLayout', 'ItemChange', 'ItemVisibleHasChanged');
+    export const ItemParentHasChanged = createEnumToken('ColumnLayout', 'ItemChange', 'ItemParentHasChanged');
+    export const ItemOpacityHasChanged = createEnumToken('ColumnLayout', 'ItemChange', 'ItemOpacityHasChanged');
+    export const ItemActiveFocusHasChanged = createEnumToken('ColumnLayout', 'ItemChange', 'ItemActiveFocusHasChanged');
+    export const ItemRotationHasChanged = createEnumToken('ColumnLayout', 'ItemChange', 'ItemRotationHasChanged');
+    export const ItemAntialiasingHasChanged = createEnumToken('ColumnLayout', 'ItemChange', 'ItemAntialiasingHasChanged');
+    export const ItemDevicePixelRatioHasChanged = createEnumToken('ColumnLayout', 'ItemChange', 'ItemDevicePixelRatioHasChanged');
+    export const ItemEnabledHasChanged = createEnumToken('ColumnLayout', 'ItemChange', 'ItemEnabledHasChanged');
+    export const ItemScaleHasChanged = createEnumToken('ColumnLayout', 'ItemChange', 'ItemScaleHasChanged');
+    export const ItemTransformHasChanged = createEnumToken('ColumnLayout', 'ItemChange', 'ItemTransformHasChanged');
   }
   export namespace SizePolicy {
-    export const SizePolicyImplicit = createEnumToken(
-      'ColumnLayout',
-      'SizePolicy',
-      'SizePolicyImplicit',
-    );
-    export const SizePolicyExplicit = createEnumToken(
-      'ColumnLayout',
-      'SizePolicy',
-      'SizePolicyExplicit',
-    );
+    export const SizePolicyImplicit = createEnumToken('ColumnLayout', 'SizePolicy', 'SizePolicyImplicit');
+    export const SizePolicyExplicit = createEnumToken('ColumnLayout', 'SizePolicy', 'SizePolicyExplicit');
   }
   export namespace TransformOrigin {
     export const TopLeft = createEnumToken('ColumnLayout', 'TransformOrigin', 'TopLeft');

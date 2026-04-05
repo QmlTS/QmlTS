@@ -40,12 +40,17 @@ describe('IndexEmitter', () => {
     expect(code).toContain("from './QtQuick.Layouts/index.js'");
   });
 
-  test('IE-03: module index sorts exports alphabetically', () => {
+  test('IE-03: module index sorts exports by file path', () => {
     const mod = analyzed.modules.find((m) => m.uri === 'QtQuick')!;
     const code = ie.emitModuleIndex(mod);
     const lines = code.split('\n').filter((l) => l.includes('export'));
-    const sorted = [...lines].sort();
-    expect(lines).toEqual(sorted);
+    // Extract file paths from export lines (./FileName.js)
+    const paths = lines.map((l) => {
+      const match = l.match(/from '\.\/([^']+)'/);
+      return match?.[1] ?? '';
+    });
+    const sorted = [...paths].sort();
+    expect(paths).toEqual(sorted);
   });
 
   test('IE-04: top-level index has modules in URI-sorted order', () => {

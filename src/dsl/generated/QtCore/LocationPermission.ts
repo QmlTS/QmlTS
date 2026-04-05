@@ -2,8 +2,8 @@
 // Type: LocationPermission
 // Generated from Qt 6.11.0
 
-import type { QmlEnumToken, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
+import type { QmlEnumToken, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
 export interface LocationPermissionBuilder {
   id(id: string): LocationPermissionBuilder;
   child(obj: QmlObjectBuilder): LocationPermissionBuilder;
@@ -33,13 +33,12 @@ const LOCATIONPERMISSION_META: TypeMetadata = {
     { handlerName: 'onObjectNameChanged', paramCount: 1 },
     { handlerName: 'onStatusChanged', paramCount: 0 },
   ],
-  grouped: [],
-  attached: [],
+  grouped: [
+  ],
+  attached: [
+  ],
 };
 
 export function LocationPermission(): LocationPermissionBuilder {
-  return createFluentBuilder(
-    'LocationPermission',
-    LOCATIONPERMISSION_META,
-  ) as unknown as LocationPermissionBuilder;
+  return createFluentBuilder('LocationPermission', LOCATIONPERMISSION_META) as unknown as LocationPermissionBuilder;
 }

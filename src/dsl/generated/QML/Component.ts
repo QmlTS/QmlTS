@@ -2,8 +2,8 @@
 // Type: Component
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
+import type { QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
 import type { ComponentAttachedBuilder } from './QQmlComponentAttached.js';
 export interface ComponentBuilder {
   id(id: string): ComponentBuilder;
@@ -19,18 +19,23 @@ export interface ComponentBuilder {
 
 const COMPONENT_META: TypeMetadata = {
   typeName: 'Component',
-  properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
+  properties: [
+    { name: 'objectName', hasValue: true, hasBinding: true },
+  ],
   signals: [
     { handlerName: 'onObjectNameChanged', paramCount: 1 },
     { handlerName: 'onProgressChanged', paramCount: 1 },
     { handlerName: 'onStatusChanged', paramCount: 1 },
   ],
-  grouped: [],
+  grouped: [
+  ],
   attached: [
     {
       methodName: 'component',
       attachedTypeName: 'Component',
-      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
+      properties: [
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
       signals: [
         { handlerName: 'onCompleted', paramCount: 0 },
         { handlerName: 'onDestruction', paramCount: 0 },
@@ -46,11 +51,7 @@ export function Component(): ComponentBuilder {
 
 export namespace Component {
   export namespace CompilationMode {
-    export const PreferSynchronous = createEnumToken(
-      'Component',
-      'CompilationMode',
-      'PreferSynchronous',
-    );
+    export const PreferSynchronous = createEnumToken('Component', 'CompilationMode', 'PreferSynchronous');
     export const Asynchronous = createEnumToken('Component', 'CompilationMode', 'Asynchronous');
   }
   export namespace Status {

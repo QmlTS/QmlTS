@@ -2,14 +2,8 @@
 // Type: HeaderViewDelegate
 // Generated from Qt 6.11.0
 
-import type {
-  QmlEnumToken,
-  QmlFont,
-  QmlObjectBuilder,
-  QmlValue,
-  TypeMetadata,
-} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
+import type { QmlEnumToken, QmlFont, QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
 import type { QtObjectBuilder } from '../QML/QtObject.js';
 import type { ItemBuilder } from '../QtQuick/Item.js';
 import type { PaletteBuilder } from '../QtQuick/Palette.js';
@@ -259,18 +253,14 @@ export interface HeaderViewDelegateBuilder {
   anchors(setup: (b: AnchorsBuilder) => void): HeaderViewDelegateBuilder;
   layer(setup: (b: LayerBuilder) => void): HeaderViewDelegateBuilder;
   actionGroup(setup: (b: ActionGroupAttachedBuilder) => void): HeaderViewDelegateBuilder;
-  applicationWindow(
-    setup: (b: ApplicationWindowAttachedBuilder) => void,
-  ): HeaderViewDelegateBuilder;
+  applicationWindow(setup: (b: ApplicationWindowAttachedBuilder) => void): HeaderViewDelegateBuilder;
   buttonGroup(setup: (b: ButtonGroupAttachedBuilder) => void): HeaderViewDelegateBuilder;
   contextMenu(setup: (b: ContextMenuAttachedBuilder) => void): HeaderViewDelegateBuilder;
   dialogButtonBox(setup: (b: DialogButtonBoxAttachedBuilder) => void): HeaderViewDelegateBuilder;
   overlay(setup: (b: OverlayAttachedBuilder) => void): HeaderViewDelegateBuilder;
   scrollBar(setup: (b: ScrollBarAttachedBuilder) => void): HeaderViewDelegateBuilder;
   scrollIndicator(setup: (b: ScrollIndicatorAttachedBuilder) => void): HeaderViewDelegateBuilder;
-  selectionRectangle(
-    setup: (b: SelectionRectangleAttachedBuilder) => void,
-  ): HeaderViewDelegateBuilder;
+  selectionRectangle(setup: (b: SelectionRectangleAttachedBuilder) => void): HeaderViewDelegateBuilder;
   splitHandle(setup: (b: SplitHandleAttachedBuilder) => void): HeaderViewDelegateBuilder;
   splitView(setup: (b: SplitViewAttachedBuilder) => void): HeaderViewDelegateBuilder;
   stackView(setup: (b: StackViewAttachedBuilder) => void): HeaderViewDelegateBuilder;
@@ -502,7 +492,9 @@ const HEADERVIEWDELEGATE_META: TypeMetadata = {
     {
       methodName: 'applicationWindow',
       attachedTypeName: 'ApplicationWindow',
-      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
+      properties: [
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
       signals: [
         { handlerName: 'onActiveFocusControlChanged', paramCount: 0 },
         { handlerName: 'onContentItemChanged', paramCount: 0 },
@@ -599,7 +591,9 @@ const HEADERVIEWDELEGATE_META: TypeMetadata = {
     {
       methodName: 'selectionRectangle',
       attachedTypeName: 'SelectionRectangle',
-      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
+      properties: [
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
       signals: [
         { handlerName: 'onControlChanged', paramCount: 0 },
         { handlerName: 'onDraggingChanged', paramCount: 0 },
@@ -609,7 +603,9 @@ const HEADERVIEWDELEGATE_META: TypeMetadata = {
     {
       methodName: 'splitHandle',
       attachedTypeName: 'SplitHandle',
-      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
+      properties: [
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
       signals: [
         { handlerName: 'onHoveredChanged', paramCount: 0 },
         { handlerName: 'onPressedChanged', paramCount: 0 },
@@ -666,7 +662,9 @@ const HEADERVIEWDELEGATE_META: TypeMetadata = {
     {
       methodName: 'swipeDelegate',
       attachedTypeName: 'SwipeDelegate',
-      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
+      properties: [
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
       signals: [
         { handlerName: 'onClicked', paramCount: 0 },
         { handlerName: 'onPressedChanged', paramCount: 0 },
@@ -676,7 +674,9 @@ const HEADERVIEWDELEGATE_META: TypeMetadata = {
     {
       methodName: 'swipeView',
       attachedTypeName: 'SwipeView',
-      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
+      properties: [
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
       signals: [
         { handlerName: 'onIndexChanged', paramCount: 0 },
         { handlerName: 'onIsCurrentItemChanged', paramCount: 0 },
@@ -689,7 +689,9 @@ const HEADERVIEWDELEGATE_META: TypeMetadata = {
     {
       methodName: 'tabBar',
       attachedTypeName: 'TabBar',
-      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
+      properties: [
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
       signals: [
         { handlerName: 'onIndexChanged', paramCount: 0 },
         { handlerName: 'onPositionChanged', paramCount: 0 },
@@ -730,7 +732,9 @@ const HEADERVIEWDELEGATE_META: TypeMetadata = {
     {
       methodName: 'tumbler',
       attachedTypeName: 'Tumbler',
-      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
+      properties: [
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
       signals: [
         { handlerName: 'onDisplacementChanged', paramCount: 0 },
         { handlerName: 'onObjectNameChanged', paramCount: 1 },
@@ -740,122 +744,39 @@ const HEADERVIEWDELEGATE_META: TypeMetadata = {
 };
 
 export function HeaderViewDelegate(): HeaderViewDelegateBuilder {
-  return createFluentBuilder(
-    'HeaderViewDelegate',
-    HEADERVIEWDELEGATE_META,
-  ) as unknown as HeaderViewDelegateBuilder;
+  return createFluentBuilder('HeaderViewDelegate', HEADERVIEWDELEGATE_META) as unknown as HeaderViewDelegateBuilder;
 }
 
 export namespace HeaderViewDelegate {
   export namespace Display {
     export const IconOnly = createEnumToken('HeaderViewDelegate', 'Display', 'IconOnly');
     export const TextOnly = createEnumToken('HeaderViewDelegate', 'Display', 'TextOnly');
-    export const TextBesideIcon = createEnumToken(
-      'HeaderViewDelegate',
-      'Display',
-      'TextBesideIcon',
-    );
+    export const TextBesideIcon = createEnumToken('HeaderViewDelegate', 'Display', 'TextBesideIcon');
     export const TextUnderIcon = createEnumToken('HeaderViewDelegate', 'Display', 'TextUnderIcon');
   }
   export namespace Flags {
-    export const ItemClipsChildrenToShape = createEnumToken(
-      'HeaderViewDelegate',
-      'Flags',
-      'ItemClipsChildrenToShape',
-    );
-    export const ItemAcceptsInputMethod = createEnumToken(
-      'HeaderViewDelegate',
-      'Flags',
-      'ItemAcceptsInputMethod',
-    );
-    export const ItemIsFocusScope = createEnumToken(
-      'HeaderViewDelegate',
-      'Flags',
-      'ItemIsFocusScope',
-    );
-    export const ItemHasContents = createEnumToken(
-      'HeaderViewDelegate',
-      'Flags',
-      'ItemHasContents',
-    );
-    export const ItemAcceptsDrops = createEnumToken(
-      'HeaderViewDelegate',
-      'Flags',
-      'ItemAcceptsDrops',
-    );
+    export const ItemClipsChildrenToShape = createEnumToken('HeaderViewDelegate', 'Flags', 'ItemClipsChildrenToShape');
+    export const ItemAcceptsInputMethod = createEnumToken('HeaderViewDelegate', 'Flags', 'ItemAcceptsInputMethod');
+    export const ItemIsFocusScope = createEnumToken('HeaderViewDelegate', 'Flags', 'ItemIsFocusScope');
+    export const ItemHasContents = createEnumToken('HeaderViewDelegate', 'Flags', 'ItemHasContents');
+    export const ItemAcceptsDrops = createEnumToken('HeaderViewDelegate', 'Flags', 'ItemAcceptsDrops');
     export const ItemIsViewport = createEnumToken('HeaderViewDelegate', 'Flags', 'ItemIsViewport');
-    export const ItemObservesViewport = createEnumToken(
-      'HeaderViewDelegate',
-      'Flags',
-      'ItemObservesViewport',
-    );
+    export const ItemObservesViewport = createEnumToken('HeaderViewDelegate', 'Flags', 'ItemObservesViewport');
   }
   export namespace ItemChange {
-    export const ItemChildAddedChange = createEnumToken(
-      'HeaderViewDelegate',
-      'ItemChange',
-      'ItemChildAddedChange',
-    );
-    export const ItemChildRemovedChange = createEnumToken(
-      'HeaderViewDelegate',
-      'ItemChange',
-      'ItemChildRemovedChange',
-    );
-    export const ItemSceneChange = createEnumToken(
-      'HeaderViewDelegate',
-      'ItemChange',
-      'ItemSceneChange',
-    );
-    export const ItemVisibleHasChanged = createEnumToken(
-      'HeaderViewDelegate',
-      'ItemChange',
-      'ItemVisibleHasChanged',
-    );
-    export const ItemParentHasChanged = createEnumToken(
-      'HeaderViewDelegate',
-      'ItemChange',
-      'ItemParentHasChanged',
-    );
-    export const ItemOpacityHasChanged = createEnumToken(
-      'HeaderViewDelegate',
-      'ItemChange',
-      'ItemOpacityHasChanged',
-    );
-    export const ItemActiveFocusHasChanged = createEnumToken(
-      'HeaderViewDelegate',
-      'ItemChange',
-      'ItemActiveFocusHasChanged',
-    );
-    export const ItemRotationHasChanged = createEnumToken(
-      'HeaderViewDelegate',
-      'ItemChange',
-      'ItemRotationHasChanged',
-    );
-    export const ItemAntialiasingHasChanged = createEnumToken(
-      'HeaderViewDelegate',
-      'ItemChange',
-      'ItemAntialiasingHasChanged',
-    );
-    export const ItemDevicePixelRatioHasChanged = createEnumToken(
-      'HeaderViewDelegate',
-      'ItemChange',
-      'ItemDevicePixelRatioHasChanged',
-    );
-    export const ItemEnabledHasChanged = createEnumToken(
-      'HeaderViewDelegate',
-      'ItemChange',
-      'ItemEnabledHasChanged',
-    );
-    export const ItemScaleHasChanged = createEnumToken(
-      'HeaderViewDelegate',
-      'ItemChange',
-      'ItemScaleHasChanged',
-    );
-    export const ItemTransformHasChanged = createEnumToken(
-      'HeaderViewDelegate',
-      'ItemChange',
-      'ItemTransformHasChanged',
-    );
+    export const ItemChildAddedChange = createEnumToken('HeaderViewDelegate', 'ItemChange', 'ItemChildAddedChange');
+    export const ItemChildRemovedChange = createEnumToken('HeaderViewDelegate', 'ItemChange', 'ItemChildRemovedChange');
+    export const ItemSceneChange = createEnumToken('HeaderViewDelegate', 'ItemChange', 'ItemSceneChange');
+    export const ItemVisibleHasChanged = createEnumToken('HeaderViewDelegate', 'ItemChange', 'ItemVisibleHasChanged');
+    export const ItemParentHasChanged = createEnumToken('HeaderViewDelegate', 'ItemChange', 'ItemParentHasChanged');
+    export const ItemOpacityHasChanged = createEnumToken('HeaderViewDelegate', 'ItemChange', 'ItemOpacityHasChanged');
+    export const ItemActiveFocusHasChanged = createEnumToken('HeaderViewDelegate', 'ItemChange', 'ItemActiveFocusHasChanged');
+    export const ItemRotationHasChanged = createEnumToken('HeaderViewDelegate', 'ItemChange', 'ItemRotationHasChanged');
+    export const ItemAntialiasingHasChanged = createEnumToken('HeaderViewDelegate', 'ItemChange', 'ItemAntialiasingHasChanged');
+    export const ItemDevicePixelRatioHasChanged = createEnumToken('HeaderViewDelegate', 'ItemChange', 'ItemDevicePixelRatioHasChanged');
+    export const ItemEnabledHasChanged = createEnumToken('HeaderViewDelegate', 'ItemChange', 'ItemEnabledHasChanged');
+    export const ItemScaleHasChanged = createEnumToken('HeaderViewDelegate', 'ItemChange', 'ItemScaleHasChanged');
+    export const ItemTransformHasChanged = createEnumToken('HeaderViewDelegate', 'ItemChange', 'ItemTransformHasChanged');
   }
   export namespace TransformOrigin {
     export const TopLeft = createEnumToken('HeaderViewDelegate', 'TransformOrigin', 'TopLeft');
@@ -864,16 +785,8 @@ export namespace HeaderViewDelegate {
     export const Left = createEnumToken('HeaderViewDelegate', 'TransformOrigin', 'Left');
     export const Center = createEnumToken('HeaderViewDelegate', 'TransformOrigin', 'Center');
     export const Right = createEnumToken('HeaderViewDelegate', 'TransformOrigin', 'Right');
-    export const BottomLeft = createEnumToken(
-      'HeaderViewDelegate',
-      'TransformOrigin',
-      'BottomLeft',
-    );
+    export const BottomLeft = createEnumToken('HeaderViewDelegate', 'TransformOrigin', 'BottomLeft');
     export const Bottom = createEnumToken('HeaderViewDelegate', 'TransformOrigin', 'Bottom');
-    export const BottomRight = createEnumToken(
-      'HeaderViewDelegate',
-      'TransformOrigin',
-      'BottomRight',
-    );
+    export const BottomRight = createEnumToken('HeaderViewDelegate', 'TransformOrigin', 'BottomRight');
   }
 }

@@ -2,8 +2,8 @@
 // Type: DelegateChooser
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
+import type { QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
 import type { DelegateModelAttachedBuilder } from './QQmlDelegateModelAttached.js';
 import type { ObjectModelAttachedBuilder } from './QQmlObjectModelAttached.js';
 import type { PackageAttachedBuilder } from './QQuickPackageAttached.js';
@@ -38,7 +38,8 @@ const DELEGATECHOOSER_META: TypeMetadata = {
     { handlerName: 'onRoleChanged', paramCount: 0 },
     { handlerName: 'onStatusChanged', paramCount: 1 },
   ],
-  grouped: [],
+  grouped: [
+  ],
   attached: [
     {
       methodName: 'delegateModel',
@@ -58,7 +59,9 @@ const DELEGATECHOOSER_META: TypeMetadata = {
     {
       methodName: 'objectModel',
       attachedTypeName: 'ObjectModel',
-      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
+      properties: [
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
       signals: [
         { handlerName: 'onIndexChanged', paramCount: 0 },
         { handlerName: 'onObjectNameChanged', paramCount: 1 },
@@ -71,31 +74,22 @@ const DELEGATECHOOSER_META: TypeMetadata = {
         { name: 'name', hasValue: true, hasBinding: true },
         { name: 'objectName', hasValue: true, hasBinding: true },
       ],
-      signals: [{ handlerName: 'onObjectNameChanged', paramCount: 1 }],
+      signals: [
+        { handlerName: 'onObjectNameChanged', paramCount: 1 },
+      ],
     },
   ],
   defaultProperty: 'choices',
 };
 
 export function DelegateChooser(): DelegateChooserBuilder {
-  return createFluentBuilder(
-    'DelegateChooser',
-    DELEGATECHOOSER_META,
-  ) as unknown as DelegateChooserBuilder;
+  return createFluentBuilder('DelegateChooser', DELEGATECHOOSER_META) as unknown as DelegateChooserBuilder;
 }
 
 export namespace DelegateChooser {
   export namespace CompilationMode {
-    export const PreferSynchronous = createEnumToken(
-      'DelegateChooser',
-      'CompilationMode',
-      'PreferSynchronous',
-    );
-    export const Asynchronous = createEnumToken(
-      'DelegateChooser',
-      'CompilationMode',
-      'Asynchronous',
-    );
+    export const PreferSynchronous = createEnumToken('DelegateChooser', 'CompilationMode', 'PreferSynchronous');
+    export const Asynchronous = createEnumToken('DelegateChooser', 'CompilationMode', 'Asynchronous');
   }
   export namespace Status {
     export const Null = createEnumToken('DelegateChooser', 'Status', 'Null');

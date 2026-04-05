@@ -9,7 +9,7 @@ import { generate } from '../../src/dsl/generator/generator.js';
 
 const SNAPSHOT_PATH = join(import.meta.dir, '..', '..', 'data', 'qt-6.11.0-registry.snapshot.json');
 
-const P0_MODULES = [
+const CORE_MODULES = [
   'QML',
   'QtQml',
   'QtQml.Models',
@@ -20,75 +20,74 @@ const P0_MODULES = [
 ];
 
 describe('Full Generation Acceptance', () => {
-  describe('P0 modules', () => {
-    const p0Result = generate({
+  describe('core modules subset', () => {
+    const coreResult = generate({
       registryPath: SNAPSHOT_PATH,
       outputDir: '',
-      moduleWhitelist: P0_MODULES,
+      moduleWhitelist: CORE_MODULES,
     });
 
-    test('FG-01: P0 generation succeeds', () => {
-      expect(p0Result.success).toBe(true);
+    test('FG-01: core generation succeeds', () => {
+      expect(coreResult.success).toBe(true);
     });
 
-    test('FG-02: P0 processes all whitelisted modules', () => {
-      expect(p0Result.stats.modulesProcessed).toBe(7);
+    test('FG-02: core processes all whitelisted modules', () => {
+      expect(coreResult.stats.modulesProcessed).toBe(7);
     });
 
-    test('FG-03: P0 generates substantial type count', () => {
-      expect(p0Result.stats.typesProcessed).toBeGreaterThan(400);
+    test('FG-03: core generates substantial type count', () => {
+      expect(coreResult.stats.typesProcessed).toBeGreaterThan(400);
     });
 
-    test('FG-04: P0 has zero errors', () => {
-      const errors = p0Result.diagnostics.filter((d) => d.level === 'error');
+    test('FG-04: core has zero errors', () => {
+      const errors = coreResult.diagnostics.filter((d) => d.level === 'error');
       expect(errors.length).toBe(0);
     });
 
-    test('FG-05: P0 warning count is zero', () => {
-      const warnings = p0Result.diagnostics.filter((d) => d.level === 'warning');
+    test('FG-05: core warning count is zero', () => {
+      const warnings = coreResult.diagnostics.filter((d) => d.level === 'warning');
       expect(warnings.length).toBe(0);
     });
 
-    test('FG-06: P0 generates creatables', () => {
-      expect(p0Result.stats.creatableTypes).toBeGreaterThan(100);
+    test('FG-06: core generates creatables', () => {
+      expect(coreResult.stats.creatableTypes).toBeGreaterThan(100);
     });
 
-    test('FG-07: P0 generates singletons', () => {
-      expect(p0Result.stats.singletonTypes).toBeGreaterThan(0);
+    test('FG-07: core generates singletons', () => {
+      expect(coreResult.stats.singletonTypes).toBeGreaterThan(0);
     });
 
-    test('FG-08: P0 generates attached types', () => {
-      expect(p0Result.stats.attachedTypes).toBeGreaterThan(5);
+    test('FG-08: core generates attached types', () => {
+      expect(coreResult.stats.attachedTypes).toBeGreaterThan(5);
     });
 
-    test('FG-09: P0 generates grouped surfaces', () => {
-      expect(p0Result.stats.groupedSurfaces).toBeGreaterThan(3);
+    test('FG-09: core generates grouped surfaces', () => {
+      expect(coreResult.stats.groupedSurfaces).toBeGreaterThan(3);
     });
 
-    test('FG-10: P0 generates index files for modules with types', () => {
-      const generatedModules = p0Result.files
+    test('FG-10: core generates index files for modules with types', () => {
+      const generatedModules = coreResult.files
         .filter((f) => f.relativePath.endsWith('/index.ts') && f.relativePath !== 'index.ts')
         .map((f) => f.relativePath.replace('/index.ts', ''));
       expect(generatedModules.length).toBeGreaterThanOrEqual(7);
-      // Core modules with types should always be present
       expect(generatedModules).toContain('QtQuick');
       expect(generatedModules).toContain('QtQuick.Layouts');
       expect(generatedModules).toContain('QML');
     });
 
-    test('FG-11: P0 generates top-level index', () => {
-      const topIndex = p0Result.files.find((f) => f.relativePath === 'index.ts');
+    test('FG-11: core generates top-level index', () => {
+      const topIndex = coreResult.files.find((f) => f.relativePath === 'index.ts');
       expect(topIndex).toBeDefined();
     });
 
     test('FG-12: all files have content', () => {
-      for (const file of p0Result.files) {
+      for (const file of coreResult.files) {
         expect(file.content.length).toBeGreaterThan(0);
       }
     });
 
     test('FG-13: all .ts files have auto-generated header', () => {
-      for (const file of p0Result.files) {
+      for (const file of coreResult.files) {
         if (file.relativePath.endsWith('.ts')) {
           expect(file.content).toContain('AUTO-GENERATED');
         }
@@ -97,7 +96,7 @@ describe('Full Generation Acceptance', () => {
   });
 
   describe('determinism', () => {
-    test('FG-20: two P0 runs produce identical output', () => {
+    test('FG-20: two runs produce identical output', () => {
       const a = generate({
         registryPath: SNAPSHOT_PATH,
         outputDir: '',
@@ -135,18 +134,17 @@ describe('Full Generation Acceptance', () => {
     const allResult = generate({
       registryPath: SNAPSHOT_PATH,
       outputDir: '',
-      // No whitelist → all modules
     });
 
     test('FG-30: all-modules generation succeeds', () => {
       expect(allResult.success).toBe(true);
     });
 
-    test('FG-31: processes more modules than P0', () => {
-      expect(allResult.stats.modulesProcessed).toBeGreaterThan(P0_MODULES.length);
+    test('FG-31: processes 80+ modules', () => {
+      expect(allResult.stats.modulesProcessed).toBeGreaterThan(80);
     });
 
-    test('FG-32: processes more types than P0', () => {
+    test('FG-32: processes 1000+ types', () => {
       expect(allResult.stats.typesProcessed).toBeGreaterThan(1000);
     });
 
@@ -178,7 +176,6 @@ describe('Full Generation Acceptance', () => {
       });
       expect(result.success).toBe(true);
       expect(result.stats.modulesProcessed).toBe(1);
-      // Should have layout types + index
       expect(result.files.length).toBeGreaterThan(2);
     });
 

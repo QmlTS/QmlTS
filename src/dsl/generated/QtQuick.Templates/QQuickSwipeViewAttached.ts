@@ -2,6 +2,7 @@
 // Type: Attached type: SwipeView
 // Generated from Qt 6.11.0
 
+
 export interface SwipeViewAttachedBuilder {
   objectName(value: string): SwipeViewAttachedBuilder;
   objectNameBind(expr: string): SwipeViewAttachedBuilder;

@@ -2,6 +2,7 @@
 // Type: Attached type: ListView
 // Generated from Qt 6.11.0
 
+
 export interface ListViewAttachedBuilder {
   delayRemove(value: boolean): ListViewAttachedBuilder;
   delayRemoveBind(expr: string): ListViewAttachedBuilder;

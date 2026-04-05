@@ -2,14 +2,8 @@
 // Type: VerticalHeaderView
 // Generated from Qt 6.11.0
 
-import type {
-  QmlComponent,
-  QmlEnumToken,
-  QmlObjectBuilder,
-  QmlValue,
-  TypeMetadata,
-} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
+import type { QmlComponent, QmlEnumToken, QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
 import type { QtObjectBuilder } from '../QML/QtObject.js';
 import type { ItemSelectionModelBuilder } from '../QtQml.Models/ItemSelectionModel.js';
 import type { ItemBuilder } from '../QtQuick/Item.js';
@@ -284,18 +278,14 @@ export interface VerticalHeaderViewBuilder {
   anchors(setup: (b: AnchorsBuilder) => void): VerticalHeaderViewBuilder;
   layer(setup: (b: LayerBuilder) => void): VerticalHeaderViewBuilder;
   actionGroup(setup: (b: ActionGroupAttachedBuilder) => void): VerticalHeaderViewBuilder;
-  applicationWindow(
-    setup: (b: ApplicationWindowAttachedBuilder) => void,
-  ): VerticalHeaderViewBuilder;
+  applicationWindow(setup: (b: ApplicationWindowAttachedBuilder) => void): VerticalHeaderViewBuilder;
   buttonGroup(setup: (b: ButtonGroupAttachedBuilder) => void): VerticalHeaderViewBuilder;
   contextMenu(setup: (b: ContextMenuAttachedBuilder) => void): VerticalHeaderViewBuilder;
   dialogButtonBox(setup: (b: DialogButtonBoxAttachedBuilder) => void): VerticalHeaderViewBuilder;
   overlay(setup: (b: OverlayAttachedBuilder) => void): VerticalHeaderViewBuilder;
   scrollBar(setup: (b: ScrollBarAttachedBuilder) => void): VerticalHeaderViewBuilder;
   scrollIndicator(setup: (b: ScrollIndicatorAttachedBuilder) => void): VerticalHeaderViewBuilder;
-  selectionRectangle(
-    setup: (b: SelectionRectangleAttachedBuilder) => void,
-  ): VerticalHeaderViewBuilder;
+  selectionRectangle(setup: (b: SelectionRectangleAttachedBuilder) => void): VerticalHeaderViewBuilder;
   splitHandle(setup: (b: SplitHandleAttachedBuilder) => void): VerticalHeaderViewBuilder;
   splitView(setup: (b: SplitViewAttachedBuilder) => void): VerticalHeaderViewBuilder;
   stackView(setup: (b: StackViewAttachedBuilder) => void): VerticalHeaderViewBuilder;
@@ -548,7 +538,9 @@ const VERTICALHEADERVIEW_META: TypeMetadata = {
     {
       methodName: 'applicationWindow',
       attachedTypeName: 'ApplicationWindow',
-      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
+      properties: [
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
       signals: [
         { handlerName: 'onActiveFocusControlChanged', paramCount: 0 },
         { handlerName: 'onContentItemChanged', paramCount: 0 },
@@ -645,7 +637,9 @@ const VERTICALHEADERVIEW_META: TypeMetadata = {
     {
       methodName: 'selectionRectangle',
       attachedTypeName: 'SelectionRectangle',
-      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
+      properties: [
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
       signals: [
         { handlerName: 'onControlChanged', paramCount: 0 },
         { handlerName: 'onDraggingChanged', paramCount: 0 },
@@ -655,7 +649,9 @@ const VERTICALHEADERVIEW_META: TypeMetadata = {
     {
       methodName: 'splitHandle',
       attachedTypeName: 'SplitHandle',
-      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
+      properties: [
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
       signals: [
         { handlerName: 'onHoveredChanged', paramCount: 0 },
         { handlerName: 'onPressedChanged', paramCount: 0 },
@@ -712,7 +708,9 @@ const VERTICALHEADERVIEW_META: TypeMetadata = {
     {
       methodName: 'swipeDelegate',
       attachedTypeName: 'SwipeDelegate',
-      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
+      properties: [
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
       signals: [
         { handlerName: 'onClicked', paramCount: 0 },
         { handlerName: 'onPressedChanged', paramCount: 0 },
@@ -722,7 +720,9 @@ const VERTICALHEADERVIEW_META: TypeMetadata = {
     {
       methodName: 'swipeView',
       attachedTypeName: 'SwipeView',
-      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
+      properties: [
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
       signals: [
         { handlerName: 'onIndexChanged', paramCount: 0 },
         { handlerName: 'onIsCurrentItemChanged', paramCount: 0 },
@@ -735,7 +735,9 @@ const VERTICALHEADERVIEW_META: TypeMetadata = {
     {
       methodName: 'tabBar',
       attachedTypeName: 'TabBar',
-      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
+      properties: [
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
       signals: [
         { handlerName: 'onIndexChanged', paramCount: 0 },
         { handlerName: 'onPositionChanged', paramCount: 0 },
@@ -776,7 +778,9 @@ const VERTICALHEADERVIEW_META: TypeMetadata = {
     {
       methodName: 'tumbler',
       attachedTypeName: 'Tumbler',
-      properties: [{ name: 'objectName', hasValue: true, hasBinding: true }],
+      properties: [
+        { name: 'objectName', hasValue: true, hasBinding: true },
+      ],
       signals: [
         { handlerName: 'onDisplacementChanged', paramCount: 0 },
         { handlerName: 'onObjectNameChanged', paramCount: 1 },
@@ -786,258 +790,79 @@ const VERTICALHEADERVIEW_META: TypeMetadata = {
 };
 
 export function VerticalHeaderView(): VerticalHeaderViewBuilder {
-  return createFluentBuilder(
-    'VerticalHeaderView',
-    VERTICALHEADERVIEW_META,
-  ) as unknown as VerticalHeaderViewBuilder;
+  return createFluentBuilder('VerticalHeaderView', VERTICALHEADERVIEW_META) as unknown as VerticalHeaderViewBuilder;
 }
 
 export namespace VerticalHeaderView {
   export namespace BoundsBehavior {
-    export const StopAtBounds = createEnumToken(
-      'VerticalHeaderView',
-      'BoundsBehavior',
-      'StopAtBounds',
-    );
-    export const DragOverBounds = createEnumToken(
-      'VerticalHeaderView',
-      'BoundsBehavior',
-      'DragOverBounds',
-    );
-    export const OvershootBounds = createEnumToken(
-      'VerticalHeaderView',
-      'BoundsBehavior',
-      'OvershootBounds',
-    );
-    export const DragAndOvershootBounds = createEnumToken(
-      'VerticalHeaderView',
-      'BoundsBehavior',
-      'DragAndOvershootBounds',
-    );
+    export const StopAtBounds = createEnumToken('VerticalHeaderView', 'BoundsBehavior', 'StopAtBounds');
+    export const DragOverBounds = createEnumToken('VerticalHeaderView', 'BoundsBehavior', 'DragOverBounds');
+    export const OvershootBounds = createEnumToken('VerticalHeaderView', 'BoundsBehavior', 'OvershootBounds');
+    export const DragAndOvershootBounds = createEnumToken('VerticalHeaderView', 'BoundsBehavior', 'DragAndOvershootBounds');
   }
   export namespace BoundsMovement {
-    export const FollowBoundsBehavior = createEnumToken(
-      'VerticalHeaderView',
-      'BoundsMovement',
-      'FollowBoundsBehavior',
-    );
+    export const FollowBoundsBehavior = createEnumToken('VerticalHeaderView', 'BoundsMovement', 'FollowBoundsBehavior');
   }
   export namespace EditTriggers {
-    export const NoEditTriggers = createEnumToken(
-      'VerticalHeaderView',
-      'EditTriggers',
-      'NoEditTriggers',
-    );
-    export const SingleTapped = createEnumToken(
-      'VerticalHeaderView',
-      'EditTriggers',
-      'SingleTapped',
-    );
-    export const DoubleTapped = createEnumToken(
-      'VerticalHeaderView',
-      'EditTriggers',
-      'DoubleTapped',
-    );
-    export const SelectedTapped = createEnumToken(
-      'VerticalHeaderView',
-      'EditTriggers',
-      'SelectedTapped',
-    );
-    export const EditKeyPressed = createEnumToken(
-      'VerticalHeaderView',
-      'EditTriggers',
-      'EditKeyPressed',
-    );
-    export const AnyKeyPressed = createEnumToken(
-      'VerticalHeaderView',
-      'EditTriggers',
-      'AnyKeyPressed',
-    );
+    export const NoEditTriggers = createEnumToken('VerticalHeaderView', 'EditTriggers', 'NoEditTriggers');
+    export const SingleTapped = createEnumToken('VerticalHeaderView', 'EditTriggers', 'SingleTapped');
+    export const DoubleTapped = createEnumToken('VerticalHeaderView', 'EditTriggers', 'DoubleTapped');
+    export const SelectedTapped = createEnumToken('VerticalHeaderView', 'EditTriggers', 'SelectedTapped');
+    export const EditKeyPressed = createEnumToken('VerticalHeaderView', 'EditTriggers', 'EditKeyPressed');
+    export const AnyKeyPressed = createEnumToken('VerticalHeaderView', 'EditTriggers', 'AnyKeyPressed');
   }
   export namespace Flags {
-    export const ItemClipsChildrenToShape = createEnumToken(
-      'VerticalHeaderView',
-      'Flags',
-      'ItemClipsChildrenToShape',
-    );
-    export const ItemAcceptsInputMethod = createEnumToken(
-      'VerticalHeaderView',
-      'Flags',
-      'ItemAcceptsInputMethod',
-    );
-    export const ItemIsFocusScope = createEnumToken(
-      'VerticalHeaderView',
-      'Flags',
-      'ItemIsFocusScope',
-    );
-    export const ItemHasContents = createEnumToken(
-      'VerticalHeaderView',
-      'Flags',
-      'ItemHasContents',
-    );
-    export const ItemAcceptsDrops = createEnumToken(
-      'VerticalHeaderView',
-      'Flags',
-      'ItemAcceptsDrops',
-    );
+    export const ItemClipsChildrenToShape = createEnumToken('VerticalHeaderView', 'Flags', 'ItemClipsChildrenToShape');
+    export const ItemAcceptsInputMethod = createEnumToken('VerticalHeaderView', 'Flags', 'ItemAcceptsInputMethod');
+    export const ItemIsFocusScope = createEnumToken('VerticalHeaderView', 'Flags', 'ItemIsFocusScope');
+    export const ItemHasContents = createEnumToken('VerticalHeaderView', 'Flags', 'ItemHasContents');
+    export const ItemAcceptsDrops = createEnumToken('VerticalHeaderView', 'Flags', 'ItemAcceptsDrops');
     export const ItemIsViewport = createEnumToken('VerticalHeaderView', 'Flags', 'ItemIsViewport');
-    export const ItemObservesViewport = createEnumToken(
-      'VerticalHeaderView',
-      'Flags',
-      'ItemObservesViewport',
-    );
+    export const ItemObservesViewport = createEnumToken('VerticalHeaderView', 'Flags', 'ItemObservesViewport');
   }
   export namespace FlickableDirection {
-    export const AutoFlickDirection = createEnumToken(
-      'VerticalHeaderView',
-      'FlickableDirection',
-      'AutoFlickDirection',
-    );
-    export const HorizontalFlick = createEnumToken(
-      'VerticalHeaderView',
-      'FlickableDirection',
-      'HorizontalFlick',
-    );
-    export const VerticalFlick = createEnumToken(
-      'VerticalHeaderView',
-      'FlickableDirection',
-      'VerticalFlick',
-    );
-    export const HorizontalAndVerticalFlick = createEnumToken(
-      'VerticalHeaderView',
-      'FlickableDirection',
-      'HorizontalAndVerticalFlick',
-    );
-    export const AutoFlickIfNeeded = createEnumToken(
-      'VerticalHeaderView',
-      'FlickableDirection',
-      'AutoFlickIfNeeded',
-    );
+    export const AutoFlickDirection = createEnumToken('VerticalHeaderView', 'FlickableDirection', 'AutoFlickDirection');
+    export const HorizontalFlick = createEnumToken('VerticalHeaderView', 'FlickableDirection', 'HorizontalFlick');
+    export const VerticalFlick = createEnumToken('VerticalHeaderView', 'FlickableDirection', 'VerticalFlick');
+    export const HorizontalAndVerticalFlick = createEnumToken('VerticalHeaderView', 'FlickableDirection', 'HorizontalAndVerticalFlick');
+    export const AutoFlickIfNeeded = createEnumToken('VerticalHeaderView', 'FlickableDirection', 'AutoFlickIfNeeded');
   }
   export namespace ItemChange {
-    export const ItemChildAddedChange = createEnumToken(
-      'VerticalHeaderView',
-      'ItemChange',
-      'ItemChildAddedChange',
-    );
-    export const ItemChildRemovedChange = createEnumToken(
-      'VerticalHeaderView',
-      'ItemChange',
-      'ItemChildRemovedChange',
-    );
-    export const ItemSceneChange = createEnumToken(
-      'VerticalHeaderView',
-      'ItemChange',
-      'ItemSceneChange',
-    );
-    export const ItemVisibleHasChanged = createEnumToken(
-      'VerticalHeaderView',
-      'ItemChange',
-      'ItemVisibleHasChanged',
-    );
-    export const ItemParentHasChanged = createEnumToken(
-      'VerticalHeaderView',
-      'ItemChange',
-      'ItemParentHasChanged',
-    );
-    export const ItemOpacityHasChanged = createEnumToken(
-      'VerticalHeaderView',
-      'ItemChange',
-      'ItemOpacityHasChanged',
-    );
-    export const ItemActiveFocusHasChanged = createEnumToken(
-      'VerticalHeaderView',
-      'ItemChange',
-      'ItemActiveFocusHasChanged',
-    );
-    export const ItemRotationHasChanged = createEnumToken(
-      'VerticalHeaderView',
-      'ItemChange',
-      'ItemRotationHasChanged',
-    );
-    export const ItemAntialiasingHasChanged = createEnumToken(
-      'VerticalHeaderView',
-      'ItemChange',
-      'ItemAntialiasingHasChanged',
-    );
-    export const ItemDevicePixelRatioHasChanged = createEnumToken(
-      'VerticalHeaderView',
-      'ItemChange',
-      'ItemDevicePixelRatioHasChanged',
-    );
-    export const ItemEnabledHasChanged = createEnumToken(
-      'VerticalHeaderView',
-      'ItemChange',
-      'ItemEnabledHasChanged',
-    );
-    export const ItemScaleHasChanged = createEnumToken(
-      'VerticalHeaderView',
-      'ItemChange',
-      'ItemScaleHasChanged',
-    );
-    export const ItemTransformHasChanged = createEnumToken(
-      'VerticalHeaderView',
-      'ItemChange',
-      'ItemTransformHasChanged',
-    );
+    export const ItemChildAddedChange = createEnumToken('VerticalHeaderView', 'ItemChange', 'ItemChildAddedChange');
+    export const ItemChildRemovedChange = createEnumToken('VerticalHeaderView', 'ItemChange', 'ItemChildRemovedChange');
+    export const ItemSceneChange = createEnumToken('VerticalHeaderView', 'ItemChange', 'ItemSceneChange');
+    export const ItemVisibleHasChanged = createEnumToken('VerticalHeaderView', 'ItemChange', 'ItemVisibleHasChanged');
+    export const ItemParentHasChanged = createEnumToken('VerticalHeaderView', 'ItemChange', 'ItemParentHasChanged');
+    export const ItemOpacityHasChanged = createEnumToken('VerticalHeaderView', 'ItemChange', 'ItemOpacityHasChanged');
+    export const ItemActiveFocusHasChanged = createEnumToken('VerticalHeaderView', 'ItemChange', 'ItemActiveFocusHasChanged');
+    export const ItemRotationHasChanged = createEnumToken('VerticalHeaderView', 'ItemChange', 'ItemRotationHasChanged');
+    export const ItemAntialiasingHasChanged = createEnumToken('VerticalHeaderView', 'ItemChange', 'ItemAntialiasingHasChanged');
+    export const ItemDevicePixelRatioHasChanged = createEnumToken('VerticalHeaderView', 'ItemChange', 'ItemDevicePixelRatioHasChanged');
+    export const ItemEnabledHasChanged = createEnumToken('VerticalHeaderView', 'ItemChange', 'ItemEnabledHasChanged');
+    export const ItemScaleHasChanged = createEnumToken('VerticalHeaderView', 'ItemChange', 'ItemScaleHasChanged');
+    export const ItemTransformHasChanged = createEnumToken('VerticalHeaderView', 'ItemChange', 'ItemTransformHasChanged');
   }
   export namespace PositionMode {
     export const AlignLeft = createEnumToken('VerticalHeaderView', 'PositionMode', 'AlignLeft');
     export const AlignRight = createEnumToken('VerticalHeaderView', 'PositionMode', 'AlignRight');
-    export const AlignHCenter = createEnumToken(
-      'VerticalHeaderView',
-      'PositionMode',
-      'AlignHCenter',
-    );
+    export const AlignHCenter = createEnumToken('VerticalHeaderView', 'PositionMode', 'AlignHCenter');
     export const AlignTop = createEnumToken('VerticalHeaderView', 'PositionMode', 'AlignTop');
     export const AlignBottom = createEnumToken('VerticalHeaderView', 'PositionMode', 'AlignBottom');
-    export const AlignVCenter = createEnumToken(
-      'VerticalHeaderView',
-      'PositionMode',
-      'AlignVCenter',
-    );
+    export const AlignVCenter = createEnumToken('VerticalHeaderView', 'PositionMode', 'AlignVCenter');
     export const AlignCenter = createEnumToken('VerticalHeaderView', 'PositionMode', 'AlignCenter');
     export const Visible = createEnumToken('VerticalHeaderView', 'PositionMode', 'Visible');
     export const Contain = createEnumToken('VerticalHeaderView', 'PositionMode', 'Contain');
   }
   export namespace SelectionBehavior {
-    export const SelectionDisabled = createEnumToken(
-      'VerticalHeaderView',
-      'SelectionBehavior',
-      'SelectionDisabled',
-    );
-    export const SelectCells = createEnumToken(
-      'VerticalHeaderView',
-      'SelectionBehavior',
-      'SelectCells',
-    );
-    export const SelectRows = createEnumToken(
-      'VerticalHeaderView',
-      'SelectionBehavior',
-      'SelectRows',
-    );
-    export const SelectColumns = createEnumToken(
-      'VerticalHeaderView',
-      'SelectionBehavior',
-      'SelectColumns',
-    );
+    export const SelectionDisabled = createEnumToken('VerticalHeaderView', 'SelectionBehavior', 'SelectionDisabled');
+    export const SelectCells = createEnumToken('VerticalHeaderView', 'SelectionBehavior', 'SelectCells');
+    export const SelectRows = createEnumToken('VerticalHeaderView', 'SelectionBehavior', 'SelectRows');
+    export const SelectColumns = createEnumToken('VerticalHeaderView', 'SelectionBehavior', 'SelectColumns');
   }
   export namespace SelectionMode {
-    export const SingleSelection = createEnumToken(
-      'VerticalHeaderView',
-      'SelectionMode',
-      'SingleSelection',
-    );
-    export const ContiguousSelection = createEnumToken(
-      'VerticalHeaderView',
-      'SelectionMode',
-      'ContiguousSelection',
-    );
-    export const ExtendedSelection = createEnumToken(
-      'VerticalHeaderView',
-      'SelectionMode',
-      'ExtendedSelection',
-    );
+    export const SingleSelection = createEnumToken('VerticalHeaderView', 'SelectionMode', 'SingleSelection');
+    export const ContiguousSelection = createEnumToken('VerticalHeaderView', 'SelectionMode', 'ContiguousSelection');
+    export const ExtendedSelection = createEnumToken('VerticalHeaderView', 'SelectionMode', 'ExtendedSelection');
   }
   export namespace TransformOrigin {
     export const TopLeft = createEnumToken('VerticalHeaderView', 'TransformOrigin', 'TopLeft');
@@ -1046,16 +871,8 @@ export namespace VerticalHeaderView {
     export const Left = createEnumToken('VerticalHeaderView', 'TransformOrigin', 'Left');
     export const Center = createEnumToken('VerticalHeaderView', 'TransformOrigin', 'Center');
     export const Right = createEnumToken('VerticalHeaderView', 'TransformOrigin', 'Right');
-    export const BottomLeft = createEnumToken(
-      'VerticalHeaderView',
-      'TransformOrigin',
-      'BottomLeft',
-    );
+    export const BottomLeft = createEnumToken('VerticalHeaderView', 'TransformOrigin', 'BottomLeft');
     export const Bottom = createEnumToken('VerticalHeaderView', 'TransformOrigin', 'Bottom');
-    export const BottomRight = createEnumToken(
-      'VerticalHeaderView',
-      'TransformOrigin',
-      'BottomRight',
-    );
+    export const BottomRight = createEnumToken('VerticalHeaderView', 'TransformOrigin', 'BottomRight');
   }
 }
