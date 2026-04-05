@@ -194,6 +194,31 @@ export const QML_TYPE_MAP: Readonly<Record<string, string>> = {
   variant: 'QmlValue',
   QVariant: 'QmlValue',
   QJSValue: 'QmlValue',
+
+  // Data container types — array-like
+  QScatterDataArray: 'QmlValue[]',
+  QBarDataArray: 'QmlValue[]',
+  QSurfaceDataArray: 'QmlValue[]',
+
+  // Math / graphics types without direct QML equivalents
+  QMatrix3x3: 'QmlValue',
+  QLinearGradient: 'QmlValue',
+  QLevelOfDetailBoundingSphere: 'QmlValue',
+
+  // Infrastructure / internal types
+  QRemoteObjectSourceLocation: 'QmlValue',
+  QQStyleKitExtendableControlType: 'QmlValue',
+  QAnimationClipData: 'QmlValue',
+
+  // Domain-specific types
+  QTimeZone: 'string',
+  QPlaceCategory: 'QmlValue',
+  QPlace: 'QmlValue',
+  QVideoFrame: 'QmlValue',
+  QAudioBufferInput: 'QmlValue',
+  QVideoFrameInput: 'QmlValue',
+  QAudioBufferOutput: 'QmlValue',
+  QScxmlDataModel: 'QmlValue',
 };
 
 // ─── Classification Helpers ─────────────────────────────────────────────

@@ -93,7 +93,13 @@ export class TypeMapper {
       return staticMapping;
     }
 
-    // 2. Check list types (QList<X>, list<X>)
+    // 2. Bare list without generic parameter
+    if (qmlType === 'list' || qmlType === 'QVariantList') {
+      this.runtimeImports.add('QmlValue');
+      return 'QmlValue[]';
+    }
+
+    // 3. Check list types (QList<X>, list<X>)
     const listMatch = qmlType.match(/^(?:QList|list)<(.+)>$/);
     if (listMatch) {
       const innerType = listMatch[1]!.trim();
@@ -226,8 +232,10 @@ export class TypeMapper {
     if (tsType === 'number' || tsType === 'string' || tsType === 'boolean') {
       return;
     }
-    if (tsType.startsWith('Qml')) {
-      this.runtimeImports.add(tsType);
+    // Strip array suffix — import the base type, not `QmlValue[]`
+    const baseType = tsType.endsWith('[]') ? tsType.slice(0, -2) : tsType;
+    if (baseType.startsWith('Qml')) {
+      this.runtimeImports.add(baseType);
     }
   }
 

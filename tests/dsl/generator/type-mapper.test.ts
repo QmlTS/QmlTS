@@ -195,4 +195,34 @@ describe('TypeMapper', () => {
       expect(m2.mapType('CompletelyFakeType')).toBe('QmlValue');
     });
   });
+
+  describe('data container types', () => {
+    test('TM-90: bare list maps to QmlValue[]', () => {
+      expect(mapper.mapType('list')).toBe('QmlValue[]');
+    });
+
+    test('TM-91: QScatterDataArray maps to QmlValue[]', () => {
+      expect(mapper.mapType('QScatterDataArray')).toBe('QmlValue[]');
+    });
+
+    test('TM-92: QBarDataArray maps to QmlValue[]', () => {
+      expect(mapper.mapType('QBarDataArray')).toBe('QmlValue[]');
+    });
+
+    test('TM-93: QSurfaceDataArray maps to QmlValue[]', () => {
+      expect(mapper.mapType('QSurfaceDataArray')).toBe('QmlValue[]');
+    });
+
+    test('TM-94: QMatrix3x3 maps to QmlValue', () => {
+      expect(mapper.mapType('QMatrix3x3')).toBe('QmlValue');
+    });
+
+    test('TM-95: QLinearGradient maps to QmlValue', () => {
+      expect(mapper.mapType('QLinearGradient')).toBe('QmlValue');
+    });
+
+    test('TM-96: QTimeZone maps to string', () => {
+      expect(mapper.mapType('QTimeZone')).toBe('string');
+    });
+  });
 });
