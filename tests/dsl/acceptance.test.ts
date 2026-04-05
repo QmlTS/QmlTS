@@ -286,3 +286,205 @@ describe('Acceptance: Generated Fluent API', () => {
     });
   });
 });
+
+// ─── P0 Module Expansion: QtQuick.Layouts ──────────────────────────────
+
+import { ColumnLayout } from '../../src/dsl/generated/QtQuick.Layouts/ColumnLayout.js';
+import { RowLayout } from '../../src/dsl/generated/QtQuick.Layouts/RowLayout.js';
+
+describe('Acceptance: QtQuick.Layouts', () => {
+  test('ACC-13: ColumnLayout with spacing and children', () => {
+    const layout = ColumnLayout()
+      .spacing(10)
+      .child(Rectangle().width(100).height(50))
+      .child(Rectangle().width(100).height(50));
+
+    const doc = createDocument().importModule('QtQuick').importModule('QtQuick.Layouts').root(layout);
+    const qml = emit(doc);
+
+    expect(qml).toContain('ColumnLayout {');
+    expect(qml).toContain('spacing: 10');
+    expect(qml).toContain('Rectangle {');
+  });
+
+  test('ACC-14: RowLayout with Layout attached via addAttached', () => {
+    const rect = Rectangle()
+      .color('red' as QmlColor)
+      .addAttached('Layout', [
+        { property: 'fillWidth', value: true },
+        { property: 'fillHeight', value: true },
+      ]);
+
+    const layout = RowLayout().child(rect);
+    const doc = createDocument().importModule('QtQuick').importModule('QtQuick.Layouts').root(layout);
+    const qml = emit(doc);
+
+    expect(qml).toContain('RowLayout {');
+    expect(qml).toContain('Layout.fillWidth: true');
+    expect(qml).toContain('Layout.fillHeight: true');
+  });
+
+  test('ACC-15: ColumnLayout binding expression', () => {
+    const layout = ColumnLayout().spacingBind('parent.height / 10');
+
+    const node = layout.build();
+    const binding = node.members.find(
+      (m) => m.kind === 'Binding' && m.property === 'spacing',
+    );
+    expect(binding).toBeDefined();
+    if (binding && binding.kind === 'Binding') {
+      expect(binding.value.kind).toBe('expression');
+    }
+  });
+});
+
+// ─── P0 Module Expansion: QtQml ────────────────────────────────────────
+
+import { Timer } from '../../src/dsl/generated/QtQml/Timer.js';
+import { Connections } from '../../src/dsl/generated/QtQml/Connections.js';
+
+describe('Acceptance: QtQml', () => {
+  test('ACC-16: Timer with interval and signal handler', () => {
+    const timer = Timer()
+      .interval(1000)
+      .repeat(true)
+      .running(true)
+      .onTriggered('count++');
+
+    const doc = createDocument().importModule('QtQml').root(timer);
+    const qml = emit(doc);
+
+    expect(qml).toContain('Timer {');
+    expect(qml).toContain('interval: 1000');
+    expect(qml).toContain('repeat: true');
+    expect(qml).toContain('running: true');
+    expect(qml).toContain('onTriggered:');
+  });
+
+  test('ACC-17: Connections with target binding and signal handler', () => {
+    const conn = Connections()
+      .targetBind('myButton')
+      .handleSignal('onClicked', 'handleClick()');
+
+    const doc = createDocument().importModule('QtQml').root(conn);
+    const qml = emit(doc);
+
+    expect(qml).toContain('Connections {');
+    expect(qml).toContain('target: myButton');
+    expect(qml).toContain('onClicked:');
+  });
+});
+
+// ─── P0 Module Expansion: QtCore ───────────────────────────────────────
+
+import { Settings } from '../../src/dsl/generated/QtCore/Settings.js';
+
+describe('Acceptance: QtCore', () => {
+  test('ACC-18: Settings with category', () => {
+    const settings = Settings()
+      .category('app');
+
+    const doc = createDocument().importModule('QtCore').root(settings);
+    const qml = emit(doc);
+
+    expect(qml).toContain('Settings {');
+    expect(qml).toContain('category: "app"');
+  });
+});
+
+// ─── P0 Module Expansion: QtQuick.Templates ────────────────────────────
+
+import { Button } from '../../src/dsl/generated/QtQuick.Templates/Button.js';
+import { Slider } from '../../src/dsl/generated/QtQuick.Templates/Slider.js';
+import { TextField } from '../../src/dsl/generated/QtQuick.Templates/TextField.js';
+import { Label } from '../../src/dsl/generated/QtQuick.Templates/Label.js';
+
+describe('Acceptance: QtQuick.Templates', () => {
+  test('ACC-19: Button with text and click handler', () => {
+    const btn = Button()
+      .text('Click Me')
+      .onClicked('doSomething()');
+
+    const doc = createDocument().importModule('QtQuick.Controls').root(btn);
+    const qml = emit(doc);
+
+    expect(qml).toContain('Button {');
+    expect(qml).toContain('text: "Click Me"');
+    expect(qml).toContain('onClicked:');
+  });
+
+  test('ACC-20: Slider with range and step', () => {
+    const slider = Slider()
+      .from(0)
+      .to(100)
+      .value(50)
+      .stepSize(5);
+
+    const doc = createDocument().importModule('QtQuick.Controls').root(slider);
+    const qml = emit(doc);
+
+    expect(qml).toContain('Slider {');
+    expect(qml).toContain('from: 0');
+    expect(qml).toContain('to: 100');
+    expect(qml).toContain('value: 50');
+    expect(qml).toContain('stepSize: 5');
+  });
+
+  test('ACC-21: TextField with placeholder and id', () => {
+    const field = TextField()
+      .id('nameField')
+      .placeholderText('Enter name...');
+
+    const doc = createDocument().importModule('QtQuick.Controls').root(field);
+    const qml = emit(doc);
+
+    expect(qml).toContain('TextField {');
+    expect(qml).toContain('id: nameField');
+    expect(qml).toContain('placeholderText: "Enter name..."');
+  });
+
+  test('ACC-22: Label with text and wrapping', () => {
+    const label = Label()
+      .text('Hello World');
+
+    const doc = createDocument().importModule('QtQuick.Controls').root(label);
+    const qml = emit(doc);
+
+    expect(qml).toContain('Label {');
+    expect(qml).toContain('text: "Hello World"');
+  });
+
+  test('ACC-23: Complex form layout with Controls and Layouts', () => {
+    const form = ColumnLayout()
+      .spacing(16)
+      .child(
+        Label().text('Username:'),
+      )
+      .child(
+        TextField()
+          .id('usernameField')
+          .placeholderText('Enter username...')
+          .addAttached('Layout', [{ property: 'fillWidth', value: true }]),
+      )
+      .child(
+        Button()
+          .text('Submit')
+          .onClicked('submitForm(usernameField.text)')
+          .addAttached('Layout', [{ property: 'fillWidth', value: true }]),
+      );
+
+    const doc = createDocument()
+      .importModule('QtQuick')
+      .importModule('QtQuick.Controls')
+      .importModule('QtQuick.Layouts')
+      .root(form);
+    const qml = emit(doc);
+
+    expect(qml).toContain('ColumnLayout {');
+    expect(qml).toContain('Label {');
+    expect(qml).toContain('TextField {');
+    expect(qml).toContain('Button {');
+    expect(qml).toContain('Layout.fillWidth: true');
+    expect(qml).toContain('onClicked:');
+  });
+});
