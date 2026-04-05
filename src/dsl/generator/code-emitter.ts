@@ -60,13 +60,14 @@ export class CodeEmitter {
     }
     lines.push('}');
 
-    // Imports — surface files are type-only
-    const runtimeImports = this.mapper.getRequiredRuntimeImports();
-    const peerRefs = this.mapper.getPeerTypeRefs();
+    // Imports — surface files are type-only, filter to actually used
+    const codeBody = lines.join('\n');
+    const runtimeImports = filterUsedImports(this.mapper.getRequiredRuntimeImports(), codeBody);
+    const peerRefs = filterUsedPeerRefs(this.mapper.getPeerTypeRefs(), codeBody);
     const importSection = this.buildSurfaceImportSection(runtimeImports, peerRefs, moduleUri);
     const header = this.buildHeader(`Grouped surface: ${surface.qmlName}`, importSection);
 
-    return `${header}\n${lines.join('\n')}\n`;
+    return `${header}\n${codeBody}\n`;
   }
 
   /** Emit an attached surface builder file */
@@ -99,13 +100,14 @@ export class CodeEmitter {
     }
     lines.push('}');
 
-    // Imports — surface files are type-only
-    const runtimeImports = this.mapper.getRequiredRuntimeImports();
-    const peerRefs = this.mapper.getPeerTypeRefs();
+    // Imports — surface files are type-only, filter to actually used
+    const codeBody = lines.join('\n');
+    const runtimeImports = filterUsedImports(this.mapper.getRequiredRuntimeImports(), codeBody);
+    const peerRefs = filterUsedPeerRefs(this.mapper.getPeerTypeRefs(), codeBody);
     const importSection = this.buildSurfaceImportSection(runtimeImports, peerRefs, moduleUri);
     const header = this.buildHeader(`Attached type: ${surface.ownerQmlName}`, importSection);
 
-    return `${header}\n${lines.join('\n')}\n`;
+    return `${header}\n${codeBody}\n`;
   }
 
   private emitCreatable(type: AnalyzedType): string {
@@ -117,18 +119,11 @@ export class CodeEmitter {
     const allEnums = [...type.ownEnums, ...type.inheritedEnums];
     const hasEnums = allEnums.length > 0;
 
-    // Pre-map all property types to collect imports
+    // Pre-map writable property types to collect imports
     const propTypes = new Map<string, string>();
     for (const prop of allProps) {
       if (!prop.readonly) {
         propTypes.set(prop.name, this.mapper.mapType(prop.qmlType));
-      }
-    }
-
-    // Also pre-map signal parameter types
-    for (const sig of allSignals) {
-      for (const p of sig.parameters) {
-        this.mapper.mapType(p.type);
       }
     }
 
@@ -203,8 +198,9 @@ export class CodeEmitter {
     }
 
     // ─── Build imports and header ───────────────────────────────────────
-    const runtimeImports = this.mapper.getRequiredRuntimeImports();
-    const peerRefs = this.collectAllPeerRefs(type);
+    const codeBody = lines.join('\n');
+    const runtimeImports = filterUsedImports(this.mapper.getRequiredRuntimeImports(), codeBody);
+    const peerRefs = filterUsedPeerRefs(this.collectAllPeerRefs(type), codeBody);
     const importSection = this.buildCreatableImportSection(
       runtimeImports,
       peerRefs,
@@ -213,7 +209,7 @@ export class CodeEmitter {
     );
     const header = this.buildHeader(type.dslSymbolName, importSection);
 
-    return `${header}\n${lines.join('\n')}\n`;
+    return `${header}\n${codeBody}\n`;
   }
 
   private emitSingleton(type: AnalyzedType): string {
@@ -254,8 +250,9 @@ export class CodeEmitter {
       lines.push(`export const ${type.dslSymbolName} = {} as ${interfaceName};`);
     }
 
-    const runtimeImports = this.mapper.getRequiredRuntimeImports();
-    const peerRefs = this.collectAllPeerRefs(type);
+    const codeBody = lines.join('\n');
+    const runtimeImports = filterUsedImports(this.mapper.getRequiredRuntimeImports(), codeBody);
+    const peerRefs = filterUsedPeerRefs(this.collectAllPeerRefs(type), codeBody);
     const importSection = this.buildSingletonImportSection(
       runtimeImports,
       peerRefs,
@@ -264,7 +261,7 @@ export class CodeEmitter {
     );
     const header = this.buildHeader(type.dslSymbolName, importSection);
 
-    return `${header}\n${lines.join('\n')}\n`;
+    return `${header}\n${codeBody}\n`;
   }
 
   private emitGroupedSurfaceFile(type: AnalyzedType): string {
@@ -615,5 +612,21 @@ function sortedByName<T extends { name: string }>(items: T[]): T[] {
     if (a.name < b.name) return -1;
     if (a.name > b.name) return 1;
     return 0;
+  });
+}
+
+/** Filter runtime import names to only those actually used in the code body */
+function filterUsedImports(imports: string[], codeBody: string): string[] {
+  return imports.filter((name) => {
+    // Use word-boundary check to avoid false positives
+    const pattern = new RegExp(`\\b${name.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\b`);
+    return pattern.test(codeBody);
+  });
+}
+
+function filterUsedPeerRefs(peerRefs: PeerTypeRef[], codeBody: string): PeerTypeRef[] {
+  return peerRefs.filter((ref) => {
+    const pattern = new RegExp(`\\b${ref.tsName.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\b`);
+    return pattern.test(codeBody);
   });
 }

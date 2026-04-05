@@ -2,7 +2,18 @@ import { DslBuilderImpl, type QmlObjectBuilder } from './builder-base.js';
 import type { AttachedMeta, GroupedMeta, TypeMetadata } from './metadata.js';
 import { createPropertyCollector } from './property-collector.js';
 
-const BUILTIN_METHODS = new Set(['id', 'child', 'build', '__typeName', 'addRawMember']);
+const BUILTIN_METHODS = new Set([
+  'id',
+  'child',
+  'build',
+  '__typeName',
+  'addRawMember',
+  'setProp',
+  'setBinding',
+  'handleSignal',
+  'addGrouped',
+  'addAttached',
+]);
 
 /**
  * Create a Proxy-backed fluent builder for a QML type.

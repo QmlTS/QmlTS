@@ -2,9 +2,10 @@
 // Type: SystemPalette
 // Generated from Qt 6.11.0
 
-import type { QmlEnumToken, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import type { QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { AccessibleAttachedBuilder } from './Accessible.js';
+import type { ColorGroupBuilder } from './ColorGroup.js';
 import type { EnterKeyAttachedBuilder } from './EnterKey.js';
 import type { GraphicsInfoAttachedBuilder } from './GraphicsInfo.js';
 import type { KeyNavigationAttachedBuilder } from './KeyNavigation.js';
@@ -24,7 +25,7 @@ export interface SystemPaletteBuilder {
   id(id: string): SystemPaletteBuilder;
   child(obj: QmlObjectBuilder): SystemPaletteBuilder;
 
-  colorGroup(value: QmlEnumToken): SystemPaletteBuilder;
+  colorGroup(value: ColorGroupBuilder): SystemPaletteBuilder;
   colorGroupBind(expr: string): SystemPaletteBuilder;
   objectName(value: string): SystemPaletteBuilder;
   objectNameBind(expr: string): SystemPaletteBuilder;

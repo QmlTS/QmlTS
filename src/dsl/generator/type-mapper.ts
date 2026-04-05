@@ -21,15 +21,65 @@ export class TypeMapper {
   private readonly runtimeImports = new Set<string>();
   private readonly peerTypeRefs = new Map<string, PeerTypeRef>();
   private readonly diagnostics: GeneratorDiagnostic[] = [];
-  private readonly typeNameToAnalyzed = new Map<string, AnalyzedType>();
+  private readonly qualifiedTypeNameToAnalyzed = new Map<string, AnalyzedType>();
+  private readonly qmlNameToAnalyzed = new Map<string, AnalyzedType>();
+  private readonly shortCppNameToAnalyzed = new Map<string, AnalyzedType>();
 
   constructor(analyzed: AnalyzedRegistry) {
     this.analyzed = analyzed;
     this.enumIndex = analyzed.enumIndex;
 
-    // Build lookup by C++ qualified name and QML name
+    // Build lookup by C++ qualified name (primary key)
     for (const [qn, type] of analyzed.allTypes) {
-      this.typeNameToAnalyzed.set(qn, type);
+      this.qualifiedTypeNameToAnalyzed.set(qn, type);
+    }
+
+    // Build reverse-index by qmlName and short C++ class name.
+    // Only index non-ambiguous names; skip if multiple resolvable types share the same short name.
+    const shortNameCandidates = new Map<string, AnalyzedType | null>();
+    const qmlNameCandidates = new Map<string, AnalyzedType | null>();
+
+    for (const [, type] of analyzed.allTypes) {
+      // Skip internal types — they're implementation details
+      if (type.classification === 'internal') {
+        continue;
+      }
+
+      // Index by qmlName (e.g., "Entity" → Qt3DCore::QEntity)
+      if (!this.qualifiedTypeNameToAnalyzed.has(type.qmlName)) {
+        const existing = qmlNameCandidates.get(type.qmlName);
+        if (existing === undefined) {
+          qmlNameCandidates.set(type.qmlName, type);
+        } else {
+          qmlNameCandidates.set(type.qmlName, null); // ambiguous
+        }
+      }
+
+      // Index by short C++ class name — strip namespace from qualifiedName
+      const colonIdx = type.qualifiedName.lastIndexOf('::');
+      if (colonIdx >= 0) {
+        const shortName = type.qualifiedName.slice(colonIdx + 2);
+        if (!this.qualifiedTypeNameToAnalyzed.has(shortName)) {
+          const existing = shortNameCandidates.get(shortName);
+          if (existing === undefined) {
+            shortNameCandidates.set(shortName, type);
+          } else {
+            shortNameCandidates.set(shortName, null); // ambiguous
+          }
+        }
+      }
+    }
+
+    // Keep non-ambiguous reverse indexes separate so enum names continue to win.
+    for (const [name, type] of qmlNameCandidates) {
+      if (type !== null) {
+        this.qmlNameToAnalyzed.set(name, type);
+      }
+    }
+    for (const [name, type] of shortNameCandidates) {
+      if (type !== null && !this.qmlNameToAnalyzed.has(name)) {
+        this.shortCppNameToAnalyzed.set(name, type);
+      }
     }
   }
 
@@ -45,7 +95,13 @@ export class TypeMapper {
       return staticMapping;
     }
 
-    // 2. Check list types (QList<X>, list<X>)
+    // 2. Bare list without generic parameter
+    if (qmlType === 'list' || qmlType === 'QVariantList') {
+      this.runtimeImports.add('QmlValue');
+      return 'QmlValue[]';
+    }
+
+    // 3. Check list types (QList<X>, list<X>)
     const listMatch = qmlType.match(/^(?:QList|list)<(.+)>$/);
     if (listMatch) {
       const innerType = listMatch[1]!.trim();
@@ -60,12 +116,24 @@ export class TypeMapper {
     }
 
     // 4. Check known types from the analyzed registry
-    const analyzed = this.typeNameToAnalyzed.get(qmlType);
+    const analyzed = this.qualifiedTypeNameToAnalyzed.get(qmlType);
     if (analyzed) {
       return this.mapAnalyzedType(analyzed);
     }
 
-    // 5. Try stripping C++ namespace (e.g. Qt::Alignment → Alignment)
+    // 5. Check grouped surfaces by qualified name
+    const grouped = this.analyzed.groupedSurfaces.get(qmlType);
+    if (grouped) {
+      return grouped.builderName;
+    }
+
+    // 6. Check enum index before reverse-index object resolution
+    if (this.resolveEnum(qmlType)) {
+      this.runtimeImports.add('QmlEnumToken');
+      return 'QmlEnumToken';
+    }
+
+    // 7. Try stripping C++ namespace (e.g. Qt::Alignment → Alignment)
     const colonIdx = qmlType.lastIndexOf('::');
     if (colonIdx >= 0) {
       const stripped = qmlType.slice(colonIdx + 2);
@@ -73,26 +141,20 @@ export class TypeMapper {
       if (strippedResult) return strippedResult;
     }
 
-    // 5b. Strip pointer suffix and retry (e.g. QBarSet* → QBarSet)
+    // 7b. Strip pointer suffix and retry (e.g. QBarSet* → QBarSet)
     if (qmlType.endsWith('*')) {
       const baseType = qmlType.slice(0, -1).trim();
       const result = this.tryMapKnownType(baseType);
       if (result) return result;
     }
 
-    // 6. Check grouped surfaces by qualified name
-    const grouped = this.analyzed.groupedSurfaces.get(qmlType);
-    if (grouped) {
-      return grouped.builderName;
+    // 8. Finally, try non-qualified reverse indexes (qmlName / short C++ name)
+    const reverseMapped = this.tryMapReverseIndexedType(qmlType);
+    if (reverseMapped) {
+      return reverseMapped;
     }
 
-    // 7. Check enum index — resolved enums become QmlEnumToken
-    if (this.resolveEnum(qmlType)) {
-      this.runtimeImports.add('QmlEnumToken');
-      return 'QmlEnumToken';
-    }
-
-    // 8. Fallback
+    // 9. Fallback
     return this.fallback(qmlType);
   }
 
@@ -178,8 +240,10 @@ export class TypeMapper {
     if (tsType === 'number' || tsType === 'string' || tsType === 'boolean') {
       return;
     }
-    if (tsType.startsWith('Qml')) {
-      this.runtimeImports.add(tsType);
+    // Strip array suffix — import the base type, not `QmlValue[]`
+    const baseType = tsType.endsWith('[]') ? tsType.slice(0, -2) : tsType;
+    if (baseType.startsWith('Qml')) {
+      this.runtimeImports.add(baseType);
     }
   }
 
@@ -190,11 +254,29 @@ export class TypeMapper {
       this.trackRuntimeImport(staticMapping);
       return staticMapping;
     }
-    const analyzed = this.typeNameToAnalyzed.get(name);
+    const analyzed = this.qualifiedTypeNameToAnalyzed.get(name);
     if (analyzed) return this.mapAnalyzedType(analyzed);
+    const grouped = this.analyzed.groupedSurfaces.get(name);
+    if (grouped) {
+      return grouped.builderName;
+    }
     if (this.resolveEnum(name)) {
       this.runtimeImports.add('QmlEnumToken');
       return 'QmlEnumToken';
+    }
+    const reverseMapped = this.tryMapReverseIndexedType(name);
+    if (reverseMapped) return reverseMapped;
+    return undefined;
+  }
+
+  private tryMapReverseIndexedType(name: string): string | undefined {
+    const byQmlName = this.qmlNameToAnalyzed.get(name);
+    if (byQmlName) {
+      return this.mapAnalyzedType(byQmlName);
+    }
+    const byShortCppName = this.shortCppNameToAnalyzed.get(name);
+    if (byShortCppName) {
+      return this.mapAnalyzedType(byShortCppName);
     }
     return undefined;
   }

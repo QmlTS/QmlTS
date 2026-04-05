@@ -39,7 +39,7 @@ export interface ShortcutBuilder {
   objectNameBind(expr: string): ShortcutBuilder;
   sequence(value: QmlValue): ShortcutBuilder;
   sequenceBind(expr: string): ShortcutBuilder;
-  sequences(value: QmlValue): ShortcutBuilder;
+  sequences(value: QmlValue[]): ShortcutBuilder;
   sequencesBind(expr: string): ShortcutBuilder;
   onActivated(body: string): ShortcutBuilder;
   onActivatedAmbiguously(body: string): ShortcutBuilder;

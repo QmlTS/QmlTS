@@ -1,5 +1,5 @@
 import { mkdirSync, rmSync, writeFileSync } from 'node:fs';
-import { dirname, join } from 'node:path';
+import { dirname, join, relative, resolve } from 'node:path';
 import type { GeneratorResult } from './types.js';
 
 export interface WriteResult {
@@ -61,20 +61,56 @@ export async function formatGeneratedFiles(outputDir: string): Promise<FormatRes
   }
 }
 
-/** Validate generated files via TypeScript typecheck (uses project tsconfig). */
-export async function validateGeneratedFiles(_outputDir: string): Promise<ValidateResult> {
+/** Validate generated files via TypeScript typecheck against outputDir. */
+export async function validateGeneratedFiles(outputDir: string): Promise<ValidateResult> {
   try {
-    const proc = Bun.spawn(['bunx', 'tsc', '--noEmit'], {
-      stdout: 'pipe',
-      stderr: 'pipe',
-    });
-    const exitCode = await proc.exited;
-    if (exitCode === 0) {
-      return { success: true, errors: [] };
+    const absOutputDir = resolve(outputDir);
+
+    // Generated files import from ../../runtime/index.js relative to the generated dir.
+    // Create a temp tsconfig in the parent of the generated tree that includes it.
+    const parentDir = dirname(absOutputDir);
+    const tsconfigPath = join(parentDir, 'tsconfig.validate.json');
+    const includePattern = join(relative(parentDir, absOutputDir), '**', '*.ts').replace(
+      /\\/g,
+      '/',
+    );
+
+    const tsconfig = {
+      compilerOptions: {
+        target: 'ESNext',
+        module: 'ESNext',
+        moduleResolution: 'bundler',
+        strict: true,
+        noEmit: true,
+        skipLibCheck: true,
+        noUnusedLocals: false,
+        noUnusedParameters: false,
+      },
+      include: [includePattern],
+    };
+
+    writeFileSync(tsconfigPath, JSON.stringify(tsconfig, null, 2));
+
+    try {
+      const proc = Bun.spawn(['bunx', 'tsc', '--noEmit', '--project', tsconfigPath], {
+        cwd: parentDir,
+        stdout: 'pipe',
+        stderr: 'pipe',
+      });
+      const exitCode = await proc.exited;
+      if (exitCode === 0) {
+        return { success: true, errors: [] };
+      }
+      const stdout = await new Response(proc.stdout).text();
+      const stderr = await new Response(proc.stderr).text();
+      return { success: false, errors: [stdout, stderr].filter(Boolean) };
+    } finally {
+      try {
+        rmSync(tsconfigPath, { force: true });
+      } catch {
+        // cleanup is best-effort
+      }
     }
-    const stdout = await new Response(proc.stdout).text();
-    const stderr = await new Response(proc.stderr).text();
-    return { success: false, errors: [stdout, stderr].filter(Boolean) };
   } catch (error) {
     return {
       success: false,
