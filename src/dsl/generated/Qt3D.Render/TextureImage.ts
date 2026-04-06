@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlEnumToken,
   QmlObjectBuilder,
   QmlUrl,
@@ -13,6 +14,7 @@ import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface TextureImageBuilder {
   id(id: string): TextureImageBuilder;
   child(obj: QmlObjectBuilder): TextureImageBuilder;
+  children(...objs: QmlObjectBuilder[]): TextureImageBuilder;
 
   enabled(value: boolean): TextureImageBuilder;
   enabledBind(expr: string): TextureImageBuilder;
@@ -30,16 +32,16 @@ export interface TextureImageBuilder {
   parentBind(expr: string): TextureImageBuilder;
   source(value: QmlUrl): TextureImageBuilder;
   sourceBind(expr: string): TextureImageBuilder;
-  onEnabledChanged(body: string): TextureImageBuilder;
-  onFaceChanged(body: string): TextureImageBuilder;
-  onLayerChanged(body: string): TextureImageBuilder;
-  onMipLevelChanged(body: string): TextureImageBuilder;
-  onMirroredChanged(body: string): TextureImageBuilder;
-  onNodeDestroyed(body: string): TextureImageBuilder;
-  onObjectNameChanged(body: string): TextureImageBuilder;
-  onParentChanged(body: string): TextureImageBuilder;
-  onSourceChanged(body: string): TextureImageBuilder;
-  onStatusChanged(body: string): TextureImageBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): TextureImageBuilder;
+  onFaceChanged(handler: DslSignalHandlerValue): TextureImageBuilder;
+  onLayerChanged(handler: DslSignalHandlerValue): TextureImageBuilder;
+  onMipLevelChanged(handler: DslSignalHandlerValue): TextureImageBuilder;
+  onMirroredChanged(handler: DslSignalHandlerValue): TextureImageBuilder;
+  onNodeDestroyed(handler: DslSignalHandlerValue): TextureImageBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): TextureImageBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): TextureImageBuilder;
+  onSourceChanged(handler: DslSignalHandlerValue): TextureImageBuilder;
+  onStatusChanged(handler: DslSignalHandlerValue): TextureImageBuilder;
 }
 
 const TEXTUREIMAGE_META: TypeMetadata = {

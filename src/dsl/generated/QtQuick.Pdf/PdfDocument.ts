@@ -2,20 +2,26 @@
 // Type: PdfDocument
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlUrl, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlObjectBuilder,
+  QmlUrl,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 export interface PdfDocumentBuilder {
   id(id: string): PdfDocumentBuilder;
   child(obj: QmlObjectBuilder): PdfDocumentBuilder;
+  children(...objs: QmlObjectBuilder[]): PdfDocumentBuilder;
 
   objectName(value: string): PdfDocumentBuilder;
   objectNameBind(expr: string): PdfDocumentBuilder;
   source(value: QmlUrl): PdfDocumentBuilder;
   sourceBind(expr: string): PdfDocumentBuilder;
-  onErrorChanged(body: string): PdfDocumentBuilder;
-  onMetaDataChanged(body: string): PdfDocumentBuilder;
-  onObjectNameChanged(body: string): PdfDocumentBuilder;
-  onSourceChanged(body: string): PdfDocumentBuilder;
+  onErrorChanged(handler: DslSignalHandlerValue): PdfDocumentBuilder;
+  onMetaDataChanged(handler: DslSignalHandlerValue): PdfDocumentBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): PdfDocumentBuilder;
+  onSourceChanged(handler: DslSignalHandlerValue): PdfDocumentBuilder;
 }
 
 const PDFDOCUMENT_META: TypeMetadata = {

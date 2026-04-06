@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlColor,
   QmlComponent,
   QmlEnumToken,
@@ -14,6 +15,7 @@ import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface SplineSeriesBuilder {
   id(id: string): SplineSeriesBuilder;
   child(obj: QmlObjectBuilder): SplineSeriesBuilder;
+  children(...objs: QmlObjectBuilder[]): SplineSeriesBuilder;
 
   axisAngular(value: QmlValue): SplineSeriesBuilder;
   axisAngularBind(expr: string): SplineSeriesBuilder;
@@ -59,47 +61,47 @@ export interface SplineSeriesBuilder {
   widthBind(expr: string): SplineSeriesBuilder;
   zValue(value: number): SplineSeriesBuilder;
   zValueBind(expr: string): SplineSeriesBuilder;
-  onAxisAngularChanged(body: string): SplineSeriesBuilder;
-  onAxisRadialChanged(body: string): SplineSeriesBuilder;
-  onAxisXChanged(body: string): SplineSeriesBuilder;
-  onAxisXTopChanged(body: string): SplineSeriesBuilder;
-  onAxisYChanged(body: string): SplineSeriesBuilder;
-  onAxisYRightChanged(body: string): SplineSeriesBuilder;
-  onCapStyleChanged(body: string): SplineSeriesBuilder;
-  onClicked(body: string): SplineSeriesBuilder;
-  onColorChanged(body: string): SplineSeriesBuilder;
-  onCountChanged(body: string): SplineSeriesBuilder;
-  onDoubleClicked(body: string): SplineSeriesBuilder;
-  onDraggableChanged(body: string): SplineSeriesBuilder;
-  onHover(body: string): SplineSeriesBuilder;
-  onHoverEnter(body: string): SplineSeriesBuilder;
-  onHoverExit(body: string): SplineSeriesBuilder;
-  onHoverableChanged(body: string): SplineSeriesBuilder;
-  onHoveredChanged(body: string): SplineSeriesBuilder;
-  onLegendDataChanged(body: string): SplineSeriesBuilder;
-  onNameChanged(body: string): SplineSeriesBuilder;
-  onObjectNameChanged(body: string): SplineSeriesBuilder;
-  onOpacityChanged(body: string): SplineSeriesBuilder;
-  onOptimizedChanged(body: string): SplineSeriesBuilder;
-  onPointAdded(body: string): SplineSeriesBuilder;
-  onPointDelegateChanged(body: string): SplineSeriesBuilder;
-  onPointRemoved(body: string): SplineSeriesBuilder;
-  onPointReplaced(body: string): SplineSeriesBuilder;
-  onPointsAdded(body: string): SplineSeriesBuilder;
-  onPointsRemoved(body: string): SplineSeriesBuilder;
-  onPointsReplaced(body: string): SplineSeriesBuilder;
-  onPressed(body: string): SplineSeriesBuilder;
-  onReleased(body: string): SplineSeriesBuilder;
-  onSelectableChanged(body: string): SplineSeriesBuilder;
-  onSelectedColorChanged(body: string): SplineSeriesBuilder;
-  onSelectedPointsChanged(body: string): SplineSeriesBuilder;
-  onSeriesUpdated(body: string): SplineSeriesBuilder;
-  onStyleChanged(body: string): SplineSeriesBuilder;
-  onUpdate(body: string): SplineSeriesBuilder;
-  onValuesMultiplierChanged(body: string): SplineSeriesBuilder;
-  onVisibleChanged(body: string): SplineSeriesBuilder;
-  onWidthChanged(body: string): SplineSeriesBuilder;
-  onZValueChanged(body: string): SplineSeriesBuilder;
+  onAxisAngularChanged(handler: DslSignalHandlerValue): SplineSeriesBuilder;
+  onAxisRadialChanged(handler: DslSignalHandlerValue): SplineSeriesBuilder;
+  onAxisXChanged(handler: DslSignalHandlerValue): SplineSeriesBuilder;
+  onAxisXTopChanged(handler: DslSignalHandlerValue): SplineSeriesBuilder;
+  onAxisYChanged(handler: DslSignalHandlerValue): SplineSeriesBuilder;
+  onAxisYRightChanged(handler: DslSignalHandlerValue): SplineSeriesBuilder;
+  onCapStyleChanged(handler: DslSignalHandlerValue): SplineSeriesBuilder;
+  onClicked(handler: DslSignalHandlerValue): SplineSeriesBuilder;
+  onColorChanged(handler: DslSignalHandlerValue): SplineSeriesBuilder;
+  onCountChanged(handler: DslSignalHandlerValue): SplineSeriesBuilder;
+  onDoubleClicked(handler: DslSignalHandlerValue): SplineSeriesBuilder;
+  onDraggableChanged(handler: DslSignalHandlerValue): SplineSeriesBuilder;
+  onHover(handler: DslSignalHandlerValue): SplineSeriesBuilder;
+  onHoverEnter(handler: DslSignalHandlerValue): SplineSeriesBuilder;
+  onHoverExit(handler: DslSignalHandlerValue): SplineSeriesBuilder;
+  onHoverableChanged(handler: DslSignalHandlerValue): SplineSeriesBuilder;
+  onHoveredChanged(handler: DslSignalHandlerValue): SplineSeriesBuilder;
+  onLegendDataChanged(handler: DslSignalHandlerValue): SplineSeriesBuilder;
+  onNameChanged(handler: DslSignalHandlerValue): SplineSeriesBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): SplineSeriesBuilder;
+  onOpacityChanged(handler: DslSignalHandlerValue): SplineSeriesBuilder;
+  onOptimizedChanged(handler: DslSignalHandlerValue): SplineSeriesBuilder;
+  onPointAdded(handler: DslSignalHandlerValue): SplineSeriesBuilder;
+  onPointDelegateChanged(handler: DslSignalHandlerValue): SplineSeriesBuilder;
+  onPointRemoved(handler: DslSignalHandlerValue): SplineSeriesBuilder;
+  onPointReplaced(handler: DslSignalHandlerValue): SplineSeriesBuilder;
+  onPointsAdded(handler: DslSignalHandlerValue): SplineSeriesBuilder;
+  onPointsRemoved(handler: DslSignalHandlerValue): SplineSeriesBuilder;
+  onPointsReplaced(handler: DslSignalHandlerValue): SplineSeriesBuilder;
+  onPressed(handler: DslSignalHandlerValue): SplineSeriesBuilder;
+  onReleased(handler: DslSignalHandlerValue): SplineSeriesBuilder;
+  onSelectableChanged(handler: DslSignalHandlerValue): SplineSeriesBuilder;
+  onSelectedColorChanged(handler: DslSignalHandlerValue): SplineSeriesBuilder;
+  onSelectedPointsChanged(handler: DslSignalHandlerValue): SplineSeriesBuilder;
+  onSeriesUpdated(handler: DslSignalHandlerValue): SplineSeriesBuilder;
+  onStyleChanged(handler: DslSignalHandlerValue): SplineSeriesBuilder;
+  onUpdate(handler: DslSignalHandlerValue): SplineSeriesBuilder;
+  onValuesMultiplierChanged(handler: DslSignalHandlerValue): SplineSeriesBuilder;
+  onVisibleChanged(handler: DslSignalHandlerValue): SplineSeriesBuilder;
+  onWidthChanged(handler: DslSignalHandlerValue): SplineSeriesBuilder;
+  onZValueChanged(handler: DslSignalHandlerValue): SplineSeriesBuilder;
 }
 
 const SPLINESERIES_META: TypeMetadata = {

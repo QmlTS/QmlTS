@@ -2,11 +2,17 @@
 // Type: DepthStencilAttachment
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 export interface DepthStencilAttachmentBuilder {
   id(id: string): DepthStencilAttachmentBuilder;
   child(obj: QmlObjectBuilder): DepthStencilAttachmentBuilder;
+  children(...objs: QmlObjectBuilder[]): DepthStencilAttachmentBuilder;
 
   objectName(value: string): DepthStencilAttachmentBuilder;
   objectNameBind(expr: string): DepthStencilAttachmentBuilder;
@@ -14,10 +20,10 @@ export interface DepthStencilAttachmentBuilder {
   parentBind(expr: string): DepthStencilAttachmentBuilder;
   state(value: string): DepthStencilAttachmentBuilder;
   stateBind(expr: string): DepthStencilAttachmentBuilder;
-  onChildrenChanged(body: string): DepthStencilAttachmentBuilder;
-  onObjectNameChanged(body: string): DepthStencilAttachmentBuilder;
-  onParentChanged(body: string): DepthStencilAttachmentBuilder;
-  onStateChanged(body: string): DepthStencilAttachmentBuilder;
+  onChildrenChanged(handler: DslSignalHandlerValue): DepthStencilAttachmentBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): DepthStencilAttachmentBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): DepthStencilAttachmentBuilder;
+  onStateChanged(handler: DslSignalHandlerValue): DepthStencilAttachmentBuilder;
 }
 
 const DEPTHSTENCILATTACHMENT_META: TypeMetadata = {

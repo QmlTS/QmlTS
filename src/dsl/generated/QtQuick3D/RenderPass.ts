@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlColor,
   QmlEnumToken,
   QmlObjectBuilder,
@@ -14,6 +15,7 @@ import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface RenderPassBuilder {
   id(id: string): RenderPassBuilder;
   child(obj: QmlObjectBuilder): RenderPassBuilder;
+  children(...objs: QmlObjectBuilder[]): RenderPassBuilder;
 
   augmentShader(value: QmlUrl): RenderPassBuilder;
   augmentShaderBind(expr: string): RenderPassBuilder;
@@ -37,19 +39,19 @@ export interface RenderPassBuilder {
   stateBind(expr: string): RenderPassBuilder;
   stencilClearValue(value: number): RenderPassBuilder;
   stencilClearValueBind(expr: string): RenderPassBuilder;
-  onAugmentShaderChanged(body: string): RenderPassBuilder;
-  onChildrenChanged(body: string): RenderPassBuilder;
-  onClearColorChanged(body: string): RenderPassBuilder;
-  onDepthClearValueChanged(body: string): RenderPassBuilder;
-  onMaterialModeChanged(body: string): RenderPassBuilder;
-  onObjectNameChanged(body: string): RenderPassBuilder;
-  onOutputChanged(body: string): RenderPassBuilder;
-  onOverrideMaterialChanged(body: string): RenderPassBuilder;
-  onParentChanged(body: string): RenderPassBuilder;
-  onPassModeChanged(body: string): RenderPassBuilder;
-  onRenderTargetFlagsChanged(body: string): RenderPassBuilder;
-  onStateChanged(body: string): RenderPassBuilder;
-  onStencilClearValueChanged(body: string): RenderPassBuilder;
+  onAugmentShaderChanged(handler: DslSignalHandlerValue): RenderPassBuilder;
+  onChildrenChanged(handler: DslSignalHandlerValue): RenderPassBuilder;
+  onClearColorChanged(handler: DslSignalHandlerValue): RenderPassBuilder;
+  onDepthClearValueChanged(handler: DslSignalHandlerValue): RenderPassBuilder;
+  onMaterialModeChanged(handler: DslSignalHandlerValue): RenderPassBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): RenderPassBuilder;
+  onOutputChanged(handler: DslSignalHandlerValue): RenderPassBuilder;
+  onOverrideMaterialChanged(handler: DslSignalHandlerValue): RenderPassBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): RenderPassBuilder;
+  onPassModeChanged(handler: DslSignalHandlerValue): RenderPassBuilder;
+  onRenderTargetFlagsChanged(handler: DslSignalHandlerValue): RenderPassBuilder;
+  onStateChanged(handler: DslSignalHandlerValue): RenderPassBuilder;
+  onStencilClearValueChanged(handler: DslSignalHandlerValue): RenderPassBuilder;
 }
 
 const RENDERPASS_META: TypeMetadata = {

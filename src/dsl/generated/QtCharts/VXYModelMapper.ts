@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlEnumToken,
   QmlObjectBuilder,
   QmlValue,
@@ -12,6 +13,7 @@ import { createFluentBuilder } from '../../runtime/index.js';
 export interface VXYModelMapperBuilder {
   id(id: string): VXYModelMapperBuilder;
   child(obj: QmlObjectBuilder): VXYModelMapperBuilder;
+  children(...objs: QmlObjectBuilder[]): VXYModelMapperBuilder;
 
   count(value: number): VXYModelMapperBuilder;
   countBind(expr: string): VXYModelMapperBuilder;
@@ -37,20 +39,20 @@ export interface VXYModelMapperBuilder {
   yColumnBind(expr: string): VXYModelMapperBuilder;
   ySection(value: number): VXYModelMapperBuilder;
   ySectionBind(expr: string): VXYModelMapperBuilder;
-  onCountChanged(body: string): VXYModelMapperBuilder;
-  onFirstChanged(body: string): VXYModelMapperBuilder;
-  onFirstRowChanged(body: string): VXYModelMapperBuilder;
-  onModelChanged(body: string): VXYModelMapperBuilder;
-  onModelReplaced(body: string): VXYModelMapperBuilder;
-  onObjectNameChanged(body: string): VXYModelMapperBuilder;
-  onOrientationChanged(body: string): VXYModelMapperBuilder;
-  onRowCountChanged(body: string): VXYModelMapperBuilder;
-  onSeriesChanged(body: string): VXYModelMapperBuilder;
-  onSeriesReplaced(body: string): VXYModelMapperBuilder;
-  onXColumnChanged(body: string): VXYModelMapperBuilder;
-  onXSectionChanged(body: string): VXYModelMapperBuilder;
-  onYColumnChanged(body: string): VXYModelMapperBuilder;
-  onYSectionChanged(body: string): VXYModelMapperBuilder;
+  onCountChanged(handler: DslSignalHandlerValue): VXYModelMapperBuilder;
+  onFirstChanged(handler: DslSignalHandlerValue): VXYModelMapperBuilder;
+  onFirstRowChanged(handler: DslSignalHandlerValue): VXYModelMapperBuilder;
+  onModelChanged(handler: DslSignalHandlerValue): VXYModelMapperBuilder;
+  onModelReplaced(handler: DslSignalHandlerValue): VXYModelMapperBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): VXYModelMapperBuilder;
+  onOrientationChanged(handler: DslSignalHandlerValue): VXYModelMapperBuilder;
+  onRowCountChanged(handler: DslSignalHandlerValue): VXYModelMapperBuilder;
+  onSeriesChanged(handler: DslSignalHandlerValue): VXYModelMapperBuilder;
+  onSeriesReplaced(handler: DslSignalHandlerValue): VXYModelMapperBuilder;
+  onXColumnChanged(handler: DslSignalHandlerValue): VXYModelMapperBuilder;
+  onXSectionChanged(handler: DslSignalHandlerValue): VXYModelMapperBuilder;
+  onYColumnChanged(handler: DslSignalHandlerValue): VXYModelMapperBuilder;
+  onYSectionChanged(handler: DslSignalHandlerValue): VXYModelMapperBuilder;
 }
 
 const VXYMODELMAPPER_META: TypeMetadata = {

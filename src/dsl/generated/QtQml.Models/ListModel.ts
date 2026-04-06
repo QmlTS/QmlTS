@@ -2,7 +2,7 @@
 // Type: ListModel
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import type { DslSignalHandlerValue, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { DelegateModelAttachedBuilder } from './QQmlDelegateModelAttached.js';
 import type { ObjectModelAttachedBuilder } from './QQmlObjectModelAttached.js';
@@ -10,31 +10,32 @@ import type { PackageAttachedBuilder } from './QQuickPackageAttached.js';
 export interface ListModelBuilder {
   id(id: string): ListModelBuilder;
   child(obj: QmlObjectBuilder): ListModelBuilder;
+  children(...objs: QmlObjectBuilder[]): ListModelBuilder;
 
   dynamicRoles(value: boolean): ListModelBuilder;
   dynamicRolesBind(expr: string): ListModelBuilder;
   objectName(value: string): ListModelBuilder;
   objectNameBind(expr: string): ListModelBuilder;
-  onColumnsAboutToBeInserted(body: string): ListModelBuilder;
-  onColumnsAboutToBeMoved(body: string): ListModelBuilder;
-  onColumnsAboutToBeRemoved(body: string): ListModelBuilder;
-  onColumnsInserted(body: string): ListModelBuilder;
-  onColumnsMoved(body: string): ListModelBuilder;
-  onColumnsRemoved(body: string): ListModelBuilder;
-  onCountChanged(body: string): ListModelBuilder;
-  onDataChanged(body: string): ListModelBuilder;
-  onHeaderDataChanged(body: string): ListModelBuilder;
-  onLayoutAboutToBeChanged(body: string): ListModelBuilder;
-  onLayoutChanged(body: string): ListModelBuilder;
-  onModelAboutToBeReset(body: string): ListModelBuilder;
-  onModelReset(body: string): ListModelBuilder;
-  onObjectNameChanged(body: string): ListModelBuilder;
-  onRowsAboutToBeInserted(body: string): ListModelBuilder;
-  onRowsAboutToBeMoved(body: string): ListModelBuilder;
-  onRowsAboutToBeRemoved(body: string): ListModelBuilder;
-  onRowsInserted(body: string): ListModelBuilder;
-  onRowsMoved(body: string): ListModelBuilder;
-  onRowsRemoved(body: string): ListModelBuilder;
+  onColumnsAboutToBeInserted(handler: DslSignalHandlerValue): ListModelBuilder;
+  onColumnsAboutToBeMoved(handler: DslSignalHandlerValue): ListModelBuilder;
+  onColumnsAboutToBeRemoved(handler: DslSignalHandlerValue): ListModelBuilder;
+  onColumnsInserted(handler: DslSignalHandlerValue): ListModelBuilder;
+  onColumnsMoved(handler: DslSignalHandlerValue): ListModelBuilder;
+  onColumnsRemoved(handler: DslSignalHandlerValue): ListModelBuilder;
+  onCountChanged(handler: DslSignalHandlerValue): ListModelBuilder;
+  onDataChanged(handler: DslSignalHandlerValue): ListModelBuilder;
+  onHeaderDataChanged(handler: DslSignalHandlerValue): ListModelBuilder;
+  onLayoutAboutToBeChanged(handler: DslSignalHandlerValue): ListModelBuilder;
+  onLayoutChanged(handler: DslSignalHandlerValue): ListModelBuilder;
+  onModelAboutToBeReset(handler: DslSignalHandlerValue): ListModelBuilder;
+  onModelReset(handler: DslSignalHandlerValue): ListModelBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): ListModelBuilder;
+  onRowsAboutToBeInserted(handler: DslSignalHandlerValue): ListModelBuilder;
+  onRowsAboutToBeMoved(handler: DslSignalHandlerValue): ListModelBuilder;
+  onRowsAboutToBeRemoved(handler: DslSignalHandlerValue): ListModelBuilder;
+  onRowsInserted(handler: DslSignalHandlerValue): ListModelBuilder;
+  onRowsMoved(handler: DslSignalHandlerValue): ListModelBuilder;
+  onRowsRemoved(handler: DslSignalHandlerValue): ListModelBuilder;
   delegateModel(setup: (b: DelegateModelAttachedBuilder) => void): ListModelBuilder;
   objectModel(setup: (b: ObjectModelAttachedBuilder) => void): ListModelBuilder;
   package(setup: (b: PackageAttachedBuilder) => void): ListModelBuilder;

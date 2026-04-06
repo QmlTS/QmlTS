@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlEnumToken,
   QmlObjectBuilder,
   QmlSize,
@@ -16,6 +17,7 @@ import type { GeometryViewBuilder } from '../Qt3D.Core/GeometryView.js';
 export interface PlaneMeshBuilder {
   id(id: string): PlaneMeshBuilder;
   child(obj: QmlObjectBuilder): PlaneMeshBuilder;
+  children(...objs: QmlObjectBuilder[]): PlaneMeshBuilder;
 
   enabled(value: boolean): PlaneMeshBuilder;
   enabledBind(expr: string): PlaneMeshBuilder;
@@ -63,35 +65,35 @@ export interface PlaneMeshBuilder {
   viewBind(expr: string): PlaneMeshBuilder;
   width(value: number): PlaneMeshBuilder;
   widthBind(expr: string): PlaneMeshBuilder;
-  onAddedToEntity(body: string): PlaneMeshBuilder;
-  onEnabledChanged(body: string): PlaneMeshBuilder;
-  onFirstInstanceChanged(body: string): PlaneMeshBuilder;
-  onFirstVertexChanged(body: string): PlaneMeshBuilder;
-  onGeometryChanged(body: string): PlaneMeshBuilder;
-  onHeightChanged(body: string): PlaneMeshBuilder;
-  onImplicitMaxPointChanged(body: string): PlaneMeshBuilder;
-  onImplicitMinPointChanged(body: string): PlaneMeshBuilder;
-  onImplicitPointsValidChanged(body: string): PlaneMeshBuilder;
-  onIndexBufferByteOffsetChanged(body: string): PlaneMeshBuilder;
-  onIndexOffsetChanged(body: string): PlaneMeshBuilder;
-  onInstanceCountChanged(body: string): PlaneMeshBuilder;
-  onMaxPointChanged(body: string): PlaneMeshBuilder;
-  onMeshResolutionChanged(body: string): PlaneMeshBuilder;
-  onMinPointChanged(body: string): PlaneMeshBuilder;
-  onMirroredChanged(body: string): PlaneMeshBuilder;
-  onNodeDestroyed(body: string): PlaneMeshBuilder;
-  onObjectNameChanged(body: string): PlaneMeshBuilder;
-  onParentChanged(body: string): PlaneMeshBuilder;
-  onPrimitiveRestartEnabledChanged(body: string): PlaneMeshBuilder;
-  onPrimitiveTypeChanged(body: string): PlaneMeshBuilder;
-  onRemovedFromEntity(body: string): PlaneMeshBuilder;
-  onRestartIndexValueChanged(body: string): PlaneMeshBuilder;
-  onShareableChanged(body: string): PlaneMeshBuilder;
-  onSortIndexChanged(body: string): PlaneMeshBuilder;
-  onVertexCountChanged(body: string): PlaneMeshBuilder;
-  onVerticesPerPatchChanged(body: string): PlaneMeshBuilder;
-  onViewChanged(body: string): PlaneMeshBuilder;
-  onWidthChanged(body: string): PlaneMeshBuilder;
+  onAddedToEntity(handler: DslSignalHandlerValue): PlaneMeshBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): PlaneMeshBuilder;
+  onFirstInstanceChanged(handler: DslSignalHandlerValue): PlaneMeshBuilder;
+  onFirstVertexChanged(handler: DslSignalHandlerValue): PlaneMeshBuilder;
+  onGeometryChanged(handler: DslSignalHandlerValue): PlaneMeshBuilder;
+  onHeightChanged(handler: DslSignalHandlerValue): PlaneMeshBuilder;
+  onImplicitMaxPointChanged(handler: DslSignalHandlerValue): PlaneMeshBuilder;
+  onImplicitMinPointChanged(handler: DslSignalHandlerValue): PlaneMeshBuilder;
+  onImplicitPointsValidChanged(handler: DslSignalHandlerValue): PlaneMeshBuilder;
+  onIndexBufferByteOffsetChanged(handler: DslSignalHandlerValue): PlaneMeshBuilder;
+  onIndexOffsetChanged(handler: DslSignalHandlerValue): PlaneMeshBuilder;
+  onInstanceCountChanged(handler: DslSignalHandlerValue): PlaneMeshBuilder;
+  onMaxPointChanged(handler: DslSignalHandlerValue): PlaneMeshBuilder;
+  onMeshResolutionChanged(handler: DslSignalHandlerValue): PlaneMeshBuilder;
+  onMinPointChanged(handler: DslSignalHandlerValue): PlaneMeshBuilder;
+  onMirroredChanged(handler: DslSignalHandlerValue): PlaneMeshBuilder;
+  onNodeDestroyed(handler: DslSignalHandlerValue): PlaneMeshBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): PlaneMeshBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): PlaneMeshBuilder;
+  onPrimitiveRestartEnabledChanged(handler: DslSignalHandlerValue): PlaneMeshBuilder;
+  onPrimitiveTypeChanged(handler: DslSignalHandlerValue): PlaneMeshBuilder;
+  onRemovedFromEntity(handler: DslSignalHandlerValue): PlaneMeshBuilder;
+  onRestartIndexValueChanged(handler: DslSignalHandlerValue): PlaneMeshBuilder;
+  onShareableChanged(handler: DslSignalHandlerValue): PlaneMeshBuilder;
+  onSortIndexChanged(handler: DslSignalHandlerValue): PlaneMeshBuilder;
+  onVertexCountChanged(handler: DslSignalHandlerValue): PlaneMeshBuilder;
+  onVerticesPerPatchChanged(handler: DslSignalHandlerValue): PlaneMeshBuilder;
+  onViewChanged(handler: DslSignalHandlerValue): PlaneMeshBuilder;
+  onWidthChanged(handler: DslSignalHandlerValue): PlaneMeshBuilder;
 }
 
 const PLANEMESH_META: TypeMetadata = {

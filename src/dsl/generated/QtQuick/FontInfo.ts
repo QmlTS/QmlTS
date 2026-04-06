@@ -2,7 +2,12 @@
 // Type: FontInfo
 // Generated from Qt 6.11.0
 
-import type { QmlFont, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlFont,
+  QmlObjectBuilder,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 import type { AccessibleAttachedBuilder } from './Accessible.js';
 import type { EnterKeyAttachedBuilder } from './EnterKey.js';
@@ -23,13 +28,14 @@ import type { ViewTransitionAttachedBuilder } from './ViewTransition.js';
 export interface FontInfoBuilder {
   id(id: string): FontInfoBuilder;
   child(obj: QmlObjectBuilder): FontInfoBuilder;
+  children(...objs: QmlObjectBuilder[]): FontInfoBuilder;
 
   font(value: QmlFont): FontInfoBuilder;
   fontBind(expr: string): FontInfoBuilder;
   objectName(value: string): FontInfoBuilder;
   objectNameBind(expr: string): FontInfoBuilder;
-  onFontChanged(body: string): FontInfoBuilder;
-  onObjectNameChanged(body: string): FontInfoBuilder;
+  onFontChanged(handler: DslSignalHandlerValue): FontInfoBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): FontInfoBuilder;
   accessible(setup: (b: AccessibleAttachedBuilder) => void): FontInfoBuilder;
   drag(setup: (b: DragAttachedBuilder) => void): FontInfoBuilder;
   enterKey(setup: (b: EnterKeyAttachedBuilder) => void): FontInfoBuilder;

@@ -2,12 +2,19 @@
 // Type: GoochMaterial
 // Generated from Qt 6.11.0
 
-import type { QmlColor, QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlColor,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 import type { EffectBuilder } from '../Qt3D.Render/Effect.js';
 export interface GoochMaterialBuilder {
   id(id: string): GoochMaterialBuilder;
   child(obj: QmlObjectBuilder): GoochMaterialBuilder;
+  children(...objs: QmlObjectBuilder[]): GoochMaterialBuilder;
 
   alpha(value: number): GoochMaterialBuilder;
   alphaBind(expr: string): GoochMaterialBuilder;
@@ -33,21 +40,21 @@ export interface GoochMaterialBuilder {
   specularBind(expr: string): GoochMaterialBuilder;
   warm(value: QmlColor): GoochMaterialBuilder;
   warmBind(expr: string): GoochMaterialBuilder;
-  onAddedToEntity(body: string): GoochMaterialBuilder;
-  onAlphaChanged(body: string): GoochMaterialBuilder;
-  onBetaChanged(body: string): GoochMaterialBuilder;
-  onCoolChanged(body: string): GoochMaterialBuilder;
-  onDiffuseChanged(body: string): GoochMaterialBuilder;
-  onEffectChanged(body: string): GoochMaterialBuilder;
-  onEnabledChanged(body: string): GoochMaterialBuilder;
-  onNodeDestroyed(body: string): GoochMaterialBuilder;
-  onObjectNameChanged(body: string): GoochMaterialBuilder;
-  onParentChanged(body: string): GoochMaterialBuilder;
-  onRemovedFromEntity(body: string): GoochMaterialBuilder;
-  onShareableChanged(body: string): GoochMaterialBuilder;
-  onShininessChanged(body: string): GoochMaterialBuilder;
-  onSpecularChanged(body: string): GoochMaterialBuilder;
-  onWarmChanged(body: string): GoochMaterialBuilder;
+  onAddedToEntity(handler: DslSignalHandlerValue): GoochMaterialBuilder;
+  onAlphaChanged(handler: DslSignalHandlerValue): GoochMaterialBuilder;
+  onBetaChanged(handler: DslSignalHandlerValue): GoochMaterialBuilder;
+  onCoolChanged(handler: DslSignalHandlerValue): GoochMaterialBuilder;
+  onDiffuseChanged(handler: DslSignalHandlerValue): GoochMaterialBuilder;
+  onEffectChanged(handler: DslSignalHandlerValue): GoochMaterialBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): GoochMaterialBuilder;
+  onNodeDestroyed(handler: DslSignalHandlerValue): GoochMaterialBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): GoochMaterialBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): GoochMaterialBuilder;
+  onRemovedFromEntity(handler: DslSignalHandlerValue): GoochMaterialBuilder;
+  onShareableChanged(handler: DslSignalHandlerValue): GoochMaterialBuilder;
+  onShininessChanged(handler: DslSignalHandlerValue): GoochMaterialBuilder;
+  onSpecularChanged(handler: DslSignalHandlerValue): GoochMaterialBuilder;
+  onWarmChanged(handler: DslSignalHandlerValue): GoochMaterialBuilder;
 }
 
 const GOOCHMATERIAL_META: TypeMetadata = {

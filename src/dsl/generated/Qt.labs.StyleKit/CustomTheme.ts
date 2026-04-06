@@ -2,13 +2,19 @@
 // Type: CustomTheme
 // Generated from Qt 6.11.0
 
-import type { QmlComponent, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlComponent,
+  QmlObjectBuilder,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 import type { StyleKitAttachedBuilder } from './QQStyleKitAttached.js';
 import type { StyleVariationAttachedBuilder } from './QQStyleKitVariationAttached.js';
 export interface CustomThemeBuilder {
   id(id: string): CustomThemeBuilder;
   child(obj: QmlObjectBuilder): CustomThemeBuilder;
+  children(...objs: QmlObjectBuilder[]): CustomThemeBuilder;
 
   name(value: string): CustomThemeBuilder;
   nameBind(expr: string): CustomThemeBuilder;
@@ -16,9 +22,9 @@ export interface CustomThemeBuilder {
   objectNameBind(expr: string): CustomThemeBuilder;
   theme(value: QmlComponent): CustomThemeBuilder;
   themeBind(expr: string): CustomThemeBuilder;
-  onNameChanged(body: string): CustomThemeBuilder;
-  onObjectNameChanged(body: string): CustomThemeBuilder;
-  onThemeChanged(body: string): CustomThemeBuilder;
+  onNameChanged(handler: DslSignalHandlerValue): CustomThemeBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): CustomThemeBuilder;
+  onThemeChanged(handler: DslSignalHandlerValue): CustomThemeBuilder;
   styleKit(setup: (b: StyleKitAttachedBuilder) => void): CustomThemeBuilder;
   styleVariation(setup: (b: StyleVariationAttachedBuilder) => void): CustomThemeBuilder;
 }

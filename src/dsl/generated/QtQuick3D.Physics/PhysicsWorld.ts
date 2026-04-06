@@ -2,12 +2,18 @@
 // Type: PhysicsWorld
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlVector3d, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlObjectBuilder,
+  QmlVector3d,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 import type { NodeBuilder } from '../QtQuick3D/Node.js';
 export interface PhysicsWorldBuilder {
   id(id: string): PhysicsWorldBuilder;
   child(obj: QmlObjectBuilder): PhysicsWorldBuilder;
+  children(...objs: QmlObjectBuilder[]): PhysicsWorldBuilder;
 
   defaultDensity(value: number): PhysicsWorldBuilder;
   defaultDensityBind(expr: string): PhysicsWorldBuilder;
@@ -39,22 +45,22 @@ export interface PhysicsWorldBuilder {
   typicalSpeedBind(expr: string): PhysicsWorldBuilder;
   viewport(value: NodeBuilder): PhysicsWorldBuilder;
   viewportBind(expr: string): PhysicsWorldBuilder;
-  onDefaultDensityChanged(body: string): PhysicsWorldBuilder;
-  onEnableCCDChanged(body: string): PhysicsWorldBuilder;
-  onForceDebugDrawChanged(body: string): PhysicsWorldBuilder;
-  onFrameDone(body: string): PhysicsWorldBuilder;
-  onGravityChanged(body: string): PhysicsWorldBuilder;
-  onMaximumTimestepChanged(body: string): PhysicsWorldBuilder;
-  onMinimumTimestepChanged(body: string): PhysicsWorldBuilder;
-  onNumThreadsChanged(body: string): PhysicsWorldBuilder;
-  onObjectNameChanged(body: string): PhysicsWorldBuilder;
-  onReportKinematicKinematicCollisionsChanged(body: string): PhysicsWorldBuilder;
-  onReportStaticKinematicCollisionsChanged(body: string): PhysicsWorldBuilder;
-  onRunningChanged(body: string): PhysicsWorldBuilder;
-  onSceneChanged(body: string): PhysicsWorldBuilder;
-  onTypicalLengthChanged(body: string): PhysicsWorldBuilder;
-  onTypicalSpeedChanged(body: string): PhysicsWorldBuilder;
-  onViewportChanged(body: string): PhysicsWorldBuilder;
+  onDefaultDensityChanged(handler: DslSignalHandlerValue): PhysicsWorldBuilder;
+  onEnableCCDChanged(handler: DslSignalHandlerValue): PhysicsWorldBuilder;
+  onForceDebugDrawChanged(handler: DslSignalHandlerValue): PhysicsWorldBuilder;
+  onFrameDone(handler: DslSignalHandlerValue): PhysicsWorldBuilder;
+  onGravityChanged(handler: DslSignalHandlerValue): PhysicsWorldBuilder;
+  onMaximumTimestepChanged(handler: DslSignalHandlerValue): PhysicsWorldBuilder;
+  onMinimumTimestepChanged(handler: DslSignalHandlerValue): PhysicsWorldBuilder;
+  onNumThreadsChanged(handler: DslSignalHandlerValue): PhysicsWorldBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): PhysicsWorldBuilder;
+  onReportKinematicKinematicCollisionsChanged(handler: DslSignalHandlerValue): PhysicsWorldBuilder;
+  onReportStaticKinematicCollisionsChanged(handler: DslSignalHandlerValue): PhysicsWorldBuilder;
+  onRunningChanged(handler: DslSignalHandlerValue): PhysicsWorldBuilder;
+  onSceneChanged(handler: DslSignalHandlerValue): PhysicsWorldBuilder;
+  onTypicalLengthChanged(handler: DslSignalHandlerValue): PhysicsWorldBuilder;
+  onTypicalSpeedChanged(handler: DslSignalHandlerValue): PhysicsWorldBuilder;
+  onViewportChanged(handler: DslSignalHandlerValue): PhysicsWorldBuilder;
 }
 
 const PHYSICSWORLD_META: TypeMetadata = {

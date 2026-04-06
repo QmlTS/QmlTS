@@ -2,11 +2,18 @@
 // Type: FolderListModel
 // Generated from Qt 6.11.0
 
-import type { QmlEnumToken, QmlObjectBuilder, QmlUrl, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlEnumToken,
+  QmlObjectBuilder,
+  QmlUrl,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface FolderListModelBuilder {
   id(id: string): FolderListModelBuilder;
   child(obj: QmlObjectBuilder): FolderListModelBuilder;
+  children(...objs: QmlObjectBuilder[]): FolderListModelBuilder;
 
   caseSensitive(value: boolean): FolderListModelBuilder;
   caseSensitiveBind(expr: string): FolderListModelBuilder;
@@ -36,41 +43,41 @@ export interface FolderListModelBuilder {
   sortFieldBind(expr: string): FolderListModelBuilder;
   sortReversed(value: boolean): FolderListModelBuilder;
   sortReversedBind(expr: string): FolderListModelBuilder;
-  onCaseSensitiveChanged(body: string): FolderListModelBuilder;
-  onColumnsAboutToBeInserted(body: string): FolderListModelBuilder;
-  onColumnsAboutToBeMoved(body: string): FolderListModelBuilder;
-  onColumnsAboutToBeRemoved(body: string): FolderListModelBuilder;
-  onColumnsInserted(body: string): FolderListModelBuilder;
-  onColumnsMoved(body: string): FolderListModelBuilder;
-  onColumnsRemoved(body: string): FolderListModelBuilder;
-  onCountChanged(body: string): FolderListModelBuilder;
-  onDataChanged(body: string): FolderListModelBuilder;
-  onFolderChanged(body: string): FolderListModelBuilder;
-  onHeaderDataChanged(body: string): FolderListModelBuilder;
-  onLayoutAboutToBeChanged(body: string): FolderListModelBuilder;
-  onLayoutChanged(body: string): FolderListModelBuilder;
-  onModelAboutToBeReset(body: string): FolderListModelBuilder;
-  onModelReset(body: string): FolderListModelBuilder;
-  onNameFilterChanged(body: string): FolderListModelBuilder;
-  onObjectNameChanged(body: string): FolderListModelBuilder;
-  onRootFolderChanged(body: string): FolderListModelBuilder;
-  onRowCountChanged(body: string): FolderListModelBuilder;
-  onRowsAboutToBeInserted(body: string): FolderListModelBuilder;
-  onRowsAboutToBeMoved(body: string): FolderListModelBuilder;
-  onRowsAboutToBeRemoved(body: string): FolderListModelBuilder;
-  onRowsInserted(body: string): FolderListModelBuilder;
-  onRowsMoved(body: string): FolderListModelBuilder;
-  onRowsRemoved(body: string): FolderListModelBuilder;
-  onShowDirsChanged(body: string): FolderListModelBuilder;
-  onShowDirsFirstChanged(body: string): FolderListModelBuilder;
-  onShowDotAndDotDotChanged(body: string): FolderListModelBuilder;
-  onShowFilesChanged(body: string): FolderListModelBuilder;
-  onShowHiddenChanged(body: string): FolderListModelBuilder;
-  onShowOnlyReadableChanged(body: string): FolderListModelBuilder;
-  onSortCaseSensitiveChanged(body: string): FolderListModelBuilder;
-  onSortFieldChanged(body: string): FolderListModelBuilder;
-  onSortReversedChanged(body: string): FolderListModelBuilder;
-  onStatusChanged(body: string): FolderListModelBuilder;
+  onCaseSensitiveChanged(handler: DslSignalHandlerValue): FolderListModelBuilder;
+  onColumnsAboutToBeInserted(handler: DslSignalHandlerValue): FolderListModelBuilder;
+  onColumnsAboutToBeMoved(handler: DslSignalHandlerValue): FolderListModelBuilder;
+  onColumnsAboutToBeRemoved(handler: DslSignalHandlerValue): FolderListModelBuilder;
+  onColumnsInserted(handler: DslSignalHandlerValue): FolderListModelBuilder;
+  onColumnsMoved(handler: DslSignalHandlerValue): FolderListModelBuilder;
+  onColumnsRemoved(handler: DslSignalHandlerValue): FolderListModelBuilder;
+  onCountChanged(handler: DslSignalHandlerValue): FolderListModelBuilder;
+  onDataChanged(handler: DslSignalHandlerValue): FolderListModelBuilder;
+  onFolderChanged(handler: DslSignalHandlerValue): FolderListModelBuilder;
+  onHeaderDataChanged(handler: DslSignalHandlerValue): FolderListModelBuilder;
+  onLayoutAboutToBeChanged(handler: DslSignalHandlerValue): FolderListModelBuilder;
+  onLayoutChanged(handler: DslSignalHandlerValue): FolderListModelBuilder;
+  onModelAboutToBeReset(handler: DslSignalHandlerValue): FolderListModelBuilder;
+  onModelReset(handler: DslSignalHandlerValue): FolderListModelBuilder;
+  onNameFilterChanged(handler: DslSignalHandlerValue): FolderListModelBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): FolderListModelBuilder;
+  onRootFolderChanged(handler: DslSignalHandlerValue): FolderListModelBuilder;
+  onRowCountChanged(handler: DslSignalHandlerValue): FolderListModelBuilder;
+  onRowsAboutToBeInserted(handler: DslSignalHandlerValue): FolderListModelBuilder;
+  onRowsAboutToBeMoved(handler: DslSignalHandlerValue): FolderListModelBuilder;
+  onRowsAboutToBeRemoved(handler: DslSignalHandlerValue): FolderListModelBuilder;
+  onRowsInserted(handler: DslSignalHandlerValue): FolderListModelBuilder;
+  onRowsMoved(handler: DslSignalHandlerValue): FolderListModelBuilder;
+  onRowsRemoved(handler: DslSignalHandlerValue): FolderListModelBuilder;
+  onShowDirsChanged(handler: DslSignalHandlerValue): FolderListModelBuilder;
+  onShowDirsFirstChanged(handler: DslSignalHandlerValue): FolderListModelBuilder;
+  onShowDotAndDotDotChanged(handler: DslSignalHandlerValue): FolderListModelBuilder;
+  onShowFilesChanged(handler: DslSignalHandlerValue): FolderListModelBuilder;
+  onShowHiddenChanged(handler: DslSignalHandlerValue): FolderListModelBuilder;
+  onShowOnlyReadableChanged(handler: DslSignalHandlerValue): FolderListModelBuilder;
+  onSortCaseSensitiveChanged(handler: DslSignalHandlerValue): FolderListModelBuilder;
+  onSortFieldChanged(handler: DslSignalHandlerValue): FolderListModelBuilder;
+  onSortReversedChanged(handler: DslSignalHandlerValue): FolderListModelBuilder;
+  onStatusChanged(handler: DslSignalHandlerValue): FolderListModelBuilder;
 }
 
 const FOLDERLISTMODEL_META: TypeMetadata = {

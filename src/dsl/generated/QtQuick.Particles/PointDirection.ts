@@ -2,12 +2,13 @@
 // Type: PointDirection
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import type { DslSignalHandlerValue, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 import type { ItemParticleAttachedBuilder } from './QQuickItemParticleAttached.js';
 export interface PointDirectionBuilder {
   id(id: string): PointDirectionBuilder;
   child(obj: QmlObjectBuilder): PointDirectionBuilder;
+  children(...objs: QmlObjectBuilder[]): PointDirectionBuilder;
 
   objectName(value: string): PointDirectionBuilder;
   objectNameBind(expr: string): PointDirectionBuilder;
@@ -19,11 +20,11 @@ export interface PointDirectionBuilder {
   yBind(expr: string): PointDirectionBuilder;
   yVariation(value: number): PointDirectionBuilder;
   yVariationBind(expr: string): PointDirectionBuilder;
-  onObjectNameChanged(body: string): PointDirectionBuilder;
-  onXChanged(body: string): PointDirectionBuilder;
-  onXVariationChanged(body: string): PointDirectionBuilder;
-  onYChanged(body: string): PointDirectionBuilder;
-  onYVariationChanged(body: string): PointDirectionBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): PointDirectionBuilder;
+  onXChanged(handler: DslSignalHandlerValue): PointDirectionBuilder;
+  onXVariationChanged(handler: DslSignalHandlerValue): PointDirectionBuilder;
+  onYChanged(handler: DslSignalHandlerValue): PointDirectionBuilder;
+  onYVariationChanged(handler: DslSignalHandlerValue): PointDirectionBuilder;
   itemParticle(setup: (b: ItemParticleAttachedBuilder) => void): PointDirectionBuilder;
 }
 

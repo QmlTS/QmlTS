@@ -2,7 +2,12 @@
 // Type: OpacityAnimator
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { AccessibleAttachedBuilder } from './Accessible.js';
 import type { EnterKeyAttachedBuilder } from './EnterKey.js';
@@ -24,6 +29,7 @@ import type { ViewTransitionAttachedBuilder } from './ViewTransition.js';
 export interface OpacityAnimatorBuilder {
   id(id: string): OpacityAnimatorBuilder;
   child(obj: QmlObjectBuilder): OpacityAnimatorBuilder;
+  children(...objs: QmlObjectBuilder[]): OpacityAnimatorBuilder;
 
   alwaysRunToEnd(value: boolean): OpacityAnimatorBuilder;
   alwaysRunToEndBind(expr: string): OpacityAnimatorBuilder;
@@ -45,19 +51,19 @@ export interface OpacityAnimatorBuilder {
   targetBind(expr: string): OpacityAnimatorBuilder;
   to(value: number): OpacityAnimatorBuilder;
   toBind(expr: string): OpacityAnimatorBuilder;
-  onAlwaysRunToEndChanged(body: string): OpacityAnimatorBuilder;
-  onDurationChanged(body: string): OpacityAnimatorBuilder;
-  onEasingChanged(body: string): OpacityAnimatorBuilder;
-  onFinished(body: string): OpacityAnimatorBuilder;
-  onFromChanged(body: string): OpacityAnimatorBuilder;
-  onLoopCountChanged(body: string): OpacityAnimatorBuilder;
-  onObjectNameChanged(body: string): OpacityAnimatorBuilder;
-  onPausedChanged(body: string): OpacityAnimatorBuilder;
-  onRunningChanged(body: string): OpacityAnimatorBuilder;
-  onStarted(body: string): OpacityAnimatorBuilder;
-  onStopped(body: string): OpacityAnimatorBuilder;
-  onTargetItemChanged(body: string): OpacityAnimatorBuilder;
-  onToChanged(body: string): OpacityAnimatorBuilder;
+  onAlwaysRunToEndChanged(handler: DslSignalHandlerValue): OpacityAnimatorBuilder;
+  onDurationChanged(handler: DslSignalHandlerValue): OpacityAnimatorBuilder;
+  onEasingChanged(handler: DslSignalHandlerValue): OpacityAnimatorBuilder;
+  onFinished(handler: DslSignalHandlerValue): OpacityAnimatorBuilder;
+  onFromChanged(handler: DslSignalHandlerValue): OpacityAnimatorBuilder;
+  onLoopCountChanged(handler: DslSignalHandlerValue): OpacityAnimatorBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): OpacityAnimatorBuilder;
+  onPausedChanged(handler: DslSignalHandlerValue): OpacityAnimatorBuilder;
+  onRunningChanged(handler: DslSignalHandlerValue): OpacityAnimatorBuilder;
+  onStarted(handler: DslSignalHandlerValue): OpacityAnimatorBuilder;
+  onStopped(handler: DslSignalHandlerValue): OpacityAnimatorBuilder;
+  onTargetItemChanged(handler: DslSignalHandlerValue): OpacityAnimatorBuilder;
+  onToChanged(handler: DslSignalHandlerValue): OpacityAnimatorBuilder;
   accessible(setup: (b: AccessibleAttachedBuilder) => void): OpacityAnimatorBuilder;
   drag(setup: (b: DragAttachedBuilder) => void): OpacityAnimatorBuilder;
   enterKey(setup: (b: EnterKeyAttachedBuilder) => void): OpacityAnimatorBuilder;

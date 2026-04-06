@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlColor,
   QmlEnumToken,
   QmlObjectBuilder,
@@ -16,6 +17,7 @@ import type { NodeBuilder } from './Node.js';
 export interface DirectionalLightBuilder {
   id(id: string): DirectionalLightBuilder;
   child(obj: QmlObjectBuilder): DirectionalLightBuilder;
+  children(...objs: QmlObjectBuilder[]): DirectionalLightBuilder;
 
   ambientColor(value: QmlColor): DirectionalLightBuilder;
   ambientColorBind(expr: string): DirectionalLightBuilder;
@@ -87,49 +89,49 @@ export interface DirectionalLightBuilder {
   yBind(expr: string): DirectionalLightBuilder;
   z(value: number): DirectionalLightBuilder;
   zBind(expr: string): DirectionalLightBuilder;
-  onAmbientColorChanged(body: string): DirectionalLightBuilder;
-  onBakeModeChanged(body: string): DirectionalLightBuilder;
-  onBrightnessChanged(body: string): DirectionalLightBuilder;
-  onCastsShadowChanged(body: string): DirectionalLightBuilder;
-  onChildrenChanged(body: string): DirectionalLightBuilder;
-  onColorChanged(body: string): DirectionalLightBuilder;
-  onCsmBlendRatioChanged(body: string): DirectionalLightBuilder;
-  onCsmNumSplitsChanged(body: string): DirectionalLightBuilder;
-  onCsmSplit1Changed(body: string): DirectionalLightBuilder;
-  onCsmSplit2Changed(body: string): DirectionalLightBuilder;
-  onCsmSplit3Changed(body: string): DirectionalLightBuilder;
-  onEulerRotationChanged(body: string): DirectionalLightBuilder;
-  onForwardChanged(body: string): DirectionalLightBuilder;
-  onLayersChanged(body: string): DirectionalLightBuilder;
-  onLocalOpacityChanged(body: string): DirectionalLightBuilder;
-  onLockShadowmapTexelsChanged(body: string): DirectionalLightBuilder;
-  onObjectNameChanged(body: string): DirectionalLightBuilder;
-  onParentChanged(body: string): DirectionalLightBuilder;
-  onPcfFactorChanged(body: string): DirectionalLightBuilder;
-  onPivotChanged(body: string): DirectionalLightBuilder;
-  onPositionChanged(body: string): DirectionalLightBuilder;
-  onRightChanged(body: string): DirectionalLightBuilder;
-  onRotationChanged(body: string): DirectionalLightBuilder;
-  onScaleChanged(body: string): DirectionalLightBuilder;
-  onScenePositionChanged(body: string): DirectionalLightBuilder;
-  onSceneRotationChanged(body: string): DirectionalLightBuilder;
-  onSceneScaleChanged(body: string): DirectionalLightBuilder;
-  onSceneTransformChanged(body: string): DirectionalLightBuilder;
-  onScopeChanged(body: string): DirectionalLightBuilder;
-  onShadowBiasChanged(body: string): DirectionalLightBuilder;
-  onShadowFactorChanged(body: string): DirectionalLightBuilder;
-  onShadowFilterChanged(body: string): DirectionalLightBuilder;
-  onShadowMapFarChanged(body: string): DirectionalLightBuilder;
-  onShadowMapQualityChanged(body: string): DirectionalLightBuilder;
-  onSoftShadowQualityChanged(body: string): DirectionalLightBuilder;
-  onStateChanged(body: string): DirectionalLightBuilder;
-  onStaticFlagsChanged(body: string): DirectionalLightBuilder;
-  onUpChanged(body: string): DirectionalLightBuilder;
-  onUse32BitShadowmapChanged(body: string): DirectionalLightBuilder;
-  onVisibleChanged(body: string): DirectionalLightBuilder;
-  onXChanged(body: string): DirectionalLightBuilder;
-  onYChanged(body: string): DirectionalLightBuilder;
-  onZChanged(body: string): DirectionalLightBuilder;
+  onAmbientColorChanged(handler: DslSignalHandlerValue): DirectionalLightBuilder;
+  onBakeModeChanged(handler: DslSignalHandlerValue): DirectionalLightBuilder;
+  onBrightnessChanged(handler: DslSignalHandlerValue): DirectionalLightBuilder;
+  onCastsShadowChanged(handler: DslSignalHandlerValue): DirectionalLightBuilder;
+  onChildrenChanged(handler: DslSignalHandlerValue): DirectionalLightBuilder;
+  onColorChanged(handler: DslSignalHandlerValue): DirectionalLightBuilder;
+  onCsmBlendRatioChanged(handler: DslSignalHandlerValue): DirectionalLightBuilder;
+  onCsmNumSplitsChanged(handler: DslSignalHandlerValue): DirectionalLightBuilder;
+  onCsmSplit1Changed(handler: DslSignalHandlerValue): DirectionalLightBuilder;
+  onCsmSplit2Changed(handler: DslSignalHandlerValue): DirectionalLightBuilder;
+  onCsmSplit3Changed(handler: DslSignalHandlerValue): DirectionalLightBuilder;
+  onEulerRotationChanged(handler: DslSignalHandlerValue): DirectionalLightBuilder;
+  onForwardChanged(handler: DslSignalHandlerValue): DirectionalLightBuilder;
+  onLayersChanged(handler: DslSignalHandlerValue): DirectionalLightBuilder;
+  onLocalOpacityChanged(handler: DslSignalHandlerValue): DirectionalLightBuilder;
+  onLockShadowmapTexelsChanged(handler: DslSignalHandlerValue): DirectionalLightBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): DirectionalLightBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): DirectionalLightBuilder;
+  onPcfFactorChanged(handler: DslSignalHandlerValue): DirectionalLightBuilder;
+  onPivotChanged(handler: DslSignalHandlerValue): DirectionalLightBuilder;
+  onPositionChanged(handler: DslSignalHandlerValue): DirectionalLightBuilder;
+  onRightChanged(handler: DslSignalHandlerValue): DirectionalLightBuilder;
+  onRotationChanged(handler: DslSignalHandlerValue): DirectionalLightBuilder;
+  onScaleChanged(handler: DslSignalHandlerValue): DirectionalLightBuilder;
+  onScenePositionChanged(handler: DslSignalHandlerValue): DirectionalLightBuilder;
+  onSceneRotationChanged(handler: DslSignalHandlerValue): DirectionalLightBuilder;
+  onSceneScaleChanged(handler: DslSignalHandlerValue): DirectionalLightBuilder;
+  onSceneTransformChanged(handler: DslSignalHandlerValue): DirectionalLightBuilder;
+  onScopeChanged(handler: DslSignalHandlerValue): DirectionalLightBuilder;
+  onShadowBiasChanged(handler: DslSignalHandlerValue): DirectionalLightBuilder;
+  onShadowFactorChanged(handler: DslSignalHandlerValue): DirectionalLightBuilder;
+  onShadowFilterChanged(handler: DslSignalHandlerValue): DirectionalLightBuilder;
+  onShadowMapFarChanged(handler: DslSignalHandlerValue): DirectionalLightBuilder;
+  onShadowMapQualityChanged(handler: DslSignalHandlerValue): DirectionalLightBuilder;
+  onSoftShadowQualityChanged(handler: DslSignalHandlerValue): DirectionalLightBuilder;
+  onStateChanged(handler: DslSignalHandlerValue): DirectionalLightBuilder;
+  onStaticFlagsChanged(handler: DslSignalHandlerValue): DirectionalLightBuilder;
+  onUpChanged(handler: DslSignalHandlerValue): DirectionalLightBuilder;
+  onUse32BitShadowmapChanged(handler: DslSignalHandlerValue): DirectionalLightBuilder;
+  onVisibleChanged(handler: DslSignalHandlerValue): DirectionalLightBuilder;
+  onXChanged(handler: DslSignalHandlerValue): DirectionalLightBuilder;
+  onYChanged(handler: DslSignalHandlerValue): DirectionalLightBuilder;
+  onZChanged(handler: DslSignalHandlerValue): DirectionalLightBuilder;
 }
 
 const DIRECTIONALLIGHT_META: TypeMetadata = {

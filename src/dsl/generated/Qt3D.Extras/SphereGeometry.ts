@@ -2,12 +2,18 @@
 // Type: SphereGeometry
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 import type { AttributeBuilder } from '../Qt3D.Core/Attribute.js';
 export interface SphereGeometryBuilder {
   id(id: string): SphereGeometryBuilder;
   child(obj: QmlObjectBuilder): SphereGeometryBuilder;
+  children(...objs: QmlObjectBuilder[]): SphereGeometryBuilder;
 
   boundingVolumePositionAttribute(value: AttributeBuilder): SphereGeometryBuilder;
   boundingVolumePositionAttributeBind(expr: string): SphereGeometryBuilder;
@@ -25,17 +31,17 @@ export interface SphereGeometryBuilder {
   ringsBind(expr: string): SphereGeometryBuilder;
   slices(value: number): SphereGeometryBuilder;
   slicesBind(expr: string): SphereGeometryBuilder;
-  onBoundingVolumePositionAttributeChanged(body: string): SphereGeometryBuilder;
-  onEnabledChanged(body: string): SphereGeometryBuilder;
-  onGenerateTangentsChanged(body: string): SphereGeometryBuilder;
-  onMaxExtentChanged(body: string): SphereGeometryBuilder;
-  onMinExtentChanged(body: string): SphereGeometryBuilder;
-  onNodeDestroyed(body: string): SphereGeometryBuilder;
-  onObjectNameChanged(body: string): SphereGeometryBuilder;
-  onParentChanged(body: string): SphereGeometryBuilder;
-  onRadiusChanged(body: string): SphereGeometryBuilder;
-  onRingsChanged(body: string): SphereGeometryBuilder;
-  onSlicesChanged(body: string): SphereGeometryBuilder;
+  onBoundingVolumePositionAttributeChanged(handler: DslSignalHandlerValue): SphereGeometryBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): SphereGeometryBuilder;
+  onGenerateTangentsChanged(handler: DslSignalHandlerValue): SphereGeometryBuilder;
+  onMaxExtentChanged(handler: DslSignalHandlerValue): SphereGeometryBuilder;
+  onMinExtentChanged(handler: DslSignalHandlerValue): SphereGeometryBuilder;
+  onNodeDestroyed(handler: DslSignalHandlerValue): SphereGeometryBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): SphereGeometryBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): SphereGeometryBuilder;
+  onRadiusChanged(handler: DslSignalHandlerValue): SphereGeometryBuilder;
+  onRingsChanged(handler: DslSignalHandlerValue): SphereGeometryBuilder;
+  onSlicesChanged(handler: DslSignalHandlerValue): SphereGeometryBuilder;
 }
 
 const SPHEREGEOMETRY_META: TypeMetadata = {

@@ -2,11 +2,17 @@
 // Type: HBoxPlotModelMapper
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 export interface HBoxPlotModelMapperBuilder {
   id(id: string): HBoxPlotModelMapperBuilder;
   child(obj: QmlObjectBuilder): HBoxPlotModelMapperBuilder;
+  children(...objs: QmlObjectBuilder[]): HBoxPlotModelMapperBuilder;
 
   columnCount(value: number): HBoxPlotModelMapperBuilder;
   columnCountBind(expr: string): HBoxPlotModelMapperBuilder;
@@ -22,13 +28,13 @@ export interface HBoxPlotModelMapperBuilder {
   objectNameBind(expr: string): HBoxPlotModelMapperBuilder;
   series(value: QmlValue): HBoxPlotModelMapperBuilder;
   seriesBind(expr: string): HBoxPlotModelMapperBuilder;
-  onColumnCountChanged(body: string): HBoxPlotModelMapperBuilder;
-  onFirstBoxSetRowChanged(body: string): HBoxPlotModelMapperBuilder;
-  onFirstColumnChanged(body: string): HBoxPlotModelMapperBuilder;
-  onLastBoxSetRowChanged(body: string): HBoxPlotModelMapperBuilder;
-  onModelReplaced(body: string): HBoxPlotModelMapperBuilder;
-  onObjectNameChanged(body: string): HBoxPlotModelMapperBuilder;
-  onSeriesReplaced(body: string): HBoxPlotModelMapperBuilder;
+  onColumnCountChanged(handler: DslSignalHandlerValue): HBoxPlotModelMapperBuilder;
+  onFirstBoxSetRowChanged(handler: DslSignalHandlerValue): HBoxPlotModelMapperBuilder;
+  onFirstColumnChanged(handler: DslSignalHandlerValue): HBoxPlotModelMapperBuilder;
+  onLastBoxSetRowChanged(handler: DslSignalHandlerValue): HBoxPlotModelMapperBuilder;
+  onModelReplaced(handler: DslSignalHandlerValue): HBoxPlotModelMapperBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): HBoxPlotModelMapperBuilder;
+  onSeriesReplaced(handler: DslSignalHandlerValue): HBoxPlotModelMapperBuilder;
 }
 
 const HBOXPLOTMODELMAPPER_META: TypeMetadata = {

@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlEnumToken,
   QmlObjectBuilder,
   QmlValue,
@@ -13,6 +14,7 @@ import type { GrpcMetadataBuilder } from './GrpcMetadata.js';
 export interface GrpcChannelOptionsBuilder {
   id(id: string): GrpcChannelOptionsBuilder;
   child(obj: QmlObjectBuilder): GrpcChannelOptionsBuilder;
+  children(...objs: QmlObjectBuilder[]): GrpcChannelOptionsBuilder;
 
   deadlineTimeout(value: number): GrpcChannelOptionsBuilder;
   deadlineTimeoutBind(expr: string): GrpcChannelOptionsBuilder;
@@ -24,11 +26,11 @@ export interface GrpcChannelOptionsBuilder {
   serializationFormatBind(expr: string): GrpcChannelOptionsBuilder;
   sslConfiguration(value: QmlValue): GrpcChannelOptionsBuilder;
   sslConfigurationBind(expr: string): GrpcChannelOptionsBuilder;
-  onDeadlineTimeoutChanged(body: string): GrpcChannelOptionsBuilder;
-  onMetadataChanged(body: string): GrpcChannelOptionsBuilder;
-  onObjectNameChanged(body: string): GrpcChannelOptionsBuilder;
-  onSerializationFormatChanged(body: string): GrpcChannelOptionsBuilder;
-  onSslConfigurationChanged(body: string): GrpcChannelOptionsBuilder;
+  onDeadlineTimeoutChanged(handler: DslSignalHandlerValue): GrpcChannelOptionsBuilder;
+  onMetadataChanged(handler: DslSignalHandlerValue): GrpcChannelOptionsBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): GrpcChannelOptionsBuilder;
+  onSerializationFormatChanged(handler: DslSignalHandlerValue): GrpcChannelOptionsBuilder;
+  onSslConfigurationChanged(handler: DslSignalHandlerValue): GrpcChannelOptionsBuilder;
 }
 
 const GRPCCHANNELOPTIONS_META: TypeMetadata = {

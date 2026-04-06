@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlEnumToken,
   QmlObjectBuilder,
   QmlValue,
@@ -19,6 +20,7 @@ import type { ItemParticleAttachedBuilder } from './QQuickItemParticleAttached.j
 export interface TrailEmitterBuilder {
   id(id: string): TrailEmitterBuilder;
   child(obj: QmlObjectBuilder): TrailEmitterBuilder;
+  children(...objs: QmlObjectBuilder[]): TrailEmitterBuilder;
 
   acceleration(value: QmlValue): TrailEmitterBuilder;
   accelerationBind(expr: string): TrailEmitterBuilder;
@@ -108,59 +110,59 @@ export interface TrailEmitterBuilder {
   yBind(expr: string): TrailEmitterBuilder;
   z(value: number): TrailEmitterBuilder;
   zBind(expr: string): TrailEmitterBuilder;
-  onAccelerationChanged(body: string): TrailEmitterBuilder;
-  onActiveFocusChanged(body: string): TrailEmitterBuilder;
-  onActiveFocusOnTabChanged(body: string): TrailEmitterBuilder;
-  onAntialiasingChanged(body: string): TrailEmitterBuilder;
-  onBaselineOffsetChanged(body: string): TrailEmitterBuilder;
-  onChildrenChanged(body: string): TrailEmitterBuilder;
-  onChildrenRectChanged(body: string): TrailEmitterBuilder;
-  onClipChanged(body: string): TrailEmitterBuilder;
-  onContainmentMaskChanged(body: string): TrailEmitterBuilder;
-  onEmissionShapeChanged(body: string): TrailEmitterBuilder;
-  onEmitFollowParticles(body: string): TrailEmitterBuilder;
-  onEmitParticles(body: string): TrailEmitterBuilder;
-  onEmitterXVariationChanged(body: string): TrailEmitterBuilder;
-  onEmitterYVariationChanged(body: string): TrailEmitterBuilder;
-  onEnabledChanged(body: string): TrailEmitterBuilder;
-  onExtruderChanged(body: string): TrailEmitterBuilder;
-  onFocusChanged(body: string): TrailEmitterBuilder;
-  onFocusPolicyChanged(body: string): TrailEmitterBuilder;
-  onFollowChanged(body: string): TrailEmitterBuilder;
-  onGroupChanged(body: string): TrailEmitterBuilder;
-  onHeightChanged(body: string): TrailEmitterBuilder;
-  onImplicitHeightChanged(body: string): TrailEmitterBuilder;
-  onImplicitWidthChanged(body: string): TrailEmitterBuilder;
-  onMaximumEmittedChanged(body: string): TrailEmitterBuilder;
-  onObjectNameChanged(body: string): TrailEmitterBuilder;
-  onOpacityChanged(body: string): TrailEmitterBuilder;
-  onPaletteChanged(body: string): TrailEmitterBuilder;
-  onPaletteCreated(body: string): TrailEmitterBuilder;
-  onParentChanged(body: string): TrailEmitterBuilder;
-  onParticleCountChanged(body: string): TrailEmitterBuilder;
-  onParticleDurationChanged(body: string): TrailEmitterBuilder;
-  onParticleDurationVariationChanged(body: string): TrailEmitterBuilder;
-  onParticleEndSizeChanged(body: string): TrailEmitterBuilder;
-  onParticleSizeChanged(body: string): TrailEmitterBuilder;
-  onParticleSizeVariationChanged(body: string): TrailEmitterBuilder;
-  onParticlesPerParticlePerSecondChanged(body: string): TrailEmitterBuilder;
-  onParticlesPerSecondChanged(body: string): TrailEmitterBuilder;
-  onRotationChanged(body: string): TrailEmitterBuilder;
-  onScaleChanged(body: string): TrailEmitterBuilder;
-  onSmoothChanged(body: string): TrailEmitterBuilder;
-  onStartTimeChanged(body: string): TrailEmitterBuilder;
-  onStateChanged(body: string): TrailEmitterBuilder;
-  onSystemChanged(body: string): TrailEmitterBuilder;
-  onTransformOriginChanged(body: string): TrailEmitterBuilder;
-  onVelocityChanged(body: string): TrailEmitterBuilder;
-  onVelocityFromMovementChanged(body: string): TrailEmitterBuilder;
-  onVisibleChanged(body: string): TrailEmitterBuilder;
-  onVisibleChildrenChanged(body: string): TrailEmitterBuilder;
-  onWidthChanged(body: string): TrailEmitterBuilder;
-  onWindowChanged(body: string): TrailEmitterBuilder;
-  onXChanged(body: string): TrailEmitterBuilder;
-  onYChanged(body: string): TrailEmitterBuilder;
-  onZChanged(body: string): TrailEmitterBuilder;
+  onAccelerationChanged(handler: DslSignalHandlerValue): TrailEmitterBuilder;
+  onActiveFocusChanged(handler: DslSignalHandlerValue): TrailEmitterBuilder;
+  onActiveFocusOnTabChanged(handler: DslSignalHandlerValue): TrailEmitterBuilder;
+  onAntialiasingChanged(handler: DslSignalHandlerValue): TrailEmitterBuilder;
+  onBaselineOffsetChanged(handler: DslSignalHandlerValue): TrailEmitterBuilder;
+  onChildrenChanged(handler: DslSignalHandlerValue): TrailEmitterBuilder;
+  onChildrenRectChanged(handler: DslSignalHandlerValue): TrailEmitterBuilder;
+  onClipChanged(handler: DslSignalHandlerValue): TrailEmitterBuilder;
+  onContainmentMaskChanged(handler: DslSignalHandlerValue): TrailEmitterBuilder;
+  onEmissionShapeChanged(handler: DslSignalHandlerValue): TrailEmitterBuilder;
+  onEmitFollowParticles(handler: DslSignalHandlerValue): TrailEmitterBuilder;
+  onEmitParticles(handler: DslSignalHandlerValue): TrailEmitterBuilder;
+  onEmitterXVariationChanged(handler: DslSignalHandlerValue): TrailEmitterBuilder;
+  onEmitterYVariationChanged(handler: DslSignalHandlerValue): TrailEmitterBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): TrailEmitterBuilder;
+  onExtruderChanged(handler: DslSignalHandlerValue): TrailEmitterBuilder;
+  onFocusChanged(handler: DslSignalHandlerValue): TrailEmitterBuilder;
+  onFocusPolicyChanged(handler: DslSignalHandlerValue): TrailEmitterBuilder;
+  onFollowChanged(handler: DslSignalHandlerValue): TrailEmitterBuilder;
+  onGroupChanged(handler: DslSignalHandlerValue): TrailEmitterBuilder;
+  onHeightChanged(handler: DslSignalHandlerValue): TrailEmitterBuilder;
+  onImplicitHeightChanged(handler: DslSignalHandlerValue): TrailEmitterBuilder;
+  onImplicitWidthChanged(handler: DslSignalHandlerValue): TrailEmitterBuilder;
+  onMaximumEmittedChanged(handler: DslSignalHandlerValue): TrailEmitterBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): TrailEmitterBuilder;
+  onOpacityChanged(handler: DslSignalHandlerValue): TrailEmitterBuilder;
+  onPaletteChanged(handler: DslSignalHandlerValue): TrailEmitterBuilder;
+  onPaletteCreated(handler: DslSignalHandlerValue): TrailEmitterBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): TrailEmitterBuilder;
+  onParticleCountChanged(handler: DslSignalHandlerValue): TrailEmitterBuilder;
+  onParticleDurationChanged(handler: DslSignalHandlerValue): TrailEmitterBuilder;
+  onParticleDurationVariationChanged(handler: DslSignalHandlerValue): TrailEmitterBuilder;
+  onParticleEndSizeChanged(handler: DslSignalHandlerValue): TrailEmitterBuilder;
+  onParticleSizeChanged(handler: DslSignalHandlerValue): TrailEmitterBuilder;
+  onParticleSizeVariationChanged(handler: DslSignalHandlerValue): TrailEmitterBuilder;
+  onParticlesPerParticlePerSecondChanged(handler: DslSignalHandlerValue): TrailEmitterBuilder;
+  onParticlesPerSecondChanged(handler: DslSignalHandlerValue): TrailEmitterBuilder;
+  onRotationChanged(handler: DslSignalHandlerValue): TrailEmitterBuilder;
+  onScaleChanged(handler: DslSignalHandlerValue): TrailEmitterBuilder;
+  onSmoothChanged(handler: DslSignalHandlerValue): TrailEmitterBuilder;
+  onStartTimeChanged(handler: DslSignalHandlerValue): TrailEmitterBuilder;
+  onStateChanged(handler: DslSignalHandlerValue): TrailEmitterBuilder;
+  onSystemChanged(handler: DslSignalHandlerValue): TrailEmitterBuilder;
+  onTransformOriginChanged(handler: DslSignalHandlerValue): TrailEmitterBuilder;
+  onVelocityChanged(handler: DslSignalHandlerValue): TrailEmitterBuilder;
+  onVelocityFromMovementChanged(handler: DslSignalHandlerValue): TrailEmitterBuilder;
+  onVisibleChanged(handler: DslSignalHandlerValue): TrailEmitterBuilder;
+  onVisibleChildrenChanged(handler: DslSignalHandlerValue): TrailEmitterBuilder;
+  onWidthChanged(handler: DslSignalHandlerValue): TrailEmitterBuilder;
+  onWindowChanged(handler: DslSignalHandlerValue): TrailEmitterBuilder;
+  onXChanged(handler: DslSignalHandlerValue): TrailEmitterBuilder;
+  onYChanged(handler: DslSignalHandlerValue): TrailEmitterBuilder;
+  onZChanged(handler: DslSignalHandlerValue): TrailEmitterBuilder;
   anchors(setup: (b: AnchorsBuilder) => void): TrailEmitterBuilder;
   layer(setup: (b: LayerBuilder) => void): TrailEmitterBuilder;
   itemParticle(setup: (b: ItemParticleAttachedBuilder) => void): TrailEmitterBuilder;

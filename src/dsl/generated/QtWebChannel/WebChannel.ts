@@ -2,12 +2,13 @@
 // Type: WebChannel
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import type { DslSignalHandlerValue, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 import type { WebChannelAttachedBuilder } from './QQmlWebChannelAttached.js';
 export interface WebChannelBuilder {
   id(id: string): WebChannelBuilder;
   child(obj: QmlObjectBuilder): WebChannelBuilder;
+  children(...objs: QmlObjectBuilder[]): WebChannelBuilder;
 
   blockUpdates(value: boolean): WebChannelBuilder;
   blockUpdatesBind(expr: string): WebChannelBuilder;
@@ -15,8 +16,8 @@ export interface WebChannelBuilder {
   objectNameBind(expr: string): WebChannelBuilder;
   propertyUpdateInterval(value: number): WebChannelBuilder;
   propertyUpdateIntervalBind(expr: string): WebChannelBuilder;
-  onBlockUpdatesChanged(body: string): WebChannelBuilder;
-  onObjectNameChanged(body: string): WebChannelBuilder;
+  onBlockUpdatesChanged(handler: DslSignalHandlerValue): WebChannelBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): WebChannelBuilder;
   webChannel(setup: (b: WebChannelAttachedBuilder) => void): WebChannelBuilder;
 }
 

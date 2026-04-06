@@ -2,7 +2,12 @@
 // Type: Matrix4x4
 // Generated from Qt 6.11.0
 
-import type { QmlMatrix4x4, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlMatrix4x4,
+  QmlObjectBuilder,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 import type { AccessibleAttachedBuilder } from './Accessible.js';
 import type { EnterKeyAttachedBuilder } from './EnterKey.js';
@@ -23,13 +28,14 @@ import type { ViewTransitionAttachedBuilder } from './ViewTransition.js';
 export interface Matrix4x4Builder {
   id(id: string): Matrix4x4Builder;
   child(obj: QmlObjectBuilder): Matrix4x4Builder;
+  children(...objs: QmlObjectBuilder[]): Matrix4x4Builder;
 
   matrix(value: QmlMatrix4x4): Matrix4x4Builder;
   matrixBind(expr: string): Matrix4x4Builder;
   objectName(value: string): Matrix4x4Builder;
   objectNameBind(expr: string): Matrix4x4Builder;
-  onMatrixChanged(body: string): Matrix4x4Builder;
-  onObjectNameChanged(body: string): Matrix4x4Builder;
+  onMatrixChanged(handler: DslSignalHandlerValue): Matrix4x4Builder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): Matrix4x4Builder;
   accessible(setup: (b: AccessibleAttachedBuilder) => void): Matrix4x4Builder;
   drag(setup: (b: DragAttachedBuilder) => void): Matrix4x4Builder;
   enterKey(setup: (b: EnterKeyAttachedBuilder) => void): Matrix4x4Builder;

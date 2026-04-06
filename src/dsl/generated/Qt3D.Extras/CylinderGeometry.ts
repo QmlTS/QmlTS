@@ -2,12 +2,18 @@
 // Type: CylinderGeometry
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 import type { AttributeBuilder } from '../Qt3D.Core/Attribute.js';
 export interface CylinderGeometryBuilder {
   id(id: string): CylinderGeometryBuilder;
   child(obj: QmlObjectBuilder): CylinderGeometryBuilder;
+  children(...objs: QmlObjectBuilder[]): CylinderGeometryBuilder;
 
   boundingVolumePositionAttribute(value: AttributeBuilder): CylinderGeometryBuilder;
   boundingVolumePositionAttributeBind(expr: string): CylinderGeometryBuilder;
@@ -25,17 +31,17 @@ export interface CylinderGeometryBuilder {
   ringsBind(expr: string): CylinderGeometryBuilder;
   slices(value: number): CylinderGeometryBuilder;
   slicesBind(expr: string): CylinderGeometryBuilder;
-  onBoundingVolumePositionAttributeChanged(body: string): CylinderGeometryBuilder;
-  onEnabledChanged(body: string): CylinderGeometryBuilder;
-  onLengthChanged(body: string): CylinderGeometryBuilder;
-  onMaxExtentChanged(body: string): CylinderGeometryBuilder;
-  onMinExtentChanged(body: string): CylinderGeometryBuilder;
-  onNodeDestroyed(body: string): CylinderGeometryBuilder;
-  onObjectNameChanged(body: string): CylinderGeometryBuilder;
-  onParentChanged(body: string): CylinderGeometryBuilder;
-  onRadiusChanged(body: string): CylinderGeometryBuilder;
-  onRingsChanged(body: string): CylinderGeometryBuilder;
-  onSlicesChanged(body: string): CylinderGeometryBuilder;
+  onBoundingVolumePositionAttributeChanged(handler: DslSignalHandlerValue): CylinderGeometryBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): CylinderGeometryBuilder;
+  onLengthChanged(handler: DslSignalHandlerValue): CylinderGeometryBuilder;
+  onMaxExtentChanged(handler: DslSignalHandlerValue): CylinderGeometryBuilder;
+  onMinExtentChanged(handler: DslSignalHandlerValue): CylinderGeometryBuilder;
+  onNodeDestroyed(handler: DslSignalHandlerValue): CylinderGeometryBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): CylinderGeometryBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): CylinderGeometryBuilder;
+  onRadiusChanged(handler: DslSignalHandlerValue): CylinderGeometryBuilder;
+  onRingsChanged(handler: DslSignalHandlerValue): CylinderGeometryBuilder;
+  onSlicesChanged(handler: DslSignalHandlerValue): CylinderGeometryBuilder;
 }
 
 const CYLINDERGEOMETRY_META: TypeMetadata = {

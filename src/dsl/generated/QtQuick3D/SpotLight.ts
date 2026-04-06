@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlColor,
   QmlEnumToken,
   QmlObjectBuilder,
@@ -16,6 +17,7 @@ import type { NodeBuilder } from './Node.js';
 export interface SpotLightBuilder {
   id(id: string): SpotLightBuilder;
   child(obj: QmlObjectBuilder): SpotLightBuilder;
+  children(...objs: QmlObjectBuilder[]): SpotLightBuilder;
 
   ambientColor(value: QmlColor): SpotLightBuilder;
   ambientColorBind(expr: string): SpotLightBuilder;
@@ -85,48 +87,48 @@ export interface SpotLightBuilder {
   yBind(expr: string): SpotLightBuilder;
   z(value: number): SpotLightBuilder;
   zBind(expr: string): SpotLightBuilder;
-  onAmbientColorChanged(body: string): SpotLightBuilder;
-  onBakeModeChanged(body: string): SpotLightBuilder;
-  onBrightnessChanged(body: string): SpotLightBuilder;
-  onCastsShadowChanged(body: string): SpotLightBuilder;
-  onChildrenChanged(body: string): SpotLightBuilder;
-  onColorChanged(body: string): SpotLightBuilder;
-  onConeAngleChanged(body: string): SpotLightBuilder;
-  onConstantFadeChanged(body: string): SpotLightBuilder;
-  onEulerRotationChanged(body: string): SpotLightBuilder;
-  onForwardChanged(body: string): SpotLightBuilder;
-  onInnerConeAngleChanged(body: string): SpotLightBuilder;
-  onLayersChanged(body: string): SpotLightBuilder;
-  onLinearFadeChanged(body: string): SpotLightBuilder;
-  onLocalOpacityChanged(body: string): SpotLightBuilder;
-  onObjectNameChanged(body: string): SpotLightBuilder;
-  onParentChanged(body: string): SpotLightBuilder;
-  onPcfFactorChanged(body: string): SpotLightBuilder;
-  onPivotChanged(body: string): SpotLightBuilder;
-  onPositionChanged(body: string): SpotLightBuilder;
-  onQuadraticFadeChanged(body: string): SpotLightBuilder;
-  onRightChanged(body: string): SpotLightBuilder;
-  onRotationChanged(body: string): SpotLightBuilder;
-  onScaleChanged(body: string): SpotLightBuilder;
-  onScenePositionChanged(body: string): SpotLightBuilder;
-  onSceneRotationChanged(body: string): SpotLightBuilder;
-  onSceneScaleChanged(body: string): SpotLightBuilder;
-  onSceneTransformChanged(body: string): SpotLightBuilder;
-  onScopeChanged(body: string): SpotLightBuilder;
-  onShadowBiasChanged(body: string): SpotLightBuilder;
-  onShadowFactorChanged(body: string): SpotLightBuilder;
-  onShadowFilterChanged(body: string): SpotLightBuilder;
-  onShadowMapFarChanged(body: string): SpotLightBuilder;
-  onShadowMapQualityChanged(body: string): SpotLightBuilder;
-  onSoftShadowQualityChanged(body: string): SpotLightBuilder;
-  onStateChanged(body: string): SpotLightBuilder;
-  onStaticFlagsChanged(body: string): SpotLightBuilder;
-  onUpChanged(body: string): SpotLightBuilder;
-  onUse32BitShadowmapChanged(body: string): SpotLightBuilder;
-  onVisibleChanged(body: string): SpotLightBuilder;
-  onXChanged(body: string): SpotLightBuilder;
-  onYChanged(body: string): SpotLightBuilder;
-  onZChanged(body: string): SpotLightBuilder;
+  onAmbientColorChanged(handler: DslSignalHandlerValue): SpotLightBuilder;
+  onBakeModeChanged(handler: DslSignalHandlerValue): SpotLightBuilder;
+  onBrightnessChanged(handler: DslSignalHandlerValue): SpotLightBuilder;
+  onCastsShadowChanged(handler: DslSignalHandlerValue): SpotLightBuilder;
+  onChildrenChanged(handler: DslSignalHandlerValue): SpotLightBuilder;
+  onColorChanged(handler: DslSignalHandlerValue): SpotLightBuilder;
+  onConeAngleChanged(handler: DslSignalHandlerValue): SpotLightBuilder;
+  onConstantFadeChanged(handler: DslSignalHandlerValue): SpotLightBuilder;
+  onEulerRotationChanged(handler: DslSignalHandlerValue): SpotLightBuilder;
+  onForwardChanged(handler: DslSignalHandlerValue): SpotLightBuilder;
+  onInnerConeAngleChanged(handler: DslSignalHandlerValue): SpotLightBuilder;
+  onLayersChanged(handler: DslSignalHandlerValue): SpotLightBuilder;
+  onLinearFadeChanged(handler: DslSignalHandlerValue): SpotLightBuilder;
+  onLocalOpacityChanged(handler: DslSignalHandlerValue): SpotLightBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): SpotLightBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): SpotLightBuilder;
+  onPcfFactorChanged(handler: DslSignalHandlerValue): SpotLightBuilder;
+  onPivotChanged(handler: DslSignalHandlerValue): SpotLightBuilder;
+  onPositionChanged(handler: DslSignalHandlerValue): SpotLightBuilder;
+  onQuadraticFadeChanged(handler: DslSignalHandlerValue): SpotLightBuilder;
+  onRightChanged(handler: DslSignalHandlerValue): SpotLightBuilder;
+  onRotationChanged(handler: DslSignalHandlerValue): SpotLightBuilder;
+  onScaleChanged(handler: DslSignalHandlerValue): SpotLightBuilder;
+  onScenePositionChanged(handler: DslSignalHandlerValue): SpotLightBuilder;
+  onSceneRotationChanged(handler: DslSignalHandlerValue): SpotLightBuilder;
+  onSceneScaleChanged(handler: DslSignalHandlerValue): SpotLightBuilder;
+  onSceneTransformChanged(handler: DslSignalHandlerValue): SpotLightBuilder;
+  onScopeChanged(handler: DslSignalHandlerValue): SpotLightBuilder;
+  onShadowBiasChanged(handler: DslSignalHandlerValue): SpotLightBuilder;
+  onShadowFactorChanged(handler: DslSignalHandlerValue): SpotLightBuilder;
+  onShadowFilterChanged(handler: DslSignalHandlerValue): SpotLightBuilder;
+  onShadowMapFarChanged(handler: DslSignalHandlerValue): SpotLightBuilder;
+  onShadowMapQualityChanged(handler: DslSignalHandlerValue): SpotLightBuilder;
+  onSoftShadowQualityChanged(handler: DslSignalHandlerValue): SpotLightBuilder;
+  onStateChanged(handler: DslSignalHandlerValue): SpotLightBuilder;
+  onStaticFlagsChanged(handler: DslSignalHandlerValue): SpotLightBuilder;
+  onUpChanged(handler: DslSignalHandlerValue): SpotLightBuilder;
+  onUse32BitShadowmapChanged(handler: DslSignalHandlerValue): SpotLightBuilder;
+  onVisibleChanged(handler: DslSignalHandlerValue): SpotLightBuilder;
+  onXChanged(handler: DslSignalHandlerValue): SpotLightBuilder;
+  onYChanged(handler: DslSignalHandlerValue): SpotLightBuilder;
+  onZChanged(handler: DslSignalHandlerValue): SpotLightBuilder;
 }
 
 const SPOTLIGHT_META: TypeMetadata = {

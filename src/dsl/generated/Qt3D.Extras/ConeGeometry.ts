@@ -2,12 +2,18 @@
 // Type: ConeGeometry
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 import type { AttributeBuilder } from '../Qt3D.Core/Attribute.js';
 export interface ConeGeometryBuilder {
   id(id: string): ConeGeometryBuilder;
   child(obj: QmlObjectBuilder): ConeGeometryBuilder;
+  children(...objs: QmlObjectBuilder[]): ConeGeometryBuilder;
 
   bottomRadius(value: number): ConeGeometryBuilder;
   bottomRadiusBind(expr: string): ConeGeometryBuilder;
@@ -31,20 +37,20 @@ export interface ConeGeometryBuilder {
   slicesBind(expr: string): ConeGeometryBuilder;
   topRadius(value: number): ConeGeometryBuilder;
   topRadiusBind(expr: string): ConeGeometryBuilder;
-  onBottomRadiusChanged(body: string): ConeGeometryBuilder;
-  onBoundingVolumePositionAttributeChanged(body: string): ConeGeometryBuilder;
-  onEnabledChanged(body: string): ConeGeometryBuilder;
-  onHasBottomEndcapChanged(body: string): ConeGeometryBuilder;
-  onHasTopEndcapChanged(body: string): ConeGeometryBuilder;
-  onLengthChanged(body: string): ConeGeometryBuilder;
-  onMaxExtentChanged(body: string): ConeGeometryBuilder;
-  onMinExtentChanged(body: string): ConeGeometryBuilder;
-  onNodeDestroyed(body: string): ConeGeometryBuilder;
-  onObjectNameChanged(body: string): ConeGeometryBuilder;
-  onParentChanged(body: string): ConeGeometryBuilder;
-  onRingsChanged(body: string): ConeGeometryBuilder;
-  onSlicesChanged(body: string): ConeGeometryBuilder;
-  onTopRadiusChanged(body: string): ConeGeometryBuilder;
+  onBottomRadiusChanged(handler: DslSignalHandlerValue): ConeGeometryBuilder;
+  onBoundingVolumePositionAttributeChanged(handler: DslSignalHandlerValue): ConeGeometryBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): ConeGeometryBuilder;
+  onHasBottomEndcapChanged(handler: DslSignalHandlerValue): ConeGeometryBuilder;
+  onHasTopEndcapChanged(handler: DslSignalHandlerValue): ConeGeometryBuilder;
+  onLengthChanged(handler: DslSignalHandlerValue): ConeGeometryBuilder;
+  onMaxExtentChanged(handler: DslSignalHandlerValue): ConeGeometryBuilder;
+  onMinExtentChanged(handler: DslSignalHandlerValue): ConeGeometryBuilder;
+  onNodeDestroyed(handler: DslSignalHandlerValue): ConeGeometryBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): ConeGeometryBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): ConeGeometryBuilder;
+  onRingsChanged(handler: DslSignalHandlerValue): ConeGeometryBuilder;
+  onSlicesChanged(handler: DslSignalHandlerValue): ConeGeometryBuilder;
+  onTopRadiusChanged(handler: DslSignalHandlerValue): ConeGeometryBuilder;
 }
 
 const CONEGEOMETRY_META: TypeMetadata = {

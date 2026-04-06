@@ -2,11 +2,17 @@
 // Type: XmlListModel
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlUrl, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlObjectBuilder,
+  QmlUrl,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface XmlListModelBuilder {
   id(id: string): XmlListModelBuilder;
   child(obj: QmlObjectBuilder): XmlListModelBuilder;
+  children(...objs: QmlObjectBuilder[]): XmlListModelBuilder;
 
   objectName(value: string): XmlListModelBuilder;
   objectNameBind(expr: string): XmlListModelBuilder;
@@ -14,30 +20,30 @@ export interface XmlListModelBuilder {
   queryBind(expr: string): XmlListModelBuilder;
   source(value: QmlUrl): XmlListModelBuilder;
   sourceBind(expr: string): XmlListModelBuilder;
-  onColumnsAboutToBeInserted(body: string): XmlListModelBuilder;
-  onColumnsAboutToBeMoved(body: string): XmlListModelBuilder;
-  onColumnsAboutToBeRemoved(body: string): XmlListModelBuilder;
-  onColumnsInserted(body: string): XmlListModelBuilder;
-  onColumnsMoved(body: string): XmlListModelBuilder;
-  onColumnsRemoved(body: string): XmlListModelBuilder;
-  onCountChanged(body: string): XmlListModelBuilder;
-  onDataChanged(body: string): XmlListModelBuilder;
-  onHeaderDataChanged(body: string): XmlListModelBuilder;
-  onLayoutAboutToBeChanged(body: string): XmlListModelBuilder;
-  onLayoutChanged(body: string): XmlListModelBuilder;
-  onModelAboutToBeReset(body: string): XmlListModelBuilder;
-  onModelReset(body: string): XmlListModelBuilder;
-  onObjectNameChanged(body: string): XmlListModelBuilder;
-  onProgressChanged(body: string): XmlListModelBuilder;
-  onQueryChanged(body: string): XmlListModelBuilder;
-  onRowsAboutToBeInserted(body: string): XmlListModelBuilder;
-  onRowsAboutToBeMoved(body: string): XmlListModelBuilder;
-  onRowsAboutToBeRemoved(body: string): XmlListModelBuilder;
-  onRowsInserted(body: string): XmlListModelBuilder;
-  onRowsMoved(body: string): XmlListModelBuilder;
-  onRowsRemoved(body: string): XmlListModelBuilder;
-  onSourceChanged(body: string): XmlListModelBuilder;
-  onStatusChanged(body: string): XmlListModelBuilder;
+  onColumnsAboutToBeInserted(handler: DslSignalHandlerValue): XmlListModelBuilder;
+  onColumnsAboutToBeMoved(handler: DslSignalHandlerValue): XmlListModelBuilder;
+  onColumnsAboutToBeRemoved(handler: DslSignalHandlerValue): XmlListModelBuilder;
+  onColumnsInserted(handler: DslSignalHandlerValue): XmlListModelBuilder;
+  onColumnsMoved(handler: DslSignalHandlerValue): XmlListModelBuilder;
+  onColumnsRemoved(handler: DslSignalHandlerValue): XmlListModelBuilder;
+  onCountChanged(handler: DslSignalHandlerValue): XmlListModelBuilder;
+  onDataChanged(handler: DslSignalHandlerValue): XmlListModelBuilder;
+  onHeaderDataChanged(handler: DslSignalHandlerValue): XmlListModelBuilder;
+  onLayoutAboutToBeChanged(handler: DslSignalHandlerValue): XmlListModelBuilder;
+  onLayoutChanged(handler: DslSignalHandlerValue): XmlListModelBuilder;
+  onModelAboutToBeReset(handler: DslSignalHandlerValue): XmlListModelBuilder;
+  onModelReset(handler: DslSignalHandlerValue): XmlListModelBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): XmlListModelBuilder;
+  onProgressChanged(handler: DslSignalHandlerValue): XmlListModelBuilder;
+  onQueryChanged(handler: DslSignalHandlerValue): XmlListModelBuilder;
+  onRowsAboutToBeInserted(handler: DslSignalHandlerValue): XmlListModelBuilder;
+  onRowsAboutToBeMoved(handler: DslSignalHandlerValue): XmlListModelBuilder;
+  onRowsAboutToBeRemoved(handler: DslSignalHandlerValue): XmlListModelBuilder;
+  onRowsInserted(handler: DslSignalHandlerValue): XmlListModelBuilder;
+  onRowsMoved(handler: DslSignalHandlerValue): XmlListModelBuilder;
+  onRowsRemoved(handler: DslSignalHandlerValue): XmlListModelBuilder;
+  onSourceChanged(handler: DslSignalHandlerValue): XmlListModelBuilder;
+  onStatusChanged(handler: DslSignalHandlerValue): XmlListModelBuilder;
 }
 
 const XMLLISTMODEL_META: TypeMetadata = {

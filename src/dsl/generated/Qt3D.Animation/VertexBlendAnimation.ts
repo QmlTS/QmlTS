@@ -2,12 +2,13 @@
 // Type: VertexBlendAnimation
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import type { DslSignalHandlerValue, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { GeometryRendererBuilder } from '../Qt3D.Render/GeometryRenderer.js';
 export interface VertexBlendAnimationBuilder {
   id(id: string): VertexBlendAnimationBuilder;
   child(obj: QmlObjectBuilder): VertexBlendAnimationBuilder;
+  children(...objs: QmlObjectBuilder[]): VertexBlendAnimationBuilder;
 
   animationName(value: string): VertexBlendAnimationBuilder;
   animationNameBind(expr: string): VertexBlendAnimationBuilder;
@@ -21,14 +22,14 @@ export interface VertexBlendAnimationBuilder {
   targetNameBind(expr: string): VertexBlendAnimationBuilder;
   targetPositions(value: number): VertexBlendAnimationBuilder;
   targetPositionsBind(expr: string): VertexBlendAnimationBuilder;
-  onAnimationNameChanged(body: string): VertexBlendAnimationBuilder;
-  onDurationChanged(body: string): VertexBlendAnimationBuilder;
-  onInterpolatorChanged(body: string): VertexBlendAnimationBuilder;
-  onObjectNameChanged(body: string): VertexBlendAnimationBuilder;
-  onPositionChanged(body: string): VertexBlendAnimationBuilder;
-  onTargetChanged(body: string): VertexBlendAnimationBuilder;
-  onTargetNameChanged(body: string): VertexBlendAnimationBuilder;
-  onTargetPositionsChanged(body: string): VertexBlendAnimationBuilder;
+  onAnimationNameChanged(handler: DslSignalHandlerValue): VertexBlendAnimationBuilder;
+  onDurationChanged(handler: DslSignalHandlerValue): VertexBlendAnimationBuilder;
+  onInterpolatorChanged(handler: DslSignalHandlerValue): VertexBlendAnimationBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): VertexBlendAnimationBuilder;
+  onPositionChanged(handler: DslSignalHandlerValue): VertexBlendAnimationBuilder;
+  onTargetChanged(handler: DslSignalHandlerValue): VertexBlendAnimationBuilder;
+  onTargetNameChanged(handler: DslSignalHandlerValue): VertexBlendAnimationBuilder;
+  onTargetPositionsChanged(handler: DslSignalHandlerValue): VertexBlendAnimationBuilder;
 }
 
 const VERTEXBLENDANIMATION_META: TypeMetadata = {

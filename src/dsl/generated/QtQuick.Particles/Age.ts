@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlEnumToken,
   QmlObjectBuilder,
   QmlValue,
@@ -19,6 +20,7 @@ import type { ItemParticleAttachedBuilder } from './QQuickItemParticleAttached.j
 export interface AgeBuilder {
   id(id: string): AgeBuilder;
   child(obj: QmlObjectBuilder): AgeBuilder;
+  children(...objs: QmlObjectBuilder[]): AgeBuilder;
 
   activeFocusOnTab(value: boolean): AgeBuilder;
   activeFocusOnTabBind(expr: string): AgeBuilder;
@@ -84,45 +86,45 @@ export interface AgeBuilder {
   yBind(expr: string): AgeBuilder;
   z(value: number): AgeBuilder;
   zBind(expr: string): AgeBuilder;
-  onActiveFocusChanged(body: string): AgeBuilder;
-  onActiveFocusOnTabChanged(body: string): AgeBuilder;
-  onAdvancePositionChanged(body: string): AgeBuilder;
-  onAffected(body: string): AgeBuilder;
-  onAntialiasingChanged(body: string): AgeBuilder;
-  onBaselineOffsetChanged(body: string): AgeBuilder;
-  onChildrenChanged(body: string): AgeBuilder;
-  onChildrenRectChanged(body: string): AgeBuilder;
-  onClipChanged(body: string): AgeBuilder;
-  onContainmentMaskChanged(body: string): AgeBuilder;
-  onEnabledChanged(body: string): AgeBuilder;
-  onFocusChanged(body: string): AgeBuilder;
-  onFocusPolicyChanged(body: string): AgeBuilder;
-  onGroupsChanged(body: string): AgeBuilder;
-  onHeightChanged(body: string): AgeBuilder;
-  onImplicitHeightChanged(body: string): AgeBuilder;
-  onImplicitWidthChanged(body: string): AgeBuilder;
-  onLifeLeftChanged(body: string): AgeBuilder;
-  onObjectNameChanged(body: string): AgeBuilder;
-  onOnceChanged(body: string): AgeBuilder;
-  onOpacityChanged(body: string): AgeBuilder;
-  onPaletteChanged(body: string): AgeBuilder;
-  onPaletteCreated(body: string): AgeBuilder;
-  onParentChanged(body: string): AgeBuilder;
-  onRotationChanged(body: string): AgeBuilder;
-  onScaleChanged(body: string): AgeBuilder;
-  onShapeChanged(body: string): AgeBuilder;
-  onSmoothChanged(body: string): AgeBuilder;
-  onStateChanged(body: string): AgeBuilder;
-  onSystemChanged(body: string): AgeBuilder;
-  onTransformOriginChanged(body: string): AgeBuilder;
-  onVisibleChanged(body: string): AgeBuilder;
-  onVisibleChildrenChanged(body: string): AgeBuilder;
-  onWhenCollidingWithChanged(body: string): AgeBuilder;
-  onWidthChanged(body: string): AgeBuilder;
-  onWindowChanged(body: string): AgeBuilder;
-  onXChanged(body: string): AgeBuilder;
-  onYChanged(body: string): AgeBuilder;
-  onZChanged(body: string): AgeBuilder;
+  onActiveFocusChanged(handler: DslSignalHandlerValue): AgeBuilder;
+  onActiveFocusOnTabChanged(handler: DslSignalHandlerValue): AgeBuilder;
+  onAdvancePositionChanged(handler: DslSignalHandlerValue): AgeBuilder;
+  onAffected(handler: DslSignalHandlerValue): AgeBuilder;
+  onAntialiasingChanged(handler: DslSignalHandlerValue): AgeBuilder;
+  onBaselineOffsetChanged(handler: DslSignalHandlerValue): AgeBuilder;
+  onChildrenChanged(handler: DslSignalHandlerValue): AgeBuilder;
+  onChildrenRectChanged(handler: DslSignalHandlerValue): AgeBuilder;
+  onClipChanged(handler: DslSignalHandlerValue): AgeBuilder;
+  onContainmentMaskChanged(handler: DslSignalHandlerValue): AgeBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): AgeBuilder;
+  onFocusChanged(handler: DslSignalHandlerValue): AgeBuilder;
+  onFocusPolicyChanged(handler: DslSignalHandlerValue): AgeBuilder;
+  onGroupsChanged(handler: DslSignalHandlerValue): AgeBuilder;
+  onHeightChanged(handler: DslSignalHandlerValue): AgeBuilder;
+  onImplicitHeightChanged(handler: DslSignalHandlerValue): AgeBuilder;
+  onImplicitWidthChanged(handler: DslSignalHandlerValue): AgeBuilder;
+  onLifeLeftChanged(handler: DslSignalHandlerValue): AgeBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): AgeBuilder;
+  onOnceChanged(handler: DslSignalHandlerValue): AgeBuilder;
+  onOpacityChanged(handler: DslSignalHandlerValue): AgeBuilder;
+  onPaletteChanged(handler: DslSignalHandlerValue): AgeBuilder;
+  onPaletteCreated(handler: DslSignalHandlerValue): AgeBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): AgeBuilder;
+  onRotationChanged(handler: DslSignalHandlerValue): AgeBuilder;
+  onScaleChanged(handler: DslSignalHandlerValue): AgeBuilder;
+  onShapeChanged(handler: DslSignalHandlerValue): AgeBuilder;
+  onSmoothChanged(handler: DslSignalHandlerValue): AgeBuilder;
+  onStateChanged(handler: DslSignalHandlerValue): AgeBuilder;
+  onSystemChanged(handler: DslSignalHandlerValue): AgeBuilder;
+  onTransformOriginChanged(handler: DslSignalHandlerValue): AgeBuilder;
+  onVisibleChanged(handler: DslSignalHandlerValue): AgeBuilder;
+  onVisibleChildrenChanged(handler: DslSignalHandlerValue): AgeBuilder;
+  onWhenCollidingWithChanged(handler: DslSignalHandlerValue): AgeBuilder;
+  onWidthChanged(handler: DslSignalHandlerValue): AgeBuilder;
+  onWindowChanged(handler: DslSignalHandlerValue): AgeBuilder;
+  onXChanged(handler: DslSignalHandlerValue): AgeBuilder;
+  onYChanged(handler: DslSignalHandlerValue): AgeBuilder;
+  onZChanged(handler: DslSignalHandlerValue): AgeBuilder;
   anchors(setup: (b: AnchorsBuilder) => void): AgeBuilder;
   layer(setup: (b: LayerBuilder) => void): AgeBuilder;
   itemParticle(setup: (b: ItemParticleAttachedBuilder) => void): AgeBuilder;

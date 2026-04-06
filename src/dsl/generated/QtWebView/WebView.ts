@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlEnumToken,
   QmlObjectBuilder,
   QmlUrl,
@@ -18,6 +19,7 @@ import type { LayerBuilder } from '../QtQuick/QQuickItemLayer.js';
 export interface WebViewBuilder {
   id(id: string): WebViewBuilder;
   child(obj: QmlObjectBuilder): WebViewBuilder;
+  children(...objs: QmlObjectBuilder[]): WebViewBuilder;
 
   activeFocusOnTab(value: boolean): WebViewBuilder;
   activeFocusOnTabBind(expr: string): WebViewBuilder;
@@ -71,45 +73,45 @@ export interface WebViewBuilder {
   yBind(expr: string): WebViewBuilder;
   z(value: number): WebViewBuilder;
   zBind(expr: string): WebViewBuilder;
-  onActiveFocusChanged(body: string): WebViewBuilder;
-  onActiveFocusOnTabChanged(body: string): WebViewBuilder;
-  onAntialiasingChanged(body: string): WebViewBuilder;
-  onBaselineOffsetChanged(body: string): WebViewBuilder;
-  onChildrenChanged(body: string): WebViewBuilder;
-  onChildrenRectChanged(body: string): WebViewBuilder;
-  onClipChanged(body: string): WebViewBuilder;
-  onContainedWindowChanged(body: string): WebViewBuilder;
-  onContainmentMaskChanged(body: string): WebViewBuilder;
-  onCookieAdded(body: string): WebViewBuilder;
-  onCookieRemoved(body: string): WebViewBuilder;
-  onEnabledChanged(body: string): WebViewBuilder;
-  onFocusChanged(body: string): WebViewBuilder;
-  onFocusPolicyChanged(body: string): WebViewBuilder;
-  onHeightChanged(body: string): WebViewBuilder;
-  onHttpUserAgentChanged(body: string): WebViewBuilder;
-  onImplicitHeightChanged(body: string): WebViewBuilder;
-  onImplicitWidthChanged(body: string): WebViewBuilder;
-  onLoadProgressChanged(body: string): WebViewBuilder;
-  onLoadingChanged(body: string): WebViewBuilder;
-  onObjectNameChanged(body: string): WebViewBuilder;
-  onOpacityChanged(body: string): WebViewBuilder;
-  onPaletteChanged(body: string): WebViewBuilder;
-  onPaletteCreated(body: string): WebViewBuilder;
-  onParentChanged(body: string): WebViewBuilder;
-  onRotationChanged(body: string): WebViewBuilder;
-  onScaleChanged(body: string): WebViewBuilder;
-  onSmoothChanged(body: string): WebViewBuilder;
-  onStateChanged(body: string): WebViewBuilder;
-  onTitleChanged(body: string): WebViewBuilder;
-  onTransformOriginChanged(body: string): WebViewBuilder;
-  onUrlChanged(body: string): WebViewBuilder;
-  onVisibleChanged(body: string): WebViewBuilder;
-  onVisibleChildrenChanged(body: string): WebViewBuilder;
-  onWidthChanged(body: string): WebViewBuilder;
-  onWindowChanged(body: string): WebViewBuilder;
-  onXChanged(body: string): WebViewBuilder;
-  onYChanged(body: string): WebViewBuilder;
-  onZChanged(body: string): WebViewBuilder;
+  onActiveFocusChanged(handler: DslSignalHandlerValue): WebViewBuilder;
+  onActiveFocusOnTabChanged(handler: DslSignalHandlerValue): WebViewBuilder;
+  onAntialiasingChanged(handler: DslSignalHandlerValue): WebViewBuilder;
+  onBaselineOffsetChanged(handler: DslSignalHandlerValue): WebViewBuilder;
+  onChildrenChanged(handler: DslSignalHandlerValue): WebViewBuilder;
+  onChildrenRectChanged(handler: DslSignalHandlerValue): WebViewBuilder;
+  onClipChanged(handler: DslSignalHandlerValue): WebViewBuilder;
+  onContainedWindowChanged(handler: DslSignalHandlerValue): WebViewBuilder;
+  onContainmentMaskChanged(handler: DslSignalHandlerValue): WebViewBuilder;
+  onCookieAdded(handler: DslSignalHandlerValue): WebViewBuilder;
+  onCookieRemoved(handler: DslSignalHandlerValue): WebViewBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): WebViewBuilder;
+  onFocusChanged(handler: DslSignalHandlerValue): WebViewBuilder;
+  onFocusPolicyChanged(handler: DslSignalHandlerValue): WebViewBuilder;
+  onHeightChanged(handler: DslSignalHandlerValue): WebViewBuilder;
+  onHttpUserAgentChanged(handler: DslSignalHandlerValue): WebViewBuilder;
+  onImplicitHeightChanged(handler: DslSignalHandlerValue): WebViewBuilder;
+  onImplicitWidthChanged(handler: DslSignalHandlerValue): WebViewBuilder;
+  onLoadProgressChanged(handler: DslSignalHandlerValue): WebViewBuilder;
+  onLoadingChanged(handler: DslSignalHandlerValue): WebViewBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): WebViewBuilder;
+  onOpacityChanged(handler: DslSignalHandlerValue): WebViewBuilder;
+  onPaletteChanged(handler: DslSignalHandlerValue): WebViewBuilder;
+  onPaletteCreated(handler: DslSignalHandlerValue): WebViewBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): WebViewBuilder;
+  onRotationChanged(handler: DslSignalHandlerValue): WebViewBuilder;
+  onScaleChanged(handler: DslSignalHandlerValue): WebViewBuilder;
+  onSmoothChanged(handler: DslSignalHandlerValue): WebViewBuilder;
+  onStateChanged(handler: DslSignalHandlerValue): WebViewBuilder;
+  onTitleChanged(handler: DslSignalHandlerValue): WebViewBuilder;
+  onTransformOriginChanged(handler: DslSignalHandlerValue): WebViewBuilder;
+  onUrlChanged(handler: DslSignalHandlerValue): WebViewBuilder;
+  onVisibleChanged(handler: DslSignalHandlerValue): WebViewBuilder;
+  onVisibleChildrenChanged(handler: DslSignalHandlerValue): WebViewBuilder;
+  onWidthChanged(handler: DslSignalHandlerValue): WebViewBuilder;
+  onWindowChanged(handler: DslSignalHandlerValue): WebViewBuilder;
+  onXChanged(handler: DslSignalHandlerValue): WebViewBuilder;
+  onYChanged(handler: DslSignalHandlerValue): WebViewBuilder;
+  onZChanged(handler: DslSignalHandlerValue): WebViewBuilder;
   anchors(setup: (b: AnchorsBuilder) => void): WebViewBuilder;
   layer(setup: (b: LayerBuilder) => void): WebViewBuilder;
 }

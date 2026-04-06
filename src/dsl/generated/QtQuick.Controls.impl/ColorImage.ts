@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlColor,
   QmlEnumToken,
   QmlObjectBuilder,
@@ -21,6 +22,7 @@ import type { LayerBuilder } from '../QtQuick/QQuickItemLayer.js';
 export interface ColorImageBuilder {
   id(id: string): ColorImageBuilder;
   child(obj: QmlObjectBuilder): ColorImageBuilder;
+  children(...objs: QmlObjectBuilder[]): ColorImageBuilder;
 
   activeFocusOnTab(value: boolean): ColorImageBuilder;
   activeFocusOnTabBind(expr: string): ColorImageBuilder;
@@ -102,58 +104,58 @@ export interface ColorImageBuilder {
   yBind(expr: string): ColorImageBuilder;
   z(value: number): ColorImageBuilder;
   zBind(expr: string): ColorImageBuilder;
-  onActiveFocusChanged(body: string): ColorImageBuilder;
-  onActiveFocusOnTabChanged(body: string): ColorImageBuilder;
-  onAntialiasingChanged(body: string): ColorImageBuilder;
-  onAsynchronousChanged(body: string): ColorImageBuilder;
-  onAutoTransformChanged(body: string): ColorImageBuilder;
-  onBaselineOffsetChanged(body: string): ColorImageBuilder;
-  onCacheChanged(body: string): ColorImageBuilder;
-  onChildrenChanged(body: string): ColorImageBuilder;
-  onChildrenRectChanged(body: string): ColorImageBuilder;
-  onClipChanged(body: string): ColorImageBuilder;
-  onColorChanged(body: string): ColorImageBuilder;
-  onColorSpaceChanged(body: string): ColorImageBuilder;
-  onContainmentMaskChanged(body: string): ColorImageBuilder;
-  onCurrentFrameChanged(body: string): ColorImageBuilder;
-  onDefaultColorChanged(body: string): ColorImageBuilder;
-  onEnabledChanged(body: string): ColorImageBuilder;
-  onFillModeChanged(body: string): ColorImageBuilder;
-  onFocusChanged(body: string): ColorImageBuilder;
-  onFocusPolicyChanged(body: string): ColorImageBuilder;
-  onFrameCountChanged(body: string): ColorImageBuilder;
-  onHeightChanged(body: string): ColorImageBuilder;
-  onHorizontalAlignmentChanged(body: string): ColorImageBuilder;
-  onImplicitHeightChanged(body: string): ColorImageBuilder;
-  onImplicitWidthChanged(body: string): ColorImageBuilder;
-  onMipmapChanged(body: string): ColorImageBuilder;
-  onMirrorChanged(body: string): ColorImageBuilder;
-  onMirrorVerticallyChanged(body: string): ColorImageBuilder;
-  onObjectNameChanged(body: string): ColorImageBuilder;
-  onOpacityChanged(body: string): ColorImageBuilder;
-  onPaintedGeometryChanged(body: string): ColorImageBuilder;
-  onPaletteChanged(body: string): ColorImageBuilder;
-  onPaletteCreated(body: string): ColorImageBuilder;
-  onParentChanged(body: string): ColorImageBuilder;
-  onProgressChanged(body: string): ColorImageBuilder;
-  onRetainWhileLoadingChanged(body: string): ColorImageBuilder;
-  onRotationChanged(body: string): ColorImageBuilder;
-  onScaleChanged(body: string): ColorImageBuilder;
-  onSmoothChanged(body: string): ColorImageBuilder;
-  onSourceChanged(body: string): ColorImageBuilder;
-  onSourceClipRectChanged(body: string): ColorImageBuilder;
-  onSourceSizeChanged(body: string): ColorImageBuilder;
-  onStateChanged(body: string): ColorImageBuilder;
-  onStatusChanged(body: string): ColorImageBuilder;
-  onTransformOriginChanged(body: string): ColorImageBuilder;
-  onVerticalAlignmentChanged(body: string): ColorImageBuilder;
-  onVisibleChanged(body: string): ColorImageBuilder;
-  onVisibleChildrenChanged(body: string): ColorImageBuilder;
-  onWidthChanged(body: string): ColorImageBuilder;
-  onWindowChanged(body: string): ColorImageBuilder;
-  onXChanged(body: string): ColorImageBuilder;
-  onYChanged(body: string): ColorImageBuilder;
-  onZChanged(body: string): ColorImageBuilder;
+  onActiveFocusChanged(handler: DslSignalHandlerValue): ColorImageBuilder;
+  onActiveFocusOnTabChanged(handler: DslSignalHandlerValue): ColorImageBuilder;
+  onAntialiasingChanged(handler: DslSignalHandlerValue): ColorImageBuilder;
+  onAsynchronousChanged(handler: DslSignalHandlerValue): ColorImageBuilder;
+  onAutoTransformChanged(handler: DslSignalHandlerValue): ColorImageBuilder;
+  onBaselineOffsetChanged(handler: DslSignalHandlerValue): ColorImageBuilder;
+  onCacheChanged(handler: DslSignalHandlerValue): ColorImageBuilder;
+  onChildrenChanged(handler: DslSignalHandlerValue): ColorImageBuilder;
+  onChildrenRectChanged(handler: DslSignalHandlerValue): ColorImageBuilder;
+  onClipChanged(handler: DslSignalHandlerValue): ColorImageBuilder;
+  onColorChanged(handler: DslSignalHandlerValue): ColorImageBuilder;
+  onColorSpaceChanged(handler: DslSignalHandlerValue): ColorImageBuilder;
+  onContainmentMaskChanged(handler: DslSignalHandlerValue): ColorImageBuilder;
+  onCurrentFrameChanged(handler: DslSignalHandlerValue): ColorImageBuilder;
+  onDefaultColorChanged(handler: DslSignalHandlerValue): ColorImageBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): ColorImageBuilder;
+  onFillModeChanged(handler: DslSignalHandlerValue): ColorImageBuilder;
+  onFocusChanged(handler: DslSignalHandlerValue): ColorImageBuilder;
+  onFocusPolicyChanged(handler: DslSignalHandlerValue): ColorImageBuilder;
+  onFrameCountChanged(handler: DslSignalHandlerValue): ColorImageBuilder;
+  onHeightChanged(handler: DslSignalHandlerValue): ColorImageBuilder;
+  onHorizontalAlignmentChanged(handler: DslSignalHandlerValue): ColorImageBuilder;
+  onImplicitHeightChanged(handler: DslSignalHandlerValue): ColorImageBuilder;
+  onImplicitWidthChanged(handler: DslSignalHandlerValue): ColorImageBuilder;
+  onMipmapChanged(handler: DslSignalHandlerValue): ColorImageBuilder;
+  onMirrorChanged(handler: DslSignalHandlerValue): ColorImageBuilder;
+  onMirrorVerticallyChanged(handler: DslSignalHandlerValue): ColorImageBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): ColorImageBuilder;
+  onOpacityChanged(handler: DslSignalHandlerValue): ColorImageBuilder;
+  onPaintedGeometryChanged(handler: DslSignalHandlerValue): ColorImageBuilder;
+  onPaletteChanged(handler: DslSignalHandlerValue): ColorImageBuilder;
+  onPaletteCreated(handler: DslSignalHandlerValue): ColorImageBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): ColorImageBuilder;
+  onProgressChanged(handler: DslSignalHandlerValue): ColorImageBuilder;
+  onRetainWhileLoadingChanged(handler: DslSignalHandlerValue): ColorImageBuilder;
+  onRotationChanged(handler: DslSignalHandlerValue): ColorImageBuilder;
+  onScaleChanged(handler: DslSignalHandlerValue): ColorImageBuilder;
+  onSmoothChanged(handler: DslSignalHandlerValue): ColorImageBuilder;
+  onSourceChanged(handler: DslSignalHandlerValue): ColorImageBuilder;
+  onSourceClipRectChanged(handler: DslSignalHandlerValue): ColorImageBuilder;
+  onSourceSizeChanged(handler: DslSignalHandlerValue): ColorImageBuilder;
+  onStateChanged(handler: DslSignalHandlerValue): ColorImageBuilder;
+  onStatusChanged(handler: DslSignalHandlerValue): ColorImageBuilder;
+  onTransformOriginChanged(handler: DslSignalHandlerValue): ColorImageBuilder;
+  onVerticalAlignmentChanged(handler: DslSignalHandlerValue): ColorImageBuilder;
+  onVisibleChanged(handler: DslSignalHandlerValue): ColorImageBuilder;
+  onVisibleChildrenChanged(handler: DslSignalHandlerValue): ColorImageBuilder;
+  onWidthChanged(handler: DslSignalHandlerValue): ColorImageBuilder;
+  onWindowChanged(handler: DslSignalHandlerValue): ColorImageBuilder;
+  onXChanged(handler: DslSignalHandlerValue): ColorImageBuilder;
+  onYChanged(handler: DslSignalHandlerValue): ColorImageBuilder;
+  onZChanged(handler: DslSignalHandlerValue): ColorImageBuilder;
   anchors(setup: (b: AnchorsBuilder) => void): ColorImageBuilder;
   layer(setup: (b: LayerBuilder) => void): ColorImageBuilder;
 }

@@ -2,16 +2,17 @@
 // Type: MicrophonePermission
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import type { DslSignalHandlerValue, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 export interface MicrophonePermissionBuilder {
   id(id: string): MicrophonePermissionBuilder;
   child(obj: QmlObjectBuilder): MicrophonePermissionBuilder;
+  children(...objs: QmlObjectBuilder[]): MicrophonePermissionBuilder;
 
   objectName(value: string): MicrophonePermissionBuilder;
   objectNameBind(expr: string): MicrophonePermissionBuilder;
-  onObjectNameChanged(body: string): MicrophonePermissionBuilder;
-  onStatusChanged(body: string): MicrophonePermissionBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): MicrophonePermissionBuilder;
+  onStatusChanged(handler: DslSignalHandlerValue): MicrophonePermissionBuilder;
 }
 
 const MICROPHONEPERMISSION_META: TypeMetadata = {

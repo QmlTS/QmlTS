@@ -2,7 +2,12 @@
 // Type: TextField
 // Generated from Qt 6.11.0
 
-import type { QmlEnumToken, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlEnumToken,
+  QmlObjectBuilder,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { QtObjectBuilder } from '../QML/QtObject.js';
 import type { ItemBuilder } from '../QtQuick/Item.js';
@@ -12,6 +17,7 @@ import type { LayerBuilder } from '../QtQuick/QQuickItemLayer.js';
 export interface TextFieldBuilder {
   id(id: string): TextFieldBuilder;
   child(obj: QmlObjectBuilder): TextFieldBuilder;
+  children(...objs: QmlObjectBuilder[]): TextFieldBuilder;
 
   activeFocusOnTab(value: boolean): TextFieldBuilder;
   activeFocusOnTabBind(expr: string): TextFieldBuilder;
@@ -75,42 +81,42 @@ export interface TextFieldBuilder {
   yBind(expr: string): TextFieldBuilder;
   z(value: number): TextFieldBuilder;
   zBind(expr: string): TextFieldBuilder;
-  onActiveFocusChanged(body: string): TextFieldBuilder;
-  onActiveFocusOnTabChanged(body: string): TextFieldBuilder;
-  onAntialiasingChanged(body: string): TextFieldBuilder;
-  onBaselineOffsetChanged(body: string): TextFieldBuilder;
-  onChildrenChanged(body: string): TextFieldBuilder;
-  onChildrenRectChanged(body: string): TextFieldBuilder;
-  onClipChanged(body: string): TextFieldBuilder;
-  onContainmentMaskChanged(body: string): TextFieldBuilder;
-  onContentPaddingChanged(body: string): TextFieldBuilder;
-  onControlChanged(body: string): TextFieldBuilder;
-  onEnabledChanged(body: string): TextFieldBuilder;
-  onFocusChanged(body: string): TextFieldBuilder;
-  onFocusPolicyChanged(body: string): TextFieldBuilder;
-  onFontChanged(body: string): TextFieldBuilder;
-  onHeightChanged(body: string): TextFieldBuilder;
-  onImplicitHeightChanged(body: string): TextFieldBuilder;
-  onImplicitWidthChanged(body: string): TextFieldBuilder;
-  onLayoutMarginsChanged(body: string): TextFieldBuilder;
-  onMinimumSizeChanged(body: string): TextFieldBuilder;
-  onObjectNameChanged(body: string): TextFieldBuilder;
-  onOpacityChanged(body: string): TextFieldBuilder;
-  onPaletteChanged(body: string): TextFieldBuilder;
-  onPaletteCreated(body: string): TextFieldBuilder;
-  onParentChanged(body: string): TextFieldBuilder;
-  onRotationChanged(body: string): TextFieldBuilder;
-  onScaleChanged(body: string): TextFieldBuilder;
-  onSmoothChanged(body: string): TextFieldBuilder;
-  onStateChanged(body: string): TextFieldBuilder;
-  onTransformOriginChanged(body: string): TextFieldBuilder;
-  onVisibleChanged(body: string): TextFieldBuilder;
-  onVisibleChildrenChanged(body: string): TextFieldBuilder;
-  onWidthChanged(body: string): TextFieldBuilder;
-  onWindowChanged(body: string): TextFieldBuilder;
-  onXChanged(body: string): TextFieldBuilder;
-  onYChanged(body: string): TextFieldBuilder;
-  onZChanged(body: string): TextFieldBuilder;
+  onActiveFocusChanged(handler: DslSignalHandlerValue): TextFieldBuilder;
+  onActiveFocusOnTabChanged(handler: DslSignalHandlerValue): TextFieldBuilder;
+  onAntialiasingChanged(handler: DslSignalHandlerValue): TextFieldBuilder;
+  onBaselineOffsetChanged(handler: DslSignalHandlerValue): TextFieldBuilder;
+  onChildrenChanged(handler: DslSignalHandlerValue): TextFieldBuilder;
+  onChildrenRectChanged(handler: DslSignalHandlerValue): TextFieldBuilder;
+  onClipChanged(handler: DslSignalHandlerValue): TextFieldBuilder;
+  onContainmentMaskChanged(handler: DslSignalHandlerValue): TextFieldBuilder;
+  onContentPaddingChanged(handler: DslSignalHandlerValue): TextFieldBuilder;
+  onControlChanged(handler: DslSignalHandlerValue): TextFieldBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): TextFieldBuilder;
+  onFocusChanged(handler: DslSignalHandlerValue): TextFieldBuilder;
+  onFocusPolicyChanged(handler: DslSignalHandlerValue): TextFieldBuilder;
+  onFontChanged(handler: DslSignalHandlerValue): TextFieldBuilder;
+  onHeightChanged(handler: DslSignalHandlerValue): TextFieldBuilder;
+  onImplicitHeightChanged(handler: DslSignalHandlerValue): TextFieldBuilder;
+  onImplicitWidthChanged(handler: DslSignalHandlerValue): TextFieldBuilder;
+  onLayoutMarginsChanged(handler: DslSignalHandlerValue): TextFieldBuilder;
+  onMinimumSizeChanged(handler: DslSignalHandlerValue): TextFieldBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): TextFieldBuilder;
+  onOpacityChanged(handler: DslSignalHandlerValue): TextFieldBuilder;
+  onPaletteChanged(handler: DslSignalHandlerValue): TextFieldBuilder;
+  onPaletteCreated(handler: DslSignalHandlerValue): TextFieldBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): TextFieldBuilder;
+  onRotationChanged(handler: DslSignalHandlerValue): TextFieldBuilder;
+  onScaleChanged(handler: DslSignalHandlerValue): TextFieldBuilder;
+  onSmoothChanged(handler: DslSignalHandlerValue): TextFieldBuilder;
+  onStateChanged(handler: DslSignalHandlerValue): TextFieldBuilder;
+  onTransformOriginChanged(handler: DslSignalHandlerValue): TextFieldBuilder;
+  onVisibleChanged(handler: DslSignalHandlerValue): TextFieldBuilder;
+  onVisibleChildrenChanged(handler: DslSignalHandlerValue): TextFieldBuilder;
+  onWidthChanged(handler: DslSignalHandlerValue): TextFieldBuilder;
+  onWindowChanged(handler: DslSignalHandlerValue): TextFieldBuilder;
+  onXChanged(handler: DslSignalHandlerValue): TextFieldBuilder;
+  onYChanged(handler: DslSignalHandlerValue): TextFieldBuilder;
+  onZChanged(handler: DslSignalHandlerValue): TextFieldBuilder;
   anchors(setup: (b: AnchorsBuilder) => void): TextFieldBuilder;
   layer(setup: (b: LayerBuilder) => void): TextFieldBuilder;
 }

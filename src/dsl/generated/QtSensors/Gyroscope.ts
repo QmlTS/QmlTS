@@ -2,11 +2,17 @@
 // Type: Gyroscope
 // Generated from Qt 6.11.0
 
-import type { QmlEnumToken, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlEnumToken,
+  QmlObjectBuilder,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface GyroscopeBuilder {
   id(id: string): GyroscopeBuilder;
   child(obj: QmlObjectBuilder): GyroscopeBuilder;
+  children(...objs: QmlObjectBuilder[]): GyroscopeBuilder;
 
   active(value: boolean): GyroscopeBuilder;
   activeBind(expr: string): GyroscopeBuilder;
@@ -28,26 +34,26 @@ export interface GyroscopeBuilder {
   skipDuplicatesBind(expr: string): GyroscopeBuilder;
   userOrientation(value: number): GyroscopeBuilder;
   userOrientationBind(expr: string): GyroscopeBuilder;
-  onActiveChanged(body: string): GyroscopeBuilder;
-  onAlwaysOnChanged(body: string): GyroscopeBuilder;
-  onAvailableDataRatesChanged(body: string): GyroscopeBuilder;
-  onAxesOrientationModeChanged(body: string): GyroscopeBuilder;
-  onBufferSizeChanged(body: string): GyroscopeBuilder;
-  onBusyChanged(body: string): GyroscopeBuilder;
-  onConnectedToBackendChanged(body: string): GyroscopeBuilder;
-  onCurrentOrientationChanged(body: string): GyroscopeBuilder;
-  onDataRateChanged(body: string): GyroscopeBuilder;
-  onDescriptionChanged(body: string): GyroscopeBuilder;
-  onEfficientBufferSizeChanged(body: string): GyroscopeBuilder;
-  onErrorChanged(body: string): GyroscopeBuilder;
-  onIdentifierChanged(body: string): GyroscopeBuilder;
-  onMaxBufferSizeChanged(body: string): GyroscopeBuilder;
-  onObjectNameChanged(body: string): GyroscopeBuilder;
-  onOutputRangeChanged(body: string): GyroscopeBuilder;
-  onOutputRangesChanged(body: string): GyroscopeBuilder;
-  onReadingChanged(body: string): GyroscopeBuilder;
-  onSkipDuplicatesChanged(body: string): GyroscopeBuilder;
-  onUserOrientationChanged(body: string): GyroscopeBuilder;
+  onActiveChanged(handler: DslSignalHandlerValue): GyroscopeBuilder;
+  onAlwaysOnChanged(handler: DslSignalHandlerValue): GyroscopeBuilder;
+  onAvailableDataRatesChanged(handler: DslSignalHandlerValue): GyroscopeBuilder;
+  onAxesOrientationModeChanged(handler: DslSignalHandlerValue): GyroscopeBuilder;
+  onBufferSizeChanged(handler: DslSignalHandlerValue): GyroscopeBuilder;
+  onBusyChanged(handler: DslSignalHandlerValue): GyroscopeBuilder;
+  onConnectedToBackendChanged(handler: DslSignalHandlerValue): GyroscopeBuilder;
+  onCurrentOrientationChanged(handler: DslSignalHandlerValue): GyroscopeBuilder;
+  onDataRateChanged(handler: DslSignalHandlerValue): GyroscopeBuilder;
+  onDescriptionChanged(handler: DslSignalHandlerValue): GyroscopeBuilder;
+  onEfficientBufferSizeChanged(handler: DslSignalHandlerValue): GyroscopeBuilder;
+  onErrorChanged(handler: DslSignalHandlerValue): GyroscopeBuilder;
+  onIdentifierChanged(handler: DslSignalHandlerValue): GyroscopeBuilder;
+  onMaxBufferSizeChanged(handler: DslSignalHandlerValue): GyroscopeBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): GyroscopeBuilder;
+  onOutputRangeChanged(handler: DslSignalHandlerValue): GyroscopeBuilder;
+  onOutputRangesChanged(handler: DslSignalHandlerValue): GyroscopeBuilder;
+  onReadingChanged(handler: DslSignalHandlerValue): GyroscopeBuilder;
+  onSkipDuplicatesChanged(handler: DslSignalHandlerValue): GyroscopeBuilder;
+  onUserOrientationChanged(handler: DslSignalHandlerValue): GyroscopeBuilder;
 }
 
 const GYROSCOPE_META: TypeMetadata = {

@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlEnumToken,
   QmlObjectBuilder,
   QmlValue,
@@ -12,6 +13,7 @@ import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface PointSizeBuilder {
   id(id: string): PointSizeBuilder;
   child(obj: QmlObjectBuilder): PointSizeBuilder;
+  children(...objs: QmlObjectBuilder[]): PointSizeBuilder;
 
   enabled(value: boolean): PointSizeBuilder;
   enabledBind(expr: string): PointSizeBuilder;
@@ -23,12 +25,12 @@ export interface PointSizeBuilder {
   sizeModeBind(expr: string): PointSizeBuilder;
   value(value: number): PointSizeBuilder;
   valueBind(expr: string): PointSizeBuilder;
-  onEnabledChanged(body: string): PointSizeBuilder;
-  onNodeDestroyed(body: string): PointSizeBuilder;
-  onObjectNameChanged(body: string): PointSizeBuilder;
-  onParentChanged(body: string): PointSizeBuilder;
-  onSizeModeChanged(body: string): PointSizeBuilder;
-  onValueChanged(body: string): PointSizeBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): PointSizeBuilder;
+  onNodeDestroyed(handler: DslSignalHandlerValue): PointSizeBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): PointSizeBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): PointSizeBuilder;
+  onSizeModeChanged(handler: DslSignalHandlerValue): PointSizeBuilder;
+  onValueChanged(handler: DslSignalHandlerValue): PointSizeBuilder;
 }
 
 const POINTSIZE_META: TypeMetadata = {

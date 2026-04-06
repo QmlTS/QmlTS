@@ -2,11 +2,17 @@
 // Type: AssetDownloader
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlUrl, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlObjectBuilder,
+  QmlUrl,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 export interface AssetDownloaderBuilder {
   id(id: string): AssetDownloaderBuilder;
   child(obj: QmlObjectBuilder): AssetDownloaderBuilder;
+  children(...objs: QmlObjectBuilder[]): AssetDownloaderBuilder;
 
   downloadBase(value: QmlUrl): AssetDownloaderBuilder;
   downloadBaseBind(expr: string): AssetDownloaderBuilder;
@@ -20,16 +26,16 @@ export interface AssetDownloaderBuilder {
   preferredLocalDownloadDirBind(expr: string): AssetDownloaderBuilder;
   zipFileName(value: string): AssetDownloaderBuilder;
   zipFileNameBind(expr: string): AssetDownloaderBuilder;
-  onDownloadBaseChanged(body: string): AssetDownloaderBuilder;
-  onFinished(body: string): AssetDownloaderBuilder;
-  onJsonFileNameChanged(body: string): AssetDownloaderBuilder;
-  onLocalDownloadDirChanged(body: string): AssetDownloaderBuilder;
-  onObjectNameChanged(body: string): AssetDownloaderBuilder;
-  onOfflineAssetsFilePathChanged(body: string): AssetDownloaderBuilder;
-  onPreferredLocalDownloadDirChanged(body: string): AssetDownloaderBuilder;
-  onProgressChanged(body: string): AssetDownloaderBuilder;
-  onStarted(body: string): AssetDownloaderBuilder;
-  onZipFileNameChanged(body: string): AssetDownloaderBuilder;
+  onDownloadBaseChanged(handler: DslSignalHandlerValue): AssetDownloaderBuilder;
+  onFinished(handler: DslSignalHandlerValue): AssetDownloaderBuilder;
+  onJsonFileNameChanged(handler: DslSignalHandlerValue): AssetDownloaderBuilder;
+  onLocalDownloadDirChanged(handler: DslSignalHandlerValue): AssetDownloaderBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): AssetDownloaderBuilder;
+  onOfflineAssetsFilePathChanged(handler: DslSignalHandlerValue): AssetDownloaderBuilder;
+  onPreferredLocalDownloadDirChanged(handler: DslSignalHandlerValue): AssetDownloaderBuilder;
+  onProgressChanged(handler: DslSignalHandlerValue): AssetDownloaderBuilder;
+  onStarted(handler: DslSignalHandlerValue): AssetDownloaderBuilder;
+  onZipFileNameChanged(handler: DslSignalHandlerValue): AssetDownloaderBuilder;
 }
 
 const ASSETDOWNLOADER_META: TypeMetadata = {

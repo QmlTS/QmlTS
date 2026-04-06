@@ -2,18 +2,19 @@
 // Type: MediaDevices
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import type { DslSignalHandlerValue, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 export interface MediaDevicesBuilder {
   id(id: string): MediaDevicesBuilder;
   child(obj: QmlObjectBuilder): MediaDevicesBuilder;
+  children(...objs: QmlObjectBuilder[]): MediaDevicesBuilder;
 
   objectName(value: string): MediaDevicesBuilder;
   objectNameBind(expr: string): MediaDevicesBuilder;
-  onAudioInputsChanged(body: string): MediaDevicesBuilder;
-  onAudioOutputsChanged(body: string): MediaDevicesBuilder;
-  onObjectNameChanged(body: string): MediaDevicesBuilder;
-  onVideoInputsChanged(body: string): MediaDevicesBuilder;
+  onAudioInputsChanged(handler: DslSignalHandlerValue): MediaDevicesBuilder;
+  onAudioOutputsChanged(handler: DslSignalHandlerValue): MediaDevicesBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): MediaDevicesBuilder;
+  onVideoInputsChanged(handler: DslSignalHandlerValue): MediaDevicesBuilder;
 }
 
 const MEDIADEVICES_META: TypeMetadata = {

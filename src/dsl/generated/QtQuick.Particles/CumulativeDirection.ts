@@ -2,16 +2,17 @@
 // Type: CumulativeDirection
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import type { DslSignalHandlerValue, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 import type { ItemParticleAttachedBuilder } from './QQuickItemParticleAttached.js';
 export interface CumulativeDirectionBuilder {
   id(id: string): CumulativeDirectionBuilder;
   child(obj: QmlObjectBuilder): CumulativeDirectionBuilder;
+  children(...objs: QmlObjectBuilder[]): CumulativeDirectionBuilder;
 
   objectName(value: string): CumulativeDirectionBuilder;
   objectNameBind(expr: string): CumulativeDirectionBuilder;
-  onObjectNameChanged(body: string): CumulativeDirectionBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): CumulativeDirectionBuilder;
   itemParticle(setup: (b: ItemParticleAttachedBuilder) => void): CumulativeDirectionBuilder;
 }
 

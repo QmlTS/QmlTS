@@ -2,11 +2,17 @@
 // Type: Accelerometer
 // Generated from Qt 6.11.0
 
-import type { QmlEnumToken, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlEnumToken,
+  QmlObjectBuilder,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface AccelerometerBuilder {
   id(id: string): AccelerometerBuilder;
   child(obj: QmlObjectBuilder): AccelerometerBuilder;
+  children(...objs: QmlObjectBuilder[]): AccelerometerBuilder;
 
   accelerationMode(value: QmlEnumToken): AccelerometerBuilder;
   accelerationModeBind(expr: string): AccelerometerBuilder;
@@ -30,27 +36,27 @@ export interface AccelerometerBuilder {
   skipDuplicatesBind(expr: string): AccelerometerBuilder;
   userOrientation(value: number): AccelerometerBuilder;
   userOrientationBind(expr: string): AccelerometerBuilder;
-  onAccelerationModeChanged(body: string): AccelerometerBuilder;
-  onActiveChanged(body: string): AccelerometerBuilder;
-  onAlwaysOnChanged(body: string): AccelerometerBuilder;
-  onAvailableDataRatesChanged(body: string): AccelerometerBuilder;
-  onAxesOrientationModeChanged(body: string): AccelerometerBuilder;
-  onBufferSizeChanged(body: string): AccelerometerBuilder;
-  onBusyChanged(body: string): AccelerometerBuilder;
-  onConnectedToBackendChanged(body: string): AccelerometerBuilder;
-  onCurrentOrientationChanged(body: string): AccelerometerBuilder;
-  onDataRateChanged(body: string): AccelerometerBuilder;
-  onDescriptionChanged(body: string): AccelerometerBuilder;
-  onEfficientBufferSizeChanged(body: string): AccelerometerBuilder;
-  onErrorChanged(body: string): AccelerometerBuilder;
-  onIdentifierChanged(body: string): AccelerometerBuilder;
-  onMaxBufferSizeChanged(body: string): AccelerometerBuilder;
-  onObjectNameChanged(body: string): AccelerometerBuilder;
-  onOutputRangeChanged(body: string): AccelerometerBuilder;
-  onOutputRangesChanged(body: string): AccelerometerBuilder;
-  onReadingChanged(body: string): AccelerometerBuilder;
-  onSkipDuplicatesChanged(body: string): AccelerometerBuilder;
-  onUserOrientationChanged(body: string): AccelerometerBuilder;
+  onAccelerationModeChanged(handler: DslSignalHandlerValue): AccelerometerBuilder;
+  onActiveChanged(handler: DslSignalHandlerValue): AccelerometerBuilder;
+  onAlwaysOnChanged(handler: DslSignalHandlerValue): AccelerometerBuilder;
+  onAvailableDataRatesChanged(handler: DslSignalHandlerValue): AccelerometerBuilder;
+  onAxesOrientationModeChanged(handler: DslSignalHandlerValue): AccelerometerBuilder;
+  onBufferSizeChanged(handler: DslSignalHandlerValue): AccelerometerBuilder;
+  onBusyChanged(handler: DslSignalHandlerValue): AccelerometerBuilder;
+  onConnectedToBackendChanged(handler: DslSignalHandlerValue): AccelerometerBuilder;
+  onCurrentOrientationChanged(handler: DslSignalHandlerValue): AccelerometerBuilder;
+  onDataRateChanged(handler: DslSignalHandlerValue): AccelerometerBuilder;
+  onDescriptionChanged(handler: DslSignalHandlerValue): AccelerometerBuilder;
+  onEfficientBufferSizeChanged(handler: DslSignalHandlerValue): AccelerometerBuilder;
+  onErrorChanged(handler: DslSignalHandlerValue): AccelerometerBuilder;
+  onIdentifierChanged(handler: DslSignalHandlerValue): AccelerometerBuilder;
+  onMaxBufferSizeChanged(handler: DslSignalHandlerValue): AccelerometerBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): AccelerometerBuilder;
+  onOutputRangeChanged(handler: DslSignalHandlerValue): AccelerometerBuilder;
+  onOutputRangesChanged(handler: DslSignalHandlerValue): AccelerometerBuilder;
+  onReadingChanged(handler: DslSignalHandlerValue): AccelerometerBuilder;
+  onSkipDuplicatesChanged(handler: DslSignalHandlerValue): AccelerometerBuilder;
+  onUserOrientationChanged(handler: DslSignalHandlerValue): AccelerometerBuilder;
 }
 
 const ACCELEROMETER_META: TypeMetadata = {

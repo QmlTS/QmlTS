@@ -2,7 +2,12 @@
 // Type: SortFilterProxyModel
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { DelegateModelAttachedBuilder } from './QQmlDelegateModelAttached.js';
 import type { ObjectModelAttachedBuilder } from './QQmlObjectModelAttached.js';
@@ -10,6 +15,7 @@ import type { PackageAttachedBuilder } from './QQuickPackageAttached.js';
 export interface SortFilterProxyModelBuilder {
   id(id: string): SortFilterProxyModelBuilder;
   child(obj: QmlObjectBuilder): SortFilterProxyModelBuilder;
+  children(...objs: QmlObjectBuilder[]): SortFilterProxyModelBuilder;
 
   autoAcceptChildRows(value: boolean): SortFilterProxyModelBuilder;
   autoAcceptChildRowsBind(expr: string): SortFilterProxyModelBuilder;
@@ -23,33 +29,33 @@ export interface SortFilterProxyModelBuilder {
   recursiveFilteringBind(expr: string): SortFilterProxyModelBuilder;
   sourceModel(value: QmlValue): SortFilterProxyModelBuilder;
   sourceModelBind(expr: string): SortFilterProxyModelBuilder;
-  onAutoAcceptChildRowsChanged(body: string): SortFilterProxyModelBuilder;
-  onColumnsAboutToBeInserted(body: string): SortFilterProxyModelBuilder;
-  onColumnsAboutToBeMoved(body: string): SortFilterProxyModelBuilder;
-  onColumnsAboutToBeRemoved(body: string): SortFilterProxyModelBuilder;
-  onColumnsInserted(body: string): SortFilterProxyModelBuilder;
-  onColumnsMoved(body: string): SortFilterProxyModelBuilder;
-  onColumnsRemoved(body: string): SortFilterProxyModelBuilder;
-  onDataChanged(body: string): SortFilterProxyModelBuilder;
-  onDynamicSortFilterChanged(body: string): SortFilterProxyModelBuilder;
-  onFiltersChanged(body: string): SortFilterProxyModelBuilder;
-  onHeaderDataChanged(body: string): SortFilterProxyModelBuilder;
-  onLayoutAboutToBeChanged(body: string): SortFilterProxyModelBuilder;
-  onLayoutChanged(body: string): SortFilterProxyModelBuilder;
-  onModelAboutToBeReset(body: string): SortFilterProxyModelBuilder;
-  onModelChanged(body: string): SortFilterProxyModelBuilder;
-  onModelReset(body: string): SortFilterProxyModelBuilder;
-  onObjectNameChanged(body: string): SortFilterProxyModelBuilder;
-  onPrimarySorterChanged(body: string): SortFilterProxyModelBuilder;
-  onRecursiveFilteringChanged(body: string): SortFilterProxyModelBuilder;
-  onRowsAboutToBeInserted(body: string): SortFilterProxyModelBuilder;
-  onRowsAboutToBeMoved(body: string): SortFilterProxyModelBuilder;
-  onRowsAboutToBeRemoved(body: string): SortFilterProxyModelBuilder;
-  onRowsInserted(body: string): SortFilterProxyModelBuilder;
-  onRowsMoved(body: string): SortFilterProxyModelBuilder;
-  onRowsRemoved(body: string): SortFilterProxyModelBuilder;
-  onSortersChanged(body: string): SortFilterProxyModelBuilder;
-  onSourceModelChanged(body: string): SortFilterProxyModelBuilder;
+  onAutoAcceptChildRowsChanged(handler: DslSignalHandlerValue): SortFilterProxyModelBuilder;
+  onColumnsAboutToBeInserted(handler: DslSignalHandlerValue): SortFilterProxyModelBuilder;
+  onColumnsAboutToBeMoved(handler: DslSignalHandlerValue): SortFilterProxyModelBuilder;
+  onColumnsAboutToBeRemoved(handler: DslSignalHandlerValue): SortFilterProxyModelBuilder;
+  onColumnsInserted(handler: DslSignalHandlerValue): SortFilterProxyModelBuilder;
+  onColumnsMoved(handler: DslSignalHandlerValue): SortFilterProxyModelBuilder;
+  onColumnsRemoved(handler: DslSignalHandlerValue): SortFilterProxyModelBuilder;
+  onDataChanged(handler: DslSignalHandlerValue): SortFilterProxyModelBuilder;
+  onDynamicSortFilterChanged(handler: DslSignalHandlerValue): SortFilterProxyModelBuilder;
+  onFiltersChanged(handler: DslSignalHandlerValue): SortFilterProxyModelBuilder;
+  onHeaderDataChanged(handler: DslSignalHandlerValue): SortFilterProxyModelBuilder;
+  onLayoutAboutToBeChanged(handler: DslSignalHandlerValue): SortFilterProxyModelBuilder;
+  onLayoutChanged(handler: DslSignalHandlerValue): SortFilterProxyModelBuilder;
+  onModelAboutToBeReset(handler: DslSignalHandlerValue): SortFilterProxyModelBuilder;
+  onModelChanged(handler: DslSignalHandlerValue): SortFilterProxyModelBuilder;
+  onModelReset(handler: DslSignalHandlerValue): SortFilterProxyModelBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): SortFilterProxyModelBuilder;
+  onPrimarySorterChanged(handler: DslSignalHandlerValue): SortFilterProxyModelBuilder;
+  onRecursiveFilteringChanged(handler: DslSignalHandlerValue): SortFilterProxyModelBuilder;
+  onRowsAboutToBeInserted(handler: DslSignalHandlerValue): SortFilterProxyModelBuilder;
+  onRowsAboutToBeMoved(handler: DslSignalHandlerValue): SortFilterProxyModelBuilder;
+  onRowsAboutToBeRemoved(handler: DslSignalHandlerValue): SortFilterProxyModelBuilder;
+  onRowsInserted(handler: DslSignalHandlerValue): SortFilterProxyModelBuilder;
+  onRowsMoved(handler: DslSignalHandlerValue): SortFilterProxyModelBuilder;
+  onRowsRemoved(handler: DslSignalHandlerValue): SortFilterProxyModelBuilder;
+  onSortersChanged(handler: DslSignalHandlerValue): SortFilterProxyModelBuilder;
+  onSourceModelChanged(handler: DslSignalHandlerValue): SortFilterProxyModelBuilder;
   delegateModel(setup: (b: DelegateModelAttachedBuilder) => void): SortFilterProxyModelBuilder;
   objectModel(setup: (b: ObjectModelAttachedBuilder) => void): SortFilterProxyModelBuilder;
   package(setup: (b: PackageAttachedBuilder) => void): SortFilterProxyModelBuilder;

@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlColor,
   QmlEnumToken,
   QmlObjectBuilder,
@@ -15,6 +16,7 @@ import type { TextureBuilder } from './Texture.js';
 export interface DefaultMaterialBuilder {
   id(id: string): DefaultMaterialBuilder;
   child(obj: QmlObjectBuilder): DefaultMaterialBuilder;
+  children(...objs: QmlObjectBuilder[]): DefaultMaterialBuilder;
 
   blendMode(value: QmlEnumToken): DefaultMaterialBuilder;
   blendModeBind(expr: string): DefaultMaterialBuilder;
@@ -86,42 +88,42 @@ export interface DefaultMaterialBuilder {
   translucentFalloffBind(expr: string): DefaultMaterialBuilder;
   vertexColorsEnabled(value: boolean): DefaultMaterialBuilder;
   vertexColorsEnabledBind(expr: string): DefaultMaterialBuilder;
-  onBlendModeChanged(body: string): DefaultMaterialBuilder;
-  onBumpAmountChanged(body: string): DefaultMaterialBuilder;
-  onBumpMapChanged(body: string): DefaultMaterialBuilder;
-  onChildrenChanged(body: string): DefaultMaterialBuilder;
-  onCullModeChanged(body: string): DefaultMaterialBuilder;
-  onDepthDrawModeChanged(body: string): DefaultMaterialBuilder;
-  onDiffuseColorChanged(body: string): DefaultMaterialBuilder;
-  onDiffuseLightWrapChanged(body: string): DefaultMaterialBuilder;
-  onDiffuseMapChanged(body: string): DefaultMaterialBuilder;
-  onEmissiveFactorChanged(body: string): DefaultMaterialBuilder;
-  onEmissiveMapChanged(body: string): DefaultMaterialBuilder;
-  onFresnelPowerChanged(body: string): DefaultMaterialBuilder;
-  onIndexOfRefractionChanged(body: string): DefaultMaterialBuilder;
-  onLightProbeChanged(body: string): DefaultMaterialBuilder;
-  onLightingChanged(body: string): DefaultMaterialBuilder;
-  onLineWidthChanged(body: string): DefaultMaterialBuilder;
-  onNormalMapChanged(body: string): DefaultMaterialBuilder;
-  onObjectNameChanged(body: string): DefaultMaterialBuilder;
-  onOpacityChanged(body: string): DefaultMaterialBuilder;
-  onOpacityChannelChanged(body: string): DefaultMaterialBuilder;
-  onOpacityMapChanged(body: string): DefaultMaterialBuilder;
-  onParentChanged(body: string): DefaultMaterialBuilder;
-  onPointSizeChanged(body: string): DefaultMaterialBuilder;
-  onRoughnessChannelChanged(body: string): DefaultMaterialBuilder;
-  onRoughnessMapChanged(body: string): DefaultMaterialBuilder;
-  onSpecularAmountChanged(body: string): DefaultMaterialBuilder;
-  onSpecularMapChanged(body: string): DefaultMaterialBuilder;
-  onSpecularModelChanged(body: string): DefaultMaterialBuilder;
-  onSpecularReflectionMapChanged(body: string): DefaultMaterialBuilder;
-  onSpecularRoughnessChanged(body: string): DefaultMaterialBuilder;
-  onSpecularTintChanged(body: string): DefaultMaterialBuilder;
-  onStateChanged(body: string): DefaultMaterialBuilder;
-  onTranslucencyChannelChanged(body: string): DefaultMaterialBuilder;
-  onTranslucencyMapChanged(body: string): DefaultMaterialBuilder;
-  onTranslucentFalloffChanged(body: string): DefaultMaterialBuilder;
-  onVertexColorsEnabledChanged(body: string): DefaultMaterialBuilder;
+  onBlendModeChanged(handler: DslSignalHandlerValue): DefaultMaterialBuilder;
+  onBumpAmountChanged(handler: DslSignalHandlerValue): DefaultMaterialBuilder;
+  onBumpMapChanged(handler: DslSignalHandlerValue): DefaultMaterialBuilder;
+  onChildrenChanged(handler: DslSignalHandlerValue): DefaultMaterialBuilder;
+  onCullModeChanged(handler: DslSignalHandlerValue): DefaultMaterialBuilder;
+  onDepthDrawModeChanged(handler: DslSignalHandlerValue): DefaultMaterialBuilder;
+  onDiffuseColorChanged(handler: DslSignalHandlerValue): DefaultMaterialBuilder;
+  onDiffuseLightWrapChanged(handler: DslSignalHandlerValue): DefaultMaterialBuilder;
+  onDiffuseMapChanged(handler: DslSignalHandlerValue): DefaultMaterialBuilder;
+  onEmissiveFactorChanged(handler: DslSignalHandlerValue): DefaultMaterialBuilder;
+  onEmissiveMapChanged(handler: DslSignalHandlerValue): DefaultMaterialBuilder;
+  onFresnelPowerChanged(handler: DslSignalHandlerValue): DefaultMaterialBuilder;
+  onIndexOfRefractionChanged(handler: DslSignalHandlerValue): DefaultMaterialBuilder;
+  onLightProbeChanged(handler: DslSignalHandlerValue): DefaultMaterialBuilder;
+  onLightingChanged(handler: DslSignalHandlerValue): DefaultMaterialBuilder;
+  onLineWidthChanged(handler: DslSignalHandlerValue): DefaultMaterialBuilder;
+  onNormalMapChanged(handler: DslSignalHandlerValue): DefaultMaterialBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): DefaultMaterialBuilder;
+  onOpacityChanged(handler: DslSignalHandlerValue): DefaultMaterialBuilder;
+  onOpacityChannelChanged(handler: DslSignalHandlerValue): DefaultMaterialBuilder;
+  onOpacityMapChanged(handler: DslSignalHandlerValue): DefaultMaterialBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): DefaultMaterialBuilder;
+  onPointSizeChanged(handler: DslSignalHandlerValue): DefaultMaterialBuilder;
+  onRoughnessChannelChanged(handler: DslSignalHandlerValue): DefaultMaterialBuilder;
+  onRoughnessMapChanged(handler: DslSignalHandlerValue): DefaultMaterialBuilder;
+  onSpecularAmountChanged(handler: DslSignalHandlerValue): DefaultMaterialBuilder;
+  onSpecularMapChanged(handler: DslSignalHandlerValue): DefaultMaterialBuilder;
+  onSpecularModelChanged(handler: DslSignalHandlerValue): DefaultMaterialBuilder;
+  onSpecularReflectionMapChanged(handler: DslSignalHandlerValue): DefaultMaterialBuilder;
+  onSpecularRoughnessChanged(handler: DslSignalHandlerValue): DefaultMaterialBuilder;
+  onSpecularTintChanged(handler: DslSignalHandlerValue): DefaultMaterialBuilder;
+  onStateChanged(handler: DslSignalHandlerValue): DefaultMaterialBuilder;
+  onTranslucencyChannelChanged(handler: DslSignalHandlerValue): DefaultMaterialBuilder;
+  onTranslucencyMapChanged(handler: DslSignalHandlerValue): DefaultMaterialBuilder;
+  onTranslucentFalloffChanged(handler: DslSignalHandlerValue): DefaultMaterialBuilder;
+  onVertexColorsEnabledChanged(handler: DslSignalHandlerValue): DefaultMaterialBuilder;
 }
 
 const DEFAULTMATERIAL_META: TypeMetadata = {

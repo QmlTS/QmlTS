@@ -2,11 +2,17 @@
 // Type: VCandlestickModelMapper
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 export interface VCandlestickModelMapperBuilder {
   id(id: string): VCandlestickModelMapperBuilder;
   child(obj: QmlObjectBuilder): VCandlestickModelMapperBuilder;
+  children(...objs: QmlObjectBuilder[]): VCandlestickModelMapperBuilder;
 
   closeRow(value: number): VCandlestickModelMapperBuilder;
   closeRowBind(expr: string): VCandlestickModelMapperBuilder;
@@ -28,16 +34,16 @@ export interface VCandlestickModelMapperBuilder {
   seriesBind(expr: string): VCandlestickModelMapperBuilder;
   timestampRow(value: number): VCandlestickModelMapperBuilder;
   timestampRowBind(expr: string): VCandlestickModelMapperBuilder;
-  onCloseRowChanged(body: string): VCandlestickModelMapperBuilder;
-  onFirstSetColumnChanged(body: string): VCandlestickModelMapperBuilder;
-  onHighRowChanged(body: string): VCandlestickModelMapperBuilder;
-  onLastSetColumnChanged(body: string): VCandlestickModelMapperBuilder;
-  onLowRowChanged(body: string): VCandlestickModelMapperBuilder;
-  onModelReplaced(body: string): VCandlestickModelMapperBuilder;
-  onObjectNameChanged(body: string): VCandlestickModelMapperBuilder;
-  onOpenRowChanged(body: string): VCandlestickModelMapperBuilder;
-  onSeriesReplaced(body: string): VCandlestickModelMapperBuilder;
-  onTimestampRowChanged(body: string): VCandlestickModelMapperBuilder;
+  onCloseRowChanged(handler: DslSignalHandlerValue): VCandlestickModelMapperBuilder;
+  onFirstSetColumnChanged(handler: DslSignalHandlerValue): VCandlestickModelMapperBuilder;
+  onHighRowChanged(handler: DslSignalHandlerValue): VCandlestickModelMapperBuilder;
+  onLastSetColumnChanged(handler: DslSignalHandlerValue): VCandlestickModelMapperBuilder;
+  onLowRowChanged(handler: DslSignalHandlerValue): VCandlestickModelMapperBuilder;
+  onModelReplaced(handler: DslSignalHandlerValue): VCandlestickModelMapperBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): VCandlestickModelMapperBuilder;
+  onOpenRowChanged(handler: DslSignalHandlerValue): VCandlestickModelMapperBuilder;
+  onSeriesReplaced(handler: DslSignalHandlerValue): VCandlestickModelMapperBuilder;
+  onTimestampRowChanged(handler: DslSignalHandlerValue): VCandlestickModelMapperBuilder;
 }
 
 const VCANDLESTICKMODELMAPPER_META: TypeMetadata = {

@@ -2,13 +2,19 @@
 // Type: StyleFont
 // Generated from Qt 6.11.0
 
-import type { QmlFont, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlFont,
+  QmlObjectBuilder,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 import type { StyleKitAttachedBuilder } from './QQStyleKitAttached.js';
 import type { StyleVariationAttachedBuilder } from './QQStyleKitVariationAttached.js';
 export interface StyleFontBuilder {
   id(id: string): StyleFontBuilder;
   child(obj: QmlObjectBuilder): StyleFontBuilder;
+  children(...objs: QmlObjectBuilder[]): StyleFontBuilder;
 
   button(value: QmlFont): StyleFontBuilder;
   buttonBind(expr: string): StyleFontBuilder;
@@ -40,22 +46,22 @@ export interface StyleFontBuilder {
   textFieldBind(expr: string): StyleFontBuilder;
   toolBar(value: QmlFont): StyleFontBuilder;
   toolBarBind(expr: string): StyleFontBuilder;
-  onButtonChanged(body: string): StyleFontBuilder;
-  onCheckBoxChanged(body: string): StyleFontBuilder;
-  onComboBoxChanged(body: string): StyleFontBuilder;
-  onFallbackFontChanged(body: string): StyleFontBuilder;
-  onGroupBoxChanged(body: string): StyleFontBuilder;
-  onItemDelegateChanged(body: string): StyleFontBuilder;
-  onLabelChanged(body: string): StyleFontBuilder;
-  onObjectNameChanged(body: string): StyleFontBuilder;
-  onRadioButtonChanged(body: string): StyleFontBuilder;
-  onSpinBoxChanged(body: string): StyleFontBuilder;
-  onSwitchControlChanged(body: string): StyleFontBuilder;
-  onSystemChanged(body: string): StyleFontBuilder;
-  onTabBarChanged(body: string): StyleFontBuilder;
-  onTextAreaChanged(body: string): StyleFontBuilder;
-  onTextFieldChanged(body: string): StyleFontBuilder;
-  onToolBarChanged(body: string): StyleFontBuilder;
+  onButtonChanged(handler: DslSignalHandlerValue): StyleFontBuilder;
+  onCheckBoxChanged(handler: DslSignalHandlerValue): StyleFontBuilder;
+  onComboBoxChanged(handler: DslSignalHandlerValue): StyleFontBuilder;
+  onFallbackFontChanged(handler: DslSignalHandlerValue): StyleFontBuilder;
+  onGroupBoxChanged(handler: DslSignalHandlerValue): StyleFontBuilder;
+  onItemDelegateChanged(handler: DslSignalHandlerValue): StyleFontBuilder;
+  onLabelChanged(handler: DslSignalHandlerValue): StyleFontBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): StyleFontBuilder;
+  onRadioButtonChanged(handler: DslSignalHandlerValue): StyleFontBuilder;
+  onSpinBoxChanged(handler: DslSignalHandlerValue): StyleFontBuilder;
+  onSwitchControlChanged(handler: DslSignalHandlerValue): StyleFontBuilder;
+  onSystemChanged(handler: DslSignalHandlerValue): StyleFontBuilder;
+  onTabBarChanged(handler: DslSignalHandlerValue): StyleFontBuilder;
+  onTextAreaChanged(handler: DslSignalHandlerValue): StyleFontBuilder;
+  onTextFieldChanged(handler: DslSignalHandlerValue): StyleFontBuilder;
+  onToolBarChanged(handler: DslSignalHandlerValue): StyleFontBuilder;
   styleKit(setup: (b: StyleKitAttachedBuilder) => void): StyleFontBuilder;
   styleVariation(setup: (b: StyleVariationAttachedBuilder) => void): StyleFontBuilder;
 }

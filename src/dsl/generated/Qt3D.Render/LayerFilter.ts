@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlEnumToken,
   QmlObjectBuilder,
   QmlValue,
@@ -12,6 +13,7 @@ import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface LayerFilterBuilder {
   id(id: string): LayerFilterBuilder;
   child(obj: QmlObjectBuilder): LayerFilterBuilder;
+  children(...objs: QmlObjectBuilder[]): LayerFilterBuilder;
 
   enabled(value: boolean): LayerFilterBuilder;
   enabledBind(expr: string): LayerFilterBuilder;
@@ -21,11 +23,11 @@ export interface LayerFilterBuilder {
   objectNameBind(expr: string): LayerFilterBuilder;
   parent(value: QmlValue): LayerFilterBuilder;
   parentBind(expr: string): LayerFilterBuilder;
-  onEnabledChanged(body: string): LayerFilterBuilder;
-  onFilterModeChanged(body: string): LayerFilterBuilder;
-  onNodeDestroyed(body: string): LayerFilterBuilder;
-  onObjectNameChanged(body: string): LayerFilterBuilder;
-  onParentChanged(body: string): LayerFilterBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): LayerFilterBuilder;
+  onFilterModeChanged(handler: DslSignalHandlerValue): LayerFilterBuilder;
+  onNodeDestroyed(handler: DslSignalHandlerValue): LayerFilterBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): LayerFilterBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): LayerFilterBuilder;
 }
 
 const LAYERFILTER_META: TypeMetadata = {

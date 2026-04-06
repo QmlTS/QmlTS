@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlColor,
   QmlEnumToken,
   QmlObjectBuilder,
@@ -18,6 +19,7 @@ import type { LayerBuilder } from '../QtQuick/QQuickItemLayer.js';
 export interface MaterialTextContainerBuilder {
   id(id: string): MaterialTextContainerBuilder;
   child(obj: QmlObjectBuilder): MaterialTextContainerBuilder;
+  children(...objs: QmlObjectBuilder[]): MaterialTextContainerBuilder;
 
   activeFocusOnTab(value: boolean): MaterialTextContainerBuilder;
   activeFocusOnTabBind(expr: string): MaterialTextContainerBuilder;
@@ -99,47 +101,47 @@ export interface MaterialTextContainerBuilder {
   yBind(expr: string): MaterialTextContainerBuilder;
   z(value: number): MaterialTextContainerBuilder;
   zBind(expr: string): MaterialTextContainerBuilder;
-  onActiveFocusChanged(body: string): MaterialTextContainerBuilder;
-  onActiveFocusOnTabChanged(body: string): MaterialTextContainerBuilder;
-  onAnimateChanged(body: string): MaterialTextContainerBuilder;
-  onAntialiasingChanged(body: string): MaterialTextContainerBuilder;
-  onBaselineOffsetChanged(body: string): MaterialTextContainerBuilder;
-  onChildrenChanged(body: string): MaterialTextContainerBuilder;
-  onChildrenRectChanged(body: string): MaterialTextContainerBuilder;
-  onClipChanged(body: string): MaterialTextContainerBuilder;
-  onContainmentMaskChanged(body: string): MaterialTextContainerBuilder;
-  onContentsScaleChanged(body: string): MaterialTextContainerBuilder;
-  onContentsSizeChanged(body: string): MaterialTextContainerBuilder;
-  onControlHasActiveFocusChanged(body: string): MaterialTextContainerBuilder;
-  onControlHasTextChanged(body: string): MaterialTextContainerBuilder;
-  onEnabledChanged(body: string): MaterialTextContainerBuilder;
-  onFillColorChanged(body: string): MaterialTextContainerBuilder;
-  onFocusChanged(body: string): MaterialTextContainerBuilder;
-  onFocusPolicyChanged(body: string): MaterialTextContainerBuilder;
-  onHeightChanged(body: string): MaterialTextContainerBuilder;
-  onHorizontalPaddingChanged(body: string): MaterialTextContainerBuilder;
-  onImplicitHeightChanged(body: string): MaterialTextContainerBuilder;
-  onImplicitWidthChanged(body: string): MaterialTextContainerBuilder;
-  onObjectNameChanged(body: string): MaterialTextContainerBuilder;
-  onOpacityChanged(body: string): MaterialTextContainerBuilder;
-  onPaletteChanged(body: string): MaterialTextContainerBuilder;
-  onPaletteCreated(body: string): MaterialTextContainerBuilder;
-  onParentChanged(body: string): MaterialTextContainerBuilder;
-  onPlaceholderHasTextChanged(body: string): MaterialTextContainerBuilder;
-  onRenderTargetChanged(body: string): MaterialTextContainerBuilder;
-  onRotationChanged(body: string): MaterialTextContainerBuilder;
-  onScaleChanged(body: string): MaterialTextContainerBuilder;
-  onSmoothChanged(body: string): MaterialTextContainerBuilder;
-  onStateChanged(body: string): MaterialTextContainerBuilder;
-  onTextureSizeChanged(body: string): MaterialTextContainerBuilder;
-  onTransformOriginChanged(body: string): MaterialTextContainerBuilder;
-  onVisibleChanged(body: string): MaterialTextContainerBuilder;
-  onVisibleChildrenChanged(body: string): MaterialTextContainerBuilder;
-  onWidthChanged(body: string): MaterialTextContainerBuilder;
-  onWindowChanged(body: string): MaterialTextContainerBuilder;
-  onXChanged(body: string): MaterialTextContainerBuilder;
-  onYChanged(body: string): MaterialTextContainerBuilder;
-  onZChanged(body: string): MaterialTextContainerBuilder;
+  onActiveFocusChanged(handler: DslSignalHandlerValue): MaterialTextContainerBuilder;
+  onActiveFocusOnTabChanged(handler: DslSignalHandlerValue): MaterialTextContainerBuilder;
+  onAnimateChanged(handler: DslSignalHandlerValue): MaterialTextContainerBuilder;
+  onAntialiasingChanged(handler: DslSignalHandlerValue): MaterialTextContainerBuilder;
+  onBaselineOffsetChanged(handler: DslSignalHandlerValue): MaterialTextContainerBuilder;
+  onChildrenChanged(handler: DslSignalHandlerValue): MaterialTextContainerBuilder;
+  onChildrenRectChanged(handler: DslSignalHandlerValue): MaterialTextContainerBuilder;
+  onClipChanged(handler: DslSignalHandlerValue): MaterialTextContainerBuilder;
+  onContainmentMaskChanged(handler: DslSignalHandlerValue): MaterialTextContainerBuilder;
+  onContentsScaleChanged(handler: DslSignalHandlerValue): MaterialTextContainerBuilder;
+  onContentsSizeChanged(handler: DslSignalHandlerValue): MaterialTextContainerBuilder;
+  onControlHasActiveFocusChanged(handler: DslSignalHandlerValue): MaterialTextContainerBuilder;
+  onControlHasTextChanged(handler: DslSignalHandlerValue): MaterialTextContainerBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): MaterialTextContainerBuilder;
+  onFillColorChanged(handler: DslSignalHandlerValue): MaterialTextContainerBuilder;
+  onFocusChanged(handler: DslSignalHandlerValue): MaterialTextContainerBuilder;
+  onFocusPolicyChanged(handler: DslSignalHandlerValue): MaterialTextContainerBuilder;
+  onHeightChanged(handler: DslSignalHandlerValue): MaterialTextContainerBuilder;
+  onHorizontalPaddingChanged(handler: DslSignalHandlerValue): MaterialTextContainerBuilder;
+  onImplicitHeightChanged(handler: DslSignalHandlerValue): MaterialTextContainerBuilder;
+  onImplicitWidthChanged(handler: DslSignalHandlerValue): MaterialTextContainerBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): MaterialTextContainerBuilder;
+  onOpacityChanged(handler: DslSignalHandlerValue): MaterialTextContainerBuilder;
+  onPaletteChanged(handler: DslSignalHandlerValue): MaterialTextContainerBuilder;
+  onPaletteCreated(handler: DslSignalHandlerValue): MaterialTextContainerBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): MaterialTextContainerBuilder;
+  onPlaceholderHasTextChanged(handler: DslSignalHandlerValue): MaterialTextContainerBuilder;
+  onRenderTargetChanged(handler: DslSignalHandlerValue): MaterialTextContainerBuilder;
+  onRotationChanged(handler: DslSignalHandlerValue): MaterialTextContainerBuilder;
+  onScaleChanged(handler: DslSignalHandlerValue): MaterialTextContainerBuilder;
+  onSmoothChanged(handler: DslSignalHandlerValue): MaterialTextContainerBuilder;
+  onStateChanged(handler: DslSignalHandlerValue): MaterialTextContainerBuilder;
+  onTextureSizeChanged(handler: DslSignalHandlerValue): MaterialTextContainerBuilder;
+  onTransformOriginChanged(handler: DslSignalHandlerValue): MaterialTextContainerBuilder;
+  onVisibleChanged(handler: DslSignalHandlerValue): MaterialTextContainerBuilder;
+  onVisibleChildrenChanged(handler: DslSignalHandlerValue): MaterialTextContainerBuilder;
+  onWidthChanged(handler: DslSignalHandlerValue): MaterialTextContainerBuilder;
+  onWindowChanged(handler: DslSignalHandlerValue): MaterialTextContainerBuilder;
+  onXChanged(handler: DslSignalHandlerValue): MaterialTextContainerBuilder;
+  onYChanged(handler: DslSignalHandlerValue): MaterialTextContainerBuilder;
+  onZChanged(handler: DslSignalHandlerValue): MaterialTextContainerBuilder;
   anchors(setup: (b: AnchorsBuilder) => void): MaterialTextContainerBuilder;
   layer(setup: (b: LayerBuilder) => void): MaterialTextContainerBuilder;
 }

@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlMatrix4x4,
   QmlObjectBuilder,
   QmlQuaternion,
@@ -14,6 +15,7 @@ import { createFluentBuilder } from '../../runtime/index.js';
 export interface TransformBuilder {
   id(id: string): TransformBuilder;
   child(obj: QmlObjectBuilder): TransformBuilder;
+  children(...objs: QmlObjectBuilder[]): TransformBuilder;
 
   enabled(value: boolean): TransformBuilder;
   enabledBind(expr: string): TransformBuilder;
@@ -39,22 +41,22 @@ export interface TransformBuilder {
   scale3DBind(expr: string): TransformBuilder;
   translation(value: QmlVector3d): TransformBuilder;
   translationBind(expr: string): TransformBuilder;
-  onAddedToEntity(body: string): TransformBuilder;
-  onEnabledChanged(body: string): TransformBuilder;
-  onMatrixChanged(body: string): TransformBuilder;
-  onNodeDestroyed(body: string): TransformBuilder;
-  onObjectNameChanged(body: string): TransformBuilder;
-  onParentChanged(body: string): TransformBuilder;
-  onRemovedFromEntity(body: string): TransformBuilder;
-  onRotationChanged(body: string): TransformBuilder;
-  onRotationXChanged(body: string): TransformBuilder;
-  onRotationYChanged(body: string): TransformBuilder;
-  onRotationZChanged(body: string): TransformBuilder;
-  onScale3DChanged(body: string): TransformBuilder;
-  onScaleChanged(body: string): TransformBuilder;
-  onShareableChanged(body: string): TransformBuilder;
-  onTranslationChanged(body: string): TransformBuilder;
-  onWorldMatrixChanged(body: string): TransformBuilder;
+  onAddedToEntity(handler: DslSignalHandlerValue): TransformBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): TransformBuilder;
+  onMatrixChanged(handler: DslSignalHandlerValue): TransformBuilder;
+  onNodeDestroyed(handler: DslSignalHandlerValue): TransformBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): TransformBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): TransformBuilder;
+  onRemovedFromEntity(handler: DslSignalHandlerValue): TransformBuilder;
+  onRotationChanged(handler: DslSignalHandlerValue): TransformBuilder;
+  onRotationXChanged(handler: DslSignalHandlerValue): TransformBuilder;
+  onRotationYChanged(handler: DslSignalHandlerValue): TransformBuilder;
+  onRotationZChanged(handler: DslSignalHandlerValue): TransformBuilder;
+  onScale3DChanged(handler: DslSignalHandlerValue): TransformBuilder;
+  onScaleChanged(handler: DslSignalHandlerValue): TransformBuilder;
+  onShareableChanged(handler: DslSignalHandlerValue): TransformBuilder;
+  onTranslationChanged(handler: DslSignalHandlerValue): TransformBuilder;
+  onWorldMatrixChanged(handler: DslSignalHandlerValue): TransformBuilder;
 }
 
 const TRANSFORM_META: TypeMetadata = {

@@ -2,20 +2,21 @@
 // Type: VideoSink
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import type { DslSignalHandlerValue, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 export interface VideoSinkBuilder {
   id(id: string): VideoSinkBuilder;
   child(obj: QmlObjectBuilder): VideoSinkBuilder;
+  children(...objs: QmlObjectBuilder[]): VideoSinkBuilder;
 
   objectName(value: string): VideoSinkBuilder;
   objectNameBind(expr: string): VideoSinkBuilder;
   subtitleText(value: string): VideoSinkBuilder;
   subtitleTextBind(expr: string): VideoSinkBuilder;
-  onObjectNameChanged(body: string): VideoSinkBuilder;
-  onSubtitleTextChanged(body: string): VideoSinkBuilder;
-  onVideoFrameChanged(body: string): VideoSinkBuilder;
-  onVideoSizeChanged(body: string): VideoSinkBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): VideoSinkBuilder;
+  onSubtitleTextChanged(handler: DslSignalHandlerValue): VideoSinkBuilder;
+  onVideoFrameChanged(handler: DslSignalHandlerValue): VideoSinkBuilder;
+  onVideoSizeChanged(handler: DslSignalHandlerValue): VideoSinkBuilder;
 }
 
 const VIDEOSINK_META: TypeMetadata = {

@@ -2,11 +2,17 @@
 // Type: ShaderDataArray
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 export interface ShaderDataArrayBuilder {
   id(id: string): ShaderDataArrayBuilder;
   child(obj: QmlObjectBuilder): ShaderDataArrayBuilder;
+  children(...objs: QmlObjectBuilder[]): ShaderDataArrayBuilder;
 
   enabled(value: boolean): ShaderDataArrayBuilder;
   enabledBind(expr: string): ShaderDataArrayBuilder;
@@ -14,10 +20,10 @@ export interface ShaderDataArrayBuilder {
   objectNameBind(expr: string): ShaderDataArrayBuilder;
   parent(value: QmlValue): ShaderDataArrayBuilder;
   parentBind(expr: string): ShaderDataArrayBuilder;
-  onEnabledChanged(body: string): ShaderDataArrayBuilder;
-  onNodeDestroyed(body: string): ShaderDataArrayBuilder;
-  onObjectNameChanged(body: string): ShaderDataArrayBuilder;
-  onParentChanged(body: string): ShaderDataArrayBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): ShaderDataArrayBuilder;
+  onNodeDestroyed(handler: DslSignalHandlerValue): ShaderDataArrayBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): ShaderDataArrayBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): ShaderDataArrayBuilder;
 }
 
 const SHADERDATAARRAY_META: TypeMetadata = {

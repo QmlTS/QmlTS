@@ -2,7 +2,7 @@
 // Type: Translate
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import type { DslSignalHandlerValue, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 import type { AccessibleAttachedBuilder } from './Accessible.js';
 import type { EnterKeyAttachedBuilder } from './EnterKey.js';
@@ -23,6 +23,7 @@ import type { ViewTransitionAttachedBuilder } from './ViewTransition.js';
 export interface TranslateBuilder {
   id(id: string): TranslateBuilder;
   child(obj: QmlObjectBuilder): TranslateBuilder;
+  children(...objs: QmlObjectBuilder[]): TranslateBuilder;
 
   objectName(value: string): TranslateBuilder;
   objectNameBind(expr: string): TranslateBuilder;
@@ -30,9 +31,9 @@ export interface TranslateBuilder {
   xBind(expr: string): TranslateBuilder;
   y(value: number): TranslateBuilder;
   yBind(expr: string): TranslateBuilder;
-  onObjectNameChanged(body: string): TranslateBuilder;
-  onXChanged(body: string): TranslateBuilder;
-  onYChanged(body: string): TranslateBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): TranslateBuilder;
+  onXChanged(handler: DslSignalHandlerValue): TranslateBuilder;
+  onYChanged(handler: DslSignalHandlerValue): TranslateBuilder;
   accessible(setup: (b: AccessibleAttachedBuilder) => void): TranslateBuilder;
   drag(setup: (b: DragAttachedBuilder) => void): TranslateBuilder;
   enterKey(setup: (b: EnterKeyAttachedBuilder) => void): TranslateBuilder;

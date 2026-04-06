@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlColor,
   QmlComponent,
   QmlObjectBuilder,
@@ -13,6 +14,7 @@ import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface ScatterSeriesBuilder {
   id(id: string): ScatterSeriesBuilder;
   child(obj: QmlObjectBuilder): ScatterSeriesBuilder;
+  children(...objs: QmlObjectBuilder[]): ScatterSeriesBuilder;
 
   axisX(value: QmlValue): ScatterSeriesBuilder;
   axisXBind(expr: string): ScatterSeriesBuilder;
@@ -42,39 +44,39 @@ export interface ScatterSeriesBuilder {
   visibleBind(expr: string): ScatterSeriesBuilder;
   zValue(value: number): ScatterSeriesBuilder;
   zValueBind(expr: string): ScatterSeriesBuilder;
-  onAxisXChanged(body: string): ScatterSeriesBuilder;
-  onAxisYChanged(body: string): ScatterSeriesBuilder;
-  onClicked(body: string): ScatterSeriesBuilder;
-  onColorChanged(body: string): ScatterSeriesBuilder;
-  onCountChanged(body: string): ScatterSeriesBuilder;
-  onDoubleClicked(body: string): ScatterSeriesBuilder;
-  onDraggableChanged(body: string): ScatterSeriesBuilder;
-  onHover(body: string): ScatterSeriesBuilder;
-  onHoverEnter(body: string): ScatterSeriesBuilder;
-  onHoverExit(body: string): ScatterSeriesBuilder;
-  onHoverableChanged(body: string): ScatterSeriesBuilder;
-  onHoveredChanged(body: string): ScatterSeriesBuilder;
-  onLegendDataChanged(body: string): ScatterSeriesBuilder;
-  onNameChanged(body: string): ScatterSeriesBuilder;
-  onObjectNameChanged(body: string): ScatterSeriesBuilder;
-  onOpacityChanged(body: string): ScatterSeriesBuilder;
-  onPointAdded(body: string): ScatterSeriesBuilder;
-  onPointDelegateChanged(body: string): ScatterSeriesBuilder;
-  onPointRemoved(body: string): ScatterSeriesBuilder;
-  onPointReplaced(body: string): ScatterSeriesBuilder;
-  onPointsAdded(body: string): ScatterSeriesBuilder;
-  onPointsRemoved(body: string): ScatterSeriesBuilder;
-  onPointsReplaced(body: string): ScatterSeriesBuilder;
-  onPressed(body: string): ScatterSeriesBuilder;
-  onReleased(body: string): ScatterSeriesBuilder;
-  onSelectableChanged(body: string): ScatterSeriesBuilder;
-  onSelectedColorChanged(body: string): ScatterSeriesBuilder;
-  onSelectedPointsChanged(body: string): ScatterSeriesBuilder;
-  onSeriesUpdated(body: string): ScatterSeriesBuilder;
-  onUpdate(body: string): ScatterSeriesBuilder;
-  onValuesMultiplierChanged(body: string): ScatterSeriesBuilder;
-  onVisibleChanged(body: string): ScatterSeriesBuilder;
-  onZValueChanged(body: string): ScatterSeriesBuilder;
+  onAxisXChanged(handler: DslSignalHandlerValue): ScatterSeriesBuilder;
+  onAxisYChanged(handler: DslSignalHandlerValue): ScatterSeriesBuilder;
+  onClicked(handler: DslSignalHandlerValue): ScatterSeriesBuilder;
+  onColorChanged(handler: DslSignalHandlerValue): ScatterSeriesBuilder;
+  onCountChanged(handler: DslSignalHandlerValue): ScatterSeriesBuilder;
+  onDoubleClicked(handler: DslSignalHandlerValue): ScatterSeriesBuilder;
+  onDraggableChanged(handler: DslSignalHandlerValue): ScatterSeriesBuilder;
+  onHover(handler: DslSignalHandlerValue): ScatterSeriesBuilder;
+  onHoverEnter(handler: DslSignalHandlerValue): ScatterSeriesBuilder;
+  onHoverExit(handler: DslSignalHandlerValue): ScatterSeriesBuilder;
+  onHoverableChanged(handler: DslSignalHandlerValue): ScatterSeriesBuilder;
+  onHoveredChanged(handler: DslSignalHandlerValue): ScatterSeriesBuilder;
+  onLegendDataChanged(handler: DslSignalHandlerValue): ScatterSeriesBuilder;
+  onNameChanged(handler: DslSignalHandlerValue): ScatterSeriesBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): ScatterSeriesBuilder;
+  onOpacityChanged(handler: DslSignalHandlerValue): ScatterSeriesBuilder;
+  onPointAdded(handler: DslSignalHandlerValue): ScatterSeriesBuilder;
+  onPointDelegateChanged(handler: DslSignalHandlerValue): ScatterSeriesBuilder;
+  onPointRemoved(handler: DslSignalHandlerValue): ScatterSeriesBuilder;
+  onPointReplaced(handler: DslSignalHandlerValue): ScatterSeriesBuilder;
+  onPointsAdded(handler: DslSignalHandlerValue): ScatterSeriesBuilder;
+  onPointsRemoved(handler: DslSignalHandlerValue): ScatterSeriesBuilder;
+  onPointsReplaced(handler: DslSignalHandlerValue): ScatterSeriesBuilder;
+  onPressed(handler: DslSignalHandlerValue): ScatterSeriesBuilder;
+  onReleased(handler: DslSignalHandlerValue): ScatterSeriesBuilder;
+  onSelectableChanged(handler: DslSignalHandlerValue): ScatterSeriesBuilder;
+  onSelectedColorChanged(handler: DslSignalHandlerValue): ScatterSeriesBuilder;
+  onSelectedPointsChanged(handler: DslSignalHandlerValue): ScatterSeriesBuilder;
+  onSeriesUpdated(handler: DslSignalHandlerValue): ScatterSeriesBuilder;
+  onUpdate(handler: DslSignalHandlerValue): ScatterSeriesBuilder;
+  onValuesMultiplierChanged(handler: DslSignalHandlerValue): ScatterSeriesBuilder;
+  onVisibleChanged(handler: DslSignalHandlerValue): ScatterSeriesBuilder;
+  onZValueChanged(handler: DslSignalHandlerValue): ScatterSeriesBuilder;
 }
 
 const SCATTERSERIES_META: TypeMetadata = {

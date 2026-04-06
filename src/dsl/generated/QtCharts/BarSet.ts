@@ -2,11 +2,18 @@
 // Type: BarSet
 // Generated from Qt 6.11.0
 
-import type { QmlColor, QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlColor,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 export interface BarSetBuilder {
   id(id: string): BarSetBuilder;
   child(obj: QmlObjectBuilder): BarSetBuilder;
+  children(...objs: QmlObjectBuilder[]): BarSetBuilder;
 
   borderColor(value: QmlColor): BarSetBuilder;
   borderColorBind(expr: string): BarSetBuilder;
@@ -26,24 +33,24 @@ export interface BarSetBuilder {
   selectedColorBind(expr: string): BarSetBuilder;
   values(value: QmlValue[]): BarSetBuilder;
   valuesBind(expr: string): BarSetBuilder;
-  onBorderColorChanged(body: string): BarSetBuilder;
-  onBorderWidthChanged(body: string): BarSetBuilder;
-  onBrushFilenameChanged(body: string): BarSetBuilder;
-  onColorChanged(body: string): BarSetBuilder;
-  onCountChanged(body: string): BarSetBuilder;
-  onLabelChanged(body: string): BarSetBuilder;
-  onLabelColorChanged(body: string): BarSetBuilder;
-  onObjectNameChanged(body: string): BarSetBuilder;
-  onSelectedBarsChanged(body: string): BarSetBuilder;
-  onSelectedColorChanged(body: string): BarSetBuilder;
-  onUpdate(body: string): BarSetBuilder;
-  onUpdatedBars(body: string): BarSetBuilder;
-  onValueAdded(body: string): BarSetBuilder;
-  onValueChanged(body: string): BarSetBuilder;
-  onValueRemoved(body: string): BarSetBuilder;
-  onValuesAdded(body: string): BarSetBuilder;
-  onValuesChanged(body: string): BarSetBuilder;
-  onValuesRemoved(body: string): BarSetBuilder;
+  onBorderColorChanged(handler: DslSignalHandlerValue): BarSetBuilder;
+  onBorderWidthChanged(handler: DslSignalHandlerValue): BarSetBuilder;
+  onBrushFilenameChanged(handler: DslSignalHandlerValue): BarSetBuilder;
+  onColorChanged(handler: DslSignalHandlerValue): BarSetBuilder;
+  onCountChanged(handler: DslSignalHandlerValue): BarSetBuilder;
+  onLabelChanged(handler: DslSignalHandlerValue): BarSetBuilder;
+  onLabelColorChanged(handler: DslSignalHandlerValue): BarSetBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): BarSetBuilder;
+  onSelectedBarsChanged(handler: DslSignalHandlerValue): BarSetBuilder;
+  onSelectedColorChanged(handler: DslSignalHandlerValue): BarSetBuilder;
+  onUpdate(handler: DslSignalHandlerValue): BarSetBuilder;
+  onUpdatedBars(handler: DslSignalHandlerValue): BarSetBuilder;
+  onValueAdded(handler: DslSignalHandlerValue): BarSetBuilder;
+  onValueChanged(handler: DslSignalHandlerValue): BarSetBuilder;
+  onValueRemoved(handler: DslSignalHandlerValue): BarSetBuilder;
+  onValuesAdded(handler: DslSignalHandlerValue): BarSetBuilder;
+  onValuesChanged(handler: DslSignalHandlerValue): BarSetBuilder;
+  onValuesRemoved(handler: DslSignalHandlerValue): BarSetBuilder;
 }
 
 const BARSET_META: TypeMetadata = {

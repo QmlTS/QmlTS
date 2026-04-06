@@ -2,11 +2,12 @@
 // Type: BakedLightmap
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import type { DslSignalHandlerValue, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 export interface BakedLightmapBuilder {
   id(id: string): BakedLightmapBuilder;
   child(obj: QmlObjectBuilder): BakedLightmapBuilder;
+  children(...objs: QmlObjectBuilder[]): BakedLightmapBuilder;
 
   enabled(value: boolean): BakedLightmapBuilder;
   enabledBind(expr: string): BakedLightmapBuilder;
@@ -16,11 +17,11 @@ export interface BakedLightmapBuilder {
   loadPrefixBind(expr: string): BakedLightmapBuilder;
   objectName(value: string): BakedLightmapBuilder;
   objectNameBind(expr: string): BakedLightmapBuilder;
-  onChanged(body: string): BakedLightmapBuilder;
-  onEnabledChanged(body: string): BakedLightmapBuilder;
-  onKeyChanged(body: string): BakedLightmapBuilder;
-  onLoadPrefixChanged(body: string): BakedLightmapBuilder;
-  onObjectNameChanged(body: string): BakedLightmapBuilder;
+  onChanged(handler: DslSignalHandlerValue): BakedLightmapBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): BakedLightmapBuilder;
+  onKeyChanged(handler: DslSignalHandlerValue): BakedLightmapBuilder;
+  onLoadPrefixChanged(handler: DslSignalHandlerValue): BakedLightmapBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): BakedLightmapBuilder;
 }
 
 const BAKEDLIGHTMAP_META: TypeMetadata = {

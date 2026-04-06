@@ -2,19 +2,25 @@
 // Type: InvokedServices
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 export interface InvokedServicesBuilder {
   id(id: string): InvokedServicesBuilder;
   child(obj: QmlObjectBuilder): InvokedServicesBuilder;
+  children(...objs: QmlObjectBuilder[]): InvokedServicesBuilder;
 
   objectName(value: string): InvokedServicesBuilder;
   objectNameBind(expr: string): InvokedServicesBuilder;
   stateMachine(value: QmlValue): InvokedServicesBuilder;
   stateMachineBind(expr: string): InvokedServicesBuilder;
-  onChildrenChanged(body: string): InvokedServicesBuilder;
-  onObjectNameChanged(body: string): InvokedServicesBuilder;
-  onStateMachineChanged(body: string): InvokedServicesBuilder;
+  onChildrenChanged(handler: DslSignalHandlerValue): InvokedServicesBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): InvokedServicesBuilder;
+  onStateMachineChanged(handler: DslSignalHandlerValue): InvokedServicesBuilder;
 }
 
 const INVOKEDSERVICES_META: TypeMetadata = {

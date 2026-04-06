@@ -2,11 +2,17 @@
 // Type: SetUniformValue
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 export interface SetUniformValueBuilder {
   id(id: string): SetUniformValueBuilder;
   child(obj: QmlObjectBuilder): SetUniformValueBuilder;
+  children(...objs: QmlObjectBuilder[]): SetUniformValueBuilder;
 
   objectName(value: string): SetUniformValueBuilder;
   objectNameBind(expr: string): SetUniformValueBuilder;
@@ -18,10 +24,10 @@ export interface SetUniformValueBuilder {
   targetBind(expr: string): SetUniformValueBuilder;
   value(value: QmlValue): SetUniformValueBuilder;
   valueBind(expr: string): SetUniformValueBuilder;
-  onChildrenChanged(body: string): SetUniformValueBuilder;
-  onObjectNameChanged(body: string): SetUniformValueBuilder;
-  onParentChanged(body: string): SetUniformValueBuilder;
-  onStateChanged(body: string): SetUniformValueBuilder;
+  onChildrenChanged(handler: DslSignalHandlerValue): SetUniformValueBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): SetUniformValueBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): SetUniformValueBuilder;
+  onStateChanged(handler: DslSignalHandlerValue): SetUniformValueBuilder;
 }
 
 const SETUNIFORMVALUE_META: TypeMetadata = {

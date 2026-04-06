@@ -2,7 +2,7 @@
 // Type: ControlStyle
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import type { DslSignalHandlerValue, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { TransitionBuilder } from '../QtQuick/Transition.js';
 import type { StyleKitAttachedBuilder } from './QQStyleKitAttached.js';
@@ -10,6 +10,7 @@ import type { StyleVariationAttachedBuilder } from './QQStyleKitVariationAttache
 export interface ControlStyleBuilder {
   id(id: string): ControlStyleBuilder;
   child(obj: QmlObjectBuilder): ControlStyleBuilder;
+  children(...objs: QmlObjectBuilder[]): ControlStyleBuilder;
 
   bottomPadding(value: number): ControlStyleBuilder;
   bottomPaddingBind(expr: string): ControlStyleBuilder;
@@ -27,25 +28,25 @@ export interface ControlStyleBuilder {
   topPaddingBind(expr: string): ControlStyleBuilder;
   transition(value: TransitionBuilder): ControlStyleBuilder;
   transitionBind(expr: string): ControlStyleBuilder;
-  onBackgroundChanged(body: string): ControlStyleBuilder;
-  onBottomPaddingChanged(body: string): ControlStyleBuilder;
-  onCheckedChanged(body: string): ControlStyleBuilder;
-  onDisabledChanged(body: string): ControlStyleBuilder;
-  onFocusedChanged(body: string): ControlStyleBuilder;
-  onHandleChanged(body: string): ControlStyleBuilder;
-  onHighlightedChanged(body: string): ControlStyleBuilder;
-  onHoveredChanged(body: string): ControlStyleBuilder;
-  onIndicatorChanged(body: string): ControlStyleBuilder;
-  onLeftPaddingChanged(body: string): ControlStyleBuilder;
-  onObjectNameChanged(body: string): ControlStyleBuilder;
-  onPaddingChanged(body: string): ControlStyleBuilder;
-  onPressedChanged(body: string): ControlStyleBuilder;
-  onRightPaddingChanged(body: string): ControlStyleBuilder;
-  onSpacingChanged(body: string): ControlStyleBuilder;
-  onTextChanged(body: string): ControlStyleBuilder;
-  onTopPaddingChanged(body: string): ControlStyleBuilder;
-  onTransitionChanged(body: string): ControlStyleBuilder;
-  onVerticalChanged(body: string): ControlStyleBuilder;
+  onBackgroundChanged(handler: DslSignalHandlerValue): ControlStyleBuilder;
+  onBottomPaddingChanged(handler: DslSignalHandlerValue): ControlStyleBuilder;
+  onCheckedChanged(handler: DslSignalHandlerValue): ControlStyleBuilder;
+  onDisabledChanged(handler: DslSignalHandlerValue): ControlStyleBuilder;
+  onFocusedChanged(handler: DslSignalHandlerValue): ControlStyleBuilder;
+  onHandleChanged(handler: DslSignalHandlerValue): ControlStyleBuilder;
+  onHighlightedChanged(handler: DslSignalHandlerValue): ControlStyleBuilder;
+  onHoveredChanged(handler: DslSignalHandlerValue): ControlStyleBuilder;
+  onIndicatorChanged(handler: DslSignalHandlerValue): ControlStyleBuilder;
+  onLeftPaddingChanged(handler: DslSignalHandlerValue): ControlStyleBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): ControlStyleBuilder;
+  onPaddingChanged(handler: DslSignalHandlerValue): ControlStyleBuilder;
+  onPressedChanged(handler: DslSignalHandlerValue): ControlStyleBuilder;
+  onRightPaddingChanged(handler: DslSignalHandlerValue): ControlStyleBuilder;
+  onSpacingChanged(handler: DslSignalHandlerValue): ControlStyleBuilder;
+  onTextChanged(handler: DslSignalHandlerValue): ControlStyleBuilder;
+  onTopPaddingChanged(handler: DslSignalHandlerValue): ControlStyleBuilder;
+  onTransitionChanged(handler: DslSignalHandlerValue): ControlStyleBuilder;
+  onVerticalChanged(handler: DslSignalHandlerValue): ControlStyleBuilder;
   styleKit(setup: (b: StyleKitAttachedBuilder) => void): ControlStyleBuilder;
   styleVariation(setup: (b: StyleVariationAttachedBuilder) => void): ControlStyleBuilder;
 }

@@ -2,11 +2,17 @@
 // Type: ShaderData
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 export interface ShaderDataBuilder {
   id(id: string): ShaderDataBuilder;
   child(obj: QmlObjectBuilder): ShaderDataBuilder;
+  children(...objs: QmlObjectBuilder[]): ShaderDataBuilder;
 
   enabled(value: boolean): ShaderDataBuilder;
   enabledBind(expr: string): ShaderDataBuilder;
@@ -16,13 +22,13 @@ export interface ShaderDataBuilder {
   objectNameBind(expr: string): ShaderDataBuilder;
   parent(value: QmlValue): ShaderDataBuilder;
   parentBind(expr: string): ShaderDataBuilder;
-  onAddedToEntity(body: string): ShaderDataBuilder;
-  onEnabledChanged(body: string): ShaderDataBuilder;
-  onNodeDestroyed(body: string): ShaderDataBuilder;
-  onObjectNameChanged(body: string): ShaderDataBuilder;
-  onParentChanged(body: string): ShaderDataBuilder;
-  onRemovedFromEntity(body: string): ShaderDataBuilder;
-  onShareableChanged(body: string): ShaderDataBuilder;
+  onAddedToEntity(handler: DslSignalHandlerValue): ShaderDataBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): ShaderDataBuilder;
+  onNodeDestroyed(handler: DslSignalHandlerValue): ShaderDataBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): ShaderDataBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): ShaderDataBuilder;
+  onRemovedFromEntity(handler: DslSignalHandlerValue): ShaderDataBuilder;
+  onShareableChanged(handler: DslSignalHandlerValue): ShaderDataBuilder;
 }
 
 const SHADERDATA_META: TypeMetadata = {

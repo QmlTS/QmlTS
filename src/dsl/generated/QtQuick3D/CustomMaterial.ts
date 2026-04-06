@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlEnumToken,
   QmlObjectBuilder,
   QmlUrl,
@@ -14,6 +15,7 @@ import type { TextureBuilder } from './Texture.js';
 export interface CustomMaterialBuilder {
   id(id: string): CustomMaterialBuilder;
   child(obj: QmlObjectBuilder): CustomMaterialBuilder;
+  children(...objs: QmlObjectBuilder[]): CustomMaterialBuilder;
 
   alwaysDirty(value: boolean): CustomMaterialBuilder;
   alwaysDirtyBind(expr: string): CustomMaterialBuilder;
@@ -45,24 +47,24 @@ export interface CustomMaterialBuilder {
   stateBind(expr: string): CustomMaterialBuilder;
   vertexShader(value: QmlUrl): CustomMaterialBuilder;
   vertexShaderBind(expr: string): CustomMaterialBuilder;
-  onAlwaysDirtyChanged(body: string): CustomMaterialBuilder;
-  onChildrenChanged(body: string): CustomMaterialBuilder;
-  onCullModeChanged(body: string): CustomMaterialBuilder;
-  onDepthDrawModeChanged(body: string): CustomMaterialBuilder;
-  onDstAlphaBlendChanged(body: string): CustomMaterialBuilder;
-  onDstBlendChanged(body: string): CustomMaterialBuilder;
-  onFragmentShaderChanged(body: string): CustomMaterialBuilder;
-  onFragmentShaderCodeChanged(body: string): CustomMaterialBuilder;
-  onLightProbeChanged(body: string): CustomMaterialBuilder;
-  onLineWidthChanged(body: string): CustomMaterialBuilder;
-  onObjectNameChanged(body: string): CustomMaterialBuilder;
-  onParentChanged(body: string): CustomMaterialBuilder;
-  onShadingModeChanged(body: string): CustomMaterialBuilder;
-  onSrcAlphaBlendChanged(body: string): CustomMaterialBuilder;
-  onSrcBlendChanged(body: string): CustomMaterialBuilder;
-  onStateChanged(body: string): CustomMaterialBuilder;
-  onVertexShaderChanged(body: string): CustomMaterialBuilder;
-  onVertexShaderCodeChanged(body: string): CustomMaterialBuilder;
+  onAlwaysDirtyChanged(handler: DslSignalHandlerValue): CustomMaterialBuilder;
+  onChildrenChanged(handler: DslSignalHandlerValue): CustomMaterialBuilder;
+  onCullModeChanged(handler: DslSignalHandlerValue): CustomMaterialBuilder;
+  onDepthDrawModeChanged(handler: DslSignalHandlerValue): CustomMaterialBuilder;
+  onDstAlphaBlendChanged(handler: DslSignalHandlerValue): CustomMaterialBuilder;
+  onDstBlendChanged(handler: DslSignalHandlerValue): CustomMaterialBuilder;
+  onFragmentShaderChanged(handler: DslSignalHandlerValue): CustomMaterialBuilder;
+  onFragmentShaderCodeChanged(handler: DslSignalHandlerValue): CustomMaterialBuilder;
+  onLightProbeChanged(handler: DslSignalHandlerValue): CustomMaterialBuilder;
+  onLineWidthChanged(handler: DslSignalHandlerValue): CustomMaterialBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): CustomMaterialBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): CustomMaterialBuilder;
+  onShadingModeChanged(handler: DslSignalHandlerValue): CustomMaterialBuilder;
+  onSrcAlphaBlendChanged(handler: DslSignalHandlerValue): CustomMaterialBuilder;
+  onSrcBlendChanged(handler: DslSignalHandlerValue): CustomMaterialBuilder;
+  onStateChanged(handler: DslSignalHandlerValue): CustomMaterialBuilder;
+  onVertexShaderChanged(handler: DslSignalHandlerValue): CustomMaterialBuilder;
+  onVertexShaderCodeChanged(handler: DslSignalHandlerValue): CustomMaterialBuilder;
 }
 
 const CUSTOMMATERIAL_META: TypeMetadata = {

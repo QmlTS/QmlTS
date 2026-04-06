@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlEnumToken,
   QmlObjectBuilder,
   QmlPoint,
@@ -13,6 +14,7 @@ import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface CameraBuilder {
   id(id: string): CameraBuilder;
   child(obj: QmlObjectBuilder): CameraBuilder;
+  children(...objs: QmlObjectBuilder[]): CameraBuilder;
 
   active(value: boolean): CameraBuilder;
   activeBind(expr: string): CameraBuilder;
@@ -46,35 +48,35 @@ export interface CameraBuilder {
   whiteBalanceModeBind(expr: string): CameraBuilder;
   zoomFactor(value: number): CameraBuilder;
   zoomFactorBind(expr: string): CameraBuilder;
-  onActiveChanged(body: string): CameraBuilder;
-  onBrightnessChanged(body: string): CameraBuilder;
-  onCameraDeviceChanged(body: string): CameraBuilder;
-  onCameraFormatChanged(body: string): CameraBuilder;
-  onColorTemperatureChanged(body: string): CameraBuilder;
-  onContrastChanged(body: string): CameraBuilder;
-  onCustomFocusPointChanged(body: string): CameraBuilder;
-  onErrorChanged(body: string): CameraBuilder;
-  onErrorOccurred(body: string): CameraBuilder;
-  onExposureCompensationChanged(body: string): CameraBuilder;
-  onExposureModeChanged(body: string): CameraBuilder;
-  onExposureTimeChanged(body: string): CameraBuilder;
-  onFlashModeChanged(body: string): CameraBuilder;
-  onFlashReady(body: string): CameraBuilder;
-  onFocusDistanceChanged(body: string): CameraBuilder;
-  onFocusModeChanged(body: string): CameraBuilder;
-  onFocusPointChanged(body: string): CameraBuilder;
-  onHueChanged(body: string): CameraBuilder;
-  onIsoSensitivityChanged(body: string): CameraBuilder;
-  onManualExposureTimeChanged(body: string): CameraBuilder;
-  onManualIsoSensitivityChanged(body: string): CameraBuilder;
-  onMaximumZoomFactorChanged(body: string): CameraBuilder;
-  onMinimumZoomFactorChanged(body: string): CameraBuilder;
-  onObjectNameChanged(body: string): CameraBuilder;
-  onSaturationChanged(body: string): CameraBuilder;
-  onSupportedFeaturesChanged(body: string): CameraBuilder;
-  onTorchModeChanged(body: string): CameraBuilder;
-  onWhiteBalanceModeChanged(body: string): CameraBuilder;
-  onZoomFactorChanged(body: string): CameraBuilder;
+  onActiveChanged(handler: DslSignalHandlerValue): CameraBuilder;
+  onBrightnessChanged(handler: DslSignalHandlerValue): CameraBuilder;
+  onCameraDeviceChanged(handler: DslSignalHandlerValue): CameraBuilder;
+  onCameraFormatChanged(handler: DslSignalHandlerValue): CameraBuilder;
+  onColorTemperatureChanged(handler: DslSignalHandlerValue): CameraBuilder;
+  onContrastChanged(handler: DslSignalHandlerValue): CameraBuilder;
+  onCustomFocusPointChanged(handler: DslSignalHandlerValue): CameraBuilder;
+  onErrorChanged(handler: DslSignalHandlerValue): CameraBuilder;
+  onErrorOccurred(handler: DslSignalHandlerValue): CameraBuilder;
+  onExposureCompensationChanged(handler: DslSignalHandlerValue): CameraBuilder;
+  onExposureModeChanged(handler: DslSignalHandlerValue): CameraBuilder;
+  onExposureTimeChanged(handler: DslSignalHandlerValue): CameraBuilder;
+  onFlashModeChanged(handler: DslSignalHandlerValue): CameraBuilder;
+  onFlashReady(handler: DslSignalHandlerValue): CameraBuilder;
+  onFocusDistanceChanged(handler: DslSignalHandlerValue): CameraBuilder;
+  onFocusModeChanged(handler: DslSignalHandlerValue): CameraBuilder;
+  onFocusPointChanged(handler: DslSignalHandlerValue): CameraBuilder;
+  onHueChanged(handler: DslSignalHandlerValue): CameraBuilder;
+  onIsoSensitivityChanged(handler: DslSignalHandlerValue): CameraBuilder;
+  onManualExposureTimeChanged(handler: DslSignalHandlerValue): CameraBuilder;
+  onManualIsoSensitivityChanged(handler: DslSignalHandlerValue): CameraBuilder;
+  onMaximumZoomFactorChanged(handler: DslSignalHandlerValue): CameraBuilder;
+  onMinimumZoomFactorChanged(handler: DslSignalHandlerValue): CameraBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): CameraBuilder;
+  onSaturationChanged(handler: DslSignalHandlerValue): CameraBuilder;
+  onSupportedFeaturesChanged(handler: DslSignalHandlerValue): CameraBuilder;
+  onTorchModeChanged(handler: DslSignalHandlerValue): CameraBuilder;
+  onWhiteBalanceModeChanged(handler: DslSignalHandlerValue): CameraBuilder;
+  onZoomFactorChanged(handler: DslSignalHandlerValue): CameraBuilder;
 }
 
 const CAMERA_META: TypeMetadata = {

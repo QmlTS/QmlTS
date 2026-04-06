@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlComponent,
   QmlEnumToken,
   QmlObjectBuilder,
@@ -15,6 +16,7 @@ import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface InstanceRepeaterBuilder {
   id(id: string): InstanceRepeaterBuilder;
   child(obj: QmlObjectBuilder): InstanceRepeaterBuilder;
+  children(...objs: QmlObjectBuilder[]): InstanceRepeaterBuilder;
 
   delegate(value: QmlComponent): InstanceRepeaterBuilder;
   delegateBind(expr: string): InstanceRepeaterBuilder;
@@ -54,36 +56,36 @@ export interface InstanceRepeaterBuilder {
   yBind(expr: string): InstanceRepeaterBuilder;
   z(value: number): InstanceRepeaterBuilder;
   zBind(expr: string): InstanceRepeaterBuilder;
-  onChildrenChanged(body: string): InstanceRepeaterBuilder;
-  onCountChanged(body: string): InstanceRepeaterBuilder;
-  onDelegateChanged(body: string): InstanceRepeaterBuilder;
-  onDelegateModelAccessChanged(body: string): InstanceRepeaterBuilder;
-  onEulerRotationChanged(body: string): InstanceRepeaterBuilder;
-  onForwardChanged(body: string): InstanceRepeaterBuilder;
-  onInstancingChanged(body: string): InstanceRepeaterBuilder;
-  onLayersChanged(body: string): InstanceRepeaterBuilder;
-  onLocalOpacityChanged(body: string): InstanceRepeaterBuilder;
-  onModelChanged(body: string): InstanceRepeaterBuilder;
-  onObjectAdded(body: string): InstanceRepeaterBuilder;
-  onObjectNameChanged(body: string): InstanceRepeaterBuilder;
-  onObjectRemoved(body: string): InstanceRepeaterBuilder;
-  onParentChanged(body: string): InstanceRepeaterBuilder;
-  onPivotChanged(body: string): InstanceRepeaterBuilder;
-  onPositionChanged(body: string): InstanceRepeaterBuilder;
-  onRightChanged(body: string): InstanceRepeaterBuilder;
-  onRotationChanged(body: string): InstanceRepeaterBuilder;
-  onScaleChanged(body: string): InstanceRepeaterBuilder;
-  onScenePositionChanged(body: string): InstanceRepeaterBuilder;
-  onSceneRotationChanged(body: string): InstanceRepeaterBuilder;
-  onSceneScaleChanged(body: string): InstanceRepeaterBuilder;
-  onSceneTransformChanged(body: string): InstanceRepeaterBuilder;
-  onStateChanged(body: string): InstanceRepeaterBuilder;
-  onStaticFlagsChanged(body: string): InstanceRepeaterBuilder;
-  onUpChanged(body: string): InstanceRepeaterBuilder;
-  onVisibleChanged(body: string): InstanceRepeaterBuilder;
-  onXChanged(body: string): InstanceRepeaterBuilder;
-  onYChanged(body: string): InstanceRepeaterBuilder;
-  onZChanged(body: string): InstanceRepeaterBuilder;
+  onChildrenChanged(handler: DslSignalHandlerValue): InstanceRepeaterBuilder;
+  onCountChanged(handler: DslSignalHandlerValue): InstanceRepeaterBuilder;
+  onDelegateChanged(handler: DslSignalHandlerValue): InstanceRepeaterBuilder;
+  onDelegateModelAccessChanged(handler: DslSignalHandlerValue): InstanceRepeaterBuilder;
+  onEulerRotationChanged(handler: DslSignalHandlerValue): InstanceRepeaterBuilder;
+  onForwardChanged(handler: DslSignalHandlerValue): InstanceRepeaterBuilder;
+  onInstancingChanged(handler: DslSignalHandlerValue): InstanceRepeaterBuilder;
+  onLayersChanged(handler: DslSignalHandlerValue): InstanceRepeaterBuilder;
+  onLocalOpacityChanged(handler: DslSignalHandlerValue): InstanceRepeaterBuilder;
+  onModelChanged(handler: DslSignalHandlerValue): InstanceRepeaterBuilder;
+  onObjectAdded(handler: DslSignalHandlerValue): InstanceRepeaterBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): InstanceRepeaterBuilder;
+  onObjectRemoved(handler: DslSignalHandlerValue): InstanceRepeaterBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): InstanceRepeaterBuilder;
+  onPivotChanged(handler: DslSignalHandlerValue): InstanceRepeaterBuilder;
+  onPositionChanged(handler: DslSignalHandlerValue): InstanceRepeaterBuilder;
+  onRightChanged(handler: DslSignalHandlerValue): InstanceRepeaterBuilder;
+  onRotationChanged(handler: DslSignalHandlerValue): InstanceRepeaterBuilder;
+  onScaleChanged(handler: DslSignalHandlerValue): InstanceRepeaterBuilder;
+  onScenePositionChanged(handler: DslSignalHandlerValue): InstanceRepeaterBuilder;
+  onSceneRotationChanged(handler: DslSignalHandlerValue): InstanceRepeaterBuilder;
+  onSceneScaleChanged(handler: DslSignalHandlerValue): InstanceRepeaterBuilder;
+  onSceneTransformChanged(handler: DslSignalHandlerValue): InstanceRepeaterBuilder;
+  onStateChanged(handler: DslSignalHandlerValue): InstanceRepeaterBuilder;
+  onStaticFlagsChanged(handler: DslSignalHandlerValue): InstanceRepeaterBuilder;
+  onUpChanged(handler: DslSignalHandlerValue): InstanceRepeaterBuilder;
+  onVisibleChanged(handler: DslSignalHandlerValue): InstanceRepeaterBuilder;
+  onXChanged(handler: DslSignalHandlerValue): InstanceRepeaterBuilder;
+  onYChanged(handler: DslSignalHandlerValue): InstanceRepeaterBuilder;
+  onZChanged(handler: DslSignalHandlerValue): InstanceRepeaterBuilder;
 }
 
 const INSTANCEREPEATER_META: TypeMetadata = {

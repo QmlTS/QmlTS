@@ -2,18 +2,19 @@
 // Type: Component
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import type { DslSignalHandlerValue, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { ComponentAttachedBuilder } from './QQmlComponentAttached.js';
 export interface ComponentBuilder {
   id(id: string): ComponentBuilder;
   child(obj: QmlObjectBuilder): ComponentBuilder;
+  children(...objs: QmlObjectBuilder[]): ComponentBuilder;
 
   objectName(value: string): ComponentBuilder;
   objectNameBind(expr: string): ComponentBuilder;
-  onObjectNameChanged(body: string): ComponentBuilder;
-  onProgressChanged(body: string): ComponentBuilder;
-  onStatusChanged(body: string): ComponentBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): ComponentBuilder;
+  onProgressChanged(handler: DslSignalHandlerValue): ComponentBuilder;
+  onStatusChanged(handler: DslSignalHandlerValue): ComponentBuilder;
   component(setup: (b: ComponentAttachedBuilder) => void): ComponentBuilder;
 }
 

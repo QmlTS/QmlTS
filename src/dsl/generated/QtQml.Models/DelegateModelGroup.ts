@@ -2,7 +2,7 @@
 // Type: DelegateModelGroup
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import type { DslSignalHandlerValue, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 import type { DelegateModelAttachedBuilder } from './QQmlDelegateModelAttached.js';
 import type { ObjectModelAttachedBuilder } from './QQmlObjectModelAttached.js';
@@ -10,6 +10,7 @@ import type { PackageAttachedBuilder } from './QQuickPackageAttached.js';
 export interface DelegateModelGroupBuilder {
   id(id: string): DelegateModelGroupBuilder;
   child(obj: QmlObjectBuilder): DelegateModelGroupBuilder;
+  children(...objs: QmlObjectBuilder[]): DelegateModelGroupBuilder;
 
   includeByDefault(value: boolean): DelegateModelGroupBuilder;
   includeByDefaultBind(expr: string): DelegateModelGroupBuilder;
@@ -17,11 +18,11 @@ export interface DelegateModelGroupBuilder {
   nameBind(expr: string): DelegateModelGroupBuilder;
   objectName(value: string): DelegateModelGroupBuilder;
   objectNameBind(expr: string): DelegateModelGroupBuilder;
-  onChanged(body: string): DelegateModelGroupBuilder;
-  onCountChanged(body: string): DelegateModelGroupBuilder;
-  onDefaultIncludeChanged(body: string): DelegateModelGroupBuilder;
-  onNameChanged(body: string): DelegateModelGroupBuilder;
-  onObjectNameChanged(body: string): DelegateModelGroupBuilder;
+  onChanged(handler: DslSignalHandlerValue): DelegateModelGroupBuilder;
+  onCountChanged(handler: DslSignalHandlerValue): DelegateModelGroupBuilder;
+  onDefaultIncludeChanged(handler: DslSignalHandlerValue): DelegateModelGroupBuilder;
+  onNameChanged(handler: DslSignalHandlerValue): DelegateModelGroupBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): DelegateModelGroupBuilder;
   delegateModel(setup: (b: DelegateModelAttachedBuilder) => void): DelegateModelGroupBuilder;
   objectModel(setup: (b: ObjectModelAttachedBuilder) => void): DelegateModelGroupBuilder;
   package(setup: (b: PackageAttachedBuilder) => void): DelegateModelGroupBuilder;

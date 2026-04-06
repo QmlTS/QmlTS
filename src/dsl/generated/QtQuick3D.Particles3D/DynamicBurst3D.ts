@@ -2,11 +2,17 @@
 // Type: DynamicBurst3D
 // Generated from Qt 6.11.0
 
-import type { QmlEnumToken, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlEnumToken,
+  QmlObjectBuilder,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface DynamicBurst3DBuilder {
   id(id: string): DynamicBurst3DBuilder;
   child(obj: QmlObjectBuilder): DynamicBurst3DBuilder;
+  children(...objs: QmlObjectBuilder[]): DynamicBurst3DBuilder;
 
   amount(value: number): DynamicBurst3DBuilder;
   amountBind(expr: string): DynamicBurst3DBuilder;
@@ -22,13 +28,13 @@ export interface DynamicBurst3DBuilder {
   timeBind(expr: string): DynamicBurst3DBuilder;
   triggerMode(value: QmlEnumToken): DynamicBurst3DBuilder;
   triggerModeBind(expr: string): DynamicBurst3DBuilder;
-  onAmountChanged(body: string): DynamicBurst3DBuilder;
-  onAmountVariationChanged(body: string): DynamicBurst3DBuilder;
-  onDurationChanged(body: string): DynamicBurst3DBuilder;
-  onEnabledChanged(body: string): DynamicBurst3DBuilder;
-  onObjectNameChanged(body: string): DynamicBurst3DBuilder;
-  onTimeChanged(body: string): DynamicBurst3DBuilder;
-  onTriggerModeChanged(body: string): DynamicBurst3DBuilder;
+  onAmountChanged(handler: DslSignalHandlerValue): DynamicBurst3DBuilder;
+  onAmountVariationChanged(handler: DslSignalHandlerValue): DynamicBurst3DBuilder;
+  onDurationChanged(handler: DslSignalHandlerValue): DynamicBurst3DBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): DynamicBurst3DBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): DynamicBurst3DBuilder;
+  onTimeChanged(handler: DslSignalHandlerValue): DynamicBurst3DBuilder;
+  onTriggerModeChanged(handler: DslSignalHandlerValue): DynamicBurst3DBuilder;
 }
 
 const DYNAMICBURST3D_META: TypeMetadata = {

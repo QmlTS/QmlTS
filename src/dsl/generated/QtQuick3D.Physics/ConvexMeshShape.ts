@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlObjectBuilder,
   QmlQuaternion,
   QmlUrl,
@@ -14,6 +15,7 @@ import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface ConvexMeshShapeBuilder {
   id(id: string): ConvexMeshShapeBuilder;
   child(obj: QmlObjectBuilder): ConvexMeshShapeBuilder;
+  children(...objs: QmlObjectBuilder[]): ConvexMeshShapeBuilder;
 
   enableDebugDraw(value: boolean): ConvexMeshShapeBuilder;
   enableDebugDrawBind(expr: string): ConvexMeshShapeBuilder;
@@ -51,33 +53,33 @@ export interface ConvexMeshShapeBuilder {
   yBind(expr: string): ConvexMeshShapeBuilder;
   z(value: number): ConvexMeshShapeBuilder;
   zBind(expr: string): ConvexMeshShapeBuilder;
-  onChildrenChanged(body: string): ConvexMeshShapeBuilder;
-  onEnableDebugDrawChanged(body: string): ConvexMeshShapeBuilder;
-  onEulerRotationChanged(body: string): ConvexMeshShapeBuilder;
-  onForwardChanged(body: string): ConvexMeshShapeBuilder;
-  onGeometryChanged(body: string): ConvexMeshShapeBuilder;
-  onLayersChanged(body: string): ConvexMeshShapeBuilder;
-  onLocalOpacityChanged(body: string): ConvexMeshShapeBuilder;
-  onNeedsRebuild(body: string): ConvexMeshShapeBuilder;
-  onObjectNameChanged(body: string): ConvexMeshShapeBuilder;
-  onParentChanged(body: string): ConvexMeshShapeBuilder;
-  onPivotChanged(body: string): ConvexMeshShapeBuilder;
-  onPositionChanged(body: string): ConvexMeshShapeBuilder;
-  onRightChanged(body: string): ConvexMeshShapeBuilder;
-  onRotationChanged(body: string): ConvexMeshShapeBuilder;
-  onScaleChanged(body: string): ConvexMeshShapeBuilder;
-  onScenePositionChanged(body: string): ConvexMeshShapeBuilder;
-  onSceneRotationChanged(body: string): ConvexMeshShapeBuilder;
-  onSceneScaleChanged(body: string): ConvexMeshShapeBuilder;
-  onSceneTransformChanged(body: string): ConvexMeshShapeBuilder;
-  onSourceChanged(body: string): ConvexMeshShapeBuilder;
-  onStateChanged(body: string): ConvexMeshShapeBuilder;
-  onStaticFlagsChanged(body: string): ConvexMeshShapeBuilder;
-  onUpChanged(body: string): ConvexMeshShapeBuilder;
-  onVisibleChanged(body: string): ConvexMeshShapeBuilder;
-  onXChanged(body: string): ConvexMeshShapeBuilder;
-  onYChanged(body: string): ConvexMeshShapeBuilder;
-  onZChanged(body: string): ConvexMeshShapeBuilder;
+  onChildrenChanged(handler: DslSignalHandlerValue): ConvexMeshShapeBuilder;
+  onEnableDebugDrawChanged(handler: DslSignalHandlerValue): ConvexMeshShapeBuilder;
+  onEulerRotationChanged(handler: DslSignalHandlerValue): ConvexMeshShapeBuilder;
+  onForwardChanged(handler: DslSignalHandlerValue): ConvexMeshShapeBuilder;
+  onGeometryChanged(handler: DslSignalHandlerValue): ConvexMeshShapeBuilder;
+  onLayersChanged(handler: DslSignalHandlerValue): ConvexMeshShapeBuilder;
+  onLocalOpacityChanged(handler: DslSignalHandlerValue): ConvexMeshShapeBuilder;
+  onNeedsRebuild(handler: DslSignalHandlerValue): ConvexMeshShapeBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): ConvexMeshShapeBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): ConvexMeshShapeBuilder;
+  onPivotChanged(handler: DslSignalHandlerValue): ConvexMeshShapeBuilder;
+  onPositionChanged(handler: DslSignalHandlerValue): ConvexMeshShapeBuilder;
+  onRightChanged(handler: DslSignalHandlerValue): ConvexMeshShapeBuilder;
+  onRotationChanged(handler: DslSignalHandlerValue): ConvexMeshShapeBuilder;
+  onScaleChanged(handler: DslSignalHandlerValue): ConvexMeshShapeBuilder;
+  onScenePositionChanged(handler: DslSignalHandlerValue): ConvexMeshShapeBuilder;
+  onSceneRotationChanged(handler: DslSignalHandlerValue): ConvexMeshShapeBuilder;
+  onSceneScaleChanged(handler: DslSignalHandlerValue): ConvexMeshShapeBuilder;
+  onSceneTransformChanged(handler: DslSignalHandlerValue): ConvexMeshShapeBuilder;
+  onSourceChanged(handler: DslSignalHandlerValue): ConvexMeshShapeBuilder;
+  onStateChanged(handler: DslSignalHandlerValue): ConvexMeshShapeBuilder;
+  onStaticFlagsChanged(handler: DslSignalHandlerValue): ConvexMeshShapeBuilder;
+  onUpChanged(handler: DslSignalHandlerValue): ConvexMeshShapeBuilder;
+  onVisibleChanged(handler: DslSignalHandlerValue): ConvexMeshShapeBuilder;
+  onXChanged(handler: DslSignalHandlerValue): ConvexMeshShapeBuilder;
+  onYChanged(handler: DslSignalHandlerValue): ConvexMeshShapeBuilder;
+  onZChanged(handler: DslSignalHandlerValue): ConvexMeshShapeBuilder;
 }
 
 const CONVEXMESHSHAPE_META: TypeMetadata = {

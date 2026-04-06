@@ -2,7 +2,7 @@
 // Type: PathAttribute
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import type { DslSignalHandlerValue, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 import type { AccessibleAttachedBuilder } from './Accessible.js';
 import type { EnterKeyAttachedBuilder } from './EnterKey.js';
@@ -23,6 +23,7 @@ import type { ViewTransitionAttachedBuilder } from './ViewTransition.js';
 export interface PathAttributeBuilder {
   id(id: string): PathAttributeBuilder;
   child(obj: QmlObjectBuilder): PathAttributeBuilder;
+  children(...objs: QmlObjectBuilder[]): PathAttributeBuilder;
 
   name(value: string): PathAttributeBuilder;
   nameBind(expr: string): PathAttributeBuilder;
@@ -30,10 +31,10 @@ export interface PathAttributeBuilder {
   objectNameBind(expr: string): PathAttributeBuilder;
   value(value: number): PathAttributeBuilder;
   valueBind(expr: string): PathAttributeBuilder;
-  onChanged(body: string): PathAttributeBuilder;
-  onNameChanged(body: string): PathAttributeBuilder;
-  onObjectNameChanged(body: string): PathAttributeBuilder;
-  onValueChanged(body: string): PathAttributeBuilder;
+  onChanged(handler: DslSignalHandlerValue): PathAttributeBuilder;
+  onNameChanged(handler: DslSignalHandlerValue): PathAttributeBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): PathAttributeBuilder;
+  onValueChanged(handler: DslSignalHandlerValue): PathAttributeBuilder;
   accessible(setup: (b: AccessibleAttachedBuilder) => void): PathAttributeBuilder;
   drag(setup: (b: DragAttachedBuilder) => void): PathAttributeBuilder;
   enterKey(setup: (b: EnterKeyAttachedBuilder) => void): PathAttributeBuilder;

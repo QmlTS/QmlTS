@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlObjectBuilder,
   QmlQuaternion,
   QmlValue,
@@ -13,6 +14,7 @@ import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface AudioListenerBuilder {
   id(id: string): AudioListenerBuilder;
   child(obj: QmlObjectBuilder): AudioListenerBuilder;
+  children(...objs: QmlObjectBuilder[]): AudioListenerBuilder;
 
   eulerRotation(value: QmlVector3d): AudioListenerBuilder;
   eulerRotationBind(expr: string): AudioListenerBuilder;
@@ -44,29 +46,29 @@ export interface AudioListenerBuilder {
   yBind(expr: string): AudioListenerBuilder;
   z(value: number): AudioListenerBuilder;
   zBind(expr: string): AudioListenerBuilder;
-  onChildrenChanged(body: string): AudioListenerBuilder;
-  onEulerRotationChanged(body: string): AudioListenerBuilder;
-  onForwardChanged(body: string): AudioListenerBuilder;
-  onLayersChanged(body: string): AudioListenerBuilder;
-  onLocalOpacityChanged(body: string): AudioListenerBuilder;
-  onObjectNameChanged(body: string): AudioListenerBuilder;
-  onParentChanged(body: string): AudioListenerBuilder;
-  onPivotChanged(body: string): AudioListenerBuilder;
-  onPositionChanged(body: string): AudioListenerBuilder;
-  onRightChanged(body: string): AudioListenerBuilder;
-  onRotationChanged(body: string): AudioListenerBuilder;
-  onScaleChanged(body: string): AudioListenerBuilder;
-  onScenePositionChanged(body: string): AudioListenerBuilder;
-  onSceneRotationChanged(body: string): AudioListenerBuilder;
-  onSceneScaleChanged(body: string): AudioListenerBuilder;
-  onSceneTransformChanged(body: string): AudioListenerBuilder;
-  onStateChanged(body: string): AudioListenerBuilder;
-  onStaticFlagsChanged(body: string): AudioListenerBuilder;
-  onUpChanged(body: string): AudioListenerBuilder;
-  onVisibleChanged(body: string): AudioListenerBuilder;
-  onXChanged(body: string): AudioListenerBuilder;
-  onYChanged(body: string): AudioListenerBuilder;
-  onZChanged(body: string): AudioListenerBuilder;
+  onChildrenChanged(handler: DslSignalHandlerValue): AudioListenerBuilder;
+  onEulerRotationChanged(handler: DslSignalHandlerValue): AudioListenerBuilder;
+  onForwardChanged(handler: DslSignalHandlerValue): AudioListenerBuilder;
+  onLayersChanged(handler: DslSignalHandlerValue): AudioListenerBuilder;
+  onLocalOpacityChanged(handler: DslSignalHandlerValue): AudioListenerBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): AudioListenerBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): AudioListenerBuilder;
+  onPivotChanged(handler: DslSignalHandlerValue): AudioListenerBuilder;
+  onPositionChanged(handler: DslSignalHandlerValue): AudioListenerBuilder;
+  onRightChanged(handler: DslSignalHandlerValue): AudioListenerBuilder;
+  onRotationChanged(handler: DslSignalHandlerValue): AudioListenerBuilder;
+  onScaleChanged(handler: DslSignalHandlerValue): AudioListenerBuilder;
+  onScenePositionChanged(handler: DslSignalHandlerValue): AudioListenerBuilder;
+  onSceneRotationChanged(handler: DslSignalHandlerValue): AudioListenerBuilder;
+  onSceneScaleChanged(handler: DslSignalHandlerValue): AudioListenerBuilder;
+  onSceneTransformChanged(handler: DslSignalHandlerValue): AudioListenerBuilder;
+  onStateChanged(handler: DslSignalHandlerValue): AudioListenerBuilder;
+  onStaticFlagsChanged(handler: DslSignalHandlerValue): AudioListenerBuilder;
+  onUpChanged(handler: DslSignalHandlerValue): AudioListenerBuilder;
+  onVisibleChanged(handler: DslSignalHandlerValue): AudioListenerBuilder;
+  onXChanged(handler: DslSignalHandlerValue): AudioListenerBuilder;
+  onYChanged(handler: DslSignalHandlerValue): AudioListenerBuilder;
+  onZChanged(handler: DslSignalHandlerValue): AudioListenerBuilder;
 }
 
 const AUDIOLISTENER_META: TypeMetadata = {

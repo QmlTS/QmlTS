@@ -2,11 +2,17 @@
 // Type: Compass
 // Generated from Qt 6.11.0
 
-import type { QmlEnumToken, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlEnumToken,
+  QmlObjectBuilder,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface CompassBuilder {
   id(id: string): CompassBuilder;
   child(obj: QmlObjectBuilder): CompassBuilder;
+  children(...objs: QmlObjectBuilder[]): CompassBuilder;
 
   active(value: boolean): CompassBuilder;
   activeBind(expr: string): CompassBuilder;
@@ -28,26 +34,26 @@ export interface CompassBuilder {
   skipDuplicatesBind(expr: string): CompassBuilder;
   userOrientation(value: number): CompassBuilder;
   userOrientationBind(expr: string): CompassBuilder;
-  onActiveChanged(body: string): CompassBuilder;
-  onAlwaysOnChanged(body: string): CompassBuilder;
-  onAvailableDataRatesChanged(body: string): CompassBuilder;
-  onAxesOrientationModeChanged(body: string): CompassBuilder;
-  onBufferSizeChanged(body: string): CompassBuilder;
-  onBusyChanged(body: string): CompassBuilder;
-  onConnectedToBackendChanged(body: string): CompassBuilder;
-  onCurrentOrientationChanged(body: string): CompassBuilder;
-  onDataRateChanged(body: string): CompassBuilder;
-  onDescriptionChanged(body: string): CompassBuilder;
-  onEfficientBufferSizeChanged(body: string): CompassBuilder;
-  onErrorChanged(body: string): CompassBuilder;
-  onIdentifierChanged(body: string): CompassBuilder;
-  onMaxBufferSizeChanged(body: string): CompassBuilder;
-  onObjectNameChanged(body: string): CompassBuilder;
-  onOutputRangeChanged(body: string): CompassBuilder;
-  onOutputRangesChanged(body: string): CompassBuilder;
-  onReadingChanged(body: string): CompassBuilder;
-  onSkipDuplicatesChanged(body: string): CompassBuilder;
-  onUserOrientationChanged(body: string): CompassBuilder;
+  onActiveChanged(handler: DslSignalHandlerValue): CompassBuilder;
+  onAlwaysOnChanged(handler: DslSignalHandlerValue): CompassBuilder;
+  onAvailableDataRatesChanged(handler: DslSignalHandlerValue): CompassBuilder;
+  onAxesOrientationModeChanged(handler: DslSignalHandlerValue): CompassBuilder;
+  onBufferSizeChanged(handler: DslSignalHandlerValue): CompassBuilder;
+  onBusyChanged(handler: DslSignalHandlerValue): CompassBuilder;
+  onConnectedToBackendChanged(handler: DslSignalHandlerValue): CompassBuilder;
+  onCurrentOrientationChanged(handler: DslSignalHandlerValue): CompassBuilder;
+  onDataRateChanged(handler: DslSignalHandlerValue): CompassBuilder;
+  onDescriptionChanged(handler: DslSignalHandlerValue): CompassBuilder;
+  onEfficientBufferSizeChanged(handler: DslSignalHandlerValue): CompassBuilder;
+  onErrorChanged(handler: DslSignalHandlerValue): CompassBuilder;
+  onIdentifierChanged(handler: DslSignalHandlerValue): CompassBuilder;
+  onMaxBufferSizeChanged(handler: DslSignalHandlerValue): CompassBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): CompassBuilder;
+  onOutputRangeChanged(handler: DslSignalHandlerValue): CompassBuilder;
+  onOutputRangesChanged(handler: DslSignalHandlerValue): CompassBuilder;
+  onReadingChanged(handler: DslSignalHandlerValue): CompassBuilder;
+  onSkipDuplicatesChanged(handler: DslSignalHandlerValue): CompassBuilder;
+  onUserOrientationChanged(handler: DslSignalHandlerValue): CompassBuilder;
 }
 
 const COMPASS_META: TypeMetadata = {

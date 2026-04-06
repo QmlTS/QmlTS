@@ -2,11 +2,17 @@
 // Type: FrameGraphNode
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 export interface FrameGraphNodeBuilder {
   id(id: string): FrameGraphNodeBuilder;
   child(obj: QmlObjectBuilder): FrameGraphNodeBuilder;
+  children(...objs: QmlObjectBuilder[]): FrameGraphNodeBuilder;
 
   enabled(value: boolean): FrameGraphNodeBuilder;
   enabledBind(expr: string): FrameGraphNodeBuilder;
@@ -14,10 +20,10 @@ export interface FrameGraphNodeBuilder {
   objectNameBind(expr: string): FrameGraphNodeBuilder;
   parent(value: QmlValue): FrameGraphNodeBuilder;
   parentBind(expr: string): FrameGraphNodeBuilder;
-  onEnabledChanged(body: string): FrameGraphNodeBuilder;
-  onNodeDestroyed(body: string): FrameGraphNodeBuilder;
-  onObjectNameChanged(body: string): FrameGraphNodeBuilder;
-  onParentChanged(body: string): FrameGraphNodeBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): FrameGraphNodeBuilder;
+  onNodeDestroyed(handler: DslSignalHandlerValue): FrameGraphNodeBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): FrameGraphNodeBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): FrameGraphNodeBuilder;
 }
 
 const FRAMEGRAPHNODE_META: TypeMetadata = {

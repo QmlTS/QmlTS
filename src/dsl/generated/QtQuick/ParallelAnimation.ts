@@ -2,7 +2,7 @@
 // Type: ParallelAnimation
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import type { DslSignalHandlerValue, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { AccessibleAttachedBuilder } from './Accessible.js';
 import type { EnterKeyAttachedBuilder } from './EnterKey.js';
@@ -23,6 +23,7 @@ import type { ViewTransitionAttachedBuilder } from './ViewTransition.js';
 export interface ParallelAnimationBuilder {
   id(id: string): ParallelAnimationBuilder;
   child(obj: QmlObjectBuilder): ParallelAnimationBuilder;
+  children(...objs: QmlObjectBuilder[]): ParallelAnimationBuilder;
 
   alwaysRunToEnd(value: boolean): ParallelAnimationBuilder;
   alwaysRunToEndBind(expr: string): ParallelAnimationBuilder;
@@ -34,14 +35,14 @@ export interface ParallelAnimationBuilder {
   pausedBind(expr: string): ParallelAnimationBuilder;
   running(value: boolean): ParallelAnimationBuilder;
   runningBind(expr: string): ParallelAnimationBuilder;
-  onAlwaysRunToEndChanged(body: string): ParallelAnimationBuilder;
-  onFinished(body: string): ParallelAnimationBuilder;
-  onLoopCountChanged(body: string): ParallelAnimationBuilder;
-  onObjectNameChanged(body: string): ParallelAnimationBuilder;
-  onPausedChanged(body: string): ParallelAnimationBuilder;
-  onRunningChanged(body: string): ParallelAnimationBuilder;
-  onStarted(body: string): ParallelAnimationBuilder;
-  onStopped(body: string): ParallelAnimationBuilder;
+  onAlwaysRunToEndChanged(handler: DslSignalHandlerValue): ParallelAnimationBuilder;
+  onFinished(handler: DslSignalHandlerValue): ParallelAnimationBuilder;
+  onLoopCountChanged(handler: DslSignalHandlerValue): ParallelAnimationBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): ParallelAnimationBuilder;
+  onPausedChanged(handler: DslSignalHandlerValue): ParallelAnimationBuilder;
+  onRunningChanged(handler: DslSignalHandlerValue): ParallelAnimationBuilder;
+  onStarted(handler: DslSignalHandlerValue): ParallelAnimationBuilder;
+  onStopped(handler: DslSignalHandlerValue): ParallelAnimationBuilder;
   accessible(setup: (b: AccessibleAttachedBuilder) => void): ParallelAnimationBuilder;
   drag(setup: (b: DragAttachedBuilder) => void): ParallelAnimationBuilder;
   enterKey(setup: (b: EnterKeyAttachedBuilder) => void): ParallelAnimationBuilder;

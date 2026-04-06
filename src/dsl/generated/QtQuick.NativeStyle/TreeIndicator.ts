@@ -2,7 +2,12 @@
 // Type: TreeIndicator
 // Generated from Qt 6.11.0
 
-import type { QmlEnumToken, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlEnumToken,
+  QmlObjectBuilder,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { QtObjectBuilder } from '../QML/QtObject.js';
 import type { ItemBuilder } from '../QtQuick/Item.js';
@@ -12,6 +17,7 @@ import type { LayerBuilder } from '../QtQuick/QQuickItemLayer.js';
 export interface TreeIndicatorBuilder {
   id(id: string): TreeIndicatorBuilder;
   child(obj: QmlObjectBuilder): TreeIndicatorBuilder;
+  children(...objs: QmlObjectBuilder[]): TreeIndicatorBuilder;
 
   activeFocusOnTab(value: boolean): TreeIndicatorBuilder;
   activeFocusOnTabBind(expr: string): TreeIndicatorBuilder;
@@ -75,42 +81,42 @@ export interface TreeIndicatorBuilder {
   yBind(expr: string): TreeIndicatorBuilder;
   z(value: number): TreeIndicatorBuilder;
   zBind(expr: string): TreeIndicatorBuilder;
-  onActiveFocusChanged(body: string): TreeIndicatorBuilder;
-  onActiveFocusOnTabChanged(body: string): TreeIndicatorBuilder;
-  onAntialiasingChanged(body: string): TreeIndicatorBuilder;
-  onBaselineOffsetChanged(body: string): TreeIndicatorBuilder;
-  onChildrenChanged(body: string): TreeIndicatorBuilder;
-  onChildrenRectChanged(body: string): TreeIndicatorBuilder;
-  onClipChanged(body: string): TreeIndicatorBuilder;
-  onContainmentMaskChanged(body: string): TreeIndicatorBuilder;
-  onContentPaddingChanged(body: string): TreeIndicatorBuilder;
-  onControlChanged(body: string): TreeIndicatorBuilder;
-  onEnabledChanged(body: string): TreeIndicatorBuilder;
-  onFocusChanged(body: string): TreeIndicatorBuilder;
-  onFocusPolicyChanged(body: string): TreeIndicatorBuilder;
-  onFontChanged(body: string): TreeIndicatorBuilder;
-  onHeightChanged(body: string): TreeIndicatorBuilder;
-  onImplicitHeightChanged(body: string): TreeIndicatorBuilder;
-  onImplicitWidthChanged(body: string): TreeIndicatorBuilder;
-  onLayoutMarginsChanged(body: string): TreeIndicatorBuilder;
-  onMinimumSizeChanged(body: string): TreeIndicatorBuilder;
-  onObjectNameChanged(body: string): TreeIndicatorBuilder;
-  onOpacityChanged(body: string): TreeIndicatorBuilder;
-  onPaletteChanged(body: string): TreeIndicatorBuilder;
-  onPaletteCreated(body: string): TreeIndicatorBuilder;
-  onParentChanged(body: string): TreeIndicatorBuilder;
-  onRotationChanged(body: string): TreeIndicatorBuilder;
-  onScaleChanged(body: string): TreeIndicatorBuilder;
-  onSmoothChanged(body: string): TreeIndicatorBuilder;
-  onStateChanged(body: string): TreeIndicatorBuilder;
-  onTransformOriginChanged(body: string): TreeIndicatorBuilder;
-  onVisibleChanged(body: string): TreeIndicatorBuilder;
-  onVisibleChildrenChanged(body: string): TreeIndicatorBuilder;
-  onWidthChanged(body: string): TreeIndicatorBuilder;
-  onWindowChanged(body: string): TreeIndicatorBuilder;
-  onXChanged(body: string): TreeIndicatorBuilder;
-  onYChanged(body: string): TreeIndicatorBuilder;
-  onZChanged(body: string): TreeIndicatorBuilder;
+  onActiveFocusChanged(handler: DslSignalHandlerValue): TreeIndicatorBuilder;
+  onActiveFocusOnTabChanged(handler: DslSignalHandlerValue): TreeIndicatorBuilder;
+  onAntialiasingChanged(handler: DslSignalHandlerValue): TreeIndicatorBuilder;
+  onBaselineOffsetChanged(handler: DslSignalHandlerValue): TreeIndicatorBuilder;
+  onChildrenChanged(handler: DslSignalHandlerValue): TreeIndicatorBuilder;
+  onChildrenRectChanged(handler: DslSignalHandlerValue): TreeIndicatorBuilder;
+  onClipChanged(handler: DslSignalHandlerValue): TreeIndicatorBuilder;
+  onContainmentMaskChanged(handler: DslSignalHandlerValue): TreeIndicatorBuilder;
+  onContentPaddingChanged(handler: DslSignalHandlerValue): TreeIndicatorBuilder;
+  onControlChanged(handler: DslSignalHandlerValue): TreeIndicatorBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): TreeIndicatorBuilder;
+  onFocusChanged(handler: DslSignalHandlerValue): TreeIndicatorBuilder;
+  onFocusPolicyChanged(handler: DslSignalHandlerValue): TreeIndicatorBuilder;
+  onFontChanged(handler: DslSignalHandlerValue): TreeIndicatorBuilder;
+  onHeightChanged(handler: DslSignalHandlerValue): TreeIndicatorBuilder;
+  onImplicitHeightChanged(handler: DslSignalHandlerValue): TreeIndicatorBuilder;
+  onImplicitWidthChanged(handler: DslSignalHandlerValue): TreeIndicatorBuilder;
+  onLayoutMarginsChanged(handler: DslSignalHandlerValue): TreeIndicatorBuilder;
+  onMinimumSizeChanged(handler: DslSignalHandlerValue): TreeIndicatorBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): TreeIndicatorBuilder;
+  onOpacityChanged(handler: DslSignalHandlerValue): TreeIndicatorBuilder;
+  onPaletteChanged(handler: DslSignalHandlerValue): TreeIndicatorBuilder;
+  onPaletteCreated(handler: DslSignalHandlerValue): TreeIndicatorBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): TreeIndicatorBuilder;
+  onRotationChanged(handler: DslSignalHandlerValue): TreeIndicatorBuilder;
+  onScaleChanged(handler: DslSignalHandlerValue): TreeIndicatorBuilder;
+  onSmoothChanged(handler: DslSignalHandlerValue): TreeIndicatorBuilder;
+  onStateChanged(handler: DslSignalHandlerValue): TreeIndicatorBuilder;
+  onTransformOriginChanged(handler: DslSignalHandlerValue): TreeIndicatorBuilder;
+  onVisibleChanged(handler: DslSignalHandlerValue): TreeIndicatorBuilder;
+  onVisibleChildrenChanged(handler: DslSignalHandlerValue): TreeIndicatorBuilder;
+  onWidthChanged(handler: DslSignalHandlerValue): TreeIndicatorBuilder;
+  onWindowChanged(handler: DslSignalHandlerValue): TreeIndicatorBuilder;
+  onXChanged(handler: DslSignalHandlerValue): TreeIndicatorBuilder;
+  onYChanged(handler: DslSignalHandlerValue): TreeIndicatorBuilder;
+  onZChanged(handler: DslSignalHandlerValue): TreeIndicatorBuilder;
   anchors(setup: (b: AnchorsBuilder) => void): TreeIndicatorBuilder;
   layer(setup: (b: LayerBuilder) => void): TreeIndicatorBuilder;
 }

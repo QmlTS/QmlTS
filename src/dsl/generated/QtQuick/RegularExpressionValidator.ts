@@ -2,7 +2,12 @@
 // Type: RegularExpressionValidator
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { AccessibleAttachedBuilder } from './Accessible.js';
 import type { EnterKeyAttachedBuilder } from './EnterKey.js';
@@ -23,14 +28,15 @@ import type { ViewTransitionAttachedBuilder } from './ViewTransition.js';
 export interface RegularExpressionValidatorBuilder {
   id(id: string): RegularExpressionValidatorBuilder;
   child(obj: QmlObjectBuilder): RegularExpressionValidatorBuilder;
+  children(...objs: QmlObjectBuilder[]): RegularExpressionValidatorBuilder;
 
   objectName(value: string): RegularExpressionValidatorBuilder;
   objectNameBind(expr: string): RegularExpressionValidatorBuilder;
   regularExpression(value: QmlValue): RegularExpressionValidatorBuilder;
   regularExpressionBind(expr: string): RegularExpressionValidatorBuilder;
-  onChanged(body: string): RegularExpressionValidatorBuilder;
-  onObjectNameChanged(body: string): RegularExpressionValidatorBuilder;
-  onRegularExpressionChanged(body: string): RegularExpressionValidatorBuilder;
+  onChanged(handler: DslSignalHandlerValue): RegularExpressionValidatorBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): RegularExpressionValidatorBuilder;
+  onRegularExpressionChanged(handler: DslSignalHandlerValue): RegularExpressionValidatorBuilder;
   accessible(setup: (b: AccessibleAttachedBuilder) => void): RegularExpressionValidatorBuilder;
   drag(setup: (b: DragAttachedBuilder) => void): RegularExpressionValidatorBuilder;
   enterKey(setup: (b: EnterKeyAttachedBuilder) => void): RegularExpressionValidatorBuilder;

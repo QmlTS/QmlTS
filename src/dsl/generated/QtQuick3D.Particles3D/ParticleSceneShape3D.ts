@@ -2,12 +2,18 @@
 // Type: ParticleSceneShape3D
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlVector3d, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlObjectBuilder,
+  QmlVector3d,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 import type { NodeBuilder } from '../QtQuick3D/Node.js';
 export interface ParticleSceneShape3DBuilder {
   id(id: string): ParticleSceneShape3DBuilder;
   child(obj: QmlObjectBuilder): ParticleSceneShape3DBuilder;
+  children(...objs: QmlObjectBuilder[]): ParticleSceneShape3DBuilder;
 
   excludedNodes(value: NodeBuilder[]): ParticleSceneShape3DBuilder;
   excludedNodesBind(expr: string): ParticleSceneShape3DBuilder;
@@ -21,13 +27,13 @@ export interface ParticleSceneShape3DBuilder {
   sceneExtentsBind(expr: string): ParticleSceneShape3DBuilder;
   shapeResolution(value: number): ParticleSceneShape3DBuilder;
   shapeResolutionBind(expr: string): ParticleSceneShape3DBuilder;
-  onExcludedNodesChanged(body: string): ParticleSceneShape3DBuilder;
-  onGeometryChanged(body: string): ParticleSceneShape3DBuilder;
-  onObjectNameChanged(body: string): ParticleSceneShape3DBuilder;
-  onSceneCenterChanged(body: string): ParticleSceneShape3DBuilder;
-  onSceneChanged(body: string): ParticleSceneShape3DBuilder;
-  onSceneExtentsChanged(body: string): ParticleSceneShape3DBuilder;
-  onShapeResolutionChanged(body: string): ParticleSceneShape3DBuilder;
+  onExcludedNodesChanged(handler: DslSignalHandlerValue): ParticleSceneShape3DBuilder;
+  onGeometryChanged(handler: DslSignalHandlerValue): ParticleSceneShape3DBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): ParticleSceneShape3DBuilder;
+  onSceneCenterChanged(handler: DslSignalHandlerValue): ParticleSceneShape3DBuilder;
+  onSceneChanged(handler: DslSignalHandlerValue): ParticleSceneShape3DBuilder;
+  onSceneExtentsChanged(handler: DslSignalHandlerValue): ParticleSceneShape3DBuilder;
+  onShapeResolutionChanged(handler: DslSignalHandlerValue): ParticleSceneShape3DBuilder;
 }
 
 const PARTICLESCENESHAPE3D_META: TypeMetadata = {

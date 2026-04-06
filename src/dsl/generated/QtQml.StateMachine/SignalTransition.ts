@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlEnumToken,
   QmlObjectBuilder,
   QmlValue,
@@ -13,6 +14,7 @@ import type { QtObjectBuilder } from '../QML/QtObject.js';
 export interface SignalTransitionBuilder {
   id(id: string): SignalTransitionBuilder;
   child(obj: QmlObjectBuilder): SignalTransitionBuilder;
+  children(...objs: QmlObjectBuilder[]): SignalTransitionBuilder;
 
   guard(value: QmlValue): SignalTransitionBuilder;
   guardBind(expr: string): SignalTransitionBuilder;
@@ -28,15 +30,15 @@ export interface SignalTransitionBuilder {
   targetStatesBind(expr: string): SignalTransitionBuilder;
   transitionType(value: QmlEnumToken): SignalTransitionBuilder;
   transitionTypeBind(expr: string): SignalTransitionBuilder;
-  onGuardChanged(body: string): SignalTransitionBuilder;
-  onInvokeYourself(body: string): SignalTransitionBuilder;
-  onObjectNameChanged(body: string): SignalTransitionBuilder;
-  onQmlSignalChanged(body: string): SignalTransitionBuilder;
-  onSenderObjectChanged(body: string): SignalTransitionBuilder;
-  onSignalChanged(body: string): SignalTransitionBuilder;
-  onTargetStateChanged(body: string): SignalTransitionBuilder;
-  onTargetStatesChanged(body: string): SignalTransitionBuilder;
-  onTriggered(body: string): SignalTransitionBuilder;
+  onGuardChanged(handler: DslSignalHandlerValue): SignalTransitionBuilder;
+  onInvokeYourself(handler: DslSignalHandlerValue): SignalTransitionBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): SignalTransitionBuilder;
+  onQmlSignalChanged(handler: DslSignalHandlerValue): SignalTransitionBuilder;
+  onSenderObjectChanged(handler: DslSignalHandlerValue): SignalTransitionBuilder;
+  onSignalChanged(handler: DslSignalHandlerValue): SignalTransitionBuilder;
+  onTargetStateChanged(handler: DslSignalHandlerValue): SignalTransitionBuilder;
+  onTargetStatesChanged(handler: DslSignalHandlerValue): SignalTransitionBuilder;
+  onTriggered(handler: DslSignalHandlerValue): SignalTransitionBuilder;
 }
 
 const SIGNALTRANSITION_META: TypeMetadata = {

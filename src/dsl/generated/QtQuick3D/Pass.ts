@@ -2,12 +2,18 @@
 // Type: Pass
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 import type { BufferBuilder } from './Buffer.js';
 export interface PassBuilder {
   id(id: string): PassBuilder;
   child(obj: QmlObjectBuilder): PassBuilder;
+  children(...objs: QmlObjectBuilder[]): PassBuilder;
 
   objectName(value: string): PassBuilder;
   objectNameBind(expr: string): PassBuilder;
@@ -17,11 +23,11 @@ export interface PassBuilder {
   parentBind(expr: string): PassBuilder;
   state(value: string): PassBuilder;
   stateBind(expr: string): PassBuilder;
-  onChanged(body: string): PassBuilder;
-  onChildrenChanged(body: string): PassBuilder;
-  onObjectNameChanged(body: string): PassBuilder;
-  onParentChanged(body: string): PassBuilder;
-  onStateChanged(body: string): PassBuilder;
+  onChanged(handler: DslSignalHandlerValue): PassBuilder;
+  onChildrenChanged(handler: DslSignalHandlerValue): PassBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): PassBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): PassBuilder;
+  onStateChanged(handler: DslSignalHandlerValue): PassBuilder;
 }
 
 const PASS_META: TypeMetadata = {

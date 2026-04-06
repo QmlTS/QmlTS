@@ -2,12 +2,19 @@
 // Type: NormalDiffuseSpecularMapMaterial
 // Generated from Qt 6.11.0
 
-import type { QmlColor, QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlColor,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 import type { EffectBuilder } from '../Qt3D.Render/Effect.js';
 export interface NormalDiffuseSpecularMapMaterialBuilder {
   id(id: string): NormalDiffuseSpecularMapMaterialBuilder;
   child(obj: QmlObjectBuilder): NormalDiffuseSpecularMapMaterialBuilder;
+  children(...objs: QmlObjectBuilder[]): NormalDiffuseSpecularMapMaterialBuilder;
 
   ambient(value: QmlColor): NormalDiffuseSpecularMapMaterialBuilder;
   ambientBind(expr: string): NormalDiffuseSpecularMapMaterialBuilder;
@@ -31,20 +38,20 @@ export interface NormalDiffuseSpecularMapMaterialBuilder {
   specularBind(expr: string): NormalDiffuseSpecularMapMaterialBuilder;
   textureScale(value: number): NormalDiffuseSpecularMapMaterialBuilder;
   textureScaleBind(expr: string): NormalDiffuseSpecularMapMaterialBuilder;
-  onAddedToEntity(body: string): NormalDiffuseSpecularMapMaterialBuilder;
-  onAmbientChanged(body: string): NormalDiffuseSpecularMapMaterialBuilder;
-  onDiffuseChanged(body: string): NormalDiffuseSpecularMapMaterialBuilder;
-  onEffectChanged(body: string): NormalDiffuseSpecularMapMaterialBuilder;
-  onEnabledChanged(body: string): NormalDiffuseSpecularMapMaterialBuilder;
-  onNodeDestroyed(body: string): NormalDiffuseSpecularMapMaterialBuilder;
-  onNormalChanged(body: string): NormalDiffuseSpecularMapMaterialBuilder;
-  onObjectNameChanged(body: string): NormalDiffuseSpecularMapMaterialBuilder;
-  onParentChanged(body: string): NormalDiffuseSpecularMapMaterialBuilder;
-  onRemovedFromEntity(body: string): NormalDiffuseSpecularMapMaterialBuilder;
-  onShareableChanged(body: string): NormalDiffuseSpecularMapMaterialBuilder;
-  onShininessChanged(body: string): NormalDiffuseSpecularMapMaterialBuilder;
-  onSpecularChanged(body: string): NormalDiffuseSpecularMapMaterialBuilder;
-  onTextureScaleChanged(body: string): NormalDiffuseSpecularMapMaterialBuilder;
+  onAddedToEntity(handler: DslSignalHandlerValue): NormalDiffuseSpecularMapMaterialBuilder;
+  onAmbientChanged(handler: DslSignalHandlerValue): NormalDiffuseSpecularMapMaterialBuilder;
+  onDiffuseChanged(handler: DslSignalHandlerValue): NormalDiffuseSpecularMapMaterialBuilder;
+  onEffectChanged(handler: DslSignalHandlerValue): NormalDiffuseSpecularMapMaterialBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): NormalDiffuseSpecularMapMaterialBuilder;
+  onNodeDestroyed(handler: DslSignalHandlerValue): NormalDiffuseSpecularMapMaterialBuilder;
+  onNormalChanged(handler: DslSignalHandlerValue): NormalDiffuseSpecularMapMaterialBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): NormalDiffuseSpecularMapMaterialBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): NormalDiffuseSpecularMapMaterialBuilder;
+  onRemovedFromEntity(handler: DslSignalHandlerValue): NormalDiffuseSpecularMapMaterialBuilder;
+  onShareableChanged(handler: DslSignalHandlerValue): NormalDiffuseSpecularMapMaterialBuilder;
+  onShininessChanged(handler: DslSignalHandlerValue): NormalDiffuseSpecularMapMaterialBuilder;
+  onSpecularChanged(handler: DslSignalHandlerValue): NormalDiffuseSpecularMapMaterialBuilder;
+  onTextureScaleChanged(handler: DslSignalHandlerValue): NormalDiffuseSpecularMapMaterialBuilder;
 }
 
 const NORMALDIFFUSESPECULARMAPMATERIAL_META: TypeMetadata = {

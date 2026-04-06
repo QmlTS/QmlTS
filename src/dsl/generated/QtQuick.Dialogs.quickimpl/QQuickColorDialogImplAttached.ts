@@ -2,7 +2,7 @@
 // Type: Attached type: ColorDialogImpl
 // Generated from Qt 6.11.0
 
-import type { QmlValue } from '../../runtime/index.js';
+import type { DslSignalHandlerValue, QmlValue } from '../../runtime/index.js';
 import type { AbstractButtonBuilder } from '../QtQuick.Templates/AbstractButton.js';
 import type { DialogButtonBoxBuilder } from '../QtQuick.Templates/DialogButtonBox.js';
 import type { SliderBuilder } from '../QtQuick.Templates/Slider.js';
@@ -20,10 +20,10 @@ export interface ColorDialogImplAttachedBuilder {
   eyeDropperButtonBind(expr: string): ColorDialogImplAttachedBuilder;
   objectName(value: string): ColorDialogImplAttachedBuilder;
   objectNameBind(expr: string): ColorDialogImplAttachedBuilder;
-  onAlphaSliderChanged(body: string): ColorDialogImplAttachedBuilder;
-  onButtonBoxChanged(body: string): ColorDialogImplAttachedBuilder;
-  onColorInputsChanged(body: string): ColorDialogImplAttachedBuilder;
-  onColorPickerChanged(body: string): ColorDialogImplAttachedBuilder;
-  onEyeDropperButtonChanged(body: string): ColorDialogImplAttachedBuilder;
-  onObjectNameChanged(body: string): ColorDialogImplAttachedBuilder;
+  onAlphaSliderChanged(handler: DslSignalHandlerValue): ColorDialogImplAttachedBuilder;
+  onButtonBoxChanged(handler: DslSignalHandlerValue): ColorDialogImplAttachedBuilder;
+  onColorInputsChanged(handler: DslSignalHandlerValue): ColorDialogImplAttachedBuilder;
+  onColorPickerChanged(handler: DslSignalHandlerValue): ColorDialogImplAttachedBuilder;
+  onEyeDropperButtonChanged(handler: DslSignalHandlerValue): ColorDialogImplAttachedBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): ColorDialogImplAttachedBuilder;
 }

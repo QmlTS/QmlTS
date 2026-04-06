@@ -2,7 +2,14 @@
 // Type: Attached type: Drag
 // Generated from Qt 6.11.0
 
-import type { QmlEnumToken, QmlPoint, QmlSize, QmlUrl, QmlValue } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlEnumToken,
+  QmlPoint,
+  QmlSize,
+  QmlUrl,
+  QmlValue,
+} from '../../runtime/index.js';
 import type { QtObjectBuilder } from '../QML/QtObject.js';
 export interface DragAttachedBuilder {
   active(value: boolean): DragAttachedBuilder;
@@ -27,18 +34,18 @@ export interface DragAttachedBuilder {
   supportedActionsBind(expr: string): DragAttachedBuilder;
   objectName(value: string): DragAttachedBuilder;
   objectNameBind(expr: string): DragAttachedBuilder;
-  onActiveChanged(body: string): DragAttachedBuilder;
-  onDragFinished(body: string): DragAttachedBuilder;
-  onDragStarted(body: string): DragAttachedBuilder;
-  onDragTypeChanged(body: string): DragAttachedBuilder;
-  onHotSpotChanged(body: string): DragAttachedBuilder;
-  onImageSourceChanged(body: string): DragAttachedBuilder;
-  onImageSourceSizeChanged(body: string): DragAttachedBuilder;
-  onKeysChanged(body: string): DragAttachedBuilder;
-  onMimeDataChanged(body: string): DragAttachedBuilder;
-  onProposedActionChanged(body: string): DragAttachedBuilder;
-  onSourceChanged(body: string): DragAttachedBuilder;
-  onSupportedActionsChanged(body: string): DragAttachedBuilder;
-  onTargetChanged(body: string): DragAttachedBuilder;
-  onObjectNameChanged(body: string): DragAttachedBuilder;
+  onActiveChanged(handler: DslSignalHandlerValue): DragAttachedBuilder;
+  onDragFinished(handler: DslSignalHandlerValue): DragAttachedBuilder;
+  onDragStarted(handler: DslSignalHandlerValue): DragAttachedBuilder;
+  onDragTypeChanged(handler: DslSignalHandlerValue): DragAttachedBuilder;
+  onHotSpotChanged(handler: DslSignalHandlerValue): DragAttachedBuilder;
+  onImageSourceChanged(handler: DslSignalHandlerValue): DragAttachedBuilder;
+  onImageSourceSizeChanged(handler: DslSignalHandlerValue): DragAttachedBuilder;
+  onKeysChanged(handler: DslSignalHandlerValue): DragAttachedBuilder;
+  onMimeDataChanged(handler: DslSignalHandlerValue): DragAttachedBuilder;
+  onProposedActionChanged(handler: DslSignalHandlerValue): DragAttachedBuilder;
+  onSourceChanged(handler: DslSignalHandlerValue): DragAttachedBuilder;
+  onSupportedActionsChanged(handler: DslSignalHandlerValue): DragAttachedBuilder;
+  onTargetChanged(handler: DslSignalHandlerValue): DragAttachedBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): DragAttachedBuilder;
 }

@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlEnumToken,
   QmlObjectBuilder,
   QmlValue,
@@ -12,6 +13,7 @@ import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface StateMachineBuilder {
   id(id: string): StateMachineBuilder;
   child(obj: QmlObjectBuilder): StateMachineBuilder;
+  children(...objs: QmlObjectBuilder[]): StateMachineBuilder;
 
   animated(value: boolean): StateMachineBuilder;
   animatedBind(expr: string): StateMachineBuilder;
@@ -27,20 +29,20 @@ export interface StateMachineBuilder {
   objectNameBind(expr: string): StateMachineBuilder;
   running(value: boolean): StateMachineBuilder;
   runningBind(expr: string): StateMachineBuilder;
-  onActiveChanged(body: string): StateMachineBuilder;
-  onChildModeChanged(body: string): StateMachineBuilder;
-  onChildrenChanged(body: string): StateMachineBuilder;
-  onEntered(body: string): StateMachineBuilder;
-  onErrorStateChanged(body: string): StateMachineBuilder;
-  onExited(body: string): StateMachineBuilder;
-  onFinished(body: string): StateMachineBuilder;
-  onInitialStateChanged(body: string): StateMachineBuilder;
-  onObjectNameChanged(body: string): StateMachineBuilder;
-  onPropertiesAssigned(body: string): StateMachineBuilder;
-  onQmlRunningChanged(body: string): StateMachineBuilder;
-  onRunningChanged(body: string): StateMachineBuilder;
-  onStarted(body: string): StateMachineBuilder;
-  onStopped(body: string): StateMachineBuilder;
+  onActiveChanged(handler: DslSignalHandlerValue): StateMachineBuilder;
+  onChildModeChanged(handler: DslSignalHandlerValue): StateMachineBuilder;
+  onChildrenChanged(handler: DslSignalHandlerValue): StateMachineBuilder;
+  onEntered(handler: DslSignalHandlerValue): StateMachineBuilder;
+  onErrorStateChanged(handler: DslSignalHandlerValue): StateMachineBuilder;
+  onExited(handler: DslSignalHandlerValue): StateMachineBuilder;
+  onFinished(handler: DslSignalHandlerValue): StateMachineBuilder;
+  onInitialStateChanged(handler: DslSignalHandlerValue): StateMachineBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): StateMachineBuilder;
+  onPropertiesAssigned(handler: DslSignalHandlerValue): StateMachineBuilder;
+  onQmlRunningChanged(handler: DslSignalHandlerValue): StateMachineBuilder;
+  onRunningChanged(handler: DslSignalHandlerValue): StateMachineBuilder;
+  onStarted(handler: DslSignalHandlerValue): StateMachineBuilder;
+  onStopped(handler: DslSignalHandlerValue): StateMachineBuilder;
 }
 
 const STATEMACHINE_META: TypeMetadata = {

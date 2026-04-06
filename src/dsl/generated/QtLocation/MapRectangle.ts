@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlColor,
   QmlEnumToken,
   QmlObjectBuilder,
@@ -19,6 +20,7 @@ import type { BorderBuilder } from './QDeclarativeMapLineProperties.js';
 export interface MapRectangleBuilder {
   id(id: string): MapRectangleBuilder;
   child(obj: QmlObjectBuilder): MapRectangleBuilder;
+  children(...objs: QmlObjectBuilder[]): MapRectangleBuilder;
 
   activeFocusOnTab(value: boolean): MapRectangleBuilder;
   activeFocusOnTabBind(expr: string): MapRectangleBuilder;
@@ -84,45 +86,45 @@ export interface MapRectangleBuilder {
   yBind(expr: string): MapRectangleBuilder;
   z(value: number): MapRectangleBuilder;
   zBind(expr: string): MapRectangleBuilder;
-  onActiveFocusChanged(body: string): MapRectangleBuilder;
-  onActiveFocusOnTabChanged(body: string): MapRectangleBuilder;
-  onAddTransitionFinished(body: string): MapRectangleBuilder;
-  onAntialiasingChanged(body: string): MapRectangleBuilder;
-  onBaselineOffsetChanged(body: string): MapRectangleBuilder;
-  onBottomRightChanged(body: string): MapRectangleBuilder;
-  onChildrenChanged(body: string): MapRectangleBuilder;
-  onChildrenRectChanged(body: string): MapRectangleBuilder;
-  onClipChanged(body: string): MapRectangleBuilder;
-  onColorChanged(body: string): MapRectangleBuilder;
-  onContainmentMaskChanged(body: string): MapRectangleBuilder;
-  onEnabledChanged(body: string): MapRectangleBuilder;
-  onFocusChanged(body: string): MapRectangleBuilder;
-  onFocusPolicyChanged(body: string): MapRectangleBuilder;
-  onHeightChanged(body: string): MapRectangleBuilder;
-  onImplicitHeightChanged(body: string): MapRectangleBuilder;
-  onImplicitWidthChanged(body: string): MapRectangleBuilder;
-  onLodThresholdChanged(body: string): MapRectangleBuilder;
-  onMapItemOpacityChanged(body: string): MapRectangleBuilder;
-  onObjectNameChanged(body: string): MapRectangleBuilder;
-  onOpacityChanged(body: string): MapRectangleBuilder;
-  onPaletteChanged(body: string): MapRectangleBuilder;
-  onPaletteCreated(body: string): MapRectangleBuilder;
-  onParentChanged(body: string): MapRectangleBuilder;
-  onReferenceSurfaceChanged(body: string): MapRectangleBuilder;
-  onRemoveTransitionFinished(body: string): MapRectangleBuilder;
-  onRotationChanged(body: string): MapRectangleBuilder;
-  onScaleChanged(body: string): MapRectangleBuilder;
-  onSmoothChanged(body: string): MapRectangleBuilder;
-  onStateChanged(body: string): MapRectangleBuilder;
-  onTopLeftChanged(body: string): MapRectangleBuilder;
-  onTransformOriginChanged(body: string): MapRectangleBuilder;
-  onVisibleChanged(body: string): MapRectangleBuilder;
-  onVisibleChildrenChanged(body: string): MapRectangleBuilder;
-  onWidthChanged(body: string): MapRectangleBuilder;
-  onWindowChanged(body: string): MapRectangleBuilder;
-  onXChanged(body: string): MapRectangleBuilder;
-  onYChanged(body: string): MapRectangleBuilder;
-  onZChanged(body: string): MapRectangleBuilder;
+  onActiveFocusChanged(handler: DslSignalHandlerValue): MapRectangleBuilder;
+  onActiveFocusOnTabChanged(handler: DslSignalHandlerValue): MapRectangleBuilder;
+  onAddTransitionFinished(handler: DslSignalHandlerValue): MapRectangleBuilder;
+  onAntialiasingChanged(handler: DslSignalHandlerValue): MapRectangleBuilder;
+  onBaselineOffsetChanged(handler: DslSignalHandlerValue): MapRectangleBuilder;
+  onBottomRightChanged(handler: DslSignalHandlerValue): MapRectangleBuilder;
+  onChildrenChanged(handler: DslSignalHandlerValue): MapRectangleBuilder;
+  onChildrenRectChanged(handler: DslSignalHandlerValue): MapRectangleBuilder;
+  onClipChanged(handler: DslSignalHandlerValue): MapRectangleBuilder;
+  onColorChanged(handler: DslSignalHandlerValue): MapRectangleBuilder;
+  onContainmentMaskChanged(handler: DslSignalHandlerValue): MapRectangleBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): MapRectangleBuilder;
+  onFocusChanged(handler: DslSignalHandlerValue): MapRectangleBuilder;
+  onFocusPolicyChanged(handler: DslSignalHandlerValue): MapRectangleBuilder;
+  onHeightChanged(handler: DslSignalHandlerValue): MapRectangleBuilder;
+  onImplicitHeightChanged(handler: DslSignalHandlerValue): MapRectangleBuilder;
+  onImplicitWidthChanged(handler: DslSignalHandlerValue): MapRectangleBuilder;
+  onLodThresholdChanged(handler: DslSignalHandlerValue): MapRectangleBuilder;
+  onMapItemOpacityChanged(handler: DslSignalHandlerValue): MapRectangleBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): MapRectangleBuilder;
+  onOpacityChanged(handler: DslSignalHandlerValue): MapRectangleBuilder;
+  onPaletteChanged(handler: DslSignalHandlerValue): MapRectangleBuilder;
+  onPaletteCreated(handler: DslSignalHandlerValue): MapRectangleBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): MapRectangleBuilder;
+  onReferenceSurfaceChanged(handler: DslSignalHandlerValue): MapRectangleBuilder;
+  onRemoveTransitionFinished(handler: DslSignalHandlerValue): MapRectangleBuilder;
+  onRotationChanged(handler: DslSignalHandlerValue): MapRectangleBuilder;
+  onScaleChanged(handler: DslSignalHandlerValue): MapRectangleBuilder;
+  onSmoothChanged(handler: DslSignalHandlerValue): MapRectangleBuilder;
+  onStateChanged(handler: DslSignalHandlerValue): MapRectangleBuilder;
+  onTopLeftChanged(handler: DslSignalHandlerValue): MapRectangleBuilder;
+  onTransformOriginChanged(handler: DslSignalHandlerValue): MapRectangleBuilder;
+  onVisibleChanged(handler: DslSignalHandlerValue): MapRectangleBuilder;
+  onVisibleChildrenChanged(handler: DslSignalHandlerValue): MapRectangleBuilder;
+  onWidthChanged(handler: DslSignalHandlerValue): MapRectangleBuilder;
+  onWindowChanged(handler: DslSignalHandlerValue): MapRectangleBuilder;
+  onXChanged(handler: DslSignalHandlerValue): MapRectangleBuilder;
+  onYChanged(handler: DslSignalHandlerValue): MapRectangleBuilder;
+  onZChanged(handler: DslSignalHandlerValue): MapRectangleBuilder;
   anchors(setup: (b: AnchorsBuilder) => void): MapRectangleBuilder;
   border(setup: (b: BorderBuilder) => void): MapRectangleBuilder;
   layer(setup: (b: LayerBuilder) => void): MapRectangleBuilder;

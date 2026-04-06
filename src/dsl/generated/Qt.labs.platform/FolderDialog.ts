@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlEnumToken,
   QmlObjectBuilder,
   QmlUrl,
@@ -13,6 +14,7 @@ import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface FolderDialogBuilder {
   id(id: string): FolderDialogBuilder;
   child(obj: QmlObjectBuilder): FolderDialogBuilder;
+  children(...objs: QmlObjectBuilder[]): FolderDialogBuilder;
 
   acceptLabel(value: string): FolderDialogBuilder;
   acceptLabelBind(expr: string): FolderDialogBuilder;
@@ -38,20 +40,20 @@ export interface FolderDialogBuilder {
   titleBind(expr: string): FolderDialogBuilder;
   visible(value: boolean): FolderDialogBuilder;
   visibleBind(expr: string): FolderDialogBuilder;
-  onAcceptLabelChanged(body: string): FolderDialogBuilder;
-  onAccepted(body: string): FolderDialogBuilder;
-  onCurrentFolderChanged(body: string): FolderDialogBuilder;
-  onFlagsChanged(body: string): FolderDialogBuilder;
-  onFolderChanged(body: string): FolderDialogBuilder;
-  onModalityChanged(body: string): FolderDialogBuilder;
-  onObjectNameChanged(body: string): FolderDialogBuilder;
-  onOptionsChanged(body: string): FolderDialogBuilder;
-  onParentWindowChanged(body: string): FolderDialogBuilder;
-  onRejectLabelChanged(body: string): FolderDialogBuilder;
-  onRejected(body: string): FolderDialogBuilder;
-  onResultChanged(body: string): FolderDialogBuilder;
-  onTitleChanged(body: string): FolderDialogBuilder;
-  onVisibleChanged(body: string): FolderDialogBuilder;
+  onAcceptLabelChanged(handler: DslSignalHandlerValue): FolderDialogBuilder;
+  onAccepted(handler: DslSignalHandlerValue): FolderDialogBuilder;
+  onCurrentFolderChanged(handler: DslSignalHandlerValue): FolderDialogBuilder;
+  onFlagsChanged(handler: DslSignalHandlerValue): FolderDialogBuilder;
+  onFolderChanged(handler: DslSignalHandlerValue): FolderDialogBuilder;
+  onModalityChanged(handler: DslSignalHandlerValue): FolderDialogBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): FolderDialogBuilder;
+  onOptionsChanged(handler: DslSignalHandlerValue): FolderDialogBuilder;
+  onParentWindowChanged(handler: DslSignalHandlerValue): FolderDialogBuilder;
+  onRejectLabelChanged(handler: DslSignalHandlerValue): FolderDialogBuilder;
+  onRejected(handler: DslSignalHandlerValue): FolderDialogBuilder;
+  onResultChanged(handler: DslSignalHandlerValue): FolderDialogBuilder;
+  onTitleChanged(handler: DslSignalHandlerValue): FolderDialogBuilder;
+  onVisibleChanged(handler: DslSignalHandlerValue): FolderDialogBuilder;
 }
 
 const FOLDERDIALOG_META: TypeMetadata = {

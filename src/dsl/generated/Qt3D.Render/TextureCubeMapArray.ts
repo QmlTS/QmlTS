@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlEnumToken,
   QmlObjectBuilder,
   QmlValue,
@@ -12,6 +13,7 @@ import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface TextureCubeMapArrayBuilder {
   id(id: string): TextureCubeMapArrayBuilder;
   child(obj: QmlObjectBuilder): TextureCubeMapArrayBuilder;
+  children(...objs: QmlObjectBuilder[]): TextureCubeMapArrayBuilder;
 
   comparisonFunction(value: QmlEnumToken): TextureCubeMapArrayBuilder;
   comparisonFunctionBind(expr: string): TextureCubeMapArrayBuilder;
@@ -45,26 +47,26 @@ export interface TextureCubeMapArrayBuilder {
   samplesBind(expr: string): TextureCubeMapArrayBuilder;
   width(value: number): TextureCubeMapArrayBuilder;
   widthBind(expr: string): TextureCubeMapArrayBuilder;
-  onComparisonFunctionChanged(body: string): TextureCubeMapArrayBuilder;
-  onComparisonModeChanged(body: string): TextureCubeMapArrayBuilder;
-  onDepthChanged(body: string): TextureCubeMapArrayBuilder;
-  onEnabledChanged(body: string): TextureCubeMapArrayBuilder;
-  onFormatChanged(body: string): TextureCubeMapArrayBuilder;
-  onGenerateMipMapsChanged(body: string): TextureCubeMapArrayBuilder;
-  onHandleChanged(body: string): TextureCubeMapArrayBuilder;
-  onHandleTypeChanged(body: string): TextureCubeMapArrayBuilder;
-  onHeightChanged(body: string): TextureCubeMapArrayBuilder;
-  onLayersChanged(body: string): TextureCubeMapArrayBuilder;
-  onMagnificationFilterChanged(body: string): TextureCubeMapArrayBuilder;
-  onMaximumAnisotropyChanged(body: string): TextureCubeMapArrayBuilder;
-  onMinificationFilterChanged(body: string): TextureCubeMapArrayBuilder;
-  onMipLevelsChanged(body: string): TextureCubeMapArrayBuilder;
-  onNodeDestroyed(body: string): TextureCubeMapArrayBuilder;
-  onObjectNameChanged(body: string): TextureCubeMapArrayBuilder;
-  onParentChanged(body: string): TextureCubeMapArrayBuilder;
-  onSamplesChanged(body: string): TextureCubeMapArrayBuilder;
-  onStatusChanged(body: string): TextureCubeMapArrayBuilder;
-  onWidthChanged(body: string): TextureCubeMapArrayBuilder;
+  onComparisonFunctionChanged(handler: DslSignalHandlerValue): TextureCubeMapArrayBuilder;
+  onComparisonModeChanged(handler: DslSignalHandlerValue): TextureCubeMapArrayBuilder;
+  onDepthChanged(handler: DslSignalHandlerValue): TextureCubeMapArrayBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): TextureCubeMapArrayBuilder;
+  onFormatChanged(handler: DslSignalHandlerValue): TextureCubeMapArrayBuilder;
+  onGenerateMipMapsChanged(handler: DslSignalHandlerValue): TextureCubeMapArrayBuilder;
+  onHandleChanged(handler: DslSignalHandlerValue): TextureCubeMapArrayBuilder;
+  onHandleTypeChanged(handler: DslSignalHandlerValue): TextureCubeMapArrayBuilder;
+  onHeightChanged(handler: DslSignalHandlerValue): TextureCubeMapArrayBuilder;
+  onLayersChanged(handler: DslSignalHandlerValue): TextureCubeMapArrayBuilder;
+  onMagnificationFilterChanged(handler: DslSignalHandlerValue): TextureCubeMapArrayBuilder;
+  onMaximumAnisotropyChanged(handler: DslSignalHandlerValue): TextureCubeMapArrayBuilder;
+  onMinificationFilterChanged(handler: DslSignalHandlerValue): TextureCubeMapArrayBuilder;
+  onMipLevelsChanged(handler: DslSignalHandlerValue): TextureCubeMapArrayBuilder;
+  onNodeDestroyed(handler: DslSignalHandlerValue): TextureCubeMapArrayBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): TextureCubeMapArrayBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): TextureCubeMapArrayBuilder;
+  onSamplesChanged(handler: DslSignalHandlerValue): TextureCubeMapArrayBuilder;
+  onStatusChanged(handler: DslSignalHandlerValue): TextureCubeMapArrayBuilder;
+  onWidthChanged(handler: DslSignalHandlerValue): TextureCubeMapArrayBuilder;
 }
 
 const TEXTURECUBEMAPARRAY_META: TypeMetadata = {

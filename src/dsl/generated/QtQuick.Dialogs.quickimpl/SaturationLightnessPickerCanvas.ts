@@ -2,7 +2,12 @@
 // Type: SaturationLightnessPickerCanvas
 // Generated from Qt 6.11.0
 
-import type { QmlEnumToken, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlEnumToken,
+  QmlObjectBuilder,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { QtObjectBuilder } from '../QML/QtObject.js';
 import type { ItemBuilder } from '../QtQuick/Item.js';
@@ -17,6 +22,7 @@ import type { MessageDialogImplAttachedBuilder } from './QQuickMessageDialogImpl
 export interface SaturationLightnessPickerCanvasBuilder {
   id(id: string): SaturationLightnessPickerCanvasBuilder;
   child(obj: QmlObjectBuilder): SaturationLightnessPickerCanvasBuilder;
+  children(...objs: QmlObjectBuilder[]): SaturationLightnessPickerCanvasBuilder;
 
   activeFocusOnTab(value: boolean): SaturationLightnessPickerCanvasBuilder;
   activeFocusOnTabBind(expr: string): SaturationLightnessPickerCanvasBuilder;
@@ -70,38 +76,38 @@ export interface SaturationLightnessPickerCanvasBuilder {
   yBind(expr: string): SaturationLightnessPickerCanvasBuilder;
   z(value: number): SaturationLightnessPickerCanvasBuilder;
   zBind(expr: string): SaturationLightnessPickerCanvasBuilder;
-  onActiveFocusChanged(body: string): SaturationLightnessPickerCanvasBuilder;
-  onActiveFocusOnTabChanged(body: string): SaturationLightnessPickerCanvasBuilder;
-  onAntialiasingChanged(body: string): SaturationLightnessPickerCanvasBuilder;
-  onBaselineOffsetChanged(body: string): SaturationLightnessPickerCanvasBuilder;
-  onChildrenChanged(body: string): SaturationLightnessPickerCanvasBuilder;
-  onChildrenRectChanged(body: string): SaturationLightnessPickerCanvasBuilder;
-  onClipChanged(body: string): SaturationLightnessPickerCanvasBuilder;
-  onContainmentMaskChanged(body: string): SaturationLightnessPickerCanvasBuilder;
-  onEnabledChanged(body: string): SaturationLightnessPickerCanvasBuilder;
-  onFocusChanged(body: string): SaturationLightnessPickerCanvasBuilder;
-  onFocusPolicyChanged(body: string): SaturationLightnessPickerCanvasBuilder;
-  onHeightChanged(body: string): SaturationLightnessPickerCanvasBuilder;
-  onHueChanged(body: string): SaturationLightnessPickerCanvasBuilder;
-  onImplicitHeightChanged(body: string): SaturationLightnessPickerCanvasBuilder;
-  onImplicitWidthChanged(body: string): SaturationLightnessPickerCanvasBuilder;
-  onObjectNameChanged(body: string): SaturationLightnessPickerCanvasBuilder;
-  onOpacityChanged(body: string): SaturationLightnessPickerCanvasBuilder;
-  onPaletteChanged(body: string): SaturationLightnessPickerCanvasBuilder;
-  onPaletteCreated(body: string): SaturationLightnessPickerCanvasBuilder;
-  onParentChanged(body: string): SaturationLightnessPickerCanvasBuilder;
-  onRotationChanged(body: string): SaturationLightnessPickerCanvasBuilder;
-  onScaleChanged(body: string): SaturationLightnessPickerCanvasBuilder;
-  onSmoothChanged(body: string): SaturationLightnessPickerCanvasBuilder;
-  onStateChanged(body: string): SaturationLightnessPickerCanvasBuilder;
-  onTransformOriginChanged(body: string): SaturationLightnessPickerCanvasBuilder;
-  onVisibleChanged(body: string): SaturationLightnessPickerCanvasBuilder;
-  onVisibleChildrenChanged(body: string): SaturationLightnessPickerCanvasBuilder;
-  onWidthChanged(body: string): SaturationLightnessPickerCanvasBuilder;
-  onWindowChanged(body: string): SaturationLightnessPickerCanvasBuilder;
-  onXChanged(body: string): SaturationLightnessPickerCanvasBuilder;
-  onYChanged(body: string): SaturationLightnessPickerCanvasBuilder;
-  onZChanged(body: string): SaturationLightnessPickerCanvasBuilder;
+  onActiveFocusChanged(handler: DslSignalHandlerValue): SaturationLightnessPickerCanvasBuilder;
+  onActiveFocusOnTabChanged(handler: DslSignalHandlerValue): SaturationLightnessPickerCanvasBuilder;
+  onAntialiasingChanged(handler: DslSignalHandlerValue): SaturationLightnessPickerCanvasBuilder;
+  onBaselineOffsetChanged(handler: DslSignalHandlerValue): SaturationLightnessPickerCanvasBuilder;
+  onChildrenChanged(handler: DslSignalHandlerValue): SaturationLightnessPickerCanvasBuilder;
+  onChildrenRectChanged(handler: DslSignalHandlerValue): SaturationLightnessPickerCanvasBuilder;
+  onClipChanged(handler: DslSignalHandlerValue): SaturationLightnessPickerCanvasBuilder;
+  onContainmentMaskChanged(handler: DslSignalHandlerValue): SaturationLightnessPickerCanvasBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): SaturationLightnessPickerCanvasBuilder;
+  onFocusChanged(handler: DslSignalHandlerValue): SaturationLightnessPickerCanvasBuilder;
+  onFocusPolicyChanged(handler: DslSignalHandlerValue): SaturationLightnessPickerCanvasBuilder;
+  onHeightChanged(handler: DslSignalHandlerValue): SaturationLightnessPickerCanvasBuilder;
+  onHueChanged(handler: DslSignalHandlerValue): SaturationLightnessPickerCanvasBuilder;
+  onImplicitHeightChanged(handler: DslSignalHandlerValue): SaturationLightnessPickerCanvasBuilder;
+  onImplicitWidthChanged(handler: DslSignalHandlerValue): SaturationLightnessPickerCanvasBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): SaturationLightnessPickerCanvasBuilder;
+  onOpacityChanged(handler: DslSignalHandlerValue): SaturationLightnessPickerCanvasBuilder;
+  onPaletteChanged(handler: DslSignalHandlerValue): SaturationLightnessPickerCanvasBuilder;
+  onPaletteCreated(handler: DslSignalHandlerValue): SaturationLightnessPickerCanvasBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): SaturationLightnessPickerCanvasBuilder;
+  onRotationChanged(handler: DslSignalHandlerValue): SaturationLightnessPickerCanvasBuilder;
+  onScaleChanged(handler: DslSignalHandlerValue): SaturationLightnessPickerCanvasBuilder;
+  onSmoothChanged(handler: DslSignalHandlerValue): SaturationLightnessPickerCanvasBuilder;
+  onStateChanged(handler: DslSignalHandlerValue): SaturationLightnessPickerCanvasBuilder;
+  onTransformOriginChanged(handler: DslSignalHandlerValue): SaturationLightnessPickerCanvasBuilder;
+  onVisibleChanged(handler: DslSignalHandlerValue): SaturationLightnessPickerCanvasBuilder;
+  onVisibleChildrenChanged(handler: DslSignalHandlerValue): SaturationLightnessPickerCanvasBuilder;
+  onWidthChanged(handler: DslSignalHandlerValue): SaturationLightnessPickerCanvasBuilder;
+  onWindowChanged(handler: DslSignalHandlerValue): SaturationLightnessPickerCanvasBuilder;
+  onXChanged(handler: DslSignalHandlerValue): SaturationLightnessPickerCanvasBuilder;
+  onYChanged(handler: DslSignalHandlerValue): SaturationLightnessPickerCanvasBuilder;
+  onZChanged(handler: DslSignalHandlerValue): SaturationLightnessPickerCanvasBuilder;
   anchors(setup: (b: AnchorsBuilder) => void): SaturationLightnessPickerCanvasBuilder;
   layer(setup: (b: LayerBuilder) => void): SaturationLightnessPickerCanvasBuilder;
   colorDialogImpl(

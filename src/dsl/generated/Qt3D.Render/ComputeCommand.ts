@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlEnumToken,
   QmlObjectBuilder,
   QmlValue,
@@ -12,6 +13,7 @@ import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface ComputeCommandBuilder {
   id(id: string): ComputeCommandBuilder;
   child(obj: QmlObjectBuilder): ComputeCommandBuilder;
+  children(...objs: QmlObjectBuilder[]): ComputeCommandBuilder;
 
   enabled(value: boolean): ComputeCommandBuilder;
   enabledBind(expr: string): ComputeCommandBuilder;
@@ -29,17 +31,17 @@ export interface ComputeCommandBuilder {
   workGroupYBind(expr: string): ComputeCommandBuilder;
   workGroupZ(value: number): ComputeCommandBuilder;
   workGroupZBind(expr: string): ComputeCommandBuilder;
-  onAddedToEntity(body: string): ComputeCommandBuilder;
-  onEnabledChanged(body: string): ComputeCommandBuilder;
-  onNodeDestroyed(body: string): ComputeCommandBuilder;
-  onObjectNameChanged(body: string): ComputeCommandBuilder;
-  onParentChanged(body: string): ComputeCommandBuilder;
-  onRemovedFromEntity(body: string): ComputeCommandBuilder;
-  onRunTypeChanged(body: string): ComputeCommandBuilder;
-  onShareableChanged(body: string): ComputeCommandBuilder;
-  onWorkGroupXChanged(body: string): ComputeCommandBuilder;
-  onWorkGroupYChanged(body: string): ComputeCommandBuilder;
-  onWorkGroupZChanged(body: string): ComputeCommandBuilder;
+  onAddedToEntity(handler: DslSignalHandlerValue): ComputeCommandBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): ComputeCommandBuilder;
+  onNodeDestroyed(handler: DslSignalHandlerValue): ComputeCommandBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): ComputeCommandBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): ComputeCommandBuilder;
+  onRemovedFromEntity(handler: DslSignalHandlerValue): ComputeCommandBuilder;
+  onRunTypeChanged(handler: DslSignalHandlerValue): ComputeCommandBuilder;
+  onShareableChanged(handler: DslSignalHandlerValue): ComputeCommandBuilder;
+  onWorkGroupXChanged(handler: DslSignalHandlerValue): ComputeCommandBuilder;
+  onWorkGroupYChanged(handler: DslSignalHandlerValue): ComputeCommandBuilder;
+  onWorkGroupZChanged(handler: DslSignalHandlerValue): ComputeCommandBuilder;
 }
 
 const COMPUTECOMMAND_META: TypeMetadata = {

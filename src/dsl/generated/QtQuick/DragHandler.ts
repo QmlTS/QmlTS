@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlEnumToken,
   QmlObjectBuilder,
   QmlVector2d,
@@ -29,6 +30,7 @@ import type { ViewTransitionAttachedBuilder } from './ViewTransition.js';
 export interface DragHandlerBuilder {
   id(id: string): DragHandlerBuilder;
   child(obj: QmlObjectBuilder): DragHandlerBuilder;
+  children(...objs: QmlObjectBuilder[]): DragHandlerBuilder;
 
   acceptedButtons(value: QmlEnumToken): DragHandlerBuilder;
   acceptedButtonsBind(expr: string): DragHandlerBuilder;
@@ -62,26 +64,26 @@ export interface DragHandlerBuilder {
   snapModeBind(expr: string): DragHandlerBuilder;
   target(value: ItemBuilder): DragHandlerBuilder;
   targetBind(expr: string): DragHandlerBuilder;
-  onAcceptedButtonsChanged(body: string): DragHandlerBuilder;
-  onAcceptedDevicesChanged(body: string): DragHandlerBuilder;
-  onAcceptedModifiersChanged(body: string): DragHandlerBuilder;
-  onAcceptedPointerTypesChanged(body: string): DragHandlerBuilder;
-  onActiveChanged(body: string): DragHandlerBuilder;
-  onCanceled(body: string): DragHandlerBuilder;
-  onCentroidChanged(body: string): DragHandlerBuilder;
-  onCursorShapeChanged(body: string): DragHandlerBuilder;
-  onDragThresholdChanged(body: string): DragHandlerBuilder;
-  onEnabledChanged(body: string): DragHandlerBuilder;
-  onGrabChanged(body: string): DragHandlerBuilder;
-  onGrabPermissionChanged(body: string): DragHandlerBuilder;
-  onMarginChanged(body: string): DragHandlerBuilder;
-  onMaximumPointCountChanged(body: string): DragHandlerBuilder;
-  onMinimumPointCountChanged(body: string): DragHandlerBuilder;
-  onObjectNameChanged(body: string): DragHandlerBuilder;
-  onParentChanged(body: string): DragHandlerBuilder;
-  onSnapModeChanged(body: string): DragHandlerBuilder;
-  onTargetChanged(body: string): DragHandlerBuilder;
-  onTranslationChanged(body: string): DragHandlerBuilder;
+  onAcceptedButtonsChanged(handler: DslSignalHandlerValue): DragHandlerBuilder;
+  onAcceptedDevicesChanged(handler: DslSignalHandlerValue): DragHandlerBuilder;
+  onAcceptedModifiersChanged(handler: DslSignalHandlerValue): DragHandlerBuilder;
+  onAcceptedPointerTypesChanged(handler: DslSignalHandlerValue): DragHandlerBuilder;
+  onActiveChanged(handler: DslSignalHandlerValue): DragHandlerBuilder;
+  onCanceled(handler: DslSignalHandlerValue): DragHandlerBuilder;
+  onCentroidChanged(handler: DslSignalHandlerValue): DragHandlerBuilder;
+  onCursorShapeChanged(handler: DslSignalHandlerValue): DragHandlerBuilder;
+  onDragThresholdChanged(handler: DslSignalHandlerValue): DragHandlerBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): DragHandlerBuilder;
+  onGrabChanged(handler: DslSignalHandlerValue): DragHandlerBuilder;
+  onGrabPermissionChanged(handler: DslSignalHandlerValue): DragHandlerBuilder;
+  onMarginChanged(handler: DslSignalHandlerValue): DragHandlerBuilder;
+  onMaximumPointCountChanged(handler: DslSignalHandlerValue): DragHandlerBuilder;
+  onMinimumPointCountChanged(handler: DslSignalHandlerValue): DragHandlerBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): DragHandlerBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): DragHandlerBuilder;
+  onSnapModeChanged(handler: DslSignalHandlerValue): DragHandlerBuilder;
+  onTargetChanged(handler: DslSignalHandlerValue): DragHandlerBuilder;
+  onTranslationChanged(handler: DslSignalHandlerValue): DragHandlerBuilder;
   accessible(setup: (b: AccessibleAttachedBuilder) => void): DragHandlerBuilder;
   drag(setup: (b: DragAttachedBuilder) => void): DragHandlerBuilder;
   enterKey(setup: (b: EnterKeyAttachedBuilder) => void): DragHandlerBuilder;

@@ -2,20 +2,26 @@
 // Type: WorkerScript
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlUrl, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlObjectBuilder,
+  QmlUrl,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 export interface WorkerScriptBuilder {
   id(id: string): WorkerScriptBuilder;
   child(obj: QmlObjectBuilder): WorkerScriptBuilder;
+  children(...objs: QmlObjectBuilder[]): WorkerScriptBuilder;
 
   objectName(value: string): WorkerScriptBuilder;
   objectNameBind(expr: string): WorkerScriptBuilder;
   source(value: QmlUrl): WorkerScriptBuilder;
   sourceBind(expr: string): WorkerScriptBuilder;
-  onMessage(body: string): WorkerScriptBuilder;
-  onObjectNameChanged(body: string): WorkerScriptBuilder;
-  onReadyChanged(body: string): WorkerScriptBuilder;
-  onSourceChanged(body: string): WorkerScriptBuilder;
+  onMessage(handler: DslSignalHandlerValue): WorkerScriptBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): WorkerScriptBuilder;
+  onReadyChanged(handler: DslSignalHandlerValue): WorkerScriptBuilder;
+  onSourceChanged(handler: DslSignalHandlerValue): WorkerScriptBuilder;
 }
 
 const WORKERSCRIPT_META: TypeMetadata = {

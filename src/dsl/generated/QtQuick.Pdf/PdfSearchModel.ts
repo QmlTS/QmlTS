@@ -2,12 +2,13 @@
 // Type: PdfSearchModel
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import type { DslSignalHandlerValue, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { PdfDocumentBuilder } from './PdfDocument.js';
 export interface PdfSearchModelBuilder {
   id(id: string): PdfSearchModelBuilder;
   child(obj: QmlObjectBuilder): PdfSearchModelBuilder;
+  children(...objs: QmlObjectBuilder[]): PdfSearchModelBuilder;
 
   currentPage(value: number): PdfSearchModelBuilder;
   currentPageBind(expr: string): PdfSearchModelBuilder;
@@ -19,34 +20,34 @@ export interface PdfSearchModelBuilder {
   objectNameBind(expr: string): PdfSearchModelBuilder;
   searchString(value: string): PdfSearchModelBuilder;
   searchStringBind(expr: string): PdfSearchModelBuilder;
-  onColumnsAboutToBeInserted(body: string): PdfSearchModelBuilder;
-  onColumnsAboutToBeMoved(body: string): PdfSearchModelBuilder;
-  onColumnsAboutToBeRemoved(body: string): PdfSearchModelBuilder;
-  onColumnsInserted(body: string): PdfSearchModelBuilder;
-  onColumnsMoved(body: string): PdfSearchModelBuilder;
-  onColumnsRemoved(body: string): PdfSearchModelBuilder;
-  onCountChanged(body: string): PdfSearchModelBuilder;
-  onCurrentPageBoundingPolygonsChanged(body: string): PdfSearchModelBuilder;
-  onCurrentPageChanged(body: string): PdfSearchModelBuilder;
-  onCurrentResultBoundingPolygonsChanged(body: string): PdfSearchModelBuilder;
-  onCurrentResultBoundingRectChanged(body: string): PdfSearchModelBuilder;
-  onCurrentResultChanged(body: string): PdfSearchModelBuilder;
-  onCurrentResultLinkChanged(body: string): PdfSearchModelBuilder;
-  onDataChanged(body: string): PdfSearchModelBuilder;
-  onDocumentChanged(body: string): PdfSearchModelBuilder;
-  onHeaderDataChanged(body: string): PdfSearchModelBuilder;
-  onLayoutAboutToBeChanged(body: string): PdfSearchModelBuilder;
-  onLayoutChanged(body: string): PdfSearchModelBuilder;
-  onModelAboutToBeReset(body: string): PdfSearchModelBuilder;
-  onModelReset(body: string): PdfSearchModelBuilder;
-  onObjectNameChanged(body: string): PdfSearchModelBuilder;
-  onRowsAboutToBeInserted(body: string): PdfSearchModelBuilder;
-  onRowsAboutToBeMoved(body: string): PdfSearchModelBuilder;
-  onRowsAboutToBeRemoved(body: string): PdfSearchModelBuilder;
-  onRowsInserted(body: string): PdfSearchModelBuilder;
-  onRowsMoved(body: string): PdfSearchModelBuilder;
-  onRowsRemoved(body: string): PdfSearchModelBuilder;
-  onSearchStringChanged(body: string): PdfSearchModelBuilder;
+  onColumnsAboutToBeInserted(handler: DslSignalHandlerValue): PdfSearchModelBuilder;
+  onColumnsAboutToBeMoved(handler: DslSignalHandlerValue): PdfSearchModelBuilder;
+  onColumnsAboutToBeRemoved(handler: DslSignalHandlerValue): PdfSearchModelBuilder;
+  onColumnsInserted(handler: DslSignalHandlerValue): PdfSearchModelBuilder;
+  onColumnsMoved(handler: DslSignalHandlerValue): PdfSearchModelBuilder;
+  onColumnsRemoved(handler: DslSignalHandlerValue): PdfSearchModelBuilder;
+  onCountChanged(handler: DslSignalHandlerValue): PdfSearchModelBuilder;
+  onCurrentPageBoundingPolygonsChanged(handler: DslSignalHandlerValue): PdfSearchModelBuilder;
+  onCurrentPageChanged(handler: DslSignalHandlerValue): PdfSearchModelBuilder;
+  onCurrentResultBoundingPolygonsChanged(handler: DslSignalHandlerValue): PdfSearchModelBuilder;
+  onCurrentResultBoundingRectChanged(handler: DslSignalHandlerValue): PdfSearchModelBuilder;
+  onCurrentResultChanged(handler: DslSignalHandlerValue): PdfSearchModelBuilder;
+  onCurrentResultLinkChanged(handler: DslSignalHandlerValue): PdfSearchModelBuilder;
+  onDataChanged(handler: DslSignalHandlerValue): PdfSearchModelBuilder;
+  onDocumentChanged(handler: DslSignalHandlerValue): PdfSearchModelBuilder;
+  onHeaderDataChanged(handler: DslSignalHandlerValue): PdfSearchModelBuilder;
+  onLayoutAboutToBeChanged(handler: DslSignalHandlerValue): PdfSearchModelBuilder;
+  onLayoutChanged(handler: DslSignalHandlerValue): PdfSearchModelBuilder;
+  onModelAboutToBeReset(handler: DslSignalHandlerValue): PdfSearchModelBuilder;
+  onModelReset(handler: DslSignalHandlerValue): PdfSearchModelBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): PdfSearchModelBuilder;
+  onRowsAboutToBeInserted(handler: DslSignalHandlerValue): PdfSearchModelBuilder;
+  onRowsAboutToBeMoved(handler: DslSignalHandlerValue): PdfSearchModelBuilder;
+  onRowsAboutToBeRemoved(handler: DslSignalHandlerValue): PdfSearchModelBuilder;
+  onRowsInserted(handler: DslSignalHandlerValue): PdfSearchModelBuilder;
+  onRowsMoved(handler: DslSignalHandlerValue): PdfSearchModelBuilder;
+  onRowsRemoved(handler: DslSignalHandlerValue): PdfSearchModelBuilder;
+  onSearchStringChanged(handler: DslSignalHandlerValue): PdfSearchModelBuilder;
 }
 
 const PDFSEARCHMODEL_META: TypeMetadata = {

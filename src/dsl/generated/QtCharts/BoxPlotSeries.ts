@@ -2,11 +2,17 @@
 // Type: BoxPlotSeries
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface BoxPlotSeriesBuilder {
   id(id: string): BoxPlotSeriesBuilder;
   child(obj: QmlObjectBuilder): BoxPlotSeriesBuilder;
+  children(...objs: QmlObjectBuilder[]): BoxPlotSeriesBuilder;
 
   axisX(value: QmlValue): BoxPlotSeriesBuilder;
   axisXBind(expr: string): BoxPlotSeriesBuilder;
@@ -42,37 +48,37 @@ export interface BoxPlotSeriesBuilder {
   visibleBind(expr: string): BoxPlotSeriesBuilder;
   zValue(value: number): BoxPlotSeriesBuilder;
   zValueBind(expr: string): BoxPlotSeriesBuilder;
-  onAxisXChanged(body: string): BoxPlotSeriesBuilder;
-  onAxisXTopChanged(body: string): BoxPlotSeriesBuilder;
-  onAxisYChanged(body: string): BoxPlotSeriesBuilder;
-  onAxisYRightChanged(body: string): BoxPlotSeriesBuilder;
-  onBoxOutlineVisibilityChanged(body: string): BoxPlotSeriesBuilder;
-  onBoxWidthChanged(body: string): BoxPlotSeriesBuilder;
-  onBoxsetsAdded(body: string): BoxPlotSeriesBuilder;
-  onBoxsetsRemoved(body: string): BoxPlotSeriesBuilder;
-  onBrushChanged(body: string): BoxPlotSeriesBuilder;
-  onBrushFilenameChanged(body: string): BoxPlotSeriesBuilder;
-  onClicked(body: string): BoxPlotSeriesBuilder;
-  onCountChanged(body: string): BoxPlotSeriesBuilder;
-  onDoubleClicked(body: string): BoxPlotSeriesBuilder;
-  onHover(body: string): BoxPlotSeriesBuilder;
-  onHoverEnter(body: string): BoxPlotSeriesBuilder;
-  onHoverExit(body: string): BoxPlotSeriesBuilder;
-  onHoverableChanged(body: string): BoxPlotSeriesBuilder;
-  onHovered(body: string): BoxPlotSeriesBuilder;
-  onHoveredChanged(body: string): BoxPlotSeriesBuilder;
-  onLegendDataChanged(body: string): BoxPlotSeriesBuilder;
-  onNameChanged(body: string): BoxPlotSeriesBuilder;
-  onObjectNameChanged(body: string): BoxPlotSeriesBuilder;
-  onOpacityChanged(body: string): BoxPlotSeriesBuilder;
-  onPenChanged(body: string): BoxPlotSeriesBuilder;
-  onPressed(body: string): BoxPlotSeriesBuilder;
-  onReleased(body: string): BoxPlotSeriesBuilder;
-  onSelectableChanged(body: string): BoxPlotSeriesBuilder;
-  onUpdate(body: string): BoxPlotSeriesBuilder;
-  onValuesMultiplierChanged(body: string): BoxPlotSeriesBuilder;
-  onVisibleChanged(body: string): BoxPlotSeriesBuilder;
-  onZValueChanged(body: string): BoxPlotSeriesBuilder;
+  onAxisXChanged(handler: DslSignalHandlerValue): BoxPlotSeriesBuilder;
+  onAxisXTopChanged(handler: DslSignalHandlerValue): BoxPlotSeriesBuilder;
+  onAxisYChanged(handler: DslSignalHandlerValue): BoxPlotSeriesBuilder;
+  onAxisYRightChanged(handler: DslSignalHandlerValue): BoxPlotSeriesBuilder;
+  onBoxOutlineVisibilityChanged(handler: DslSignalHandlerValue): BoxPlotSeriesBuilder;
+  onBoxWidthChanged(handler: DslSignalHandlerValue): BoxPlotSeriesBuilder;
+  onBoxsetsAdded(handler: DslSignalHandlerValue): BoxPlotSeriesBuilder;
+  onBoxsetsRemoved(handler: DslSignalHandlerValue): BoxPlotSeriesBuilder;
+  onBrushChanged(handler: DslSignalHandlerValue): BoxPlotSeriesBuilder;
+  onBrushFilenameChanged(handler: DslSignalHandlerValue): BoxPlotSeriesBuilder;
+  onClicked(handler: DslSignalHandlerValue): BoxPlotSeriesBuilder;
+  onCountChanged(handler: DslSignalHandlerValue): BoxPlotSeriesBuilder;
+  onDoubleClicked(handler: DslSignalHandlerValue): BoxPlotSeriesBuilder;
+  onHover(handler: DslSignalHandlerValue): BoxPlotSeriesBuilder;
+  onHoverEnter(handler: DslSignalHandlerValue): BoxPlotSeriesBuilder;
+  onHoverExit(handler: DslSignalHandlerValue): BoxPlotSeriesBuilder;
+  onHoverableChanged(handler: DslSignalHandlerValue): BoxPlotSeriesBuilder;
+  onHovered(handler: DslSignalHandlerValue): BoxPlotSeriesBuilder;
+  onHoveredChanged(handler: DslSignalHandlerValue): BoxPlotSeriesBuilder;
+  onLegendDataChanged(handler: DslSignalHandlerValue): BoxPlotSeriesBuilder;
+  onNameChanged(handler: DslSignalHandlerValue): BoxPlotSeriesBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): BoxPlotSeriesBuilder;
+  onOpacityChanged(handler: DslSignalHandlerValue): BoxPlotSeriesBuilder;
+  onPenChanged(handler: DslSignalHandlerValue): BoxPlotSeriesBuilder;
+  onPressed(handler: DslSignalHandlerValue): BoxPlotSeriesBuilder;
+  onReleased(handler: DslSignalHandlerValue): BoxPlotSeriesBuilder;
+  onSelectableChanged(handler: DslSignalHandlerValue): BoxPlotSeriesBuilder;
+  onUpdate(handler: DslSignalHandlerValue): BoxPlotSeriesBuilder;
+  onValuesMultiplierChanged(handler: DslSignalHandlerValue): BoxPlotSeriesBuilder;
+  onVisibleChanged(handler: DslSignalHandlerValue): BoxPlotSeriesBuilder;
+  onZValueChanged(handler: DslSignalHandlerValue): BoxPlotSeriesBuilder;
 }
 
 const BOXPLOTSERIES_META: TypeMetadata = {

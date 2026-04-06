@@ -2,11 +2,17 @@
 // Type: AmbientLightSensor
 // Generated from Qt 6.11.0
 
-import type { QmlEnumToken, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlEnumToken,
+  QmlObjectBuilder,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface AmbientLightSensorBuilder {
   id(id: string): AmbientLightSensorBuilder;
   child(obj: QmlObjectBuilder): AmbientLightSensorBuilder;
+  children(...objs: QmlObjectBuilder[]): AmbientLightSensorBuilder;
 
   active(value: boolean): AmbientLightSensorBuilder;
   activeBind(expr: string): AmbientLightSensorBuilder;
@@ -28,26 +34,26 @@ export interface AmbientLightSensorBuilder {
   skipDuplicatesBind(expr: string): AmbientLightSensorBuilder;
   userOrientation(value: number): AmbientLightSensorBuilder;
   userOrientationBind(expr: string): AmbientLightSensorBuilder;
-  onActiveChanged(body: string): AmbientLightSensorBuilder;
-  onAlwaysOnChanged(body: string): AmbientLightSensorBuilder;
-  onAvailableDataRatesChanged(body: string): AmbientLightSensorBuilder;
-  onAxesOrientationModeChanged(body: string): AmbientLightSensorBuilder;
-  onBufferSizeChanged(body: string): AmbientLightSensorBuilder;
-  onBusyChanged(body: string): AmbientLightSensorBuilder;
-  onConnectedToBackendChanged(body: string): AmbientLightSensorBuilder;
-  onCurrentOrientationChanged(body: string): AmbientLightSensorBuilder;
-  onDataRateChanged(body: string): AmbientLightSensorBuilder;
-  onDescriptionChanged(body: string): AmbientLightSensorBuilder;
-  onEfficientBufferSizeChanged(body: string): AmbientLightSensorBuilder;
-  onErrorChanged(body: string): AmbientLightSensorBuilder;
-  onIdentifierChanged(body: string): AmbientLightSensorBuilder;
-  onMaxBufferSizeChanged(body: string): AmbientLightSensorBuilder;
-  onObjectNameChanged(body: string): AmbientLightSensorBuilder;
-  onOutputRangeChanged(body: string): AmbientLightSensorBuilder;
-  onOutputRangesChanged(body: string): AmbientLightSensorBuilder;
-  onReadingChanged(body: string): AmbientLightSensorBuilder;
-  onSkipDuplicatesChanged(body: string): AmbientLightSensorBuilder;
-  onUserOrientationChanged(body: string): AmbientLightSensorBuilder;
+  onActiveChanged(handler: DslSignalHandlerValue): AmbientLightSensorBuilder;
+  onAlwaysOnChanged(handler: DslSignalHandlerValue): AmbientLightSensorBuilder;
+  onAvailableDataRatesChanged(handler: DslSignalHandlerValue): AmbientLightSensorBuilder;
+  onAxesOrientationModeChanged(handler: DslSignalHandlerValue): AmbientLightSensorBuilder;
+  onBufferSizeChanged(handler: DslSignalHandlerValue): AmbientLightSensorBuilder;
+  onBusyChanged(handler: DslSignalHandlerValue): AmbientLightSensorBuilder;
+  onConnectedToBackendChanged(handler: DslSignalHandlerValue): AmbientLightSensorBuilder;
+  onCurrentOrientationChanged(handler: DslSignalHandlerValue): AmbientLightSensorBuilder;
+  onDataRateChanged(handler: DslSignalHandlerValue): AmbientLightSensorBuilder;
+  onDescriptionChanged(handler: DslSignalHandlerValue): AmbientLightSensorBuilder;
+  onEfficientBufferSizeChanged(handler: DslSignalHandlerValue): AmbientLightSensorBuilder;
+  onErrorChanged(handler: DslSignalHandlerValue): AmbientLightSensorBuilder;
+  onIdentifierChanged(handler: DslSignalHandlerValue): AmbientLightSensorBuilder;
+  onMaxBufferSizeChanged(handler: DslSignalHandlerValue): AmbientLightSensorBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): AmbientLightSensorBuilder;
+  onOutputRangeChanged(handler: DslSignalHandlerValue): AmbientLightSensorBuilder;
+  onOutputRangesChanged(handler: DslSignalHandlerValue): AmbientLightSensorBuilder;
+  onReadingChanged(handler: DslSignalHandlerValue): AmbientLightSensorBuilder;
+  onSkipDuplicatesChanged(handler: DslSignalHandlerValue): AmbientLightSensorBuilder;
+  onUserOrientationChanged(handler: DslSignalHandlerValue): AmbientLightSensorBuilder;
 }
 
 const AMBIENTLIGHTSENSOR_META: TypeMetadata = {

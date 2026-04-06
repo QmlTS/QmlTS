@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlEnumToken,
   QmlObjectBuilder,
   QmlPoint,
@@ -13,6 +14,7 @@ import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface ScreenRayCasterBuilder {
   id(id: string): ScreenRayCasterBuilder;
   child(obj: QmlObjectBuilder): ScreenRayCasterBuilder;
+  children(...objs: QmlObjectBuilder[]): ScreenRayCasterBuilder;
 
   enabled(value: boolean): ScreenRayCasterBuilder;
   enabledBind(expr: string): ScreenRayCasterBuilder;
@@ -28,17 +30,17 @@ export interface ScreenRayCasterBuilder {
   positionBind(expr: string): ScreenRayCasterBuilder;
   runMode(value: QmlEnumToken): ScreenRayCasterBuilder;
   runModeBind(expr: string): ScreenRayCasterBuilder;
-  onAddedToEntity(body: string): ScreenRayCasterBuilder;
-  onEnabledChanged(body: string): ScreenRayCasterBuilder;
-  onFilterModeChanged(body: string): ScreenRayCasterBuilder;
-  onHitsChanged(body: string): ScreenRayCasterBuilder;
-  onNodeDestroyed(body: string): ScreenRayCasterBuilder;
-  onObjectNameChanged(body: string): ScreenRayCasterBuilder;
-  onParentChanged(body: string): ScreenRayCasterBuilder;
-  onPositionChanged(body: string): ScreenRayCasterBuilder;
-  onRemovedFromEntity(body: string): ScreenRayCasterBuilder;
-  onRunModeChanged(body: string): ScreenRayCasterBuilder;
-  onShareableChanged(body: string): ScreenRayCasterBuilder;
+  onAddedToEntity(handler: DslSignalHandlerValue): ScreenRayCasterBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): ScreenRayCasterBuilder;
+  onFilterModeChanged(handler: DslSignalHandlerValue): ScreenRayCasterBuilder;
+  onHitsChanged(handler: DslSignalHandlerValue): ScreenRayCasterBuilder;
+  onNodeDestroyed(handler: DslSignalHandlerValue): ScreenRayCasterBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): ScreenRayCasterBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): ScreenRayCasterBuilder;
+  onPositionChanged(handler: DslSignalHandlerValue): ScreenRayCasterBuilder;
+  onRemovedFromEntity(handler: DslSignalHandlerValue): ScreenRayCasterBuilder;
+  onRunModeChanged(handler: DslSignalHandlerValue): ScreenRayCasterBuilder;
+  onShareableChanged(handler: DslSignalHandlerValue): ScreenRayCasterBuilder;
 }
 
 const SCREENRAYCASTER_META: TypeMetadata = {

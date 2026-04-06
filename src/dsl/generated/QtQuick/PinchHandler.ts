@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlEnumToken,
   QmlObjectBuilder,
   QmlPoint,
@@ -29,6 +30,7 @@ import type { ViewTransitionAttachedBuilder } from './ViewTransition.js';
 export interface PinchHandlerBuilder {
   id(id: string): PinchHandlerBuilder;
   child(obj: QmlObjectBuilder): PinchHandlerBuilder;
+  children(...objs: QmlObjectBuilder[]): PinchHandlerBuilder;
 
   acceptedButtons(value: QmlEnumToken): PinchHandlerBuilder;
   acceptedButtonsBind(expr: string): PinchHandlerBuilder;
@@ -72,32 +74,32 @@ export interface PinchHandlerBuilder {
   persistentTranslationBind(expr: string): PinchHandlerBuilder;
   target(value: ItemBuilder): PinchHandlerBuilder;
   targetBind(expr: string): PinchHandlerBuilder;
-  onAcceptedButtonsChanged(body: string): PinchHandlerBuilder;
-  onAcceptedDevicesChanged(body: string): PinchHandlerBuilder;
-  onAcceptedModifiersChanged(body: string): PinchHandlerBuilder;
-  onAcceptedPointerTypesChanged(body: string): PinchHandlerBuilder;
-  onActiveChanged(body: string): PinchHandlerBuilder;
-  onCanceled(body: string): PinchHandlerBuilder;
-  onCentroidChanged(body: string): PinchHandlerBuilder;
-  onCursorShapeChanged(body: string): PinchHandlerBuilder;
-  onDragThresholdChanged(body: string): PinchHandlerBuilder;
-  onEnabledChanged(body: string): PinchHandlerBuilder;
-  onGrabChanged(body: string): PinchHandlerBuilder;
-  onGrabPermissionChanged(body: string): PinchHandlerBuilder;
-  onMarginChanged(body: string): PinchHandlerBuilder;
-  onMaximumPointCountChanged(body: string): PinchHandlerBuilder;
-  onMaximumRotationChanged(body: string): PinchHandlerBuilder;
-  onMaximumScaleChanged(body: string): PinchHandlerBuilder;
-  onMinimumPointCountChanged(body: string): PinchHandlerBuilder;
-  onMinimumRotationChanged(body: string): PinchHandlerBuilder;
-  onMinimumScaleChanged(body: string): PinchHandlerBuilder;
-  onObjectNameChanged(body: string): PinchHandlerBuilder;
-  onParentChanged(body: string): PinchHandlerBuilder;
-  onRotationChanged(body: string): PinchHandlerBuilder;
-  onScaleChanged(body: string): PinchHandlerBuilder;
-  onTargetChanged(body: string): PinchHandlerBuilder;
-  onTranslationChanged(body: string): PinchHandlerBuilder;
-  onUpdated(body: string): PinchHandlerBuilder;
+  onAcceptedButtonsChanged(handler: DslSignalHandlerValue): PinchHandlerBuilder;
+  onAcceptedDevicesChanged(handler: DslSignalHandlerValue): PinchHandlerBuilder;
+  onAcceptedModifiersChanged(handler: DslSignalHandlerValue): PinchHandlerBuilder;
+  onAcceptedPointerTypesChanged(handler: DslSignalHandlerValue): PinchHandlerBuilder;
+  onActiveChanged(handler: DslSignalHandlerValue): PinchHandlerBuilder;
+  onCanceled(handler: DslSignalHandlerValue): PinchHandlerBuilder;
+  onCentroidChanged(handler: DslSignalHandlerValue): PinchHandlerBuilder;
+  onCursorShapeChanged(handler: DslSignalHandlerValue): PinchHandlerBuilder;
+  onDragThresholdChanged(handler: DslSignalHandlerValue): PinchHandlerBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): PinchHandlerBuilder;
+  onGrabChanged(handler: DslSignalHandlerValue): PinchHandlerBuilder;
+  onGrabPermissionChanged(handler: DslSignalHandlerValue): PinchHandlerBuilder;
+  onMarginChanged(handler: DslSignalHandlerValue): PinchHandlerBuilder;
+  onMaximumPointCountChanged(handler: DslSignalHandlerValue): PinchHandlerBuilder;
+  onMaximumRotationChanged(handler: DslSignalHandlerValue): PinchHandlerBuilder;
+  onMaximumScaleChanged(handler: DslSignalHandlerValue): PinchHandlerBuilder;
+  onMinimumPointCountChanged(handler: DslSignalHandlerValue): PinchHandlerBuilder;
+  onMinimumRotationChanged(handler: DslSignalHandlerValue): PinchHandlerBuilder;
+  onMinimumScaleChanged(handler: DslSignalHandlerValue): PinchHandlerBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): PinchHandlerBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): PinchHandlerBuilder;
+  onRotationChanged(handler: DslSignalHandlerValue): PinchHandlerBuilder;
+  onScaleChanged(handler: DslSignalHandlerValue): PinchHandlerBuilder;
+  onTargetChanged(handler: DslSignalHandlerValue): PinchHandlerBuilder;
+  onTranslationChanged(handler: DslSignalHandlerValue): PinchHandlerBuilder;
+  onUpdated(handler: DslSignalHandlerValue): PinchHandlerBuilder;
   accessible(setup: (b: AccessibleAttachedBuilder) => void): PinchHandlerBuilder;
   drag(setup: (b: DragAttachedBuilder) => void): PinchHandlerBuilder;
   enterKey(setup: (b: EnterKeyAttachedBuilder) => void): PinchHandlerBuilder;

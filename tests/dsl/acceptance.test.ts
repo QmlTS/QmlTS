@@ -765,4 +765,197 @@ describe('Acceptance: Extended Module Coverage', () => {
     expect(qml).toContain('id: performanceChart');
     expect(qml).toContain('id: preview3d');
   });
+
+  // ─── Phase 06 Step 1: children() and signal handler forms ───────────────
+
+  describe('ACC-50: children() variadic API', () => {
+    test('children() adds multiple children in order', () => {
+      const col = Column()
+        .spacing(10)
+        .children(
+          Text().text('First'),
+          Rectangle()
+            .width(100)
+            .height(50)
+            .color('red' as QmlColor),
+          Text().text('Third'),
+        );
+
+      const node = col.build();
+      const childNodes = node.members.filter((m) => m.kind === 'ObjectDefinition');
+      expect(childNodes.length).toBe(3);
+      expect((childNodes[0] as { typeName: string }).typeName).toBe('Text');
+      expect((childNodes[1] as { typeName: string }).typeName).toBe('Rectangle');
+      expect((childNodes[2] as { typeName: string }).typeName).toBe('Text');
+    });
+
+    test('children() produces correct QML output', () => {
+      const col = Column()
+        .spacing(10)
+        .children(
+          Text().text('Hello'),
+          Rectangle()
+            .width(100)
+            .height(50)
+            .color('blue' as QmlColor),
+        );
+
+      const doc = createDocument().importModule('QtQuick').root(col);
+      const qml = emit(doc);
+
+      expect(qml).toContain('Column {');
+      expect(qml).toContain('spacing: 10');
+      expect(qml).toContain('Text {');
+      expect(qml).toContain('text: "Hello"');
+      expect(qml).toContain('Rectangle {');
+      expect(qml).toContain('color: "blue"');
+    });
+
+    test('children() can be chained with child()', () => {
+      const col = Column()
+        .child(Text().text('First'))
+        .children(Text().text('Second'), Text().text('Third'))
+        .child(Text().text('Fourth'));
+
+      const node = col.build();
+      const childNodes = node.members.filter((m) => m.kind === 'ObjectDefinition');
+      expect(childNodes.length).toBe(4);
+    });
+
+    test('children() returns same builder for chaining', () => {
+      const col = Column();
+      const result = col.children(Text().text('A'), Text().text('B'));
+      expect(result).toBe(col);
+    });
+
+    test('children() with zero arguments is a no-op', () => {
+      const col = Column().spacing(10).children();
+      const node = col.build();
+      expect(node.members.length).toBe(1);
+    });
+
+    test('nested children() for realistic scene tree', () => {
+      const scene = Item()
+        .id('root')
+        .width(400)
+        .height(600)
+        .children(
+          Column()
+            .spacing(20)
+            .children(
+              Text().text('Header'),
+              Row()
+                .spacing(10)
+                .children(
+                  Rectangle()
+                    .width(50)
+                    .height(50)
+                    .color('red' as QmlColor),
+                  Rectangle()
+                    .width(50)
+                    .height(50)
+                    .color('green' as QmlColor),
+                  Rectangle()
+                    .width(50)
+                    .height(50)
+                    .color('blue' as QmlColor),
+                ),
+            ),
+          MouseArea().widthBind('parent.width').heightBind('parent.height'),
+        );
+
+      const doc = createDocument().importModule('QtQuick').root(scene);
+      const qml = emit(doc);
+
+      expect(qml).toContain('Item {');
+      expect(qml).toContain('Column {');
+      expect(qml).toContain('Row {');
+      expect(qml).toContain('MouseArea {');
+      expect(qml).toContain('text: "Header"');
+    });
+  });
+
+  describe('ACC-51: Arrow function signal handlers', () => {
+    test('expression arrow handler produces correct AST', () => {
+      const area = MouseArea().onClicked(() => console.log('clicked'));
+
+      const node = area.build();
+      const handler = node.members.find((m) => m.kind === 'SignalHandler');
+      expect(handler).toBeDefined();
+      if (handler && handler.kind === 'SignalHandler') {
+        expect(handler.name).toBe('onClicked');
+        expect(handler.body.form).toBe('arrow');
+        if (handler.body.form === 'arrow') {
+          expect(handler.body.isBlock).toBe(false);
+        }
+      }
+    });
+
+    test('block arrow handler with parameters', () => {
+      const area = MouseArea().onPressed((mouse: any) => {
+        mouse.accepted = true;
+      });
+
+      const node = area.build();
+      const handler = node.members.find((m) => m.kind === 'SignalHandler');
+      expect(handler).toBeDefined();
+      if (handler && handler.kind === 'SignalHandler') {
+        expect(handler.body.form).toBe('arrow');
+        if (handler.body.form === 'arrow') {
+          expect(handler.body.parameters.length).toBeGreaterThanOrEqual(1);
+          expect(handler.body.isBlock).toBe(true);
+        }
+      }
+    });
+
+    test('arrow handler produces correct QML', () => {
+      const area = MouseArea().onClicked(() => console.log('clicked'));
+
+      const doc = createDocument().importModule('QtQuick').root(area);
+      const qml = emit(doc);
+
+      expect(qml).toContain('MouseArea {');
+      expect(qml).toContain('onClicked:');
+    });
+
+    test('string and arrow handlers can coexist', () => {
+      const area = MouseArea()
+        .onClicked('console.log("string handler")')
+        .onPressed((event: any) => {
+          event.accepted = true;
+        });
+
+      const node = area.build();
+      const handlers = node.members.filter((m) => m.kind === 'SignalHandler');
+      expect(handlers.length).toBe(2);
+
+      const clicked = handlers.find((h) => h.kind === 'SignalHandler' && h.name === 'onClicked');
+      const pressed = handlers.find((h) => h.kind === 'SignalHandler' && h.name === 'onPressed');
+
+      expect(clicked).toBeDefined();
+      expect(pressed).toBeDefined();
+      if (clicked && clicked.kind === 'SignalHandler') {
+        expect(clicked.body.form).toBe('block');
+      }
+      if (pressed && pressed.kind === 'SignalHandler') {
+        expect(pressed.body.form).toBe('arrow');
+      }
+    });
+  });
+
+  describe('ACC-52: Command-ref handlers typecheck but fail at runtime', () => {
+    test('named function reference throws TypeError at runtime', () => {
+      function handleLogin() {
+        /* command impl */
+      }
+      const btn = Button();
+      expect(() => btn.onClicked(handleLogin)).toThrow(TypeError);
+    });
+
+    test('error message is clear about compiler requirement', () => {
+      function doSomething() {}
+      const btn = Button();
+      expect(() => btn.onClicked(doSomething)).toThrow(/compiler processing/);
+    });
+  });
 });

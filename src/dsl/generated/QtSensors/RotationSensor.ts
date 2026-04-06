@@ -2,11 +2,17 @@
 // Type: RotationSensor
 // Generated from Qt 6.11.0
 
-import type { QmlEnumToken, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlEnumToken,
+  QmlObjectBuilder,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface RotationSensorBuilder {
   id(id: string): RotationSensorBuilder;
   child(obj: QmlObjectBuilder): RotationSensorBuilder;
+  children(...objs: QmlObjectBuilder[]): RotationSensorBuilder;
 
   active(value: boolean): RotationSensorBuilder;
   activeBind(expr: string): RotationSensorBuilder;
@@ -28,27 +34,27 @@ export interface RotationSensorBuilder {
   skipDuplicatesBind(expr: string): RotationSensorBuilder;
   userOrientation(value: number): RotationSensorBuilder;
   userOrientationBind(expr: string): RotationSensorBuilder;
-  onActiveChanged(body: string): RotationSensorBuilder;
-  onAlwaysOnChanged(body: string): RotationSensorBuilder;
-  onAvailableDataRatesChanged(body: string): RotationSensorBuilder;
-  onAxesOrientationModeChanged(body: string): RotationSensorBuilder;
-  onBufferSizeChanged(body: string): RotationSensorBuilder;
-  onBusyChanged(body: string): RotationSensorBuilder;
-  onConnectedToBackendChanged(body: string): RotationSensorBuilder;
-  onCurrentOrientationChanged(body: string): RotationSensorBuilder;
-  onDataRateChanged(body: string): RotationSensorBuilder;
-  onDescriptionChanged(body: string): RotationSensorBuilder;
-  onEfficientBufferSizeChanged(body: string): RotationSensorBuilder;
-  onErrorChanged(body: string): RotationSensorBuilder;
-  onHasZChanged(body: string): RotationSensorBuilder;
-  onIdentifierChanged(body: string): RotationSensorBuilder;
-  onMaxBufferSizeChanged(body: string): RotationSensorBuilder;
-  onObjectNameChanged(body: string): RotationSensorBuilder;
-  onOutputRangeChanged(body: string): RotationSensorBuilder;
-  onOutputRangesChanged(body: string): RotationSensorBuilder;
-  onReadingChanged(body: string): RotationSensorBuilder;
-  onSkipDuplicatesChanged(body: string): RotationSensorBuilder;
-  onUserOrientationChanged(body: string): RotationSensorBuilder;
+  onActiveChanged(handler: DslSignalHandlerValue): RotationSensorBuilder;
+  onAlwaysOnChanged(handler: DslSignalHandlerValue): RotationSensorBuilder;
+  onAvailableDataRatesChanged(handler: DslSignalHandlerValue): RotationSensorBuilder;
+  onAxesOrientationModeChanged(handler: DslSignalHandlerValue): RotationSensorBuilder;
+  onBufferSizeChanged(handler: DslSignalHandlerValue): RotationSensorBuilder;
+  onBusyChanged(handler: DslSignalHandlerValue): RotationSensorBuilder;
+  onConnectedToBackendChanged(handler: DslSignalHandlerValue): RotationSensorBuilder;
+  onCurrentOrientationChanged(handler: DslSignalHandlerValue): RotationSensorBuilder;
+  onDataRateChanged(handler: DslSignalHandlerValue): RotationSensorBuilder;
+  onDescriptionChanged(handler: DslSignalHandlerValue): RotationSensorBuilder;
+  onEfficientBufferSizeChanged(handler: DslSignalHandlerValue): RotationSensorBuilder;
+  onErrorChanged(handler: DslSignalHandlerValue): RotationSensorBuilder;
+  onHasZChanged(handler: DslSignalHandlerValue): RotationSensorBuilder;
+  onIdentifierChanged(handler: DslSignalHandlerValue): RotationSensorBuilder;
+  onMaxBufferSizeChanged(handler: DslSignalHandlerValue): RotationSensorBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): RotationSensorBuilder;
+  onOutputRangeChanged(handler: DslSignalHandlerValue): RotationSensorBuilder;
+  onOutputRangesChanged(handler: DslSignalHandlerValue): RotationSensorBuilder;
+  onReadingChanged(handler: DslSignalHandlerValue): RotationSensorBuilder;
+  onSkipDuplicatesChanged(handler: DslSignalHandlerValue): RotationSensorBuilder;
+  onUserOrientationChanged(handler: DslSignalHandlerValue): RotationSensorBuilder;
 }
 
 const ROTATIONSENSOR_META: TypeMetadata = {

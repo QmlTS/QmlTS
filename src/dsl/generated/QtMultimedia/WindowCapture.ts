@@ -2,11 +2,17 @@
 // Type: WindowCapture
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface WindowCaptureBuilder {
   id(id: string): WindowCaptureBuilder;
   child(obj: QmlObjectBuilder): WindowCaptureBuilder;
+  children(...objs: QmlObjectBuilder[]): WindowCaptureBuilder;
 
   active(value: boolean): WindowCaptureBuilder;
   activeBind(expr: string): WindowCaptureBuilder;
@@ -14,11 +20,11 @@ export interface WindowCaptureBuilder {
   objectNameBind(expr: string): WindowCaptureBuilder;
   window(value: QmlValue): WindowCaptureBuilder;
   windowBind(expr: string): WindowCaptureBuilder;
-  onActiveChanged(body: string): WindowCaptureBuilder;
-  onErrorChanged(body: string): WindowCaptureBuilder;
-  onErrorOccurred(body: string): WindowCaptureBuilder;
-  onObjectNameChanged(body: string): WindowCaptureBuilder;
-  onWindowChanged(body: string): WindowCaptureBuilder;
+  onActiveChanged(handler: DslSignalHandlerValue): WindowCaptureBuilder;
+  onErrorChanged(handler: DslSignalHandlerValue): WindowCaptureBuilder;
+  onErrorOccurred(handler: DslSignalHandlerValue): WindowCaptureBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): WindowCaptureBuilder;
+  onWindowChanged(handler: DslSignalHandlerValue): WindowCaptureBuilder;
 }
 
 const WINDOWCAPTURE_META: TypeMetadata = {

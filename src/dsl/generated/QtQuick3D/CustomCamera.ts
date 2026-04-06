@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlMatrix4x4,
   QmlObjectBuilder,
   QmlQuaternion,
@@ -15,6 +16,7 @@ import type { NodeBuilder } from './Node.js';
 export interface CustomCameraBuilder {
   id(id: string): CustomCameraBuilder;
   child(obj: QmlObjectBuilder): CustomCameraBuilder;
+  children(...objs: QmlObjectBuilder[]): CustomCameraBuilder;
 
   eulerRotation(value: QmlVector3d): CustomCameraBuilder;
   eulerRotationBind(expr: string): CustomCameraBuilder;
@@ -54,33 +56,33 @@ export interface CustomCameraBuilder {
   yBind(expr: string): CustomCameraBuilder;
   z(value: number): CustomCameraBuilder;
   zBind(expr: string): CustomCameraBuilder;
-  onChildrenChanged(body: string): CustomCameraBuilder;
-  onEulerRotationChanged(body: string): CustomCameraBuilder;
-  onForwardChanged(body: string): CustomCameraBuilder;
-  onFrustumCullingEnabledChanged(body: string): CustomCameraBuilder;
-  onLayersChanged(body: string): CustomCameraBuilder;
-  onLevelOfDetailBiasChanged(body: string): CustomCameraBuilder;
-  onLocalOpacityChanged(body: string): CustomCameraBuilder;
-  onLookAtNodeChanged(body: string): CustomCameraBuilder;
-  onObjectNameChanged(body: string): CustomCameraBuilder;
-  onParentChanged(body: string): CustomCameraBuilder;
-  onPivotChanged(body: string): CustomCameraBuilder;
-  onPositionChanged(body: string): CustomCameraBuilder;
-  onProjectionChanged(body: string): CustomCameraBuilder;
-  onRightChanged(body: string): CustomCameraBuilder;
-  onRotationChanged(body: string): CustomCameraBuilder;
-  onScaleChanged(body: string): CustomCameraBuilder;
-  onScenePositionChanged(body: string): CustomCameraBuilder;
-  onSceneRotationChanged(body: string): CustomCameraBuilder;
-  onSceneScaleChanged(body: string): CustomCameraBuilder;
-  onSceneTransformChanged(body: string): CustomCameraBuilder;
-  onStateChanged(body: string): CustomCameraBuilder;
-  onStaticFlagsChanged(body: string): CustomCameraBuilder;
-  onUpChanged(body: string): CustomCameraBuilder;
-  onVisibleChanged(body: string): CustomCameraBuilder;
-  onXChanged(body: string): CustomCameraBuilder;
-  onYChanged(body: string): CustomCameraBuilder;
-  onZChanged(body: string): CustomCameraBuilder;
+  onChildrenChanged(handler: DslSignalHandlerValue): CustomCameraBuilder;
+  onEulerRotationChanged(handler: DslSignalHandlerValue): CustomCameraBuilder;
+  onForwardChanged(handler: DslSignalHandlerValue): CustomCameraBuilder;
+  onFrustumCullingEnabledChanged(handler: DslSignalHandlerValue): CustomCameraBuilder;
+  onLayersChanged(handler: DslSignalHandlerValue): CustomCameraBuilder;
+  onLevelOfDetailBiasChanged(handler: DslSignalHandlerValue): CustomCameraBuilder;
+  onLocalOpacityChanged(handler: DslSignalHandlerValue): CustomCameraBuilder;
+  onLookAtNodeChanged(handler: DslSignalHandlerValue): CustomCameraBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): CustomCameraBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): CustomCameraBuilder;
+  onPivotChanged(handler: DslSignalHandlerValue): CustomCameraBuilder;
+  onPositionChanged(handler: DslSignalHandlerValue): CustomCameraBuilder;
+  onProjectionChanged(handler: DslSignalHandlerValue): CustomCameraBuilder;
+  onRightChanged(handler: DslSignalHandlerValue): CustomCameraBuilder;
+  onRotationChanged(handler: DslSignalHandlerValue): CustomCameraBuilder;
+  onScaleChanged(handler: DslSignalHandlerValue): CustomCameraBuilder;
+  onScenePositionChanged(handler: DslSignalHandlerValue): CustomCameraBuilder;
+  onSceneRotationChanged(handler: DslSignalHandlerValue): CustomCameraBuilder;
+  onSceneScaleChanged(handler: DslSignalHandlerValue): CustomCameraBuilder;
+  onSceneTransformChanged(handler: DslSignalHandlerValue): CustomCameraBuilder;
+  onStateChanged(handler: DslSignalHandlerValue): CustomCameraBuilder;
+  onStaticFlagsChanged(handler: DslSignalHandlerValue): CustomCameraBuilder;
+  onUpChanged(handler: DslSignalHandlerValue): CustomCameraBuilder;
+  onVisibleChanged(handler: DslSignalHandlerValue): CustomCameraBuilder;
+  onXChanged(handler: DslSignalHandlerValue): CustomCameraBuilder;
+  onYChanged(handler: DslSignalHandlerValue): CustomCameraBuilder;
+  onZChanged(handler: DslSignalHandlerValue): CustomCameraBuilder;
 }
 
 const CUSTOMCAMERA_META: TypeMetadata = {

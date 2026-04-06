@@ -2,15 +2,16 @@
 // Type: PdfPageNavigator
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import type { DslSignalHandlerValue, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 export interface PdfPageNavigatorBuilder {
   id(id: string): PdfPageNavigatorBuilder;
   child(obj: QmlObjectBuilder): PdfPageNavigatorBuilder;
+  children(...objs: QmlObjectBuilder[]): PdfPageNavigatorBuilder;
 
   objectName(value: string): PdfPageNavigatorBuilder;
   objectNameBind(expr: string): PdfPageNavigatorBuilder;
-  onObjectNameChanged(body: string): PdfPageNavigatorBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): PdfPageNavigatorBuilder;
 }
 
 const PDFPAGENAVIGATOR_META: TypeMetadata = {

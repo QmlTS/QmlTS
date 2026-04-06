@@ -2,11 +2,17 @@
 // Type: ParticleCustomShape3D
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlUrl, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlObjectBuilder,
+  QmlUrl,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 export interface ParticleCustomShape3DBuilder {
   id(id: string): ParticleCustomShape3DBuilder;
   child(obj: QmlObjectBuilder): ParticleCustomShape3DBuilder;
+  children(...objs: QmlObjectBuilder[]): ParticleCustomShape3DBuilder;
 
   objectName(value: string): ParticleCustomShape3DBuilder;
   objectNameBind(expr: string): ParticleCustomShape3DBuilder;
@@ -14,9 +20,9 @@ export interface ParticleCustomShape3DBuilder {
   randomizeDataBind(expr: string): ParticleCustomShape3DBuilder;
   source(value: QmlUrl): ParticleCustomShape3DBuilder;
   sourceBind(expr: string): ParticleCustomShape3DBuilder;
-  onObjectNameChanged(body: string): ParticleCustomShape3DBuilder;
-  onRandomizeDataChanged(body: string): ParticleCustomShape3DBuilder;
-  onSourceChanged(body: string): ParticleCustomShape3DBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): ParticleCustomShape3DBuilder;
+  onRandomizeDataChanged(handler: DslSignalHandlerValue): ParticleCustomShape3DBuilder;
+  onSourceChanged(handler: DslSignalHandlerValue): ParticleCustomShape3DBuilder;
 }
 
 const PARTICLECUSTOMSHAPE3D_META: TypeMetadata = {

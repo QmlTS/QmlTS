@@ -2,6 +2,7 @@
 // Type: Attached type: ToolTip
 // Generated from Qt 6.11.0
 
+import type { DslSignalHandlerValue } from '../../runtime/index.js';
 export interface ToolTipAttachedBuilder {
   delay(value: number): ToolTipAttachedBuilder;
   delayBind(expr: string): ToolTipAttachedBuilder;
@@ -13,9 +14,9 @@ export interface ToolTipAttachedBuilder {
   visibleBind(expr: string): ToolTipAttachedBuilder;
   objectName(value: string): ToolTipAttachedBuilder;
   objectNameBind(expr: string): ToolTipAttachedBuilder;
-  onDelayChanged(body: string): ToolTipAttachedBuilder;
-  onTextChanged(body: string): ToolTipAttachedBuilder;
-  onTimeoutChanged(body: string): ToolTipAttachedBuilder;
-  onVisibleChanged(body: string): ToolTipAttachedBuilder;
-  onObjectNameChanged(body: string): ToolTipAttachedBuilder;
+  onDelayChanged(handler: DslSignalHandlerValue): ToolTipAttachedBuilder;
+  onTextChanged(handler: DslSignalHandlerValue): ToolTipAttachedBuilder;
+  onTimeoutChanged(handler: DslSignalHandlerValue): ToolTipAttachedBuilder;
+  onVisibleChanged(handler: DslSignalHandlerValue): ToolTipAttachedBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): ToolTipAttachedBuilder;
 }

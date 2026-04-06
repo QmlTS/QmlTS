@@ -2,11 +2,17 @@
 // Type: IRProximitySensor
 // Generated from Qt 6.11.0
 
-import type { QmlEnumToken, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlEnumToken,
+  QmlObjectBuilder,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface IRProximitySensorBuilder {
   id(id: string): IRProximitySensorBuilder;
   child(obj: QmlObjectBuilder): IRProximitySensorBuilder;
+  children(...objs: QmlObjectBuilder[]): IRProximitySensorBuilder;
 
   active(value: boolean): IRProximitySensorBuilder;
   activeBind(expr: string): IRProximitySensorBuilder;
@@ -28,26 +34,26 @@ export interface IRProximitySensorBuilder {
   skipDuplicatesBind(expr: string): IRProximitySensorBuilder;
   userOrientation(value: number): IRProximitySensorBuilder;
   userOrientationBind(expr: string): IRProximitySensorBuilder;
-  onActiveChanged(body: string): IRProximitySensorBuilder;
-  onAlwaysOnChanged(body: string): IRProximitySensorBuilder;
-  onAvailableDataRatesChanged(body: string): IRProximitySensorBuilder;
-  onAxesOrientationModeChanged(body: string): IRProximitySensorBuilder;
-  onBufferSizeChanged(body: string): IRProximitySensorBuilder;
-  onBusyChanged(body: string): IRProximitySensorBuilder;
-  onConnectedToBackendChanged(body: string): IRProximitySensorBuilder;
-  onCurrentOrientationChanged(body: string): IRProximitySensorBuilder;
-  onDataRateChanged(body: string): IRProximitySensorBuilder;
-  onDescriptionChanged(body: string): IRProximitySensorBuilder;
-  onEfficientBufferSizeChanged(body: string): IRProximitySensorBuilder;
-  onErrorChanged(body: string): IRProximitySensorBuilder;
-  onIdentifierChanged(body: string): IRProximitySensorBuilder;
-  onMaxBufferSizeChanged(body: string): IRProximitySensorBuilder;
-  onObjectNameChanged(body: string): IRProximitySensorBuilder;
-  onOutputRangeChanged(body: string): IRProximitySensorBuilder;
-  onOutputRangesChanged(body: string): IRProximitySensorBuilder;
-  onReadingChanged(body: string): IRProximitySensorBuilder;
-  onSkipDuplicatesChanged(body: string): IRProximitySensorBuilder;
-  onUserOrientationChanged(body: string): IRProximitySensorBuilder;
+  onActiveChanged(handler: DslSignalHandlerValue): IRProximitySensorBuilder;
+  onAlwaysOnChanged(handler: DslSignalHandlerValue): IRProximitySensorBuilder;
+  onAvailableDataRatesChanged(handler: DslSignalHandlerValue): IRProximitySensorBuilder;
+  onAxesOrientationModeChanged(handler: DslSignalHandlerValue): IRProximitySensorBuilder;
+  onBufferSizeChanged(handler: DslSignalHandlerValue): IRProximitySensorBuilder;
+  onBusyChanged(handler: DslSignalHandlerValue): IRProximitySensorBuilder;
+  onConnectedToBackendChanged(handler: DslSignalHandlerValue): IRProximitySensorBuilder;
+  onCurrentOrientationChanged(handler: DslSignalHandlerValue): IRProximitySensorBuilder;
+  onDataRateChanged(handler: DslSignalHandlerValue): IRProximitySensorBuilder;
+  onDescriptionChanged(handler: DslSignalHandlerValue): IRProximitySensorBuilder;
+  onEfficientBufferSizeChanged(handler: DslSignalHandlerValue): IRProximitySensorBuilder;
+  onErrorChanged(handler: DslSignalHandlerValue): IRProximitySensorBuilder;
+  onIdentifierChanged(handler: DslSignalHandlerValue): IRProximitySensorBuilder;
+  onMaxBufferSizeChanged(handler: DslSignalHandlerValue): IRProximitySensorBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): IRProximitySensorBuilder;
+  onOutputRangeChanged(handler: DslSignalHandlerValue): IRProximitySensorBuilder;
+  onOutputRangesChanged(handler: DslSignalHandlerValue): IRProximitySensorBuilder;
+  onReadingChanged(handler: DslSignalHandlerValue): IRProximitySensorBuilder;
+  onSkipDuplicatesChanged(handler: DslSignalHandlerValue): IRProximitySensorBuilder;
+  onUserOrientationChanged(handler: DslSignalHandlerValue): IRProximitySensorBuilder;
 }
 
 const IRPROXIMITYSENSOR_META: TypeMetadata = {

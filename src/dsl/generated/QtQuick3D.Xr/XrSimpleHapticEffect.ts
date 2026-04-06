@@ -2,11 +2,12 @@
 // Type: XrSimpleHapticEffect
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import type { DslSignalHandlerValue, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 export interface XrSimpleHapticEffectBuilder {
   id(id: string): XrSimpleHapticEffectBuilder;
   child(obj: QmlObjectBuilder): XrSimpleHapticEffectBuilder;
+  children(...objs: QmlObjectBuilder[]): XrSimpleHapticEffectBuilder;
 
   amplitude(value: number): XrSimpleHapticEffectBuilder;
   amplitudeBind(expr: string): XrSimpleHapticEffectBuilder;
@@ -16,10 +17,10 @@ export interface XrSimpleHapticEffectBuilder {
   frequencyBind(expr: string): XrSimpleHapticEffectBuilder;
   objectName(value: string): XrSimpleHapticEffectBuilder;
   objectNameBind(expr: string): XrSimpleHapticEffectBuilder;
-  onAmplitudeChanged(body: string): XrSimpleHapticEffectBuilder;
-  onDurationChanged(body: string): XrSimpleHapticEffectBuilder;
-  onFrequencyChanged(body: string): XrSimpleHapticEffectBuilder;
-  onObjectNameChanged(body: string): XrSimpleHapticEffectBuilder;
+  onAmplitudeChanged(handler: DslSignalHandlerValue): XrSimpleHapticEffectBuilder;
+  onDurationChanged(handler: DslSignalHandlerValue): XrSimpleHapticEffectBuilder;
+  onFrequencyChanged(handler: DslSignalHandlerValue): XrSimpleHapticEffectBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): XrSimpleHapticEffectBuilder;
 }
 
 const XRSIMPLEHAPTICEFFECT_META: TypeMetadata = {

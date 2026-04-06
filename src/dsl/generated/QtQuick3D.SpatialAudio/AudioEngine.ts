@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlEnumToken,
   QmlObjectBuilder,
   QmlValue,
@@ -12,6 +13,7 @@ import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface AudioEngineBuilder {
   id(id: string): AudioEngineBuilder;
   child(obj: QmlObjectBuilder): AudioEngineBuilder;
+  children(...objs: QmlObjectBuilder[]): AudioEngineBuilder;
 
   distanceScale(value: number): AudioEngineBuilder;
   distanceScaleBind(expr: string): AudioEngineBuilder;
@@ -23,11 +25,11 @@ export interface AudioEngineBuilder {
   outputDeviceBind(expr: string): AudioEngineBuilder;
   outputMode(value: QmlEnumToken): AudioEngineBuilder;
   outputModeBind(expr: string): AudioEngineBuilder;
-  onDistanceScaleChanged(body: string): AudioEngineBuilder;
-  onMasterVolumeChanged(body: string): AudioEngineBuilder;
-  onObjectNameChanged(body: string): AudioEngineBuilder;
-  onOutputDeviceChanged(body: string): AudioEngineBuilder;
-  onOutputModeChanged(body: string): AudioEngineBuilder;
+  onDistanceScaleChanged(handler: DslSignalHandlerValue): AudioEngineBuilder;
+  onMasterVolumeChanged(handler: DslSignalHandlerValue): AudioEngineBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): AudioEngineBuilder;
+  onOutputDeviceChanged(handler: DslSignalHandlerValue): AudioEngineBuilder;
+  onOutputModeChanged(handler: DslSignalHandlerValue): AudioEngineBuilder;
 }
 
 const AUDIOENGINE_META: TypeMetadata = {

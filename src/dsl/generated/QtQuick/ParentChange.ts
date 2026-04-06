@@ -2,7 +2,12 @@
 // Type: ParentChange
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 import type { AccessibleAttachedBuilder } from './Accessible.js';
 import type { EnterKeyAttachedBuilder } from './EnterKey.js';
@@ -24,6 +29,7 @@ import type { ViewTransitionAttachedBuilder } from './ViewTransition.js';
 export interface ParentChangeBuilder {
   id(id: string): ParentChangeBuilder;
   child(obj: QmlObjectBuilder): ParentChangeBuilder;
+  children(...objs: QmlObjectBuilder[]): ParentChangeBuilder;
 
   height(value: QmlValue): ParentChangeBuilder;
   heightBind(expr: string): ParentChangeBuilder;
@@ -43,7 +49,7 @@ export interface ParentChangeBuilder {
   xBind(expr: string): ParentChangeBuilder;
   y(value: QmlValue): ParentChangeBuilder;
   yBind(expr: string): ParentChangeBuilder;
-  onObjectNameChanged(body: string): ParentChangeBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): ParentChangeBuilder;
   accessible(setup: (b: AccessibleAttachedBuilder) => void): ParentChangeBuilder;
   drag(setup: (b: DragAttachedBuilder) => void): ParentChangeBuilder;
   enterKey(setup: (b: EnterKeyAttachedBuilder) => void): ParentChangeBuilder;

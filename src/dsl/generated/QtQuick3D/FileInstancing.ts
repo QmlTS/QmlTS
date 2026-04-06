@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlObjectBuilder,
   QmlUrl,
   QmlValue,
@@ -13,6 +14,7 @@ import { createFluentBuilder } from '../../runtime/index.js';
 export interface FileInstancingBuilder {
   id(id: string): FileInstancingBuilder;
   child(obj: QmlObjectBuilder): FileInstancingBuilder;
+  children(...objs: QmlObjectBuilder[]): FileInstancingBuilder;
 
   depthSortingEnabled(value: boolean): FileInstancingBuilder;
   depthSortingEnabledBind(expr: string): FileInstancingBuilder;
@@ -32,19 +34,19 @@ export interface FileInstancingBuilder {
   sourceBind(expr: string): FileInstancingBuilder;
   state(value: string): FileInstancingBuilder;
   stateBind(expr: string): FileInstancingBuilder;
-  onChildrenChanged(body: string): FileInstancingBuilder;
-  onDepthSortingEnabledChanged(body: string): FileInstancingBuilder;
-  onHasTransparencyChanged(body: string): FileInstancingBuilder;
-  onInstanceCountChanged(body: string): FileInstancingBuilder;
-  onInstanceCountOverrideChanged(body: string): FileInstancingBuilder;
-  onInstanceNodeDirty(body: string): FileInstancingBuilder;
-  onInstanceTableChanged(body: string): FileInstancingBuilder;
-  onObjectNameChanged(body: string): FileInstancingBuilder;
-  onParentChanged(body: string): FileInstancingBuilder;
-  onShadowBoundsMaximumChanged(body: string): FileInstancingBuilder;
-  onShadowBoundsMinimumChanged(body: string): FileInstancingBuilder;
-  onSourceChanged(body: string): FileInstancingBuilder;
-  onStateChanged(body: string): FileInstancingBuilder;
+  onChildrenChanged(handler: DslSignalHandlerValue): FileInstancingBuilder;
+  onDepthSortingEnabledChanged(handler: DslSignalHandlerValue): FileInstancingBuilder;
+  onHasTransparencyChanged(handler: DslSignalHandlerValue): FileInstancingBuilder;
+  onInstanceCountChanged(handler: DslSignalHandlerValue): FileInstancingBuilder;
+  onInstanceCountOverrideChanged(handler: DslSignalHandlerValue): FileInstancingBuilder;
+  onInstanceNodeDirty(handler: DslSignalHandlerValue): FileInstancingBuilder;
+  onInstanceTableChanged(handler: DslSignalHandlerValue): FileInstancingBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): FileInstancingBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): FileInstancingBuilder;
+  onShadowBoundsMaximumChanged(handler: DslSignalHandlerValue): FileInstancingBuilder;
+  onShadowBoundsMinimumChanged(handler: DslSignalHandlerValue): FileInstancingBuilder;
+  onSourceChanged(handler: DslSignalHandlerValue): FileInstancingBuilder;
+  onStateChanged(handler: DslSignalHandlerValue): FileInstancingBuilder;
 }
 
 const FILEINSTANCING_META: TypeMetadata = {

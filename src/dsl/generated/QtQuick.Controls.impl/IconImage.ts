@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlColor,
   QmlEnumToken,
   QmlObjectBuilder,
@@ -21,6 +22,7 @@ import type { LayerBuilder } from '../QtQuick/QQuickItemLayer.js';
 export interface IconImageBuilder {
   id(id: string): IconImageBuilder;
   child(obj: QmlObjectBuilder): IconImageBuilder;
+  children(...objs: QmlObjectBuilder[]): IconImageBuilder;
 
   activeFocusOnTab(value: boolean): IconImageBuilder;
   activeFocusOnTabBind(expr: string): IconImageBuilder;
@@ -102,58 +104,58 @@ export interface IconImageBuilder {
   yBind(expr: string): IconImageBuilder;
   z(value: number): IconImageBuilder;
   zBind(expr: string): IconImageBuilder;
-  onActiveFocusChanged(body: string): IconImageBuilder;
-  onActiveFocusOnTabChanged(body: string): IconImageBuilder;
-  onAntialiasingChanged(body: string): IconImageBuilder;
-  onAsynchronousChanged(body: string): IconImageBuilder;
-  onAutoTransformChanged(body: string): IconImageBuilder;
-  onBaselineOffsetChanged(body: string): IconImageBuilder;
-  onCacheChanged(body: string): IconImageBuilder;
-  onChildrenChanged(body: string): IconImageBuilder;
-  onChildrenRectChanged(body: string): IconImageBuilder;
-  onClipChanged(body: string): IconImageBuilder;
-  onColorChanged(body: string): IconImageBuilder;
-  onColorSpaceChanged(body: string): IconImageBuilder;
-  onContainmentMaskChanged(body: string): IconImageBuilder;
-  onCurrentFrameChanged(body: string): IconImageBuilder;
-  onEnabledChanged(body: string): IconImageBuilder;
-  onFillModeChanged(body: string): IconImageBuilder;
-  onFocusChanged(body: string): IconImageBuilder;
-  onFocusPolicyChanged(body: string): IconImageBuilder;
-  onFrameCountChanged(body: string): IconImageBuilder;
-  onHeightChanged(body: string): IconImageBuilder;
-  onHorizontalAlignmentChanged(body: string): IconImageBuilder;
-  onImplicitHeightChanged(body: string): IconImageBuilder;
-  onImplicitWidthChanged(body: string): IconImageBuilder;
-  onMipmapChanged(body: string): IconImageBuilder;
-  onMirrorChanged(body: string): IconImageBuilder;
-  onMirrorVerticallyChanged(body: string): IconImageBuilder;
-  onNameChanged(body: string): IconImageBuilder;
-  onObjectNameChanged(body: string): IconImageBuilder;
-  onOpacityChanged(body: string): IconImageBuilder;
-  onPaintedGeometryChanged(body: string): IconImageBuilder;
-  onPaletteChanged(body: string): IconImageBuilder;
-  onPaletteCreated(body: string): IconImageBuilder;
-  onParentChanged(body: string): IconImageBuilder;
-  onProgressChanged(body: string): IconImageBuilder;
-  onRetainWhileLoadingChanged(body: string): IconImageBuilder;
-  onRotationChanged(body: string): IconImageBuilder;
-  onScaleChanged(body: string): IconImageBuilder;
-  onSmoothChanged(body: string): IconImageBuilder;
-  onSourceChanged(body: string): IconImageBuilder;
-  onSourceClipRectChanged(body: string): IconImageBuilder;
-  onSourceSizeChanged(body: string): IconImageBuilder;
-  onStateChanged(body: string): IconImageBuilder;
-  onStatusChanged(body: string): IconImageBuilder;
-  onTransformOriginChanged(body: string): IconImageBuilder;
-  onVerticalAlignmentChanged(body: string): IconImageBuilder;
-  onVisibleChanged(body: string): IconImageBuilder;
-  onVisibleChildrenChanged(body: string): IconImageBuilder;
-  onWidthChanged(body: string): IconImageBuilder;
-  onWindowChanged(body: string): IconImageBuilder;
-  onXChanged(body: string): IconImageBuilder;
-  onYChanged(body: string): IconImageBuilder;
-  onZChanged(body: string): IconImageBuilder;
+  onActiveFocusChanged(handler: DslSignalHandlerValue): IconImageBuilder;
+  onActiveFocusOnTabChanged(handler: DslSignalHandlerValue): IconImageBuilder;
+  onAntialiasingChanged(handler: DslSignalHandlerValue): IconImageBuilder;
+  onAsynchronousChanged(handler: DslSignalHandlerValue): IconImageBuilder;
+  onAutoTransformChanged(handler: DslSignalHandlerValue): IconImageBuilder;
+  onBaselineOffsetChanged(handler: DslSignalHandlerValue): IconImageBuilder;
+  onCacheChanged(handler: DslSignalHandlerValue): IconImageBuilder;
+  onChildrenChanged(handler: DslSignalHandlerValue): IconImageBuilder;
+  onChildrenRectChanged(handler: DslSignalHandlerValue): IconImageBuilder;
+  onClipChanged(handler: DslSignalHandlerValue): IconImageBuilder;
+  onColorChanged(handler: DslSignalHandlerValue): IconImageBuilder;
+  onColorSpaceChanged(handler: DslSignalHandlerValue): IconImageBuilder;
+  onContainmentMaskChanged(handler: DslSignalHandlerValue): IconImageBuilder;
+  onCurrentFrameChanged(handler: DslSignalHandlerValue): IconImageBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): IconImageBuilder;
+  onFillModeChanged(handler: DslSignalHandlerValue): IconImageBuilder;
+  onFocusChanged(handler: DslSignalHandlerValue): IconImageBuilder;
+  onFocusPolicyChanged(handler: DslSignalHandlerValue): IconImageBuilder;
+  onFrameCountChanged(handler: DslSignalHandlerValue): IconImageBuilder;
+  onHeightChanged(handler: DslSignalHandlerValue): IconImageBuilder;
+  onHorizontalAlignmentChanged(handler: DslSignalHandlerValue): IconImageBuilder;
+  onImplicitHeightChanged(handler: DslSignalHandlerValue): IconImageBuilder;
+  onImplicitWidthChanged(handler: DslSignalHandlerValue): IconImageBuilder;
+  onMipmapChanged(handler: DslSignalHandlerValue): IconImageBuilder;
+  onMirrorChanged(handler: DslSignalHandlerValue): IconImageBuilder;
+  onMirrorVerticallyChanged(handler: DslSignalHandlerValue): IconImageBuilder;
+  onNameChanged(handler: DslSignalHandlerValue): IconImageBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): IconImageBuilder;
+  onOpacityChanged(handler: DslSignalHandlerValue): IconImageBuilder;
+  onPaintedGeometryChanged(handler: DslSignalHandlerValue): IconImageBuilder;
+  onPaletteChanged(handler: DslSignalHandlerValue): IconImageBuilder;
+  onPaletteCreated(handler: DslSignalHandlerValue): IconImageBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): IconImageBuilder;
+  onProgressChanged(handler: DslSignalHandlerValue): IconImageBuilder;
+  onRetainWhileLoadingChanged(handler: DslSignalHandlerValue): IconImageBuilder;
+  onRotationChanged(handler: DslSignalHandlerValue): IconImageBuilder;
+  onScaleChanged(handler: DslSignalHandlerValue): IconImageBuilder;
+  onSmoothChanged(handler: DslSignalHandlerValue): IconImageBuilder;
+  onSourceChanged(handler: DslSignalHandlerValue): IconImageBuilder;
+  onSourceClipRectChanged(handler: DslSignalHandlerValue): IconImageBuilder;
+  onSourceSizeChanged(handler: DslSignalHandlerValue): IconImageBuilder;
+  onStateChanged(handler: DslSignalHandlerValue): IconImageBuilder;
+  onStatusChanged(handler: DslSignalHandlerValue): IconImageBuilder;
+  onTransformOriginChanged(handler: DslSignalHandlerValue): IconImageBuilder;
+  onVerticalAlignmentChanged(handler: DslSignalHandlerValue): IconImageBuilder;
+  onVisibleChanged(handler: DslSignalHandlerValue): IconImageBuilder;
+  onVisibleChildrenChanged(handler: DslSignalHandlerValue): IconImageBuilder;
+  onWidthChanged(handler: DslSignalHandlerValue): IconImageBuilder;
+  onWindowChanged(handler: DslSignalHandlerValue): IconImageBuilder;
+  onXChanged(handler: DslSignalHandlerValue): IconImageBuilder;
+  onYChanged(handler: DslSignalHandlerValue): IconImageBuilder;
+  onZChanged(handler: DslSignalHandlerValue): IconImageBuilder;
   anchors(setup: (b: AnchorsBuilder) => void): IconImageBuilder;
   layer(setup: (b: LayerBuilder) => void): IconImageBuilder;
 }

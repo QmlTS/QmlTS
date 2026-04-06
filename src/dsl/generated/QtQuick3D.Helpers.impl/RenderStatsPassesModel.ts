@@ -2,36 +2,37 @@
 // Type: RenderStatsPassesModel
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import type { DslSignalHandlerValue, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface RenderStatsPassesModelBuilder {
   id(id: string): RenderStatsPassesModelBuilder;
   child(obj: QmlObjectBuilder): RenderStatsPassesModelBuilder;
+  children(...objs: QmlObjectBuilder[]): RenderStatsPassesModelBuilder;
 
   objectName(value: string): RenderStatsPassesModelBuilder;
   objectNameBind(expr: string): RenderStatsPassesModelBuilder;
   passData(value: string): RenderStatsPassesModelBuilder;
   passDataBind(expr: string): RenderStatsPassesModelBuilder;
-  onColumnsAboutToBeInserted(body: string): RenderStatsPassesModelBuilder;
-  onColumnsAboutToBeMoved(body: string): RenderStatsPassesModelBuilder;
-  onColumnsAboutToBeRemoved(body: string): RenderStatsPassesModelBuilder;
-  onColumnsInserted(body: string): RenderStatsPassesModelBuilder;
-  onColumnsMoved(body: string): RenderStatsPassesModelBuilder;
-  onColumnsRemoved(body: string): RenderStatsPassesModelBuilder;
-  onDataChanged(body: string): RenderStatsPassesModelBuilder;
-  onHeaderDataChanged(body: string): RenderStatsPassesModelBuilder;
-  onLayoutAboutToBeChanged(body: string): RenderStatsPassesModelBuilder;
-  onLayoutChanged(body: string): RenderStatsPassesModelBuilder;
-  onModelAboutToBeReset(body: string): RenderStatsPassesModelBuilder;
-  onModelReset(body: string): RenderStatsPassesModelBuilder;
-  onObjectNameChanged(body: string): RenderStatsPassesModelBuilder;
-  onPassDataChanged(body: string): RenderStatsPassesModelBuilder;
-  onRowsAboutToBeInserted(body: string): RenderStatsPassesModelBuilder;
-  onRowsAboutToBeMoved(body: string): RenderStatsPassesModelBuilder;
-  onRowsAboutToBeRemoved(body: string): RenderStatsPassesModelBuilder;
-  onRowsInserted(body: string): RenderStatsPassesModelBuilder;
-  onRowsMoved(body: string): RenderStatsPassesModelBuilder;
-  onRowsRemoved(body: string): RenderStatsPassesModelBuilder;
+  onColumnsAboutToBeInserted(handler: DslSignalHandlerValue): RenderStatsPassesModelBuilder;
+  onColumnsAboutToBeMoved(handler: DslSignalHandlerValue): RenderStatsPassesModelBuilder;
+  onColumnsAboutToBeRemoved(handler: DslSignalHandlerValue): RenderStatsPassesModelBuilder;
+  onColumnsInserted(handler: DslSignalHandlerValue): RenderStatsPassesModelBuilder;
+  onColumnsMoved(handler: DslSignalHandlerValue): RenderStatsPassesModelBuilder;
+  onColumnsRemoved(handler: DslSignalHandlerValue): RenderStatsPassesModelBuilder;
+  onDataChanged(handler: DslSignalHandlerValue): RenderStatsPassesModelBuilder;
+  onHeaderDataChanged(handler: DslSignalHandlerValue): RenderStatsPassesModelBuilder;
+  onLayoutAboutToBeChanged(handler: DslSignalHandlerValue): RenderStatsPassesModelBuilder;
+  onLayoutChanged(handler: DslSignalHandlerValue): RenderStatsPassesModelBuilder;
+  onModelAboutToBeReset(handler: DslSignalHandlerValue): RenderStatsPassesModelBuilder;
+  onModelReset(handler: DslSignalHandlerValue): RenderStatsPassesModelBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): RenderStatsPassesModelBuilder;
+  onPassDataChanged(handler: DslSignalHandlerValue): RenderStatsPassesModelBuilder;
+  onRowsAboutToBeInserted(handler: DslSignalHandlerValue): RenderStatsPassesModelBuilder;
+  onRowsAboutToBeMoved(handler: DslSignalHandlerValue): RenderStatsPassesModelBuilder;
+  onRowsAboutToBeRemoved(handler: DslSignalHandlerValue): RenderStatsPassesModelBuilder;
+  onRowsInserted(handler: DslSignalHandlerValue): RenderStatsPassesModelBuilder;
+  onRowsMoved(handler: DslSignalHandlerValue): RenderStatsPassesModelBuilder;
+  onRowsRemoved(handler: DslSignalHandlerValue): RenderStatsPassesModelBuilder;
 }
 
 const RENDERSTATSPASSESMODEL_META: TypeMetadata = {

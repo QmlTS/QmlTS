@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlEnumToken,
   QmlObjectBuilder,
   QmlValue,
@@ -19,6 +20,7 @@ import type { ItemParticleAttachedBuilder } from './QQuickItemParticleAttached.j
 export interface AffectorBuilder {
   id(id: string): AffectorBuilder;
   child(obj: QmlObjectBuilder): AffectorBuilder;
+  children(...objs: QmlObjectBuilder[]): AffectorBuilder;
 
   acceleration(value: QmlValue): AffectorBuilder;
   accelerationBind(expr: string): AffectorBuilder;
@@ -88,48 +90,48 @@ export interface AffectorBuilder {
   yBind(expr: string): AffectorBuilder;
   z(value: number): AffectorBuilder;
   zBind(expr: string): AffectorBuilder;
-  onAccelerationChanged(body: string): AffectorBuilder;
-  onActiveFocusChanged(body: string): AffectorBuilder;
-  onActiveFocusOnTabChanged(body: string): AffectorBuilder;
-  onAffectParticles(body: string): AffectorBuilder;
-  onAffected(body: string): AffectorBuilder;
-  onAntialiasingChanged(body: string): AffectorBuilder;
-  onBaselineOffsetChanged(body: string): AffectorBuilder;
-  onChildrenChanged(body: string): AffectorBuilder;
-  onChildrenRectChanged(body: string): AffectorBuilder;
-  onClipChanged(body: string): AffectorBuilder;
-  onContainmentMaskChanged(body: string): AffectorBuilder;
-  onEnabledChanged(body: string): AffectorBuilder;
-  onFocusChanged(body: string): AffectorBuilder;
-  onFocusPolicyChanged(body: string): AffectorBuilder;
-  onGroupsChanged(body: string): AffectorBuilder;
-  onHeightChanged(body: string): AffectorBuilder;
-  onImplicitHeightChanged(body: string): AffectorBuilder;
-  onImplicitWidthChanged(body: string): AffectorBuilder;
-  onObjectNameChanged(body: string): AffectorBuilder;
-  onOnceChanged(body: string): AffectorBuilder;
-  onOpacityChanged(body: string): AffectorBuilder;
-  onPaletteChanged(body: string): AffectorBuilder;
-  onPaletteCreated(body: string): AffectorBuilder;
-  onParentChanged(body: string): AffectorBuilder;
-  onPositionChanged(body: string): AffectorBuilder;
-  onRelativeChanged(body: string): AffectorBuilder;
-  onRotationChanged(body: string): AffectorBuilder;
-  onScaleChanged(body: string): AffectorBuilder;
-  onShapeChanged(body: string): AffectorBuilder;
-  onSmoothChanged(body: string): AffectorBuilder;
-  onStateChanged(body: string): AffectorBuilder;
-  onSystemChanged(body: string): AffectorBuilder;
-  onTransformOriginChanged(body: string): AffectorBuilder;
-  onVelocityChanged(body: string): AffectorBuilder;
-  onVisibleChanged(body: string): AffectorBuilder;
-  onVisibleChildrenChanged(body: string): AffectorBuilder;
-  onWhenCollidingWithChanged(body: string): AffectorBuilder;
-  onWidthChanged(body: string): AffectorBuilder;
-  onWindowChanged(body: string): AffectorBuilder;
-  onXChanged(body: string): AffectorBuilder;
-  onYChanged(body: string): AffectorBuilder;
-  onZChanged(body: string): AffectorBuilder;
+  onAccelerationChanged(handler: DslSignalHandlerValue): AffectorBuilder;
+  onActiveFocusChanged(handler: DslSignalHandlerValue): AffectorBuilder;
+  onActiveFocusOnTabChanged(handler: DslSignalHandlerValue): AffectorBuilder;
+  onAffectParticles(handler: DslSignalHandlerValue): AffectorBuilder;
+  onAffected(handler: DslSignalHandlerValue): AffectorBuilder;
+  onAntialiasingChanged(handler: DslSignalHandlerValue): AffectorBuilder;
+  onBaselineOffsetChanged(handler: DslSignalHandlerValue): AffectorBuilder;
+  onChildrenChanged(handler: DslSignalHandlerValue): AffectorBuilder;
+  onChildrenRectChanged(handler: DslSignalHandlerValue): AffectorBuilder;
+  onClipChanged(handler: DslSignalHandlerValue): AffectorBuilder;
+  onContainmentMaskChanged(handler: DslSignalHandlerValue): AffectorBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): AffectorBuilder;
+  onFocusChanged(handler: DslSignalHandlerValue): AffectorBuilder;
+  onFocusPolicyChanged(handler: DslSignalHandlerValue): AffectorBuilder;
+  onGroupsChanged(handler: DslSignalHandlerValue): AffectorBuilder;
+  onHeightChanged(handler: DslSignalHandlerValue): AffectorBuilder;
+  onImplicitHeightChanged(handler: DslSignalHandlerValue): AffectorBuilder;
+  onImplicitWidthChanged(handler: DslSignalHandlerValue): AffectorBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): AffectorBuilder;
+  onOnceChanged(handler: DslSignalHandlerValue): AffectorBuilder;
+  onOpacityChanged(handler: DslSignalHandlerValue): AffectorBuilder;
+  onPaletteChanged(handler: DslSignalHandlerValue): AffectorBuilder;
+  onPaletteCreated(handler: DslSignalHandlerValue): AffectorBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): AffectorBuilder;
+  onPositionChanged(handler: DslSignalHandlerValue): AffectorBuilder;
+  onRelativeChanged(handler: DslSignalHandlerValue): AffectorBuilder;
+  onRotationChanged(handler: DslSignalHandlerValue): AffectorBuilder;
+  onScaleChanged(handler: DslSignalHandlerValue): AffectorBuilder;
+  onShapeChanged(handler: DslSignalHandlerValue): AffectorBuilder;
+  onSmoothChanged(handler: DslSignalHandlerValue): AffectorBuilder;
+  onStateChanged(handler: DslSignalHandlerValue): AffectorBuilder;
+  onSystemChanged(handler: DslSignalHandlerValue): AffectorBuilder;
+  onTransformOriginChanged(handler: DslSignalHandlerValue): AffectorBuilder;
+  onVelocityChanged(handler: DslSignalHandlerValue): AffectorBuilder;
+  onVisibleChanged(handler: DslSignalHandlerValue): AffectorBuilder;
+  onVisibleChildrenChanged(handler: DslSignalHandlerValue): AffectorBuilder;
+  onWhenCollidingWithChanged(handler: DslSignalHandlerValue): AffectorBuilder;
+  onWidthChanged(handler: DslSignalHandlerValue): AffectorBuilder;
+  onWindowChanged(handler: DslSignalHandlerValue): AffectorBuilder;
+  onXChanged(handler: DslSignalHandlerValue): AffectorBuilder;
+  onYChanged(handler: DslSignalHandlerValue): AffectorBuilder;
+  onZChanged(handler: DslSignalHandlerValue): AffectorBuilder;
   anchors(setup: (b: AnchorsBuilder) => void): AffectorBuilder;
   layer(setup: (b: LayerBuilder) => void): AffectorBuilder;
   itemParticle(setup: (b: ItemParticleAttachedBuilder) => void): AffectorBuilder;

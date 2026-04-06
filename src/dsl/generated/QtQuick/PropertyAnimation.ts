@@ -2,7 +2,12 @@
 // Type: PropertyAnimation
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { QtObjectBuilder } from '../QML/QtObject.js';
 import type { AccessibleAttachedBuilder } from './Accessible.js';
@@ -24,6 +29,7 @@ import type { ViewTransitionAttachedBuilder } from './ViewTransition.js';
 export interface PropertyAnimationBuilder {
   id(id: string): PropertyAnimationBuilder;
   child(obj: QmlObjectBuilder): PropertyAnimationBuilder;
+  children(...objs: QmlObjectBuilder[]): PropertyAnimationBuilder;
 
   alwaysRunToEnd(value: boolean): PropertyAnimationBuilder;
   alwaysRunToEndBind(expr: string): PropertyAnimationBuilder;
@@ -49,21 +55,21 @@ export interface PropertyAnimationBuilder {
   targetBind(expr: string): PropertyAnimationBuilder;
   to(value: QmlValue): PropertyAnimationBuilder;
   toBind(expr: string): PropertyAnimationBuilder;
-  onAlwaysRunToEndChanged(body: string): PropertyAnimationBuilder;
-  onDurationChanged(body: string): PropertyAnimationBuilder;
-  onEasingChanged(body: string): PropertyAnimationBuilder;
-  onFinished(body: string): PropertyAnimationBuilder;
-  onFromChanged(body: string): PropertyAnimationBuilder;
-  onLoopCountChanged(body: string): PropertyAnimationBuilder;
-  onObjectNameChanged(body: string): PropertyAnimationBuilder;
-  onPausedChanged(body: string): PropertyAnimationBuilder;
-  onPropertiesChanged(body: string): PropertyAnimationBuilder;
-  onPropertyChanged(body: string): PropertyAnimationBuilder;
-  onRunningChanged(body: string): PropertyAnimationBuilder;
-  onStarted(body: string): PropertyAnimationBuilder;
-  onStopped(body: string): PropertyAnimationBuilder;
-  onTargetChanged(body: string): PropertyAnimationBuilder;
-  onToChanged(body: string): PropertyAnimationBuilder;
+  onAlwaysRunToEndChanged(handler: DslSignalHandlerValue): PropertyAnimationBuilder;
+  onDurationChanged(handler: DslSignalHandlerValue): PropertyAnimationBuilder;
+  onEasingChanged(handler: DslSignalHandlerValue): PropertyAnimationBuilder;
+  onFinished(handler: DslSignalHandlerValue): PropertyAnimationBuilder;
+  onFromChanged(handler: DslSignalHandlerValue): PropertyAnimationBuilder;
+  onLoopCountChanged(handler: DslSignalHandlerValue): PropertyAnimationBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): PropertyAnimationBuilder;
+  onPausedChanged(handler: DslSignalHandlerValue): PropertyAnimationBuilder;
+  onPropertiesChanged(handler: DslSignalHandlerValue): PropertyAnimationBuilder;
+  onPropertyChanged(handler: DslSignalHandlerValue): PropertyAnimationBuilder;
+  onRunningChanged(handler: DslSignalHandlerValue): PropertyAnimationBuilder;
+  onStarted(handler: DslSignalHandlerValue): PropertyAnimationBuilder;
+  onStopped(handler: DslSignalHandlerValue): PropertyAnimationBuilder;
+  onTargetChanged(handler: DslSignalHandlerValue): PropertyAnimationBuilder;
+  onToChanged(handler: DslSignalHandlerValue): PropertyAnimationBuilder;
   accessible(setup: (b: AccessibleAttachedBuilder) => void): PropertyAnimationBuilder;
   drag(setup: (b: DragAttachedBuilder) => void): PropertyAnimationBuilder;
   enterKey(setup: (b: EnterKeyAttachedBuilder) => void): PropertyAnimationBuilder;

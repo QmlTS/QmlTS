@@ -2,12 +2,18 @@
 // Type: PerVertexColorMaterial
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 import type { EffectBuilder } from '../Qt3D.Render/Effect.js';
 export interface PerVertexColorMaterialBuilder {
   id(id: string): PerVertexColorMaterialBuilder;
   child(obj: QmlObjectBuilder): PerVertexColorMaterialBuilder;
+  children(...objs: QmlObjectBuilder[]): PerVertexColorMaterialBuilder;
 
   effect(value: EffectBuilder): PerVertexColorMaterialBuilder;
   effectBind(expr: string): PerVertexColorMaterialBuilder;
@@ -19,14 +25,14 @@ export interface PerVertexColorMaterialBuilder {
   objectNameBind(expr: string): PerVertexColorMaterialBuilder;
   parent(value: QmlValue): PerVertexColorMaterialBuilder;
   parentBind(expr: string): PerVertexColorMaterialBuilder;
-  onAddedToEntity(body: string): PerVertexColorMaterialBuilder;
-  onEffectChanged(body: string): PerVertexColorMaterialBuilder;
-  onEnabledChanged(body: string): PerVertexColorMaterialBuilder;
-  onNodeDestroyed(body: string): PerVertexColorMaterialBuilder;
-  onObjectNameChanged(body: string): PerVertexColorMaterialBuilder;
-  onParentChanged(body: string): PerVertexColorMaterialBuilder;
-  onRemovedFromEntity(body: string): PerVertexColorMaterialBuilder;
-  onShareableChanged(body: string): PerVertexColorMaterialBuilder;
+  onAddedToEntity(handler: DslSignalHandlerValue): PerVertexColorMaterialBuilder;
+  onEffectChanged(handler: DslSignalHandlerValue): PerVertexColorMaterialBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): PerVertexColorMaterialBuilder;
+  onNodeDestroyed(handler: DslSignalHandlerValue): PerVertexColorMaterialBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): PerVertexColorMaterialBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): PerVertexColorMaterialBuilder;
+  onRemovedFromEntity(handler: DslSignalHandlerValue): PerVertexColorMaterialBuilder;
+  onShareableChanged(handler: DslSignalHandlerValue): PerVertexColorMaterialBuilder;
 }
 
 const PERVERTEXCOLORMATERIAL_META: TypeMetadata = {

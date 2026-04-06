@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlColor,
   QmlEnumToken,
   QmlObjectBuilder,
@@ -17,6 +18,7 @@ import type { LayerBuilder } from '../QtQuick/QQuickItemLayer.js';
 export interface BusyIndicatorImplBuilder {
   id(id: string): BusyIndicatorImplBuilder;
   child(obj: QmlObjectBuilder): BusyIndicatorImplBuilder;
+  children(...objs: QmlObjectBuilder[]): BusyIndicatorImplBuilder;
 
   activeFocusOnTab(value: boolean): BusyIndicatorImplBuilder;
   activeFocusOnTabBind(expr: string): BusyIndicatorImplBuilder;
@@ -72,37 +74,37 @@ export interface BusyIndicatorImplBuilder {
   yBind(expr: string): BusyIndicatorImplBuilder;
   z(value: number): BusyIndicatorImplBuilder;
   zBind(expr: string): BusyIndicatorImplBuilder;
-  onActiveFocusChanged(body: string): BusyIndicatorImplBuilder;
-  onActiveFocusOnTabChanged(body: string): BusyIndicatorImplBuilder;
-  onAntialiasingChanged(body: string): BusyIndicatorImplBuilder;
-  onBaselineOffsetChanged(body: string): BusyIndicatorImplBuilder;
-  onChildrenChanged(body: string): BusyIndicatorImplBuilder;
-  onChildrenRectChanged(body: string): BusyIndicatorImplBuilder;
-  onClipChanged(body: string): BusyIndicatorImplBuilder;
-  onContainmentMaskChanged(body: string): BusyIndicatorImplBuilder;
-  onEnabledChanged(body: string): BusyIndicatorImplBuilder;
-  onFocusChanged(body: string): BusyIndicatorImplBuilder;
-  onFocusPolicyChanged(body: string): BusyIndicatorImplBuilder;
-  onHeightChanged(body: string): BusyIndicatorImplBuilder;
-  onImplicitHeightChanged(body: string): BusyIndicatorImplBuilder;
-  onImplicitWidthChanged(body: string): BusyIndicatorImplBuilder;
-  onObjectNameChanged(body: string): BusyIndicatorImplBuilder;
-  onOpacityChanged(body: string): BusyIndicatorImplBuilder;
-  onPaletteChanged(body: string): BusyIndicatorImplBuilder;
-  onPaletteCreated(body: string): BusyIndicatorImplBuilder;
-  onParentChanged(body: string): BusyIndicatorImplBuilder;
-  onRotationChanged(body: string): BusyIndicatorImplBuilder;
-  onScaleChanged(body: string): BusyIndicatorImplBuilder;
-  onSmoothChanged(body: string): BusyIndicatorImplBuilder;
-  onStateChanged(body: string): BusyIndicatorImplBuilder;
-  onTransformOriginChanged(body: string): BusyIndicatorImplBuilder;
-  onVisibleChanged(body: string): BusyIndicatorImplBuilder;
-  onVisibleChildrenChanged(body: string): BusyIndicatorImplBuilder;
-  onWidthChanged(body: string): BusyIndicatorImplBuilder;
-  onWindowChanged(body: string): BusyIndicatorImplBuilder;
-  onXChanged(body: string): BusyIndicatorImplBuilder;
-  onYChanged(body: string): BusyIndicatorImplBuilder;
-  onZChanged(body: string): BusyIndicatorImplBuilder;
+  onActiveFocusChanged(handler: DslSignalHandlerValue): BusyIndicatorImplBuilder;
+  onActiveFocusOnTabChanged(handler: DslSignalHandlerValue): BusyIndicatorImplBuilder;
+  onAntialiasingChanged(handler: DslSignalHandlerValue): BusyIndicatorImplBuilder;
+  onBaselineOffsetChanged(handler: DslSignalHandlerValue): BusyIndicatorImplBuilder;
+  onChildrenChanged(handler: DslSignalHandlerValue): BusyIndicatorImplBuilder;
+  onChildrenRectChanged(handler: DslSignalHandlerValue): BusyIndicatorImplBuilder;
+  onClipChanged(handler: DslSignalHandlerValue): BusyIndicatorImplBuilder;
+  onContainmentMaskChanged(handler: DslSignalHandlerValue): BusyIndicatorImplBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): BusyIndicatorImplBuilder;
+  onFocusChanged(handler: DslSignalHandlerValue): BusyIndicatorImplBuilder;
+  onFocusPolicyChanged(handler: DslSignalHandlerValue): BusyIndicatorImplBuilder;
+  onHeightChanged(handler: DslSignalHandlerValue): BusyIndicatorImplBuilder;
+  onImplicitHeightChanged(handler: DslSignalHandlerValue): BusyIndicatorImplBuilder;
+  onImplicitWidthChanged(handler: DslSignalHandlerValue): BusyIndicatorImplBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): BusyIndicatorImplBuilder;
+  onOpacityChanged(handler: DslSignalHandlerValue): BusyIndicatorImplBuilder;
+  onPaletteChanged(handler: DslSignalHandlerValue): BusyIndicatorImplBuilder;
+  onPaletteCreated(handler: DslSignalHandlerValue): BusyIndicatorImplBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): BusyIndicatorImplBuilder;
+  onRotationChanged(handler: DslSignalHandlerValue): BusyIndicatorImplBuilder;
+  onScaleChanged(handler: DslSignalHandlerValue): BusyIndicatorImplBuilder;
+  onSmoothChanged(handler: DslSignalHandlerValue): BusyIndicatorImplBuilder;
+  onStateChanged(handler: DslSignalHandlerValue): BusyIndicatorImplBuilder;
+  onTransformOriginChanged(handler: DslSignalHandlerValue): BusyIndicatorImplBuilder;
+  onVisibleChanged(handler: DslSignalHandlerValue): BusyIndicatorImplBuilder;
+  onVisibleChildrenChanged(handler: DslSignalHandlerValue): BusyIndicatorImplBuilder;
+  onWidthChanged(handler: DslSignalHandlerValue): BusyIndicatorImplBuilder;
+  onWindowChanged(handler: DslSignalHandlerValue): BusyIndicatorImplBuilder;
+  onXChanged(handler: DslSignalHandlerValue): BusyIndicatorImplBuilder;
+  onYChanged(handler: DslSignalHandlerValue): BusyIndicatorImplBuilder;
+  onZChanged(handler: DslSignalHandlerValue): BusyIndicatorImplBuilder;
   anchors(setup: (b: AnchorsBuilder) => void): BusyIndicatorImplBuilder;
   layer(setup: (b: LayerBuilder) => void): BusyIndicatorImplBuilder;
 }

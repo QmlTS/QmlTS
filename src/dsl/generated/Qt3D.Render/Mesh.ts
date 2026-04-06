@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlEnumToken,
   QmlObjectBuilder,
   QmlUrl,
@@ -16,6 +17,7 @@ import type { GeometryViewBuilder } from '../Qt3D.Core/GeometryView.js';
 export interface MeshBuilder {
   id(id: string): MeshBuilder;
   child(obj: QmlObjectBuilder): MeshBuilder;
+  children(...objs: QmlObjectBuilder[]): MeshBuilder;
 
   enabled(value: boolean): MeshBuilder;
   enabledBind(expr: string): MeshBuilder;
@@ -59,34 +61,34 @@ export interface MeshBuilder {
   verticesPerPatchBind(expr: string): MeshBuilder;
   view(value: GeometryViewBuilder): MeshBuilder;
   viewBind(expr: string): MeshBuilder;
-  onAddedToEntity(body: string): MeshBuilder;
-  onEnabledChanged(body: string): MeshBuilder;
-  onFirstInstanceChanged(body: string): MeshBuilder;
-  onFirstVertexChanged(body: string): MeshBuilder;
-  onGeometryChanged(body: string): MeshBuilder;
-  onImplicitMaxPointChanged(body: string): MeshBuilder;
-  onImplicitMinPointChanged(body: string): MeshBuilder;
-  onImplicitPointsValidChanged(body: string): MeshBuilder;
-  onIndexBufferByteOffsetChanged(body: string): MeshBuilder;
-  onIndexOffsetChanged(body: string): MeshBuilder;
-  onInstanceCountChanged(body: string): MeshBuilder;
-  onMaxPointChanged(body: string): MeshBuilder;
-  onMeshNameChanged(body: string): MeshBuilder;
-  onMinPointChanged(body: string): MeshBuilder;
-  onNodeDestroyed(body: string): MeshBuilder;
-  onObjectNameChanged(body: string): MeshBuilder;
-  onParentChanged(body: string): MeshBuilder;
-  onPrimitiveRestartEnabledChanged(body: string): MeshBuilder;
-  onPrimitiveTypeChanged(body: string): MeshBuilder;
-  onRemovedFromEntity(body: string): MeshBuilder;
-  onRestartIndexValueChanged(body: string): MeshBuilder;
-  onShareableChanged(body: string): MeshBuilder;
-  onSortIndexChanged(body: string): MeshBuilder;
-  onSourceChanged(body: string): MeshBuilder;
-  onStatusChanged(body: string): MeshBuilder;
-  onVertexCountChanged(body: string): MeshBuilder;
-  onVerticesPerPatchChanged(body: string): MeshBuilder;
-  onViewChanged(body: string): MeshBuilder;
+  onAddedToEntity(handler: DslSignalHandlerValue): MeshBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): MeshBuilder;
+  onFirstInstanceChanged(handler: DslSignalHandlerValue): MeshBuilder;
+  onFirstVertexChanged(handler: DslSignalHandlerValue): MeshBuilder;
+  onGeometryChanged(handler: DslSignalHandlerValue): MeshBuilder;
+  onImplicitMaxPointChanged(handler: DslSignalHandlerValue): MeshBuilder;
+  onImplicitMinPointChanged(handler: DslSignalHandlerValue): MeshBuilder;
+  onImplicitPointsValidChanged(handler: DslSignalHandlerValue): MeshBuilder;
+  onIndexBufferByteOffsetChanged(handler: DslSignalHandlerValue): MeshBuilder;
+  onIndexOffsetChanged(handler: DslSignalHandlerValue): MeshBuilder;
+  onInstanceCountChanged(handler: DslSignalHandlerValue): MeshBuilder;
+  onMaxPointChanged(handler: DslSignalHandlerValue): MeshBuilder;
+  onMeshNameChanged(handler: DslSignalHandlerValue): MeshBuilder;
+  onMinPointChanged(handler: DslSignalHandlerValue): MeshBuilder;
+  onNodeDestroyed(handler: DslSignalHandlerValue): MeshBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): MeshBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): MeshBuilder;
+  onPrimitiveRestartEnabledChanged(handler: DslSignalHandlerValue): MeshBuilder;
+  onPrimitiveTypeChanged(handler: DslSignalHandlerValue): MeshBuilder;
+  onRemovedFromEntity(handler: DslSignalHandlerValue): MeshBuilder;
+  onRestartIndexValueChanged(handler: DslSignalHandlerValue): MeshBuilder;
+  onShareableChanged(handler: DslSignalHandlerValue): MeshBuilder;
+  onSortIndexChanged(handler: DslSignalHandlerValue): MeshBuilder;
+  onSourceChanged(handler: DslSignalHandlerValue): MeshBuilder;
+  onStatusChanged(handler: DslSignalHandlerValue): MeshBuilder;
+  onVertexCountChanged(handler: DslSignalHandlerValue): MeshBuilder;
+  onVerticesPerPatchChanged(handler: DslSignalHandlerValue): MeshBuilder;
+  onViewChanged(handler: DslSignalHandlerValue): MeshBuilder;
 }
 
 const MESH_META: TypeMetadata = {

@@ -2,11 +2,12 @@
 // Type: CategoryRange
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import type { DslSignalHandlerValue, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 export interface CategoryRangeBuilder {
   id(id: string): CategoryRangeBuilder;
   child(obj: QmlObjectBuilder): CategoryRangeBuilder;
+  children(...objs: QmlObjectBuilder[]): CategoryRangeBuilder;
 
   endValue(value: number): CategoryRangeBuilder;
   endValueBind(expr: string): CategoryRangeBuilder;
@@ -14,7 +15,7 @@ export interface CategoryRangeBuilder {
   labelBind(expr: string): CategoryRangeBuilder;
   objectName(value: string): CategoryRangeBuilder;
   objectNameBind(expr: string): CategoryRangeBuilder;
-  onObjectNameChanged(body: string): CategoryRangeBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): CategoryRangeBuilder;
 }
 
 const CATEGORYRANGE_META: TypeMetadata = {

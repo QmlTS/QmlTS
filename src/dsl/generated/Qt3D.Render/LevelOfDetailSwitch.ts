@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlEnumToken,
   QmlObjectBuilder,
   QmlValue,
@@ -13,6 +14,7 @@ import type { CameraBuilder } from './Camera.js';
 export interface LevelOfDetailSwitchBuilder {
   id(id: string): LevelOfDetailSwitchBuilder;
   child(obj: QmlObjectBuilder): LevelOfDetailSwitchBuilder;
+  children(...objs: QmlObjectBuilder[]): LevelOfDetailSwitchBuilder;
 
   camera(value: CameraBuilder): LevelOfDetailSwitchBuilder;
   cameraBind(expr: string): LevelOfDetailSwitchBuilder;
@@ -32,18 +34,18 @@ export interface LevelOfDetailSwitchBuilder {
   thresholdsBind(expr: string): LevelOfDetailSwitchBuilder;
   volumeOverride(value: QmlValue): LevelOfDetailSwitchBuilder;
   volumeOverrideBind(expr: string): LevelOfDetailSwitchBuilder;
-  onAddedToEntity(body: string): LevelOfDetailSwitchBuilder;
-  onCameraChanged(body: string): LevelOfDetailSwitchBuilder;
-  onCurrentIndexChanged(body: string): LevelOfDetailSwitchBuilder;
-  onEnabledChanged(body: string): LevelOfDetailSwitchBuilder;
-  onNodeDestroyed(body: string): LevelOfDetailSwitchBuilder;
-  onObjectNameChanged(body: string): LevelOfDetailSwitchBuilder;
-  onParentChanged(body: string): LevelOfDetailSwitchBuilder;
-  onRemovedFromEntity(body: string): LevelOfDetailSwitchBuilder;
-  onShareableChanged(body: string): LevelOfDetailSwitchBuilder;
-  onThresholdTypeChanged(body: string): LevelOfDetailSwitchBuilder;
-  onThresholdsChanged(body: string): LevelOfDetailSwitchBuilder;
-  onVolumeOverrideChanged(body: string): LevelOfDetailSwitchBuilder;
+  onAddedToEntity(handler: DslSignalHandlerValue): LevelOfDetailSwitchBuilder;
+  onCameraChanged(handler: DslSignalHandlerValue): LevelOfDetailSwitchBuilder;
+  onCurrentIndexChanged(handler: DslSignalHandlerValue): LevelOfDetailSwitchBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): LevelOfDetailSwitchBuilder;
+  onNodeDestroyed(handler: DslSignalHandlerValue): LevelOfDetailSwitchBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): LevelOfDetailSwitchBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): LevelOfDetailSwitchBuilder;
+  onRemovedFromEntity(handler: DslSignalHandlerValue): LevelOfDetailSwitchBuilder;
+  onShareableChanged(handler: DslSignalHandlerValue): LevelOfDetailSwitchBuilder;
+  onThresholdTypeChanged(handler: DslSignalHandlerValue): LevelOfDetailSwitchBuilder;
+  onThresholdsChanged(handler: DslSignalHandlerValue): LevelOfDetailSwitchBuilder;
+  onVolumeOverrideChanged(handler: DslSignalHandlerValue): LevelOfDetailSwitchBuilder;
 }
 
 const LEVELOFDETAILSWITCH_META: TypeMetadata = {

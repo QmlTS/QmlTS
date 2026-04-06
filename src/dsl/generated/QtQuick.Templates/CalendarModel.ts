@@ -2,7 +2,12 @@
 // Type: CalendarModel
 // Generated from Qt 6.11.0
 
-import type { QmlDate, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlDate,
+  QmlObjectBuilder,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { ContextMenuAttachedBuilder } from './ContextMenu.js';
 import type { ActionGroupAttachedBuilder } from './QQuickActionGroupAttached.js';
@@ -25,6 +30,7 @@ import type { SplitHandleAttachedBuilder } from './SplitHandle.js';
 export interface CalendarModelBuilder {
   id(id: string): CalendarModelBuilder;
   child(obj: QmlObjectBuilder): CalendarModelBuilder;
+  children(...objs: QmlObjectBuilder[]): CalendarModelBuilder;
 
   from(value: QmlDate): CalendarModelBuilder;
   fromBind(expr: string): CalendarModelBuilder;
@@ -32,28 +38,28 @@ export interface CalendarModelBuilder {
   objectNameBind(expr: string): CalendarModelBuilder;
   to(value: QmlDate): CalendarModelBuilder;
   toBind(expr: string): CalendarModelBuilder;
-  onColumnsAboutToBeInserted(body: string): CalendarModelBuilder;
-  onColumnsAboutToBeMoved(body: string): CalendarModelBuilder;
-  onColumnsAboutToBeRemoved(body: string): CalendarModelBuilder;
-  onColumnsInserted(body: string): CalendarModelBuilder;
-  onColumnsMoved(body: string): CalendarModelBuilder;
-  onColumnsRemoved(body: string): CalendarModelBuilder;
-  onCountChanged(body: string): CalendarModelBuilder;
-  onDataChanged(body: string): CalendarModelBuilder;
-  onFromChanged(body: string): CalendarModelBuilder;
-  onHeaderDataChanged(body: string): CalendarModelBuilder;
-  onLayoutAboutToBeChanged(body: string): CalendarModelBuilder;
-  onLayoutChanged(body: string): CalendarModelBuilder;
-  onModelAboutToBeReset(body: string): CalendarModelBuilder;
-  onModelReset(body: string): CalendarModelBuilder;
-  onObjectNameChanged(body: string): CalendarModelBuilder;
-  onRowsAboutToBeInserted(body: string): CalendarModelBuilder;
-  onRowsAboutToBeMoved(body: string): CalendarModelBuilder;
-  onRowsAboutToBeRemoved(body: string): CalendarModelBuilder;
-  onRowsInserted(body: string): CalendarModelBuilder;
-  onRowsMoved(body: string): CalendarModelBuilder;
-  onRowsRemoved(body: string): CalendarModelBuilder;
-  onToChanged(body: string): CalendarModelBuilder;
+  onColumnsAboutToBeInserted(handler: DslSignalHandlerValue): CalendarModelBuilder;
+  onColumnsAboutToBeMoved(handler: DslSignalHandlerValue): CalendarModelBuilder;
+  onColumnsAboutToBeRemoved(handler: DslSignalHandlerValue): CalendarModelBuilder;
+  onColumnsInserted(handler: DslSignalHandlerValue): CalendarModelBuilder;
+  onColumnsMoved(handler: DslSignalHandlerValue): CalendarModelBuilder;
+  onColumnsRemoved(handler: DslSignalHandlerValue): CalendarModelBuilder;
+  onCountChanged(handler: DslSignalHandlerValue): CalendarModelBuilder;
+  onDataChanged(handler: DslSignalHandlerValue): CalendarModelBuilder;
+  onFromChanged(handler: DslSignalHandlerValue): CalendarModelBuilder;
+  onHeaderDataChanged(handler: DslSignalHandlerValue): CalendarModelBuilder;
+  onLayoutAboutToBeChanged(handler: DslSignalHandlerValue): CalendarModelBuilder;
+  onLayoutChanged(handler: DslSignalHandlerValue): CalendarModelBuilder;
+  onModelAboutToBeReset(handler: DslSignalHandlerValue): CalendarModelBuilder;
+  onModelReset(handler: DslSignalHandlerValue): CalendarModelBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): CalendarModelBuilder;
+  onRowsAboutToBeInserted(handler: DslSignalHandlerValue): CalendarModelBuilder;
+  onRowsAboutToBeMoved(handler: DslSignalHandlerValue): CalendarModelBuilder;
+  onRowsAboutToBeRemoved(handler: DslSignalHandlerValue): CalendarModelBuilder;
+  onRowsInserted(handler: DslSignalHandlerValue): CalendarModelBuilder;
+  onRowsMoved(handler: DslSignalHandlerValue): CalendarModelBuilder;
+  onRowsRemoved(handler: DslSignalHandlerValue): CalendarModelBuilder;
+  onToChanged(handler: DslSignalHandlerValue): CalendarModelBuilder;
   actionGroup(setup: (b: ActionGroupAttachedBuilder) => void): CalendarModelBuilder;
   applicationWindow(setup: (b: ApplicationWindowAttachedBuilder) => void): CalendarModelBuilder;
   buttonGroup(setup: (b: ButtonGroupAttachedBuilder) => void): CalendarModelBuilder;

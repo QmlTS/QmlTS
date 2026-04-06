@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlEnumToken,
   QmlObjectBuilder,
   QmlValue,
@@ -12,6 +13,7 @@ import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface HistoryStateBuilder {
   id(id: string): HistoryStateBuilder;
   child(obj: QmlObjectBuilder): HistoryStateBuilder;
+  children(...objs: QmlObjectBuilder[]): HistoryStateBuilder;
 
   defaultState(value: QmlValue): HistoryStateBuilder;
   defaultStateBind(expr: string): HistoryStateBuilder;
@@ -21,13 +23,13 @@ export interface HistoryStateBuilder {
   historyTypeBind(expr: string): HistoryStateBuilder;
   objectName(value: string): HistoryStateBuilder;
   objectNameBind(expr: string): HistoryStateBuilder;
-  onActiveChanged(body: string): HistoryStateBuilder;
-  onDefaultStateChanged(body: string): HistoryStateBuilder;
-  onDefaultTransitionChanged(body: string): HistoryStateBuilder;
-  onEntered(body: string): HistoryStateBuilder;
-  onExited(body: string): HistoryStateBuilder;
-  onHistoryTypeChanged(body: string): HistoryStateBuilder;
-  onObjectNameChanged(body: string): HistoryStateBuilder;
+  onActiveChanged(handler: DslSignalHandlerValue): HistoryStateBuilder;
+  onDefaultStateChanged(handler: DslSignalHandlerValue): HistoryStateBuilder;
+  onDefaultTransitionChanged(handler: DslSignalHandlerValue): HistoryStateBuilder;
+  onEntered(handler: DslSignalHandlerValue): HistoryStateBuilder;
+  onExited(handler: DslSignalHandlerValue): HistoryStateBuilder;
+  onHistoryTypeChanged(handler: DslSignalHandlerValue): HistoryStateBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): HistoryStateBuilder;
 }
 
 const HISTORYSTATE_META: TypeMetadata = {

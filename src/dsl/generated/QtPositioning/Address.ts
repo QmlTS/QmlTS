@@ -2,11 +2,17 @@
 // Type: Address
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 export interface AddressBuilder {
   id(id: string): AddressBuilder;
   child(obj: QmlObjectBuilder): AddressBuilder;
+  children(...objs: QmlObjectBuilder[]): AddressBuilder;
 
   address(value: QmlValue): AddressBuilder;
   addressBind(expr: string): AddressBuilder;
@@ -32,18 +38,18 @@ export interface AddressBuilder {
   streetNumberBind(expr: string): AddressBuilder;
   text(value: string): AddressBuilder;
   textBind(expr: string): AddressBuilder;
-  onCityChanged(body: string): AddressBuilder;
-  onCountryChanged(body: string): AddressBuilder;
-  onCountryCodeChanged(body: string): AddressBuilder;
-  onCountyChanged(body: string): AddressBuilder;
-  onDistrictChanged(body: string): AddressBuilder;
-  onIsTextGeneratedChanged(body: string): AddressBuilder;
-  onObjectNameChanged(body: string): AddressBuilder;
-  onPostalCodeChanged(body: string): AddressBuilder;
-  onStateChanged(body: string): AddressBuilder;
-  onStreetChanged(body: string): AddressBuilder;
-  onStreetNumberChanged(body: string): AddressBuilder;
-  onTextChanged(body: string): AddressBuilder;
+  onCityChanged(handler: DslSignalHandlerValue): AddressBuilder;
+  onCountryChanged(handler: DslSignalHandlerValue): AddressBuilder;
+  onCountryCodeChanged(handler: DslSignalHandlerValue): AddressBuilder;
+  onCountyChanged(handler: DslSignalHandlerValue): AddressBuilder;
+  onDistrictChanged(handler: DslSignalHandlerValue): AddressBuilder;
+  onIsTextGeneratedChanged(handler: DslSignalHandlerValue): AddressBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): AddressBuilder;
+  onPostalCodeChanged(handler: DslSignalHandlerValue): AddressBuilder;
+  onStateChanged(handler: DslSignalHandlerValue): AddressBuilder;
+  onStreetChanged(handler: DslSignalHandlerValue): AddressBuilder;
+  onStreetNumberChanged(handler: DslSignalHandlerValue): AddressBuilder;
+  onTextChanged(handler: DslSignalHandlerValue): AddressBuilder;
 }
 
 const ADDRESS_META: TypeMetadata = {

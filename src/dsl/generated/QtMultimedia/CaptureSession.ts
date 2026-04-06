@@ -2,7 +2,12 @@
 // Type: CaptureSession
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 import type { QtObjectBuilder } from '../QML/QtObject.js';
 import type { AudioInputBuilder } from './AudioInput.js';
@@ -13,6 +18,7 @@ import type { WindowCaptureBuilder } from './WindowCapture.js';
 export interface CaptureSessionBuilder {
   id(id: string): CaptureSessionBuilder;
   child(obj: QmlObjectBuilder): CaptureSessionBuilder;
+  children(...objs: QmlObjectBuilder[]): CaptureSessionBuilder;
 
   audioBufferInput(value: QmlValue): CaptureSessionBuilder;
   audioBufferInputBind(expr: string): CaptureSessionBuilder;
@@ -36,17 +42,17 @@ export interface CaptureSessionBuilder {
   videoOutputBind(expr: string): CaptureSessionBuilder;
   windowCapture(value: WindowCaptureBuilder): CaptureSessionBuilder;
   windowCaptureBind(expr: string): CaptureSessionBuilder;
-  onAudioBufferInputChanged(body: string): CaptureSessionBuilder;
-  onAudioInputChanged(body: string): CaptureSessionBuilder;
-  onAudioOutputChanged(body: string): CaptureSessionBuilder;
-  onCameraChanged(body: string): CaptureSessionBuilder;
-  onImageCaptureChanged(body: string): CaptureSessionBuilder;
-  onObjectNameChanged(body: string): CaptureSessionBuilder;
-  onRecorderChanged(body: string): CaptureSessionBuilder;
-  onScreenCaptureChanged(body: string): CaptureSessionBuilder;
-  onVideoFrameInputChanged(body: string): CaptureSessionBuilder;
-  onVideoOutputChanged(body: string): CaptureSessionBuilder;
-  onWindowCaptureChanged(body: string): CaptureSessionBuilder;
+  onAudioBufferInputChanged(handler: DslSignalHandlerValue): CaptureSessionBuilder;
+  onAudioInputChanged(handler: DslSignalHandlerValue): CaptureSessionBuilder;
+  onAudioOutputChanged(handler: DslSignalHandlerValue): CaptureSessionBuilder;
+  onCameraChanged(handler: DslSignalHandlerValue): CaptureSessionBuilder;
+  onImageCaptureChanged(handler: DslSignalHandlerValue): CaptureSessionBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): CaptureSessionBuilder;
+  onRecorderChanged(handler: DslSignalHandlerValue): CaptureSessionBuilder;
+  onScreenCaptureChanged(handler: DslSignalHandlerValue): CaptureSessionBuilder;
+  onVideoFrameInputChanged(handler: DslSignalHandlerValue): CaptureSessionBuilder;
+  onVideoOutputChanged(handler: DslSignalHandlerValue): CaptureSessionBuilder;
+  onWindowCaptureChanged(handler: DslSignalHandlerValue): CaptureSessionBuilder;
 }
 
 const CAPTURESESSION_META: TypeMetadata = {

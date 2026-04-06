@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlColor,
   QmlEnumToken,
   QmlObjectBuilder,
@@ -20,6 +21,7 @@ import type { TextureBuilder } from './Texture.js';
 export interface SceneEnvironmentBuilder {
   id(id: string): SceneEnvironmentBuilder;
   child(obj: QmlObjectBuilder): SceneEnvironmentBuilder;
+  children(...objs: QmlObjectBuilder[]): SceneEnvironmentBuilder;
 
   antialiasingMode(value: QmlEnumToken): SceneEnvironmentBuilder;
   antialiasingModeBind(expr: string): SceneEnvironmentBuilder;
@@ -85,39 +87,39 @@ export interface SceneEnvironmentBuilder {
   temporalAAStrengthBind(expr: string): SceneEnvironmentBuilder;
   tonemapMode(value: QmlEnumToken): SceneEnvironmentBuilder;
   tonemapModeBind(expr: string): SceneEnvironmentBuilder;
-  onAntialiasingModeChanged(body: string): SceneEnvironmentBuilder;
-  onAntialiasingQualityChanged(body: string): SceneEnvironmentBuilder;
-  onAoBiasChanged(body: string): SceneEnvironmentBuilder;
-  onAoDistanceChanged(body: string): SceneEnvironmentBuilder;
-  onAoDitherChanged(body: string): SceneEnvironmentBuilder;
-  onAoEnabledChanged(body: string): SceneEnvironmentBuilder;
-  onAoSampleRateChanged(body: string): SceneEnvironmentBuilder;
-  onAoSoftnessChanged(body: string): SceneEnvironmentBuilder;
-  onAoStrengthChanged(body: string): SceneEnvironmentBuilder;
-  onBackgroundModeChanged(body: string): SceneEnvironmentBuilder;
-  onChildrenChanged(body: string): SceneEnvironmentBuilder;
-  onClearColorChanged(body: string): SceneEnvironmentBuilder;
-  onDebugSettingsChanged(body: string): SceneEnvironmentBuilder;
-  onDepthPrePassEnabledChanged(body: string): SceneEnvironmentBuilder;
-  onDepthTestEnabledChanged(body: string): SceneEnvironmentBuilder;
-  onFogChanged(body: string): SceneEnvironmentBuilder;
-  onLightProbeChanged(body: string): SceneEnvironmentBuilder;
-  onLightmapperChanged(body: string): SceneEnvironmentBuilder;
-  onObjectNameChanged(body: string): SceneEnvironmentBuilder;
-  onOitMethodChanged(body: string): SceneEnvironmentBuilder;
-  onParentChanged(body: string): SceneEnvironmentBuilder;
-  onProbeExposureChanged(body: string): SceneEnvironmentBuilder;
-  onProbeHorizonChanged(body: string): SceneEnvironmentBuilder;
-  onProbeOrientationChanged(body: string): SceneEnvironmentBuilder;
-  onScissorRectChanged(body: string): SceneEnvironmentBuilder;
-  onSkyBoxCubeMapChanged(body: string): SceneEnvironmentBuilder;
-  onSkyboxBlurAmountChanged(body: string): SceneEnvironmentBuilder;
-  onSpecularAAEnabledChanged(body: string): SceneEnvironmentBuilder;
-  onStateChanged(body: string): SceneEnvironmentBuilder;
-  onTemporalAAEnabledChanged(body: string): SceneEnvironmentBuilder;
-  onTemporalAAModeChanged(body: string): SceneEnvironmentBuilder;
-  onTemporalAAStrengthChanged(body: string): SceneEnvironmentBuilder;
-  onTonemapModeChanged(body: string): SceneEnvironmentBuilder;
+  onAntialiasingModeChanged(handler: DslSignalHandlerValue): SceneEnvironmentBuilder;
+  onAntialiasingQualityChanged(handler: DslSignalHandlerValue): SceneEnvironmentBuilder;
+  onAoBiasChanged(handler: DslSignalHandlerValue): SceneEnvironmentBuilder;
+  onAoDistanceChanged(handler: DslSignalHandlerValue): SceneEnvironmentBuilder;
+  onAoDitherChanged(handler: DslSignalHandlerValue): SceneEnvironmentBuilder;
+  onAoEnabledChanged(handler: DslSignalHandlerValue): SceneEnvironmentBuilder;
+  onAoSampleRateChanged(handler: DslSignalHandlerValue): SceneEnvironmentBuilder;
+  onAoSoftnessChanged(handler: DslSignalHandlerValue): SceneEnvironmentBuilder;
+  onAoStrengthChanged(handler: DslSignalHandlerValue): SceneEnvironmentBuilder;
+  onBackgroundModeChanged(handler: DslSignalHandlerValue): SceneEnvironmentBuilder;
+  onChildrenChanged(handler: DslSignalHandlerValue): SceneEnvironmentBuilder;
+  onClearColorChanged(handler: DslSignalHandlerValue): SceneEnvironmentBuilder;
+  onDebugSettingsChanged(handler: DslSignalHandlerValue): SceneEnvironmentBuilder;
+  onDepthPrePassEnabledChanged(handler: DslSignalHandlerValue): SceneEnvironmentBuilder;
+  onDepthTestEnabledChanged(handler: DslSignalHandlerValue): SceneEnvironmentBuilder;
+  onFogChanged(handler: DslSignalHandlerValue): SceneEnvironmentBuilder;
+  onLightProbeChanged(handler: DslSignalHandlerValue): SceneEnvironmentBuilder;
+  onLightmapperChanged(handler: DslSignalHandlerValue): SceneEnvironmentBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): SceneEnvironmentBuilder;
+  onOitMethodChanged(handler: DslSignalHandlerValue): SceneEnvironmentBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): SceneEnvironmentBuilder;
+  onProbeExposureChanged(handler: DslSignalHandlerValue): SceneEnvironmentBuilder;
+  onProbeHorizonChanged(handler: DslSignalHandlerValue): SceneEnvironmentBuilder;
+  onProbeOrientationChanged(handler: DslSignalHandlerValue): SceneEnvironmentBuilder;
+  onScissorRectChanged(handler: DslSignalHandlerValue): SceneEnvironmentBuilder;
+  onSkyBoxCubeMapChanged(handler: DslSignalHandlerValue): SceneEnvironmentBuilder;
+  onSkyboxBlurAmountChanged(handler: DslSignalHandlerValue): SceneEnvironmentBuilder;
+  onSpecularAAEnabledChanged(handler: DslSignalHandlerValue): SceneEnvironmentBuilder;
+  onStateChanged(handler: DslSignalHandlerValue): SceneEnvironmentBuilder;
+  onTemporalAAEnabledChanged(handler: DslSignalHandlerValue): SceneEnvironmentBuilder;
+  onTemporalAAModeChanged(handler: DslSignalHandlerValue): SceneEnvironmentBuilder;
+  onTemporalAAStrengthChanged(handler: DslSignalHandlerValue): SceneEnvironmentBuilder;
+  onTonemapModeChanged(handler: DslSignalHandlerValue): SceneEnvironmentBuilder;
 }
 
 const SCENEENVIRONMENT_META: TypeMetadata = {

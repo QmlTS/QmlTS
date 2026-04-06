@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlColor,
   QmlEnumToken,
   QmlFont,
@@ -20,6 +21,7 @@ import type { LayerBuilder } from '../QtQuick/QQuickItemLayer.js';
 export interface PolarChartViewBuilder {
   id(id: string): PolarChartViewBuilder;
   child(obj: QmlObjectBuilder): PolarChartViewBuilder;
+  children(...objs: QmlObjectBuilder[]): PolarChartViewBuilder;
 
   activeFocusOnTab(value: boolean): PolarChartViewBuilder;
   activeFocusOnTabBind(expr: string): PolarChartViewBuilder;
@@ -99,53 +101,53 @@ export interface PolarChartViewBuilder {
   yBind(expr: string): PolarChartViewBuilder;
   z(value: number): PolarChartViewBuilder;
   zBind(expr: string): PolarChartViewBuilder;
-  onActiveFocusChanged(body: string): PolarChartViewBuilder;
-  onActiveFocusOnTabChanged(body: string): PolarChartViewBuilder;
-  onAnimationDurationChanged(body: string): PolarChartViewBuilder;
-  onAnimationEasingCurveChanged(body: string): PolarChartViewBuilder;
-  onAntialiasingChanged(body: string): PolarChartViewBuilder;
-  onAxisLabelsChanged(body: string): PolarChartViewBuilder;
-  onBackgroundColorChanged(body: string): PolarChartViewBuilder;
-  onBackgroundRoundnessChanged(body: string): PolarChartViewBuilder;
-  onBaselineOffsetChanged(body: string): PolarChartViewBuilder;
-  onChildrenChanged(body: string): PolarChartViewBuilder;
-  onChildrenRectChanged(body: string): PolarChartViewBuilder;
-  onClipChanged(body: string): PolarChartViewBuilder;
-  onContainmentMaskChanged(body: string): PolarChartViewBuilder;
-  onDropShadowEnabledChanged(body: string): PolarChartViewBuilder;
-  onEnabledChanged(body: string): PolarChartViewBuilder;
-  onFocusChanged(body: string): PolarChartViewBuilder;
-  onFocusPolicyChanged(body: string): PolarChartViewBuilder;
-  onHeightChanged(body: string): PolarChartViewBuilder;
-  onImplicitHeightChanged(body: string): PolarChartViewBuilder;
-  onImplicitWidthChanged(body: string): PolarChartViewBuilder;
-  onLocaleChanged(body: string): PolarChartViewBuilder;
-  onLocalizeNumbersChanged(body: string): PolarChartViewBuilder;
-  onMarginsChanged(body: string): PolarChartViewBuilder;
-  onNeedRender(body: string): PolarChartViewBuilder;
-  onObjectNameChanged(body: string): PolarChartViewBuilder;
-  onOpacityChanged(body: string): PolarChartViewBuilder;
-  onPaletteChanged(body: string): PolarChartViewBuilder;
-  onPaletteCreated(body: string): PolarChartViewBuilder;
-  onParentChanged(body: string): PolarChartViewBuilder;
-  onPendingRenderNodeMouseEventResponses(body: string): PolarChartViewBuilder;
-  onPlotAreaChanged(body: string): PolarChartViewBuilder;
-  onPlotAreaColorChanged(body: string): PolarChartViewBuilder;
-  onRotationChanged(body: string): PolarChartViewBuilder;
-  onScaleChanged(body: string): PolarChartViewBuilder;
-  onSeriesAdded(body: string): PolarChartViewBuilder;
-  onSeriesRemoved(body: string): PolarChartViewBuilder;
-  onSmoothChanged(body: string): PolarChartViewBuilder;
-  onStateChanged(body: string): PolarChartViewBuilder;
-  onTitleColorChanged(body: string): PolarChartViewBuilder;
-  onTransformOriginChanged(body: string): PolarChartViewBuilder;
-  onVisibleChanged(body: string): PolarChartViewBuilder;
-  onVisibleChildrenChanged(body: string): PolarChartViewBuilder;
-  onWidthChanged(body: string): PolarChartViewBuilder;
-  onWindowChanged(body: string): PolarChartViewBuilder;
-  onXChanged(body: string): PolarChartViewBuilder;
-  onYChanged(body: string): PolarChartViewBuilder;
-  onZChanged(body: string): PolarChartViewBuilder;
+  onActiveFocusChanged(handler: DslSignalHandlerValue): PolarChartViewBuilder;
+  onActiveFocusOnTabChanged(handler: DslSignalHandlerValue): PolarChartViewBuilder;
+  onAnimationDurationChanged(handler: DslSignalHandlerValue): PolarChartViewBuilder;
+  onAnimationEasingCurveChanged(handler: DslSignalHandlerValue): PolarChartViewBuilder;
+  onAntialiasingChanged(handler: DslSignalHandlerValue): PolarChartViewBuilder;
+  onAxisLabelsChanged(handler: DslSignalHandlerValue): PolarChartViewBuilder;
+  onBackgroundColorChanged(handler: DslSignalHandlerValue): PolarChartViewBuilder;
+  onBackgroundRoundnessChanged(handler: DslSignalHandlerValue): PolarChartViewBuilder;
+  onBaselineOffsetChanged(handler: DslSignalHandlerValue): PolarChartViewBuilder;
+  onChildrenChanged(handler: DslSignalHandlerValue): PolarChartViewBuilder;
+  onChildrenRectChanged(handler: DslSignalHandlerValue): PolarChartViewBuilder;
+  onClipChanged(handler: DslSignalHandlerValue): PolarChartViewBuilder;
+  onContainmentMaskChanged(handler: DslSignalHandlerValue): PolarChartViewBuilder;
+  onDropShadowEnabledChanged(handler: DslSignalHandlerValue): PolarChartViewBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): PolarChartViewBuilder;
+  onFocusChanged(handler: DslSignalHandlerValue): PolarChartViewBuilder;
+  onFocusPolicyChanged(handler: DslSignalHandlerValue): PolarChartViewBuilder;
+  onHeightChanged(handler: DslSignalHandlerValue): PolarChartViewBuilder;
+  onImplicitHeightChanged(handler: DslSignalHandlerValue): PolarChartViewBuilder;
+  onImplicitWidthChanged(handler: DslSignalHandlerValue): PolarChartViewBuilder;
+  onLocaleChanged(handler: DslSignalHandlerValue): PolarChartViewBuilder;
+  onLocalizeNumbersChanged(handler: DslSignalHandlerValue): PolarChartViewBuilder;
+  onMarginsChanged(handler: DslSignalHandlerValue): PolarChartViewBuilder;
+  onNeedRender(handler: DslSignalHandlerValue): PolarChartViewBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): PolarChartViewBuilder;
+  onOpacityChanged(handler: DslSignalHandlerValue): PolarChartViewBuilder;
+  onPaletteChanged(handler: DslSignalHandlerValue): PolarChartViewBuilder;
+  onPaletteCreated(handler: DslSignalHandlerValue): PolarChartViewBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): PolarChartViewBuilder;
+  onPendingRenderNodeMouseEventResponses(handler: DslSignalHandlerValue): PolarChartViewBuilder;
+  onPlotAreaChanged(handler: DslSignalHandlerValue): PolarChartViewBuilder;
+  onPlotAreaColorChanged(handler: DslSignalHandlerValue): PolarChartViewBuilder;
+  onRotationChanged(handler: DslSignalHandlerValue): PolarChartViewBuilder;
+  onScaleChanged(handler: DslSignalHandlerValue): PolarChartViewBuilder;
+  onSeriesAdded(handler: DslSignalHandlerValue): PolarChartViewBuilder;
+  onSeriesRemoved(handler: DslSignalHandlerValue): PolarChartViewBuilder;
+  onSmoothChanged(handler: DslSignalHandlerValue): PolarChartViewBuilder;
+  onStateChanged(handler: DslSignalHandlerValue): PolarChartViewBuilder;
+  onTitleColorChanged(handler: DslSignalHandlerValue): PolarChartViewBuilder;
+  onTransformOriginChanged(handler: DslSignalHandlerValue): PolarChartViewBuilder;
+  onVisibleChanged(handler: DslSignalHandlerValue): PolarChartViewBuilder;
+  onVisibleChildrenChanged(handler: DslSignalHandlerValue): PolarChartViewBuilder;
+  onWidthChanged(handler: DslSignalHandlerValue): PolarChartViewBuilder;
+  onWindowChanged(handler: DslSignalHandlerValue): PolarChartViewBuilder;
+  onXChanged(handler: DslSignalHandlerValue): PolarChartViewBuilder;
+  onYChanged(handler: DslSignalHandlerValue): PolarChartViewBuilder;
+  onZChanged(handler: DslSignalHandlerValue): PolarChartViewBuilder;
   anchors(setup: (b: AnchorsBuilder) => void): PolarChartViewBuilder;
   layer(setup: (b: LayerBuilder) => void): PolarChartViewBuilder;
 }

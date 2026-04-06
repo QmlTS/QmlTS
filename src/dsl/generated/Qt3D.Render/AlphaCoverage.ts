@@ -2,11 +2,17 @@
 // Type: AlphaCoverage
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 export interface AlphaCoverageBuilder {
   id(id: string): AlphaCoverageBuilder;
   child(obj: QmlObjectBuilder): AlphaCoverageBuilder;
+  children(...objs: QmlObjectBuilder[]): AlphaCoverageBuilder;
 
   enabled(value: boolean): AlphaCoverageBuilder;
   enabledBind(expr: string): AlphaCoverageBuilder;
@@ -14,10 +20,10 @@ export interface AlphaCoverageBuilder {
   objectNameBind(expr: string): AlphaCoverageBuilder;
   parent(value: QmlValue): AlphaCoverageBuilder;
   parentBind(expr: string): AlphaCoverageBuilder;
-  onEnabledChanged(body: string): AlphaCoverageBuilder;
-  onNodeDestroyed(body: string): AlphaCoverageBuilder;
-  onObjectNameChanged(body: string): AlphaCoverageBuilder;
-  onParentChanged(body: string): AlphaCoverageBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): AlphaCoverageBuilder;
+  onNodeDestroyed(handler: DslSignalHandlerValue): AlphaCoverageBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): AlphaCoverageBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): AlphaCoverageBuilder;
 }
 
 const ALPHACOVERAGE_META: TypeMetadata = {

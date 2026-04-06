@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlObjectBuilder,
   QmlQuaternion,
   QmlUrl,
@@ -15,6 +16,7 @@ import type { ImageBuilder } from '../QtQuick/Image.js';
 export interface HeightFieldShapeBuilder {
   id(id: string): HeightFieldShapeBuilder;
   child(obj: QmlObjectBuilder): HeightFieldShapeBuilder;
+  children(...objs: QmlObjectBuilder[]): HeightFieldShapeBuilder;
 
   enableDebugDraw(value: boolean): HeightFieldShapeBuilder;
   enableDebugDrawBind(expr: string): HeightFieldShapeBuilder;
@@ -54,34 +56,34 @@ export interface HeightFieldShapeBuilder {
   yBind(expr: string): HeightFieldShapeBuilder;
   z(value: number): HeightFieldShapeBuilder;
   zBind(expr: string): HeightFieldShapeBuilder;
-  onChildrenChanged(body: string): HeightFieldShapeBuilder;
-  onEnableDebugDrawChanged(body: string): HeightFieldShapeBuilder;
-  onEulerRotationChanged(body: string): HeightFieldShapeBuilder;
-  onExtentsChanged(body: string): HeightFieldShapeBuilder;
-  onForwardChanged(body: string): HeightFieldShapeBuilder;
-  onImageChanged(body: string): HeightFieldShapeBuilder;
-  onLayersChanged(body: string): HeightFieldShapeBuilder;
-  onLocalOpacityChanged(body: string): HeightFieldShapeBuilder;
-  onNeedsRebuild(body: string): HeightFieldShapeBuilder;
-  onObjectNameChanged(body: string): HeightFieldShapeBuilder;
-  onParentChanged(body: string): HeightFieldShapeBuilder;
-  onPivotChanged(body: string): HeightFieldShapeBuilder;
-  onPositionChanged(body: string): HeightFieldShapeBuilder;
-  onRightChanged(body: string): HeightFieldShapeBuilder;
-  onRotationChanged(body: string): HeightFieldShapeBuilder;
-  onScaleChanged(body: string): HeightFieldShapeBuilder;
-  onScenePositionChanged(body: string): HeightFieldShapeBuilder;
-  onSceneRotationChanged(body: string): HeightFieldShapeBuilder;
-  onSceneScaleChanged(body: string): HeightFieldShapeBuilder;
-  onSceneTransformChanged(body: string): HeightFieldShapeBuilder;
-  onSourceChanged(body: string): HeightFieldShapeBuilder;
-  onStateChanged(body: string): HeightFieldShapeBuilder;
-  onStaticFlagsChanged(body: string): HeightFieldShapeBuilder;
-  onUpChanged(body: string): HeightFieldShapeBuilder;
-  onVisibleChanged(body: string): HeightFieldShapeBuilder;
-  onXChanged(body: string): HeightFieldShapeBuilder;
-  onYChanged(body: string): HeightFieldShapeBuilder;
-  onZChanged(body: string): HeightFieldShapeBuilder;
+  onChildrenChanged(handler: DslSignalHandlerValue): HeightFieldShapeBuilder;
+  onEnableDebugDrawChanged(handler: DslSignalHandlerValue): HeightFieldShapeBuilder;
+  onEulerRotationChanged(handler: DslSignalHandlerValue): HeightFieldShapeBuilder;
+  onExtentsChanged(handler: DslSignalHandlerValue): HeightFieldShapeBuilder;
+  onForwardChanged(handler: DslSignalHandlerValue): HeightFieldShapeBuilder;
+  onImageChanged(handler: DslSignalHandlerValue): HeightFieldShapeBuilder;
+  onLayersChanged(handler: DslSignalHandlerValue): HeightFieldShapeBuilder;
+  onLocalOpacityChanged(handler: DslSignalHandlerValue): HeightFieldShapeBuilder;
+  onNeedsRebuild(handler: DslSignalHandlerValue): HeightFieldShapeBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): HeightFieldShapeBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): HeightFieldShapeBuilder;
+  onPivotChanged(handler: DslSignalHandlerValue): HeightFieldShapeBuilder;
+  onPositionChanged(handler: DslSignalHandlerValue): HeightFieldShapeBuilder;
+  onRightChanged(handler: DslSignalHandlerValue): HeightFieldShapeBuilder;
+  onRotationChanged(handler: DslSignalHandlerValue): HeightFieldShapeBuilder;
+  onScaleChanged(handler: DslSignalHandlerValue): HeightFieldShapeBuilder;
+  onScenePositionChanged(handler: DslSignalHandlerValue): HeightFieldShapeBuilder;
+  onSceneRotationChanged(handler: DslSignalHandlerValue): HeightFieldShapeBuilder;
+  onSceneScaleChanged(handler: DslSignalHandlerValue): HeightFieldShapeBuilder;
+  onSceneTransformChanged(handler: DslSignalHandlerValue): HeightFieldShapeBuilder;
+  onSourceChanged(handler: DslSignalHandlerValue): HeightFieldShapeBuilder;
+  onStateChanged(handler: DslSignalHandlerValue): HeightFieldShapeBuilder;
+  onStaticFlagsChanged(handler: DslSignalHandlerValue): HeightFieldShapeBuilder;
+  onUpChanged(handler: DslSignalHandlerValue): HeightFieldShapeBuilder;
+  onVisibleChanged(handler: DslSignalHandlerValue): HeightFieldShapeBuilder;
+  onXChanged(handler: DslSignalHandlerValue): HeightFieldShapeBuilder;
+  onYChanged(handler: DslSignalHandlerValue): HeightFieldShapeBuilder;
+  onZChanged(handler: DslSignalHandlerValue): HeightFieldShapeBuilder;
 }
 
 const HEIGHTFIELDSHAPE_META: TypeMetadata = {

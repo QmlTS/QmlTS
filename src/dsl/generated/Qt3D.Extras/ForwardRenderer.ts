@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlColor,
   QmlEnumToken,
   QmlObjectBuilder,
@@ -17,6 +18,7 @@ import type { EntityBuilder } from '../Qt3D.Core/Entity.js';
 export interface ForwardRendererBuilder {
   id(id: string): ForwardRendererBuilder;
   child(obj: QmlObjectBuilder): ForwardRendererBuilder;
+  children(...objs: QmlObjectBuilder[]): ForwardRendererBuilder;
 
   buffersToClear(value: QmlEnumToken): ForwardRendererBuilder;
   buffersToClearBind(expr: string): ForwardRendererBuilder;
@@ -44,19 +46,19 @@ export interface ForwardRendererBuilder {
   viewportRectBind(expr: string): ForwardRendererBuilder;
   window(value: QtObjectBuilder): ForwardRendererBuilder;
   windowBind(expr: string): ForwardRendererBuilder;
-  onBuffersToClearChanged(body: string): ForwardRendererBuilder;
-  onCameraChanged(body: string): ForwardRendererBuilder;
-  onClearColorChanged(body: string): ForwardRendererBuilder;
-  onEnabledChanged(body: string): ForwardRendererBuilder;
-  onExternalRenderTargetSizeChanged(body: string): ForwardRendererBuilder;
-  onFrustumCullingEnabledChanged(body: string): ForwardRendererBuilder;
-  onGammaChanged(body: string): ForwardRendererBuilder;
-  onNodeDestroyed(body: string): ForwardRendererBuilder;
-  onObjectNameChanged(body: string): ForwardRendererBuilder;
-  onParentChanged(body: string): ForwardRendererBuilder;
-  onShowDebugOverlayChanged(body: string): ForwardRendererBuilder;
-  onSurfaceChanged(body: string): ForwardRendererBuilder;
-  onViewportRectChanged(body: string): ForwardRendererBuilder;
+  onBuffersToClearChanged(handler: DslSignalHandlerValue): ForwardRendererBuilder;
+  onCameraChanged(handler: DslSignalHandlerValue): ForwardRendererBuilder;
+  onClearColorChanged(handler: DslSignalHandlerValue): ForwardRendererBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): ForwardRendererBuilder;
+  onExternalRenderTargetSizeChanged(handler: DslSignalHandlerValue): ForwardRendererBuilder;
+  onFrustumCullingEnabledChanged(handler: DslSignalHandlerValue): ForwardRendererBuilder;
+  onGammaChanged(handler: DslSignalHandlerValue): ForwardRendererBuilder;
+  onNodeDestroyed(handler: DslSignalHandlerValue): ForwardRendererBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): ForwardRendererBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): ForwardRendererBuilder;
+  onShowDebugOverlayChanged(handler: DslSignalHandlerValue): ForwardRendererBuilder;
+  onSurfaceChanged(handler: DslSignalHandlerValue): ForwardRendererBuilder;
+  onViewportRectChanged(handler: DslSignalHandlerValue): ForwardRendererBuilder;
 }
 
 const FORWARDRENDERER_META: TypeMetadata = {

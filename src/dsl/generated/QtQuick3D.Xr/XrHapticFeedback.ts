@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlEnumToken,
   QmlObjectBuilder,
   QmlValue,
@@ -12,6 +13,7 @@ import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface XrHapticFeedbackBuilder {
   id(id: string): XrHapticFeedbackBuilder;
   child(obj: QmlObjectBuilder): XrHapticFeedbackBuilder;
+  children(...objs: QmlObjectBuilder[]): XrHapticFeedbackBuilder;
 
   condition(value: QmlEnumToken): XrHapticFeedbackBuilder;
   conditionBind(expr: string): XrHapticFeedbackBuilder;
@@ -23,11 +25,11 @@ export interface XrHapticFeedbackBuilder {
   objectNameBind(expr: string): XrHapticFeedbackBuilder;
   trigger(value: boolean): XrHapticFeedbackBuilder;
   triggerBind(expr: string): XrHapticFeedbackBuilder;
-  onConditionChanged(body: string): XrHapticFeedbackBuilder;
-  onControllerChanged(body: string): XrHapticFeedbackBuilder;
-  onHapticEffectChanged(body: string): XrHapticFeedbackBuilder;
-  onObjectNameChanged(body: string): XrHapticFeedbackBuilder;
-  onTriggerChanged(body: string): XrHapticFeedbackBuilder;
+  onConditionChanged(handler: DslSignalHandlerValue): XrHapticFeedbackBuilder;
+  onControllerChanged(handler: DslSignalHandlerValue): XrHapticFeedbackBuilder;
+  onHapticEffectChanged(handler: DslSignalHandlerValue): XrHapticFeedbackBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): XrHapticFeedbackBuilder;
+  onTriggerChanged(handler: DslSignalHandlerValue): XrHapticFeedbackBuilder;
 }
 
 const XRHAPTICFEEDBACK_META: TypeMetadata = {

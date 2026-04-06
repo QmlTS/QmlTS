@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlEnumToken,
   QmlFont,
   QmlObjectBuilder,
@@ -16,6 +17,7 @@ import type { GeometryViewBuilder } from '../Qt3D.Core/GeometryView.js';
 export interface ExtrudedTextMeshBuilder {
   id(id: string): ExtrudedTextMeshBuilder;
   child(obj: QmlObjectBuilder): ExtrudedTextMeshBuilder;
+  children(...objs: QmlObjectBuilder[]): ExtrudedTextMeshBuilder;
 
   depth(value: number): ExtrudedTextMeshBuilder;
   depthBind(expr: string): ExtrudedTextMeshBuilder;
@@ -61,34 +63,34 @@ export interface ExtrudedTextMeshBuilder {
   verticesPerPatchBind(expr: string): ExtrudedTextMeshBuilder;
   view(value: GeometryViewBuilder): ExtrudedTextMeshBuilder;
   viewBind(expr: string): ExtrudedTextMeshBuilder;
-  onAddedToEntity(body: string): ExtrudedTextMeshBuilder;
-  onDepthChanged(body: string): ExtrudedTextMeshBuilder;
-  onEnabledChanged(body: string): ExtrudedTextMeshBuilder;
-  onFirstInstanceChanged(body: string): ExtrudedTextMeshBuilder;
-  onFirstVertexChanged(body: string): ExtrudedTextMeshBuilder;
-  onFontChanged(body: string): ExtrudedTextMeshBuilder;
-  onGeometryChanged(body: string): ExtrudedTextMeshBuilder;
-  onImplicitMaxPointChanged(body: string): ExtrudedTextMeshBuilder;
-  onImplicitMinPointChanged(body: string): ExtrudedTextMeshBuilder;
-  onImplicitPointsValidChanged(body: string): ExtrudedTextMeshBuilder;
-  onIndexBufferByteOffsetChanged(body: string): ExtrudedTextMeshBuilder;
-  onIndexOffsetChanged(body: string): ExtrudedTextMeshBuilder;
-  onInstanceCountChanged(body: string): ExtrudedTextMeshBuilder;
-  onMaxPointChanged(body: string): ExtrudedTextMeshBuilder;
-  onMinPointChanged(body: string): ExtrudedTextMeshBuilder;
-  onNodeDestroyed(body: string): ExtrudedTextMeshBuilder;
-  onObjectNameChanged(body: string): ExtrudedTextMeshBuilder;
-  onParentChanged(body: string): ExtrudedTextMeshBuilder;
-  onPrimitiveRestartEnabledChanged(body: string): ExtrudedTextMeshBuilder;
-  onPrimitiveTypeChanged(body: string): ExtrudedTextMeshBuilder;
-  onRemovedFromEntity(body: string): ExtrudedTextMeshBuilder;
-  onRestartIndexValueChanged(body: string): ExtrudedTextMeshBuilder;
-  onShareableChanged(body: string): ExtrudedTextMeshBuilder;
-  onSortIndexChanged(body: string): ExtrudedTextMeshBuilder;
-  onTextChanged(body: string): ExtrudedTextMeshBuilder;
-  onVertexCountChanged(body: string): ExtrudedTextMeshBuilder;
-  onVerticesPerPatchChanged(body: string): ExtrudedTextMeshBuilder;
-  onViewChanged(body: string): ExtrudedTextMeshBuilder;
+  onAddedToEntity(handler: DslSignalHandlerValue): ExtrudedTextMeshBuilder;
+  onDepthChanged(handler: DslSignalHandlerValue): ExtrudedTextMeshBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): ExtrudedTextMeshBuilder;
+  onFirstInstanceChanged(handler: DslSignalHandlerValue): ExtrudedTextMeshBuilder;
+  onFirstVertexChanged(handler: DslSignalHandlerValue): ExtrudedTextMeshBuilder;
+  onFontChanged(handler: DslSignalHandlerValue): ExtrudedTextMeshBuilder;
+  onGeometryChanged(handler: DslSignalHandlerValue): ExtrudedTextMeshBuilder;
+  onImplicitMaxPointChanged(handler: DslSignalHandlerValue): ExtrudedTextMeshBuilder;
+  onImplicitMinPointChanged(handler: DslSignalHandlerValue): ExtrudedTextMeshBuilder;
+  onImplicitPointsValidChanged(handler: DslSignalHandlerValue): ExtrudedTextMeshBuilder;
+  onIndexBufferByteOffsetChanged(handler: DslSignalHandlerValue): ExtrudedTextMeshBuilder;
+  onIndexOffsetChanged(handler: DslSignalHandlerValue): ExtrudedTextMeshBuilder;
+  onInstanceCountChanged(handler: DslSignalHandlerValue): ExtrudedTextMeshBuilder;
+  onMaxPointChanged(handler: DslSignalHandlerValue): ExtrudedTextMeshBuilder;
+  onMinPointChanged(handler: DslSignalHandlerValue): ExtrudedTextMeshBuilder;
+  onNodeDestroyed(handler: DslSignalHandlerValue): ExtrudedTextMeshBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): ExtrudedTextMeshBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): ExtrudedTextMeshBuilder;
+  onPrimitiveRestartEnabledChanged(handler: DslSignalHandlerValue): ExtrudedTextMeshBuilder;
+  onPrimitiveTypeChanged(handler: DslSignalHandlerValue): ExtrudedTextMeshBuilder;
+  onRemovedFromEntity(handler: DslSignalHandlerValue): ExtrudedTextMeshBuilder;
+  onRestartIndexValueChanged(handler: DslSignalHandlerValue): ExtrudedTextMeshBuilder;
+  onShareableChanged(handler: DslSignalHandlerValue): ExtrudedTextMeshBuilder;
+  onSortIndexChanged(handler: DslSignalHandlerValue): ExtrudedTextMeshBuilder;
+  onTextChanged(handler: DslSignalHandlerValue): ExtrudedTextMeshBuilder;
+  onVertexCountChanged(handler: DslSignalHandlerValue): ExtrudedTextMeshBuilder;
+  onVerticesPerPatchChanged(handler: DslSignalHandlerValue): ExtrudedTextMeshBuilder;
+  onViewChanged(handler: DslSignalHandlerValue): ExtrudedTextMeshBuilder;
 }
 
 const EXTRUDEDTEXTMESH_META: TypeMetadata = {

@@ -2,11 +2,17 @@
 // Type: DebugOverlay
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 export interface DebugOverlayBuilder {
   id(id: string): DebugOverlayBuilder;
   child(obj: QmlObjectBuilder): DebugOverlayBuilder;
+  children(...objs: QmlObjectBuilder[]): DebugOverlayBuilder;
 
   enabled(value: boolean): DebugOverlayBuilder;
   enabledBind(expr: string): DebugOverlayBuilder;
@@ -14,10 +20,10 @@ export interface DebugOverlayBuilder {
   objectNameBind(expr: string): DebugOverlayBuilder;
   parent(value: QmlValue): DebugOverlayBuilder;
   parentBind(expr: string): DebugOverlayBuilder;
-  onEnabledChanged(body: string): DebugOverlayBuilder;
-  onNodeDestroyed(body: string): DebugOverlayBuilder;
-  onObjectNameChanged(body: string): DebugOverlayBuilder;
-  onParentChanged(body: string): DebugOverlayBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): DebugOverlayBuilder;
+  onNodeDestroyed(handler: DslSignalHandlerValue): DebugOverlayBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): DebugOverlayBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): DebugOverlayBuilder;
 }
 
 const DEBUGOVERLAY_META: TypeMetadata = {

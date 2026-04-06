@@ -2,11 +2,17 @@
 // Type: FilterKey
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 export interface FilterKeyBuilder {
   id(id: string): FilterKeyBuilder;
   child(obj: QmlObjectBuilder): FilterKeyBuilder;
+  children(...objs: QmlObjectBuilder[]): FilterKeyBuilder;
 
   enabled(value: boolean): FilterKeyBuilder;
   enabledBind(expr: string): FilterKeyBuilder;
@@ -18,12 +24,12 @@ export interface FilterKeyBuilder {
   parentBind(expr: string): FilterKeyBuilder;
   value(value: QmlValue): FilterKeyBuilder;
   valueBind(expr: string): FilterKeyBuilder;
-  onEnabledChanged(body: string): FilterKeyBuilder;
-  onNameChanged(body: string): FilterKeyBuilder;
-  onNodeDestroyed(body: string): FilterKeyBuilder;
-  onObjectNameChanged(body: string): FilterKeyBuilder;
-  onParentChanged(body: string): FilterKeyBuilder;
-  onValueChanged(body: string): FilterKeyBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): FilterKeyBuilder;
+  onNameChanged(handler: DslSignalHandlerValue): FilterKeyBuilder;
+  onNodeDestroyed(handler: DslSignalHandlerValue): FilterKeyBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): FilterKeyBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): FilterKeyBuilder;
+  onValueChanged(handler: DslSignalHandlerValue): FilterKeyBuilder;
 }
 
 const FILTERKEY_META: TypeMetadata = {

@@ -2,7 +2,13 @@
 // Type: ColorAnimation
 // Generated from Qt 6.11.0
 
-import type { QmlColor, QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlColor,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { QtObjectBuilder } from '../QML/QtObject.js';
 import type { AccessibleAttachedBuilder } from './Accessible.js';
@@ -24,6 +30,7 @@ import type { ViewTransitionAttachedBuilder } from './ViewTransition.js';
 export interface ColorAnimationBuilder {
   id(id: string): ColorAnimationBuilder;
   child(obj: QmlObjectBuilder): ColorAnimationBuilder;
+  children(...objs: QmlObjectBuilder[]): ColorAnimationBuilder;
 
   alwaysRunToEnd(value: boolean): ColorAnimationBuilder;
   alwaysRunToEndBind(expr: string): ColorAnimationBuilder;
@@ -49,21 +56,21 @@ export interface ColorAnimationBuilder {
   targetBind(expr: string): ColorAnimationBuilder;
   to(value: QmlColor): ColorAnimationBuilder;
   toBind(expr: string): ColorAnimationBuilder;
-  onAlwaysRunToEndChanged(body: string): ColorAnimationBuilder;
-  onDurationChanged(body: string): ColorAnimationBuilder;
-  onEasingChanged(body: string): ColorAnimationBuilder;
-  onFinished(body: string): ColorAnimationBuilder;
-  onFromChanged(body: string): ColorAnimationBuilder;
-  onLoopCountChanged(body: string): ColorAnimationBuilder;
-  onObjectNameChanged(body: string): ColorAnimationBuilder;
-  onPausedChanged(body: string): ColorAnimationBuilder;
-  onPropertiesChanged(body: string): ColorAnimationBuilder;
-  onPropertyChanged(body: string): ColorAnimationBuilder;
-  onRunningChanged(body: string): ColorAnimationBuilder;
-  onStarted(body: string): ColorAnimationBuilder;
-  onStopped(body: string): ColorAnimationBuilder;
-  onTargetChanged(body: string): ColorAnimationBuilder;
-  onToChanged(body: string): ColorAnimationBuilder;
+  onAlwaysRunToEndChanged(handler: DslSignalHandlerValue): ColorAnimationBuilder;
+  onDurationChanged(handler: DslSignalHandlerValue): ColorAnimationBuilder;
+  onEasingChanged(handler: DslSignalHandlerValue): ColorAnimationBuilder;
+  onFinished(handler: DslSignalHandlerValue): ColorAnimationBuilder;
+  onFromChanged(handler: DslSignalHandlerValue): ColorAnimationBuilder;
+  onLoopCountChanged(handler: DslSignalHandlerValue): ColorAnimationBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): ColorAnimationBuilder;
+  onPausedChanged(handler: DslSignalHandlerValue): ColorAnimationBuilder;
+  onPropertiesChanged(handler: DslSignalHandlerValue): ColorAnimationBuilder;
+  onPropertyChanged(handler: DslSignalHandlerValue): ColorAnimationBuilder;
+  onRunningChanged(handler: DslSignalHandlerValue): ColorAnimationBuilder;
+  onStarted(handler: DslSignalHandlerValue): ColorAnimationBuilder;
+  onStopped(handler: DslSignalHandlerValue): ColorAnimationBuilder;
+  onTargetChanged(handler: DslSignalHandlerValue): ColorAnimationBuilder;
+  onToChanged(handler: DslSignalHandlerValue): ColorAnimationBuilder;
   accessible(setup: (b: AccessibleAttachedBuilder) => void): ColorAnimationBuilder;
   drag(setup: (b: DragAttachedBuilder) => void): ColorAnimationBuilder;
   enterKey(setup: (b: EnterKeyAttachedBuilder) => void): ColorAnimationBuilder;

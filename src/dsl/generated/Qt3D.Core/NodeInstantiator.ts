@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlComponent,
   QmlObjectBuilder,
   QmlValue,
@@ -12,6 +13,7 @@ import { createFluentBuilder } from '../../runtime/index.js';
 export interface NodeInstantiatorBuilder {
   id(id: string): NodeInstantiatorBuilder;
   child(obj: QmlObjectBuilder): NodeInstantiatorBuilder;
+  children(...objs: QmlObjectBuilder[]): NodeInstantiatorBuilder;
 
   active(value: boolean): NodeInstantiatorBuilder;
   activeBind(expr: string): NodeInstantiatorBuilder;
@@ -27,18 +29,18 @@ export interface NodeInstantiatorBuilder {
   objectNameBind(expr: string): NodeInstantiatorBuilder;
   parent(value: QmlValue): NodeInstantiatorBuilder;
   parentBind(expr: string): NodeInstantiatorBuilder;
-  onActiveChanged(body: string): NodeInstantiatorBuilder;
-  onAsynchronousChanged(body: string): NodeInstantiatorBuilder;
-  onCountChanged(body: string): NodeInstantiatorBuilder;
-  onDelegateChanged(body: string): NodeInstantiatorBuilder;
-  onEnabledChanged(body: string): NodeInstantiatorBuilder;
-  onModelChanged(body: string): NodeInstantiatorBuilder;
-  onNodeDestroyed(body: string): NodeInstantiatorBuilder;
-  onObjectAdded(body: string): NodeInstantiatorBuilder;
-  onObjectChanged(body: string): NodeInstantiatorBuilder;
-  onObjectNameChanged(body: string): NodeInstantiatorBuilder;
-  onObjectRemoved(body: string): NodeInstantiatorBuilder;
-  onParentChanged(body: string): NodeInstantiatorBuilder;
+  onActiveChanged(handler: DslSignalHandlerValue): NodeInstantiatorBuilder;
+  onAsynchronousChanged(handler: DslSignalHandlerValue): NodeInstantiatorBuilder;
+  onCountChanged(handler: DslSignalHandlerValue): NodeInstantiatorBuilder;
+  onDelegateChanged(handler: DslSignalHandlerValue): NodeInstantiatorBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): NodeInstantiatorBuilder;
+  onModelChanged(handler: DslSignalHandlerValue): NodeInstantiatorBuilder;
+  onNodeDestroyed(handler: DslSignalHandlerValue): NodeInstantiatorBuilder;
+  onObjectAdded(handler: DslSignalHandlerValue): NodeInstantiatorBuilder;
+  onObjectChanged(handler: DslSignalHandlerValue): NodeInstantiatorBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): NodeInstantiatorBuilder;
+  onObjectRemoved(handler: DslSignalHandlerValue): NodeInstantiatorBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): NodeInstantiatorBuilder;
 }
 
 const NODEINSTANTIATOR_META: TypeMetadata = {

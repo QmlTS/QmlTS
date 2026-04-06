@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlEnumToken,
   QmlObjectBuilder,
   QmlPoint,
@@ -18,6 +19,7 @@ import type { LayerBuilder } from '../QtQuick/QQuickItemLayer.js';
 export interface MapQuickItemBuilder {
   id(id: string): MapQuickItemBuilder;
   child(obj: QmlObjectBuilder): MapQuickItemBuilder;
+  children(...objs: QmlObjectBuilder[]): MapQuickItemBuilder;
 
   activeFocusOnTab(value: boolean): MapQuickItemBuilder;
   activeFocusOnTabBind(expr: string): MapQuickItemBuilder;
@@ -85,46 +87,46 @@ export interface MapQuickItemBuilder {
   zBind(expr: string): MapQuickItemBuilder;
   zoomLevel(value: number): MapQuickItemBuilder;
   zoomLevelBind(expr: string): MapQuickItemBuilder;
-  onActiveFocusChanged(body: string): MapQuickItemBuilder;
-  onActiveFocusOnTabChanged(body: string): MapQuickItemBuilder;
-  onAddTransitionFinished(body: string): MapQuickItemBuilder;
-  onAnchorPointChanged(body: string): MapQuickItemBuilder;
-  onAntialiasingChanged(body: string): MapQuickItemBuilder;
-  onBaselineOffsetChanged(body: string): MapQuickItemBuilder;
-  onChildrenChanged(body: string): MapQuickItemBuilder;
-  onChildrenRectChanged(body: string): MapQuickItemBuilder;
-  onClipChanged(body: string): MapQuickItemBuilder;
-  onContainmentMaskChanged(body: string): MapQuickItemBuilder;
-  onCoordinateChanged(body: string): MapQuickItemBuilder;
-  onEnabledChanged(body: string): MapQuickItemBuilder;
-  onFocusChanged(body: string): MapQuickItemBuilder;
-  onFocusPolicyChanged(body: string): MapQuickItemBuilder;
-  onHeightChanged(body: string): MapQuickItemBuilder;
-  onImplicitHeightChanged(body: string): MapQuickItemBuilder;
-  onImplicitWidthChanged(body: string): MapQuickItemBuilder;
-  onLodThresholdChanged(body: string): MapQuickItemBuilder;
-  onMapItemOpacityChanged(body: string): MapQuickItemBuilder;
-  onObjectNameChanged(body: string): MapQuickItemBuilder;
-  onOpacityChanged(body: string): MapQuickItemBuilder;
-  onPaletteChanged(body: string): MapQuickItemBuilder;
-  onPaletteCreated(body: string): MapQuickItemBuilder;
-  onParentChanged(body: string): MapQuickItemBuilder;
-  onReferenceSurfaceChanged(body: string): MapQuickItemBuilder;
-  onRemoveTransitionFinished(body: string): MapQuickItemBuilder;
-  onRotationChanged(body: string): MapQuickItemBuilder;
-  onScaleChanged(body: string): MapQuickItemBuilder;
-  onSmoothChanged(body: string): MapQuickItemBuilder;
-  onSourceItemChanged(body: string): MapQuickItemBuilder;
-  onStateChanged(body: string): MapQuickItemBuilder;
-  onTransformOriginChanged(body: string): MapQuickItemBuilder;
-  onVisibleChanged(body: string): MapQuickItemBuilder;
-  onVisibleChildrenChanged(body: string): MapQuickItemBuilder;
-  onWidthChanged(body: string): MapQuickItemBuilder;
-  onWindowChanged(body: string): MapQuickItemBuilder;
-  onXChanged(body: string): MapQuickItemBuilder;
-  onYChanged(body: string): MapQuickItemBuilder;
-  onZChanged(body: string): MapQuickItemBuilder;
-  onZoomLevelChanged(body: string): MapQuickItemBuilder;
+  onActiveFocusChanged(handler: DslSignalHandlerValue): MapQuickItemBuilder;
+  onActiveFocusOnTabChanged(handler: DslSignalHandlerValue): MapQuickItemBuilder;
+  onAddTransitionFinished(handler: DslSignalHandlerValue): MapQuickItemBuilder;
+  onAnchorPointChanged(handler: DslSignalHandlerValue): MapQuickItemBuilder;
+  onAntialiasingChanged(handler: DslSignalHandlerValue): MapQuickItemBuilder;
+  onBaselineOffsetChanged(handler: DslSignalHandlerValue): MapQuickItemBuilder;
+  onChildrenChanged(handler: DslSignalHandlerValue): MapQuickItemBuilder;
+  onChildrenRectChanged(handler: DslSignalHandlerValue): MapQuickItemBuilder;
+  onClipChanged(handler: DslSignalHandlerValue): MapQuickItemBuilder;
+  onContainmentMaskChanged(handler: DslSignalHandlerValue): MapQuickItemBuilder;
+  onCoordinateChanged(handler: DslSignalHandlerValue): MapQuickItemBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): MapQuickItemBuilder;
+  onFocusChanged(handler: DslSignalHandlerValue): MapQuickItemBuilder;
+  onFocusPolicyChanged(handler: DslSignalHandlerValue): MapQuickItemBuilder;
+  onHeightChanged(handler: DslSignalHandlerValue): MapQuickItemBuilder;
+  onImplicitHeightChanged(handler: DslSignalHandlerValue): MapQuickItemBuilder;
+  onImplicitWidthChanged(handler: DslSignalHandlerValue): MapQuickItemBuilder;
+  onLodThresholdChanged(handler: DslSignalHandlerValue): MapQuickItemBuilder;
+  onMapItemOpacityChanged(handler: DslSignalHandlerValue): MapQuickItemBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): MapQuickItemBuilder;
+  onOpacityChanged(handler: DslSignalHandlerValue): MapQuickItemBuilder;
+  onPaletteChanged(handler: DslSignalHandlerValue): MapQuickItemBuilder;
+  onPaletteCreated(handler: DslSignalHandlerValue): MapQuickItemBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): MapQuickItemBuilder;
+  onReferenceSurfaceChanged(handler: DslSignalHandlerValue): MapQuickItemBuilder;
+  onRemoveTransitionFinished(handler: DslSignalHandlerValue): MapQuickItemBuilder;
+  onRotationChanged(handler: DslSignalHandlerValue): MapQuickItemBuilder;
+  onScaleChanged(handler: DslSignalHandlerValue): MapQuickItemBuilder;
+  onSmoothChanged(handler: DslSignalHandlerValue): MapQuickItemBuilder;
+  onSourceItemChanged(handler: DslSignalHandlerValue): MapQuickItemBuilder;
+  onStateChanged(handler: DslSignalHandlerValue): MapQuickItemBuilder;
+  onTransformOriginChanged(handler: DslSignalHandlerValue): MapQuickItemBuilder;
+  onVisibleChanged(handler: DslSignalHandlerValue): MapQuickItemBuilder;
+  onVisibleChildrenChanged(handler: DslSignalHandlerValue): MapQuickItemBuilder;
+  onWidthChanged(handler: DslSignalHandlerValue): MapQuickItemBuilder;
+  onWindowChanged(handler: DslSignalHandlerValue): MapQuickItemBuilder;
+  onXChanged(handler: DslSignalHandlerValue): MapQuickItemBuilder;
+  onYChanged(handler: DslSignalHandlerValue): MapQuickItemBuilder;
+  onZChanged(handler: DslSignalHandlerValue): MapQuickItemBuilder;
+  onZoomLevelChanged(handler: DslSignalHandlerValue): MapQuickItemBuilder;
   anchors(setup: (b: AnchorsBuilder) => void): MapQuickItemBuilder;
   layer(setup: (b: LayerBuilder) => void): MapQuickItemBuilder;
 }

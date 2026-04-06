@@ -2,11 +2,12 @@
 // Type: SatelliteSource
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import type { DslSignalHandlerValue, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface SatelliteSourceBuilder {
   id(id: string): SatelliteSourceBuilder;
   child(obj: QmlObjectBuilder): SatelliteSourceBuilder;
+  children(...objs: QmlObjectBuilder[]): SatelliteSourceBuilder;
 
   active(value: boolean): SatelliteSourceBuilder;
   activeBind(expr: string): SatelliteSourceBuilder;
@@ -16,14 +17,14 @@ export interface SatelliteSourceBuilder {
   objectNameBind(expr: string): SatelliteSourceBuilder;
   updateInterval(value: number): SatelliteSourceBuilder;
   updateIntervalBind(expr: string): SatelliteSourceBuilder;
-  onActiveChanged(body: string): SatelliteSourceBuilder;
-  onNameChanged(body: string): SatelliteSourceBuilder;
-  onObjectNameChanged(body: string): SatelliteSourceBuilder;
-  onSatellitesInUseChanged(body: string): SatelliteSourceBuilder;
-  onSatellitesInViewChanged(body: string): SatelliteSourceBuilder;
-  onSourceErrorChanged(body: string): SatelliteSourceBuilder;
-  onUpdateIntervalChanged(body: string): SatelliteSourceBuilder;
-  onValidityChanged(body: string): SatelliteSourceBuilder;
+  onActiveChanged(handler: DslSignalHandlerValue): SatelliteSourceBuilder;
+  onNameChanged(handler: DslSignalHandlerValue): SatelliteSourceBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): SatelliteSourceBuilder;
+  onSatellitesInUseChanged(handler: DslSignalHandlerValue): SatelliteSourceBuilder;
+  onSatellitesInViewChanged(handler: DslSignalHandlerValue): SatelliteSourceBuilder;
+  onSourceErrorChanged(handler: DslSignalHandlerValue): SatelliteSourceBuilder;
+  onUpdateIntervalChanged(handler: DslSignalHandlerValue): SatelliteSourceBuilder;
+  onValidityChanged(handler: DslSignalHandlerValue): SatelliteSourceBuilder;
 }
 
 const SATELLITESOURCE_META: TypeMetadata = {

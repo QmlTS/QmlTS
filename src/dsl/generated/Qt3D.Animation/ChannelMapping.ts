@@ -2,11 +2,17 @@
 // Type: ChannelMapping
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 export interface ChannelMappingBuilder {
   id(id: string): ChannelMappingBuilder;
   child(obj: QmlObjectBuilder): ChannelMappingBuilder;
+  children(...objs: QmlObjectBuilder[]): ChannelMappingBuilder;
 
   channelName(value: string): ChannelMappingBuilder;
   channelNameBind(expr: string): ChannelMappingBuilder;
@@ -20,13 +26,13 @@ export interface ChannelMappingBuilder {
   propertyBind(expr: string): ChannelMappingBuilder;
   target(value: QmlValue): ChannelMappingBuilder;
   targetBind(expr: string): ChannelMappingBuilder;
-  onChannelNameChanged(body: string): ChannelMappingBuilder;
-  onEnabledChanged(body: string): ChannelMappingBuilder;
-  onNodeDestroyed(body: string): ChannelMappingBuilder;
-  onObjectNameChanged(body: string): ChannelMappingBuilder;
-  onParentChanged(body: string): ChannelMappingBuilder;
-  onPropertyChanged(body: string): ChannelMappingBuilder;
-  onTargetChanged(body: string): ChannelMappingBuilder;
+  onChannelNameChanged(handler: DslSignalHandlerValue): ChannelMappingBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): ChannelMappingBuilder;
+  onNodeDestroyed(handler: DslSignalHandlerValue): ChannelMappingBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): ChannelMappingBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): ChannelMappingBuilder;
+  onPropertyChanged(handler: DslSignalHandlerValue): ChannelMappingBuilder;
+  onTargetChanged(handler: DslSignalHandlerValue): ChannelMappingBuilder;
 }
 
 const CHANNELMAPPING_META: TypeMetadata = {

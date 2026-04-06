@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlEnumToken,
   QmlObjectBuilder,
   QmlValue,
@@ -12,6 +13,7 @@ import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface MessageDialogBuilder {
   id(id: string): MessageDialogBuilder;
   child(obj: QmlObjectBuilder): MessageDialogBuilder;
+  children(...objs: QmlObjectBuilder[]): MessageDialogBuilder;
 
   buttons(value: QmlEnumToken): MessageDialogBuilder;
   buttonsBind(expr: string): MessageDialogBuilder;
@@ -37,21 +39,21 @@ export interface MessageDialogBuilder {
   titleBind(expr: string): MessageDialogBuilder;
   visible(value: boolean): MessageDialogBuilder;
   visibleBind(expr: string): MessageDialogBuilder;
-  onAccepted(body: string): MessageDialogBuilder;
-  onButtonClicked(body: string): MessageDialogBuilder;
-  onButtonsChanged(body: string): MessageDialogBuilder;
-  onDetailedTextChanged(body: string): MessageDialogBuilder;
-  onFlagsChanged(body: string): MessageDialogBuilder;
-  onInformativeTextChanged(body: string): MessageDialogBuilder;
-  onModalityChanged(body: string): MessageDialogBuilder;
-  onObjectNameChanged(body: string): MessageDialogBuilder;
-  onParentWindowChanged(body: string): MessageDialogBuilder;
-  onPopupTypeChanged(body: string): MessageDialogBuilder;
-  onRejected(body: string): MessageDialogBuilder;
-  onResultChanged(body: string): MessageDialogBuilder;
-  onTextChanged(body: string): MessageDialogBuilder;
-  onTitleChanged(body: string): MessageDialogBuilder;
-  onVisibleChanged(body: string): MessageDialogBuilder;
+  onAccepted(handler: DslSignalHandlerValue): MessageDialogBuilder;
+  onButtonClicked(handler: DslSignalHandlerValue): MessageDialogBuilder;
+  onButtonsChanged(handler: DslSignalHandlerValue): MessageDialogBuilder;
+  onDetailedTextChanged(handler: DslSignalHandlerValue): MessageDialogBuilder;
+  onFlagsChanged(handler: DslSignalHandlerValue): MessageDialogBuilder;
+  onInformativeTextChanged(handler: DslSignalHandlerValue): MessageDialogBuilder;
+  onModalityChanged(handler: DslSignalHandlerValue): MessageDialogBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): MessageDialogBuilder;
+  onParentWindowChanged(handler: DslSignalHandlerValue): MessageDialogBuilder;
+  onPopupTypeChanged(handler: DslSignalHandlerValue): MessageDialogBuilder;
+  onRejected(handler: DslSignalHandlerValue): MessageDialogBuilder;
+  onResultChanged(handler: DslSignalHandlerValue): MessageDialogBuilder;
+  onTextChanged(handler: DslSignalHandlerValue): MessageDialogBuilder;
+  onTitleChanged(handler: DslSignalHandlerValue): MessageDialogBuilder;
+  onVisibleChanged(handler: DslSignalHandlerValue): MessageDialogBuilder;
 }
 
 const MESSAGEDIALOG_META: TypeMetadata = {

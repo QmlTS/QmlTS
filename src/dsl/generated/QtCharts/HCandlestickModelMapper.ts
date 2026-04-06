@@ -2,11 +2,17 @@
 // Type: HCandlestickModelMapper
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 export interface HCandlestickModelMapperBuilder {
   id(id: string): HCandlestickModelMapperBuilder;
   child(obj: QmlObjectBuilder): HCandlestickModelMapperBuilder;
+  children(...objs: QmlObjectBuilder[]): HCandlestickModelMapperBuilder;
 
   closeColumn(value: number): HCandlestickModelMapperBuilder;
   closeColumnBind(expr: string): HCandlestickModelMapperBuilder;
@@ -28,16 +34,16 @@ export interface HCandlestickModelMapperBuilder {
   seriesBind(expr: string): HCandlestickModelMapperBuilder;
   timestampColumn(value: number): HCandlestickModelMapperBuilder;
   timestampColumnBind(expr: string): HCandlestickModelMapperBuilder;
-  onCloseColumnChanged(body: string): HCandlestickModelMapperBuilder;
-  onFirstSetRowChanged(body: string): HCandlestickModelMapperBuilder;
-  onHighColumnChanged(body: string): HCandlestickModelMapperBuilder;
-  onLastSetRowChanged(body: string): HCandlestickModelMapperBuilder;
-  onLowColumnChanged(body: string): HCandlestickModelMapperBuilder;
-  onModelReplaced(body: string): HCandlestickModelMapperBuilder;
-  onObjectNameChanged(body: string): HCandlestickModelMapperBuilder;
-  onOpenColumnChanged(body: string): HCandlestickModelMapperBuilder;
-  onSeriesReplaced(body: string): HCandlestickModelMapperBuilder;
-  onTimestampColumnChanged(body: string): HCandlestickModelMapperBuilder;
+  onCloseColumnChanged(handler: DslSignalHandlerValue): HCandlestickModelMapperBuilder;
+  onFirstSetRowChanged(handler: DslSignalHandlerValue): HCandlestickModelMapperBuilder;
+  onHighColumnChanged(handler: DslSignalHandlerValue): HCandlestickModelMapperBuilder;
+  onLastSetRowChanged(handler: DslSignalHandlerValue): HCandlestickModelMapperBuilder;
+  onLowColumnChanged(handler: DslSignalHandlerValue): HCandlestickModelMapperBuilder;
+  onModelReplaced(handler: DslSignalHandlerValue): HCandlestickModelMapperBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): HCandlestickModelMapperBuilder;
+  onOpenColumnChanged(handler: DslSignalHandlerValue): HCandlestickModelMapperBuilder;
+  onSeriesReplaced(handler: DslSignalHandlerValue): HCandlestickModelMapperBuilder;
+  onTimestampColumnChanged(handler: DslSignalHandlerValue): HCandlestickModelMapperBuilder;
 }
 
 const HCANDLESTICKMODELMAPPER_META: TypeMetadata = {

@@ -2,11 +2,17 @@
 // Type: Light3D
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlVector3d, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlObjectBuilder,
+  QmlVector3d,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 export interface Light3DBuilder {
   id(id: string): Light3DBuilder;
   child(obj: QmlObjectBuilder): Light3DBuilder;
+  children(...objs: QmlObjectBuilder[]): Light3DBuilder;
 
   autoPosition(value: boolean): Light3DBuilder;
   autoPositionBind(expr: string): Light3DBuilder;
@@ -14,9 +20,9 @@ export interface Light3DBuilder {
   objectNameBind(expr: string): Light3DBuilder;
   position(value: QmlVector3d): Light3DBuilder;
   positionBind(expr: string): Light3DBuilder;
-  onAutoPositionChanged(body: string): Light3DBuilder;
-  onObjectNameChanged(body: string): Light3DBuilder;
-  onPositionChanged(body: string): Light3DBuilder;
+  onAutoPositionChanged(handler: DslSignalHandlerValue): Light3DBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): Light3DBuilder;
+  onPositionChanged(handler: DslSignalHandlerValue): Light3DBuilder;
 }
 
 const LIGHT3D_META: TypeMetadata = {

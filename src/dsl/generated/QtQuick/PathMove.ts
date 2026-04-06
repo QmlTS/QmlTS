@@ -2,7 +2,7 @@
 // Type: PathMove
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import type { DslSignalHandlerValue, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 import type { AccessibleAttachedBuilder } from './Accessible.js';
 import type { EnterKeyAttachedBuilder } from './EnterKey.js';
@@ -23,6 +23,7 @@ import type { ViewTransitionAttachedBuilder } from './ViewTransition.js';
 export interface PathMoveBuilder {
   id(id: string): PathMoveBuilder;
   child(obj: QmlObjectBuilder): PathMoveBuilder;
+  children(...objs: QmlObjectBuilder[]): PathMoveBuilder;
 
   objectName(value: string): PathMoveBuilder;
   objectNameBind(expr: string): PathMoveBuilder;
@@ -34,12 +35,12 @@ export interface PathMoveBuilder {
   xBind(expr: string): PathMoveBuilder;
   y(value: number): PathMoveBuilder;
   yBind(expr: string): PathMoveBuilder;
-  onChanged(body: string): PathMoveBuilder;
-  onObjectNameChanged(body: string): PathMoveBuilder;
-  onRelativeXChanged(body: string): PathMoveBuilder;
-  onRelativeYChanged(body: string): PathMoveBuilder;
-  onXChanged(body: string): PathMoveBuilder;
-  onYChanged(body: string): PathMoveBuilder;
+  onChanged(handler: DslSignalHandlerValue): PathMoveBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): PathMoveBuilder;
+  onRelativeXChanged(handler: DslSignalHandlerValue): PathMoveBuilder;
+  onRelativeYChanged(handler: DslSignalHandlerValue): PathMoveBuilder;
+  onXChanged(handler: DslSignalHandlerValue): PathMoveBuilder;
+  onYChanged(handler: DslSignalHandlerValue): PathMoveBuilder;
   accessible(setup: (b: AccessibleAttachedBuilder) => void): PathMoveBuilder;
   drag(setup: (b: DragAttachedBuilder) => void): PathMoveBuilder;
   enterKey(setup: (b: EnterKeyAttachedBuilder) => void): PathMoveBuilder;

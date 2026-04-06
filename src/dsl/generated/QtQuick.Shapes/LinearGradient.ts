@@ -2,11 +2,17 @@
 // Type: LinearGradient
 // Generated from Qt 6.11.0
 
-import type { QmlEnumToken, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlEnumToken,
+  QmlObjectBuilder,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface LinearGradientBuilder {
   id(id: string): LinearGradientBuilder;
   child(obj: QmlObjectBuilder): LinearGradientBuilder;
+  children(...objs: QmlObjectBuilder[]): LinearGradientBuilder;
 
   objectName(value: string): LinearGradientBuilder;
   objectNameBind(expr: string): LinearGradientBuilder;
@@ -22,14 +28,14 @@ export interface LinearGradientBuilder {
   y1Bind(expr: string): LinearGradientBuilder;
   y2(value: number): LinearGradientBuilder;
   y2Bind(expr: string): LinearGradientBuilder;
-  onObjectNameChanged(body: string): LinearGradientBuilder;
-  onOrientationChanged(body: string): LinearGradientBuilder;
-  onSpreadChanged(body: string): LinearGradientBuilder;
-  onUpdated(body: string): LinearGradientBuilder;
-  onX1Changed(body: string): LinearGradientBuilder;
-  onX2Changed(body: string): LinearGradientBuilder;
-  onY1Changed(body: string): LinearGradientBuilder;
-  onY2Changed(body: string): LinearGradientBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): LinearGradientBuilder;
+  onOrientationChanged(handler: DslSignalHandlerValue): LinearGradientBuilder;
+  onSpreadChanged(handler: DslSignalHandlerValue): LinearGradientBuilder;
+  onUpdated(handler: DslSignalHandlerValue): LinearGradientBuilder;
+  onX1Changed(handler: DslSignalHandlerValue): LinearGradientBuilder;
+  onX2Changed(handler: DslSignalHandlerValue): LinearGradientBuilder;
+  onY1Changed(handler: DslSignalHandlerValue): LinearGradientBuilder;
+  onY2Changed(handler: DslSignalHandlerValue): LinearGradientBuilder;
 }
 
 const LINEARGRADIENT_META: TypeMetadata = {

@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlEnumToken,
   QmlObjectBuilder,
   QmlValue,
@@ -12,6 +13,7 @@ import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface MorphTargetBuilder {
   id(id: string): MorphTargetBuilder;
   child(obj: QmlObjectBuilder): MorphTargetBuilder;
+  children(...objs: QmlObjectBuilder[]): MorphTargetBuilder;
 
   attributes(value: QmlEnumToken): MorphTargetBuilder;
   attributesBind(expr: string): MorphTargetBuilder;
@@ -23,12 +25,12 @@ export interface MorphTargetBuilder {
   stateBind(expr: string): MorphTargetBuilder;
   weight(value: number): MorphTargetBuilder;
   weightBind(expr: string): MorphTargetBuilder;
-  onAttributesChanged(body: string): MorphTargetBuilder;
-  onChildrenChanged(body: string): MorphTargetBuilder;
-  onObjectNameChanged(body: string): MorphTargetBuilder;
-  onParentChanged(body: string): MorphTargetBuilder;
-  onStateChanged(body: string): MorphTargetBuilder;
-  onWeightChanged(body: string): MorphTargetBuilder;
+  onAttributesChanged(handler: DslSignalHandlerValue): MorphTargetBuilder;
+  onChildrenChanged(handler: DslSignalHandlerValue): MorphTargetBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): MorphTargetBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): MorphTargetBuilder;
+  onStateChanged(handler: DslSignalHandlerValue): MorphTargetBuilder;
+  onWeightChanged(handler: DslSignalHandlerValue): MorphTargetBuilder;
 }
 
 const MORPHTARGET_META: TypeMetadata = {

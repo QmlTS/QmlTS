@@ -2,7 +2,12 @@
 // Type: ScrollBar
 // Generated from Qt 6.11.0
 
-import type { QmlEnumToken, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlEnumToken,
+  QmlObjectBuilder,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { QtObjectBuilder } from '../QML/QtObject.js';
 import type { ItemBuilder } from '../QtQuick/Item.js';
@@ -12,6 +17,7 @@ import type { LayerBuilder } from '../QtQuick/QQuickItemLayer.js';
 export interface ScrollBarBuilder {
   id(id: string): ScrollBarBuilder;
   child(obj: QmlObjectBuilder): ScrollBarBuilder;
+  children(...objs: QmlObjectBuilder[]): ScrollBarBuilder;
 
   activeFocusOnTab(value: boolean): ScrollBarBuilder;
   activeFocusOnTabBind(expr: string): ScrollBarBuilder;
@@ -77,42 +83,42 @@ export interface ScrollBarBuilder {
   yBind(expr: string): ScrollBarBuilder;
   z(value: number): ScrollBarBuilder;
   zBind(expr: string): ScrollBarBuilder;
-  onActiveFocusChanged(body: string): ScrollBarBuilder;
-  onActiveFocusOnTabChanged(body: string): ScrollBarBuilder;
-  onAntialiasingChanged(body: string): ScrollBarBuilder;
-  onBaselineOffsetChanged(body: string): ScrollBarBuilder;
-  onChildrenChanged(body: string): ScrollBarBuilder;
-  onChildrenRectChanged(body: string): ScrollBarBuilder;
-  onClipChanged(body: string): ScrollBarBuilder;
-  onContainmentMaskChanged(body: string): ScrollBarBuilder;
-  onContentPaddingChanged(body: string): ScrollBarBuilder;
-  onControlChanged(body: string): ScrollBarBuilder;
-  onEnabledChanged(body: string): ScrollBarBuilder;
-  onFocusChanged(body: string): ScrollBarBuilder;
-  onFocusPolicyChanged(body: string): ScrollBarBuilder;
-  onFontChanged(body: string): ScrollBarBuilder;
-  onHeightChanged(body: string): ScrollBarBuilder;
-  onImplicitHeightChanged(body: string): ScrollBarBuilder;
-  onImplicitWidthChanged(body: string): ScrollBarBuilder;
-  onLayoutMarginsChanged(body: string): ScrollBarBuilder;
-  onMinimumSizeChanged(body: string): ScrollBarBuilder;
-  onObjectNameChanged(body: string): ScrollBarBuilder;
-  onOpacityChanged(body: string): ScrollBarBuilder;
-  onPaletteChanged(body: string): ScrollBarBuilder;
-  onPaletteCreated(body: string): ScrollBarBuilder;
-  onParentChanged(body: string): ScrollBarBuilder;
-  onRotationChanged(body: string): ScrollBarBuilder;
-  onScaleChanged(body: string): ScrollBarBuilder;
-  onSmoothChanged(body: string): ScrollBarBuilder;
-  onStateChanged(body: string): ScrollBarBuilder;
-  onTransformOriginChanged(body: string): ScrollBarBuilder;
-  onVisibleChanged(body: string): ScrollBarBuilder;
-  onVisibleChildrenChanged(body: string): ScrollBarBuilder;
-  onWidthChanged(body: string): ScrollBarBuilder;
-  onWindowChanged(body: string): ScrollBarBuilder;
-  onXChanged(body: string): ScrollBarBuilder;
-  onYChanged(body: string): ScrollBarBuilder;
-  onZChanged(body: string): ScrollBarBuilder;
+  onActiveFocusChanged(handler: DslSignalHandlerValue): ScrollBarBuilder;
+  onActiveFocusOnTabChanged(handler: DslSignalHandlerValue): ScrollBarBuilder;
+  onAntialiasingChanged(handler: DslSignalHandlerValue): ScrollBarBuilder;
+  onBaselineOffsetChanged(handler: DslSignalHandlerValue): ScrollBarBuilder;
+  onChildrenChanged(handler: DslSignalHandlerValue): ScrollBarBuilder;
+  onChildrenRectChanged(handler: DslSignalHandlerValue): ScrollBarBuilder;
+  onClipChanged(handler: DslSignalHandlerValue): ScrollBarBuilder;
+  onContainmentMaskChanged(handler: DslSignalHandlerValue): ScrollBarBuilder;
+  onContentPaddingChanged(handler: DslSignalHandlerValue): ScrollBarBuilder;
+  onControlChanged(handler: DslSignalHandlerValue): ScrollBarBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): ScrollBarBuilder;
+  onFocusChanged(handler: DslSignalHandlerValue): ScrollBarBuilder;
+  onFocusPolicyChanged(handler: DslSignalHandlerValue): ScrollBarBuilder;
+  onFontChanged(handler: DslSignalHandlerValue): ScrollBarBuilder;
+  onHeightChanged(handler: DslSignalHandlerValue): ScrollBarBuilder;
+  onImplicitHeightChanged(handler: DslSignalHandlerValue): ScrollBarBuilder;
+  onImplicitWidthChanged(handler: DslSignalHandlerValue): ScrollBarBuilder;
+  onLayoutMarginsChanged(handler: DslSignalHandlerValue): ScrollBarBuilder;
+  onMinimumSizeChanged(handler: DslSignalHandlerValue): ScrollBarBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): ScrollBarBuilder;
+  onOpacityChanged(handler: DslSignalHandlerValue): ScrollBarBuilder;
+  onPaletteChanged(handler: DslSignalHandlerValue): ScrollBarBuilder;
+  onPaletteCreated(handler: DslSignalHandlerValue): ScrollBarBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): ScrollBarBuilder;
+  onRotationChanged(handler: DslSignalHandlerValue): ScrollBarBuilder;
+  onScaleChanged(handler: DslSignalHandlerValue): ScrollBarBuilder;
+  onSmoothChanged(handler: DslSignalHandlerValue): ScrollBarBuilder;
+  onStateChanged(handler: DslSignalHandlerValue): ScrollBarBuilder;
+  onTransformOriginChanged(handler: DslSignalHandlerValue): ScrollBarBuilder;
+  onVisibleChanged(handler: DslSignalHandlerValue): ScrollBarBuilder;
+  onVisibleChildrenChanged(handler: DslSignalHandlerValue): ScrollBarBuilder;
+  onWidthChanged(handler: DslSignalHandlerValue): ScrollBarBuilder;
+  onWindowChanged(handler: DslSignalHandlerValue): ScrollBarBuilder;
+  onXChanged(handler: DslSignalHandlerValue): ScrollBarBuilder;
+  onYChanged(handler: DslSignalHandlerValue): ScrollBarBuilder;
+  onZChanged(handler: DslSignalHandlerValue): ScrollBarBuilder;
   anchors(setup: (b: AnchorsBuilder) => void): ScrollBarBuilder;
   layer(setup: (b: LayerBuilder) => void): ScrollBarBuilder;
 }

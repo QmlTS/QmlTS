@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlEnumToken,
   QmlObjectBuilder,
   QmlValue,
@@ -12,6 +13,7 @@ import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface PieSeriesBuilder {
   id(id: string): PieSeriesBuilder;
   child(obj: QmlObjectBuilder): PieSeriesBuilder;
+  children(...objs: QmlObjectBuilder[]): PieSeriesBuilder;
 
   angleSpanLabelVisibility(value: QmlEnumToken): PieSeriesBuilder;
   angleSpanLabelVisibilityBind(expr: string): PieSeriesBuilder;
@@ -49,39 +51,39 @@ export interface PieSeriesBuilder {
   visibleBind(expr: string): PieSeriesBuilder;
   zValue(value: number): PieSeriesBuilder;
   zValueBind(expr: string): PieSeriesBuilder;
-  onAdded(body: string): PieSeriesBuilder;
-  onAngleSpanLabelVisibilityChanged(body: string): PieSeriesBuilder;
-  onAngleSpanVisibleLimitChanged(body: string): PieSeriesBuilder;
-  onAxisXChanged(body: string): PieSeriesBuilder;
-  onAxisYChanged(body: string): PieSeriesBuilder;
-  onClicked(body: string): PieSeriesBuilder;
-  onCountChanged(body: string): PieSeriesBuilder;
-  onDoubleClicked(body: string): PieSeriesBuilder;
-  onEndAngleChanged(body: string): PieSeriesBuilder;
-  onHoleSizeChanged(body: string): PieSeriesBuilder;
-  onHorizontalPositionChanged(body: string): PieSeriesBuilder;
-  onHover(body: string): PieSeriesBuilder;
-  onHoverEnter(body: string): PieSeriesBuilder;
-  onHoverExit(body: string): PieSeriesBuilder;
-  onHoverableChanged(body: string): PieSeriesBuilder;
-  onHoveredChanged(body: string): PieSeriesBuilder;
-  onLegendDataChanged(body: string): PieSeriesBuilder;
-  onNameChanged(body: string): PieSeriesBuilder;
-  onObjectNameChanged(body: string): PieSeriesBuilder;
-  onOpacityChanged(body: string): PieSeriesBuilder;
-  onPieSizeChanged(body: string): PieSeriesBuilder;
-  onPressed(body: string): PieSeriesBuilder;
-  onReleased(body: string): PieSeriesBuilder;
-  onRemoved(body: string): PieSeriesBuilder;
-  onReplaced(body: string): PieSeriesBuilder;
-  onSelectableChanged(body: string): PieSeriesBuilder;
-  onStartAngleChanged(body: string): PieSeriesBuilder;
-  onSumChanged(body: string): PieSeriesBuilder;
-  onUpdate(body: string): PieSeriesBuilder;
-  onValuesMultiplierChanged(body: string): PieSeriesBuilder;
-  onVerticalPositionChanged(body: string): PieSeriesBuilder;
-  onVisibleChanged(body: string): PieSeriesBuilder;
-  onZValueChanged(body: string): PieSeriesBuilder;
+  onAdded(handler: DslSignalHandlerValue): PieSeriesBuilder;
+  onAngleSpanLabelVisibilityChanged(handler: DslSignalHandlerValue): PieSeriesBuilder;
+  onAngleSpanVisibleLimitChanged(handler: DslSignalHandlerValue): PieSeriesBuilder;
+  onAxisXChanged(handler: DslSignalHandlerValue): PieSeriesBuilder;
+  onAxisYChanged(handler: DslSignalHandlerValue): PieSeriesBuilder;
+  onClicked(handler: DslSignalHandlerValue): PieSeriesBuilder;
+  onCountChanged(handler: DslSignalHandlerValue): PieSeriesBuilder;
+  onDoubleClicked(handler: DslSignalHandlerValue): PieSeriesBuilder;
+  onEndAngleChanged(handler: DslSignalHandlerValue): PieSeriesBuilder;
+  onHoleSizeChanged(handler: DslSignalHandlerValue): PieSeriesBuilder;
+  onHorizontalPositionChanged(handler: DslSignalHandlerValue): PieSeriesBuilder;
+  onHover(handler: DslSignalHandlerValue): PieSeriesBuilder;
+  onHoverEnter(handler: DslSignalHandlerValue): PieSeriesBuilder;
+  onHoverExit(handler: DslSignalHandlerValue): PieSeriesBuilder;
+  onHoverableChanged(handler: DslSignalHandlerValue): PieSeriesBuilder;
+  onHoveredChanged(handler: DslSignalHandlerValue): PieSeriesBuilder;
+  onLegendDataChanged(handler: DslSignalHandlerValue): PieSeriesBuilder;
+  onNameChanged(handler: DslSignalHandlerValue): PieSeriesBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): PieSeriesBuilder;
+  onOpacityChanged(handler: DslSignalHandlerValue): PieSeriesBuilder;
+  onPieSizeChanged(handler: DslSignalHandlerValue): PieSeriesBuilder;
+  onPressed(handler: DslSignalHandlerValue): PieSeriesBuilder;
+  onReleased(handler: DslSignalHandlerValue): PieSeriesBuilder;
+  onRemoved(handler: DslSignalHandlerValue): PieSeriesBuilder;
+  onReplaced(handler: DslSignalHandlerValue): PieSeriesBuilder;
+  onSelectableChanged(handler: DslSignalHandlerValue): PieSeriesBuilder;
+  onStartAngleChanged(handler: DslSignalHandlerValue): PieSeriesBuilder;
+  onSumChanged(handler: DslSignalHandlerValue): PieSeriesBuilder;
+  onUpdate(handler: DslSignalHandlerValue): PieSeriesBuilder;
+  onValuesMultiplierChanged(handler: DslSignalHandlerValue): PieSeriesBuilder;
+  onVerticalPositionChanged(handler: DslSignalHandlerValue): PieSeriesBuilder;
+  onVisibleChanged(handler: DslSignalHandlerValue): PieSeriesBuilder;
+  onZValueChanged(handler: DslSignalHandlerValue): PieSeriesBuilder;
 }
 
 const PIESERIES_META: TypeMetadata = {

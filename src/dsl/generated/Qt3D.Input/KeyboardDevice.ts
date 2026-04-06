@@ -2,11 +2,17 @@
 // Type: KeyboardDevice
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 export interface KeyboardDeviceBuilder {
   id(id: string): KeyboardDeviceBuilder;
   child(obj: QmlObjectBuilder): KeyboardDeviceBuilder;
+  children(...objs: QmlObjectBuilder[]): KeyboardDeviceBuilder;
 
   enabled(value: boolean): KeyboardDeviceBuilder;
   enabledBind(expr: string): KeyboardDeviceBuilder;
@@ -14,11 +20,11 @@ export interface KeyboardDeviceBuilder {
   objectNameBind(expr: string): KeyboardDeviceBuilder;
   parent(value: QmlValue): KeyboardDeviceBuilder;
   parentBind(expr: string): KeyboardDeviceBuilder;
-  onActiveInputChanged(body: string): KeyboardDeviceBuilder;
-  onEnabledChanged(body: string): KeyboardDeviceBuilder;
-  onNodeDestroyed(body: string): KeyboardDeviceBuilder;
-  onObjectNameChanged(body: string): KeyboardDeviceBuilder;
-  onParentChanged(body: string): KeyboardDeviceBuilder;
+  onActiveInputChanged(handler: DslSignalHandlerValue): KeyboardDeviceBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): KeyboardDeviceBuilder;
+  onNodeDestroyed(handler: DslSignalHandlerValue): KeyboardDeviceBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): KeyboardDeviceBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): KeyboardDeviceBuilder;
 }
 
 const KEYBOARDDEVICE_META: TypeMetadata = {

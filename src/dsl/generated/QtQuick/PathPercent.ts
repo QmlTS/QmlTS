@@ -2,7 +2,7 @@
 // Type: PathPercent
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import type { DslSignalHandlerValue, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 import type { AccessibleAttachedBuilder } from './Accessible.js';
 import type { EnterKeyAttachedBuilder } from './EnterKey.js';
@@ -23,14 +23,15 @@ import type { ViewTransitionAttachedBuilder } from './ViewTransition.js';
 export interface PathPercentBuilder {
   id(id: string): PathPercentBuilder;
   child(obj: QmlObjectBuilder): PathPercentBuilder;
+  children(...objs: QmlObjectBuilder[]): PathPercentBuilder;
 
   objectName(value: string): PathPercentBuilder;
   objectNameBind(expr: string): PathPercentBuilder;
   value(value: number): PathPercentBuilder;
   valueBind(expr: string): PathPercentBuilder;
-  onChanged(body: string): PathPercentBuilder;
-  onObjectNameChanged(body: string): PathPercentBuilder;
-  onValueChanged(body: string): PathPercentBuilder;
+  onChanged(handler: DslSignalHandlerValue): PathPercentBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): PathPercentBuilder;
+  onValueChanged(handler: DslSignalHandlerValue): PathPercentBuilder;
   accessible(setup: (b: AccessibleAttachedBuilder) => void): PathPercentBuilder;
   drag(setup: (b: DragAttachedBuilder) => void): PathPercentBuilder;
   enterKey(setup: (b: EnterKeyAttachedBuilder) => void): PathPercentBuilder;

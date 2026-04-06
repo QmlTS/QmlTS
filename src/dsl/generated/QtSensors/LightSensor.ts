@@ -2,11 +2,17 @@
 // Type: LightSensor
 // Generated from Qt 6.11.0
 
-import type { QmlEnumToken, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlEnumToken,
+  QmlObjectBuilder,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface LightSensorBuilder {
   id(id: string): LightSensorBuilder;
   child(obj: QmlObjectBuilder): LightSensorBuilder;
+  children(...objs: QmlObjectBuilder[]): LightSensorBuilder;
 
   active(value: boolean): LightSensorBuilder;
   activeBind(expr: string): LightSensorBuilder;
@@ -28,27 +34,27 @@ export interface LightSensorBuilder {
   skipDuplicatesBind(expr: string): LightSensorBuilder;
   userOrientation(value: number): LightSensorBuilder;
   userOrientationBind(expr: string): LightSensorBuilder;
-  onActiveChanged(body: string): LightSensorBuilder;
-  onAlwaysOnChanged(body: string): LightSensorBuilder;
-  onAvailableDataRatesChanged(body: string): LightSensorBuilder;
-  onAxesOrientationModeChanged(body: string): LightSensorBuilder;
-  onBufferSizeChanged(body: string): LightSensorBuilder;
-  onBusyChanged(body: string): LightSensorBuilder;
-  onConnectedToBackendChanged(body: string): LightSensorBuilder;
-  onCurrentOrientationChanged(body: string): LightSensorBuilder;
-  onDataRateChanged(body: string): LightSensorBuilder;
-  onDescriptionChanged(body: string): LightSensorBuilder;
-  onEfficientBufferSizeChanged(body: string): LightSensorBuilder;
-  onErrorChanged(body: string): LightSensorBuilder;
-  onFieldOfViewChanged(body: string): LightSensorBuilder;
-  onIdentifierChanged(body: string): LightSensorBuilder;
-  onMaxBufferSizeChanged(body: string): LightSensorBuilder;
-  onObjectNameChanged(body: string): LightSensorBuilder;
-  onOutputRangeChanged(body: string): LightSensorBuilder;
-  onOutputRangesChanged(body: string): LightSensorBuilder;
-  onReadingChanged(body: string): LightSensorBuilder;
-  onSkipDuplicatesChanged(body: string): LightSensorBuilder;
-  onUserOrientationChanged(body: string): LightSensorBuilder;
+  onActiveChanged(handler: DslSignalHandlerValue): LightSensorBuilder;
+  onAlwaysOnChanged(handler: DslSignalHandlerValue): LightSensorBuilder;
+  onAvailableDataRatesChanged(handler: DslSignalHandlerValue): LightSensorBuilder;
+  onAxesOrientationModeChanged(handler: DslSignalHandlerValue): LightSensorBuilder;
+  onBufferSizeChanged(handler: DslSignalHandlerValue): LightSensorBuilder;
+  onBusyChanged(handler: DslSignalHandlerValue): LightSensorBuilder;
+  onConnectedToBackendChanged(handler: DslSignalHandlerValue): LightSensorBuilder;
+  onCurrentOrientationChanged(handler: DslSignalHandlerValue): LightSensorBuilder;
+  onDataRateChanged(handler: DslSignalHandlerValue): LightSensorBuilder;
+  onDescriptionChanged(handler: DslSignalHandlerValue): LightSensorBuilder;
+  onEfficientBufferSizeChanged(handler: DslSignalHandlerValue): LightSensorBuilder;
+  onErrorChanged(handler: DslSignalHandlerValue): LightSensorBuilder;
+  onFieldOfViewChanged(handler: DslSignalHandlerValue): LightSensorBuilder;
+  onIdentifierChanged(handler: DslSignalHandlerValue): LightSensorBuilder;
+  onMaxBufferSizeChanged(handler: DslSignalHandlerValue): LightSensorBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): LightSensorBuilder;
+  onOutputRangeChanged(handler: DslSignalHandlerValue): LightSensorBuilder;
+  onOutputRangesChanged(handler: DslSignalHandlerValue): LightSensorBuilder;
+  onReadingChanged(handler: DslSignalHandlerValue): LightSensorBuilder;
+  onSkipDuplicatesChanged(handler: DslSignalHandlerValue): LightSensorBuilder;
+  onUserOrientationChanged(handler: DslSignalHandlerValue): LightSensorBuilder;
 }
 
 const LIGHTSENSOR_META: TypeMetadata = {

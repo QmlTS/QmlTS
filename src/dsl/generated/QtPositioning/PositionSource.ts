@@ -2,11 +2,17 @@
 // Type: PositionSource
 // Generated from Qt 6.11.0
 
-import type { QmlEnumToken, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlEnumToken,
+  QmlObjectBuilder,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface PositionSourceBuilder {
   id(id: string): PositionSourceBuilder;
   child(obj: QmlObjectBuilder): PositionSourceBuilder;
+  children(...objs: QmlObjectBuilder[]): PositionSourceBuilder;
 
   active(value: boolean): PositionSourceBuilder;
   activeBind(expr: string): PositionSourceBuilder;
@@ -18,15 +24,15 @@ export interface PositionSourceBuilder {
   preferredPositioningMethodsBind(expr: string): PositionSourceBuilder;
   updateInterval(value: number): PositionSourceBuilder;
   updateIntervalBind(expr: string): PositionSourceBuilder;
-  onActiveChanged(body: string): PositionSourceBuilder;
-  onNameChanged(body: string): PositionSourceBuilder;
-  onObjectNameChanged(body: string): PositionSourceBuilder;
-  onPositionChanged(body: string): PositionSourceBuilder;
-  onPreferredPositioningMethodsChanged(body: string): PositionSourceBuilder;
-  onSourceErrorChanged(body: string): PositionSourceBuilder;
-  onSupportedPositioningMethodsChanged(body: string): PositionSourceBuilder;
-  onUpdateIntervalChanged(body: string): PositionSourceBuilder;
-  onValidityChanged(body: string): PositionSourceBuilder;
+  onActiveChanged(handler: DslSignalHandlerValue): PositionSourceBuilder;
+  onNameChanged(handler: DslSignalHandlerValue): PositionSourceBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): PositionSourceBuilder;
+  onPositionChanged(handler: DslSignalHandlerValue): PositionSourceBuilder;
+  onPreferredPositioningMethodsChanged(handler: DslSignalHandlerValue): PositionSourceBuilder;
+  onSourceErrorChanged(handler: DslSignalHandlerValue): PositionSourceBuilder;
+  onSupportedPositioningMethodsChanged(handler: DslSignalHandlerValue): PositionSourceBuilder;
+  onUpdateIntervalChanged(handler: DslSignalHandlerValue): PositionSourceBuilder;
+  onValidityChanged(handler: DslSignalHandlerValue): PositionSourceBuilder;
 }
 
 const POSITIONSOURCE_META: TypeMetadata = {

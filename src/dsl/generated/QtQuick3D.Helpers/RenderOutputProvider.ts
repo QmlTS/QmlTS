@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlEnumToken,
   QmlObjectBuilder,
   QmlValue,
@@ -13,6 +14,7 @@ import type { RenderPassBuilder } from '../QtQuick3D/RenderPass.js';
 export interface RenderOutputProviderBuilder {
   id(id: string): RenderOutputProviderBuilder;
   child(obj: QmlObjectBuilder): RenderOutputProviderBuilder;
+  children(...objs: QmlObjectBuilder[]): RenderOutputProviderBuilder;
 
   attachmentSelector(value: QmlEnumToken): RenderOutputProviderBuilder;
   attachmentSelectorBind(expr: string): RenderOutputProviderBuilder;
@@ -28,14 +30,14 @@ export interface RenderOutputProviderBuilder {
   stateBind(expr: string): RenderOutputProviderBuilder;
   textureSource(value: QmlEnumToken): RenderOutputProviderBuilder;
   textureSourceBind(expr: string): RenderOutputProviderBuilder;
-  onAttachmentSelectorChanged(body: string): RenderOutputProviderBuilder;
-  onChildrenChanged(body: string): RenderOutputProviderBuilder;
-  onObjectNameChanged(body: string): RenderOutputProviderBuilder;
-  onParentChanged(body: string): RenderOutputProviderBuilder;
-  onRenderPassChanged(body: string): RenderOutputProviderBuilder;
-  onSamplerHintChanged(body: string): RenderOutputProviderBuilder;
-  onStateChanged(body: string): RenderOutputProviderBuilder;
-  onTextureSourceChanged(body: string): RenderOutputProviderBuilder;
+  onAttachmentSelectorChanged(handler: DslSignalHandlerValue): RenderOutputProviderBuilder;
+  onChildrenChanged(handler: DslSignalHandlerValue): RenderOutputProviderBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): RenderOutputProviderBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): RenderOutputProviderBuilder;
+  onRenderPassChanged(handler: DslSignalHandlerValue): RenderOutputProviderBuilder;
+  onSamplerHintChanged(handler: DslSignalHandlerValue): RenderOutputProviderBuilder;
+  onStateChanged(handler: DslSignalHandlerValue): RenderOutputProviderBuilder;
+  onTextureSourceChanged(handler: DslSignalHandlerValue): RenderOutputProviderBuilder;
 }
 
 const RENDEROUTPUTPROVIDER_META: TypeMetadata = {

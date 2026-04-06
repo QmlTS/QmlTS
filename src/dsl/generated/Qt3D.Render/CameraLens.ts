@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlEnumToken,
   QmlMatrix4x4,
   QmlObjectBuilder,
@@ -13,6 +14,7 @@ import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface CameraLensBuilder {
   id(id: string): CameraLensBuilder;
   child(obj: QmlObjectBuilder): CameraLensBuilder;
+  children(...objs: QmlObjectBuilder[]): CameraLensBuilder;
 
   aspectRatio(value: number): CameraLensBuilder;
   aspectRatioBind(expr: string): CameraLensBuilder;
@@ -44,25 +46,25 @@ export interface CameraLensBuilder {
   rightBind(expr: string): CameraLensBuilder;
   top(value: number): CameraLensBuilder;
   topBind(expr: string): CameraLensBuilder;
-  onAddedToEntity(body: string): CameraLensBuilder;
-  onAspectRatioChanged(body: string): CameraLensBuilder;
-  onBottomChanged(body: string): CameraLensBuilder;
-  onEnabledChanged(body: string): CameraLensBuilder;
-  onExposureChanged(body: string): CameraLensBuilder;
-  onFarPlaneChanged(body: string): CameraLensBuilder;
-  onFieldOfViewChanged(body: string): CameraLensBuilder;
-  onLeftChanged(body: string): CameraLensBuilder;
-  onNearPlaneChanged(body: string): CameraLensBuilder;
-  onNodeDestroyed(body: string): CameraLensBuilder;
-  onObjectNameChanged(body: string): CameraLensBuilder;
-  onParentChanged(body: string): CameraLensBuilder;
-  onProjectionMatrixChanged(body: string): CameraLensBuilder;
-  onProjectionTypeChanged(body: string): CameraLensBuilder;
-  onRemovedFromEntity(body: string): CameraLensBuilder;
-  onRightChanged(body: string): CameraLensBuilder;
-  onShareableChanged(body: string): CameraLensBuilder;
-  onTopChanged(body: string): CameraLensBuilder;
-  onViewSphere(body: string): CameraLensBuilder;
+  onAddedToEntity(handler: DslSignalHandlerValue): CameraLensBuilder;
+  onAspectRatioChanged(handler: DslSignalHandlerValue): CameraLensBuilder;
+  onBottomChanged(handler: DslSignalHandlerValue): CameraLensBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): CameraLensBuilder;
+  onExposureChanged(handler: DslSignalHandlerValue): CameraLensBuilder;
+  onFarPlaneChanged(handler: DslSignalHandlerValue): CameraLensBuilder;
+  onFieldOfViewChanged(handler: DslSignalHandlerValue): CameraLensBuilder;
+  onLeftChanged(handler: DslSignalHandlerValue): CameraLensBuilder;
+  onNearPlaneChanged(handler: DslSignalHandlerValue): CameraLensBuilder;
+  onNodeDestroyed(handler: DslSignalHandlerValue): CameraLensBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): CameraLensBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): CameraLensBuilder;
+  onProjectionMatrixChanged(handler: DslSignalHandlerValue): CameraLensBuilder;
+  onProjectionTypeChanged(handler: DslSignalHandlerValue): CameraLensBuilder;
+  onRemovedFromEntity(handler: DslSignalHandlerValue): CameraLensBuilder;
+  onRightChanged(handler: DslSignalHandlerValue): CameraLensBuilder;
+  onShareableChanged(handler: DslSignalHandlerValue): CameraLensBuilder;
+  onTopChanged(handler: DslSignalHandlerValue): CameraLensBuilder;
+  onViewSphere(handler: DslSignalHandlerValue): CameraLensBuilder;
 }
 
 const CAMERALENS_META: TypeMetadata = {

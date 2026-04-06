@@ -2,7 +2,7 @@
 // Type: AnchorChanges
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import type { DslSignalHandlerValue, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 import type { AccessibleAttachedBuilder } from './Accessible.js';
 import type { EnterKeyAttachedBuilder } from './EnterKey.js';
@@ -25,12 +25,13 @@ import type { ViewTransitionAttachedBuilder } from './ViewTransition.js';
 export interface AnchorChangesBuilder {
   id(id: string): AnchorChangesBuilder;
   child(obj: QmlObjectBuilder): AnchorChangesBuilder;
+  children(...objs: QmlObjectBuilder[]): AnchorChangesBuilder;
 
   objectName(value: string): AnchorChangesBuilder;
   objectNameBind(expr: string): AnchorChangesBuilder;
   target(value: ItemBuilder): AnchorChangesBuilder;
   targetBind(expr: string): AnchorChangesBuilder;
-  onObjectNameChanged(body: string): AnchorChangesBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): AnchorChangesBuilder;
   anchors(setup: (b: AnchorsBuilder) => void): AnchorChangesBuilder;
   accessible(setup: (b: AccessibleAttachedBuilder) => void): AnchorChangesBuilder;
   drag(setup: (b: DragAttachedBuilder) => void): AnchorChangesBuilder;

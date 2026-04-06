@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlColor,
   QmlEnumToken,
   QmlFont,
@@ -30,6 +31,7 @@ import type { ViewTransitionAttachedBuilder } from './ViewTransition.js';
 export interface TextSelectionBuilder {
   id(id: string): TextSelectionBuilder;
   child(obj: QmlObjectBuilder): TextSelectionBuilder;
+  children(...objs: QmlObjectBuilder[]): TextSelectionBuilder;
 
   alignment(value: QmlEnumToken): TextSelectionBuilder;
   alignmentBind(expr: string): TextSelectionBuilder;
@@ -47,14 +49,14 @@ export interface TextSelectionBuilder {
   selectionStartBind(expr: string): TextSelectionBuilder;
   text(value: string): TextSelectionBuilder;
   textBind(expr: string): TextSelectionBuilder;
-  onAlignmentChanged(body: string): TextSelectionBuilder;
-  onColorChanged(body: string): TextSelectionBuilder;
-  onDocumentChanged(body: string): TextSelectionBuilder;
-  onFontChanged(body: string): TextSelectionBuilder;
-  onObjectNameChanged(body: string): TextSelectionBuilder;
-  onSelectionEndChanged(body: string): TextSelectionBuilder;
-  onSelectionStartChanged(body: string): TextSelectionBuilder;
-  onTextChanged(body: string): TextSelectionBuilder;
+  onAlignmentChanged(handler: DslSignalHandlerValue): TextSelectionBuilder;
+  onColorChanged(handler: DslSignalHandlerValue): TextSelectionBuilder;
+  onDocumentChanged(handler: DslSignalHandlerValue): TextSelectionBuilder;
+  onFontChanged(handler: DslSignalHandlerValue): TextSelectionBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): TextSelectionBuilder;
+  onSelectionEndChanged(handler: DslSignalHandlerValue): TextSelectionBuilder;
+  onSelectionStartChanged(handler: DslSignalHandlerValue): TextSelectionBuilder;
+  onTextChanged(handler: DslSignalHandlerValue): TextSelectionBuilder;
   accessible(setup: (b: AccessibleAttachedBuilder) => void): TextSelectionBuilder;
   drag(setup: (b: DragAttachedBuilder) => void): TextSelectionBuilder;
   enterKey(setup: (b: EnterKeyAttachedBuilder) => void): TextSelectionBuilder;

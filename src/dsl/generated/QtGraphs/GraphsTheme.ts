@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlColor,
   QmlEnumToken,
   QmlFont,
@@ -15,6 +16,7 @@ import type { GradientBuilder } from '../QtQuick/Gradient.js';
 export interface GraphsThemeBuilder {
   id(id: string): GraphsThemeBuilder;
   child(obj: QmlObjectBuilder): GraphsThemeBuilder;
+  children(...objs: QmlObjectBuilder[]): GraphsThemeBuilder;
 
   axisX(value: QmlValue): GraphsThemeBuilder;
   axisXBind(expr: string): GraphsThemeBuilder;
@@ -74,39 +76,39 @@ export interface GraphsThemeBuilder {
   singleHighlightGradientBind(expr: string): GraphsThemeBuilder;
   theme(value: QmlEnumToken): GraphsThemeBuilder;
   themeBind(expr: string): GraphsThemeBuilder;
-  onAxisXChanged(body: string): GraphsThemeBuilder;
-  onAxisXLabelFontChanged(body: string): GraphsThemeBuilder;
-  onAxisYChanged(body: string): GraphsThemeBuilder;
-  onAxisYLabelFontChanged(body: string): GraphsThemeBuilder;
-  onAxisZChanged(body: string): GraphsThemeBuilder;
-  onAxisZLabelFontChanged(body: string): GraphsThemeBuilder;
-  onBackgroundColorChanged(body: string): GraphsThemeBuilder;
-  onBackgroundVisibleChanged(body: string): GraphsThemeBuilder;
-  onBorderColorsChanged(body: string): GraphsThemeBuilder;
-  onBorderWidthChanged(body: string): GraphsThemeBuilder;
-  onColorSchemeChanged(body: string): GraphsThemeBuilder;
-  onColorStyleChanged(body: string): GraphsThemeBuilder;
-  onGridChanged(body: string): GraphsThemeBuilder;
-  onGridVisibleChanged(body: string): GraphsThemeBuilder;
-  onLabelBackgroundColorChanged(body: string): GraphsThemeBuilder;
-  onLabelBackgroundVisibleChanged(body: string): GraphsThemeBuilder;
-  onLabelBorderVisibleChanged(body: string): GraphsThemeBuilder;
-  onLabelFontChanged(body: string): GraphsThemeBuilder;
-  onLabelTextColorChanged(body: string): GraphsThemeBuilder;
-  onLabelsVisibleChanged(body: string): GraphsThemeBuilder;
-  onMultiHighlightColorChanged(body: string): GraphsThemeBuilder;
-  onMultiHighlightGradientChanged(body: string): GraphsThemeBuilder;
-  onMultiHighlightGradientQMLChanged(body: string): GraphsThemeBuilder;
-  onObjectNameChanged(body: string): GraphsThemeBuilder;
-  onPlotAreaBackgroundColorChanged(body: string): GraphsThemeBuilder;
-  onPlotAreaBackgroundVisibleChanged(body: string): GraphsThemeBuilder;
-  onSeriesColorsChanged(body: string): GraphsThemeBuilder;
-  onSeriesGradientsChanged(body: string): GraphsThemeBuilder;
-  onSingleHighlightColorChanged(body: string): GraphsThemeBuilder;
-  onSingleHighlightGradientChanged(body: string): GraphsThemeBuilder;
-  onSingleHighlightGradientQMLChanged(body: string): GraphsThemeBuilder;
-  onThemeChanged(body: string): GraphsThemeBuilder;
-  onUpdate(body: string): GraphsThemeBuilder;
+  onAxisXChanged(handler: DslSignalHandlerValue): GraphsThemeBuilder;
+  onAxisXLabelFontChanged(handler: DslSignalHandlerValue): GraphsThemeBuilder;
+  onAxisYChanged(handler: DslSignalHandlerValue): GraphsThemeBuilder;
+  onAxisYLabelFontChanged(handler: DslSignalHandlerValue): GraphsThemeBuilder;
+  onAxisZChanged(handler: DslSignalHandlerValue): GraphsThemeBuilder;
+  onAxisZLabelFontChanged(handler: DslSignalHandlerValue): GraphsThemeBuilder;
+  onBackgroundColorChanged(handler: DslSignalHandlerValue): GraphsThemeBuilder;
+  onBackgroundVisibleChanged(handler: DslSignalHandlerValue): GraphsThemeBuilder;
+  onBorderColorsChanged(handler: DslSignalHandlerValue): GraphsThemeBuilder;
+  onBorderWidthChanged(handler: DslSignalHandlerValue): GraphsThemeBuilder;
+  onColorSchemeChanged(handler: DslSignalHandlerValue): GraphsThemeBuilder;
+  onColorStyleChanged(handler: DslSignalHandlerValue): GraphsThemeBuilder;
+  onGridChanged(handler: DslSignalHandlerValue): GraphsThemeBuilder;
+  onGridVisibleChanged(handler: DslSignalHandlerValue): GraphsThemeBuilder;
+  onLabelBackgroundColorChanged(handler: DslSignalHandlerValue): GraphsThemeBuilder;
+  onLabelBackgroundVisibleChanged(handler: DslSignalHandlerValue): GraphsThemeBuilder;
+  onLabelBorderVisibleChanged(handler: DslSignalHandlerValue): GraphsThemeBuilder;
+  onLabelFontChanged(handler: DslSignalHandlerValue): GraphsThemeBuilder;
+  onLabelTextColorChanged(handler: DslSignalHandlerValue): GraphsThemeBuilder;
+  onLabelsVisibleChanged(handler: DslSignalHandlerValue): GraphsThemeBuilder;
+  onMultiHighlightColorChanged(handler: DslSignalHandlerValue): GraphsThemeBuilder;
+  onMultiHighlightGradientChanged(handler: DslSignalHandlerValue): GraphsThemeBuilder;
+  onMultiHighlightGradientQMLChanged(handler: DslSignalHandlerValue): GraphsThemeBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): GraphsThemeBuilder;
+  onPlotAreaBackgroundColorChanged(handler: DslSignalHandlerValue): GraphsThemeBuilder;
+  onPlotAreaBackgroundVisibleChanged(handler: DslSignalHandlerValue): GraphsThemeBuilder;
+  onSeriesColorsChanged(handler: DslSignalHandlerValue): GraphsThemeBuilder;
+  onSeriesGradientsChanged(handler: DslSignalHandlerValue): GraphsThemeBuilder;
+  onSingleHighlightColorChanged(handler: DslSignalHandlerValue): GraphsThemeBuilder;
+  onSingleHighlightGradientChanged(handler: DslSignalHandlerValue): GraphsThemeBuilder;
+  onSingleHighlightGradientQMLChanged(handler: DslSignalHandlerValue): GraphsThemeBuilder;
+  onThemeChanged(handler: DslSignalHandlerValue): GraphsThemeBuilder;
+  onUpdate(handler: DslSignalHandlerValue): GraphsThemeBuilder;
 }
 
 const GRAPHSTHEME_META: TypeMetadata = {

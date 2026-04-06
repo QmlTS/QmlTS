@@ -2,7 +2,7 @@
 // Type: ParentAnimation
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import type { DslSignalHandlerValue, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { AccessibleAttachedBuilder } from './Accessible.js';
 import type { EnterKeyAttachedBuilder } from './EnterKey.js';
@@ -24,6 +24,7 @@ import type { ViewTransitionAttachedBuilder } from './ViewTransition.js';
 export interface ParentAnimationBuilder {
   id(id: string): ParentAnimationBuilder;
   child(obj: QmlObjectBuilder): ParentAnimationBuilder;
+  children(...objs: QmlObjectBuilder[]): ParentAnimationBuilder;
 
   alwaysRunToEnd(value: boolean): ParentAnimationBuilder;
   alwaysRunToEndBind(expr: string): ParentAnimationBuilder;
@@ -41,17 +42,17 @@ export interface ParentAnimationBuilder {
   targetBind(expr: string): ParentAnimationBuilder;
   via(value: ItemBuilder): ParentAnimationBuilder;
   viaBind(expr: string): ParentAnimationBuilder;
-  onAlwaysRunToEndChanged(body: string): ParentAnimationBuilder;
-  onFinished(body: string): ParentAnimationBuilder;
-  onLoopCountChanged(body: string): ParentAnimationBuilder;
-  onNewParentChanged(body: string): ParentAnimationBuilder;
-  onObjectNameChanged(body: string): ParentAnimationBuilder;
-  onPausedChanged(body: string): ParentAnimationBuilder;
-  onRunningChanged(body: string): ParentAnimationBuilder;
-  onStarted(body: string): ParentAnimationBuilder;
-  onStopped(body: string): ParentAnimationBuilder;
-  onTargetChanged(body: string): ParentAnimationBuilder;
-  onViaChanged(body: string): ParentAnimationBuilder;
+  onAlwaysRunToEndChanged(handler: DslSignalHandlerValue): ParentAnimationBuilder;
+  onFinished(handler: DslSignalHandlerValue): ParentAnimationBuilder;
+  onLoopCountChanged(handler: DslSignalHandlerValue): ParentAnimationBuilder;
+  onNewParentChanged(handler: DslSignalHandlerValue): ParentAnimationBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): ParentAnimationBuilder;
+  onPausedChanged(handler: DslSignalHandlerValue): ParentAnimationBuilder;
+  onRunningChanged(handler: DslSignalHandlerValue): ParentAnimationBuilder;
+  onStarted(handler: DslSignalHandlerValue): ParentAnimationBuilder;
+  onStopped(handler: DslSignalHandlerValue): ParentAnimationBuilder;
+  onTargetChanged(handler: DslSignalHandlerValue): ParentAnimationBuilder;
+  onViaChanged(handler: DslSignalHandlerValue): ParentAnimationBuilder;
   accessible(setup: (b: AccessibleAttachedBuilder) => void): ParentAnimationBuilder;
   drag(setup: (b: DragAttachedBuilder) => void): ParentAnimationBuilder;
   enterKey(setup: (b: EnterKeyAttachedBuilder) => void): ParentAnimationBuilder;

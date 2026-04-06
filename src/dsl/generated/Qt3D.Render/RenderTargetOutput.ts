@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlEnumToken,
   QmlObjectBuilder,
   QmlValue,
@@ -12,6 +13,7 @@ import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface RenderTargetOutputBuilder {
   id(id: string): RenderTargetOutputBuilder;
   child(obj: QmlObjectBuilder): RenderTargetOutputBuilder;
+  children(...objs: QmlObjectBuilder[]): RenderTargetOutputBuilder;
 
   attachmentPoint(value: QmlEnumToken): RenderTargetOutputBuilder;
   attachmentPointBind(expr: string): RenderTargetOutputBuilder;
@@ -29,15 +31,15 @@ export interface RenderTargetOutputBuilder {
   parentBind(expr: string): RenderTargetOutputBuilder;
   texture(value: QmlValue): RenderTargetOutputBuilder;
   textureBind(expr: string): RenderTargetOutputBuilder;
-  onAttachmentPointChanged(body: string): RenderTargetOutputBuilder;
-  onEnabledChanged(body: string): RenderTargetOutputBuilder;
-  onFaceChanged(body: string): RenderTargetOutputBuilder;
-  onLayerChanged(body: string): RenderTargetOutputBuilder;
-  onMipLevelChanged(body: string): RenderTargetOutputBuilder;
-  onNodeDestroyed(body: string): RenderTargetOutputBuilder;
-  onObjectNameChanged(body: string): RenderTargetOutputBuilder;
-  onParentChanged(body: string): RenderTargetOutputBuilder;
-  onTextureChanged(body: string): RenderTargetOutputBuilder;
+  onAttachmentPointChanged(handler: DslSignalHandlerValue): RenderTargetOutputBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): RenderTargetOutputBuilder;
+  onFaceChanged(handler: DslSignalHandlerValue): RenderTargetOutputBuilder;
+  onLayerChanged(handler: DslSignalHandlerValue): RenderTargetOutputBuilder;
+  onMipLevelChanged(handler: DslSignalHandlerValue): RenderTargetOutputBuilder;
+  onNodeDestroyed(handler: DslSignalHandlerValue): RenderTargetOutputBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): RenderTargetOutputBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): RenderTargetOutputBuilder;
+  onTextureChanged(handler: DslSignalHandlerValue): RenderTargetOutputBuilder;
 }
 
 const RENDERTARGETOUTPUT_META: TypeMetadata = {

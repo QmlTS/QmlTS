@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlColor,
   QmlObjectBuilder,
   QmlQuaternion,
@@ -15,6 +16,7 @@ import type { ItemBuilder } from '../QtQuick/Item.js';
 export interface XrItemBuilder {
   id(id: string): XrItemBuilder;
   child(obj: QmlObjectBuilder): XrItemBuilder;
+  children(...objs: QmlObjectBuilder[]): XrItemBuilder;
 
   automaticHeight(value: boolean): XrItemBuilder;
   automaticHeightBind(expr: string): XrItemBuilder;
@@ -62,38 +64,38 @@ export interface XrItemBuilder {
   yBind(expr: string): XrItemBuilder;
   z(value: number): XrItemBuilder;
   zBind(expr: string): XrItemBuilder;
-  onAutomaticHeightChanged(body: string): XrItemBuilder;
-  onAutomaticWidthChanged(body: string): XrItemBuilder;
-  onChildrenChanged(body: string): XrItemBuilder;
-  onColorChanged(body: string): XrItemBuilder;
-  onContentItemChanged(body: string): XrItemBuilder;
-  onEulerRotationChanged(body: string): XrItemBuilder;
-  onFlagsChanged(body: string): XrItemBuilder;
-  onForwardChanged(body: string): XrItemBuilder;
-  onHeightChanged(body: string): XrItemBuilder;
-  onLayersChanged(body: string): XrItemBuilder;
-  onLocalOpacityChanged(body: string): XrItemBuilder;
-  onManualPixelsPerUnitChanged(body: string): XrItemBuilder;
-  onObjectNameChanged(body: string): XrItemBuilder;
-  onParentChanged(body: string): XrItemBuilder;
-  onPivotChanged(body: string): XrItemBuilder;
-  onPixelsPerUnitChanged(body: string): XrItemBuilder;
-  onPositionChanged(body: string): XrItemBuilder;
-  onRightChanged(body: string): XrItemBuilder;
-  onRotationChanged(body: string): XrItemBuilder;
-  onScaleChanged(body: string): XrItemBuilder;
-  onScenePositionChanged(body: string): XrItemBuilder;
-  onSceneRotationChanged(body: string): XrItemBuilder;
-  onSceneScaleChanged(body: string): XrItemBuilder;
-  onSceneTransformChanged(body: string): XrItemBuilder;
-  onStateChanged(body: string): XrItemBuilder;
-  onStaticFlagsChanged(body: string): XrItemBuilder;
-  onUpChanged(body: string): XrItemBuilder;
-  onVisibleChanged(body: string): XrItemBuilder;
-  onWidthChanged(body: string): XrItemBuilder;
-  onXChanged(body: string): XrItemBuilder;
-  onYChanged(body: string): XrItemBuilder;
-  onZChanged(body: string): XrItemBuilder;
+  onAutomaticHeightChanged(handler: DslSignalHandlerValue): XrItemBuilder;
+  onAutomaticWidthChanged(handler: DslSignalHandlerValue): XrItemBuilder;
+  onChildrenChanged(handler: DslSignalHandlerValue): XrItemBuilder;
+  onColorChanged(handler: DslSignalHandlerValue): XrItemBuilder;
+  onContentItemChanged(handler: DslSignalHandlerValue): XrItemBuilder;
+  onEulerRotationChanged(handler: DslSignalHandlerValue): XrItemBuilder;
+  onFlagsChanged(handler: DslSignalHandlerValue): XrItemBuilder;
+  onForwardChanged(handler: DslSignalHandlerValue): XrItemBuilder;
+  onHeightChanged(handler: DslSignalHandlerValue): XrItemBuilder;
+  onLayersChanged(handler: DslSignalHandlerValue): XrItemBuilder;
+  onLocalOpacityChanged(handler: DslSignalHandlerValue): XrItemBuilder;
+  onManualPixelsPerUnitChanged(handler: DslSignalHandlerValue): XrItemBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): XrItemBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): XrItemBuilder;
+  onPivotChanged(handler: DslSignalHandlerValue): XrItemBuilder;
+  onPixelsPerUnitChanged(handler: DslSignalHandlerValue): XrItemBuilder;
+  onPositionChanged(handler: DslSignalHandlerValue): XrItemBuilder;
+  onRightChanged(handler: DslSignalHandlerValue): XrItemBuilder;
+  onRotationChanged(handler: DslSignalHandlerValue): XrItemBuilder;
+  onScaleChanged(handler: DslSignalHandlerValue): XrItemBuilder;
+  onScenePositionChanged(handler: DslSignalHandlerValue): XrItemBuilder;
+  onSceneRotationChanged(handler: DslSignalHandlerValue): XrItemBuilder;
+  onSceneScaleChanged(handler: DslSignalHandlerValue): XrItemBuilder;
+  onSceneTransformChanged(handler: DslSignalHandlerValue): XrItemBuilder;
+  onStateChanged(handler: DslSignalHandlerValue): XrItemBuilder;
+  onStaticFlagsChanged(handler: DslSignalHandlerValue): XrItemBuilder;
+  onUpChanged(handler: DslSignalHandlerValue): XrItemBuilder;
+  onVisibleChanged(handler: DslSignalHandlerValue): XrItemBuilder;
+  onWidthChanged(handler: DslSignalHandlerValue): XrItemBuilder;
+  onXChanged(handler: DslSignalHandlerValue): XrItemBuilder;
+  onYChanged(handler: DslSignalHandlerValue): XrItemBuilder;
+  onZChanged(handler: DslSignalHandlerValue): XrItemBuilder;
 }
 
 const XRITEM_META: TypeMetadata = {

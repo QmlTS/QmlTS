@@ -2,7 +2,12 @@
 // Type: StackLayout
 // Generated from Qt 6.11.0
 
-import type { QmlEnumToken, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlEnumToken,
+  QmlObjectBuilder,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { QtObjectBuilder } from '../QML/QtObject.js';
 import type { ItemBuilder } from '../QtQuick/Item.js';
@@ -15,6 +20,7 @@ import type { StackLayoutAttachedBuilder } from './QQuickStackLayoutAttached.js'
 export interface StackLayoutBuilder {
   id(id: string): StackLayoutBuilder;
   child(obj: QmlObjectBuilder): StackLayoutBuilder;
+  children(...objs: QmlObjectBuilder[]): StackLayoutBuilder;
 
   activeFocusOnTab(value: boolean): StackLayoutBuilder;
   activeFocusOnTabBind(expr: string): StackLayoutBuilder;
@@ -68,39 +74,39 @@ export interface StackLayoutBuilder {
   yBind(expr: string): StackLayoutBuilder;
   z(value: number): StackLayoutBuilder;
   zBind(expr: string): StackLayoutBuilder;
-  onActiveFocusChanged(body: string): StackLayoutBuilder;
-  onActiveFocusOnTabChanged(body: string): StackLayoutBuilder;
-  onAntialiasingChanged(body: string): StackLayoutBuilder;
-  onBaselineOffsetChanged(body: string): StackLayoutBuilder;
-  onChildrenChanged(body: string): StackLayoutBuilder;
-  onChildrenRectChanged(body: string): StackLayoutBuilder;
-  onClipChanged(body: string): StackLayoutBuilder;
-  onContainmentMaskChanged(body: string): StackLayoutBuilder;
-  onCountChanged(body: string): StackLayoutBuilder;
-  onCurrentIndexChanged(body: string): StackLayoutBuilder;
-  onEnabledChanged(body: string): StackLayoutBuilder;
-  onFocusChanged(body: string): StackLayoutBuilder;
-  onFocusPolicyChanged(body: string): StackLayoutBuilder;
-  onHeightChanged(body: string): StackLayoutBuilder;
-  onImplicitHeightChanged(body: string): StackLayoutBuilder;
-  onImplicitWidthChanged(body: string): StackLayoutBuilder;
-  onObjectNameChanged(body: string): StackLayoutBuilder;
-  onOpacityChanged(body: string): StackLayoutBuilder;
-  onPaletteChanged(body: string): StackLayoutBuilder;
-  onPaletteCreated(body: string): StackLayoutBuilder;
-  onParentChanged(body: string): StackLayoutBuilder;
-  onRotationChanged(body: string): StackLayoutBuilder;
-  onScaleChanged(body: string): StackLayoutBuilder;
-  onSmoothChanged(body: string): StackLayoutBuilder;
-  onStateChanged(body: string): StackLayoutBuilder;
-  onTransformOriginChanged(body: string): StackLayoutBuilder;
-  onVisibleChanged(body: string): StackLayoutBuilder;
-  onVisibleChildrenChanged(body: string): StackLayoutBuilder;
-  onWidthChanged(body: string): StackLayoutBuilder;
-  onWindowChanged(body: string): StackLayoutBuilder;
-  onXChanged(body: string): StackLayoutBuilder;
-  onYChanged(body: string): StackLayoutBuilder;
-  onZChanged(body: string): StackLayoutBuilder;
+  onActiveFocusChanged(handler: DslSignalHandlerValue): StackLayoutBuilder;
+  onActiveFocusOnTabChanged(handler: DslSignalHandlerValue): StackLayoutBuilder;
+  onAntialiasingChanged(handler: DslSignalHandlerValue): StackLayoutBuilder;
+  onBaselineOffsetChanged(handler: DslSignalHandlerValue): StackLayoutBuilder;
+  onChildrenChanged(handler: DslSignalHandlerValue): StackLayoutBuilder;
+  onChildrenRectChanged(handler: DslSignalHandlerValue): StackLayoutBuilder;
+  onClipChanged(handler: DslSignalHandlerValue): StackLayoutBuilder;
+  onContainmentMaskChanged(handler: DslSignalHandlerValue): StackLayoutBuilder;
+  onCountChanged(handler: DslSignalHandlerValue): StackLayoutBuilder;
+  onCurrentIndexChanged(handler: DslSignalHandlerValue): StackLayoutBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): StackLayoutBuilder;
+  onFocusChanged(handler: DslSignalHandlerValue): StackLayoutBuilder;
+  onFocusPolicyChanged(handler: DslSignalHandlerValue): StackLayoutBuilder;
+  onHeightChanged(handler: DslSignalHandlerValue): StackLayoutBuilder;
+  onImplicitHeightChanged(handler: DslSignalHandlerValue): StackLayoutBuilder;
+  onImplicitWidthChanged(handler: DslSignalHandlerValue): StackLayoutBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): StackLayoutBuilder;
+  onOpacityChanged(handler: DslSignalHandlerValue): StackLayoutBuilder;
+  onPaletteChanged(handler: DslSignalHandlerValue): StackLayoutBuilder;
+  onPaletteCreated(handler: DslSignalHandlerValue): StackLayoutBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): StackLayoutBuilder;
+  onRotationChanged(handler: DslSignalHandlerValue): StackLayoutBuilder;
+  onScaleChanged(handler: DslSignalHandlerValue): StackLayoutBuilder;
+  onSmoothChanged(handler: DslSignalHandlerValue): StackLayoutBuilder;
+  onStateChanged(handler: DslSignalHandlerValue): StackLayoutBuilder;
+  onTransformOriginChanged(handler: DslSignalHandlerValue): StackLayoutBuilder;
+  onVisibleChanged(handler: DslSignalHandlerValue): StackLayoutBuilder;
+  onVisibleChildrenChanged(handler: DslSignalHandlerValue): StackLayoutBuilder;
+  onWidthChanged(handler: DslSignalHandlerValue): StackLayoutBuilder;
+  onWindowChanged(handler: DslSignalHandlerValue): StackLayoutBuilder;
+  onXChanged(handler: DslSignalHandlerValue): StackLayoutBuilder;
+  onYChanged(handler: DslSignalHandlerValue): StackLayoutBuilder;
+  onZChanged(handler: DslSignalHandlerValue): StackLayoutBuilder;
   anchors(setup: (b: AnchorsBuilder) => void): StackLayoutBuilder;
   layer(setup: (b: LayerBuilder) => void): StackLayoutBuilder;
   flexboxLayout(setup: (b: FlexboxLayoutAttachedBuilder) => void): StackLayoutBuilder;

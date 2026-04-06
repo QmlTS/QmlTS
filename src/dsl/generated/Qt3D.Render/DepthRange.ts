@@ -2,11 +2,17 @@
 // Type: DepthRange
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 export interface DepthRangeBuilder {
   id(id: string): DepthRangeBuilder;
   child(obj: QmlObjectBuilder): DepthRangeBuilder;
+  children(...objs: QmlObjectBuilder[]): DepthRangeBuilder;
 
   enabled(value: boolean): DepthRangeBuilder;
   enabledBind(expr: string): DepthRangeBuilder;
@@ -18,12 +24,12 @@ export interface DepthRangeBuilder {
   objectNameBind(expr: string): DepthRangeBuilder;
   parent(value: QmlValue): DepthRangeBuilder;
   parentBind(expr: string): DepthRangeBuilder;
-  onEnabledChanged(body: string): DepthRangeBuilder;
-  onFarValueChanged(body: string): DepthRangeBuilder;
-  onNearValueChanged(body: string): DepthRangeBuilder;
-  onNodeDestroyed(body: string): DepthRangeBuilder;
-  onObjectNameChanged(body: string): DepthRangeBuilder;
-  onParentChanged(body: string): DepthRangeBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): DepthRangeBuilder;
+  onFarValueChanged(handler: DslSignalHandlerValue): DepthRangeBuilder;
+  onNearValueChanged(handler: DslSignalHandlerValue): DepthRangeBuilder;
+  onNodeDestroyed(handler: DslSignalHandlerValue): DepthRangeBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): DepthRangeBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): DepthRangeBuilder;
 }
 
 const DEPTHRANGE_META: TypeMetadata = {

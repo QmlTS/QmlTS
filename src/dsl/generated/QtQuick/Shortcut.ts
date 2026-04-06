@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlEnumToken,
   QmlObjectBuilder,
   QmlValue,
@@ -28,6 +29,7 @@ import type { ViewTransitionAttachedBuilder } from './ViewTransition.js';
 export interface ShortcutBuilder {
   id(id: string): ShortcutBuilder;
   child(obj: QmlObjectBuilder): ShortcutBuilder;
+  children(...objs: QmlObjectBuilder[]): ShortcutBuilder;
 
   autoRepeat(value: boolean): ShortcutBuilder;
   autoRepeatBind(expr: string): ShortcutBuilder;
@@ -41,16 +43,16 @@ export interface ShortcutBuilder {
   sequenceBind(expr: string): ShortcutBuilder;
   sequences(value: QmlValue[]): ShortcutBuilder;
   sequencesBind(expr: string): ShortcutBuilder;
-  onActivated(body: string): ShortcutBuilder;
-  onActivatedAmbiguously(body: string): ShortcutBuilder;
-  onAutoRepeatChanged(body: string): ShortcutBuilder;
-  onContextChanged(body: string): ShortcutBuilder;
-  onEnabledChanged(body: string): ShortcutBuilder;
-  onNativeTextChanged(body: string): ShortcutBuilder;
-  onObjectNameChanged(body: string): ShortcutBuilder;
-  onPortableTextChanged(body: string): ShortcutBuilder;
-  onSequenceChanged(body: string): ShortcutBuilder;
-  onSequencesChanged(body: string): ShortcutBuilder;
+  onActivated(handler: DslSignalHandlerValue): ShortcutBuilder;
+  onActivatedAmbiguously(handler: DslSignalHandlerValue): ShortcutBuilder;
+  onAutoRepeatChanged(handler: DslSignalHandlerValue): ShortcutBuilder;
+  onContextChanged(handler: DslSignalHandlerValue): ShortcutBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): ShortcutBuilder;
+  onNativeTextChanged(handler: DslSignalHandlerValue): ShortcutBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): ShortcutBuilder;
+  onPortableTextChanged(handler: DslSignalHandlerValue): ShortcutBuilder;
+  onSequenceChanged(handler: DslSignalHandlerValue): ShortcutBuilder;
+  onSequencesChanged(handler: DslSignalHandlerValue): ShortcutBuilder;
   accessible(setup: (b: AccessibleAttachedBuilder) => void): ShortcutBuilder;
   drag(setup: (b: DragAttachedBuilder) => void): ShortcutBuilder;
   enterKey(setup: (b: EnterKeyAttachedBuilder) => void): ShortcutBuilder;

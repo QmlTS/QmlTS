@@ -2,7 +2,12 @@
 // Type: GradientStop
 // Generated from Qt 6.11.0
 
-import type { QmlColor, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlColor,
+  QmlObjectBuilder,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 import type { AccessibleAttachedBuilder } from './Accessible.js';
 import type { EnterKeyAttachedBuilder } from './EnterKey.js';
@@ -23,6 +28,7 @@ import type { ViewTransitionAttachedBuilder } from './ViewTransition.js';
 export interface GradientStopBuilder {
   id(id: string): GradientStopBuilder;
   child(obj: QmlObjectBuilder): GradientStopBuilder;
+  children(...objs: QmlObjectBuilder[]): GradientStopBuilder;
 
   color(value: QmlColor): GradientStopBuilder;
   colorBind(expr: string): GradientStopBuilder;
@@ -30,7 +36,7 @@ export interface GradientStopBuilder {
   objectNameBind(expr: string): GradientStopBuilder;
   position(value: number): GradientStopBuilder;
   positionBind(expr: string): GradientStopBuilder;
-  onObjectNameChanged(body: string): GradientStopBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): GradientStopBuilder;
   accessible(setup: (b: AccessibleAttachedBuilder) => void): GradientStopBuilder;
   drag(setup: (b: DragAttachedBuilder) => void): GradientStopBuilder;
   enterKey(setup: (b: EnterKeyAttachedBuilder) => void): GradientStopBuilder;

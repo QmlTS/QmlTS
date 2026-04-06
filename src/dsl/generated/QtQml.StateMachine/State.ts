@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlEnumToken,
   QmlObjectBuilder,
   QmlValue,
@@ -12,6 +13,7 @@ import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface StateBuilder {
   id(id: string): StateBuilder;
   child(obj: QmlObjectBuilder): StateBuilder;
+  children(...objs: QmlObjectBuilder[]): StateBuilder;
 
   childMode(value: QmlEnumToken): StateBuilder;
   childModeBind(expr: string): StateBuilder;
@@ -21,16 +23,16 @@ export interface StateBuilder {
   initialStateBind(expr: string): StateBuilder;
   objectName(value: string): StateBuilder;
   objectNameBind(expr: string): StateBuilder;
-  onActiveChanged(body: string): StateBuilder;
-  onChildModeChanged(body: string): StateBuilder;
-  onChildrenChanged(body: string): StateBuilder;
-  onEntered(body: string): StateBuilder;
-  onErrorStateChanged(body: string): StateBuilder;
-  onExited(body: string): StateBuilder;
-  onFinished(body: string): StateBuilder;
-  onInitialStateChanged(body: string): StateBuilder;
-  onObjectNameChanged(body: string): StateBuilder;
-  onPropertiesAssigned(body: string): StateBuilder;
+  onActiveChanged(handler: DslSignalHandlerValue): StateBuilder;
+  onChildModeChanged(handler: DslSignalHandlerValue): StateBuilder;
+  onChildrenChanged(handler: DslSignalHandlerValue): StateBuilder;
+  onEntered(handler: DslSignalHandlerValue): StateBuilder;
+  onErrorStateChanged(handler: DslSignalHandlerValue): StateBuilder;
+  onExited(handler: DslSignalHandlerValue): StateBuilder;
+  onFinished(handler: DslSignalHandlerValue): StateBuilder;
+  onInitialStateChanged(handler: DslSignalHandlerValue): StateBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): StateBuilder;
+  onPropertiesAssigned(handler: DslSignalHandlerValue): StateBuilder;
 }
 
 const STATE_META: TypeMetadata = {

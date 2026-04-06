@@ -2,7 +2,12 @@
 // Type: Path
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlSize, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlObjectBuilder,
+  QmlSize,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 import type { AccessibleAttachedBuilder } from './Accessible.js';
 import type { EnterKeyAttachedBuilder } from './EnterKey.js';
@@ -23,6 +28,7 @@ import type { ViewTransitionAttachedBuilder } from './ViewTransition.js';
 export interface PathBuilder {
   id(id: string): PathBuilder;
   child(obj: QmlObjectBuilder): PathBuilder;
+  children(...objs: QmlObjectBuilder[]): PathBuilder;
 
   asynchronous(value: boolean): PathBuilder;
   asynchronousBind(expr: string): PathBuilder;
@@ -36,13 +42,13 @@ export interface PathBuilder {
   startXBind(expr: string): PathBuilder;
   startY(value: number): PathBuilder;
   startYBind(expr: string): PathBuilder;
-  onAsynchronousChanged(body: string): PathBuilder;
-  onChanged(body: string): PathBuilder;
-  onObjectNameChanged(body: string): PathBuilder;
-  onScaleChanged(body: string): PathBuilder;
-  onSimplifyChanged(body: string): PathBuilder;
-  onStartXChanged(body: string): PathBuilder;
-  onStartYChanged(body: string): PathBuilder;
+  onAsynchronousChanged(handler: DslSignalHandlerValue): PathBuilder;
+  onChanged(handler: DslSignalHandlerValue): PathBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): PathBuilder;
+  onScaleChanged(handler: DslSignalHandlerValue): PathBuilder;
+  onSimplifyChanged(handler: DslSignalHandlerValue): PathBuilder;
+  onStartXChanged(handler: DslSignalHandlerValue): PathBuilder;
+  onStartYChanged(handler: DslSignalHandlerValue): PathBuilder;
   accessible(setup: (b: AccessibleAttachedBuilder) => void): PathBuilder;
   drag(setup: (b: DragAttachedBuilder) => void): PathBuilder;
   enterKey(setup: (b: EnterKeyAttachedBuilder) => void): PathBuilder;

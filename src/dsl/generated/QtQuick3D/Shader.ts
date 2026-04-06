@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlEnumToken,
   QmlObjectBuilder,
   QmlUrl,
@@ -13,6 +14,7 @@ import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface ShaderBuilder {
   id(id: string): ShaderBuilder;
   child(obj: QmlObjectBuilder): ShaderBuilder;
+  children(...objs: QmlObjectBuilder[]): ShaderBuilder;
 
   objectName(value: string): ShaderBuilder;
   objectNameBind(expr: string): ShaderBuilder;
@@ -24,12 +26,12 @@ export interface ShaderBuilder {
   stageBind(expr: string): ShaderBuilder;
   state(value: string): ShaderBuilder;
   stateBind(expr: string): ShaderBuilder;
-  onChildrenChanged(body: string): ShaderBuilder;
-  onObjectNameChanged(body: string): ShaderBuilder;
-  onParentChanged(body: string): ShaderBuilder;
-  onShaderChanged(body: string): ShaderBuilder;
-  onStageChanged(body: string): ShaderBuilder;
-  onStateChanged(body: string): ShaderBuilder;
+  onChildrenChanged(handler: DslSignalHandlerValue): ShaderBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): ShaderBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): ShaderBuilder;
+  onShaderChanged(handler: DslSignalHandlerValue): ShaderBuilder;
+  onStageChanged(handler: DslSignalHandlerValue): ShaderBuilder;
+  onStateChanged(handler: DslSignalHandlerValue): ShaderBuilder;
 }
 
 const SHADER_META: TypeMetadata = {

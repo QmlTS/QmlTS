@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlEnumToken,
   QmlObjectBuilder,
   QmlValue,
@@ -13,6 +14,7 @@ import type { PieSeriesBuilder } from '../QtGraphs/PieSeries.js';
 export interface HPieModelMapperBuilder {
   id(id: string): HPieModelMapperBuilder;
   child(obj: QmlObjectBuilder): HPieModelMapperBuilder;
+  children(...objs: QmlObjectBuilder[]): HPieModelMapperBuilder;
 
   columnCount(value: number): HPieModelMapperBuilder;
   columnCountBind(expr: string): HPieModelMapperBuilder;
@@ -38,20 +40,20 @@ export interface HPieModelMapperBuilder {
   valuesRowBind(expr: string): HPieModelMapperBuilder;
   valuesSection(value: number): HPieModelMapperBuilder;
   valuesSectionBind(expr: string): HPieModelMapperBuilder;
-  onColumnCountChanged(body: string): HPieModelMapperBuilder;
-  onCountChanged(body: string): HPieModelMapperBuilder;
-  onFirstChanged(body: string): HPieModelMapperBuilder;
-  onFirstColumnChanged(body: string): HPieModelMapperBuilder;
-  onLabelsRowChanged(body: string): HPieModelMapperBuilder;
-  onLabelsSectionChanged(body: string): HPieModelMapperBuilder;
-  onModelChanged(body: string): HPieModelMapperBuilder;
-  onModelReplaced(body: string): HPieModelMapperBuilder;
-  onObjectNameChanged(body: string): HPieModelMapperBuilder;
-  onOrientationChanged(body: string): HPieModelMapperBuilder;
-  onSeriesChanged(body: string): HPieModelMapperBuilder;
-  onSeriesReplaced(body: string): HPieModelMapperBuilder;
-  onValuesRowChanged(body: string): HPieModelMapperBuilder;
-  onValuesSectionChanged(body: string): HPieModelMapperBuilder;
+  onColumnCountChanged(handler: DslSignalHandlerValue): HPieModelMapperBuilder;
+  onCountChanged(handler: DslSignalHandlerValue): HPieModelMapperBuilder;
+  onFirstChanged(handler: DslSignalHandlerValue): HPieModelMapperBuilder;
+  onFirstColumnChanged(handler: DslSignalHandlerValue): HPieModelMapperBuilder;
+  onLabelsRowChanged(handler: DslSignalHandlerValue): HPieModelMapperBuilder;
+  onLabelsSectionChanged(handler: DslSignalHandlerValue): HPieModelMapperBuilder;
+  onModelChanged(handler: DslSignalHandlerValue): HPieModelMapperBuilder;
+  onModelReplaced(handler: DslSignalHandlerValue): HPieModelMapperBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): HPieModelMapperBuilder;
+  onOrientationChanged(handler: DslSignalHandlerValue): HPieModelMapperBuilder;
+  onSeriesChanged(handler: DslSignalHandlerValue): HPieModelMapperBuilder;
+  onSeriesReplaced(handler: DslSignalHandlerValue): HPieModelMapperBuilder;
+  onValuesRowChanged(handler: DslSignalHandlerValue): HPieModelMapperBuilder;
+  onValuesSectionChanged(handler: DslSignalHandlerValue): HPieModelMapperBuilder;
 }
 
 const HPIEMODELMAPPER_META: TypeMetadata = {

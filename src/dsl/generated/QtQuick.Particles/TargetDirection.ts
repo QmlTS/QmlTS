@@ -2,13 +2,14 @@
 // Type: TargetDirection
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import type { DslSignalHandlerValue, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 import type { ItemBuilder } from '../QtQuick/Item.js';
 import type { ItemParticleAttachedBuilder } from './QQuickItemParticleAttached.js';
 export interface TargetDirectionBuilder {
   id(id: string): TargetDirectionBuilder;
   child(obj: QmlObjectBuilder): TargetDirectionBuilder;
+  children(...objs: QmlObjectBuilder[]): TargetDirectionBuilder;
 
   magnitude(value: number): TargetDirectionBuilder;
   magnitudeBind(expr: string): TargetDirectionBuilder;
@@ -26,14 +27,14 @@ export interface TargetDirectionBuilder {
   targetXBind(expr: string): TargetDirectionBuilder;
   targetY(value: number): TargetDirectionBuilder;
   targetYBind(expr: string): TargetDirectionBuilder;
-  onMagnitudeChanged(body: string): TargetDirectionBuilder;
-  onMagnitudeVariationChanged(body: string): TargetDirectionBuilder;
-  onObjectNameChanged(body: string): TargetDirectionBuilder;
-  onProprotionalMagnitudeChanged(body: string): TargetDirectionBuilder;
-  onTargetItemChanged(body: string): TargetDirectionBuilder;
-  onTargetVariationChanged(body: string): TargetDirectionBuilder;
-  onTargetXChanged(body: string): TargetDirectionBuilder;
-  onTargetYChanged(body: string): TargetDirectionBuilder;
+  onMagnitudeChanged(handler: DslSignalHandlerValue): TargetDirectionBuilder;
+  onMagnitudeVariationChanged(handler: DslSignalHandlerValue): TargetDirectionBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): TargetDirectionBuilder;
+  onProprotionalMagnitudeChanged(handler: DslSignalHandlerValue): TargetDirectionBuilder;
+  onTargetItemChanged(handler: DslSignalHandlerValue): TargetDirectionBuilder;
+  onTargetVariationChanged(handler: DslSignalHandlerValue): TargetDirectionBuilder;
+  onTargetXChanged(handler: DslSignalHandlerValue): TargetDirectionBuilder;
+  onTargetYChanged(handler: DslSignalHandlerValue): TargetDirectionBuilder;
   itemParticle(setup: (b: ItemParticleAttachedBuilder) => void): TargetDirectionBuilder;
 }
 

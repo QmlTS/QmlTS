@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlEnumToken,
   QmlObjectBuilder,
   QmlQuaternion,
@@ -15,6 +16,7 @@ import type { ParticleSystem3DBuilder } from './ParticleSystem3D.js';
 export interface ScaleAffector3DBuilder {
   id(id: string): ScaleAffector3DBuilder;
   child(obj: QmlObjectBuilder): ScaleAffector3DBuilder;
+  children(...objs: QmlObjectBuilder[]): ScaleAffector3DBuilder;
 
   duration(value: number): ScaleAffector3DBuilder;
   durationBind(expr: string): ScaleAffector3DBuilder;
@@ -60,37 +62,37 @@ export interface ScaleAffector3DBuilder {
   yBind(expr: string): ScaleAffector3DBuilder;
   z(value: number): ScaleAffector3DBuilder;
   zBind(expr: string): ScaleAffector3DBuilder;
-  onChildrenChanged(body: string): ScaleAffector3DBuilder;
-  onDurationChanged(body: string): ScaleAffector3DBuilder;
-  onEasingCurveChanged(body: string): ScaleAffector3DBuilder;
-  onEnabledChanged(body: string): ScaleAffector3DBuilder;
-  onEulerRotationChanged(body: string): ScaleAffector3DBuilder;
-  onForwardChanged(body: string): ScaleAffector3DBuilder;
-  onLayersChanged(body: string): ScaleAffector3DBuilder;
-  onLocalOpacityChanged(body: string): ScaleAffector3DBuilder;
-  onMaxSizeChanged(body: string): ScaleAffector3DBuilder;
-  onMinSizeChanged(body: string): ScaleAffector3DBuilder;
-  onObjectNameChanged(body: string): ScaleAffector3DBuilder;
-  onParentChanged(body: string): ScaleAffector3DBuilder;
-  onPivotChanged(body: string): ScaleAffector3DBuilder;
-  onPositionChanged(body: string): ScaleAffector3DBuilder;
-  onRightChanged(body: string): ScaleAffector3DBuilder;
-  onRotationChanged(body: string): ScaleAffector3DBuilder;
-  onScaleChanged(body: string): ScaleAffector3DBuilder;
-  onScenePositionChanged(body: string): ScaleAffector3DBuilder;
-  onSceneRotationChanged(body: string): ScaleAffector3DBuilder;
-  onSceneScaleChanged(body: string): ScaleAffector3DBuilder;
-  onSceneTransformChanged(body: string): ScaleAffector3DBuilder;
-  onStateChanged(body: string): ScaleAffector3DBuilder;
-  onStaticFlagsChanged(body: string): ScaleAffector3DBuilder;
-  onSystemChanged(body: string): ScaleAffector3DBuilder;
-  onTypeChanged(body: string): ScaleAffector3DBuilder;
-  onUpChanged(body: string): ScaleAffector3DBuilder;
-  onUpdate(body: string): ScaleAffector3DBuilder;
-  onVisibleChanged(body: string): ScaleAffector3DBuilder;
-  onXChanged(body: string): ScaleAffector3DBuilder;
-  onYChanged(body: string): ScaleAffector3DBuilder;
-  onZChanged(body: string): ScaleAffector3DBuilder;
+  onChildrenChanged(handler: DslSignalHandlerValue): ScaleAffector3DBuilder;
+  onDurationChanged(handler: DslSignalHandlerValue): ScaleAffector3DBuilder;
+  onEasingCurveChanged(handler: DslSignalHandlerValue): ScaleAffector3DBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): ScaleAffector3DBuilder;
+  onEulerRotationChanged(handler: DslSignalHandlerValue): ScaleAffector3DBuilder;
+  onForwardChanged(handler: DslSignalHandlerValue): ScaleAffector3DBuilder;
+  onLayersChanged(handler: DslSignalHandlerValue): ScaleAffector3DBuilder;
+  onLocalOpacityChanged(handler: DslSignalHandlerValue): ScaleAffector3DBuilder;
+  onMaxSizeChanged(handler: DslSignalHandlerValue): ScaleAffector3DBuilder;
+  onMinSizeChanged(handler: DslSignalHandlerValue): ScaleAffector3DBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): ScaleAffector3DBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): ScaleAffector3DBuilder;
+  onPivotChanged(handler: DslSignalHandlerValue): ScaleAffector3DBuilder;
+  onPositionChanged(handler: DslSignalHandlerValue): ScaleAffector3DBuilder;
+  onRightChanged(handler: DslSignalHandlerValue): ScaleAffector3DBuilder;
+  onRotationChanged(handler: DslSignalHandlerValue): ScaleAffector3DBuilder;
+  onScaleChanged(handler: DslSignalHandlerValue): ScaleAffector3DBuilder;
+  onScenePositionChanged(handler: DslSignalHandlerValue): ScaleAffector3DBuilder;
+  onSceneRotationChanged(handler: DslSignalHandlerValue): ScaleAffector3DBuilder;
+  onSceneScaleChanged(handler: DslSignalHandlerValue): ScaleAffector3DBuilder;
+  onSceneTransformChanged(handler: DslSignalHandlerValue): ScaleAffector3DBuilder;
+  onStateChanged(handler: DslSignalHandlerValue): ScaleAffector3DBuilder;
+  onStaticFlagsChanged(handler: DslSignalHandlerValue): ScaleAffector3DBuilder;
+  onSystemChanged(handler: DslSignalHandlerValue): ScaleAffector3DBuilder;
+  onTypeChanged(handler: DslSignalHandlerValue): ScaleAffector3DBuilder;
+  onUpChanged(handler: DslSignalHandlerValue): ScaleAffector3DBuilder;
+  onUpdate(handler: DslSignalHandlerValue): ScaleAffector3DBuilder;
+  onVisibleChanged(handler: DslSignalHandlerValue): ScaleAffector3DBuilder;
+  onXChanged(handler: DslSignalHandlerValue): ScaleAffector3DBuilder;
+  onYChanged(handler: DslSignalHandlerValue): ScaleAffector3DBuilder;
+  onZChanged(handler: DslSignalHandlerValue): ScaleAffector3DBuilder;
 }
 
 const SCALEAFFECTOR3D_META: TypeMetadata = {

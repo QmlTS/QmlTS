@@ -2,19 +2,20 @@
 // Type: EllipseShape
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import type { DslSignalHandlerValue, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 import type { ItemParticleAttachedBuilder } from './QQuickItemParticleAttached.js';
 export interface EllipseShapeBuilder {
   id(id: string): EllipseShapeBuilder;
   child(obj: QmlObjectBuilder): EllipseShapeBuilder;
+  children(...objs: QmlObjectBuilder[]): EllipseShapeBuilder;
 
   fill(value: boolean): EllipseShapeBuilder;
   fillBind(expr: string): EllipseShapeBuilder;
   objectName(value: string): EllipseShapeBuilder;
   objectNameBind(expr: string): EllipseShapeBuilder;
-  onFillChanged(body: string): EllipseShapeBuilder;
-  onObjectNameChanged(body: string): EllipseShapeBuilder;
+  onFillChanged(handler: DslSignalHandlerValue): EllipseShapeBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): EllipseShapeBuilder;
   itemParticle(setup: (b: ItemParticleAttachedBuilder) => void): EllipseShapeBuilder;
 }
 

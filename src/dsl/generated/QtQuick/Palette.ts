@@ -2,7 +2,12 @@
 // Type: Palette
 // Generated from Qt 6.11.0
 
-import type { QmlColor, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlColor,
+  QmlObjectBuilder,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 import type { AccessibleAttachedBuilder } from './Accessible.js';
 import type { ColorGroupBuilder } from './ColorGroup.js';
@@ -24,6 +29,7 @@ import type { ViewTransitionAttachedBuilder } from './ViewTransition.js';
 export interface PaletteBuilder {
   id(id: string): PaletteBuilder;
   child(obj: QmlObjectBuilder): PaletteBuilder;
+  children(...objs: QmlObjectBuilder[]): PaletteBuilder;
 
   accent(value: QmlColor): PaletteBuilder;
   accentBind(expr: string): PaletteBuilder;
@@ -75,32 +81,32 @@ export interface PaletteBuilder {
   windowBind(expr: string): PaletteBuilder;
   windowText(value: QmlColor): PaletteBuilder;
   windowTextBind(expr: string): PaletteBuilder;
-  onAccentChanged(body: string): PaletteBuilder;
-  onActiveChanged(body: string): PaletteBuilder;
-  onAlternateBaseChanged(body: string): PaletteBuilder;
-  onBaseChanged(body: string): PaletteBuilder;
-  onBrightTextChanged(body: string): PaletteBuilder;
-  onButtonChanged(body: string): PaletteBuilder;
-  onButtonTextChanged(body: string): PaletteBuilder;
-  onChanged(body: string): PaletteBuilder;
-  onDarkChanged(body: string): PaletteBuilder;
-  onDisabledChanged(body: string): PaletteBuilder;
-  onHighlightChanged(body: string): PaletteBuilder;
-  onHighlightedTextChanged(body: string): PaletteBuilder;
-  onInactiveChanged(body: string): PaletteBuilder;
-  onLightChanged(body: string): PaletteBuilder;
-  onLinkChanged(body: string): PaletteBuilder;
-  onLinkVisitedChanged(body: string): PaletteBuilder;
-  onMidChanged(body: string): PaletteBuilder;
-  onMidlightChanged(body: string): PaletteBuilder;
-  onObjectNameChanged(body: string): PaletteBuilder;
-  onPlaceholderTextChanged(body: string): PaletteBuilder;
-  onShadowChanged(body: string): PaletteBuilder;
-  onTextChanged(body: string): PaletteBuilder;
-  onToolTipBaseChanged(body: string): PaletteBuilder;
-  onToolTipTextChanged(body: string): PaletteBuilder;
-  onWindowChanged(body: string): PaletteBuilder;
-  onWindowTextChanged(body: string): PaletteBuilder;
+  onAccentChanged(handler: DslSignalHandlerValue): PaletteBuilder;
+  onActiveChanged(handler: DslSignalHandlerValue): PaletteBuilder;
+  onAlternateBaseChanged(handler: DslSignalHandlerValue): PaletteBuilder;
+  onBaseChanged(handler: DslSignalHandlerValue): PaletteBuilder;
+  onBrightTextChanged(handler: DslSignalHandlerValue): PaletteBuilder;
+  onButtonChanged(handler: DslSignalHandlerValue): PaletteBuilder;
+  onButtonTextChanged(handler: DslSignalHandlerValue): PaletteBuilder;
+  onChanged(handler: DslSignalHandlerValue): PaletteBuilder;
+  onDarkChanged(handler: DslSignalHandlerValue): PaletteBuilder;
+  onDisabledChanged(handler: DslSignalHandlerValue): PaletteBuilder;
+  onHighlightChanged(handler: DslSignalHandlerValue): PaletteBuilder;
+  onHighlightedTextChanged(handler: DslSignalHandlerValue): PaletteBuilder;
+  onInactiveChanged(handler: DslSignalHandlerValue): PaletteBuilder;
+  onLightChanged(handler: DslSignalHandlerValue): PaletteBuilder;
+  onLinkChanged(handler: DslSignalHandlerValue): PaletteBuilder;
+  onLinkVisitedChanged(handler: DslSignalHandlerValue): PaletteBuilder;
+  onMidChanged(handler: DslSignalHandlerValue): PaletteBuilder;
+  onMidlightChanged(handler: DslSignalHandlerValue): PaletteBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): PaletteBuilder;
+  onPlaceholderTextChanged(handler: DslSignalHandlerValue): PaletteBuilder;
+  onShadowChanged(handler: DslSignalHandlerValue): PaletteBuilder;
+  onTextChanged(handler: DslSignalHandlerValue): PaletteBuilder;
+  onToolTipBaseChanged(handler: DslSignalHandlerValue): PaletteBuilder;
+  onToolTipTextChanged(handler: DslSignalHandlerValue): PaletteBuilder;
+  onWindowChanged(handler: DslSignalHandlerValue): PaletteBuilder;
+  onWindowTextChanged(handler: DslSignalHandlerValue): PaletteBuilder;
   accessible(setup: (b: AccessibleAttachedBuilder) => void): PaletteBuilder;
   drag(setup: (b: DragAttachedBuilder) => void): PaletteBuilder;
   enterKey(setup: (b: EnterKeyAttachedBuilder) => void): PaletteBuilder;

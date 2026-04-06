@@ -2,11 +2,18 @@
 // Type: SkeletonLoader
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlUrl, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlObjectBuilder,
+  QmlUrl,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface SkeletonLoaderBuilder {
   id(id: string): SkeletonLoaderBuilder;
   child(obj: QmlObjectBuilder): SkeletonLoaderBuilder;
+  children(...objs: QmlObjectBuilder[]): SkeletonLoaderBuilder;
 
   createJointsEnabled(value: boolean): SkeletonLoaderBuilder;
   createJointsEnabledBind(expr: string): SkeletonLoaderBuilder;
@@ -18,15 +25,15 @@ export interface SkeletonLoaderBuilder {
   parentBind(expr: string): SkeletonLoaderBuilder;
   source(value: QmlUrl): SkeletonLoaderBuilder;
   sourceBind(expr: string): SkeletonLoaderBuilder;
-  onCreateJointsEnabledChanged(body: string): SkeletonLoaderBuilder;
-  onEnabledChanged(body: string): SkeletonLoaderBuilder;
-  onJointCountChanged(body: string): SkeletonLoaderBuilder;
-  onNodeDestroyed(body: string): SkeletonLoaderBuilder;
-  onObjectNameChanged(body: string): SkeletonLoaderBuilder;
-  onParentChanged(body: string): SkeletonLoaderBuilder;
-  onRootJointChanged(body: string): SkeletonLoaderBuilder;
-  onSourceChanged(body: string): SkeletonLoaderBuilder;
-  onStatusChanged(body: string): SkeletonLoaderBuilder;
+  onCreateJointsEnabledChanged(handler: DslSignalHandlerValue): SkeletonLoaderBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): SkeletonLoaderBuilder;
+  onJointCountChanged(handler: DslSignalHandlerValue): SkeletonLoaderBuilder;
+  onNodeDestroyed(handler: DslSignalHandlerValue): SkeletonLoaderBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): SkeletonLoaderBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): SkeletonLoaderBuilder;
+  onRootJointChanged(handler: DslSignalHandlerValue): SkeletonLoaderBuilder;
+  onSourceChanged(handler: DslSignalHandlerValue): SkeletonLoaderBuilder;
+  onStatusChanged(handler: DslSignalHandlerValue): SkeletonLoaderBuilder;
 }
 
 const SKELETONLOADER_META: TypeMetadata = {

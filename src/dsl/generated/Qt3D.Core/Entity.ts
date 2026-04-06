@@ -2,11 +2,17 @@
 // Type: Entity
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 export interface EntityBuilder {
   id(id: string): EntityBuilder;
   child(obj: QmlObjectBuilder): EntityBuilder;
+  children(...objs: QmlObjectBuilder[]): EntityBuilder;
 
   enabled(value: boolean): EntityBuilder;
   enabledBind(expr: string): EntityBuilder;
@@ -14,10 +20,10 @@ export interface EntityBuilder {
   objectNameBind(expr: string): EntityBuilder;
   parent(value: QmlValue): EntityBuilder;
   parentBind(expr: string): EntityBuilder;
-  onEnabledChanged(body: string): EntityBuilder;
-  onNodeDestroyed(body: string): EntityBuilder;
-  onObjectNameChanged(body: string): EntityBuilder;
-  onParentChanged(body: string): EntityBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): EntityBuilder;
+  onNodeDestroyed(handler: DslSignalHandlerValue): EntityBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): EntityBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): EntityBuilder;
 }
 
 const ENTITY_META: TypeMetadata = {

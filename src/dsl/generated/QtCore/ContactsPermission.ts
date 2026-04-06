@@ -2,19 +2,25 @@
 // Type: ContactsPermission
 // Generated from Qt 6.11.0
 
-import type { QmlEnumToken, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlEnumToken,
+  QmlObjectBuilder,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 export interface ContactsPermissionBuilder {
   id(id: string): ContactsPermissionBuilder;
   child(obj: QmlObjectBuilder): ContactsPermissionBuilder;
+  children(...objs: QmlObjectBuilder[]): ContactsPermissionBuilder;
 
   accessMode(value: QmlEnumToken): ContactsPermissionBuilder;
   accessModeBind(expr: string): ContactsPermissionBuilder;
   objectName(value: string): ContactsPermissionBuilder;
   objectNameBind(expr: string): ContactsPermissionBuilder;
-  onAccessModeChanged(body: string): ContactsPermissionBuilder;
-  onObjectNameChanged(body: string): ContactsPermissionBuilder;
-  onStatusChanged(body: string): ContactsPermissionBuilder;
+  onAccessModeChanged(handler: DslSignalHandlerValue): ContactsPermissionBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): ContactsPermissionBuilder;
+  onStatusChanged(handler: DslSignalHandlerValue): ContactsPermissionBuilder;
 }
 
 const CONTACTSPERMISSION_META: TypeMetadata = {

@@ -2,11 +2,17 @@
 // Type: StencilMask
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 export interface StencilMaskBuilder {
   id(id: string): StencilMaskBuilder;
   child(obj: QmlObjectBuilder): StencilMaskBuilder;
+  children(...objs: QmlObjectBuilder[]): StencilMaskBuilder;
 
   backOutputMask(value: number): StencilMaskBuilder;
   backOutputMaskBind(expr: string): StencilMaskBuilder;
@@ -18,12 +24,12 @@ export interface StencilMaskBuilder {
   objectNameBind(expr: string): StencilMaskBuilder;
   parent(value: QmlValue): StencilMaskBuilder;
   parentBind(expr: string): StencilMaskBuilder;
-  onBackOutputMaskChanged(body: string): StencilMaskBuilder;
-  onEnabledChanged(body: string): StencilMaskBuilder;
-  onFrontOutputMaskChanged(body: string): StencilMaskBuilder;
-  onNodeDestroyed(body: string): StencilMaskBuilder;
-  onObjectNameChanged(body: string): StencilMaskBuilder;
-  onParentChanged(body: string): StencilMaskBuilder;
+  onBackOutputMaskChanged(handler: DslSignalHandlerValue): StencilMaskBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): StencilMaskBuilder;
+  onFrontOutputMaskChanged(handler: DslSignalHandlerValue): StencilMaskBuilder;
+  onNodeDestroyed(handler: DslSignalHandlerValue): StencilMaskBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): StencilMaskBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): StencilMaskBuilder;
 }
 
 const STENCILMASK_META: TypeMetadata = {

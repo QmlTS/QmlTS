@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlColor,
   QmlEnumToken,
   QmlObjectBuilder,
@@ -19,6 +20,7 @@ import type { LayerBuilder } from '../QtQuick/QQuickItemLayer.js';
 export interface LottieAnimationBuilder {
   id(id: string): LottieAnimationBuilder;
   child(obj: QmlObjectBuilder): LottieAnimationBuilder;
+  children(...objs: QmlObjectBuilder[]): LottieAnimationBuilder;
 
   activeFocusOnTab(value: boolean): LottieAnimationBuilder;
   activeFocusOnTabBind(expr: string): LottieAnimationBuilder;
@@ -94,52 +96,52 @@ export interface LottieAnimationBuilder {
   yBind(expr: string): LottieAnimationBuilder;
   z(value: number): LottieAnimationBuilder;
   zBind(expr: string): LottieAnimationBuilder;
-  onActiveFocusChanged(body: string): LottieAnimationBuilder;
-  onActiveFocusOnTabChanged(body: string): LottieAnimationBuilder;
-  onAntialiasingChanged(body: string): LottieAnimationBuilder;
-  onAutoPlayChanged(body: string): LottieAnimationBuilder;
-  onBaselineOffsetChanged(body: string): LottieAnimationBuilder;
-  onChildrenChanged(body: string): LottieAnimationBuilder;
-  onChildrenRectChanged(body: string): LottieAnimationBuilder;
-  onClipChanged(body: string): LottieAnimationBuilder;
-  onContainmentMaskChanged(body: string): LottieAnimationBuilder;
-  onContentsScaleChanged(body: string): LottieAnimationBuilder;
-  onContentsSizeChanged(body: string): LottieAnimationBuilder;
-  onDirectionChanged(body: string): LottieAnimationBuilder;
-  onEnabledChanged(body: string): LottieAnimationBuilder;
-  onEndFrameChanged(body: string): LottieAnimationBuilder;
-  onFillColorChanged(body: string): LottieAnimationBuilder;
-  onFinished(body: string): LottieAnimationBuilder;
-  onFocusChanged(body: string): LottieAnimationBuilder;
-  onFocusPolicyChanged(body: string): LottieAnimationBuilder;
-  onFrameRateChanged(body: string): LottieAnimationBuilder;
-  onHeightChanged(body: string): LottieAnimationBuilder;
-  onImplicitHeightChanged(body: string): LottieAnimationBuilder;
-  onImplicitWidthChanged(body: string): LottieAnimationBuilder;
-  onLoopsChanged(body: string): LottieAnimationBuilder;
-  onObjectNameChanged(body: string): LottieAnimationBuilder;
-  onOpacityChanged(body: string): LottieAnimationBuilder;
-  onPaletteChanged(body: string): LottieAnimationBuilder;
-  onPaletteCreated(body: string): LottieAnimationBuilder;
-  onParentChanged(body: string): LottieAnimationBuilder;
-  onQualityChanged(body: string): LottieAnimationBuilder;
-  onRenderTargetChanged(body: string): LottieAnimationBuilder;
-  onRotationChanged(body: string): LottieAnimationBuilder;
-  onScaleChanged(body: string): LottieAnimationBuilder;
-  onSmoothChanged(body: string): LottieAnimationBuilder;
-  onSourceChanged(body: string): LottieAnimationBuilder;
-  onStartFrameChanged(body: string): LottieAnimationBuilder;
-  onStateChanged(body: string): LottieAnimationBuilder;
-  onStatusChanged(body: string): LottieAnimationBuilder;
-  onTextureSizeChanged(body: string): LottieAnimationBuilder;
-  onTransformOriginChanged(body: string): LottieAnimationBuilder;
-  onVisibleChanged(body: string): LottieAnimationBuilder;
-  onVisibleChildrenChanged(body: string): LottieAnimationBuilder;
-  onWidthChanged(body: string): LottieAnimationBuilder;
-  onWindowChanged(body: string): LottieAnimationBuilder;
-  onXChanged(body: string): LottieAnimationBuilder;
-  onYChanged(body: string): LottieAnimationBuilder;
-  onZChanged(body: string): LottieAnimationBuilder;
+  onActiveFocusChanged(handler: DslSignalHandlerValue): LottieAnimationBuilder;
+  onActiveFocusOnTabChanged(handler: DslSignalHandlerValue): LottieAnimationBuilder;
+  onAntialiasingChanged(handler: DslSignalHandlerValue): LottieAnimationBuilder;
+  onAutoPlayChanged(handler: DslSignalHandlerValue): LottieAnimationBuilder;
+  onBaselineOffsetChanged(handler: DslSignalHandlerValue): LottieAnimationBuilder;
+  onChildrenChanged(handler: DslSignalHandlerValue): LottieAnimationBuilder;
+  onChildrenRectChanged(handler: DslSignalHandlerValue): LottieAnimationBuilder;
+  onClipChanged(handler: DslSignalHandlerValue): LottieAnimationBuilder;
+  onContainmentMaskChanged(handler: DslSignalHandlerValue): LottieAnimationBuilder;
+  onContentsScaleChanged(handler: DslSignalHandlerValue): LottieAnimationBuilder;
+  onContentsSizeChanged(handler: DslSignalHandlerValue): LottieAnimationBuilder;
+  onDirectionChanged(handler: DslSignalHandlerValue): LottieAnimationBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): LottieAnimationBuilder;
+  onEndFrameChanged(handler: DslSignalHandlerValue): LottieAnimationBuilder;
+  onFillColorChanged(handler: DslSignalHandlerValue): LottieAnimationBuilder;
+  onFinished(handler: DslSignalHandlerValue): LottieAnimationBuilder;
+  onFocusChanged(handler: DslSignalHandlerValue): LottieAnimationBuilder;
+  onFocusPolicyChanged(handler: DslSignalHandlerValue): LottieAnimationBuilder;
+  onFrameRateChanged(handler: DslSignalHandlerValue): LottieAnimationBuilder;
+  onHeightChanged(handler: DslSignalHandlerValue): LottieAnimationBuilder;
+  onImplicitHeightChanged(handler: DslSignalHandlerValue): LottieAnimationBuilder;
+  onImplicitWidthChanged(handler: DslSignalHandlerValue): LottieAnimationBuilder;
+  onLoopsChanged(handler: DslSignalHandlerValue): LottieAnimationBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): LottieAnimationBuilder;
+  onOpacityChanged(handler: DslSignalHandlerValue): LottieAnimationBuilder;
+  onPaletteChanged(handler: DslSignalHandlerValue): LottieAnimationBuilder;
+  onPaletteCreated(handler: DslSignalHandlerValue): LottieAnimationBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): LottieAnimationBuilder;
+  onQualityChanged(handler: DslSignalHandlerValue): LottieAnimationBuilder;
+  onRenderTargetChanged(handler: DslSignalHandlerValue): LottieAnimationBuilder;
+  onRotationChanged(handler: DslSignalHandlerValue): LottieAnimationBuilder;
+  onScaleChanged(handler: DslSignalHandlerValue): LottieAnimationBuilder;
+  onSmoothChanged(handler: DslSignalHandlerValue): LottieAnimationBuilder;
+  onSourceChanged(handler: DslSignalHandlerValue): LottieAnimationBuilder;
+  onStartFrameChanged(handler: DslSignalHandlerValue): LottieAnimationBuilder;
+  onStateChanged(handler: DslSignalHandlerValue): LottieAnimationBuilder;
+  onStatusChanged(handler: DslSignalHandlerValue): LottieAnimationBuilder;
+  onTextureSizeChanged(handler: DslSignalHandlerValue): LottieAnimationBuilder;
+  onTransformOriginChanged(handler: DslSignalHandlerValue): LottieAnimationBuilder;
+  onVisibleChanged(handler: DslSignalHandlerValue): LottieAnimationBuilder;
+  onVisibleChildrenChanged(handler: DslSignalHandlerValue): LottieAnimationBuilder;
+  onWidthChanged(handler: DslSignalHandlerValue): LottieAnimationBuilder;
+  onWindowChanged(handler: DslSignalHandlerValue): LottieAnimationBuilder;
+  onXChanged(handler: DslSignalHandlerValue): LottieAnimationBuilder;
+  onYChanged(handler: DslSignalHandlerValue): LottieAnimationBuilder;
+  onZChanged(handler: DslSignalHandlerValue): LottieAnimationBuilder;
   anchors(setup: (b: AnchorsBuilder) => void): LottieAnimationBuilder;
   layer(setup: (b: LayerBuilder) => void): LottieAnimationBuilder;
 }

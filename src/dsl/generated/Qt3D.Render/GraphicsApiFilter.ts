@@ -2,11 +2,17 @@
 // Type: GraphicsApiFilter
 // Generated from Qt 6.11.0
 
-import type { QmlEnumToken, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlEnumToken,
+  QmlObjectBuilder,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface GraphicsApiFilterBuilder {
   id(id: string): GraphicsApiFilterBuilder;
   child(obj: QmlObjectBuilder): GraphicsApiFilterBuilder;
+  children(...objs: QmlObjectBuilder[]): GraphicsApiFilterBuilder;
 
   api(value: QmlEnumToken): GraphicsApiFilterBuilder;
   apiBind(expr: string): GraphicsApiFilterBuilder;
@@ -22,14 +28,14 @@ export interface GraphicsApiFilterBuilder {
   profileBind(expr: string): GraphicsApiFilterBuilder;
   vendor(value: string): GraphicsApiFilterBuilder;
   vendorBind(expr: string): GraphicsApiFilterBuilder;
-  onApiChanged(body: string): GraphicsApiFilterBuilder;
-  onExtensionsChanged(body: string): GraphicsApiFilterBuilder;
-  onGraphicsApiFilterChanged(body: string): GraphicsApiFilterBuilder;
-  onMajorVersionChanged(body: string): GraphicsApiFilterBuilder;
-  onMinorVersionChanged(body: string): GraphicsApiFilterBuilder;
-  onObjectNameChanged(body: string): GraphicsApiFilterBuilder;
-  onProfileChanged(body: string): GraphicsApiFilterBuilder;
-  onVendorChanged(body: string): GraphicsApiFilterBuilder;
+  onApiChanged(handler: DslSignalHandlerValue): GraphicsApiFilterBuilder;
+  onExtensionsChanged(handler: DslSignalHandlerValue): GraphicsApiFilterBuilder;
+  onGraphicsApiFilterChanged(handler: DslSignalHandlerValue): GraphicsApiFilterBuilder;
+  onMajorVersionChanged(handler: DslSignalHandlerValue): GraphicsApiFilterBuilder;
+  onMinorVersionChanged(handler: DslSignalHandlerValue): GraphicsApiFilterBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): GraphicsApiFilterBuilder;
+  onProfileChanged(handler: DslSignalHandlerValue): GraphicsApiFilterBuilder;
+  onVendorChanged(handler: DslSignalHandlerValue): GraphicsApiFilterBuilder;
 }
 
 const GRAPHICSAPIFILTER_META: TypeMetadata = {

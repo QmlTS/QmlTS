@@ -2,7 +2,12 @@
 // Type: YAnimator
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { AccessibleAttachedBuilder } from './Accessible.js';
 import type { EnterKeyAttachedBuilder } from './EnterKey.js';
@@ -24,6 +29,7 @@ import type { ViewTransitionAttachedBuilder } from './ViewTransition.js';
 export interface YAnimatorBuilder {
   id(id: string): YAnimatorBuilder;
   child(obj: QmlObjectBuilder): YAnimatorBuilder;
+  children(...objs: QmlObjectBuilder[]): YAnimatorBuilder;
 
   alwaysRunToEnd(value: boolean): YAnimatorBuilder;
   alwaysRunToEndBind(expr: string): YAnimatorBuilder;
@@ -45,19 +51,19 @@ export interface YAnimatorBuilder {
   targetBind(expr: string): YAnimatorBuilder;
   to(value: number): YAnimatorBuilder;
   toBind(expr: string): YAnimatorBuilder;
-  onAlwaysRunToEndChanged(body: string): YAnimatorBuilder;
-  onDurationChanged(body: string): YAnimatorBuilder;
-  onEasingChanged(body: string): YAnimatorBuilder;
-  onFinished(body: string): YAnimatorBuilder;
-  onFromChanged(body: string): YAnimatorBuilder;
-  onLoopCountChanged(body: string): YAnimatorBuilder;
-  onObjectNameChanged(body: string): YAnimatorBuilder;
-  onPausedChanged(body: string): YAnimatorBuilder;
-  onRunningChanged(body: string): YAnimatorBuilder;
-  onStarted(body: string): YAnimatorBuilder;
-  onStopped(body: string): YAnimatorBuilder;
-  onTargetItemChanged(body: string): YAnimatorBuilder;
-  onToChanged(body: string): YAnimatorBuilder;
+  onAlwaysRunToEndChanged(handler: DslSignalHandlerValue): YAnimatorBuilder;
+  onDurationChanged(handler: DslSignalHandlerValue): YAnimatorBuilder;
+  onEasingChanged(handler: DslSignalHandlerValue): YAnimatorBuilder;
+  onFinished(handler: DslSignalHandlerValue): YAnimatorBuilder;
+  onFromChanged(handler: DslSignalHandlerValue): YAnimatorBuilder;
+  onLoopCountChanged(handler: DslSignalHandlerValue): YAnimatorBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): YAnimatorBuilder;
+  onPausedChanged(handler: DslSignalHandlerValue): YAnimatorBuilder;
+  onRunningChanged(handler: DslSignalHandlerValue): YAnimatorBuilder;
+  onStarted(handler: DslSignalHandlerValue): YAnimatorBuilder;
+  onStopped(handler: DslSignalHandlerValue): YAnimatorBuilder;
+  onTargetItemChanged(handler: DslSignalHandlerValue): YAnimatorBuilder;
+  onToChanged(handler: DslSignalHandlerValue): YAnimatorBuilder;
   accessible(setup: (b: AccessibleAttachedBuilder) => void): YAnimatorBuilder;
   drag(setup: (b: DragAttachedBuilder) => void): YAnimatorBuilder;
   enterKey(setup: (b: EnterKeyAttachedBuilder) => void): YAnimatorBuilder;

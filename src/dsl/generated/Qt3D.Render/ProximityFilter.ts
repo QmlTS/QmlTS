@@ -2,12 +2,18 @@
 // Type: ProximityFilter
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 import type { EntityBuilder } from '../Qt3D.Core/Entity.js';
 export interface ProximityFilterBuilder {
   id(id: string): ProximityFilterBuilder;
   child(obj: QmlObjectBuilder): ProximityFilterBuilder;
+  children(...objs: QmlObjectBuilder[]): ProximityFilterBuilder;
 
   distanceThreshold(value: number): ProximityFilterBuilder;
   distanceThresholdBind(expr: string): ProximityFilterBuilder;
@@ -19,12 +25,12 @@ export interface ProximityFilterBuilder {
   objectNameBind(expr: string): ProximityFilterBuilder;
   parent(value: QmlValue): ProximityFilterBuilder;
   parentBind(expr: string): ProximityFilterBuilder;
-  onDistanceThresholdChanged(body: string): ProximityFilterBuilder;
-  onEnabledChanged(body: string): ProximityFilterBuilder;
-  onEntityChanged(body: string): ProximityFilterBuilder;
-  onNodeDestroyed(body: string): ProximityFilterBuilder;
-  onObjectNameChanged(body: string): ProximityFilterBuilder;
-  onParentChanged(body: string): ProximityFilterBuilder;
+  onDistanceThresholdChanged(handler: DslSignalHandlerValue): ProximityFilterBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): ProximityFilterBuilder;
+  onEntityChanged(handler: DslSignalHandlerValue): ProximityFilterBuilder;
+  onNodeDestroyed(handler: DslSignalHandlerValue): ProximityFilterBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): ProximityFilterBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): ProximityFilterBuilder;
 }
 
 const PROXIMITYFILTER_META: TypeMetadata = {

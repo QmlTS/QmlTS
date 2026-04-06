@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlEnumToken,
   QmlObjectBuilder,
   QmlQuaternion,
@@ -15,6 +16,7 @@ import type { ParticleSystem3DBuilder } from './ParticleSystem3D.js';
 export interface TrailEmitter3DBuilder {
   id(id: string): TrailEmitter3DBuilder;
   child(obj: QmlObjectBuilder): TrailEmitter3DBuilder;
+  children(...objs: QmlObjectBuilder[]): TrailEmitter3DBuilder;
 
   depthBias(value: number): TrailEmitter3DBuilder;
   depthBiasBind(expr: string): TrailEmitter3DBuilder;
@@ -86,49 +88,49 @@ export interface TrailEmitter3DBuilder {
   yBind(expr: string): TrailEmitter3DBuilder;
   z(value: number): TrailEmitter3DBuilder;
   zBind(expr: string): TrailEmitter3DBuilder;
-  onChildrenChanged(body: string): TrailEmitter3DBuilder;
-  onDepthBiasChanged(body: string): TrailEmitter3DBuilder;
-  onEmitModeChanged(body: string): TrailEmitter3DBuilder;
-  onEmitRateChanged(body: string): TrailEmitter3DBuilder;
-  onEnabledChanged(body: string): TrailEmitter3DBuilder;
-  onEulerRotationChanged(body: string): TrailEmitter3DBuilder;
-  onFollowChanged(body: string): TrailEmitter3DBuilder;
-  onForwardChanged(body: string): TrailEmitter3DBuilder;
-  onLayersChanged(body: string): TrailEmitter3DBuilder;
-  onLifeSpanChanged(body: string): TrailEmitter3DBuilder;
-  onLifeSpanVariationChanged(body: string): TrailEmitter3DBuilder;
-  onLocalOpacityChanged(body: string): TrailEmitter3DBuilder;
-  onObjectNameChanged(body: string): TrailEmitter3DBuilder;
-  onParentChanged(body: string): TrailEmitter3DBuilder;
-  onParticleChanged(body: string): TrailEmitter3DBuilder;
-  onParticleEndScaleChanged(body: string): TrailEmitter3DBuilder;
-  onParticleEndScaleVariationChanged(body: string): TrailEmitter3DBuilder;
-  onParticleRotationChanged(body: string): TrailEmitter3DBuilder;
-  onParticleRotationVariationChanged(body: string): TrailEmitter3DBuilder;
-  onParticleRotationVariationVelocityChanged(body: string): TrailEmitter3DBuilder;
-  onParticleRotationVelocityChanged(body: string): TrailEmitter3DBuilder;
-  onParticleScaleChanged(body: string): TrailEmitter3DBuilder;
-  onParticleScaleVariationChanged(body: string): TrailEmitter3DBuilder;
-  onPivotChanged(body: string): TrailEmitter3DBuilder;
-  onPositionChanged(body: string): TrailEmitter3DBuilder;
-  onReversedChanged(body: string): TrailEmitter3DBuilder;
-  onRightChanged(body: string): TrailEmitter3DBuilder;
-  onRotationChanged(body: string): TrailEmitter3DBuilder;
-  onScaleChanged(body: string): TrailEmitter3DBuilder;
-  onScenePositionChanged(body: string): TrailEmitter3DBuilder;
-  onSceneRotationChanged(body: string): TrailEmitter3DBuilder;
-  onSceneScaleChanged(body: string): TrailEmitter3DBuilder;
-  onSceneTransformChanged(body: string): TrailEmitter3DBuilder;
-  onShapeChanged(body: string): TrailEmitter3DBuilder;
-  onStateChanged(body: string): TrailEmitter3DBuilder;
-  onStaticFlagsChanged(body: string): TrailEmitter3DBuilder;
-  onSystemChanged(body: string): TrailEmitter3DBuilder;
-  onUpChanged(body: string): TrailEmitter3DBuilder;
-  onVelocityChanged(body: string): TrailEmitter3DBuilder;
-  onVisibleChanged(body: string): TrailEmitter3DBuilder;
-  onXChanged(body: string): TrailEmitter3DBuilder;
-  onYChanged(body: string): TrailEmitter3DBuilder;
-  onZChanged(body: string): TrailEmitter3DBuilder;
+  onChildrenChanged(handler: DslSignalHandlerValue): TrailEmitter3DBuilder;
+  onDepthBiasChanged(handler: DslSignalHandlerValue): TrailEmitter3DBuilder;
+  onEmitModeChanged(handler: DslSignalHandlerValue): TrailEmitter3DBuilder;
+  onEmitRateChanged(handler: DslSignalHandlerValue): TrailEmitter3DBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): TrailEmitter3DBuilder;
+  onEulerRotationChanged(handler: DslSignalHandlerValue): TrailEmitter3DBuilder;
+  onFollowChanged(handler: DslSignalHandlerValue): TrailEmitter3DBuilder;
+  onForwardChanged(handler: DslSignalHandlerValue): TrailEmitter3DBuilder;
+  onLayersChanged(handler: DslSignalHandlerValue): TrailEmitter3DBuilder;
+  onLifeSpanChanged(handler: DslSignalHandlerValue): TrailEmitter3DBuilder;
+  onLifeSpanVariationChanged(handler: DslSignalHandlerValue): TrailEmitter3DBuilder;
+  onLocalOpacityChanged(handler: DslSignalHandlerValue): TrailEmitter3DBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): TrailEmitter3DBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): TrailEmitter3DBuilder;
+  onParticleChanged(handler: DslSignalHandlerValue): TrailEmitter3DBuilder;
+  onParticleEndScaleChanged(handler: DslSignalHandlerValue): TrailEmitter3DBuilder;
+  onParticleEndScaleVariationChanged(handler: DslSignalHandlerValue): TrailEmitter3DBuilder;
+  onParticleRotationChanged(handler: DslSignalHandlerValue): TrailEmitter3DBuilder;
+  onParticleRotationVariationChanged(handler: DslSignalHandlerValue): TrailEmitter3DBuilder;
+  onParticleRotationVariationVelocityChanged(handler: DslSignalHandlerValue): TrailEmitter3DBuilder;
+  onParticleRotationVelocityChanged(handler: DslSignalHandlerValue): TrailEmitter3DBuilder;
+  onParticleScaleChanged(handler: DslSignalHandlerValue): TrailEmitter3DBuilder;
+  onParticleScaleVariationChanged(handler: DslSignalHandlerValue): TrailEmitter3DBuilder;
+  onPivotChanged(handler: DslSignalHandlerValue): TrailEmitter3DBuilder;
+  onPositionChanged(handler: DslSignalHandlerValue): TrailEmitter3DBuilder;
+  onReversedChanged(handler: DslSignalHandlerValue): TrailEmitter3DBuilder;
+  onRightChanged(handler: DslSignalHandlerValue): TrailEmitter3DBuilder;
+  onRotationChanged(handler: DslSignalHandlerValue): TrailEmitter3DBuilder;
+  onScaleChanged(handler: DslSignalHandlerValue): TrailEmitter3DBuilder;
+  onScenePositionChanged(handler: DslSignalHandlerValue): TrailEmitter3DBuilder;
+  onSceneRotationChanged(handler: DslSignalHandlerValue): TrailEmitter3DBuilder;
+  onSceneScaleChanged(handler: DslSignalHandlerValue): TrailEmitter3DBuilder;
+  onSceneTransformChanged(handler: DslSignalHandlerValue): TrailEmitter3DBuilder;
+  onShapeChanged(handler: DslSignalHandlerValue): TrailEmitter3DBuilder;
+  onStateChanged(handler: DslSignalHandlerValue): TrailEmitter3DBuilder;
+  onStaticFlagsChanged(handler: DslSignalHandlerValue): TrailEmitter3DBuilder;
+  onSystemChanged(handler: DslSignalHandlerValue): TrailEmitter3DBuilder;
+  onUpChanged(handler: DslSignalHandlerValue): TrailEmitter3DBuilder;
+  onVelocityChanged(handler: DslSignalHandlerValue): TrailEmitter3DBuilder;
+  onVisibleChanged(handler: DslSignalHandlerValue): TrailEmitter3DBuilder;
+  onXChanged(handler: DslSignalHandlerValue): TrailEmitter3DBuilder;
+  onYChanged(handler: DslSignalHandlerValue): TrailEmitter3DBuilder;
+  onZChanged(handler: DslSignalHandlerValue): TrailEmitter3DBuilder;
 }
 
 const TRAILEMITTER3D_META: TypeMetadata = {

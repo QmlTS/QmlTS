@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlColor,
   QmlEnumToken,
   QmlObjectBuilder,
@@ -18,6 +19,7 @@ import type { Value3DAxisBuilder } from './Value3DAxis.js';
 export interface Bar3DSeriesBuilder {
   id(id: string): Bar3DSeriesBuilder;
   child(obj: QmlObjectBuilder): Bar3DSeriesBuilder;
+  children(...objs: QmlObjectBuilder[]): Bar3DSeriesBuilder;
 
   baseColor(value: QmlColor): Bar3DSeriesBuilder;
   baseColorBind(expr: string): Bar3DSeriesBuilder;
@@ -77,37 +79,37 @@ export interface Bar3DSeriesBuilder {
   valueColoringEnabledBind(expr: string): Bar3DSeriesBuilder;
   visible(value: boolean): Bar3DSeriesBuilder;
   visibleBind(expr: string): Bar3DSeriesBuilder;
-  onBaseColorChanged(body: string): Bar3DSeriesBuilder;
-  onBaseGradientChanged(body: string): Bar3DSeriesBuilder;
-  onColorStyleChanged(body: string): Bar3DSeriesBuilder;
-  onColumnAxisChanged(body: string): Bar3DSeriesBuilder;
-  onColumnLabelsChanged(body: string): Bar3DSeriesBuilder;
-  onCustomColumnLabelsChanged(body: string): Bar3DSeriesBuilder;
-  onCustomRowLabelsChanged(body: string): Bar3DSeriesBuilder;
-  onDataArrayChanged(body: string): Bar3DSeriesBuilder;
-  onDataProxyChanged(body: string): Bar3DSeriesBuilder;
-  onItemLabelChanged(body: string): Bar3DSeriesBuilder;
-  onItemLabelFormatChanged(body: string): Bar3DSeriesBuilder;
-  onItemLabelVisibleChanged(body: string): Bar3DSeriesBuilder;
-  onLightingModeChanged(body: string): Bar3DSeriesBuilder;
-  onMeshAngleChanged(body: string): Bar3DSeriesBuilder;
-  onMeshChanged(body: string): Bar3DSeriesBuilder;
-  onMeshRotationChanged(body: string): Bar3DSeriesBuilder;
-  onMeshSmoothChanged(body: string): Bar3DSeriesBuilder;
-  onMultiHighlightColorChanged(body: string): Bar3DSeriesBuilder;
-  onMultiHighlightGradientChanged(body: string): Bar3DSeriesBuilder;
-  onNameChanged(body: string): Bar3DSeriesBuilder;
-  onObjectNameChanged(body: string): Bar3DSeriesBuilder;
-  onRowAxisChanged(body: string): Bar3DSeriesBuilder;
-  onRowColorsChanged(body: string): Bar3DSeriesBuilder;
-  onRowLabelsChanged(body: string): Bar3DSeriesBuilder;
-  onSelectedBarChanged(body: string): Bar3DSeriesBuilder;
-  onSingleHighlightColorChanged(body: string): Bar3DSeriesBuilder;
-  onSingleHighlightGradientChanged(body: string): Bar3DSeriesBuilder;
-  onUserDefinedMeshChanged(body: string): Bar3DSeriesBuilder;
-  onValueAxisChanged(body: string): Bar3DSeriesBuilder;
-  onValueColoringEnabledChanged(body: string): Bar3DSeriesBuilder;
-  onVisibleChanged(body: string): Bar3DSeriesBuilder;
+  onBaseColorChanged(handler: DslSignalHandlerValue): Bar3DSeriesBuilder;
+  onBaseGradientChanged(handler: DslSignalHandlerValue): Bar3DSeriesBuilder;
+  onColorStyleChanged(handler: DslSignalHandlerValue): Bar3DSeriesBuilder;
+  onColumnAxisChanged(handler: DslSignalHandlerValue): Bar3DSeriesBuilder;
+  onColumnLabelsChanged(handler: DslSignalHandlerValue): Bar3DSeriesBuilder;
+  onCustomColumnLabelsChanged(handler: DslSignalHandlerValue): Bar3DSeriesBuilder;
+  onCustomRowLabelsChanged(handler: DslSignalHandlerValue): Bar3DSeriesBuilder;
+  onDataArrayChanged(handler: DslSignalHandlerValue): Bar3DSeriesBuilder;
+  onDataProxyChanged(handler: DslSignalHandlerValue): Bar3DSeriesBuilder;
+  onItemLabelChanged(handler: DslSignalHandlerValue): Bar3DSeriesBuilder;
+  onItemLabelFormatChanged(handler: DslSignalHandlerValue): Bar3DSeriesBuilder;
+  onItemLabelVisibleChanged(handler: DslSignalHandlerValue): Bar3DSeriesBuilder;
+  onLightingModeChanged(handler: DslSignalHandlerValue): Bar3DSeriesBuilder;
+  onMeshAngleChanged(handler: DslSignalHandlerValue): Bar3DSeriesBuilder;
+  onMeshChanged(handler: DslSignalHandlerValue): Bar3DSeriesBuilder;
+  onMeshRotationChanged(handler: DslSignalHandlerValue): Bar3DSeriesBuilder;
+  onMeshSmoothChanged(handler: DslSignalHandlerValue): Bar3DSeriesBuilder;
+  onMultiHighlightColorChanged(handler: DslSignalHandlerValue): Bar3DSeriesBuilder;
+  onMultiHighlightGradientChanged(handler: DslSignalHandlerValue): Bar3DSeriesBuilder;
+  onNameChanged(handler: DslSignalHandlerValue): Bar3DSeriesBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): Bar3DSeriesBuilder;
+  onRowAxisChanged(handler: DslSignalHandlerValue): Bar3DSeriesBuilder;
+  onRowColorsChanged(handler: DslSignalHandlerValue): Bar3DSeriesBuilder;
+  onRowLabelsChanged(handler: DslSignalHandlerValue): Bar3DSeriesBuilder;
+  onSelectedBarChanged(handler: DslSignalHandlerValue): Bar3DSeriesBuilder;
+  onSingleHighlightColorChanged(handler: DslSignalHandlerValue): Bar3DSeriesBuilder;
+  onSingleHighlightGradientChanged(handler: DslSignalHandlerValue): Bar3DSeriesBuilder;
+  onUserDefinedMeshChanged(handler: DslSignalHandlerValue): Bar3DSeriesBuilder;
+  onValueAxisChanged(handler: DslSignalHandlerValue): Bar3DSeriesBuilder;
+  onValueColoringEnabledChanged(handler: DslSignalHandlerValue): Bar3DSeriesBuilder;
+  onVisibleChanged(handler: DslSignalHandlerValue): Bar3DSeriesBuilder;
 }
 
 const BAR3DSERIES_META: TypeMetadata = {

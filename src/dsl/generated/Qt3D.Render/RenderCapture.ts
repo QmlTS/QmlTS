@@ -2,11 +2,17 @@
 // Type: RenderCapture
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 export interface RenderCaptureBuilder {
   id(id: string): RenderCaptureBuilder;
   child(obj: QmlObjectBuilder): RenderCaptureBuilder;
+  children(...objs: QmlObjectBuilder[]): RenderCaptureBuilder;
 
   enabled(value: boolean): RenderCaptureBuilder;
   enabledBind(expr: string): RenderCaptureBuilder;
@@ -14,10 +20,10 @@ export interface RenderCaptureBuilder {
   objectNameBind(expr: string): RenderCaptureBuilder;
   parent(value: QmlValue): RenderCaptureBuilder;
   parentBind(expr: string): RenderCaptureBuilder;
-  onEnabledChanged(body: string): RenderCaptureBuilder;
-  onNodeDestroyed(body: string): RenderCaptureBuilder;
-  onObjectNameChanged(body: string): RenderCaptureBuilder;
-  onParentChanged(body: string): RenderCaptureBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): RenderCaptureBuilder;
+  onNodeDestroyed(handler: DslSignalHandlerValue): RenderCaptureBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): RenderCaptureBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): RenderCaptureBuilder;
 }
 
 const RENDERCAPTURE_META: TypeMetadata = {

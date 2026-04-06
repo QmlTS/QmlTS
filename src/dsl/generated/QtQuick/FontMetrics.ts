@@ -2,7 +2,12 @@
 // Type: FontMetrics
 // Generated from Qt 6.11.0
 
-import type { QmlFont, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlFont,
+  QmlObjectBuilder,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 import type { AccessibleAttachedBuilder } from './Accessible.js';
 import type { EnterKeyAttachedBuilder } from './EnterKey.js';
@@ -23,13 +28,14 @@ import type { ViewTransitionAttachedBuilder } from './ViewTransition.js';
 export interface FontMetricsBuilder {
   id(id: string): FontMetricsBuilder;
   child(obj: QmlObjectBuilder): FontMetricsBuilder;
+  children(...objs: QmlObjectBuilder[]): FontMetricsBuilder;
 
   font(value: QmlFont): FontMetricsBuilder;
   fontBind(expr: string): FontMetricsBuilder;
   objectName(value: string): FontMetricsBuilder;
   objectNameBind(expr: string): FontMetricsBuilder;
-  onFontChanged(body: string): FontMetricsBuilder;
-  onObjectNameChanged(body: string): FontMetricsBuilder;
+  onFontChanged(handler: DslSignalHandlerValue): FontMetricsBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): FontMetricsBuilder;
   accessible(setup: (b: AccessibleAttachedBuilder) => void): FontMetricsBuilder;
   drag(setup: (b: DragAttachedBuilder) => void): FontMetricsBuilder;
   enterKey(setup: (b: EnterKeyAttachedBuilder) => void): FontMetricsBuilder;

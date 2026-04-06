@@ -2,7 +2,12 @@
 // Type: ItemSpy
 // Generated from Qt 6.11.0
 
-import type { QmlEnumToken, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlEnumToken,
+  QmlObjectBuilder,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { QtObjectBuilder } from '../QML/QtObject.js';
 import type { ItemBuilder } from '../QtQuick/Item.js';
@@ -12,6 +17,7 @@ import type { LayerBuilder } from '../QtQuick/QQuickItemLayer.js';
 export interface ItemSpyBuilder {
   id(id: string): ItemSpyBuilder;
   child(obj: QmlObjectBuilder): ItemSpyBuilder;
+  children(...objs: QmlObjectBuilder[]): ItemSpyBuilder;
 
   activeFocusOnTab(value: boolean): ItemSpyBuilder;
   activeFocusOnTabBind(expr: string): ItemSpyBuilder;
@@ -63,38 +69,38 @@ export interface ItemSpyBuilder {
   yBind(expr: string): ItemSpyBuilder;
   z(value: number): ItemSpyBuilder;
   zBind(expr: string): ItemSpyBuilder;
-  onActiveFocusChanged(body: string): ItemSpyBuilder;
-  onActiveFocusOnTabChanged(body: string): ItemSpyBuilder;
-  onAntialiasingChanged(body: string): ItemSpyBuilder;
-  onBaselineOffsetChanged(body: string): ItemSpyBuilder;
-  onChildrenChanged(body: string): ItemSpyBuilder;
-  onChildrenRectChanged(body: string): ItemSpyBuilder;
-  onClipChanged(body: string): ItemSpyBuilder;
-  onContainmentMaskChanged(body: string): ItemSpyBuilder;
-  onEnabledChanged(body: string): ItemSpyBuilder;
-  onFocusChanged(body: string): ItemSpyBuilder;
-  onFocusPolicyChanged(body: string): ItemSpyBuilder;
-  onHeightChanged(body: string): ItemSpyBuilder;
-  onImplicitHeightChanged(body: string): ItemSpyBuilder;
-  onImplicitWidthChanged(body: string): ItemSpyBuilder;
-  onObjectNameChanged(body: string): ItemSpyBuilder;
-  onOpacityChanged(body: string): ItemSpyBuilder;
-  onPaletteChanged(body: string): ItemSpyBuilder;
-  onPaletteCreated(body: string): ItemSpyBuilder;
-  onParentChanged(body: string): ItemSpyBuilder;
-  onRequiredTextureSizeChanged(body: string): ItemSpyBuilder;
-  onRotationChanged(body: string): ItemSpyBuilder;
-  onScaleChanged(body: string): ItemSpyBuilder;
-  onSmoothChanged(body: string): ItemSpyBuilder;
-  onStateChanged(body: string): ItemSpyBuilder;
-  onTransformOriginChanged(body: string): ItemSpyBuilder;
-  onVisibleChanged(body: string): ItemSpyBuilder;
-  onVisibleChildrenChanged(body: string): ItemSpyBuilder;
-  onWidthChanged(body: string): ItemSpyBuilder;
-  onWindowChanged(body: string): ItemSpyBuilder;
-  onXChanged(body: string): ItemSpyBuilder;
-  onYChanged(body: string): ItemSpyBuilder;
-  onZChanged(body: string): ItemSpyBuilder;
+  onActiveFocusChanged(handler: DslSignalHandlerValue): ItemSpyBuilder;
+  onActiveFocusOnTabChanged(handler: DslSignalHandlerValue): ItemSpyBuilder;
+  onAntialiasingChanged(handler: DslSignalHandlerValue): ItemSpyBuilder;
+  onBaselineOffsetChanged(handler: DslSignalHandlerValue): ItemSpyBuilder;
+  onChildrenChanged(handler: DslSignalHandlerValue): ItemSpyBuilder;
+  onChildrenRectChanged(handler: DslSignalHandlerValue): ItemSpyBuilder;
+  onClipChanged(handler: DslSignalHandlerValue): ItemSpyBuilder;
+  onContainmentMaskChanged(handler: DslSignalHandlerValue): ItemSpyBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): ItemSpyBuilder;
+  onFocusChanged(handler: DslSignalHandlerValue): ItemSpyBuilder;
+  onFocusPolicyChanged(handler: DslSignalHandlerValue): ItemSpyBuilder;
+  onHeightChanged(handler: DslSignalHandlerValue): ItemSpyBuilder;
+  onImplicitHeightChanged(handler: DslSignalHandlerValue): ItemSpyBuilder;
+  onImplicitWidthChanged(handler: DslSignalHandlerValue): ItemSpyBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): ItemSpyBuilder;
+  onOpacityChanged(handler: DslSignalHandlerValue): ItemSpyBuilder;
+  onPaletteChanged(handler: DslSignalHandlerValue): ItemSpyBuilder;
+  onPaletteCreated(handler: DslSignalHandlerValue): ItemSpyBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): ItemSpyBuilder;
+  onRequiredTextureSizeChanged(handler: DslSignalHandlerValue): ItemSpyBuilder;
+  onRotationChanged(handler: DslSignalHandlerValue): ItemSpyBuilder;
+  onScaleChanged(handler: DslSignalHandlerValue): ItemSpyBuilder;
+  onSmoothChanged(handler: DslSignalHandlerValue): ItemSpyBuilder;
+  onStateChanged(handler: DslSignalHandlerValue): ItemSpyBuilder;
+  onTransformOriginChanged(handler: DslSignalHandlerValue): ItemSpyBuilder;
+  onVisibleChanged(handler: DslSignalHandlerValue): ItemSpyBuilder;
+  onVisibleChildrenChanged(handler: DslSignalHandlerValue): ItemSpyBuilder;
+  onWidthChanged(handler: DslSignalHandlerValue): ItemSpyBuilder;
+  onWindowChanged(handler: DslSignalHandlerValue): ItemSpyBuilder;
+  onXChanged(handler: DslSignalHandlerValue): ItemSpyBuilder;
+  onYChanged(handler: DslSignalHandlerValue): ItemSpyBuilder;
+  onZChanged(handler: DslSignalHandlerValue): ItemSpyBuilder;
   anchors(setup: (b: AnchorsBuilder) => void): ItemSpyBuilder;
   layer(setup: (b: LayerBuilder) => void): ItemSpyBuilder;
 }

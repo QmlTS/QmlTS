@@ -2,12 +2,18 @@
 // Type: RenderPass
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 import type { ShaderProgramBuilder } from './ShaderProgram.js';
 export interface RenderPassBuilder {
   id(id: string): RenderPassBuilder;
   child(obj: QmlObjectBuilder): RenderPassBuilder;
+  children(...objs: QmlObjectBuilder[]): RenderPassBuilder;
 
   enabled(value: boolean): RenderPassBuilder;
   enabledBind(expr: string): RenderPassBuilder;
@@ -17,11 +23,11 @@ export interface RenderPassBuilder {
   parentBind(expr: string): RenderPassBuilder;
   shaderProgram(value: ShaderProgramBuilder): RenderPassBuilder;
   shaderProgramBind(expr: string): RenderPassBuilder;
-  onEnabledChanged(body: string): RenderPassBuilder;
-  onNodeDestroyed(body: string): RenderPassBuilder;
-  onObjectNameChanged(body: string): RenderPassBuilder;
-  onParentChanged(body: string): RenderPassBuilder;
-  onShaderProgramChanged(body: string): RenderPassBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): RenderPassBuilder;
+  onNodeDestroyed(handler: DslSignalHandlerValue): RenderPassBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): RenderPassBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): RenderPassBuilder;
+  onShaderProgramChanged(handler: DslSignalHandlerValue): RenderPassBuilder;
 }
 
 const RENDERPASS_META: TypeMetadata = {

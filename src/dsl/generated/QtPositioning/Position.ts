@@ -2,15 +2,16 @@
 // Type: Position
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import type { DslSignalHandlerValue, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 export interface PositionBuilder {
   id(id: string): PositionBuilder;
   child(obj: QmlObjectBuilder): PositionBuilder;
+  children(...objs: QmlObjectBuilder[]): PositionBuilder;
 
   objectName(value: string): PositionBuilder;
   objectNameBind(expr: string): PositionBuilder;
-  onObjectNameChanged(body: string): PositionBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): PositionBuilder;
 }
 
 const POSITION_META: TypeMetadata = {

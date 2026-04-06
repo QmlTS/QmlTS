@@ -2,7 +2,7 @@
 // Type: ObjectModel
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import type { DslSignalHandlerValue, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 import type { DelegateModelAttachedBuilder } from './QQmlDelegateModelAttached.js';
 import type { ObjectModelAttachedBuilder } from './QQmlObjectModelAttached.js';
@@ -10,18 +10,19 @@ import type { PackageAttachedBuilder } from './QQuickPackageAttached.js';
 export interface ObjectModelBuilder {
   id(id: string): ObjectModelBuilder;
   child(obj: QmlObjectBuilder): ObjectModelBuilder;
+  children(...objs: QmlObjectBuilder[]): ObjectModelBuilder;
 
   objectName(value: string): ObjectModelBuilder;
   objectNameBind(expr: string): ObjectModelBuilder;
-  onChildrenChanged(body: string): ObjectModelBuilder;
-  onCountChanged(body: string): ObjectModelBuilder;
-  onCreatedItem(body: string): ObjectModelBuilder;
-  onDestroyingItem(body: string): ObjectModelBuilder;
-  onInitItem(body: string): ObjectModelBuilder;
-  onItemPooled(body: string): ObjectModelBuilder;
-  onItemReused(body: string): ObjectModelBuilder;
-  onModelUpdated(body: string): ObjectModelBuilder;
-  onObjectNameChanged(body: string): ObjectModelBuilder;
+  onChildrenChanged(handler: DslSignalHandlerValue): ObjectModelBuilder;
+  onCountChanged(handler: DslSignalHandlerValue): ObjectModelBuilder;
+  onCreatedItem(handler: DslSignalHandlerValue): ObjectModelBuilder;
+  onDestroyingItem(handler: DslSignalHandlerValue): ObjectModelBuilder;
+  onInitItem(handler: DslSignalHandlerValue): ObjectModelBuilder;
+  onItemPooled(handler: DslSignalHandlerValue): ObjectModelBuilder;
+  onItemReused(handler: DslSignalHandlerValue): ObjectModelBuilder;
+  onModelUpdated(handler: DslSignalHandlerValue): ObjectModelBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): ObjectModelBuilder;
   delegateModel(setup: (b: DelegateModelAttachedBuilder) => void): ObjectModelBuilder;
   objectModel(setup: (b: ObjectModelAttachedBuilder) => void): ObjectModelBuilder;
   package(setup: (b: PackageAttachedBuilder) => void): ObjectModelBuilder;

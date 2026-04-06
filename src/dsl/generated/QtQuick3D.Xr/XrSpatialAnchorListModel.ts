@@ -2,11 +2,17 @@
 // Type: XrSpatialAnchorListModel
 // Generated from Qt 6.11.0
 
-import type { QmlEnumToken, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlEnumToken,
+  QmlObjectBuilder,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface XrSpatialAnchorListModelBuilder {
   id(id: string): XrSpatialAnchorListModelBuilder;
   child(obj: QmlObjectBuilder): XrSpatialAnchorListModelBuilder;
+  children(...objs: QmlObjectBuilder[]): XrSpatialAnchorListModelBuilder;
 
   classificationFilter(value: QmlEnumToken): XrSpatialAnchorListModelBuilder;
   classificationFilterBind(expr: string): XrSpatialAnchorListModelBuilder;
@@ -18,29 +24,31 @@ export interface XrSpatialAnchorListModelBuilder {
   identifierFilterBind(expr: string): XrSpatialAnchorListModelBuilder;
   objectName(value: string): XrSpatialAnchorListModelBuilder;
   objectNameBind(expr: string): XrSpatialAnchorListModelBuilder;
-  onClassificationFilterChanged(body: string): XrSpatialAnchorListModelBuilder;
-  onClassificationStringFilterChanged(body: string): XrSpatialAnchorListModelBuilder;
-  onColumnsAboutToBeInserted(body: string): XrSpatialAnchorListModelBuilder;
-  onColumnsAboutToBeMoved(body: string): XrSpatialAnchorListModelBuilder;
-  onColumnsAboutToBeRemoved(body: string): XrSpatialAnchorListModelBuilder;
-  onColumnsInserted(body: string): XrSpatialAnchorListModelBuilder;
-  onColumnsMoved(body: string): XrSpatialAnchorListModelBuilder;
-  onColumnsRemoved(body: string): XrSpatialAnchorListModelBuilder;
-  onDataChanged(body: string): XrSpatialAnchorListModelBuilder;
-  onFilterModeChanged(body: string): XrSpatialAnchorListModelBuilder;
-  onHeaderDataChanged(body: string): XrSpatialAnchorListModelBuilder;
-  onIdentifierFilterChanged(body: string): XrSpatialAnchorListModelBuilder;
-  onLayoutAboutToBeChanged(body: string): XrSpatialAnchorListModelBuilder;
-  onLayoutChanged(body: string): XrSpatialAnchorListModelBuilder;
-  onModelAboutToBeReset(body: string): XrSpatialAnchorListModelBuilder;
-  onModelReset(body: string): XrSpatialAnchorListModelBuilder;
-  onObjectNameChanged(body: string): XrSpatialAnchorListModelBuilder;
-  onRowsAboutToBeInserted(body: string): XrSpatialAnchorListModelBuilder;
-  onRowsAboutToBeMoved(body: string): XrSpatialAnchorListModelBuilder;
-  onRowsAboutToBeRemoved(body: string): XrSpatialAnchorListModelBuilder;
-  onRowsInserted(body: string): XrSpatialAnchorListModelBuilder;
-  onRowsMoved(body: string): XrSpatialAnchorListModelBuilder;
-  onRowsRemoved(body: string): XrSpatialAnchorListModelBuilder;
+  onClassificationFilterChanged(handler: DslSignalHandlerValue): XrSpatialAnchorListModelBuilder;
+  onClassificationStringFilterChanged(
+    handler: DslSignalHandlerValue,
+  ): XrSpatialAnchorListModelBuilder;
+  onColumnsAboutToBeInserted(handler: DslSignalHandlerValue): XrSpatialAnchorListModelBuilder;
+  onColumnsAboutToBeMoved(handler: DslSignalHandlerValue): XrSpatialAnchorListModelBuilder;
+  onColumnsAboutToBeRemoved(handler: DslSignalHandlerValue): XrSpatialAnchorListModelBuilder;
+  onColumnsInserted(handler: DslSignalHandlerValue): XrSpatialAnchorListModelBuilder;
+  onColumnsMoved(handler: DslSignalHandlerValue): XrSpatialAnchorListModelBuilder;
+  onColumnsRemoved(handler: DslSignalHandlerValue): XrSpatialAnchorListModelBuilder;
+  onDataChanged(handler: DslSignalHandlerValue): XrSpatialAnchorListModelBuilder;
+  onFilterModeChanged(handler: DslSignalHandlerValue): XrSpatialAnchorListModelBuilder;
+  onHeaderDataChanged(handler: DslSignalHandlerValue): XrSpatialAnchorListModelBuilder;
+  onIdentifierFilterChanged(handler: DslSignalHandlerValue): XrSpatialAnchorListModelBuilder;
+  onLayoutAboutToBeChanged(handler: DslSignalHandlerValue): XrSpatialAnchorListModelBuilder;
+  onLayoutChanged(handler: DslSignalHandlerValue): XrSpatialAnchorListModelBuilder;
+  onModelAboutToBeReset(handler: DslSignalHandlerValue): XrSpatialAnchorListModelBuilder;
+  onModelReset(handler: DslSignalHandlerValue): XrSpatialAnchorListModelBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): XrSpatialAnchorListModelBuilder;
+  onRowsAboutToBeInserted(handler: DslSignalHandlerValue): XrSpatialAnchorListModelBuilder;
+  onRowsAboutToBeMoved(handler: DslSignalHandlerValue): XrSpatialAnchorListModelBuilder;
+  onRowsAboutToBeRemoved(handler: DslSignalHandlerValue): XrSpatialAnchorListModelBuilder;
+  onRowsInserted(handler: DslSignalHandlerValue): XrSpatialAnchorListModelBuilder;
+  onRowsMoved(handler: DslSignalHandlerValue): XrSpatialAnchorListModelBuilder;
+  onRowsRemoved(handler: DslSignalHandlerValue): XrSpatialAnchorListModelBuilder;
 }
 
 const XRSPATIALANCHORLISTMODEL_META: TypeMetadata = {

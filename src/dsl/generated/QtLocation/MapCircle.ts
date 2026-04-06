@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlColor,
   QmlEnumToken,
   QmlObjectBuilder,
@@ -19,6 +20,7 @@ import type { BorderBuilder } from './QDeclarativeMapLineProperties.js';
 export interface MapCircleBuilder {
   id(id: string): MapCircleBuilder;
   child(obj: QmlObjectBuilder): MapCircleBuilder;
+  children(...objs: QmlObjectBuilder[]): MapCircleBuilder;
 
   activeFocusOnTab(value: boolean): MapCircleBuilder;
   activeFocusOnTabBind(expr: string): MapCircleBuilder;
@@ -84,45 +86,45 @@ export interface MapCircleBuilder {
   yBind(expr: string): MapCircleBuilder;
   z(value: number): MapCircleBuilder;
   zBind(expr: string): MapCircleBuilder;
-  onActiveFocusChanged(body: string): MapCircleBuilder;
-  onActiveFocusOnTabChanged(body: string): MapCircleBuilder;
-  onAddTransitionFinished(body: string): MapCircleBuilder;
-  onAntialiasingChanged(body: string): MapCircleBuilder;
-  onBaselineOffsetChanged(body: string): MapCircleBuilder;
-  onCenterChanged(body: string): MapCircleBuilder;
-  onChildrenChanged(body: string): MapCircleBuilder;
-  onChildrenRectChanged(body: string): MapCircleBuilder;
-  onClipChanged(body: string): MapCircleBuilder;
-  onColorChanged(body: string): MapCircleBuilder;
-  onContainmentMaskChanged(body: string): MapCircleBuilder;
-  onEnabledChanged(body: string): MapCircleBuilder;
-  onFocusChanged(body: string): MapCircleBuilder;
-  onFocusPolicyChanged(body: string): MapCircleBuilder;
-  onHeightChanged(body: string): MapCircleBuilder;
-  onImplicitHeightChanged(body: string): MapCircleBuilder;
-  onImplicitWidthChanged(body: string): MapCircleBuilder;
-  onLodThresholdChanged(body: string): MapCircleBuilder;
-  onMapItemOpacityChanged(body: string): MapCircleBuilder;
-  onObjectNameChanged(body: string): MapCircleBuilder;
-  onOpacityChanged(body: string): MapCircleBuilder;
-  onPaletteChanged(body: string): MapCircleBuilder;
-  onPaletteCreated(body: string): MapCircleBuilder;
-  onParentChanged(body: string): MapCircleBuilder;
-  onRadiusChanged(body: string): MapCircleBuilder;
-  onReferenceSurfaceChanged(body: string): MapCircleBuilder;
-  onRemoveTransitionFinished(body: string): MapCircleBuilder;
-  onRotationChanged(body: string): MapCircleBuilder;
-  onScaleChanged(body: string): MapCircleBuilder;
-  onSmoothChanged(body: string): MapCircleBuilder;
-  onStateChanged(body: string): MapCircleBuilder;
-  onTransformOriginChanged(body: string): MapCircleBuilder;
-  onVisibleChanged(body: string): MapCircleBuilder;
-  onVisibleChildrenChanged(body: string): MapCircleBuilder;
-  onWidthChanged(body: string): MapCircleBuilder;
-  onWindowChanged(body: string): MapCircleBuilder;
-  onXChanged(body: string): MapCircleBuilder;
-  onYChanged(body: string): MapCircleBuilder;
-  onZChanged(body: string): MapCircleBuilder;
+  onActiveFocusChanged(handler: DslSignalHandlerValue): MapCircleBuilder;
+  onActiveFocusOnTabChanged(handler: DslSignalHandlerValue): MapCircleBuilder;
+  onAddTransitionFinished(handler: DslSignalHandlerValue): MapCircleBuilder;
+  onAntialiasingChanged(handler: DslSignalHandlerValue): MapCircleBuilder;
+  onBaselineOffsetChanged(handler: DslSignalHandlerValue): MapCircleBuilder;
+  onCenterChanged(handler: DslSignalHandlerValue): MapCircleBuilder;
+  onChildrenChanged(handler: DslSignalHandlerValue): MapCircleBuilder;
+  onChildrenRectChanged(handler: DslSignalHandlerValue): MapCircleBuilder;
+  onClipChanged(handler: DslSignalHandlerValue): MapCircleBuilder;
+  onColorChanged(handler: DslSignalHandlerValue): MapCircleBuilder;
+  onContainmentMaskChanged(handler: DslSignalHandlerValue): MapCircleBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): MapCircleBuilder;
+  onFocusChanged(handler: DslSignalHandlerValue): MapCircleBuilder;
+  onFocusPolicyChanged(handler: DslSignalHandlerValue): MapCircleBuilder;
+  onHeightChanged(handler: DslSignalHandlerValue): MapCircleBuilder;
+  onImplicitHeightChanged(handler: DslSignalHandlerValue): MapCircleBuilder;
+  onImplicitWidthChanged(handler: DslSignalHandlerValue): MapCircleBuilder;
+  onLodThresholdChanged(handler: DslSignalHandlerValue): MapCircleBuilder;
+  onMapItemOpacityChanged(handler: DslSignalHandlerValue): MapCircleBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): MapCircleBuilder;
+  onOpacityChanged(handler: DslSignalHandlerValue): MapCircleBuilder;
+  onPaletteChanged(handler: DslSignalHandlerValue): MapCircleBuilder;
+  onPaletteCreated(handler: DslSignalHandlerValue): MapCircleBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): MapCircleBuilder;
+  onRadiusChanged(handler: DslSignalHandlerValue): MapCircleBuilder;
+  onReferenceSurfaceChanged(handler: DslSignalHandlerValue): MapCircleBuilder;
+  onRemoveTransitionFinished(handler: DslSignalHandlerValue): MapCircleBuilder;
+  onRotationChanged(handler: DslSignalHandlerValue): MapCircleBuilder;
+  onScaleChanged(handler: DslSignalHandlerValue): MapCircleBuilder;
+  onSmoothChanged(handler: DslSignalHandlerValue): MapCircleBuilder;
+  onStateChanged(handler: DslSignalHandlerValue): MapCircleBuilder;
+  onTransformOriginChanged(handler: DslSignalHandlerValue): MapCircleBuilder;
+  onVisibleChanged(handler: DslSignalHandlerValue): MapCircleBuilder;
+  onVisibleChildrenChanged(handler: DslSignalHandlerValue): MapCircleBuilder;
+  onWidthChanged(handler: DslSignalHandlerValue): MapCircleBuilder;
+  onWindowChanged(handler: DslSignalHandlerValue): MapCircleBuilder;
+  onXChanged(handler: DslSignalHandlerValue): MapCircleBuilder;
+  onYChanged(handler: DslSignalHandlerValue): MapCircleBuilder;
+  onZChanged(handler: DslSignalHandlerValue): MapCircleBuilder;
   anchors(setup: (b: AnchorsBuilder) => void): MapCircleBuilder;
   border(setup: (b: BorderBuilder) => void): MapCircleBuilder;
   layer(setup: (b: LayerBuilder) => void): MapCircleBuilder;

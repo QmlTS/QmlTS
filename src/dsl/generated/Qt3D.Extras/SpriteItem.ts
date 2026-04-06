@@ -2,11 +2,17 @@
 // Type: SpriteItem
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 export interface SpriteItemBuilder {
   id(id: string): SpriteItemBuilder;
   child(obj: QmlObjectBuilder): SpriteItemBuilder;
+  children(...objs: QmlObjectBuilder[]): SpriteItemBuilder;
 
   enabled(value: boolean): SpriteItemBuilder;
   enabledBind(expr: string): SpriteItemBuilder;
@@ -22,14 +28,14 @@ export interface SpriteItemBuilder {
   xBind(expr: string): SpriteItemBuilder;
   y(value: number): SpriteItemBuilder;
   yBind(expr: string): SpriteItemBuilder;
-  onEnabledChanged(body: string): SpriteItemBuilder;
-  onHeightChanged(body: string): SpriteItemBuilder;
-  onNodeDestroyed(body: string): SpriteItemBuilder;
-  onObjectNameChanged(body: string): SpriteItemBuilder;
-  onParentChanged(body: string): SpriteItemBuilder;
-  onWidthChanged(body: string): SpriteItemBuilder;
-  onXChanged(body: string): SpriteItemBuilder;
-  onYChanged(body: string): SpriteItemBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): SpriteItemBuilder;
+  onHeightChanged(handler: DslSignalHandlerValue): SpriteItemBuilder;
+  onNodeDestroyed(handler: DslSignalHandlerValue): SpriteItemBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): SpriteItemBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): SpriteItemBuilder;
+  onWidthChanged(handler: DslSignalHandlerValue): SpriteItemBuilder;
+  onXChanged(handler: DslSignalHandlerValue): SpriteItemBuilder;
+  onYChanged(handler: DslSignalHandlerValue): SpriteItemBuilder;
 }
 
 const SPRITEITEM_META: TypeMetadata = {

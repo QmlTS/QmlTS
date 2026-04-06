@@ -2,7 +2,7 @@
 // Type: Attached type: VoiceSelector
 // Generated from Qt 6.11.0
 
-import type { QmlEnumToken, QmlValue } from '../../runtime/index.js';
+import type { DslSignalHandlerValue, QmlEnumToken, QmlValue } from '../../runtime/index.js';
 export interface VoiceSelectorAttachedBuilder {
   age(value: QmlEnumToken): VoiceSelectorAttachedBuilder;
   ageBind(expr: string): VoiceSelectorAttachedBuilder;
@@ -16,10 +16,10 @@ export interface VoiceSelectorAttachedBuilder {
   nameBind(expr: string): VoiceSelectorAttachedBuilder;
   objectName(value: string): VoiceSelectorAttachedBuilder;
   objectNameBind(expr: string): VoiceSelectorAttachedBuilder;
-  onAgeChanged(body: string): VoiceSelectorAttachedBuilder;
-  onGenderChanged(body: string): VoiceSelectorAttachedBuilder;
-  onLanguageChanged(body: string): VoiceSelectorAttachedBuilder;
-  onLocaleChanged(body: string): VoiceSelectorAttachedBuilder;
-  onNameChanged(body: string): VoiceSelectorAttachedBuilder;
-  onObjectNameChanged(body: string): VoiceSelectorAttachedBuilder;
+  onAgeChanged(handler: DslSignalHandlerValue): VoiceSelectorAttachedBuilder;
+  onGenderChanged(handler: DslSignalHandlerValue): VoiceSelectorAttachedBuilder;
+  onLanguageChanged(handler: DslSignalHandlerValue): VoiceSelectorAttachedBuilder;
+  onLocaleChanged(handler: DslSignalHandlerValue): VoiceSelectorAttachedBuilder;
+  onNameChanged(handler: DslSignalHandlerValue): VoiceSelectorAttachedBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): VoiceSelectorAttachedBuilder;
 }

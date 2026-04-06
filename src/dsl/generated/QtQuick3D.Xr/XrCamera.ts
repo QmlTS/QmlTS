@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlObjectBuilder,
   QmlQuaternion,
   QmlValue,
@@ -13,6 +14,7 @@ import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface XrCameraBuilder {
   id(id: string): XrCameraBuilder;
   child(obj: QmlObjectBuilder): XrCameraBuilder;
+  children(...objs: QmlObjectBuilder[]): XrCameraBuilder;
 
   clipFar(value: number): XrCameraBuilder;
   clipFarBind(expr: string): XrCameraBuilder;
@@ -48,31 +50,31 @@ export interface XrCameraBuilder {
   yBind(expr: string): XrCameraBuilder;
   z(value: number): XrCameraBuilder;
   zBind(expr: string): XrCameraBuilder;
-  onChildrenChanged(body: string): XrCameraBuilder;
-  onClipFarChanged(body: string): XrCameraBuilder;
-  onClipNearChanged(body: string): XrCameraBuilder;
-  onEulerRotationChanged(body: string): XrCameraBuilder;
-  onForwardChanged(body: string): XrCameraBuilder;
-  onLayersChanged(body: string): XrCameraBuilder;
-  onLocalOpacityChanged(body: string): XrCameraBuilder;
-  onObjectNameChanged(body: string): XrCameraBuilder;
-  onParentChanged(body: string): XrCameraBuilder;
-  onPivotChanged(body: string): XrCameraBuilder;
-  onPositionChanged(body: string): XrCameraBuilder;
-  onRightChanged(body: string): XrCameraBuilder;
-  onRotationChanged(body: string): XrCameraBuilder;
-  onScaleChanged(body: string): XrCameraBuilder;
-  onScenePositionChanged(body: string): XrCameraBuilder;
-  onSceneRotationChanged(body: string): XrCameraBuilder;
-  onSceneScaleChanged(body: string): XrCameraBuilder;
-  onSceneTransformChanged(body: string): XrCameraBuilder;
-  onStateChanged(body: string): XrCameraBuilder;
-  onStaticFlagsChanged(body: string): XrCameraBuilder;
-  onUpChanged(body: string): XrCameraBuilder;
-  onVisibleChanged(body: string): XrCameraBuilder;
-  onXChanged(body: string): XrCameraBuilder;
-  onYChanged(body: string): XrCameraBuilder;
-  onZChanged(body: string): XrCameraBuilder;
+  onChildrenChanged(handler: DslSignalHandlerValue): XrCameraBuilder;
+  onClipFarChanged(handler: DslSignalHandlerValue): XrCameraBuilder;
+  onClipNearChanged(handler: DslSignalHandlerValue): XrCameraBuilder;
+  onEulerRotationChanged(handler: DslSignalHandlerValue): XrCameraBuilder;
+  onForwardChanged(handler: DslSignalHandlerValue): XrCameraBuilder;
+  onLayersChanged(handler: DslSignalHandlerValue): XrCameraBuilder;
+  onLocalOpacityChanged(handler: DslSignalHandlerValue): XrCameraBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): XrCameraBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): XrCameraBuilder;
+  onPivotChanged(handler: DslSignalHandlerValue): XrCameraBuilder;
+  onPositionChanged(handler: DslSignalHandlerValue): XrCameraBuilder;
+  onRightChanged(handler: DslSignalHandlerValue): XrCameraBuilder;
+  onRotationChanged(handler: DslSignalHandlerValue): XrCameraBuilder;
+  onScaleChanged(handler: DslSignalHandlerValue): XrCameraBuilder;
+  onScenePositionChanged(handler: DslSignalHandlerValue): XrCameraBuilder;
+  onSceneRotationChanged(handler: DslSignalHandlerValue): XrCameraBuilder;
+  onSceneScaleChanged(handler: DslSignalHandlerValue): XrCameraBuilder;
+  onSceneTransformChanged(handler: DslSignalHandlerValue): XrCameraBuilder;
+  onStateChanged(handler: DslSignalHandlerValue): XrCameraBuilder;
+  onStaticFlagsChanged(handler: DslSignalHandlerValue): XrCameraBuilder;
+  onUpChanged(handler: DslSignalHandlerValue): XrCameraBuilder;
+  onVisibleChanged(handler: DslSignalHandlerValue): XrCameraBuilder;
+  onXChanged(handler: DslSignalHandlerValue): XrCameraBuilder;
+  onYChanged(handler: DslSignalHandlerValue): XrCameraBuilder;
+  onZChanged(handler: DslSignalHandlerValue): XrCameraBuilder;
 }
 
 const XRCAMERA_META: TypeMetadata = {

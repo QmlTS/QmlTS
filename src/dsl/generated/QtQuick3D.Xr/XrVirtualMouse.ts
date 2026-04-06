@@ -2,13 +2,14 @@
 // Type: XrVirtualMouse
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import type { DslSignalHandlerValue, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 import type { NodeBuilder } from '../QtQuick3D/Node.js';
 import type { XrViewBuilder } from './XrView.js';
 export interface XrVirtualMouseBuilder {
   id(id: string): XrVirtualMouseBuilder;
   child(obj: QmlObjectBuilder): XrVirtualMouseBuilder;
+  children(...objs: QmlObjectBuilder[]): XrVirtualMouseBuilder;
 
   enabled(value: boolean): XrVirtualMouseBuilder;
   enabledBind(expr: string): XrVirtualMouseBuilder;
@@ -32,17 +33,17 @@ export interface XrVirtualMouseBuilder {
   sourceBind(expr: string): XrVirtualMouseBuilder;
   view(value: XrViewBuilder): XrVirtualMouseBuilder;
   viewBind(expr: string): XrVirtualMouseBuilder;
-  onEnabledChanged(body: string): XrVirtualMouseBuilder;
-  onLeftMouseButtonChanged(body: string): XrVirtualMouseBuilder;
-  onMiddleMouseButtonChanged(body: string): XrVirtualMouseBuilder;
-  onObjectNameChanged(body: string): XrVirtualMouseBuilder;
-  onRightMouseButtonChanged(body: string): XrVirtualMouseBuilder;
-  onScrollPixelDeltaChanged(body: string): XrVirtualMouseBuilder;
-  onScrollTimerIntervalChanged(body: string): XrVirtualMouseBuilder;
-  onScrollWheelXChanged(body: string): XrVirtualMouseBuilder;
-  onScrollWheelYChanged(body: string): XrVirtualMouseBuilder;
-  onSourceChanged(body: string): XrVirtualMouseBuilder;
-  onViewChanged(body: string): XrVirtualMouseBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): XrVirtualMouseBuilder;
+  onLeftMouseButtonChanged(handler: DslSignalHandlerValue): XrVirtualMouseBuilder;
+  onMiddleMouseButtonChanged(handler: DslSignalHandlerValue): XrVirtualMouseBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): XrVirtualMouseBuilder;
+  onRightMouseButtonChanged(handler: DslSignalHandlerValue): XrVirtualMouseBuilder;
+  onScrollPixelDeltaChanged(handler: DslSignalHandlerValue): XrVirtualMouseBuilder;
+  onScrollTimerIntervalChanged(handler: DslSignalHandlerValue): XrVirtualMouseBuilder;
+  onScrollWheelXChanged(handler: DslSignalHandlerValue): XrVirtualMouseBuilder;
+  onScrollWheelYChanged(handler: DslSignalHandlerValue): XrVirtualMouseBuilder;
+  onSourceChanged(handler: DslSignalHandlerValue): XrVirtualMouseBuilder;
+  onViewChanged(handler: DslSignalHandlerValue): XrVirtualMouseBuilder;
 }
 
 const XRVIRTUALMOUSE_META: TypeMetadata = {

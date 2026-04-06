@@ -2,11 +2,17 @@
 // Type: WebEngineProfile
 // Generated from Qt 6.11.0
 
-import type { QmlEnumToken, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlEnumToken,
+  QmlObjectBuilder,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface WebEngineProfileBuilder {
   id(id: string): WebEngineProfileBuilder;
   child(obj: QmlObjectBuilder): WebEngineProfileBuilder;
+  children(...objs: QmlObjectBuilder[]): WebEngineProfileBuilder;
 
   cachePath(value: string): WebEngineProfileBuilder;
   cachePathBind(expr: string): WebEngineProfileBuilder;
@@ -38,25 +44,25 @@ export interface WebEngineProfileBuilder {
   spellCheckLanguagesBind(expr: string): WebEngineProfileBuilder;
   storageName(value: string): WebEngineProfileBuilder;
   storageNameBind(expr: string): WebEngineProfileBuilder;
-  onCachePathChanged(body: string): WebEngineProfileBuilder;
-  onClearHttpCacheCompleted(body: string): WebEngineProfileBuilder;
-  onDownloadFinished(body: string): WebEngineProfileBuilder;
-  onDownloadPathChanged(body: string): WebEngineProfileBuilder;
-  onDownloadRequested(body: string): WebEngineProfileBuilder;
-  onHttpAcceptLanguageChanged(body: string): WebEngineProfileBuilder;
-  onHttpCacheMaximumSizeChanged(body: string): WebEngineProfileBuilder;
-  onHttpCacheTypeChanged(body: string): WebEngineProfileBuilder;
-  onHttpUserAgentChanged(body: string): WebEngineProfileBuilder;
-  onObjectNameChanged(body: string): WebEngineProfileBuilder;
-  onOffTheRecordChanged(body: string): WebEngineProfileBuilder;
-  onPersistentCookiesPolicyChanged(body: string): WebEngineProfileBuilder;
-  onPersistentPermissionsPolicyChanged(body: string): WebEngineProfileBuilder;
-  onPersistentStoragePathChanged(body: string): WebEngineProfileBuilder;
-  onPresentNotification(body: string): WebEngineProfileBuilder;
-  onPushServiceEnabledChanged(body: string): WebEngineProfileBuilder;
-  onSpellCheckEnabledChanged(body: string): WebEngineProfileBuilder;
-  onSpellCheckLanguagesChanged(body: string): WebEngineProfileBuilder;
-  onStorageNameChanged(body: string): WebEngineProfileBuilder;
+  onCachePathChanged(handler: DslSignalHandlerValue): WebEngineProfileBuilder;
+  onClearHttpCacheCompleted(handler: DslSignalHandlerValue): WebEngineProfileBuilder;
+  onDownloadFinished(handler: DslSignalHandlerValue): WebEngineProfileBuilder;
+  onDownloadPathChanged(handler: DslSignalHandlerValue): WebEngineProfileBuilder;
+  onDownloadRequested(handler: DslSignalHandlerValue): WebEngineProfileBuilder;
+  onHttpAcceptLanguageChanged(handler: DslSignalHandlerValue): WebEngineProfileBuilder;
+  onHttpCacheMaximumSizeChanged(handler: DslSignalHandlerValue): WebEngineProfileBuilder;
+  onHttpCacheTypeChanged(handler: DslSignalHandlerValue): WebEngineProfileBuilder;
+  onHttpUserAgentChanged(handler: DslSignalHandlerValue): WebEngineProfileBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): WebEngineProfileBuilder;
+  onOffTheRecordChanged(handler: DslSignalHandlerValue): WebEngineProfileBuilder;
+  onPersistentCookiesPolicyChanged(handler: DslSignalHandlerValue): WebEngineProfileBuilder;
+  onPersistentPermissionsPolicyChanged(handler: DslSignalHandlerValue): WebEngineProfileBuilder;
+  onPersistentStoragePathChanged(handler: DslSignalHandlerValue): WebEngineProfileBuilder;
+  onPresentNotification(handler: DslSignalHandlerValue): WebEngineProfileBuilder;
+  onPushServiceEnabledChanged(handler: DslSignalHandlerValue): WebEngineProfileBuilder;
+  onSpellCheckEnabledChanged(handler: DslSignalHandlerValue): WebEngineProfileBuilder;
+  onSpellCheckLanguagesChanged(handler: DslSignalHandlerValue): WebEngineProfileBuilder;
+  onStorageNameChanged(handler: DslSignalHandlerValue): WebEngineProfileBuilder;
 }
 
 const WEBENGINEPROFILE_META: TypeMetadata = {

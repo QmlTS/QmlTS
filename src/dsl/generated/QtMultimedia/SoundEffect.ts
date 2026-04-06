@@ -2,11 +2,18 @@
 // Type: SoundEffect
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlUrl, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlObjectBuilder,
+  QmlUrl,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface SoundEffectBuilder {
   id(id: string): SoundEffectBuilder;
   child(obj: QmlObjectBuilder): SoundEffectBuilder;
+  children(...objs: QmlObjectBuilder[]): SoundEffectBuilder;
 
   audioDevice(value: QmlValue): SoundEffectBuilder;
   audioDeviceBind(expr: string): SoundEffectBuilder;
@@ -20,16 +27,16 @@ export interface SoundEffectBuilder {
   sourceBind(expr: string): SoundEffectBuilder;
   volume(value: number): SoundEffectBuilder;
   volumeBind(expr: string): SoundEffectBuilder;
-  onAudioDeviceChanged(body: string): SoundEffectBuilder;
-  onLoadedChanged(body: string): SoundEffectBuilder;
-  onLoopCountChanged(body: string): SoundEffectBuilder;
-  onLoopsRemainingChanged(body: string): SoundEffectBuilder;
-  onMutedChanged(body: string): SoundEffectBuilder;
-  onObjectNameChanged(body: string): SoundEffectBuilder;
-  onPlayingChanged(body: string): SoundEffectBuilder;
-  onSourceChanged(body: string): SoundEffectBuilder;
-  onStatusChanged(body: string): SoundEffectBuilder;
-  onVolumeChanged(body: string): SoundEffectBuilder;
+  onAudioDeviceChanged(handler: DslSignalHandlerValue): SoundEffectBuilder;
+  onLoadedChanged(handler: DslSignalHandlerValue): SoundEffectBuilder;
+  onLoopCountChanged(handler: DslSignalHandlerValue): SoundEffectBuilder;
+  onLoopsRemainingChanged(handler: DslSignalHandlerValue): SoundEffectBuilder;
+  onMutedChanged(handler: DslSignalHandlerValue): SoundEffectBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): SoundEffectBuilder;
+  onPlayingChanged(handler: DslSignalHandlerValue): SoundEffectBuilder;
+  onSourceChanged(handler: DslSignalHandlerValue): SoundEffectBuilder;
+  onStatusChanged(handler: DslSignalHandlerValue): SoundEffectBuilder;
+  onVolumeChanged(handler: DslSignalHandlerValue): SoundEffectBuilder;
 }
 
 const SOUNDEFFECT_META: TypeMetadata = {

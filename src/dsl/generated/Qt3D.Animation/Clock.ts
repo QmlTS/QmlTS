@@ -2,11 +2,17 @@
 // Type: Clock
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 export interface ClockBuilder {
   id(id: string): ClockBuilder;
   child(obj: QmlObjectBuilder): ClockBuilder;
+  children(...objs: QmlObjectBuilder[]): ClockBuilder;
 
   enabled(value: boolean): ClockBuilder;
   enabledBind(expr: string): ClockBuilder;
@@ -16,11 +22,11 @@ export interface ClockBuilder {
   parentBind(expr: string): ClockBuilder;
   playbackRate(value: number): ClockBuilder;
   playbackRateBind(expr: string): ClockBuilder;
-  onEnabledChanged(body: string): ClockBuilder;
-  onNodeDestroyed(body: string): ClockBuilder;
-  onObjectNameChanged(body: string): ClockBuilder;
-  onParentChanged(body: string): ClockBuilder;
-  onPlaybackRateChanged(body: string): ClockBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): ClockBuilder;
+  onNodeDestroyed(handler: DslSignalHandlerValue): ClockBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): ClockBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): ClockBuilder;
+  onPlaybackRateChanged(handler: DslSignalHandlerValue): ClockBuilder;
 }
 
 const CLOCK_META: TypeMetadata = {

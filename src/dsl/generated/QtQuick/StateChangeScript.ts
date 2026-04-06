@@ -2,7 +2,12 @@
 // Type: StateChangeScript
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 import type { AccessibleAttachedBuilder } from './Accessible.js';
 import type { EnterKeyAttachedBuilder } from './EnterKey.js';
@@ -23,6 +28,7 @@ import type { ViewTransitionAttachedBuilder } from './ViewTransition.js';
 export interface StateChangeScriptBuilder {
   id(id: string): StateChangeScriptBuilder;
   child(obj: QmlObjectBuilder): StateChangeScriptBuilder;
+  children(...objs: QmlObjectBuilder[]): StateChangeScriptBuilder;
 
   name(value: string): StateChangeScriptBuilder;
   nameBind(expr: string): StateChangeScriptBuilder;
@@ -30,7 +36,7 @@ export interface StateChangeScriptBuilder {
   objectNameBind(expr: string): StateChangeScriptBuilder;
   script(value: QmlValue): StateChangeScriptBuilder;
   scriptBind(expr: string): StateChangeScriptBuilder;
-  onObjectNameChanged(body: string): StateChangeScriptBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): StateChangeScriptBuilder;
   accessible(setup: (b: AccessibleAttachedBuilder) => void): StateChangeScriptBuilder;
   drag(setup: (b: DragAttachedBuilder) => void): StateChangeScriptBuilder;
   enterKey(setup: (b: EnterKeyAttachedBuilder) => void): StateChangeScriptBuilder;

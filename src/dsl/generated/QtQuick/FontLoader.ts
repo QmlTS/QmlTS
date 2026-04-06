@@ -2,7 +2,12 @@
 // Type: FontLoader
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlUrl, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlObjectBuilder,
+  QmlUrl,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { AccessibleAttachedBuilder } from './Accessible.js';
 import type { EnterKeyAttachedBuilder } from './EnterKey.js';
@@ -23,16 +28,17 @@ import type { ViewTransitionAttachedBuilder } from './ViewTransition.js';
 export interface FontLoaderBuilder {
   id(id: string): FontLoaderBuilder;
   child(obj: QmlObjectBuilder): FontLoaderBuilder;
+  children(...objs: QmlObjectBuilder[]): FontLoaderBuilder;
 
   objectName(value: string): FontLoaderBuilder;
   objectNameBind(expr: string): FontLoaderBuilder;
   source(value: QmlUrl): FontLoaderBuilder;
   sourceBind(expr: string): FontLoaderBuilder;
-  onFontChanged(body: string): FontLoaderBuilder;
-  onNameChanged(body: string): FontLoaderBuilder;
-  onObjectNameChanged(body: string): FontLoaderBuilder;
-  onSourceChanged(body: string): FontLoaderBuilder;
-  onStatusChanged(body: string): FontLoaderBuilder;
+  onFontChanged(handler: DslSignalHandlerValue): FontLoaderBuilder;
+  onNameChanged(handler: DslSignalHandlerValue): FontLoaderBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): FontLoaderBuilder;
+  onSourceChanged(handler: DslSignalHandlerValue): FontLoaderBuilder;
+  onStatusChanged(handler: DslSignalHandlerValue): FontLoaderBuilder;
   accessible(setup: (b: AccessibleAttachedBuilder) => void): FontLoaderBuilder;
   drag(setup: (b: DragAttachedBuilder) => void): FontLoaderBuilder;
   enterKey(setup: (b: EnterKeyAttachedBuilder) => void): FontLoaderBuilder;

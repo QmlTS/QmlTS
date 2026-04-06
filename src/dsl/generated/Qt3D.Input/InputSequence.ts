@@ -2,11 +2,17 @@
 // Type: InputSequence
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 export interface InputSequenceBuilder {
   id(id: string): InputSequenceBuilder;
   child(obj: QmlObjectBuilder): InputSequenceBuilder;
+  children(...objs: QmlObjectBuilder[]): InputSequenceBuilder;
 
   buttonInterval(value: number): InputSequenceBuilder;
   buttonIntervalBind(expr: string): InputSequenceBuilder;
@@ -18,12 +24,12 @@ export interface InputSequenceBuilder {
   parentBind(expr: string): InputSequenceBuilder;
   timeout(value: number): InputSequenceBuilder;
   timeoutBind(expr: string): InputSequenceBuilder;
-  onButtonIntervalChanged(body: string): InputSequenceBuilder;
-  onEnabledChanged(body: string): InputSequenceBuilder;
-  onNodeDestroyed(body: string): InputSequenceBuilder;
-  onObjectNameChanged(body: string): InputSequenceBuilder;
-  onParentChanged(body: string): InputSequenceBuilder;
-  onTimeoutChanged(body: string): InputSequenceBuilder;
+  onButtonIntervalChanged(handler: DslSignalHandlerValue): InputSequenceBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): InputSequenceBuilder;
+  onNodeDestroyed(handler: DslSignalHandlerValue): InputSequenceBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): InputSequenceBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): InputSequenceBuilder;
+  onTimeoutChanged(handler: DslSignalHandlerValue): InputSequenceBuilder;
 }
 
 const INPUTSEQUENCE_META: TypeMetadata = {

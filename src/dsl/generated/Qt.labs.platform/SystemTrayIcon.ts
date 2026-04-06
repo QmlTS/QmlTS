@@ -2,12 +2,18 @@
 // Type: SystemTrayIcon
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 import type { MenuBuilder } from './Menu.js';
 export interface SystemTrayIconBuilder {
   id(id: string): SystemTrayIconBuilder;
   child(obj: QmlObjectBuilder): SystemTrayIconBuilder;
+  children(...objs: QmlObjectBuilder[]): SystemTrayIconBuilder;
 
   icon(value: QmlValue): SystemTrayIconBuilder;
   iconBind(expr: string): SystemTrayIconBuilder;
@@ -19,14 +25,14 @@ export interface SystemTrayIconBuilder {
   tooltipBind(expr: string): SystemTrayIconBuilder;
   visible(value: boolean): SystemTrayIconBuilder;
   visibleBind(expr: string): SystemTrayIconBuilder;
-  onActivated(body: string): SystemTrayIconBuilder;
-  onGeometryChanged(body: string): SystemTrayIconBuilder;
-  onIconChanged(body: string): SystemTrayIconBuilder;
-  onMenuChanged(body: string): SystemTrayIconBuilder;
-  onMessageClicked(body: string): SystemTrayIconBuilder;
-  onObjectNameChanged(body: string): SystemTrayIconBuilder;
-  onTooltipChanged(body: string): SystemTrayIconBuilder;
-  onVisibleChanged(body: string): SystemTrayIconBuilder;
+  onActivated(handler: DslSignalHandlerValue): SystemTrayIconBuilder;
+  onGeometryChanged(handler: DslSignalHandlerValue): SystemTrayIconBuilder;
+  onIconChanged(handler: DslSignalHandlerValue): SystemTrayIconBuilder;
+  onMenuChanged(handler: DslSignalHandlerValue): SystemTrayIconBuilder;
+  onMessageClicked(handler: DslSignalHandlerValue): SystemTrayIconBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): SystemTrayIconBuilder;
+  onTooltipChanged(handler: DslSignalHandlerValue): SystemTrayIconBuilder;
+  onVisibleChanged(handler: DslSignalHandlerValue): SystemTrayIconBuilder;
 }
 
 const SYSTEMTRAYICON_META: TypeMetadata = {

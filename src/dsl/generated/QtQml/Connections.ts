@@ -2,12 +2,13 @@
 // Type: Connections
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import type { DslSignalHandlerValue, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 import type { QtObjectBuilder } from '../QML/QtObject.js';
 export interface ConnectionsBuilder {
   id(id: string): ConnectionsBuilder;
   child(obj: QmlObjectBuilder): ConnectionsBuilder;
+  children(...objs: QmlObjectBuilder[]): ConnectionsBuilder;
 
   enabled(value: boolean): ConnectionsBuilder;
   enabledBind(expr: string): ConnectionsBuilder;
@@ -17,9 +18,9 @@ export interface ConnectionsBuilder {
   objectNameBind(expr: string): ConnectionsBuilder;
   target(value: QtObjectBuilder): ConnectionsBuilder;
   targetBind(expr: string): ConnectionsBuilder;
-  onEnabledChanged(body: string): ConnectionsBuilder;
-  onObjectNameChanged(body: string): ConnectionsBuilder;
-  onTargetChanged(body: string): ConnectionsBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): ConnectionsBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): ConnectionsBuilder;
+  onTargetChanged(handler: DslSignalHandlerValue): ConnectionsBuilder;
 }
 
 const CONNECTIONS_META: TypeMetadata = {

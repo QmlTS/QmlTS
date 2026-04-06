@@ -2,11 +2,17 @@
 // Type: ActionInput
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 export interface ActionInputBuilder {
   id(id: string): ActionInputBuilder;
   child(obj: QmlObjectBuilder): ActionInputBuilder;
+  children(...objs: QmlObjectBuilder[]): ActionInputBuilder;
 
   buttons(value: number): ActionInputBuilder;
   buttonsBind(expr: string): ActionInputBuilder;
@@ -18,12 +24,12 @@ export interface ActionInputBuilder {
   parentBind(expr: string): ActionInputBuilder;
   sourceDevice(value: QmlValue): ActionInputBuilder;
   sourceDeviceBind(expr: string): ActionInputBuilder;
-  onButtonsChanged(body: string): ActionInputBuilder;
-  onEnabledChanged(body: string): ActionInputBuilder;
-  onNodeDestroyed(body: string): ActionInputBuilder;
-  onObjectNameChanged(body: string): ActionInputBuilder;
-  onParentChanged(body: string): ActionInputBuilder;
-  onSourceDeviceChanged(body: string): ActionInputBuilder;
+  onButtonsChanged(handler: DslSignalHandlerValue): ActionInputBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): ActionInputBuilder;
+  onNodeDestroyed(handler: DslSignalHandlerValue): ActionInputBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): ActionInputBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): ActionInputBuilder;
+  onSourceDeviceChanged(handler: DslSignalHandlerValue): ActionInputBuilder;
 }
 
 const ACTIONINPUT_META: TypeMetadata = {

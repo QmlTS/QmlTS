@@ -2,12 +2,18 @@
 // Type: SsrEnvEffect
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 import type { SceneEnvironmentBuilder } from '../QtQuick3D/SceneEnvironment.js';
 export interface SsrEnvEffectBuilder {
   id(id: string): SsrEnvEffectBuilder;
   child(obj: QmlObjectBuilder): SsrEnvEffectBuilder;
+  children(...objs: QmlObjectBuilder[]): SsrEnvEffectBuilder;
 
   enabled(value: boolean): SsrEnvEffectBuilder;
   enabledBind(expr: string): SsrEnvEffectBuilder;
@@ -19,12 +25,12 @@ export interface SsrEnvEffectBuilder {
   parentBind(expr: string): SsrEnvEffectBuilder;
   state(value: string): SsrEnvEffectBuilder;
   stateBind(expr: string): SsrEnvEffectBuilder;
-  onChildrenChanged(body: string): SsrEnvEffectBuilder;
-  onEnabledChanged(body: string): SsrEnvEffectBuilder;
-  onEnvironmentChanged(body: string): SsrEnvEffectBuilder;
-  onObjectNameChanged(body: string): SsrEnvEffectBuilder;
-  onParentChanged(body: string): SsrEnvEffectBuilder;
-  onStateChanged(body: string): SsrEnvEffectBuilder;
+  onChildrenChanged(handler: DslSignalHandlerValue): SsrEnvEffectBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): SsrEnvEffectBuilder;
+  onEnvironmentChanged(handler: DslSignalHandlerValue): SsrEnvEffectBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): SsrEnvEffectBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): SsrEnvEffectBuilder;
+  onStateChanged(handler: DslSignalHandlerValue): SsrEnvEffectBuilder;
 }
 
 const SSRENVEFFECT_META: TypeMetadata = {

@@ -2,12 +2,18 @@
 // Type: TorusGeometry
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 import type { AttributeBuilder } from '../Qt3D.Core/Attribute.js';
 export interface TorusGeometryBuilder {
   id(id: string): TorusGeometryBuilder;
   child(obj: QmlObjectBuilder): TorusGeometryBuilder;
+  children(...objs: QmlObjectBuilder[]): TorusGeometryBuilder;
 
   boundingVolumePositionAttribute(value: AttributeBuilder): TorusGeometryBuilder;
   boundingVolumePositionAttributeBind(expr: string): TorusGeometryBuilder;
@@ -25,17 +31,17 @@ export interface TorusGeometryBuilder {
   ringsBind(expr: string): TorusGeometryBuilder;
   slices(value: number): TorusGeometryBuilder;
   slicesBind(expr: string): TorusGeometryBuilder;
-  onBoundingVolumePositionAttributeChanged(body: string): TorusGeometryBuilder;
-  onEnabledChanged(body: string): TorusGeometryBuilder;
-  onMaxExtentChanged(body: string): TorusGeometryBuilder;
-  onMinExtentChanged(body: string): TorusGeometryBuilder;
-  onMinorRadiusChanged(body: string): TorusGeometryBuilder;
-  onNodeDestroyed(body: string): TorusGeometryBuilder;
-  onObjectNameChanged(body: string): TorusGeometryBuilder;
-  onParentChanged(body: string): TorusGeometryBuilder;
-  onRadiusChanged(body: string): TorusGeometryBuilder;
-  onRingsChanged(body: string): TorusGeometryBuilder;
-  onSlicesChanged(body: string): TorusGeometryBuilder;
+  onBoundingVolumePositionAttributeChanged(handler: DslSignalHandlerValue): TorusGeometryBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): TorusGeometryBuilder;
+  onMaxExtentChanged(handler: DslSignalHandlerValue): TorusGeometryBuilder;
+  onMinExtentChanged(handler: DslSignalHandlerValue): TorusGeometryBuilder;
+  onMinorRadiusChanged(handler: DslSignalHandlerValue): TorusGeometryBuilder;
+  onNodeDestroyed(handler: DslSignalHandlerValue): TorusGeometryBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): TorusGeometryBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): TorusGeometryBuilder;
+  onRadiusChanged(handler: DslSignalHandlerValue): TorusGeometryBuilder;
+  onRingsChanged(handler: DslSignalHandlerValue): TorusGeometryBuilder;
+  onSlicesChanged(handler: DslSignalHandlerValue): TorusGeometryBuilder;
 }
 
 const TORUSGEOMETRY_META: TypeMetadata = {

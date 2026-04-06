@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlColor,
   QmlEnumToken,
   QmlObjectBuilder,
@@ -17,6 +18,7 @@ import type { SpriteSequence3DBuilder } from './SpriteSequence3D.js';
 export interface LineParticle3DBuilder {
   id(id: string): LineParticle3DBuilder;
   child(obj: QmlObjectBuilder): LineParticle3DBuilder;
+  children(...objs: QmlObjectBuilder[]): LineParticle3DBuilder;
 
   alignMode(value: QmlEnumToken): LineParticle3DBuilder;
   alignModeBind(expr: string): LineParticle3DBuilder;
@@ -84,42 +86,42 @@ export interface LineParticle3DBuilder {
   texcoordMultiplierBind(expr: string): LineParticle3DBuilder;
   unifiedColorVariation(value: boolean): LineParticle3DBuilder;
   unifiedColorVariationBind(expr: string): LineParticle3DBuilder;
-  onAlignModeChanged(body: string): LineParticle3DBuilder;
-  onAlignTargetPositionChanged(body: string): LineParticle3DBuilder;
-  onAlphaFadeChanged(body: string): LineParticle3DBuilder;
-  onBillboardChanged(body: string): LineParticle3DBuilder;
-  onBlendModeChanged(body: string): LineParticle3DBuilder;
-  onCastsReflectionsChanged(body: string): LineParticle3DBuilder;
-  onChildrenChanged(body: string): LineParticle3DBuilder;
-  onColorChanged(body: string): LineParticle3DBuilder;
-  onColorTableChanged(body: string): LineParticle3DBuilder;
-  onColorVariationChanged(body: string): LineParticle3DBuilder;
-  onEolFadeOutDurationChanged(body: string): LineParticle3DBuilder;
-  onFadeInDurationChanged(body: string): LineParticle3DBuilder;
-  onFadeInEffectChanged(body: string): LineParticle3DBuilder;
-  onFadeOutDurationChanged(body: string): LineParticle3DBuilder;
-  onFadeOutEffectChanged(body: string): LineParticle3DBuilder;
-  onHasTransparencyChanged(body: string): LineParticle3DBuilder;
-  onLengthChanged(body: string): LineParticle3DBuilder;
-  onLengthDeltaMinChanged(body: string): LineParticle3DBuilder;
-  onLengthVariationChanged(body: string): LineParticle3DBuilder;
-  onLightsChanged(body: string): LineParticle3DBuilder;
-  onMaxAmountChanged(body: string): LineParticle3DBuilder;
-  onObjectNameChanged(body: string): LineParticle3DBuilder;
-  onOffsetXChanged(body: string): LineParticle3DBuilder;
-  onOffsetYChanged(body: string): LineParticle3DBuilder;
-  onParentChanged(body: string): LineParticle3DBuilder;
-  onParticleScaleChanged(body: string): LineParticle3DBuilder;
-  onScaleMultiplierChanged(body: string): LineParticle3DBuilder;
-  onSegmentCountChanged(body: string): LineParticle3DBuilder;
-  onSortModeChanged(body: string): LineParticle3DBuilder;
-  onSpriteChanged(body: string): LineParticle3DBuilder;
-  onSpriteSequenceChanged(body: string): LineParticle3DBuilder;
-  onStateChanged(body: string): LineParticle3DBuilder;
-  onSystemChanged(body: string): LineParticle3DBuilder;
-  onTexcoordModeChanged(body: string): LineParticle3DBuilder;
-  onTexcoordMultiplierChanged(body: string): LineParticle3DBuilder;
-  onUnifiedColorVariationChanged(body: string): LineParticle3DBuilder;
+  onAlignModeChanged(handler: DslSignalHandlerValue): LineParticle3DBuilder;
+  onAlignTargetPositionChanged(handler: DslSignalHandlerValue): LineParticle3DBuilder;
+  onAlphaFadeChanged(handler: DslSignalHandlerValue): LineParticle3DBuilder;
+  onBillboardChanged(handler: DslSignalHandlerValue): LineParticle3DBuilder;
+  onBlendModeChanged(handler: DslSignalHandlerValue): LineParticle3DBuilder;
+  onCastsReflectionsChanged(handler: DslSignalHandlerValue): LineParticle3DBuilder;
+  onChildrenChanged(handler: DslSignalHandlerValue): LineParticle3DBuilder;
+  onColorChanged(handler: DslSignalHandlerValue): LineParticle3DBuilder;
+  onColorTableChanged(handler: DslSignalHandlerValue): LineParticle3DBuilder;
+  onColorVariationChanged(handler: DslSignalHandlerValue): LineParticle3DBuilder;
+  onEolFadeOutDurationChanged(handler: DslSignalHandlerValue): LineParticle3DBuilder;
+  onFadeInDurationChanged(handler: DslSignalHandlerValue): LineParticle3DBuilder;
+  onFadeInEffectChanged(handler: DslSignalHandlerValue): LineParticle3DBuilder;
+  onFadeOutDurationChanged(handler: DslSignalHandlerValue): LineParticle3DBuilder;
+  onFadeOutEffectChanged(handler: DslSignalHandlerValue): LineParticle3DBuilder;
+  onHasTransparencyChanged(handler: DslSignalHandlerValue): LineParticle3DBuilder;
+  onLengthChanged(handler: DslSignalHandlerValue): LineParticle3DBuilder;
+  onLengthDeltaMinChanged(handler: DslSignalHandlerValue): LineParticle3DBuilder;
+  onLengthVariationChanged(handler: DslSignalHandlerValue): LineParticle3DBuilder;
+  onLightsChanged(handler: DslSignalHandlerValue): LineParticle3DBuilder;
+  onMaxAmountChanged(handler: DslSignalHandlerValue): LineParticle3DBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): LineParticle3DBuilder;
+  onOffsetXChanged(handler: DslSignalHandlerValue): LineParticle3DBuilder;
+  onOffsetYChanged(handler: DslSignalHandlerValue): LineParticle3DBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): LineParticle3DBuilder;
+  onParticleScaleChanged(handler: DslSignalHandlerValue): LineParticle3DBuilder;
+  onScaleMultiplierChanged(handler: DslSignalHandlerValue): LineParticle3DBuilder;
+  onSegmentCountChanged(handler: DslSignalHandlerValue): LineParticle3DBuilder;
+  onSortModeChanged(handler: DslSignalHandlerValue): LineParticle3DBuilder;
+  onSpriteChanged(handler: DslSignalHandlerValue): LineParticle3DBuilder;
+  onSpriteSequenceChanged(handler: DslSignalHandlerValue): LineParticle3DBuilder;
+  onStateChanged(handler: DslSignalHandlerValue): LineParticle3DBuilder;
+  onSystemChanged(handler: DslSignalHandlerValue): LineParticle3DBuilder;
+  onTexcoordModeChanged(handler: DslSignalHandlerValue): LineParticle3DBuilder;
+  onTexcoordMultiplierChanged(handler: DslSignalHandlerValue): LineParticle3DBuilder;
+  onUnifiedColorVariationChanged(handler: DslSignalHandlerValue): LineParticle3DBuilder;
 }
 
 const LINEPARTICLE3D_META: TypeMetadata = {

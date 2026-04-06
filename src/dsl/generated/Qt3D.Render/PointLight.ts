@@ -2,11 +2,18 @@
 // Type: PointLight
 // Generated from Qt 6.11.0
 
-import type { QmlColor, QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlColor,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface PointLightBuilder {
   id(id: string): PointLightBuilder;
   child(obj: QmlObjectBuilder): PointLightBuilder;
+  children(...objs: QmlObjectBuilder[]): PointLightBuilder;
 
   color(value: QmlColor): PointLightBuilder;
   colorBind(expr: string): PointLightBuilder;
@@ -26,18 +33,18 @@ export interface PointLightBuilder {
   parentBind(expr: string): PointLightBuilder;
   quadraticAttenuation(value: number): PointLightBuilder;
   quadraticAttenuationBind(expr: string): PointLightBuilder;
-  onAddedToEntity(body: string): PointLightBuilder;
-  onColorChanged(body: string): PointLightBuilder;
-  onConstantAttenuationChanged(body: string): PointLightBuilder;
-  onEnabledChanged(body: string): PointLightBuilder;
-  onIntensityChanged(body: string): PointLightBuilder;
-  onLinearAttenuationChanged(body: string): PointLightBuilder;
-  onNodeDestroyed(body: string): PointLightBuilder;
-  onObjectNameChanged(body: string): PointLightBuilder;
-  onParentChanged(body: string): PointLightBuilder;
-  onQuadraticAttenuationChanged(body: string): PointLightBuilder;
-  onRemovedFromEntity(body: string): PointLightBuilder;
-  onShareableChanged(body: string): PointLightBuilder;
+  onAddedToEntity(handler: DslSignalHandlerValue): PointLightBuilder;
+  onColorChanged(handler: DslSignalHandlerValue): PointLightBuilder;
+  onConstantAttenuationChanged(handler: DslSignalHandlerValue): PointLightBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): PointLightBuilder;
+  onIntensityChanged(handler: DslSignalHandlerValue): PointLightBuilder;
+  onLinearAttenuationChanged(handler: DslSignalHandlerValue): PointLightBuilder;
+  onNodeDestroyed(handler: DslSignalHandlerValue): PointLightBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): PointLightBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): PointLightBuilder;
+  onQuadraticAttenuationChanged(handler: DslSignalHandlerValue): PointLightBuilder;
+  onRemovedFromEntity(handler: DslSignalHandlerValue): PointLightBuilder;
+  onShareableChanged(handler: DslSignalHandlerValue): PointLightBuilder;
 }
 
 const POINTLIGHT_META: TypeMetadata = {

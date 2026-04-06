@@ -2,12 +2,19 @@
 // Type: OrbitCameraController
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlValue, QmlVector3d, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlObjectBuilder,
+  QmlValue,
+  QmlVector3d,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 import type { CameraBuilder } from '../Qt3D.Render/Camera.js';
 export interface OrbitCameraControllerBuilder {
   id(id: string): OrbitCameraControllerBuilder;
   child(obj: QmlObjectBuilder): OrbitCameraControllerBuilder;
+  children(...objs: QmlObjectBuilder[]): OrbitCameraControllerBuilder;
 
   acceleration(value: number): OrbitCameraControllerBuilder;
   accelerationBind(expr: string): OrbitCameraControllerBuilder;
@@ -39,22 +46,22 @@ export interface OrbitCameraControllerBuilder {
   zoomInLimitBind(expr: string): OrbitCameraControllerBuilder;
   zoomTranslateViewCenter(value: boolean): OrbitCameraControllerBuilder;
   zoomTranslateViewCenterBind(expr: string): OrbitCameraControllerBuilder;
-  onAccelerationChanged(body: string): OrbitCameraControllerBuilder;
-  onCameraChanged(body: string): OrbitCameraControllerBuilder;
-  onDecelerationChanged(body: string): OrbitCameraControllerBuilder;
-  onEnabledChanged(body: string): OrbitCameraControllerBuilder;
-  onInversePanChanged(body: string): OrbitCameraControllerBuilder;
-  onInverseTiltChanged(body: string): OrbitCameraControllerBuilder;
-  onInverseXTranslateChanged(body: string): OrbitCameraControllerBuilder;
-  onInverseYTranslateChanged(body: string): OrbitCameraControllerBuilder;
-  onLinearSpeedChanged(body: string): OrbitCameraControllerBuilder;
-  onLookSpeedChanged(body: string): OrbitCameraControllerBuilder;
-  onNodeDestroyed(body: string): OrbitCameraControllerBuilder;
-  onObjectNameChanged(body: string): OrbitCameraControllerBuilder;
-  onParentChanged(body: string): OrbitCameraControllerBuilder;
-  onUpVectorChanged(body: string): OrbitCameraControllerBuilder;
-  onZoomInLimitChanged(body: string): OrbitCameraControllerBuilder;
-  onZoomTranslateViewCenterChanged(body: string): OrbitCameraControllerBuilder;
+  onAccelerationChanged(handler: DslSignalHandlerValue): OrbitCameraControllerBuilder;
+  onCameraChanged(handler: DslSignalHandlerValue): OrbitCameraControllerBuilder;
+  onDecelerationChanged(handler: DslSignalHandlerValue): OrbitCameraControllerBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): OrbitCameraControllerBuilder;
+  onInversePanChanged(handler: DslSignalHandlerValue): OrbitCameraControllerBuilder;
+  onInverseTiltChanged(handler: DslSignalHandlerValue): OrbitCameraControllerBuilder;
+  onInverseXTranslateChanged(handler: DslSignalHandlerValue): OrbitCameraControllerBuilder;
+  onInverseYTranslateChanged(handler: DslSignalHandlerValue): OrbitCameraControllerBuilder;
+  onLinearSpeedChanged(handler: DslSignalHandlerValue): OrbitCameraControllerBuilder;
+  onLookSpeedChanged(handler: DslSignalHandlerValue): OrbitCameraControllerBuilder;
+  onNodeDestroyed(handler: DslSignalHandlerValue): OrbitCameraControllerBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): OrbitCameraControllerBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): OrbitCameraControllerBuilder;
+  onUpVectorChanged(handler: DslSignalHandlerValue): OrbitCameraControllerBuilder;
+  onZoomInLimitChanged(handler: DslSignalHandlerValue): OrbitCameraControllerBuilder;
+  onZoomTranslateViewCenterChanged(handler: DslSignalHandlerValue): OrbitCameraControllerBuilder;
 }
 
 const ORBITCAMERACONTROLLER_META: TypeMetadata = {

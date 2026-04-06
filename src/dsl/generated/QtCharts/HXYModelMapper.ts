@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlEnumToken,
   QmlObjectBuilder,
   QmlValue,
@@ -12,6 +13,7 @@ import { createFluentBuilder } from '../../runtime/index.js';
 export interface HXYModelMapperBuilder {
   id(id: string): HXYModelMapperBuilder;
   child(obj: QmlObjectBuilder): HXYModelMapperBuilder;
+  children(...objs: QmlObjectBuilder[]): HXYModelMapperBuilder;
 
   columnCount(value: number): HXYModelMapperBuilder;
   columnCountBind(expr: string): HXYModelMapperBuilder;
@@ -37,20 +39,20 @@ export interface HXYModelMapperBuilder {
   yRowBind(expr: string): HXYModelMapperBuilder;
   ySection(value: number): HXYModelMapperBuilder;
   ySectionBind(expr: string): HXYModelMapperBuilder;
-  onColumnCountChanged(body: string): HXYModelMapperBuilder;
-  onCountChanged(body: string): HXYModelMapperBuilder;
-  onFirstChanged(body: string): HXYModelMapperBuilder;
-  onFirstColumnChanged(body: string): HXYModelMapperBuilder;
-  onModelChanged(body: string): HXYModelMapperBuilder;
-  onModelReplaced(body: string): HXYModelMapperBuilder;
-  onObjectNameChanged(body: string): HXYModelMapperBuilder;
-  onOrientationChanged(body: string): HXYModelMapperBuilder;
-  onSeriesChanged(body: string): HXYModelMapperBuilder;
-  onSeriesReplaced(body: string): HXYModelMapperBuilder;
-  onXRowChanged(body: string): HXYModelMapperBuilder;
-  onXSectionChanged(body: string): HXYModelMapperBuilder;
-  onYRowChanged(body: string): HXYModelMapperBuilder;
-  onYSectionChanged(body: string): HXYModelMapperBuilder;
+  onColumnCountChanged(handler: DslSignalHandlerValue): HXYModelMapperBuilder;
+  onCountChanged(handler: DslSignalHandlerValue): HXYModelMapperBuilder;
+  onFirstChanged(handler: DslSignalHandlerValue): HXYModelMapperBuilder;
+  onFirstColumnChanged(handler: DslSignalHandlerValue): HXYModelMapperBuilder;
+  onModelChanged(handler: DslSignalHandlerValue): HXYModelMapperBuilder;
+  onModelReplaced(handler: DslSignalHandlerValue): HXYModelMapperBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): HXYModelMapperBuilder;
+  onOrientationChanged(handler: DslSignalHandlerValue): HXYModelMapperBuilder;
+  onSeriesChanged(handler: DslSignalHandlerValue): HXYModelMapperBuilder;
+  onSeriesReplaced(handler: DslSignalHandlerValue): HXYModelMapperBuilder;
+  onXRowChanged(handler: DslSignalHandlerValue): HXYModelMapperBuilder;
+  onXSectionChanged(handler: DslSignalHandlerValue): HXYModelMapperBuilder;
+  onYRowChanged(handler: DslSignalHandlerValue): HXYModelMapperBuilder;
+  onYSectionChanged(handler: DslSignalHandlerValue): HXYModelMapperBuilder;
 }
 
 const HXYMODELMAPPER_META: TypeMetadata = {

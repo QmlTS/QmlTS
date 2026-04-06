@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlEnumToken,
   QmlObjectBuilder,
   QmlValue,
@@ -15,6 +16,7 @@ import type { GeometryViewBuilder } from '../Qt3D.Core/GeometryView.js';
 export interface ConeMeshBuilder {
   id(id: string): ConeMeshBuilder;
   child(obj: QmlObjectBuilder): ConeMeshBuilder;
+  children(...objs: QmlObjectBuilder[]): ConeMeshBuilder;
 
   bottomRadius(value: number): ConeMeshBuilder;
   bottomRadiusBind(expr: string): ConeMeshBuilder;
@@ -68,38 +70,38 @@ export interface ConeMeshBuilder {
   verticesPerPatchBind(expr: string): ConeMeshBuilder;
   view(value: GeometryViewBuilder): ConeMeshBuilder;
   viewBind(expr: string): ConeMeshBuilder;
-  onAddedToEntity(body: string): ConeMeshBuilder;
-  onBottomRadiusChanged(body: string): ConeMeshBuilder;
-  onEnabledChanged(body: string): ConeMeshBuilder;
-  onFirstInstanceChanged(body: string): ConeMeshBuilder;
-  onFirstVertexChanged(body: string): ConeMeshBuilder;
-  onGeometryChanged(body: string): ConeMeshBuilder;
-  onHasBottomEndcapChanged(body: string): ConeMeshBuilder;
-  onHasTopEndcapChanged(body: string): ConeMeshBuilder;
-  onImplicitMaxPointChanged(body: string): ConeMeshBuilder;
-  onImplicitMinPointChanged(body: string): ConeMeshBuilder;
-  onImplicitPointsValidChanged(body: string): ConeMeshBuilder;
-  onIndexBufferByteOffsetChanged(body: string): ConeMeshBuilder;
-  onIndexOffsetChanged(body: string): ConeMeshBuilder;
-  onInstanceCountChanged(body: string): ConeMeshBuilder;
-  onLengthChanged(body: string): ConeMeshBuilder;
-  onMaxPointChanged(body: string): ConeMeshBuilder;
-  onMinPointChanged(body: string): ConeMeshBuilder;
-  onNodeDestroyed(body: string): ConeMeshBuilder;
-  onObjectNameChanged(body: string): ConeMeshBuilder;
-  onParentChanged(body: string): ConeMeshBuilder;
-  onPrimitiveRestartEnabledChanged(body: string): ConeMeshBuilder;
-  onPrimitiveTypeChanged(body: string): ConeMeshBuilder;
-  onRemovedFromEntity(body: string): ConeMeshBuilder;
-  onRestartIndexValueChanged(body: string): ConeMeshBuilder;
-  onRingsChanged(body: string): ConeMeshBuilder;
-  onShareableChanged(body: string): ConeMeshBuilder;
-  onSlicesChanged(body: string): ConeMeshBuilder;
-  onSortIndexChanged(body: string): ConeMeshBuilder;
-  onTopRadiusChanged(body: string): ConeMeshBuilder;
-  onVertexCountChanged(body: string): ConeMeshBuilder;
-  onVerticesPerPatchChanged(body: string): ConeMeshBuilder;
-  onViewChanged(body: string): ConeMeshBuilder;
+  onAddedToEntity(handler: DslSignalHandlerValue): ConeMeshBuilder;
+  onBottomRadiusChanged(handler: DslSignalHandlerValue): ConeMeshBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): ConeMeshBuilder;
+  onFirstInstanceChanged(handler: DslSignalHandlerValue): ConeMeshBuilder;
+  onFirstVertexChanged(handler: DslSignalHandlerValue): ConeMeshBuilder;
+  onGeometryChanged(handler: DslSignalHandlerValue): ConeMeshBuilder;
+  onHasBottomEndcapChanged(handler: DslSignalHandlerValue): ConeMeshBuilder;
+  onHasTopEndcapChanged(handler: DslSignalHandlerValue): ConeMeshBuilder;
+  onImplicitMaxPointChanged(handler: DslSignalHandlerValue): ConeMeshBuilder;
+  onImplicitMinPointChanged(handler: DslSignalHandlerValue): ConeMeshBuilder;
+  onImplicitPointsValidChanged(handler: DslSignalHandlerValue): ConeMeshBuilder;
+  onIndexBufferByteOffsetChanged(handler: DslSignalHandlerValue): ConeMeshBuilder;
+  onIndexOffsetChanged(handler: DslSignalHandlerValue): ConeMeshBuilder;
+  onInstanceCountChanged(handler: DslSignalHandlerValue): ConeMeshBuilder;
+  onLengthChanged(handler: DslSignalHandlerValue): ConeMeshBuilder;
+  onMaxPointChanged(handler: DslSignalHandlerValue): ConeMeshBuilder;
+  onMinPointChanged(handler: DslSignalHandlerValue): ConeMeshBuilder;
+  onNodeDestroyed(handler: DslSignalHandlerValue): ConeMeshBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): ConeMeshBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): ConeMeshBuilder;
+  onPrimitiveRestartEnabledChanged(handler: DslSignalHandlerValue): ConeMeshBuilder;
+  onPrimitiveTypeChanged(handler: DslSignalHandlerValue): ConeMeshBuilder;
+  onRemovedFromEntity(handler: DslSignalHandlerValue): ConeMeshBuilder;
+  onRestartIndexValueChanged(handler: DslSignalHandlerValue): ConeMeshBuilder;
+  onRingsChanged(handler: DslSignalHandlerValue): ConeMeshBuilder;
+  onShareableChanged(handler: DslSignalHandlerValue): ConeMeshBuilder;
+  onSlicesChanged(handler: DslSignalHandlerValue): ConeMeshBuilder;
+  onSortIndexChanged(handler: DslSignalHandlerValue): ConeMeshBuilder;
+  onTopRadiusChanged(handler: DslSignalHandlerValue): ConeMeshBuilder;
+  onVertexCountChanged(handler: DslSignalHandlerValue): ConeMeshBuilder;
+  onVerticesPerPatchChanged(handler: DslSignalHandlerValue): ConeMeshBuilder;
+  onViewChanged(handler: DslSignalHandlerValue): ConeMeshBuilder;
 }
 
 const CONEMESH_META: TypeMetadata = {

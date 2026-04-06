@@ -2,11 +2,17 @@
 // Type: Plugin
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface PluginBuilder {
   id(id: string): PluginBuilder;
   child(obj: QmlObjectBuilder): PluginBuilder;
+  children(...objs: QmlObjectBuilder[]): PluginBuilder;
 
   allowExperimental(value: boolean): PluginBuilder;
   allowExperimentalBind(expr: string): PluginBuilder;
@@ -20,12 +26,12 @@ export interface PluginBuilder {
   preferredBind(expr: string): PluginBuilder;
   required(value: QmlValue): PluginBuilder;
   requiredBind(expr: string): PluginBuilder;
-  onAllowExperimentalChanged(body: string): PluginBuilder;
-  onAttached(body: string): PluginBuilder;
-  onLocalesChanged(body: string): PluginBuilder;
-  onNameChanged(body: string): PluginBuilder;
-  onObjectNameChanged(body: string): PluginBuilder;
-  onPreferredChanged(body: string): PluginBuilder;
+  onAllowExperimentalChanged(handler: DslSignalHandlerValue): PluginBuilder;
+  onAttached(handler: DslSignalHandlerValue): PluginBuilder;
+  onLocalesChanged(handler: DslSignalHandlerValue): PluginBuilder;
+  onNameChanged(handler: DslSignalHandlerValue): PluginBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): PluginBuilder;
+  onPreferredChanged(handler: DslSignalHandlerValue): PluginBuilder;
 }
 
 const PLUGIN_META: TypeMetadata = {

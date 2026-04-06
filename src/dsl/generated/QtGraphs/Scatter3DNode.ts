@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlEnumToken,
   QmlObjectBuilder,
   QmlQuaternion,
@@ -16,6 +17,7 @@ import type { Value3DAxisBuilder } from './Value3DAxis.js';
 export interface Scatter3DNodeBuilder {
   id(id: string): Scatter3DNodeBuilder;
   child(obj: QmlObjectBuilder): Scatter3DNodeBuilder;
+  children(...objs: QmlObjectBuilder[]): Scatter3DNodeBuilder;
 
   aspectRatio(value: number): Scatter3DNodeBuilder;
   aspectRatioBind(expr: string): Scatter3DNodeBuilder;
@@ -75,46 +77,46 @@ export interface Scatter3DNodeBuilder {
   yBind(expr: string): Scatter3DNodeBuilder;
   z(value: number): Scatter3DNodeBuilder;
   zBind(expr: string): Scatter3DNodeBuilder;
-  onAspectRatioChanged(body: string): Scatter3DNodeBuilder;
-  onAxisXChanged(body: string): Scatter3DNodeBuilder;
-  onAxisYChanged(body: string): Scatter3DNodeBuilder;
-  onAxisZChanged(body: string): Scatter3DNodeBuilder;
-  onChildrenChanged(body: string): Scatter3DNodeBuilder;
-  onEulerRotationChanged(body: string): Scatter3DNodeBuilder;
-  onForwardChanged(body: string): Scatter3DNodeBuilder;
-  onGridLineTypeChanged(body: string): Scatter3DNodeBuilder;
-  onHorizontalAspectRatioChanged(body: string): Scatter3DNodeBuilder;
-  onLabelMarginChanged(body: string): Scatter3DNodeBuilder;
-  onLayersChanged(body: string): Scatter3DNodeBuilder;
-  onLocalOpacityChanged(body: string): Scatter3DNodeBuilder;
-  onLocaleChanged(body: string): Scatter3DNodeBuilder;
-  onMarginChanged(body: string): Scatter3DNodeBuilder;
-  onObjectNameChanged(body: string): Scatter3DNodeBuilder;
-  onOptimizationHintChanged(body: string): Scatter3DNodeBuilder;
-  onParentChanged(body: string): Scatter3DNodeBuilder;
-  onPivotChanged(body: string): Scatter3DNodeBuilder;
-  onPolarChanged(body: string): Scatter3DNodeBuilder;
-  onPositionChanged(body: string): Scatter3DNodeBuilder;
-  onQueriedGraphPositionChanged(body: string): Scatter3DNodeBuilder;
-  onRadialLabelOffsetChanged(body: string): Scatter3DNodeBuilder;
-  onRightChanged(body: string): Scatter3DNodeBuilder;
-  onRotationChanged(body: string): Scatter3DNodeBuilder;
-  onScaleChanged(body: string): Scatter3DNodeBuilder;
-  onScenePositionChanged(body: string): Scatter3DNodeBuilder;
-  onSceneRotationChanged(body: string): Scatter3DNodeBuilder;
-  onSceneScaleChanged(body: string): Scatter3DNodeBuilder;
-  onSceneTransformChanged(body: string): Scatter3DNodeBuilder;
-  onSelectedElementChanged(body: string): Scatter3DNodeBuilder;
-  onSelectedSeriesChanged(body: string): Scatter3DNodeBuilder;
-  onSelectionModeChanged(body: string): Scatter3DNodeBuilder;
-  onStateChanged(body: string): Scatter3DNodeBuilder;
-  onStaticFlagsChanged(body: string): Scatter3DNodeBuilder;
-  onThemeChanged(body: string): Scatter3DNodeBuilder;
-  onUpChanged(body: string): Scatter3DNodeBuilder;
-  onVisibleChanged(body: string): Scatter3DNodeBuilder;
-  onXChanged(body: string): Scatter3DNodeBuilder;
-  onYChanged(body: string): Scatter3DNodeBuilder;
-  onZChanged(body: string): Scatter3DNodeBuilder;
+  onAspectRatioChanged(handler: DslSignalHandlerValue): Scatter3DNodeBuilder;
+  onAxisXChanged(handler: DslSignalHandlerValue): Scatter3DNodeBuilder;
+  onAxisYChanged(handler: DslSignalHandlerValue): Scatter3DNodeBuilder;
+  onAxisZChanged(handler: DslSignalHandlerValue): Scatter3DNodeBuilder;
+  onChildrenChanged(handler: DslSignalHandlerValue): Scatter3DNodeBuilder;
+  onEulerRotationChanged(handler: DslSignalHandlerValue): Scatter3DNodeBuilder;
+  onForwardChanged(handler: DslSignalHandlerValue): Scatter3DNodeBuilder;
+  onGridLineTypeChanged(handler: DslSignalHandlerValue): Scatter3DNodeBuilder;
+  onHorizontalAspectRatioChanged(handler: DslSignalHandlerValue): Scatter3DNodeBuilder;
+  onLabelMarginChanged(handler: DslSignalHandlerValue): Scatter3DNodeBuilder;
+  onLayersChanged(handler: DslSignalHandlerValue): Scatter3DNodeBuilder;
+  onLocalOpacityChanged(handler: DslSignalHandlerValue): Scatter3DNodeBuilder;
+  onLocaleChanged(handler: DslSignalHandlerValue): Scatter3DNodeBuilder;
+  onMarginChanged(handler: DslSignalHandlerValue): Scatter3DNodeBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): Scatter3DNodeBuilder;
+  onOptimizationHintChanged(handler: DslSignalHandlerValue): Scatter3DNodeBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): Scatter3DNodeBuilder;
+  onPivotChanged(handler: DslSignalHandlerValue): Scatter3DNodeBuilder;
+  onPolarChanged(handler: DslSignalHandlerValue): Scatter3DNodeBuilder;
+  onPositionChanged(handler: DslSignalHandlerValue): Scatter3DNodeBuilder;
+  onQueriedGraphPositionChanged(handler: DslSignalHandlerValue): Scatter3DNodeBuilder;
+  onRadialLabelOffsetChanged(handler: DslSignalHandlerValue): Scatter3DNodeBuilder;
+  onRightChanged(handler: DslSignalHandlerValue): Scatter3DNodeBuilder;
+  onRotationChanged(handler: DslSignalHandlerValue): Scatter3DNodeBuilder;
+  onScaleChanged(handler: DslSignalHandlerValue): Scatter3DNodeBuilder;
+  onScenePositionChanged(handler: DslSignalHandlerValue): Scatter3DNodeBuilder;
+  onSceneRotationChanged(handler: DslSignalHandlerValue): Scatter3DNodeBuilder;
+  onSceneScaleChanged(handler: DslSignalHandlerValue): Scatter3DNodeBuilder;
+  onSceneTransformChanged(handler: DslSignalHandlerValue): Scatter3DNodeBuilder;
+  onSelectedElementChanged(handler: DslSignalHandlerValue): Scatter3DNodeBuilder;
+  onSelectedSeriesChanged(handler: DslSignalHandlerValue): Scatter3DNodeBuilder;
+  onSelectionModeChanged(handler: DslSignalHandlerValue): Scatter3DNodeBuilder;
+  onStateChanged(handler: DslSignalHandlerValue): Scatter3DNodeBuilder;
+  onStaticFlagsChanged(handler: DslSignalHandlerValue): Scatter3DNodeBuilder;
+  onThemeChanged(handler: DslSignalHandlerValue): Scatter3DNodeBuilder;
+  onUpChanged(handler: DslSignalHandlerValue): Scatter3DNodeBuilder;
+  onVisibleChanged(handler: DslSignalHandlerValue): Scatter3DNodeBuilder;
+  onXChanged(handler: DslSignalHandlerValue): Scatter3DNodeBuilder;
+  onYChanged(handler: DslSignalHandlerValue): Scatter3DNodeBuilder;
+  onZChanged(handler: DslSignalHandlerValue): Scatter3DNodeBuilder;
 }
 
 const SCATTER3DNODE_META: TypeMetadata = {

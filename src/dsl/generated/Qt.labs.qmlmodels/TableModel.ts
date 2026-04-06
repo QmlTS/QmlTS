@@ -2,38 +2,44 @@
 // Type: TableModel
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface TableModelBuilder {
   id(id: string): TableModelBuilder;
   child(obj: QmlObjectBuilder): TableModelBuilder;
+  children(...objs: QmlObjectBuilder[]): TableModelBuilder;
 
   objectName(value: string): TableModelBuilder;
   objectNameBind(expr: string): TableModelBuilder;
   rows(value: QmlValue): TableModelBuilder;
   rowsBind(expr: string): TableModelBuilder;
-  onColumnCountChanged(body: string): TableModelBuilder;
-  onColumnsAboutToBeInserted(body: string): TableModelBuilder;
-  onColumnsAboutToBeMoved(body: string): TableModelBuilder;
-  onColumnsAboutToBeRemoved(body: string): TableModelBuilder;
-  onColumnsInserted(body: string): TableModelBuilder;
-  onColumnsMoved(body: string): TableModelBuilder;
-  onColumnsRemoved(body: string): TableModelBuilder;
-  onDataChanged(body: string): TableModelBuilder;
-  onHeaderDataChanged(body: string): TableModelBuilder;
-  onLayoutAboutToBeChanged(body: string): TableModelBuilder;
-  onLayoutChanged(body: string): TableModelBuilder;
-  onModelAboutToBeReset(body: string): TableModelBuilder;
-  onModelReset(body: string): TableModelBuilder;
-  onObjectNameChanged(body: string): TableModelBuilder;
-  onRowCountChanged(body: string): TableModelBuilder;
-  onRowsAboutToBeInserted(body: string): TableModelBuilder;
-  onRowsAboutToBeMoved(body: string): TableModelBuilder;
-  onRowsAboutToBeRemoved(body: string): TableModelBuilder;
-  onRowsChanged(body: string): TableModelBuilder;
-  onRowsInserted(body: string): TableModelBuilder;
-  onRowsMoved(body: string): TableModelBuilder;
-  onRowsRemoved(body: string): TableModelBuilder;
+  onColumnCountChanged(handler: DslSignalHandlerValue): TableModelBuilder;
+  onColumnsAboutToBeInserted(handler: DslSignalHandlerValue): TableModelBuilder;
+  onColumnsAboutToBeMoved(handler: DslSignalHandlerValue): TableModelBuilder;
+  onColumnsAboutToBeRemoved(handler: DslSignalHandlerValue): TableModelBuilder;
+  onColumnsInserted(handler: DslSignalHandlerValue): TableModelBuilder;
+  onColumnsMoved(handler: DslSignalHandlerValue): TableModelBuilder;
+  onColumnsRemoved(handler: DslSignalHandlerValue): TableModelBuilder;
+  onDataChanged(handler: DslSignalHandlerValue): TableModelBuilder;
+  onHeaderDataChanged(handler: DslSignalHandlerValue): TableModelBuilder;
+  onLayoutAboutToBeChanged(handler: DslSignalHandlerValue): TableModelBuilder;
+  onLayoutChanged(handler: DslSignalHandlerValue): TableModelBuilder;
+  onModelAboutToBeReset(handler: DslSignalHandlerValue): TableModelBuilder;
+  onModelReset(handler: DslSignalHandlerValue): TableModelBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): TableModelBuilder;
+  onRowCountChanged(handler: DslSignalHandlerValue): TableModelBuilder;
+  onRowsAboutToBeInserted(handler: DslSignalHandlerValue): TableModelBuilder;
+  onRowsAboutToBeMoved(handler: DslSignalHandlerValue): TableModelBuilder;
+  onRowsAboutToBeRemoved(handler: DslSignalHandlerValue): TableModelBuilder;
+  onRowsChanged(handler: DslSignalHandlerValue): TableModelBuilder;
+  onRowsInserted(handler: DslSignalHandlerValue): TableModelBuilder;
+  onRowsMoved(handler: DslSignalHandlerValue): TableModelBuilder;
+  onRowsRemoved(handler: DslSignalHandlerValue): TableModelBuilder;
 }
 
 const TABLEMODEL_META: TypeMetadata = {

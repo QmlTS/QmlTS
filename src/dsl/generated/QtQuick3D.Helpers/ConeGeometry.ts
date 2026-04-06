@@ -2,11 +2,17 @@
 // Type: ConeGeometry
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface ConeGeometryBuilder {
   id(id: string): ConeGeometryBuilder;
   child(obj: QmlObjectBuilder): ConeGeometryBuilder;
+  children(...objs: QmlObjectBuilder[]): ConeGeometryBuilder;
 
   asynchronous(value: boolean): ConeGeometryBuilder;
   asynchronousBind(expr: string): ConeGeometryBuilder;
@@ -26,19 +32,19 @@ export interface ConeGeometryBuilder {
   stateBind(expr: string): ConeGeometryBuilder;
   topRadius(value: number): ConeGeometryBuilder;
   topRadiusBind(expr: string): ConeGeometryBuilder;
-  onAsynchronousChanged(body: string): ConeGeometryBuilder;
-  onBottomRadiusChanged(body: string): ConeGeometryBuilder;
-  onChildrenChanged(body: string): ConeGeometryBuilder;
-  onGeometryChanged(body: string): ConeGeometryBuilder;
-  onGeometryNodeDirty(body: string): ConeGeometryBuilder;
-  onLengthChanged(body: string): ConeGeometryBuilder;
-  onObjectNameChanged(body: string): ConeGeometryBuilder;
-  onParentChanged(body: string): ConeGeometryBuilder;
-  onRingsChanged(body: string): ConeGeometryBuilder;
-  onSegmentsChanged(body: string): ConeGeometryBuilder;
-  onStateChanged(body: string): ConeGeometryBuilder;
-  onStatusChanged(body: string): ConeGeometryBuilder;
-  onTopRadiusChanged(body: string): ConeGeometryBuilder;
+  onAsynchronousChanged(handler: DslSignalHandlerValue): ConeGeometryBuilder;
+  onBottomRadiusChanged(handler: DslSignalHandlerValue): ConeGeometryBuilder;
+  onChildrenChanged(handler: DslSignalHandlerValue): ConeGeometryBuilder;
+  onGeometryChanged(handler: DslSignalHandlerValue): ConeGeometryBuilder;
+  onGeometryNodeDirty(handler: DslSignalHandlerValue): ConeGeometryBuilder;
+  onLengthChanged(handler: DslSignalHandlerValue): ConeGeometryBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): ConeGeometryBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): ConeGeometryBuilder;
+  onRingsChanged(handler: DslSignalHandlerValue): ConeGeometryBuilder;
+  onSegmentsChanged(handler: DslSignalHandlerValue): ConeGeometryBuilder;
+  onStateChanged(handler: DslSignalHandlerValue): ConeGeometryBuilder;
+  onStatusChanged(handler: DslSignalHandlerValue): ConeGeometryBuilder;
+  onTopRadiusChanged(handler: DslSignalHandlerValue): ConeGeometryBuilder;
 }
 
 const CONEGEOMETRY_META: TypeMetadata = {

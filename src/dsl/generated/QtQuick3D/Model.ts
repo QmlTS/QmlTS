@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlMatrix4x4,
   QmlObjectBuilder,
   QmlQuaternion,
@@ -19,6 +20,7 @@ import type { SkinBuilder } from './Skin.js';
 export interface ModelBuilder {
   id(id: string): ModelBuilder;
   child(obj: QmlObjectBuilder): ModelBuilder;
+  children(...objs: QmlObjectBuilder[]): ModelBuilder;
 
   bakedLightmap(value: BakedLightmapBuilder): ModelBuilder;
   bakedLightmapBind(expr: string): ModelBuilder;
@@ -94,53 +96,53 @@ export interface ModelBuilder {
   yBind(expr: string): ModelBuilder;
   z(value: number): ModelBuilder;
   zBind(expr: string): ModelBuilder;
-  onBakedLightmapChanged(body: string): ModelBuilder;
-  onBoundsChanged(body: string): ModelBuilder;
-  onCastsReflectionsChanged(body: string): ModelBuilder;
-  onCastsShadowsChanged(body: string): ModelBuilder;
-  onChildrenChanged(body: string): ModelBuilder;
-  onDepthBiasChanged(body: string): ModelBuilder;
-  onEulerRotationChanged(body: string): ModelBuilder;
-  onForwardChanged(body: string): ModelBuilder;
-  onGeometryChanged(body: string): ModelBuilder;
-  onInstanceRootChanged(body: string): ModelBuilder;
-  onInstancingChanged(body: string): ModelBuilder;
-  onInstancingLodMaxChanged(body: string): ModelBuilder;
-  onInstancingLodMinChanged(body: string): ModelBuilder;
-  onInverseBindPosesChanged(body: string): ModelBuilder;
-  onLayersChanged(body: string): ModelBuilder;
-  onLevelOfDetailBiasChanged(body: string): ModelBuilder;
-  onLightmapBaseResolutionChanged(body: string): ModelBuilder;
-  onLocalOpacityChanged(body: string): ModelBuilder;
-  onMorphTargetsChanged(body: string): ModelBuilder;
-  onMotionVectorEnabledChanged(body: string): ModelBuilder;
-  onMotionVectorScaleChanged(body: string): ModelBuilder;
-  onObjectNameChanged(body: string): ModelBuilder;
-  onParentChanged(body: string): ModelBuilder;
-  onPickableChanged(body: string): ModelBuilder;
-  onPivotChanged(body: string): ModelBuilder;
-  onPositionChanged(body: string): ModelBuilder;
-  onReceivesReflectionsChanged(body: string): ModelBuilder;
-  onReceivesShadowsChanged(body: string): ModelBuilder;
-  onRightChanged(body: string): ModelBuilder;
-  onRotationChanged(body: string): ModelBuilder;
-  onScaleChanged(body: string): ModelBuilder;
-  onScenePositionChanged(body: string): ModelBuilder;
-  onSceneRotationChanged(body: string): ModelBuilder;
-  onSceneScaleChanged(body: string): ModelBuilder;
-  onSceneTransformChanged(body: string): ModelBuilder;
-  onSkeletonChanged(body: string): ModelBuilder;
-  onSkinChanged(body: string): ModelBuilder;
-  onSourceChanged(body: string): ModelBuilder;
-  onStateChanged(body: string): ModelBuilder;
-  onStaticFlagsChanged(body: string): ModelBuilder;
-  onTexelsPerUnitChanged(body: string): ModelBuilder;
-  onUpChanged(body: string): ModelBuilder;
-  onUsedInBakedLightingChanged(body: string): ModelBuilder;
-  onVisibleChanged(body: string): ModelBuilder;
-  onXChanged(body: string): ModelBuilder;
-  onYChanged(body: string): ModelBuilder;
-  onZChanged(body: string): ModelBuilder;
+  onBakedLightmapChanged(handler: DslSignalHandlerValue): ModelBuilder;
+  onBoundsChanged(handler: DslSignalHandlerValue): ModelBuilder;
+  onCastsReflectionsChanged(handler: DslSignalHandlerValue): ModelBuilder;
+  onCastsShadowsChanged(handler: DslSignalHandlerValue): ModelBuilder;
+  onChildrenChanged(handler: DslSignalHandlerValue): ModelBuilder;
+  onDepthBiasChanged(handler: DslSignalHandlerValue): ModelBuilder;
+  onEulerRotationChanged(handler: DslSignalHandlerValue): ModelBuilder;
+  onForwardChanged(handler: DslSignalHandlerValue): ModelBuilder;
+  onGeometryChanged(handler: DslSignalHandlerValue): ModelBuilder;
+  onInstanceRootChanged(handler: DslSignalHandlerValue): ModelBuilder;
+  onInstancingChanged(handler: DslSignalHandlerValue): ModelBuilder;
+  onInstancingLodMaxChanged(handler: DslSignalHandlerValue): ModelBuilder;
+  onInstancingLodMinChanged(handler: DslSignalHandlerValue): ModelBuilder;
+  onInverseBindPosesChanged(handler: DslSignalHandlerValue): ModelBuilder;
+  onLayersChanged(handler: DslSignalHandlerValue): ModelBuilder;
+  onLevelOfDetailBiasChanged(handler: DslSignalHandlerValue): ModelBuilder;
+  onLightmapBaseResolutionChanged(handler: DslSignalHandlerValue): ModelBuilder;
+  onLocalOpacityChanged(handler: DslSignalHandlerValue): ModelBuilder;
+  onMorphTargetsChanged(handler: DslSignalHandlerValue): ModelBuilder;
+  onMotionVectorEnabledChanged(handler: DslSignalHandlerValue): ModelBuilder;
+  onMotionVectorScaleChanged(handler: DslSignalHandlerValue): ModelBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): ModelBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): ModelBuilder;
+  onPickableChanged(handler: DslSignalHandlerValue): ModelBuilder;
+  onPivotChanged(handler: DslSignalHandlerValue): ModelBuilder;
+  onPositionChanged(handler: DslSignalHandlerValue): ModelBuilder;
+  onReceivesReflectionsChanged(handler: DslSignalHandlerValue): ModelBuilder;
+  onReceivesShadowsChanged(handler: DslSignalHandlerValue): ModelBuilder;
+  onRightChanged(handler: DslSignalHandlerValue): ModelBuilder;
+  onRotationChanged(handler: DslSignalHandlerValue): ModelBuilder;
+  onScaleChanged(handler: DslSignalHandlerValue): ModelBuilder;
+  onScenePositionChanged(handler: DslSignalHandlerValue): ModelBuilder;
+  onSceneRotationChanged(handler: DslSignalHandlerValue): ModelBuilder;
+  onSceneScaleChanged(handler: DslSignalHandlerValue): ModelBuilder;
+  onSceneTransformChanged(handler: DslSignalHandlerValue): ModelBuilder;
+  onSkeletonChanged(handler: DslSignalHandlerValue): ModelBuilder;
+  onSkinChanged(handler: DslSignalHandlerValue): ModelBuilder;
+  onSourceChanged(handler: DslSignalHandlerValue): ModelBuilder;
+  onStateChanged(handler: DslSignalHandlerValue): ModelBuilder;
+  onStaticFlagsChanged(handler: DslSignalHandlerValue): ModelBuilder;
+  onTexelsPerUnitChanged(handler: DslSignalHandlerValue): ModelBuilder;
+  onUpChanged(handler: DslSignalHandlerValue): ModelBuilder;
+  onUsedInBakedLightingChanged(handler: DslSignalHandlerValue): ModelBuilder;
+  onVisibleChanged(handler: DslSignalHandlerValue): ModelBuilder;
+  onXChanged(handler: DslSignalHandlerValue): ModelBuilder;
+  onYChanged(handler: DslSignalHandlerValue): ModelBuilder;
+  onZChanged(handler: DslSignalHandlerValue): ModelBuilder;
 }
 
 const MODEL_META: TypeMetadata = {

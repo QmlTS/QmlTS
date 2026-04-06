@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlColor,
   QmlEnumToken,
   QmlFont,
@@ -14,6 +15,7 @@ import { createFluentBuilder } from '../../runtime/index.js';
 export interface Text2DEntityBuilder {
   id(id: string): Text2DEntityBuilder;
   child(obj: QmlObjectBuilder): Text2DEntityBuilder;
+  children(...objs: QmlObjectBuilder[]): Text2DEntityBuilder;
 
   alignment(value: QmlEnumToken): Text2DEntityBuilder;
   alignmentBind(expr: string): Text2DEntityBuilder;
@@ -33,15 +35,15 @@ export interface Text2DEntityBuilder {
   textBind(expr: string): Text2DEntityBuilder;
   width(value: number): Text2DEntityBuilder;
   widthBind(expr: string): Text2DEntityBuilder;
-  onColorChanged(body: string): Text2DEntityBuilder;
-  onEnabledChanged(body: string): Text2DEntityBuilder;
-  onFontChanged(body: string): Text2DEntityBuilder;
-  onHeightChanged(body: string): Text2DEntityBuilder;
-  onNodeDestroyed(body: string): Text2DEntityBuilder;
-  onObjectNameChanged(body: string): Text2DEntityBuilder;
-  onParentChanged(body: string): Text2DEntityBuilder;
-  onTextChanged(body: string): Text2DEntityBuilder;
-  onWidthChanged(body: string): Text2DEntityBuilder;
+  onColorChanged(handler: DslSignalHandlerValue): Text2DEntityBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): Text2DEntityBuilder;
+  onFontChanged(handler: DslSignalHandlerValue): Text2DEntityBuilder;
+  onHeightChanged(handler: DslSignalHandlerValue): Text2DEntityBuilder;
+  onNodeDestroyed(handler: DslSignalHandlerValue): Text2DEntityBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): Text2DEntityBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): Text2DEntityBuilder;
+  onTextChanged(handler: DslSignalHandlerValue): Text2DEntityBuilder;
+  onWidthChanged(handler: DslSignalHandlerValue): Text2DEntityBuilder;
 }
 
 const TEXT2DENTITY_META: TypeMetadata = {

@@ -2,7 +2,12 @@
 // Type: RadioDelegate
 // Generated from Qt 6.11.0
 
-import type { QmlEnumToken, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlEnumToken,
+  QmlObjectBuilder,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { QtObjectBuilder } from '../QML/QtObject.js';
 import type { ItemBuilder } from '../QtQuick/Item.js';
@@ -12,6 +17,7 @@ import type { LayerBuilder } from '../QtQuick/QQuickItemLayer.js';
 export interface RadioDelegateBuilder {
   id(id: string): RadioDelegateBuilder;
   child(obj: QmlObjectBuilder): RadioDelegateBuilder;
+  children(...objs: QmlObjectBuilder[]): RadioDelegateBuilder;
 
   activeFocusOnTab(value: boolean): RadioDelegateBuilder;
   activeFocusOnTabBind(expr: string): RadioDelegateBuilder;
@@ -75,42 +81,42 @@ export interface RadioDelegateBuilder {
   yBind(expr: string): RadioDelegateBuilder;
   z(value: number): RadioDelegateBuilder;
   zBind(expr: string): RadioDelegateBuilder;
-  onActiveFocusChanged(body: string): RadioDelegateBuilder;
-  onActiveFocusOnTabChanged(body: string): RadioDelegateBuilder;
-  onAntialiasingChanged(body: string): RadioDelegateBuilder;
-  onBaselineOffsetChanged(body: string): RadioDelegateBuilder;
-  onChildrenChanged(body: string): RadioDelegateBuilder;
-  onChildrenRectChanged(body: string): RadioDelegateBuilder;
-  onClipChanged(body: string): RadioDelegateBuilder;
-  onContainmentMaskChanged(body: string): RadioDelegateBuilder;
-  onContentPaddingChanged(body: string): RadioDelegateBuilder;
-  onControlChanged(body: string): RadioDelegateBuilder;
-  onEnabledChanged(body: string): RadioDelegateBuilder;
-  onFocusChanged(body: string): RadioDelegateBuilder;
-  onFocusPolicyChanged(body: string): RadioDelegateBuilder;
-  onFontChanged(body: string): RadioDelegateBuilder;
-  onHeightChanged(body: string): RadioDelegateBuilder;
-  onImplicitHeightChanged(body: string): RadioDelegateBuilder;
-  onImplicitWidthChanged(body: string): RadioDelegateBuilder;
-  onLayoutMarginsChanged(body: string): RadioDelegateBuilder;
-  onMinimumSizeChanged(body: string): RadioDelegateBuilder;
-  onObjectNameChanged(body: string): RadioDelegateBuilder;
-  onOpacityChanged(body: string): RadioDelegateBuilder;
-  onPaletteChanged(body: string): RadioDelegateBuilder;
-  onPaletteCreated(body: string): RadioDelegateBuilder;
-  onParentChanged(body: string): RadioDelegateBuilder;
-  onRotationChanged(body: string): RadioDelegateBuilder;
-  onScaleChanged(body: string): RadioDelegateBuilder;
-  onSmoothChanged(body: string): RadioDelegateBuilder;
-  onStateChanged(body: string): RadioDelegateBuilder;
-  onTransformOriginChanged(body: string): RadioDelegateBuilder;
-  onVisibleChanged(body: string): RadioDelegateBuilder;
-  onVisibleChildrenChanged(body: string): RadioDelegateBuilder;
-  onWidthChanged(body: string): RadioDelegateBuilder;
-  onWindowChanged(body: string): RadioDelegateBuilder;
-  onXChanged(body: string): RadioDelegateBuilder;
-  onYChanged(body: string): RadioDelegateBuilder;
-  onZChanged(body: string): RadioDelegateBuilder;
+  onActiveFocusChanged(handler: DslSignalHandlerValue): RadioDelegateBuilder;
+  onActiveFocusOnTabChanged(handler: DslSignalHandlerValue): RadioDelegateBuilder;
+  onAntialiasingChanged(handler: DslSignalHandlerValue): RadioDelegateBuilder;
+  onBaselineOffsetChanged(handler: DslSignalHandlerValue): RadioDelegateBuilder;
+  onChildrenChanged(handler: DslSignalHandlerValue): RadioDelegateBuilder;
+  onChildrenRectChanged(handler: DslSignalHandlerValue): RadioDelegateBuilder;
+  onClipChanged(handler: DslSignalHandlerValue): RadioDelegateBuilder;
+  onContainmentMaskChanged(handler: DslSignalHandlerValue): RadioDelegateBuilder;
+  onContentPaddingChanged(handler: DslSignalHandlerValue): RadioDelegateBuilder;
+  onControlChanged(handler: DslSignalHandlerValue): RadioDelegateBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): RadioDelegateBuilder;
+  onFocusChanged(handler: DslSignalHandlerValue): RadioDelegateBuilder;
+  onFocusPolicyChanged(handler: DslSignalHandlerValue): RadioDelegateBuilder;
+  onFontChanged(handler: DslSignalHandlerValue): RadioDelegateBuilder;
+  onHeightChanged(handler: DslSignalHandlerValue): RadioDelegateBuilder;
+  onImplicitHeightChanged(handler: DslSignalHandlerValue): RadioDelegateBuilder;
+  onImplicitWidthChanged(handler: DslSignalHandlerValue): RadioDelegateBuilder;
+  onLayoutMarginsChanged(handler: DslSignalHandlerValue): RadioDelegateBuilder;
+  onMinimumSizeChanged(handler: DslSignalHandlerValue): RadioDelegateBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): RadioDelegateBuilder;
+  onOpacityChanged(handler: DslSignalHandlerValue): RadioDelegateBuilder;
+  onPaletteChanged(handler: DslSignalHandlerValue): RadioDelegateBuilder;
+  onPaletteCreated(handler: DslSignalHandlerValue): RadioDelegateBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): RadioDelegateBuilder;
+  onRotationChanged(handler: DslSignalHandlerValue): RadioDelegateBuilder;
+  onScaleChanged(handler: DslSignalHandlerValue): RadioDelegateBuilder;
+  onSmoothChanged(handler: DslSignalHandlerValue): RadioDelegateBuilder;
+  onStateChanged(handler: DslSignalHandlerValue): RadioDelegateBuilder;
+  onTransformOriginChanged(handler: DslSignalHandlerValue): RadioDelegateBuilder;
+  onVisibleChanged(handler: DslSignalHandlerValue): RadioDelegateBuilder;
+  onVisibleChildrenChanged(handler: DslSignalHandlerValue): RadioDelegateBuilder;
+  onWidthChanged(handler: DslSignalHandlerValue): RadioDelegateBuilder;
+  onWindowChanged(handler: DslSignalHandlerValue): RadioDelegateBuilder;
+  onXChanged(handler: DslSignalHandlerValue): RadioDelegateBuilder;
+  onYChanged(handler: DslSignalHandlerValue): RadioDelegateBuilder;
+  onZChanged(handler: DslSignalHandlerValue): RadioDelegateBuilder;
   anchors(setup: (b: AnchorsBuilder) => void): RadioDelegateBuilder;
   layer(setup: (b: LayerBuilder) => void): RadioDelegateBuilder;
 }

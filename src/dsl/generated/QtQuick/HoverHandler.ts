@@ -2,7 +2,12 @@
 // Type: HoverHandler
 // Generated from Qt 6.11.0
 
-import type { QmlEnumToken, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlEnumToken,
+  QmlObjectBuilder,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { AccessibleAttachedBuilder } from './Accessible.js';
 import type { EnterKeyAttachedBuilder } from './EnterKey.js';
@@ -24,6 +29,7 @@ import type { ViewTransitionAttachedBuilder } from './ViewTransition.js';
 export interface HoverHandlerBuilder {
   id(id: string): HoverHandlerBuilder;
   child(obj: QmlObjectBuilder): HoverHandlerBuilder;
+  children(...objs: QmlObjectBuilder[]): HoverHandlerBuilder;
 
   acceptedButtons(value: QmlEnumToken): HoverHandlerBuilder;
   acceptedButtonsBind(expr: string): HoverHandlerBuilder;
@@ -51,24 +57,24 @@ export interface HoverHandlerBuilder {
   parentBind(expr: string): HoverHandlerBuilder;
   target(value: ItemBuilder): HoverHandlerBuilder;
   targetBind(expr: string): HoverHandlerBuilder;
-  onAcceptedButtonsChanged(body: string): HoverHandlerBuilder;
-  onAcceptedDevicesChanged(body: string): HoverHandlerBuilder;
-  onAcceptedModifiersChanged(body: string): HoverHandlerBuilder;
-  onAcceptedPointerTypesChanged(body: string): HoverHandlerBuilder;
-  onActiveChanged(body: string): HoverHandlerBuilder;
-  onBlockingChanged(body: string): HoverHandlerBuilder;
-  onCanceled(body: string): HoverHandlerBuilder;
-  onCursorShapeChanged(body: string): HoverHandlerBuilder;
-  onDragThresholdChanged(body: string): HoverHandlerBuilder;
-  onEnabledChanged(body: string): HoverHandlerBuilder;
-  onGrabChanged(body: string): HoverHandlerBuilder;
-  onGrabPermissionChanged(body: string): HoverHandlerBuilder;
-  onHoveredChanged(body: string): HoverHandlerBuilder;
-  onMarginChanged(body: string): HoverHandlerBuilder;
-  onObjectNameChanged(body: string): HoverHandlerBuilder;
-  onParentChanged(body: string): HoverHandlerBuilder;
-  onPointChanged(body: string): HoverHandlerBuilder;
-  onTargetChanged(body: string): HoverHandlerBuilder;
+  onAcceptedButtonsChanged(handler: DslSignalHandlerValue): HoverHandlerBuilder;
+  onAcceptedDevicesChanged(handler: DslSignalHandlerValue): HoverHandlerBuilder;
+  onAcceptedModifiersChanged(handler: DslSignalHandlerValue): HoverHandlerBuilder;
+  onAcceptedPointerTypesChanged(handler: DslSignalHandlerValue): HoverHandlerBuilder;
+  onActiveChanged(handler: DslSignalHandlerValue): HoverHandlerBuilder;
+  onBlockingChanged(handler: DslSignalHandlerValue): HoverHandlerBuilder;
+  onCanceled(handler: DslSignalHandlerValue): HoverHandlerBuilder;
+  onCursorShapeChanged(handler: DslSignalHandlerValue): HoverHandlerBuilder;
+  onDragThresholdChanged(handler: DslSignalHandlerValue): HoverHandlerBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): HoverHandlerBuilder;
+  onGrabChanged(handler: DslSignalHandlerValue): HoverHandlerBuilder;
+  onGrabPermissionChanged(handler: DslSignalHandlerValue): HoverHandlerBuilder;
+  onHoveredChanged(handler: DslSignalHandlerValue): HoverHandlerBuilder;
+  onMarginChanged(handler: DslSignalHandlerValue): HoverHandlerBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): HoverHandlerBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): HoverHandlerBuilder;
+  onPointChanged(handler: DslSignalHandlerValue): HoverHandlerBuilder;
+  onTargetChanged(handler: DslSignalHandlerValue): HoverHandlerBuilder;
   accessible(setup: (b: AccessibleAttachedBuilder) => void): HoverHandlerBuilder;
   drag(setup: (b: DragAttachedBuilder) => void): HoverHandlerBuilder;
   enterKey(setup: (b: EnterKeyAttachedBuilder) => void): HoverHandlerBuilder;

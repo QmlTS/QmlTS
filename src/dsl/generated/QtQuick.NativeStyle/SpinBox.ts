@@ -2,7 +2,12 @@
 // Type: SpinBox
 // Generated from Qt 6.11.0
 
-import type { QmlEnumToken, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlEnumToken,
+  QmlObjectBuilder,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { QtObjectBuilder } from '../QML/QtObject.js';
 import type { ItemBuilder } from '../QtQuick/Item.js';
@@ -12,6 +17,7 @@ import type { LayerBuilder } from '../QtQuick/QQuickItemLayer.js';
 export interface SpinBoxBuilder {
   id(id: string): SpinBoxBuilder;
   child(obj: QmlObjectBuilder): SpinBoxBuilder;
+  children(...objs: QmlObjectBuilder[]): SpinBoxBuilder;
 
   activeFocusOnTab(value: boolean): SpinBoxBuilder;
   activeFocusOnTabBind(expr: string): SpinBoxBuilder;
@@ -77,42 +83,42 @@ export interface SpinBoxBuilder {
   yBind(expr: string): SpinBoxBuilder;
   z(value: number): SpinBoxBuilder;
   zBind(expr: string): SpinBoxBuilder;
-  onActiveFocusChanged(body: string): SpinBoxBuilder;
-  onActiveFocusOnTabChanged(body: string): SpinBoxBuilder;
-  onAntialiasingChanged(body: string): SpinBoxBuilder;
-  onBaselineOffsetChanged(body: string): SpinBoxBuilder;
-  onChildrenChanged(body: string): SpinBoxBuilder;
-  onChildrenRectChanged(body: string): SpinBoxBuilder;
-  onClipChanged(body: string): SpinBoxBuilder;
-  onContainmentMaskChanged(body: string): SpinBoxBuilder;
-  onContentPaddingChanged(body: string): SpinBoxBuilder;
-  onControlChanged(body: string): SpinBoxBuilder;
-  onEnabledChanged(body: string): SpinBoxBuilder;
-  onFocusChanged(body: string): SpinBoxBuilder;
-  onFocusPolicyChanged(body: string): SpinBoxBuilder;
-  onFontChanged(body: string): SpinBoxBuilder;
-  onHeightChanged(body: string): SpinBoxBuilder;
-  onImplicitHeightChanged(body: string): SpinBoxBuilder;
-  onImplicitWidthChanged(body: string): SpinBoxBuilder;
-  onLayoutMarginsChanged(body: string): SpinBoxBuilder;
-  onMinimumSizeChanged(body: string): SpinBoxBuilder;
-  onObjectNameChanged(body: string): SpinBoxBuilder;
-  onOpacityChanged(body: string): SpinBoxBuilder;
-  onPaletteChanged(body: string): SpinBoxBuilder;
-  onPaletteCreated(body: string): SpinBoxBuilder;
-  onParentChanged(body: string): SpinBoxBuilder;
-  onRotationChanged(body: string): SpinBoxBuilder;
-  onScaleChanged(body: string): SpinBoxBuilder;
-  onSmoothChanged(body: string): SpinBoxBuilder;
-  onStateChanged(body: string): SpinBoxBuilder;
-  onTransformOriginChanged(body: string): SpinBoxBuilder;
-  onVisibleChanged(body: string): SpinBoxBuilder;
-  onVisibleChildrenChanged(body: string): SpinBoxBuilder;
-  onWidthChanged(body: string): SpinBoxBuilder;
-  onWindowChanged(body: string): SpinBoxBuilder;
-  onXChanged(body: string): SpinBoxBuilder;
-  onYChanged(body: string): SpinBoxBuilder;
-  onZChanged(body: string): SpinBoxBuilder;
+  onActiveFocusChanged(handler: DslSignalHandlerValue): SpinBoxBuilder;
+  onActiveFocusOnTabChanged(handler: DslSignalHandlerValue): SpinBoxBuilder;
+  onAntialiasingChanged(handler: DslSignalHandlerValue): SpinBoxBuilder;
+  onBaselineOffsetChanged(handler: DslSignalHandlerValue): SpinBoxBuilder;
+  onChildrenChanged(handler: DslSignalHandlerValue): SpinBoxBuilder;
+  onChildrenRectChanged(handler: DslSignalHandlerValue): SpinBoxBuilder;
+  onClipChanged(handler: DslSignalHandlerValue): SpinBoxBuilder;
+  onContainmentMaskChanged(handler: DslSignalHandlerValue): SpinBoxBuilder;
+  onContentPaddingChanged(handler: DslSignalHandlerValue): SpinBoxBuilder;
+  onControlChanged(handler: DslSignalHandlerValue): SpinBoxBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): SpinBoxBuilder;
+  onFocusChanged(handler: DslSignalHandlerValue): SpinBoxBuilder;
+  onFocusPolicyChanged(handler: DslSignalHandlerValue): SpinBoxBuilder;
+  onFontChanged(handler: DslSignalHandlerValue): SpinBoxBuilder;
+  onHeightChanged(handler: DslSignalHandlerValue): SpinBoxBuilder;
+  onImplicitHeightChanged(handler: DslSignalHandlerValue): SpinBoxBuilder;
+  onImplicitWidthChanged(handler: DslSignalHandlerValue): SpinBoxBuilder;
+  onLayoutMarginsChanged(handler: DslSignalHandlerValue): SpinBoxBuilder;
+  onMinimumSizeChanged(handler: DslSignalHandlerValue): SpinBoxBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): SpinBoxBuilder;
+  onOpacityChanged(handler: DslSignalHandlerValue): SpinBoxBuilder;
+  onPaletteChanged(handler: DslSignalHandlerValue): SpinBoxBuilder;
+  onPaletteCreated(handler: DslSignalHandlerValue): SpinBoxBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): SpinBoxBuilder;
+  onRotationChanged(handler: DslSignalHandlerValue): SpinBoxBuilder;
+  onScaleChanged(handler: DslSignalHandlerValue): SpinBoxBuilder;
+  onSmoothChanged(handler: DslSignalHandlerValue): SpinBoxBuilder;
+  onStateChanged(handler: DslSignalHandlerValue): SpinBoxBuilder;
+  onTransformOriginChanged(handler: DslSignalHandlerValue): SpinBoxBuilder;
+  onVisibleChanged(handler: DslSignalHandlerValue): SpinBoxBuilder;
+  onVisibleChildrenChanged(handler: DslSignalHandlerValue): SpinBoxBuilder;
+  onWidthChanged(handler: DslSignalHandlerValue): SpinBoxBuilder;
+  onWindowChanged(handler: DslSignalHandlerValue): SpinBoxBuilder;
+  onXChanged(handler: DslSignalHandlerValue): SpinBoxBuilder;
+  onYChanged(handler: DslSignalHandlerValue): SpinBoxBuilder;
+  onZChanged(handler: DslSignalHandlerValue): SpinBoxBuilder;
   anchors(setup: (b: AnchorsBuilder) => void): SpinBoxBuilder;
   layer(setup: (b: LayerBuilder) => void): SpinBoxBuilder;
 }

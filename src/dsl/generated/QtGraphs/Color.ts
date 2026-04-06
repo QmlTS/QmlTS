@@ -2,18 +2,24 @@
 // Type: Color
 // Generated from Qt 6.11.0
 
-import type { QmlColor, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlColor,
+  QmlObjectBuilder,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 export interface ColorBuilder {
   id(id: string): ColorBuilder;
   child(obj: QmlObjectBuilder): ColorBuilder;
+  children(...objs: QmlObjectBuilder[]): ColorBuilder;
 
   color(value: QmlColor): ColorBuilder;
   colorBind(expr: string): ColorBuilder;
   objectName(value: string): ColorBuilder;
   objectNameBind(expr: string): ColorBuilder;
-  onColorChanged(body: string): ColorBuilder;
-  onObjectNameChanged(body: string): ColorBuilder;
+  onColorChanged(handler: DslSignalHandlerValue): ColorBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): ColorBuilder;
 }
 
 const COLOR_META: TypeMetadata = {

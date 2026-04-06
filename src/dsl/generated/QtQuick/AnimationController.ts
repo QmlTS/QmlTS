@@ -2,7 +2,12 @@
 // Type: AnimationController
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 import type { AccessibleAttachedBuilder } from './Accessible.js';
 import type { EnterKeyAttachedBuilder } from './EnterKey.js';
@@ -23,6 +28,7 @@ import type { ViewTransitionAttachedBuilder } from './ViewTransition.js';
 export interface AnimationControllerBuilder {
   id(id: string): AnimationControllerBuilder;
   child(obj: QmlObjectBuilder): AnimationControllerBuilder;
+  children(...objs: QmlObjectBuilder[]): AnimationControllerBuilder;
 
   animation(value: QmlValue): AnimationControllerBuilder;
   animationBind(expr: string): AnimationControllerBuilder;
@@ -30,9 +36,9 @@ export interface AnimationControllerBuilder {
   objectNameBind(expr: string): AnimationControllerBuilder;
   progress(value: number): AnimationControllerBuilder;
   progressBind(expr: string): AnimationControllerBuilder;
-  onAnimationChanged(body: string): AnimationControllerBuilder;
-  onObjectNameChanged(body: string): AnimationControllerBuilder;
-  onProgressChanged(body: string): AnimationControllerBuilder;
+  onAnimationChanged(handler: DslSignalHandlerValue): AnimationControllerBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): AnimationControllerBuilder;
+  onProgressChanged(handler: DslSignalHandlerValue): AnimationControllerBuilder;
   accessible(setup: (b: AccessibleAttachedBuilder) => void): AnimationControllerBuilder;
   drag(setup: (b: DragAttachedBuilder) => void): AnimationControllerBuilder;
   enterKey(setup: (b: EnterKeyAttachedBuilder) => void): AnimationControllerBuilder;

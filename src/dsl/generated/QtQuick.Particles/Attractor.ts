@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlEnumToken,
   QmlObjectBuilder,
   QmlValue,
@@ -19,6 +20,7 @@ import type { ItemParticleAttachedBuilder } from './QQuickItemParticleAttached.j
 export interface AttractorBuilder {
   id(id: string): AttractorBuilder;
   child(obj: QmlObjectBuilder): AttractorBuilder;
+  children(...objs: QmlObjectBuilder[]): AttractorBuilder;
 
   activeFocusOnTab(value: boolean): AttractorBuilder;
   activeFocusOnTabBind(expr: string): AttractorBuilder;
@@ -90,48 +92,48 @@ export interface AttractorBuilder {
   yBind(expr: string): AttractorBuilder;
   z(value: number): AttractorBuilder;
   zBind(expr: string): AttractorBuilder;
-  onActiveFocusChanged(body: string): AttractorBuilder;
-  onActiveFocusOnTabChanged(body: string): AttractorBuilder;
-  onAffected(body: string): AttractorBuilder;
-  onAffectedParameterChanged(body: string): AttractorBuilder;
-  onAntialiasingChanged(body: string): AttractorBuilder;
-  onBaselineOffsetChanged(body: string): AttractorBuilder;
-  onChildrenChanged(body: string): AttractorBuilder;
-  onChildrenRectChanged(body: string): AttractorBuilder;
-  onClipChanged(body: string): AttractorBuilder;
-  onContainmentMaskChanged(body: string): AttractorBuilder;
-  onEnabledChanged(body: string): AttractorBuilder;
-  onFocusChanged(body: string): AttractorBuilder;
-  onFocusPolicyChanged(body: string): AttractorBuilder;
-  onGroupsChanged(body: string): AttractorBuilder;
-  onHeightChanged(body: string): AttractorBuilder;
-  onImplicitHeightChanged(body: string): AttractorBuilder;
-  onImplicitWidthChanged(body: string): AttractorBuilder;
-  onObjectNameChanged(body: string): AttractorBuilder;
-  onOnceChanged(body: string): AttractorBuilder;
-  onOpacityChanged(body: string): AttractorBuilder;
-  onPaletteChanged(body: string): AttractorBuilder;
-  onPaletteCreated(body: string): AttractorBuilder;
-  onParentChanged(body: string): AttractorBuilder;
-  onPointXChanged(body: string): AttractorBuilder;
-  onPointYChanged(body: string): AttractorBuilder;
-  onProportionalToDistanceChanged(body: string): AttractorBuilder;
-  onRotationChanged(body: string): AttractorBuilder;
-  onScaleChanged(body: string): AttractorBuilder;
-  onShapeChanged(body: string): AttractorBuilder;
-  onSmoothChanged(body: string): AttractorBuilder;
-  onStateChanged(body: string): AttractorBuilder;
-  onStrengthChanged(body: string): AttractorBuilder;
-  onSystemChanged(body: string): AttractorBuilder;
-  onTransformOriginChanged(body: string): AttractorBuilder;
-  onVisibleChanged(body: string): AttractorBuilder;
-  onVisibleChildrenChanged(body: string): AttractorBuilder;
-  onWhenCollidingWithChanged(body: string): AttractorBuilder;
-  onWidthChanged(body: string): AttractorBuilder;
-  onWindowChanged(body: string): AttractorBuilder;
-  onXChanged(body: string): AttractorBuilder;
-  onYChanged(body: string): AttractorBuilder;
-  onZChanged(body: string): AttractorBuilder;
+  onActiveFocusChanged(handler: DslSignalHandlerValue): AttractorBuilder;
+  onActiveFocusOnTabChanged(handler: DslSignalHandlerValue): AttractorBuilder;
+  onAffected(handler: DslSignalHandlerValue): AttractorBuilder;
+  onAffectedParameterChanged(handler: DslSignalHandlerValue): AttractorBuilder;
+  onAntialiasingChanged(handler: DslSignalHandlerValue): AttractorBuilder;
+  onBaselineOffsetChanged(handler: DslSignalHandlerValue): AttractorBuilder;
+  onChildrenChanged(handler: DslSignalHandlerValue): AttractorBuilder;
+  onChildrenRectChanged(handler: DslSignalHandlerValue): AttractorBuilder;
+  onClipChanged(handler: DslSignalHandlerValue): AttractorBuilder;
+  onContainmentMaskChanged(handler: DslSignalHandlerValue): AttractorBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): AttractorBuilder;
+  onFocusChanged(handler: DslSignalHandlerValue): AttractorBuilder;
+  onFocusPolicyChanged(handler: DslSignalHandlerValue): AttractorBuilder;
+  onGroupsChanged(handler: DslSignalHandlerValue): AttractorBuilder;
+  onHeightChanged(handler: DslSignalHandlerValue): AttractorBuilder;
+  onImplicitHeightChanged(handler: DslSignalHandlerValue): AttractorBuilder;
+  onImplicitWidthChanged(handler: DslSignalHandlerValue): AttractorBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): AttractorBuilder;
+  onOnceChanged(handler: DslSignalHandlerValue): AttractorBuilder;
+  onOpacityChanged(handler: DslSignalHandlerValue): AttractorBuilder;
+  onPaletteChanged(handler: DslSignalHandlerValue): AttractorBuilder;
+  onPaletteCreated(handler: DslSignalHandlerValue): AttractorBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): AttractorBuilder;
+  onPointXChanged(handler: DslSignalHandlerValue): AttractorBuilder;
+  onPointYChanged(handler: DslSignalHandlerValue): AttractorBuilder;
+  onProportionalToDistanceChanged(handler: DslSignalHandlerValue): AttractorBuilder;
+  onRotationChanged(handler: DslSignalHandlerValue): AttractorBuilder;
+  onScaleChanged(handler: DslSignalHandlerValue): AttractorBuilder;
+  onShapeChanged(handler: DslSignalHandlerValue): AttractorBuilder;
+  onSmoothChanged(handler: DslSignalHandlerValue): AttractorBuilder;
+  onStateChanged(handler: DslSignalHandlerValue): AttractorBuilder;
+  onStrengthChanged(handler: DslSignalHandlerValue): AttractorBuilder;
+  onSystemChanged(handler: DslSignalHandlerValue): AttractorBuilder;
+  onTransformOriginChanged(handler: DslSignalHandlerValue): AttractorBuilder;
+  onVisibleChanged(handler: DslSignalHandlerValue): AttractorBuilder;
+  onVisibleChildrenChanged(handler: DslSignalHandlerValue): AttractorBuilder;
+  onWhenCollidingWithChanged(handler: DslSignalHandlerValue): AttractorBuilder;
+  onWidthChanged(handler: DslSignalHandlerValue): AttractorBuilder;
+  onWindowChanged(handler: DslSignalHandlerValue): AttractorBuilder;
+  onXChanged(handler: DslSignalHandlerValue): AttractorBuilder;
+  onYChanged(handler: DslSignalHandlerValue): AttractorBuilder;
+  onZChanged(handler: DslSignalHandlerValue): AttractorBuilder;
   anchors(setup: (b: AnchorsBuilder) => void): AttractorBuilder;
   layer(setup: (b: LayerBuilder) => void): AttractorBuilder;
   itemParticle(setup: (b: ItemParticleAttachedBuilder) => void): AttractorBuilder;

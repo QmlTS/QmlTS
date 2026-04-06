@@ -2,7 +2,12 @@
 // Type: GroupBox
 // Generated from Qt 6.11.0
 
-import type { QmlEnumToken, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlEnumToken,
+  QmlObjectBuilder,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { QtObjectBuilder } from '../QML/QtObject.js';
 import type { ItemBuilder } from '../QtQuick/Item.js';
@@ -12,6 +17,7 @@ import type { LayerBuilder } from '../QtQuick/QQuickItemLayer.js';
 export interface GroupBoxBuilder {
   id(id: string): GroupBoxBuilder;
   child(obj: QmlObjectBuilder): GroupBoxBuilder;
+  children(...objs: QmlObjectBuilder[]): GroupBoxBuilder;
 
   activeFocusOnTab(value: boolean): GroupBoxBuilder;
   activeFocusOnTabBind(expr: string): GroupBoxBuilder;
@@ -75,44 +81,44 @@ export interface GroupBoxBuilder {
   yBind(expr: string): GroupBoxBuilder;
   z(value: number): GroupBoxBuilder;
   zBind(expr: string): GroupBoxBuilder;
-  onActiveFocusChanged(body: string): GroupBoxBuilder;
-  onActiveFocusOnTabChanged(body: string): GroupBoxBuilder;
-  onAntialiasingChanged(body: string): GroupBoxBuilder;
-  onBaselineOffsetChanged(body: string): GroupBoxBuilder;
-  onChildrenChanged(body: string): GroupBoxBuilder;
-  onChildrenRectChanged(body: string): GroupBoxBuilder;
-  onClipChanged(body: string): GroupBoxBuilder;
-  onContainmentMaskChanged(body: string): GroupBoxBuilder;
-  onContentPaddingChanged(body: string): GroupBoxBuilder;
-  onControlChanged(body: string): GroupBoxBuilder;
-  onEnabledChanged(body: string): GroupBoxBuilder;
-  onFocusChanged(body: string): GroupBoxBuilder;
-  onFocusPolicyChanged(body: string): GroupBoxBuilder;
-  onFontChanged(body: string): GroupBoxBuilder;
-  onGroupBoxPaddingChanged(body: string): GroupBoxBuilder;
-  onHeightChanged(body: string): GroupBoxBuilder;
-  onImplicitHeightChanged(body: string): GroupBoxBuilder;
-  onImplicitWidthChanged(body: string): GroupBoxBuilder;
-  onLabelPosChanged(body: string): GroupBoxBuilder;
-  onLayoutMarginsChanged(body: string): GroupBoxBuilder;
-  onMinimumSizeChanged(body: string): GroupBoxBuilder;
-  onObjectNameChanged(body: string): GroupBoxBuilder;
-  onOpacityChanged(body: string): GroupBoxBuilder;
-  onPaletteChanged(body: string): GroupBoxBuilder;
-  onPaletteCreated(body: string): GroupBoxBuilder;
-  onParentChanged(body: string): GroupBoxBuilder;
-  onRotationChanged(body: string): GroupBoxBuilder;
-  onScaleChanged(body: string): GroupBoxBuilder;
-  onSmoothChanged(body: string): GroupBoxBuilder;
-  onStateChanged(body: string): GroupBoxBuilder;
-  onTransformOriginChanged(body: string): GroupBoxBuilder;
-  onVisibleChanged(body: string): GroupBoxBuilder;
-  onVisibleChildrenChanged(body: string): GroupBoxBuilder;
-  onWidthChanged(body: string): GroupBoxBuilder;
-  onWindowChanged(body: string): GroupBoxBuilder;
-  onXChanged(body: string): GroupBoxBuilder;
-  onYChanged(body: string): GroupBoxBuilder;
-  onZChanged(body: string): GroupBoxBuilder;
+  onActiveFocusChanged(handler: DslSignalHandlerValue): GroupBoxBuilder;
+  onActiveFocusOnTabChanged(handler: DslSignalHandlerValue): GroupBoxBuilder;
+  onAntialiasingChanged(handler: DslSignalHandlerValue): GroupBoxBuilder;
+  onBaselineOffsetChanged(handler: DslSignalHandlerValue): GroupBoxBuilder;
+  onChildrenChanged(handler: DslSignalHandlerValue): GroupBoxBuilder;
+  onChildrenRectChanged(handler: DslSignalHandlerValue): GroupBoxBuilder;
+  onClipChanged(handler: DslSignalHandlerValue): GroupBoxBuilder;
+  onContainmentMaskChanged(handler: DslSignalHandlerValue): GroupBoxBuilder;
+  onContentPaddingChanged(handler: DslSignalHandlerValue): GroupBoxBuilder;
+  onControlChanged(handler: DslSignalHandlerValue): GroupBoxBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): GroupBoxBuilder;
+  onFocusChanged(handler: DslSignalHandlerValue): GroupBoxBuilder;
+  onFocusPolicyChanged(handler: DslSignalHandlerValue): GroupBoxBuilder;
+  onFontChanged(handler: DslSignalHandlerValue): GroupBoxBuilder;
+  onGroupBoxPaddingChanged(handler: DslSignalHandlerValue): GroupBoxBuilder;
+  onHeightChanged(handler: DslSignalHandlerValue): GroupBoxBuilder;
+  onImplicitHeightChanged(handler: DslSignalHandlerValue): GroupBoxBuilder;
+  onImplicitWidthChanged(handler: DslSignalHandlerValue): GroupBoxBuilder;
+  onLabelPosChanged(handler: DslSignalHandlerValue): GroupBoxBuilder;
+  onLayoutMarginsChanged(handler: DslSignalHandlerValue): GroupBoxBuilder;
+  onMinimumSizeChanged(handler: DslSignalHandlerValue): GroupBoxBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): GroupBoxBuilder;
+  onOpacityChanged(handler: DslSignalHandlerValue): GroupBoxBuilder;
+  onPaletteChanged(handler: DslSignalHandlerValue): GroupBoxBuilder;
+  onPaletteCreated(handler: DslSignalHandlerValue): GroupBoxBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): GroupBoxBuilder;
+  onRotationChanged(handler: DslSignalHandlerValue): GroupBoxBuilder;
+  onScaleChanged(handler: DslSignalHandlerValue): GroupBoxBuilder;
+  onSmoothChanged(handler: DslSignalHandlerValue): GroupBoxBuilder;
+  onStateChanged(handler: DslSignalHandlerValue): GroupBoxBuilder;
+  onTransformOriginChanged(handler: DslSignalHandlerValue): GroupBoxBuilder;
+  onVisibleChanged(handler: DslSignalHandlerValue): GroupBoxBuilder;
+  onVisibleChildrenChanged(handler: DslSignalHandlerValue): GroupBoxBuilder;
+  onWidthChanged(handler: DslSignalHandlerValue): GroupBoxBuilder;
+  onWindowChanged(handler: DslSignalHandlerValue): GroupBoxBuilder;
+  onXChanged(handler: DslSignalHandlerValue): GroupBoxBuilder;
+  onYChanged(handler: DslSignalHandlerValue): GroupBoxBuilder;
+  onZChanged(handler: DslSignalHandlerValue): GroupBoxBuilder;
   anchors(setup: (b: AnchorsBuilder) => void): GroupBoxBuilder;
   layer(setup: (b: LayerBuilder) => void): GroupBoxBuilder;
 }

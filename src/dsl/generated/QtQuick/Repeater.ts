@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlComponent,
   QmlEnumToken,
   QmlObjectBuilder,
@@ -34,6 +35,7 @@ import type { ViewTransitionAttachedBuilder } from './ViewTransition.js';
 export interface RepeaterBuilder {
   id(id: string): RepeaterBuilder;
   child(obj: QmlObjectBuilder): RepeaterBuilder;
+  children(...objs: QmlObjectBuilder[]): RepeaterBuilder;
 
   activeFocusOnTab(value: boolean): RepeaterBuilder;
   activeFocusOnTabBind(expr: string): RepeaterBuilder;
@@ -91,43 +93,43 @@ export interface RepeaterBuilder {
   yBind(expr: string): RepeaterBuilder;
   z(value: number): RepeaterBuilder;
   zBind(expr: string): RepeaterBuilder;
-  onActiveFocusChanged(body: string): RepeaterBuilder;
-  onActiveFocusOnTabChanged(body: string): RepeaterBuilder;
-  onAntialiasingChanged(body: string): RepeaterBuilder;
-  onBaselineOffsetChanged(body: string): RepeaterBuilder;
-  onChildrenChanged(body: string): RepeaterBuilder;
-  onChildrenRectChanged(body: string): RepeaterBuilder;
-  onClipChanged(body: string): RepeaterBuilder;
-  onContainmentMaskChanged(body: string): RepeaterBuilder;
-  onCountChanged(body: string): RepeaterBuilder;
-  onDelegateChanged(body: string): RepeaterBuilder;
-  onDelegateModelAccessChanged(body: string): RepeaterBuilder;
-  onEnabledChanged(body: string): RepeaterBuilder;
-  onFocusChanged(body: string): RepeaterBuilder;
-  onFocusPolicyChanged(body: string): RepeaterBuilder;
-  onHeightChanged(body: string): RepeaterBuilder;
-  onImplicitHeightChanged(body: string): RepeaterBuilder;
-  onImplicitWidthChanged(body: string): RepeaterBuilder;
-  onItemAdded(body: string): RepeaterBuilder;
-  onItemRemoved(body: string): RepeaterBuilder;
-  onModelChanged(body: string): RepeaterBuilder;
-  onObjectNameChanged(body: string): RepeaterBuilder;
-  onOpacityChanged(body: string): RepeaterBuilder;
-  onPaletteChanged(body: string): RepeaterBuilder;
-  onPaletteCreated(body: string): RepeaterBuilder;
-  onParentChanged(body: string): RepeaterBuilder;
-  onRotationChanged(body: string): RepeaterBuilder;
-  onScaleChanged(body: string): RepeaterBuilder;
-  onSmoothChanged(body: string): RepeaterBuilder;
-  onStateChanged(body: string): RepeaterBuilder;
-  onTransformOriginChanged(body: string): RepeaterBuilder;
-  onVisibleChanged(body: string): RepeaterBuilder;
-  onVisibleChildrenChanged(body: string): RepeaterBuilder;
-  onWidthChanged(body: string): RepeaterBuilder;
-  onWindowChanged(body: string): RepeaterBuilder;
-  onXChanged(body: string): RepeaterBuilder;
-  onYChanged(body: string): RepeaterBuilder;
-  onZChanged(body: string): RepeaterBuilder;
+  onActiveFocusChanged(handler: DslSignalHandlerValue): RepeaterBuilder;
+  onActiveFocusOnTabChanged(handler: DslSignalHandlerValue): RepeaterBuilder;
+  onAntialiasingChanged(handler: DslSignalHandlerValue): RepeaterBuilder;
+  onBaselineOffsetChanged(handler: DslSignalHandlerValue): RepeaterBuilder;
+  onChildrenChanged(handler: DslSignalHandlerValue): RepeaterBuilder;
+  onChildrenRectChanged(handler: DslSignalHandlerValue): RepeaterBuilder;
+  onClipChanged(handler: DslSignalHandlerValue): RepeaterBuilder;
+  onContainmentMaskChanged(handler: DslSignalHandlerValue): RepeaterBuilder;
+  onCountChanged(handler: DslSignalHandlerValue): RepeaterBuilder;
+  onDelegateChanged(handler: DslSignalHandlerValue): RepeaterBuilder;
+  onDelegateModelAccessChanged(handler: DslSignalHandlerValue): RepeaterBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): RepeaterBuilder;
+  onFocusChanged(handler: DslSignalHandlerValue): RepeaterBuilder;
+  onFocusPolicyChanged(handler: DslSignalHandlerValue): RepeaterBuilder;
+  onHeightChanged(handler: DslSignalHandlerValue): RepeaterBuilder;
+  onImplicitHeightChanged(handler: DslSignalHandlerValue): RepeaterBuilder;
+  onImplicitWidthChanged(handler: DslSignalHandlerValue): RepeaterBuilder;
+  onItemAdded(handler: DslSignalHandlerValue): RepeaterBuilder;
+  onItemRemoved(handler: DslSignalHandlerValue): RepeaterBuilder;
+  onModelChanged(handler: DslSignalHandlerValue): RepeaterBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): RepeaterBuilder;
+  onOpacityChanged(handler: DslSignalHandlerValue): RepeaterBuilder;
+  onPaletteChanged(handler: DslSignalHandlerValue): RepeaterBuilder;
+  onPaletteCreated(handler: DslSignalHandlerValue): RepeaterBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): RepeaterBuilder;
+  onRotationChanged(handler: DslSignalHandlerValue): RepeaterBuilder;
+  onScaleChanged(handler: DslSignalHandlerValue): RepeaterBuilder;
+  onSmoothChanged(handler: DslSignalHandlerValue): RepeaterBuilder;
+  onStateChanged(handler: DslSignalHandlerValue): RepeaterBuilder;
+  onTransformOriginChanged(handler: DslSignalHandlerValue): RepeaterBuilder;
+  onVisibleChanged(handler: DslSignalHandlerValue): RepeaterBuilder;
+  onVisibleChildrenChanged(handler: DslSignalHandlerValue): RepeaterBuilder;
+  onWidthChanged(handler: DslSignalHandlerValue): RepeaterBuilder;
+  onWindowChanged(handler: DslSignalHandlerValue): RepeaterBuilder;
+  onXChanged(handler: DslSignalHandlerValue): RepeaterBuilder;
+  onYChanged(handler: DslSignalHandlerValue): RepeaterBuilder;
+  onZChanged(handler: DslSignalHandlerValue): RepeaterBuilder;
   anchors(setup: (b: AnchorsBuilder) => void): RepeaterBuilder;
   layer(setup: (b: LayerBuilder) => void): RepeaterBuilder;
   accessible(setup: (b: AccessibleAttachedBuilder) => void): RepeaterBuilder;

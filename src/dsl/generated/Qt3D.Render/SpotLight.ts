@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlColor,
   QmlObjectBuilder,
   QmlValue,
@@ -13,6 +14,7 @@ import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface SpotLightBuilder {
   id(id: string): SpotLightBuilder;
   child(obj: QmlObjectBuilder): SpotLightBuilder;
+  children(...objs: QmlObjectBuilder[]): SpotLightBuilder;
 
   color(value: QmlColor): SpotLightBuilder;
   colorBind(expr: string): SpotLightBuilder;
@@ -36,20 +38,20 @@ export interface SpotLightBuilder {
   parentBind(expr: string): SpotLightBuilder;
   quadraticAttenuation(value: number): SpotLightBuilder;
   quadraticAttenuationBind(expr: string): SpotLightBuilder;
-  onAddedToEntity(body: string): SpotLightBuilder;
-  onColorChanged(body: string): SpotLightBuilder;
-  onConstantAttenuationChanged(body: string): SpotLightBuilder;
-  onCutOffAngleChanged(body: string): SpotLightBuilder;
-  onEnabledChanged(body: string): SpotLightBuilder;
-  onIntensityChanged(body: string): SpotLightBuilder;
-  onLinearAttenuationChanged(body: string): SpotLightBuilder;
-  onLocalDirectionChanged(body: string): SpotLightBuilder;
-  onNodeDestroyed(body: string): SpotLightBuilder;
-  onObjectNameChanged(body: string): SpotLightBuilder;
-  onParentChanged(body: string): SpotLightBuilder;
-  onQuadraticAttenuationChanged(body: string): SpotLightBuilder;
-  onRemovedFromEntity(body: string): SpotLightBuilder;
-  onShareableChanged(body: string): SpotLightBuilder;
+  onAddedToEntity(handler: DslSignalHandlerValue): SpotLightBuilder;
+  onColorChanged(handler: DslSignalHandlerValue): SpotLightBuilder;
+  onConstantAttenuationChanged(handler: DslSignalHandlerValue): SpotLightBuilder;
+  onCutOffAngleChanged(handler: DslSignalHandlerValue): SpotLightBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): SpotLightBuilder;
+  onIntensityChanged(handler: DslSignalHandlerValue): SpotLightBuilder;
+  onLinearAttenuationChanged(handler: DslSignalHandlerValue): SpotLightBuilder;
+  onLocalDirectionChanged(handler: DslSignalHandlerValue): SpotLightBuilder;
+  onNodeDestroyed(handler: DslSignalHandlerValue): SpotLightBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): SpotLightBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): SpotLightBuilder;
+  onQuadraticAttenuationChanged(handler: DslSignalHandlerValue): SpotLightBuilder;
+  onRemovedFromEntity(handler: DslSignalHandlerValue): SpotLightBuilder;
+  onShareableChanged(handler: DslSignalHandlerValue): SpotLightBuilder;
 }
 
 const SPOTLIGHT_META: TypeMetadata = {

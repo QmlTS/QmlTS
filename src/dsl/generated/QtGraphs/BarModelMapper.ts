@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlEnumToken,
   QmlObjectBuilder,
   QmlValue,
@@ -13,6 +14,7 @@ import type { BarSeriesBuilder } from './BarSeries.js';
 export interface BarModelMapperBuilder {
   id(id: string): BarModelMapperBuilder;
   child(obj: QmlObjectBuilder): BarModelMapperBuilder;
+  children(...objs: QmlObjectBuilder[]): BarModelMapperBuilder;
 
   count(value: number): BarModelMapperBuilder;
   countBind(expr: string): BarModelMapperBuilder;
@@ -30,14 +32,14 @@ export interface BarModelMapperBuilder {
   orientationBind(expr: string): BarModelMapperBuilder;
   series(value: BarSeriesBuilder): BarModelMapperBuilder;
   seriesBind(expr: string): BarModelMapperBuilder;
-  onCountChanged(body: string): BarModelMapperBuilder;
-  onFirstBarSetSectionChanged(body: string): BarModelMapperBuilder;
-  onFirstChanged(body: string): BarModelMapperBuilder;
-  onLastBarSetSectionChanged(body: string): BarModelMapperBuilder;
-  onModelChanged(body: string): BarModelMapperBuilder;
-  onObjectNameChanged(body: string): BarModelMapperBuilder;
-  onOrientationChanged(body: string): BarModelMapperBuilder;
-  onSeriesChanged(body: string): BarModelMapperBuilder;
+  onCountChanged(handler: DslSignalHandlerValue): BarModelMapperBuilder;
+  onFirstBarSetSectionChanged(handler: DslSignalHandlerValue): BarModelMapperBuilder;
+  onFirstChanged(handler: DslSignalHandlerValue): BarModelMapperBuilder;
+  onLastBarSetSectionChanged(handler: DslSignalHandlerValue): BarModelMapperBuilder;
+  onModelChanged(handler: DslSignalHandlerValue): BarModelMapperBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): BarModelMapperBuilder;
+  onOrientationChanged(handler: DslSignalHandlerValue): BarModelMapperBuilder;
+  onSeriesChanged(handler: DslSignalHandlerValue): BarModelMapperBuilder;
 }
 
 const BARMODELMAPPER_META: TypeMetadata = {

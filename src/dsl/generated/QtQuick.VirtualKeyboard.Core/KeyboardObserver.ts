@@ -2,18 +2,19 @@
 // Type: KeyboardObserver
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import type { DslSignalHandlerValue, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 import type { EnterKeyActionAttachedBuilder } from './EnterKeyActionAttachedType.js';
 import type { VirtualKeyboardAttachedBuilder } from './VirtualKeyboardAttachedType.js';
 export interface KeyboardObserverBuilder {
   id(id: string): KeyboardObserverBuilder;
   child(obj: QmlObjectBuilder): KeyboardObserverBuilder;
+  children(...objs: QmlObjectBuilder[]): KeyboardObserverBuilder;
 
   objectName(value: string): KeyboardObserverBuilder;
   objectNameBind(expr: string): KeyboardObserverBuilder;
-  onLayoutChanged(body: string): KeyboardObserverBuilder;
-  onObjectNameChanged(body: string): KeyboardObserverBuilder;
+  onLayoutChanged(handler: DslSignalHandlerValue): KeyboardObserverBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): KeyboardObserverBuilder;
   enterKeyAction(setup: (b: EnterKeyActionAttachedBuilder) => void): KeyboardObserverBuilder;
   virtualKeyboard(setup: (b: VirtualKeyboardAttachedBuilder) => void): KeyboardObserverBuilder;
 }

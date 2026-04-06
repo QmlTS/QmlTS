@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlColor,
   QmlEnumToken,
   QmlObjectBuilder,
@@ -17,6 +18,7 @@ import type { LayerBuilder } from '../QtQuick/QQuickItemLayer.js';
 export interface ProgressBarImplBuilder {
   id(id: string): ProgressBarImplBuilder;
   child(obj: QmlObjectBuilder): ProgressBarImplBuilder;
+  children(...objs: QmlObjectBuilder[]): ProgressBarImplBuilder;
 
   activeFocusOnTab(value: boolean): ProgressBarImplBuilder;
   activeFocusOnTabBind(expr: string): ProgressBarImplBuilder;
@@ -74,37 +76,37 @@ export interface ProgressBarImplBuilder {
   yBind(expr: string): ProgressBarImplBuilder;
   z(value: number): ProgressBarImplBuilder;
   zBind(expr: string): ProgressBarImplBuilder;
-  onActiveFocusChanged(body: string): ProgressBarImplBuilder;
-  onActiveFocusOnTabChanged(body: string): ProgressBarImplBuilder;
-  onAntialiasingChanged(body: string): ProgressBarImplBuilder;
-  onBaselineOffsetChanged(body: string): ProgressBarImplBuilder;
-  onChildrenChanged(body: string): ProgressBarImplBuilder;
-  onChildrenRectChanged(body: string): ProgressBarImplBuilder;
-  onClipChanged(body: string): ProgressBarImplBuilder;
-  onContainmentMaskChanged(body: string): ProgressBarImplBuilder;
-  onEnabledChanged(body: string): ProgressBarImplBuilder;
-  onFocusChanged(body: string): ProgressBarImplBuilder;
-  onFocusPolicyChanged(body: string): ProgressBarImplBuilder;
-  onHeightChanged(body: string): ProgressBarImplBuilder;
-  onImplicitHeightChanged(body: string): ProgressBarImplBuilder;
-  onImplicitWidthChanged(body: string): ProgressBarImplBuilder;
-  onObjectNameChanged(body: string): ProgressBarImplBuilder;
-  onOpacityChanged(body: string): ProgressBarImplBuilder;
-  onPaletteChanged(body: string): ProgressBarImplBuilder;
-  onPaletteCreated(body: string): ProgressBarImplBuilder;
-  onParentChanged(body: string): ProgressBarImplBuilder;
-  onRotationChanged(body: string): ProgressBarImplBuilder;
-  onScaleChanged(body: string): ProgressBarImplBuilder;
-  onSmoothChanged(body: string): ProgressBarImplBuilder;
-  onStateChanged(body: string): ProgressBarImplBuilder;
-  onTransformOriginChanged(body: string): ProgressBarImplBuilder;
-  onVisibleChanged(body: string): ProgressBarImplBuilder;
-  onVisibleChildrenChanged(body: string): ProgressBarImplBuilder;
-  onWidthChanged(body: string): ProgressBarImplBuilder;
-  onWindowChanged(body: string): ProgressBarImplBuilder;
-  onXChanged(body: string): ProgressBarImplBuilder;
-  onYChanged(body: string): ProgressBarImplBuilder;
-  onZChanged(body: string): ProgressBarImplBuilder;
+  onActiveFocusChanged(handler: DslSignalHandlerValue): ProgressBarImplBuilder;
+  onActiveFocusOnTabChanged(handler: DslSignalHandlerValue): ProgressBarImplBuilder;
+  onAntialiasingChanged(handler: DslSignalHandlerValue): ProgressBarImplBuilder;
+  onBaselineOffsetChanged(handler: DslSignalHandlerValue): ProgressBarImplBuilder;
+  onChildrenChanged(handler: DslSignalHandlerValue): ProgressBarImplBuilder;
+  onChildrenRectChanged(handler: DslSignalHandlerValue): ProgressBarImplBuilder;
+  onClipChanged(handler: DslSignalHandlerValue): ProgressBarImplBuilder;
+  onContainmentMaskChanged(handler: DslSignalHandlerValue): ProgressBarImplBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): ProgressBarImplBuilder;
+  onFocusChanged(handler: DslSignalHandlerValue): ProgressBarImplBuilder;
+  onFocusPolicyChanged(handler: DslSignalHandlerValue): ProgressBarImplBuilder;
+  onHeightChanged(handler: DslSignalHandlerValue): ProgressBarImplBuilder;
+  onImplicitHeightChanged(handler: DslSignalHandlerValue): ProgressBarImplBuilder;
+  onImplicitWidthChanged(handler: DslSignalHandlerValue): ProgressBarImplBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): ProgressBarImplBuilder;
+  onOpacityChanged(handler: DslSignalHandlerValue): ProgressBarImplBuilder;
+  onPaletteChanged(handler: DslSignalHandlerValue): ProgressBarImplBuilder;
+  onPaletteCreated(handler: DslSignalHandlerValue): ProgressBarImplBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): ProgressBarImplBuilder;
+  onRotationChanged(handler: DslSignalHandlerValue): ProgressBarImplBuilder;
+  onScaleChanged(handler: DslSignalHandlerValue): ProgressBarImplBuilder;
+  onSmoothChanged(handler: DslSignalHandlerValue): ProgressBarImplBuilder;
+  onStateChanged(handler: DslSignalHandlerValue): ProgressBarImplBuilder;
+  onTransformOriginChanged(handler: DslSignalHandlerValue): ProgressBarImplBuilder;
+  onVisibleChanged(handler: DslSignalHandlerValue): ProgressBarImplBuilder;
+  onVisibleChildrenChanged(handler: DslSignalHandlerValue): ProgressBarImplBuilder;
+  onWidthChanged(handler: DslSignalHandlerValue): ProgressBarImplBuilder;
+  onWindowChanged(handler: DslSignalHandlerValue): ProgressBarImplBuilder;
+  onXChanged(handler: DslSignalHandlerValue): ProgressBarImplBuilder;
+  onYChanged(handler: DslSignalHandlerValue): ProgressBarImplBuilder;
+  onZChanged(handler: DslSignalHandlerValue): ProgressBarImplBuilder;
   anchors(setup: (b: AnchorsBuilder) => void): ProgressBarImplBuilder;
   layer(setup: (b: LayerBuilder) => void): ProgressBarImplBuilder;
 }

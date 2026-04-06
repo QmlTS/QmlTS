@@ -2,12 +2,18 @@
 // Type: KeyboardHandler
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 import type { KeyboardDeviceBuilder } from './KeyboardDevice.js';
 export interface KeyboardHandlerBuilder {
   id(id: string): KeyboardHandlerBuilder;
   child(obj: QmlObjectBuilder): KeyboardHandlerBuilder;
+  children(...objs: QmlObjectBuilder[]): KeyboardHandlerBuilder;
 
   enabled(value: boolean): KeyboardHandlerBuilder;
   enabledBind(expr: string): KeyboardHandlerBuilder;
@@ -21,55 +27,55 @@ export interface KeyboardHandlerBuilder {
   parentBind(expr: string): KeyboardHandlerBuilder;
   sourceDevice(value: KeyboardDeviceBuilder): KeyboardHandlerBuilder;
   sourceDeviceBind(expr: string): KeyboardHandlerBuilder;
-  onAddedToEntity(body: string): KeyboardHandlerBuilder;
-  onAsteriskPressed(body: string): KeyboardHandlerBuilder;
-  onBackPressed(body: string): KeyboardHandlerBuilder;
-  onBacktabPressed(body: string): KeyboardHandlerBuilder;
-  onCallPressed(body: string): KeyboardHandlerBuilder;
-  onCancelPressed(body: string): KeyboardHandlerBuilder;
-  onContext1Pressed(body: string): KeyboardHandlerBuilder;
-  onContext2Pressed(body: string): KeyboardHandlerBuilder;
-  onContext3Pressed(body: string): KeyboardHandlerBuilder;
-  onContext4Pressed(body: string): KeyboardHandlerBuilder;
-  onDeletePressed(body: string): KeyboardHandlerBuilder;
-  onDigit0Pressed(body: string): KeyboardHandlerBuilder;
-  onDigit1Pressed(body: string): KeyboardHandlerBuilder;
-  onDigit2Pressed(body: string): KeyboardHandlerBuilder;
-  onDigit3Pressed(body: string): KeyboardHandlerBuilder;
-  onDigit4Pressed(body: string): KeyboardHandlerBuilder;
-  onDigit5Pressed(body: string): KeyboardHandlerBuilder;
-  onDigit6Pressed(body: string): KeyboardHandlerBuilder;
-  onDigit7Pressed(body: string): KeyboardHandlerBuilder;
-  onDigit8Pressed(body: string): KeyboardHandlerBuilder;
-  onDigit9Pressed(body: string): KeyboardHandlerBuilder;
-  onDownPressed(body: string): KeyboardHandlerBuilder;
-  onEnabledChanged(body: string): KeyboardHandlerBuilder;
-  onEnterPressed(body: string): KeyboardHandlerBuilder;
-  onEscapePressed(body: string): KeyboardHandlerBuilder;
-  onFlipPressed(body: string): KeyboardHandlerBuilder;
-  onFocusChanged(body: string): KeyboardHandlerBuilder;
-  onHangupPressed(body: string): KeyboardHandlerBuilder;
-  onLeftPressed(body: string): KeyboardHandlerBuilder;
-  onMenuPressed(body: string): KeyboardHandlerBuilder;
-  onNoPressed(body: string): KeyboardHandlerBuilder;
-  onNodeDestroyed(body: string): KeyboardHandlerBuilder;
-  onNumberSignPressed(body: string): KeyboardHandlerBuilder;
-  onObjectNameChanged(body: string): KeyboardHandlerBuilder;
-  onParentChanged(body: string): KeyboardHandlerBuilder;
-  onPressed(body: string): KeyboardHandlerBuilder;
-  onReleased(body: string): KeyboardHandlerBuilder;
-  onRemovedFromEntity(body: string): KeyboardHandlerBuilder;
-  onReturnPressed(body: string): KeyboardHandlerBuilder;
-  onRightPressed(body: string): KeyboardHandlerBuilder;
-  onSelectPressed(body: string): KeyboardHandlerBuilder;
-  onShareableChanged(body: string): KeyboardHandlerBuilder;
-  onSourceDeviceChanged(body: string): KeyboardHandlerBuilder;
-  onSpacePressed(body: string): KeyboardHandlerBuilder;
-  onTabPressed(body: string): KeyboardHandlerBuilder;
-  onUpPressed(body: string): KeyboardHandlerBuilder;
-  onVolumeDownPressed(body: string): KeyboardHandlerBuilder;
-  onVolumeUpPressed(body: string): KeyboardHandlerBuilder;
-  onYesPressed(body: string): KeyboardHandlerBuilder;
+  onAddedToEntity(handler: DslSignalHandlerValue): KeyboardHandlerBuilder;
+  onAsteriskPressed(handler: DslSignalHandlerValue): KeyboardHandlerBuilder;
+  onBackPressed(handler: DslSignalHandlerValue): KeyboardHandlerBuilder;
+  onBacktabPressed(handler: DslSignalHandlerValue): KeyboardHandlerBuilder;
+  onCallPressed(handler: DslSignalHandlerValue): KeyboardHandlerBuilder;
+  onCancelPressed(handler: DslSignalHandlerValue): KeyboardHandlerBuilder;
+  onContext1Pressed(handler: DslSignalHandlerValue): KeyboardHandlerBuilder;
+  onContext2Pressed(handler: DslSignalHandlerValue): KeyboardHandlerBuilder;
+  onContext3Pressed(handler: DslSignalHandlerValue): KeyboardHandlerBuilder;
+  onContext4Pressed(handler: DslSignalHandlerValue): KeyboardHandlerBuilder;
+  onDeletePressed(handler: DslSignalHandlerValue): KeyboardHandlerBuilder;
+  onDigit0Pressed(handler: DslSignalHandlerValue): KeyboardHandlerBuilder;
+  onDigit1Pressed(handler: DslSignalHandlerValue): KeyboardHandlerBuilder;
+  onDigit2Pressed(handler: DslSignalHandlerValue): KeyboardHandlerBuilder;
+  onDigit3Pressed(handler: DslSignalHandlerValue): KeyboardHandlerBuilder;
+  onDigit4Pressed(handler: DslSignalHandlerValue): KeyboardHandlerBuilder;
+  onDigit5Pressed(handler: DslSignalHandlerValue): KeyboardHandlerBuilder;
+  onDigit6Pressed(handler: DslSignalHandlerValue): KeyboardHandlerBuilder;
+  onDigit7Pressed(handler: DslSignalHandlerValue): KeyboardHandlerBuilder;
+  onDigit8Pressed(handler: DslSignalHandlerValue): KeyboardHandlerBuilder;
+  onDigit9Pressed(handler: DslSignalHandlerValue): KeyboardHandlerBuilder;
+  onDownPressed(handler: DslSignalHandlerValue): KeyboardHandlerBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): KeyboardHandlerBuilder;
+  onEnterPressed(handler: DslSignalHandlerValue): KeyboardHandlerBuilder;
+  onEscapePressed(handler: DslSignalHandlerValue): KeyboardHandlerBuilder;
+  onFlipPressed(handler: DslSignalHandlerValue): KeyboardHandlerBuilder;
+  onFocusChanged(handler: DslSignalHandlerValue): KeyboardHandlerBuilder;
+  onHangupPressed(handler: DslSignalHandlerValue): KeyboardHandlerBuilder;
+  onLeftPressed(handler: DslSignalHandlerValue): KeyboardHandlerBuilder;
+  onMenuPressed(handler: DslSignalHandlerValue): KeyboardHandlerBuilder;
+  onNoPressed(handler: DslSignalHandlerValue): KeyboardHandlerBuilder;
+  onNodeDestroyed(handler: DslSignalHandlerValue): KeyboardHandlerBuilder;
+  onNumberSignPressed(handler: DslSignalHandlerValue): KeyboardHandlerBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): KeyboardHandlerBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): KeyboardHandlerBuilder;
+  onPressed(handler: DslSignalHandlerValue): KeyboardHandlerBuilder;
+  onReleased(handler: DslSignalHandlerValue): KeyboardHandlerBuilder;
+  onRemovedFromEntity(handler: DslSignalHandlerValue): KeyboardHandlerBuilder;
+  onReturnPressed(handler: DslSignalHandlerValue): KeyboardHandlerBuilder;
+  onRightPressed(handler: DslSignalHandlerValue): KeyboardHandlerBuilder;
+  onSelectPressed(handler: DslSignalHandlerValue): KeyboardHandlerBuilder;
+  onShareableChanged(handler: DslSignalHandlerValue): KeyboardHandlerBuilder;
+  onSourceDeviceChanged(handler: DslSignalHandlerValue): KeyboardHandlerBuilder;
+  onSpacePressed(handler: DslSignalHandlerValue): KeyboardHandlerBuilder;
+  onTabPressed(handler: DslSignalHandlerValue): KeyboardHandlerBuilder;
+  onUpPressed(handler: DslSignalHandlerValue): KeyboardHandlerBuilder;
+  onVolumeDownPressed(handler: DslSignalHandlerValue): KeyboardHandlerBuilder;
+  onVolumeUpPressed(handler: DslSignalHandlerValue): KeyboardHandlerBuilder;
+  onYesPressed(handler: DslSignalHandlerValue): KeyboardHandlerBuilder;
 }
 
 const KEYBOARDHANDLER_META: TypeMetadata = {

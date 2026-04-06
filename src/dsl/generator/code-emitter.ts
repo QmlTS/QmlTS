@@ -96,13 +96,17 @@ export class CodeEmitter {
     // Signal handlers
     for (const sig of surface.signals) {
       const handlerName = `on${capitalize(sig.name)}`;
-      lines.push(`  ${handlerName}(body: string): ${builderName};`);
+      lines.push(`  ${handlerName}(handler: DslSignalHandlerValue): ${builderName};`);
     }
     lines.push('}');
 
     // Imports — surface files are type-only, filter to actually used
     const codeBody = lines.join('\n');
-    const runtimeImports = filterUsedImports(this.mapper.getRequiredRuntimeImports(), codeBody);
+    const allRuntimeImports = [...this.mapper.getRequiredRuntimeImports()];
+    if (codeBody.includes('DslSignalHandlerValue')) {
+      allRuntimeImports.push('DslSignalHandlerValue');
+    }
+    const runtimeImports = filterUsedImports(allRuntimeImports, codeBody);
     const peerRefs = filterUsedPeerRefs(this.mapper.getPeerTypeRefs(), codeBody);
     const importSection = this.buildSurfaceImportSection(runtimeImports, peerRefs, moduleUri);
     const header = this.buildHeader(`Attached type: ${surface.ownerQmlName}`, importSection);
@@ -131,6 +135,7 @@ export class CodeEmitter {
     ifaceLines.push(`export interface ${builderName} {`);
     ifaceLines.push(`  id(id: string): ${builderName};`);
     ifaceLines.push(`  child(obj: QmlObjectBuilder): ${builderName};`);
+    ifaceLines.push(`  children(...objs: QmlObjectBuilder[]): ${builderName};`);
     ifaceLines.push('');
 
     // Properties (writable only)
@@ -144,7 +149,7 @@ export class CodeEmitter {
     // Signal handlers
     for (const sig of sortedByName(allSignals)) {
       const handlerName = `on${capitalize(sig.name)}`;
-      ifaceLines.push(`  ${handlerName}(body: string): ${builderName};`);
+      ifaceLines.push(`  ${handlerName}(handler: DslSignalHandlerValue): ${builderName};`);
     }
 
     // Grouped property methods
@@ -224,6 +229,7 @@ export class CodeEmitter {
       runtimeImports,
       resolvedPeerRefs,
       hasEnums,
+      allSignals.length > 0,
       type.moduleUri,
     );
     const header = this.buildHeader(type.dslSymbolName, importSection);
@@ -488,6 +494,7 @@ export class CodeEmitter {
     runtimeImports: string[],
     peerRefs: PeerTypeRef[],
     needsEnumToken: boolean,
+    needsHandlerType: boolean,
     currentModule: string,
   ): string {
     const lines: string[] = [];
@@ -501,6 +508,9 @@ export class CodeEmitter {
 
     // Type-only imports (used only in type positions)
     const typeImports = ['QmlObjectBuilder', 'TypeMetadata', ...runtimeImports];
+    if (needsHandlerType) {
+      typeImports.push('DslSignalHandlerValue');
+    }
     typeImports.sort();
 
     lines.push(`import type { ${typeImports.join(', ')} } from '../../runtime/index.js';`);

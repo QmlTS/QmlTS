@@ -2,7 +2,13 @@
 // Type: TextMetrics
 // Generated from Qt 6.11.0
 
-import type { QmlEnumToken, QmlFont, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlEnumToken,
+  QmlFont,
+  QmlObjectBuilder,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 import type { AccessibleAttachedBuilder } from './Accessible.js';
 import type { EnterKeyAttachedBuilder } from './EnterKey.js';
@@ -23,6 +29,7 @@ import type { ViewTransitionAttachedBuilder } from './ViewTransition.js';
 export interface TextMetricsBuilder {
   id(id: string): TextMetricsBuilder;
   child(obj: QmlObjectBuilder): TextMetricsBuilder;
+  children(...objs: QmlObjectBuilder[]): TextMetricsBuilder;
 
   elide(value: QmlEnumToken): TextMetricsBuilder;
   elideBind(expr: string): TextMetricsBuilder;
@@ -36,13 +43,13 @@ export interface TextMetricsBuilder {
   renderTypeBind(expr: string): TextMetricsBuilder;
   text(value: string): TextMetricsBuilder;
   textBind(expr: string): TextMetricsBuilder;
-  onElideChanged(body: string): TextMetricsBuilder;
-  onElideWidthChanged(body: string): TextMetricsBuilder;
-  onFontChanged(body: string): TextMetricsBuilder;
-  onMetricsChanged(body: string): TextMetricsBuilder;
-  onObjectNameChanged(body: string): TextMetricsBuilder;
-  onRenderTypeChanged(body: string): TextMetricsBuilder;
-  onTextChanged(body: string): TextMetricsBuilder;
+  onElideChanged(handler: DslSignalHandlerValue): TextMetricsBuilder;
+  onElideWidthChanged(handler: DslSignalHandlerValue): TextMetricsBuilder;
+  onFontChanged(handler: DslSignalHandlerValue): TextMetricsBuilder;
+  onMetricsChanged(handler: DslSignalHandlerValue): TextMetricsBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): TextMetricsBuilder;
+  onRenderTypeChanged(handler: DslSignalHandlerValue): TextMetricsBuilder;
+  onTextChanged(handler: DslSignalHandlerValue): TextMetricsBuilder;
   accessible(setup: (b: AccessibleAttachedBuilder) => void): TextMetricsBuilder;
   drag(setup: (b: DragAttachedBuilder) => void): TextMetricsBuilder;
   enterKey(setup: (b: EnterKeyAttachedBuilder) => void): TextMetricsBuilder;

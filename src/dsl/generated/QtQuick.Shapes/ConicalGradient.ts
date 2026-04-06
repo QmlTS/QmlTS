@@ -2,11 +2,17 @@
 // Type: ConicalGradient
 // Generated from Qt 6.11.0
 
-import type { QmlEnumToken, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlEnumToken,
+  QmlObjectBuilder,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface ConicalGradientBuilder {
   id(id: string): ConicalGradientBuilder;
   child(obj: QmlObjectBuilder): ConicalGradientBuilder;
+  children(...objs: QmlObjectBuilder[]): ConicalGradientBuilder;
 
   angle(value: number): ConicalGradientBuilder;
   angleBind(expr: string): ConicalGradientBuilder;
@@ -20,13 +26,13 @@ export interface ConicalGradientBuilder {
   orientationBind(expr: string): ConicalGradientBuilder;
   spread(value: QmlEnumToken): ConicalGradientBuilder;
   spreadBind(expr: string): ConicalGradientBuilder;
-  onAngleChanged(body: string): ConicalGradientBuilder;
-  onCenterXChanged(body: string): ConicalGradientBuilder;
-  onCenterYChanged(body: string): ConicalGradientBuilder;
-  onObjectNameChanged(body: string): ConicalGradientBuilder;
-  onOrientationChanged(body: string): ConicalGradientBuilder;
-  onSpreadChanged(body: string): ConicalGradientBuilder;
-  onUpdated(body: string): ConicalGradientBuilder;
+  onAngleChanged(handler: DslSignalHandlerValue): ConicalGradientBuilder;
+  onCenterXChanged(handler: DslSignalHandlerValue): ConicalGradientBuilder;
+  onCenterYChanged(handler: DslSignalHandlerValue): ConicalGradientBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): ConicalGradientBuilder;
+  onOrientationChanged(handler: DslSignalHandlerValue): ConicalGradientBuilder;
+  onSpreadChanged(handler: DslSignalHandlerValue): ConicalGradientBuilder;
+  onUpdated(handler: DslSignalHandlerValue): ConicalGradientBuilder;
 }
 
 const CONICALGRADIENT_META: TypeMetadata = {

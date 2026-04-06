@@ -2,11 +2,17 @@
 // Type: RadialGradient
 // Generated from Qt 6.11.0
 
-import type { QmlEnumToken, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlEnumToken,
+  QmlObjectBuilder,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface RadialGradientBuilder {
   id(id: string): RadialGradientBuilder;
   child(obj: QmlObjectBuilder): RadialGradientBuilder;
+  children(...objs: QmlObjectBuilder[]): RadialGradientBuilder;
 
   centerRadius(value: number): RadialGradientBuilder;
   centerRadiusBind(expr: string): RadialGradientBuilder;
@@ -26,16 +32,16 @@ export interface RadialGradientBuilder {
   orientationBind(expr: string): RadialGradientBuilder;
   spread(value: QmlEnumToken): RadialGradientBuilder;
   spreadBind(expr: string): RadialGradientBuilder;
-  onCenterRadiusChanged(body: string): RadialGradientBuilder;
-  onCenterXChanged(body: string): RadialGradientBuilder;
-  onCenterYChanged(body: string): RadialGradientBuilder;
-  onFocalRadiusChanged(body: string): RadialGradientBuilder;
-  onFocalXChanged(body: string): RadialGradientBuilder;
-  onFocalYChanged(body: string): RadialGradientBuilder;
-  onObjectNameChanged(body: string): RadialGradientBuilder;
-  onOrientationChanged(body: string): RadialGradientBuilder;
-  onSpreadChanged(body: string): RadialGradientBuilder;
-  onUpdated(body: string): RadialGradientBuilder;
+  onCenterRadiusChanged(handler: DslSignalHandlerValue): RadialGradientBuilder;
+  onCenterXChanged(handler: DslSignalHandlerValue): RadialGradientBuilder;
+  onCenterYChanged(handler: DslSignalHandlerValue): RadialGradientBuilder;
+  onFocalRadiusChanged(handler: DslSignalHandlerValue): RadialGradientBuilder;
+  onFocalXChanged(handler: DslSignalHandlerValue): RadialGradientBuilder;
+  onFocalYChanged(handler: DslSignalHandlerValue): RadialGradientBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): RadialGradientBuilder;
+  onOrientationChanged(handler: DslSignalHandlerValue): RadialGradientBuilder;
+  onSpreadChanged(handler: DslSignalHandlerValue): RadialGradientBuilder;
+  onUpdated(handler: DslSignalHandlerValue): RadialGradientBuilder;
 }
 
 const RADIALGRADIENT_META: TypeMetadata = {

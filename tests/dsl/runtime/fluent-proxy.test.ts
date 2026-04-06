@@ -209,4 +209,56 @@ describe('createFluentBuilder', () => {
     expect(ast.kind).toBe('ObjectDefinition');
     expect(ast.typeName).toBe('TestRect');
   });
+
+  // ─── Phase 06 Step 1: children() via proxy ────────────────────────────
+
+  test('children() adds multiple child objects', () => {
+    const builder = createFluentBuilder('TestRect', testMeta);
+    const child1 = createFluentBuilder('Child1', {
+      typeName: 'Child1',
+      properties: [],
+      signals: [],
+      grouped: [],
+      attached: [],
+    });
+    const child2 = createFluentBuilder('Child2', {
+      typeName: 'Child2',
+      properties: [],
+      signals: [],
+      grouped: [],
+      attached: [],
+    });
+    builder.children(child1, child2);
+    const ast = builder.build();
+    const childNodes = ast.members.filter((m) => m.kind === 'ObjectDefinition');
+    expect(childNodes.length).toBe(2);
+    expect((childNodes[0] as { typeName: string }).typeName).toBe('Child1');
+    expect((childNodes[1] as { typeName: string }).typeName).toBe('Child2');
+  });
+
+  test('children() returns builder for chaining', () => {
+    const builder = createFluentBuilder('TestRect', testMeta);
+    const result = builder.children();
+    expect(result).toBe(builder);
+  });
+
+  // ─── Phase 06 Step 1: Arrow handler via proxy ─────────────────────────
+
+  test('signal handler accepts arrow function', () => {
+    const builder = createFluentBuilder('TestRect', testMeta);
+    (builder as any).onClicked(() => console.log('clicked'));
+    const ast = builder.build();
+    const handler = ast.members.find((m) => m.kind === 'SignalHandler');
+    expect(handler).toBeDefined();
+    if (handler && handler.kind === 'SignalHandler') {
+      expect(handler.name).toBe('onClicked');
+      expect(handler.body.form).toBe('arrow');
+    }
+  });
+
+  test('signal handler with named function throws', () => {
+    const builder = createFluentBuilder('TestRect', testMeta);
+    function myHandler() {}
+    expect(() => (builder as any).onClicked(myHandler)).toThrow(TypeError);
+  });
 });

@@ -2,11 +2,17 @@
 // Type: HumiditySensor
 // Generated from Qt 6.11.0
 
-import type { QmlEnumToken, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlEnumToken,
+  QmlObjectBuilder,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface HumiditySensorBuilder {
   id(id: string): HumiditySensorBuilder;
   child(obj: QmlObjectBuilder): HumiditySensorBuilder;
+  children(...objs: QmlObjectBuilder[]): HumiditySensorBuilder;
 
   active(value: boolean): HumiditySensorBuilder;
   activeBind(expr: string): HumiditySensorBuilder;
@@ -28,26 +34,26 @@ export interface HumiditySensorBuilder {
   skipDuplicatesBind(expr: string): HumiditySensorBuilder;
   userOrientation(value: number): HumiditySensorBuilder;
   userOrientationBind(expr: string): HumiditySensorBuilder;
-  onActiveChanged(body: string): HumiditySensorBuilder;
-  onAlwaysOnChanged(body: string): HumiditySensorBuilder;
-  onAvailableDataRatesChanged(body: string): HumiditySensorBuilder;
-  onAxesOrientationModeChanged(body: string): HumiditySensorBuilder;
-  onBufferSizeChanged(body: string): HumiditySensorBuilder;
-  onBusyChanged(body: string): HumiditySensorBuilder;
-  onConnectedToBackendChanged(body: string): HumiditySensorBuilder;
-  onCurrentOrientationChanged(body: string): HumiditySensorBuilder;
-  onDataRateChanged(body: string): HumiditySensorBuilder;
-  onDescriptionChanged(body: string): HumiditySensorBuilder;
-  onEfficientBufferSizeChanged(body: string): HumiditySensorBuilder;
-  onErrorChanged(body: string): HumiditySensorBuilder;
-  onIdentifierChanged(body: string): HumiditySensorBuilder;
-  onMaxBufferSizeChanged(body: string): HumiditySensorBuilder;
-  onObjectNameChanged(body: string): HumiditySensorBuilder;
-  onOutputRangeChanged(body: string): HumiditySensorBuilder;
-  onOutputRangesChanged(body: string): HumiditySensorBuilder;
-  onReadingChanged(body: string): HumiditySensorBuilder;
-  onSkipDuplicatesChanged(body: string): HumiditySensorBuilder;
-  onUserOrientationChanged(body: string): HumiditySensorBuilder;
+  onActiveChanged(handler: DslSignalHandlerValue): HumiditySensorBuilder;
+  onAlwaysOnChanged(handler: DslSignalHandlerValue): HumiditySensorBuilder;
+  onAvailableDataRatesChanged(handler: DslSignalHandlerValue): HumiditySensorBuilder;
+  onAxesOrientationModeChanged(handler: DslSignalHandlerValue): HumiditySensorBuilder;
+  onBufferSizeChanged(handler: DslSignalHandlerValue): HumiditySensorBuilder;
+  onBusyChanged(handler: DslSignalHandlerValue): HumiditySensorBuilder;
+  onConnectedToBackendChanged(handler: DslSignalHandlerValue): HumiditySensorBuilder;
+  onCurrentOrientationChanged(handler: DslSignalHandlerValue): HumiditySensorBuilder;
+  onDataRateChanged(handler: DslSignalHandlerValue): HumiditySensorBuilder;
+  onDescriptionChanged(handler: DslSignalHandlerValue): HumiditySensorBuilder;
+  onEfficientBufferSizeChanged(handler: DslSignalHandlerValue): HumiditySensorBuilder;
+  onErrorChanged(handler: DslSignalHandlerValue): HumiditySensorBuilder;
+  onIdentifierChanged(handler: DslSignalHandlerValue): HumiditySensorBuilder;
+  onMaxBufferSizeChanged(handler: DslSignalHandlerValue): HumiditySensorBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): HumiditySensorBuilder;
+  onOutputRangeChanged(handler: DslSignalHandlerValue): HumiditySensorBuilder;
+  onOutputRangesChanged(handler: DslSignalHandlerValue): HumiditySensorBuilder;
+  onReadingChanged(handler: DslSignalHandlerValue): HumiditySensorBuilder;
+  onSkipDuplicatesChanged(handler: DslSignalHandlerValue): HumiditySensorBuilder;
+  onUserOrientationChanged(handler: DslSignalHandlerValue): HumiditySensorBuilder;
 }
 
 const HUMIDITYSENSOR_META: TypeMetadata = {

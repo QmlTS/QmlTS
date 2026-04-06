@@ -2,13 +2,19 @@
 // Type: ClipAnimator
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { ChannelMapperBuilder } from './ChannelMapper.js';
 import type { ClockBuilder } from './Clock.js';
 export interface ClipAnimatorBuilder {
   id(id: string): ClipAnimatorBuilder;
   child(obj: QmlObjectBuilder): ClipAnimatorBuilder;
+  children(...objs: QmlObjectBuilder[]): ClipAnimatorBuilder;
 
   channelMapper(value: ChannelMapperBuilder): ClipAnimatorBuilder;
   channelMapperBind(expr: string): ClipAnimatorBuilder;
@@ -30,19 +36,19 @@ export interface ClipAnimatorBuilder {
   parentBind(expr: string): ClipAnimatorBuilder;
   running(value: boolean): ClipAnimatorBuilder;
   runningBind(expr: string): ClipAnimatorBuilder;
-  onAddedToEntity(body: string): ClipAnimatorBuilder;
-  onChannelMapperChanged(body: string): ClipAnimatorBuilder;
-  onClipChanged(body: string): ClipAnimatorBuilder;
-  onClockChanged(body: string): ClipAnimatorBuilder;
-  onEnabledChanged(body: string): ClipAnimatorBuilder;
-  onLoopCountChanged(body: string): ClipAnimatorBuilder;
-  onNodeDestroyed(body: string): ClipAnimatorBuilder;
-  onNormalizedTimeChanged(body: string): ClipAnimatorBuilder;
-  onObjectNameChanged(body: string): ClipAnimatorBuilder;
-  onParentChanged(body: string): ClipAnimatorBuilder;
-  onRemovedFromEntity(body: string): ClipAnimatorBuilder;
-  onRunningChanged(body: string): ClipAnimatorBuilder;
-  onShareableChanged(body: string): ClipAnimatorBuilder;
+  onAddedToEntity(handler: DslSignalHandlerValue): ClipAnimatorBuilder;
+  onChannelMapperChanged(handler: DslSignalHandlerValue): ClipAnimatorBuilder;
+  onClipChanged(handler: DslSignalHandlerValue): ClipAnimatorBuilder;
+  onClockChanged(handler: DslSignalHandlerValue): ClipAnimatorBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): ClipAnimatorBuilder;
+  onLoopCountChanged(handler: DslSignalHandlerValue): ClipAnimatorBuilder;
+  onNodeDestroyed(handler: DslSignalHandlerValue): ClipAnimatorBuilder;
+  onNormalizedTimeChanged(handler: DslSignalHandlerValue): ClipAnimatorBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): ClipAnimatorBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): ClipAnimatorBuilder;
+  onRemovedFromEntity(handler: DslSignalHandlerValue): ClipAnimatorBuilder;
+  onRunningChanged(handler: DslSignalHandlerValue): ClipAnimatorBuilder;
+  onShareableChanged(handler: DslSignalHandlerValue): ClipAnimatorBuilder;
 }
 
 const CLIPANIMATOR_META: TypeMetadata = {

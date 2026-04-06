@@ -2,7 +2,12 @@
 // Type: UniformAnimator
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { AccessibleAttachedBuilder } from './Accessible.js';
 import type { EnterKeyAttachedBuilder } from './EnterKey.js';
@@ -24,6 +29,7 @@ import type { ViewTransitionAttachedBuilder } from './ViewTransition.js';
 export interface UniformAnimatorBuilder {
   id(id: string): UniformAnimatorBuilder;
   child(obj: QmlObjectBuilder): UniformAnimatorBuilder;
+  children(...objs: QmlObjectBuilder[]): UniformAnimatorBuilder;
 
   alwaysRunToEnd(value: boolean): UniformAnimatorBuilder;
   alwaysRunToEndBind(expr: string): UniformAnimatorBuilder;
@@ -47,20 +53,20 @@ export interface UniformAnimatorBuilder {
   toBind(expr: string): UniformAnimatorBuilder;
   uniform(value: string): UniformAnimatorBuilder;
   uniformBind(expr: string): UniformAnimatorBuilder;
-  onAlwaysRunToEndChanged(body: string): UniformAnimatorBuilder;
-  onDurationChanged(body: string): UniformAnimatorBuilder;
-  onEasingChanged(body: string): UniformAnimatorBuilder;
-  onFinished(body: string): UniformAnimatorBuilder;
-  onFromChanged(body: string): UniformAnimatorBuilder;
-  onLoopCountChanged(body: string): UniformAnimatorBuilder;
-  onObjectNameChanged(body: string): UniformAnimatorBuilder;
-  onPausedChanged(body: string): UniformAnimatorBuilder;
-  onRunningChanged(body: string): UniformAnimatorBuilder;
-  onStarted(body: string): UniformAnimatorBuilder;
-  onStopped(body: string): UniformAnimatorBuilder;
-  onTargetItemChanged(body: string): UniformAnimatorBuilder;
-  onToChanged(body: string): UniformAnimatorBuilder;
-  onUniformChanged(body: string): UniformAnimatorBuilder;
+  onAlwaysRunToEndChanged(handler: DslSignalHandlerValue): UniformAnimatorBuilder;
+  onDurationChanged(handler: DslSignalHandlerValue): UniformAnimatorBuilder;
+  onEasingChanged(handler: DslSignalHandlerValue): UniformAnimatorBuilder;
+  onFinished(handler: DslSignalHandlerValue): UniformAnimatorBuilder;
+  onFromChanged(handler: DslSignalHandlerValue): UniformAnimatorBuilder;
+  onLoopCountChanged(handler: DslSignalHandlerValue): UniformAnimatorBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): UniformAnimatorBuilder;
+  onPausedChanged(handler: DslSignalHandlerValue): UniformAnimatorBuilder;
+  onRunningChanged(handler: DslSignalHandlerValue): UniformAnimatorBuilder;
+  onStarted(handler: DslSignalHandlerValue): UniformAnimatorBuilder;
+  onStopped(handler: DslSignalHandlerValue): UniformAnimatorBuilder;
+  onTargetItemChanged(handler: DslSignalHandlerValue): UniformAnimatorBuilder;
+  onToChanged(handler: DslSignalHandlerValue): UniformAnimatorBuilder;
+  onUniformChanged(handler: DslSignalHandlerValue): UniformAnimatorBuilder;
   accessible(setup: (b: AccessibleAttachedBuilder) => void): UniformAnimatorBuilder;
   drag(setup: (b: DragAttachedBuilder) => void): UniformAnimatorBuilder;
   enterKey(setup: (b: EnterKeyAttachedBuilder) => void): UniformAnimatorBuilder;

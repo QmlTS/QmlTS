@@ -2,7 +2,12 @@
 // Type: PointHandler
 // Generated from Qt 6.11.0
 
-import type { QmlEnumToken, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlEnumToken,
+  QmlObjectBuilder,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { AccessibleAttachedBuilder } from './Accessible.js';
 import type { EnterKeyAttachedBuilder } from './EnterKey.js';
@@ -24,6 +29,7 @@ import type { ViewTransitionAttachedBuilder } from './ViewTransition.js';
 export interface PointHandlerBuilder {
   id(id: string): PointHandlerBuilder;
   child(obj: QmlObjectBuilder): PointHandlerBuilder;
+  children(...objs: QmlObjectBuilder[]): PointHandlerBuilder;
 
   acceptedButtons(value: QmlEnumToken): PointHandlerBuilder;
   acceptedButtonsBind(expr: string): PointHandlerBuilder;
@@ -49,23 +55,23 @@ export interface PointHandlerBuilder {
   parentBind(expr: string): PointHandlerBuilder;
   target(value: ItemBuilder): PointHandlerBuilder;
   targetBind(expr: string): PointHandlerBuilder;
-  onAcceptedButtonsChanged(body: string): PointHandlerBuilder;
-  onAcceptedDevicesChanged(body: string): PointHandlerBuilder;
-  onAcceptedModifiersChanged(body: string): PointHandlerBuilder;
-  onAcceptedPointerTypesChanged(body: string): PointHandlerBuilder;
-  onActiveChanged(body: string): PointHandlerBuilder;
-  onCanceled(body: string): PointHandlerBuilder;
-  onCursorShapeChanged(body: string): PointHandlerBuilder;
-  onDragThresholdChanged(body: string): PointHandlerBuilder;
-  onEnabledChanged(body: string): PointHandlerBuilder;
-  onGrabChanged(body: string): PointHandlerBuilder;
-  onGrabPermissionChanged(body: string): PointHandlerBuilder;
-  onMarginChanged(body: string): PointHandlerBuilder;
-  onObjectNameChanged(body: string): PointHandlerBuilder;
-  onParentChanged(body: string): PointHandlerBuilder;
-  onPointChanged(body: string): PointHandlerBuilder;
-  onTargetChanged(body: string): PointHandlerBuilder;
-  onTranslationChanged(body: string): PointHandlerBuilder;
+  onAcceptedButtonsChanged(handler: DslSignalHandlerValue): PointHandlerBuilder;
+  onAcceptedDevicesChanged(handler: DslSignalHandlerValue): PointHandlerBuilder;
+  onAcceptedModifiersChanged(handler: DslSignalHandlerValue): PointHandlerBuilder;
+  onAcceptedPointerTypesChanged(handler: DslSignalHandlerValue): PointHandlerBuilder;
+  onActiveChanged(handler: DslSignalHandlerValue): PointHandlerBuilder;
+  onCanceled(handler: DslSignalHandlerValue): PointHandlerBuilder;
+  onCursorShapeChanged(handler: DslSignalHandlerValue): PointHandlerBuilder;
+  onDragThresholdChanged(handler: DslSignalHandlerValue): PointHandlerBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): PointHandlerBuilder;
+  onGrabChanged(handler: DslSignalHandlerValue): PointHandlerBuilder;
+  onGrabPermissionChanged(handler: DslSignalHandlerValue): PointHandlerBuilder;
+  onMarginChanged(handler: DslSignalHandlerValue): PointHandlerBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): PointHandlerBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): PointHandlerBuilder;
+  onPointChanged(handler: DslSignalHandlerValue): PointHandlerBuilder;
+  onTargetChanged(handler: DslSignalHandlerValue): PointHandlerBuilder;
+  onTranslationChanged(handler: DslSignalHandlerValue): PointHandlerBuilder;
   accessible(setup: (b: AccessibleAttachedBuilder) => void): PointHandlerBuilder;
   drag(setup: (b: DragAttachedBuilder) => void): PointHandlerBuilder;
   enterKey(setup: (b: EnterKeyAttachedBuilder) => void): PointHandlerBuilder;

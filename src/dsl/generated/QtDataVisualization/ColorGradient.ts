@@ -2,16 +2,17 @@
 // Type: ColorGradient
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import type { DslSignalHandlerValue, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 export interface ColorGradientBuilder {
   id(id: string): ColorGradientBuilder;
   child(obj: QmlObjectBuilder): ColorGradientBuilder;
+  children(...objs: QmlObjectBuilder[]): ColorGradientBuilder;
 
   objectName(value: string): ColorGradientBuilder;
   objectNameBind(expr: string): ColorGradientBuilder;
-  onObjectNameChanged(body: string): ColorGradientBuilder;
-  onUpdated(body: string): ColorGradientBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): ColorGradientBuilder;
+  onUpdated(handler: DslSignalHandlerValue): ColorGradientBuilder;
 }
 
 const COLORGRADIENT_META: TypeMetadata = {

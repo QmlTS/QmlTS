@@ -2,7 +2,7 @@
 // Type: PropertyChanges
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import type { DslSignalHandlerValue, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 import type { QtObjectBuilder } from '../QML/QtObject.js';
 import type { AccessibleAttachedBuilder } from './Accessible.js';
@@ -24,6 +24,7 @@ import type { ViewTransitionAttachedBuilder } from './ViewTransition.js';
 export interface PropertyChangesBuilder {
   id(id: string): PropertyChangesBuilder;
   child(obj: QmlObjectBuilder): PropertyChangesBuilder;
+  children(...objs: QmlObjectBuilder[]): PropertyChangesBuilder;
 
   explicit(value: boolean): PropertyChangesBuilder;
   explicitBind(expr: string): PropertyChangesBuilder;
@@ -33,10 +34,10 @@ export interface PropertyChangesBuilder {
   restoreEntryValuesBind(expr: string): PropertyChangesBuilder;
   target(value: QtObjectBuilder): PropertyChangesBuilder;
   targetBind(expr: string): PropertyChangesBuilder;
-  onIsExplicitChanged(body: string): PropertyChangesBuilder;
-  onObjectChanged(body: string): PropertyChangesBuilder;
-  onObjectNameChanged(body: string): PropertyChangesBuilder;
-  onRestoreEntryValuesChanged(body: string): PropertyChangesBuilder;
+  onIsExplicitChanged(handler: DslSignalHandlerValue): PropertyChangesBuilder;
+  onObjectChanged(handler: DslSignalHandlerValue): PropertyChangesBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): PropertyChangesBuilder;
+  onRestoreEntryValuesChanged(handler: DslSignalHandlerValue): PropertyChangesBuilder;
   accessible(setup: (b: AccessibleAttachedBuilder) => void): PropertyChangesBuilder;
   drag(setup: (b: DragAttachedBuilder) => void): PropertyChangesBuilder;
   enterKey(setup: (b: EnterKeyAttachedBuilder) => void): PropertyChangesBuilder;

@@ -2,11 +2,17 @@
 // Type: WrapMode
 // Generated from Qt 6.11.0
 
-import type { QmlEnumToken, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlEnumToken,
+  QmlObjectBuilder,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface WrapModeBuilder {
   id(id: string): WrapModeBuilder;
   child(obj: QmlObjectBuilder): WrapModeBuilder;
+  children(...objs: QmlObjectBuilder[]): WrapModeBuilder;
 
   objectName(value: string): WrapModeBuilder;
   objectNameBind(expr: string): WrapModeBuilder;
@@ -16,10 +22,10 @@ export interface WrapModeBuilder {
   yBind(expr: string): WrapModeBuilder;
   z(value: QmlEnumToken): WrapModeBuilder;
   zBind(expr: string): WrapModeBuilder;
-  onObjectNameChanged(body: string): WrapModeBuilder;
-  onXChanged(body: string): WrapModeBuilder;
-  onYChanged(body: string): WrapModeBuilder;
-  onZChanged(body: string): WrapModeBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): WrapModeBuilder;
+  onXChanged(handler: DslSignalHandlerValue): WrapModeBuilder;
+  onYChanged(handler: DslSignalHandlerValue): WrapModeBuilder;
+  onZChanged(handler: DslSignalHandlerValue): WrapModeBuilder;
 }
 
 const WRAPMODE_META: TypeMetadata = {

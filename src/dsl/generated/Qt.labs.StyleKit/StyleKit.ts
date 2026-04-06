@@ -2,17 +2,18 @@
 // Type: StyleKit
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import type { DslSignalHandlerValue, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 import type { StyleKitAttachedBuilder } from './QQStyleKitAttached.js';
 import type { StyleVariationAttachedBuilder } from './QQStyleKitVariationAttached.js';
 export interface StyleKitBuilder {
   id(id: string): StyleKitBuilder;
   child(obj: QmlObjectBuilder): StyleKitBuilder;
+  children(...objs: QmlObjectBuilder[]): StyleKitBuilder;
 
   objectName(value: string): StyleKitBuilder;
   objectNameBind(expr: string): StyleKitBuilder;
-  onObjectNameChanged(body: string): StyleKitBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): StyleKitBuilder;
   styleKit(setup: (b: StyleKitAttachedBuilder) => void): StyleKitBuilder;
   styleVariation(setup: (b: StyleVariationAttachedBuilder) => void): StyleKitBuilder;
 }

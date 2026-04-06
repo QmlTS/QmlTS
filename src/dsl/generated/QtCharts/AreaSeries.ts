@@ -2,12 +2,19 @@
 // Type: AreaSeries
 // Generated from Qt 6.11.0
 
-import type { QmlColor, QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlColor,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { LineSeriesBuilder } from './LineSeries.js';
 export interface AreaSeriesBuilder {
   id(id: string): AreaSeriesBuilder;
   child(obj: QmlObjectBuilder): AreaSeriesBuilder;
+  children(...objs: QmlObjectBuilder[]): AreaSeriesBuilder;
 
   axisAngular(value: QmlValue): AreaSeriesBuilder;
   axisAngularBind(expr: string): AreaSeriesBuilder;
@@ -61,42 +68,42 @@ export interface AreaSeriesBuilder {
   visibleBind(expr: string): AreaSeriesBuilder;
   zValue(value: number): AreaSeriesBuilder;
   zValueBind(expr: string): AreaSeriesBuilder;
-  onAxisAngularChanged(body: string): AreaSeriesBuilder;
-  onAxisRadialChanged(body: string): AreaSeriesBuilder;
-  onAxisXChanged(body: string): AreaSeriesBuilder;
-  onAxisXTopChanged(body: string): AreaSeriesBuilder;
-  onAxisYChanged(body: string): AreaSeriesBuilder;
-  onAxisYRightChanged(body: string): AreaSeriesBuilder;
-  onBorderColorChanged(body: string): AreaSeriesBuilder;
-  onBorderWidthChanged(body: string): AreaSeriesBuilder;
-  onBrushChanged(body: string): AreaSeriesBuilder;
-  onBrushFilenameChanged(body: string): AreaSeriesBuilder;
-  onClicked(body: string): AreaSeriesBuilder;
-  onColorChanged(body: string): AreaSeriesBuilder;
-  onDoubleClicked(body: string): AreaSeriesBuilder;
-  onGradientChanged(body: string): AreaSeriesBuilder;
-  onHover(body: string): AreaSeriesBuilder;
-  onHoverEnter(body: string): AreaSeriesBuilder;
-  onHoverExit(body: string): AreaSeriesBuilder;
-  onHoverableChanged(body: string): AreaSeriesBuilder;
-  onHoveredChanged(body: string): AreaSeriesBuilder;
-  onLegendDataChanged(body: string): AreaSeriesBuilder;
-  onLowerSeriesChanged(body: string): AreaSeriesBuilder;
-  onNameChanged(body: string): AreaSeriesBuilder;
-  onObjectNameChanged(body: string): AreaSeriesBuilder;
-  onOpacityChanged(body: string): AreaSeriesBuilder;
-  onPressed(body: string): AreaSeriesBuilder;
-  onReleased(body: string): AreaSeriesBuilder;
-  onSelectableChanged(body: string): AreaSeriesBuilder;
-  onSelectedBorderColorChanged(body: string): AreaSeriesBuilder;
-  onSelectedChanged(body: string): AreaSeriesBuilder;
-  onSelectedColorChanged(body: string): AreaSeriesBuilder;
-  onSelectedGradientChanged(body: string): AreaSeriesBuilder;
-  onUpdate(body: string): AreaSeriesBuilder;
-  onUpperSeriesChanged(body: string): AreaSeriesBuilder;
-  onValuesMultiplierChanged(body: string): AreaSeriesBuilder;
-  onVisibleChanged(body: string): AreaSeriesBuilder;
-  onZValueChanged(body: string): AreaSeriesBuilder;
+  onAxisAngularChanged(handler: DslSignalHandlerValue): AreaSeriesBuilder;
+  onAxisRadialChanged(handler: DslSignalHandlerValue): AreaSeriesBuilder;
+  onAxisXChanged(handler: DslSignalHandlerValue): AreaSeriesBuilder;
+  onAxisXTopChanged(handler: DslSignalHandlerValue): AreaSeriesBuilder;
+  onAxisYChanged(handler: DslSignalHandlerValue): AreaSeriesBuilder;
+  onAxisYRightChanged(handler: DslSignalHandlerValue): AreaSeriesBuilder;
+  onBorderColorChanged(handler: DslSignalHandlerValue): AreaSeriesBuilder;
+  onBorderWidthChanged(handler: DslSignalHandlerValue): AreaSeriesBuilder;
+  onBrushChanged(handler: DslSignalHandlerValue): AreaSeriesBuilder;
+  onBrushFilenameChanged(handler: DslSignalHandlerValue): AreaSeriesBuilder;
+  onClicked(handler: DslSignalHandlerValue): AreaSeriesBuilder;
+  onColorChanged(handler: DslSignalHandlerValue): AreaSeriesBuilder;
+  onDoubleClicked(handler: DslSignalHandlerValue): AreaSeriesBuilder;
+  onGradientChanged(handler: DslSignalHandlerValue): AreaSeriesBuilder;
+  onHover(handler: DslSignalHandlerValue): AreaSeriesBuilder;
+  onHoverEnter(handler: DslSignalHandlerValue): AreaSeriesBuilder;
+  onHoverExit(handler: DslSignalHandlerValue): AreaSeriesBuilder;
+  onHoverableChanged(handler: DslSignalHandlerValue): AreaSeriesBuilder;
+  onHoveredChanged(handler: DslSignalHandlerValue): AreaSeriesBuilder;
+  onLegendDataChanged(handler: DslSignalHandlerValue): AreaSeriesBuilder;
+  onLowerSeriesChanged(handler: DslSignalHandlerValue): AreaSeriesBuilder;
+  onNameChanged(handler: DslSignalHandlerValue): AreaSeriesBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): AreaSeriesBuilder;
+  onOpacityChanged(handler: DslSignalHandlerValue): AreaSeriesBuilder;
+  onPressed(handler: DslSignalHandlerValue): AreaSeriesBuilder;
+  onReleased(handler: DslSignalHandlerValue): AreaSeriesBuilder;
+  onSelectableChanged(handler: DslSignalHandlerValue): AreaSeriesBuilder;
+  onSelectedBorderColorChanged(handler: DslSignalHandlerValue): AreaSeriesBuilder;
+  onSelectedChanged(handler: DslSignalHandlerValue): AreaSeriesBuilder;
+  onSelectedColorChanged(handler: DslSignalHandlerValue): AreaSeriesBuilder;
+  onSelectedGradientChanged(handler: DslSignalHandlerValue): AreaSeriesBuilder;
+  onUpdate(handler: DslSignalHandlerValue): AreaSeriesBuilder;
+  onUpperSeriesChanged(handler: DslSignalHandlerValue): AreaSeriesBuilder;
+  onValuesMultiplierChanged(handler: DslSignalHandlerValue): AreaSeriesBuilder;
+  onVisibleChanged(handler: DslSignalHandlerValue): AreaSeriesBuilder;
+  onZValueChanged(handler: DslSignalHandlerValue): AreaSeriesBuilder;
 }
 
 const AREASERIES_META: TypeMetadata = {

@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlColor,
   QmlObjectBuilder,
   QmlValue,
@@ -13,6 +14,7 @@ import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface DirectionalLightBuilder {
   id(id: string): DirectionalLightBuilder;
   child(obj: QmlObjectBuilder): DirectionalLightBuilder;
+  children(...objs: QmlObjectBuilder[]): DirectionalLightBuilder;
 
   color(value: QmlColor): DirectionalLightBuilder;
   colorBind(expr: string): DirectionalLightBuilder;
@@ -28,16 +30,16 @@ export interface DirectionalLightBuilder {
   parentBind(expr: string): DirectionalLightBuilder;
   worldDirection(value: QmlVector3d): DirectionalLightBuilder;
   worldDirectionBind(expr: string): DirectionalLightBuilder;
-  onAddedToEntity(body: string): DirectionalLightBuilder;
-  onColorChanged(body: string): DirectionalLightBuilder;
-  onEnabledChanged(body: string): DirectionalLightBuilder;
-  onIntensityChanged(body: string): DirectionalLightBuilder;
-  onNodeDestroyed(body: string): DirectionalLightBuilder;
-  onObjectNameChanged(body: string): DirectionalLightBuilder;
-  onParentChanged(body: string): DirectionalLightBuilder;
-  onRemovedFromEntity(body: string): DirectionalLightBuilder;
-  onShareableChanged(body: string): DirectionalLightBuilder;
-  onWorldDirectionChanged(body: string): DirectionalLightBuilder;
+  onAddedToEntity(handler: DslSignalHandlerValue): DirectionalLightBuilder;
+  onColorChanged(handler: DslSignalHandlerValue): DirectionalLightBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): DirectionalLightBuilder;
+  onIntensityChanged(handler: DslSignalHandlerValue): DirectionalLightBuilder;
+  onNodeDestroyed(handler: DslSignalHandlerValue): DirectionalLightBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): DirectionalLightBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): DirectionalLightBuilder;
+  onRemovedFromEntity(handler: DslSignalHandlerValue): DirectionalLightBuilder;
+  onShareableChanged(handler: DslSignalHandlerValue): DirectionalLightBuilder;
+  onWorldDirectionChanged(handler: DslSignalHandlerValue): DirectionalLightBuilder;
 }
 
 const DIRECTIONALLIGHT_META: TypeMetadata = {

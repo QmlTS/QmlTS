@@ -2,6 +2,7 @@
 // Type: Attached type: StyleKit
 // Generated from Qt 6.11.0
 
+import type { DslSignalHandlerValue } from '../../runtime/index.js';
 import type { BaseStyleBuilder } from './BaseStyle.js';
 export interface StyleKitAttachedBuilder {
   style(value: BaseStyleBuilder): StyleKitAttachedBuilder;
@@ -12,8 +13,8 @@ export interface StyleKitAttachedBuilder {
   transitionsEnabledBind(expr: string): StyleKitAttachedBuilder;
   objectName(value: string): StyleKitAttachedBuilder;
   objectNameBind(expr: string): StyleKitAttachedBuilder;
-  onStyleChanged(body: string): StyleKitAttachedBuilder;
-  onStyleUrlChanged(body: string): StyleKitAttachedBuilder;
-  onTransitionsEnabledChanged(body: string): StyleKitAttachedBuilder;
-  onObjectNameChanged(body: string): StyleKitAttachedBuilder;
+  onStyleChanged(handler: DslSignalHandlerValue): StyleKitAttachedBuilder;
+  onStyleUrlChanged(handler: DslSignalHandlerValue): StyleKitAttachedBuilder;
+  onTransitionsEnabledChanged(handler: DslSignalHandlerValue): StyleKitAttachedBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): StyleKitAttachedBuilder;
 }

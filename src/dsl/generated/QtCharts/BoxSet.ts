@@ -2,11 +2,17 @@
 // Type: BoxSet
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface BoxSetBuilder {
   id(id: string): BoxSetBuilder;
   child(obj: QmlObjectBuilder): BoxSetBuilder;
+  children(...objs: QmlObjectBuilder[]): BoxSetBuilder;
 
   brush(value: QmlValue): BoxSetBuilder;
   brushBind(expr: string): BoxSetBuilder;
@@ -20,20 +26,20 @@ export interface BoxSetBuilder {
   penBind(expr: string): BoxSetBuilder;
   values(value: QmlValue[]): BoxSetBuilder;
   valuesBind(expr: string): BoxSetBuilder;
-  onBrushChanged(body: string): BoxSetBuilder;
-  onBrushFilenameChanged(body: string): BoxSetBuilder;
-  onChangedValue(body: string): BoxSetBuilder;
-  onChangedValues(body: string): BoxSetBuilder;
-  onCleared(body: string): BoxSetBuilder;
-  onClicked(body: string): BoxSetBuilder;
-  onDoubleClicked(body: string): BoxSetBuilder;
-  onHovered(body: string): BoxSetBuilder;
-  onObjectNameChanged(body: string): BoxSetBuilder;
-  onPenChanged(body: string): BoxSetBuilder;
-  onPressed(body: string): BoxSetBuilder;
-  onReleased(body: string): BoxSetBuilder;
-  onValueChanged(body: string): BoxSetBuilder;
-  onValuesChanged(body: string): BoxSetBuilder;
+  onBrushChanged(handler: DslSignalHandlerValue): BoxSetBuilder;
+  onBrushFilenameChanged(handler: DslSignalHandlerValue): BoxSetBuilder;
+  onChangedValue(handler: DslSignalHandlerValue): BoxSetBuilder;
+  onChangedValues(handler: DslSignalHandlerValue): BoxSetBuilder;
+  onCleared(handler: DslSignalHandlerValue): BoxSetBuilder;
+  onClicked(handler: DslSignalHandlerValue): BoxSetBuilder;
+  onDoubleClicked(handler: DslSignalHandlerValue): BoxSetBuilder;
+  onHovered(handler: DslSignalHandlerValue): BoxSetBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): BoxSetBuilder;
+  onPenChanged(handler: DslSignalHandlerValue): BoxSetBuilder;
+  onPressed(handler: DslSignalHandlerValue): BoxSetBuilder;
+  onReleased(handler: DslSignalHandlerValue): BoxSetBuilder;
+  onValueChanged(handler: DslSignalHandlerValue): BoxSetBuilder;
+  onValuesChanged(handler: DslSignalHandlerValue): BoxSetBuilder;
 }
 
 const BOXSET_META: TypeMetadata = {

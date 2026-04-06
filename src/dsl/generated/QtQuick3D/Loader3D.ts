@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlComponent,
   QmlObjectBuilder,
   QmlQuaternion,
@@ -15,6 +16,7 @@ import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface Loader3DBuilder {
   id(id: string): Loader3DBuilder;
   child(obj: QmlObjectBuilder): Loader3DBuilder;
+  children(...objs: QmlObjectBuilder[]): Loader3DBuilder;
 
   active(value: boolean): Loader3DBuilder;
   activeBind(expr: string): Loader3DBuilder;
@@ -54,37 +56,37 @@ export interface Loader3DBuilder {
   yBind(expr: string): Loader3DBuilder;
   z(value: number): Loader3DBuilder;
   zBind(expr: string): Loader3DBuilder;
-  onActiveChanged(body: string): Loader3DBuilder;
-  onAsynchronousChanged(body: string): Loader3DBuilder;
-  onChildrenChanged(body: string): Loader3DBuilder;
-  onEulerRotationChanged(body: string): Loader3DBuilder;
-  onForwardChanged(body: string): Loader3DBuilder;
-  onItemChanged(body: string): Loader3DBuilder;
-  onLayersChanged(body: string): Loader3DBuilder;
-  onLoaded(body: string): Loader3DBuilder;
-  onLocalOpacityChanged(body: string): Loader3DBuilder;
-  onObjectNameChanged(body: string): Loader3DBuilder;
-  onParentChanged(body: string): Loader3DBuilder;
-  onPivotChanged(body: string): Loader3DBuilder;
-  onPositionChanged(body: string): Loader3DBuilder;
-  onProgressChanged(body: string): Loader3DBuilder;
-  onRightChanged(body: string): Loader3DBuilder;
-  onRotationChanged(body: string): Loader3DBuilder;
-  onScaleChanged(body: string): Loader3DBuilder;
-  onScenePositionChanged(body: string): Loader3DBuilder;
-  onSceneRotationChanged(body: string): Loader3DBuilder;
-  onSceneScaleChanged(body: string): Loader3DBuilder;
-  onSceneTransformChanged(body: string): Loader3DBuilder;
-  onSourceChanged(body: string): Loader3DBuilder;
-  onSourceComponentChanged(body: string): Loader3DBuilder;
-  onStateChanged(body: string): Loader3DBuilder;
-  onStaticFlagsChanged(body: string): Loader3DBuilder;
-  onStatusChanged(body: string): Loader3DBuilder;
-  onUpChanged(body: string): Loader3DBuilder;
-  onVisibleChanged(body: string): Loader3DBuilder;
-  onXChanged(body: string): Loader3DBuilder;
-  onYChanged(body: string): Loader3DBuilder;
-  onZChanged(body: string): Loader3DBuilder;
+  onActiveChanged(handler: DslSignalHandlerValue): Loader3DBuilder;
+  onAsynchronousChanged(handler: DslSignalHandlerValue): Loader3DBuilder;
+  onChildrenChanged(handler: DslSignalHandlerValue): Loader3DBuilder;
+  onEulerRotationChanged(handler: DslSignalHandlerValue): Loader3DBuilder;
+  onForwardChanged(handler: DslSignalHandlerValue): Loader3DBuilder;
+  onItemChanged(handler: DslSignalHandlerValue): Loader3DBuilder;
+  onLayersChanged(handler: DslSignalHandlerValue): Loader3DBuilder;
+  onLoaded(handler: DslSignalHandlerValue): Loader3DBuilder;
+  onLocalOpacityChanged(handler: DslSignalHandlerValue): Loader3DBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): Loader3DBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): Loader3DBuilder;
+  onPivotChanged(handler: DslSignalHandlerValue): Loader3DBuilder;
+  onPositionChanged(handler: DslSignalHandlerValue): Loader3DBuilder;
+  onProgressChanged(handler: DslSignalHandlerValue): Loader3DBuilder;
+  onRightChanged(handler: DslSignalHandlerValue): Loader3DBuilder;
+  onRotationChanged(handler: DslSignalHandlerValue): Loader3DBuilder;
+  onScaleChanged(handler: DslSignalHandlerValue): Loader3DBuilder;
+  onScenePositionChanged(handler: DslSignalHandlerValue): Loader3DBuilder;
+  onSceneRotationChanged(handler: DslSignalHandlerValue): Loader3DBuilder;
+  onSceneScaleChanged(handler: DslSignalHandlerValue): Loader3DBuilder;
+  onSceneTransformChanged(handler: DslSignalHandlerValue): Loader3DBuilder;
+  onSourceChanged(handler: DslSignalHandlerValue): Loader3DBuilder;
+  onSourceComponentChanged(handler: DslSignalHandlerValue): Loader3DBuilder;
+  onStateChanged(handler: DslSignalHandlerValue): Loader3DBuilder;
+  onStaticFlagsChanged(handler: DslSignalHandlerValue): Loader3DBuilder;
+  onStatusChanged(handler: DslSignalHandlerValue): Loader3DBuilder;
+  onUpChanged(handler: DslSignalHandlerValue): Loader3DBuilder;
+  onVisibleChanged(handler: DslSignalHandlerValue): Loader3DBuilder;
+  onXChanged(handler: DslSignalHandlerValue): Loader3DBuilder;
+  onYChanged(handler: DslSignalHandlerValue): Loader3DBuilder;
+  onZChanged(handler: DslSignalHandlerValue): Loader3DBuilder;
 }
 
 const LOADER3D_META: TypeMetadata = {

@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlEnumToken,
   QmlObjectBuilder,
   QmlQuaternion,
@@ -14,6 +15,7 @@ import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface AudioRoomBuilder {
   id(id: string): AudioRoomBuilder;
   child(obj: QmlObjectBuilder): AudioRoomBuilder;
+  children(...objs: QmlObjectBuilder[]): AudioRoomBuilder;
 
   backMaterial(value: QmlEnumToken): AudioRoomBuilder;
   backMaterialBind(expr: string): AudioRoomBuilder;
@@ -67,35 +69,35 @@ export interface AudioRoomBuilder {
   yBind(expr: string): AudioRoomBuilder;
   z(value: number): AudioRoomBuilder;
   zBind(expr: string): AudioRoomBuilder;
-  onChildrenChanged(body: string): AudioRoomBuilder;
-  onDimensionsChanged(body: string): AudioRoomBuilder;
-  onEulerRotationChanged(body: string): AudioRoomBuilder;
-  onForwardChanged(body: string): AudioRoomBuilder;
-  onLayersChanged(body: string): AudioRoomBuilder;
-  onLocalOpacityChanged(body: string): AudioRoomBuilder;
-  onObjectNameChanged(body: string): AudioRoomBuilder;
-  onParentChanged(body: string): AudioRoomBuilder;
-  onPivotChanged(body: string): AudioRoomBuilder;
-  onPositionChanged(body: string): AudioRoomBuilder;
-  onReflectionGainChanged(body: string): AudioRoomBuilder;
-  onReverbBrightnessChanged(body: string): AudioRoomBuilder;
-  onReverbGainChanged(body: string): AudioRoomBuilder;
-  onReverbTimeChanged(body: string): AudioRoomBuilder;
-  onRightChanged(body: string): AudioRoomBuilder;
-  onRotationChanged(body: string): AudioRoomBuilder;
-  onScaleChanged(body: string): AudioRoomBuilder;
-  onScenePositionChanged(body: string): AudioRoomBuilder;
-  onSceneRotationChanged(body: string): AudioRoomBuilder;
-  onSceneScaleChanged(body: string): AudioRoomBuilder;
-  onSceneTransformChanged(body: string): AudioRoomBuilder;
-  onStateChanged(body: string): AudioRoomBuilder;
-  onStaticFlagsChanged(body: string): AudioRoomBuilder;
-  onUpChanged(body: string): AudioRoomBuilder;
-  onVisibleChanged(body: string): AudioRoomBuilder;
-  onWallsChanged(body: string): AudioRoomBuilder;
-  onXChanged(body: string): AudioRoomBuilder;
-  onYChanged(body: string): AudioRoomBuilder;
-  onZChanged(body: string): AudioRoomBuilder;
+  onChildrenChanged(handler: DslSignalHandlerValue): AudioRoomBuilder;
+  onDimensionsChanged(handler: DslSignalHandlerValue): AudioRoomBuilder;
+  onEulerRotationChanged(handler: DslSignalHandlerValue): AudioRoomBuilder;
+  onForwardChanged(handler: DslSignalHandlerValue): AudioRoomBuilder;
+  onLayersChanged(handler: DslSignalHandlerValue): AudioRoomBuilder;
+  onLocalOpacityChanged(handler: DslSignalHandlerValue): AudioRoomBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): AudioRoomBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): AudioRoomBuilder;
+  onPivotChanged(handler: DslSignalHandlerValue): AudioRoomBuilder;
+  onPositionChanged(handler: DslSignalHandlerValue): AudioRoomBuilder;
+  onReflectionGainChanged(handler: DslSignalHandlerValue): AudioRoomBuilder;
+  onReverbBrightnessChanged(handler: DslSignalHandlerValue): AudioRoomBuilder;
+  onReverbGainChanged(handler: DslSignalHandlerValue): AudioRoomBuilder;
+  onReverbTimeChanged(handler: DslSignalHandlerValue): AudioRoomBuilder;
+  onRightChanged(handler: DslSignalHandlerValue): AudioRoomBuilder;
+  onRotationChanged(handler: DslSignalHandlerValue): AudioRoomBuilder;
+  onScaleChanged(handler: DslSignalHandlerValue): AudioRoomBuilder;
+  onScenePositionChanged(handler: DslSignalHandlerValue): AudioRoomBuilder;
+  onSceneRotationChanged(handler: DslSignalHandlerValue): AudioRoomBuilder;
+  onSceneScaleChanged(handler: DslSignalHandlerValue): AudioRoomBuilder;
+  onSceneTransformChanged(handler: DslSignalHandlerValue): AudioRoomBuilder;
+  onStateChanged(handler: DslSignalHandlerValue): AudioRoomBuilder;
+  onStaticFlagsChanged(handler: DslSignalHandlerValue): AudioRoomBuilder;
+  onUpChanged(handler: DslSignalHandlerValue): AudioRoomBuilder;
+  onVisibleChanged(handler: DslSignalHandlerValue): AudioRoomBuilder;
+  onWallsChanged(handler: DslSignalHandlerValue): AudioRoomBuilder;
+  onXChanged(handler: DslSignalHandlerValue): AudioRoomBuilder;
+  onYChanged(handler: DslSignalHandlerValue): AudioRoomBuilder;
+  onZChanged(handler: DslSignalHandlerValue): AudioRoomBuilder;
 }
 
 const AUDIOROOM_META: TypeMetadata = {

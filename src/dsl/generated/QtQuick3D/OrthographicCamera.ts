@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlObjectBuilder,
   QmlQuaternion,
   QmlValue,
@@ -14,6 +15,7 @@ import type { NodeBuilder } from './Node.js';
 export interface OrthographicCameraBuilder {
   id(id: string): OrthographicCameraBuilder;
   child(obj: QmlObjectBuilder): OrthographicCameraBuilder;
+  children(...objs: QmlObjectBuilder[]): OrthographicCameraBuilder;
 
   clipFar(value: number): OrthographicCameraBuilder;
   clipFarBind(expr: string): OrthographicCameraBuilder;
@@ -59,36 +61,36 @@ export interface OrthographicCameraBuilder {
   yBind(expr: string): OrthographicCameraBuilder;
   z(value: number): OrthographicCameraBuilder;
   zBind(expr: string): OrthographicCameraBuilder;
-  onChildrenChanged(body: string): OrthographicCameraBuilder;
-  onClipFarChanged(body: string): OrthographicCameraBuilder;
-  onClipNearChanged(body: string): OrthographicCameraBuilder;
-  onEulerRotationChanged(body: string): OrthographicCameraBuilder;
-  onForwardChanged(body: string): OrthographicCameraBuilder;
-  onFrustumCullingEnabledChanged(body: string): OrthographicCameraBuilder;
-  onHorizontalMagnificationChanged(body: string): OrthographicCameraBuilder;
-  onLayersChanged(body: string): OrthographicCameraBuilder;
-  onLevelOfDetailBiasChanged(body: string): OrthographicCameraBuilder;
-  onLocalOpacityChanged(body: string): OrthographicCameraBuilder;
-  onLookAtNodeChanged(body: string): OrthographicCameraBuilder;
-  onObjectNameChanged(body: string): OrthographicCameraBuilder;
-  onParentChanged(body: string): OrthographicCameraBuilder;
-  onPivotChanged(body: string): OrthographicCameraBuilder;
-  onPositionChanged(body: string): OrthographicCameraBuilder;
-  onRightChanged(body: string): OrthographicCameraBuilder;
-  onRotationChanged(body: string): OrthographicCameraBuilder;
-  onScaleChanged(body: string): OrthographicCameraBuilder;
-  onScenePositionChanged(body: string): OrthographicCameraBuilder;
-  onSceneRotationChanged(body: string): OrthographicCameraBuilder;
-  onSceneScaleChanged(body: string): OrthographicCameraBuilder;
-  onSceneTransformChanged(body: string): OrthographicCameraBuilder;
-  onStateChanged(body: string): OrthographicCameraBuilder;
-  onStaticFlagsChanged(body: string): OrthographicCameraBuilder;
-  onUpChanged(body: string): OrthographicCameraBuilder;
-  onVerticalMagnificationChanged(body: string): OrthographicCameraBuilder;
-  onVisibleChanged(body: string): OrthographicCameraBuilder;
-  onXChanged(body: string): OrthographicCameraBuilder;
-  onYChanged(body: string): OrthographicCameraBuilder;
-  onZChanged(body: string): OrthographicCameraBuilder;
+  onChildrenChanged(handler: DslSignalHandlerValue): OrthographicCameraBuilder;
+  onClipFarChanged(handler: DslSignalHandlerValue): OrthographicCameraBuilder;
+  onClipNearChanged(handler: DslSignalHandlerValue): OrthographicCameraBuilder;
+  onEulerRotationChanged(handler: DslSignalHandlerValue): OrthographicCameraBuilder;
+  onForwardChanged(handler: DslSignalHandlerValue): OrthographicCameraBuilder;
+  onFrustumCullingEnabledChanged(handler: DslSignalHandlerValue): OrthographicCameraBuilder;
+  onHorizontalMagnificationChanged(handler: DslSignalHandlerValue): OrthographicCameraBuilder;
+  onLayersChanged(handler: DslSignalHandlerValue): OrthographicCameraBuilder;
+  onLevelOfDetailBiasChanged(handler: DslSignalHandlerValue): OrthographicCameraBuilder;
+  onLocalOpacityChanged(handler: DslSignalHandlerValue): OrthographicCameraBuilder;
+  onLookAtNodeChanged(handler: DslSignalHandlerValue): OrthographicCameraBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): OrthographicCameraBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): OrthographicCameraBuilder;
+  onPivotChanged(handler: DslSignalHandlerValue): OrthographicCameraBuilder;
+  onPositionChanged(handler: DslSignalHandlerValue): OrthographicCameraBuilder;
+  onRightChanged(handler: DslSignalHandlerValue): OrthographicCameraBuilder;
+  onRotationChanged(handler: DslSignalHandlerValue): OrthographicCameraBuilder;
+  onScaleChanged(handler: DslSignalHandlerValue): OrthographicCameraBuilder;
+  onScenePositionChanged(handler: DslSignalHandlerValue): OrthographicCameraBuilder;
+  onSceneRotationChanged(handler: DslSignalHandlerValue): OrthographicCameraBuilder;
+  onSceneScaleChanged(handler: DslSignalHandlerValue): OrthographicCameraBuilder;
+  onSceneTransformChanged(handler: DslSignalHandlerValue): OrthographicCameraBuilder;
+  onStateChanged(handler: DslSignalHandlerValue): OrthographicCameraBuilder;
+  onStaticFlagsChanged(handler: DslSignalHandlerValue): OrthographicCameraBuilder;
+  onUpChanged(handler: DslSignalHandlerValue): OrthographicCameraBuilder;
+  onVerticalMagnificationChanged(handler: DslSignalHandlerValue): OrthographicCameraBuilder;
+  onVisibleChanged(handler: DslSignalHandlerValue): OrthographicCameraBuilder;
+  onXChanged(handler: DslSignalHandlerValue): OrthographicCameraBuilder;
+  onYChanged(handler: DslSignalHandlerValue): OrthographicCameraBuilder;
+  onZChanged(handler: DslSignalHandlerValue): OrthographicCameraBuilder;
 }
 
 const ORTHOGRAPHICCAMERA_META: TypeMetadata = {

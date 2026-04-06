@@ -2,11 +2,17 @@
 // Type: AnalogAxisInput
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 export interface AnalogAxisInputBuilder {
   id(id: string): AnalogAxisInputBuilder;
   child(obj: QmlObjectBuilder): AnalogAxisInputBuilder;
+  children(...objs: QmlObjectBuilder[]): AnalogAxisInputBuilder;
 
   axis(value: number): AnalogAxisInputBuilder;
   axisBind(expr: string): AnalogAxisInputBuilder;
@@ -18,12 +24,12 @@ export interface AnalogAxisInputBuilder {
   parentBind(expr: string): AnalogAxisInputBuilder;
   sourceDevice(value: QmlValue): AnalogAxisInputBuilder;
   sourceDeviceBind(expr: string): AnalogAxisInputBuilder;
-  onAxisChanged(body: string): AnalogAxisInputBuilder;
-  onEnabledChanged(body: string): AnalogAxisInputBuilder;
-  onNodeDestroyed(body: string): AnalogAxisInputBuilder;
-  onObjectNameChanged(body: string): AnalogAxisInputBuilder;
-  onParentChanged(body: string): AnalogAxisInputBuilder;
-  onSourceDeviceChanged(body: string): AnalogAxisInputBuilder;
+  onAxisChanged(handler: DslSignalHandlerValue): AnalogAxisInputBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): AnalogAxisInputBuilder;
+  onNodeDestroyed(handler: DslSignalHandlerValue): AnalogAxisInputBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): AnalogAxisInputBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): AnalogAxisInputBuilder;
+  onSourceDeviceChanged(handler: DslSignalHandlerValue): AnalogAxisInputBuilder;
 }
 
 const ANALOGAXISINPUT_META: TypeMetadata = {

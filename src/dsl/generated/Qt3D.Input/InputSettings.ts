@@ -2,12 +2,18 @@
 // Type: InputSettings
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 import type { QtObjectBuilder } from '../QML/QtObject.js';
 export interface InputSettingsBuilder {
   id(id: string): InputSettingsBuilder;
   child(obj: QmlObjectBuilder): InputSettingsBuilder;
+  children(...objs: QmlObjectBuilder[]): InputSettingsBuilder;
 
   enabled(value: boolean): InputSettingsBuilder;
   enabledBind(expr: string): InputSettingsBuilder;
@@ -19,14 +25,14 @@ export interface InputSettingsBuilder {
   objectNameBind(expr: string): InputSettingsBuilder;
   parent(value: QmlValue): InputSettingsBuilder;
   parentBind(expr: string): InputSettingsBuilder;
-  onAddedToEntity(body: string): InputSettingsBuilder;
-  onEnabledChanged(body: string): InputSettingsBuilder;
-  onEventSourceChanged(body: string): InputSettingsBuilder;
-  onNodeDestroyed(body: string): InputSettingsBuilder;
-  onObjectNameChanged(body: string): InputSettingsBuilder;
-  onParentChanged(body: string): InputSettingsBuilder;
-  onRemovedFromEntity(body: string): InputSettingsBuilder;
-  onShareableChanged(body: string): InputSettingsBuilder;
+  onAddedToEntity(handler: DslSignalHandlerValue): InputSettingsBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): InputSettingsBuilder;
+  onEventSourceChanged(handler: DslSignalHandlerValue): InputSettingsBuilder;
+  onNodeDestroyed(handler: DslSignalHandlerValue): InputSettingsBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): InputSettingsBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): InputSettingsBuilder;
+  onRemovedFromEntity(handler: DslSignalHandlerValue): InputSettingsBuilder;
+  onShareableChanged(handler: DslSignalHandlerValue): InputSettingsBuilder;
 }
 
 const INPUTSETTINGS_META: TypeMetadata = {

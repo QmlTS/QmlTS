@@ -2,11 +2,17 @@
 // Type: SpriteGrid
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 export interface SpriteGridBuilder {
   id(id: string): SpriteGridBuilder;
   child(obj: QmlObjectBuilder): SpriteGridBuilder;
+  children(...objs: QmlObjectBuilder[]): SpriteGridBuilder;
 
   columns(value: number): SpriteGridBuilder;
   columnsBind(expr: string): SpriteGridBuilder;
@@ -22,15 +28,15 @@ export interface SpriteGridBuilder {
   rowsBind(expr: string): SpriteGridBuilder;
   texture(value: QmlValue): SpriteGridBuilder;
   textureBind(expr: string): SpriteGridBuilder;
-  onColumnsChanged(body: string): SpriteGridBuilder;
-  onCurrentIndexChanged(body: string): SpriteGridBuilder;
-  onEnabledChanged(body: string): SpriteGridBuilder;
-  onNodeDestroyed(body: string): SpriteGridBuilder;
-  onObjectNameChanged(body: string): SpriteGridBuilder;
-  onParentChanged(body: string): SpriteGridBuilder;
-  onRowsChanged(body: string): SpriteGridBuilder;
-  onTextureChanged(body: string): SpriteGridBuilder;
-  onTextureTransformChanged(body: string): SpriteGridBuilder;
+  onColumnsChanged(handler: DslSignalHandlerValue): SpriteGridBuilder;
+  onCurrentIndexChanged(handler: DslSignalHandlerValue): SpriteGridBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): SpriteGridBuilder;
+  onNodeDestroyed(handler: DslSignalHandlerValue): SpriteGridBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): SpriteGridBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): SpriteGridBuilder;
+  onRowsChanged(handler: DslSignalHandlerValue): SpriteGridBuilder;
+  onTextureChanged(handler: DslSignalHandlerValue): SpriteGridBuilder;
+  onTextureTransformChanged(handler: DslSignalHandlerValue): SpriteGridBuilder;
 }
 
 const SPRITEGRID_META: TypeMetadata = {

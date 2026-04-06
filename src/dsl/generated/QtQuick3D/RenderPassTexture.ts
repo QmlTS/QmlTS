@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlEnumToken,
   QmlObjectBuilder,
   QmlValue,
@@ -12,6 +13,7 @@ import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface RenderPassTextureBuilder {
   id(id: string): RenderPassTextureBuilder;
   child(obj: QmlObjectBuilder): RenderPassTextureBuilder;
+  children(...objs: QmlObjectBuilder[]): RenderPassTextureBuilder;
 
   format(value: QmlEnumToken): RenderPassTextureBuilder;
   formatBind(expr: string): RenderPassTextureBuilder;
@@ -21,10 +23,10 @@ export interface RenderPassTextureBuilder {
   parentBind(expr: string): RenderPassTextureBuilder;
   state(value: string): RenderPassTextureBuilder;
   stateBind(expr: string): RenderPassTextureBuilder;
-  onChildrenChanged(body: string): RenderPassTextureBuilder;
-  onObjectNameChanged(body: string): RenderPassTextureBuilder;
-  onParentChanged(body: string): RenderPassTextureBuilder;
-  onStateChanged(body: string): RenderPassTextureBuilder;
+  onChildrenChanged(handler: DslSignalHandlerValue): RenderPassTextureBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): RenderPassTextureBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): RenderPassTextureBuilder;
+  onStateChanged(handler: DslSignalHandlerValue): RenderPassTextureBuilder;
 }
 
 const RENDERPASSTEXTURE_META: TypeMetadata = {

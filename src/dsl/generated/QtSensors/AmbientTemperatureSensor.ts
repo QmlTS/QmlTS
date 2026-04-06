@@ -2,11 +2,17 @@
 // Type: AmbientTemperatureSensor
 // Generated from Qt 6.11.0
 
-import type { QmlEnumToken, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlEnumToken,
+  QmlObjectBuilder,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface AmbientTemperatureSensorBuilder {
   id(id: string): AmbientTemperatureSensorBuilder;
   child(obj: QmlObjectBuilder): AmbientTemperatureSensorBuilder;
+  children(...objs: QmlObjectBuilder[]): AmbientTemperatureSensorBuilder;
 
   active(value: boolean): AmbientTemperatureSensorBuilder;
   activeBind(expr: string): AmbientTemperatureSensorBuilder;
@@ -28,26 +34,26 @@ export interface AmbientTemperatureSensorBuilder {
   skipDuplicatesBind(expr: string): AmbientTemperatureSensorBuilder;
   userOrientation(value: number): AmbientTemperatureSensorBuilder;
   userOrientationBind(expr: string): AmbientTemperatureSensorBuilder;
-  onActiveChanged(body: string): AmbientTemperatureSensorBuilder;
-  onAlwaysOnChanged(body: string): AmbientTemperatureSensorBuilder;
-  onAvailableDataRatesChanged(body: string): AmbientTemperatureSensorBuilder;
-  onAxesOrientationModeChanged(body: string): AmbientTemperatureSensorBuilder;
-  onBufferSizeChanged(body: string): AmbientTemperatureSensorBuilder;
-  onBusyChanged(body: string): AmbientTemperatureSensorBuilder;
-  onConnectedToBackendChanged(body: string): AmbientTemperatureSensorBuilder;
-  onCurrentOrientationChanged(body: string): AmbientTemperatureSensorBuilder;
-  onDataRateChanged(body: string): AmbientTemperatureSensorBuilder;
-  onDescriptionChanged(body: string): AmbientTemperatureSensorBuilder;
-  onEfficientBufferSizeChanged(body: string): AmbientTemperatureSensorBuilder;
-  onErrorChanged(body: string): AmbientTemperatureSensorBuilder;
-  onIdentifierChanged(body: string): AmbientTemperatureSensorBuilder;
-  onMaxBufferSizeChanged(body: string): AmbientTemperatureSensorBuilder;
-  onObjectNameChanged(body: string): AmbientTemperatureSensorBuilder;
-  onOutputRangeChanged(body: string): AmbientTemperatureSensorBuilder;
-  onOutputRangesChanged(body: string): AmbientTemperatureSensorBuilder;
-  onReadingChanged(body: string): AmbientTemperatureSensorBuilder;
-  onSkipDuplicatesChanged(body: string): AmbientTemperatureSensorBuilder;
-  onUserOrientationChanged(body: string): AmbientTemperatureSensorBuilder;
+  onActiveChanged(handler: DslSignalHandlerValue): AmbientTemperatureSensorBuilder;
+  onAlwaysOnChanged(handler: DslSignalHandlerValue): AmbientTemperatureSensorBuilder;
+  onAvailableDataRatesChanged(handler: DslSignalHandlerValue): AmbientTemperatureSensorBuilder;
+  onAxesOrientationModeChanged(handler: DslSignalHandlerValue): AmbientTemperatureSensorBuilder;
+  onBufferSizeChanged(handler: DslSignalHandlerValue): AmbientTemperatureSensorBuilder;
+  onBusyChanged(handler: DslSignalHandlerValue): AmbientTemperatureSensorBuilder;
+  onConnectedToBackendChanged(handler: DslSignalHandlerValue): AmbientTemperatureSensorBuilder;
+  onCurrentOrientationChanged(handler: DslSignalHandlerValue): AmbientTemperatureSensorBuilder;
+  onDataRateChanged(handler: DslSignalHandlerValue): AmbientTemperatureSensorBuilder;
+  onDescriptionChanged(handler: DslSignalHandlerValue): AmbientTemperatureSensorBuilder;
+  onEfficientBufferSizeChanged(handler: DslSignalHandlerValue): AmbientTemperatureSensorBuilder;
+  onErrorChanged(handler: DslSignalHandlerValue): AmbientTemperatureSensorBuilder;
+  onIdentifierChanged(handler: DslSignalHandlerValue): AmbientTemperatureSensorBuilder;
+  onMaxBufferSizeChanged(handler: DslSignalHandlerValue): AmbientTemperatureSensorBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): AmbientTemperatureSensorBuilder;
+  onOutputRangeChanged(handler: DslSignalHandlerValue): AmbientTemperatureSensorBuilder;
+  onOutputRangesChanged(handler: DslSignalHandlerValue): AmbientTemperatureSensorBuilder;
+  onReadingChanged(handler: DslSignalHandlerValue): AmbientTemperatureSensorBuilder;
+  onSkipDuplicatesChanged(handler: DslSignalHandlerValue): AmbientTemperatureSensorBuilder;
+  onUserOrientationChanged(handler: DslSignalHandlerValue): AmbientTemperatureSensorBuilder;
 }
 
 const AMBIENTTEMPERATURESENSOR_META: TypeMetadata = {

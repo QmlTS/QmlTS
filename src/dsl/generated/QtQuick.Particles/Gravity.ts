@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlEnumToken,
   QmlObjectBuilder,
   QmlValue,
@@ -19,6 +20,7 @@ import type { ItemParticleAttachedBuilder } from './QQuickItemParticleAttached.j
 export interface GravityBuilder {
   id(id: string): GravityBuilder;
   child(obj: QmlObjectBuilder): GravityBuilder;
+  children(...objs: QmlObjectBuilder[]): GravityBuilder;
 
   acceleration(value: number): GravityBuilder;
   accelerationBind(expr: string): GravityBuilder;
@@ -86,45 +88,45 @@ export interface GravityBuilder {
   yBind(expr: string): GravityBuilder;
   z(value: number): GravityBuilder;
   zBind(expr: string): GravityBuilder;
-  onActiveFocusChanged(body: string): GravityBuilder;
-  onActiveFocusOnTabChanged(body: string): GravityBuilder;
-  onAffected(body: string): GravityBuilder;
-  onAngleChanged(body: string): GravityBuilder;
-  onAntialiasingChanged(body: string): GravityBuilder;
-  onBaselineOffsetChanged(body: string): GravityBuilder;
-  onChildrenChanged(body: string): GravityBuilder;
-  onChildrenRectChanged(body: string): GravityBuilder;
-  onClipChanged(body: string): GravityBuilder;
-  onContainmentMaskChanged(body: string): GravityBuilder;
-  onEnabledChanged(body: string): GravityBuilder;
-  onFocusChanged(body: string): GravityBuilder;
-  onFocusPolicyChanged(body: string): GravityBuilder;
-  onGroupsChanged(body: string): GravityBuilder;
-  onHeightChanged(body: string): GravityBuilder;
-  onImplicitHeightChanged(body: string): GravityBuilder;
-  onImplicitWidthChanged(body: string): GravityBuilder;
-  onMagnitudeChanged(body: string): GravityBuilder;
-  onObjectNameChanged(body: string): GravityBuilder;
-  onOnceChanged(body: string): GravityBuilder;
-  onOpacityChanged(body: string): GravityBuilder;
-  onPaletteChanged(body: string): GravityBuilder;
-  onPaletteCreated(body: string): GravityBuilder;
-  onParentChanged(body: string): GravityBuilder;
-  onRotationChanged(body: string): GravityBuilder;
-  onScaleChanged(body: string): GravityBuilder;
-  onShapeChanged(body: string): GravityBuilder;
-  onSmoothChanged(body: string): GravityBuilder;
-  onStateChanged(body: string): GravityBuilder;
-  onSystemChanged(body: string): GravityBuilder;
-  onTransformOriginChanged(body: string): GravityBuilder;
-  onVisibleChanged(body: string): GravityBuilder;
-  onVisibleChildrenChanged(body: string): GravityBuilder;
-  onWhenCollidingWithChanged(body: string): GravityBuilder;
-  onWidthChanged(body: string): GravityBuilder;
-  onWindowChanged(body: string): GravityBuilder;
-  onXChanged(body: string): GravityBuilder;
-  onYChanged(body: string): GravityBuilder;
-  onZChanged(body: string): GravityBuilder;
+  onActiveFocusChanged(handler: DslSignalHandlerValue): GravityBuilder;
+  onActiveFocusOnTabChanged(handler: DslSignalHandlerValue): GravityBuilder;
+  onAffected(handler: DslSignalHandlerValue): GravityBuilder;
+  onAngleChanged(handler: DslSignalHandlerValue): GravityBuilder;
+  onAntialiasingChanged(handler: DslSignalHandlerValue): GravityBuilder;
+  onBaselineOffsetChanged(handler: DslSignalHandlerValue): GravityBuilder;
+  onChildrenChanged(handler: DslSignalHandlerValue): GravityBuilder;
+  onChildrenRectChanged(handler: DslSignalHandlerValue): GravityBuilder;
+  onClipChanged(handler: DslSignalHandlerValue): GravityBuilder;
+  onContainmentMaskChanged(handler: DslSignalHandlerValue): GravityBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): GravityBuilder;
+  onFocusChanged(handler: DslSignalHandlerValue): GravityBuilder;
+  onFocusPolicyChanged(handler: DslSignalHandlerValue): GravityBuilder;
+  onGroupsChanged(handler: DslSignalHandlerValue): GravityBuilder;
+  onHeightChanged(handler: DslSignalHandlerValue): GravityBuilder;
+  onImplicitHeightChanged(handler: DslSignalHandlerValue): GravityBuilder;
+  onImplicitWidthChanged(handler: DslSignalHandlerValue): GravityBuilder;
+  onMagnitudeChanged(handler: DslSignalHandlerValue): GravityBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): GravityBuilder;
+  onOnceChanged(handler: DslSignalHandlerValue): GravityBuilder;
+  onOpacityChanged(handler: DslSignalHandlerValue): GravityBuilder;
+  onPaletteChanged(handler: DslSignalHandlerValue): GravityBuilder;
+  onPaletteCreated(handler: DslSignalHandlerValue): GravityBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): GravityBuilder;
+  onRotationChanged(handler: DslSignalHandlerValue): GravityBuilder;
+  onScaleChanged(handler: DslSignalHandlerValue): GravityBuilder;
+  onShapeChanged(handler: DslSignalHandlerValue): GravityBuilder;
+  onSmoothChanged(handler: DslSignalHandlerValue): GravityBuilder;
+  onStateChanged(handler: DslSignalHandlerValue): GravityBuilder;
+  onSystemChanged(handler: DslSignalHandlerValue): GravityBuilder;
+  onTransformOriginChanged(handler: DslSignalHandlerValue): GravityBuilder;
+  onVisibleChanged(handler: DslSignalHandlerValue): GravityBuilder;
+  onVisibleChildrenChanged(handler: DslSignalHandlerValue): GravityBuilder;
+  onWhenCollidingWithChanged(handler: DslSignalHandlerValue): GravityBuilder;
+  onWidthChanged(handler: DslSignalHandlerValue): GravityBuilder;
+  onWindowChanged(handler: DslSignalHandlerValue): GravityBuilder;
+  onXChanged(handler: DslSignalHandlerValue): GravityBuilder;
+  onYChanged(handler: DslSignalHandlerValue): GravityBuilder;
+  onZChanged(handler: DslSignalHandlerValue): GravityBuilder;
   anchors(setup: (b: AnchorsBuilder) => void): GravityBuilder;
   layer(setup: (b: LayerBuilder) => void): GravityBuilder;
   itemParticle(setup: (b: ItemParticleAttachedBuilder) => void): GravityBuilder;

@@ -2,7 +2,12 @@
 // Type: Scale
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlVector3d, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlObjectBuilder,
+  QmlVector3d,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 import type { AccessibleAttachedBuilder } from './Accessible.js';
 import type { EnterKeyAttachedBuilder } from './EnterKey.js';
@@ -23,6 +28,7 @@ import type { ViewTransitionAttachedBuilder } from './ViewTransition.js';
 export interface ScaleBuilder {
   id(id: string): ScaleBuilder;
   child(obj: QmlObjectBuilder): ScaleBuilder;
+  children(...objs: QmlObjectBuilder[]): ScaleBuilder;
 
   objectName(value: string): ScaleBuilder;
   objectNameBind(expr: string): ScaleBuilder;
@@ -34,12 +40,12 @@ export interface ScaleBuilder {
   yScaleBind(expr: string): ScaleBuilder;
   zScale(value: number): ScaleBuilder;
   zScaleBind(expr: string): ScaleBuilder;
-  onObjectNameChanged(body: string): ScaleBuilder;
-  onOriginChanged(body: string): ScaleBuilder;
-  onScaleChanged(body: string): ScaleBuilder;
-  onXScaleChanged(body: string): ScaleBuilder;
-  onYScaleChanged(body: string): ScaleBuilder;
-  onZScaleChanged(body: string): ScaleBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): ScaleBuilder;
+  onOriginChanged(handler: DslSignalHandlerValue): ScaleBuilder;
+  onScaleChanged(handler: DslSignalHandlerValue): ScaleBuilder;
+  onXScaleChanged(handler: DslSignalHandlerValue): ScaleBuilder;
+  onYScaleChanged(handler: DslSignalHandlerValue): ScaleBuilder;
+  onZScaleChanged(handler: DslSignalHandlerValue): ScaleBuilder;
   accessible(setup: (b: AccessibleAttachedBuilder) => void): ScaleBuilder;
   drag(setup: (b: DragAttachedBuilder) => void): ScaleBuilder;
   enterKey(setup: (b: EnterKeyAttachedBuilder) => void): ScaleBuilder;

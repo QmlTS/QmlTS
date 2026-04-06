@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlComponent,
   QmlEnumToken,
   QmlObjectBuilder,
@@ -28,6 +29,7 @@ import type { ViewTransitionAttachedBuilder } from './ViewTransition.js';
 export interface ViewSectionBuilder {
   id(id: string): ViewSectionBuilder;
   child(obj: QmlObjectBuilder): ViewSectionBuilder;
+  children(...objs: QmlObjectBuilder[]): ViewSectionBuilder;
 
   criteria(value: QmlEnumToken): ViewSectionBuilder;
   criteriaBind(expr: string): ViewSectionBuilder;
@@ -39,12 +41,12 @@ export interface ViewSectionBuilder {
   objectNameBind(expr: string): ViewSectionBuilder;
   property(value: string): ViewSectionBuilder;
   propertyBind(expr: string): ViewSectionBuilder;
-  onCriteriaChanged(body: string): ViewSectionBuilder;
-  onDelegateChanged(body: string): ViewSectionBuilder;
-  onLabelPositioningChanged(body: string): ViewSectionBuilder;
-  onObjectNameChanged(body: string): ViewSectionBuilder;
-  onPropertyChanged(body: string): ViewSectionBuilder;
-  onSectionsChanged(body: string): ViewSectionBuilder;
+  onCriteriaChanged(handler: DslSignalHandlerValue): ViewSectionBuilder;
+  onDelegateChanged(handler: DslSignalHandlerValue): ViewSectionBuilder;
+  onLabelPositioningChanged(handler: DslSignalHandlerValue): ViewSectionBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): ViewSectionBuilder;
+  onPropertyChanged(handler: DslSignalHandlerValue): ViewSectionBuilder;
+  onSectionsChanged(handler: DslSignalHandlerValue): ViewSectionBuilder;
   accessible(setup: (b: AccessibleAttachedBuilder) => void): ViewSectionBuilder;
   drag(setup: (b: DragAttachedBuilder) => void): ViewSectionBuilder;
   enterKey(setup: (b: EnterKeyAttachedBuilder) => void): ViewSectionBuilder;

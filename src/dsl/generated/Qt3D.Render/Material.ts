@@ -2,12 +2,18 @@
 // Type: Material
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 import type { EffectBuilder } from './Effect.js';
 export interface MaterialBuilder {
   id(id: string): MaterialBuilder;
   child(obj: QmlObjectBuilder): MaterialBuilder;
+  children(...objs: QmlObjectBuilder[]): MaterialBuilder;
 
   effect(value: EffectBuilder): MaterialBuilder;
   effectBind(expr: string): MaterialBuilder;
@@ -19,14 +25,14 @@ export interface MaterialBuilder {
   objectNameBind(expr: string): MaterialBuilder;
   parent(value: QmlValue): MaterialBuilder;
   parentBind(expr: string): MaterialBuilder;
-  onAddedToEntity(body: string): MaterialBuilder;
-  onEffectChanged(body: string): MaterialBuilder;
-  onEnabledChanged(body: string): MaterialBuilder;
-  onNodeDestroyed(body: string): MaterialBuilder;
-  onObjectNameChanged(body: string): MaterialBuilder;
-  onParentChanged(body: string): MaterialBuilder;
-  onRemovedFromEntity(body: string): MaterialBuilder;
-  onShareableChanged(body: string): MaterialBuilder;
+  onAddedToEntity(handler: DslSignalHandlerValue): MaterialBuilder;
+  onEffectChanged(handler: DslSignalHandlerValue): MaterialBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): MaterialBuilder;
+  onNodeDestroyed(handler: DslSignalHandlerValue): MaterialBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): MaterialBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): MaterialBuilder;
+  onRemovedFromEntity(handler: DslSignalHandlerValue): MaterialBuilder;
+  onShareableChanged(handler: DslSignalHandlerValue): MaterialBuilder;
 }
 
 const MATERIAL_META: TypeMetadata = {

@@ -2,7 +2,12 @@
 // Type: TapHandler
 // Generated from Qt 6.11.0
 
-import type { QmlEnumToken, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlEnumToken,
+  QmlObjectBuilder,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { AccessibleAttachedBuilder } from './Accessible.js';
 import type { EnterKeyAttachedBuilder } from './EnterKey.js';
@@ -24,6 +29,7 @@ import type { ViewTransitionAttachedBuilder } from './ViewTransition.js';
 export interface TapHandlerBuilder {
   id(id: string): TapHandlerBuilder;
   child(obj: QmlObjectBuilder): TapHandlerBuilder;
+  children(...objs: QmlObjectBuilder[]): TapHandlerBuilder;
 
   acceptedButtons(value: QmlEnumToken): TapHandlerBuilder;
   acceptedButtonsBind(expr: string): TapHandlerBuilder;
@@ -55,32 +61,32 @@ export interface TapHandlerBuilder {
   parentBind(expr: string): TapHandlerBuilder;
   target(value: ItemBuilder): TapHandlerBuilder;
   targetBind(expr: string): TapHandlerBuilder;
-  onAcceptedButtonsChanged(body: string): TapHandlerBuilder;
-  onAcceptedDevicesChanged(body: string): TapHandlerBuilder;
-  onAcceptedModifiersChanged(body: string): TapHandlerBuilder;
-  onAcceptedPointerTypesChanged(body: string): TapHandlerBuilder;
-  onActiveChanged(body: string): TapHandlerBuilder;
-  onCanceled(body: string): TapHandlerBuilder;
-  onCursorShapeChanged(body: string): TapHandlerBuilder;
-  onDoubleTapped(body: string): TapHandlerBuilder;
-  onDragThresholdChanged(body: string): TapHandlerBuilder;
-  onEnabledChanged(body: string): TapHandlerBuilder;
-  onExclusiveSignalsChanged(body: string): TapHandlerBuilder;
-  onGesturePolicyChanged(body: string): TapHandlerBuilder;
-  onGrabChanged(body: string): TapHandlerBuilder;
-  onGrabPermissionChanged(body: string): TapHandlerBuilder;
-  onLongPressThresholdChanged(body: string): TapHandlerBuilder;
-  onLongPressed(body: string): TapHandlerBuilder;
-  onMarginChanged(body: string): TapHandlerBuilder;
-  onObjectNameChanged(body: string): TapHandlerBuilder;
-  onParentChanged(body: string): TapHandlerBuilder;
-  onPointChanged(body: string): TapHandlerBuilder;
-  onPressedChanged(body: string): TapHandlerBuilder;
-  onSingleTapped(body: string): TapHandlerBuilder;
-  onTapCountChanged(body: string): TapHandlerBuilder;
-  onTapped(body: string): TapHandlerBuilder;
-  onTargetChanged(body: string): TapHandlerBuilder;
-  onTimeHeldChanged(body: string): TapHandlerBuilder;
+  onAcceptedButtonsChanged(handler: DslSignalHandlerValue): TapHandlerBuilder;
+  onAcceptedDevicesChanged(handler: DslSignalHandlerValue): TapHandlerBuilder;
+  onAcceptedModifiersChanged(handler: DslSignalHandlerValue): TapHandlerBuilder;
+  onAcceptedPointerTypesChanged(handler: DslSignalHandlerValue): TapHandlerBuilder;
+  onActiveChanged(handler: DslSignalHandlerValue): TapHandlerBuilder;
+  onCanceled(handler: DslSignalHandlerValue): TapHandlerBuilder;
+  onCursorShapeChanged(handler: DslSignalHandlerValue): TapHandlerBuilder;
+  onDoubleTapped(handler: DslSignalHandlerValue): TapHandlerBuilder;
+  onDragThresholdChanged(handler: DslSignalHandlerValue): TapHandlerBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): TapHandlerBuilder;
+  onExclusiveSignalsChanged(handler: DslSignalHandlerValue): TapHandlerBuilder;
+  onGesturePolicyChanged(handler: DslSignalHandlerValue): TapHandlerBuilder;
+  onGrabChanged(handler: DslSignalHandlerValue): TapHandlerBuilder;
+  onGrabPermissionChanged(handler: DslSignalHandlerValue): TapHandlerBuilder;
+  onLongPressThresholdChanged(handler: DslSignalHandlerValue): TapHandlerBuilder;
+  onLongPressed(handler: DslSignalHandlerValue): TapHandlerBuilder;
+  onMarginChanged(handler: DslSignalHandlerValue): TapHandlerBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): TapHandlerBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): TapHandlerBuilder;
+  onPointChanged(handler: DslSignalHandlerValue): TapHandlerBuilder;
+  onPressedChanged(handler: DslSignalHandlerValue): TapHandlerBuilder;
+  onSingleTapped(handler: DslSignalHandlerValue): TapHandlerBuilder;
+  onTapCountChanged(handler: DslSignalHandlerValue): TapHandlerBuilder;
+  onTapped(handler: DslSignalHandlerValue): TapHandlerBuilder;
+  onTargetChanged(handler: DslSignalHandlerValue): TapHandlerBuilder;
+  onTimeHeldChanged(handler: DslSignalHandlerValue): TapHandlerBuilder;
   accessible(setup: (b: AccessibleAttachedBuilder) => void): TapHandlerBuilder;
   drag(setup: (b: DragAttachedBuilder) => void): TapHandlerBuilder;
   enterKey(setup: (b: EnterKeyAttachedBuilder) => void): TapHandlerBuilder;

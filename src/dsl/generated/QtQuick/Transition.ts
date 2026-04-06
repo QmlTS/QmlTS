@@ -2,7 +2,7 @@
 // Type: Transition
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import type { DslSignalHandlerValue, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 import type { AccessibleAttachedBuilder } from './Accessible.js';
 import type { EnterKeyAttachedBuilder } from './EnterKey.js';
@@ -23,6 +23,7 @@ import type { ViewTransitionAttachedBuilder } from './ViewTransition.js';
 export interface TransitionBuilder {
   id(id: string): TransitionBuilder;
   child(obj: QmlObjectBuilder): TransitionBuilder;
+  children(...objs: QmlObjectBuilder[]): TransitionBuilder;
 
   enabled(value: boolean): TransitionBuilder;
   enabledBind(expr: string): TransitionBuilder;
@@ -34,12 +35,12 @@ export interface TransitionBuilder {
   reversibleBind(expr: string): TransitionBuilder;
   to(value: string): TransitionBuilder;
   toBind(expr: string): TransitionBuilder;
-  onEnabledChanged(body: string): TransitionBuilder;
-  onFromChanged(body: string): TransitionBuilder;
-  onObjectNameChanged(body: string): TransitionBuilder;
-  onReversibleChanged(body: string): TransitionBuilder;
-  onRunningChanged(body: string): TransitionBuilder;
-  onToChanged(body: string): TransitionBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): TransitionBuilder;
+  onFromChanged(handler: DslSignalHandlerValue): TransitionBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): TransitionBuilder;
+  onReversibleChanged(handler: DslSignalHandlerValue): TransitionBuilder;
+  onRunningChanged(handler: DslSignalHandlerValue): TransitionBuilder;
+  onToChanged(handler: DslSignalHandlerValue): TransitionBuilder;
   accessible(setup: (b: AccessibleAttachedBuilder) => void): TransitionBuilder;
   drag(setup: (b: DragAttachedBuilder) => void): TransitionBuilder;
   enterKey(setup: (b: EnterKeyAttachedBuilder) => void): TransitionBuilder;

@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlEnumToken,
   QmlObjectBuilder,
   QmlQuaternion,
@@ -14,6 +15,7 @@ import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface XrControllerBuilder {
   id(id: string): XrControllerBuilder;
   child(obj: QmlObjectBuilder): XrControllerBuilder;
+  children(...objs: QmlObjectBuilder[]): XrControllerBuilder;
 
   controller(value: QmlEnumToken): XrControllerBuilder;
   controllerBind(expr: string): XrControllerBuilder;
@@ -49,37 +51,37 @@ export interface XrControllerBuilder {
   yBind(expr: string): XrControllerBuilder;
   z(value: number): XrControllerBuilder;
   zBind(expr: string): XrControllerBuilder;
-  onActionMapperChanged(body: string): XrControllerBuilder;
-  onChildrenChanged(body: string): XrControllerBuilder;
-  onControllerChanged(body: string): XrControllerBuilder;
-  onEulerRotationChanged(body: string): XrControllerBuilder;
-  onForwardChanged(body: string): XrControllerBuilder;
-  onIsActiveChanged(body: string): XrControllerBuilder;
-  onJointDataUpdated(body: string): XrControllerBuilder;
-  onJointPositionsChanged(body: string): XrControllerBuilder;
-  onJointRotationsChanged(body: string): XrControllerBuilder;
-  onLayersChanged(body: string): XrControllerBuilder;
-  onLocalOpacityChanged(body: string): XrControllerBuilder;
-  onObjectNameChanged(body: string): XrControllerBuilder;
-  onParentChanged(body: string): XrControllerBuilder;
-  onPivotChanged(body: string): XrControllerBuilder;
-  onPokePositionChanged(body: string): XrControllerBuilder;
-  onPoseSpaceChanged(body: string): XrControllerBuilder;
-  onPositionChanged(body: string): XrControllerBuilder;
-  onRightChanged(body: string): XrControllerBuilder;
-  onRotationChanged(body: string): XrControllerBuilder;
-  onScaleChanged(body: string): XrControllerBuilder;
-  onScenePositionChanged(body: string): XrControllerBuilder;
-  onSceneRotationChanged(body: string): XrControllerBuilder;
-  onSceneScaleChanged(body: string): XrControllerBuilder;
-  onSceneTransformChanged(body: string): XrControllerBuilder;
-  onStateChanged(body: string): XrControllerBuilder;
-  onStaticFlagsChanged(body: string): XrControllerBuilder;
-  onUpChanged(body: string): XrControllerBuilder;
-  onVisibleChanged(body: string): XrControllerBuilder;
-  onXChanged(body: string): XrControllerBuilder;
-  onYChanged(body: string): XrControllerBuilder;
-  onZChanged(body: string): XrControllerBuilder;
+  onActionMapperChanged(handler: DslSignalHandlerValue): XrControllerBuilder;
+  onChildrenChanged(handler: DslSignalHandlerValue): XrControllerBuilder;
+  onControllerChanged(handler: DslSignalHandlerValue): XrControllerBuilder;
+  onEulerRotationChanged(handler: DslSignalHandlerValue): XrControllerBuilder;
+  onForwardChanged(handler: DslSignalHandlerValue): XrControllerBuilder;
+  onIsActiveChanged(handler: DslSignalHandlerValue): XrControllerBuilder;
+  onJointDataUpdated(handler: DslSignalHandlerValue): XrControllerBuilder;
+  onJointPositionsChanged(handler: DslSignalHandlerValue): XrControllerBuilder;
+  onJointRotationsChanged(handler: DslSignalHandlerValue): XrControllerBuilder;
+  onLayersChanged(handler: DslSignalHandlerValue): XrControllerBuilder;
+  onLocalOpacityChanged(handler: DslSignalHandlerValue): XrControllerBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): XrControllerBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): XrControllerBuilder;
+  onPivotChanged(handler: DslSignalHandlerValue): XrControllerBuilder;
+  onPokePositionChanged(handler: DslSignalHandlerValue): XrControllerBuilder;
+  onPoseSpaceChanged(handler: DslSignalHandlerValue): XrControllerBuilder;
+  onPositionChanged(handler: DslSignalHandlerValue): XrControllerBuilder;
+  onRightChanged(handler: DslSignalHandlerValue): XrControllerBuilder;
+  onRotationChanged(handler: DslSignalHandlerValue): XrControllerBuilder;
+  onScaleChanged(handler: DslSignalHandlerValue): XrControllerBuilder;
+  onScenePositionChanged(handler: DslSignalHandlerValue): XrControllerBuilder;
+  onSceneRotationChanged(handler: DslSignalHandlerValue): XrControllerBuilder;
+  onSceneScaleChanged(handler: DslSignalHandlerValue): XrControllerBuilder;
+  onSceneTransformChanged(handler: DslSignalHandlerValue): XrControllerBuilder;
+  onStateChanged(handler: DslSignalHandlerValue): XrControllerBuilder;
+  onStaticFlagsChanged(handler: DslSignalHandlerValue): XrControllerBuilder;
+  onUpChanged(handler: DslSignalHandlerValue): XrControllerBuilder;
+  onVisibleChanged(handler: DslSignalHandlerValue): XrControllerBuilder;
+  onXChanged(handler: DslSignalHandlerValue): XrControllerBuilder;
+  onYChanged(handler: DslSignalHandlerValue): XrControllerBuilder;
+  onZChanged(handler: DslSignalHandlerValue): XrControllerBuilder;
 }
 
 const XRCONTROLLER_META: TypeMetadata = {

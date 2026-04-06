@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlEnumToken,
   QmlObjectBuilder,
   QmlQuaternion,
@@ -18,6 +19,7 @@ import type { Value3DAxisBuilder } from './Value3DAxis.js';
 export interface Bars3DNodeBuilder {
   id(id: string): Bars3DNodeBuilder;
   child(obj: QmlObjectBuilder): Bars3DNodeBuilder;
+  children(...objs: QmlObjectBuilder[]): Bars3DNodeBuilder;
 
   aspectRatio(value: number): Bars3DNodeBuilder;
   aspectRatioBind(expr: string): Bars3DNodeBuilder;
@@ -91,53 +93,53 @@ export interface Bars3DNodeBuilder {
   yBind(expr: string): Bars3DNodeBuilder;
   z(value: number): Bars3DNodeBuilder;
   zBind(expr: string): Bars3DNodeBuilder;
-  onAspectRatioChanged(body: string): Bars3DNodeBuilder;
-  onBarSeriesMarginChanged(body: string): Bars3DNodeBuilder;
-  onBarSpacingChanged(body: string): Bars3DNodeBuilder;
-  onBarSpacingRelativeChanged(body: string): Bars3DNodeBuilder;
-  onBarThicknessChanged(body: string): Bars3DNodeBuilder;
-  onChildrenChanged(body: string): Bars3DNodeBuilder;
-  onColumnAxisChanged(body: string): Bars3DNodeBuilder;
-  onEulerRotationChanged(body: string): Bars3DNodeBuilder;
-  onFloorLevelChanged(body: string): Bars3DNodeBuilder;
-  onForwardChanged(body: string): Bars3DNodeBuilder;
-  onGridLineTypeChanged(body: string): Bars3DNodeBuilder;
-  onHorizontalAspectRatioChanged(body: string): Bars3DNodeBuilder;
-  onLabelMarginChanged(body: string): Bars3DNodeBuilder;
-  onLayersChanged(body: string): Bars3DNodeBuilder;
-  onLocalOpacityChanged(body: string): Bars3DNodeBuilder;
-  onLocaleChanged(body: string): Bars3DNodeBuilder;
-  onMarginChanged(body: string): Bars3DNodeBuilder;
-  onMultiSeriesUniformChanged(body: string): Bars3DNodeBuilder;
-  onObjectNameChanged(body: string): Bars3DNodeBuilder;
-  onOptimizationHintChanged(body: string): Bars3DNodeBuilder;
-  onParentChanged(body: string): Bars3DNodeBuilder;
-  onPivotChanged(body: string): Bars3DNodeBuilder;
-  onPolarChanged(body: string): Bars3DNodeBuilder;
-  onPositionChanged(body: string): Bars3DNodeBuilder;
-  onPrimarySeriesChanged(body: string): Bars3DNodeBuilder;
-  onQueriedGraphPositionChanged(body: string): Bars3DNodeBuilder;
-  onRadialLabelOffsetChanged(body: string): Bars3DNodeBuilder;
-  onRightChanged(body: string): Bars3DNodeBuilder;
-  onRotationChanged(body: string): Bars3DNodeBuilder;
-  onRowAxisChanged(body: string): Bars3DNodeBuilder;
-  onScaleChanged(body: string): Bars3DNodeBuilder;
-  onScenePositionChanged(body: string): Bars3DNodeBuilder;
-  onSceneRotationChanged(body: string): Bars3DNodeBuilder;
-  onSceneScaleChanged(body: string): Bars3DNodeBuilder;
-  onSceneTransformChanged(body: string): Bars3DNodeBuilder;
-  onSelectedElementChanged(body: string): Bars3DNodeBuilder;
-  onSelectedSeriesChanged(body: string): Bars3DNodeBuilder;
-  onSelectionModeChanged(body: string): Bars3DNodeBuilder;
-  onStateChanged(body: string): Bars3DNodeBuilder;
-  onStaticFlagsChanged(body: string): Bars3DNodeBuilder;
-  onThemeChanged(body: string): Bars3DNodeBuilder;
-  onUpChanged(body: string): Bars3DNodeBuilder;
-  onValueAxisChanged(body: string): Bars3DNodeBuilder;
-  onVisibleChanged(body: string): Bars3DNodeBuilder;
-  onXChanged(body: string): Bars3DNodeBuilder;
-  onYChanged(body: string): Bars3DNodeBuilder;
-  onZChanged(body: string): Bars3DNodeBuilder;
+  onAspectRatioChanged(handler: DslSignalHandlerValue): Bars3DNodeBuilder;
+  onBarSeriesMarginChanged(handler: DslSignalHandlerValue): Bars3DNodeBuilder;
+  onBarSpacingChanged(handler: DslSignalHandlerValue): Bars3DNodeBuilder;
+  onBarSpacingRelativeChanged(handler: DslSignalHandlerValue): Bars3DNodeBuilder;
+  onBarThicknessChanged(handler: DslSignalHandlerValue): Bars3DNodeBuilder;
+  onChildrenChanged(handler: DslSignalHandlerValue): Bars3DNodeBuilder;
+  onColumnAxisChanged(handler: DslSignalHandlerValue): Bars3DNodeBuilder;
+  onEulerRotationChanged(handler: DslSignalHandlerValue): Bars3DNodeBuilder;
+  onFloorLevelChanged(handler: DslSignalHandlerValue): Bars3DNodeBuilder;
+  onForwardChanged(handler: DslSignalHandlerValue): Bars3DNodeBuilder;
+  onGridLineTypeChanged(handler: DslSignalHandlerValue): Bars3DNodeBuilder;
+  onHorizontalAspectRatioChanged(handler: DslSignalHandlerValue): Bars3DNodeBuilder;
+  onLabelMarginChanged(handler: DslSignalHandlerValue): Bars3DNodeBuilder;
+  onLayersChanged(handler: DslSignalHandlerValue): Bars3DNodeBuilder;
+  onLocalOpacityChanged(handler: DslSignalHandlerValue): Bars3DNodeBuilder;
+  onLocaleChanged(handler: DslSignalHandlerValue): Bars3DNodeBuilder;
+  onMarginChanged(handler: DslSignalHandlerValue): Bars3DNodeBuilder;
+  onMultiSeriesUniformChanged(handler: DslSignalHandlerValue): Bars3DNodeBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): Bars3DNodeBuilder;
+  onOptimizationHintChanged(handler: DslSignalHandlerValue): Bars3DNodeBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): Bars3DNodeBuilder;
+  onPivotChanged(handler: DslSignalHandlerValue): Bars3DNodeBuilder;
+  onPolarChanged(handler: DslSignalHandlerValue): Bars3DNodeBuilder;
+  onPositionChanged(handler: DslSignalHandlerValue): Bars3DNodeBuilder;
+  onPrimarySeriesChanged(handler: DslSignalHandlerValue): Bars3DNodeBuilder;
+  onQueriedGraphPositionChanged(handler: DslSignalHandlerValue): Bars3DNodeBuilder;
+  onRadialLabelOffsetChanged(handler: DslSignalHandlerValue): Bars3DNodeBuilder;
+  onRightChanged(handler: DslSignalHandlerValue): Bars3DNodeBuilder;
+  onRotationChanged(handler: DslSignalHandlerValue): Bars3DNodeBuilder;
+  onRowAxisChanged(handler: DslSignalHandlerValue): Bars3DNodeBuilder;
+  onScaleChanged(handler: DslSignalHandlerValue): Bars3DNodeBuilder;
+  onScenePositionChanged(handler: DslSignalHandlerValue): Bars3DNodeBuilder;
+  onSceneRotationChanged(handler: DslSignalHandlerValue): Bars3DNodeBuilder;
+  onSceneScaleChanged(handler: DslSignalHandlerValue): Bars3DNodeBuilder;
+  onSceneTransformChanged(handler: DslSignalHandlerValue): Bars3DNodeBuilder;
+  onSelectedElementChanged(handler: DslSignalHandlerValue): Bars3DNodeBuilder;
+  onSelectedSeriesChanged(handler: DslSignalHandlerValue): Bars3DNodeBuilder;
+  onSelectionModeChanged(handler: DslSignalHandlerValue): Bars3DNodeBuilder;
+  onStateChanged(handler: DslSignalHandlerValue): Bars3DNodeBuilder;
+  onStaticFlagsChanged(handler: DslSignalHandlerValue): Bars3DNodeBuilder;
+  onThemeChanged(handler: DslSignalHandlerValue): Bars3DNodeBuilder;
+  onUpChanged(handler: DslSignalHandlerValue): Bars3DNodeBuilder;
+  onValueAxisChanged(handler: DslSignalHandlerValue): Bars3DNodeBuilder;
+  onVisibleChanged(handler: DslSignalHandlerValue): Bars3DNodeBuilder;
+  onXChanged(handler: DslSignalHandlerValue): Bars3DNodeBuilder;
+  onYChanged(handler: DslSignalHandlerValue): Bars3DNodeBuilder;
+  onZChanged(handler: DslSignalHandlerValue): Bars3DNodeBuilder;
 }
 
 const BARS3DNODE_META: TypeMetadata = {

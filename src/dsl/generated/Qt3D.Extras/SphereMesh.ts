@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlEnumToken,
   QmlObjectBuilder,
   QmlValue,
@@ -15,6 +16,7 @@ import type { GeometryViewBuilder } from '../Qt3D.Core/GeometryView.js';
 export interface SphereMeshBuilder {
   id(id: string): SphereMeshBuilder;
   child(obj: QmlObjectBuilder): SphereMeshBuilder;
+  children(...objs: QmlObjectBuilder[]): SphereMeshBuilder;
 
   enabled(value: boolean): SphereMeshBuilder;
   enabledBind(expr: string): SphereMeshBuilder;
@@ -62,35 +64,35 @@ export interface SphereMeshBuilder {
   verticesPerPatchBind(expr: string): SphereMeshBuilder;
   view(value: GeometryViewBuilder): SphereMeshBuilder;
   viewBind(expr: string): SphereMeshBuilder;
-  onAddedToEntity(body: string): SphereMeshBuilder;
-  onEnabledChanged(body: string): SphereMeshBuilder;
-  onFirstInstanceChanged(body: string): SphereMeshBuilder;
-  onFirstVertexChanged(body: string): SphereMeshBuilder;
-  onGenerateTangentsChanged(body: string): SphereMeshBuilder;
-  onGeometryChanged(body: string): SphereMeshBuilder;
-  onImplicitMaxPointChanged(body: string): SphereMeshBuilder;
-  onImplicitMinPointChanged(body: string): SphereMeshBuilder;
-  onImplicitPointsValidChanged(body: string): SphereMeshBuilder;
-  onIndexBufferByteOffsetChanged(body: string): SphereMeshBuilder;
-  onIndexOffsetChanged(body: string): SphereMeshBuilder;
-  onInstanceCountChanged(body: string): SphereMeshBuilder;
-  onMaxPointChanged(body: string): SphereMeshBuilder;
-  onMinPointChanged(body: string): SphereMeshBuilder;
-  onNodeDestroyed(body: string): SphereMeshBuilder;
-  onObjectNameChanged(body: string): SphereMeshBuilder;
-  onParentChanged(body: string): SphereMeshBuilder;
-  onPrimitiveRestartEnabledChanged(body: string): SphereMeshBuilder;
-  onPrimitiveTypeChanged(body: string): SphereMeshBuilder;
-  onRadiusChanged(body: string): SphereMeshBuilder;
-  onRemovedFromEntity(body: string): SphereMeshBuilder;
-  onRestartIndexValueChanged(body: string): SphereMeshBuilder;
-  onRingsChanged(body: string): SphereMeshBuilder;
-  onShareableChanged(body: string): SphereMeshBuilder;
-  onSlicesChanged(body: string): SphereMeshBuilder;
-  onSortIndexChanged(body: string): SphereMeshBuilder;
-  onVertexCountChanged(body: string): SphereMeshBuilder;
-  onVerticesPerPatchChanged(body: string): SphereMeshBuilder;
-  onViewChanged(body: string): SphereMeshBuilder;
+  onAddedToEntity(handler: DslSignalHandlerValue): SphereMeshBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): SphereMeshBuilder;
+  onFirstInstanceChanged(handler: DslSignalHandlerValue): SphereMeshBuilder;
+  onFirstVertexChanged(handler: DslSignalHandlerValue): SphereMeshBuilder;
+  onGenerateTangentsChanged(handler: DslSignalHandlerValue): SphereMeshBuilder;
+  onGeometryChanged(handler: DslSignalHandlerValue): SphereMeshBuilder;
+  onImplicitMaxPointChanged(handler: DslSignalHandlerValue): SphereMeshBuilder;
+  onImplicitMinPointChanged(handler: DslSignalHandlerValue): SphereMeshBuilder;
+  onImplicitPointsValidChanged(handler: DslSignalHandlerValue): SphereMeshBuilder;
+  onIndexBufferByteOffsetChanged(handler: DslSignalHandlerValue): SphereMeshBuilder;
+  onIndexOffsetChanged(handler: DslSignalHandlerValue): SphereMeshBuilder;
+  onInstanceCountChanged(handler: DslSignalHandlerValue): SphereMeshBuilder;
+  onMaxPointChanged(handler: DslSignalHandlerValue): SphereMeshBuilder;
+  onMinPointChanged(handler: DslSignalHandlerValue): SphereMeshBuilder;
+  onNodeDestroyed(handler: DslSignalHandlerValue): SphereMeshBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): SphereMeshBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): SphereMeshBuilder;
+  onPrimitiveRestartEnabledChanged(handler: DslSignalHandlerValue): SphereMeshBuilder;
+  onPrimitiveTypeChanged(handler: DslSignalHandlerValue): SphereMeshBuilder;
+  onRadiusChanged(handler: DslSignalHandlerValue): SphereMeshBuilder;
+  onRemovedFromEntity(handler: DslSignalHandlerValue): SphereMeshBuilder;
+  onRestartIndexValueChanged(handler: DslSignalHandlerValue): SphereMeshBuilder;
+  onRingsChanged(handler: DslSignalHandlerValue): SphereMeshBuilder;
+  onShareableChanged(handler: DslSignalHandlerValue): SphereMeshBuilder;
+  onSlicesChanged(handler: DslSignalHandlerValue): SphereMeshBuilder;
+  onSortIndexChanged(handler: DslSignalHandlerValue): SphereMeshBuilder;
+  onVertexCountChanged(handler: DslSignalHandlerValue): SphereMeshBuilder;
+  onVerticesPerPatchChanged(handler: DslSignalHandlerValue): SphereMeshBuilder;
+  onViewChanged(handler: DslSignalHandlerValue): SphereMeshBuilder;
 }
 
 const SPHEREMESH_META: TypeMetadata = {

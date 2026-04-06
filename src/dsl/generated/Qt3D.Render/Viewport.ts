@@ -2,11 +2,18 @@
 // Type: Viewport
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlRect, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlObjectBuilder,
+  QmlRect,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 export interface ViewportBuilder {
   id(id: string): ViewportBuilder;
   child(obj: QmlObjectBuilder): ViewportBuilder;
+  children(...objs: QmlObjectBuilder[]): ViewportBuilder;
 
   enabled(value: boolean): ViewportBuilder;
   enabledBind(expr: string): ViewportBuilder;
@@ -18,12 +25,12 @@ export interface ViewportBuilder {
   objectNameBind(expr: string): ViewportBuilder;
   parent(value: QmlValue): ViewportBuilder;
   parentBind(expr: string): ViewportBuilder;
-  onEnabledChanged(body: string): ViewportBuilder;
-  onGammaChanged(body: string): ViewportBuilder;
-  onNodeDestroyed(body: string): ViewportBuilder;
-  onNormalizedRectChanged(body: string): ViewportBuilder;
-  onObjectNameChanged(body: string): ViewportBuilder;
-  onParentChanged(body: string): ViewportBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): ViewportBuilder;
+  onGammaChanged(handler: DslSignalHandlerValue): ViewportBuilder;
+  onNodeDestroyed(handler: DslSignalHandlerValue): ViewportBuilder;
+  onNormalizedRectChanged(handler: DslSignalHandlerValue): ViewportBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): ViewportBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): ViewportBuilder;
 }
 
 const VIEWPORT_META: TypeMetadata = {

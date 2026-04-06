@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlEnumToken,
   QmlObjectBuilder,
   QmlValue,
@@ -18,6 +19,7 @@ import type { BorderBuilder } from './QDeclarativeMapLineProperties.js';
 export interface MapRouteBuilder {
   id(id: string): MapRouteBuilder;
   child(obj: QmlObjectBuilder): MapRouteBuilder;
+  children(...objs: QmlObjectBuilder[]): MapRouteBuilder;
 
   activeFocusOnTab(value: boolean): MapRouteBuilder;
   activeFocusOnTabBind(expr: string): MapRouteBuilder;
@@ -81,44 +83,44 @@ export interface MapRouteBuilder {
   yBind(expr: string): MapRouteBuilder;
   z(value: number): MapRouteBuilder;
   zBind(expr: string): MapRouteBuilder;
-  onActiveFocusChanged(body: string): MapRouteBuilder;
-  onActiveFocusOnTabChanged(body: string): MapRouteBuilder;
-  onAddTransitionFinished(body: string): MapRouteBuilder;
-  onAntialiasingChanged(body: string): MapRouteBuilder;
-  onBaselineOffsetChanged(body: string): MapRouteBuilder;
-  onChildrenChanged(body: string): MapRouteBuilder;
-  onChildrenRectChanged(body: string): MapRouteBuilder;
-  onClipChanged(body: string): MapRouteBuilder;
-  onContainmentMaskChanged(body: string): MapRouteBuilder;
-  onEnabledChanged(body: string): MapRouteBuilder;
-  onFocusChanged(body: string): MapRouteBuilder;
-  onFocusPolicyChanged(body: string): MapRouteBuilder;
-  onHeightChanged(body: string): MapRouteBuilder;
-  onImplicitHeightChanged(body: string): MapRouteBuilder;
-  onImplicitWidthChanged(body: string): MapRouteBuilder;
-  onLodThresholdChanged(body: string): MapRouteBuilder;
-  onMapItemOpacityChanged(body: string): MapRouteBuilder;
-  onObjectNameChanged(body: string): MapRouteBuilder;
-  onOpacityChanged(body: string): MapRouteBuilder;
-  onPaletteChanged(body: string): MapRouteBuilder;
-  onPaletteCreated(body: string): MapRouteBuilder;
-  onParentChanged(body: string): MapRouteBuilder;
-  onPathChanged(body: string): MapRouteBuilder;
-  onReferenceSurfaceChanged(body: string): MapRouteBuilder;
-  onRemoveTransitionFinished(body: string): MapRouteBuilder;
-  onRotationChanged(body: string): MapRouteBuilder;
-  onRouteChanged(body: string): MapRouteBuilder;
-  onScaleChanged(body: string): MapRouteBuilder;
-  onSmoothChanged(body: string): MapRouteBuilder;
-  onStateChanged(body: string): MapRouteBuilder;
-  onTransformOriginChanged(body: string): MapRouteBuilder;
-  onVisibleChanged(body: string): MapRouteBuilder;
-  onVisibleChildrenChanged(body: string): MapRouteBuilder;
-  onWidthChanged(body: string): MapRouteBuilder;
-  onWindowChanged(body: string): MapRouteBuilder;
-  onXChanged(body: string): MapRouteBuilder;
-  onYChanged(body: string): MapRouteBuilder;
-  onZChanged(body: string): MapRouteBuilder;
+  onActiveFocusChanged(handler: DslSignalHandlerValue): MapRouteBuilder;
+  onActiveFocusOnTabChanged(handler: DslSignalHandlerValue): MapRouteBuilder;
+  onAddTransitionFinished(handler: DslSignalHandlerValue): MapRouteBuilder;
+  onAntialiasingChanged(handler: DslSignalHandlerValue): MapRouteBuilder;
+  onBaselineOffsetChanged(handler: DslSignalHandlerValue): MapRouteBuilder;
+  onChildrenChanged(handler: DslSignalHandlerValue): MapRouteBuilder;
+  onChildrenRectChanged(handler: DslSignalHandlerValue): MapRouteBuilder;
+  onClipChanged(handler: DslSignalHandlerValue): MapRouteBuilder;
+  onContainmentMaskChanged(handler: DslSignalHandlerValue): MapRouteBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): MapRouteBuilder;
+  onFocusChanged(handler: DslSignalHandlerValue): MapRouteBuilder;
+  onFocusPolicyChanged(handler: DslSignalHandlerValue): MapRouteBuilder;
+  onHeightChanged(handler: DslSignalHandlerValue): MapRouteBuilder;
+  onImplicitHeightChanged(handler: DslSignalHandlerValue): MapRouteBuilder;
+  onImplicitWidthChanged(handler: DslSignalHandlerValue): MapRouteBuilder;
+  onLodThresholdChanged(handler: DslSignalHandlerValue): MapRouteBuilder;
+  onMapItemOpacityChanged(handler: DslSignalHandlerValue): MapRouteBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): MapRouteBuilder;
+  onOpacityChanged(handler: DslSignalHandlerValue): MapRouteBuilder;
+  onPaletteChanged(handler: DslSignalHandlerValue): MapRouteBuilder;
+  onPaletteCreated(handler: DslSignalHandlerValue): MapRouteBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): MapRouteBuilder;
+  onPathChanged(handler: DslSignalHandlerValue): MapRouteBuilder;
+  onReferenceSurfaceChanged(handler: DslSignalHandlerValue): MapRouteBuilder;
+  onRemoveTransitionFinished(handler: DslSignalHandlerValue): MapRouteBuilder;
+  onRotationChanged(handler: DslSignalHandlerValue): MapRouteBuilder;
+  onRouteChanged(handler: DslSignalHandlerValue): MapRouteBuilder;
+  onScaleChanged(handler: DslSignalHandlerValue): MapRouteBuilder;
+  onSmoothChanged(handler: DslSignalHandlerValue): MapRouteBuilder;
+  onStateChanged(handler: DslSignalHandlerValue): MapRouteBuilder;
+  onTransformOriginChanged(handler: DslSignalHandlerValue): MapRouteBuilder;
+  onVisibleChanged(handler: DslSignalHandlerValue): MapRouteBuilder;
+  onVisibleChildrenChanged(handler: DslSignalHandlerValue): MapRouteBuilder;
+  onWidthChanged(handler: DslSignalHandlerValue): MapRouteBuilder;
+  onWindowChanged(handler: DslSignalHandlerValue): MapRouteBuilder;
+  onXChanged(handler: DslSignalHandlerValue): MapRouteBuilder;
+  onYChanged(handler: DslSignalHandlerValue): MapRouteBuilder;
+  onZChanged(handler: DslSignalHandlerValue): MapRouteBuilder;
   anchors(setup: (b: AnchorsBuilder) => void): MapRouteBuilder;
   layer(setup: (b: LayerBuilder) => void): MapRouteBuilder;
   line(setup: (b: BorderBuilder) => void): MapRouteBuilder;

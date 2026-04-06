@@ -2,7 +2,12 @@
 // Type: NumberAnimation
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { QtObjectBuilder } from '../QML/QtObject.js';
 import type { AccessibleAttachedBuilder } from './Accessible.js';
@@ -24,6 +29,7 @@ import type { ViewTransitionAttachedBuilder } from './ViewTransition.js';
 export interface NumberAnimationBuilder {
   id(id: string): NumberAnimationBuilder;
   child(obj: QmlObjectBuilder): NumberAnimationBuilder;
+  children(...objs: QmlObjectBuilder[]): NumberAnimationBuilder;
 
   alwaysRunToEnd(value: boolean): NumberAnimationBuilder;
   alwaysRunToEndBind(expr: string): NumberAnimationBuilder;
@@ -49,21 +55,21 @@ export interface NumberAnimationBuilder {
   targetBind(expr: string): NumberAnimationBuilder;
   to(value: number): NumberAnimationBuilder;
   toBind(expr: string): NumberAnimationBuilder;
-  onAlwaysRunToEndChanged(body: string): NumberAnimationBuilder;
-  onDurationChanged(body: string): NumberAnimationBuilder;
-  onEasingChanged(body: string): NumberAnimationBuilder;
-  onFinished(body: string): NumberAnimationBuilder;
-  onFromChanged(body: string): NumberAnimationBuilder;
-  onLoopCountChanged(body: string): NumberAnimationBuilder;
-  onObjectNameChanged(body: string): NumberAnimationBuilder;
-  onPausedChanged(body: string): NumberAnimationBuilder;
-  onPropertiesChanged(body: string): NumberAnimationBuilder;
-  onPropertyChanged(body: string): NumberAnimationBuilder;
-  onRunningChanged(body: string): NumberAnimationBuilder;
-  onStarted(body: string): NumberAnimationBuilder;
-  onStopped(body: string): NumberAnimationBuilder;
-  onTargetChanged(body: string): NumberAnimationBuilder;
-  onToChanged(body: string): NumberAnimationBuilder;
+  onAlwaysRunToEndChanged(handler: DslSignalHandlerValue): NumberAnimationBuilder;
+  onDurationChanged(handler: DslSignalHandlerValue): NumberAnimationBuilder;
+  onEasingChanged(handler: DslSignalHandlerValue): NumberAnimationBuilder;
+  onFinished(handler: DslSignalHandlerValue): NumberAnimationBuilder;
+  onFromChanged(handler: DslSignalHandlerValue): NumberAnimationBuilder;
+  onLoopCountChanged(handler: DslSignalHandlerValue): NumberAnimationBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): NumberAnimationBuilder;
+  onPausedChanged(handler: DslSignalHandlerValue): NumberAnimationBuilder;
+  onPropertiesChanged(handler: DslSignalHandlerValue): NumberAnimationBuilder;
+  onPropertyChanged(handler: DslSignalHandlerValue): NumberAnimationBuilder;
+  onRunningChanged(handler: DslSignalHandlerValue): NumberAnimationBuilder;
+  onStarted(handler: DslSignalHandlerValue): NumberAnimationBuilder;
+  onStopped(handler: DslSignalHandlerValue): NumberAnimationBuilder;
+  onTargetChanged(handler: DslSignalHandlerValue): NumberAnimationBuilder;
+  onToChanged(handler: DslSignalHandlerValue): NumberAnimationBuilder;
   accessible(setup: (b: AccessibleAttachedBuilder) => void): NumberAnimationBuilder;
   drag(setup: (b: DragAttachedBuilder) => void): NumberAnimationBuilder;
   enterKey(setup: (b: EnterKeyAttachedBuilder) => void): NumberAnimationBuilder;

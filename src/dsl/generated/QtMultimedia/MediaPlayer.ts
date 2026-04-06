@@ -2,13 +2,20 @@
 // Type: MediaPlayer
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlUrl, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlObjectBuilder,
+  QmlUrl,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { QtObjectBuilder } from '../QML/QtObject.js';
 import type { AudioOutputBuilder } from './AudioOutput.js';
 export interface MediaPlayerBuilder {
   id(id: string): MediaPlayerBuilder;
   child(obj: QmlObjectBuilder): MediaPlayerBuilder;
+  children(...objs: QmlObjectBuilder[]): MediaPlayerBuilder;
 
   activeAudioTrack(value: number): MediaPlayerBuilder;
   activeAudioTrackBind(expr: string): MediaPlayerBuilder;
@@ -38,31 +45,31 @@ export interface MediaPlayerBuilder {
   sourceBind(expr: string): MediaPlayerBuilder;
   videoOutput(value: QtObjectBuilder): MediaPlayerBuilder;
   videoOutputBind(expr: string): MediaPlayerBuilder;
-  onActiveTracksChanged(body: string): MediaPlayerBuilder;
-  onAudioBufferOutputChanged(body: string): MediaPlayerBuilder;
-  onAudioOutputChanged(body: string): MediaPlayerBuilder;
-  onAutoPlayChanged(body: string): MediaPlayerBuilder;
-  onBufferProgressChanged(body: string): MediaPlayerBuilder;
-  onDurationChanged(body: string): MediaPlayerBuilder;
-  onErrorChanged(body: string): MediaPlayerBuilder;
-  onErrorOccurred(body: string): MediaPlayerBuilder;
-  onHasAudioChanged(body: string): MediaPlayerBuilder;
-  onHasVideoChanged(body: string): MediaPlayerBuilder;
-  onLoopsChanged(body: string): MediaPlayerBuilder;
-  onMediaStatusChanged(body: string): MediaPlayerBuilder;
-  onMetaDataChanged(body: string): MediaPlayerBuilder;
-  onObjectNameChanged(body: string): MediaPlayerBuilder;
-  onPitchCompensationChanged(body: string): MediaPlayerBuilder;
-  onPlaybackOptionsChanged(body: string): MediaPlayerBuilder;
-  onPlaybackRateChanged(body: string): MediaPlayerBuilder;
-  onPlaybackStateChanged(body: string): MediaPlayerBuilder;
-  onPlayingChanged(body: string): MediaPlayerBuilder;
-  onPositionChanged(body: string): MediaPlayerBuilder;
-  onQmlSourceChanged(body: string): MediaPlayerBuilder;
-  onSeekableChanged(body: string): MediaPlayerBuilder;
-  onSourceChanged(body: string): MediaPlayerBuilder;
-  onTracksChanged(body: string): MediaPlayerBuilder;
-  onVideoOutputChanged(body: string): MediaPlayerBuilder;
+  onActiveTracksChanged(handler: DslSignalHandlerValue): MediaPlayerBuilder;
+  onAudioBufferOutputChanged(handler: DslSignalHandlerValue): MediaPlayerBuilder;
+  onAudioOutputChanged(handler: DslSignalHandlerValue): MediaPlayerBuilder;
+  onAutoPlayChanged(handler: DslSignalHandlerValue): MediaPlayerBuilder;
+  onBufferProgressChanged(handler: DslSignalHandlerValue): MediaPlayerBuilder;
+  onDurationChanged(handler: DslSignalHandlerValue): MediaPlayerBuilder;
+  onErrorChanged(handler: DslSignalHandlerValue): MediaPlayerBuilder;
+  onErrorOccurred(handler: DslSignalHandlerValue): MediaPlayerBuilder;
+  onHasAudioChanged(handler: DslSignalHandlerValue): MediaPlayerBuilder;
+  onHasVideoChanged(handler: DslSignalHandlerValue): MediaPlayerBuilder;
+  onLoopsChanged(handler: DslSignalHandlerValue): MediaPlayerBuilder;
+  onMediaStatusChanged(handler: DslSignalHandlerValue): MediaPlayerBuilder;
+  onMetaDataChanged(handler: DslSignalHandlerValue): MediaPlayerBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): MediaPlayerBuilder;
+  onPitchCompensationChanged(handler: DslSignalHandlerValue): MediaPlayerBuilder;
+  onPlaybackOptionsChanged(handler: DslSignalHandlerValue): MediaPlayerBuilder;
+  onPlaybackRateChanged(handler: DslSignalHandlerValue): MediaPlayerBuilder;
+  onPlaybackStateChanged(handler: DslSignalHandlerValue): MediaPlayerBuilder;
+  onPlayingChanged(handler: DslSignalHandlerValue): MediaPlayerBuilder;
+  onPositionChanged(handler: DslSignalHandlerValue): MediaPlayerBuilder;
+  onQmlSourceChanged(handler: DslSignalHandlerValue): MediaPlayerBuilder;
+  onSeekableChanged(handler: DslSignalHandlerValue): MediaPlayerBuilder;
+  onSourceChanged(handler: DslSignalHandlerValue): MediaPlayerBuilder;
+  onTracksChanged(handler: DslSignalHandlerValue): MediaPlayerBuilder;
+  onVideoOutputChanged(handler: DslSignalHandlerValue): MediaPlayerBuilder;
 }
 
 const MEDIAPLAYER_META: TypeMetadata = {

@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlEnumToken,
   QmlObjectBuilder,
   QmlValue,
@@ -12,6 +13,7 @@ import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface SubtreeEnablerBuilder {
   id(id: string): SubtreeEnablerBuilder;
   child(obj: QmlObjectBuilder): SubtreeEnablerBuilder;
+  children(...objs: QmlObjectBuilder[]): SubtreeEnablerBuilder;
 
   enabled(value: boolean): SubtreeEnablerBuilder;
   enabledBind(expr: string): SubtreeEnablerBuilder;
@@ -21,11 +23,11 @@ export interface SubtreeEnablerBuilder {
   objectNameBind(expr: string): SubtreeEnablerBuilder;
   parent(value: QmlValue): SubtreeEnablerBuilder;
   parentBind(expr: string): SubtreeEnablerBuilder;
-  onEnabledChanged(body: string): SubtreeEnablerBuilder;
-  onEnablementChanged(body: string): SubtreeEnablerBuilder;
-  onNodeDestroyed(body: string): SubtreeEnablerBuilder;
-  onObjectNameChanged(body: string): SubtreeEnablerBuilder;
-  onParentChanged(body: string): SubtreeEnablerBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): SubtreeEnablerBuilder;
+  onEnablementChanged(handler: DslSignalHandlerValue): SubtreeEnablerBuilder;
+  onNodeDestroyed(handler: DslSignalHandlerValue): SubtreeEnablerBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): SubtreeEnablerBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): SubtreeEnablerBuilder;
 }
 
 const SUBTREEENABLER_META: TypeMetadata = {

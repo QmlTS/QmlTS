@@ -2,7 +2,12 @@
 // Type: GridMesh
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlSize, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlObjectBuilder,
+  QmlSize,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 import type { AccessibleAttachedBuilder } from './Accessible.js';
 import type { EnterKeyAttachedBuilder } from './EnterKey.js';
@@ -23,14 +28,15 @@ import type { ViewTransitionAttachedBuilder } from './ViewTransition.js';
 export interface GridMeshBuilder {
   id(id: string): GridMeshBuilder;
   child(obj: QmlObjectBuilder): GridMeshBuilder;
+  children(...objs: QmlObjectBuilder[]): GridMeshBuilder;
 
   objectName(value: string): GridMeshBuilder;
   objectNameBind(expr: string): GridMeshBuilder;
   resolution(value: QmlSize): GridMeshBuilder;
   resolutionBind(expr: string): GridMeshBuilder;
-  onGeometryChanged(body: string): GridMeshBuilder;
-  onObjectNameChanged(body: string): GridMeshBuilder;
-  onResolutionChanged(body: string): GridMeshBuilder;
+  onGeometryChanged(handler: DslSignalHandlerValue): GridMeshBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): GridMeshBuilder;
+  onResolutionChanged(handler: DslSignalHandlerValue): GridMeshBuilder;
   accessible(setup: (b: AccessibleAttachedBuilder) => void): GridMeshBuilder;
   drag(setup: (b: DragAttachedBuilder) => void): GridMeshBuilder;
   enterKey(setup: (b: EnterKeyAttachedBuilder) => void): GridMeshBuilder;

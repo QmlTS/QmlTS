@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlEnumToken,
   QmlObjectBuilder,
   QmlValue,
@@ -12,6 +13,7 @@ import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface TextureRectangleBuilder {
   id(id: string): TextureRectangleBuilder;
   child(obj: QmlObjectBuilder): TextureRectangleBuilder;
+  children(...objs: QmlObjectBuilder[]): TextureRectangleBuilder;
 
   comparisonFunction(value: QmlEnumToken): TextureRectangleBuilder;
   comparisonFunctionBind(expr: string): TextureRectangleBuilder;
@@ -45,26 +47,26 @@ export interface TextureRectangleBuilder {
   samplesBind(expr: string): TextureRectangleBuilder;
   width(value: number): TextureRectangleBuilder;
   widthBind(expr: string): TextureRectangleBuilder;
-  onComparisonFunctionChanged(body: string): TextureRectangleBuilder;
-  onComparisonModeChanged(body: string): TextureRectangleBuilder;
-  onDepthChanged(body: string): TextureRectangleBuilder;
-  onEnabledChanged(body: string): TextureRectangleBuilder;
-  onFormatChanged(body: string): TextureRectangleBuilder;
-  onGenerateMipMapsChanged(body: string): TextureRectangleBuilder;
-  onHandleChanged(body: string): TextureRectangleBuilder;
-  onHandleTypeChanged(body: string): TextureRectangleBuilder;
-  onHeightChanged(body: string): TextureRectangleBuilder;
-  onLayersChanged(body: string): TextureRectangleBuilder;
-  onMagnificationFilterChanged(body: string): TextureRectangleBuilder;
-  onMaximumAnisotropyChanged(body: string): TextureRectangleBuilder;
-  onMinificationFilterChanged(body: string): TextureRectangleBuilder;
-  onMipLevelsChanged(body: string): TextureRectangleBuilder;
-  onNodeDestroyed(body: string): TextureRectangleBuilder;
-  onObjectNameChanged(body: string): TextureRectangleBuilder;
-  onParentChanged(body: string): TextureRectangleBuilder;
-  onSamplesChanged(body: string): TextureRectangleBuilder;
-  onStatusChanged(body: string): TextureRectangleBuilder;
-  onWidthChanged(body: string): TextureRectangleBuilder;
+  onComparisonFunctionChanged(handler: DslSignalHandlerValue): TextureRectangleBuilder;
+  onComparisonModeChanged(handler: DslSignalHandlerValue): TextureRectangleBuilder;
+  onDepthChanged(handler: DslSignalHandlerValue): TextureRectangleBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): TextureRectangleBuilder;
+  onFormatChanged(handler: DslSignalHandlerValue): TextureRectangleBuilder;
+  onGenerateMipMapsChanged(handler: DslSignalHandlerValue): TextureRectangleBuilder;
+  onHandleChanged(handler: DslSignalHandlerValue): TextureRectangleBuilder;
+  onHandleTypeChanged(handler: DslSignalHandlerValue): TextureRectangleBuilder;
+  onHeightChanged(handler: DslSignalHandlerValue): TextureRectangleBuilder;
+  onLayersChanged(handler: DslSignalHandlerValue): TextureRectangleBuilder;
+  onMagnificationFilterChanged(handler: DslSignalHandlerValue): TextureRectangleBuilder;
+  onMaximumAnisotropyChanged(handler: DslSignalHandlerValue): TextureRectangleBuilder;
+  onMinificationFilterChanged(handler: DslSignalHandlerValue): TextureRectangleBuilder;
+  onMipLevelsChanged(handler: DslSignalHandlerValue): TextureRectangleBuilder;
+  onNodeDestroyed(handler: DslSignalHandlerValue): TextureRectangleBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): TextureRectangleBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): TextureRectangleBuilder;
+  onSamplesChanged(handler: DslSignalHandlerValue): TextureRectangleBuilder;
+  onStatusChanged(handler: DslSignalHandlerValue): TextureRectangleBuilder;
+  onWidthChanged(handler: DslSignalHandlerValue): TextureRectangleBuilder;
 }
 
 const TEXTURERECTANGLE_META: TypeMetadata = {

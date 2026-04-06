@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlEnumToken,
   QmlObjectBuilder,
   QmlValue,
@@ -17,6 +18,7 @@ import type { LayerBuilder } from '../QtQuick/QQuickItemLayer.js';
 export interface DelegateContainerBuilder {
   id(id: string): DelegateContainerBuilder;
   child(obj: QmlObjectBuilder): DelegateContainerBuilder;
+  children(...objs: QmlObjectBuilder[]): DelegateContainerBuilder;
 
   activeFocusOnTab(value: boolean): DelegateContainerBuilder;
   activeFocusOnTabBind(expr: string): DelegateContainerBuilder;
@@ -72,41 +74,41 @@ export interface DelegateContainerBuilder {
   yBind(expr: string): DelegateContainerBuilder;
   z(value: number): DelegateContainerBuilder;
   zBind(expr: string): DelegateContainerBuilder;
-  onActiveFocusChanged(body: string): DelegateContainerBuilder;
-  onActiveFocusOnTabChanged(body: string): DelegateContainerBuilder;
-  onAntialiasingChanged(body: string): DelegateContainerBuilder;
-  onBaselineOffsetChanged(body: string): DelegateContainerBuilder;
-  onChildrenChanged(body: string): DelegateContainerBuilder;
-  onChildrenRectChanged(body: string): DelegateContainerBuilder;
-  onClipChanged(body: string): DelegateContainerBuilder;
-  onContainmentMaskChanged(body: string): DelegateContainerBuilder;
-  onDelegateInstanceChanged(body: string): DelegateContainerBuilder;
-  onDelegateStyleChanged(body: string): DelegateContainerBuilder;
-  onEnabledChanged(body: string): DelegateContainerBuilder;
-  onFocusChanged(body: string): DelegateContainerBuilder;
-  onFocusPolicyChanged(body: string): DelegateContainerBuilder;
-  onHeightChanged(body: string): DelegateContainerBuilder;
-  onImplicitHeightChanged(body: string): DelegateContainerBuilder;
-  onImplicitWidthChanged(body: string): DelegateContainerBuilder;
-  onObjectNameChanged(body: string): DelegateContainerBuilder;
-  onOpacityChanged(body: string): DelegateContainerBuilder;
-  onPaletteChanged(body: string): DelegateContainerBuilder;
-  onPaletteCreated(body: string): DelegateContainerBuilder;
-  onParentChanged(body: string): DelegateContainerBuilder;
-  onQuickControlChanged(body: string): DelegateContainerBuilder;
-  onRotationChanged(body: string): DelegateContainerBuilder;
-  onScaleChanged(body: string): DelegateContainerBuilder;
-  onSmoothChanged(body: string): DelegateContainerBuilder;
-  onStateChanged(body: string): DelegateContainerBuilder;
-  onTransformOriginChanged(body: string): DelegateContainerBuilder;
-  onUsingDefaultDelegateChanged(body: string): DelegateContainerBuilder;
-  onVisibleChanged(body: string): DelegateContainerBuilder;
-  onVisibleChildrenChanged(body: string): DelegateContainerBuilder;
-  onWidthChanged(body: string): DelegateContainerBuilder;
-  onWindowChanged(body: string): DelegateContainerBuilder;
-  onXChanged(body: string): DelegateContainerBuilder;
-  onYChanged(body: string): DelegateContainerBuilder;
-  onZChanged(body: string): DelegateContainerBuilder;
+  onActiveFocusChanged(handler: DslSignalHandlerValue): DelegateContainerBuilder;
+  onActiveFocusOnTabChanged(handler: DslSignalHandlerValue): DelegateContainerBuilder;
+  onAntialiasingChanged(handler: DslSignalHandlerValue): DelegateContainerBuilder;
+  onBaselineOffsetChanged(handler: DslSignalHandlerValue): DelegateContainerBuilder;
+  onChildrenChanged(handler: DslSignalHandlerValue): DelegateContainerBuilder;
+  onChildrenRectChanged(handler: DslSignalHandlerValue): DelegateContainerBuilder;
+  onClipChanged(handler: DslSignalHandlerValue): DelegateContainerBuilder;
+  onContainmentMaskChanged(handler: DslSignalHandlerValue): DelegateContainerBuilder;
+  onDelegateInstanceChanged(handler: DslSignalHandlerValue): DelegateContainerBuilder;
+  onDelegateStyleChanged(handler: DslSignalHandlerValue): DelegateContainerBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): DelegateContainerBuilder;
+  onFocusChanged(handler: DslSignalHandlerValue): DelegateContainerBuilder;
+  onFocusPolicyChanged(handler: DslSignalHandlerValue): DelegateContainerBuilder;
+  onHeightChanged(handler: DslSignalHandlerValue): DelegateContainerBuilder;
+  onImplicitHeightChanged(handler: DslSignalHandlerValue): DelegateContainerBuilder;
+  onImplicitWidthChanged(handler: DslSignalHandlerValue): DelegateContainerBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): DelegateContainerBuilder;
+  onOpacityChanged(handler: DslSignalHandlerValue): DelegateContainerBuilder;
+  onPaletteChanged(handler: DslSignalHandlerValue): DelegateContainerBuilder;
+  onPaletteCreated(handler: DslSignalHandlerValue): DelegateContainerBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): DelegateContainerBuilder;
+  onQuickControlChanged(handler: DslSignalHandlerValue): DelegateContainerBuilder;
+  onRotationChanged(handler: DslSignalHandlerValue): DelegateContainerBuilder;
+  onScaleChanged(handler: DslSignalHandlerValue): DelegateContainerBuilder;
+  onSmoothChanged(handler: DslSignalHandlerValue): DelegateContainerBuilder;
+  onStateChanged(handler: DslSignalHandlerValue): DelegateContainerBuilder;
+  onTransformOriginChanged(handler: DslSignalHandlerValue): DelegateContainerBuilder;
+  onUsingDefaultDelegateChanged(handler: DslSignalHandlerValue): DelegateContainerBuilder;
+  onVisibleChanged(handler: DslSignalHandlerValue): DelegateContainerBuilder;
+  onVisibleChildrenChanged(handler: DslSignalHandlerValue): DelegateContainerBuilder;
+  onWidthChanged(handler: DslSignalHandlerValue): DelegateContainerBuilder;
+  onWindowChanged(handler: DslSignalHandlerValue): DelegateContainerBuilder;
+  onXChanged(handler: DslSignalHandlerValue): DelegateContainerBuilder;
+  onYChanged(handler: DslSignalHandlerValue): DelegateContainerBuilder;
+  onZChanged(handler: DslSignalHandlerValue): DelegateContainerBuilder;
   anchors(setup: (b: AnchorsBuilder) => void): DelegateContainerBuilder;
   layer(setup: (b: LayerBuilder) => void): DelegateContainerBuilder;
 }

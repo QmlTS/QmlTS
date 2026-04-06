@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlColor,
   QmlEnumToken,
   QmlObjectBuilder,
@@ -14,6 +15,7 @@ import type { RenderTargetOutputBuilder } from './RenderTargetOutput.js';
 export interface ClearBuffersBuilder {
   id(id: string): ClearBuffersBuilder;
   child(obj: QmlObjectBuilder): ClearBuffersBuilder;
+  children(...objs: QmlObjectBuilder[]): ClearBuffersBuilder;
 
   buffers(value: QmlEnumToken): ClearBuffersBuilder;
   buffersBind(expr: string): ClearBuffersBuilder;
@@ -31,15 +33,15 @@ export interface ClearBuffersBuilder {
   objectNameBind(expr: string): ClearBuffersBuilder;
   parent(value: QmlValue): ClearBuffersBuilder;
   parentBind(expr: string): ClearBuffersBuilder;
-  onBuffersChanged(body: string): ClearBuffersBuilder;
-  onClearColorChanged(body: string): ClearBuffersBuilder;
-  onClearDepthValueChanged(body: string): ClearBuffersBuilder;
-  onClearStencilValueChanged(body: string): ClearBuffersBuilder;
-  onColorBufferChanged(body: string): ClearBuffersBuilder;
-  onEnabledChanged(body: string): ClearBuffersBuilder;
-  onNodeDestroyed(body: string): ClearBuffersBuilder;
-  onObjectNameChanged(body: string): ClearBuffersBuilder;
-  onParentChanged(body: string): ClearBuffersBuilder;
+  onBuffersChanged(handler: DslSignalHandlerValue): ClearBuffersBuilder;
+  onClearColorChanged(handler: DslSignalHandlerValue): ClearBuffersBuilder;
+  onClearDepthValueChanged(handler: DslSignalHandlerValue): ClearBuffersBuilder;
+  onClearStencilValueChanged(handler: DslSignalHandlerValue): ClearBuffersBuilder;
+  onColorBufferChanged(handler: DslSignalHandlerValue): ClearBuffersBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): ClearBuffersBuilder;
+  onNodeDestroyed(handler: DslSignalHandlerValue): ClearBuffersBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): ClearBuffersBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): ClearBuffersBuilder;
 }
 
 const CLEARBUFFERS_META: TypeMetadata = {

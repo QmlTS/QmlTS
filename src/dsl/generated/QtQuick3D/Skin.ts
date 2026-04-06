@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlMatrix4x4,
   QmlObjectBuilder,
   QmlValue,
@@ -12,6 +13,7 @@ import { createFluentBuilder } from '../../runtime/index.js';
 export interface SkinBuilder {
   id(id: string): SkinBuilder;
   child(obj: QmlObjectBuilder): SkinBuilder;
+  children(...objs: QmlObjectBuilder[]): SkinBuilder;
 
   inverseBindPoses(value: QmlMatrix4x4): SkinBuilder;
   inverseBindPosesBind(expr: string): SkinBuilder;
@@ -21,11 +23,11 @@ export interface SkinBuilder {
   parentBind(expr: string): SkinBuilder;
   state(value: string): SkinBuilder;
   stateBind(expr: string): SkinBuilder;
-  onChildrenChanged(body: string): SkinBuilder;
-  onInverseBindPosesChanged(body: string): SkinBuilder;
-  onObjectNameChanged(body: string): SkinBuilder;
-  onParentChanged(body: string): SkinBuilder;
-  onStateChanged(body: string): SkinBuilder;
+  onChildrenChanged(handler: DslSignalHandlerValue): SkinBuilder;
+  onInverseBindPosesChanged(handler: DslSignalHandlerValue): SkinBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): SkinBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): SkinBuilder;
+  onStateChanged(handler: DslSignalHandlerValue): SkinBuilder;
 }
 
 const SKIN_META: TypeMetadata = {

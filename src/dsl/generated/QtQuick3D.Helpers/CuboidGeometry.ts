@@ -2,11 +2,18 @@
 // Type: CuboidGeometry
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlSize, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlObjectBuilder,
+  QmlSize,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface CuboidGeometryBuilder {
   id(id: string): CuboidGeometryBuilder;
   child(obj: QmlObjectBuilder): CuboidGeometryBuilder;
+  children(...objs: QmlObjectBuilder[]): CuboidGeometryBuilder;
 
   asynchronous(value: boolean): CuboidGeometryBuilder;
   asynchronousBind(expr: string): CuboidGeometryBuilder;
@@ -28,20 +35,20 @@ export interface CuboidGeometryBuilder {
   yzMeshResolutionBind(expr: string): CuboidGeometryBuilder;
   zExtent(value: number): CuboidGeometryBuilder;
   zExtentBind(expr: string): CuboidGeometryBuilder;
-  onAsynchronousChanged(body: string): CuboidGeometryBuilder;
-  onChildrenChanged(body: string): CuboidGeometryBuilder;
-  onGeometryChanged(body: string): CuboidGeometryBuilder;
-  onGeometryNodeDirty(body: string): CuboidGeometryBuilder;
-  onObjectNameChanged(body: string): CuboidGeometryBuilder;
-  onParentChanged(body: string): CuboidGeometryBuilder;
-  onStateChanged(body: string): CuboidGeometryBuilder;
-  onStatusChanged(body: string): CuboidGeometryBuilder;
-  onXExtentChanged(body: string): CuboidGeometryBuilder;
-  onXyMeshResolutionChanged(body: string): CuboidGeometryBuilder;
-  onXzMeshResolutionChanged(body: string): CuboidGeometryBuilder;
-  onYExtentChanged(body: string): CuboidGeometryBuilder;
-  onYzMeshResolutionChanged(body: string): CuboidGeometryBuilder;
-  onZExtentChanged(body: string): CuboidGeometryBuilder;
+  onAsynchronousChanged(handler: DslSignalHandlerValue): CuboidGeometryBuilder;
+  onChildrenChanged(handler: DslSignalHandlerValue): CuboidGeometryBuilder;
+  onGeometryChanged(handler: DslSignalHandlerValue): CuboidGeometryBuilder;
+  onGeometryNodeDirty(handler: DslSignalHandlerValue): CuboidGeometryBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): CuboidGeometryBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): CuboidGeometryBuilder;
+  onStateChanged(handler: DslSignalHandlerValue): CuboidGeometryBuilder;
+  onStatusChanged(handler: DslSignalHandlerValue): CuboidGeometryBuilder;
+  onXExtentChanged(handler: DslSignalHandlerValue): CuboidGeometryBuilder;
+  onXyMeshResolutionChanged(handler: DslSignalHandlerValue): CuboidGeometryBuilder;
+  onXzMeshResolutionChanged(handler: DslSignalHandlerValue): CuboidGeometryBuilder;
+  onYExtentChanged(handler: DslSignalHandlerValue): CuboidGeometryBuilder;
+  onYzMeshResolutionChanged(handler: DslSignalHandlerValue): CuboidGeometryBuilder;
+  onZExtentChanged(handler: DslSignalHandlerValue): CuboidGeometryBuilder;
 }
 
 const CUBOIDGEOMETRY_META: TypeMetadata = {

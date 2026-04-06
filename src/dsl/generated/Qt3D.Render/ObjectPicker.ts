@@ -2,11 +2,17 @@
 // Type: ObjectPicker
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 export interface ObjectPickerBuilder {
   id(id: string): ObjectPickerBuilder;
   child(obj: QmlObjectBuilder): ObjectPickerBuilder;
+  children(...objs: QmlObjectBuilder[]): ObjectPickerBuilder;
 
   dragEnabled(value: boolean): ObjectPickerBuilder;
   dragEnabledBind(expr: string): ObjectPickerBuilder;
@@ -22,24 +28,24 @@ export interface ObjectPickerBuilder {
   parentBind(expr: string): ObjectPickerBuilder;
   priority(value: number): ObjectPickerBuilder;
   priorityBind(expr: string): ObjectPickerBuilder;
-  onAddedToEntity(body: string): ObjectPickerBuilder;
-  onClicked(body: string): ObjectPickerBuilder;
-  onContainsMouseChanged(body: string): ObjectPickerBuilder;
-  onDragEnabledChanged(body: string): ObjectPickerBuilder;
-  onEnabledChanged(body: string): ObjectPickerBuilder;
-  onEntered(body: string): ObjectPickerBuilder;
-  onExited(body: string): ObjectPickerBuilder;
-  onHoverEnabledChanged(body: string): ObjectPickerBuilder;
-  onMoved(body: string): ObjectPickerBuilder;
-  onNodeDestroyed(body: string): ObjectPickerBuilder;
-  onObjectNameChanged(body: string): ObjectPickerBuilder;
-  onParentChanged(body: string): ObjectPickerBuilder;
-  onPressed(body: string): ObjectPickerBuilder;
-  onPressedChanged(body: string): ObjectPickerBuilder;
-  onPriorityChanged(body: string): ObjectPickerBuilder;
-  onReleased(body: string): ObjectPickerBuilder;
-  onRemovedFromEntity(body: string): ObjectPickerBuilder;
-  onShareableChanged(body: string): ObjectPickerBuilder;
+  onAddedToEntity(handler: DslSignalHandlerValue): ObjectPickerBuilder;
+  onClicked(handler: DslSignalHandlerValue): ObjectPickerBuilder;
+  onContainsMouseChanged(handler: DslSignalHandlerValue): ObjectPickerBuilder;
+  onDragEnabledChanged(handler: DslSignalHandlerValue): ObjectPickerBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): ObjectPickerBuilder;
+  onEntered(handler: DslSignalHandlerValue): ObjectPickerBuilder;
+  onExited(handler: DslSignalHandlerValue): ObjectPickerBuilder;
+  onHoverEnabledChanged(handler: DslSignalHandlerValue): ObjectPickerBuilder;
+  onMoved(handler: DslSignalHandlerValue): ObjectPickerBuilder;
+  onNodeDestroyed(handler: DslSignalHandlerValue): ObjectPickerBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): ObjectPickerBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): ObjectPickerBuilder;
+  onPressed(handler: DslSignalHandlerValue): ObjectPickerBuilder;
+  onPressedChanged(handler: DslSignalHandlerValue): ObjectPickerBuilder;
+  onPriorityChanged(handler: DslSignalHandlerValue): ObjectPickerBuilder;
+  onReleased(handler: DslSignalHandlerValue): ObjectPickerBuilder;
+  onRemovedFromEntity(handler: DslSignalHandlerValue): ObjectPickerBuilder;
+  onShareableChanged(handler: DslSignalHandlerValue): ObjectPickerBuilder;
 }
 
 const OBJECTPICKER_META: TypeMetadata = {

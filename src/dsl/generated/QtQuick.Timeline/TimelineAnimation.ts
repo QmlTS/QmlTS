@@ -2,12 +2,18 @@
 // Type: TimelineAnimation
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { QtObjectBuilder } from '../QML/QtObject.js';
 export interface TimelineAnimationBuilder {
   id(id: string): TimelineAnimationBuilder;
   child(obj: QmlObjectBuilder): TimelineAnimationBuilder;
+  children(...objs: QmlObjectBuilder[]): TimelineAnimationBuilder;
 
   alwaysRunToEnd(value: boolean): TimelineAnimationBuilder;
   alwaysRunToEndBind(expr: string): TimelineAnimationBuilder;
@@ -35,22 +41,22 @@ export interface TimelineAnimationBuilder {
   targetBind(expr: string): TimelineAnimationBuilder;
   to(value: number): TimelineAnimationBuilder;
   toBind(expr: string): TimelineAnimationBuilder;
-  onAlwaysRunToEndChanged(body: string): TimelineAnimationBuilder;
-  onDurationChanged(body: string): TimelineAnimationBuilder;
-  onEasingChanged(body: string): TimelineAnimationBuilder;
-  onFinished(body: string): TimelineAnimationBuilder;
-  onFromChanged(body: string): TimelineAnimationBuilder;
-  onLoopCountChanged(body: string): TimelineAnimationBuilder;
-  onObjectNameChanged(body: string): TimelineAnimationBuilder;
-  onPausedChanged(body: string): TimelineAnimationBuilder;
-  onPingPongChanged(body: string): TimelineAnimationBuilder;
-  onPropertiesChanged(body: string): TimelineAnimationBuilder;
-  onPropertyChanged(body: string): TimelineAnimationBuilder;
-  onRunningChanged(body: string): TimelineAnimationBuilder;
-  onStarted(body: string): TimelineAnimationBuilder;
-  onStopped(body: string): TimelineAnimationBuilder;
-  onTargetChanged(body: string): TimelineAnimationBuilder;
-  onToChanged(body: string): TimelineAnimationBuilder;
+  onAlwaysRunToEndChanged(handler: DslSignalHandlerValue): TimelineAnimationBuilder;
+  onDurationChanged(handler: DslSignalHandlerValue): TimelineAnimationBuilder;
+  onEasingChanged(handler: DslSignalHandlerValue): TimelineAnimationBuilder;
+  onFinished(handler: DslSignalHandlerValue): TimelineAnimationBuilder;
+  onFromChanged(handler: DslSignalHandlerValue): TimelineAnimationBuilder;
+  onLoopCountChanged(handler: DslSignalHandlerValue): TimelineAnimationBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): TimelineAnimationBuilder;
+  onPausedChanged(handler: DslSignalHandlerValue): TimelineAnimationBuilder;
+  onPingPongChanged(handler: DslSignalHandlerValue): TimelineAnimationBuilder;
+  onPropertiesChanged(handler: DslSignalHandlerValue): TimelineAnimationBuilder;
+  onPropertyChanged(handler: DslSignalHandlerValue): TimelineAnimationBuilder;
+  onRunningChanged(handler: DslSignalHandlerValue): TimelineAnimationBuilder;
+  onStarted(handler: DslSignalHandlerValue): TimelineAnimationBuilder;
+  onStopped(handler: DslSignalHandlerValue): TimelineAnimationBuilder;
+  onTargetChanged(handler: DslSignalHandlerValue): TimelineAnimationBuilder;
+  onToChanged(handler: DslSignalHandlerValue): TimelineAnimationBuilder;
 }
 
 const TIMELINEANIMATION_META: TypeMetadata = {

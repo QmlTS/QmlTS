@@ -2,11 +2,17 @@
 // Type: TableModelColumn
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 export interface TableModelColumnBuilder {
   id(id: string): TableModelColumnBuilder;
   child(obj: QmlObjectBuilder): TableModelColumnBuilder;
+  children(...objs: QmlObjectBuilder[]): TableModelColumnBuilder;
 
   accessibleDescription(value: QmlValue): TableModelColumnBuilder;
   accessibleDescriptionBind(expr: string): TableModelColumnBuilder;
@@ -38,22 +44,22 @@ export interface TableModelColumnBuilder {
   toolTipBind(expr: string): TableModelColumnBuilder;
   whatsThis(value: QmlValue): TableModelColumnBuilder;
   whatsThisBind(expr: string): TableModelColumnBuilder;
-  onAccessibleDescriptionChanged(body: string): TableModelColumnBuilder;
-  onAccessibleTextChanged(body: string): TableModelColumnBuilder;
-  onBackgroundChanged(body: string): TableModelColumnBuilder;
-  onCheckStateChanged(body: string): TableModelColumnBuilder;
-  onDecorationChanged(body: string): TableModelColumnBuilder;
-  onDisplayChanged(body: string): TableModelColumnBuilder;
-  onEditChanged(body: string): TableModelColumnBuilder;
-  onFontChanged(body: string): TableModelColumnBuilder;
-  onForegroundChanged(body: string): TableModelColumnBuilder;
-  onIndexChanged(body: string): TableModelColumnBuilder;
-  onObjectNameChanged(body: string): TableModelColumnBuilder;
-  onSizeHintChanged(body: string): TableModelColumnBuilder;
-  onStatusTipChanged(body: string): TableModelColumnBuilder;
-  onTextAlignmentChanged(body: string): TableModelColumnBuilder;
-  onToolTipChanged(body: string): TableModelColumnBuilder;
-  onWhatsThisChanged(body: string): TableModelColumnBuilder;
+  onAccessibleDescriptionChanged(handler: DslSignalHandlerValue): TableModelColumnBuilder;
+  onAccessibleTextChanged(handler: DslSignalHandlerValue): TableModelColumnBuilder;
+  onBackgroundChanged(handler: DslSignalHandlerValue): TableModelColumnBuilder;
+  onCheckStateChanged(handler: DslSignalHandlerValue): TableModelColumnBuilder;
+  onDecorationChanged(handler: DslSignalHandlerValue): TableModelColumnBuilder;
+  onDisplayChanged(handler: DslSignalHandlerValue): TableModelColumnBuilder;
+  onEditChanged(handler: DslSignalHandlerValue): TableModelColumnBuilder;
+  onFontChanged(handler: DslSignalHandlerValue): TableModelColumnBuilder;
+  onForegroundChanged(handler: DslSignalHandlerValue): TableModelColumnBuilder;
+  onIndexChanged(handler: DslSignalHandlerValue): TableModelColumnBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): TableModelColumnBuilder;
+  onSizeHintChanged(handler: DslSignalHandlerValue): TableModelColumnBuilder;
+  onStatusTipChanged(handler: DslSignalHandlerValue): TableModelColumnBuilder;
+  onTextAlignmentChanged(handler: DslSignalHandlerValue): TableModelColumnBuilder;
+  onToolTipChanged(handler: DslSignalHandlerValue): TableModelColumnBuilder;
+  onWhatsThisChanged(handler: DslSignalHandlerValue): TableModelColumnBuilder;
 }
 
 const TABLEMODELCOLUMN_META: TypeMetadata = {

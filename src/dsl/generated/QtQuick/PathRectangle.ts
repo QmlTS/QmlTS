@@ -2,7 +2,7 @@
 // Type: PathRectangle
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import type { DslSignalHandlerValue, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 import type { AccessibleAttachedBuilder } from './Accessible.js';
 import type { EnterKeyAttachedBuilder } from './EnterKey.js';
@@ -23,6 +23,7 @@ import type { ViewTransitionAttachedBuilder } from './ViewTransition.js';
 export interface PathRectangleBuilder {
   id(id: string): PathRectangleBuilder;
   child(obj: QmlObjectBuilder): PathRectangleBuilder;
+  children(...objs: QmlObjectBuilder[]): PathRectangleBuilder;
 
   bevel(value: boolean): PathRectangleBuilder;
   bevelBind(expr: string): PathRectangleBuilder;
@@ -60,25 +61,25 @@ export interface PathRectangleBuilder {
   xBind(expr: string): PathRectangleBuilder;
   y(value: number): PathRectangleBuilder;
   yBind(expr: string): PathRectangleBuilder;
-  onBevelChanged(body: string): PathRectangleBuilder;
-  onBottomLeftBevelChanged(body: string): PathRectangleBuilder;
-  onBottomLeftRadiusChanged(body: string): PathRectangleBuilder;
-  onBottomRightBevelChanged(body: string): PathRectangleBuilder;
-  onBottomRightRadiusChanged(body: string): PathRectangleBuilder;
-  onChanged(body: string): PathRectangleBuilder;
-  onHeightChanged(body: string): PathRectangleBuilder;
-  onObjectNameChanged(body: string): PathRectangleBuilder;
-  onRadiusChanged(body: string): PathRectangleBuilder;
-  onRelativeXChanged(body: string): PathRectangleBuilder;
-  onRelativeYChanged(body: string): PathRectangleBuilder;
-  onStrokeAdjustmentChanged(body: string): PathRectangleBuilder;
-  onTopLeftBevelChanged(body: string): PathRectangleBuilder;
-  onTopLeftRadiusChanged(body: string): PathRectangleBuilder;
-  onTopRightBevelChanged(body: string): PathRectangleBuilder;
-  onTopRightRadiusChanged(body: string): PathRectangleBuilder;
-  onWidthChanged(body: string): PathRectangleBuilder;
-  onXChanged(body: string): PathRectangleBuilder;
-  onYChanged(body: string): PathRectangleBuilder;
+  onBevelChanged(handler: DslSignalHandlerValue): PathRectangleBuilder;
+  onBottomLeftBevelChanged(handler: DslSignalHandlerValue): PathRectangleBuilder;
+  onBottomLeftRadiusChanged(handler: DslSignalHandlerValue): PathRectangleBuilder;
+  onBottomRightBevelChanged(handler: DslSignalHandlerValue): PathRectangleBuilder;
+  onBottomRightRadiusChanged(handler: DslSignalHandlerValue): PathRectangleBuilder;
+  onChanged(handler: DslSignalHandlerValue): PathRectangleBuilder;
+  onHeightChanged(handler: DslSignalHandlerValue): PathRectangleBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): PathRectangleBuilder;
+  onRadiusChanged(handler: DslSignalHandlerValue): PathRectangleBuilder;
+  onRelativeXChanged(handler: DslSignalHandlerValue): PathRectangleBuilder;
+  onRelativeYChanged(handler: DslSignalHandlerValue): PathRectangleBuilder;
+  onStrokeAdjustmentChanged(handler: DslSignalHandlerValue): PathRectangleBuilder;
+  onTopLeftBevelChanged(handler: DslSignalHandlerValue): PathRectangleBuilder;
+  onTopLeftRadiusChanged(handler: DslSignalHandlerValue): PathRectangleBuilder;
+  onTopRightBevelChanged(handler: DslSignalHandlerValue): PathRectangleBuilder;
+  onTopRightRadiusChanged(handler: DslSignalHandlerValue): PathRectangleBuilder;
+  onWidthChanged(handler: DslSignalHandlerValue): PathRectangleBuilder;
+  onXChanged(handler: DslSignalHandlerValue): PathRectangleBuilder;
+  onYChanged(handler: DslSignalHandlerValue): PathRectangleBuilder;
   accessible(setup: (b: AccessibleAttachedBuilder) => void): PathRectangleBuilder;
   drag(setup: (b: DragAttachedBuilder) => void): PathRectangleBuilder;
   enterKey(setup: (b: EnterKeyAttachedBuilder) => void): PathRectangleBuilder;

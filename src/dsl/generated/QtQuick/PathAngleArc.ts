@@ -2,7 +2,7 @@
 // Type: PathAngleArc
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import type { DslSignalHandlerValue, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 import type { AccessibleAttachedBuilder } from './Accessible.js';
 import type { EnterKeyAttachedBuilder } from './EnterKey.js';
@@ -23,6 +23,7 @@ import type { ViewTransitionAttachedBuilder } from './ViewTransition.js';
 export interface PathAngleArcBuilder {
   id(id: string): PathAngleArcBuilder;
   child(obj: QmlObjectBuilder): PathAngleArcBuilder;
+  children(...objs: QmlObjectBuilder[]): PathAngleArcBuilder;
 
   centerX(value: number): PathAngleArcBuilder;
   centerXBind(expr: string): PathAngleArcBuilder;
@@ -48,19 +49,19 @@ export interface PathAngleArcBuilder {
   xBind(expr: string): PathAngleArcBuilder;
   y(value: number): PathAngleArcBuilder;
   yBind(expr: string): PathAngleArcBuilder;
-  onCenterXChanged(body: string): PathAngleArcBuilder;
-  onCenterYChanged(body: string): PathAngleArcBuilder;
-  onChanged(body: string): PathAngleArcBuilder;
-  onMoveToStartChanged(body: string): PathAngleArcBuilder;
-  onObjectNameChanged(body: string): PathAngleArcBuilder;
-  onRadiusXChanged(body: string): PathAngleArcBuilder;
-  onRadiusYChanged(body: string): PathAngleArcBuilder;
-  onRelativeXChanged(body: string): PathAngleArcBuilder;
-  onRelativeYChanged(body: string): PathAngleArcBuilder;
-  onStartAngleChanged(body: string): PathAngleArcBuilder;
-  onSweepAngleChanged(body: string): PathAngleArcBuilder;
-  onXChanged(body: string): PathAngleArcBuilder;
-  onYChanged(body: string): PathAngleArcBuilder;
+  onCenterXChanged(handler: DslSignalHandlerValue): PathAngleArcBuilder;
+  onCenterYChanged(handler: DslSignalHandlerValue): PathAngleArcBuilder;
+  onChanged(handler: DslSignalHandlerValue): PathAngleArcBuilder;
+  onMoveToStartChanged(handler: DslSignalHandlerValue): PathAngleArcBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): PathAngleArcBuilder;
+  onRadiusXChanged(handler: DslSignalHandlerValue): PathAngleArcBuilder;
+  onRadiusYChanged(handler: DslSignalHandlerValue): PathAngleArcBuilder;
+  onRelativeXChanged(handler: DslSignalHandlerValue): PathAngleArcBuilder;
+  onRelativeYChanged(handler: DslSignalHandlerValue): PathAngleArcBuilder;
+  onStartAngleChanged(handler: DslSignalHandlerValue): PathAngleArcBuilder;
+  onSweepAngleChanged(handler: DslSignalHandlerValue): PathAngleArcBuilder;
+  onXChanged(handler: DslSignalHandlerValue): PathAngleArcBuilder;
+  onYChanged(handler: DslSignalHandlerValue): PathAngleArcBuilder;
   accessible(setup: (b: AccessibleAttachedBuilder) => void): PathAngleArcBuilder;
   drag(setup: (b: DragAttachedBuilder) => void): PathAngleArcBuilder;
   enterKey(setup: (b: EnterKeyAttachedBuilder) => void): PathAngleArcBuilder;

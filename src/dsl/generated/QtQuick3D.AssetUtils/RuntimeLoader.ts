@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlObjectBuilder,
   QmlQuaternion,
   QmlUrl,
@@ -14,6 +15,7 @@ import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface RuntimeLoaderBuilder {
   id(id: string): RuntimeLoaderBuilder;
   child(obj: QmlObjectBuilder): RuntimeLoaderBuilder;
+  children(...objs: QmlObjectBuilder[]): RuntimeLoaderBuilder;
 
   eulerRotation(value: QmlVector3d): RuntimeLoaderBuilder;
   eulerRotationBind(expr: string): RuntimeLoaderBuilder;
@@ -49,34 +51,34 @@ export interface RuntimeLoaderBuilder {
   yBind(expr: string): RuntimeLoaderBuilder;
   z(value: number): RuntimeLoaderBuilder;
   zBind(expr: string): RuntimeLoaderBuilder;
-  onBoundsChanged(body: string): RuntimeLoaderBuilder;
-  onChildrenChanged(body: string): RuntimeLoaderBuilder;
-  onErrorStringChanged(body: string): RuntimeLoaderBuilder;
-  onEulerRotationChanged(body: string): RuntimeLoaderBuilder;
-  onForwardChanged(body: string): RuntimeLoaderBuilder;
-  onInstancingChanged(body: string): RuntimeLoaderBuilder;
-  onLayersChanged(body: string): RuntimeLoaderBuilder;
-  onLocalOpacityChanged(body: string): RuntimeLoaderBuilder;
-  onObjectNameChanged(body: string): RuntimeLoaderBuilder;
-  onParentChanged(body: string): RuntimeLoaderBuilder;
-  onPivotChanged(body: string): RuntimeLoaderBuilder;
-  onPositionChanged(body: string): RuntimeLoaderBuilder;
-  onRightChanged(body: string): RuntimeLoaderBuilder;
-  onRotationChanged(body: string): RuntimeLoaderBuilder;
-  onScaleChanged(body: string): RuntimeLoaderBuilder;
-  onScenePositionChanged(body: string): RuntimeLoaderBuilder;
-  onSceneRotationChanged(body: string): RuntimeLoaderBuilder;
-  onSceneScaleChanged(body: string): RuntimeLoaderBuilder;
-  onSceneTransformChanged(body: string): RuntimeLoaderBuilder;
-  onSourceChanged(body: string): RuntimeLoaderBuilder;
-  onStateChanged(body: string): RuntimeLoaderBuilder;
-  onStaticFlagsChanged(body: string): RuntimeLoaderBuilder;
-  onStatusChanged(body: string): RuntimeLoaderBuilder;
-  onUpChanged(body: string): RuntimeLoaderBuilder;
-  onVisibleChanged(body: string): RuntimeLoaderBuilder;
-  onXChanged(body: string): RuntimeLoaderBuilder;
-  onYChanged(body: string): RuntimeLoaderBuilder;
-  onZChanged(body: string): RuntimeLoaderBuilder;
+  onBoundsChanged(handler: DslSignalHandlerValue): RuntimeLoaderBuilder;
+  onChildrenChanged(handler: DslSignalHandlerValue): RuntimeLoaderBuilder;
+  onErrorStringChanged(handler: DslSignalHandlerValue): RuntimeLoaderBuilder;
+  onEulerRotationChanged(handler: DslSignalHandlerValue): RuntimeLoaderBuilder;
+  onForwardChanged(handler: DslSignalHandlerValue): RuntimeLoaderBuilder;
+  onInstancingChanged(handler: DslSignalHandlerValue): RuntimeLoaderBuilder;
+  onLayersChanged(handler: DslSignalHandlerValue): RuntimeLoaderBuilder;
+  onLocalOpacityChanged(handler: DslSignalHandlerValue): RuntimeLoaderBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): RuntimeLoaderBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): RuntimeLoaderBuilder;
+  onPivotChanged(handler: DslSignalHandlerValue): RuntimeLoaderBuilder;
+  onPositionChanged(handler: DslSignalHandlerValue): RuntimeLoaderBuilder;
+  onRightChanged(handler: DslSignalHandlerValue): RuntimeLoaderBuilder;
+  onRotationChanged(handler: DslSignalHandlerValue): RuntimeLoaderBuilder;
+  onScaleChanged(handler: DslSignalHandlerValue): RuntimeLoaderBuilder;
+  onScenePositionChanged(handler: DslSignalHandlerValue): RuntimeLoaderBuilder;
+  onSceneRotationChanged(handler: DslSignalHandlerValue): RuntimeLoaderBuilder;
+  onSceneScaleChanged(handler: DslSignalHandlerValue): RuntimeLoaderBuilder;
+  onSceneTransformChanged(handler: DslSignalHandlerValue): RuntimeLoaderBuilder;
+  onSourceChanged(handler: DslSignalHandlerValue): RuntimeLoaderBuilder;
+  onStateChanged(handler: DslSignalHandlerValue): RuntimeLoaderBuilder;
+  onStaticFlagsChanged(handler: DslSignalHandlerValue): RuntimeLoaderBuilder;
+  onStatusChanged(handler: DslSignalHandlerValue): RuntimeLoaderBuilder;
+  onUpChanged(handler: DslSignalHandlerValue): RuntimeLoaderBuilder;
+  onVisibleChanged(handler: DslSignalHandlerValue): RuntimeLoaderBuilder;
+  onXChanged(handler: DslSignalHandlerValue): RuntimeLoaderBuilder;
+  onYChanged(handler: DslSignalHandlerValue): RuntimeLoaderBuilder;
+  onZChanged(handler: DslSignalHandlerValue): RuntimeLoaderBuilder;
 }
 
 const RUNTIMELOADER_META: TypeMetadata = {

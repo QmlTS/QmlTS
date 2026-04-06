@@ -2,11 +2,17 @@
 // Type: PressureSensor
 // Generated from Qt 6.11.0
 
-import type { QmlEnumToken, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlEnumToken,
+  QmlObjectBuilder,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface PressureSensorBuilder {
   id(id: string): PressureSensorBuilder;
   child(obj: QmlObjectBuilder): PressureSensorBuilder;
+  children(...objs: QmlObjectBuilder[]): PressureSensorBuilder;
 
   active(value: boolean): PressureSensorBuilder;
   activeBind(expr: string): PressureSensorBuilder;
@@ -28,26 +34,26 @@ export interface PressureSensorBuilder {
   skipDuplicatesBind(expr: string): PressureSensorBuilder;
   userOrientation(value: number): PressureSensorBuilder;
   userOrientationBind(expr: string): PressureSensorBuilder;
-  onActiveChanged(body: string): PressureSensorBuilder;
-  onAlwaysOnChanged(body: string): PressureSensorBuilder;
-  onAvailableDataRatesChanged(body: string): PressureSensorBuilder;
-  onAxesOrientationModeChanged(body: string): PressureSensorBuilder;
-  onBufferSizeChanged(body: string): PressureSensorBuilder;
-  onBusyChanged(body: string): PressureSensorBuilder;
-  onConnectedToBackendChanged(body: string): PressureSensorBuilder;
-  onCurrentOrientationChanged(body: string): PressureSensorBuilder;
-  onDataRateChanged(body: string): PressureSensorBuilder;
-  onDescriptionChanged(body: string): PressureSensorBuilder;
-  onEfficientBufferSizeChanged(body: string): PressureSensorBuilder;
-  onErrorChanged(body: string): PressureSensorBuilder;
-  onIdentifierChanged(body: string): PressureSensorBuilder;
-  onMaxBufferSizeChanged(body: string): PressureSensorBuilder;
-  onObjectNameChanged(body: string): PressureSensorBuilder;
-  onOutputRangeChanged(body: string): PressureSensorBuilder;
-  onOutputRangesChanged(body: string): PressureSensorBuilder;
-  onReadingChanged(body: string): PressureSensorBuilder;
-  onSkipDuplicatesChanged(body: string): PressureSensorBuilder;
-  onUserOrientationChanged(body: string): PressureSensorBuilder;
+  onActiveChanged(handler: DslSignalHandlerValue): PressureSensorBuilder;
+  onAlwaysOnChanged(handler: DslSignalHandlerValue): PressureSensorBuilder;
+  onAvailableDataRatesChanged(handler: DslSignalHandlerValue): PressureSensorBuilder;
+  onAxesOrientationModeChanged(handler: DslSignalHandlerValue): PressureSensorBuilder;
+  onBufferSizeChanged(handler: DslSignalHandlerValue): PressureSensorBuilder;
+  onBusyChanged(handler: DslSignalHandlerValue): PressureSensorBuilder;
+  onConnectedToBackendChanged(handler: DslSignalHandlerValue): PressureSensorBuilder;
+  onCurrentOrientationChanged(handler: DslSignalHandlerValue): PressureSensorBuilder;
+  onDataRateChanged(handler: DslSignalHandlerValue): PressureSensorBuilder;
+  onDescriptionChanged(handler: DslSignalHandlerValue): PressureSensorBuilder;
+  onEfficientBufferSizeChanged(handler: DslSignalHandlerValue): PressureSensorBuilder;
+  onErrorChanged(handler: DslSignalHandlerValue): PressureSensorBuilder;
+  onIdentifierChanged(handler: DslSignalHandlerValue): PressureSensorBuilder;
+  onMaxBufferSizeChanged(handler: DslSignalHandlerValue): PressureSensorBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): PressureSensorBuilder;
+  onOutputRangeChanged(handler: DslSignalHandlerValue): PressureSensorBuilder;
+  onOutputRangesChanged(handler: DslSignalHandlerValue): PressureSensorBuilder;
+  onReadingChanged(handler: DslSignalHandlerValue): PressureSensorBuilder;
+  onSkipDuplicatesChanged(handler: DslSignalHandlerValue): PressureSensorBuilder;
+  onUserOrientationChanged(handler: DslSignalHandlerValue): PressureSensorBuilder;
 }
 
 const PRESSURESENSOR_META: TypeMetadata = {

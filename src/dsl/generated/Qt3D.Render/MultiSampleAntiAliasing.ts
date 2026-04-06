@@ -2,11 +2,17 @@
 // Type: MultiSampleAntiAliasing
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 export interface MultiSampleAntiAliasingBuilder {
   id(id: string): MultiSampleAntiAliasingBuilder;
   child(obj: QmlObjectBuilder): MultiSampleAntiAliasingBuilder;
+  children(...objs: QmlObjectBuilder[]): MultiSampleAntiAliasingBuilder;
 
   enabled(value: boolean): MultiSampleAntiAliasingBuilder;
   enabledBind(expr: string): MultiSampleAntiAliasingBuilder;
@@ -14,10 +20,10 @@ export interface MultiSampleAntiAliasingBuilder {
   objectNameBind(expr: string): MultiSampleAntiAliasingBuilder;
   parent(value: QmlValue): MultiSampleAntiAliasingBuilder;
   parentBind(expr: string): MultiSampleAntiAliasingBuilder;
-  onEnabledChanged(body: string): MultiSampleAntiAliasingBuilder;
-  onNodeDestroyed(body: string): MultiSampleAntiAliasingBuilder;
-  onObjectNameChanged(body: string): MultiSampleAntiAliasingBuilder;
-  onParentChanged(body: string): MultiSampleAntiAliasingBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): MultiSampleAntiAliasingBuilder;
+  onNodeDestroyed(handler: DslSignalHandlerValue): MultiSampleAntiAliasingBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): MultiSampleAntiAliasingBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): MultiSampleAntiAliasingBuilder;
 }
 
 const MULTISAMPLEANTIALIASING_META: TypeMetadata = {

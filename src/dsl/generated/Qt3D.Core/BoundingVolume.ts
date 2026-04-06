@@ -2,12 +2,19 @@
 // Type: BoundingVolume
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlValue, QmlVector3d, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlObjectBuilder,
+  QmlValue,
+  QmlVector3d,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 import type { GeometryViewBuilder } from './GeometryView.js';
 export interface BoundingVolumeBuilder {
   id(id: string): BoundingVolumeBuilder;
   child(obj: QmlObjectBuilder): BoundingVolumeBuilder;
+  children(...objs: QmlObjectBuilder[]): BoundingVolumeBuilder;
 
   enabled(value: boolean): BoundingVolumeBuilder;
   enabledBind(expr: string): BoundingVolumeBuilder;
@@ -23,19 +30,19 @@ export interface BoundingVolumeBuilder {
   parentBind(expr: string): BoundingVolumeBuilder;
   view(value: GeometryViewBuilder): BoundingVolumeBuilder;
   viewBind(expr: string): BoundingVolumeBuilder;
-  onAddedToEntity(body: string): BoundingVolumeBuilder;
-  onEnabledChanged(body: string): BoundingVolumeBuilder;
-  onImplicitMaxPointChanged(body: string): BoundingVolumeBuilder;
-  onImplicitMinPointChanged(body: string): BoundingVolumeBuilder;
-  onImplicitPointsValidChanged(body: string): BoundingVolumeBuilder;
-  onMaxPointChanged(body: string): BoundingVolumeBuilder;
-  onMinPointChanged(body: string): BoundingVolumeBuilder;
-  onNodeDestroyed(body: string): BoundingVolumeBuilder;
-  onObjectNameChanged(body: string): BoundingVolumeBuilder;
-  onParentChanged(body: string): BoundingVolumeBuilder;
-  onRemovedFromEntity(body: string): BoundingVolumeBuilder;
-  onShareableChanged(body: string): BoundingVolumeBuilder;
-  onViewChanged(body: string): BoundingVolumeBuilder;
+  onAddedToEntity(handler: DslSignalHandlerValue): BoundingVolumeBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): BoundingVolumeBuilder;
+  onImplicitMaxPointChanged(handler: DslSignalHandlerValue): BoundingVolumeBuilder;
+  onImplicitMinPointChanged(handler: DslSignalHandlerValue): BoundingVolumeBuilder;
+  onImplicitPointsValidChanged(handler: DslSignalHandlerValue): BoundingVolumeBuilder;
+  onMaxPointChanged(handler: DslSignalHandlerValue): BoundingVolumeBuilder;
+  onMinPointChanged(handler: DslSignalHandlerValue): BoundingVolumeBuilder;
+  onNodeDestroyed(handler: DslSignalHandlerValue): BoundingVolumeBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): BoundingVolumeBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): BoundingVolumeBuilder;
+  onRemovedFromEntity(handler: DslSignalHandlerValue): BoundingVolumeBuilder;
+  onShareableChanged(handler: DslSignalHandlerValue): BoundingVolumeBuilder;
+  onViewChanged(handler: DslSignalHandlerValue): BoundingVolumeBuilder;
 }
 
 const BOUNDINGVOLUME_META: TypeMetadata = {

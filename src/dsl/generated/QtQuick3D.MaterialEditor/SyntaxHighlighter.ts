@@ -2,18 +2,24 @@
 // Type: SyntaxHighlighter
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 export interface SyntaxHighlighterBuilder {
   id(id: string): SyntaxHighlighterBuilder;
   child(obj: QmlObjectBuilder): SyntaxHighlighterBuilder;
+  children(...objs: QmlObjectBuilder[]): SyntaxHighlighterBuilder;
 
   document(value: QmlValue): SyntaxHighlighterBuilder;
   documentBind(expr: string): SyntaxHighlighterBuilder;
   objectName(value: string): SyntaxHighlighterBuilder;
   objectNameBind(expr: string): SyntaxHighlighterBuilder;
-  onDocumentChanged(body: string): SyntaxHighlighterBuilder;
-  onObjectNameChanged(body: string): SyntaxHighlighterBuilder;
+  onDocumentChanged(handler: DslSignalHandlerValue): SyntaxHighlighterBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): SyntaxHighlighterBuilder;
 }
 
 const SYNTAXHIGHLIGHTER_META: TypeMetadata = {

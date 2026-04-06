@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlEnumToken,
   QmlFont,
   QmlObjectBuilder,
@@ -13,6 +14,7 @@ import { createFluentBuilder } from '../../runtime/index.js';
 export interface MenuBuilder {
   id(id: string): MenuBuilder;
   child(obj: QmlObjectBuilder): MenuBuilder;
+  children(...objs: QmlObjectBuilder[]): MenuBuilder;
 
   enabled(value: boolean): MenuBuilder;
   enabledBind(expr: string): MenuBuilder;
@@ -30,20 +32,20 @@ export interface MenuBuilder {
   typeBind(expr: string): MenuBuilder;
   visible(value: boolean): MenuBuilder;
   visibleBind(expr: string): MenuBuilder;
-  onAboutToHide(body: string): MenuBuilder;
-  onAboutToShow(body: string): MenuBuilder;
-  onEnabledChanged(body: string): MenuBuilder;
-  onFontChanged(body: string): MenuBuilder;
-  onIconChanged(body: string): MenuBuilder;
-  onItemsChanged(body: string): MenuBuilder;
-  onMenuBarChanged(body: string): MenuBuilder;
-  onMinimumWidthChanged(body: string): MenuBuilder;
-  onObjectNameChanged(body: string): MenuBuilder;
-  onParentMenuChanged(body: string): MenuBuilder;
-  onSystemTrayIconChanged(body: string): MenuBuilder;
-  onTitleChanged(body: string): MenuBuilder;
-  onTypeChanged(body: string): MenuBuilder;
-  onVisibleChanged(body: string): MenuBuilder;
+  onAboutToHide(handler: DslSignalHandlerValue): MenuBuilder;
+  onAboutToShow(handler: DslSignalHandlerValue): MenuBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): MenuBuilder;
+  onFontChanged(handler: DslSignalHandlerValue): MenuBuilder;
+  onIconChanged(handler: DslSignalHandlerValue): MenuBuilder;
+  onItemsChanged(handler: DslSignalHandlerValue): MenuBuilder;
+  onMenuBarChanged(handler: DslSignalHandlerValue): MenuBuilder;
+  onMinimumWidthChanged(handler: DslSignalHandlerValue): MenuBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): MenuBuilder;
+  onParentMenuChanged(handler: DslSignalHandlerValue): MenuBuilder;
+  onSystemTrayIconChanged(handler: DslSignalHandlerValue): MenuBuilder;
+  onTitleChanged(handler: DslSignalHandlerValue): MenuBuilder;
+  onTypeChanged(handler: DslSignalHandlerValue): MenuBuilder;
+  onVisibleChanged(handler: DslSignalHandlerValue): MenuBuilder;
 }
 
 const MENU_META: TypeMetadata = {

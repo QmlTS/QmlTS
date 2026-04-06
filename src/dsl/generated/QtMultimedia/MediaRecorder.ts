@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlEnumToken,
   QmlObjectBuilder,
   QmlSize,
@@ -14,6 +15,7 @@ import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface MediaRecorderBuilder {
   id(id: string): MediaRecorderBuilder;
   child(obj: QmlObjectBuilder): MediaRecorderBuilder;
+  children(...objs: QmlObjectBuilder[]): MediaRecorderBuilder;
 
   audioBitRate(value: number): MediaRecorderBuilder;
   audioBitRateBind(expr: string): MediaRecorderBuilder;
@@ -41,24 +43,24 @@ export interface MediaRecorderBuilder {
   videoFrameRateBind(expr: string): MediaRecorderBuilder;
   videoResolution(value: QmlSize): MediaRecorderBuilder;
   videoResolutionBind(expr: string): MediaRecorderBuilder;
-  onActualLocationChanged(body: string): MediaRecorderBuilder;
-  onAudioBitRateChanged(body: string): MediaRecorderBuilder;
-  onAudioChannelCountChanged(body: string): MediaRecorderBuilder;
-  onAudioSampleRateChanged(body: string): MediaRecorderBuilder;
-  onAutoStopChanged(body: string): MediaRecorderBuilder;
-  onDurationChanged(body: string): MediaRecorderBuilder;
-  onEncoderSettingsChanged(body: string): MediaRecorderBuilder;
-  onEncodingModeChanged(body: string): MediaRecorderBuilder;
-  onErrorChanged(body: string): MediaRecorderBuilder;
-  onErrorOccurred(body: string): MediaRecorderBuilder;
-  onMediaFormatChanged(body: string): MediaRecorderBuilder;
-  onMetaDataChanged(body: string): MediaRecorderBuilder;
-  onObjectNameChanged(body: string): MediaRecorderBuilder;
-  onQualityChanged(body: string): MediaRecorderBuilder;
-  onRecorderStateChanged(body: string): MediaRecorderBuilder;
-  onVideoBitRateChanged(body: string): MediaRecorderBuilder;
-  onVideoFrameRateChanged(body: string): MediaRecorderBuilder;
-  onVideoResolutionChanged(body: string): MediaRecorderBuilder;
+  onActualLocationChanged(handler: DslSignalHandlerValue): MediaRecorderBuilder;
+  onAudioBitRateChanged(handler: DslSignalHandlerValue): MediaRecorderBuilder;
+  onAudioChannelCountChanged(handler: DslSignalHandlerValue): MediaRecorderBuilder;
+  onAudioSampleRateChanged(handler: DslSignalHandlerValue): MediaRecorderBuilder;
+  onAutoStopChanged(handler: DslSignalHandlerValue): MediaRecorderBuilder;
+  onDurationChanged(handler: DslSignalHandlerValue): MediaRecorderBuilder;
+  onEncoderSettingsChanged(handler: DslSignalHandlerValue): MediaRecorderBuilder;
+  onEncodingModeChanged(handler: DslSignalHandlerValue): MediaRecorderBuilder;
+  onErrorChanged(handler: DslSignalHandlerValue): MediaRecorderBuilder;
+  onErrorOccurred(handler: DslSignalHandlerValue): MediaRecorderBuilder;
+  onMediaFormatChanged(handler: DslSignalHandlerValue): MediaRecorderBuilder;
+  onMetaDataChanged(handler: DslSignalHandlerValue): MediaRecorderBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): MediaRecorderBuilder;
+  onQualityChanged(handler: DslSignalHandlerValue): MediaRecorderBuilder;
+  onRecorderStateChanged(handler: DslSignalHandlerValue): MediaRecorderBuilder;
+  onVideoBitRateChanged(handler: DslSignalHandlerValue): MediaRecorderBuilder;
+  onVideoFrameRateChanged(handler: DslSignalHandlerValue): MediaRecorderBuilder;
+  onVideoResolutionChanged(handler: DslSignalHandlerValue): MediaRecorderBuilder;
 }
 
 const MEDIARECORDER_META: TypeMetadata = {

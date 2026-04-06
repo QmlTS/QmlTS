@@ -1,10 +1,15 @@
-import { DslBuilderImpl, type QmlObjectBuilder } from './builder-base.js';
+import {
+  DslBuilderImpl,
+  type DslSignalHandlerValue,
+  type QmlObjectBuilder,
+} from './builder-base.js';
 import type { AttachedMeta, GroupedMeta, TypeMetadata } from './metadata.js';
 import { createPropertyCollector } from './property-collector.js';
 
 const BUILTIN_METHODS = new Set([
   'id',
   'child',
+  'children',
   'build',
   '__typeName',
   'addRawMember',
@@ -58,8 +63,8 @@ export function createFluentBuilder(typeName: string, metadata: TypeMetadata): Q
       // Signal handler (onXxx)
       const sig = signalMap.get(prop);
       if (sig) {
-        return (body: string) => {
-          target.handleSignal(prop, body);
+        return (handler: DslSignalHandlerValue) => {
+          target.handleSignal(prop, handler);
           return proxy;
         };
       }

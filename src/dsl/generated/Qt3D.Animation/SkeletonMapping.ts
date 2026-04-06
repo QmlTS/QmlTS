@@ -2,11 +2,17 @@
 // Type: SkeletonMapping
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 export interface SkeletonMappingBuilder {
   id(id: string): SkeletonMappingBuilder;
   child(obj: QmlObjectBuilder): SkeletonMappingBuilder;
+  children(...objs: QmlObjectBuilder[]): SkeletonMappingBuilder;
 
   enabled(value: boolean): SkeletonMappingBuilder;
   enabledBind(expr: string): SkeletonMappingBuilder;
@@ -16,11 +22,11 @@ export interface SkeletonMappingBuilder {
   parentBind(expr: string): SkeletonMappingBuilder;
   skeleton(value: QmlValue): SkeletonMappingBuilder;
   skeletonBind(expr: string): SkeletonMappingBuilder;
-  onEnabledChanged(body: string): SkeletonMappingBuilder;
-  onNodeDestroyed(body: string): SkeletonMappingBuilder;
-  onObjectNameChanged(body: string): SkeletonMappingBuilder;
-  onParentChanged(body: string): SkeletonMappingBuilder;
-  onSkeletonChanged(body: string): SkeletonMappingBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): SkeletonMappingBuilder;
+  onNodeDestroyed(handler: DslSignalHandlerValue): SkeletonMappingBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): SkeletonMappingBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): SkeletonMappingBuilder;
+  onSkeletonChanged(handler: DslSignalHandlerValue): SkeletonMappingBuilder;
 }
 
 const SKELETONMAPPING_META: TypeMetadata = {

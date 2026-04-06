@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlEnumToken,
   QmlObjectBuilder,
   QmlValue,
@@ -12,6 +13,7 @@ import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface AlphaTestBuilder {
   id(id: string): AlphaTestBuilder;
   child(obj: QmlObjectBuilder): AlphaTestBuilder;
+  children(...objs: QmlObjectBuilder[]): AlphaTestBuilder;
 
   alphaFunction(value: QmlEnumToken): AlphaTestBuilder;
   alphaFunctionBind(expr: string): AlphaTestBuilder;
@@ -23,12 +25,12 @@ export interface AlphaTestBuilder {
   parentBind(expr: string): AlphaTestBuilder;
   referenceValue(value: number): AlphaTestBuilder;
   referenceValueBind(expr: string): AlphaTestBuilder;
-  onAlphaFunctionChanged(body: string): AlphaTestBuilder;
-  onEnabledChanged(body: string): AlphaTestBuilder;
-  onNodeDestroyed(body: string): AlphaTestBuilder;
-  onObjectNameChanged(body: string): AlphaTestBuilder;
-  onParentChanged(body: string): AlphaTestBuilder;
-  onReferenceValueChanged(body: string): AlphaTestBuilder;
+  onAlphaFunctionChanged(handler: DslSignalHandlerValue): AlphaTestBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): AlphaTestBuilder;
+  onNodeDestroyed(handler: DslSignalHandlerValue): AlphaTestBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): AlphaTestBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): AlphaTestBuilder;
+  onReferenceValueChanged(handler: DslSignalHandlerValue): AlphaTestBuilder;
 }
 
 const ALPHATEST_META: TypeMetadata = {

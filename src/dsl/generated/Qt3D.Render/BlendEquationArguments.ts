@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlEnumToken,
   QmlObjectBuilder,
   QmlValue,
@@ -12,6 +13,7 @@ import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface BlendEquationArgumentsBuilder {
   id(id: string): BlendEquationArgumentsBuilder;
   child(obj: QmlObjectBuilder): BlendEquationArgumentsBuilder;
+  children(...objs: QmlObjectBuilder[]): BlendEquationArgumentsBuilder;
 
   bufferIndex(value: number): BlendEquationArgumentsBuilder;
   bufferIndexBind(expr: string): BlendEquationArgumentsBuilder;
@@ -29,17 +31,17 @@ export interface BlendEquationArgumentsBuilder {
   sourceAlphaBind(expr: string): BlendEquationArgumentsBuilder;
   sourceRgb(value: QmlEnumToken): BlendEquationArgumentsBuilder;
   sourceRgbBind(expr: string): BlendEquationArgumentsBuilder;
-  onBufferIndexChanged(body: string): BlendEquationArgumentsBuilder;
-  onDestinationAlphaChanged(body: string): BlendEquationArgumentsBuilder;
-  onDestinationRgbChanged(body: string): BlendEquationArgumentsBuilder;
-  onDestinationRgbaChanged(body: string): BlendEquationArgumentsBuilder;
-  onEnabledChanged(body: string): BlendEquationArgumentsBuilder;
-  onNodeDestroyed(body: string): BlendEquationArgumentsBuilder;
-  onObjectNameChanged(body: string): BlendEquationArgumentsBuilder;
-  onParentChanged(body: string): BlendEquationArgumentsBuilder;
-  onSourceAlphaChanged(body: string): BlendEquationArgumentsBuilder;
-  onSourceRgbChanged(body: string): BlendEquationArgumentsBuilder;
-  onSourceRgbaChanged(body: string): BlendEquationArgumentsBuilder;
+  onBufferIndexChanged(handler: DslSignalHandlerValue): BlendEquationArgumentsBuilder;
+  onDestinationAlphaChanged(handler: DslSignalHandlerValue): BlendEquationArgumentsBuilder;
+  onDestinationRgbChanged(handler: DslSignalHandlerValue): BlendEquationArgumentsBuilder;
+  onDestinationRgbaChanged(handler: DslSignalHandlerValue): BlendEquationArgumentsBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): BlendEquationArgumentsBuilder;
+  onNodeDestroyed(handler: DslSignalHandlerValue): BlendEquationArgumentsBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): BlendEquationArgumentsBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): BlendEquationArgumentsBuilder;
+  onSourceAlphaChanged(handler: DslSignalHandlerValue): BlendEquationArgumentsBuilder;
+  onSourceRgbChanged(handler: DslSignalHandlerValue): BlendEquationArgumentsBuilder;
+  onSourceRgbaChanged(handler: DslSignalHandlerValue): BlendEquationArgumentsBuilder;
 }
 
 const BLENDEQUATIONARGUMENTS_META: TypeMetadata = {

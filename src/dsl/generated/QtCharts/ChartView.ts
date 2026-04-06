@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlColor,
   QmlEnumToken,
   QmlFont,
@@ -20,6 +21,7 @@ import type { LayerBuilder } from '../QtQuick/QQuickItemLayer.js';
 export interface ChartViewBuilder {
   id(id: string): ChartViewBuilder;
   child(obj: QmlObjectBuilder): ChartViewBuilder;
+  children(...objs: QmlObjectBuilder[]): ChartViewBuilder;
 
   activeFocusOnTab(value: boolean): ChartViewBuilder;
   activeFocusOnTabBind(expr: string): ChartViewBuilder;
@@ -99,53 +101,53 @@ export interface ChartViewBuilder {
   yBind(expr: string): ChartViewBuilder;
   z(value: number): ChartViewBuilder;
   zBind(expr: string): ChartViewBuilder;
-  onActiveFocusChanged(body: string): ChartViewBuilder;
-  onActiveFocusOnTabChanged(body: string): ChartViewBuilder;
-  onAnimationDurationChanged(body: string): ChartViewBuilder;
-  onAnimationEasingCurveChanged(body: string): ChartViewBuilder;
-  onAntialiasingChanged(body: string): ChartViewBuilder;
-  onAxisLabelsChanged(body: string): ChartViewBuilder;
-  onBackgroundColorChanged(body: string): ChartViewBuilder;
-  onBackgroundRoundnessChanged(body: string): ChartViewBuilder;
-  onBaselineOffsetChanged(body: string): ChartViewBuilder;
-  onChildrenChanged(body: string): ChartViewBuilder;
-  onChildrenRectChanged(body: string): ChartViewBuilder;
-  onClipChanged(body: string): ChartViewBuilder;
-  onContainmentMaskChanged(body: string): ChartViewBuilder;
-  onDropShadowEnabledChanged(body: string): ChartViewBuilder;
-  onEnabledChanged(body: string): ChartViewBuilder;
-  onFocusChanged(body: string): ChartViewBuilder;
-  onFocusPolicyChanged(body: string): ChartViewBuilder;
-  onHeightChanged(body: string): ChartViewBuilder;
-  onImplicitHeightChanged(body: string): ChartViewBuilder;
-  onImplicitWidthChanged(body: string): ChartViewBuilder;
-  onLocaleChanged(body: string): ChartViewBuilder;
-  onLocalizeNumbersChanged(body: string): ChartViewBuilder;
-  onMarginsChanged(body: string): ChartViewBuilder;
-  onNeedRender(body: string): ChartViewBuilder;
-  onObjectNameChanged(body: string): ChartViewBuilder;
-  onOpacityChanged(body: string): ChartViewBuilder;
-  onPaletteChanged(body: string): ChartViewBuilder;
-  onPaletteCreated(body: string): ChartViewBuilder;
-  onParentChanged(body: string): ChartViewBuilder;
-  onPendingRenderNodeMouseEventResponses(body: string): ChartViewBuilder;
-  onPlotAreaChanged(body: string): ChartViewBuilder;
-  onPlotAreaColorChanged(body: string): ChartViewBuilder;
-  onRotationChanged(body: string): ChartViewBuilder;
-  onScaleChanged(body: string): ChartViewBuilder;
-  onSeriesAdded(body: string): ChartViewBuilder;
-  onSeriesRemoved(body: string): ChartViewBuilder;
-  onSmoothChanged(body: string): ChartViewBuilder;
-  onStateChanged(body: string): ChartViewBuilder;
-  onTitleColorChanged(body: string): ChartViewBuilder;
-  onTransformOriginChanged(body: string): ChartViewBuilder;
-  onVisibleChanged(body: string): ChartViewBuilder;
-  onVisibleChildrenChanged(body: string): ChartViewBuilder;
-  onWidthChanged(body: string): ChartViewBuilder;
-  onWindowChanged(body: string): ChartViewBuilder;
-  onXChanged(body: string): ChartViewBuilder;
-  onYChanged(body: string): ChartViewBuilder;
-  onZChanged(body: string): ChartViewBuilder;
+  onActiveFocusChanged(handler: DslSignalHandlerValue): ChartViewBuilder;
+  onActiveFocusOnTabChanged(handler: DslSignalHandlerValue): ChartViewBuilder;
+  onAnimationDurationChanged(handler: DslSignalHandlerValue): ChartViewBuilder;
+  onAnimationEasingCurveChanged(handler: DslSignalHandlerValue): ChartViewBuilder;
+  onAntialiasingChanged(handler: DslSignalHandlerValue): ChartViewBuilder;
+  onAxisLabelsChanged(handler: DslSignalHandlerValue): ChartViewBuilder;
+  onBackgroundColorChanged(handler: DslSignalHandlerValue): ChartViewBuilder;
+  onBackgroundRoundnessChanged(handler: DslSignalHandlerValue): ChartViewBuilder;
+  onBaselineOffsetChanged(handler: DslSignalHandlerValue): ChartViewBuilder;
+  onChildrenChanged(handler: DslSignalHandlerValue): ChartViewBuilder;
+  onChildrenRectChanged(handler: DslSignalHandlerValue): ChartViewBuilder;
+  onClipChanged(handler: DslSignalHandlerValue): ChartViewBuilder;
+  onContainmentMaskChanged(handler: DslSignalHandlerValue): ChartViewBuilder;
+  onDropShadowEnabledChanged(handler: DslSignalHandlerValue): ChartViewBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): ChartViewBuilder;
+  onFocusChanged(handler: DslSignalHandlerValue): ChartViewBuilder;
+  onFocusPolicyChanged(handler: DslSignalHandlerValue): ChartViewBuilder;
+  onHeightChanged(handler: DslSignalHandlerValue): ChartViewBuilder;
+  onImplicitHeightChanged(handler: DslSignalHandlerValue): ChartViewBuilder;
+  onImplicitWidthChanged(handler: DslSignalHandlerValue): ChartViewBuilder;
+  onLocaleChanged(handler: DslSignalHandlerValue): ChartViewBuilder;
+  onLocalizeNumbersChanged(handler: DslSignalHandlerValue): ChartViewBuilder;
+  onMarginsChanged(handler: DslSignalHandlerValue): ChartViewBuilder;
+  onNeedRender(handler: DslSignalHandlerValue): ChartViewBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): ChartViewBuilder;
+  onOpacityChanged(handler: DslSignalHandlerValue): ChartViewBuilder;
+  onPaletteChanged(handler: DslSignalHandlerValue): ChartViewBuilder;
+  onPaletteCreated(handler: DslSignalHandlerValue): ChartViewBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): ChartViewBuilder;
+  onPendingRenderNodeMouseEventResponses(handler: DslSignalHandlerValue): ChartViewBuilder;
+  onPlotAreaChanged(handler: DslSignalHandlerValue): ChartViewBuilder;
+  onPlotAreaColorChanged(handler: DslSignalHandlerValue): ChartViewBuilder;
+  onRotationChanged(handler: DslSignalHandlerValue): ChartViewBuilder;
+  onScaleChanged(handler: DslSignalHandlerValue): ChartViewBuilder;
+  onSeriesAdded(handler: DslSignalHandlerValue): ChartViewBuilder;
+  onSeriesRemoved(handler: DslSignalHandlerValue): ChartViewBuilder;
+  onSmoothChanged(handler: DslSignalHandlerValue): ChartViewBuilder;
+  onStateChanged(handler: DslSignalHandlerValue): ChartViewBuilder;
+  onTitleColorChanged(handler: DslSignalHandlerValue): ChartViewBuilder;
+  onTransformOriginChanged(handler: DslSignalHandlerValue): ChartViewBuilder;
+  onVisibleChanged(handler: DslSignalHandlerValue): ChartViewBuilder;
+  onVisibleChildrenChanged(handler: DslSignalHandlerValue): ChartViewBuilder;
+  onWidthChanged(handler: DslSignalHandlerValue): ChartViewBuilder;
+  onWindowChanged(handler: DslSignalHandlerValue): ChartViewBuilder;
+  onXChanged(handler: DslSignalHandlerValue): ChartViewBuilder;
+  onYChanged(handler: DslSignalHandlerValue): ChartViewBuilder;
+  onZChanged(handler: DslSignalHandlerValue): ChartViewBuilder;
   anchors(setup: (b: AnchorsBuilder) => void): ChartViewBuilder;
   layer(setup: (b: LayerBuilder) => void): ChartViewBuilder;
 }

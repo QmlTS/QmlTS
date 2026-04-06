@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlEnumToken,
   QmlObjectBuilder,
   QmlValue,
@@ -12,6 +13,7 @@ import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface ShaderProgramBuilder {
   id(id: string): ShaderProgramBuilder;
   child(obj: QmlObjectBuilder): ShaderProgramBuilder;
+  children(...objs: QmlObjectBuilder[]): ShaderProgramBuilder;
 
   computeShaderCode(value: string): ShaderProgramBuilder;
   computeShaderCodeBind(expr: string): ShaderProgramBuilder;
@@ -33,19 +35,19 @@ export interface ShaderProgramBuilder {
   tessellationEvaluationShaderCodeBind(expr: string): ShaderProgramBuilder;
   vertexShaderCode(value: string): ShaderProgramBuilder;
   vertexShaderCodeBind(expr: string): ShaderProgramBuilder;
-  onComputeShaderCodeChanged(body: string): ShaderProgramBuilder;
-  onEnabledChanged(body: string): ShaderProgramBuilder;
-  onFormatChanged(body: string): ShaderProgramBuilder;
-  onFragmentShaderCodeChanged(body: string): ShaderProgramBuilder;
-  onGeometryShaderCodeChanged(body: string): ShaderProgramBuilder;
-  onLogChanged(body: string): ShaderProgramBuilder;
-  onNodeDestroyed(body: string): ShaderProgramBuilder;
-  onObjectNameChanged(body: string): ShaderProgramBuilder;
-  onParentChanged(body: string): ShaderProgramBuilder;
-  onStatusChanged(body: string): ShaderProgramBuilder;
-  onTessellationControlShaderCodeChanged(body: string): ShaderProgramBuilder;
-  onTessellationEvaluationShaderCodeChanged(body: string): ShaderProgramBuilder;
-  onVertexShaderCodeChanged(body: string): ShaderProgramBuilder;
+  onComputeShaderCodeChanged(handler: DslSignalHandlerValue): ShaderProgramBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): ShaderProgramBuilder;
+  onFormatChanged(handler: DslSignalHandlerValue): ShaderProgramBuilder;
+  onFragmentShaderCodeChanged(handler: DslSignalHandlerValue): ShaderProgramBuilder;
+  onGeometryShaderCodeChanged(handler: DslSignalHandlerValue): ShaderProgramBuilder;
+  onLogChanged(handler: DslSignalHandlerValue): ShaderProgramBuilder;
+  onNodeDestroyed(handler: DslSignalHandlerValue): ShaderProgramBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): ShaderProgramBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): ShaderProgramBuilder;
+  onStatusChanged(handler: DslSignalHandlerValue): ShaderProgramBuilder;
+  onTessellationControlShaderCodeChanged(handler: DslSignalHandlerValue): ShaderProgramBuilder;
+  onTessellationEvaluationShaderCodeChanged(handler: DslSignalHandlerValue): ShaderProgramBuilder;
+  onVertexShaderCodeChanged(handler: DslSignalHandlerValue): ShaderProgramBuilder;
 }
 
 const SHADERPROGRAM_META: TypeMetadata = {

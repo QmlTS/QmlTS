@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlComponent,
   QmlEnumToken,
   QmlObjectBuilder,
@@ -16,6 +17,7 @@ import type { PackageAttachedBuilder } from './QQuickPackageAttached.js';
 export interface DelegateModelBuilder {
   id(id: string): DelegateModelBuilder;
   child(obj: QmlObjectBuilder): DelegateModelBuilder;
+  children(...objs: QmlObjectBuilder[]): DelegateModelBuilder;
 
   delegate(value: QmlComponent): DelegateModelBuilder;
   delegateBind(expr: string): DelegateModelBuilder;
@@ -29,20 +31,20 @@ export interface DelegateModelBuilder {
   objectNameBind(expr: string): DelegateModelBuilder;
   rootIndex(value: QmlValue): DelegateModelBuilder;
   rootIndexBind(expr: string): DelegateModelBuilder;
-  onCountChanged(body: string): DelegateModelBuilder;
-  onCreatedItem(body: string): DelegateModelBuilder;
-  onDefaultGroupsChanged(body: string): DelegateModelBuilder;
-  onDelegateChanged(body: string): DelegateModelBuilder;
-  onDelegateModelAccessChanged(body: string): DelegateModelBuilder;
-  onDestroyingItem(body: string): DelegateModelBuilder;
-  onFilterGroupChanged(body: string): DelegateModelBuilder;
-  onInitItem(body: string): DelegateModelBuilder;
-  onItemPooled(body: string): DelegateModelBuilder;
-  onItemReused(body: string): DelegateModelBuilder;
-  onModelChanged(body: string): DelegateModelBuilder;
-  onModelUpdated(body: string): DelegateModelBuilder;
-  onObjectNameChanged(body: string): DelegateModelBuilder;
-  onRootIndexChanged(body: string): DelegateModelBuilder;
+  onCountChanged(handler: DslSignalHandlerValue): DelegateModelBuilder;
+  onCreatedItem(handler: DslSignalHandlerValue): DelegateModelBuilder;
+  onDefaultGroupsChanged(handler: DslSignalHandlerValue): DelegateModelBuilder;
+  onDelegateChanged(handler: DslSignalHandlerValue): DelegateModelBuilder;
+  onDelegateModelAccessChanged(handler: DslSignalHandlerValue): DelegateModelBuilder;
+  onDestroyingItem(handler: DslSignalHandlerValue): DelegateModelBuilder;
+  onFilterGroupChanged(handler: DslSignalHandlerValue): DelegateModelBuilder;
+  onInitItem(handler: DslSignalHandlerValue): DelegateModelBuilder;
+  onItemPooled(handler: DslSignalHandlerValue): DelegateModelBuilder;
+  onItemReused(handler: DslSignalHandlerValue): DelegateModelBuilder;
+  onModelChanged(handler: DslSignalHandlerValue): DelegateModelBuilder;
+  onModelUpdated(handler: DslSignalHandlerValue): DelegateModelBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): DelegateModelBuilder;
+  onRootIndexChanged(handler: DslSignalHandlerValue): DelegateModelBuilder;
   delegateModel(setup: (b: DelegateModelAttachedBuilder) => void): DelegateModelBuilder;
   objectModel(setup: (b: ObjectModelAttachedBuilder) => void): DelegateModelBuilder;
   package(setup: (b: PackageAttachedBuilder) => void): DelegateModelBuilder;

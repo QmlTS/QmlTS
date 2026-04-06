@@ -2,7 +2,12 @@
 // Type: SearchField
 // Generated from Qt 6.11.0
 
-import type { QmlEnumToken, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlEnumToken,
+  QmlObjectBuilder,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { QtObjectBuilder } from '../QML/QtObject.js';
 import type { ItemBuilder } from '../QtQuick/Item.js';
@@ -12,6 +17,7 @@ import type { LayerBuilder } from '../QtQuick/QQuickItemLayer.js';
 export interface SearchFieldBuilder {
   id(id: string): SearchFieldBuilder;
   child(obj: QmlObjectBuilder): SearchFieldBuilder;
+  children(...objs: QmlObjectBuilder[]): SearchFieldBuilder;
 
   activeFocusOnTab(value: boolean): SearchFieldBuilder;
   activeFocusOnTabBind(expr: string): SearchFieldBuilder;
@@ -77,42 +83,42 @@ export interface SearchFieldBuilder {
   yBind(expr: string): SearchFieldBuilder;
   z(value: number): SearchFieldBuilder;
   zBind(expr: string): SearchFieldBuilder;
-  onActiveFocusChanged(body: string): SearchFieldBuilder;
-  onActiveFocusOnTabChanged(body: string): SearchFieldBuilder;
-  onAntialiasingChanged(body: string): SearchFieldBuilder;
-  onBaselineOffsetChanged(body: string): SearchFieldBuilder;
-  onChildrenChanged(body: string): SearchFieldBuilder;
-  onChildrenRectChanged(body: string): SearchFieldBuilder;
-  onClipChanged(body: string): SearchFieldBuilder;
-  onContainmentMaskChanged(body: string): SearchFieldBuilder;
-  onContentPaddingChanged(body: string): SearchFieldBuilder;
-  onControlChanged(body: string): SearchFieldBuilder;
-  onEnabledChanged(body: string): SearchFieldBuilder;
-  onFocusChanged(body: string): SearchFieldBuilder;
-  onFocusPolicyChanged(body: string): SearchFieldBuilder;
-  onFontChanged(body: string): SearchFieldBuilder;
-  onHeightChanged(body: string): SearchFieldBuilder;
-  onImplicitHeightChanged(body: string): SearchFieldBuilder;
-  onImplicitWidthChanged(body: string): SearchFieldBuilder;
-  onLayoutMarginsChanged(body: string): SearchFieldBuilder;
-  onMinimumSizeChanged(body: string): SearchFieldBuilder;
-  onObjectNameChanged(body: string): SearchFieldBuilder;
-  onOpacityChanged(body: string): SearchFieldBuilder;
-  onPaletteChanged(body: string): SearchFieldBuilder;
-  onPaletteCreated(body: string): SearchFieldBuilder;
-  onParentChanged(body: string): SearchFieldBuilder;
-  onRotationChanged(body: string): SearchFieldBuilder;
-  onScaleChanged(body: string): SearchFieldBuilder;
-  onSmoothChanged(body: string): SearchFieldBuilder;
-  onStateChanged(body: string): SearchFieldBuilder;
-  onTransformOriginChanged(body: string): SearchFieldBuilder;
-  onVisibleChanged(body: string): SearchFieldBuilder;
-  onVisibleChildrenChanged(body: string): SearchFieldBuilder;
-  onWidthChanged(body: string): SearchFieldBuilder;
-  onWindowChanged(body: string): SearchFieldBuilder;
-  onXChanged(body: string): SearchFieldBuilder;
-  onYChanged(body: string): SearchFieldBuilder;
-  onZChanged(body: string): SearchFieldBuilder;
+  onActiveFocusChanged(handler: DslSignalHandlerValue): SearchFieldBuilder;
+  onActiveFocusOnTabChanged(handler: DslSignalHandlerValue): SearchFieldBuilder;
+  onAntialiasingChanged(handler: DslSignalHandlerValue): SearchFieldBuilder;
+  onBaselineOffsetChanged(handler: DslSignalHandlerValue): SearchFieldBuilder;
+  onChildrenChanged(handler: DslSignalHandlerValue): SearchFieldBuilder;
+  onChildrenRectChanged(handler: DslSignalHandlerValue): SearchFieldBuilder;
+  onClipChanged(handler: DslSignalHandlerValue): SearchFieldBuilder;
+  onContainmentMaskChanged(handler: DslSignalHandlerValue): SearchFieldBuilder;
+  onContentPaddingChanged(handler: DslSignalHandlerValue): SearchFieldBuilder;
+  onControlChanged(handler: DslSignalHandlerValue): SearchFieldBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): SearchFieldBuilder;
+  onFocusChanged(handler: DslSignalHandlerValue): SearchFieldBuilder;
+  onFocusPolicyChanged(handler: DslSignalHandlerValue): SearchFieldBuilder;
+  onFontChanged(handler: DslSignalHandlerValue): SearchFieldBuilder;
+  onHeightChanged(handler: DslSignalHandlerValue): SearchFieldBuilder;
+  onImplicitHeightChanged(handler: DslSignalHandlerValue): SearchFieldBuilder;
+  onImplicitWidthChanged(handler: DslSignalHandlerValue): SearchFieldBuilder;
+  onLayoutMarginsChanged(handler: DslSignalHandlerValue): SearchFieldBuilder;
+  onMinimumSizeChanged(handler: DslSignalHandlerValue): SearchFieldBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): SearchFieldBuilder;
+  onOpacityChanged(handler: DslSignalHandlerValue): SearchFieldBuilder;
+  onPaletteChanged(handler: DslSignalHandlerValue): SearchFieldBuilder;
+  onPaletteCreated(handler: DslSignalHandlerValue): SearchFieldBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): SearchFieldBuilder;
+  onRotationChanged(handler: DslSignalHandlerValue): SearchFieldBuilder;
+  onScaleChanged(handler: DslSignalHandlerValue): SearchFieldBuilder;
+  onSmoothChanged(handler: DslSignalHandlerValue): SearchFieldBuilder;
+  onStateChanged(handler: DslSignalHandlerValue): SearchFieldBuilder;
+  onTransformOriginChanged(handler: DslSignalHandlerValue): SearchFieldBuilder;
+  onVisibleChanged(handler: DslSignalHandlerValue): SearchFieldBuilder;
+  onVisibleChildrenChanged(handler: DslSignalHandlerValue): SearchFieldBuilder;
+  onWidthChanged(handler: DslSignalHandlerValue): SearchFieldBuilder;
+  onWindowChanged(handler: DslSignalHandlerValue): SearchFieldBuilder;
+  onXChanged(handler: DslSignalHandlerValue): SearchFieldBuilder;
+  onYChanged(handler: DslSignalHandlerValue): SearchFieldBuilder;
+  onZChanged(handler: DslSignalHandlerValue): SearchFieldBuilder;
   anchors(setup: (b: AnchorsBuilder) => void): SearchFieldBuilder;
   layer(setup: (b: LayerBuilder) => void): SearchFieldBuilder;
 }

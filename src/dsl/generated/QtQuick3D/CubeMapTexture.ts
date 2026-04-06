@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlEnumToken,
   QmlObjectBuilder,
   QmlUrl,
@@ -14,6 +15,7 @@ import type { ItemBuilder } from '../QtQuick/Item.js';
 export interface CubeMapTextureBuilder {
   id(id: string): CubeMapTextureBuilder;
   child(obj: QmlObjectBuilder): CubeMapTextureBuilder;
+  children(...objs: QmlObjectBuilder[]): CubeMapTextureBuilder;
 
   autoOrientation(value: boolean): CubeMapTextureBuilder;
   autoOrientationBind(expr: string): CubeMapTextureBuilder;
@@ -67,33 +69,33 @@ export interface CubeMapTextureBuilder {
   tilingModeHorizontalBind(expr: string): CubeMapTextureBuilder;
   tilingModeVertical(value: QmlEnumToken): CubeMapTextureBuilder;
   tilingModeVerticalBind(expr: string): CubeMapTextureBuilder;
-  onAutoOrientationChanged(body: string): CubeMapTextureBuilder;
-  onChildrenChanged(body: string): CubeMapTextureBuilder;
-  onDepthTilingChanged(body: string): CubeMapTextureBuilder;
-  onFlipUChanged(body: string): CubeMapTextureBuilder;
-  onFlipVChanged(body: string): CubeMapTextureBuilder;
-  onGenerateMipmapsChanged(body: string): CubeMapTextureBuilder;
-  onHorizontalTilingChanged(body: string): CubeMapTextureBuilder;
-  onIndexUVChanged(body: string): CubeMapTextureBuilder;
-  onMagFilterChanged(body: string): CubeMapTextureBuilder;
-  onMappingModeChanged(body: string): CubeMapTextureBuilder;
-  onMinFilterChanged(body: string): CubeMapTextureBuilder;
-  onMipFilterChanged(body: string): CubeMapTextureBuilder;
-  onObjectNameChanged(body: string): CubeMapTextureBuilder;
-  onParentChanged(body: string): CubeMapTextureBuilder;
-  onPivotUChanged(body: string): CubeMapTextureBuilder;
-  onPivotVChanged(body: string): CubeMapTextureBuilder;
-  onPositionUChanged(body: string): CubeMapTextureBuilder;
-  onPositionVChanged(body: string): CubeMapTextureBuilder;
-  onRotationUVChanged(body: string): CubeMapTextureBuilder;
-  onScaleUChanged(body: string): CubeMapTextureBuilder;
-  onScaleVChanged(body: string): CubeMapTextureBuilder;
-  onSourceChanged(body: string): CubeMapTextureBuilder;
-  onSourceItemChanged(body: string): CubeMapTextureBuilder;
-  onStateChanged(body: string): CubeMapTextureBuilder;
-  onTextureDataChanged(body: string): CubeMapTextureBuilder;
-  onTextureProviderChanged(body: string): CubeMapTextureBuilder;
-  onVerticalTilingChanged(body: string): CubeMapTextureBuilder;
+  onAutoOrientationChanged(handler: DslSignalHandlerValue): CubeMapTextureBuilder;
+  onChildrenChanged(handler: DslSignalHandlerValue): CubeMapTextureBuilder;
+  onDepthTilingChanged(handler: DslSignalHandlerValue): CubeMapTextureBuilder;
+  onFlipUChanged(handler: DslSignalHandlerValue): CubeMapTextureBuilder;
+  onFlipVChanged(handler: DslSignalHandlerValue): CubeMapTextureBuilder;
+  onGenerateMipmapsChanged(handler: DslSignalHandlerValue): CubeMapTextureBuilder;
+  onHorizontalTilingChanged(handler: DslSignalHandlerValue): CubeMapTextureBuilder;
+  onIndexUVChanged(handler: DslSignalHandlerValue): CubeMapTextureBuilder;
+  onMagFilterChanged(handler: DslSignalHandlerValue): CubeMapTextureBuilder;
+  onMappingModeChanged(handler: DslSignalHandlerValue): CubeMapTextureBuilder;
+  onMinFilterChanged(handler: DslSignalHandlerValue): CubeMapTextureBuilder;
+  onMipFilterChanged(handler: DslSignalHandlerValue): CubeMapTextureBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): CubeMapTextureBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): CubeMapTextureBuilder;
+  onPivotUChanged(handler: DslSignalHandlerValue): CubeMapTextureBuilder;
+  onPivotVChanged(handler: DslSignalHandlerValue): CubeMapTextureBuilder;
+  onPositionUChanged(handler: DslSignalHandlerValue): CubeMapTextureBuilder;
+  onPositionVChanged(handler: DslSignalHandlerValue): CubeMapTextureBuilder;
+  onRotationUVChanged(handler: DslSignalHandlerValue): CubeMapTextureBuilder;
+  onScaleUChanged(handler: DslSignalHandlerValue): CubeMapTextureBuilder;
+  onScaleVChanged(handler: DslSignalHandlerValue): CubeMapTextureBuilder;
+  onSourceChanged(handler: DslSignalHandlerValue): CubeMapTextureBuilder;
+  onSourceItemChanged(handler: DslSignalHandlerValue): CubeMapTextureBuilder;
+  onStateChanged(handler: DslSignalHandlerValue): CubeMapTextureBuilder;
+  onTextureDataChanged(handler: DslSignalHandlerValue): CubeMapTextureBuilder;
+  onTextureProviderChanged(handler: DslSignalHandlerValue): CubeMapTextureBuilder;
+  onVerticalTilingChanged(handler: DslSignalHandlerValue): CubeMapTextureBuilder;
 }
 
 const CUBEMAPTEXTURE_META: TypeMetadata = {

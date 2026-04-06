@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlColor,
   QmlEnumToken,
   QmlObjectBuilder,
@@ -14,6 +15,7 @@ import type { EffectBuilder } from '../Qt3D.Render/Effect.js';
 export interface PhongAlphaMaterialBuilder {
   id(id: string): PhongAlphaMaterialBuilder;
   child(obj: QmlObjectBuilder): PhongAlphaMaterialBuilder;
+  children(...objs: QmlObjectBuilder[]): PhongAlphaMaterialBuilder;
 
   alpha(value: number): PhongAlphaMaterialBuilder;
   alphaBind(expr: string): PhongAlphaMaterialBuilder;
@@ -45,24 +47,24 @@ export interface PhongAlphaMaterialBuilder {
   sourceRgbArgBind(expr: string): PhongAlphaMaterialBuilder;
   specular(value: QmlColor): PhongAlphaMaterialBuilder;
   specularBind(expr: string): PhongAlphaMaterialBuilder;
-  onAddedToEntity(body: string): PhongAlphaMaterialBuilder;
-  onAlphaChanged(body: string): PhongAlphaMaterialBuilder;
-  onAmbientChanged(body: string): PhongAlphaMaterialBuilder;
-  onBlendFunctionArgChanged(body: string): PhongAlphaMaterialBuilder;
-  onDestinationAlphaArgChanged(body: string): PhongAlphaMaterialBuilder;
-  onDestinationRgbArgChanged(body: string): PhongAlphaMaterialBuilder;
-  onDiffuseChanged(body: string): PhongAlphaMaterialBuilder;
-  onEffectChanged(body: string): PhongAlphaMaterialBuilder;
-  onEnabledChanged(body: string): PhongAlphaMaterialBuilder;
-  onNodeDestroyed(body: string): PhongAlphaMaterialBuilder;
-  onObjectNameChanged(body: string): PhongAlphaMaterialBuilder;
-  onParentChanged(body: string): PhongAlphaMaterialBuilder;
-  onRemovedFromEntity(body: string): PhongAlphaMaterialBuilder;
-  onShareableChanged(body: string): PhongAlphaMaterialBuilder;
-  onShininessChanged(body: string): PhongAlphaMaterialBuilder;
-  onSourceAlphaArgChanged(body: string): PhongAlphaMaterialBuilder;
-  onSourceRgbArgChanged(body: string): PhongAlphaMaterialBuilder;
-  onSpecularChanged(body: string): PhongAlphaMaterialBuilder;
+  onAddedToEntity(handler: DslSignalHandlerValue): PhongAlphaMaterialBuilder;
+  onAlphaChanged(handler: DslSignalHandlerValue): PhongAlphaMaterialBuilder;
+  onAmbientChanged(handler: DslSignalHandlerValue): PhongAlphaMaterialBuilder;
+  onBlendFunctionArgChanged(handler: DslSignalHandlerValue): PhongAlphaMaterialBuilder;
+  onDestinationAlphaArgChanged(handler: DslSignalHandlerValue): PhongAlphaMaterialBuilder;
+  onDestinationRgbArgChanged(handler: DslSignalHandlerValue): PhongAlphaMaterialBuilder;
+  onDiffuseChanged(handler: DslSignalHandlerValue): PhongAlphaMaterialBuilder;
+  onEffectChanged(handler: DslSignalHandlerValue): PhongAlphaMaterialBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): PhongAlphaMaterialBuilder;
+  onNodeDestroyed(handler: DslSignalHandlerValue): PhongAlphaMaterialBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): PhongAlphaMaterialBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): PhongAlphaMaterialBuilder;
+  onRemovedFromEntity(handler: DslSignalHandlerValue): PhongAlphaMaterialBuilder;
+  onShareableChanged(handler: DslSignalHandlerValue): PhongAlphaMaterialBuilder;
+  onShininessChanged(handler: DslSignalHandlerValue): PhongAlphaMaterialBuilder;
+  onSourceAlphaArgChanged(handler: DslSignalHandlerValue): PhongAlphaMaterialBuilder;
+  onSourceRgbArgChanged(handler: DslSignalHandlerValue): PhongAlphaMaterialBuilder;
+  onSpecularChanged(handler: DslSignalHandlerValue): PhongAlphaMaterialBuilder;
 }
 
 const PHONGALPHAMATERIAL_META: TypeMetadata = {

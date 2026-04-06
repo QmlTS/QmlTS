@@ -2,7 +2,12 @@
 // Type: PinchArea
 // Generated from Qt 6.11.0
 
-import type { QmlEnumToken, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlEnumToken,
+  QmlObjectBuilder,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { QtObjectBuilder } from '../QML/QtObject.js';
 import type { AccessibleAttachedBuilder } from './Accessible.js';
@@ -28,6 +33,7 @@ import type { ViewTransitionAttachedBuilder } from './ViewTransition.js';
 export interface PinchAreaBuilder {
   id(id: string): PinchAreaBuilder;
   child(obj: QmlObjectBuilder): PinchAreaBuilder;
+  children(...objs: QmlObjectBuilder[]): PinchAreaBuilder;
 
   activeFocusOnTab(value: boolean): PinchAreaBuilder;
   activeFocusOnTabBind(expr: string): PinchAreaBuilder;
@@ -79,41 +85,41 @@ export interface PinchAreaBuilder {
   yBind(expr: string): PinchAreaBuilder;
   z(value: number): PinchAreaBuilder;
   zBind(expr: string): PinchAreaBuilder;
-  onActiveFocusChanged(body: string): PinchAreaBuilder;
-  onActiveFocusOnTabChanged(body: string): PinchAreaBuilder;
-  onAntialiasingChanged(body: string): PinchAreaBuilder;
-  onBaselineOffsetChanged(body: string): PinchAreaBuilder;
-  onChildrenChanged(body: string): PinchAreaBuilder;
-  onChildrenRectChanged(body: string): PinchAreaBuilder;
-  onClipChanged(body: string): PinchAreaBuilder;
-  onContainmentMaskChanged(body: string): PinchAreaBuilder;
-  onEnabledChanged(body: string): PinchAreaBuilder;
-  onFocusChanged(body: string): PinchAreaBuilder;
-  onFocusPolicyChanged(body: string): PinchAreaBuilder;
-  onHeightChanged(body: string): PinchAreaBuilder;
-  onImplicitHeightChanged(body: string): PinchAreaBuilder;
-  onImplicitWidthChanged(body: string): PinchAreaBuilder;
-  onObjectNameChanged(body: string): PinchAreaBuilder;
-  onOpacityChanged(body: string): PinchAreaBuilder;
-  onPaletteChanged(body: string): PinchAreaBuilder;
-  onPaletteCreated(body: string): PinchAreaBuilder;
-  onParentChanged(body: string): PinchAreaBuilder;
-  onPinchFinished(body: string): PinchAreaBuilder;
-  onPinchStarted(body: string): PinchAreaBuilder;
-  onPinchUpdated(body: string): PinchAreaBuilder;
-  onRotationChanged(body: string): PinchAreaBuilder;
-  onScaleChanged(body: string): PinchAreaBuilder;
-  onSmartZoom(body: string): PinchAreaBuilder;
-  onSmoothChanged(body: string): PinchAreaBuilder;
-  onStateChanged(body: string): PinchAreaBuilder;
-  onTransformOriginChanged(body: string): PinchAreaBuilder;
-  onVisibleChanged(body: string): PinchAreaBuilder;
-  onVisibleChildrenChanged(body: string): PinchAreaBuilder;
-  onWidthChanged(body: string): PinchAreaBuilder;
-  onWindowChanged(body: string): PinchAreaBuilder;
-  onXChanged(body: string): PinchAreaBuilder;
-  onYChanged(body: string): PinchAreaBuilder;
-  onZChanged(body: string): PinchAreaBuilder;
+  onActiveFocusChanged(handler: DslSignalHandlerValue): PinchAreaBuilder;
+  onActiveFocusOnTabChanged(handler: DslSignalHandlerValue): PinchAreaBuilder;
+  onAntialiasingChanged(handler: DslSignalHandlerValue): PinchAreaBuilder;
+  onBaselineOffsetChanged(handler: DslSignalHandlerValue): PinchAreaBuilder;
+  onChildrenChanged(handler: DslSignalHandlerValue): PinchAreaBuilder;
+  onChildrenRectChanged(handler: DslSignalHandlerValue): PinchAreaBuilder;
+  onClipChanged(handler: DslSignalHandlerValue): PinchAreaBuilder;
+  onContainmentMaskChanged(handler: DslSignalHandlerValue): PinchAreaBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): PinchAreaBuilder;
+  onFocusChanged(handler: DslSignalHandlerValue): PinchAreaBuilder;
+  onFocusPolicyChanged(handler: DslSignalHandlerValue): PinchAreaBuilder;
+  onHeightChanged(handler: DslSignalHandlerValue): PinchAreaBuilder;
+  onImplicitHeightChanged(handler: DslSignalHandlerValue): PinchAreaBuilder;
+  onImplicitWidthChanged(handler: DslSignalHandlerValue): PinchAreaBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): PinchAreaBuilder;
+  onOpacityChanged(handler: DslSignalHandlerValue): PinchAreaBuilder;
+  onPaletteChanged(handler: DslSignalHandlerValue): PinchAreaBuilder;
+  onPaletteCreated(handler: DslSignalHandlerValue): PinchAreaBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): PinchAreaBuilder;
+  onPinchFinished(handler: DslSignalHandlerValue): PinchAreaBuilder;
+  onPinchStarted(handler: DslSignalHandlerValue): PinchAreaBuilder;
+  onPinchUpdated(handler: DslSignalHandlerValue): PinchAreaBuilder;
+  onRotationChanged(handler: DslSignalHandlerValue): PinchAreaBuilder;
+  onScaleChanged(handler: DslSignalHandlerValue): PinchAreaBuilder;
+  onSmartZoom(handler: DslSignalHandlerValue): PinchAreaBuilder;
+  onSmoothChanged(handler: DslSignalHandlerValue): PinchAreaBuilder;
+  onStateChanged(handler: DslSignalHandlerValue): PinchAreaBuilder;
+  onTransformOriginChanged(handler: DslSignalHandlerValue): PinchAreaBuilder;
+  onVisibleChanged(handler: DslSignalHandlerValue): PinchAreaBuilder;
+  onVisibleChildrenChanged(handler: DslSignalHandlerValue): PinchAreaBuilder;
+  onWidthChanged(handler: DslSignalHandlerValue): PinchAreaBuilder;
+  onWindowChanged(handler: DslSignalHandlerValue): PinchAreaBuilder;
+  onXChanged(handler: DslSignalHandlerValue): PinchAreaBuilder;
+  onYChanged(handler: DslSignalHandlerValue): PinchAreaBuilder;
+  onZChanged(handler: DslSignalHandlerValue): PinchAreaBuilder;
   anchors(setup: (b: AnchorsBuilder) => void): PinchAreaBuilder;
   layer(setup: (b: LayerBuilder) => void): PinchAreaBuilder;
   accessible(setup: (b: AccessibleAttachedBuilder) => void): PinchAreaBuilder;

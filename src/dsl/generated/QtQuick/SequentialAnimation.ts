@@ -2,7 +2,7 @@
 // Type: SequentialAnimation
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import type { DslSignalHandlerValue, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { AccessibleAttachedBuilder } from './Accessible.js';
 import type { EnterKeyAttachedBuilder } from './EnterKey.js';
@@ -23,6 +23,7 @@ import type { ViewTransitionAttachedBuilder } from './ViewTransition.js';
 export interface SequentialAnimationBuilder {
   id(id: string): SequentialAnimationBuilder;
   child(obj: QmlObjectBuilder): SequentialAnimationBuilder;
+  children(...objs: QmlObjectBuilder[]): SequentialAnimationBuilder;
 
   alwaysRunToEnd(value: boolean): SequentialAnimationBuilder;
   alwaysRunToEndBind(expr: string): SequentialAnimationBuilder;
@@ -34,14 +35,14 @@ export interface SequentialAnimationBuilder {
   pausedBind(expr: string): SequentialAnimationBuilder;
   running(value: boolean): SequentialAnimationBuilder;
   runningBind(expr: string): SequentialAnimationBuilder;
-  onAlwaysRunToEndChanged(body: string): SequentialAnimationBuilder;
-  onFinished(body: string): SequentialAnimationBuilder;
-  onLoopCountChanged(body: string): SequentialAnimationBuilder;
-  onObjectNameChanged(body: string): SequentialAnimationBuilder;
-  onPausedChanged(body: string): SequentialAnimationBuilder;
-  onRunningChanged(body: string): SequentialAnimationBuilder;
-  onStarted(body: string): SequentialAnimationBuilder;
-  onStopped(body: string): SequentialAnimationBuilder;
+  onAlwaysRunToEndChanged(handler: DslSignalHandlerValue): SequentialAnimationBuilder;
+  onFinished(handler: DslSignalHandlerValue): SequentialAnimationBuilder;
+  onLoopCountChanged(handler: DslSignalHandlerValue): SequentialAnimationBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): SequentialAnimationBuilder;
+  onPausedChanged(handler: DslSignalHandlerValue): SequentialAnimationBuilder;
+  onRunningChanged(handler: DslSignalHandlerValue): SequentialAnimationBuilder;
+  onStarted(handler: DslSignalHandlerValue): SequentialAnimationBuilder;
+  onStopped(handler: DslSignalHandlerValue): SequentialAnimationBuilder;
   accessible(setup: (b: AccessibleAttachedBuilder) => void): SequentialAnimationBuilder;
   drag(setup: (b: DragAttachedBuilder) => void): SequentialAnimationBuilder;
   enterKey(setup: (b: EnterKeyAttachedBuilder) => void): SequentialAnimationBuilder;

@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlObjectBuilder,
   QmlUrl,
   QmlValue,
@@ -13,6 +14,7 @@ import { createFluentBuilder } from '../../runtime/index.js';
 export interface HeightFieldGeometryBuilder {
   id(id: string): HeightFieldGeometryBuilder;
   child(obj: QmlObjectBuilder): HeightFieldGeometryBuilder;
+  children(...objs: QmlObjectBuilder[]): HeightFieldGeometryBuilder;
 
   extents(value: QmlVector3d): HeightFieldGeometryBuilder;
   extentsBind(expr: string): HeightFieldGeometryBuilder;
@@ -28,15 +30,15 @@ export interface HeightFieldGeometryBuilder {
   sourceBind(expr: string): HeightFieldGeometryBuilder;
   state(value: string): HeightFieldGeometryBuilder;
   stateBind(expr: string): HeightFieldGeometryBuilder;
-  onChildrenChanged(body: string): HeightFieldGeometryBuilder;
-  onExtentsChanged(body: string): HeightFieldGeometryBuilder;
-  onGeometryChanged(body: string): HeightFieldGeometryBuilder;
-  onGeometryNodeDirty(body: string): HeightFieldGeometryBuilder;
-  onObjectNameChanged(body: string): HeightFieldGeometryBuilder;
-  onParentChanged(body: string): HeightFieldGeometryBuilder;
-  onSmoothShadingChanged(body: string): HeightFieldGeometryBuilder;
-  onSourceChanged(body: string): HeightFieldGeometryBuilder;
-  onStateChanged(body: string): HeightFieldGeometryBuilder;
+  onChildrenChanged(handler: DslSignalHandlerValue): HeightFieldGeometryBuilder;
+  onExtentsChanged(handler: DslSignalHandlerValue): HeightFieldGeometryBuilder;
+  onGeometryChanged(handler: DslSignalHandlerValue): HeightFieldGeometryBuilder;
+  onGeometryNodeDirty(handler: DslSignalHandlerValue): HeightFieldGeometryBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): HeightFieldGeometryBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): HeightFieldGeometryBuilder;
+  onSmoothShadingChanged(handler: DslSignalHandlerValue): HeightFieldGeometryBuilder;
+  onSourceChanged(handler: DslSignalHandlerValue): HeightFieldGeometryBuilder;
+  onStateChanged(handler: DslSignalHandlerValue): HeightFieldGeometryBuilder;
 }
 
 const HEIGHTFIELDGEOMETRY_META: TypeMetadata = {

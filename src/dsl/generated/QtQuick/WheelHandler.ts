@@ -2,7 +2,12 @@
 // Type: WheelHandler
 // Generated from Qt 6.11.0
 
-import type { QmlEnumToken, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlEnumToken,
+  QmlObjectBuilder,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { AccessibleAttachedBuilder } from './Accessible.js';
 import type { EnterKeyAttachedBuilder } from './EnterKey.js';
@@ -24,6 +29,7 @@ import type { ViewTransitionAttachedBuilder } from './ViewTransition.js';
 export interface WheelHandlerBuilder {
   id(id: string): WheelHandlerBuilder;
   child(obj: QmlObjectBuilder): WheelHandlerBuilder;
+  children(...objs: QmlObjectBuilder[]): WheelHandlerBuilder;
 
   acceptedButtons(value: QmlEnumToken): WheelHandlerBuilder;
   acceptedButtonsBind(expr: string): WheelHandlerBuilder;
@@ -67,32 +73,32 @@ export interface WheelHandlerBuilder {
   targetScaleMultiplierBind(expr: string): WheelHandlerBuilder;
   targetTransformAroundCursor(value: boolean): WheelHandlerBuilder;
   targetTransformAroundCursorBind(expr: string): WheelHandlerBuilder;
-  onAcceptedButtonsChanged(body: string): WheelHandlerBuilder;
-  onAcceptedDevicesChanged(body: string): WheelHandlerBuilder;
-  onAcceptedModifiersChanged(body: string): WheelHandlerBuilder;
-  onAcceptedPointerTypesChanged(body: string): WheelHandlerBuilder;
-  onActiveChanged(body: string): WheelHandlerBuilder;
-  onActiveTimeoutChanged(body: string): WheelHandlerBuilder;
-  onBlockingChanged(body: string): WheelHandlerBuilder;
-  onCanceled(body: string): WheelHandlerBuilder;
-  onCursorShapeChanged(body: string): WheelHandlerBuilder;
-  onDragThresholdChanged(body: string): WheelHandlerBuilder;
-  onEnabledChanged(body: string): WheelHandlerBuilder;
-  onGrabChanged(body: string): WheelHandlerBuilder;
-  onGrabPermissionChanged(body: string): WheelHandlerBuilder;
-  onInvertibleChanged(body: string): WheelHandlerBuilder;
-  onMarginChanged(body: string): WheelHandlerBuilder;
-  onObjectNameChanged(body: string): WheelHandlerBuilder;
-  onOrientationChanged(body: string): WheelHandlerBuilder;
-  onParentChanged(body: string): WheelHandlerBuilder;
-  onPointChanged(body: string): WheelHandlerBuilder;
-  onPropertyChanged(body: string): WheelHandlerBuilder;
-  onRotationChanged(body: string): WheelHandlerBuilder;
-  onRotationScaleChanged(body: string): WheelHandlerBuilder;
-  onTargetChanged(body: string): WheelHandlerBuilder;
-  onTargetScaleMultiplierChanged(body: string): WheelHandlerBuilder;
-  onTargetTransformAroundCursorChanged(body: string): WheelHandlerBuilder;
-  onWheel(body: string): WheelHandlerBuilder;
+  onAcceptedButtonsChanged(handler: DslSignalHandlerValue): WheelHandlerBuilder;
+  onAcceptedDevicesChanged(handler: DslSignalHandlerValue): WheelHandlerBuilder;
+  onAcceptedModifiersChanged(handler: DslSignalHandlerValue): WheelHandlerBuilder;
+  onAcceptedPointerTypesChanged(handler: DslSignalHandlerValue): WheelHandlerBuilder;
+  onActiveChanged(handler: DslSignalHandlerValue): WheelHandlerBuilder;
+  onActiveTimeoutChanged(handler: DslSignalHandlerValue): WheelHandlerBuilder;
+  onBlockingChanged(handler: DslSignalHandlerValue): WheelHandlerBuilder;
+  onCanceled(handler: DslSignalHandlerValue): WheelHandlerBuilder;
+  onCursorShapeChanged(handler: DslSignalHandlerValue): WheelHandlerBuilder;
+  onDragThresholdChanged(handler: DslSignalHandlerValue): WheelHandlerBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): WheelHandlerBuilder;
+  onGrabChanged(handler: DslSignalHandlerValue): WheelHandlerBuilder;
+  onGrabPermissionChanged(handler: DslSignalHandlerValue): WheelHandlerBuilder;
+  onInvertibleChanged(handler: DslSignalHandlerValue): WheelHandlerBuilder;
+  onMarginChanged(handler: DslSignalHandlerValue): WheelHandlerBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): WheelHandlerBuilder;
+  onOrientationChanged(handler: DslSignalHandlerValue): WheelHandlerBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): WheelHandlerBuilder;
+  onPointChanged(handler: DslSignalHandlerValue): WheelHandlerBuilder;
+  onPropertyChanged(handler: DslSignalHandlerValue): WheelHandlerBuilder;
+  onRotationChanged(handler: DslSignalHandlerValue): WheelHandlerBuilder;
+  onRotationScaleChanged(handler: DslSignalHandlerValue): WheelHandlerBuilder;
+  onTargetChanged(handler: DslSignalHandlerValue): WheelHandlerBuilder;
+  onTargetScaleMultiplierChanged(handler: DslSignalHandlerValue): WheelHandlerBuilder;
+  onTargetTransformAroundCursorChanged(handler: DslSignalHandlerValue): WheelHandlerBuilder;
+  onWheel(handler: DslSignalHandlerValue): WheelHandlerBuilder;
   accessible(setup: (b: AccessibleAttachedBuilder) => void): WheelHandlerBuilder;
   drag(setup: (b: DragAttachedBuilder) => void): WheelHandlerBuilder;
   enterKey(setup: (b: EnterKeyAttachedBuilder) => void): WheelHandlerBuilder;

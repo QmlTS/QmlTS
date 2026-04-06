@@ -2,7 +2,12 @@
 // Type: Action
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 import type { ContextMenuAttachedBuilder } from './ContextMenu.js';
 import type { ActionGroupAttachedBuilder } from './QQuickActionGroupAttached.js';
@@ -25,6 +30,7 @@ import type { SplitHandleAttachedBuilder } from './SplitHandle.js';
 export interface ActionBuilder {
   id(id: string): ActionBuilder;
   child(obj: QmlObjectBuilder): ActionBuilder;
+  children(...objs: QmlObjectBuilder[]): ActionBuilder;
 
   checkable(value: boolean): ActionBuilder;
   checkableBind(expr: string): ActionBuilder;
@@ -40,15 +46,15 @@ export interface ActionBuilder {
   shortcutBind(expr: string): ActionBuilder;
   text(value: string): ActionBuilder;
   textBind(expr: string): ActionBuilder;
-  onCheckableChanged(body: string): ActionBuilder;
-  onCheckedChanged(body: string): ActionBuilder;
-  onEnabledChanged(body: string): ActionBuilder;
-  onIconChanged(body: string): ActionBuilder;
-  onObjectNameChanged(body: string): ActionBuilder;
-  onShortcutChanged(body: string): ActionBuilder;
-  onTextChanged(body: string): ActionBuilder;
-  onToggled(body: string): ActionBuilder;
-  onTriggered(body: string): ActionBuilder;
+  onCheckableChanged(handler: DslSignalHandlerValue): ActionBuilder;
+  onCheckedChanged(handler: DslSignalHandlerValue): ActionBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): ActionBuilder;
+  onIconChanged(handler: DslSignalHandlerValue): ActionBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): ActionBuilder;
+  onShortcutChanged(handler: DslSignalHandlerValue): ActionBuilder;
+  onTextChanged(handler: DslSignalHandlerValue): ActionBuilder;
+  onToggled(handler: DslSignalHandlerValue): ActionBuilder;
+  onTriggered(handler: DslSignalHandlerValue): ActionBuilder;
   actionGroup(setup: (b: ActionGroupAttachedBuilder) => void): ActionBuilder;
   applicationWindow(setup: (b: ApplicationWindowAttachedBuilder) => void): ActionBuilder;
   buttonGroup(setup: (b: ButtonGroupAttachedBuilder) => void): ActionBuilder;

@@ -2,36 +2,37 @@
 // Type: RenderStatsMeshesModel
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import type { DslSignalHandlerValue, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface RenderStatsMeshesModelBuilder {
   id(id: string): RenderStatsMeshesModelBuilder;
   child(obj: QmlObjectBuilder): RenderStatsMeshesModelBuilder;
+  children(...objs: QmlObjectBuilder[]): RenderStatsMeshesModelBuilder;
 
   meshData(value: string): RenderStatsMeshesModelBuilder;
   meshDataBind(expr: string): RenderStatsMeshesModelBuilder;
   objectName(value: string): RenderStatsMeshesModelBuilder;
   objectNameBind(expr: string): RenderStatsMeshesModelBuilder;
-  onColumnsAboutToBeInserted(body: string): RenderStatsMeshesModelBuilder;
-  onColumnsAboutToBeMoved(body: string): RenderStatsMeshesModelBuilder;
-  onColumnsAboutToBeRemoved(body: string): RenderStatsMeshesModelBuilder;
-  onColumnsInserted(body: string): RenderStatsMeshesModelBuilder;
-  onColumnsMoved(body: string): RenderStatsMeshesModelBuilder;
-  onColumnsRemoved(body: string): RenderStatsMeshesModelBuilder;
-  onDataChanged(body: string): RenderStatsMeshesModelBuilder;
-  onHeaderDataChanged(body: string): RenderStatsMeshesModelBuilder;
-  onLayoutAboutToBeChanged(body: string): RenderStatsMeshesModelBuilder;
-  onLayoutChanged(body: string): RenderStatsMeshesModelBuilder;
-  onMeshDataChanged(body: string): RenderStatsMeshesModelBuilder;
-  onModelAboutToBeReset(body: string): RenderStatsMeshesModelBuilder;
-  onModelReset(body: string): RenderStatsMeshesModelBuilder;
-  onObjectNameChanged(body: string): RenderStatsMeshesModelBuilder;
-  onRowsAboutToBeInserted(body: string): RenderStatsMeshesModelBuilder;
-  onRowsAboutToBeMoved(body: string): RenderStatsMeshesModelBuilder;
-  onRowsAboutToBeRemoved(body: string): RenderStatsMeshesModelBuilder;
-  onRowsInserted(body: string): RenderStatsMeshesModelBuilder;
-  onRowsMoved(body: string): RenderStatsMeshesModelBuilder;
-  onRowsRemoved(body: string): RenderStatsMeshesModelBuilder;
+  onColumnsAboutToBeInserted(handler: DslSignalHandlerValue): RenderStatsMeshesModelBuilder;
+  onColumnsAboutToBeMoved(handler: DslSignalHandlerValue): RenderStatsMeshesModelBuilder;
+  onColumnsAboutToBeRemoved(handler: DslSignalHandlerValue): RenderStatsMeshesModelBuilder;
+  onColumnsInserted(handler: DslSignalHandlerValue): RenderStatsMeshesModelBuilder;
+  onColumnsMoved(handler: DslSignalHandlerValue): RenderStatsMeshesModelBuilder;
+  onColumnsRemoved(handler: DslSignalHandlerValue): RenderStatsMeshesModelBuilder;
+  onDataChanged(handler: DslSignalHandlerValue): RenderStatsMeshesModelBuilder;
+  onHeaderDataChanged(handler: DslSignalHandlerValue): RenderStatsMeshesModelBuilder;
+  onLayoutAboutToBeChanged(handler: DslSignalHandlerValue): RenderStatsMeshesModelBuilder;
+  onLayoutChanged(handler: DslSignalHandlerValue): RenderStatsMeshesModelBuilder;
+  onMeshDataChanged(handler: DslSignalHandlerValue): RenderStatsMeshesModelBuilder;
+  onModelAboutToBeReset(handler: DslSignalHandlerValue): RenderStatsMeshesModelBuilder;
+  onModelReset(handler: DslSignalHandlerValue): RenderStatsMeshesModelBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): RenderStatsMeshesModelBuilder;
+  onRowsAboutToBeInserted(handler: DslSignalHandlerValue): RenderStatsMeshesModelBuilder;
+  onRowsAboutToBeMoved(handler: DslSignalHandlerValue): RenderStatsMeshesModelBuilder;
+  onRowsAboutToBeRemoved(handler: DslSignalHandlerValue): RenderStatsMeshesModelBuilder;
+  onRowsInserted(handler: DslSignalHandlerValue): RenderStatsMeshesModelBuilder;
+  onRowsMoved(handler: DslSignalHandlerValue): RenderStatsMeshesModelBuilder;
+  onRowsRemoved(handler: DslSignalHandlerValue): RenderStatsMeshesModelBuilder;
 }
 
 const RENDERSTATSMESHESMODEL_META: TypeMetadata = {

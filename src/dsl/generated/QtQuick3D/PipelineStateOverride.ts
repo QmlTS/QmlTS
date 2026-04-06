@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlEnumToken,
   QmlObjectBuilder,
   QmlRect,
@@ -13,6 +14,7 @@ import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface PipelineStateOverrideBuilder {
   id(id: string): PipelineStateOverrideBuilder;
   child(obj: QmlObjectBuilder): PipelineStateOverrideBuilder;
+  children(...objs: QmlObjectBuilder[]): PipelineStateOverrideBuilder;
 
   blendEnabled(value: boolean): PipelineStateOverrideBuilder;
   blendEnabledBind(expr: string): PipelineStateOverrideBuilder;
@@ -60,30 +62,30 @@ export interface PipelineStateOverrideBuilder {
   usesStencilReferenceBind(expr: string): PipelineStateOverrideBuilder;
   viewport(value: QmlRect): PipelineStateOverrideBuilder;
   viewportBind(expr: string): PipelineStateOverrideBuilder;
-  onBlendEnabledChanged(body: string): PipelineStateOverrideBuilder;
-  onChildrenChanged(body: string): PipelineStateOverrideBuilder;
-  onCullModeChanged(body: string): PipelineStateOverrideBuilder;
-  onDepthFunctionChanged(body: string): PipelineStateOverrideBuilder;
-  onDepthTestEnabledChanged(body: string): PipelineStateOverrideBuilder;
-  onDepthWriteEnabledChanged(body: string): PipelineStateOverrideBuilder;
-  onObjectNameChanged(body: string): PipelineStateOverrideBuilder;
-  onParentChanged(body: string): PipelineStateOverrideBuilder;
-  onPolygonModeChanged(body: string): PipelineStateOverrideBuilder;
-  onScissorChanged(body: string): PipelineStateOverrideBuilder;
-  onStateChanged(body: string): PipelineStateOverrideBuilder;
-  onStencilReferenceChanged(body: string): PipelineStateOverrideBuilder;
-  onStencilWriteMaskChanged(body: string): PipelineStateOverrideBuilder;
-  onTargetBlend0Changed(body: string): PipelineStateOverrideBuilder;
-  onTargetBlend1Changed(body: string): PipelineStateOverrideBuilder;
-  onTargetBlend2Changed(body: string): PipelineStateOverrideBuilder;
-  onTargetBlend3Changed(body: string): PipelineStateOverrideBuilder;
-  onTargetBlend4Changed(body: string): PipelineStateOverrideBuilder;
-  onTargetBlend5Changed(body: string): PipelineStateOverrideBuilder;
-  onTargetBlend6Changed(body: string): PipelineStateOverrideBuilder;
-  onTargetBlend7Changed(body: string): PipelineStateOverrideBuilder;
-  onUsesScissorChanged(body: string): PipelineStateOverrideBuilder;
-  onUsesStencilReferenceChanged(body: string): PipelineStateOverrideBuilder;
-  onViewportChanged(body: string): PipelineStateOverrideBuilder;
+  onBlendEnabledChanged(handler: DslSignalHandlerValue): PipelineStateOverrideBuilder;
+  onChildrenChanged(handler: DslSignalHandlerValue): PipelineStateOverrideBuilder;
+  onCullModeChanged(handler: DslSignalHandlerValue): PipelineStateOverrideBuilder;
+  onDepthFunctionChanged(handler: DslSignalHandlerValue): PipelineStateOverrideBuilder;
+  onDepthTestEnabledChanged(handler: DslSignalHandlerValue): PipelineStateOverrideBuilder;
+  onDepthWriteEnabledChanged(handler: DslSignalHandlerValue): PipelineStateOverrideBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): PipelineStateOverrideBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): PipelineStateOverrideBuilder;
+  onPolygonModeChanged(handler: DslSignalHandlerValue): PipelineStateOverrideBuilder;
+  onScissorChanged(handler: DslSignalHandlerValue): PipelineStateOverrideBuilder;
+  onStateChanged(handler: DslSignalHandlerValue): PipelineStateOverrideBuilder;
+  onStencilReferenceChanged(handler: DslSignalHandlerValue): PipelineStateOverrideBuilder;
+  onStencilWriteMaskChanged(handler: DslSignalHandlerValue): PipelineStateOverrideBuilder;
+  onTargetBlend0Changed(handler: DslSignalHandlerValue): PipelineStateOverrideBuilder;
+  onTargetBlend1Changed(handler: DslSignalHandlerValue): PipelineStateOverrideBuilder;
+  onTargetBlend2Changed(handler: DslSignalHandlerValue): PipelineStateOverrideBuilder;
+  onTargetBlend3Changed(handler: DslSignalHandlerValue): PipelineStateOverrideBuilder;
+  onTargetBlend4Changed(handler: DslSignalHandlerValue): PipelineStateOverrideBuilder;
+  onTargetBlend5Changed(handler: DslSignalHandlerValue): PipelineStateOverrideBuilder;
+  onTargetBlend6Changed(handler: DslSignalHandlerValue): PipelineStateOverrideBuilder;
+  onTargetBlend7Changed(handler: DslSignalHandlerValue): PipelineStateOverrideBuilder;
+  onUsesScissorChanged(handler: DslSignalHandlerValue): PipelineStateOverrideBuilder;
+  onUsesStencilReferenceChanged(handler: DslSignalHandlerValue): PipelineStateOverrideBuilder;
+  onViewportChanged(handler: DslSignalHandlerValue): PipelineStateOverrideBuilder;
 }
 
 const PIPELINESTATEOVERRIDE_META: TypeMetadata = {

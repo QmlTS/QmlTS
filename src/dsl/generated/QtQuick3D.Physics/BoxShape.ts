@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlObjectBuilder,
   QmlQuaternion,
   QmlValue,
@@ -13,6 +14,7 @@ import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface BoxShapeBuilder {
   id(id: string): BoxShapeBuilder;
   child(obj: QmlObjectBuilder): BoxShapeBuilder;
+  children(...objs: QmlObjectBuilder[]): BoxShapeBuilder;
 
   enableDebugDraw(value: boolean): BoxShapeBuilder;
   enableDebugDrawBind(expr: string): BoxShapeBuilder;
@@ -48,32 +50,32 @@ export interface BoxShapeBuilder {
   yBind(expr: string): BoxShapeBuilder;
   z(value: number): BoxShapeBuilder;
   zBind(expr: string): BoxShapeBuilder;
-  onChildrenChanged(body: string): BoxShapeBuilder;
-  onEnableDebugDrawChanged(body: string): BoxShapeBuilder;
-  onEulerRotationChanged(body: string): BoxShapeBuilder;
-  onExtentsChanged(body: string): BoxShapeBuilder;
-  onForwardChanged(body: string): BoxShapeBuilder;
-  onLayersChanged(body: string): BoxShapeBuilder;
-  onLocalOpacityChanged(body: string): BoxShapeBuilder;
-  onNeedsRebuild(body: string): BoxShapeBuilder;
-  onObjectNameChanged(body: string): BoxShapeBuilder;
-  onParentChanged(body: string): BoxShapeBuilder;
-  onPivotChanged(body: string): BoxShapeBuilder;
-  onPositionChanged(body: string): BoxShapeBuilder;
-  onRightChanged(body: string): BoxShapeBuilder;
-  onRotationChanged(body: string): BoxShapeBuilder;
-  onScaleChanged(body: string): BoxShapeBuilder;
-  onScenePositionChanged(body: string): BoxShapeBuilder;
-  onSceneRotationChanged(body: string): BoxShapeBuilder;
-  onSceneScaleChanged(body: string): BoxShapeBuilder;
-  onSceneTransformChanged(body: string): BoxShapeBuilder;
-  onStateChanged(body: string): BoxShapeBuilder;
-  onStaticFlagsChanged(body: string): BoxShapeBuilder;
-  onUpChanged(body: string): BoxShapeBuilder;
-  onVisibleChanged(body: string): BoxShapeBuilder;
-  onXChanged(body: string): BoxShapeBuilder;
-  onYChanged(body: string): BoxShapeBuilder;
-  onZChanged(body: string): BoxShapeBuilder;
+  onChildrenChanged(handler: DslSignalHandlerValue): BoxShapeBuilder;
+  onEnableDebugDrawChanged(handler: DslSignalHandlerValue): BoxShapeBuilder;
+  onEulerRotationChanged(handler: DslSignalHandlerValue): BoxShapeBuilder;
+  onExtentsChanged(handler: DslSignalHandlerValue): BoxShapeBuilder;
+  onForwardChanged(handler: DslSignalHandlerValue): BoxShapeBuilder;
+  onLayersChanged(handler: DslSignalHandlerValue): BoxShapeBuilder;
+  onLocalOpacityChanged(handler: DslSignalHandlerValue): BoxShapeBuilder;
+  onNeedsRebuild(handler: DslSignalHandlerValue): BoxShapeBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): BoxShapeBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): BoxShapeBuilder;
+  onPivotChanged(handler: DslSignalHandlerValue): BoxShapeBuilder;
+  onPositionChanged(handler: DslSignalHandlerValue): BoxShapeBuilder;
+  onRightChanged(handler: DslSignalHandlerValue): BoxShapeBuilder;
+  onRotationChanged(handler: DslSignalHandlerValue): BoxShapeBuilder;
+  onScaleChanged(handler: DslSignalHandlerValue): BoxShapeBuilder;
+  onScenePositionChanged(handler: DslSignalHandlerValue): BoxShapeBuilder;
+  onSceneRotationChanged(handler: DslSignalHandlerValue): BoxShapeBuilder;
+  onSceneScaleChanged(handler: DslSignalHandlerValue): BoxShapeBuilder;
+  onSceneTransformChanged(handler: DslSignalHandlerValue): BoxShapeBuilder;
+  onStateChanged(handler: DslSignalHandlerValue): BoxShapeBuilder;
+  onStaticFlagsChanged(handler: DslSignalHandlerValue): BoxShapeBuilder;
+  onUpChanged(handler: DslSignalHandlerValue): BoxShapeBuilder;
+  onVisibleChanged(handler: DslSignalHandlerValue): BoxShapeBuilder;
+  onXChanged(handler: DslSignalHandlerValue): BoxShapeBuilder;
+  onYChanged(handler: DslSignalHandlerValue): BoxShapeBuilder;
+  onZChanged(handler: DslSignalHandlerValue): BoxShapeBuilder;
 }
 
 const BOXSHAPE_META: TypeMetadata = {

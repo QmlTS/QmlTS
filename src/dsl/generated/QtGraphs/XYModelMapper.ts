@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlEnumToken,
   QmlObjectBuilder,
   QmlValue,
@@ -12,6 +13,7 @@ import { createFluentBuilder } from '../../runtime/index.js';
 export interface XYModelMapperBuilder {
   id(id: string): XYModelMapperBuilder;
   child(obj: QmlObjectBuilder): XYModelMapperBuilder;
+  children(...objs: QmlObjectBuilder[]): XYModelMapperBuilder;
 
   count(value: number): XYModelMapperBuilder;
   countBind(expr: string): XYModelMapperBuilder;
@@ -29,14 +31,14 @@ export interface XYModelMapperBuilder {
   xSectionBind(expr: string): XYModelMapperBuilder;
   ySection(value: number): XYModelMapperBuilder;
   ySectionBind(expr: string): XYModelMapperBuilder;
-  onCountChanged(body: string): XYModelMapperBuilder;
-  onFirstChanged(body: string): XYModelMapperBuilder;
-  onModelChanged(body: string): XYModelMapperBuilder;
-  onObjectNameChanged(body: string): XYModelMapperBuilder;
-  onOrientationChanged(body: string): XYModelMapperBuilder;
-  onSeriesChanged(body: string): XYModelMapperBuilder;
-  onXSectionChanged(body: string): XYModelMapperBuilder;
-  onYSectionChanged(body: string): XYModelMapperBuilder;
+  onCountChanged(handler: DslSignalHandlerValue): XYModelMapperBuilder;
+  onFirstChanged(handler: DslSignalHandlerValue): XYModelMapperBuilder;
+  onModelChanged(handler: DslSignalHandlerValue): XYModelMapperBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): XYModelMapperBuilder;
+  onOrientationChanged(handler: DslSignalHandlerValue): XYModelMapperBuilder;
+  onSeriesChanged(handler: DslSignalHandlerValue): XYModelMapperBuilder;
+  onXSectionChanged(handler: DslSignalHandlerValue): XYModelMapperBuilder;
+  onYSectionChanged(handler: DslSignalHandlerValue): XYModelMapperBuilder;
 }
 
 const XYMODELMAPPER_META: TypeMetadata = {

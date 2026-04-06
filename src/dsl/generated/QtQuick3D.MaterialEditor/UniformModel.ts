@@ -2,33 +2,34 @@
 // Type: UniformModel
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import type { DslSignalHandlerValue, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface UniformModelBuilder {
   id(id: string): UniformModelBuilder;
   child(obj: QmlObjectBuilder): UniformModelBuilder;
+  children(...objs: QmlObjectBuilder[]): UniformModelBuilder;
 
   objectName(value: string): UniformModelBuilder;
   objectNameBind(expr: string): UniformModelBuilder;
-  onColumnsAboutToBeInserted(body: string): UniformModelBuilder;
-  onColumnsAboutToBeMoved(body: string): UniformModelBuilder;
-  onColumnsAboutToBeRemoved(body: string): UniformModelBuilder;
-  onColumnsInserted(body: string): UniformModelBuilder;
-  onColumnsMoved(body: string): UniformModelBuilder;
-  onColumnsRemoved(body: string): UniformModelBuilder;
-  onDataChanged(body: string): UniformModelBuilder;
-  onHeaderDataChanged(body: string): UniformModelBuilder;
-  onLayoutAboutToBeChanged(body: string): UniformModelBuilder;
-  onLayoutChanged(body: string): UniformModelBuilder;
-  onModelAboutToBeReset(body: string): UniformModelBuilder;
-  onModelReset(body: string): UniformModelBuilder;
-  onObjectNameChanged(body: string): UniformModelBuilder;
-  onRowsAboutToBeInserted(body: string): UniformModelBuilder;
-  onRowsAboutToBeMoved(body: string): UniformModelBuilder;
-  onRowsAboutToBeRemoved(body: string): UniformModelBuilder;
-  onRowsInserted(body: string): UniformModelBuilder;
-  onRowsMoved(body: string): UniformModelBuilder;
-  onRowsRemoved(body: string): UniformModelBuilder;
+  onColumnsAboutToBeInserted(handler: DslSignalHandlerValue): UniformModelBuilder;
+  onColumnsAboutToBeMoved(handler: DslSignalHandlerValue): UniformModelBuilder;
+  onColumnsAboutToBeRemoved(handler: DslSignalHandlerValue): UniformModelBuilder;
+  onColumnsInserted(handler: DslSignalHandlerValue): UniformModelBuilder;
+  onColumnsMoved(handler: DslSignalHandlerValue): UniformModelBuilder;
+  onColumnsRemoved(handler: DslSignalHandlerValue): UniformModelBuilder;
+  onDataChanged(handler: DslSignalHandlerValue): UniformModelBuilder;
+  onHeaderDataChanged(handler: DslSignalHandlerValue): UniformModelBuilder;
+  onLayoutAboutToBeChanged(handler: DslSignalHandlerValue): UniformModelBuilder;
+  onLayoutChanged(handler: DslSignalHandlerValue): UniformModelBuilder;
+  onModelAboutToBeReset(handler: DslSignalHandlerValue): UniformModelBuilder;
+  onModelReset(handler: DslSignalHandlerValue): UniformModelBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): UniformModelBuilder;
+  onRowsAboutToBeInserted(handler: DslSignalHandlerValue): UniformModelBuilder;
+  onRowsAboutToBeMoved(handler: DslSignalHandlerValue): UniformModelBuilder;
+  onRowsAboutToBeRemoved(handler: DslSignalHandlerValue): UniformModelBuilder;
+  onRowsInserted(handler: DslSignalHandlerValue): UniformModelBuilder;
+  onRowsMoved(handler: DslSignalHandlerValue): UniformModelBuilder;
+  onRowsRemoved(handler: DslSignalHandlerValue): UniformModelBuilder;
 }
 
 const UNIFORMMODEL_META: TypeMetadata = {

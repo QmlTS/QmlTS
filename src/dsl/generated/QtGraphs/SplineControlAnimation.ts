@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlEnumToken,
   QmlObjectBuilder,
   QmlValue,
@@ -12,6 +13,7 @@ import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface SplineControlAnimationBuilder {
   id(id: string): SplineControlAnimationBuilder;
   child(obj: QmlObjectBuilder): SplineControlAnimationBuilder;
+  children(...objs: QmlObjectBuilder[]): SplineControlAnimationBuilder;
 
   animating(value: QmlEnumToken): SplineControlAnimationBuilder;
   animatingBind(expr: string): SplineControlAnimationBuilder;
@@ -31,13 +33,13 @@ export interface SplineControlAnimationBuilder {
   objectNameBind(expr: string): SplineControlAnimationBuilder;
   startValue(value: QmlValue): SplineControlAnimationBuilder;
   startValueBind(expr: string): SplineControlAnimationBuilder;
-  onAnimatingChanged(body: string): SplineControlAnimationBuilder;
-  onCurrentLoopChanged(body: string): SplineControlAnimationBuilder;
-  onDirectionChanged(body: string): SplineControlAnimationBuilder;
-  onFinished(body: string): SplineControlAnimationBuilder;
-  onObjectNameChanged(body: string): SplineControlAnimationBuilder;
-  onStateChanged(body: string): SplineControlAnimationBuilder;
-  onValueChanged(body: string): SplineControlAnimationBuilder;
+  onAnimatingChanged(handler: DslSignalHandlerValue): SplineControlAnimationBuilder;
+  onCurrentLoopChanged(handler: DslSignalHandlerValue): SplineControlAnimationBuilder;
+  onDirectionChanged(handler: DslSignalHandlerValue): SplineControlAnimationBuilder;
+  onFinished(handler: DslSignalHandlerValue): SplineControlAnimationBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): SplineControlAnimationBuilder;
+  onStateChanged(handler: DslSignalHandlerValue): SplineControlAnimationBuilder;
+  onValueChanged(handler: DslSignalHandlerValue): SplineControlAnimationBuilder;
 }
 
 const SPLINECONTROLANIMATION_META: TypeMetadata = {

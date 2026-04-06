@@ -2,11 +2,18 @@
 // Type: CandlestickSeries
 // Generated from Qt 6.11.0
 
-import type { QmlColor, QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlColor,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface CandlestickSeriesBuilder {
   id(id: string): CandlestickSeriesBuilder;
   child(obj: QmlObjectBuilder): CandlestickSeriesBuilder;
+  children(...objs: QmlObjectBuilder[]): CandlestickSeriesBuilder;
 
   axisX(value: QmlValue): CandlestickSeriesBuilder;
   axisXBind(expr: string): CandlestickSeriesBuilder;
@@ -54,43 +61,43 @@ export interface CandlestickSeriesBuilder {
   visibleBind(expr: string): CandlestickSeriesBuilder;
   zValue(value: number): CandlestickSeriesBuilder;
   zValueBind(expr: string): CandlestickSeriesBuilder;
-  onAxisXChanged(body: string): CandlestickSeriesBuilder;
-  onAxisXTopChanged(body: string): CandlestickSeriesBuilder;
-  onAxisYChanged(body: string): CandlestickSeriesBuilder;
-  onAxisYRightChanged(body: string): CandlestickSeriesBuilder;
-  onBodyOutlineVisibilityChanged(body: string): CandlestickSeriesBuilder;
-  onBodyWidthChanged(body: string): CandlestickSeriesBuilder;
-  onBrushChanged(body: string): CandlestickSeriesBuilder;
-  onBrushFilenameChanged(body: string): CandlestickSeriesBuilder;
-  onCandlestickSetsAdded(body: string): CandlestickSeriesBuilder;
-  onCandlestickSetsRemoved(body: string): CandlestickSeriesBuilder;
-  onCapsVisibilityChanged(body: string): CandlestickSeriesBuilder;
-  onCapsWidthChanged(body: string): CandlestickSeriesBuilder;
-  onClicked(body: string): CandlestickSeriesBuilder;
-  onCountChanged(body: string): CandlestickSeriesBuilder;
-  onDecreasingColorChanged(body: string): CandlestickSeriesBuilder;
-  onDoubleClicked(body: string): CandlestickSeriesBuilder;
-  onHover(body: string): CandlestickSeriesBuilder;
-  onHoverEnter(body: string): CandlestickSeriesBuilder;
-  onHoverExit(body: string): CandlestickSeriesBuilder;
-  onHoverableChanged(body: string): CandlestickSeriesBuilder;
-  onHovered(body: string): CandlestickSeriesBuilder;
-  onHoveredChanged(body: string): CandlestickSeriesBuilder;
-  onIncreasingColorChanged(body: string): CandlestickSeriesBuilder;
-  onLegendDataChanged(body: string): CandlestickSeriesBuilder;
-  onMaximumColumnWidthChanged(body: string): CandlestickSeriesBuilder;
-  onMinimumColumnWidthChanged(body: string): CandlestickSeriesBuilder;
-  onNameChanged(body: string): CandlestickSeriesBuilder;
-  onObjectNameChanged(body: string): CandlestickSeriesBuilder;
-  onOpacityChanged(body: string): CandlestickSeriesBuilder;
-  onPenChanged(body: string): CandlestickSeriesBuilder;
-  onPressed(body: string): CandlestickSeriesBuilder;
-  onReleased(body: string): CandlestickSeriesBuilder;
-  onSelectableChanged(body: string): CandlestickSeriesBuilder;
-  onUpdate(body: string): CandlestickSeriesBuilder;
-  onValuesMultiplierChanged(body: string): CandlestickSeriesBuilder;
-  onVisibleChanged(body: string): CandlestickSeriesBuilder;
-  onZValueChanged(body: string): CandlestickSeriesBuilder;
+  onAxisXChanged(handler: DslSignalHandlerValue): CandlestickSeriesBuilder;
+  onAxisXTopChanged(handler: DslSignalHandlerValue): CandlestickSeriesBuilder;
+  onAxisYChanged(handler: DslSignalHandlerValue): CandlestickSeriesBuilder;
+  onAxisYRightChanged(handler: DslSignalHandlerValue): CandlestickSeriesBuilder;
+  onBodyOutlineVisibilityChanged(handler: DslSignalHandlerValue): CandlestickSeriesBuilder;
+  onBodyWidthChanged(handler: DslSignalHandlerValue): CandlestickSeriesBuilder;
+  onBrushChanged(handler: DslSignalHandlerValue): CandlestickSeriesBuilder;
+  onBrushFilenameChanged(handler: DslSignalHandlerValue): CandlestickSeriesBuilder;
+  onCandlestickSetsAdded(handler: DslSignalHandlerValue): CandlestickSeriesBuilder;
+  onCandlestickSetsRemoved(handler: DslSignalHandlerValue): CandlestickSeriesBuilder;
+  onCapsVisibilityChanged(handler: DslSignalHandlerValue): CandlestickSeriesBuilder;
+  onCapsWidthChanged(handler: DslSignalHandlerValue): CandlestickSeriesBuilder;
+  onClicked(handler: DslSignalHandlerValue): CandlestickSeriesBuilder;
+  onCountChanged(handler: DslSignalHandlerValue): CandlestickSeriesBuilder;
+  onDecreasingColorChanged(handler: DslSignalHandlerValue): CandlestickSeriesBuilder;
+  onDoubleClicked(handler: DslSignalHandlerValue): CandlestickSeriesBuilder;
+  onHover(handler: DslSignalHandlerValue): CandlestickSeriesBuilder;
+  onHoverEnter(handler: DslSignalHandlerValue): CandlestickSeriesBuilder;
+  onHoverExit(handler: DslSignalHandlerValue): CandlestickSeriesBuilder;
+  onHoverableChanged(handler: DslSignalHandlerValue): CandlestickSeriesBuilder;
+  onHovered(handler: DslSignalHandlerValue): CandlestickSeriesBuilder;
+  onHoveredChanged(handler: DslSignalHandlerValue): CandlestickSeriesBuilder;
+  onIncreasingColorChanged(handler: DslSignalHandlerValue): CandlestickSeriesBuilder;
+  onLegendDataChanged(handler: DslSignalHandlerValue): CandlestickSeriesBuilder;
+  onMaximumColumnWidthChanged(handler: DslSignalHandlerValue): CandlestickSeriesBuilder;
+  onMinimumColumnWidthChanged(handler: DslSignalHandlerValue): CandlestickSeriesBuilder;
+  onNameChanged(handler: DslSignalHandlerValue): CandlestickSeriesBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): CandlestickSeriesBuilder;
+  onOpacityChanged(handler: DslSignalHandlerValue): CandlestickSeriesBuilder;
+  onPenChanged(handler: DslSignalHandlerValue): CandlestickSeriesBuilder;
+  onPressed(handler: DslSignalHandlerValue): CandlestickSeriesBuilder;
+  onReleased(handler: DslSignalHandlerValue): CandlestickSeriesBuilder;
+  onSelectableChanged(handler: DslSignalHandlerValue): CandlestickSeriesBuilder;
+  onUpdate(handler: DslSignalHandlerValue): CandlestickSeriesBuilder;
+  onValuesMultiplierChanged(handler: DslSignalHandlerValue): CandlestickSeriesBuilder;
+  onVisibleChanged(handler: DslSignalHandlerValue): CandlestickSeriesBuilder;
+  onZValueChanged(handler: DslSignalHandlerValue): CandlestickSeriesBuilder;
 }
 
 const CANDLESTICKSERIES_META: TypeMetadata = {

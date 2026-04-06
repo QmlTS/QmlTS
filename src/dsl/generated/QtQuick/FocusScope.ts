@@ -2,7 +2,12 @@
 // Type: FocusScope
 // Generated from Qt 6.11.0
 
-import type { QmlEnumToken, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlEnumToken,
+  QmlObjectBuilder,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { QtObjectBuilder } from '../QML/QtObject.js';
 import type { AccessibleAttachedBuilder } from './Accessible.js';
@@ -28,6 +33,7 @@ import type { ViewTransitionAttachedBuilder } from './ViewTransition.js';
 export interface FocusScopeBuilder {
   id(id: string): FocusScopeBuilder;
   child(obj: QmlObjectBuilder): FocusScopeBuilder;
+  children(...objs: QmlObjectBuilder[]): FocusScopeBuilder;
 
   activeFocusOnTab(value: boolean): FocusScopeBuilder;
   activeFocusOnTabBind(expr: string): FocusScopeBuilder;
@@ -79,37 +85,37 @@ export interface FocusScopeBuilder {
   yBind(expr: string): FocusScopeBuilder;
   z(value: number): FocusScopeBuilder;
   zBind(expr: string): FocusScopeBuilder;
-  onActiveFocusChanged(body: string): FocusScopeBuilder;
-  onActiveFocusOnTabChanged(body: string): FocusScopeBuilder;
-  onAntialiasingChanged(body: string): FocusScopeBuilder;
-  onBaselineOffsetChanged(body: string): FocusScopeBuilder;
-  onChildrenChanged(body: string): FocusScopeBuilder;
-  onChildrenRectChanged(body: string): FocusScopeBuilder;
-  onClipChanged(body: string): FocusScopeBuilder;
-  onContainmentMaskChanged(body: string): FocusScopeBuilder;
-  onEnabledChanged(body: string): FocusScopeBuilder;
-  onFocusChanged(body: string): FocusScopeBuilder;
-  onFocusPolicyChanged(body: string): FocusScopeBuilder;
-  onHeightChanged(body: string): FocusScopeBuilder;
-  onImplicitHeightChanged(body: string): FocusScopeBuilder;
-  onImplicitWidthChanged(body: string): FocusScopeBuilder;
-  onObjectNameChanged(body: string): FocusScopeBuilder;
-  onOpacityChanged(body: string): FocusScopeBuilder;
-  onPaletteChanged(body: string): FocusScopeBuilder;
-  onPaletteCreated(body: string): FocusScopeBuilder;
-  onParentChanged(body: string): FocusScopeBuilder;
-  onRotationChanged(body: string): FocusScopeBuilder;
-  onScaleChanged(body: string): FocusScopeBuilder;
-  onSmoothChanged(body: string): FocusScopeBuilder;
-  onStateChanged(body: string): FocusScopeBuilder;
-  onTransformOriginChanged(body: string): FocusScopeBuilder;
-  onVisibleChanged(body: string): FocusScopeBuilder;
-  onVisibleChildrenChanged(body: string): FocusScopeBuilder;
-  onWidthChanged(body: string): FocusScopeBuilder;
-  onWindowChanged(body: string): FocusScopeBuilder;
-  onXChanged(body: string): FocusScopeBuilder;
-  onYChanged(body: string): FocusScopeBuilder;
-  onZChanged(body: string): FocusScopeBuilder;
+  onActiveFocusChanged(handler: DslSignalHandlerValue): FocusScopeBuilder;
+  onActiveFocusOnTabChanged(handler: DslSignalHandlerValue): FocusScopeBuilder;
+  onAntialiasingChanged(handler: DslSignalHandlerValue): FocusScopeBuilder;
+  onBaselineOffsetChanged(handler: DslSignalHandlerValue): FocusScopeBuilder;
+  onChildrenChanged(handler: DslSignalHandlerValue): FocusScopeBuilder;
+  onChildrenRectChanged(handler: DslSignalHandlerValue): FocusScopeBuilder;
+  onClipChanged(handler: DslSignalHandlerValue): FocusScopeBuilder;
+  onContainmentMaskChanged(handler: DslSignalHandlerValue): FocusScopeBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): FocusScopeBuilder;
+  onFocusChanged(handler: DslSignalHandlerValue): FocusScopeBuilder;
+  onFocusPolicyChanged(handler: DslSignalHandlerValue): FocusScopeBuilder;
+  onHeightChanged(handler: DslSignalHandlerValue): FocusScopeBuilder;
+  onImplicitHeightChanged(handler: DslSignalHandlerValue): FocusScopeBuilder;
+  onImplicitWidthChanged(handler: DslSignalHandlerValue): FocusScopeBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): FocusScopeBuilder;
+  onOpacityChanged(handler: DslSignalHandlerValue): FocusScopeBuilder;
+  onPaletteChanged(handler: DslSignalHandlerValue): FocusScopeBuilder;
+  onPaletteCreated(handler: DslSignalHandlerValue): FocusScopeBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): FocusScopeBuilder;
+  onRotationChanged(handler: DslSignalHandlerValue): FocusScopeBuilder;
+  onScaleChanged(handler: DslSignalHandlerValue): FocusScopeBuilder;
+  onSmoothChanged(handler: DslSignalHandlerValue): FocusScopeBuilder;
+  onStateChanged(handler: DslSignalHandlerValue): FocusScopeBuilder;
+  onTransformOriginChanged(handler: DslSignalHandlerValue): FocusScopeBuilder;
+  onVisibleChanged(handler: DslSignalHandlerValue): FocusScopeBuilder;
+  onVisibleChildrenChanged(handler: DslSignalHandlerValue): FocusScopeBuilder;
+  onWidthChanged(handler: DslSignalHandlerValue): FocusScopeBuilder;
+  onWindowChanged(handler: DslSignalHandlerValue): FocusScopeBuilder;
+  onXChanged(handler: DslSignalHandlerValue): FocusScopeBuilder;
+  onYChanged(handler: DslSignalHandlerValue): FocusScopeBuilder;
+  onZChanged(handler: DslSignalHandlerValue): FocusScopeBuilder;
   anchors(setup: (b: AnchorsBuilder) => void): FocusScopeBuilder;
   layer(setup: (b: LayerBuilder) => void): FocusScopeBuilder;
   accessible(setup: (b: AccessibleAttachedBuilder) => void): FocusScopeBuilder;

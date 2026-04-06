@@ -2,11 +2,12 @@
 // Type: InfiniteGrid
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import type { DslSignalHandlerValue, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 export interface InfiniteGridBuilder {
   id(id: string): InfiniteGridBuilder;
   child(obj: QmlObjectBuilder): InfiniteGridBuilder;
+  children(...objs: QmlObjectBuilder[]): InfiniteGridBuilder;
 
   gridAxes(value: boolean): InfiniteGridBuilder;
   gridAxesBind(expr: string): InfiniteGridBuilder;
@@ -16,10 +17,10 @@ export interface InfiniteGridBuilder {
   objectNameBind(expr: string): InfiniteGridBuilder;
   visible(value: boolean): InfiniteGridBuilder;
   visibleBind(expr: string): InfiniteGridBuilder;
-  onGridAxesChanged(body: string): InfiniteGridBuilder;
-  onGridIntervalChanged(body: string): InfiniteGridBuilder;
-  onObjectNameChanged(body: string): InfiniteGridBuilder;
-  onVisibleChanged(body: string): InfiniteGridBuilder;
+  onGridAxesChanged(handler: DslSignalHandlerValue): InfiniteGridBuilder;
+  onGridIntervalChanged(handler: DslSignalHandlerValue): InfiniteGridBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): InfiniteGridBuilder;
+  onVisibleChanged(handler: DslSignalHandlerValue): InfiniteGridBuilder;
 }
 
 const INFINITEGRID_META: TypeMetadata = {

@@ -2,7 +2,13 @@
 // Type: SourceProxy
 // Generated from Qt 6.11.0
 
-import type { QmlEnumToken, QmlObjectBuilder, QmlRect, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlEnumToken,
+  QmlObjectBuilder,
+  QmlRect,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { QtObjectBuilder } from '../QML/QtObject.js';
 import type { ItemBuilder } from '../QtQuick/Item.js';
@@ -12,6 +18,7 @@ import type { LayerBuilder } from '../QtQuick/QQuickItemLayer.js';
 export interface SourceProxyBuilder {
   id(id: string): SourceProxyBuilder;
   child(obj: QmlObjectBuilder): SourceProxyBuilder;
+  children(...objs: QmlObjectBuilder[]): SourceProxyBuilder;
 
   activeFocusOnTab(value: boolean): SourceProxyBuilder;
   activeFocusOnTabBind(expr: string): SourceProxyBuilder;
@@ -69,42 +76,42 @@ export interface SourceProxyBuilder {
   yBind(expr: string): SourceProxyBuilder;
   z(value: number): SourceProxyBuilder;
   zBind(expr: string): SourceProxyBuilder;
-  onActiveChanged(body: string): SourceProxyBuilder;
-  onActiveFocusChanged(body: string): SourceProxyBuilder;
-  onActiveFocusOnTabChanged(body: string): SourceProxyBuilder;
-  onAntialiasingChanged(body: string): SourceProxyBuilder;
-  onBaselineOffsetChanged(body: string): SourceProxyBuilder;
-  onChildrenChanged(body: string): SourceProxyBuilder;
-  onChildrenRectChanged(body: string): SourceProxyBuilder;
-  onClipChanged(body: string): SourceProxyBuilder;
-  onContainmentMaskChanged(body: string): SourceProxyBuilder;
-  onEnabledChanged(body: string): SourceProxyBuilder;
-  onFocusChanged(body: string): SourceProxyBuilder;
-  onFocusPolicyChanged(body: string): SourceProxyBuilder;
-  onHeightChanged(body: string): SourceProxyBuilder;
-  onImplicitHeightChanged(body: string): SourceProxyBuilder;
-  onImplicitWidthChanged(body: string): SourceProxyBuilder;
-  onInputChanged(body: string): SourceProxyBuilder;
-  onInterpolationChanged(body: string): SourceProxyBuilder;
-  onObjectNameChanged(body: string): SourceProxyBuilder;
-  onOpacityChanged(body: string): SourceProxyBuilder;
-  onOutputChanged(body: string): SourceProxyBuilder;
-  onPaletteChanged(body: string): SourceProxyBuilder;
-  onPaletteCreated(body: string): SourceProxyBuilder;
-  onParentChanged(body: string): SourceProxyBuilder;
-  onRotationChanged(body: string): SourceProxyBuilder;
-  onScaleChanged(body: string): SourceProxyBuilder;
-  onSmoothChanged(body: string): SourceProxyBuilder;
-  onSourceRectChanged(body: string): SourceProxyBuilder;
-  onStateChanged(body: string): SourceProxyBuilder;
-  onTransformOriginChanged(body: string): SourceProxyBuilder;
-  onVisibleChanged(body: string): SourceProxyBuilder;
-  onVisibleChildrenChanged(body: string): SourceProxyBuilder;
-  onWidthChanged(body: string): SourceProxyBuilder;
-  onWindowChanged(body: string): SourceProxyBuilder;
-  onXChanged(body: string): SourceProxyBuilder;
-  onYChanged(body: string): SourceProxyBuilder;
-  onZChanged(body: string): SourceProxyBuilder;
+  onActiveChanged(handler: DslSignalHandlerValue): SourceProxyBuilder;
+  onActiveFocusChanged(handler: DslSignalHandlerValue): SourceProxyBuilder;
+  onActiveFocusOnTabChanged(handler: DslSignalHandlerValue): SourceProxyBuilder;
+  onAntialiasingChanged(handler: DslSignalHandlerValue): SourceProxyBuilder;
+  onBaselineOffsetChanged(handler: DslSignalHandlerValue): SourceProxyBuilder;
+  onChildrenChanged(handler: DslSignalHandlerValue): SourceProxyBuilder;
+  onChildrenRectChanged(handler: DslSignalHandlerValue): SourceProxyBuilder;
+  onClipChanged(handler: DslSignalHandlerValue): SourceProxyBuilder;
+  onContainmentMaskChanged(handler: DslSignalHandlerValue): SourceProxyBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): SourceProxyBuilder;
+  onFocusChanged(handler: DslSignalHandlerValue): SourceProxyBuilder;
+  onFocusPolicyChanged(handler: DslSignalHandlerValue): SourceProxyBuilder;
+  onHeightChanged(handler: DslSignalHandlerValue): SourceProxyBuilder;
+  onImplicitHeightChanged(handler: DslSignalHandlerValue): SourceProxyBuilder;
+  onImplicitWidthChanged(handler: DslSignalHandlerValue): SourceProxyBuilder;
+  onInputChanged(handler: DslSignalHandlerValue): SourceProxyBuilder;
+  onInterpolationChanged(handler: DslSignalHandlerValue): SourceProxyBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): SourceProxyBuilder;
+  onOpacityChanged(handler: DslSignalHandlerValue): SourceProxyBuilder;
+  onOutputChanged(handler: DslSignalHandlerValue): SourceProxyBuilder;
+  onPaletteChanged(handler: DslSignalHandlerValue): SourceProxyBuilder;
+  onPaletteCreated(handler: DslSignalHandlerValue): SourceProxyBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): SourceProxyBuilder;
+  onRotationChanged(handler: DslSignalHandlerValue): SourceProxyBuilder;
+  onScaleChanged(handler: DslSignalHandlerValue): SourceProxyBuilder;
+  onSmoothChanged(handler: DslSignalHandlerValue): SourceProxyBuilder;
+  onSourceRectChanged(handler: DslSignalHandlerValue): SourceProxyBuilder;
+  onStateChanged(handler: DslSignalHandlerValue): SourceProxyBuilder;
+  onTransformOriginChanged(handler: DslSignalHandlerValue): SourceProxyBuilder;
+  onVisibleChanged(handler: DslSignalHandlerValue): SourceProxyBuilder;
+  onVisibleChildrenChanged(handler: DslSignalHandlerValue): SourceProxyBuilder;
+  onWidthChanged(handler: DslSignalHandlerValue): SourceProxyBuilder;
+  onWindowChanged(handler: DslSignalHandlerValue): SourceProxyBuilder;
+  onXChanged(handler: DslSignalHandlerValue): SourceProxyBuilder;
+  onYChanged(handler: DslSignalHandlerValue): SourceProxyBuilder;
+  onZChanged(handler: DslSignalHandlerValue): SourceProxyBuilder;
   anchors(setup: (b: AnchorsBuilder) => void): SourceProxyBuilder;
   layer(setup: (b: LayerBuilder) => void): SourceProxyBuilder;
 }

@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlEnumToken,
   QmlObjectBuilder,
   QmlValue,
@@ -13,6 +14,7 @@ import type { PluginBuilder } from './Plugin.js';
 export interface PlaceSearchModelBuilder {
   id(id: string): PlaceSearchModelBuilder;
   child(obj: QmlObjectBuilder): PlaceSearchModelBuilder;
+  children(...objs: QmlObjectBuilder[]): PlaceSearchModelBuilder;
 
   favoritesMatchParameters(value: QmlValue): PlaceSearchModelBuilder;
   favoritesMatchParametersBind(expr: string): PlaceSearchModelBuilder;
@@ -36,40 +38,40 @@ export interface PlaceSearchModelBuilder {
   searchTermBind(expr: string): PlaceSearchModelBuilder;
   visibilityScope(value: QmlEnumToken): PlaceSearchModelBuilder;
   visibilityScopeBind(expr: string): PlaceSearchModelBuilder;
-  onCategoriesChanged(body: string): PlaceSearchModelBuilder;
-  onColumnsAboutToBeInserted(body: string): PlaceSearchModelBuilder;
-  onColumnsAboutToBeMoved(body: string): PlaceSearchModelBuilder;
-  onColumnsAboutToBeRemoved(body: string): PlaceSearchModelBuilder;
-  onColumnsInserted(body: string): PlaceSearchModelBuilder;
-  onColumnsMoved(body: string): PlaceSearchModelBuilder;
-  onColumnsRemoved(body: string): PlaceSearchModelBuilder;
-  onDataChanged(body: string): PlaceSearchModelBuilder;
-  onFavoritesMatchParametersChanged(body: string): PlaceSearchModelBuilder;
-  onFavoritesPluginChanged(body: string): PlaceSearchModelBuilder;
-  onHeaderDataChanged(body: string): PlaceSearchModelBuilder;
-  onIncrementalChanged(body: string): PlaceSearchModelBuilder;
-  onLayoutAboutToBeChanged(body: string): PlaceSearchModelBuilder;
-  onLayoutChanged(body: string): PlaceSearchModelBuilder;
-  onLimitChanged(body: string): PlaceSearchModelBuilder;
-  onModelAboutToBeReset(body: string): PlaceSearchModelBuilder;
-  onModelReset(body: string): PlaceSearchModelBuilder;
-  onNextPagesAvailableChanged(body: string): PlaceSearchModelBuilder;
-  onObjectNameChanged(body: string): PlaceSearchModelBuilder;
-  onPluginChanged(body: string): PlaceSearchModelBuilder;
-  onPreviousPagesAvailableChanged(body: string): PlaceSearchModelBuilder;
-  onRecommendationIdChanged(body: string): PlaceSearchModelBuilder;
-  onRelevanceHintChanged(body: string): PlaceSearchModelBuilder;
-  onRowCountChanged(body: string): PlaceSearchModelBuilder;
-  onRowsAboutToBeInserted(body: string): PlaceSearchModelBuilder;
-  onRowsAboutToBeMoved(body: string): PlaceSearchModelBuilder;
-  onRowsAboutToBeRemoved(body: string): PlaceSearchModelBuilder;
-  onRowsInserted(body: string): PlaceSearchModelBuilder;
-  onRowsMoved(body: string): PlaceSearchModelBuilder;
-  onRowsRemoved(body: string): PlaceSearchModelBuilder;
-  onSearchAreaChanged(body: string): PlaceSearchModelBuilder;
-  onSearchTermChanged(body: string): PlaceSearchModelBuilder;
-  onStatusChanged(body: string): PlaceSearchModelBuilder;
-  onVisibilityScopeChanged(body: string): PlaceSearchModelBuilder;
+  onCategoriesChanged(handler: DslSignalHandlerValue): PlaceSearchModelBuilder;
+  onColumnsAboutToBeInserted(handler: DslSignalHandlerValue): PlaceSearchModelBuilder;
+  onColumnsAboutToBeMoved(handler: DslSignalHandlerValue): PlaceSearchModelBuilder;
+  onColumnsAboutToBeRemoved(handler: DslSignalHandlerValue): PlaceSearchModelBuilder;
+  onColumnsInserted(handler: DslSignalHandlerValue): PlaceSearchModelBuilder;
+  onColumnsMoved(handler: DslSignalHandlerValue): PlaceSearchModelBuilder;
+  onColumnsRemoved(handler: DslSignalHandlerValue): PlaceSearchModelBuilder;
+  onDataChanged(handler: DslSignalHandlerValue): PlaceSearchModelBuilder;
+  onFavoritesMatchParametersChanged(handler: DslSignalHandlerValue): PlaceSearchModelBuilder;
+  onFavoritesPluginChanged(handler: DslSignalHandlerValue): PlaceSearchModelBuilder;
+  onHeaderDataChanged(handler: DslSignalHandlerValue): PlaceSearchModelBuilder;
+  onIncrementalChanged(handler: DslSignalHandlerValue): PlaceSearchModelBuilder;
+  onLayoutAboutToBeChanged(handler: DslSignalHandlerValue): PlaceSearchModelBuilder;
+  onLayoutChanged(handler: DslSignalHandlerValue): PlaceSearchModelBuilder;
+  onLimitChanged(handler: DslSignalHandlerValue): PlaceSearchModelBuilder;
+  onModelAboutToBeReset(handler: DslSignalHandlerValue): PlaceSearchModelBuilder;
+  onModelReset(handler: DslSignalHandlerValue): PlaceSearchModelBuilder;
+  onNextPagesAvailableChanged(handler: DslSignalHandlerValue): PlaceSearchModelBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): PlaceSearchModelBuilder;
+  onPluginChanged(handler: DslSignalHandlerValue): PlaceSearchModelBuilder;
+  onPreviousPagesAvailableChanged(handler: DslSignalHandlerValue): PlaceSearchModelBuilder;
+  onRecommendationIdChanged(handler: DslSignalHandlerValue): PlaceSearchModelBuilder;
+  onRelevanceHintChanged(handler: DslSignalHandlerValue): PlaceSearchModelBuilder;
+  onRowCountChanged(handler: DslSignalHandlerValue): PlaceSearchModelBuilder;
+  onRowsAboutToBeInserted(handler: DslSignalHandlerValue): PlaceSearchModelBuilder;
+  onRowsAboutToBeMoved(handler: DslSignalHandlerValue): PlaceSearchModelBuilder;
+  onRowsAboutToBeRemoved(handler: DslSignalHandlerValue): PlaceSearchModelBuilder;
+  onRowsInserted(handler: DslSignalHandlerValue): PlaceSearchModelBuilder;
+  onRowsMoved(handler: DslSignalHandlerValue): PlaceSearchModelBuilder;
+  onRowsRemoved(handler: DslSignalHandlerValue): PlaceSearchModelBuilder;
+  onSearchAreaChanged(handler: DslSignalHandlerValue): PlaceSearchModelBuilder;
+  onSearchTermChanged(handler: DslSignalHandlerValue): PlaceSearchModelBuilder;
+  onStatusChanged(handler: DslSignalHandlerValue): PlaceSearchModelBuilder;
+  onVisibilityScopeChanged(handler: DslSignalHandlerValue): PlaceSearchModelBuilder;
 }
 
 const PLACESEARCHMODEL_META: TypeMetadata = {

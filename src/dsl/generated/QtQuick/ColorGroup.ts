@@ -2,7 +2,12 @@
 // Type: ColorGroup
 // Generated from Qt 6.11.0
 
-import type { QmlColor, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlColor,
+  QmlObjectBuilder,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 import type { AccessibleAttachedBuilder } from './Accessible.js';
 import type { EnterKeyAttachedBuilder } from './EnterKey.js';
@@ -23,6 +28,7 @@ import type { ViewTransitionAttachedBuilder } from './ViewTransition.js';
 export interface ColorGroupBuilder {
   id(id: string): ColorGroupBuilder;
   child(obj: QmlObjectBuilder): ColorGroupBuilder;
+  children(...objs: QmlObjectBuilder[]): ColorGroupBuilder;
 
   accent(value: QmlColor): ColorGroupBuilder;
   accentBind(expr: string): ColorGroupBuilder;
@@ -68,29 +74,29 @@ export interface ColorGroupBuilder {
   windowBind(expr: string): ColorGroupBuilder;
   windowText(value: QmlColor): ColorGroupBuilder;
   windowTextBind(expr: string): ColorGroupBuilder;
-  onAccentChanged(body: string): ColorGroupBuilder;
-  onAlternateBaseChanged(body: string): ColorGroupBuilder;
-  onBaseChanged(body: string): ColorGroupBuilder;
-  onBrightTextChanged(body: string): ColorGroupBuilder;
-  onButtonChanged(body: string): ColorGroupBuilder;
-  onButtonTextChanged(body: string): ColorGroupBuilder;
-  onChanged(body: string): ColorGroupBuilder;
-  onDarkChanged(body: string): ColorGroupBuilder;
-  onHighlightChanged(body: string): ColorGroupBuilder;
-  onHighlightedTextChanged(body: string): ColorGroupBuilder;
-  onLightChanged(body: string): ColorGroupBuilder;
-  onLinkChanged(body: string): ColorGroupBuilder;
-  onLinkVisitedChanged(body: string): ColorGroupBuilder;
-  onMidChanged(body: string): ColorGroupBuilder;
-  onMidlightChanged(body: string): ColorGroupBuilder;
-  onObjectNameChanged(body: string): ColorGroupBuilder;
-  onPlaceholderTextChanged(body: string): ColorGroupBuilder;
-  onShadowChanged(body: string): ColorGroupBuilder;
-  onTextChanged(body: string): ColorGroupBuilder;
-  onToolTipBaseChanged(body: string): ColorGroupBuilder;
-  onToolTipTextChanged(body: string): ColorGroupBuilder;
-  onWindowChanged(body: string): ColorGroupBuilder;
-  onWindowTextChanged(body: string): ColorGroupBuilder;
+  onAccentChanged(handler: DslSignalHandlerValue): ColorGroupBuilder;
+  onAlternateBaseChanged(handler: DslSignalHandlerValue): ColorGroupBuilder;
+  onBaseChanged(handler: DslSignalHandlerValue): ColorGroupBuilder;
+  onBrightTextChanged(handler: DslSignalHandlerValue): ColorGroupBuilder;
+  onButtonChanged(handler: DslSignalHandlerValue): ColorGroupBuilder;
+  onButtonTextChanged(handler: DslSignalHandlerValue): ColorGroupBuilder;
+  onChanged(handler: DslSignalHandlerValue): ColorGroupBuilder;
+  onDarkChanged(handler: DslSignalHandlerValue): ColorGroupBuilder;
+  onHighlightChanged(handler: DslSignalHandlerValue): ColorGroupBuilder;
+  onHighlightedTextChanged(handler: DslSignalHandlerValue): ColorGroupBuilder;
+  onLightChanged(handler: DslSignalHandlerValue): ColorGroupBuilder;
+  onLinkChanged(handler: DslSignalHandlerValue): ColorGroupBuilder;
+  onLinkVisitedChanged(handler: DslSignalHandlerValue): ColorGroupBuilder;
+  onMidChanged(handler: DslSignalHandlerValue): ColorGroupBuilder;
+  onMidlightChanged(handler: DslSignalHandlerValue): ColorGroupBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): ColorGroupBuilder;
+  onPlaceholderTextChanged(handler: DslSignalHandlerValue): ColorGroupBuilder;
+  onShadowChanged(handler: DslSignalHandlerValue): ColorGroupBuilder;
+  onTextChanged(handler: DslSignalHandlerValue): ColorGroupBuilder;
+  onToolTipBaseChanged(handler: DslSignalHandlerValue): ColorGroupBuilder;
+  onToolTipTextChanged(handler: DslSignalHandlerValue): ColorGroupBuilder;
+  onWindowChanged(handler: DslSignalHandlerValue): ColorGroupBuilder;
+  onWindowTextChanged(handler: DslSignalHandlerValue): ColorGroupBuilder;
   accessible(setup: (b: AccessibleAttachedBuilder) => void): ColorGroupBuilder;
   drag(setup: (b: DragAttachedBuilder) => void): ColorGroupBuilder;
   enterKey(setup: (b: EnterKeyAttachedBuilder) => void): ColorGroupBuilder;

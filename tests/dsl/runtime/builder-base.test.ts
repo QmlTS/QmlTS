@@ -1,5 +1,5 @@
 import { describe, expect, test } from 'bun:test';
-import { DslBuilderImpl } from '../../../src/dsl/runtime/builder-base.js';
+import { DslBuilderImpl, parseArrowFunction } from '../../../src/dsl/runtime/builder-base.js';
 import { createEnumToken } from '../../../src/dsl/runtime/enum-token.js';
 
 describe('DslBuilderImpl', () => {
@@ -157,5 +157,159 @@ describe('DslBuilderImpl', () => {
     const b = new DslBuilderImpl('Column');
     const result = b.child(new DslBuilderImpl('Text'));
     expect(result).toBe(b);
+  });
+
+  // ─── Phase 06 Step 1: children() ──────────────────────────────────────
+
+  test('BB-15: children() adds multiple children', () => {
+    const b = new DslBuilderImpl('Column');
+    b.children(
+      new DslBuilderImpl('Text'),
+      new DslBuilderImpl('Rectangle'),
+      new DslBuilderImpl('Image'),
+    );
+    const node = b.build();
+    const children = node.members.filter((m) => m.kind === 'ObjectDefinition');
+    expect(children.length).toBe(3);
+    expect((children[0] as { typeName: string }).typeName).toBe('Text');
+    expect((children[1] as { typeName: string }).typeName).toBe('Rectangle');
+    expect((children[2] as { typeName: string }).typeName).toBe('Image');
+  });
+
+  test('BB-16: children() returns this for chaining', () => {
+    const b = new DslBuilderImpl('Column');
+    const result = b.children(new DslBuilderImpl('Text'));
+    expect(result).toBe(b);
+  });
+
+  test('BB-17: children() with zero args is a no-op', () => {
+    const b = new DslBuilderImpl('Column');
+    b.children();
+    const node = b.build();
+    expect(node.members.length).toBe(0);
+  });
+
+  test('BB-18: children() preserves order with child() interleaving', () => {
+    const b = new DslBuilderImpl('Column');
+    b.child(new DslBuilderImpl('A'));
+    b.children(new DslBuilderImpl('B'), new DslBuilderImpl('C'));
+    b.child(new DslBuilderImpl('D'));
+    const node = b.build();
+    const children = node.members.filter((m) => m.kind === 'ObjectDefinition');
+    expect(children.length).toBe(4);
+    expect((children[0] as { typeName: string }).typeName).toBe('A');
+    expect((children[1] as { typeName: string }).typeName).toBe('B');
+    expect((children[2] as { typeName: string }).typeName).toBe('C');
+    expect((children[3] as { typeName: string }).typeName).toBe('D');
+  });
+
+  // ─── Phase 06 Step 1: Signal handler forms ────────────────────────────
+
+  test('BB-19: handleSignal with string creates block handler', () => {
+    const b = new DslBuilderImpl('MouseArea');
+    b.handleSignal('onClicked', 'console.log("clicked")');
+    const node = b.build();
+    const handler = node.members.find((m) => m.kind === 'SignalHandler');
+    expect(handler).toBeDefined();
+    if (handler && handler.kind === 'SignalHandler') {
+      expect(handler.body.form).toBe('block');
+      if (handler.body.form === 'block') {
+        expect(handler.body.code).toBe('console.log("clicked")');
+      }
+    }
+  });
+
+  test('BB-20: handleSignal with arrow function creates arrow handler', () => {
+    const b = new DslBuilderImpl('MouseArea');
+    b.handleSignal('onClicked', () => console.log('clicked'));
+    const node = b.build();
+    const handler = node.members.find((m) => m.kind === 'SignalHandler');
+    expect(handler).toBeDefined();
+    if (handler && handler.kind === 'SignalHandler') {
+      expect(handler.body.form).toBe('arrow');
+    }
+  });
+
+  test('BB-21: handleSignal with arrow function preserves parameters', () => {
+    const b = new DslBuilderImpl('MouseArea');
+    b.handleSignal('onPressed', (mouse: any) => {
+      mouse.accepted = true;
+    });
+    const node = b.build();
+    const handler = node.members.find((m) => m.kind === 'SignalHandler');
+    expect(handler).toBeDefined();
+    if (handler && handler.kind === 'SignalHandler') {
+      expect(handler.body.form).toBe('arrow');
+      if (handler.body.form === 'arrow') {
+        expect(handler.body.parameters.length).toBeGreaterThanOrEqual(1);
+        expect(handler.body.isBlock).toBe(true);
+      }
+    }
+  });
+
+  test('BB-22: handleSignal with named function throws TypeError', () => {
+    const b = new DslBuilderImpl('MouseArea');
+    function myHandler() {
+      console.log('handler');
+    }
+    expect(() => b.handleSignal('onClicked', myHandler)).toThrow(TypeError);
+  });
+
+  test('BB-23: handleSignal command-ref error mentions compiler', () => {
+    const b = new DslBuilderImpl('Button');
+    function login() {}
+    expect(() => b.handleSignal('onClicked', login)).toThrow(/compiler processing/);
+  });
+});
+
+// ─── Phase 06 Step 1: parseArrowFunction ──────────────────────────────────
+
+describe('parseArrowFunction', () => {
+  test('parses expression arrow: () => expr', () => {
+    const result = parseArrowFunction(() => 42);
+    expect(result).not.toBeNull();
+    expect(result!.params).toEqual([]);
+    expect(result!.isBlock).toBe(false);
+  });
+
+  test('parses block arrow: () => { stmts }', () => {
+    const result = parseArrowFunction(() => {
+      console.log('hello');
+    });
+    expect(result).not.toBeNull();
+    expect(result!.params).toEqual([]);
+    expect(result!.isBlock).toBe(true);
+  });
+
+  test('parses arrow with single param', () => {
+    const result = parseArrowFunction((x: any) => x + 1);
+    expect(result).not.toBeNull();
+    expect(result!.params.length).toBe(1);
+    expect(result!.isBlock).toBe(false);
+  });
+
+  test('parses arrow with multiple params', () => {
+    const result = parseArrowFunction((a: any, b: any) => a + b);
+    expect(result).not.toBeNull();
+    expect(result!.params.length).toBe(2);
+    expect(result!.isBlock).toBe(false);
+  });
+
+  test('returns null for named function', () => {
+    function myFunc() {
+      return 42;
+    }
+    const result = parseArrowFunction(myFunc);
+    expect(result).toBeNull();
+  });
+
+  test('returns null for bound function', () => {
+    const obj = {
+      method() {
+        return 42;
+      },
+    };
+    const result = parseArrowFunction(obj.method.bind(obj));
+    expect(result).toBeNull();
   });
 });

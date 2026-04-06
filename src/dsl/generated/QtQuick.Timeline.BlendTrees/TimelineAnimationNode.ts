@@ -2,13 +2,14 @@
 // Type: TimelineAnimationNode
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import type { DslSignalHandlerValue, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 import type { TimelineBuilder } from '../QtQuick.Timeline/Timeline.js';
 import type { TimelineAnimationBuilder } from '../QtQuick.Timeline/TimelineAnimation.js';
 export interface TimelineAnimationNodeBuilder {
   id(id: string): TimelineAnimationNodeBuilder;
   child(obj: QmlObjectBuilder): TimelineAnimationNodeBuilder;
+  children(...objs: QmlObjectBuilder[]): TimelineAnimationNodeBuilder;
 
   animation(value: TimelineAnimationBuilder): TimelineAnimationNodeBuilder;
   animationBind(expr: string): TimelineAnimationNodeBuilder;
@@ -20,12 +21,12 @@ export interface TimelineAnimationNodeBuilder {
   outputEnabledBind(expr: string): TimelineAnimationNodeBuilder;
   timeline(value: TimelineBuilder): TimelineAnimationNodeBuilder;
   timelineBind(expr: string): TimelineAnimationNodeBuilder;
-  onAnimationChanged(body: string): TimelineAnimationNodeBuilder;
-  onCurrentFrameChanged(body: string): TimelineAnimationNodeBuilder;
-  onFrameDataChanged(body: string): TimelineAnimationNodeBuilder;
-  onObjectNameChanged(body: string): TimelineAnimationNodeBuilder;
-  onOutputEnabledChanged(body: string): TimelineAnimationNodeBuilder;
-  onTimelineChanged(body: string): TimelineAnimationNodeBuilder;
+  onAnimationChanged(handler: DslSignalHandlerValue): TimelineAnimationNodeBuilder;
+  onCurrentFrameChanged(handler: DslSignalHandlerValue): TimelineAnimationNodeBuilder;
+  onFrameDataChanged(handler: DslSignalHandlerValue): TimelineAnimationNodeBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): TimelineAnimationNodeBuilder;
+  onOutputEnabledChanged(handler: DslSignalHandlerValue): TimelineAnimationNodeBuilder;
+  onTimelineChanged(handler: DslSignalHandlerValue): TimelineAnimationNodeBuilder;
 }
 
 const TIMELINEANIMATIONNODE_META: TypeMetadata = {

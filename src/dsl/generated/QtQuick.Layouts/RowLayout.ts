@@ -2,7 +2,12 @@
 // Type: RowLayout
 // Generated from Qt 6.11.0
 
-import type { QmlEnumToken, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlEnumToken,
+  QmlObjectBuilder,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { QtObjectBuilder } from '../QML/QtObject.js';
 import type { ItemBuilder } from '../QtQuick/Item.js';
@@ -15,6 +20,7 @@ import type { StackLayoutAttachedBuilder } from './QQuickStackLayoutAttached.js'
 export interface RowLayoutBuilder {
   id(id: string): RowLayoutBuilder;
   child(obj: QmlObjectBuilder): RowLayoutBuilder;
+  children(...objs: QmlObjectBuilder[]): RowLayoutBuilder;
 
   activeFocusOnTab(value: boolean): RowLayoutBuilder;
   activeFocusOnTabBind(expr: string): RowLayoutBuilder;
@@ -72,40 +78,40 @@ export interface RowLayoutBuilder {
   yBind(expr: string): RowLayoutBuilder;
   z(value: number): RowLayoutBuilder;
   zBind(expr: string): RowLayoutBuilder;
-  onActiveFocusChanged(body: string): RowLayoutBuilder;
-  onActiveFocusOnTabChanged(body: string): RowLayoutBuilder;
-  onAntialiasingChanged(body: string): RowLayoutBuilder;
-  onBaselineOffsetChanged(body: string): RowLayoutBuilder;
-  onChildrenChanged(body: string): RowLayoutBuilder;
-  onChildrenRectChanged(body: string): RowLayoutBuilder;
-  onClipChanged(body: string): RowLayoutBuilder;
-  onContainmentMaskChanged(body: string): RowLayoutBuilder;
-  onEnabledChanged(body: string): RowLayoutBuilder;
-  onFocusChanged(body: string): RowLayoutBuilder;
-  onFocusPolicyChanged(body: string): RowLayoutBuilder;
-  onHeightChanged(body: string): RowLayoutBuilder;
-  onImplicitHeightChanged(body: string): RowLayoutBuilder;
-  onImplicitWidthChanged(body: string): RowLayoutBuilder;
-  onLayoutDirectionChanged(body: string): RowLayoutBuilder;
-  onObjectNameChanged(body: string): RowLayoutBuilder;
-  onOpacityChanged(body: string): RowLayoutBuilder;
-  onPaletteChanged(body: string): RowLayoutBuilder;
-  onPaletteCreated(body: string): RowLayoutBuilder;
-  onParentChanged(body: string): RowLayoutBuilder;
-  onRotationChanged(body: string): RowLayoutBuilder;
-  onScaleChanged(body: string): RowLayoutBuilder;
-  onSmoothChanged(body: string): RowLayoutBuilder;
-  onSpacingChanged(body: string): RowLayoutBuilder;
-  onStateChanged(body: string): RowLayoutBuilder;
-  onTransformOriginChanged(body: string): RowLayoutBuilder;
-  onUniformCellSizesChanged(body: string): RowLayoutBuilder;
-  onVisibleChanged(body: string): RowLayoutBuilder;
-  onVisibleChildrenChanged(body: string): RowLayoutBuilder;
-  onWidthChanged(body: string): RowLayoutBuilder;
-  onWindowChanged(body: string): RowLayoutBuilder;
-  onXChanged(body: string): RowLayoutBuilder;
-  onYChanged(body: string): RowLayoutBuilder;
-  onZChanged(body: string): RowLayoutBuilder;
+  onActiveFocusChanged(handler: DslSignalHandlerValue): RowLayoutBuilder;
+  onActiveFocusOnTabChanged(handler: DslSignalHandlerValue): RowLayoutBuilder;
+  onAntialiasingChanged(handler: DslSignalHandlerValue): RowLayoutBuilder;
+  onBaselineOffsetChanged(handler: DslSignalHandlerValue): RowLayoutBuilder;
+  onChildrenChanged(handler: DslSignalHandlerValue): RowLayoutBuilder;
+  onChildrenRectChanged(handler: DslSignalHandlerValue): RowLayoutBuilder;
+  onClipChanged(handler: DslSignalHandlerValue): RowLayoutBuilder;
+  onContainmentMaskChanged(handler: DslSignalHandlerValue): RowLayoutBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): RowLayoutBuilder;
+  onFocusChanged(handler: DslSignalHandlerValue): RowLayoutBuilder;
+  onFocusPolicyChanged(handler: DslSignalHandlerValue): RowLayoutBuilder;
+  onHeightChanged(handler: DslSignalHandlerValue): RowLayoutBuilder;
+  onImplicitHeightChanged(handler: DslSignalHandlerValue): RowLayoutBuilder;
+  onImplicitWidthChanged(handler: DslSignalHandlerValue): RowLayoutBuilder;
+  onLayoutDirectionChanged(handler: DslSignalHandlerValue): RowLayoutBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): RowLayoutBuilder;
+  onOpacityChanged(handler: DslSignalHandlerValue): RowLayoutBuilder;
+  onPaletteChanged(handler: DslSignalHandlerValue): RowLayoutBuilder;
+  onPaletteCreated(handler: DslSignalHandlerValue): RowLayoutBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): RowLayoutBuilder;
+  onRotationChanged(handler: DslSignalHandlerValue): RowLayoutBuilder;
+  onScaleChanged(handler: DslSignalHandlerValue): RowLayoutBuilder;
+  onSmoothChanged(handler: DslSignalHandlerValue): RowLayoutBuilder;
+  onSpacingChanged(handler: DslSignalHandlerValue): RowLayoutBuilder;
+  onStateChanged(handler: DslSignalHandlerValue): RowLayoutBuilder;
+  onTransformOriginChanged(handler: DslSignalHandlerValue): RowLayoutBuilder;
+  onUniformCellSizesChanged(handler: DslSignalHandlerValue): RowLayoutBuilder;
+  onVisibleChanged(handler: DslSignalHandlerValue): RowLayoutBuilder;
+  onVisibleChildrenChanged(handler: DslSignalHandlerValue): RowLayoutBuilder;
+  onWidthChanged(handler: DslSignalHandlerValue): RowLayoutBuilder;
+  onWindowChanged(handler: DslSignalHandlerValue): RowLayoutBuilder;
+  onXChanged(handler: DslSignalHandlerValue): RowLayoutBuilder;
+  onYChanged(handler: DslSignalHandlerValue): RowLayoutBuilder;
+  onZChanged(handler: DslSignalHandlerValue): RowLayoutBuilder;
   anchors(setup: (b: AnchorsBuilder) => void): RowLayoutBuilder;
   layer(setup: (b: LayerBuilder) => void): RowLayoutBuilder;
   flexboxLayout(setup: (b: FlexboxLayoutAttachedBuilder) => void): RowLayoutBuilder;

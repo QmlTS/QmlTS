@@ -2,11 +2,17 @@
 // Type: TiltSensor
 // Generated from Qt 6.11.0
 
-import type { QmlEnumToken, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlEnumToken,
+  QmlObjectBuilder,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface TiltSensorBuilder {
   id(id: string): TiltSensorBuilder;
   child(obj: QmlObjectBuilder): TiltSensorBuilder;
+  children(...objs: QmlObjectBuilder[]): TiltSensorBuilder;
 
   active(value: boolean): TiltSensorBuilder;
   activeBind(expr: string): TiltSensorBuilder;
@@ -28,26 +34,26 @@ export interface TiltSensorBuilder {
   skipDuplicatesBind(expr: string): TiltSensorBuilder;
   userOrientation(value: number): TiltSensorBuilder;
   userOrientationBind(expr: string): TiltSensorBuilder;
-  onActiveChanged(body: string): TiltSensorBuilder;
-  onAlwaysOnChanged(body: string): TiltSensorBuilder;
-  onAvailableDataRatesChanged(body: string): TiltSensorBuilder;
-  onAxesOrientationModeChanged(body: string): TiltSensorBuilder;
-  onBufferSizeChanged(body: string): TiltSensorBuilder;
-  onBusyChanged(body: string): TiltSensorBuilder;
-  onConnectedToBackendChanged(body: string): TiltSensorBuilder;
-  onCurrentOrientationChanged(body: string): TiltSensorBuilder;
-  onDataRateChanged(body: string): TiltSensorBuilder;
-  onDescriptionChanged(body: string): TiltSensorBuilder;
-  onEfficientBufferSizeChanged(body: string): TiltSensorBuilder;
-  onErrorChanged(body: string): TiltSensorBuilder;
-  onIdentifierChanged(body: string): TiltSensorBuilder;
-  onMaxBufferSizeChanged(body: string): TiltSensorBuilder;
-  onObjectNameChanged(body: string): TiltSensorBuilder;
-  onOutputRangeChanged(body: string): TiltSensorBuilder;
-  onOutputRangesChanged(body: string): TiltSensorBuilder;
-  onReadingChanged(body: string): TiltSensorBuilder;
-  onSkipDuplicatesChanged(body: string): TiltSensorBuilder;
-  onUserOrientationChanged(body: string): TiltSensorBuilder;
+  onActiveChanged(handler: DslSignalHandlerValue): TiltSensorBuilder;
+  onAlwaysOnChanged(handler: DslSignalHandlerValue): TiltSensorBuilder;
+  onAvailableDataRatesChanged(handler: DslSignalHandlerValue): TiltSensorBuilder;
+  onAxesOrientationModeChanged(handler: DslSignalHandlerValue): TiltSensorBuilder;
+  onBufferSizeChanged(handler: DslSignalHandlerValue): TiltSensorBuilder;
+  onBusyChanged(handler: DslSignalHandlerValue): TiltSensorBuilder;
+  onConnectedToBackendChanged(handler: DslSignalHandlerValue): TiltSensorBuilder;
+  onCurrentOrientationChanged(handler: DslSignalHandlerValue): TiltSensorBuilder;
+  onDataRateChanged(handler: DslSignalHandlerValue): TiltSensorBuilder;
+  onDescriptionChanged(handler: DslSignalHandlerValue): TiltSensorBuilder;
+  onEfficientBufferSizeChanged(handler: DslSignalHandlerValue): TiltSensorBuilder;
+  onErrorChanged(handler: DslSignalHandlerValue): TiltSensorBuilder;
+  onIdentifierChanged(handler: DslSignalHandlerValue): TiltSensorBuilder;
+  onMaxBufferSizeChanged(handler: DslSignalHandlerValue): TiltSensorBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): TiltSensorBuilder;
+  onOutputRangeChanged(handler: DslSignalHandlerValue): TiltSensorBuilder;
+  onOutputRangesChanged(handler: DslSignalHandlerValue): TiltSensorBuilder;
+  onReadingChanged(handler: DslSignalHandlerValue): TiltSensorBuilder;
+  onSkipDuplicatesChanged(handler: DslSignalHandlerValue): TiltSensorBuilder;
+  onUserOrientationChanged(handler: DslSignalHandlerValue): TiltSensorBuilder;
 }
 
 const TILTSENSOR_META: TypeMetadata = {

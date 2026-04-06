@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlEnumToken,
   QmlObjectBuilder,
   QmlVector3d,
@@ -12,6 +13,7 @@ import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface Camera3DBuilder {
   id(id: string): Camera3DBuilder;
   child(obj: QmlObjectBuilder): Camera3DBuilder;
+  children(...objs: QmlObjectBuilder[]): Camera3DBuilder;
 
   cameraPreset(value: QmlEnumToken): Camera3DBuilder;
   cameraPresetBind(expr: string): Camera3DBuilder;
@@ -35,17 +37,17 @@ export interface Camera3DBuilder {
   yRotationBind(expr: string): Camera3DBuilder;
   zoomLevel(value: number): Camera3DBuilder;
   zoomLevelBind(expr: string): Camera3DBuilder;
-  onCameraPresetChanged(body: string): Camera3DBuilder;
-  onMaxZoomLevelChanged(body: string): Camera3DBuilder;
-  onMinZoomLevelChanged(body: string): Camera3DBuilder;
-  onObjectNameChanged(body: string): Camera3DBuilder;
-  onPositionChanged(body: string): Camera3DBuilder;
-  onTargetChanged(body: string): Camera3DBuilder;
-  onWrapXRotationChanged(body: string): Camera3DBuilder;
-  onWrapYRotationChanged(body: string): Camera3DBuilder;
-  onXRotationChanged(body: string): Camera3DBuilder;
-  onYRotationChanged(body: string): Camera3DBuilder;
-  onZoomLevelChanged(body: string): Camera3DBuilder;
+  onCameraPresetChanged(handler: DslSignalHandlerValue): Camera3DBuilder;
+  onMaxZoomLevelChanged(handler: DslSignalHandlerValue): Camera3DBuilder;
+  onMinZoomLevelChanged(handler: DslSignalHandlerValue): Camera3DBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): Camera3DBuilder;
+  onPositionChanged(handler: DslSignalHandlerValue): Camera3DBuilder;
+  onTargetChanged(handler: DslSignalHandlerValue): Camera3DBuilder;
+  onWrapXRotationChanged(handler: DslSignalHandlerValue): Camera3DBuilder;
+  onWrapYRotationChanged(handler: DslSignalHandlerValue): Camera3DBuilder;
+  onXRotationChanged(handler: DslSignalHandlerValue): Camera3DBuilder;
+  onYRotationChanged(handler: DslSignalHandlerValue): Camera3DBuilder;
+  onZoomLevelChanged(handler: DslSignalHandlerValue): Camera3DBuilder;
 }
 
 const CAMERA3D_META: TypeMetadata = {

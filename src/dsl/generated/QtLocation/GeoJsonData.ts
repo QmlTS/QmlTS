@@ -2,11 +2,18 @@
 // Type: GeoJsonData
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlUrl, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlObjectBuilder,
+  QmlUrl,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 export interface GeoJsonDataBuilder {
   id(id: string): GeoJsonDataBuilder;
   child(obj: QmlObjectBuilder): GeoJsonDataBuilder;
+  children(...objs: QmlObjectBuilder[]): GeoJsonDataBuilder;
 
   model(value: QmlValue): GeoJsonDataBuilder;
   modelBind(expr: string): GeoJsonDataBuilder;
@@ -14,9 +21,9 @@ export interface GeoJsonDataBuilder {
   objectNameBind(expr: string): GeoJsonDataBuilder;
   sourceUrl(value: QmlUrl): GeoJsonDataBuilder;
   sourceUrlBind(expr: string): GeoJsonDataBuilder;
-  onModelChanged(body: string): GeoJsonDataBuilder;
-  onObjectNameChanged(body: string): GeoJsonDataBuilder;
-  onSourceUrlChanged(body: string): GeoJsonDataBuilder;
+  onModelChanged(handler: DslSignalHandlerValue): GeoJsonDataBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): GeoJsonDataBuilder;
+  onSourceUrlChanged(handler: DslSignalHandlerValue): GeoJsonDataBuilder;
 }
 
 const GEOJSONDATA_META: TypeMetadata = {

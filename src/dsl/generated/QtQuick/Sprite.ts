@@ -2,7 +2,13 @@
 // Type: Sprite
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlUrl, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlObjectBuilder,
+  QmlUrl,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 import type { AccessibleAttachedBuilder } from './Accessible.js';
 import type { EnterKeyAttachedBuilder } from './EnterKey.js';
@@ -23,6 +29,7 @@ import type { ViewTransitionAttachedBuilder } from './ViewTransition.js';
 export interface SpriteBuilder {
   id(id: string): SpriteBuilder;
   child(obj: QmlObjectBuilder): SpriteBuilder;
+  children(...objs: QmlObjectBuilder[]): SpriteBuilder;
 
   duration(value: number): SpriteBuilder;
   durationBind(expr: string): SpriteBuilder;
@@ -62,25 +69,25 @@ export interface SpriteBuilder {
   sourceBind(expr: string): SpriteBuilder;
   to(value: QmlValue): SpriteBuilder;
   toBind(expr: string): SpriteBuilder;
-  onDurationChanged(body: string): SpriteBuilder;
-  onDurationVariationChanged(body: string): SpriteBuilder;
-  onEntered(body: string): SpriteBuilder;
-  onFrameCountChanged(body: string): SpriteBuilder;
-  onFrameDurationChanged(body: string): SpriteBuilder;
-  onFrameDurationVariationChanged(body: string): SpriteBuilder;
-  onFrameHeightChanged(body: string): SpriteBuilder;
-  onFrameRateChanged(body: string): SpriteBuilder;
-  onFrameRateVariationChanged(body: string): SpriteBuilder;
-  onFrameSyncChanged(body: string): SpriteBuilder;
-  onFrameWidthChanged(body: string): SpriteBuilder;
-  onFrameXChanged(body: string): SpriteBuilder;
-  onFrameYChanged(body: string): SpriteBuilder;
-  onNameChanged(body: string): SpriteBuilder;
-  onObjectNameChanged(body: string): SpriteBuilder;
-  onRandomStartChanged(body: string): SpriteBuilder;
-  onReverseChanged(body: string): SpriteBuilder;
-  onSourceChanged(body: string): SpriteBuilder;
-  onToChanged(body: string): SpriteBuilder;
+  onDurationChanged(handler: DslSignalHandlerValue): SpriteBuilder;
+  onDurationVariationChanged(handler: DslSignalHandlerValue): SpriteBuilder;
+  onEntered(handler: DslSignalHandlerValue): SpriteBuilder;
+  onFrameCountChanged(handler: DslSignalHandlerValue): SpriteBuilder;
+  onFrameDurationChanged(handler: DslSignalHandlerValue): SpriteBuilder;
+  onFrameDurationVariationChanged(handler: DslSignalHandlerValue): SpriteBuilder;
+  onFrameHeightChanged(handler: DslSignalHandlerValue): SpriteBuilder;
+  onFrameRateChanged(handler: DslSignalHandlerValue): SpriteBuilder;
+  onFrameRateVariationChanged(handler: DslSignalHandlerValue): SpriteBuilder;
+  onFrameSyncChanged(handler: DslSignalHandlerValue): SpriteBuilder;
+  onFrameWidthChanged(handler: DslSignalHandlerValue): SpriteBuilder;
+  onFrameXChanged(handler: DslSignalHandlerValue): SpriteBuilder;
+  onFrameYChanged(handler: DslSignalHandlerValue): SpriteBuilder;
+  onNameChanged(handler: DslSignalHandlerValue): SpriteBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): SpriteBuilder;
+  onRandomStartChanged(handler: DslSignalHandlerValue): SpriteBuilder;
+  onReverseChanged(handler: DslSignalHandlerValue): SpriteBuilder;
+  onSourceChanged(handler: DslSignalHandlerValue): SpriteBuilder;
+  onToChanged(handler: DslSignalHandlerValue): SpriteBuilder;
   accessible(setup: (b: AccessibleAttachedBuilder) => void): SpriteBuilder;
   drag(setup: (b: DragAttachedBuilder) => void): SpriteBuilder;
   enterKey(setup: (b: EnterKeyAttachedBuilder) => void): SpriteBuilder;

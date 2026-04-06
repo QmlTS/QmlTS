@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlColor,
   QmlEnumToken,
   QmlObjectBuilder,
@@ -18,6 +19,7 @@ import type { LayerBuilder } from '../QtQuick/QQuickItemLayer.js';
 export interface KnobImplBuilder {
   id(id: string): KnobImplBuilder;
   child(obj: QmlObjectBuilder): KnobImplBuilder;
+  children(...objs: QmlObjectBuilder[]): KnobImplBuilder;
 
   activeFocusOnTab(value: boolean): KnobImplBuilder;
   activeFocusOnTabBind(expr: string): KnobImplBuilder;
@@ -79,42 +81,42 @@ export interface KnobImplBuilder {
   yBind(expr: string): KnobImplBuilder;
   z(value: number): KnobImplBuilder;
   zBind(expr: string): KnobImplBuilder;
-  onActiveFocusChanged(body: string): KnobImplBuilder;
-  onActiveFocusOnTabChanged(body: string): KnobImplBuilder;
-  onAntialiasingChanged(body: string): KnobImplBuilder;
-  onBaselineOffsetChanged(body: string): KnobImplBuilder;
-  onChildrenChanged(body: string): KnobImplBuilder;
-  onChildrenRectChanged(body: string): KnobImplBuilder;
-  onClipChanged(body: string): KnobImplBuilder;
-  onContainmentMaskChanged(body: string): KnobImplBuilder;
-  onContentsScaleChanged(body: string): KnobImplBuilder;
-  onContentsSizeChanged(body: string): KnobImplBuilder;
-  onEnabledChanged(body: string): KnobImplBuilder;
-  onFillColorChanged(body: string): KnobImplBuilder;
-  onFocusChanged(body: string): KnobImplBuilder;
-  onFocusPolicyChanged(body: string): KnobImplBuilder;
-  onHeightChanged(body: string): KnobImplBuilder;
-  onImplicitHeightChanged(body: string): KnobImplBuilder;
-  onImplicitWidthChanged(body: string): KnobImplBuilder;
-  onObjectNameChanged(body: string): KnobImplBuilder;
-  onOpacityChanged(body: string): KnobImplBuilder;
-  onPaletteChanged(body: string): KnobImplBuilder;
-  onPaletteCreated(body: string): KnobImplBuilder;
-  onParentChanged(body: string): KnobImplBuilder;
-  onRenderTargetChanged(body: string): KnobImplBuilder;
-  onRotationChanged(body: string): KnobImplBuilder;
-  onScaleChanged(body: string): KnobImplBuilder;
-  onSmoothChanged(body: string): KnobImplBuilder;
-  onStateChanged(body: string): KnobImplBuilder;
-  onTextureSizeChanged(body: string): KnobImplBuilder;
-  onTransformOriginChanged(body: string): KnobImplBuilder;
-  onVisibleChanged(body: string): KnobImplBuilder;
-  onVisibleChildrenChanged(body: string): KnobImplBuilder;
-  onWidthChanged(body: string): KnobImplBuilder;
-  onWindowChanged(body: string): KnobImplBuilder;
-  onXChanged(body: string): KnobImplBuilder;
-  onYChanged(body: string): KnobImplBuilder;
-  onZChanged(body: string): KnobImplBuilder;
+  onActiveFocusChanged(handler: DslSignalHandlerValue): KnobImplBuilder;
+  onActiveFocusOnTabChanged(handler: DslSignalHandlerValue): KnobImplBuilder;
+  onAntialiasingChanged(handler: DslSignalHandlerValue): KnobImplBuilder;
+  onBaselineOffsetChanged(handler: DslSignalHandlerValue): KnobImplBuilder;
+  onChildrenChanged(handler: DslSignalHandlerValue): KnobImplBuilder;
+  onChildrenRectChanged(handler: DslSignalHandlerValue): KnobImplBuilder;
+  onClipChanged(handler: DslSignalHandlerValue): KnobImplBuilder;
+  onContainmentMaskChanged(handler: DslSignalHandlerValue): KnobImplBuilder;
+  onContentsScaleChanged(handler: DslSignalHandlerValue): KnobImplBuilder;
+  onContentsSizeChanged(handler: DslSignalHandlerValue): KnobImplBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): KnobImplBuilder;
+  onFillColorChanged(handler: DslSignalHandlerValue): KnobImplBuilder;
+  onFocusChanged(handler: DslSignalHandlerValue): KnobImplBuilder;
+  onFocusPolicyChanged(handler: DslSignalHandlerValue): KnobImplBuilder;
+  onHeightChanged(handler: DslSignalHandlerValue): KnobImplBuilder;
+  onImplicitHeightChanged(handler: DslSignalHandlerValue): KnobImplBuilder;
+  onImplicitWidthChanged(handler: DslSignalHandlerValue): KnobImplBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): KnobImplBuilder;
+  onOpacityChanged(handler: DslSignalHandlerValue): KnobImplBuilder;
+  onPaletteChanged(handler: DslSignalHandlerValue): KnobImplBuilder;
+  onPaletteCreated(handler: DslSignalHandlerValue): KnobImplBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): KnobImplBuilder;
+  onRenderTargetChanged(handler: DslSignalHandlerValue): KnobImplBuilder;
+  onRotationChanged(handler: DslSignalHandlerValue): KnobImplBuilder;
+  onScaleChanged(handler: DslSignalHandlerValue): KnobImplBuilder;
+  onSmoothChanged(handler: DslSignalHandlerValue): KnobImplBuilder;
+  onStateChanged(handler: DslSignalHandlerValue): KnobImplBuilder;
+  onTextureSizeChanged(handler: DslSignalHandlerValue): KnobImplBuilder;
+  onTransformOriginChanged(handler: DslSignalHandlerValue): KnobImplBuilder;
+  onVisibleChanged(handler: DslSignalHandlerValue): KnobImplBuilder;
+  onVisibleChildrenChanged(handler: DslSignalHandlerValue): KnobImplBuilder;
+  onWidthChanged(handler: DslSignalHandlerValue): KnobImplBuilder;
+  onWindowChanged(handler: DslSignalHandlerValue): KnobImplBuilder;
+  onXChanged(handler: DslSignalHandlerValue): KnobImplBuilder;
+  onYChanged(handler: DslSignalHandlerValue): KnobImplBuilder;
+  onZChanged(handler: DslSignalHandlerValue): KnobImplBuilder;
   anchors(setup: (b: AnchorsBuilder) => void): KnobImplBuilder;
   layer(setup: (b: LayerBuilder) => void): KnobImplBuilder;
 }

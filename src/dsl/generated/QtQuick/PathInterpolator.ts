@@ -2,7 +2,7 @@
 // Type: PathInterpolator
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import type { DslSignalHandlerValue, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 import type { AccessibleAttachedBuilder } from './Accessible.js';
 import type { EnterKeyAttachedBuilder } from './EnterKey.js';
@@ -24,6 +24,7 @@ import type { ViewTransitionAttachedBuilder } from './ViewTransition.js';
 export interface PathInterpolatorBuilder {
   id(id: string): PathInterpolatorBuilder;
   child(obj: QmlObjectBuilder): PathInterpolatorBuilder;
+  children(...objs: QmlObjectBuilder[]): PathInterpolatorBuilder;
 
   objectName(value: string): PathInterpolatorBuilder;
   objectNameBind(expr: string): PathInterpolatorBuilder;
@@ -31,12 +32,12 @@ export interface PathInterpolatorBuilder {
   pathBind(expr: string): PathInterpolatorBuilder;
   progress(value: number): PathInterpolatorBuilder;
   progressBind(expr: string): PathInterpolatorBuilder;
-  onAngleChanged(body: string): PathInterpolatorBuilder;
-  onObjectNameChanged(body: string): PathInterpolatorBuilder;
-  onPathChanged(body: string): PathInterpolatorBuilder;
-  onProgressChanged(body: string): PathInterpolatorBuilder;
-  onXChanged(body: string): PathInterpolatorBuilder;
-  onYChanged(body: string): PathInterpolatorBuilder;
+  onAngleChanged(handler: DslSignalHandlerValue): PathInterpolatorBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): PathInterpolatorBuilder;
+  onPathChanged(handler: DslSignalHandlerValue): PathInterpolatorBuilder;
+  onProgressChanged(handler: DslSignalHandlerValue): PathInterpolatorBuilder;
+  onXChanged(handler: DslSignalHandlerValue): PathInterpolatorBuilder;
+  onYChanged(handler: DslSignalHandlerValue): PathInterpolatorBuilder;
   accessible(setup: (b: AccessibleAttachedBuilder) => void): PathInterpolatorBuilder;
   drag(setup: (b: DragAttachedBuilder) => void): PathInterpolatorBuilder;
   enterKey(setup: (b: EnterKeyAttachedBuilder) => void): PathInterpolatorBuilder;

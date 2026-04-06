@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlComponent,
   QmlEnumToken,
   QmlObjectBuilder,
@@ -19,6 +20,7 @@ import type { LayerBuilder } from '../QtQuick/QQuickItemLayer.js';
 export interface TumblerViewBuilder {
   id(id: string): TumblerViewBuilder;
   child(obj: QmlObjectBuilder): TumblerViewBuilder;
+  children(...objs: QmlObjectBuilder[]): TumblerViewBuilder;
 
   activeFocusOnTab(value: boolean): TumblerViewBuilder;
   activeFocusOnTabBind(expr: string): TumblerViewBuilder;
@@ -76,40 +78,40 @@ export interface TumblerViewBuilder {
   yBind(expr: string): TumblerViewBuilder;
   z(value: number): TumblerViewBuilder;
   zBind(expr: string): TumblerViewBuilder;
-  onActiveFocusChanged(body: string): TumblerViewBuilder;
-  onActiveFocusOnTabChanged(body: string): TumblerViewBuilder;
-  onAntialiasingChanged(body: string): TumblerViewBuilder;
-  onBaselineOffsetChanged(body: string): TumblerViewBuilder;
-  onChildrenChanged(body: string): TumblerViewBuilder;
-  onChildrenRectChanged(body: string): TumblerViewBuilder;
-  onClipChanged(body: string): TumblerViewBuilder;
-  onContainmentMaskChanged(body: string): TumblerViewBuilder;
-  onDelegateChanged(body: string): TumblerViewBuilder;
-  onEnabledChanged(body: string): TumblerViewBuilder;
-  onFocusChanged(body: string): TumblerViewBuilder;
-  onFocusPolicyChanged(body: string): TumblerViewBuilder;
-  onHeightChanged(body: string): TumblerViewBuilder;
-  onImplicitHeightChanged(body: string): TumblerViewBuilder;
-  onImplicitWidthChanged(body: string): TumblerViewBuilder;
-  onModelChanged(body: string): TumblerViewBuilder;
-  onObjectNameChanged(body: string): TumblerViewBuilder;
-  onOpacityChanged(body: string): TumblerViewBuilder;
-  onPaletteChanged(body: string): TumblerViewBuilder;
-  onPaletteCreated(body: string): TumblerViewBuilder;
-  onParentChanged(body: string): TumblerViewBuilder;
-  onPathChanged(body: string): TumblerViewBuilder;
-  onRotationChanged(body: string): TumblerViewBuilder;
-  onScaleChanged(body: string): TumblerViewBuilder;
-  onSmoothChanged(body: string): TumblerViewBuilder;
-  onStateChanged(body: string): TumblerViewBuilder;
-  onTransformOriginChanged(body: string): TumblerViewBuilder;
-  onVisibleChanged(body: string): TumblerViewBuilder;
-  onVisibleChildrenChanged(body: string): TumblerViewBuilder;
-  onWidthChanged(body: string): TumblerViewBuilder;
-  onWindowChanged(body: string): TumblerViewBuilder;
-  onXChanged(body: string): TumblerViewBuilder;
-  onYChanged(body: string): TumblerViewBuilder;
-  onZChanged(body: string): TumblerViewBuilder;
+  onActiveFocusChanged(handler: DslSignalHandlerValue): TumblerViewBuilder;
+  onActiveFocusOnTabChanged(handler: DslSignalHandlerValue): TumblerViewBuilder;
+  onAntialiasingChanged(handler: DslSignalHandlerValue): TumblerViewBuilder;
+  onBaselineOffsetChanged(handler: DslSignalHandlerValue): TumblerViewBuilder;
+  onChildrenChanged(handler: DslSignalHandlerValue): TumblerViewBuilder;
+  onChildrenRectChanged(handler: DslSignalHandlerValue): TumblerViewBuilder;
+  onClipChanged(handler: DslSignalHandlerValue): TumblerViewBuilder;
+  onContainmentMaskChanged(handler: DslSignalHandlerValue): TumblerViewBuilder;
+  onDelegateChanged(handler: DslSignalHandlerValue): TumblerViewBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): TumblerViewBuilder;
+  onFocusChanged(handler: DslSignalHandlerValue): TumblerViewBuilder;
+  onFocusPolicyChanged(handler: DslSignalHandlerValue): TumblerViewBuilder;
+  onHeightChanged(handler: DslSignalHandlerValue): TumblerViewBuilder;
+  onImplicitHeightChanged(handler: DslSignalHandlerValue): TumblerViewBuilder;
+  onImplicitWidthChanged(handler: DslSignalHandlerValue): TumblerViewBuilder;
+  onModelChanged(handler: DslSignalHandlerValue): TumblerViewBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): TumblerViewBuilder;
+  onOpacityChanged(handler: DslSignalHandlerValue): TumblerViewBuilder;
+  onPaletteChanged(handler: DslSignalHandlerValue): TumblerViewBuilder;
+  onPaletteCreated(handler: DslSignalHandlerValue): TumblerViewBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): TumblerViewBuilder;
+  onPathChanged(handler: DslSignalHandlerValue): TumblerViewBuilder;
+  onRotationChanged(handler: DslSignalHandlerValue): TumblerViewBuilder;
+  onScaleChanged(handler: DslSignalHandlerValue): TumblerViewBuilder;
+  onSmoothChanged(handler: DslSignalHandlerValue): TumblerViewBuilder;
+  onStateChanged(handler: DslSignalHandlerValue): TumblerViewBuilder;
+  onTransformOriginChanged(handler: DslSignalHandlerValue): TumblerViewBuilder;
+  onVisibleChanged(handler: DslSignalHandlerValue): TumblerViewBuilder;
+  onVisibleChildrenChanged(handler: DslSignalHandlerValue): TumblerViewBuilder;
+  onWidthChanged(handler: DslSignalHandlerValue): TumblerViewBuilder;
+  onWindowChanged(handler: DslSignalHandlerValue): TumblerViewBuilder;
+  onXChanged(handler: DslSignalHandlerValue): TumblerViewBuilder;
+  onYChanged(handler: DslSignalHandlerValue): TumblerViewBuilder;
+  onZChanged(handler: DslSignalHandlerValue): TumblerViewBuilder;
   anchors(setup: (b: AnchorsBuilder) => void): TumblerViewBuilder;
   layer(setup: (b: LayerBuilder) => void): TumblerViewBuilder;
 }

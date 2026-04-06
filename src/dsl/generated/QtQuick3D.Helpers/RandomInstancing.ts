@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlEnumToken,
   QmlObjectBuilder,
   QmlValue,
@@ -14,6 +15,7 @@ import type { InstanceRangeBuilder } from './InstanceRange.js';
 export interface RandomInstancingBuilder {
   id(id: string): RandomInstancingBuilder;
   child(obj: QmlObjectBuilder): RandomInstancingBuilder;
+  children(...objs: QmlObjectBuilder[]): RandomInstancingBuilder;
 
   color(value: InstanceRangeBuilder): RandomInstancingBuilder;
   colorBind(expr: string): RandomInstancingBuilder;
@@ -49,26 +51,26 @@ export interface RandomInstancingBuilder {
   shadowBoundsMinimumBind(expr: string): RandomInstancingBuilder;
   state(value: string): RandomInstancingBuilder;
   stateBind(expr: string): RandomInstancingBuilder;
-  onChildrenChanged(body: string): RandomInstancingBuilder;
-  onColorChanged(body: string): RandomInstancingBuilder;
-  onColorModelChanged(body: string): RandomInstancingBuilder;
-  onCustomDataChanged(body: string): RandomInstancingBuilder;
-  onDepthSortingEnabledChanged(body: string): RandomInstancingBuilder;
-  onGridSpacingChanged(body: string): RandomInstancingBuilder;
-  onHasTransparencyChanged(body: string): RandomInstancingBuilder;
-  onInstanceCountChanged(body: string): RandomInstancingBuilder;
-  onInstanceCountOverrideChanged(body: string): RandomInstancingBuilder;
-  onInstanceNodeDirty(body: string): RandomInstancingBuilder;
-  onInstanceTableChanged(body: string): RandomInstancingBuilder;
-  onObjectNameChanged(body: string): RandomInstancingBuilder;
-  onParentChanged(body: string): RandomInstancingBuilder;
-  onPositionChanged(body: string): RandomInstancingBuilder;
-  onRandomSeedChanged(body: string): RandomInstancingBuilder;
-  onRotationChanged(body: string): RandomInstancingBuilder;
-  onScaleChanged(body: string): RandomInstancingBuilder;
-  onShadowBoundsMaximumChanged(body: string): RandomInstancingBuilder;
-  onShadowBoundsMinimumChanged(body: string): RandomInstancingBuilder;
-  onStateChanged(body: string): RandomInstancingBuilder;
+  onChildrenChanged(handler: DslSignalHandlerValue): RandomInstancingBuilder;
+  onColorChanged(handler: DslSignalHandlerValue): RandomInstancingBuilder;
+  onColorModelChanged(handler: DslSignalHandlerValue): RandomInstancingBuilder;
+  onCustomDataChanged(handler: DslSignalHandlerValue): RandomInstancingBuilder;
+  onDepthSortingEnabledChanged(handler: DslSignalHandlerValue): RandomInstancingBuilder;
+  onGridSpacingChanged(handler: DslSignalHandlerValue): RandomInstancingBuilder;
+  onHasTransparencyChanged(handler: DslSignalHandlerValue): RandomInstancingBuilder;
+  onInstanceCountChanged(handler: DslSignalHandlerValue): RandomInstancingBuilder;
+  onInstanceCountOverrideChanged(handler: DslSignalHandlerValue): RandomInstancingBuilder;
+  onInstanceNodeDirty(handler: DslSignalHandlerValue): RandomInstancingBuilder;
+  onInstanceTableChanged(handler: DslSignalHandlerValue): RandomInstancingBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): RandomInstancingBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): RandomInstancingBuilder;
+  onPositionChanged(handler: DslSignalHandlerValue): RandomInstancingBuilder;
+  onRandomSeedChanged(handler: DslSignalHandlerValue): RandomInstancingBuilder;
+  onRotationChanged(handler: DslSignalHandlerValue): RandomInstancingBuilder;
+  onScaleChanged(handler: DslSignalHandlerValue): RandomInstancingBuilder;
+  onShadowBoundsMaximumChanged(handler: DslSignalHandlerValue): RandomInstancingBuilder;
+  onShadowBoundsMinimumChanged(handler: DslSignalHandlerValue): RandomInstancingBuilder;
+  onStateChanged(handler: DslSignalHandlerValue): RandomInstancingBuilder;
 }
 
 const RANDOMINSTANCING_META: TypeMetadata = {

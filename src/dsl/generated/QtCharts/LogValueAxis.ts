@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlColor,
   QmlComponent,
   QmlEnumToken,
@@ -14,6 +15,7 @@ import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface LogValueAxisBuilder {
   id(id: string): LogValueAxisBuilder;
   child(obj: QmlObjectBuilder): LogValueAxisBuilder;
+  children(...objs: QmlObjectBuilder[]): LogValueAxisBuilder;
 
   alignment(value: QmlEnumToken): LogValueAxisBuilder;
   alignmentBind(expr: string): LogValueAxisBuilder;
@@ -57,30 +59,30 @@ export interface LogValueAxisBuilder {
   titleVisibleBind(expr: string): LogValueAxisBuilder;
   visible(value: boolean): LogValueAxisBuilder;
   visibleBind(expr: string): LogValueAxisBuilder;
-  onAlignmentChanged(body: string): LogValueAxisBuilder;
-  onBaseChanged(body: string): LogValueAxisBuilder;
-  onColorChanged(body: string): LogValueAxisBuilder;
-  onGridVisibleChanged(body: string): LogValueAxisBuilder;
-  onLabelDelegateChanged(body: string): LogValueAxisBuilder;
-  onLabelFormatChanged(body: string): LogValueAxisBuilder;
-  onLabelsAngleChanged(body: string): LogValueAxisBuilder;
-  onLabelsVisibleChanged(body: string): LogValueAxisBuilder;
-  onLineVisibleChanged(body: string): LogValueAxisBuilder;
-  onMaxChanged(body: string): LogValueAxisBuilder;
-  onMinChanged(body: string): LogValueAxisBuilder;
-  onMinorTickCountChanged(body: string): LogValueAxisBuilder;
-  onObjectNameChanged(body: string): LogValueAxisBuilder;
-  onRangeChanged(body: string): LogValueAxisBuilder;
-  onSubColorChanged(body: string): LogValueAxisBuilder;
-  onSubGridVisibleChanged(body: string): LogValueAxisBuilder;
-  onTextElideModeChanged(body: string): LogValueAxisBuilder;
-  onTickCountChanged(body: string): LogValueAxisBuilder;
-  onTitleColorChanged(body: string): LogValueAxisBuilder;
-  onTitleFontChanged(body: string): LogValueAxisBuilder;
-  onTitleTextChanged(body: string): LogValueAxisBuilder;
-  onTitleVisibleChanged(body: string): LogValueAxisBuilder;
-  onUpdate(body: string): LogValueAxisBuilder;
-  onVisibleChanged(body: string): LogValueAxisBuilder;
+  onAlignmentChanged(handler: DslSignalHandlerValue): LogValueAxisBuilder;
+  onBaseChanged(handler: DslSignalHandlerValue): LogValueAxisBuilder;
+  onColorChanged(handler: DslSignalHandlerValue): LogValueAxisBuilder;
+  onGridVisibleChanged(handler: DslSignalHandlerValue): LogValueAxisBuilder;
+  onLabelDelegateChanged(handler: DslSignalHandlerValue): LogValueAxisBuilder;
+  onLabelFormatChanged(handler: DslSignalHandlerValue): LogValueAxisBuilder;
+  onLabelsAngleChanged(handler: DslSignalHandlerValue): LogValueAxisBuilder;
+  onLabelsVisibleChanged(handler: DslSignalHandlerValue): LogValueAxisBuilder;
+  onLineVisibleChanged(handler: DslSignalHandlerValue): LogValueAxisBuilder;
+  onMaxChanged(handler: DslSignalHandlerValue): LogValueAxisBuilder;
+  onMinChanged(handler: DslSignalHandlerValue): LogValueAxisBuilder;
+  onMinorTickCountChanged(handler: DslSignalHandlerValue): LogValueAxisBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): LogValueAxisBuilder;
+  onRangeChanged(handler: DslSignalHandlerValue): LogValueAxisBuilder;
+  onSubColorChanged(handler: DslSignalHandlerValue): LogValueAxisBuilder;
+  onSubGridVisibleChanged(handler: DslSignalHandlerValue): LogValueAxisBuilder;
+  onTextElideModeChanged(handler: DslSignalHandlerValue): LogValueAxisBuilder;
+  onTickCountChanged(handler: DslSignalHandlerValue): LogValueAxisBuilder;
+  onTitleColorChanged(handler: DslSignalHandlerValue): LogValueAxisBuilder;
+  onTitleFontChanged(handler: DslSignalHandlerValue): LogValueAxisBuilder;
+  onTitleTextChanged(handler: DslSignalHandlerValue): LogValueAxisBuilder;
+  onTitleVisibleChanged(handler: DslSignalHandlerValue): LogValueAxisBuilder;
+  onUpdate(handler: DslSignalHandlerValue): LogValueAxisBuilder;
+  onVisibleChanged(handler: DslSignalHandlerValue): LogValueAxisBuilder;
 }
 
 const LOGVALUEAXIS_META: TypeMetadata = {

@@ -2,11 +2,17 @@
 // Type: StencilTest
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 export interface StencilTestBuilder {
   id(id: string): StencilTestBuilder;
   child(obj: QmlObjectBuilder): StencilTestBuilder;
+  children(...objs: QmlObjectBuilder[]): StencilTestBuilder;
 
   enabled(value: boolean): StencilTestBuilder;
   enabledBind(expr: string): StencilTestBuilder;
@@ -14,10 +20,10 @@ export interface StencilTestBuilder {
   objectNameBind(expr: string): StencilTestBuilder;
   parent(value: QmlValue): StencilTestBuilder;
   parentBind(expr: string): StencilTestBuilder;
-  onEnabledChanged(body: string): StencilTestBuilder;
-  onNodeDestroyed(body: string): StencilTestBuilder;
-  onObjectNameChanged(body: string): StencilTestBuilder;
-  onParentChanged(body: string): StencilTestBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): StencilTestBuilder;
+  onNodeDestroyed(handler: DslSignalHandlerValue): StencilTestBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): StencilTestBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): StencilTestBuilder;
 }
 
 const STENCILTEST_META: TypeMetadata = {

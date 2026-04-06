@@ -2,12 +2,18 @@
 // Type: SsgiEnvEffect
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 import type { SceneEnvironmentBuilder } from '../QtQuick3D/SceneEnvironment.js';
 export interface SsgiEnvEffectBuilder {
   id(id: string): SsgiEnvEffectBuilder;
   child(obj: QmlObjectBuilder): SsgiEnvEffectBuilder;
+  children(...objs: QmlObjectBuilder[]): SsgiEnvEffectBuilder;
 
   enabled(value: boolean): SsgiEnvEffectBuilder;
   enabledBind(expr: string): SsgiEnvEffectBuilder;
@@ -19,12 +25,12 @@ export interface SsgiEnvEffectBuilder {
   parentBind(expr: string): SsgiEnvEffectBuilder;
   state(value: string): SsgiEnvEffectBuilder;
   stateBind(expr: string): SsgiEnvEffectBuilder;
-  onChildrenChanged(body: string): SsgiEnvEffectBuilder;
-  onEnabledChanged(body: string): SsgiEnvEffectBuilder;
-  onEnvironmentChanged(body: string): SsgiEnvEffectBuilder;
-  onObjectNameChanged(body: string): SsgiEnvEffectBuilder;
-  onParentChanged(body: string): SsgiEnvEffectBuilder;
-  onStateChanged(body: string): SsgiEnvEffectBuilder;
+  onChildrenChanged(handler: DslSignalHandlerValue): SsgiEnvEffectBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): SsgiEnvEffectBuilder;
+  onEnvironmentChanged(handler: DslSignalHandlerValue): SsgiEnvEffectBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): SsgiEnvEffectBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): SsgiEnvEffectBuilder;
+  onStateChanged(handler: DslSignalHandlerValue): SsgiEnvEffectBuilder;
 }
 
 const SSGIENVEFFECT_META: TypeMetadata = {

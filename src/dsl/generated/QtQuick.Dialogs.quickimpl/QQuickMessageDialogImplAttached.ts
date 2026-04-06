@@ -2,6 +2,7 @@
 // Type: Attached type: MessageDialogImpl
 // Generated from Qt 6.11.0
 
+import type { DslSignalHandlerValue } from '../../runtime/index.js';
 import type { ButtonBuilder } from '../QtQuick.Templates/Button.js';
 import type { DialogButtonBoxBuilder } from '../QtQuick.Templates/DialogButtonBox.js';
 export interface MessageDialogImplAttachedBuilder {
@@ -11,7 +12,7 @@ export interface MessageDialogImplAttachedBuilder {
   detailedTextButtonBind(expr: string): MessageDialogImplAttachedBuilder;
   objectName(value: string): MessageDialogImplAttachedBuilder;
   objectNameBind(expr: string): MessageDialogImplAttachedBuilder;
-  onButtonBoxChanged(body: string): MessageDialogImplAttachedBuilder;
-  onDetailedTextButtonChanged(body: string): MessageDialogImplAttachedBuilder;
-  onObjectNameChanged(body: string): MessageDialogImplAttachedBuilder;
+  onButtonBoxChanged(handler: DslSignalHandlerValue): MessageDialogImplAttachedBuilder;
+  onDetailedTextButtonChanged(handler: DslSignalHandlerValue): MessageDialogImplAttachedBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): MessageDialogImplAttachedBuilder;
 }

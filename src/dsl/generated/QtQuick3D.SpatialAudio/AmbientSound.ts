@@ -2,11 +2,17 @@
 // Type: AmbientSound
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlUrl, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlObjectBuilder,
+  QmlUrl,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface AmbientSoundBuilder {
   id(id: string): AmbientSoundBuilder;
   child(obj: QmlObjectBuilder): AmbientSoundBuilder;
+  children(...objs: QmlObjectBuilder[]): AmbientSoundBuilder;
 
   autoPlay(value: boolean): AmbientSoundBuilder;
   autoPlayBind(expr: string): AmbientSoundBuilder;
@@ -18,11 +24,11 @@ export interface AmbientSoundBuilder {
   sourceBind(expr: string): AmbientSoundBuilder;
   volume(value: number): AmbientSoundBuilder;
   volumeBind(expr: string): AmbientSoundBuilder;
-  onAutoPlayChanged(body: string): AmbientSoundBuilder;
-  onLoopsChanged(body: string): AmbientSoundBuilder;
-  onObjectNameChanged(body: string): AmbientSoundBuilder;
-  onSourceChanged(body: string): AmbientSoundBuilder;
-  onVolumeChanged(body: string): AmbientSoundBuilder;
+  onAutoPlayChanged(handler: DslSignalHandlerValue): AmbientSoundBuilder;
+  onLoopsChanged(handler: DslSignalHandlerValue): AmbientSoundBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): AmbientSoundBuilder;
+  onSourceChanged(handler: DslSignalHandlerValue): AmbientSoundBuilder;
+  onVolumeChanged(handler: DslSignalHandlerValue): AmbientSoundBuilder;
 }
 
 const AMBIENTSOUND_META: TypeMetadata = {

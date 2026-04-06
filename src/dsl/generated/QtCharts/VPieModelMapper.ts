@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlEnumToken,
   QmlObjectBuilder,
   QmlValue,
@@ -13,6 +14,7 @@ import type { PieSeriesBuilder } from '../QtGraphs/PieSeries.js';
 export interface VPieModelMapperBuilder {
   id(id: string): VPieModelMapperBuilder;
   child(obj: QmlObjectBuilder): VPieModelMapperBuilder;
+  children(...objs: QmlObjectBuilder[]): VPieModelMapperBuilder;
 
   count(value: number): VPieModelMapperBuilder;
   countBind(expr: string): VPieModelMapperBuilder;
@@ -38,20 +40,20 @@ export interface VPieModelMapperBuilder {
   valuesColumnBind(expr: string): VPieModelMapperBuilder;
   valuesSection(value: number): VPieModelMapperBuilder;
   valuesSectionBind(expr: string): VPieModelMapperBuilder;
-  onCountChanged(body: string): VPieModelMapperBuilder;
-  onFirstChanged(body: string): VPieModelMapperBuilder;
-  onFirstRowChanged(body: string): VPieModelMapperBuilder;
-  onLabelsColumnChanged(body: string): VPieModelMapperBuilder;
-  onLabelsSectionChanged(body: string): VPieModelMapperBuilder;
-  onModelChanged(body: string): VPieModelMapperBuilder;
-  onModelReplaced(body: string): VPieModelMapperBuilder;
-  onObjectNameChanged(body: string): VPieModelMapperBuilder;
-  onOrientationChanged(body: string): VPieModelMapperBuilder;
-  onRowCountChanged(body: string): VPieModelMapperBuilder;
-  onSeriesChanged(body: string): VPieModelMapperBuilder;
-  onSeriesReplaced(body: string): VPieModelMapperBuilder;
-  onValuesColumnChanged(body: string): VPieModelMapperBuilder;
-  onValuesSectionChanged(body: string): VPieModelMapperBuilder;
+  onCountChanged(handler: DslSignalHandlerValue): VPieModelMapperBuilder;
+  onFirstChanged(handler: DslSignalHandlerValue): VPieModelMapperBuilder;
+  onFirstRowChanged(handler: DslSignalHandlerValue): VPieModelMapperBuilder;
+  onLabelsColumnChanged(handler: DslSignalHandlerValue): VPieModelMapperBuilder;
+  onLabelsSectionChanged(handler: DslSignalHandlerValue): VPieModelMapperBuilder;
+  onModelChanged(handler: DslSignalHandlerValue): VPieModelMapperBuilder;
+  onModelReplaced(handler: DslSignalHandlerValue): VPieModelMapperBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): VPieModelMapperBuilder;
+  onOrientationChanged(handler: DslSignalHandlerValue): VPieModelMapperBuilder;
+  onRowCountChanged(handler: DslSignalHandlerValue): VPieModelMapperBuilder;
+  onSeriesChanged(handler: DslSignalHandlerValue): VPieModelMapperBuilder;
+  onSeriesReplaced(handler: DslSignalHandlerValue): VPieModelMapperBuilder;
+  onValuesColumnChanged(handler: DslSignalHandlerValue): VPieModelMapperBuilder;
+  onValuesSectionChanged(handler: DslSignalHandlerValue): VPieModelMapperBuilder;
 }
 
 const VPIEMODELMAPPER_META: TypeMetadata = {

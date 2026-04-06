@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlEnumToken,
   QmlObjectBuilder,
   QmlValue,
@@ -12,6 +13,7 @@ import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface DepthTestBuilder {
   id(id: string): DepthTestBuilder;
   child(obj: QmlObjectBuilder): DepthTestBuilder;
+  children(...objs: QmlObjectBuilder[]): DepthTestBuilder;
 
   depthFunction(value: QmlEnumToken): DepthTestBuilder;
   depthFunctionBind(expr: string): DepthTestBuilder;
@@ -21,11 +23,11 @@ export interface DepthTestBuilder {
   objectNameBind(expr: string): DepthTestBuilder;
   parent(value: QmlValue): DepthTestBuilder;
   parentBind(expr: string): DepthTestBuilder;
-  onDepthFunctionChanged(body: string): DepthTestBuilder;
-  onEnabledChanged(body: string): DepthTestBuilder;
-  onNodeDestroyed(body: string): DepthTestBuilder;
-  onObjectNameChanged(body: string): DepthTestBuilder;
-  onParentChanged(body: string): DepthTestBuilder;
+  onDepthFunctionChanged(handler: DslSignalHandlerValue): DepthTestBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): DepthTestBuilder;
+  onNodeDestroyed(handler: DslSignalHandlerValue): DepthTestBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): DepthTestBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): DepthTestBuilder;
 }
 
 const DEPTHTEST_META: TypeMetadata = {
