@@ -279,4 +279,44 @@ describe("TsAnalyzer", () => {
 			expect(result.filePath).toContain("simple-view.ts");
 		});
 	});
+
+	describe("analyzeProject", () => {
+		test("AN-08: multi-file project — cross-file aggregation", () => {
+			const analyzer = createTsAnalyzer();
+			const tsconfigPath = join(
+				import.meta.dir,
+				"fixtures/project/tsconfig.json",
+			);
+			const result = analyzer.analyzeProject(tsconfigPath);
+			expect(result.files.length).toBeGreaterThanOrEqual(2);
+			expect(result.allViewModels.length).toBeGreaterThanOrEqual(1);
+			expect(result.allViews.length).toBeGreaterThanOrEqual(1);
+
+			const vmNames = result.allViewModels.map((vm) => vm.className);
+			expect(vmNames).toContain("CounterViewModel");
+
+			const viewNames = result.allViews.map((v) => v.functionName);
+			expect(viewNames).toContain("CounterView");
+		});
+
+		test("AN-19: analyzeProject skips .d.ts files", () => {
+			const analyzer = createTsAnalyzer();
+			const tsconfigPath = join(
+				import.meta.dir,
+				"fixtures/project/tsconfig.json",
+			);
+			const result = analyzer.analyzeProject(tsconfigPath);
+			const filePaths = result.files.map((f) => f.filePath);
+			const dtsFiles = filePaths.filter((p) => p.endsWith(".d.ts"));
+			expect(dtsFiles).toHaveLength(0);
+		});
+
+		test("AN-21: invalid tsconfig — QMLTS-G001 diagnostic", () => {
+			const analyzer = createTsAnalyzer();
+			const result = analyzer.analyzeProject("/nonexistent/tsconfig.json");
+			expect(result.diagnostics.length).toBeGreaterThan(0);
+			expect(result.diagnostics[0]!.code).toBe("QMLTS-G001");
+			expect(result.diagnostics[0]!.severity).toBe("error");
+		});
+	});
 });

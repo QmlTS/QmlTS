@@ -1,7 +1,10 @@
 import { Project } from "ts-morph";
+import type { Diagnostic } from "../diagnostics.js";
 import type {
 	DiscoveredProject,
 	DiscoveredSourceFile,
+	DiscoveredView,
+	DiscoveredViewModel,
 	TsAnalyzer,
 } from "./analyzer-types.js";
 import { analyzeDiagnostics } from "./analyze-diagnostics.js";
@@ -53,8 +56,50 @@ class TsAnalyzerImpl implements TsAnalyzer {
 		return this.analyzeSourceFile(sf);
 	}
 
-	analyzeProject(_tsconfigPath: string): DiscoveredProject {
-		throw new Error("Not yet implemented");
+	analyzeProject(tsconfigPath: string): DiscoveredProject {
+		let projectForAnalysis: Project;
+		try {
+			projectForAnalysis = new Project({
+				tsConfigFilePath: tsconfigPath,
+			});
+		} catch (err) {
+			return {
+				files: [],
+				allViewModels: [],
+				allViews: [],
+				diagnostics: [
+					{
+						severity: "error",
+						code: "QMLTS-G001",
+						message: `Failed to load tsconfig: ${err instanceof Error ? err.message : String(err)}`,
+						file: tsconfigPath,
+					},
+				],
+			};
+		}
+
+		const allFiles: DiscoveredSourceFile[] = [];
+		const allViewModels: DiscoveredViewModel[] = [];
+		const allViews: DiscoveredView[] = [];
+		const allDiagnostics: Diagnostic[] = [];
+
+		for (const sf of projectForAnalysis.getSourceFiles()) {
+			if (sf.isDeclarationFile()) continue;
+			if (sf.isInNodeModules()) continue;
+
+			const analyzed = this.analyzeSourceFile(sf);
+			allFiles.push(analyzed);
+			allViewModels.push(...analyzed.viewModels);
+			allViews.push(...analyzed.views);
+			allDiagnostics.push(...analyzed.diagnostics);
+		}
+
+		return {
+			files: allFiles,
+			allViewModels,
+			allViews,
+			diagnostics: allDiagnostics,
+		};
 	}
 
 	private analyzeSourceFile(
