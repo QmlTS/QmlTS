@@ -943,19 +943,73 @@ describe('Acceptance: Extended Module Coverage', () => {
     });
   });
 
-  describe('ACC-52: Command-ref handlers typecheck but fail at runtime', () => {
-    test('named function reference throws TypeError at runtime', () => {
+  describe('ACC-52: Command-ref handlers produce expression AST nodes', () => {
+    test('named function reference produces expression handler', () => {
       function handleLogin() {
         /* command impl */
       }
       const btn = Button();
-      expect(() => btn.onClicked(handleLogin)).toThrow(TypeError);
+      btn.onClicked(handleLogin);
+      const ast = btn.build();
+      const handler = ast.members.find((m) => m.kind === 'SignalHandler' && m.name === 'onClicked');
+      expect(handler).toBeDefined();
+      if (handler && handler.kind === 'SignalHandler') {
+        expect(handler.body.form).toBe('expression');
+        if (handler.body.form === 'expression') {
+          expect(handler.body.code).toBe('handleLogin');
+        }
+      }
     });
 
-    test('error message is clear about compiler requirement', () => {
-      function doSomething() {}
+    test('vm.login form produces expression handler with method name', () => {
+      const vm = {
+        login() {
+          /* command */
+        },
+      };
       const btn = Button();
-      expect(() => btn.onClicked(doSomething)).toThrow(/compiler processing/);
+      btn.onClicked(vm.login);
+      const ast = btn.build();
+      const handler = ast.members.find((m) => m.kind === 'SignalHandler' && m.name === 'onClicked');
+      expect(handler).toBeDefined();
+      if (handler && handler.kind === 'SignalHandler') {
+        expect(handler.body.form).toBe('expression');
+        if (handler.body.form === 'expression') {
+          expect(handler.body.code).toBe('login');
+        }
+      }
+    });
+
+    test('command-ref coexists with string and arrow handlers on same builder', () => {
+      const vm = { save() {} };
+      const ast = MouseArea()
+        .onClicked(vm.save)
+        .onPressed((mouse: any) => {
+          mouse.accepted = true;
+        })
+        .onReleased('console.log("released")')
+        .build();
+
+      const handlers = ast.members.filter((m) => m.kind === 'SignalHandler');
+      expect(handlers.length).toBe(3);
+
+      const clicked = handlers.find((h) => h.kind === 'SignalHandler' && h.name === 'onClicked');
+      const pressed = handlers.find((h) => h.kind === 'SignalHandler' && h.name === 'onPressed');
+      const released = handlers.find((h) => h.kind === 'SignalHandler' && h.name === 'onReleased');
+
+      expect(clicked).toBeDefined();
+      expect(pressed).toBeDefined();
+      expect(released).toBeDefined();
+
+      if (clicked && clicked.kind === 'SignalHandler') {
+        expect(clicked.body.form).toBe('expression');
+      }
+      if (pressed && pressed.kind === 'SignalHandler') {
+        expect(pressed.body.form).toBe('arrow');
+      }
+      if (released && released.kind === 'SignalHandler') {
+        expect(released.body.form).toBe('block');
+      }
     });
   });
 });

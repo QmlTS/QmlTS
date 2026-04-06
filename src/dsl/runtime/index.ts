@@ -1,6 +1,7 @@
 export type {
   BuilderEntry,
   DslPropertyValue,
+  DslSignalHandlerFn,
   DslSignalHandlerValue,
   QmlObjectBuilder,
 } from './builder-base.js';

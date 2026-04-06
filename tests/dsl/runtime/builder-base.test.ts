@@ -247,18 +247,53 @@ describe('DslBuilderImpl', () => {
     }
   });
 
-  test('BB-22: handleSignal with named function throws TypeError', () => {
+  test('BB-22: handleSignal with named function creates expression handler', () => {
     const b = new DslBuilderImpl('MouseArea');
     function myHandler() {
       console.log('handler');
     }
-    expect(() => b.handleSignal('onClicked', myHandler)).toThrow(TypeError);
+    b.handleSignal('onClicked', myHandler);
+    const node = b.build();
+    const handler = node.members.find((m) => m.kind === 'SignalHandler');
+    expect(handler).toBeDefined();
+    if (handler && handler.kind === 'SignalHandler') {
+      expect(handler.body.form).toBe('expression');
+      if (handler.body.form === 'expression') {
+        expect(handler.body.code).toBe('myHandler');
+      }
+    }
   });
 
-  test('BB-23: handleSignal command-ref error mentions compiler', () => {
+  test('BB-23: handleSignal with method reference stores function name', () => {
     const b = new DslBuilderImpl('Button');
-    function login() {}
-    expect(() => b.handleSignal('onClicked', login)).toThrow(/compiler processing/);
+    const vm = {
+      login() {
+        /* command */
+      },
+    };
+    b.handleSignal('onClicked', vm.login);
+    const node = b.build();
+    const handler = node.members.find((m) => m.kind === 'SignalHandler');
+    expect(handler).toBeDefined();
+    if (handler && handler.kind === 'SignalHandler') {
+      expect(handler.body.form).toBe('expression');
+      if (handler.body.form === 'expression') {
+        expect(handler.body.code).toBe('login');
+      }
+    }
+  });
+
+  test('BB-24: handleSignal with bound method throws TypeError', () => {
+    const b = new DslBuilderImpl('Button');
+    const vm = {
+      submit() {
+        /* command */
+      },
+    };
+    expect(() => b.handleSignal('onClicked', vm.submit.bind(vm))).toThrow(TypeError);
+    expect(() => b.handleSignal('onClicked', vm.submit.bind(vm))).toThrow(
+      /Bound methods are not supported/,
+    );
   });
 });
 

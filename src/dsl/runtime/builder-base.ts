@@ -24,12 +24,22 @@ export interface QmlObjectBuilder {
 export type DslPropertyValue = number | string | boolean | null | QmlEnumToken;
 
 /**
+ * A callable signal handler — arrow function for inline handlers,
+ * or function/method reference for compiler-resolved command references.
+ * Uses bivariant callback pattern so inline arrow handlers retain
+ * contextual typing while command-reference functions are also accepted.
+ */
+export type DslSignalHandlerFn = {
+  bivarianceHack(...args: unknown[]): unknown;
+}['bivarianceHack'];
+
+/**
  * Value accepted by signal handler methods (onXxx).
  * - `string`: block handler body — emitted as `onXxx: { code }`
  * - Arrow function: parsed at runtime — emitted as `onXxx: (params) => body`
- * - Named/bound function: command reference — typechecks but requires compiler resolution
+ * - Function/method reference: command reference — stored as expression, resolved by compiler
  */
-export type DslSignalHandlerValue = string | ((...args: any[]) => any);
+export type DslSignalHandlerValue = string | DslSignalHandlerFn;
 
 /** A single property entry for grouped/attached callbacks */
 export interface BuilderEntry {
@@ -168,7 +178,7 @@ function toSignalHandlerBody(handler: DslSignalHandlerValue): SignalHandlerBody 
   }
 
   if (typeof handler === 'function') {
-    const parsed = parseArrowFunction(handler);
+    const parsed = parseArrowFunction(handler as (...args: unknown[]) => unknown);
     if (parsed) {
       return {
         form: 'arrow',
@@ -177,10 +187,16 @@ function toSignalHandlerBody(handler: DslSignalHandlerValue): SignalHandlerBody 
         isBlock: parsed.isBlock,
       };
     }
-    throw new TypeError(
-      'Function command references require compiler processing. ' +
-        'Use a string body or inline arrow function for runtime usage.',
-    );
+    // Reject bound methods — they are not a supported command-reference form
+    const fnName = (handler as { name: string }).name;
+    if (fnName.startsWith('bound ')) {
+      throw new TypeError(
+        `Bound methods are not supported as signal handlers. ` +
+          `Use the unbound form: onXxx(vm.methodName)`,
+      );
+    }
+    // Command reference — store function name as expression for compiler resolution
+    return { form: 'expression', code: fnName || 'commandRef' };
   }
 
   throw new TypeError(`Invalid signal handler value: ${typeof handler}`);
@@ -190,7 +206,7 @@ function toSignalHandlerBody(handler: DslSignalHandlerValue): SignalHandlerBody 
  * Parse a JavaScript arrow function's toString() into its components.
  * Returns null if the function is not an arrow function (e.g., bound method, named function).
  */
-export function parseArrowFunction(fn: (...args: any[]) => any): {
+export function parseArrowFunction(fn: (...args: unknown[]) => unknown): {
   params: string[];
   body: string;
   isBlock: boolean;
