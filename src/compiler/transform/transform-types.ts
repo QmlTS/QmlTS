@@ -176,6 +176,8 @@ export interface EffectListenerInfo {
   readonly signalName: string;
   readonly effectName: string;
   readonly objectTypeName: string;
+  readonly handlerCode?: string;
+  readonly handlerParameters?: readonly string[];
 }
 
 // ─── Transformer Interface ──────────────────────────────────────────────
