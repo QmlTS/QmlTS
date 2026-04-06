@@ -1,4 +1,4 @@
-import { Project } from 'ts-morph';
+import { Project, ts } from 'ts-morph';
 import type { Diagnostic } from '../diagnostics.js';
 import { analyzeDiagnostics } from './analyze-diagnostics.js';
 import type {
@@ -25,8 +25,8 @@ class TsAnalyzerImpl implements TsAnalyzer {
         ? undefined
         : {
             strict: true,
-            target: 99 /* ESNext */,
-            module: 99 /* ESNext */,
+            target: ts.ScriptTarget.ESNext,
+            module: ts.ModuleKind.ESNext,
           },
     });
   }

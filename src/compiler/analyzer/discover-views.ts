@@ -103,28 +103,44 @@ function buildDslFactoryNameSet(dslImports: readonly DiscoveredImport[]): Set<st
 }
 
 function returnsQmlDslChain(func: FunctionLike, dslFactoryNames: ReadonlySet<string>): boolean {
-  const returnExpr = getReturnExpression(func);
-  if (!returnExpr) return false;
-  return isDslCallChain(returnExpr, dslFactoryNames);
+  return getReturnExpressions(func).some((returnExpr) =>
+    isDslCallChain(returnExpr, dslFactoryNames),
+  );
 }
 
-function getReturnExpression(func: FunctionLike): Expression | undefined {
+function getReturnExpressions(func: FunctionLike): Expression[] {
   if (Node.isArrowFunction(func)) {
     const body = func.getBody();
     if (!Node.isBlock(body)) {
-      return body as Expression;
+      return [body as Expression];
     }
   }
 
-  const body = Node.isArrowFunction(func) ? func.getBody() : func.getBody();
-  if (body && Node.isBlock(body)) {
-    for (const stmt of body.getStatements()) {
-      if (Node.isReturnStatement(stmt)) {
-        return stmt.getExpression();
+  const body = func.getBody();
+  if (!body || !Node.isBlock(body)) {
+    return [];
+  }
+
+  const expressions: Expression[] = [];
+  body.forEachDescendant((node, traversal) => {
+    if (
+      Node.isFunctionDeclaration(node) ||
+      Node.isFunctionExpression(node) ||
+      Node.isArrowFunction(node)
+    ) {
+      traversal.skip();
+      return;
+    }
+
+    if (Node.isReturnStatement(node)) {
+      const expr = node.getExpression();
+      if (expr) {
+        expressions.push(expr);
       }
     }
-  }
-  return undefined;
+  });
+
+  return expressions;
 }
 
 function isDslCallChain(expr: Expression, dslFactoryNames: ReadonlySet<string>): boolean {

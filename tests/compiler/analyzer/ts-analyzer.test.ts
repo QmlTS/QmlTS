@@ -218,6 +218,21 @@ describe('TsAnalyzer', () => {
       `);
       expect(result.views).toHaveLength(0);
     });
+
+    test('nested return statements still discover a valid view', () => {
+      const analyzer = createTsAnalyzer();
+      const result = analyzer.analyzeSource(`
+        import { Rectangle } from '../../dsl/generated/QtQuick/Rectangle.js';
+        export function ConditionalView(flag: boolean) {
+          if (flag) {
+            return Rectangle();
+          }
+          return Rectangle().visible(false);
+        }
+      `);
+      expect(result.views).toHaveLength(1);
+      expect(result.views[0]!.functionName).toBe('ConditionalView');
+    });
   });
 
   describe('diagnostics', () => {
