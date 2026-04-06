@@ -45,8 +45,12 @@ class TsAnalyzerImpl implements TsAnalyzer {
 		}
 	}
 
-	analyzeFile(_filePath: string): DiscoveredSourceFile {
-		throw new Error("Not yet implemented");
+	analyzeFile(filePath: string): DiscoveredSourceFile {
+		let sf = this.project.getSourceFile(filePath);
+		if (!sf) {
+			sf = this.project.addSourceFileAtPath(filePath);
+		}
+		return this.analyzeSourceFile(sf);
 	}
 
 	analyzeProject(_tsconfigPath: string): DiscoveredProject {

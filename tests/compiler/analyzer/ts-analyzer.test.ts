@@ -237,4 +237,46 @@ describe("TsAnalyzer", () => {
 			expect(result.diagnostics[0]!.code).toBe("QMLTS-A011");
 		});
 	});
+
+	describe("analyzeSource integration", () => {
+		test("AN-18: empty source file — all arrays empty, no diagnostics", () => {
+			const analyzer = createTsAnalyzer();
+			const result = analyzer.analyzeSource("");
+			expect(result.viewModels).toHaveLength(0);
+			expect(result.views).toHaveLength(0);
+			expect(result.imports).toHaveLength(0);
+			expect(result.diagnostics).toHaveLength(0);
+		});
+
+		test("AN-20: repeated analyzeSource calls are isolated", () => {
+			const analyzer = createTsAnalyzer();
+
+			const r1 = analyzer.analyzeSource(`
+        import { Rectangle } from '../../dsl/generated/QtQuick/Rectangle.js';
+        export function V1() { return Rectangle(); }
+      `);
+			const r2 = analyzer.analyzeSource(`
+        import { Text } from '../../dsl/generated/QtQuick/Text.js';
+        export function V2() { return Text(); }
+      `);
+
+			expect(r1.views).toHaveLength(1);
+			expect(r1.views[0]!.functionName).toBe("V1");
+			expect(r2.views).toHaveLength(1);
+			expect(r2.views[0]!.functionName).toBe("V2");
+
+			// Virtual file paths do not collide
+			expect(r1.filePath).not.toBe(r2.filePath);
+		});
+	});
+
+	describe("analyzeFile", () => {
+		test("analyzeFile reads a real file", () => {
+			const analyzer = createTsAnalyzer();
+			const result = analyzer.analyzeFile(
+				join(import.meta.dir, "fixtures/simple-view.ts"),
+			);
+			expect(result.filePath).toContain("simple-view.ts");
+		});
+	});
 });
