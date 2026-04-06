@@ -115,17 +115,18 @@ Deep-clone the input `TransformResult.document` to avoid mutating the transforme
 **Action:** Create a single `ObjectDefinitionNode` with `typeName: "Connections"` containing:
 
 - A `BindingNode` with `property: "target"` and `value: ScriptExpression("__qmlts")`.
-- For each `EffectListenerInfo`, create a `SignalHandlerNode`:
+- For each `EffectListenerInfo`, create a `FunctionDeclarationNode`:
   - `name`: the effect's `qmlName` from the corresponding `AnalyzedEffect` in the ViewModel, prefixed with `on` and capitalized (e.g., effect `showError` → handler `onShowError`).
-  - `body`: `{ form: 'block', code: '<effectBody>' }`.
-  - The effect body is looked up from the ViewModel's `AnalyzedEffect`. If the effect has parameters, the handler signature includes them: `function onShowError(msg) { ... }`.
+  - `parameters`: taken from `handlerParameters` or `AnalyzedEffect.parameters[].name`.
+  - `body`: the generated function body text.
+  - The emitted form is `function onShowError(msg) { ... }`.
 
 **Effect body generation:**
 The `EffectListenerInfo` from the transformer contains `signalName`, `effectName`, and optionally `handlerCode` and `handlerParameters`. The PostProcessor:
 1. Looks up the matching `AnalyzedEffect` from the ViewModel by `effectName`.
 2. Determines handler parameter names: uses `handlerParameters` from `EffectListenerInfo` if present, otherwise uses `AnalyzedEffect.parameters[].name`.
 3. Determines handler body: uses `handlerCode` from `EffectListenerInfo` if present, otherwise uses an empty body.
-4. Generates a handler function: `function onEffectQmlName(param1, param2) { handlerBody }` — where `onEffectQmlName` is the `qmlName` from `AnalyzedEffect` prefixed with `on` and capitalized.
+4. Generates a function declaration: `function onEffectQmlName(param1, param2) { handlerBody }` — where `onEffectQmlName` is the `qmlName` from `AnalyzedEffect` prefixed with `on` and capitalized.
 
 **Placement:** The Connections object is added as a child of the root `ObjectDefinitionNode`.
 
@@ -161,7 +162,7 @@ The `AttachedBindingNode` structure:
 
 ### Step 5: Duplicate ID Detection
 
-Walk all `ObjectDefinitionNode`s in the document tree (root + all descendants). For each `IdAssignmentNode`, collect the `id` string. If any `id` appears more than once, emit `QMLTS-P001` diagnostic (error severity) for each duplicate occurrence.
+Walk the full AST rooted at the document's `rootObject` and collect all `IdAssignmentNode`s, including ids nested inside object-valued bindings and other AST containers. If any `id` appears more than once, emit a single `QMLTS-P001` diagnostic (error severity) for that duplicated `id`, including the total number of occurrences.
 
 ### Step 6: Validation
 

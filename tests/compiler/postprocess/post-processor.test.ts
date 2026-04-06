@@ -83,6 +83,7 @@ describe('PostProcessor', () => {
 
       expect(findImport(result.document.imports, 'QtQml')).toBeDefined();
       expect(findImport(result.document.imports, 'QtQuick')).toBeDefined();
+      expect(findImport(result.document.imports, 'QtQml')?.version).toBe('6.11');
     });
   });
 
@@ -284,6 +285,7 @@ describe('PostProcessor', () => {
       expect(p004).toHaveLength(1);
       expect(p004[0]!.severity).toBe('warning');
       expect(p004[0]!.message).toContain('nonExistent');
+      expect(p004[0]!.message).toContain('vm.nonExistent');
     });
   });
 
@@ -382,6 +384,21 @@ describe('PostProcessor', () => {
   });
 
   describe('Injection Statistics', () => {
+    it('preserves transformer diagnostics in the postprocess result', () => {
+      const pp = createPostProcessor(importResolver, registry);
+      const tr = createTransformResultBuilder()
+        .withDiagnostics({
+          severity: 'warning',
+          code: 'QMLTS-T006',
+          message: 'Required property missing',
+        })
+        .build();
+
+      const result = pp.process(tr);
+
+      expect(result.diagnostics.some((d) => d.code === 'QMLTS-T006')).toBe(true);
+    });
+
     // PP-09: full statistics
     it('PP-09: returns correct injection statistics', () => {
       const pp = createPostProcessor(importResolver, registry);

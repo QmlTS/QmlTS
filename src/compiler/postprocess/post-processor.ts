@@ -1,3 +1,4 @@
+import { astSerializer, walkAstGeneric } from '../../ast/index.js';
 import type {
   AttachedBindingNode,
   BindingNode,
@@ -26,7 +27,7 @@ export function createPostProcessor(
 ): PostProcessor {
   return {
     process(transformResult: TransformResult, viewModel?: AnalyzedViewModel): PostProcessResult {
-      const diagnostics: Diagnostic[] = [];
+      const diagnostics: Diagnostic[] = [...transformResult.diagnostics];
       const document = deepCloneDocument(transformResult.document);
 
       let connectionsCount = 0;
@@ -92,7 +93,7 @@ export function createPostProcessor(
 // ─── Deep Clone ─────────────────────────────────────────────────────────
 
 function deepCloneDocument(doc: QmlDocument): QmlDocument {
-  return JSON.parse(JSON.stringify(doc)) as QmlDocument;
+  return astSerializer.clone(doc);
 }
 
 // ─── Import Helpers ─────────────────────────────────────────────────────
@@ -105,6 +106,7 @@ function lookupCanonicalImport(
   if (!type) return undefined;
   return {
     moduleUri: type.moduleUri,
+    version: getHighestExportVersion(type),
     injected: true,
   };
 }
@@ -224,14 +226,13 @@ function detectDuplicateIds(root: ObjectDefinitionNode, diagnostics: Diagnostic[
 }
 
 function collectIds(node: ObjectDefinitionNode, ids: Map<string, number>): void {
-  for (const member of node.members) {
-    if (member.kind === 'IdAssignment') {
-      ids.set(member.id, (ids.get(member.id) ?? 0) + 1);
-    }
-    if (member.kind === 'ObjectDefinition') {
-      collectIds(member, ids);
-    }
-  }
+  walkAstGeneric(node, {
+    enter(current) {
+      if (current.kind === 'IdAssignment') {
+        ids.set(current.id, (ids.get(current.id) ?? 0) + 1);
+      }
+    },
+  });
 }
 
 // ─── Command Validation ─────────────────────────────────────────────────
@@ -274,7 +275,7 @@ function validateStateBindings(
         createDiagnostic(
           'warning',
           'QMLTS-P004',
-          `State binding "vm.${binding.vmProperty}" references a property ` +
+          `State binding "${binding.vmName}.${binding.vmProperty}" references a property ` +
             `not found in ViewModel "${vm.className}"`,
         ),
       );
@@ -290,4 +291,36 @@ function createDiagnostic(
   message: string,
 ): Diagnostic {
   return { severity, code, message };
+}
+
+function getHighestExportVersion(type: {
+  moduleUri: string;
+  exports: readonly { module: string; version: string }[];
+}): string | undefined {
+  let highest: string | undefined;
+  for (const entry of type.exports) {
+    if (entry.module !== type.moduleUri) continue;
+    highest = pickHigherVersion(highest, entry.version);
+  }
+  return highest;
+}
+
+function pickHigherVersion(a?: string, b?: string): string | undefined {
+  if (!a) return b;
+  if (!b) return a;
+  return compareVersions(a, b) >= 0 ? a : b;
+}
+
+function compareVersions(a: string, b: string): number {
+  const pa = a.split('.').map(Number);
+  const pb = b.split('.').map(Number);
+  const len = Math.max(pa.length, pb.length);
+
+  for (let i = 0; i < len; i++) {
+    const va = pa[i] ?? 0;
+    const vb = pb[i] ?? 0;
+    if (va !== vb) return va - vb;
+  }
+
+  return 0;
 }
