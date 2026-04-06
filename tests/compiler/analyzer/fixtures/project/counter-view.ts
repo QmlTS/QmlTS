@@ -1,5 +1,5 @@
-import { Rectangle } from "../../../../../src/dsl/generated/QtQuick/Rectangle.js";
+import { Rectangle } from '../../../../../src/dsl/generated/QtQuick/Rectangle.js';
 
 export default function CounterView() {
-	return Rectangle();
+  return Rectangle();
 }

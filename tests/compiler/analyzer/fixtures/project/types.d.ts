@@ -1,3 +1,3 @@
-declare module "external-lib" {
-	export function doSomething(): void;
+declare module 'external-lib' {
+  export function doSomething(): void;
 }

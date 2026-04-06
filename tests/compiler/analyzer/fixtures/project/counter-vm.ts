@@ -1,7 +1,7 @@
 function State() {
-	return (t: any, c: any) => {};
+  return (_t: any, _c: any) => {};
 }
 
 export class CounterViewModel {
-	@State() count = 0;
+  @State() count = 0;
 }
