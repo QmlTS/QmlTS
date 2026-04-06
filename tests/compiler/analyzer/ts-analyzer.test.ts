@@ -109,4 +109,118 @@ describe("TsAnalyzer", () => {
 			expect(result.viewModels).toHaveLength(0);
 		});
 	});
+
+	describe("view discovery", () => {
+		test("AN-02: analyzeSource with View function — views non-empty", () => {
+			const analyzer = createTsAnalyzer();
+			const result = analyzer.analyzeSource(`
+        import { Rectangle } from '../../dsl/generated/QtQuick/Rectangle.js';
+        export default function MyView() {
+          return Rectangle();
+        }
+      `);
+			expect(result.views).toHaveLength(1);
+			expect(result.views[0]!.functionName).toBe("MyView");
+		});
+
+		test("AN-06: default-exported View — exportKind is default", () => {
+			const analyzer = createTsAnalyzer();
+			const result = analyzer.analyzeSource(`
+        import { Rectangle } from '../../dsl/generated/QtQuick/Rectangle.js';
+        export default function MainView() {
+          return Rectangle();
+        }
+      `);
+			expect(result.views).toHaveLength(1);
+			expect(result.views[0]!.exportKind).toBe("default");
+		});
+
+		test("AN-07: named-exported View — exportKind is named", () => {
+			const analyzer = createTsAnalyzer();
+			const result = analyzer.analyzeSource(`
+        import { Rectangle } from '../../dsl/generated/QtQuick/Rectangle.js';
+        export function SidePanel() {
+          return Rectangle();
+        }
+      `);
+			expect(result.views).toHaveLength(1);
+			expect(result.views[0]!.exportKind).toBe("named");
+		});
+
+		test("AN-12: arrow-function View discovered", () => {
+			const analyzer = createTsAnalyzer();
+			const result = analyzer.analyzeSource(`
+        import { Rectangle } from '../../dsl/generated/QtQuick/Rectangle.js';
+        export const CardView = () => Rectangle();
+      `);
+			expect(result.views).toHaveLength(1);
+			expect(result.views[0]!.functionName).toBe("CardView");
+			expect(result.views[0]!.exportKind).toBe("named");
+		});
+
+		test("AN-13: re-exported View discovered", () => {
+			const analyzer = createTsAnalyzer();
+			const result = analyzer.analyzeSource(`
+        import { Rectangle } from '../../dsl/generated/QtQuick/Rectangle.js';
+        const DetailView = () => Rectangle();
+        export default DetailView;
+      `);
+			expect(result.views).toHaveLength(1);
+			expect(result.views[0]!.functionName).toBe("DetailView");
+			expect(result.views[0]!.exportKind).toBe("default");
+		});
+
+		test("AN-14: View with typed vmParam — name and type extracted", () => {
+			const analyzer = createTsAnalyzer();
+			const result = analyzer.analyzeSource(`
+        import { Rectangle } from '../../dsl/generated/QtQuick/Rectangle.js';
+        export default function LoginView(vm: LoginViewModel) {
+          return Rectangle();
+        }
+      `);
+			expect(result.views).toHaveLength(1);
+			expect(result.views[0]!.vmParam).toEqual({
+				name: "vm",
+				type: "LoginViewModel",
+			});
+		});
+
+		test("AN-15: View without vmParam — vmParam is undefined", () => {
+			const analyzer = createTsAnalyzer();
+			const result = analyzer.analyzeSource(`
+        import { Rectangle } from '../../dsl/generated/QtQuick/Rectangle.js';
+        export default function StaticView() {
+          return Rectangle();
+        }
+      `);
+			expect(result.views).toHaveLength(1);
+			expect(result.views[0]!.vmParam).toBeUndefined();
+		});
+
+		test("AN-17: multiple Views in one file", () => {
+			const analyzer = createTsAnalyzer();
+			const result = analyzer.analyzeSource(`
+        import { Rectangle } from '../../dsl/generated/QtQuick/Rectangle.js';
+        import { Text } from '../../dsl/generated/QtQuick/Text.js';
+        export function Header() { return Rectangle(); }
+        export function Footer() { return Text(); }
+      `);
+			expect(result.views).toHaveLength(2);
+			expect(result.views[0]!.functionName).toBe("Header");
+			expect(result.views[1]!.functionName).toBe("Footer");
+		});
+
+		test("AN-22: exported function NOT returning DSL call chain — not a view", () => {
+			const analyzer = createTsAnalyzer();
+			const result = analyzer.analyzeSource(`
+        export function helper() {
+          return 42;
+        }
+        export function formatName(name: string) {
+          return name.toUpperCase();
+        }
+      `);
+			expect(result.views).toHaveLength(0);
+		});
+	});
 });

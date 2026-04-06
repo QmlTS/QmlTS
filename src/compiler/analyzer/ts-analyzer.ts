@@ -6,6 +6,7 @@ import type {
 } from "./analyzer-types.js";
 import { discoverImports } from "./discover-imports.js";
 import { discoverViewModels } from "./discover-viewmodels.js";
+import { discoverViews } from "./discover-views.js";
 
 class TsAnalyzerImpl implements TsAnalyzer {
 	private readonly project: Project;
@@ -56,11 +57,12 @@ class TsAnalyzerImpl implements TsAnalyzer {
 	): DiscoveredSourceFile {
 		const imports = discoverImports(sf);
 		const viewModels = discoverViewModels(sf);
+		const views = discoverViews(sf, imports);
 		return {
 			filePath: sf.getFilePath(),
 			imports,
 			viewModels,
-			views: [],
+			views,
 			diagnostics: [],
 		};
 	}
