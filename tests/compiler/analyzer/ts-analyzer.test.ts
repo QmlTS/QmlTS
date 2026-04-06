@@ -53,4 +53,60 @@ describe("TsAnalyzer", () => {
 			expect(result.imports[0]!.qtModuleUri).toBeUndefined();
 		});
 	});
+
+	describe("viewmodel discovery", () => {
+		test("AN-01: analyzeSource with @State class — viewModels non-empty", () => {
+			const analyzer = createTsAnalyzer();
+			const result = analyzer.analyzeSource(`
+        function State() { return (t: any, c: any) => {}; }
+        export class LoginViewModel {
+          @State() username = '';
+          @State() password = '';
+        }
+      `);
+			expect(result.viewModels).toHaveLength(1);
+			expect(result.viewModels[0]!.className).toBe("LoginViewModel");
+			expect(result.viewModels[0]!.isExported).toBe(true);
+		});
+
+		test("AN-11: non-exported decorated class discovered with isExported=false", () => {
+			const analyzer = createTsAnalyzer();
+			const result = analyzer.analyzeSource(`
+        function State() { return (t: any, c: any) => {}; }
+        class InternalViewModel {
+          @State() value = 0;
+        }
+      `);
+			expect(result.viewModels).toHaveLength(1);
+			expect(result.viewModels[0]!.className).toBe("InternalViewModel");
+			expect(result.viewModels[0]!.isExported).toBe(false);
+		});
+
+		test("AN-16: multiple ViewModels in one file", () => {
+			const analyzer = createTsAnalyzer();
+			const result = analyzer.analyzeSource(`
+        function State() { return (t: any, c: any) => {}; }
+        function Command() { return (t: any, c: any) => {}; }
+        export class FooVM {
+          @State() x = 0;
+        }
+        export class BarVM {
+          @Command() run() {}
+        }
+      `);
+			expect(result.viewModels).toHaveLength(2);
+			expect(result.viewModels[0]!.className).toBe("FooVM");
+			expect(result.viewModels[1]!.className).toBe("BarVM");
+		});
+
+		test("AN-23: class without decorators is NOT discovered", () => {
+			const analyzer = createTsAnalyzer();
+			const result = analyzer.analyzeSource(`
+        export class PlainService {
+          doWork() { return 42; }
+        }
+      `);
+			expect(result.viewModels).toHaveLength(0);
+		});
+	});
 });

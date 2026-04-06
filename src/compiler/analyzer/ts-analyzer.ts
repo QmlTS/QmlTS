@@ -5,6 +5,7 @@ import type {
 	TsAnalyzer,
 } from "./analyzer-types.js";
 import { discoverImports } from "./discover-imports.js";
+import { discoverViewModels } from "./discover-viewmodels.js";
 
 class TsAnalyzerImpl implements TsAnalyzer {
 	private readonly project: Project;
@@ -54,10 +55,11 @@ class TsAnalyzerImpl implements TsAnalyzer {
 		sf: import("ts-morph").SourceFile,
 	): DiscoveredSourceFile {
 		const imports = discoverImports(sf);
+		const viewModels = discoverViewModels(sf);
 		return {
 			filePath: sf.getFilePath(),
 			imports,
-			viewModels: [],
+			viewModels,
 			views: [],
 			diagnostics: [],
 		};
