@@ -129,7 +129,7 @@ The `EffectListenerInfo` from the transformer contains `signalName`, `effectName
 
 **Placement:** The Connections object is added as a child of the root `ObjectDefinitionNode`.
 
-**Edge case:** If `effectListeners` is non-empty but `viewModel` is not provided, emit `QMLTS-P002` diagnostic (error) — the PostProcessor cannot resolve effect metadata without the ViewModel.
+**Edge case:** If `effectListeners` is non-empty but `viewModel` is not provided, the PostProcessor skips Connections injection silently. Effects are a ViewModel concept; without a ViewModel, the PostProcessor has no effect metadata to resolve. This is consistent with the "no ViewModel → skip VM-dependent work" rule (see PP-08).
 
 ### Step 4: Lifecycle Hook Injection
 
@@ -165,11 +165,15 @@ Walk all `ObjectDefinitionNode`s in the document tree (root + all descendants). 
 
 ### Step 6: Validation
 
+**No-ViewModel rule:** When `viewModel` is not provided, the PostProcessor skips ALL VM-dependent injection (Connections, lifecycle hooks) and ALL VM-dependent validation (P002, P003, P004). No diagnostics are emitted for the absence of a ViewModel. This is the PP-08 rule.
+
 **P002 — Connections target doesn't exist (error):**
-Emitted when `effectListeners` is non-empty but `viewModel` is not provided. The PostProcessor cannot verify the effect metadata or inject the Connections block correctly.
+Emitted when a Connections block is injected but the target object reference cannot be validated. In Step 6, the target is always `__qmlts` (the injected runtime bridge). P002 fires if the PostProcessor injects a Connections block and determines that the target object is not resolvable in the document scope — for example, if `__qmlts` is referenced but no corresponding runtime bridge object exists in the root's children. In practice, `__qmlts` is a well-known runtime identifier, so P002 is reserved for future validation when the PostProcessor can verify target existence against a scope model.
 
 **P003 — Command invoke parameter mismatch (error):**
-For each `CommandBindingInfo` in `TransformResult.commandBindings`, look up the corresponding `AnalyzedCommand` in the ViewModel by `methodName`. If the command's `options.id` exists but doesn't match the `commandId` in `CommandBindingInfo`, emit P003.
+For each `CommandBindingInfo` in `TransformResult.commandBindings`, look up the corresponding `AnalyzedCommand` in the ViewModel by `methodName`. The transformer generates `__qmlts.invoke(N)` as the handler body, which passes no arguments. If the `AnalyzedCommand` has required parameters (non-optional `AnalyzedCommandParameter` entries), the invoke call cannot satisfy the command's parameter contract — emit P003 (error).
+
+This matches the original Phase 06 meaning of P003: the invoke call's argument list does not match the command's declared parameter signature.
 
 **P004 — Invalid state binding path (warning):**
 For each `StateBindingInfo` in `TransformResult.stateBindings`, look up the ViewModel's `states` by `vmProperty`. If no matching state field exists, emit P004 (warning).
@@ -186,14 +190,16 @@ Count and return `InjectionStatistics`:
 
 All P-series codes are already defined in `src/compiler/diagnostics.ts`.
 
-| Code | Meaning | Severity |
-|---|---|---|
-| `QMLTS-P001` | Duplicate object id | error |
-| `QMLTS-P002` | Connections target doesn't exist (effects present but no ViewModel) | error |
-| `QMLTS-P003` | Command invoke parameter mismatch | error |
-| `QMLTS-P004` | Invalid state binding path | warning |
+| Code | Meaning | Severity | Step 6 Trigger |
+|---|---|---|---|
+| `QMLTS-P001` | Duplicate object id | error | Two or more objects share the same `id` |
+| `QMLTS-P002` | Connections target doesn't exist | error | Reserved — fires when injected Connections target is unresolvable. Not triggered in Step 6 (target is always well-known `__qmlts`). |
+| `QMLTS-P003` | Command invoke parameter mismatch | error | `__qmlts.invoke(N)` passes no arguments but AnalyzedCommand has required parameters |
+| `QMLTS-P004` | Invalid state binding path | warning | `stateBindings[].vmProperty` not found in ViewModel states |
 
 **Non-blocking behavior:** The PostProcessor always produces a `PostProcessResult` with a `document`, even when diagnostics are emitted. Consumers decide whether to halt on errors.
+
+**No-ViewModel behavior:** When no ViewModel is provided, the PostProcessor does not emit P002, P003, or P004. It skips all VM-dependent validation and injection silently.
 
 ## File Structure
 
@@ -219,20 +225,20 @@ tests/compiler/postprocess/
 |---|---|---|
 | PP-01 | Import injection | Document has correct `ImportNode[]` after merging `requiredImports` |
 | PP-02 | Connections injection (effects) | Root object has `Connections { target: __qmlts }` child with effect handler functions |
-| PP-03 | Command invoke injection | Handler body contains `__qmlts.invoke(N)` (already lowered by transformer; PostProcessor validates command ID consistency) |
+| PP-03 | Command invoke validation | Handler body contains `__qmlts.invoke(N)` (already lowered by transformer; PostProcessor validates command parameter consistency) |
 | PP-04 | State binding injection | Binding value is `vm.propName` expression (already lowered by transformer; PostProcessor validates against ViewModel states) |
 | PP-05 | `Component.onCompleted` injection | Root object has `AttachedBindingNode("Component")` with `onCompleted` handler calling `__qmlts.onMounted()` |
 | PP-06 | `Component.onDestruction` injection | Root object has `AttachedBindingNode("Component")` with `onDestruction` handler calling `__qmlts.onUnmounting()` |
 | PP-07 | Duplicate id detection | Two objects with same `id` → `QMLTS-P001` error diagnostic |
-| PP-08 | No ViewModel | No Connections injected, no lifecycle hooks injected, no vm-related diagnostics |
+| PP-08 | No ViewModel | No Connections injected, no lifecycle hooks injected, no VM-related diagnostics, effectListeners silently skipped |
 | PP-09 | Injection statistics | `injected.imports`, `injected.connections`, `injected.bindings`, `injected.lifecycleHandlers` all correct |
 
 ### Additional edge-case tests
 
 | ID | Test | Assertion |
 |---|---|---|
-| PP-10 | P002: effects without ViewModel | `QMLTS-P002` error emitted, no Connections injected |
-| PP-11 | P003: command ID mismatch | `QMLTS-P003` error when `commandBindings[].commandId` doesn't match ViewModel command's `options.id` |
+| PP-10 | No ViewModel with effectListeners | effectListeners silently skipped, no Connections injected, no P002 emitted |
+| PP-11 | P003: command parameter mismatch | `QMLTS-P003` error when command has required parameters but `__qmlts.invoke(N)` passes none |
 | PP-12 | P004: invalid state binding | `QMLTS-P004` warning when `stateBindings[].vmProperty` not found in ViewModel states |
 | PP-13 | Multiple lifecycle hooks | Both `onMounted` and `onUnmounting` → two bindings in same `Component` attached block |
 | PP-14 | Import deduplication | Duplicate `requiredImports` merged into single `ImportNode` |
