@@ -38,3 +38,5 @@ export * from './emitter/index.js';
 export * from './qt-tools/index.js';
 // ─── Re-export everything for advanced / maintainer use ─────
 export * from './registry/index.js';
+// ─── Re-export ViewModel module ─────────────────────────────
+export * from './viewmodel/index.js';
