@@ -211,4 +211,34 @@ describe('Lazy-registration behavior', () => {
     new Plain();
     expect(getViewModelMetadata(Plain)).toBeUndefined();
   });
+
+  test('DEC-20: base metadata still registers after subclass instantiation', () => {
+    class BaseVM {
+      @State() username = '';
+    }
+
+    class DerivedVM extends BaseVM {}
+
+    new DerivedVM();
+    expect(getViewModelMetadata(DerivedVM)?.states.map((s) => s.name)).toEqual(['username']);
+
+    new BaseVM();
+    expect(getViewModelMetadata(BaseVM)?.states.map((s) => s.name)).toEqual(['username']);
+  });
+
+  test('DEC-21: mutating the original options object does not mutate stored metadata', () => {
+    const options = { alias: 'user', readonly: false };
+
+    class VM {
+      @State(options) username = '';
+    }
+
+    new VM();
+    options.alias = 'mutated';
+    options.readonly = true;
+
+    const meta = getViewModelMetadata(VM)!;
+    expect(meta.states[0]!.options.alias).toBe('user');
+    expect(meta.states[0]!.options.readonly).toBe(false);
+  });
 });

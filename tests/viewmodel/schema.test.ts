@@ -1,6 +1,7 @@
 import { describe, expect, test } from 'bun:test';
 import type {
   AnalyzedLifecycle,
+  ViewModelCommandThrottleMode,
   ViewModelLifecycle,
   ViewModelSchema,
   ViewModelSchemaCommand,
@@ -85,7 +86,8 @@ describe('Schema type shapes', () => {
 
   test('SCH-05: ViewModelSchemaCommand includes throttle and throttleMs', () => {
     const cmd: ViewModelSchemaCommand = sampleSchema.commands[0]!;
-    expect(typeof cmd.throttle).toBe('string');
+    const throttleMode: ViewModelCommandThrottleMode = cmd.throttle;
+    expect(typeof throttleMode).toBe('string');
     expect(typeof cmd.throttleMs).toBe('number');
   });
 

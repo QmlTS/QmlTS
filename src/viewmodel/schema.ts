@@ -1,3 +1,5 @@
+export type ViewModelCommandThrottleMode = 'none' | 'debounce' | 'throttle' | 'drop';
+
 export interface SchemaParameter {
   name: string;
   type: string;
@@ -19,7 +21,7 @@ export interface ViewModelSchemaCommand {
   commandId: number;
   parameters: SchemaParameter[];
   async: boolean;
-  throttle: string;
+  throttle: ViewModelCommandThrottleMode;
   throttleMs: number;
 }
 

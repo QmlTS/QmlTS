@@ -19,5 +19,8 @@ export function getViewModelMetadata(
 ): ViewModelMetadata | undefined {
   const ctor =
     typeof classOrInstance === 'function' ? classOrInstance : classOrInstance.constructor;
+  if (typeof ctor !== 'function') {
+    return undefined;
+  }
   return registry.get(ctor);
 }
