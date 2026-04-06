@@ -6,3 +6,5 @@ export type {
   DiagnosticSeverity,
   RelatedDiagnostic,
 } from './diagnostics.js';
+export * from './ids/index.js';
+export * from './viewmodel/index.js';
