@@ -49,6 +49,7 @@ export type DiagnosticCode =
   | 'QMLTS-T008'
   | 'QMLTS-T009'
   | 'QMLTS-T010'
+  | 'QMLTS-T011'
   // PostProcess (P)
   | 'QMLTS-P001'
   | 'QMLTS-P002'
