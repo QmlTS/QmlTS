@@ -223,4 +223,18 @@ describe("TsAnalyzer", () => {
 			expect(result.views).toHaveLength(0);
 		});
 	});
+
+	describe("diagnostics", () => {
+		test("AN-09: source with syntax error — diagnostics non-empty", () => {
+			const analyzer = createTsAnalyzer();
+			const result = analyzer.analyzeSource(`
+        export function broken( {
+          return 42;
+        }
+      `);
+			expect(result.diagnostics.length).toBeGreaterThan(0);
+			expect(result.diagnostics[0]!.severity).toBe("error");
+			expect(result.diagnostics[0]!.code).toBe("QMLTS-A011");
+		});
+	});
 });
