@@ -208,6 +208,20 @@ describe('DslExtractor', () => {
     expect(diagnostics.some((d) => d.code === 'QMLTS-T009')).toBe(true);
   });
 
+  test('extracts exported arrow-function views discovered by Step 3', () => {
+    const { rawTree, diagnostics } = extract(
+      `
+      export const MyView = (vm: any) => Item().text(vm.name);
+    `,
+      'MyView',
+      'vm',
+    );
+    expect(diagnostics).toHaveLength(0);
+    expect(rawTree).toBeDefined();
+    expect(rawTree!.typeName).toBe('Item');
+    expect(rawTree!.bindings[0]!.value.kind).toBe('state-ref');
+  });
+
   // Additional: String handler (expression handler)
   test('string handler produces expression handler', () => {
     const { rawTree } = extract(`

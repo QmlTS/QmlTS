@@ -93,6 +93,7 @@ export function createMockRegistryQuery(): RegistryQueryInterface {
         makeProperty('height', 'real'),
         makeProperty('visible', 'bool'),
         makeProperty('opacity', 'real'),
+        makeProperty('implicitWidth', 'real', { readonly: true }),
         makeProperty('x', 'real'),
         makeProperty('y', 'real'),
         makeProperty('children', 'list<Item>', { readonly: true, list: true }),

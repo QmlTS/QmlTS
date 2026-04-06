@@ -122,6 +122,17 @@ describe('DslClassifier', () => {
     expect(diagnostics.length).toBeGreaterThan(0);
   });
 
+  test('does not misclassify callback as attached binding just because a type name exists', () => {
+    const { classifiedTree, diagnostics } = extractAndClassify(`
+      function MyView() {
+        return Item().item(i => i.width(100));
+      }
+    `);
+    expect(classifiedTree).toBeDefined();
+    expect(classifiedTree!.attachedBindings).toHaveLength(0);
+    expect(diagnostics.some((d) => d.code === 'QMLTS-T002')).toBe(true);
+  });
+
   // analyzeView() integration
   test('analyzeView() orchestrates extract → classify → AnalyzedView', () => {
     const project = createProject();

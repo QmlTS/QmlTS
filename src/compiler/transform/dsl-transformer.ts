@@ -44,7 +44,7 @@ export function createDslTransformer(registry: RegistryQueryInterface): DslTrans
         if (resolved) {
           ctx.requiredImports.push({
             moduleUri: resolved.moduleUri,
-            version: resolved.exports[0]?.version,
+            version: pickHighestExportVersion(resolved.moduleUri, resolved.exports),
             injected: true,
           });
         }
@@ -130,36 +130,39 @@ function lowerNode(node: DslCallNode, ctx: TransformContext): ObjectDefinitionNo
   // Property bindings
   for (const binding of node.bindings) {
     boundProperties.add(binding.property);
-    validateBinding(binding, node, resolved?.qualifiedName, ctx);
-    const bindingNode = lowerBinding(binding, node.typeName, ctx);
-    members.push(bindingNode);
+    if (validateBinding(binding, node, resolved?.qualifiedName, ctx)) {
+      const bindingNode = lowerBinding(binding, node.typeName, ctx);
+      members.push(bindingNode);
+    }
   }
 
   // Expression bindings
   for (const eb of node.expressionBindings) {
     boundProperties.add(eb.property);
-    validateExpressionBinding(eb, node, resolved?.qualifiedName, ctx);
-    const bindingNode = lowerExpressionBinding(eb);
-    members.push(bindingNode);
+    if (validateExpressionBinding(eb, node, resolved?.qualifiedName, ctx)) {
+      const bindingNode = lowerExpressionBinding(eb);
+      members.push(bindingNode);
+    }
   }
 
   // Grouped bindings
   for (const gb of node.groupedBindings) {
-    const groupedNode = lowerGroupedBinding(gb);
+    const groupedNode = lowerGroupedBinding(gb, node.typeName, ctx);
     members.push(groupedNode);
   }
 
   // Attached bindings
   for (const ab of node.attachedBindings) {
-    const attachedNode = lowerAttachedBinding(ab, ctx);
+    const attachedNode = lowerAttachedBinding(ab, node.typeName, ctx);
     members.push(attachedNode);
   }
 
   // Signal handlers
   for (const handler of node.handlers) {
-    validateHandler(handler, node, resolved?.qualifiedName, ctx);
-    const handlerNode = lowerHandler(handler, node.typeName, ctx);
-    members.push(handlerNode);
+    if (validateHandler(handler, node, resolved?.qualifiedName, ctx)) {
+      const handlerNode = lowerHandler(handler, node.typeName, ctx);
+      members.push(handlerNode);
+    }
   }
 
   // Children
@@ -215,11 +218,15 @@ function lowerExpressionBinding(eb: DslExpressionBinding): BindingNode {
   };
 }
 
-function lowerGroupedBinding(gb: DslGroupedBinding): GroupedBindingNode {
+function lowerGroupedBinding(
+  gb: DslGroupedBinding,
+  objectTypeName: string,
+  ctx: TransformContext,
+): GroupedBindingNode {
   const bindings: BindingNode[] = gb.bindings.map((b) => ({
     kind: 'Binding' as const,
     property: b.property,
-    value: lowerLiteralValue(b.value),
+    value: lowerValue(b.value, `${gb.group}.${b.property}`, objectTypeName, ctx),
   }));
 
   // Include expression bindings
@@ -238,11 +245,15 @@ function lowerGroupedBinding(gb: DslGroupedBinding): GroupedBindingNode {
   };
 }
 
-function lowerAttachedBinding(ab: DslAttachedBinding, ctx: TransformContext): AttachedBindingNode {
+function lowerAttachedBinding(
+  ab: DslAttachedBinding,
+  objectTypeName: string,
+  ctx: TransformContext,
+): AttachedBindingNode {
   const bindings: BindingNode[] = ab.bindings.map((b) => ({
     kind: 'Binding' as const,
     property: b.property,
-    value: lowerLiteralValue(b.value),
+    value: lowerValue(b.value, `${ab.typeName}.${b.property}`, objectTypeName, ctx),
   }));
 
   // Include expression bindings
@@ -254,12 +265,9 @@ function lowerAttachedBinding(ab: DslAttachedBinding, ctx: TransformContext): At
     });
   }
 
-  // Attached handlers
+  // Attached handlers are represented as binding-like entries on the attached surface.
   for (const handler of ab.handlers) {
-    // Handlers on attached types can't go in bindings array —
-    // but AttachedBindingNode only has bindings, so we skip for now
-    void handler;
-    void ctx;
+    bindings.push(lowerAttachedHandlerBinding(handler, objectTypeName, ctx));
   }
 
   return {
@@ -361,29 +369,60 @@ function lowerValue(
     case 'array':
       return {
         kind: 'array',
-        items: value.items.map((item) => lowerLiteralValue(item)),
+        items: value.items.map((item) => lowerValue(item, property, objectTypeName, ctx)),
       };
   }
 }
 
-function lowerLiteralValue(value: DslValue): BindingValue {
-  switch (value.kind) {
-    case 'literal':
-      return lowerLiteralDirect(value.value);
-    case 'expression':
-      return { kind: 'expression', code: value.code };
-    case 'state-ref':
-      return { kind: 'expression', code: `${value.vmName}.${value.property}` };
-    case 'enum-ref':
-      return {
-        kind: 'enum',
-        typeName: value.typeName,
-        enumName: value.enumName,
-        valueName: value.valueName,
-      };
-    default:
-      return { kind: 'expression', code: '/* unsupported */' };
+function lowerAttachedHandlerBinding(
+  handler: DslHandler,
+  objectTypeName: string,
+  ctx: TransformContext,
+): BindingNode {
+  if (handler.handlerType === 'command-ref' && handler.commandRef) {
+    let commandId: number | undefined;
+    if (ctx.vm) {
+      const cmd = ctx.vm.commands.find((c) => c.methodName === handler.commandRef!.methodName);
+      commandId = cmd?.options.id;
+    }
+
+    ctx.commandBindings.push({
+      signalName: handler.signalName,
+      vmName: handler.commandRef.vmName,
+      methodName: handler.commandRef.methodName,
+      commandId,
+      objectTypeName,
+    });
   }
+
+  return {
+    kind: 'Binding',
+    property: `on${handler.signalName[0]!.toUpperCase()}${handler.signalName.slice(1)}`,
+    value: lowerAttachedHandlerValue(handler, ctx),
+  };
+}
+
+function lowerAttachedHandlerValue(handler: DslHandler, ctx: TransformContext): BindingValue {
+  if (handler.handlerType === 'command-ref' && handler.commandRef) {
+    let commandId: number | undefined;
+    if (ctx.vm) {
+      const cmd = ctx.vm.commands.find((c) => c.methodName === handler.commandRef!.methodName);
+      commandId = cmd?.options.id;
+    }
+    return {
+      kind: 'expression',
+      code:
+        commandId != null
+          ? `__qmlts.invoke(${commandId})`
+          : `__qmlts.invoke("${handler.commandRef.methodName}")`,
+    };
+  }
+
+  if (handler.handlerType === 'arrow') {
+    return { kind: 'script-block', code: handler.code };
+  }
+
+  return { kind: 'expression', code: handler.code };
 }
 
 function lowerLiteralDirect(value: string | number | boolean | null): BindingValue {
@@ -400,8 +439,8 @@ function validateBinding(
   node: DslCallNode,
   qualifiedName: string | undefined,
   ctx: TransformContext,
-): void {
-  if (!qualifiedName) return;
+): boolean {
+  if (!qualifiedName) return true;
 
   const allProps = ctx.registry.getAllProperties(qualifiedName, true);
   const prop = allProps.find((p) => p.name === binding.property);
@@ -415,7 +454,7 @@ function validateBinding(
       line: binding.sourceLocation?.line,
       column: binding.sourceLocation?.column,
     });
-    return;
+    return false;
   }
 
   // Readonly check
@@ -428,6 +467,7 @@ function validateBinding(
       line: binding.sourceLocation?.line,
       column: binding.sourceLocation?.column,
     });
+    return false;
   }
 
   // Type mismatch check (basic)
@@ -444,6 +484,8 @@ function validateBinding(
       });
     }
   }
+
+  return true;
 }
 
 function validateExpressionBinding(
@@ -451,8 +493,8 @@ function validateExpressionBinding(
   node: DslCallNode,
   qualifiedName: string | undefined,
   ctx: TransformContext,
-): void {
-  if (!qualifiedName) return;
+): boolean {
+  if (!qualifiedName) return true;
 
   const allProps = ctx.registry.getAllProperties(qualifiedName, true);
   const prop = allProps.find((p) => p.name === eb.property);
@@ -466,7 +508,22 @@ function validateExpressionBinding(
       line: eb.sourceLocation?.line,
       column: eb.sourceLocation?.column,
     });
+    return false;
   }
+
+  if (prop.readonly) {
+    ctx.diagnostics.push({
+      severity: 'error',
+      code: 'QMLTS-T005',
+      message: `Cannot bind to readonly property '${eb.property}' on '${node.typeName}'`,
+      file: eb.sourceLocation?.file,
+      line: eb.sourceLocation?.line,
+      column: eb.sourceLocation?.column,
+    });
+    return false;
+  }
+
+  return true;
 }
 
 function validateHandler(
@@ -474,8 +531,8 @@ function validateHandler(
   node: DslCallNode,
   qualifiedName: string | undefined,
   ctx: TransformContext,
-): void {
-  if (!qualifiedName) return;
+): boolean {
+  if (!qualifiedName) return true;
 
   const allSignals = ctx.registry.getAllSignals(qualifiedName, true);
   const signal = allSignals.find((s) => s.name === handler.signalName);
@@ -489,6 +546,7 @@ function validateHandler(
       line: handler.sourceLocation?.line,
       column: handler.sourceLocation?.column,
     });
+    return false;
   }
 
   // Validate command-ref against ViewModel
@@ -503,8 +561,55 @@ function validateHandler(
         line: handler.sourceLocation?.line,
         column: handler.sourceLocation?.column,
       });
+      return false;
     }
   }
+
+  if (handler.handlerType === 'command-ref' && handler.commandRef && !ctx.vm) {
+    ctx.diagnostics.push({
+      severity: 'error',
+      code: 'QMLTS-T011',
+      message: `Unresolvable VM reference: '${handler.commandRef.vmName}.${handler.commandRef.methodName}' without ViewModel metadata`,
+      file: handler.sourceLocation?.file,
+      line: handler.sourceLocation?.line,
+      column: handler.sourceLocation?.column,
+    });
+    return false;
+  }
+
+  return true;
+}
+
+function pickHighestExportVersion(
+  moduleUri: string,
+  exports: readonly { readonly module: string; readonly version?: string }[],
+): string | undefined {
+  let highest: string | undefined;
+  for (const entry of exports) {
+    if (entry.module !== moduleUri) continue;
+    highest = pickHigherVersion(highest, entry.version);
+  }
+  return highest;
+}
+
+function pickHigherVersion(a?: string, b?: string): string | undefined {
+  if (!a) return b;
+  if (!b) return a;
+  return compareVersions(a, b) >= 0 ? a : b;
+}
+
+function compareVersions(a: string, b: string): number {
+  const pa = a.split('.').map(Number);
+  const pb = b.split('.').map(Number);
+  const len = Math.max(pa.length, pb.length);
+
+  for (let i = 0; i < len; i++) {
+    const va = pa[i] ?? 0;
+    const vb = pb[i] ?? 0;
+    if (va !== vb) return va - vb;
+  }
+
+  return 0;
 }
 
 function checkTypeMismatch(

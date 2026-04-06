@@ -3,10 +3,12 @@ import {
   type CallExpression,
   type Expression,
   type FunctionDeclaration,
+  type FunctionExpression,
   Node,
   type PropertyAccessExpression,
   type SourceFile,
   SyntaxKind,
+  type VariableDeclaration,
 } from 'ts-morph';
 import type { Diagnostic } from '../diagnostics.js';
 import type {
@@ -29,7 +31,7 @@ export function extractDsl(
   dslFactoryNames: ReadonlySet<string>,
   vmParamName?: string,
 ): ExtractResult {
-  const fn = sourceFile.getFunction(viewFunctionName);
+  const fn = findViewFunctionLike(sourceFile, viewFunctionName);
   if (!fn) {
     return {
       diagnostics: [
@@ -44,7 +46,7 @@ export function extractDsl(
     };
   }
 
-  const returnExpr = findReturnExpression(fn);
+  const returnExpr = findReturnExpression(fn, dslFactoryNames);
   if (!returnExpr) {
     return {
       diagnostics: [
@@ -53,7 +55,7 @@ export function extractDsl(
           `No return expression found in '${viewFunctionName}'`,
           sourceFile.getFilePath(),
           fn.getStartLineNumber(),
-          1,
+          fn.getStart() - fn.getStartLinePos() + 1,
         ),
       ],
     };
@@ -554,16 +556,107 @@ function tryExtractChildNode(
 
 // ─── Helpers ────────────────────────────────────────────────────────────
 
-function findReturnExpression(fn: FunctionDeclaration): Expression | undefined {
-  const body = fn.getBody();
-  if (!body || !Node.isBlock(body)) return undefined;
+type ViewFunctionLike = FunctionDeclaration | ArrowFunction | FunctionExpression;
 
-  for (const stmt of body.getStatements()) {
-    if (Node.isReturnStatement(stmt)) {
-      return stmt.getExpression();
+function findViewFunctionLike(
+  sourceFile: SourceFile,
+  viewFunctionName: string,
+): ViewFunctionLike | undefined {
+  const directFunction =
+    sourceFile.getFunction(viewFunctionName) ??
+    sourceFile
+      .getFunctions()
+      .find((fn) => viewFunctionName === 'default' && fn.isDefaultExport() && !fn.getName());
+  if (directFunction) {
+    return directFunction;
+  }
+
+  const variableFunction = findFunctionInVariableDeclaration(
+    sourceFile.getVariableDeclaration(viewFunctionName),
+  );
+  if (variableFunction) {
+    return variableFunction;
+  }
+
+  for (const exportAssignment of sourceFile.getExportAssignments()) {
+    if (exportAssignment.isExportEquals()) continue;
+    const expr = exportAssignment.getExpression();
+    if (!Node.isIdentifier(expr)) continue;
+    if (expr.getText() !== viewFunctionName) continue;
+
+    const valueDecl = expr.getSymbol()?.getValueDeclaration();
+    if (Node.isFunctionDeclaration(valueDecl)) {
+      return valueDecl;
+    }
+    if (Node.isVariableDeclaration(valueDecl)) {
+      const fn = findFunctionInVariableDeclaration(valueDecl);
+      if (fn) {
+        return fn;
+      }
     }
   }
+
   return undefined;
+}
+
+function findFunctionInVariableDeclaration(
+  decl: VariableDeclaration | undefined,
+): ViewFunctionLike | undefined {
+  const init = decl?.getInitializer();
+  if (init && (Node.isArrowFunction(init) || Node.isFunctionExpression(init))) {
+    return init;
+  }
+  return undefined;
+}
+
+function findReturnExpression(
+  fn: ViewFunctionLike,
+  dslFactoryNames: ReadonlySet<string>,
+): Expression | undefined {
+  const expressions = collectReturnExpressions(fn);
+  for (const expr of expressions) {
+    const parsed = parseCallChain(expr);
+    if (parsed && dslFactoryNames.has(parsed.rootName)) {
+      return expr;
+    }
+  }
+  return expressions[0];
+}
+
+function collectReturnExpressions(fn: ViewFunctionLike): Expression[] {
+  if (Node.isArrowFunction(fn)) {
+    const body = fn.getBody();
+    if (!Node.isBlock(body)) {
+      return [body as Expression];
+    }
+  }
+
+  const body = fn.getBody();
+  if (!body || !Node.isBlock(body)) {
+    return [];
+  }
+
+  const expressions: Expression[] = [];
+  body.forEachDescendant((node, traversal) => {
+    if (
+      node !== body &&
+      (Node.isFunctionDeclaration(node) ||
+        Node.isFunctionExpression(node) ||
+        Node.isArrowFunction(node))
+    ) {
+      traversal.skip();
+      return;
+    }
+
+    if (Node.isReturnStatement(node)) {
+      const expr = node.getExpression();
+      if (expr) {
+        expressions.push(expr);
+      }
+    }
+  });
+
+  return expressions;
 }
 
 function getSourceLocation(node: Node, filePath: string): SourceLocation {

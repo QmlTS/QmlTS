@@ -3,6 +3,7 @@ import { Project, ScriptTarget } from 'ts-morph';
 import { analyzeView } from '../../../src/compiler/transform/dsl-classifier.js';
 import { createDslTransformer } from '../../../src/compiler/transform/dsl-transformer.js';
 import type { AnalyzedView } from '../../../src/compiler/transform/transform-types.js';
+import type { AnalyzedViewModel } from '../../../src/compiler/viewmodel/extractor-types.js';
 import { createMockRegistryQuery, TEST_DSL_FACTORIES } from './helpers.js';
 
 function createProject(): Project {
@@ -31,6 +32,32 @@ function buildView(code: string, viewName = 'MyView', vmParam?: string): Analyze
 describe('DslTransformer', () => {
   const registry = createMockRegistryQuery();
   const transformer = createDslTransformer(registry);
+  const commandVm: AnalyzedViewModel = {
+    className: 'TestVm',
+    filePath: 'vm.ts',
+    line: 1,
+    isExported: true,
+    states: [],
+    commands: [
+      {
+        methodName: 'handleClick',
+        qmlName: 'handleClick',
+        parameters: [],
+        returnType: 'void',
+        options: { id: 7 },
+        line: 1,
+      },
+    ],
+    effects: [],
+    lifecycle: {
+      hasOnMounted: false,
+      hasOnUnmounting: false,
+      hasOnBeforeHotReload: false,
+      hasOnAfterHotReload: false,
+      hasOnVisibilityChanged: false,
+    },
+    constructorParams: [],
+  };
 
   // DT-15: Nested object value
   test('DT-15: gradient(LinearGradient()) → ObjectValue in AST', () => {
@@ -81,6 +108,11 @@ describe('DslTransformer', () => {
     const result = transformer.transform(view);
     const t002 = result.diagnostics.filter((d) => d.code === 'QMLTS-T002');
     expect(t002.length).toBeGreaterThan(0);
+    expect(
+      result.document.rootObject.members.some(
+        (m) => m.kind === 'Binding' && m.property === 'nonExistentProp',
+      ),
+    ).toBe(false);
   });
 
   // DT-19: Type mismatch (warning)
@@ -97,16 +129,16 @@ describe('DslTransformer', () => {
   // DT-20: Readonly property
   test('DT-20: readonly property binding produces QMLTS-T005 diagnostic', () => {
     const view = buildView(`
-      function MyView() { return Item().children(Rectangle()); }
+      function MyView() { return Item().implicitWidth(100); }
     `);
-    // children is a readonly property on Item but .children() is DSL syntax for child nodes
-    // So this should NOT produce T005. The readonly check applies to direct property bindings.
-    // Let's test with an actual readonly binding scenario if available.
-    // For now, verify children are correctly handled as child nodes.
     const result = transformer.transform(view);
+    const t005 = result.diagnostics.filter((d) => d.code === 'QMLTS-T005');
+    expect(t005.length).toBeGreaterThan(0);
     expect(
-      result.document.rootObject.members.filter((m) => m.kind === 'ObjectDefinition'),
-    ).toHaveLength(1);
+      result.document.rootObject.members.some(
+        (m) => m.kind === 'Binding' && m.property === 'implicitWidth',
+      ),
+    ).toBe(false);
   });
 
   // DT-21: Required property not set
@@ -141,7 +173,7 @@ describe('DslTransformer', () => {
       'MyView',
       'vm',
     );
-    const result = transformer.transform(view);
+    const result = transformer.transform(view, commandVm);
     expect(result.commandBindings).toHaveLength(1);
     expect(result.commandBindings[0]!.methodName).toBe('handleClick');
     expect(result.commandBindings[0]!.signalName).toBe('clicked');
@@ -184,6 +216,19 @@ describe('DslTransformer', () => {
     if (attached[0] && attached[0].kind === 'AttachedBinding') {
       expect(attached[0].attachedTypeName).toBe('Layout');
     }
+  });
+
+  test('readonly expression binding produces QMLTS-T005 and is not emitted', () => {
+    const view = buildView(`
+      function MyView() { return Item().implicitWidthBind("parent.width"); }
+    `);
+    const result = transformer.transform(view);
+    expect(result.diagnostics.some((d) => d.code === 'QMLTS-T005')).toBe(true);
+    expect(
+      result.document.rootObject.members.some(
+        (m) => m.kind === 'Binding' && m.property === 'implicitWidth',
+      ),
+    ).toBe(false);
   });
 
   // Additional: Signal handler lowering

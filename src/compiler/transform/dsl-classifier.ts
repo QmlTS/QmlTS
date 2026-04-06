@@ -164,12 +164,12 @@ function classifyCallback(
   groupedBindings: DslGroupedBinding[],
   attachedBindings: DslAttachedBinding[],
 ): void {
-  // Check if the callback method name matches a property on the parent type
+  // Check if the callback method name matches a property on the parent type.
   const allProps = registry.getAllProperties(parentQualifiedName, true);
   const matchingProp = allProps.find((p) => p.name === cb.methodName);
 
   if (matchingProp) {
-    // Check if this property's type is a group type (has its own properties)
+    // Check if this property's type is a registry-backed group type.
     const propTypeQName = matchingProp.type;
     const propType = registry.findByQualifiedName(propTypeQName);
 
@@ -192,19 +192,18 @@ function classifyCallback(
     }
   }
 
-  // Check attached types: capitalize first letter and look for a matching type
-  const capitalizedName = cb.methodName.charAt(0).toUpperCase() + cb.methodName.slice(1);
-  const attachedQmlType = registry.findByQmlName(capitalizedName);
+  // Check the registry-backed attached type chain rather than guessing from
+  // any creatable type with a matching capitalized name.
+  const attachedQmlType = findAttachedTypeForCallback(parentQualifiedName, cb.methodName, registry);
   if (attachedQmlType) {
-    // Verify it's actually an attached type (not creatable, or referenced as attachedType)
     const innerBindings = cb.innerBindings.map((b) =>
       convertBinding(b, registry, diagnostics, usedTypes),
     );
-    if (!usedTypes.includes(capitalizedName)) {
-      usedTypes.push(capitalizedName);
+    if (!usedTypes.includes(attachedQmlType.qmlName)) {
+      usedTypes.push(attachedQmlType.qmlName);
     }
     attachedBindings.push({
-      typeName: capitalizedName,
+      typeName: attachedQmlType.qmlName,
       bindings: innerBindings,
       expressionBindings: cb.innerExpressionBindings.map((eb) => ({
         property: eb.property,
@@ -225,6 +224,28 @@ function classifyCallback(
       cb.sourceLocation,
     ),
   );
+}
+
+function findAttachedTypeForCallback(
+  parentQualifiedName: string,
+  methodName: string,
+  registry: RegistryQueryInterface,
+) {
+  let current = registry.findByQualifiedName(parentQualifiedName);
+
+  while (current) {
+    const attachedType = registry.getAttachedType(current.qualifiedName);
+    if (attachedType && toAttachedMethodName(attachedType.qmlName) === methodName) {
+      return attachedType;
+    }
+    current = current.baseType ? registry.findByQualifiedName(current.baseType) : undefined;
+  }
+
+  return undefined;
+}
+
+function toAttachedMethodName(qmlName: string): string {
+  return qmlName.length > 0 ? qmlName[0]!.toLowerCase() + qmlName.slice(1) : qmlName;
 }
 
 // ─── Value Conversion ───────────────────────────────────────────────────
