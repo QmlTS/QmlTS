@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlColor,
   QmlEnumToken,
   QmlObjectBuilder,
@@ -15,6 +16,7 @@ import type { TextureBuilder } from './Texture.js';
 export interface SpecularGlossyMaterialBuilder {
   id(id: string): SpecularGlossyMaterialBuilder;
   child(obj: QmlObjectBuilder): SpecularGlossyMaterialBuilder;
+  children(...objs: QmlObjectBuilder[]): SpecularGlossyMaterialBuilder;
 
   albedoChannel(value: QmlEnumToken): SpecularGlossyMaterialBuilder;
   albedoChannelBind(expr: string): SpecularGlossyMaterialBuilder;
@@ -158,78 +160,86 @@ export interface SpecularGlossyMaterialBuilder {
   vertexColorsEnabledBind(expr: string): SpecularGlossyMaterialBuilder;
   vertexColorsMaskEnabled(value: boolean): SpecularGlossyMaterialBuilder;
   vertexColorsMaskEnabledBind(expr: string): SpecularGlossyMaterialBuilder;
-  onAlbedoChannelChanged(body: string): SpecularGlossyMaterialBuilder;
-  onAlbedoColorChanged(body: string): SpecularGlossyMaterialBuilder;
-  onAlbedoMapChanged(body: string): SpecularGlossyMaterialBuilder;
-  onAlbedoSingleChannelEnabledChanged(body: string): SpecularGlossyMaterialBuilder;
-  onAlphaCutoffChanged(body: string): SpecularGlossyMaterialBuilder;
-  onAlphaModeChanged(body: string): SpecularGlossyMaterialBuilder;
-  onAttenuationColorChanged(body: string): SpecularGlossyMaterialBuilder;
-  onAttenuationDistanceChanged(body: string): SpecularGlossyMaterialBuilder;
-  onBlendModeChanged(body: string): SpecularGlossyMaterialBuilder;
-  onChildrenChanged(body: string): SpecularGlossyMaterialBuilder;
-  onClearcoatAmountChanged(body: string): SpecularGlossyMaterialBuilder;
-  onClearcoatChannelChanged(body: string): SpecularGlossyMaterialBuilder;
-  onClearcoatFresnelBiasChanged(body: string): SpecularGlossyMaterialBuilder;
-  onClearcoatFresnelPowerChanged(body: string): SpecularGlossyMaterialBuilder;
-  onClearcoatFresnelScaleBiasEnabledChanged(body: string): SpecularGlossyMaterialBuilder;
-  onClearcoatFresnelScaleChanged(body: string): SpecularGlossyMaterialBuilder;
-  onClearcoatMapChanged(body: string): SpecularGlossyMaterialBuilder;
-  onClearcoatNormalMapChanged(body: string): SpecularGlossyMaterialBuilder;
-  onClearcoatNormalStrengthChanged(body: string): SpecularGlossyMaterialBuilder;
-  onClearcoatRoughnessAmountChanged(body: string): SpecularGlossyMaterialBuilder;
-  onClearcoatRoughnessChannelChanged(body: string): SpecularGlossyMaterialBuilder;
-  onClearcoatRoughnessMapChanged(body: string): SpecularGlossyMaterialBuilder;
-  onCullModeChanged(body: string): SpecularGlossyMaterialBuilder;
-  onDepthDrawModeChanged(body: string): SpecularGlossyMaterialBuilder;
-  onEmissiveChannelChanged(body: string): SpecularGlossyMaterialBuilder;
-  onEmissiveFactorChanged(body: string): SpecularGlossyMaterialBuilder;
-  onEmissiveMapChanged(body: string): SpecularGlossyMaterialBuilder;
-  onEmissiveSingleChannelEnabledChanged(body: string): SpecularGlossyMaterialBuilder;
-  onFresnelBiasChanged(body: string): SpecularGlossyMaterialBuilder;
-  onFresnelPowerChanged(body: string): SpecularGlossyMaterialBuilder;
-  onFresnelScaleBiasEnabledChanged(body: string): SpecularGlossyMaterialBuilder;
-  onFresnelScaleChanged(body: string): SpecularGlossyMaterialBuilder;
-  onGlossinessChanged(body: string): SpecularGlossyMaterialBuilder;
-  onGlossinessChannelChanged(body: string): SpecularGlossyMaterialBuilder;
-  onGlossinessMapChanged(body: string): SpecularGlossyMaterialBuilder;
-  onHeightAmountChanged(body: string): SpecularGlossyMaterialBuilder;
-  onHeightChannelChanged(body: string): SpecularGlossyMaterialBuilder;
-  onHeightMapChanged(body: string): SpecularGlossyMaterialBuilder;
-  onInvertOpacityMapValueChanged(body: string): SpecularGlossyMaterialBuilder;
-  onLightProbeChanged(body: string): SpecularGlossyMaterialBuilder;
-  onLightingChanged(body: string): SpecularGlossyMaterialBuilder;
-  onLineWidthChanged(body: string): SpecularGlossyMaterialBuilder;
-  onMaxHeightMapSamplesChanged(body: string): SpecularGlossyMaterialBuilder;
-  onMinHeightMapSamplesChanged(body: string): SpecularGlossyMaterialBuilder;
-  onNormalMapChanged(body: string): SpecularGlossyMaterialBuilder;
-  onNormalStrengthChanged(body: string): SpecularGlossyMaterialBuilder;
-  onObjectNameChanged(body: string): SpecularGlossyMaterialBuilder;
-  onOcclusionAmountChanged(body: string): SpecularGlossyMaterialBuilder;
-  onOcclusionChannelChanged(body: string): SpecularGlossyMaterialBuilder;
-  onOcclusionMapChanged(body: string): SpecularGlossyMaterialBuilder;
-  onOpacityChanged(body: string): SpecularGlossyMaterialBuilder;
-  onOpacityChannelChanged(body: string): SpecularGlossyMaterialBuilder;
-  onOpacityMapChanged(body: string): SpecularGlossyMaterialBuilder;
-  onParentChanged(body: string): SpecularGlossyMaterialBuilder;
-  onPointSizeChanged(body: string): SpecularGlossyMaterialBuilder;
-  onSpecularChannelChanged(body: string): SpecularGlossyMaterialBuilder;
-  onSpecularColorChanged(body: string): SpecularGlossyMaterialBuilder;
-  onSpecularMapChanged(body: string): SpecularGlossyMaterialBuilder;
-  onSpecularSingleChannelEnabledChanged(body: string): SpecularGlossyMaterialBuilder;
-  onStateChanged(body: string): SpecularGlossyMaterialBuilder;
-  onThicknessChannelChanged(body: string): SpecularGlossyMaterialBuilder;
-  onThicknessFactorChanged(body: string): SpecularGlossyMaterialBuilder;
-  onThicknessMapChanged(body: string): SpecularGlossyMaterialBuilder;
-  onTransmissionChannelChanged(body: string): SpecularGlossyMaterialBuilder;
-  onTransmissionFactorChanged(body: string): SpecularGlossyMaterialBuilder;
-  onTransmissionMapChanged(body: string): SpecularGlossyMaterialBuilder;
-  onVertexColorAlphaMaskChanged(body: string): SpecularGlossyMaterialBuilder;
-  onVertexColorBlueMaskChanged(body: string): SpecularGlossyMaterialBuilder;
-  onVertexColorGreenMaskChanged(body: string): SpecularGlossyMaterialBuilder;
-  onVertexColorRedMaskChanged(body: string): SpecularGlossyMaterialBuilder;
-  onVertexColorsEnabledChanged(body: string): SpecularGlossyMaterialBuilder;
-  onVertexColorsMaskEnabledChanged(body: string): SpecularGlossyMaterialBuilder;
+  onAlbedoChannelChanged(handler: DslSignalHandlerValue): SpecularGlossyMaterialBuilder;
+  onAlbedoColorChanged(handler: DslSignalHandlerValue): SpecularGlossyMaterialBuilder;
+  onAlbedoMapChanged(handler: DslSignalHandlerValue): SpecularGlossyMaterialBuilder;
+  onAlbedoSingleChannelEnabledChanged(
+    handler: DslSignalHandlerValue,
+  ): SpecularGlossyMaterialBuilder;
+  onAlphaCutoffChanged(handler: DslSignalHandlerValue): SpecularGlossyMaterialBuilder;
+  onAlphaModeChanged(handler: DslSignalHandlerValue): SpecularGlossyMaterialBuilder;
+  onAttenuationColorChanged(handler: DslSignalHandlerValue): SpecularGlossyMaterialBuilder;
+  onAttenuationDistanceChanged(handler: DslSignalHandlerValue): SpecularGlossyMaterialBuilder;
+  onBlendModeChanged(handler: DslSignalHandlerValue): SpecularGlossyMaterialBuilder;
+  onChildrenChanged(handler: DslSignalHandlerValue): SpecularGlossyMaterialBuilder;
+  onClearcoatAmountChanged(handler: DslSignalHandlerValue): SpecularGlossyMaterialBuilder;
+  onClearcoatChannelChanged(handler: DslSignalHandlerValue): SpecularGlossyMaterialBuilder;
+  onClearcoatFresnelBiasChanged(handler: DslSignalHandlerValue): SpecularGlossyMaterialBuilder;
+  onClearcoatFresnelPowerChanged(handler: DslSignalHandlerValue): SpecularGlossyMaterialBuilder;
+  onClearcoatFresnelScaleBiasEnabledChanged(
+    handler: DslSignalHandlerValue,
+  ): SpecularGlossyMaterialBuilder;
+  onClearcoatFresnelScaleChanged(handler: DslSignalHandlerValue): SpecularGlossyMaterialBuilder;
+  onClearcoatMapChanged(handler: DslSignalHandlerValue): SpecularGlossyMaterialBuilder;
+  onClearcoatNormalMapChanged(handler: DslSignalHandlerValue): SpecularGlossyMaterialBuilder;
+  onClearcoatNormalStrengthChanged(handler: DslSignalHandlerValue): SpecularGlossyMaterialBuilder;
+  onClearcoatRoughnessAmountChanged(handler: DslSignalHandlerValue): SpecularGlossyMaterialBuilder;
+  onClearcoatRoughnessChannelChanged(handler: DslSignalHandlerValue): SpecularGlossyMaterialBuilder;
+  onClearcoatRoughnessMapChanged(handler: DslSignalHandlerValue): SpecularGlossyMaterialBuilder;
+  onCullModeChanged(handler: DslSignalHandlerValue): SpecularGlossyMaterialBuilder;
+  onDepthDrawModeChanged(handler: DslSignalHandlerValue): SpecularGlossyMaterialBuilder;
+  onEmissiveChannelChanged(handler: DslSignalHandlerValue): SpecularGlossyMaterialBuilder;
+  onEmissiveFactorChanged(handler: DslSignalHandlerValue): SpecularGlossyMaterialBuilder;
+  onEmissiveMapChanged(handler: DslSignalHandlerValue): SpecularGlossyMaterialBuilder;
+  onEmissiveSingleChannelEnabledChanged(
+    handler: DslSignalHandlerValue,
+  ): SpecularGlossyMaterialBuilder;
+  onFresnelBiasChanged(handler: DslSignalHandlerValue): SpecularGlossyMaterialBuilder;
+  onFresnelPowerChanged(handler: DslSignalHandlerValue): SpecularGlossyMaterialBuilder;
+  onFresnelScaleBiasEnabledChanged(handler: DslSignalHandlerValue): SpecularGlossyMaterialBuilder;
+  onFresnelScaleChanged(handler: DslSignalHandlerValue): SpecularGlossyMaterialBuilder;
+  onGlossinessChanged(handler: DslSignalHandlerValue): SpecularGlossyMaterialBuilder;
+  onGlossinessChannelChanged(handler: DslSignalHandlerValue): SpecularGlossyMaterialBuilder;
+  onGlossinessMapChanged(handler: DslSignalHandlerValue): SpecularGlossyMaterialBuilder;
+  onHeightAmountChanged(handler: DslSignalHandlerValue): SpecularGlossyMaterialBuilder;
+  onHeightChannelChanged(handler: DslSignalHandlerValue): SpecularGlossyMaterialBuilder;
+  onHeightMapChanged(handler: DslSignalHandlerValue): SpecularGlossyMaterialBuilder;
+  onInvertOpacityMapValueChanged(handler: DslSignalHandlerValue): SpecularGlossyMaterialBuilder;
+  onLightProbeChanged(handler: DslSignalHandlerValue): SpecularGlossyMaterialBuilder;
+  onLightingChanged(handler: DslSignalHandlerValue): SpecularGlossyMaterialBuilder;
+  onLineWidthChanged(handler: DslSignalHandlerValue): SpecularGlossyMaterialBuilder;
+  onMaxHeightMapSamplesChanged(handler: DslSignalHandlerValue): SpecularGlossyMaterialBuilder;
+  onMinHeightMapSamplesChanged(handler: DslSignalHandlerValue): SpecularGlossyMaterialBuilder;
+  onNormalMapChanged(handler: DslSignalHandlerValue): SpecularGlossyMaterialBuilder;
+  onNormalStrengthChanged(handler: DslSignalHandlerValue): SpecularGlossyMaterialBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): SpecularGlossyMaterialBuilder;
+  onOcclusionAmountChanged(handler: DslSignalHandlerValue): SpecularGlossyMaterialBuilder;
+  onOcclusionChannelChanged(handler: DslSignalHandlerValue): SpecularGlossyMaterialBuilder;
+  onOcclusionMapChanged(handler: DslSignalHandlerValue): SpecularGlossyMaterialBuilder;
+  onOpacityChanged(handler: DslSignalHandlerValue): SpecularGlossyMaterialBuilder;
+  onOpacityChannelChanged(handler: DslSignalHandlerValue): SpecularGlossyMaterialBuilder;
+  onOpacityMapChanged(handler: DslSignalHandlerValue): SpecularGlossyMaterialBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): SpecularGlossyMaterialBuilder;
+  onPointSizeChanged(handler: DslSignalHandlerValue): SpecularGlossyMaterialBuilder;
+  onSpecularChannelChanged(handler: DslSignalHandlerValue): SpecularGlossyMaterialBuilder;
+  onSpecularColorChanged(handler: DslSignalHandlerValue): SpecularGlossyMaterialBuilder;
+  onSpecularMapChanged(handler: DslSignalHandlerValue): SpecularGlossyMaterialBuilder;
+  onSpecularSingleChannelEnabledChanged(
+    handler: DslSignalHandlerValue,
+  ): SpecularGlossyMaterialBuilder;
+  onStateChanged(handler: DslSignalHandlerValue): SpecularGlossyMaterialBuilder;
+  onThicknessChannelChanged(handler: DslSignalHandlerValue): SpecularGlossyMaterialBuilder;
+  onThicknessFactorChanged(handler: DslSignalHandlerValue): SpecularGlossyMaterialBuilder;
+  onThicknessMapChanged(handler: DslSignalHandlerValue): SpecularGlossyMaterialBuilder;
+  onTransmissionChannelChanged(handler: DslSignalHandlerValue): SpecularGlossyMaterialBuilder;
+  onTransmissionFactorChanged(handler: DslSignalHandlerValue): SpecularGlossyMaterialBuilder;
+  onTransmissionMapChanged(handler: DslSignalHandlerValue): SpecularGlossyMaterialBuilder;
+  onVertexColorAlphaMaskChanged(handler: DslSignalHandlerValue): SpecularGlossyMaterialBuilder;
+  onVertexColorBlueMaskChanged(handler: DslSignalHandlerValue): SpecularGlossyMaterialBuilder;
+  onVertexColorGreenMaskChanged(handler: DslSignalHandlerValue): SpecularGlossyMaterialBuilder;
+  onVertexColorRedMaskChanged(handler: DslSignalHandlerValue): SpecularGlossyMaterialBuilder;
+  onVertexColorsEnabledChanged(handler: DslSignalHandlerValue): SpecularGlossyMaterialBuilder;
+  onVertexColorsMaskEnabledChanged(handler: DslSignalHandlerValue): SpecularGlossyMaterialBuilder;
 }
 
 const SPECULARGLOSSYMATERIAL_META: TypeMetadata = {

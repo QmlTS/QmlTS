@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlComponent,
   QmlObjectBuilder,
   QmlValue,
@@ -15,6 +16,7 @@ import type { PackageAttachedBuilder } from './QQuickPackageAttached.js';
 export interface DelegateChoiceBuilder {
   id(id: string): DelegateChoiceBuilder;
   child(obj: QmlObjectBuilder): DelegateChoiceBuilder;
+  children(...objs: QmlObjectBuilder[]): DelegateChoiceBuilder;
 
   column(value: number): DelegateChoiceBuilder;
   columnBind(expr: string): DelegateChoiceBuilder;
@@ -28,13 +30,13 @@ export interface DelegateChoiceBuilder {
   roleValueBind(expr: string): DelegateChoiceBuilder;
   row(value: number): DelegateChoiceBuilder;
   rowBind(expr: string): DelegateChoiceBuilder;
-  onChanged(body: string): DelegateChoiceBuilder;
-  onColumnChanged(body: string): DelegateChoiceBuilder;
-  onDelegateChanged(body: string): DelegateChoiceBuilder;
-  onIndexChanged(body: string): DelegateChoiceBuilder;
-  onObjectNameChanged(body: string): DelegateChoiceBuilder;
-  onRoleValueChanged(body: string): DelegateChoiceBuilder;
-  onRowChanged(body: string): DelegateChoiceBuilder;
+  onChanged(handler: DslSignalHandlerValue): DelegateChoiceBuilder;
+  onColumnChanged(handler: DslSignalHandlerValue): DelegateChoiceBuilder;
+  onDelegateChanged(handler: DslSignalHandlerValue): DelegateChoiceBuilder;
+  onIndexChanged(handler: DslSignalHandlerValue): DelegateChoiceBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): DelegateChoiceBuilder;
+  onRoleValueChanged(handler: DslSignalHandlerValue): DelegateChoiceBuilder;
+  onRowChanged(handler: DslSignalHandlerValue): DelegateChoiceBuilder;
   delegateModel(setup: (b: DelegateModelAttachedBuilder) => void): DelegateChoiceBuilder;
   objectModel(setup: (b: ObjectModelAttachedBuilder) => void): DelegateChoiceBuilder;
   package(setup: (b: PackageAttachedBuilder) => void): DelegateChoiceBuilder;

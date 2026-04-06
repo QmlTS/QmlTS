@@ -2,11 +2,18 @@
 // Type: Node
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlUrl, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlObjectBuilder,
+  QmlUrl,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface NodeBuilder {
   id(id: string): NodeBuilder;
   child(obj: QmlObjectBuilder): NodeBuilder;
+  children(...objs: QmlObjectBuilder[]): NodeBuilder;
 
   heartbeatInterval(value: number): NodeBuilder;
   heartbeatIntervalBind(expr: string): NodeBuilder;
@@ -16,11 +23,11 @@ export interface NodeBuilder {
   persistedStoreBind(expr: string): NodeBuilder;
   registryUrl(value: QmlUrl): NodeBuilder;
   registryUrlBind(expr: string): NodeBuilder;
-  onError(body: string): NodeBuilder;
-  onHeartbeatIntervalChanged(body: string): NodeBuilder;
-  onObjectNameChanged(body: string): NodeBuilder;
-  onRemoteObjectAdded(body: string): NodeBuilder;
-  onRemoteObjectRemoved(body: string): NodeBuilder;
+  onError(handler: DslSignalHandlerValue): NodeBuilder;
+  onHeartbeatIntervalChanged(handler: DslSignalHandlerValue): NodeBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): NodeBuilder;
+  onRemoteObjectAdded(handler: DslSignalHandlerValue): NodeBuilder;
+  onRemoteObjectRemoved(handler: DslSignalHandlerValue): NodeBuilder;
 }
 
 const NODE_META: TypeMetadata = {

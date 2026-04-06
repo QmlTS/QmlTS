@@ -2,11 +2,17 @@
 // Type: Settings
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlUrl, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlObjectBuilder,
+  QmlUrl,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 export interface SettingsBuilder {
   id(id: string): SettingsBuilder;
   child(obj: QmlObjectBuilder): SettingsBuilder;
+  children(...objs: QmlObjectBuilder[]): SettingsBuilder;
 
   category(value: string): SettingsBuilder;
   categoryBind(expr: string): SettingsBuilder;
@@ -14,9 +20,9 @@ export interface SettingsBuilder {
   locationBind(expr: string): SettingsBuilder;
   objectName(value: string): SettingsBuilder;
   objectNameBind(expr: string): SettingsBuilder;
-  onCategoryChanged(body: string): SettingsBuilder;
-  onLocationChanged(body: string): SettingsBuilder;
-  onObjectNameChanged(body: string): SettingsBuilder;
+  onCategoryChanged(handler: DslSignalHandlerValue): SettingsBuilder;
+  onLocationChanged(handler: DslSignalHandlerValue): SettingsBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): SettingsBuilder;
 }
 
 const SETTINGS_META: TypeMetadata = {

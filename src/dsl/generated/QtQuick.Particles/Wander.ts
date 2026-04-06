@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlEnumToken,
   QmlObjectBuilder,
   QmlValue,
@@ -19,6 +20,7 @@ import type { ItemParticleAttachedBuilder } from './QQuickItemParticleAttached.j
 export interface WanderBuilder {
   id(id: string): WanderBuilder;
   child(obj: QmlObjectBuilder): WanderBuilder;
+  children(...objs: QmlObjectBuilder[]): WanderBuilder;
 
   activeFocusOnTab(value: boolean): WanderBuilder;
   activeFocusOnTabBind(expr: string): WanderBuilder;
@@ -88,47 +90,47 @@ export interface WanderBuilder {
   yVarianceBind(expr: string): WanderBuilder;
   z(value: number): WanderBuilder;
   zBind(expr: string): WanderBuilder;
-  onActiveFocusChanged(body: string): WanderBuilder;
-  onActiveFocusOnTabChanged(body: string): WanderBuilder;
-  onAffected(body: string): WanderBuilder;
-  onAffectedParameterChanged(body: string): WanderBuilder;
-  onAntialiasingChanged(body: string): WanderBuilder;
-  onBaselineOffsetChanged(body: string): WanderBuilder;
-  onChildrenChanged(body: string): WanderBuilder;
-  onChildrenRectChanged(body: string): WanderBuilder;
-  onClipChanged(body: string): WanderBuilder;
-  onContainmentMaskChanged(body: string): WanderBuilder;
-  onEnabledChanged(body: string): WanderBuilder;
-  onFocusChanged(body: string): WanderBuilder;
-  onFocusPolicyChanged(body: string): WanderBuilder;
-  onGroupsChanged(body: string): WanderBuilder;
-  onHeightChanged(body: string): WanderBuilder;
-  onImplicitHeightChanged(body: string): WanderBuilder;
-  onImplicitWidthChanged(body: string): WanderBuilder;
-  onObjectNameChanged(body: string): WanderBuilder;
-  onOnceChanged(body: string): WanderBuilder;
-  onOpacityChanged(body: string): WanderBuilder;
-  onPaceChanged(body: string): WanderBuilder;
-  onPaletteChanged(body: string): WanderBuilder;
-  onPaletteCreated(body: string): WanderBuilder;
-  onParentChanged(body: string): WanderBuilder;
-  onRotationChanged(body: string): WanderBuilder;
-  onScaleChanged(body: string): WanderBuilder;
-  onShapeChanged(body: string): WanderBuilder;
-  onSmoothChanged(body: string): WanderBuilder;
-  onStateChanged(body: string): WanderBuilder;
-  onSystemChanged(body: string): WanderBuilder;
-  onTransformOriginChanged(body: string): WanderBuilder;
-  onVisibleChanged(body: string): WanderBuilder;
-  onVisibleChildrenChanged(body: string): WanderBuilder;
-  onWhenCollidingWithChanged(body: string): WanderBuilder;
-  onWidthChanged(body: string): WanderBuilder;
-  onWindowChanged(body: string): WanderBuilder;
-  onXChanged(body: string): WanderBuilder;
-  onXVarianceChanged(body: string): WanderBuilder;
-  onYChanged(body: string): WanderBuilder;
-  onYVarianceChanged(body: string): WanderBuilder;
-  onZChanged(body: string): WanderBuilder;
+  onActiveFocusChanged(handler: DslSignalHandlerValue): WanderBuilder;
+  onActiveFocusOnTabChanged(handler: DslSignalHandlerValue): WanderBuilder;
+  onAffected(handler: DslSignalHandlerValue): WanderBuilder;
+  onAffectedParameterChanged(handler: DslSignalHandlerValue): WanderBuilder;
+  onAntialiasingChanged(handler: DslSignalHandlerValue): WanderBuilder;
+  onBaselineOffsetChanged(handler: DslSignalHandlerValue): WanderBuilder;
+  onChildrenChanged(handler: DslSignalHandlerValue): WanderBuilder;
+  onChildrenRectChanged(handler: DslSignalHandlerValue): WanderBuilder;
+  onClipChanged(handler: DslSignalHandlerValue): WanderBuilder;
+  onContainmentMaskChanged(handler: DslSignalHandlerValue): WanderBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): WanderBuilder;
+  onFocusChanged(handler: DslSignalHandlerValue): WanderBuilder;
+  onFocusPolicyChanged(handler: DslSignalHandlerValue): WanderBuilder;
+  onGroupsChanged(handler: DslSignalHandlerValue): WanderBuilder;
+  onHeightChanged(handler: DslSignalHandlerValue): WanderBuilder;
+  onImplicitHeightChanged(handler: DslSignalHandlerValue): WanderBuilder;
+  onImplicitWidthChanged(handler: DslSignalHandlerValue): WanderBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): WanderBuilder;
+  onOnceChanged(handler: DslSignalHandlerValue): WanderBuilder;
+  onOpacityChanged(handler: DslSignalHandlerValue): WanderBuilder;
+  onPaceChanged(handler: DslSignalHandlerValue): WanderBuilder;
+  onPaletteChanged(handler: DslSignalHandlerValue): WanderBuilder;
+  onPaletteCreated(handler: DslSignalHandlerValue): WanderBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): WanderBuilder;
+  onRotationChanged(handler: DslSignalHandlerValue): WanderBuilder;
+  onScaleChanged(handler: DslSignalHandlerValue): WanderBuilder;
+  onShapeChanged(handler: DslSignalHandlerValue): WanderBuilder;
+  onSmoothChanged(handler: DslSignalHandlerValue): WanderBuilder;
+  onStateChanged(handler: DslSignalHandlerValue): WanderBuilder;
+  onSystemChanged(handler: DslSignalHandlerValue): WanderBuilder;
+  onTransformOriginChanged(handler: DslSignalHandlerValue): WanderBuilder;
+  onVisibleChanged(handler: DslSignalHandlerValue): WanderBuilder;
+  onVisibleChildrenChanged(handler: DslSignalHandlerValue): WanderBuilder;
+  onWhenCollidingWithChanged(handler: DslSignalHandlerValue): WanderBuilder;
+  onWidthChanged(handler: DslSignalHandlerValue): WanderBuilder;
+  onWindowChanged(handler: DslSignalHandlerValue): WanderBuilder;
+  onXChanged(handler: DslSignalHandlerValue): WanderBuilder;
+  onXVarianceChanged(handler: DslSignalHandlerValue): WanderBuilder;
+  onYChanged(handler: DslSignalHandlerValue): WanderBuilder;
+  onYVarianceChanged(handler: DslSignalHandlerValue): WanderBuilder;
+  onZChanged(handler: DslSignalHandlerValue): WanderBuilder;
   anchors(setup: (b: AnchorsBuilder) => void): WanderBuilder;
   layer(setup: (b: LayerBuilder) => void): WanderBuilder;
   itemParticle(setup: (b: ItemParticleAttachedBuilder) => void): WanderBuilder;

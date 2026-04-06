@@ -2,7 +2,12 @@
 // Type: Shear
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlVector3d, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlObjectBuilder,
+  QmlVector3d,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 import type { AccessibleAttachedBuilder } from './Accessible.js';
 import type { EnterKeyAttachedBuilder } from './EnterKey.js';
@@ -23,6 +28,7 @@ import type { ViewTransitionAttachedBuilder } from './ViewTransition.js';
 export interface ShearBuilder {
   id(id: string): ShearBuilder;
   child(obj: QmlObjectBuilder): ShearBuilder;
+  children(...objs: QmlObjectBuilder[]): ShearBuilder;
 
   objectName(value: string): ShearBuilder;
   objectNameBind(expr: string): ShearBuilder;
@@ -36,12 +42,12 @@ export interface ShearBuilder {
   yAngleBind(expr: string): ShearBuilder;
   yFactor(value: number): ShearBuilder;
   yFactorBind(expr: string): ShearBuilder;
-  onObjectNameChanged(body: string): ShearBuilder;
-  onOriginChanged(body: string): ShearBuilder;
-  onXAngleChanged(body: string): ShearBuilder;
-  onXFactorChanged(body: string): ShearBuilder;
-  onYAngleChanged(body: string): ShearBuilder;
-  onYFactorChanged(body: string): ShearBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): ShearBuilder;
+  onOriginChanged(handler: DslSignalHandlerValue): ShearBuilder;
+  onXAngleChanged(handler: DslSignalHandlerValue): ShearBuilder;
+  onXFactorChanged(handler: DslSignalHandlerValue): ShearBuilder;
+  onYAngleChanged(handler: DslSignalHandlerValue): ShearBuilder;
+  onYFactorChanged(handler: DslSignalHandlerValue): ShearBuilder;
   accessible(setup: (b: AccessibleAttachedBuilder) => void): ShearBuilder;
   drag(setup: (b: DragAttachedBuilder) => void): ShearBuilder;
   enterKey(setup: (b: EnterKeyAttachedBuilder) => void): ShearBuilder;

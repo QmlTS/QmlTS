@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlEnumToken,
   QmlObjectBuilder,
   QmlRect,
@@ -34,6 +35,7 @@ import type { ViewTransitionAttachedBuilder } from './ViewTransition.js';
 export interface ShaderEffectSourceBuilder {
   id(id: string): ShaderEffectSourceBuilder;
   child(obj: QmlObjectBuilder): ShaderEffectSourceBuilder;
+  children(...objs: QmlObjectBuilder[]): ShaderEffectSourceBuilder;
 
   activeFocusOnTab(value: boolean): ShaderEffectSourceBuilder;
   activeFocusOnTabBind(expr: string): ShaderEffectSourceBuilder;
@@ -107,49 +109,49 @@ export interface ShaderEffectSourceBuilder {
   yBind(expr: string): ShaderEffectSourceBuilder;
   z(value: number): ShaderEffectSourceBuilder;
   zBind(expr: string): ShaderEffectSourceBuilder;
-  onActiveFocusChanged(body: string): ShaderEffectSourceBuilder;
-  onActiveFocusOnTabChanged(body: string): ShaderEffectSourceBuilder;
-  onAntialiasingChanged(body: string): ShaderEffectSourceBuilder;
-  onBaselineOffsetChanged(body: string): ShaderEffectSourceBuilder;
-  onChildrenChanged(body: string): ShaderEffectSourceBuilder;
-  onChildrenRectChanged(body: string): ShaderEffectSourceBuilder;
-  onClipChanged(body: string): ShaderEffectSourceBuilder;
-  onContainmentMaskChanged(body: string): ShaderEffectSourceBuilder;
-  onEnabledChanged(body: string): ShaderEffectSourceBuilder;
-  onFocusChanged(body: string): ShaderEffectSourceBuilder;
-  onFocusPolicyChanged(body: string): ShaderEffectSourceBuilder;
-  onFormatChanged(body: string): ShaderEffectSourceBuilder;
-  onHeightChanged(body: string): ShaderEffectSourceBuilder;
-  onHideSourceChanged(body: string): ShaderEffectSourceBuilder;
-  onImplicitHeightChanged(body: string): ShaderEffectSourceBuilder;
-  onImplicitWidthChanged(body: string): ShaderEffectSourceBuilder;
-  onLiveChanged(body: string): ShaderEffectSourceBuilder;
-  onMipmapChanged(body: string): ShaderEffectSourceBuilder;
-  onObjectNameChanged(body: string): ShaderEffectSourceBuilder;
-  onOpacityChanged(body: string): ShaderEffectSourceBuilder;
-  onPaletteChanged(body: string): ShaderEffectSourceBuilder;
-  onPaletteCreated(body: string): ShaderEffectSourceBuilder;
-  onParentChanged(body: string): ShaderEffectSourceBuilder;
-  onRecursiveChanged(body: string): ShaderEffectSourceBuilder;
-  onRotationChanged(body: string): ShaderEffectSourceBuilder;
-  onSamplesChanged(body: string): ShaderEffectSourceBuilder;
-  onScaleChanged(body: string): ShaderEffectSourceBuilder;
-  onScheduledUpdateCompleted(body: string): ShaderEffectSourceBuilder;
-  onSmoothChanged(body: string): ShaderEffectSourceBuilder;
-  onSourceItemChanged(body: string): ShaderEffectSourceBuilder;
-  onSourceRectChanged(body: string): ShaderEffectSourceBuilder;
-  onStateChanged(body: string): ShaderEffectSourceBuilder;
-  onTextureMirroringChanged(body: string): ShaderEffectSourceBuilder;
-  onTextureSizeChanged(body: string): ShaderEffectSourceBuilder;
-  onTransformOriginChanged(body: string): ShaderEffectSourceBuilder;
-  onVisibleChanged(body: string): ShaderEffectSourceBuilder;
-  onVisibleChildrenChanged(body: string): ShaderEffectSourceBuilder;
-  onWidthChanged(body: string): ShaderEffectSourceBuilder;
-  onWindowChanged(body: string): ShaderEffectSourceBuilder;
-  onWrapModeChanged(body: string): ShaderEffectSourceBuilder;
-  onXChanged(body: string): ShaderEffectSourceBuilder;
-  onYChanged(body: string): ShaderEffectSourceBuilder;
-  onZChanged(body: string): ShaderEffectSourceBuilder;
+  onActiveFocusChanged(handler: DslSignalHandlerValue): ShaderEffectSourceBuilder;
+  onActiveFocusOnTabChanged(handler: DslSignalHandlerValue): ShaderEffectSourceBuilder;
+  onAntialiasingChanged(handler: DslSignalHandlerValue): ShaderEffectSourceBuilder;
+  onBaselineOffsetChanged(handler: DslSignalHandlerValue): ShaderEffectSourceBuilder;
+  onChildrenChanged(handler: DslSignalHandlerValue): ShaderEffectSourceBuilder;
+  onChildrenRectChanged(handler: DslSignalHandlerValue): ShaderEffectSourceBuilder;
+  onClipChanged(handler: DslSignalHandlerValue): ShaderEffectSourceBuilder;
+  onContainmentMaskChanged(handler: DslSignalHandlerValue): ShaderEffectSourceBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): ShaderEffectSourceBuilder;
+  onFocusChanged(handler: DslSignalHandlerValue): ShaderEffectSourceBuilder;
+  onFocusPolicyChanged(handler: DslSignalHandlerValue): ShaderEffectSourceBuilder;
+  onFormatChanged(handler: DslSignalHandlerValue): ShaderEffectSourceBuilder;
+  onHeightChanged(handler: DslSignalHandlerValue): ShaderEffectSourceBuilder;
+  onHideSourceChanged(handler: DslSignalHandlerValue): ShaderEffectSourceBuilder;
+  onImplicitHeightChanged(handler: DslSignalHandlerValue): ShaderEffectSourceBuilder;
+  onImplicitWidthChanged(handler: DslSignalHandlerValue): ShaderEffectSourceBuilder;
+  onLiveChanged(handler: DslSignalHandlerValue): ShaderEffectSourceBuilder;
+  onMipmapChanged(handler: DslSignalHandlerValue): ShaderEffectSourceBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): ShaderEffectSourceBuilder;
+  onOpacityChanged(handler: DslSignalHandlerValue): ShaderEffectSourceBuilder;
+  onPaletteChanged(handler: DslSignalHandlerValue): ShaderEffectSourceBuilder;
+  onPaletteCreated(handler: DslSignalHandlerValue): ShaderEffectSourceBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): ShaderEffectSourceBuilder;
+  onRecursiveChanged(handler: DslSignalHandlerValue): ShaderEffectSourceBuilder;
+  onRotationChanged(handler: DslSignalHandlerValue): ShaderEffectSourceBuilder;
+  onSamplesChanged(handler: DslSignalHandlerValue): ShaderEffectSourceBuilder;
+  onScaleChanged(handler: DslSignalHandlerValue): ShaderEffectSourceBuilder;
+  onScheduledUpdateCompleted(handler: DslSignalHandlerValue): ShaderEffectSourceBuilder;
+  onSmoothChanged(handler: DslSignalHandlerValue): ShaderEffectSourceBuilder;
+  onSourceItemChanged(handler: DslSignalHandlerValue): ShaderEffectSourceBuilder;
+  onSourceRectChanged(handler: DslSignalHandlerValue): ShaderEffectSourceBuilder;
+  onStateChanged(handler: DslSignalHandlerValue): ShaderEffectSourceBuilder;
+  onTextureMirroringChanged(handler: DslSignalHandlerValue): ShaderEffectSourceBuilder;
+  onTextureSizeChanged(handler: DslSignalHandlerValue): ShaderEffectSourceBuilder;
+  onTransformOriginChanged(handler: DslSignalHandlerValue): ShaderEffectSourceBuilder;
+  onVisibleChanged(handler: DslSignalHandlerValue): ShaderEffectSourceBuilder;
+  onVisibleChildrenChanged(handler: DslSignalHandlerValue): ShaderEffectSourceBuilder;
+  onWidthChanged(handler: DslSignalHandlerValue): ShaderEffectSourceBuilder;
+  onWindowChanged(handler: DslSignalHandlerValue): ShaderEffectSourceBuilder;
+  onWrapModeChanged(handler: DslSignalHandlerValue): ShaderEffectSourceBuilder;
+  onXChanged(handler: DslSignalHandlerValue): ShaderEffectSourceBuilder;
+  onYChanged(handler: DslSignalHandlerValue): ShaderEffectSourceBuilder;
+  onZChanged(handler: DslSignalHandlerValue): ShaderEffectSourceBuilder;
   anchors(setup: (b: AnchorsBuilder) => void): ShaderEffectSourceBuilder;
   layer(setup: (b: LayerBuilder) => void): ShaderEffectSourceBuilder;
   accessible(setup: (b: AccessibleAttachedBuilder) => void): ShaderEffectSourceBuilder;

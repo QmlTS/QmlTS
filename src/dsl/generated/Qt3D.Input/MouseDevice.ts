@@ -2,11 +2,17 @@
 // Type: MouseDevice
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface MouseDeviceBuilder {
   id(id: string): MouseDeviceBuilder;
   child(obj: QmlObjectBuilder): MouseDeviceBuilder;
+  children(...objs: QmlObjectBuilder[]): MouseDeviceBuilder;
 
   enabled(value: boolean): MouseDeviceBuilder;
   enabledBind(expr: string): MouseDeviceBuilder;
@@ -18,12 +24,12 @@ export interface MouseDeviceBuilder {
   sensitivityBind(expr: string): MouseDeviceBuilder;
   updateAxesContinuously(value: boolean): MouseDeviceBuilder;
   updateAxesContinuouslyBind(expr: string): MouseDeviceBuilder;
-  onEnabledChanged(body: string): MouseDeviceBuilder;
-  onNodeDestroyed(body: string): MouseDeviceBuilder;
-  onObjectNameChanged(body: string): MouseDeviceBuilder;
-  onParentChanged(body: string): MouseDeviceBuilder;
-  onSensitivityChanged(body: string): MouseDeviceBuilder;
-  onUpdateAxesContinuouslyChanged(body: string): MouseDeviceBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): MouseDeviceBuilder;
+  onNodeDestroyed(handler: DslSignalHandlerValue): MouseDeviceBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): MouseDeviceBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): MouseDeviceBuilder;
+  onSensitivityChanged(handler: DslSignalHandlerValue): MouseDeviceBuilder;
+  onUpdateAxesContinuouslyChanged(handler: DslSignalHandlerValue): MouseDeviceBuilder;
 }
 
 const MOUSEDEVICE_META: TypeMetadata = {

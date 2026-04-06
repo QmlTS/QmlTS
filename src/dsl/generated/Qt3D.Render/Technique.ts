@@ -2,11 +2,17 @@
 // Type: Technique
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 export interface TechniqueBuilder {
   id(id: string): TechniqueBuilder;
   child(obj: QmlObjectBuilder): TechniqueBuilder;
+  children(...objs: QmlObjectBuilder[]): TechniqueBuilder;
 
   enabled(value: boolean): TechniqueBuilder;
   enabledBind(expr: string): TechniqueBuilder;
@@ -14,10 +20,10 @@ export interface TechniqueBuilder {
   objectNameBind(expr: string): TechniqueBuilder;
   parent(value: QmlValue): TechniqueBuilder;
   parentBind(expr: string): TechniqueBuilder;
-  onEnabledChanged(body: string): TechniqueBuilder;
-  onNodeDestroyed(body: string): TechniqueBuilder;
-  onObjectNameChanged(body: string): TechniqueBuilder;
-  onParentChanged(body: string): TechniqueBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): TechniqueBuilder;
+  onNodeDestroyed(handler: DslSignalHandlerValue): TechniqueBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): TechniqueBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): TechniqueBuilder;
 }
 
 const TECHNIQUE_META: TypeMetadata = {

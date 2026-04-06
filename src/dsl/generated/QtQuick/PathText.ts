@@ -2,7 +2,12 @@
 // Type: PathText
 // Generated from Qt 6.11.0
 
-import type { QmlFont, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlFont,
+  QmlObjectBuilder,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 import type { AccessibleAttachedBuilder } from './Accessible.js';
 import type { EnterKeyAttachedBuilder } from './EnterKey.js';
@@ -23,6 +28,7 @@ import type { ViewTransitionAttachedBuilder } from './ViewTransition.js';
 export interface PathTextBuilder {
   id(id: string): PathTextBuilder;
   child(obj: QmlObjectBuilder): PathTextBuilder;
+  children(...objs: QmlObjectBuilder[]): PathTextBuilder;
 
   font(value: QmlFont): PathTextBuilder;
   fontBind(expr: string): PathTextBuilder;
@@ -34,12 +40,12 @@ export interface PathTextBuilder {
   xBind(expr: string): PathTextBuilder;
   y(value: number): PathTextBuilder;
   yBind(expr: string): PathTextBuilder;
-  onChanged(body: string): PathTextBuilder;
-  onFontChanged(body: string): PathTextBuilder;
-  onObjectNameChanged(body: string): PathTextBuilder;
-  onTextChanged(body: string): PathTextBuilder;
-  onXChanged(body: string): PathTextBuilder;
-  onYChanged(body: string): PathTextBuilder;
+  onChanged(handler: DslSignalHandlerValue): PathTextBuilder;
+  onFontChanged(handler: DslSignalHandlerValue): PathTextBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): PathTextBuilder;
+  onTextChanged(handler: DslSignalHandlerValue): PathTextBuilder;
+  onXChanged(handler: DslSignalHandlerValue): PathTextBuilder;
+  onYChanged(handler: DslSignalHandlerValue): PathTextBuilder;
   accessible(setup: (b: AccessibleAttachedBuilder) => void): PathTextBuilder;
   drag(setup: (b: DragAttachedBuilder) => void): PathTextBuilder;
   enterKey(setup: (b: EnterKeyAttachedBuilder) => void): PathTextBuilder;

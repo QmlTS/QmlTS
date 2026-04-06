@@ -2,11 +2,17 @@
 // Type: Parameter
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 export interface ParameterBuilder {
   id(id: string): ParameterBuilder;
   child(obj: QmlObjectBuilder): ParameterBuilder;
+  children(...objs: QmlObjectBuilder[]): ParameterBuilder;
 
   enabled(value: boolean): ParameterBuilder;
   enabledBind(expr: string): ParameterBuilder;
@@ -18,12 +24,12 @@ export interface ParameterBuilder {
   parentBind(expr: string): ParameterBuilder;
   value(value: QmlValue): ParameterBuilder;
   valueBind(expr: string): ParameterBuilder;
-  onEnabledChanged(body: string): ParameterBuilder;
-  onNameChanged(body: string): ParameterBuilder;
-  onNodeDestroyed(body: string): ParameterBuilder;
-  onObjectNameChanged(body: string): ParameterBuilder;
-  onParentChanged(body: string): ParameterBuilder;
-  onValueChanged(body: string): ParameterBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): ParameterBuilder;
+  onNameChanged(handler: DslSignalHandlerValue): ParameterBuilder;
+  onNodeDestroyed(handler: DslSignalHandlerValue): ParameterBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): ParameterBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): ParameterBuilder;
+  onValueChanged(handler: DslSignalHandlerValue): ParameterBuilder;
 }
 
 const PARAMETER_META: TypeMetadata = {

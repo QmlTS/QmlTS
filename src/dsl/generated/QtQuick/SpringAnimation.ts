@@ -2,7 +2,12 @@
 // Type: SpringAnimation
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { QtObjectBuilder } from '../QML/QtObject.js';
 import type { AccessibleAttachedBuilder } from './Accessible.js';
@@ -24,6 +29,7 @@ import type { ViewTransitionAttachedBuilder } from './ViewTransition.js';
 export interface SpringAnimationBuilder {
   id(id: string): SpringAnimationBuilder;
   child(obj: QmlObjectBuilder): SpringAnimationBuilder;
+  children(...objs: QmlObjectBuilder[]): SpringAnimationBuilder;
 
   alwaysRunToEnd(value: boolean): SpringAnimationBuilder;
   alwaysRunToEndBind(expr: string): SpringAnimationBuilder;
@@ -61,24 +67,24 @@ export interface SpringAnimationBuilder {
   toBind(expr: string): SpringAnimationBuilder;
   velocity(value: number): SpringAnimationBuilder;
   velocityBind(expr: string): SpringAnimationBuilder;
-  onAlwaysRunToEndChanged(body: string): SpringAnimationBuilder;
-  onDurationChanged(body: string): SpringAnimationBuilder;
-  onEasingChanged(body: string): SpringAnimationBuilder;
-  onFinished(body: string): SpringAnimationBuilder;
-  onFromChanged(body: string): SpringAnimationBuilder;
-  onLoopCountChanged(body: string): SpringAnimationBuilder;
-  onMassChanged(body: string): SpringAnimationBuilder;
-  onModulusChanged(body: string): SpringAnimationBuilder;
-  onObjectNameChanged(body: string): SpringAnimationBuilder;
-  onPausedChanged(body: string): SpringAnimationBuilder;
-  onPropertiesChanged(body: string): SpringAnimationBuilder;
-  onPropertyChanged(body: string): SpringAnimationBuilder;
-  onRunningChanged(body: string): SpringAnimationBuilder;
-  onStarted(body: string): SpringAnimationBuilder;
-  onStopped(body: string): SpringAnimationBuilder;
-  onSyncChanged(body: string): SpringAnimationBuilder;
-  onTargetChanged(body: string): SpringAnimationBuilder;
-  onToChanged(body: string): SpringAnimationBuilder;
+  onAlwaysRunToEndChanged(handler: DslSignalHandlerValue): SpringAnimationBuilder;
+  onDurationChanged(handler: DslSignalHandlerValue): SpringAnimationBuilder;
+  onEasingChanged(handler: DslSignalHandlerValue): SpringAnimationBuilder;
+  onFinished(handler: DslSignalHandlerValue): SpringAnimationBuilder;
+  onFromChanged(handler: DslSignalHandlerValue): SpringAnimationBuilder;
+  onLoopCountChanged(handler: DslSignalHandlerValue): SpringAnimationBuilder;
+  onMassChanged(handler: DslSignalHandlerValue): SpringAnimationBuilder;
+  onModulusChanged(handler: DslSignalHandlerValue): SpringAnimationBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): SpringAnimationBuilder;
+  onPausedChanged(handler: DslSignalHandlerValue): SpringAnimationBuilder;
+  onPropertiesChanged(handler: DslSignalHandlerValue): SpringAnimationBuilder;
+  onPropertyChanged(handler: DslSignalHandlerValue): SpringAnimationBuilder;
+  onRunningChanged(handler: DslSignalHandlerValue): SpringAnimationBuilder;
+  onStarted(handler: DslSignalHandlerValue): SpringAnimationBuilder;
+  onStopped(handler: DslSignalHandlerValue): SpringAnimationBuilder;
+  onSyncChanged(handler: DslSignalHandlerValue): SpringAnimationBuilder;
+  onTargetChanged(handler: DslSignalHandlerValue): SpringAnimationBuilder;
+  onToChanged(handler: DslSignalHandlerValue): SpringAnimationBuilder;
   accessible(setup: (b: AccessibleAttachedBuilder) => void): SpringAnimationBuilder;
   drag(setup: (b: DragAttachedBuilder) => void): SpringAnimationBuilder;
   enterKey(setup: (b: EnterKeyAttachedBuilder) => void): SpringAnimationBuilder;

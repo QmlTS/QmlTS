@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlColor,
   QmlEnumToken,
   QmlObjectBuilder,
@@ -17,6 +18,7 @@ import type { Value3DAxisBuilder } from './Value3DAxis.js';
 export interface Spline3DSeriesBuilder {
   id(id: string): Spline3DSeriesBuilder;
   child(obj: QmlObjectBuilder): Spline3DSeriesBuilder;
+  children(...objs: QmlObjectBuilder[]): Spline3DSeriesBuilder;
 
   axisX(value: Value3DAxisBuilder): Spline3DSeriesBuilder;
   axisXBind(expr: string): Spline3DSeriesBuilder;
@@ -80,38 +82,38 @@ export interface Spline3DSeriesBuilder {
   userDefinedMeshBind(expr: string): Spline3DSeriesBuilder;
   visible(value: boolean): Spline3DSeriesBuilder;
   visibleBind(expr: string): Spline3DSeriesBuilder;
-  onAxisXChanged(body: string): Spline3DSeriesBuilder;
-  onAxisYChanged(body: string): Spline3DSeriesBuilder;
-  onAxisZChanged(body: string): Spline3DSeriesBuilder;
-  onBaseColorChanged(body: string): Spline3DSeriesBuilder;
-  onBaseGradientChanged(body: string): Spline3DSeriesBuilder;
-  onColorStyleChanged(body: string): Spline3DSeriesBuilder;
-  onDataArrayChanged(body: string): Spline3DSeriesBuilder;
-  onDataProxyChanged(body: string): Spline3DSeriesBuilder;
-  onItemLabelChanged(body: string): Spline3DSeriesBuilder;
-  onItemLabelFormatChanged(body: string): Spline3DSeriesBuilder;
-  onItemLabelVisibleChanged(body: string): Spline3DSeriesBuilder;
-  onItemSizeChanged(body: string): Spline3DSeriesBuilder;
-  onLightingModeChanged(body: string): Spline3DSeriesBuilder;
-  onMeshChanged(body: string): Spline3DSeriesBuilder;
-  onMeshRotationChanged(body: string): Spline3DSeriesBuilder;
-  onMeshSmoothChanged(body: string): Spline3DSeriesBuilder;
-  onMultiHighlightColorChanged(body: string): Spline3DSeriesBuilder;
-  onMultiHighlightGradientChanged(body: string): Spline3DSeriesBuilder;
-  onNameChanged(body: string): Spline3DSeriesBuilder;
-  onObjectNameChanged(body: string): Spline3DSeriesBuilder;
-  onScaleArrayChanged(body: string): Spline3DSeriesBuilder;
-  onSelectedItemChanged(body: string): Spline3DSeriesBuilder;
-  onSingleHighlightColorChanged(body: string): Spline3DSeriesBuilder;
-  onSingleHighlightGradientChanged(body: string): Spline3DSeriesBuilder;
-  onSplineColorChanged(body: string): Spline3DSeriesBuilder;
-  onSplineKnottingChanged(body: string): Spline3DSeriesBuilder;
-  onSplineLoopingChanged(body: string): Spline3DSeriesBuilder;
-  onSplineResolutionChanged(body: string): Spline3DSeriesBuilder;
-  onSplineTensionChanged(body: string): Spline3DSeriesBuilder;
-  onSplineVisibilityChanged(body: string): Spline3DSeriesBuilder;
-  onUserDefinedMeshChanged(body: string): Spline3DSeriesBuilder;
-  onVisibleChanged(body: string): Spline3DSeriesBuilder;
+  onAxisXChanged(handler: DslSignalHandlerValue): Spline3DSeriesBuilder;
+  onAxisYChanged(handler: DslSignalHandlerValue): Spline3DSeriesBuilder;
+  onAxisZChanged(handler: DslSignalHandlerValue): Spline3DSeriesBuilder;
+  onBaseColorChanged(handler: DslSignalHandlerValue): Spline3DSeriesBuilder;
+  onBaseGradientChanged(handler: DslSignalHandlerValue): Spline3DSeriesBuilder;
+  onColorStyleChanged(handler: DslSignalHandlerValue): Spline3DSeriesBuilder;
+  onDataArrayChanged(handler: DslSignalHandlerValue): Spline3DSeriesBuilder;
+  onDataProxyChanged(handler: DslSignalHandlerValue): Spline3DSeriesBuilder;
+  onItemLabelChanged(handler: DslSignalHandlerValue): Spline3DSeriesBuilder;
+  onItemLabelFormatChanged(handler: DslSignalHandlerValue): Spline3DSeriesBuilder;
+  onItemLabelVisibleChanged(handler: DslSignalHandlerValue): Spline3DSeriesBuilder;
+  onItemSizeChanged(handler: DslSignalHandlerValue): Spline3DSeriesBuilder;
+  onLightingModeChanged(handler: DslSignalHandlerValue): Spline3DSeriesBuilder;
+  onMeshChanged(handler: DslSignalHandlerValue): Spline3DSeriesBuilder;
+  onMeshRotationChanged(handler: DslSignalHandlerValue): Spline3DSeriesBuilder;
+  onMeshSmoothChanged(handler: DslSignalHandlerValue): Spline3DSeriesBuilder;
+  onMultiHighlightColorChanged(handler: DslSignalHandlerValue): Spline3DSeriesBuilder;
+  onMultiHighlightGradientChanged(handler: DslSignalHandlerValue): Spline3DSeriesBuilder;
+  onNameChanged(handler: DslSignalHandlerValue): Spline3DSeriesBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): Spline3DSeriesBuilder;
+  onScaleArrayChanged(handler: DslSignalHandlerValue): Spline3DSeriesBuilder;
+  onSelectedItemChanged(handler: DslSignalHandlerValue): Spline3DSeriesBuilder;
+  onSingleHighlightColorChanged(handler: DslSignalHandlerValue): Spline3DSeriesBuilder;
+  onSingleHighlightGradientChanged(handler: DslSignalHandlerValue): Spline3DSeriesBuilder;
+  onSplineColorChanged(handler: DslSignalHandlerValue): Spline3DSeriesBuilder;
+  onSplineKnottingChanged(handler: DslSignalHandlerValue): Spline3DSeriesBuilder;
+  onSplineLoopingChanged(handler: DslSignalHandlerValue): Spline3DSeriesBuilder;
+  onSplineResolutionChanged(handler: DslSignalHandlerValue): Spline3DSeriesBuilder;
+  onSplineTensionChanged(handler: DslSignalHandlerValue): Spline3DSeriesBuilder;
+  onSplineVisibilityChanged(handler: DslSignalHandlerValue): Spline3DSeriesBuilder;
+  onUserDefinedMeshChanged(handler: DslSignalHandlerValue): Spline3DSeriesBuilder;
+  onVisibleChanged(handler: DslSignalHandlerValue): Spline3DSeriesBuilder;
 }
 
 const SPLINE3DSERIES_META: TypeMetadata = {

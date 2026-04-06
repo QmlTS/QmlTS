@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlEnumToken,
   QmlObjectBuilder,
   QmlValue,
@@ -12,6 +13,7 @@ import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface ItemModelBarDataProxyBuilder {
   id(id: string): ItemModelBarDataProxyBuilder;
   child(obj: QmlObjectBuilder): ItemModelBarDataProxyBuilder;
+  children(...objs: QmlObjectBuilder[]): ItemModelBarDataProxyBuilder;
 
   autoColumnCategories(value: boolean): ItemModelBarDataProxyBuilder;
   autoColumnCategoriesBind(expr: string): ItemModelBarDataProxyBuilder;
@@ -53,35 +55,35 @@ export interface ItemModelBarDataProxyBuilder {
   valueRolePatternBind(expr: string): ItemModelBarDataProxyBuilder;
   valueRoleReplace(value: string): ItemModelBarDataProxyBuilder;
   valueRoleReplaceBind(expr: string): ItemModelBarDataProxyBuilder;
-  onArrayReset(body: string): ItemModelBarDataProxyBuilder;
-  onAutoColumnCategoriesChanged(body: string): ItemModelBarDataProxyBuilder;
-  onAutoRowCategoriesChanged(body: string): ItemModelBarDataProxyBuilder;
-  onColCountChanged(body: string): ItemModelBarDataProxyBuilder;
-  onColumnCategoriesChanged(body: string): ItemModelBarDataProxyBuilder;
-  onColumnRoleChanged(body: string): ItemModelBarDataProxyBuilder;
-  onColumnRolePatternChanged(body: string): ItemModelBarDataProxyBuilder;
-  onColumnRoleReplaceChanged(body: string): ItemModelBarDataProxyBuilder;
-  onItemChanged(body: string): ItemModelBarDataProxyBuilder;
-  onItemModelChanged(body: string): ItemModelBarDataProxyBuilder;
-  onMultiMatchBehaviorChanged(body: string): ItemModelBarDataProxyBuilder;
-  onObjectNameChanged(body: string): ItemModelBarDataProxyBuilder;
-  onRotationRoleChanged(body: string): ItemModelBarDataProxyBuilder;
-  onRotationRolePatternChanged(body: string): ItemModelBarDataProxyBuilder;
-  onRotationRoleReplaceChanged(body: string): ItemModelBarDataProxyBuilder;
-  onRowCategoriesChanged(body: string): ItemModelBarDataProxyBuilder;
-  onRowCountChanged(body: string): ItemModelBarDataProxyBuilder;
-  onRowRoleChanged(body: string): ItemModelBarDataProxyBuilder;
-  onRowRolePatternChanged(body: string): ItemModelBarDataProxyBuilder;
-  onRowRoleReplaceChanged(body: string): ItemModelBarDataProxyBuilder;
-  onRowsAdded(body: string): ItemModelBarDataProxyBuilder;
-  onRowsChanged(body: string): ItemModelBarDataProxyBuilder;
-  onRowsInserted(body: string): ItemModelBarDataProxyBuilder;
-  onRowsRemoved(body: string): ItemModelBarDataProxyBuilder;
-  onSeriesChanged(body: string): ItemModelBarDataProxyBuilder;
-  onUseModelCategoriesChanged(body: string): ItemModelBarDataProxyBuilder;
-  onValueRoleChanged(body: string): ItemModelBarDataProxyBuilder;
-  onValueRolePatternChanged(body: string): ItemModelBarDataProxyBuilder;
-  onValueRoleReplaceChanged(body: string): ItemModelBarDataProxyBuilder;
+  onArrayReset(handler: DslSignalHandlerValue): ItemModelBarDataProxyBuilder;
+  onAutoColumnCategoriesChanged(handler: DslSignalHandlerValue): ItemModelBarDataProxyBuilder;
+  onAutoRowCategoriesChanged(handler: DslSignalHandlerValue): ItemModelBarDataProxyBuilder;
+  onColCountChanged(handler: DslSignalHandlerValue): ItemModelBarDataProxyBuilder;
+  onColumnCategoriesChanged(handler: DslSignalHandlerValue): ItemModelBarDataProxyBuilder;
+  onColumnRoleChanged(handler: DslSignalHandlerValue): ItemModelBarDataProxyBuilder;
+  onColumnRolePatternChanged(handler: DslSignalHandlerValue): ItemModelBarDataProxyBuilder;
+  onColumnRoleReplaceChanged(handler: DslSignalHandlerValue): ItemModelBarDataProxyBuilder;
+  onItemChanged(handler: DslSignalHandlerValue): ItemModelBarDataProxyBuilder;
+  onItemModelChanged(handler: DslSignalHandlerValue): ItemModelBarDataProxyBuilder;
+  onMultiMatchBehaviorChanged(handler: DslSignalHandlerValue): ItemModelBarDataProxyBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): ItemModelBarDataProxyBuilder;
+  onRotationRoleChanged(handler: DslSignalHandlerValue): ItemModelBarDataProxyBuilder;
+  onRotationRolePatternChanged(handler: DslSignalHandlerValue): ItemModelBarDataProxyBuilder;
+  onRotationRoleReplaceChanged(handler: DslSignalHandlerValue): ItemModelBarDataProxyBuilder;
+  onRowCategoriesChanged(handler: DslSignalHandlerValue): ItemModelBarDataProxyBuilder;
+  onRowCountChanged(handler: DslSignalHandlerValue): ItemModelBarDataProxyBuilder;
+  onRowRoleChanged(handler: DslSignalHandlerValue): ItemModelBarDataProxyBuilder;
+  onRowRolePatternChanged(handler: DslSignalHandlerValue): ItemModelBarDataProxyBuilder;
+  onRowRoleReplaceChanged(handler: DslSignalHandlerValue): ItemModelBarDataProxyBuilder;
+  onRowsAdded(handler: DslSignalHandlerValue): ItemModelBarDataProxyBuilder;
+  onRowsChanged(handler: DslSignalHandlerValue): ItemModelBarDataProxyBuilder;
+  onRowsInserted(handler: DslSignalHandlerValue): ItemModelBarDataProxyBuilder;
+  onRowsRemoved(handler: DslSignalHandlerValue): ItemModelBarDataProxyBuilder;
+  onSeriesChanged(handler: DslSignalHandlerValue): ItemModelBarDataProxyBuilder;
+  onUseModelCategoriesChanged(handler: DslSignalHandlerValue): ItemModelBarDataProxyBuilder;
+  onValueRoleChanged(handler: DslSignalHandlerValue): ItemModelBarDataProxyBuilder;
+  onValueRolePatternChanged(handler: DslSignalHandlerValue): ItemModelBarDataProxyBuilder;
+  onValueRoleReplaceChanged(handler: DslSignalHandlerValue): ItemModelBarDataProxyBuilder;
 }
 
 const ITEMMODELBARDATAPROXY_META: TypeMetadata = {

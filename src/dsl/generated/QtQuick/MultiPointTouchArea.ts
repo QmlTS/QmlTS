@@ -2,7 +2,12 @@
 // Type: MultiPointTouchArea
 // Generated from Qt 6.11.0
 
-import type { QmlEnumToken, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlEnumToken,
+  QmlObjectBuilder,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { QtObjectBuilder } from '../QML/QtObject.js';
 import type { AccessibleAttachedBuilder } from './Accessible.js';
@@ -28,6 +33,7 @@ import type { ViewTransitionAttachedBuilder } from './ViewTransition.js';
 export interface MultiPointTouchAreaBuilder {
   id(id: string): MultiPointTouchAreaBuilder;
   child(obj: QmlObjectBuilder): MultiPointTouchAreaBuilder;
+  children(...objs: QmlObjectBuilder[]): MultiPointTouchAreaBuilder;
 
   activeFocusOnTab(value: boolean): MultiPointTouchAreaBuilder;
   activeFocusOnTabBind(expr: string): MultiPointTouchAreaBuilder;
@@ -85,46 +91,46 @@ export interface MultiPointTouchAreaBuilder {
   yBind(expr: string): MultiPointTouchAreaBuilder;
   z(value: number): MultiPointTouchAreaBuilder;
   zBind(expr: string): MultiPointTouchAreaBuilder;
-  onActiveFocusChanged(body: string): MultiPointTouchAreaBuilder;
-  onActiveFocusOnTabChanged(body: string): MultiPointTouchAreaBuilder;
-  onAntialiasingChanged(body: string): MultiPointTouchAreaBuilder;
-  onBaselineOffsetChanged(body: string): MultiPointTouchAreaBuilder;
-  onCanceled(body: string): MultiPointTouchAreaBuilder;
-  onChildrenChanged(body: string): MultiPointTouchAreaBuilder;
-  onChildrenRectChanged(body: string): MultiPointTouchAreaBuilder;
-  onClipChanged(body: string): MultiPointTouchAreaBuilder;
-  onContainmentMaskChanged(body: string): MultiPointTouchAreaBuilder;
-  onEnabledChanged(body: string): MultiPointTouchAreaBuilder;
-  onFocusChanged(body: string): MultiPointTouchAreaBuilder;
-  onFocusPolicyChanged(body: string): MultiPointTouchAreaBuilder;
-  onGestureStarted(body: string): MultiPointTouchAreaBuilder;
-  onHeightChanged(body: string): MultiPointTouchAreaBuilder;
-  onImplicitHeightChanged(body: string): MultiPointTouchAreaBuilder;
-  onImplicitWidthChanged(body: string): MultiPointTouchAreaBuilder;
-  onMaximumTouchPointsChanged(body: string): MultiPointTouchAreaBuilder;
-  onMinimumTouchPointsChanged(body: string): MultiPointTouchAreaBuilder;
-  onMouseEnabledChanged(body: string): MultiPointTouchAreaBuilder;
-  onObjectNameChanged(body: string): MultiPointTouchAreaBuilder;
-  onOpacityChanged(body: string): MultiPointTouchAreaBuilder;
-  onPaletteChanged(body: string): MultiPointTouchAreaBuilder;
-  onPaletteCreated(body: string): MultiPointTouchAreaBuilder;
-  onParentChanged(body: string): MultiPointTouchAreaBuilder;
-  onPressed(body: string): MultiPointTouchAreaBuilder;
-  onReleased(body: string): MultiPointTouchAreaBuilder;
-  onRotationChanged(body: string): MultiPointTouchAreaBuilder;
-  onScaleChanged(body: string): MultiPointTouchAreaBuilder;
-  onSmoothChanged(body: string): MultiPointTouchAreaBuilder;
-  onStateChanged(body: string): MultiPointTouchAreaBuilder;
-  onTouchUpdated(body: string): MultiPointTouchAreaBuilder;
-  onTransformOriginChanged(body: string): MultiPointTouchAreaBuilder;
-  onUpdated(body: string): MultiPointTouchAreaBuilder;
-  onVisibleChanged(body: string): MultiPointTouchAreaBuilder;
-  onVisibleChildrenChanged(body: string): MultiPointTouchAreaBuilder;
-  onWidthChanged(body: string): MultiPointTouchAreaBuilder;
-  onWindowChanged(body: string): MultiPointTouchAreaBuilder;
-  onXChanged(body: string): MultiPointTouchAreaBuilder;
-  onYChanged(body: string): MultiPointTouchAreaBuilder;
-  onZChanged(body: string): MultiPointTouchAreaBuilder;
+  onActiveFocusChanged(handler: DslSignalHandlerValue): MultiPointTouchAreaBuilder;
+  onActiveFocusOnTabChanged(handler: DslSignalHandlerValue): MultiPointTouchAreaBuilder;
+  onAntialiasingChanged(handler: DslSignalHandlerValue): MultiPointTouchAreaBuilder;
+  onBaselineOffsetChanged(handler: DslSignalHandlerValue): MultiPointTouchAreaBuilder;
+  onCanceled(handler: DslSignalHandlerValue): MultiPointTouchAreaBuilder;
+  onChildrenChanged(handler: DslSignalHandlerValue): MultiPointTouchAreaBuilder;
+  onChildrenRectChanged(handler: DslSignalHandlerValue): MultiPointTouchAreaBuilder;
+  onClipChanged(handler: DslSignalHandlerValue): MultiPointTouchAreaBuilder;
+  onContainmentMaskChanged(handler: DslSignalHandlerValue): MultiPointTouchAreaBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): MultiPointTouchAreaBuilder;
+  onFocusChanged(handler: DslSignalHandlerValue): MultiPointTouchAreaBuilder;
+  onFocusPolicyChanged(handler: DslSignalHandlerValue): MultiPointTouchAreaBuilder;
+  onGestureStarted(handler: DslSignalHandlerValue): MultiPointTouchAreaBuilder;
+  onHeightChanged(handler: DslSignalHandlerValue): MultiPointTouchAreaBuilder;
+  onImplicitHeightChanged(handler: DslSignalHandlerValue): MultiPointTouchAreaBuilder;
+  onImplicitWidthChanged(handler: DslSignalHandlerValue): MultiPointTouchAreaBuilder;
+  onMaximumTouchPointsChanged(handler: DslSignalHandlerValue): MultiPointTouchAreaBuilder;
+  onMinimumTouchPointsChanged(handler: DslSignalHandlerValue): MultiPointTouchAreaBuilder;
+  onMouseEnabledChanged(handler: DslSignalHandlerValue): MultiPointTouchAreaBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): MultiPointTouchAreaBuilder;
+  onOpacityChanged(handler: DslSignalHandlerValue): MultiPointTouchAreaBuilder;
+  onPaletteChanged(handler: DslSignalHandlerValue): MultiPointTouchAreaBuilder;
+  onPaletteCreated(handler: DslSignalHandlerValue): MultiPointTouchAreaBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): MultiPointTouchAreaBuilder;
+  onPressed(handler: DslSignalHandlerValue): MultiPointTouchAreaBuilder;
+  onReleased(handler: DslSignalHandlerValue): MultiPointTouchAreaBuilder;
+  onRotationChanged(handler: DslSignalHandlerValue): MultiPointTouchAreaBuilder;
+  onScaleChanged(handler: DslSignalHandlerValue): MultiPointTouchAreaBuilder;
+  onSmoothChanged(handler: DslSignalHandlerValue): MultiPointTouchAreaBuilder;
+  onStateChanged(handler: DslSignalHandlerValue): MultiPointTouchAreaBuilder;
+  onTouchUpdated(handler: DslSignalHandlerValue): MultiPointTouchAreaBuilder;
+  onTransformOriginChanged(handler: DslSignalHandlerValue): MultiPointTouchAreaBuilder;
+  onUpdated(handler: DslSignalHandlerValue): MultiPointTouchAreaBuilder;
+  onVisibleChanged(handler: DslSignalHandlerValue): MultiPointTouchAreaBuilder;
+  onVisibleChildrenChanged(handler: DslSignalHandlerValue): MultiPointTouchAreaBuilder;
+  onWidthChanged(handler: DslSignalHandlerValue): MultiPointTouchAreaBuilder;
+  onWindowChanged(handler: DslSignalHandlerValue): MultiPointTouchAreaBuilder;
+  onXChanged(handler: DslSignalHandlerValue): MultiPointTouchAreaBuilder;
+  onYChanged(handler: DslSignalHandlerValue): MultiPointTouchAreaBuilder;
+  onZChanged(handler: DslSignalHandlerValue): MultiPointTouchAreaBuilder;
   anchors(setup: (b: AnchorsBuilder) => void): MultiPointTouchAreaBuilder;
   layer(setup: (b: LayerBuilder) => void): MultiPointTouchAreaBuilder;
   accessible(setup: (b: AccessibleAttachedBuilder) => void): MultiPointTouchAreaBuilder;

@@ -2,7 +2,7 @@
 // Type: Calendar
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import type { DslSignalHandlerValue, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { ContextMenuAttachedBuilder } from './ContextMenu.js';
 import type { ActionGroupAttachedBuilder } from './QQuickActionGroupAttached.js';
@@ -25,10 +25,11 @@ import type { SplitHandleAttachedBuilder } from './SplitHandle.js';
 export interface CalendarBuilder {
   id(id: string): CalendarBuilder;
   child(obj: QmlObjectBuilder): CalendarBuilder;
+  children(...objs: QmlObjectBuilder[]): CalendarBuilder;
 
   objectName(value: string): CalendarBuilder;
   objectNameBind(expr: string): CalendarBuilder;
-  onObjectNameChanged(body: string): CalendarBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): CalendarBuilder;
   actionGroup(setup: (b: ActionGroupAttachedBuilder) => void): CalendarBuilder;
   applicationWindow(setup: (b: ApplicationWindowAttachedBuilder) => void): CalendarBuilder;
   buttonGroup(setup: (b: ButtonGroupAttachedBuilder) => void): CalendarBuilder;

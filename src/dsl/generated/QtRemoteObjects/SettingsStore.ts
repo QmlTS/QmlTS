@@ -2,15 +2,16 @@
 // Type: SettingsStore
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import type { DslSignalHandlerValue, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 export interface SettingsStoreBuilder {
   id(id: string): SettingsStoreBuilder;
   child(obj: QmlObjectBuilder): SettingsStoreBuilder;
+  children(...objs: QmlObjectBuilder[]): SettingsStoreBuilder;
 
   objectName(value: string): SettingsStoreBuilder;
   objectNameBind(expr: string): SettingsStoreBuilder;
-  onObjectNameChanged(body: string): SettingsStoreBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): SettingsStoreBuilder;
 }
 
 const SETTINGSSTORE_META: TypeMetadata = {

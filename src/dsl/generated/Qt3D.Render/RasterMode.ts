@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlEnumToken,
   QmlObjectBuilder,
   QmlValue,
@@ -12,6 +13,7 @@ import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface RasterModeBuilder {
   id(id: string): RasterModeBuilder;
   child(obj: QmlObjectBuilder): RasterModeBuilder;
+  children(...objs: QmlObjectBuilder[]): RasterModeBuilder;
 
   enabled(value: boolean): RasterModeBuilder;
   enabledBind(expr: string): RasterModeBuilder;
@@ -23,12 +25,12 @@ export interface RasterModeBuilder {
   parentBind(expr: string): RasterModeBuilder;
   rasterMode(value: QmlEnumToken): RasterModeBuilder;
   rasterModeBind(expr: string): RasterModeBuilder;
-  onEnabledChanged(body: string): RasterModeBuilder;
-  onFaceModeChanged(body: string): RasterModeBuilder;
-  onNodeDestroyed(body: string): RasterModeBuilder;
-  onObjectNameChanged(body: string): RasterModeBuilder;
-  onParentChanged(body: string): RasterModeBuilder;
-  onRasterModeChanged(body: string): RasterModeBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): RasterModeBuilder;
+  onFaceModeChanged(handler: DslSignalHandlerValue): RasterModeBuilder;
+  onNodeDestroyed(handler: DslSignalHandlerValue): RasterModeBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): RasterModeBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): RasterModeBuilder;
+  onRasterModeChanged(handler: DslSignalHandlerValue): RasterModeBuilder;
 }
 
 const RASTERMODE_META: TypeMetadata = {

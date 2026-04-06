@@ -2,11 +2,18 @@
 // Type: ClipPlane
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlValue, QmlVector3d, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlObjectBuilder,
+  QmlValue,
+  QmlVector3d,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 export interface ClipPlaneBuilder {
   id(id: string): ClipPlaneBuilder;
   child(obj: QmlObjectBuilder): ClipPlaneBuilder;
+  children(...objs: QmlObjectBuilder[]): ClipPlaneBuilder;
 
   distance(value: number): ClipPlaneBuilder;
   distanceBind(expr: string): ClipPlaneBuilder;
@@ -20,13 +27,13 @@ export interface ClipPlaneBuilder {
   parentBind(expr: string): ClipPlaneBuilder;
   planeIndex(value: number): ClipPlaneBuilder;
   planeIndexBind(expr: string): ClipPlaneBuilder;
-  onDistanceChanged(body: string): ClipPlaneBuilder;
-  onEnabledChanged(body: string): ClipPlaneBuilder;
-  onNodeDestroyed(body: string): ClipPlaneBuilder;
-  onNormalChanged(body: string): ClipPlaneBuilder;
-  onObjectNameChanged(body: string): ClipPlaneBuilder;
-  onParentChanged(body: string): ClipPlaneBuilder;
-  onPlaneIndexChanged(body: string): ClipPlaneBuilder;
+  onDistanceChanged(handler: DslSignalHandlerValue): ClipPlaneBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): ClipPlaneBuilder;
+  onNodeDestroyed(handler: DslSignalHandlerValue): ClipPlaneBuilder;
+  onNormalChanged(handler: DslSignalHandlerValue): ClipPlaneBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): ClipPlaneBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): ClipPlaneBuilder;
+  onPlaneIndexChanged(handler: DslSignalHandlerValue): ClipPlaneBuilder;
 }
 
 const CLIPPLANE_META: TypeMetadata = {

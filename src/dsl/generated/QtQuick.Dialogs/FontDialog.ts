@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlEnumToken,
   QmlFont,
   QmlObjectBuilder,
@@ -13,6 +14,7 @@ import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface FontDialogBuilder {
   id(id: string): FontDialogBuilder;
   child(obj: QmlObjectBuilder): FontDialogBuilder;
+  children(...objs: QmlObjectBuilder[]): FontDialogBuilder;
 
   currentFont(value: QmlFont): FontDialogBuilder;
   currentFontBind(expr: string): FontDialogBuilder;
@@ -36,19 +38,19 @@ export interface FontDialogBuilder {
   titleBind(expr: string): FontDialogBuilder;
   visible(value: boolean): FontDialogBuilder;
   visibleBind(expr: string): FontDialogBuilder;
-  onAccepted(body: string): FontDialogBuilder;
-  onCurrentFontChanged(body: string): FontDialogBuilder;
-  onFlagsChanged(body: string): FontDialogBuilder;
-  onModalityChanged(body: string): FontDialogBuilder;
-  onObjectNameChanged(body: string): FontDialogBuilder;
-  onOptionsChanged(body: string): FontDialogBuilder;
-  onParentWindowChanged(body: string): FontDialogBuilder;
-  onPopupTypeChanged(body: string): FontDialogBuilder;
-  onRejected(body: string): FontDialogBuilder;
-  onResultChanged(body: string): FontDialogBuilder;
-  onSelectedFontChanged(body: string): FontDialogBuilder;
-  onTitleChanged(body: string): FontDialogBuilder;
-  onVisibleChanged(body: string): FontDialogBuilder;
+  onAccepted(handler: DslSignalHandlerValue): FontDialogBuilder;
+  onCurrentFontChanged(handler: DslSignalHandlerValue): FontDialogBuilder;
+  onFlagsChanged(handler: DslSignalHandlerValue): FontDialogBuilder;
+  onModalityChanged(handler: DslSignalHandlerValue): FontDialogBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): FontDialogBuilder;
+  onOptionsChanged(handler: DslSignalHandlerValue): FontDialogBuilder;
+  onParentWindowChanged(handler: DslSignalHandlerValue): FontDialogBuilder;
+  onPopupTypeChanged(handler: DslSignalHandlerValue): FontDialogBuilder;
+  onRejected(handler: DslSignalHandlerValue): FontDialogBuilder;
+  onResultChanged(handler: DslSignalHandlerValue): FontDialogBuilder;
+  onSelectedFontChanged(handler: DslSignalHandlerValue): FontDialogBuilder;
+  onTitleChanged(handler: DslSignalHandlerValue): FontDialogBuilder;
+  onVisibleChanged(handler: DslSignalHandlerValue): FontDialogBuilder;
 }
 
 const FONTDIALOG_META: TypeMetadata = {

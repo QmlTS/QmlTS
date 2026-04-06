@@ -2,7 +2,7 @@
 // Type: FrameAnimation
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import type { DslSignalHandlerValue, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 import type { AccessibleAttachedBuilder } from './Accessible.js';
 import type { EnterKeyAttachedBuilder } from './EnterKey.js';
@@ -23,6 +23,7 @@ import type { ViewTransitionAttachedBuilder } from './ViewTransition.js';
 export interface FrameAnimationBuilder {
   id(id: string): FrameAnimationBuilder;
   child(obj: QmlObjectBuilder): FrameAnimationBuilder;
+  children(...objs: QmlObjectBuilder[]): FrameAnimationBuilder;
 
   objectName(value: string): FrameAnimationBuilder;
   objectNameBind(expr: string): FrameAnimationBuilder;
@@ -30,14 +31,14 @@ export interface FrameAnimationBuilder {
   pausedBind(expr: string): FrameAnimationBuilder;
   running(value: boolean): FrameAnimationBuilder;
   runningBind(expr: string): FrameAnimationBuilder;
-  onCurrentFrameChanged(body: string): FrameAnimationBuilder;
-  onElapsedTimeChanged(body: string): FrameAnimationBuilder;
-  onFrameTimeChanged(body: string): FrameAnimationBuilder;
-  onObjectNameChanged(body: string): FrameAnimationBuilder;
-  onPausedChanged(body: string): FrameAnimationBuilder;
-  onRunningChanged(body: string): FrameAnimationBuilder;
-  onSmoothFrameTimeChanged(body: string): FrameAnimationBuilder;
-  onTriggered(body: string): FrameAnimationBuilder;
+  onCurrentFrameChanged(handler: DslSignalHandlerValue): FrameAnimationBuilder;
+  onElapsedTimeChanged(handler: DslSignalHandlerValue): FrameAnimationBuilder;
+  onFrameTimeChanged(handler: DslSignalHandlerValue): FrameAnimationBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): FrameAnimationBuilder;
+  onPausedChanged(handler: DslSignalHandlerValue): FrameAnimationBuilder;
+  onRunningChanged(handler: DslSignalHandlerValue): FrameAnimationBuilder;
+  onSmoothFrameTimeChanged(handler: DslSignalHandlerValue): FrameAnimationBuilder;
+  onTriggered(handler: DslSignalHandlerValue): FrameAnimationBuilder;
   accessible(setup: (b: AccessibleAttachedBuilder) => void): FrameAnimationBuilder;
   drag(setup: (b: DragAttachedBuilder) => void): FrameAnimationBuilder;
   enterKey(setup: (b: EnterKeyAttachedBuilder) => void): FrameAnimationBuilder;

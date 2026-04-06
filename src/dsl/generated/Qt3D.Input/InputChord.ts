@@ -2,11 +2,17 @@
 // Type: InputChord
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 export interface InputChordBuilder {
   id(id: string): InputChordBuilder;
   child(obj: QmlObjectBuilder): InputChordBuilder;
+  children(...objs: QmlObjectBuilder[]): InputChordBuilder;
 
   enabled(value: boolean): InputChordBuilder;
   enabledBind(expr: string): InputChordBuilder;
@@ -16,11 +22,11 @@ export interface InputChordBuilder {
   parentBind(expr: string): InputChordBuilder;
   timeout(value: number): InputChordBuilder;
   timeoutBind(expr: string): InputChordBuilder;
-  onEnabledChanged(body: string): InputChordBuilder;
-  onNodeDestroyed(body: string): InputChordBuilder;
-  onObjectNameChanged(body: string): InputChordBuilder;
-  onParentChanged(body: string): InputChordBuilder;
-  onTimeoutChanged(body: string): InputChordBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): InputChordBuilder;
+  onNodeDestroyed(handler: DslSignalHandlerValue): InputChordBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): InputChordBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): InputChordBuilder;
+  onTimeoutChanged(handler: DslSignalHandlerValue): InputChordBuilder;
 }
 
 const INPUTCHORD_META: TypeMetadata = {

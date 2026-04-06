@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlColor,
   QmlEnumToken,
   QmlObjectBuilder,
@@ -20,6 +21,7 @@ import type { TextureBuilder } from '../QtQuick3D/Texture.js';
 export interface SceneEffectEnvironmentBuilder {
   id(id: string): SceneEffectEnvironmentBuilder;
   child(obj: QmlObjectBuilder): SceneEffectEnvironmentBuilder;
+  children(...objs: QmlObjectBuilder[]): SceneEffectEnvironmentBuilder;
 
   antialiasingMode(value: QmlEnumToken): SceneEffectEnvironmentBuilder;
   antialiasingModeBind(expr: string): SceneEffectEnvironmentBuilder;
@@ -85,39 +87,39 @@ export interface SceneEffectEnvironmentBuilder {
   temporalAAStrengthBind(expr: string): SceneEffectEnvironmentBuilder;
   tonemapMode(value: QmlEnumToken): SceneEffectEnvironmentBuilder;
   tonemapModeBind(expr: string): SceneEffectEnvironmentBuilder;
-  onAntialiasingModeChanged(body: string): SceneEffectEnvironmentBuilder;
-  onAntialiasingQualityChanged(body: string): SceneEffectEnvironmentBuilder;
-  onAoBiasChanged(body: string): SceneEffectEnvironmentBuilder;
-  onAoDistanceChanged(body: string): SceneEffectEnvironmentBuilder;
-  onAoDitherChanged(body: string): SceneEffectEnvironmentBuilder;
-  onAoEnabledChanged(body: string): SceneEffectEnvironmentBuilder;
-  onAoSampleRateChanged(body: string): SceneEffectEnvironmentBuilder;
-  onAoSoftnessChanged(body: string): SceneEffectEnvironmentBuilder;
-  onAoStrengthChanged(body: string): SceneEffectEnvironmentBuilder;
-  onBackgroundModeChanged(body: string): SceneEffectEnvironmentBuilder;
-  onChildrenChanged(body: string): SceneEffectEnvironmentBuilder;
-  onClearColorChanged(body: string): SceneEffectEnvironmentBuilder;
-  onDebugSettingsChanged(body: string): SceneEffectEnvironmentBuilder;
-  onDepthPrePassEnabledChanged(body: string): SceneEffectEnvironmentBuilder;
-  onDepthTestEnabledChanged(body: string): SceneEffectEnvironmentBuilder;
-  onFogChanged(body: string): SceneEffectEnvironmentBuilder;
-  onLightProbeChanged(body: string): SceneEffectEnvironmentBuilder;
-  onLightmapperChanged(body: string): SceneEffectEnvironmentBuilder;
-  onObjectNameChanged(body: string): SceneEffectEnvironmentBuilder;
-  onOitMethodChanged(body: string): SceneEffectEnvironmentBuilder;
-  onParentChanged(body: string): SceneEffectEnvironmentBuilder;
-  onProbeExposureChanged(body: string): SceneEffectEnvironmentBuilder;
-  onProbeHorizonChanged(body: string): SceneEffectEnvironmentBuilder;
-  onProbeOrientationChanged(body: string): SceneEffectEnvironmentBuilder;
-  onScissorRectChanged(body: string): SceneEffectEnvironmentBuilder;
-  onSkyBoxCubeMapChanged(body: string): SceneEffectEnvironmentBuilder;
-  onSkyboxBlurAmountChanged(body: string): SceneEffectEnvironmentBuilder;
-  onSpecularAAEnabledChanged(body: string): SceneEffectEnvironmentBuilder;
-  onStateChanged(body: string): SceneEffectEnvironmentBuilder;
-  onTemporalAAEnabledChanged(body: string): SceneEffectEnvironmentBuilder;
-  onTemporalAAModeChanged(body: string): SceneEffectEnvironmentBuilder;
-  onTemporalAAStrengthChanged(body: string): SceneEffectEnvironmentBuilder;
-  onTonemapModeChanged(body: string): SceneEffectEnvironmentBuilder;
+  onAntialiasingModeChanged(handler: DslSignalHandlerValue): SceneEffectEnvironmentBuilder;
+  onAntialiasingQualityChanged(handler: DslSignalHandlerValue): SceneEffectEnvironmentBuilder;
+  onAoBiasChanged(handler: DslSignalHandlerValue): SceneEffectEnvironmentBuilder;
+  onAoDistanceChanged(handler: DslSignalHandlerValue): SceneEffectEnvironmentBuilder;
+  onAoDitherChanged(handler: DslSignalHandlerValue): SceneEffectEnvironmentBuilder;
+  onAoEnabledChanged(handler: DslSignalHandlerValue): SceneEffectEnvironmentBuilder;
+  onAoSampleRateChanged(handler: DslSignalHandlerValue): SceneEffectEnvironmentBuilder;
+  onAoSoftnessChanged(handler: DslSignalHandlerValue): SceneEffectEnvironmentBuilder;
+  onAoStrengthChanged(handler: DslSignalHandlerValue): SceneEffectEnvironmentBuilder;
+  onBackgroundModeChanged(handler: DslSignalHandlerValue): SceneEffectEnvironmentBuilder;
+  onChildrenChanged(handler: DslSignalHandlerValue): SceneEffectEnvironmentBuilder;
+  onClearColorChanged(handler: DslSignalHandlerValue): SceneEffectEnvironmentBuilder;
+  onDebugSettingsChanged(handler: DslSignalHandlerValue): SceneEffectEnvironmentBuilder;
+  onDepthPrePassEnabledChanged(handler: DslSignalHandlerValue): SceneEffectEnvironmentBuilder;
+  onDepthTestEnabledChanged(handler: DslSignalHandlerValue): SceneEffectEnvironmentBuilder;
+  onFogChanged(handler: DslSignalHandlerValue): SceneEffectEnvironmentBuilder;
+  onLightProbeChanged(handler: DslSignalHandlerValue): SceneEffectEnvironmentBuilder;
+  onLightmapperChanged(handler: DslSignalHandlerValue): SceneEffectEnvironmentBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): SceneEffectEnvironmentBuilder;
+  onOitMethodChanged(handler: DslSignalHandlerValue): SceneEffectEnvironmentBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): SceneEffectEnvironmentBuilder;
+  onProbeExposureChanged(handler: DslSignalHandlerValue): SceneEffectEnvironmentBuilder;
+  onProbeHorizonChanged(handler: DslSignalHandlerValue): SceneEffectEnvironmentBuilder;
+  onProbeOrientationChanged(handler: DslSignalHandlerValue): SceneEffectEnvironmentBuilder;
+  onScissorRectChanged(handler: DslSignalHandlerValue): SceneEffectEnvironmentBuilder;
+  onSkyBoxCubeMapChanged(handler: DslSignalHandlerValue): SceneEffectEnvironmentBuilder;
+  onSkyboxBlurAmountChanged(handler: DslSignalHandlerValue): SceneEffectEnvironmentBuilder;
+  onSpecularAAEnabledChanged(handler: DslSignalHandlerValue): SceneEffectEnvironmentBuilder;
+  onStateChanged(handler: DslSignalHandlerValue): SceneEffectEnvironmentBuilder;
+  onTemporalAAEnabledChanged(handler: DslSignalHandlerValue): SceneEffectEnvironmentBuilder;
+  onTemporalAAModeChanged(handler: DslSignalHandlerValue): SceneEffectEnvironmentBuilder;
+  onTemporalAAStrengthChanged(handler: DslSignalHandlerValue): SceneEffectEnvironmentBuilder;
+  onTonemapModeChanged(handler: DslSignalHandlerValue): SceneEffectEnvironmentBuilder;
 }
 
 const SCENEEFFECTENVIRONMENT_META: TypeMetadata = {

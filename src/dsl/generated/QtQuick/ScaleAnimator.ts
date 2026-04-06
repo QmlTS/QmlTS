@@ -2,7 +2,12 @@
 // Type: ScaleAnimator
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { AccessibleAttachedBuilder } from './Accessible.js';
 import type { EnterKeyAttachedBuilder } from './EnterKey.js';
@@ -24,6 +29,7 @@ import type { ViewTransitionAttachedBuilder } from './ViewTransition.js';
 export interface ScaleAnimatorBuilder {
   id(id: string): ScaleAnimatorBuilder;
   child(obj: QmlObjectBuilder): ScaleAnimatorBuilder;
+  children(...objs: QmlObjectBuilder[]): ScaleAnimatorBuilder;
 
   alwaysRunToEnd(value: boolean): ScaleAnimatorBuilder;
   alwaysRunToEndBind(expr: string): ScaleAnimatorBuilder;
@@ -45,19 +51,19 @@ export interface ScaleAnimatorBuilder {
   targetBind(expr: string): ScaleAnimatorBuilder;
   to(value: number): ScaleAnimatorBuilder;
   toBind(expr: string): ScaleAnimatorBuilder;
-  onAlwaysRunToEndChanged(body: string): ScaleAnimatorBuilder;
-  onDurationChanged(body: string): ScaleAnimatorBuilder;
-  onEasingChanged(body: string): ScaleAnimatorBuilder;
-  onFinished(body: string): ScaleAnimatorBuilder;
-  onFromChanged(body: string): ScaleAnimatorBuilder;
-  onLoopCountChanged(body: string): ScaleAnimatorBuilder;
-  onObjectNameChanged(body: string): ScaleAnimatorBuilder;
-  onPausedChanged(body: string): ScaleAnimatorBuilder;
-  onRunningChanged(body: string): ScaleAnimatorBuilder;
-  onStarted(body: string): ScaleAnimatorBuilder;
-  onStopped(body: string): ScaleAnimatorBuilder;
-  onTargetItemChanged(body: string): ScaleAnimatorBuilder;
-  onToChanged(body: string): ScaleAnimatorBuilder;
+  onAlwaysRunToEndChanged(handler: DslSignalHandlerValue): ScaleAnimatorBuilder;
+  onDurationChanged(handler: DslSignalHandlerValue): ScaleAnimatorBuilder;
+  onEasingChanged(handler: DslSignalHandlerValue): ScaleAnimatorBuilder;
+  onFinished(handler: DslSignalHandlerValue): ScaleAnimatorBuilder;
+  onFromChanged(handler: DslSignalHandlerValue): ScaleAnimatorBuilder;
+  onLoopCountChanged(handler: DslSignalHandlerValue): ScaleAnimatorBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): ScaleAnimatorBuilder;
+  onPausedChanged(handler: DslSignalHandlerValue): ScaleAnimatorBuilder;
+  onRunningChanged(handler: DslSignalHandlerValue): ScaleAnimatorBuilder;
+  onStarted(handler: DslSignalHandlerValue): ScaleAnimatorBuilder;
+  onStopped(handler: DslSignalHandlerValue): ScaleAnimatorBuilder;
+  onTargetItemChanged(handler: DslSignalHandlerValue): ScaleAnimatorBuilder;
+  onToChanged(handler: DslSignalHandlerValue): ScaleAnimatorBuilder;
   accessible(setup: (b: AccessibleAttachedBuilder) => void): ScaleAnimatorBuilder;
   drag(setup: (b: DragAttachedBuilder) => void): ScaleAnimatorBuilder;
   enterKey(setup: (b: EnterKeyAttachedBuilder) => void): ScaleAnimatorBuilder;

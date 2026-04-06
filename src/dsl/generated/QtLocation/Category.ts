@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlEnumToken,
   QmlObjectBuilder,
   QmlValue,
@@ -13,6 +14,7 @@ import type { PluginBuilder } from './Plugin.js';
 export interface CategoryBuilder {
   id(id: string): CategoryBuilder;
   child(obj: QmlObjectBuilder): CategoryBuilder;
+  children(...objs: QmlObjectBuilder[]): CategoryBuilder;
 
   category(value: QmlValue): CategoryBuilder;
   categoryBind(expr: string): CategoryBuilder;
@@ -28,13 +30,13 @@ export interface CategoryBuilder {
   pluginBind(expr: string): CategoryBuilder;
   visibility(value: QmlEnumToken): CategoryBuilder;
   visibilityBind(expr: string): CategoryBuilder;
-  onCategoryIdChanged(body: string): CategoryBuilder;
-  onIconChanged(body: string): CategoryBuilder;
-  onNameChanged(body: string): CategoryBuilder;
-  onObjectNameChanged(body: string): CategoryBuilder;
-  onPluginChanged(body: string): CategoryBuilder;
-  onStatusChanged(body: string): CategoryBuilder;
-  onVisibilityChanged(body: string): CategoryBuilder;
+  onCategoryIdChanged(handler: DslSignalHandlerValue): CategoryBuilder;
+  onIconChanged(handler: DslSignalHandlerValue): CategoryBuilder;
+  onNameChanged(handler: DslSignalHandlerValue): CategoryBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): CategoryBuilder;
+  onPluginChanged(handler: DslSignalHandlerValue): CategoryBuilder;
+  onStatusChanged(handler: DslSignalHandlerValue): CategoryBuilder;
+  onVisibilityChanged(handler: DslSignalHandlerValue): CategoryBuilder;
 }
 
 const CATEGORY_META: TypeMetadata = {

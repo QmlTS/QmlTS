@@ -2,12 +2,18 @@
 // Type: MouseHandler
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 import type { MouseDeviceBuilder } from './MouseDevice.js';
 export interface MouseHandlerBuilder {
   id(id: string): MouseHandlerBuilder;
   child(obj: QmlObjectBuilder): MouseHandlerBuilder;
+  children(...objs: QmlObjectBuilder[]): MouseHandlerBuilder;
 
   enabled(value: boolean): MouseHandlerBuilder;
   enabledBind(expr: string): MouseHandlerBuilder;
@@ -19,24 +25,24 @@ export interface MouseHandlerBuilder {
   parentBind(expr: string): MouseHandlerBuilder;
   sourceDevice(value: MouseDeviceBuilder): MouseHandlerBuilder;
   sourceDeviceBind(expr: string): MouseHandlerBuilder;
-  onAddedToEntity(body: string): MouseHandlerBuilder;
-  onClicked(body: string): MouseHandlerBuilder;
-  onContainsMouseChanged(body: string): MouseHandlerBuilder;
-  onDoubleClicked(body: string): MouseHandlerBuilder;
-  onEnabledChanged(body: string): MouseHandlerBuilder;
-  onEntered(body: string): MouseHandlerBuilder;
-  onExited(body: string): MouseHandlerBuilder;
-  onNodeDestroyed(body: string): MouseHandlerBuilder;
-  onObjectNameChanged(body: string): MouseHandlerBuilder;
-  onParentChanged(body: string): MouseHandlerBuilder;
-  onPositionChanged(body: string): MouseHandlerBuilder;
-  onPressAndHold(body: string): MouseHandlerBuilder;
-  onPressed(body: string): MouseHandlerBuilder;
-  onReleased(body: string): MouseHandlerBuilder;
-  onRemovedFromEntity(body: string): MouseHandlerBuilder;
-  onShareableChanged(body: string): MouseHandlerBuilder;
-  onSourceDeviceChanged(body: string): MouseHandlerBuilder;
-  onWheel(body: string): MouseHandlerBuilder;
+  onAddedToEntity(handler: DslSignalHandlerValue): MouseHandlerBuilder;
+  onClicked(handler: DslSignalHandlerValue): MouseHandlerBuilder;
+  onContainsMouseChanged(handler: DslSignalHandlerValue): MouseHandlerBuilder;
+  onDoubleClicked(handler: DslSignalHandlerValue): MouseHandlerBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): MouseHandlerBuilder;
+  onEntered(handler: DslSignalHandlerValue): MouseHandlerBuilder;
+  onExited(handler: DslSignalHandlerValue): MouseHandlerBuilder;
+  onNodeDestroyed(handler: DslSignalHandlerValue): MouseHandlerBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): MouseHandlerBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): MouseHandlerBuilder;
+  onPositionChanged(handler: DslSignalHandlerValue): MouseHandlerBuilder;
+  onPressAndHold(handler: DslSignalHandlerValue): MouseHandlerBuilder;
+  onPressed(handler: DslSignalHandlerValue): MouseHandlerBuilder;
+  onReleased(handler: DslSignalHandlerValue): MouseHandlerBuilder;
+  onRemovedFromEntity(handler: DslSignalHandlerValue): MouseHandlerBuilder;
+  onShareableChanged(handler: DslSignalHandlerValue): MouseHandlerBuilder;
+  onSourceDeviceChanged(handler: DslSignalHandlerValue): MouseHandlerBuilder;
+  onWheel(handler: DslSignalHandlerValue): MouseHandlerBuilder;
 }
 
 const MOUSEHANDLER_META: TypeMetadata = {

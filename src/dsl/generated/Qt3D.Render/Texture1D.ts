@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlEnumToken,
   QmlObjectBuilder,
   QmlValue,
@@ -12,6 +13,7 @@ import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface Texture1DBuilder {
   id(id: string): Texture1DBuilder;
   child(obj: QmlObjectBuilder): Texture1DBuilder;
+  children(...objs: QmlObjectBuilder[]): Texture1DBuilder;
 
   comparisonFunction(value: QmlEnumToken): Texture1DBuilder;
   comparisonFunctionBind(expr: string): Texture1DBuilder;
@@ -45,26 +47,26 @@ export interface Texture1DBuilder {
   samplesBind(expr: string): Texture1DBuilder;
   width(value: number): Texture1DBuilder;
   widthBind(expr: string): Texture1DBuilder;
-  onComparisonFunctionChanged(body: string): Texture1DBuilder;
-  onComparisonModeChanged(body: string): Texture1DBuilder;
-  onDepthChanged(body: string): Texture1DBuilder;
-  onEnabledChanged(body: string): Texture1DBuilder;
-  onFormatChanged(body: string): Texture1DBuilder;
-  onGenerateMipMapsChanged(body: string): Texture1DBuilder;
-  onHandleChanged(body: string): Texture1DBuilder;
-  onHandleTypeChanged(body: string): Texture1DBuilder;
-  onHeightChanged(body: string): Texture1DBuilder;
-  onLayersChanged(body: string): Texture1DBuilder;
-  onMagnificationFilterChanged(body: string): Texture1DBuilder;
-  onMaximumAnisotropyChanged(body: string): Texture1DBuilder;
-  onMinificationFilterChanged(body: string): Texture1DBuilder;
-  onMipLevelsChanged(body: string): Texture1DBuilder;
-  onNodeDestroyed(body: string): Texture1DBuilder;
-  onObjectNameChanged(body: string): Texture1DBuilder;
-  onParentChanged(body: string): Texture1DBuilder;
-  onSamplesChanged(body: string): Texture1DBuilder;
-  onStatusChanged(body: string): Texture1DBuilder;
-  onWidthChanged(body: string): Texture1DBuilder;
+  onComparisonFunctionChanged(handler: DslSignalHandlerValue): Texture1DBuilder;
+  onComparisonModeChanged(handler: DslSignalHandlerValue): Texture1DBuilder;
+  onDepthChanged(handler: DslSignalHandlerValue): Texture1DBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): Texture1DBuilder;
+  onFormatChanged(handler: DslSignalHandlerValue): Texture1DBuilder;
+  onGenerateMipMapsChanged(handler: DslSignalHandlerValue): Texture1DBuilder;
+  onHandleChanged(handler: DslSignalHandlerValue): Texture1DBuilder;
+  onHandleTypeChanged(handler: DslSignalHandlerValue): Texture1DBuilder;
+  onHeightChanged(handler: DslSignalHandlerValue): Texture1DBuilder;
+  onLayersChanged(handler: DslSignalHandlerValue): Texture1DBuilder;
+  onMagnificationFilterChanged(handler: DslSignalHandlerValue): Texture1DBuilder;
+  onMaximumAnisotropyChanged(handler: DslSignalHandlerValue): Texture1DBuilder;
+  onMinificationFilterChanged(handler: DslSignalHandlerValue): Texture1DBuilder;
+  onMipLevelsChanged(handler: DslSignalHandlerValue): Texture1DBuilder;
+  onNodeDestroyed(handler: DslSignalHandlerValue): Texture1DBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): Texture1DBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): Texture1DBuilder;
+  onSamplesChanged(handler: DslSignalHandlerValue): Texture1DBuilder;
+  onStatusChanged(handler: DslSignalHandlerValue): Texture1DBuilder;
+  onWidthChanged(handler: DslSignalHandlerValue): Texture1DBuilder;
 }
 
 const TEXTURE1D_META: TypeMetadata = {

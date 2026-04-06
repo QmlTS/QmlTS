@@ -2,7 +2,12 @@
 // Type: SpriteSequence
 // Generated from Qt 6.11.0
 
-import type { QmlEnumToken, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlEnumToken,
+  QmlObjectBuilder,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { QtObjectBuilder } from '../QML/QtObject.js';
 import type { AccessibleAttachedBuilder } from './Accessible.js';
@@ -28,6 +33,7 @@ import type { ViewTransitionAttachedBuilder } from './ViewTransition.js';
 export interface SpriteSequenceBuilder {
   id(id: string): SpriteSequenceBuilder;
   child(obj: QmlObjectBuilder): SpriteSequenceBuilder;
+  children(...objs: QmlObjectBuilder[]): SpriteSequenceBuilder;
 
   activeFocusOnTab(value: boolean): SpriteSequenceBuilder;
   activeFocusOnTabBind(expr: string): SpriteSequenceBuilder;
@@ -85,41 +91,41 @@ export interface SpriteSequenceBuilder {
   yBind(expr: string): SpriteSequenceBuilder;
   z(value: number): SpriteSequenceBuilder;
   zBind(expr: string): SpriteSequenceBuilder;
-  onActiveFocusChanged(body: string): SpriteSequenceBuilder;
-  onActiveFocusOnTabChanged(body: string): SpriteSequenceBuilder;
-  onAntialiasingChanged(body: string): SpriteSequenceBuilder;
-  onBaselineOffsetChanged(body: string): SpriteSequenceBuilder;
-  onChildrenChanged(body: string): SpriteSequenceBuilder;
-  onChildrenRectChanged(body: string): SpriteSequenceBuilder;
-  onClipChanged(body: string): SpriteSequenceBuilder;
-  onContainmentMaskChanged(body: string): SpriteSequenceBuilder;
-  onCurrentSpriteChanged(body: string): SpriteSequenceBuilder;
-  onEnabledChanged(body: string): SpriteSequenceBuilder;
-  onFocusChanged(body: string): SpriteSequenceBuilder;
-  onFocusPolicyChanged(body: string): SpriteSequenceBuilder;
-  onGoalSpriteChanged(body: string): SpriteSequenceBuilder;
-  onHeightChanged(body: string): SpriteSequenceBuilder;
-  onImplicitHeightChanged(body: string): SpriteSequenceBuilder;
-  onImplicitWidthChanged(body: string): SpriteSequenceBuilder;
-  onInterpolateChanged(body: string): SpriteSequenceBuilder;
-  onObjectNameChanged(body: string): SpriteSequenceBuilder;
-  onOpacityChanged(body: string): SpriteSequenceBuilder;
-  onPaletteChanged(body: string): SpriteSequenceBuilder;
-  onPaletteCreated(body: string): SpriteSequenceBuilder;
-  onParentChanged(body: string): SpriteSequenceBuilder;
-  onRotationChanged(body: string): SpriteSequenceBuilder;
-  onRunningChanged(body: string): SpriteSequenceBuilder;
-  onScaleChanged(body: string): SpriteSequenceBuilder;
-  onSmoothChanged(body: string): SpriteSequenceBuilder;
-  onStateChanged(body: string): SpriteSequenceBuilder;
-  onTransformOriginChanged(body: string): SpriteSequenceBuilder;
-  onVisibleChanged(body: string): SpriteSequenceBuilder;
-  onVisibleChildrenChanged(body: string): SpriteSequenceBuilder;
-  onWidthChanged(body: string): SpriteSequenceBuilder;
-  onWindowChanged(body: string): SpriteSequenceBuilder;
-  onXChanged(body: string): SpriteSequenceBuilder;
-  onYChanged(body: string): SpriteSequenceBuilder;
-  onZChanged(body: string): SpriteSequenceBuilder;
+  onActiveFocusChanged(handler: DslSignalHandlerValue): SpriteSequenceBuilder;
+  onActiveFocusOnTabChanged(handler: DslSignalHandlerValue): SpriteSequenceBuilder;
+  onAntialiasingChanged(handler: DslSignalHandlerValue): SpriteSequenceBuilder;
+  onBaselineOffsetChanged(handler: DslSignalHandlerValue): SpriteSequenceBuilder;
+  onChildrenChanged(handler: DslSignalHandlerValue): SpriteSequenceBuilder;
+  onChildrenRectChanged(handler: DslSignalHandlerValue): SpriteSequenceBuilder;
+  onClipChanged(handler: DslSignalHandlerValue): SpriteSequenceBuilder;
+  onContainmentMaskChanged(handler: DslSignalHandlerValue): SpriteSequenceBuilder;
+  onCurrentSpriteChanged(handler: DslSignalHandlerValue): SpriteSequenceBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): SpriteSequenceBuilder;
+  onFocusChanged(handler: DslSignalHandlerValue): SpriteSequenceBuilder;
+  onFocusPolicyChanged(handler: DslSignalHandlerValue): SpriteSequenceBuilder;
+  onGoalSpriteChanged(handler: DslSignalHandlerValue): SpriteSequenceBuilder;
+  onHeightChanged(handler: DslSignalHandlerValue): SpriteSequenceBuilder;
+  onImplicitHeightChanged(handler: DslSignalHandlerValue): SpriteSequenceBuilder;
+  onImplicitWidthChanged(handler: DslSignalHandlerValue): SpriteSequenceBuilder;
+  onInterpolateChanged(handler: DslSignalHandlerValue): SpriteSequenceBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): SpriteSequenceBuilder;
+  onOpacityChanged(handler: DslSignalHandlerValue): SpriteSequenceBuilder;
+  onPaletteChanged(handler: DslSignalHandlerValue): SpriteSequenceBuilder;
+  onPaletteCreated(handler: DslSignalHandlerValue): SpriteSequenceBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): SpriteSequenceBuilder;
+  onRotationChanged(handler: DslSignalHandlerValue): SpriteSequenceBuilder;
+  onRunningChanged(handler: DslSignalHandlerValue): SpriteSequenceBuilder;
+  onScaleChanged(handler: DslSignalHandlerValue): SpriteSequenceBuilder;
+  onSmoothChanged(handler: DslSignalHandlerValue): SpriteSequenceBuilder;
+  onStateChanged(handler: DslSignalHandlerValue): SpriteSequenceBuilder;
+  onTransformOriginChanged(handler: DslSignalHandlerValue): SpriteSequenceBuilder;
+  onVisibleChanged(handler: DslSignalHandlerValue): SpriteSequenceBuilder;
+  onVisibleChildrenChanged(handler: DslSignalHandlerValue): SpriteSequenceBuilder;
+  onWidthChanged(handler: DslSignalHandlerValue): SpriteSequenceBuilder;
+  onWindowChanged(handler: DslSignalHandlerValue): SpriteSequenceBuilder;
+  onXChanged(handler: DslSignalHandlerValue): SpriteSequenceBuilder;
+  onYChanged(handler: DslSignalHandlerValue): SpriteSequenceBuilder;
+  onZChanged(handler: DslSignalHandlerValue): SpriteSequenceBuilder;
   anchors(setup: (b: AnchorsBuilder) => void): SpriteSequenceBuilder;
   layer(setup: (b: LayerBuilder) => void): SpriteSequenceBuilder;
   accessible(setup: (b: AccessibleAttachedBuilder) => void): SpriteSequenceBuilder;

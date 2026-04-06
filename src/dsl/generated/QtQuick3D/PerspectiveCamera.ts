@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlEnumToken,
   QmlObjectBuilder,
   QmlQuaternion,
@@ -15,6 +16,7 @@ import type { NodeBuilder } from './Node.js';
 export interface PerspectiveCameraBuilder {
   id(id: string): PerspectiveCameraBuilder;
   child(obj: QmlObjectBuilder): PerspectiveCameraBuilder;
+  children(...objs: QmlObjectBuilder[]): PerspectiveCameraBuilder;
 
   clipFar(value: number): PerspectiveCameraBuilder;
   clipFarBind(expr: string): PerspectiveCameraBuilder;
@@ -60,36 +62,36 @@ export interface PerspectiveCameraBuilder {
   yBind(expr: string): PerspectiveCameraBuilder;
   z(value: number): PerspectiveCameraBuilder;
   zBind(expr: string): PerspectiveCameraBuilder;
-  onChildrenChanged(body: string): PerspectiveCameraBuilder;
-  onClipFarChanged(body: string): PerspectiveCameraBuilder;
-  onClipNearChanged(body: string): PerspectiveCameraBuilder;
-  onEulerRotationChanged(body: string): PerspectiveCameraBuilder;
-  onFieldOfViewChanged(body: string): PerspectiveCameraBuilder;
-  onFieldOfViewOrientationChanged(body: string): PerspectiveCameraBuilder;
-  onForwardChanged(body: string): PerspectiveCameraBuilder;
-  onFrustumCullingEnabledChanged(body: string): PerspectiveCameraBuilder;
-  onLayersChanged(body: string): PerspectiveCameraBuilder;
-  onLevelOfDetailBiasChanged(body: string): PerspectiveCameraBuilder;
-  onLocalOpacityChanged(body: string): PerspectiveCameraBuilder;
-  onLookAtNodeChanged(body: string): PerspectiveCameraBuilder;
-  onObjectNameChanged(body: string): PerspectiveCameraBuilder;
-  onParentChanged(body: string): PerspectiveCameraBuilder;
-  onPivotChanged(body: string): PerspectiveCameraBuilder;
-  onPositionChanged(body: string): PerspectiveCameraBuilder;
-  onRightChanged(body: string): PerspectiveCameraBuilder;
-  onRotationChanged(body: string): PerspectiveCameraBuilder;
-  onScaleChanged(body: string): PerspectiveCameraBuilder;
-  onScenePositionChanged(body: string): PerspectiveCameraBuilder;
-  onSceneRotationChanged(body: string): PerspectiveCameraBuilder;
-  onSceneScaleChanged(body: string): PerspectiveCameraBuilder;
-  onSceneTransformChanged(body: string): PerspectiveCameraBuilder;
-  onStateChanged(body: string): PerspectiveCameraBuilder;
-  onStaticFlagsChanged(body: string): PerspectiveCameraBuilder;
-  onUpChanged(body: string): PerspectiveCameraBuilder;
-  onVisibleChanged(body: string): PerspectiveCameraBuilder;
-  onXChanged(body: string): PerspectiveCameraBuilder;
-  onYChanged(body: string): PerspectiveCameraBuilder;
-  onZChanged(body: string): PerspectiveCameraBuilder;
+  onChildrenChanged(handler: DslSignalHandlerValue): PerspectiveCameraBuilder;
+  onClipFarChanged(handler: DslSignalHandlerValue): PerspectiveCameraBuilder;
+  onClipNearChanged(handler: DslSignalHandlerValue): PerspectiveCameraBuilder;
+  onEulerRotationChanged(handler: DslSignalHandlerValue): PerspectiveCameraBuilder;
+  onFieldOfViewChanged(handler: DslSignalHandlerValue): PerspectiveCameraBuilder;
+  onFieldOfViewOrientationChanged(handler: DslSignalHandlerValue): PerspectiveCameraBuilder;
+  onForwardChanged(handler: DslSignalHandlerValue): PerspectiveCameraBuilder;
+  onFrustumCullingEnabledChanged(handler: DslSignalHandlerValue): PerspectiveCameraBuilder;
+  onLayersChanged(handler: DslSignalHandlerValue): PerspectiveCameraBuilder;
+  onLevelOfDetailBiasChanged(handler: DslSignalHandlerValue): PerspectiveCameraBuilder;
+  onLocalOpacityChanged(handler: DslSignalHandlerValue): PerspectiveCameraBuilder;
+  onLookAtNodeChanged(handler: DslSignalHandlerValue): PerspectiveCameraBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): PerspectiveCameraBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): PerspectiveCameraBuilder;
+  onPivotChanged(handler: DslSignalHandlerValue): PerspectiveCameraBuilder;
+  onPositionChanged(handler: DslSignalHandlerValue): PerspectiveCameraBuilder;
+  onRightChanged(handler: DslSignalHandlerValue): PerspectiveCameraBuilder;
+  onRotationChanged(handler: DslSignalHandlerValue): PerspectiveCameraBuilder;
+  onScaleChanged(handler: DslSignalHandlerValue): PerspectiveCameraBuilder;
+  onScenePositionChanged(handler: DslSignalHandlerValue): PerspectiveCameraBuilder;
+  onSceneRotationChanged(handler: DslSignalHandlerValue): PerspectiveCameraBuilder;
+  onSceneScaleChanged(handler: DslSignalHandlerValue): PerspectiveCameraBuilder;
+  onSceneTransformChanged(handler: DslSignalHandlerValue): PerspectiveCameraBuilder;
+  onStateChanged(handler: DslSignalHandlerValue): PerspectiveCameraBuilder;
+  onStaticFlagsChanged(handler: DslSignalHandlerValue): PerspectiveCameraBuilder;
+  onUpChanged(handler: DslSignalHandlerValue): PerspectiveCameraBuilder;
+  onVisibleChanged(handler: DslSignalHandlerValue): PerspectiveCameraBuilder;
+  onXChanged(handler: DslSignalHandlerValue): PerspectiveCameraBuilder;
+  onYChanged(handler: DslSignalHandlerValue): PerspectiveCameraBuilder;
+  onZChanged(handler: DslSignalHandlerValue): PerspectiveCameraBuilder;
 }
 
 const PERSPECTIVECAMERA_META: TypeMetadata = {

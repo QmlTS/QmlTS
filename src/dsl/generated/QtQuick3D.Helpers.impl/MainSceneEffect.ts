@@ -2,12 +2,18 @@
 // Type: MainSceneEffect
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 import type { SceneEnvironmentBuilder } from '../QtQuick3D/SceneEnvironment.js';
 export interface MainSceneEffectBuilder {
   id(id: string): MainSceneEffectBuilder;
   child(obj: QmlObjectBuilder): MainSceneEffectBuilder;
+  children(...objs: QmlObjectBuilder[]): MainSceneEffectBuilder;
 
   environment(value: SceneEnvironmentBuilder): MainSceneEffectBuilder;
   environmentBind(expr: string): MainSceneEffectBuilder;
@@ -17,11 +23,11 @@ export interface MainSceneEffectBuilder {
   parentBind(expr: string): MainSceneEffectBuilder;
   state(value: string): MainSceneEffectBuilder;
   stateBind(expr: string): MainSceneEffectBuilder;
-  onChildrenChanged(body: string): MainSceneEffectBuilder;
-  onEnvironmentChanged(body: string): MainSceneEffectBuilder;
-  onObjectNameChanged(body: string): MainSceneEffectBuilder;
-  onParentChanged(body: string): MainSceneEffectBuilder;
-  onStateChanged(body: string): MainSceneEffectBuilder;
+  onChildrenChanged(handler: DslSignalHandlerValue): MainSceneEffectBuilder;
+  onEnvironmentChanged(handler: DslSignalHandlerValue): MainSceneEffectBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): MainSceneEffectBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): MainSceneEffectBuilder;
+  onStateChanged(handler: DslSignalHandlerValue): MainSceneEffectBuilder;
 }
 
 const MAINSCENEEFFECT_META: TypeMetadata = {

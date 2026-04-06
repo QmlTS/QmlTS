@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlEnumToken,
   QmlObjectBuilder,
   QmlValue,
@@ -12,6 +13,7 @@ import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface BoundaryRuleBuilder {
   id(id: string): BoundaryRuleBuilder;
   child(obj: QmlObjectBuilder): BoundaryRuleBuilder;
+  children(...objs: QmlObjectBuilder[]): BoundaryRuleBuilder;
 
   easing(value: QmlValue): BoundaryRuleBuilder;
   easingBind(expr: string): BoundaryRuleBuilder;
@@ -33,19 +35,19 @@ export interface BoundaryRuleBuilder {
   overshootScaleBind(expr: string): BoundaryRuleBuilder;
   returnDuration(value: number): BoundaryRuleBuilder;
   returnDurationBind(expr: string): BoundaryRuleBuilder;
-  onCurrentOvershootChanged(body: string): BoundaryRuleBuilder;
-  onEasingChanged(body: string): BoundaryRuleBuilder;
-  onEnabledChanged(body: string): BoundaryRuleBuilder;
-  onMaximumChanged(body: string): BoundaryRuleBuilder;
-  onMaximumOvershootChanged(body: string): BoundaryRuleBuilder;
-  onMinimumChanged(body: string): BoundaryRuleBuilder;
-  onMinimumOvershootChanged(body: string): BoundaryRuleBuilder;
-  onObjectNameChanged(body: string): BoundaryRuleBuilder;
-  onOvershootFilterChanged(body: string): BoundaryRuleBuilder;
-  onOvershootScaleChanged(body: string): BoundaryRuleBuilder;
-  onPeakOvershootChanged(body: string): BoundaryRuleBuilder;
-  onReturnDurationChanged(body: string): BoundaryRuleBuilder;
-  onReturnedToBounds(body: string): BoundaryRuleBuilder;
+  onCurrentOvershootChanged(handler: DslSignalHandlerValue): BoundaryRuleBuilder;
+  onEasingChanged(handler: DslSignalHandlerValue): BoundaryRuleBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): BoundaryRuleBuilder;
+  onMaximumChanged(handler: DslSignalHandlerValue): BoundaryRuleBuilder;
+  onMaximumOvershootChanged(handler: DslSignalHandlerValue): BoundaryRuleBuilder;
+  onMinimumChanged(handler: DslSignalHandlerValue): BoundaryRuleBuilder;
+  onMinimumOvershootChanged(handler: DslSignalHandlerValue): BoundaryRuleBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): BoundaryRuleBuilder;
+  onOvershootFilterChanged(handler: DslSignalHandlerValue): BoundaryRuleBuilder;
+  onOvershootScaleChanged(handler: DslSignalHandlerValue): BoundaryRuleBuilder;
+  onPeakOvershootChanged(handler: DslSignalHandlerValue): BoundaryRuleBuilder;
+  onReturnDurationChanged(handler: DslSignalHandlerValue): BoundaryRuleBuilder;
+  onReturnedToBounds(handler: DslSignalHandlerValue): BoundaryRuleBuilder;
 }
 
 const BOUNDARYRULE_META: TypeMetadata = {

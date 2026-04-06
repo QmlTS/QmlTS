@@ -2,12 +2,13 @@
 // Type: CategoryModel
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import type { DslSignalHandlerValue, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { PluginBuilder } from './Plugin.js';
 export interface CategoryModelBuilder {
   id(id: string): CategoryModelBuilder;
   child(obj: QmlObjectBuilder): CategoryModelBuilder;
+  children(...objs: QmlObjectBuilder[]): CategoryModelBuilder;
 
   hierarchical(value: boolean): CategoryModelBuilder;
   hierarchicalBind(expr: string): CategoryModelBuilder;
@@ -15,28 +16,28 @@ export interface CategoryModelBuilder {
   objectNameBind(expr: string): CategoryModelBuilder;
   plugin(value: PluginBuilder): CategoryModelBuilder;
   pluginBind(expr: string): CategoryModelBuilder;
-  onColumnsAboutToBeInserted(body: string): CategoryModelBuilder;
-  onColumnsAboutToBeMoved(body: string): CategoryModelBuilder;
-  onColumnsAboutToBeRemoved(body: string): CategoryModelBuilder;
-  onColumnsInserted(body: string): CategoryModelBuilder;
-  onColumnsMoved(body: string): CategoryModelBuilder;
-  onColumnsRemoved(body: string): CategoryModelBuilder;
-  onDataChanged(body: string): CategoryModelBuilder;
-  onHeaderDataChanged(body: string): CategoryModelBuilder;
-  onHierarchicalChanged(body: string): CategoryModelBuilder;
-  onLayoutAboutToBeChanged(body: string): CategoryModelBuilder;
-  onLayoutChanged(body: string): CategoryModelBuilder;
-  onModelAboutToBeReset(body: string): CategoryModelBuilder;
-  onModelReset(body: string): CategoryModelBuilder;
-  onObjectNameChanged(body: string): CategoryModelBuilder;
-  onPluginChanged(body: string): CategoryModelBuilder;
-  onRowsAboutToBeInserted(body: string): CategoryModelBuilder;
-  onRowsAboutToBeMoved(body: string): CategoryModelBuilder;
-  onRowsAboutToBeRemoved(body: string): CategoryModelBuilder;
-  onRowsInserted(body: string): CategoryModelBuilder;
-  onRowsMoved(body: string): CategoryModelBuilder;
-  onRowsRemoved(body: string): CategoryModelBuilder;
-  onStatusChanged(body: string): CategoryModelBuilder;
+  onColumnsAboutToBeInserted(handler: DslSignalHandlerValue): CategoryModelBuilder;
+  onColumnsAboutToBeMoved(handler: DslSignalHandlerValue): CategoryModelBuilder;
+  onColumnsAboutToBeRemoved(handler: DslSignalHandlerValue): CategoryModelBuilder;
+  onColumnsInserted(handler: DslSignalHandlerValue): CategoryModelBuilder;
+  onColumnsMoved(handler: DslSignalHandlerValue): CategoryModelBuilder;
+  onColumnsRemoved(handler: DslSignalHandlerValue): CategoryModelBuilder;
+  onDataChanged(handler: DslSignalHandlerValue): CategoryModelBuilder;
+  onHeaderDataChanged(handler: DslSignalHandlerValue): CategoryModelBuilder;
+  onHierarchicalChanged(handler: DslSignalHandlerValue): CategoryModelBuilder;
+  onLayoutAboutToBeChanged(handler: DslSignalHandlerValue): CategoryModelBuilder;
+  onLayoutChanged(handler: DslSignalHandlerValue): CategoryModelBuilder;
+  onModelAboutToBeReset(handler: DslSignalHandlerValue): CategoryModelBuilder;
+  onModelReset(handler: DslSignalHandlerValue): CategoryModelBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): CategoryModelBuilder;
+  onPluginChanged(handler: DslSignalHandlerValue): CategoryModelBuilder;
+  onRowsAboutToBeInserted(handler: DslSignalHandlerValue): CategoryModelBuilder;
+  onRowsAboutToBeMoved(handler: DslSignalHandlerValue): CategoryModelBuilder;
+  onRowsAboutToBeRemoved(handler: DslSignalHandlerValue): CategoryModelBuilder;
+  onRowsInserted(handler: DslSignalHandlerValue): CategoryModelBuilder;
+  onRowsMoved(handler: DslSignalHandlerValue): CategoryModelBuilder;
+  onRowsRemoved(handler: DslSignalHandlerValue): CategoryModelBuilder;
+  onStatusChanged(handler: DslSignalHandlerValue): CategoryModelBuilder;
 }
 
 const CATEGORYMODEL_META: TypeMetadata = {

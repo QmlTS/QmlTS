@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlEnumToken,
   QmlObjectBuilder,
   QmlValue,
@@ -13,6 +14,7 @@ import type { AxisBuilder } from './Axis.js';
 export interface AxisAccumulatorBuilder {
   id(id: string): AxisAccumulatorBuilder;
   child(obj: QmlObjectBuilder): AxisAccumulatorBuilder;
+  children(...objs: QmlObjectBuilder[]): AxisAccumulatorBuilder;
 
   enabled(value: boolean): AxisAccumulatorBuilder;
   enabledBind(expr: string): AxisAccumulatorBuilder;
@@ -28,18 +30,18 @@ export interface AxisAccumulatorBuilder {
   sourceAxisBind(expr: string): AxisAccumulatorBuilder;
   sourceAxisType(value: QmlEnumToken): AxisAccumulatorBuilder;
   sourceAxisTypeBind(expr: string): AxisAccumulatorBuilder;
-  onAddedToEntity(body: string): AxisAccumulatorBuilder;
-  onEnabledChanged(body: string): AxisAccumulatorBuilder;
-  onNodeDestroyed(body: string): AxisAccumulatorBuilder;
-  onObjectNameChanged(body: string): AxisAccumulatorBuilder;
-  onParentChanged(body: string): AxisAccumulatorBuilder;
-  onRemovedFromEntity(body: string): AxisAccumulatorBuilder;
-  onScaleChanged(body: string): AxisAccumulatorBuilder;
-  onShareableChanged(body: string): AxisAccumulatorBuilder;
-  onSourceAxisChanged(body: string): AxisAccumulatorBuilder;
-  onSourceAxisTypeChanged(body: string): AxisAccumulatorBuilder;
-  onValueChanged(body: string): AxisAccumulatorBuilder;
-  onVelocityChanged(body: string): AxisAccumulatorBuilder;
+  onAddedToEntity(handler: DslSignalHandlerValue): AxisAccumulatorBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): AxisAccumulatorBuilder;
+  onNodeDestroyed(handler: DslSignalHandlerValue): AxisAccumulatorBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): AxisAccumulatorBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): AxisAccumulatorBuilder;
+  onRemovedFromEntity(handler: DslSignalHandlerValue): AxisAccumulatorBuilder;
+  onScaleChanged(handler: DslSignalHandlerValue): AxisAccumulatorBuilder;
+  onShareableChanged(handler: DslSignalHandlerValue): AxisAccumulatorBuilder;
+  onSourceAxisChanged(handler: DslSignalHandlerValue): AxisAccumulatorBuilder;
+  onSourceAxisTypeChanged(handler: DslSignalHandlerValue): AxisAccumulatorBuilder;
+  onValueChanged(handler: DslSignalHandlerValue): AxisAccumulatorBuilder;
+  onVelocityChanged(handler: DslSignalHandlerValue): AxisAccumulatorBuilder;
 }
 
 const AXISACCUMULATOR_META: TypeMetadata = {

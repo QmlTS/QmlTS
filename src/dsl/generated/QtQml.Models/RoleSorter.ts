@@ -2,7 +2,12 @@
 // Type: RoleSorter
 // Generated from Qt 6.11.0
 
-import type { QmlEnumToken, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlEnumToken,
+  QmlObjectBuilder,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 import type { DelegateModelAttachedBuilder } from './QQmlDelegateModelAttached.js';
 import type { ObjectModelAttachedBuilder } from './QQmlObjectModelAttached.js';
@@ -10,6 +15,7 @@ import type { PackageAttachedBuilder } from './QQuickPackageAttached.js';
 export interface RoleSorterBuilder {
   id(id: string): RoleSorterBuilder;
   child(obj: QmlObjectBuilder): RoleSorterBuilder;
+  children(...objs: QmlObjectBuilder[]): RoleSorterBuilder;
 
   column(value: number): RoleSorterBuilder;
   columnBind(expr: string): RoleSorterBuilder;
@@ -23,14 +29,14 @@ export interface RoleSorterBuilder {
   roleNameBind(expr: string): RoleSorterBuilder;
   sortOrder(value: QmlEnumToken): RoleSorterBuilder;
   sortOrderBind(expr: string): RoleSorterBuilder;
-  onColumnChanged(body: string): RoleSorterBuilder;
-  onEnabledChanged(body: string): RoleSorterBuilder;
-  onInvalidateCache(body: string): RoleSorterBuilder;
-  onInvalidateModel(body: string): RoleSorterBuilder;
-  onObjectNameChanged(body: string): RoleSorterBuilder;
-  onPriorityChanged(body: string): RoleSorterBuilder;
-  onRoleNameChanged(body: string): RoleSorterBuilder;
-  onSortOrderChanged(body: string): RoleSorterBuilder;
+  onColumnChanged(handler: DslSignalHandlerValue): RoleSorterBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): RoleSorterBuilder;
+  onInvalidateCache(handler: DslSignalHandlerValue): RoleSorterBuilder;
+  onInvalidateModel(handler: DslSignalHandlerValue): RoleSorterBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): RoleSorterBuilder;
+  onPriorityChanged(handler: DslSignalHandlerValue): RoleSorterBuilder;
+  onRoleNameChanged(handler: DslSignalHandlerValue): RoleSorterBuilder;
+  onSortOrderChanged(handler: DslSignalHandlerValue): RoleSorterBuilder;
   delegateModel(setup: (b: DelegateModelAttachedBuilder) => void): RoleSorterBuilder;
   objectModel(setup: (b: ObjectModelAttachedBuilder) => void): RoleSorterBuilder;
   package(setup: (b: PackageAttachedBuilder) => void): RoleSorterBuilder;

@@ -2,7 +2,12 @@
 // Type: Row
 // Generated from Qt 6.11.0
 
-import type { QmlEnumToken, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlEnumToken,
+  QmlObjectBuilder,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { QtObjectBuilder } from '../QML/QtObject.js';
 import type { AccessibleAttachedBuilder } from './Accessible.js';
@@ -29,6 +34,7 @@ import type { ViewTransitionAttachedBuilder } from './ViewTransition.js';
 export interface RowBuilder {
   id(id: string): RowBuilder;
   child(obj: QmlObjectBuilder): RowBuilder;
+  children(...objs: QmlObjectBuilder[]): RowBuilder;
 
   activeFocusOnTab(value: boolean): RowBuilder;
   activeFocusOnTabBind(expr: string): RowBuilder;
@@ -96,49 +102,49 @@ export interface RowBuilder {
   yBind(expr: string): RowBuilder;
   z(value: number): RowBuilder;
   zBind(expr: string): RowBuilder;
-  onActiveFocusChanged(body: string): RowBuilder;
-  onActiveFocusOnTabChanged(body: string): RowBuilder;
-  onAddChanged(body: string): RowBuilder;
-  onAntialiasingChanged(body: string): RowBuilder;
-  onBaselineOffsetChanged(body: string): RowBuilder;
-  onBottomPaddingChanged(body: string): RowBuilder;
-  onChildrenChanged(body: string): RowBuilder;
-  onChildrenRectChanged(body: string): RowBuilder;
-  onClipChanged(body: string): RowBuilder;
-  onContainmentMaskChanged(body: string): RowBuilder;
-  onEffectiveLayoutDirectionChanged(body: string): RowBuilder;
-  onEnabledChanged(body: string): RowBuilder;
-  onFocusChanged(body: string): RowBuilder;
-  onFocusPolicyChanged(body: string): RowBuilder;
-  onHeightChanged(body: string): RowBuilder;
-  onImplicitHeightChanged(body: string): RowBuilder;
-  onImplicitWidthChanged(body: string): RowBuilder;
-  onLayoutDirectionChanged(body: string): RowBuilder;
-  onLeftPaddingChanged(body: string): RowBuilder;
-  onMoveChanged(body: string): RowBuilder;
-  onObjectNameChanged(body: string): RowBuilder;
-  onOpacityChanged(body: string): RowBuilder;
-  onPaddingChanged(body: string): RowBuilder;
-  onPaletteChanged(body: string): RowBuilder;
-  onPaletteCreated(body: string): RowBuilder;
-  onParentChanged(body: string): RowBuilder;
-  onPopulateChanged(body: string): RowBuilder;
-  onPositioningComplete(body: string): RowBuilder;
-  onRightPaddingChanged(body: string): RowBuilder;
-  onRotationChanged(body: string): RowBuilder;
-  onScaleChanged(body: string): RowBuilder;
-  onSmoothChanged(body: string): RowBuilder;
-  onSpacingChanged(body: string): RowBuilder;
-  onStateChanged(body: string): RowBuilder;
-  onTopPaddingChanged(body: string): RowBuilder;
-  onTransformOriginChanged(body: string): RowBuilder;
-  onVisibleChanged(body: string): RowBuilder;
-  onVisibleChildrenChanged(body: string): RowBuilder;
-  onWidthChanged(body: string): RowBuilder;
-  onWindowChanged(body: string): RowBuilder;
-  onXChanged(body: string): RowBuilder;
-  onYChanged(body: string): RowBuilder;
-  onZChanged(body: string): RowBuilder;
+  onActiveFocusChanged(handler: DslSignalHandlerValue): RowBuilder;
+  onActiveFocusOnTabChanged(handler: DslSignalHandlerValue): RowBuilder;
+  onAddChanged(handler: DslSignalHandlerValue): RowBuilder;
+  onAntialiasingChanged(handler: DslSignalHandlerValue): RowBuilder;
+  onBaselineOffsetChanged(handler: DslSignalHandlerValue): RowBuilder;
+  onBottomPaddingChanged(handler: DslSignalHandlerValue): RowBuilder;
+  onChildrenChanged(handler: DslSignalHandlerValue): RowBuilder;
+  onChildrenRectChanged(handler: DslSignalHandlerValue): RowBuilder;
+  onClipChanged(handler: DslSignalHandlerValue): RowBuilder;
+  onContainmentMaskChanged(handler: DslSignalHandlerValue): RowBuilder;
+  onEffectiveLayoutDirectionChanged(handler: DslSignalHandlerValue): RowBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): RowBuilder;
+  onFocusChanged(handler: DslSignalHandlerValue): RowBuilder;
+  onFocusPolicyChanged(handler: DslSignalHandlerValue): RowBuilder;
+  onHeightChanged(handler: DslSignalHandlerValue): RowBuilder;
+  onImplicitHeightChanged(handler: DslSignalHandlerValue): RowBuilder;
+  onImplicitWidthChanged(handler: DslSignalHandlerValue): RowBuilder;
+  onLayoutDirectionChanged(handler: DslSignalHandlerValue): RowBuilder;
+  onLeftPaddingChanged(handler: DslSignalHandlerValue): RowBuilder;
+  onMoveChanged(handler: DslSignalHandlerValue): RowBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): RowBuilder;
+  onOpacityChanged(handler: DslSignalHandlerValue): RowBuilder;
+  onPaddingChanged(handler: DslSignalHandlerValue): RowBuilder;
+  onPaletteChanged(handler: DslSignalHandlerValue): RowBuilder;
+  onPaletteCreated(handler: DslSignalHandlerValue): RowBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): RowBuilder;
+  onPopulateChanged(handler: DslSignalHandlerValue): RowBuilder;
+  onPositioningComplete(handler: DslSignalHandlerValue): RowBuilder;
+  onRightPaddingChanged(handler: DslSignalHandlerValue): RowBuilder;
+  onRotationChanged(handler: DslSignalHandlerValue): RowBuilder;
+  onScaleChanged(handler: DslSignalHandlerValue): RowBuilder;
+  onSmoothChanged(handler: DslSignalHandlerValue): RowBuilder;
+  onSpacingChanged(handler: DslSignalHandlerValue): RowBuilder;
+  onStateChanged(handler: DslSignalHandlerValue): RowBuilder;
+  onTopPaddingChanged(handler: DslSignalHandlerValue): RowBuilder;
+  onTransformOriginChanged(handler: DslSignalHandlerValue): RowBuilder;
+  onVisibleChanged(handler: DslSignalHandlerValue): RowBuilder;
+  onVisibleChildrenChanged(handler: DslSignalHandlerValue): RowBuilder;
+  onWidthChanged(handler: DslSignalHandlerValue): RowBuilder;
+  onWindowChanged(handler: DslSignalHandlerValue): RowBuilder;
+  onXChanged(handler: DslSignalHandlerValue): RowBuilder;
+  onYChanged(handler: DslSignalHandlerValue): RowBuilder;
+  onZChanged(handler: DslSignalHandlerValue): RowBuilder;
   anchors(setup: (b: AnchorsBuilder) => void): RowBuilder;
   layer(setup: (b: LayerBuilder) => void): RowBuilder;
   accessible(setup: (b: AccessibleAttachedBuilder) => void): RowBuilder;

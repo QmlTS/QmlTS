@@ -1,5 +1,10 @@
-export type { BuilderEntry, DslPropertyValue, QmlObjectBuilder } from './builder-base.js';
-export { DslBuilderImpl } from './builder-base.js';
+export type {
+  BuilderEntry,
+  DslPropertyValue,
+  DslSignalHandlerValue,
+  QmlObjectBuilder,
+} from './builder-base.js';
+export { DslBuilderImpl, parseArrowFunction } from './builder-base.js';
 export type { QmlEnumToken } from './enum-token.js';
 export { createEnumToken, isEnumToken } from './enum-token.js';
 export { createFluentBuilder } from './fluent-proxy.js';

@@ -2,18 +2,19 @@
 // Type: HangulInputMethod
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import type { DslSignalHandlerValue, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 export interface HangulInputMethodBuilder {
   id(id: string): HangulInputMethodBuilder;
   child(obj: QmlObjectBuilder): HangulInputMethodBuilder;
+  children(...objs: QmlObjectBuilder[]): HangulInputMethodBuilder;
 
   objectName(value: string): HangulInputMethodBuilder;
   objectNameBind(expr: string): HangulInputMethodBuilder;
-  onObjectNameChanged(body: string): HangulInputMethodBuilder;
-  onSelectionListActiveItemChanged(body: string): HangulInputMethodBuilder;
-  onSelectionListChanged(body: string): HangulInputMethodBuilder;
-  onSelectionListsChanged(body: string): HangulInputMethodBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): HangulInputMethodBuilder;
+  onSelectionListActiveItemChanged(handler: DslSignalHandlerValue): HangulInputMethodBuilder;
+  onSelectionListChanged(handler: DslSignalHandlerValue): HangulInputMethodBuilder;
+  onSelectionListsChanged(handler: DslSignalHandlerValue): HangulInputMethodBuilder;
 }
 
 const HANGULINPUTMETHOD_META: TypeMetadata = {

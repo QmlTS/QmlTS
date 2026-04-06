@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlObjectBuilder,
   QmlQuaternion,
   QmlUrl,
@@ -14,6 +15,7 @@ import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface TriangleMeshShapeBuilder {
   id(id: string): TriangleMeshShapeBuilder;
   child(obj: QmlObjectBuilder): TriangleMeshShapeBuilder;
+  children(...objs: QmlObjectBuilder[]): TriangleMeshShapeBuilder;
 
   enableDebugDraw(value: boolean): TriangleMeshShapeBuilder;
   enableDebugDrawBind(expr: string): TriangleMeshShapeBuilder;
@@ -51,33 +53,33 @@ export interface TriangleMeshShapeBuilder {
   yBind(expr: string): TriangleMeshShapeBuilder;
   z(value: number): TriangleMeshShapeBuilder;
   zBind(expr: string): TriangleMeshShapeBuilder;
-  onChildrenChanged(body: string): TriangleMeshShapeBuilder;
-  onEnableDebugDrawChanged(body: string): TriangleMeshShapeBuilder;
-  onEulerRotationChanged(body: string): TriangleMeshShapeBuilder;
-  onForwardChanged(body: string): TriangleMeshShapeBuilder;
-  onGeometryChanged(body: string): TriangleMeshShapeBuilder;
-  onLayersChanged(body: string): TriangleMeshShapeBuilder;
-  onLocalOpacityChanged(body: string): TriangleMeshShapeBuilder;
-  onNeedsRebuild(body: string): TriangleMeshShapeBuilder;
-  onObjectNameChanged(body: string): TriangleMeshShapeBuilder;
-  onParentChanged(body: string): TriangleMeshShapeBuilder;
-  onPivotChanged(body: string): TriangleMeshShapeBuilder;
-  onPositionChanged(body: string): TriangleMeshShapeBuilder;
-  onRightChanged(body: string): TriangleMeshShapeBuilder;
-  onRotationChanged(body: string): TriangleMeshShapeBuilder;
-  onScaleChanged(body: string): TriangleMeshShapeBuilder;
-  onScenePositionChanged(body: string): TriangleMeshShapeBuilder;
-  onSceneRotationChanged(body: string): TriangleMeshShapeBuilder;
-  onSceneScaleChanged(body: string): TriangleMeshShapeBuilder;
-  onSceneTransformChanged(body: string): TriangleMeshShapeBuilder;
-  onSourceChanged(body: string): TriangleMeshShapeBuilder;
-  onStateChanged(body: string): TriangleMeshShapeBuilder;
-  onStaticFlagsChanged(body: string): TriangleMeshShapeBuilder;
-  onUpChanged(body: string): TriangleMeshShapeBuilder;
-  onVisibleChanged(body: string): TriangleMeshShapeBuilder;
-  onXChanged(body: string): TriangleMeshShapeBuilder;
-  onYChanged(body: string): TriangleMeshShapeBuilder;
-  onZChanged(body: string): TriangleMeshShapeBuilder;
+  onChildrenChanged(handler: DslSignalHandlerValue): TriangleMeshShapeBuilder;
+  onEnableDebugDrawChanged(handler: DslSignalHandlerValue): TriangleMeshShapeBuilder;
+  onEulerRotationChanged(handler: DslSignalHandlerValue): TriangleMeshShapeBuilder;
+  onForwardChanged(handler: DslSignalHandlerValue): TriangleMeshShapeBuilder;
+  onGeometryChanged(handler: DslSignalHandlerValue): TriangleMeshShapeBuilder;
+  onLayersChanged(handler: DslSignalHandlerValue): TriangleMeshShapeBuilder;
+  onLocalOpacityChanged(handler: DslSignalHandlerValue): TriangleMeshShapeBuilder;
+  onNeedsRebuild(handler: DslSignalHandlerValue): TriangleMeshShapeBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): TriangleMeshShapeBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): TriangleMeshShapeBuilder;
+  onPivotChanged(handler: DslSignalHandlerValue): TriangleMeshShapeBuilder;
+  onPositionChanged(handler: DslSignalHandlerValue): TriangleMeshShapeBuilder;
+  onRightChanged(handler: DslSignalHandlerValue): TriangleMeshShapeBuilder;
+  onRotationChanged(handler: DslSignalHandlerValue): TriangleMeshShapeBuilder;
+  onScaleChanged(handler: DslSignalHandlerValue): TriangleMeshShapeBuilder;
+  onScenePositionChanged(handler: DslSignalHandlerValue): TriangleMeshShapeBuilder;
+  onSceneRotationChanged(handler: DslSignalHandlerValue): TriangleMeshShapeBuilder;
+  onSceneScaleChanged(handler: DslSignalHandlerValue): TriangleMeshShapeBuilder;
+  onSceneTransformChanged(handler: DslSignalHandlerValue): TriangleMeshShapeBuilder;
+  onSourceChanged(handler: DslSignalHandlerValue): TriangleMeshShapeBuilder;
+  onStateChanged(handler: DslSignalHandlerValue): TriangleMeshShapeBuilder;
+  onStaticFlagsChanged(handler: DslSignalHandlerValue): TriangleMeshShapeBuilder;
+  onUpChanged(handler: DslSignalHandlerValue): TriangleMeshShapeBuilder;
+  onVisibleChanged(handler: DslSignalHandlerValue): TriangleMeshShapeBuilder;
+  onXChanged(handler: DslSignalHandlerValue): TriangleMeshShapeBuilder;
+  onYChanged(handler: DslSignalHandlerValue): TriangleMeshShapeBuilder;
+  onZChanged(handler: DslSignalHandlerValue): TriangleMeshShapeBuilder;
 }
 
 const TRIANGLEMESHSHAPE_META: TypeMetadata = {

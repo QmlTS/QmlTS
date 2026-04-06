@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlEnumToken,
   QmlObjectBuilder,
   QmlValue,
@@ -18,6 +19,7 @@ import type { BorderBuilder } from './QDeclarativeMapLineProperties.js';
 export interface MapPolylineBuilder {
   id(id: string): MapPolylineBuilder;
   child(obj: QmlObjectBuilder): MapPolylineBuilder;
+  children(...objs: QmlObjectBuilder[]): MapPolylineBuilder;
 
   activeFocusOnTab(value: boolean): MapPolylineBuilder;
   activeFocusOnTabBind(expr: string): MapPolylineBuilder;
@@ -79,43 +81,43 @@ export interface MapPolylineBuilder {
   yBind(expr: string): MapPolylineBuilder;
   z(value: number): MapPolylineBuilder;
   zBind(expr: string): MapPolylineBuilder;
-  onActiveFocusChanged(body: string): MapPolylineBuilder;
-  onActiveFocusOnTabChanged(body: string): MapPolylineBuilder;
-  onAddTransitionFinished(body: string): MapPolylineBuilder;
-  onAntialiasingChanged(body: string): MapPolylineBuilder;
-  onBaselineOffsetChanged(body: string): MapPolylineBuilder;
-  onChildrenChanged(body: string): MapPolylineBuilder;
-  onChildrenRectChanged(body: string): MapPolylineBuilder;
-  onClipChanged(body: string): MapPolylineBuilder;
-  onContainmentMaskChanged(body: string): MapPolylineBuilder;
-  onEnabledChanged(body: string): MapPolylineBuilder;
-  onFocusChanged(body: string): MapPolylineBuilder;
-  onFocusPolicyChanged(body: string): MapPolylineBuilder;
-  onHeightChanged(body: string): MapPolylineBuilder;
-  onImplicitHeightChanged(body: string): MapPolylineBuilder;
-  onImplicitWidthChanged(body: string): MapPolylineBuilder;
-  onLodThresholdChanged(body: string): MapPolylineBuilder;
-  onMapItemOpacityChanged(body: string): MapPolylineBuilder;
-  onObjectNameChanged(body: string): MapPolylineBuilder;
-  onOpacityChanged(body: string): MapPolylineBuilder;
-  onPaletteChanged(body: string): MapPolylineBuilder;
-  onPaletteCreated(body: string): MapPolylineBuilder;
-  onParentChanged(body: string): MapPolylineBuilder;
-  onPathChanged(body: string): MapPolylineBuilder;
-  onReferenceSurfaceChanged(body: string): MapPolylineBuilder;
-  onRemoveTransitionFinished(body: string): MapPolylineBuilder;
-  onRotationChanged(body: string): MapPolylineBuilder;
-  onScaleChanged(body: string): MapPolylineBuilder;
-  onSmoothChanged(body: string): MapPolylineBuilder;
-  onStateChanged(body: string): MapPolylineBuilder;
-  onTransformOriginChanged(body: string): MapPolylineBuilder;
-  onVisibleChanged(body: string): MapPolylineBuilder;
-  onVisibleChildrenChanged(body: string): MapPolylineBuilder;
-  onWidthChanged(body: string): MapPolylineBuilder;
-  onWindowChanged(body: string): MapPolylineBuilder;
-  onXChanged(body: string): MapPolylineBuilder;
-  onYChanged(body: string): MapPolylineBuilder;
-  onZChanged(body: string): MapPolylineBuilder;
+  onActiveFocusChanged(handler: DslSignalHandlerValue): MapPolylineBuilder;
+  onActiveFocusOnTabChanged(handler: DslSignalHandlerValue): MapPolylineBuilder;
+  onAddTransitionFinished(handler: DslSignalHandlerValue): MapPolylineBuilder;
+  onAntialiasingChanged(handler: DslSignalHandlerValue): MapPolylineBuilder;
+  onBaselineOffsetChanged(handler: DslSignalHandlerValue): MapPolylineBuilder;
+  onChildrenChanged(handler: DslSignalHandlerValue): MapPolylineBuilder;
+  onChildrenRectChanged(handler: DslSignalHandlerValue): MapPolylineBuilder;
+  onClipChanged(handler: DslSignalHandlerValue): MapPolylineBuilder;
+  onContainmentMaskChanged(handler: DslSignalHandlerValue): MapPolylineBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): MapPolylineBuilder;
+  onFocusChanged(handler: DslSignalHandlerValue): MapPolylineBuilder;
+  onFocusPolicyChanged(handler: DslSignalHandlerValue): MapPolylineBuilder;
+  onHeightChanged(handler: DslSignalHandlerValue): MapPolylineBuilder;
+  onImplicitHeightChanged(handler: DslSignalHandlerValue): MapPolylineBuilder;
+  onImplicitWidthChanged(handler: DslSignalHandlerValue): MapPolylineBuilder;
+  onLodThresholdChanged(handler: DslSignalHandlerValue): MapPolylineBuilder;
+  onMapItemOpacityChanged(handler: DslSignalHandlerValue): MapPolylineBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): MapPolylineBuilder;
+  onOpacityChanged(handler: DslSignalHandlerValue): MapPolylineBuilder;
+  onPaletteChanged(handler: DslSignalHandlerValue): MapPolylineBuilder;
+  onPaletteCreated(handler: DslSignalHandlerValue): MapPolylineBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): MapPolylineBuilder;
+  onPathChanged(handler: DslSignalHandlerValue): MapPolylineBuilder;
+  onReferenceSurfaceChanged(handler: DslSignalHandlerValue): MapPolylineBuilder;
+  onRemoveTransitionFinished(handler: DslSignalHandlerValue): MapPolylineBuilder;
+  onRotationChanged(handler: DslSignalHandlerValue): MapPolylineBuilder;
+  onScaleChanged(handler: DslSignalHandlerValue): MapPolylineBuilder;
+  onSmoothChanged(handler: DslSignalHandlerValue): MapPolylineBuilder;
+  onStateChanged(handler: DslSignalHandlerValue): MapPolylineBuilder;
+  onTransformOriginChanged(handler: DslSignalHandlerValue): MapPolylineBuilder;
+  onVisibleChanged(handler: DslSignalHandlerValue): MapPolylineBuilder;
+  onVisibleChildrenChanged(handler: DslSignalHandlerValue): MapPolylineBuilder;
+  onWidthChanged(handler: DslSignalHandlerValue): MapPolylineBuilder;
+  onWindowChanged(handler: DslSignalHandlerValue): MapPolylineBuilder;
+  onXChanged(handler: DslSignalHandlerValue): MapPolylineBuilder;
+  onYChanged(handler: DslSignalHandlerValue): MapPolylineBuilder;
+  onZChanged(handler: DslSignalHandlerValue): MapPolylineBuilder;
   anchors(setup: (b: AnchorsBuilder) => void): MapPolylineBuilder;
   layer(setup: (b: LayerBuilder) => void): MapPolylineBuilder;
   line(setup: (b: BorderBuilder) => void): MapPolylineBuilder;

@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlEnumToken,
   QmlObjectBuilder,
   QmlValue,
@@ -29,6 +30,7 @@ import type { ViewTransitionAttachedBuilder } from './ViewTransition.js';
 export interface SmoothedAnimationBuilder {
   id(id: string): SmoothedAnimationBuilder;
   child(obj: QmlObjectBuilder): SmoothedAnimationBuilder;
+  children(...objs: QmlObjectBuilder[]): SmoothedAnimationBuilder;
 
   alwaysRunToEnd(value: boolean): SmoothedAnimationBuilder;
   alwaysRunToEndBind(expr: string): SmoothedAnimationBuilder;
@@ -60,24 +62,24 @@ export interface SmoothedAnimationBuilder {
   toBind(expr: string): SmoothedAnimationBuilder;
   velocity(value: number): SmoothedAnimationBuilder;
   velocityBind(expr: string): SmoothedAnimationBuilder;
-  onAlwaysRunToEndChanged(body: string): SmoothedAnimationBuilder;
-  onDurationChanged(body: string): SmoothedAnimationBuilder;
-  onEasingChanged(body: string): SmoothedAnimationBuilder;
-  onFinished(body: string): SmoothedAnimationBuilder;
-  onFromChanged(body: string): SmoothedAnimationBuilder;
-  onLoopCountChanged(body: string): SmoothedAnimationBuilder;
-  onMaximumEasingTimeChanged(body: string): SmoothedAnimationBuilder;
-  onObjectNameChanged(body: string): SmoothedAnimationBuilder;
-  onPausedChanged(body: string): SmoothedAnimationBuilder;
-  onPropertiesChanged(body: string): SmoothedAnimationBuilder;
-  onPropertyChanged(body: string): SmoothedAnimationBuilder;
-  onReversingModeChanged(body: string): SmoothedAnimationBuilder;
-  onRunningChanged(body: string): SmoothedAnimationBuilder;
-  onStarted(body: string): SmoothedAnimationBuilder;
-  onStopped(body: string): SmoothedAnimationBuilder;
-  onTargetChanged(body: string): SmoothedAnimationBuilder;
-  onToChanged(body: string): SmoothedAnimationBuilder;
-  onVelocityChanged(body: string): SmoothedAnimationBuilder;
+  onAlwaysRunToEndChanged(handler: DslSignalHandlerValue): SmoothedAnimationBuilder;
+  onDurationChanged(handler: DslSignalHandlerValue): SmoothedAnimationBuilder;
+  onEasingChanged(handler: DslSignalHandlerValue): SmoothedAnimationBuilder;
+  onFinished(handler: DslSignalHandlerValue): SmoothedAnimationBuilder;
+  onFromChanged(handler: DslSignalHandlerValue): SmoothedAnimationBuilder;
+  onLoopCountChanged(handler: DslSignalHandlerValue): SmoothedAnimationBuilder;
+  onMaximumEasingTimeChanged(handler: DslSignalHandlerValue): SmoothedAnimationBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): SmoothedAnimationBuilder;
+  onPausedChanged(handler: DslSignalHandlerValue): SmoothedAnimationBuilder;
+  onPropertiesChanged(handler: DslSignalHandlerValue): SmoothedAnimationBuilder;
+  onPropertyChanged(handler: DslSignalHandlerValue): SmoothedAnimationBuilder;
+  onReversingModeChanged(handler: DslSignalHandlerValue): SmoothedAnimationBuilder;
+  onRunningChanged(handler: DslSignalHandlerValue): SmoothedAnimationBuilder;
+  onStarted(handler: DslSignalHandlerValue): SmoothedAnimationBuilder;
+  onStopped(handler: DslSignalHandlerValue): SmoothedAnimationBuilder;
+  onTargetChanged(handler: DslSignalHandlerValue): SmoothedAnimationBuilder;
+  onToChanged(handler: DslSignalHandlerValue): SmoothedAnimationBuilder;
+  onVelocityChanged(handler: DslSignalHandlerValue): SmoothedAnimationBuilder;
   accessible(setup: (b: AccessibleAttachedBuilder) => void): SmoothedAnimationBuilder;
   drag(setup: (b: DragAttachedBuilder) => void): SmoothedAnimationBuilder;
   enterKey(setup: (b: EnterKeyAttachedBuilder) => void): SmoothedAnimationBuilder;

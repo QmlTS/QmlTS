@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlEnumToken,
   QmlObjectBuilder,
   QmlValue,
@@ -13,6 +14,7 @@ import type { QtObjectBuilder } from '../QML/QtObject.js';
 export interface TimeoutTransitionBuilder {
   id(id: string): TimeoutTransitionBuilder;
   child(obj: QmlObjectBuilder): TimeoutTransitionBuilder;
+  children(...objs: QmlObjectBuilder[]): TimeoutTransitionBuilder;
 
   objectName(value: string): TimeoutTransitionBuilder;
   objectNameBind(expr: string): TimeoutTransitionBuilder;
@@ -28,12 +30,12 @@ export interface TimeoutTransitionBuilder {
   timeoutBind(expr: string): TimeoutTransitionBuilder;
   transitionType(value: QmlEnumToken): TimeoutTransitionBuilder;
   transitionTypeBind(expr: string): TimeoutTransitionBuilder;
-  onObjectNameChanged(body: string): TimeoutTransitionBuilder;
-  onSenderObjectChanged(body: string): TimeoutTransitionBuilder;
-  onSignalChanged(body: string): TimeoutTransitionBuilder;
-  onTargetStateChanged(body: string): TimeoutTransitionBuilder;
-  onTargetStatesChanged(body: string): TimeoutTransitionBuilder;
-  onTriggered(body: string): TimeoutTransitionBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): TimeoutTransitionBuilder;
+  onSenderObjectChanged(handler: DslSignalHandlerValue): TimeoutTransitionBuilder;
+  onSignalChanged(handler: DslSignalHandlerValue): TimeoutTransitionBuilder;
+  onTargetStateChanged(handler: DslSignalHandlerValue): TimeoutTransitionBuilder;
+  onTargetStatesChanged(handler: DslSignalHandlerValue): TimeoutTransitionBuilder;
+  onTriggered(handler: DslSignalHandlerValue): TimeoutTransitionBuilder;
 }
 
 const TIMEOUTTRANSITION_META: TypeMetadata = {

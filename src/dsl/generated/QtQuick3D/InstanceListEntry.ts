@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlColor,
   QmlObjectBuilder,
   QmlQuaternion,
@@ -15,6 +16,7 @@ import { createFluentBuilder } from '../../runtime/index.js';
 export interface InstanceListEntryBuilder {
   id(id: string): InstanceListEntryBuilder;
   child(obj: QmlObjectBuilder): InstanceListEntryBuilder;
+  children(...objs: QmlObjectBuilder[]): InstanceListEntryBuilder;
 
   color(value: QmlColor): InstanceListEntryBuilder;
   colorBind(expr: string): InstanceListEntryBuilder;
@@ -34,17 +36,17 @@ export interface InstanceListEntryBuilder {
   scaleBind(expr: string): InstanceListEntryBuilder;
   state(value: string): InstanceListEntryBuilder;
   stateBind(expr: string): InstanceListEntryBuilder;
-  onChanged(body: string): InstanceListEntryBuilder;
-  onChildrenChanged(body: string): InstanceListEntryBuilder;
-  onColorChanged(body: string): InstanceListEntryBuilder;
-  onCustomDataChanged(body: string): InstanceListEntryBuilder;
-  onEulerRotationChanged(body: string): InstanceListEntryBuilder;
-  onObjectNameChanged(body: string): InstanceListEntryBuilder;
-  onParentChanged(body: string): InstanceListEntryBuilder;
-  onPositionChanged(body: string): InstanceListEntryBuilder;
-  onRotationChanged(body: string): InstanceListEntryBuilder;
-  onScaleChanged(body: string): InstanceListEntryBuilder;
-  onStateChanged(body: string): InstanceListEntryBuilder;
+  onChanged(handler: DslSignalHandlerValue): InstanceListEntryBuilder;
+  onChildrenChanged(handler: DslSignalHandlerValue): InstanceListEntryBuilder;
+  onColorChanged(handler: DslSignalHandlerValue): InstanceListEntryBuilder;
+  onCustomDataChanged(handler: DslSignalHandlerValue): InstanceListEntryBuilder;
+  onEulerRotationChanged(handler: DslSignalHandlerValue): InstanceListEntryBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): InstanceListEntryBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): InstanceListEntryBuilder;
+  onPositionChanged(handler: DslSignalHandlerValue): InstanceListEntryBuilder;
+  onRotationChanged(handler: DslSignalHandlerValue): InstanceListEntryBuilder;
+  onScaleChanged(handler: DslSignalHandlerValue): InstanceListEntryBuilder;
+  onStateChanged(handler: DslSignalHandlerValue): InstanceListEntryBuilder;
 }
 
 const INSTANCELISTENTRY_META: TypeMetadata = {

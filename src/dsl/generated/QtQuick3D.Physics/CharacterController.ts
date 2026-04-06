@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlObjectBuilder,
   QmlQuaternion,
   QmlValue,
@@ -14,6 +15,7 @@ import type { PhysicsMaterialBuilder } from './PhysicsMaterial.js';
 export interface CharacterControllerBuilder {
   id(id: string): CharacterControllerBuilder;
   child(obj: QmlObjectBuilder): CharacterControllerBuilder;
+  children(...objs: QmlObjectBuilder[]): CharacterControllerBuilder;
 
   enableShapeHitCallback(value: boolean): CharacterControllerBuilder;
   enableShapeHitCallbackBind(expr: string): CharacterControllerBuilder;
@@ -69,46 +71,46 @@ export interface CharacterControllerBuilder {
   yBind(expr: string): CharacterControllerBuilder;
   z(value: number): CharacterControllerBuilder;
   zBind(expr: string): CharacterControllerBuilder;
-  onBodyContact(body: string): CharacterControllerBuilder;
-  onChildrenChanged(body: string): CharacterControllerBuilder;
-  onCollisionsChanged(body: string): CharacterControllerBuilder;
-  onEnableShapeHitCallbackChanged(body: string): CharacterControllerBuilder;
-  onEnteredTriggerBody(body: string): CharacterControllerBuilder;
-  onEulerRotationChanged(body: string): CharacterControllerBuilder;
-  onExitedTriggerBody(body: string): CharacterControllerBuilder;
-  onFilterGroupChanged(body: string): CharacterControllerBuilder;
-  onFilterIgnoreGroupsChanged(body: string): CharacterControllerBuilder;
-  onForwardChanged(body: string): CharacterControllerBuilder;
-  onGravityChanged(body: string): CharacterControllerBuilder;
-  onLayersChanged(body: string): CharacterControllerBuilder;
-  onLocalOpacityChanged(body: string): CharacterControllerBuilder;
-  onMidAirControlChanged(body: string): CharacterControllerBuilder;
-  onMovementChanged(body: string): CharacterControllerBuilder;
-  onObjectNameChanged(body: string): CharacterControllerBuilder;
-  onParentChanged(body: string): CharacterControllerBuilder;
-  onPhysicsMaterialChanged(body: string): CharacterControllerBuilder;
-  onPivotChanged(body: string): CharacterControllerBuilder;
-  onPositionChanged(body: string): CharacterControllerBuilder;
-  onReceiveContactReportsChanged(body: string): CharacterControllerBuilder;
-  onReceiveTriggerReportsChanged(body: string): CharacterControllerBuilder;
-  onRightChanged(body: string): CharacterControllerBuilder;
-  onRotationChanged(body: string): CharacterControllerBuilder;
-  onScaleChanged(body: string): CharacterControllerBuilder;
-  onScenePositionChanged(body: string): CharacterControllerBuilder;
-  onSceneRotationChanged(body: string): CharacterControllerBuilder;
-  onSceneScaleChanged(body: string): CharacterControllerBuilder;
-  onSceneTransformChanged(body: string): CharacterControllerBuilder;
-  onSendContactReportsChanged(body: string): CharacterControllerBuilder;
-  onSendTriggerReportsChanged(body: string): CharacterControllerBuilder;
-  onShapeHit(body: string): CharacterControllerBuilder;
-  onSimulationEnabledChanged(body: string): CharacterControllerBuilder;
-  onStateChanged(body: string): CharacterControllerBuilder;
-  onStaticFlagsChanged(body: string): CharacterControllerBuilder;
-  onUpChanged(body: string): CharacterControllerBuilder;
-  onVisibleChanged(body: string): CharacterControllerBuilder;
-  onXChanged(body: string): CharacterControllerBuilder;
-  onYChanged(body: string): CharacterControllerBuilder;
-  onZChanged(body: string): CharacterControllerBuilder;
+  onBodyContact(handler: DslSignalHandlerValue): CharacterControllerBuilder;
+  onChildrenChanged(handler: DslSignalHandlerValue): CharacterControllerBuilder;
+  onCollisionsChanged(handler: DslSignalHandlerValue): CharacterControllerBuilder;
+  onEnableShapeHitCallbackChanged(handler: DslSignalHandlerValue): CharacterControllerBuilder;
+  onEnteredTriggerBody(handler: DslSignalHandlerValue): CharacterControllerBuilder;
+  onEulerRotationChanged(handler: DslSignalHandlerValue): CharacterControllerBuilder;
+  onExitedTriggerBody(handler: DslSignalHandlerValue): CharacterControllerBuilder;
+  onFilterGroupChanged(handler: DslSignalHandlerValue): CharacterControllerBuilder;
+  onFilterIgnoreGroupsChanged(handler: DslSignalHandlerValue): CharacterControllerBuilder;
+  onForwardChanged(handler: DslSignalHandlerValue): CharacterControllerBuilder;
+  onGravityChanged(handler: DslSignalHandlerValue): CharacterControllerBuilder;
+  onLayersChanged(handler: DslSignalHandlerValue): CharacterControllerBuilder;
+  onLocalOpacityChanged(handler: DslSignalHandlerValue): CharacterControllerBuilder;
+  onMidAirControlChanged(handler: DslSignalHandlerValue): CharacterControllerBuilder;
+  onMovementChanged(handler: DslSignalHandlerValue): CharacterControllerBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): CharacterControllerBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): CharacterControllerBuilder;
+  onPhysicsMaterialChanged(handler: DslSignalHandlerValue): CharacterControllerBuilder;
+  onPivotChanged(handler: DslSignalHandlerValue): CharacterControllerBuilder;
+  onPositionChanged(handler: DslSignalHandlerValue): CharacterControllerBuilder;
+  onReceiveContactReportsChanged(handler: DslSignalHandlerValue): CharacterControllerBuilder;
+  onReceiveTriggerReportsChanged(handler: DslSignalHandlerValue): CharacterControllerBuilder;
+  onRightChanged(handler: DslSignalHandlerValue): CharacterControllerBuilder;
+  onRotationChanged(handler: DslSignalHandlerValue): CharacterControllerBuilder;
+  onScaleChanged(handler: DslSignalHandlerValue): CharacterControllerBuilder;
+  onScenePositionChanged(handler: DslSignalHandlerValue): CharacterControllerBuilder;
+  onSceneRotationChanged(handler: DslSignalHandlerValue): CharacterControllerBuilder;
+  onSceneScaleChanged(handler: DslSignalHandlerValue): CharacterControllerBuilder;
+  onSceneTransformChanged(handler: DslSignalHandlerValue): CharacterControllerBuilder;
+  onSendContactReportsChanged(handler: DslSignalHandlerValue): CharacterControllerBuilder;
+  onSendTriggerReportsChanged(handler: DslSignalHandlerValue): CharacterControllerBuilder;
+  onShapeHit(handler: DslSignalHandlerValue): CharacterControllerBuilder;
+  onSimulationEnabledChanged(handler: DslSignalHandlerValue): CharacterControllerBuilder;
+  onStateChanged(handler: DslSignalHandlerValue): CharacterControllerBuilder;
+  onStaticFlagsChanged(handler: DslSignalHandlerValue): CharacterControllerBuilder;
+  onUpChanged(handler: DslSignalHandlerValue): CharacterControllerBuilder;
+  onVisibleChanged(handler: DslSignalHandlerValue): CharacterControllerBuilder;
+  onXChanged(handler: DslSignalHandlerValue): CharacterControllerBuilder;
+  onYChanged(handler: DslSignalHandlerValue): CharacterControllerBuilder;
+  onZChanged(handler: DslSignalHandlerValue): CharacterControllerBuilder;
 }
 
 const CHARACTERCONTROLLER_META: TypeMetadata = {

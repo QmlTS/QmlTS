@@ -2,20 +2,21 @@
 // Type: PlainInputMethod
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import type { DslSignalHandlerValue, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 import type { EnterKeyActionAttachedBuilder } from './EnterKeyActionAttachedType.js';
 import type { VirtualKeyboardAttachedBuilder } from './VirtualKeyboardAttachedType.js';
 export interface PlainInputMethodBuilder {
   id(id: string): PlainInputMethodBuilder;
   child(obj: QmlObjectBuilder): PlainInputMethodBuilder;
+  children(...objs: QmlObjectBuilder[]): PlainInputMethodBuilder;
 
   objectName(value: string): PlainInputMethodBuilder;
   objectNameBind(expr: string): PlainInputMethodBuilder;
-  onObjectNameChanged(body: string): PlainInputMethodBuilder;
-  onSelectionListActiveItemChanged(body: string): PlainInputMethodBuilder;
-  onSelectionListChanged(body: string): PlainInputMethodBuilder;
-  onSelectionListsChanged(body: string): PlainInputMethodBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): PlainInputMethodBuilder;
+  onSelectionListActiveItemChanged(handler: DslSignalHandlerValue): PlainInputMethodBuilder;
+  onSelectionListChanged(handler: DslSignalHandlerValue): PlainInputMethodBuilder;
+  onSelectionListsChanged(handler: DslSignalHandlerValue): PlainInputMethodBuilder;
   enterKeyAction(setup: (b: EnterKeyActionAttachedBuilder) => void): PlainInputMethodBuilder;
   virtualKeyboard(setup: (b: VirtualKeyboardAttachedBuilder) => void): PlainInputMethodBuilder;
 }

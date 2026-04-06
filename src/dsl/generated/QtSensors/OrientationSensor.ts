@@ -2,11 +2,17 @@
 // Type: OrientationSensor
 // Generated from Qt 6.11.0
 
-import type { QmlEnumToken, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlEnumToken,
+  QmlObjectBuilder,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface OrientationSensorBuilder {
   id(id: string): OrientationSensorBuilder;
   child(obj: QmlObjectBuilder): OrientationSensorBuilder;
+  children(...objs: QmlObjectBuilder[]): OrientationSensorBuilder;
 
   active(value: boolean): OrientationSensorBuilder;
   activeBind(expr: string): OrientationSensorBuilder;
@@ -28,26 +34,26 @@ export interface OrientationSensorBuilder {
   skipDuplicatesBind(expr: string): OrientationSensorBuilder;
   userOrientation(value: number): OrientationSensorBuilder;
   userOrientationBind(expr: string): OrientationSensorBuilder;
-  onActiveChanged(body: string): OrientationSensorBuilder;
-  onAlwaysOnChanged(body: string): OrientationSensorBuilder;
-  onAvailableDataRatesChanged(body: string): OrientationSensorBuilder;
-  onAxesOrientationModeChanged(body: string): OrientationSensorBuilder;
-  onBufferSizeChanged(body: string): OrientationSensorBuilder;
-  onBusyChanged(body: string): OrientationSensorBuilder;
-  onConnectedToBackendChanged(body: string): OrientationSensorBuilder;
-  onCurrentOrientationChanged(body: string): OrientationSensorBuilder;
-  onDataRateChanged(body: string): OrientationSensorBuilder;
-  onDescriptionChanged(body: string): OrientationSensorBuilder;
-  onEfficientBufferSizeChanged(body: string): OrientationSensorBuilder;
-  onErrorChanged(body: string): OrientationSensorBuilder;
-  onIdentifierChanged(body: string): OrientationSensorBuilder;
-  onMaxBufferSizeChanged(body: string): OrientationSensorBuilder;
-  onObjectNameChanged(body: string): OrientationSensorBuilder;
-  onOutputRangeChanged(body: string): OrientationSensorBuilder;
-  onOutputRangesChanged(body: string): OrientationSensorBuilder;
-  onReadingChanged(body: string): OrientationSensorBuilder;
-  onSkipDuplicatesChanged(body: string): OrientationSensorBuilder;
-  onUserOrientationChanged(body: string): OrientationSensorBuilder;
+  onActiveChanged(handler: DslSignalHandlerValue): OrientationSensorBuilder;
+  onAlwaysOnChanged(handler: DslSignalHandlerValue): OrientationSensorBuilder;
+  onAvailableDataRatesChanged(handler: DslSignalHandlerValue): OrientationSensorBuilder;
+  onAxesOrientationModeChanged(handler: DslSignalHandlerValue): OrientationSensorBuilder;
+  onBufferSizeChanged(handler: DslSignalHandlerValue): OrientationSensorBuilder;
+  onBusyChanged(handler: DslSignalHandlerValue): OrientationSensorBuilder;
+  onConnectedToBackendChanged(handler: DslSignalHandlerValue): OrientationSensorBuilder;
+  onCurrentOrientationChanged(handler: DslSignalHandlerValue): OrientationSensorBuilder;
+  onDataRateChanged(handler: DslSignalHandlerValue): OrientationSensorBuilder;
+  onDescriptionChanged(handler: DslSignalHandlerValue): OrientationSensorBuilder;
+  onEfficientBufferSizeChanged(handler: DslSignalHandlerValue): OrientationSensorBuilder;
+  onErrorChanged(handler: DslSignalHandlerValue): OrientationSensorBuilder;
+  onIdentifierChanged(handler: DslSignalHandlerValue): OrientationSensorBuilder;
+  onMaxBufferSizeChanged(handler: DslSignalHandlerValue): OrientationSensorBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): OrientationSensorBuilder;
+  onOutputRangeChanged(handler: DslSignalHandlerValue): OrientationSensorBuilder;
+  onOutputRangesChanged(handler: DslSignalHandlerValue): OrientationSensorBuilder;
+  onReadingChanged(handler: DslSignalHandlerValue): OrientationSensorBuilder;
+  onSkipDuplicatesChanged(handler: DslSignalHandlerValue): OrientationSensorBuilder;
+  onUserOrientationChanged(handler: DslSignalHandlerValue): OrientationSensorBuilder;
 }
 
 const ORIENTATIONSENSOR_META: TypeMetadata = {

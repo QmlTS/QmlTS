@@ -2,37 +2,43 @@
 // Type: TreeModel
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface TreeModelBuilder {
   id(id: string): TreeModelBuilder;
   child(obj: QmlObjectBuilder): TreeModelBuilder;
+  children(...objs: QmlObjectBuilder[]): TreeModelBuilder;
 
   objectName(value: string): TreeModelBuilder;
   objectNameBind(expr: string): TreeModelBuilder;
   rows(value: QmlValue): TreeModelBuilder;
   rowsBind(expr: string): TreeModelBuilder;
-  onColumnCountChanged(body: string): TreeModelBuilder;
-  onColumnsAboutToBeInserted(body: string): TreeModelBuilder;
-  onColumnsAboutToBeMoved(body: string): TreeModelBuilder;
-  onColumnsAboutToBeRemoved(body: string): TreeModelBuilder;
-  onColumnsInserted(body: string): TreeModelBuilder;
-  onColumnsMoved(body: string): TreeModelBuilder;
-  onColumnsRemoved(body: string): TreeModelBuilder;
-  onDataChanged(body: string): TreeModelBuilder;
-  onHeaderDataChanged(body: string): TreeModelBuilder;
-  onLayoutAboutToBeChanged(body: string): TreeModelBuilder;
-  onLayoutChanged(body: string): TreeModelBuilder;
-  onModelAboutToBeReset(body: string): TreeModelBuilder;
-  onModelReset(body: string): TreeModelBuilder;
-  onObjectNameChanged(body: string): TreeModelBuilder;
-  onRowsAboutToBeInserted(body: string): TreeModelBuilder;
-  onRowsAboutToBeMoved(body: string): TreeModelBuilder;
-  onRowsAboutToBeRemoved(body: string): TreeModelBuilder;
-  onRowsChanged(body: string): TreeModelBuilder;
-  onRowsInserted(body: string): TreeModelBuilder;
-  onRowsMoved(body: string): TreeModelBuilder;
-  onRowsRemoved(body: string): TreeModelBuilder;
+  onColumnCountChanged(handler: DslSignalHandlerValue): TreeModelBuilder;
+  onColumnsAboutToBeInserted(handler: DslSignalHandlerValue): TreeModelBuilder;
+  onColumnsAboutToBeMoved(handler: DslSignalHandlerValue): TreeModelBuilder;
+  onColumnsAboutToBeRemoved(handler: DslSignalHandlerValue): TreeModelBuilder;
+  onColumnsInserted(handler: DslSignalHandlerValue): TreeModelBuilder;
+  onColumnsMoved(handler: DslSignalHandlerValue): TreeModelBuilder;
+  onColumnsRemoved(handler: DslSignalHandlerValue): TreeModelBuilder;
+  onDataChanged(handler: DslSignalHandlerValue): TreeModelBuilder;
+  onHeaderDataChanged(handler: DslSignalHandlerValue): TreeModelBuilder;
+  onLayoutAboutToBeChanged(handler: DslSignalHandlerValue): TreeModelBuilder;
+  onLayoutChanged(handler: DslSignalHandlerValue): TreeModelBuilder;
+  onModelAboutToBeReset(handler: DslSignalHandlerValue): TreeModelBuilder;
+  onModelReset(handler: DslSignalHandlerValue): TreeModelBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): TreeModelBuilder;
+  onRowsAboutToBeInserted(handler: DslSignalHandlerValue): TreeModelBuilder;
+  onRowsAboutToBeMoved(handler: DslSignalHandlerValue): TreeModelBuilder;
+  onRowsAboutToBeRemoved(handler: DslSignalHandlerValue): TreeModelBuilder;
+  onRowsChanged(handler: DslSignalHandlerValue): TreeModelBuilder;
+  onRowsInserted(handler: DslSignalHandlerValue): TreeModelBuilder;
+  onRowsMoved(handler: DslSignalHandlerValue): TreeModelBuilder;
+  onRowsRemoved(handler: DslSignalHandlerValue): TreeModelBuilder;
 }
 
 const TREEMODEL_META: TypeMetadata = {

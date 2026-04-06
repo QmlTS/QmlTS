@@ -2,11 +2,17 @@
 // Type: CandlestickSet
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 export interface CandlestickSetBuilder {
   id(id: string): CandlestickSetBuilder;
   child(obj: QmlObjectBuilder): CandlestickSetBuilder;
+  children(...objs: QmlObjectBuilder[]): CandlestickSetBuilder;
 
   brush(value: QmlValue): CandlestickSetBuilder;
   brushBind(expr: string): CandlestickSetBuilder;
@@ -26,20 +32,20 @@ export interface CandlestickSetBuilder {
   penBind(expr: string): CandlestickSetBuilder;
   timestamp(value: number): CandlestickSetBuilder;
   timestampBind(expr: string): CandlestickSetBuilder;
-  onBrushChanged(body: string): CandlestickSetBuilder;
-  onBrushFilenameChanged(body: string): CandlestickSetBuilder;
-  onClicked(body: string): CandlestickSetBuilder;
-  onCloseChanged(body: string): CandlestickSetBuilder;
-  onDoubleClicked(body: string): CandlestickSetBuilder;
-  onHighChanged(body: string): CandlestickSetBuilder;
-  onHovered(body: string): CandlestickSetBuilder;
-  onLowChanged(body: string): CandlestickSetBuilder;
-  onObjectNameChanged(body: string): CandlestickSetBuilder;
-  onOpenChanged(body: string): CandlestickSetBuilder;
-  onPenChanged(body: string): CandlestickSetBuilder;
-  onPressed(body: string): CandlestickSetBuilder;
-  onReleased(body: string): CandlestickSetBuilder;
-  onTimestampChanged(body: string): CandlestickSetBuilder;
+  onBrushChanged(handler: DslSignalHandlerValue): CandlestickSetBuilder;
+  onBrushFilenameChanged(handler: DslSignalHandlerValue): CandlestickSetBuilder;
+  onClicked(handler: DslSignalHandlerValue): CandlestickSetBuilder;
+  onCloseChanged(handler: DslSignalHandlerValue): CandlestickSetBuilder;
+  onDoubleClicked(handler: DslSignalHandlerValue): CandlestickSetBuilder;
+  onHighChanged(handler: DslSignalHandlerValue): CandlestickSetBuilder;
+  onHovered(handler: DslSignalHandlerValue): CandlestickSetBuilder;
+  onLowChanged(handler: DslSignalHandlerValue): CandlestickSetBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): CandlestickSetBuilder;
+  onOpenChanged(handler: DslSignalHandlerValue): CandlestickSetBuilder;
+  onPenChanged(handler: DslSignalHandlerValue): CandlestickSetBuilder;
+  onPressed(handler: DslSignalHandlerValue): CandlestickSetBuilder;
+  onReleased(handler: DslSignalHandlerValue): CandlestickSetBuilder;
+  onTimestampChanged(handler: DslSignalHandlerValue): CandlestickSetBuilder;
 }
 
 const CANDLESTICKSET_META: TypeMetadata = {

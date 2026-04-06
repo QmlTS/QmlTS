@@ -2,15 +2,16 @@
 // Type: TestEvent
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import type { DslSignalHandlerValue, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 export interface TestEventBuilder {
   id(id: string): TestEventBuilder;
   child(obj: QmlObjectBuilder): TestEventBuilder;
+  children(...objs: QmlObjectBuilder[]): TestEventBuilder;
 
   objectName(value: string): TestEventBuilder;
   objectNameBind(expr: string): TestEventBuilder;
-  onObjectNameChanged(body: string): TestEventBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): TestEventBuilder;
 }
 
 const TESTEVENT_META: TypeMetadata = {

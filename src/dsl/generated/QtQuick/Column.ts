@@ -2,7 +2,12 @@
 // Type: Column
 // Generated from Qt 6.11.0
 
-import type { QmlEnumToken, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlEnumToken,
+  QmlObjectBuilder,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { QtObjectBuilder } from '../QML/QtObject.js';
 import type { AccessibleAttachedBuilder } from './Accessible.js';
@@ -29,6 +34,7 @@ import type { ViewTransitionAttachedBuilder } from './ViewTransition.js';
 export interface ColumnBuilder {
   id(id: string): ColumnBuilder;
   child(obj: QmlObjectBuilder): ColumnBuilder;
+  children(...objs: QmlObjectBuilder[]): ColumnBuilder;
 
   activeFocusOnTab(value: boolean): ColumnBuilder;
   activeFocusOnTabBind(expr: string): ColumnBuilder;
@@ -94,47 +100,47 @@ export interface ColumnBuilder {
   yBind(expr: string): ColumnBuilder;
   z(value: number): ColumnBuilder;
   zBind(expr: string): ColumnBuilder;
-  onActiveFocusChanged(body: string): ColumnBuilder;
-  onActiveFocusOnTabChanged(body: string): ColumnBuilder;
-  onAddChanged(body: string): ColumnBuilder;
-  onAntialiasingChanged(body: string): ColumnBuilder;
-  onBaselineOffsetChanged(body: string): ColumnBuilder;
-  onBottomPaddingChanged(body: string): ColumnBuilder;
-  onChildrenChanged(body: string): ColumnBuilder;
-  onChildrenRectChanged(body: string): ColumnBuilder;
-  onClipChanged(body: string): ColumnBuilder;
-  onContainmentMaskChanged(body: string): ColumnBuilder;
-  onEnabledChanged(body: string): ColumnBuilder;
-  onFocusChanged(body: string): ColumnBuilder;
-  onFocusPolicyChanged(body: string): ColumnBuilder;
-  onHeightChanged(body: string): ColumnBuilder;
-  onImplicitHeightChanged(body: string): ColumnBuilder;
-  onImplicitWidthChanged(body: string): ColumnBuilder;
-  onLeftPaddingChanged(body: string): ColumnBuilder;
-  onMoveChanged(body: string): ColumnBuilder;
-  onObjectNameChanged(body: string): ColumnBuilder;
-  onOpacityChanged(body: string): ColumnBuilder;
-  onPaddingChanged(body: string): ColumnBuilder;
-  onPaletteChanged(body: string): ColumnBuilder;
-  onPaletteCreated(body: string): ColumnBuilder;
-  onParentChanged(body: string): ColumnBuilder;
-  onPopulateChanged(body: string): ColumnBuilder;
-  onPositioningComplete(body: string): ColumnBuilder;
-  onRightPaddingChanged(body: string): ColumnBuilder;
-  onRotationChanged(body: string): ColumnBuilder;
-  onScaleChanged(body: string): ColumnBuilder;
-  onSmoothChanged(body: string): ColumnBuilder;
-  onSpacingChanged(body: string): ColumnBuilder;
-  onStateChanged(body: string): ColumnBuilder;
-  onTopPaddingChanged(body: string): ColumnBuilder;
-  onTransformOriginChanged(body: string): ColumnBuilder;
-  onVisibleChanged(body: string): ColumnBuilder;
-  onVisibleChildrenChanged(body: string): ColumnBuilder;
-  onWidthChanged(body: string): ColumnBuilder;
-  onWindowChanged(body: string): ColumnBuilder;
-  onXChanged(body: string): ColumnBuilder;
-  onYChanged(body: string): ColumnBuilder;
-  onZChanged(body: string): ColumnBuilder;
+  onActiveFocusChanged(handler: DslSignalHandlerValue): ColumnBuilder;
+  onActiveFocusOnTabChanged(handler: DslSignalHandlerValue): ColumnBuilder;
+  onAddChanged(handler: DslSignalHandlerValue): ColumnBuilder;
+  onAntialiasingChanged(handler: DslSignalHandlerValue): ColumnBuilder;
+  onBaselineOffsetChanged(handler: DslSignalHandlerValue): ColumnBuilder;
+  onBottomPaddingChanged(handler: DslSignalHandlerValue): ColumnBuilder;
+  onChildrenChanged(handler: DslSignalHandlerValue): ColumnBuilder;
+  onChildrenRectChanged(handler: DslSignalHandlerValue): ColumnBuilder;
+  onClipChanged(handler: DslSignalHandlerValue): ColumnBuilder;
+  onContainmentMaskChanged(handler: DslSignalHandlerValue): ColumnBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): ColumnBuilder;
+  onFocusChanged(handler: DslSignalHandlerValue): ColumnBuilder;
+  onFocusPolicyChanged(handler: DslSignalHandlerValue): ColumnBuilder;
+  onHeightChanged(handler: DslSignalHandlerValue): ColumnBuilder;
+  onImplicitHeightChanged(handler: DslSignalHandlerValue): ColumnBuilder;
+  onImplicitWidthChanged(handler: DslSignalHandlerValue): ColumnBuilder;
+  onLeftPaddingChanged(handler: DslSignalHandlerValue): ColumnBuilder;
+  onMoveChanged(handler: DslSignalHandlerValue): ColumnBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): ColumnBuilder;
+  onOpacityChanged(handler: DslSignalHandlerValue): ColumnBuilder;
+  onPaddingChanged(handler: DslSignalHandlerValue): ColumnBuilder;
+  onPaletteChanged(handler: DslSignalHandlerValue): ColumnBuilder;
+  onPaletteCreated(handler: DslSignalHandlerValue): ColumnBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): ColumnBuilder;
+  onPopulateChanged(handler: DslSignalHandlerValue): ColumnBuilder;
+  onPositioningComplete(handler: DslSignalHandlerValue): ColumnBuilder;
+  onRightPaddingChanged(handler: DslSignalHandlerValue): ColumnBuilder;
+  onRotationChanged(handler: DslSignalHandlerValue): ColumnBuilder;
+  onScaleChanged(handler: DslSignalHandlerValue): ColumnBuilder;
+  onSmoothChanged(handler: DslSignalHandlerValue): ColumnBuilder;
+  onSpacingChanged(handler: DslSignalHandlerValue): ColumnBuilder;
+  onStateChanged(handler: DslSignalHandlerValue): ColumnBuilder;
+  onTopPaddingChanged(handler: DslSignalHandlerValue): ColumnBuilder;
+  onTransformOriginChanged(handler: DslSignalHandlerValue): ColumnBuilder;
+  onVisibleChanged(handler: DslSignalHandlerValue): ColumnBuilder;
+  onVisibleChildrenChanged(handler: DslSignalHandlerValue): ColumnBuilder;
+  onWidthChanged(handler: DslSignalHandlerValue): ColumnBuilder;
+  onWindowChanged(handler: DslSignalHandlerValue): ColumnBuilder;
+  onXChanged(handler: DslSignalHandlerValue): ColumnBuilder;
+  onYChanged(handler: DslSignalHandlerValue): ColumnBuilder;
+  onZChanged(handler: DslSignalHandlerValue): ColumnBuilder;
   anchors(setup: (b: AnchorsBuilder) => void): ColumnBuilder;
   layer(setup: (b: LayerBuilder) => void): ColumnBuilder;
   accessible(setup: (b: AccessibleAttachedBuilder) => void): ColumnBuilder;

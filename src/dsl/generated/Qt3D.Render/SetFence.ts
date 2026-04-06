@@ -2,11 +2,17 @@
 // Type: SetFence
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface SetFenceBuilder {
   id(id: string): SetFenceBuilder;
   child(obj: QmlObjectBuilder): SetFenceBuilder;
+  children(...objs: QmlObjectBuilder[]): SetFenceBuilder;
 
   enabled(value: boolean): SetFenceBuilder;
   enabledBind(expr: string): SetFenceBuilder;
@@ -14,12 +20,12 @@ export interface SetFenceBuilder {
   objectNameBind(expr: string): SetFenceBuilder;
   parent(value: QmlValue): SetFenceBuilder;
   parentBind(expr: string): SetFenceBuilder;
-  onEnabledChanged(body: string): SetFenceBuilder;
-  onHandleChanged(body: string): SetFenceBuilder;
-  onHandleTypeChanged(body: string): SetFenceBuilder;
-  onNodeDestroyed(body: string): SetFenceBuilder;
-  onObjectNameChanged(body: string): SetFenceBuilder;
-  onParentChanged(body: string): SetFenceBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): SetFenceBuilder;
+  onHandleChanged(handler: DslSignalHandlerValue): SetFenceBuilder;
+  onHandleTypeChanged(handler: DslSignalHandlerValue): SetFenceBuilder;
+  onNodeDestroyed(handler: DslSignalHandlerValue): SetFenceBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): SetFenceBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): SetFenceBuilder;
 }
 
 const SETFENCE_META: TypeMetadata = {

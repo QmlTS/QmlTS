@@ -2,7 +2,12 @@
 // Type: CheckBox
 // Generated from Qt 6.11.0
 
-import type { QmlEnumToken, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlEnumToken,
+  QmlObjectBuilder,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { QtObjectBuilder } from '../QML/QtObject.js';
 import type { ItemBuilder } from '../QtQuick/Item.js';
@@ -12,6 +17,7 @@ import type { LayerBuilder } from '../QtQuick/QQuickItemLayer.js';
 export interface CheckBoxBuilder {
   id(id: string): CheckBoxBuilder;
   child(obj: QmlObjectBuilder): CheckBoxBuilder;
+  children(...objs: QmlObjectBuilder[]): CheckBoxBuilder;
 
   activeFocusOnTab(value: boolean): CheckBoxBuilder;
   activeFocusOnTabBind(expr: string): CheckBoxBuilder;
@@ -75,42 +81,42 @@ export interface CheckBoxBuilder {
   yBind(expr: string): CheckBoxBuilder;
   z(value: number): CheckBoxBuilder;
   zBind(expr: string): CheckBoxBuilder;
-  onActiveFocusChanged(body: string): CheckBoxBuilder;
-  onActiveFocusOnTabChanged(body: string): CheckBoxBuilder;
-  onAntialiasingChanged(body: string): CheckBoxBuilder;
-  onBaselineOffsetChanged(body: string): CheckBoxBuilder;
-  onChildrenChanged(body: string): CheckBoxBuilder;
-  onChildrenRectChanged(body: string): CheckBoxBuilder;
-  onClipChanged(body: string): CheckBoxBuilder;
-  onContainmentMaskChanged(body: string): CheckBoxBuilder;
-  onContentPaddingChanged(body: string): CheckBoxBuilder;
-  onControlChanged(body: string): CheckBoxBuilder;
-  onEnabledChanged(body: string): CheckBoxBuilder;
-  onFocusChanged(body: string): CheckBoxBuilder;
-  onFocusPolicyChanged(body: string): CheckBoxBuilder;
-  onFontChanged(body: string): CheckBoxBuilder;
-  onHeightChanged(body: string): CheckBoxBuilder;
-  onImplicitHeightChanged(body: string): CheckBoxBuilder;
-  onImplicitWidthChanged(body: string): CheckBoxBuilder;
-  onLayoutMarginsChanged(body: string): CheckBoxBuilder;
-  onMinimumSizeChanged(body: string): CheckBoxBuilder;
-  onObjectNameChanged(body: string): CheckBoxBuilder;
-  onOpacityChanged(body: string): CheckBoxBuilder;
-  onPaletteChanged(body: string): CheckBoxBuilder;
-  onPaletteCreated(body: string): CheckBoxBuilder;
-  onParentChanged(body: string): CheckBoxBuilder;
-  onRotationChanged(body: string): CheckBoxBuilder;
-  onScaleChanged(body: string): CheckBoxBuilder;
-  onSmoothChanged(body: string): CheckBoxBuilder;
-  onStateChanged(body: string): CheckBoxBuilder;
-  onTransformOriginChanged(body: string): CheckBoxBuilder;
-  onVisibleChanged(body: string): CheckBoxBuilder;
-  onVisibleChildrenChanged(body: string): CheckBoxBuilder;
-  onWidthChanged(body: string): CheckBoxBuilder;
-  onWindowChanged(body: string): CheckBoxBuilder;
-  onXChanged(body: string): CheckBoxBuilder;
-  onYChanged(body: string): CheckBoxBuilder;
-  onZChanged(body: string): CheckBoxBuilder;
+  onActiveFocusChanged(handler: DslSignalHandlerValue): CheckBoxBuilder;
+  onActiveFocusOnTabChanged(handler: DslSignalHandlerValue): CheckBoxBuilder;
+  onAntialiasingChanged(handler: DslSignalHandlerValue): CheckBoxBuilder;
+  onBaselineOffsetChanged(handler: DslSignalHandlerValue): CheckBoxBuilder;
+  onChildrenChanged(handler: DslSignalHandlerValue): CheckBoxBuilder;
+  onChildrenRectChanged(handler: DslSignalHandlerValue): CheckBoxBuilder;
+  onClipChanged(handler: DslSignalHandlerValue): CheckBoxBuilder;
+  onContainmentMaskChanged(handler: DslSignalHandlerValue): CheckBoxBuilder;
+  onContentPaddingChanged(handler: DslSignalHandlerValue): CheckBoxBuilder;
+  onControlChanged(handler: DslSignalHandlerValue): CheckBoxBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): CheckBoxBuilder;
+  onFocusChanged(handler: DslSignalHandlerValue): CheckBoxBuilder;
+  onFocusPolicyChanged(handler: DslSignalHandlerValue): CheckBoxBuilder;
+  onFontChanged(handler: DslSignalHandlerValue): CheckBoxBuilder;
+  onHeightChanged(handler: DslSignalHandlerValue): CheckBoxBuilder;
+  onImplicitHeightChanged(handler: DslSignalHandlerValue): CheckBoxBuilder;
+  onImplicitWidthChanged(handler: DslSignalHandlerValue): CheckBoxBuilder;
+  onLayoutMarginsChanged(handler: DslSignalHandlerValue): CheckBoxBuilder;
+  onMinimumSizeChanged(handler: DslSignalHandlerValue): CheckBoxBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): CheckBoxBuilder;
+  onOpacityChanged(handler: DslSignalHandlerValue): CheckBoxBuilder;
+  onPaletteChanged(handler: DslSignalHandlerValue): CheckBoxBuilder;
+  onPaletteCreated(handler: DslSignalHandlerValue): CheckBoxBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): CheckBoxBuilder;
+  onRotationChanged(handler: DslSignalHandlerValue): CheckBoxBuilder;
+  onScaleChanged(handler: DslSignalHandlerValue): CheckBoxBuilder;
+  onSmoothChanged(handler: DslSignalHandlerValue): CheckBoxBuilder;
+  onStateChanged(handler: DslSignalHandlerValue): CheckBoxBuilder;
+  onTransformOriginChanged(handler: DslSignalHandlerValue): CheckBoxBuilder;
+  onVisibleChanged(handler: DslSignalHandlerValue): CheckBoxBuilder;
+  onVisibleChildrenChanged(handler: DslSignalHandlerValue): CheckBoxBuilder;
+  onWidthChanged(handler: DslSignalHandlerValue): CheckBoxBuilder;
+  onWindowChanged(handler: DslSignalHandlerValue): CheckBoxBuilder;
+  onXChanged(handler: DslSignalHandlerValue): CheckBoxBuilder;
+  onYChanged(handler: DslSignalHandlerValue): CheckBoxBuilder;
+  onZChanged(handler: DslSignalHandlerValue): CheckBoxBuilder;
   anchors(setup: (b: AnchorsBuilder) => void): CheckBoxBuilder;
   layer(setup: (b: LayerBuilder) => void): CheckBoxBuilder;
 }

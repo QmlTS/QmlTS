@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlEnumToken,
   QmlObjectBuilder,
   QmlUrl,
@@ -34,6 +35,7 @@ import type { ViewTransitionAttachedBuilder } from './ViewTransition.js';
 export interface ShaderEffectBuilder {
   id(id: string): ShaderEffectBuilder;
   child(obj: QmlObjectBuilder): ShaderEffectBuilder;
+  children(...objs: QmlObjectBuilder[]): ShaderEffectBuilder;
 
   activeFocusOnTab(value: boolean): ShaderEffectBuilder;
   activeFocusOnTabBind(expr: string): ShaderEffectBuilder;
@@ -97,45 +99,45 @@ export interface ShaderEffectBuilder {
   yBind(expr: string): ShaderEffectBuilder;
   z(value: number): ShaderEffectBuilder;
   zBind(expr: string): ShaderEffectBuilder;
-  onActiveFocusChanged(body: string): ShaderEffectBuilder;
-  onActiveFocusOnTabChanged(body: string): ShaderEffectBuilder;
-  onAntialiasingChanged(body: string): ShaderEffectBuilder;
-  onBaselineOffsetChanged(body: string): ShaderEffectBuilder;
-  onBlendingChanged(body: string): ShaderEffectBuilder;
-  onChildrenChanged(body: string): ShaderEffectBuilder;
-  onChildrenRectChanged(body: string): ShaderEffectBuilder;
-  onClipChanged(body: string): ShaderEffectBuilder;
-  onContainmentMaskChanged(body: string): ShaderEffectBuilder;
-  onCullModeChanged(body: string): ShaderEffectBuilder;
-  onEnabledChanged(body: string): ShaderEffectBuilder;
-  onFocusChanged(body: string): ShaderEffectBuilder;
-  onFocusPolicyChanged(body: string): ShaderEffectBuilder;
-  onFragmentShaderChanged(body: string): ShaderEffectBuilder;
-  onHeightChanged(body: string): ShaderEffectBuilder;
-  onImplicitHeightChanged(body: string): ShaderEffectBuilder;
-  onImplicitWidthChanged(body: string): ShaderEffectBuilder;
-  onLogChanged(body: string): ShaderEffectBuilder;
-  onMeshChanged(body: string): ShaderEffectBuilder;
-  onObjectNameChanged(body: string): ShaderEffectBuilder;
-  onOpacityChanged(body: string): ShaderEffectBuilder;
-  onPaletteChanged(body: string): ShaderEffectBuilder;
-  onPaletteCreated(body: string): ShaderEffectBuilder;
-  onParentChanged(body: string): ShaderEffectBuilder;
-  onRotationChanged(body: string): ShaderEffectBuilder;
-  onScaleChanged(body: string): ShaderEffectBuilder;
-  onSmoothChanged(body: string): ShaderEffectBuilder;
-  onStateChanged(body: string): ShaderEffectBuilder;
-  onStatusChanged(body: string): ShaderEffectBuilder;
-  onSupportsAtlasTexturesChanged(body: string): ShaderEffectBuilder;
-  onTransformOriginChanged(body: string): ShaderEffectBuilder;
-  onVertexShaderChanged(body: string): ShaderEffectBuilder;
-  onVisibleChanged(body: string): ShaderEffectBuilder;
-  onVisibleChildrenChanged(body: string): ShaderEffectBuilder;
-  onWidthChanged(body: string): ShaderEffectBuilder;
-  onWindowChanged(body: string): ShaderEffectBuilder;
-  onXChanged(body: string): ShaderEffectBuilder;
-  onYChanged(body: string): ShaderEffectBuilder;
-  onZChanged(body: string): ShaderEffectBuilder;
+  onActiveFocusChanged(handler: DslSignalHandlerValue): ShaderEffectBuilder;
+  onActiveFocusOnTabChanged(handler: DslSignalHandlerValue): ShaderEffectBuilder;
+  onAntialiasingChanged(handler: DslSignalHandlerValue): ShaderEffectBuilder;
+  onBaselineOffsetChanged(handler: DslSignalHandlerValue): ShaderEffectBuilder;
+  onBlendingChanged(handler: DslSignalHandlerValue): ShaderEffectBuilder;
+  onChildrenChanged(handler: DslSignalHandlerValue): ShaderEffectBuilder;
+  onChildrenRectChanged(handler: DslSignalHandlerValue): ShaderEffectBuilder;
+  onClipChanged(handler: DslSignalHandlerValue): ShaderEffectBuilder;
+  onContainmentMaskChanged(handler: DslSignalHandlerValue): ShaderEffectBuilder;
+  onCullModeChanged(handler: DslSignalHandlerValue): ShaderEffectBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): ShaderEffectBuilder;
+  onFocusChanged(handler: DslSignalHandlerValue): ShaderEffectBuilder;
+  onFocusPolicyChanged(handler: DslSignalHandlerValue): ShaderEffectBuilder;
+  onFragmentShaderChanged(handler: DslSignalHandlerValue): ShaderEffectBuilder;
+  onHeightChanged(handler: DslSignalHandlerValue): ShaderEffectBuilder;
+  onImplicitHeightChanged(handler: DslSignalHandlerValue): ShaderEffectBuilder;
+  onImplicitWidthChanged(handler: DslSignalHandlerValue): ShaderEffectBuilder;
+  onLogChanged(handler: DslSignalHandlerValue): ShaderEffectBuilder;
+  onMeshChanged(handler: DslSignalHandlerValue): ShaderEffectBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): ShaderEffectBuilder;
+  onOpacityChanged(handler: DslSignalHandlerValue): ShaderEffectBuilder;
+  onPaletteChanged(handler: DslSignalHandlerValue): ShaderEffectBuilder;
+  onPaletteCreated(handler: DslSignalHandlerValue): ShaderEffectBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): ShaderEffectBuilder;
+  onRotationChanged(handler: DslSignalHandlerValue): ShaderEffectBuilder;
+  onScaleChanged(handler: DslSignalHandlerValue): ShaderEffectBuilder;
+  onSmoothChanged(handler: DslSignalHandlerValue): ShaderEffectBuilder;
+  onStateChanged(handler: DslSignalHandlerValue): ShaderEffectBuilder;
+  onStatusChanged(handler: DslSignalHandlerValue): ShaderEffectBuilder;
+  onSupportsAtlasTexturesChanged(handler: DslSignalHandlerValue): ShaderEffectBuilder;
+  onTransformOriginChanged(handler: DslSignalHandlerValue): ShaderEffectBuilder;
+  onVertexShaderChanged(handler: DslSignalHandlerValue): ShaderEffectBuilder;
+  onVisibleChanged(handler: DslSignalHandlerValue): ShaderEffectBuilder;
+  onVisibleChildrenChanged(handler: DslSignalHandlerValue): ShaderEffectBuilder;
+  onWidthChanged(handler: DslSignalHandlerValue): ShaderEffectBuilder;
+  onWindowChanged(handler: DslSignalHandlerValue): ShaderEffectBuilder;
+  onXChanged(handler: DslSignalHandlerValue): ShaderEffectBuilder;
+  onYChanged(handler: DslSignalHandlerValue): ShaderEffectBuilder;
+  onZChanged(handler: DslSignalHandlerValue): ShaderEffectBuilder;
   anchors(setup: (b: AnchorsBuilder) => void): ShaderEffectBuilder;
   layer(setup: (b: LayerBuilder) => void): ShaderEffectBuilder;
   accessible(setup: (b: AccessibleAttachedBuilder) => void): ShaderEffectBuilder;

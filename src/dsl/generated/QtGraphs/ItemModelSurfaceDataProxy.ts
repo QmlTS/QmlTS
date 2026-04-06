@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlEnumToken,
   QmlObjectBuilder,
   QmlValue,
@@ -12,6 +13,7 @@ import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface ItemModelSurfaceDataProxyBuilder {
   id(id: string): ItemModelSurfaceDataProxyBuilder;
   child(obj: QmlObjectBuilder): ItemModelSurfaceDataProxyBuilder;
+  children(...objs: QmlObjectBuilder[]): ItemModelSurfaceDataProxyBuilder;
 
   autoColumnCategories(value: boolean): ItemModelSurfaceDataProxyBuilder;
   autoColumnCategoriesBind(expr: string): ItemModelSurfaceDataProxyBuilder;
@@ -59,38 +61,38 @@ export interface ItemModelSurfaceDataProxyBuilder {
   zPosRolePatternBind(expr: string): ItemModelSurfaceDataProxyBuilder;
   zPosRoleReplace(value: string): ItemModelSurfaceDataProxyBuilder;
   zPosRoleReplaceBind(expr: string): ItemModelSurfaceDataProxyBuilder;
-  onArrayReset(body: string): ItemModelSurfaceDataProxyBuilder;
-  onAutoColumnCategoriesChanged(body: string): ItemModelSurfaceDataProxyBuilder;
-  onAutoRowCategoriesChanged(body: string): ItemModelSurfaceDataProxyBuilder;
-  onColumnCategoriesChanged(body: string): ItemModelSurfaceDataProxyBuilder;
-  onColumnCountChanged(body: string): ItemModelSurfaceDataProxyBuilder;
-  onColumnRoleChanged(body: string): ItemModelSurfaceDataProxyBuilder;
-  onColumnRolePatternChanged(body: string): ItemModelSurfaceDataProxyBuilder;
-  onColumnRoleReplaceChanged(body: string): ItemModelSurfaceDataProxyBuilder;
-  onItemChanged(body: string): ItemModelSurfaceDataProxyBuilder;
-  onItemModelChanged(body: string): ItemModelSurfaceDataProxyBuilder;
-  onMultiMatchBehaviorChanged(body: string): ItemModelSurfaceDataProxyBuilder;
-  onObjectNameChanged(body: string): ItemModelSurfaceDataProxyBuilder;
-  onRowCategoriesChanged(body: string): ItemModelSurfaceDataProxyBuilder;
-  onRowCountChanged(body: string): ItemModelSurfaceDataProxyBuilder;
-  onRowRoleChanged(body: string): ItemModelSurfaceDataProxyBuilder;
-  onRowRolePatternChanged(body: string): ItemModelSurfaceDataProxyBuilder;
-  onRowRoleReplaceChanged(body: string): ItemModelSurfaceDataProxyBuilder;
-  onRowsAdded(body: string): ItemModelSurfaceDataProxyBuilder;
-  onRowsChanged(body: string): ItemModelSurfaceDataProxyBuilder;
-  onRowsInserted(body: string): ItemModelSurfaceDataProxyBuilder;
-  onRowsRemoved(body: string): ItemModelSurfaceDataProxyBuilder;
-  onSeriesChanged(body: string): ItemModelSurfaceDataProxyBuilder;
-  onUseModelCategoriesChanged(body: string): ItemModelSurfaceDataProxyBuilder;
-  onXPosRoleChanged(body: string): ItemModelSurfaceDataProxyBuilder;
-  onXPosRolePatternChanged(body: string): ItemModelSurfaceDataProxyBuilder;
-  onXPosRoleReplaceChanged(body: string): ItemModelSurfaceDataProxyBuilder;
-  onYPosRoleChanged(body: string): ItemModelSurfaceDataProxyBuilder;
-  onYPosRolePatternChanged(body: string): ItemModelSurfaceDataProxyBuilder;
-  onYPosRoleReplaceChanged(body: string): ItemModelSurfaceDataProxyBuilder;
-  onZPosRoleChanged(body: string): ItemModelSurfaceDataProxyBuilder;
-  onZPosRolePatternChanged(body: string): ItemModelSurfaceDataProxyBuilder;
-  onZPosRoleReplaceChanged(body: string): ItemModelSurfaceDataProxyBuilder;
+  onArrayReset(handler: DslSignalHandlerValue): ItemModelSurfaceDataProxyBuilder;
+  onAutoColumnCategoriesChanged(handler: DslSignalHandlerValue): ItemModelSurfaceDataProxyBuilder;
+  onAutoRowCategoriesChanged(handler: DslSignalHandlerValue): ItemModelSurfaceDataProxyBuilder;
+  onColumnCategoriesChanged(handler: DslSignalHandlerValue): ItemModelSurfaceDataProxyBuilder;
+  onColumnCountChanged(handler: DslSignalHandlerValue): ItemModelSurfaceDataProxyBuilder;
+  onColumnRoleChanged(handler: DslSignalHandlerValue): ItemModelSurfaceDataProxyBuilder;
+  onColumnRolePatternChanged(handler: DslSignalHandlerValue): ItemModelSurfaceDataProxyBuilder;
+  onColumnRoleReplaceChanged(handler: DslSignalHandlerValue): ItemModelSurfaceDataProxyBuilder;
+  onItemChanged(handler: DslSignalHandlerValue): ItemModelSurfaceDataProxyBuilder;
+  onItemModelChanged(handler: DslSignalHandlerValue): ItemModelSurfaceDataProxyBuilder;
+  onMultiMatchBehaviorChanged(handler: DslSignalHandlerValue): ItemModelSurfaceDataProxyBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): ItemModelSurfaceDataProxyBuilder;
+  onRowCategoriesChanged(handler: DslSignalHandlerValue): ItemModelSurfaceDataProxyBuilder;
+  onRowCountChanged(handler: DslSignalHandlerValue): ItemModelSurfaceDataProxyBuilder;
+  onRowRoleChanged(handler: DslSignalHandlerValue): ItemModelSurfaceDataProxyBuilder;
+  onRowRolePatternChanged(handler: DslSignalHandlerValue): ItemModelSurfaceDataProxyBuilder;
+  onRowRoleReplaceChanged(handler: DslSignalHandlerValue): ItemModelSurfaceDataProxyBuilder;
+  onRowsAdded(handler: DslSignalHandlerValue): ItemModelSurfaceDataProxyBuilder;
+  onRowsChanged(handler: DslSignalHandlerValue): ItemModelSurfaceDataProxyBuilder;
+  onRowsInserted(handler: DslSignalHandlerValue): ItemModelSurfaceDataProxyBuilder;
+  onRowsRemoved(handler: DslSignalHandlerValue): ItemModelSurfaceDataProxyBuilder;
+  onSeriesChanged(handler: DslSignalHandlerValue): ItemModelSurfaceDataProxyBuilder;
+  onUseModelCategoriesChanged(handler: DslSignalHandlerValue): ItemModelSurfaceDataProxyBuilder;
+  onXPosRoleChanged(handler: DslSignalHandlerValue): ItemModelSurfaceDataProxyBuilder;
+  onXPosRolePatternChanged(handler: DslSignalHandlerValue): ItemModelSurfaceDataProxyBuilder;
+  onXPosRoleReplaceChanged(handler: DslSignalHandlerValue): ItemModelSurfaceDataProxyBuilder;
+  onYPosRoleChanged(handler: DslSignalHandlerValue): ItemModelSurfaceDataProxyBuilder;
+  onYPosRolePatternChanged(handler: DslSignalHandlerValue): ItemModelSurfaceDataProxyBuilder;
+  onYPosRoleReplaceChanged(handler: DslSignalHandlerValue): ItemModelSurfaceDataProxyBuilder;
+  onZPosRoleChanged(handler: DslSignalHandlerValue): ItemModelSurfaceDataProxyBuilder;
+  onZPosRolePatternChanged(handler: DslSignalHandlerValue): ItemModelSurfaceDataProxyBuilder;
+  onZPosRoleReplaceChanged(handler: DslSignalHandlerValue): ItemModelSurfaceDataProxyBuilder;
 }
 
 const ITEMMODELSURFACEDATAPROXY_META: TypeMetadata = {

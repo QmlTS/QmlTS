@@ -2,12 +2,18 @@
 // Type: DepthTextureAttachment
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 import type { RenderPassTextureBuilder } from './RenderPassTexture.js';
 export interface DepthTextureAttachmentBuilder {
   id(id: string): DepthTextureAttachmentBuilder;
   child(obj: QmlObjectBuilder): DepthTextureAttachmentBuilder;
+  children(...objs: QmlObjectBuilder[]): DepthTextureAttachmentBuilder;
 
   objectName(value: string): DepthTextureAttachmentBuilder;
   objectNameBind(expr: string): DepthTextureAttachmentBuilder;
@@ -17,10 +23,10 @@ export interface DepthTextureAttachmentBuilder {
   stateBind(expr: string): DepthTextureAttachmentBuilder;
   target(value: RenderPassTextureBuilder): DepthTextureAttachmentBuilder;
   targetBind(expr: string): DepthTextureAttachmentBuilder;
-  onChildrenChanged(body: string): DepthTextureAttachmentBuilder;
-  onObjectNameChanged(body: string): DepthTextureAttachmentBuilder;
-  onParentChanged(body: string): DepthTextureAttachmentBuilder;
-  onStateChanged(body: string): DepthTextureAttachmentBuilder;
+  onChildrenChanged(handler: DslSignalHandlerValue): DepthTextureAttachmentBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): DepthTextureAttachmentBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): DepthTextureAttachmentBuilder;
+  onStateChanged(handler: DslSignalHandlerValue): DepthTextureAttachmentBuilder;
 }
 
 const DEPTHTEXTUREATTACHMENT_META: TypeMetadata = {

@@ -2,12 +2,19 @@
 // Type: PlaneGeometry
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlSize, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlObjectBuilder,
+  QmlSize,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 import type { AttributeBuilder } from '../Qt3D.Core/Attribute.js';
 export interface PlaneGeometryBuilder {
   id(id: string): PlaneGeometryBuilder;
   child(obj: QmlObjectBuilder): PlaneGeometryBuilder;
+  children(...objs: QmlObjectBuilder[]): PlaneGeometryBuilder;
 
   boundingVolumePositionAttribute(value: AttributeBuilder): PlaneGeometryBuilder;
   boundingVolumePositionAttributeBind(expr: string): PlaneGeometryBuilder;
@@ -25,17 +32,17 @@ export interface PlaneGeometryBuilder {
   resolutionBind(expr: string): PlaneGeometryBuilder;
   width(value: number): PlaneGeometryBuilder;
   widthBind(expr: string): PlaneGeometryBuilder;
-  onBoundingVolumePositionAttributeChanged(body: string): PlaneGeometryBuilder;
-  onEnabledChanged(body: string): PlaneGeometryBuilder;
-  onHeightChanged(body: string): PlaneGeometryBuilder;
-  onMaxExtentChanged(body: string): PlaneGeometryBuilder;
-  onMinExtentChanged(body: string): PlaneGeometryBuilder;
-  onMirroredChanged(body: string): PlaneGeometryBuilder;
-  onNodeDestroyed(body: string): PlaneGeometryBuilder;
-  onObjectNameChanged(body: string): PlaneGeometryBuilder;
-  onParentChanged(body: string): PlaneGeometryBuilder;
-  onResolutionChanged(body: string): PlaneGeometryBuilder;
-  onWidthChanged(body: string): PlaneGeometryBuilder;
+  onBoundingVolumePositionAttributeChanged(handler: DslSignalHandlerValue): PlaneGeometryBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): PlaneGeometryBuilder;
+  onHeightChanged(handler: DslSignalHandlerValue): PlaneGeometryBuilder;
+  onMaxExtentChanged(handler: DslSignalHandlerValue): PlaneGeometryBuilder;
+  onMinExtentChanged(handler: DslSignalHandlerValue): PlaneGeometryBuilder;
+  onMirroredChanged(handler: DslSignalHandlerValue): PlaneGeometryBuilder;
+  onNodeDestroyed(handler: DslSignalHandlerValue): PlaneGeometryBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): PlaneGeometryBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): PlaneGeometryBuilder;
+  onResolutionChanged(handler: DslSignalHandlerValue): PlaneGeometryBuilder;
+  onWidthChanged(handler: DslSignalHandlerValue): PlaneGeometryBuilder;
 }
 
 const PLANEGEOMETRY_META: TypeMetadata = {

@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlObjectBuilder,
   QmlQuaternion,
   QmlValue,
@@ -13,6 +14,7 @@ import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface SphereShapeBuilder {
   id(id: string): SphereShapeBuilder;
   child(obj: QmlObjectBuilder): SphereShapeBuilder;
+  children(...objs: QmlObjectBuilder[]): SphereShapeBuilder;
 
   diameter(value: number): SphereShapeBuilder;
   diameterBind(expr: string): SphereShapeBuilder;
@@ -48,32 +50,32 @@ export interface SphereShapeBuilder {
   yBind(expr: string): SphereShapeBuilder;
   z(value: number): SphereShapeBuilder;
   zBind(expr: string): SphereShapeBuilder;
-  onChildrenChanged(body: string): SphereShapeBuilder;
-  onDiameterChanged(body: string): SphereShapeBuilder;
-  onEnableDebugDrawChanged(body: string): SphereShapeBuilder;
-  onEulerRotationChanged(body: string): SphereShapeBuilder;
-  onForwardChanged(body: string): SphereShapeBuilder;
-  onLayersChanged(body: string): SphereShapeBuilder;
-  onLocalOpacityChanged(body: string): SphereShapeBuilder;
-  onNeedsRebuild(body: string): SphereShapeBuilder;
-  onObjectNameChanged(body: string): SphereShapeBuilder;
-  onParentChanged(body: string): SphereShapeBuilder;
-  onPivotChanged(body: string): SphereShapeBuilder;
-  onPositionChanged(body: string): SphereShapeBuilder;
-  onRightChanged(body: string): SphereShapeBuilder;
-  onRotationChanged(body: string): SphereShapeBuilder;
-  onScaleChanged(body: string): SphereShapeBuilder;
-  onScenePositionChanged(body: string): SphereShapeBuilder;
-  onSceneRotationChanged(body: string): SphereShapeBuilder;
-  onSceneScaleChanged(body: string): SphereShapeBuilder;
-  onSceneTransformChanged(body: string): SphereShapeBuilder;
-  onStateChanged(body: string): SphereShapeBuilder;
-  onStaticFlagsChanged(body: string): SphereShapeBuilder;
-  onUpChanged(body: string): SphereShapeBuilder;
-  onVisibleChanged(body: string): SphereShapeBuilder;
-  onXChanged(body: string): SphereShapeBuilder;
-  onYChanged(body: string): SphereShapeBuilder;
-  onZChanged(body: string): SphereShapeBuilder;
+  onChildrenChanged(handler: DslSignalHandlerValue): SphereShapeBuilder;
+  onDiameterChanged(handler: DslSignalHandlerValue): SphereShapeBuilder;
+  onEnableDebugDrawChanged(handler: DslSignalHandlerValue): SphereShapeBuilder;
+  onEulerRotationChanged(handler: DslSignalHandlerValue): SphereShapeBuilder;
+  onForwardChanged(handler: DslSignalHandlerValue): SphereShapeBuilder;
+  onLayersChanged(handler: DslSignalHandlerValue): SphereShapeBuilder;
+  onLocalOpacityChanged(handler: DslSignalHandlerValue): SphereShapeBuilder;
+  onNeedsRebuild(handler: DslSignalHandlerValue): SphereShapeBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): SphereShapeBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): SphereShapeBuilder;
+  onPivotChanged(handler: DslSignalHandlerValue): SphereShapeBuilder;
+  onPositionChanged(handler: DslSignalHandlerValue): SphereShapeBuilder;
+  onRightChanged(handler: DslSignalHandlerValue): SphereShapeBuilder;
+  onRotationChanged(handler: DslSignalHandlerValue): SphereShapeBuilder;
+  onScaleChanged(handler: DslSignalHandlerValue): SphereShapeBuilder;
+  onScenePositionChanged(handler: DslSignalHandlerValue): SphereShapeBuilder;
+  onSceneRotationChanged(handler: DslSignalHandlerValue): SphereShapeBuilder;
+  onSceneScaleChanged(handler: DslSignalHandlerValue): SphereShapeBuilder;
+  onSceneTransformChanged(handler: DslSignalHandlerValue): SphereShapeBuilder;
+  onStateChanged(handler: DslSignalHandlerValue): SphereShapeBuilder;
+  onStaticFlagsChanged(handler: DslSignalHandlerValue): SphereShapeBuilder;
+  onUpChanged(handler: DslSignalHandlerValue): SphereShapeBuilder;
+  onVisibleChanged(handler: DslSignalHandlerValue): SphereShapeBuilder;
+  onXChanged(handler: DslSignalHandlerValue): SphereShapeBuilder;
+  onYChanged(handler: DslSignalHandlerValue): SphereShapeBuilder;
+  onZChanged(handler: DslSignalHandlerValue): SphereShapeBuilder;
 }
 
 const SPHERESHAPE_META: TypeMetadata = {

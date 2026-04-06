@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlEnumToken,
   QmlObjectBuilder,
   QmlValue,
@@ -12,6 +13,7 @@ import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface WaitFenceBuilder {
   id(id: string): WaitFenceBuilder;
   child(obj: QmlObjectBuilder): WaitFenceBuilder;
+  children(...objs: QmlObjectBuilder[]): WaitFenceBuilder;
 
   enabled(value: boolean): WaitFenceBuilder;
   enabledBind(expr: string): WaitFenceBuilder;
@@ -27,14 +29,14 @@ export interface WaitFenceBuilder {
   timeoutBind(expr: string): WaitFenceBuilder;
   waitOnCPU(value: boolean): WaitFenceBuilder;
   waitOnCPUBind(expr: string): WaitFenceBuilder;
-  onEnabledChanged(body: string): WaitFenceBuilder;
-  onHandleChanged(body: string): WaitFenceBuilder;
-  onHandleTypeChanged(body: string): WaitFenceBuilder;
-  onNodeDestroyed(body: string): WaitFenceBuilder;
-  onObjectNameChanged(body: string): WaitFenceBuilder;
-  onParentChanged(body: string): WaitFenceBuilder;
-  onTimeoutChanged(body: string): WaitFenceBuilder;
-  onWaitOnCPUChanged(body: string): WaitFenceBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): WaitFenceBuilder;
+  onHandleChanged(handler: DslSignalHandlerValue): WaitFenceBuilder;
+  onHandleTypeChanged(handler: DslSignalHandlerValue): WaitFenceBuilder;
+  onNodeDestroyed(handler: DslSignalHandlerValue): WaitFenceBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): WaitFenceBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): WaitFenceBuilder;
+  onTimeoutChanged(handler: DslSignalHandlerValue): WaitFenceBuilder;
+  onWaitOnCPUChanged(handler: DslSignalHandlerValue): WaitFenceBuilder;
 }
 
 const WAITFENCE_META: TypeMetadata = {

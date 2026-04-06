@@ -2,11 +2,12 @@
 // Type: TestResult
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import type { DslSignalHandlerValue, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface TestResultBuilder {
   id(id: string): TestResultBuilder;
   child(obj: QmlObjectBuilder): TestResultBuilder;
+  children(...objs: QmlObjectBuilder[]): TestResultBuilder;
 
   dataTag(value: string): TestResultBuilder;
   dataTagBind(expr: string): TestResultBuilder;
@@ -18,12 +19,12 @@ export interface TestResultBuilder {
   skippedBind(expr: string): TestResultBuilder;
   testCaseName(value: string): TestResultBuilder;
   testCaseNameBind(expr: string): TestResultBuilder;
-  onDataTagChanged(body: string): TestResultBuilder;
-  onFunctionNameChanged(body: string): TestResultBuilder;
-  onObjectNameChanged(body: string): TestResultBuilder;
-  onProgramNameChanged(body: string): TestResultBuilder;
-  onSkippedChanged(body: string): TestResultBuilder;
-  onTestCaseNameChanged(body: string): TestResultBuilder;
+  onDataTagChanged(handler: DslSignalHandlerValue): TestResultBuilder;
+  onFunctionNameChanged(handler: DslSignalHandlerValue): TestResultBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): TestResultBuilder;
+  onProgramNameChanged(handler: DslSignalHandlerValue): TestResultBuilder;
+  onSkippedChanged(handler: DslSignalHandlerValue): TestResultBuilder;
+  onTestCaseNameChanged(handler: DslSignalHandlerValue): TestResultBuilder;
 }
 
 const TESTRESULT_META: TypeMetadata = {

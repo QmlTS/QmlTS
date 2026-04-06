@@ -2,13 +2,19 @@
 // Type: ParticleGroup
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 import type { ParticleSystemBuilder } from './ParticleSystem.js';
 import type { ItemParticleAttachedBuilder } from './QQuickItemParticleAttached.js';
 export interface ParticleGroupBuilder {
   id(id: string): ParticleGroupBuilder;
   child(obj: QmlObjectBuilder): ParticleGroupBuilder;
+  children(...objs: QmlObjectBuilder[]): ParticleGroupBuilder;
 
   duration(value: number): ParticleGroupBuilder;
   durationBind(expr: string): ParticleGroupBuilder;
@@ -24,14 +30,14 @@ export interface ParticleGroupBuilder {
   systemBind(expr: string): ParticleGroupBuilder;
   to(value: QmlValue): ParticleGroupBuilder;
   toBind(expr: string): ParticleGroupBuilder;
-  onDurationChanged(body: string): ParticleGroupBuilder;
-  onDurationVariationChanged(body: string): ParticleGroupBuilder;
-  onEntered(body: string): ParticleGroupBuilder;
-  onNameChanged(body: string): ParticleGroupBuilder;
-  onObjectNameChanged(body: string): ParticleGroupBuilder;
-  onRandomStartChanged(body: string): ParticleGroupBuilder;
-  onSystemChanged(body: string): ParticleGroupBuilder;
-  onToChanged(body: string): ParticleGroupBuilder;
+  onDurationChanged(handler: DslSignalHandlerValue): ParticleGroupBuilder;
+  onDurationVariationChanged(handler: DslSignalHandlerValue): ParticleGroupBuilder;
+  onEntered(handler: DslSignalHandlerValue): ParticleGroupBuilder;
+  onNameChanged(handler: DslSignalHandlerValue): ParticleGroupBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): ParticleGroupBuilder;
+  onRandomStartChanged(handler: DslSignalHandlerValue): ParticleGroupBuilder;
+  onSystemChanged(handler: DslSignalHandlerValue): ParticleGroupBuilder;
+  onToChanged(handler: DslSignalHandlerValue): ParticleGroupBuilder;
   itemParticle(setup: (b: ItemParticleAttachedBuilder) => void): ParticleGroupBuilder;
 }
 

@@ -2,11 +2,17 @@
 // Type: WebEngineProfilePrototype
 // Generated from Qt 6.11.0
 
-import type { QmlEnumToken, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlEnumToken,
+  QmlObjectBuilder,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 export interface WebEngineProfilePrototypeBuilder {
   id(id: string): WebEngineProfilePrototypeBuilder;
   child(obj: QmlObjectBuilder): WebEngineProfilePrototypeBuilder;
+  children(...objs: QmlObjectBuilder[]): WebEngineProfilePrototypeBuilder;
 
   additionalTrustedCertificateFiles(value: string[]): WebEngineProfilePrototypeBuilder;
   additionalTrustedCertificateFilesBind(expr: string): WebEngineProfilePrototypeBuilder;
@@ -26,7 +32,7 @@ export interface WebEngineProfilePrototypeBuilder {
   persistentStoragePathBind(expr: string): WebEngineProfilePrototypeBuilder;
   storageName(value: string): WebEngineProfilePrototypeBuilder;
   storageNameBind(expr: string): WebEngineProfilePrototypeBuilder;
-  onObjectNameChanged(body: string): WebEngineProfilePrototypeBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): WebEngineProfilePrototypeBuilder;
 }
 
 const WEBENGINEPROFILEPROTOTYPE_META: TypeMetadata = {

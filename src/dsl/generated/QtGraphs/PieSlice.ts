@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlColor,
   QmlEnumToken,
   QmlFont,
@@ -13,6 +14,7 @@ import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface PieSliceBuilder {
   id(id: string): PieSliceBuilder;
   child(obj: QmlObjectBuilder): PieSliceBuilder;
+  children(...objs: QmlObjectBuilder[]): PieSliceBuilder;
 
   borderColor(value: QmlColor): PieSliceBuilder;
   borderColorBind(expr: string): PieSliceBuilder;
@@ -42,29 +44,29 @@ export interface PieSliceBuilder {
   subSlicesRatioBind(expr: string): PieSliceBuilder;
   value(value: number): PieSliceBuilder;
   valueBind(expr: string): PieSliceBuilder;
-  onAngleSpanChanged(body: string): PieSliceBuilder;
-  onBorderColorChanged(body: string): PieSliceBuilder;
-  onBorderWidthChanged(body: string): PieSliceBuilder;
-  onColorChanged(body: string): PieSliceBuilder;
-  onExplodeDistanceFactorChanged(body: string): PieSliceBuilder;
-  onExplodedChanged(body: string): PieSliceBuilder;
-  onLabelArmLengthFactorChanged(body: string): PieSliceBuilder;
-  onLabelChanged(body: string): PieSliceBuilder;
-  onLabelColorChanged(body: string): PieSliceBuilder;
-  onLabelFontChanged(body: string): PieSliceBuilder;
-  onLabelPositionChanged(body: string): PieSliceBuilder;
-  onLabelVisibleChanged(body: string): PieSliceBuilder;
-  onObjectNameChanged(body: string): PieSliceBuilder;
-  onPercentageChanged(body: string): PieSliceBuilder;
-  onSliceChanged(body: string): PieSliceBuilder;
-  onStartAngleChanged(body: string): PieSliceBuilder;
-  onSubSlicesAdded(body: string): PieSliceBuilder;
-  onSubSlicesCountChanged(body: string): PieSliceBuilder;
-  onSubSlicesRatioChanged(body: string): PieSliceBuilder;
-  onSubSlicesRemoved(body: string): PieSliceBuilder;
-  onSubSlicesReplaced(body: string): PieSliceBuilder;
-  onSubSlicesSumChanged(body: string): PieSliceBuilder;
-  onValueChanged(body: string): PieSliceBuilder;
+  onAngleSpanChanged(handler: DslSignalHandlerValue): PieSliceBuilder;
+  onBorderColorChanged(handler: DslSignalHandlerValue): PieSliceBuilder;
+  onBorderWidthChanged(handler: DslSignalHandlerValue): PieSliceBuilder;
+  onColorChanged(handler: DslSignalHandlerValue): PieSliceBuilder;
+  onExplodeDistanceFactorChanged(handler: DslSignalHandlerValue): PieSliceBuilder;
+  onExplodedChanged(handler: DslSignalHandlerValue): PieSliceBuilder;
+  onLabelArmLengthFactorChanged(handler: DslSignalHandlerValue): PieSliceBuilder;
+  onLabelChanged(handler: DslSignalHandlerValue): PieSliceBuilder;
+  onLabelColorChanged(handler: DslSignalHandlerValue): PieSliceBuilder;
+  onLabelFontChanged(handler: DslSignalHandlerValue): PieSliceBuilder;
+  onLabelPositionChanged(handler: DslSignalHandlerValue): PieSliceBuilder;
+  onLabelVisibleChanged(handler: DslSignalHandlerValue): PieSliceBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): PieSliceBuilder;
+  onPercentageChanged(handler: DslSignalHandlerValue): PieSliceBuilder;
+  onSliceChanged(handler: DslSignalHandlerValue): PieSliceBuilder;
+  onStartAngleChanged(handler: DslSignalHandlerValue): PieSliceBuilder;
+  onSubSlicesAdded(handler: DslSignalHandlerValue): PieSliceBuilder;
+  onSubSlicesCountChanged(handler: DslSignalHandlerValue): PieSliceBuilder;
+  onSubSlicesRatioChanged(handler: DslSignalHandlerValue): PieSliceBuilder;
+  onSubSlicesRemoved(handler: DslSignalHandlerValue): PieSliceBuilder;
+  onSubSlicesReplaced(handler: DslSignalHandlerValue): PieSliceBuilder;
+  onSubSlicesSumChanged(handler: DslSignalHandlerValue): PieSliceBuilder;
+  onValueChanged(handler: DslSignalHandlerValue): PieSliceBuilder;
 }
 
 const PIESLICE_META: TypeMetadata = {

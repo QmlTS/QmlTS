@@ -2,12 +2,18 @@
 // Type: FirstPersonCameraController
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 import type { CameraBuilder } from '../Qt3D.Render/Camera.js';
 export interface FirstPersonCameraControllerBuilder {
   id(id: string): FirstPersonCameraControllerBuilder;
   child(obj: QmlObjectBuilder): FirstPersonCameraControllerBuilder;
+  children(...objs: QmlObjectBuilder[]): FirstPersonCameraControllerBuilder;
 
   acceleration(value: number): FirstPersonCameraControllerBuilder;
   accelerationBind(expr: string): FirstPersonCameraControllerBuilder;
@@ -25,15 +31,15 @@ export interface FirstPersonCameraControllerBuilder {
   objectNameBind(expr: string): FirstPersonCameraControllerBuilder;
   parent(value: QmlValue): FirstPersonCameraControllerBuilder;
   parentBind(expr: string): FirstPersonCameraControllerBuilder;
-  onAccelerationChanged(body: string): FirstPersonCameraControllerBuilder;
-  onCameraChanged(body: string): FirstPersonCameraControllerBuilder;
-  onDecelerationChanged(body: string): FirstPersonCameraControllerBuilder;
-  onEnabledChanged(body: string): FirstPersonCameraControllerBuilder;
-  onLinearSpeedChanged(body: string): FirstPersonCameraControllerBuilder;
-  onLookSpeedChanged(body: string): FirstPersonCameraControllerBuilder;
-  onNodeDestroyed(body: string): FirstPersonCameraControllerBuilder;
-  onObjectNameChanged(body: string): FirstPersonCameraControllerBuilder;
-  onParentChanged(body: string): FirstPersonCameraControllerBuilder;
+  onAccelerationChanged(handler: DslSignalHandlerValue): FirstPersonCameraControllerBuilder;
+  onCameraChanged(handler: DslSignalHandlerValue): FirstPersonCameraControllerBuilder;
+  onDecelerationChanged(handler: DslSignalHandlerValue): FirstPersonCameraControllerBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): FirstPersonCameraControllerBuilder;
+  onLinearSpeedChanged(handler: DslSignalHandlerValue): FirstPersonCameraControllerBuilder;
+  onLookSpeedChanged(handler: DslSignalHandlerValue): FirstPersonCameraControllerBuilder;
+  onNodeDestroyed(handler: DslSignalHandlerValue): FirstPersonCameraControllerBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): FirstPersonCameraControllerBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): FirstPersonCameraControllerBuilder;
 }
 
 const FIRSTPERSONCAMERACONTROLLER_META: TypeMetadata = {

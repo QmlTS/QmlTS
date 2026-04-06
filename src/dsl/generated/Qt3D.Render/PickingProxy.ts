@@ -2,12 +2,19 @@
 // Type: PickingProxy
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlValue, QmlVector3d, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlObjectBuilder,
+  QmlValue,
+  QmlVector3d,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 import type { GeometryViewBuilder } from '../Qt3D.Core/GeometryView.js';
 export interface PickingProxyBuilder {
   id(id: string): PickingProxyBuilder;
   child(obj: QmlObjectBuilder): PickingProxyBuilder;
+  children(...objs: QmlObjectBuilder[]): PickingProxyBuilder;
 
   enabled(value: boolean): PickingProxyBuilder;
   enabledBind(expr: string): PickingProxyBuilder;
@@ -23,19 +30,19 @@ export interface PickingProxyBuilder {
   parentBind(expr: string): PickingProxyBuilder;
   view(value: GeometryViewBuilder): PickingProxyBuilder;
   viewBind(expr: string): PickingProxyBuilder;
-  onAddedToEntity(body: string): PickingProxyBuilder;
-  onEnabledChanged(body: string): PickingProxyBuilder;
-  onImplicitMaxPointChanged(body: string): PickingProxyBuilder;
-  onImplicitMinPointChanged(body: string): PickingProxyBuilder;
-  onImplicitPointsValidChanged(body: string): PickingProxyBuilder;
-  onMaxPointChanged(body: string): PickingProxyBuilder;
-  onMinPointChanged(body: string): PickingProxyBuilder;
-  onNodeDestroyed(body: string): PickingProxyBuilder;
-  onObjectNameChanged(body: string): PickingProxyBuilder;
-  onParentChanged(body: string): PickingProxyBuilder;
-  onRemovedFromEntity(body: string): PickingProxyBuilder;
-  onShareableChanged(body: string): PickingProxyBuilder;
-  onViewChanged(body: string): PickingProxyBuilder;
+  onAddedToEntity(handler: DslSignalHandlerValue): PickingProxyBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): PickingProxyBuilder;
+  onImplicitMaxPointChanged(handler: DslSignalHandlerValue): PickingProxyBuilder;
+  onImplicitMinPointChanged(handler: DslSignalHandlerValue): PickingProxyBuilder;
+  onImplicitPointsValidChanged(handler: DslSignalHandlerValue): PickingProxyBuilder;
+  onMaxPointChanged(handler: DslSignalHandlerValue): PickingProxyBuilder;
+  onMinPointChanged(handler: DslSignalHandlerValue): PickingProxyBuilder;
+  onNodeDestroyed(handler: DslSignalHandlerValue): PickingProxyBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): PickingProxyBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): PickingProxyBuilder;
+  onRemovedFromEntity(handler: DslSignalHandlerValue): PickingProxyBuilder;
+  onShareableChanged(handler: DslSignalHandlerValue): PickingProxyBuilder;
+  onViewChanged(handler: DslSignalHandlerValue): PickingProxyBuilder;
 }
 
 const PICKINGPROXY_META: TypeMetadata = {

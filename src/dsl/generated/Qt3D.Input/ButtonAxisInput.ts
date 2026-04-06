@@ -2,11 +2,17 @@
 // Type: ButtonAxisInput
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 export interface ButtonAxisInputBuilder {
   id(id: string): ButtonAxisInputBuilder;
   child(obj: QmlObjectBuilder): ButtonAxisInputBuilder;
+  children(...objs: QmlObjectBuilder[]): ButtonAxisInputBuilder;
 
   acceleration(value: number): ButtonAxisInputBuilder;
   accelerationBind(expr: string): ButtonAxisInputBuilder;
@@ -24,15 +30,15 @@ export interface ButtonAxisInputBuilder {
   scaleBind(expr: string): ButtonAxisInputBuilder;
   sourceDevice(value: QmlValue): ButtonAxisInputBuilder;
   sourceDeviceBind(expr: string): ButtonAxisInputBuilder;
-  onAccelerationChanged(body: string): ButtonAxisInputBuilder;
-  onButtonsChanged(body: string): ButtonAxisInputBuilder;
-  onDecelerationChanged(body: string): ButtonAxisInputBuilder;
-  onEnabledChanged(body: string): ButtonAxisInputBuilder;
-  onNodeDestroyed(body: string): ButtonAxisInputBuilder;
-  onObjectNameChanged(body: string): ButtonAxisInputBuilder;
-  onParentChanged(body: string): ButtonAxisInputBuilder;
-  onScaleChanged(body: string): ButtonAxisInputBuilder;
-  onSourceDeviceChanged(body: string): ButtonAxisInputBuilder;
+  onAccelerationChanged(handler: DslSignalHandlerValue): ButtonAxisInputBuilder;
+  onButtonsChanged(handler: DslSignalHandlerValue): ButtonAxisInputBuilder;
+  onDecelerationChanged(handler: DslSignalHandlerValue): ButtonAxisInputBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): ButtonAxisInputBuilder;
+  onNodeDestroyed(handler: DslSignalHandlerValue): ButtonAxisInputBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): ButtonAxisInputBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): ButtonAxisInputBuilder;
+  onScaleChanged(handler: DslSignalHandlerValue): ButtonAxisInputBuilder;
+  onSourceDeviceChanged(handler: DslSignalHandlerValue): ButtonAxisInputBuilder;
 }
 
 const BUTTONAXISINPUT_META: TypeMetadata = {

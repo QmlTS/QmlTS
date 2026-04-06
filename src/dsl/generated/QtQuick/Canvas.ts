@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlEnumToken,
   QmlObjectBuilder,
   QmlRect,
@@ -34,6 +35,7 @@ import type { ViewTransitionAttachedBuilder } from './ViewTransition.js';
 export interface CanvasBuilder {
   id(id: string): CanvasBuilder;
   child(obj: QmlObjectBuilder): CanvasBuilder;
+  children(...objs: QmlObjectBuilder[]): CanvasBuilder;
 
   activeFocusOnTab(value: boolean): CanvasBuilder;
   activeFocusOnTabBind(expr: string): CanvasBuilder;
@@ -97,48 +99,48 @@ export interface CanvasBuilder {
   yBind(expr: string): CanvasBuilder;
   z(value: number): CanvasBuilder;
   zBind(expr: string): CanvasBuilder;
-  onActiveFocusChanged(body: string): CanvasBuilder;
-  onActiveFocusOnTabChanged(body: string): CanvasBuilder;
-  onAntialiasingChanged(body: string): CanvasBuilder;
-  onAvailableChanged(body: string): CanvasBuilder;
-  onBaselineOffsetChanged(body: string): CanvasBuilder;
-  onCanvasSizeChanged(body: string): CanvasBuilder;
-  onCanvasWindowChanged(body: string): CanvasBuilder;
-  onChildrenChanged(body: string): CanvasBuilder;
-  onChildrenRectChanged(body: string): CanvasBuilder;
-  onClipChanged(body: string): CanvasBuilder;
-  onContainmentMaskChanged(body: string): CanvasBuilder;
-  onContextChanged(body: string): CanvasBuilder;
-  onContextTypeChanged(body: string): CanvasBuilder;
-  onEnabledChanged(body: string): CanvasBuilder;
-  onFocusChanged(body: string): CanvasBuilder;
-  onFocusPolicyChanged(body: string): CanvasBuilder;
-  onHeightChanged(body: string): CanvasBuilder;
-  onImageLoaded(body: string): CanvasBuilder;
-  onImplicitHeightChanged(body: string): CanvasBuilder;
-  onImplicitWidthChanged(body: string): CanvasBuilder;
-  onObjectNameChanged(body: string): CanvasBuilder;
-  onOpacityChanged(body: string): CanvasBuilder;
-  onPaint(body: string): CanvasBuilder;
-  onPainted(body: string): CanvasBuilder;
-  onPaletteChanged(body: string): CanvasBuilder;
-  onPaletteCreated(body: string): CanvasBuilder;
-  onParentChanged(body: string): CanvasBuilder;
-  onRenderStrategyChanged(body: string): CanvasBuilder;
-  onRenderTargetChanged(body: string): CanvasBuilder;
-  onRotationChanged(body: string): CanvasBuilder;
-  onScaleChanged(body: string): CanvasBuilder;
-  onSmoothChanged(body: string): CanvasBuilder;
-  onStateChanged(body: string): CanvasBuilder;
-  onTileSizeChanged(body: string): CanvasBuilder;
-  onTransformOriginChanged(body: string): CanvasBuilder;
-  onVisibleChanged(body: string): CanvasBuilder;
-  onVisibleChildrenChanged(body: string): CanvasBuilder;
-  onWidthChanged(body: string): CanvasBuilder;
-  onWindowChanged(body: string): CanvasBuilder;
-  onXChanged(body: string): CanvasBuilder;
-  onYChanged(body: string): CanvasBuilder;
-  onZChanged(body: string): CanvasBuilder;
+  onActiveFocusChanged(handler: DslSignalHandlerValue): CanvasBuilder;
+  onActiveFocusOnTabChanged(handler: DslSignalHandlerValue): CanvasBuilder;
+  onAntialiasingChanged(handler: DslSignalHandlerValue): CanvasBuilder;
+  onAvailableChanged(handler: DslSignalHandlerValue): CanvasBuilder;
+  onBaselineOffsetChanged(handler: DslSignalHandlerValue): CanvasBuilder;
+  onCanvasSizeChanged(handler: DslSignalHandlerValue): CanvasBuilder;
+  onCanvasWindowChanged(handler: DslSignalHandlerValue): CanvasBuilder;
+  onChildrenChanged(handler: DslSignalHandlerValue): CanvasBuilder;
+  onChildrenRectChanged(handler: DslSignalHandlerValue): CanvasBuilder;
+  onClipChanged(handler: DslSignalHandlerValue): CanvasBuilder;
+  onContainmentMaskChanged(handler: DslSignalHandlerValue): CanvasBuilder;
+  onContextChanged(handler: DslSignalHandlerValue): CanvasBuilder;
+  onContextTypeChanged(handler: DslSignalHandlerValue): CanvasBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): CanvasBuilder;
+  onFocusChanged(handler: DslSignalHandlerValue): CanvasBuilder;
+  onFocusPolicyChanged(handler: DslSignalHandlerValue): CanvasBuilder;
+  onHeightChanged(handler: DslSignalHandlerValue): CanvasBuilder;
+  onImageLoaded(handler: DslSignalHandlerValue): CanvasBuilder;
+  onImplicitHeightChanged(handler: DslSignalHandlerValue): CanvasBuilder;
+  onImplicitWidthChanged(handler: DslSignalHandlerValue): CanvasBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): CanvasBuilder;
+  onOpacityChanged(handler: DslSignalHandlerValue): CanvasBuilder;
+  onPaint(handler: DslSignalHandlerValue): CanvasBuilder;
+  onPainted(handler: DslSignalHandlerValue): CanvasBuilder;
+  onPaletteChanged(handler: DslSignalHandlerValue): CanvasBuilder;
+  onPaletteCreated(handler: DslSignalHandlerValue): CanvasBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): CanvasBuilder;
+  onRenderStrategyChanged(handler: DslSignalHandlerValue): CanvasBuilder;
+  onRenderTargetChanged(handler: DslSignalHandlerValue): CanvasBuilder;
+  onRotationChanged(handler: DslSignalHandlerValue): CanvasBuilder;
+  onScaleChanged(handler: DslSignalHandlerValue): CanvasBuilder;
+  onSmoothChanged(handler: DslSignalHandlerValue): CanvasBuilder;
+  onStateChanged(handler: DslSignalHandlerValue): CanvasBuilder;
+  onTileSizeChanged(handler: DslSignalHandlerValue): CanvasBuilder;
+  onTransformOriginChanged(handler: DslSignalHandlerValue): CanvasBuilder;
+  onVisibleChanged(handler: DslSignalHandlerValue): CanvasBuilder;
+  onVisibleChildrenChanged(handler: DslSignalHandlerValue): CanvasBuilder;
+  onWidthChanged(handler: DslSignalHandlerValue): CanvasBuilder;
+  onWindowChanged(handler: DslSignalHandlerValue): CanvasBuilder;
+  onXChanged(handler: DslSignalHandlerValue): CanvasBuilder;
+  onYChanged(handler: DslSignalHandlerValue): CanvasBuilder;
+  onZChanged(handler: DslSignalHandlerValue): CanvasBuilder;
   anchors(setup: (b: AnchorsBuilder) => void): CanvasBuilder;
   layer(setup: (b: LayerBuilder) => void): CanvasBuilder;
   accessible(setup: (b: AccessibleAttachedBuilder) => void): CanvasBuilder;

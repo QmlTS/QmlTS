@@ -2,11 +2,17 @@
 // Type: RenderTarget
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 export interface RenderTargetBuilder {
   id(id: string): RenderTargetBuilder;
   child(obj: QmlObjectBuilder): RenderTargetBuilder;
+  children(...objs: QmlObjectBuilder[]): RenderTargetBuilder;
 
   enabled(value: boolean): RenderTargetBuilder;
   enabledBind(expr: string): RenderTargetBuilder;
@@ -16,13 +22,13 @@ export interface RenderTargetBuilder {
   objectNameBind(expr: string): RenderTargetBuilder;
   parent(value: QmlValue): RenderTargetBuilder;
   parentBind(expr: string): RenderTargetBuilder;
-  onAddedToEntity(body: string): RenderTargetBuilder;
-  onEnabledChanged(body: string): RenderTargetBuilder;
-  onNodeDestroyed(body: string): RenderTargetBuilder;
-  onObjectNameChanged(body: string): RenderTargetBuilder;
-  onParentChanged(body: string): RenderTargetBuilder;
-  onRemovedFromEntity(body: string): RenderTargetBuilder;
-  onShareableChanged(body: string): RenderTargetBuilder;
+  onAddedToEntity(handler: DslSignalHandlerValue): RenderTargetBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): RenderTargetBuilder;
+  onNodeDestroyed(handler: DslSignalHandlerValue): RenderTargetBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): RenderTargetBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): RenderTargetBuilder;
+  onRemovedFromEntity(handler: DslSignalHandlerValue): RenderTargetBuilder;
+  onShareableChanged(handler: DslSignalHandlerValue): RenderTargetBuilder;
 }
 
 const RENDERTARGET_META: TypeMetadata = {

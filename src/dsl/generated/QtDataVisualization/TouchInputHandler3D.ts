@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlEnumToken,
   QmlObjectBuilder,
   QmlPoint,
@@ -13,6 +14,7 @@ import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface TouchInputHandler3DBuilder {
   id(id: string): TouchInputHandler3DBuilder;
   child(obj: QmlObjectBuilder): TouchInputHandler3DBuilder;
+  children(...objs: QmlObjectBuilder[]): TouchInputHandler3DBuilder;
 
   inputPosition(value: QmlPoint): TouchInputHandler3DBuilder;
   inputPositionBind(expr: string): TouchInputHandler3DBuilder;
@@ -30,14 +32,14 @@ export interface TouchInputHandler3DBuilder {
   zoomAtTargetEnabledBind(expr: string): TouchInputHandler3DBuilder;
   zoomEnabled(value: boolean): TouchInputHandler3DBuilder;
   zoomEnabledBind(expr: string): TouchInputHandler3DBuilder;
-  onInputViewChanged(body: string): TouchInputHandler3DBuilder;
-  onObjectNameChanged(body: string): TouchInputHandler3DBuilder;
-  onPositionChanged(body: string): TouchInputHandler3DBuilder;
-  onRotationEnabledChanged(body: string): TouchInputHandler3DBuilder;
-  onSceneChanged(body: string): TouchInputHandler3DBuilder;
-  onSelectionEnabledChanged(body: string): TouchInputHandler3DBuilder;
-  onZoomAtTargetEnabledChanged(body: string): TouchInputHandler3DBuilder;
-  onZoomEnabledChanged(body: string): TouchInputHandler3DBuilder;
+  onInputViewChanged(handler: DslSignalHandlerValue): TouchInputHandler3DBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): TouchInputHandler3DBuilder;
+  onPositionChanged(handler: DslSignalHandlerValue): TouchInputHandler3DBuilder;
+  onRotationEnabledChanged(handler: DslSignalHandlerValue): TouchInputHandler3DBuilder;
+  onSceneChanged(handler: DslSignalHandlerValue): TouchInputHandler3DBuilder;
+  onSelectionEnabledChanged(handler: DslSignalHandlerValue): TouchInputHandler3DBuilder;
+  onZoomAtTargetEnabledChanged(handler: DslSignalHandlerValue): TouchInputHandler3DBuilder;
+  onZoomEnabledChanged(handler: DslSignalHandlerValue): TouchInputHandler3DBuilder;
 }
 
 const TOUCHINPUTHANDLER3D_META: TypeMetadata = {

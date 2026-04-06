@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlEnumToken,
   QmlObjectBuilder,
   QmlQuaternion,
@@ -15,6 +16,7 @@ import type { NodeBuilder } from './Node.js';
 export interface FrustumCameraBuilder {
   id(id: string): FrustumCameraBuilder;
   child(obj: QmlObjectBuilder): FrustumCameraBuilder;
+  children(...objs: QmlObjectBuilder[]): FrustumCameraBuilder;
 
   bottom(value: number): FrustumCameraBuilder;
   bottomBind(expr: string): FrustumCameraBuilder;
@@ -68,39 +70,39 @@ export interface FrustumCameraBuilder {
   yBind(expr: string): FrustumCameraBuilder;
   z(value: number): FrustumCameraBuilder;
   zBind(expr: string): FrustumCameraBuilder;
-  onBottomChanged(body: string): FrustumCameraBuilder;
-  onChildrenChanged(body: string): FrustumCameraBuilder;
-  onClipFarChanged(body: string): FrustumCameraBuilder;
-  onClipNearChanged(body: string): FrustumCameraBuilder;
-  onEulerRotationChanged(body: string): FrustumCameraBuilder;
-  onFieldOfViewChanged(body: string): FrustumCameraBuilder;
-  onFieldOfViewOrientationChanged(body: string): FrustumCameraBuilder;
-  onForwardChanged(body: string): FrustumCameraBuilder;
-  onFrustumCullingEnabledChanged(body: string): FrustumCameraBuilder;
-  onLayersChanged(body: string): FrustumCameraBuilder;
-  onLeftChanged(body: string): FrustumCameraBuilder;
-  onLevelOfDetailBiasChanged(body: string): FrustumCameraBuilder;
-  onLocalOpacityChanged(body: string): FrustumCameraBuilder;
-  onLookAtNodeChanged(body: string): FrustumCameraBuilder;
-  onObjectNameChanged(body: string): FrustumCameraBuilder;
-  onParentChanged(body: string): FrustumCameraBuilder;
-  onPivotChanged(body: string): FrustumCameraBuilder;
-  onPositionChanged(body: string): FrustumCameraBuilder;
-  onRightChanged(body: string): FrustumCameraBuilder;
-  onRotationChanged(body: string): FrustumCameraBuilder;
-  onScaleChanged(body: string): FrustumCameraBuilder;
-  onScenePositionChanged(body: string): FrustumCameraBuilder;
-  onSceneRotationChanged(body: string): FrustumCameraBuilder;
-  onSceneScaleChanged(body: string): FrustumCameraBuilder;
-  onSceneTransformChanged(body: string): FrustumCameraBuilder;
-  onStateChanged(body: string): FrustumCameraBuilder;
-  onStaticFlagsChanged(body: string): FrustumCameraBuilder;
-  onTopChanged(body: string): FrustumCameraBuilder;
-  onUpChanged(body: string): FrustumCameraBuilder;
-  onVisibleChanged(body: string): FrustumCameraBuilder;
-  onXChanged(body: string): FrustumCameraBuilder;
-  onYChanged(body: string): FrustumCameraBuilder;
-  onZChanged(body: string): FrustumCameraBuilder;
+  onBottomChanged(handler: DslSignalHandlerValue): FrustumCameraBuilder;
+  onChildrenChanged(handler: DslSignalHandlerValue): FrustumCameraBuilder;
+  onClipFarChanged(handler: DslSignalHandlerValue): FrustumCameraBuilder;
+  onClipNearChanged(handler: DslSignalHandlerValue): FrustumCameraBuilder;
+  onEulerRotationChanged(handler: DslSignalHandlerValue): FrustumCameraBuilder;
+  onFieldOfViewChanged(handler: DslSignalHandlerValue): FrustumCameraBuilder;
+  onFieldOfViewOrientationChanged(handler: DslSignalHandlerValue): FrustumCameraBuilder;
+  onForwardChanged(handler: DslSignalHandlerValue): FrustumCameraBuilder;
+  onFrustumCullingEnabledChanged(handler: DslSignalHandlerValue): FrustumCameraBuilder;
+  onLayersChanged(handler: DslSignalHandlerValue): FrustumCameraBuilder;
+  onLeftChanged(handler: DslSignalHandlerValue): FrustumCameraBuilder;
+  onLevelOfDetailBiasChanged(handler: DslSignalHandlerValue): FrustumCameraBuilder;
+  onLocalOpacityChanged(handler: DslSignalHandlerValue): FrustumCameraBuilder;
+  onLookAtNodeChanged(handler: DslSignalHandlerValue): FrustumCameraBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): FrustumCameraBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): FrustumCameraBuilder;
+  onPivotChanged(handler: DslSignalHandlerValue): FrustumCameraBuilder;
+  onPositionChanged(handler: DslSignalHandlerValue): FrustumCameraBuilder;
+  onRightChanged(handler: DslSignalHandlerValue): FrustumCameraBuilder;
+  onRotationChanged(handler: DslSignalHandlerValue): FrustumCameraBuilder;
+  onScaleChanged(handler: DslSignalHandlerValue): FrustumCameraBuilder;
+  onScenePositionChanged(handler: DslSignalHandlerValue): FrustumCameraBuilder;
+  onSceneRotationChanged(handler: DslSignalHandlerValue): FrustumCameraBuilder;
+  onSceneScaleChanged(handler: DslSignalHandlerValue): FrustumCameraBuilder;
+  onSceneTransformChanged(handler: DslSignalHandlerValue): FrustumCameraBuilder;
+  onStateChanged(handler: DslSignalHandlerValue): FrustumCameraBuilder;
+  onStaticFlagsChanged(handler: DslSignalHandlerValue): FrustumCameraBuilder;
+  onTopChanged(handler: DslSignalHandlerValue): FrustumCameraBuilder;
+  onUpChanged(handler: DslSignalHandlerValue): FrustumCameraBuilder;
+  onVisibleChanged(handler: DslSignalHandlerValue): FrustumCameraBuilder;
+  onXChanged(handler: DslSignalHandlerValue): FrustumCameraBuilder;
+  onYChanged(handler: DslSignalHandlerValue): FrustumCameraBuilder;
+  onZChanged(handler: DslSignalHandlerValue): FrustumCameraBuilder;
 }
 
 const FRUSTUMCAMERA_META: TypeMetadata = {

@@ -2,11 +2,17 @@
 // Type: EventConnection
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 export interface EventConnectionBuilder {
   id(id: string): EventConnectionBuilder;
   child(obj: QmlObjectBuilder): EventConnectionBuilder;
+  children(...objs: QmlObjectBuilder[]): EventConnectionBuilder;
 
   events(value: string[]): EventConnectionBuilder;
   eventsBind(expr: string): EventConnectionBuilder;
@@ -14,10 +20,10 @@ export interface EventConnectionBuilder {
   objectNameBind(expr: string): EventConnectionBuilder;
   stateMachine(value: QmlValue): EventConnectionBuilder;
   stateMachineBind(expr: string): EventConnectionBuilder;
-  onEventsChanged(body: string): EventConnectionBuilder;
-  onObjectNameChanged(body: string): EventConnectionBuilder;
-  onOccurred(body: string): EventConnectionBuilder;
-  onStateMachineChanged(body: string): EventConnectionBuilder;
+  onEventsChanged(handler: DslSignalHandlerValue): EventConnectionBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): EventConnectionBuilder;
+  onOccurred(handler: DslSignalHandlerValue): EventConnectionBuilder;
+  onStateMachineChanged(handler: DslSignalHandlerValue): EventConnectionBuilder;
 }
 
 const EVENTCONNECTION_META: TypeMetadata = {

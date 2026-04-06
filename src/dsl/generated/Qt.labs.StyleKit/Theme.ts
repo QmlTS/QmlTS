@@ -2,7 +2,7 @@
 // Type: Theme
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import type { DslSignalHandlerValue, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 import type { ControlStyleBuilder } from './ControlStyle.js';
 import type { StyleKitAttachedBuilder } from './QQStyleKitAttached.js';
@@ -10,6 +10,7 @@ import type { StyleVariationAttachedBuilder } from './QQStyleKitVariationAttache
 export interface ThemeBuilder {
   id(id: string): ThemeBuilder;
   child(obj: QmlObjectBuilder): ThemeBuilder;
+  children(...objs: QmlObjectBuilder[]): ThemeBuilder;
 
   abstractButton(value: ControlStyleBuilder): ThemeBuilder;
   abstractButtonBind(expr: string): ThemeBuilder;
@@ -73,40 +74,40 @@ export interface ThemeBuilder {
   toolButtonBind(expr: string): ThemeBuilder;
   toolSeparator(value: ControlStyleBuilder): ThemeBuilder;
   toolSeparatorBind(expr: string): ThemeBuilder;
-  onAbstractButtonChanged(body: string): ThemeBuilder;
-  onApplicationWindowChanged(body: string): ThemeBuilder;
-  onButtonChanged(body: string): ThemeBuilder;
-  onCheckBoxChanged(body: string): ThemeBuilder;
-  onComboBoxChanged(body: string): ThemeBuilder;
-  onControlChanged(body: string): ThemeBuilder;
-  onDataChanged(body: string): ThemeBuilder;
-  onFlatButtonChanged(body: string): ThemeBuilder;
-  onFontsChanged(body: string): ThemeBuilder;
-  onFrameChanged(body: string): ThemeBuilder;
-  onGroupBoxChanged(body: string): ThemeBuilder;
-  onItemDelegateChanged(body: string): ThemeBuilder;
-  onLabelChanged(body: string): ThemeBuilder;
-  onObjectNameChanged(body: string): ThemeBuilder;
-  onPageChanged(body: string): ThemeBuilder;
-  onPalettesChanged(body: string): ThemeBuilder;
-  onPaneChanged(body: string): ThemeBuilder;
-  onPopupChanged(body: string): ThemeBuilder;
-  onProgressBarChanged(body: string): ThemeBuilder;
-  onRadioButtonChanged(body: string): ThemeBuilder;
-  onScrollBarChanged(body: string): ThemeBuilder;
-  onScrollIndicatorChanged(body: string): ThemeBuilder;
-  onScrollViewChanged(body: string): ThemeBuilder;
-  onSliderChanged(body: string): ThemeBuilder;
-  onSpinBoxChanged(body: string): ThemeBuilder;
-  onSwitchControlChanged(body: string): ThemeBuilder;
-  onTabBarChanged(body: string): ThemeBuilder;
-  onTabButtonChanged(body: string): ThemeBuilder;
-  onTextAreaChanged(body: string): ThemeBuilder;
-  onTextFieldChanged(body: string): ThemeBuilder;
-  onTextInputChanged(body: string): ThemeBuilder;
-  onToolBarChanged(body: string): ThemeBuilder;
-  onToolButtonChanged(body: string): ThemeBuilder;
-  onToolSeparatorChanged(body: string): ThemeBuilder;
+  onAbstractButtonChanged(handler: DslSignalHandlerValue): ThemeBuilder;
+  onApplicationWindowChanged(handler: DslSignalHandlerValue): ThemeBuilder;
+  onButtonChanged(handler: DslSignalHandlerValue): ThemeBuilder;
+  onCheckBoxChanged(handler: DslSignalHandlerValue): ThemeBuilder;
+  onComboBoxChanged(handler: DslSignalHandlerValue): ThemeBuilder;
+  onControlChanged(handler: DslSignalHandlerValue): ThemeBuilder;
+  onDataChanged(handler: DslSignalHandlerValue): ThemeBuilder;
+  onFlatButtonChanged(handler: DslSignalHandlerValue): ThemeBuilder;
+  onFontsChanged(handler: DslSignalHandlerValue): ThemeBuilder;
+  onFrameChanged(handler: DslSignalHandlerValue): ThemeBuilder;
+  onGroupBoxChanged(handler: DslSignalHandlerValue): ThemeBuilder;
+  onItemDelegateChanged(handler: DslSignalHandlerValue): ThemeBuilder;
+  onLabelChanged(handler: DslSignalHandlerValue): ThemeBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): ThemeBuilder;
+  onPageChanged(handler: DslSignalHandlerValue): ThemeBuilder;
+  onPalettesChanged(handler: DslSignalHandlerValue): ThemeBuilder;
+  onPaneChanged(handler: DslSignalHandlerValue): ThemeBuilder;
+  onPopupChanged(handler: DslSignalHandlerValue): ThemeBuilder;
+  onProgressBarChanged(handler: DslSignalHandlerValue): ThemeBuilder;
+  onRadioButtonChanged(handler: DslSignalHandlerValue): ThemeBuilder;
+  onScrollBarChanged(handler: DslSignalHandlerValue): ThemeBuilder;
+  onScrollIndicatorChanged(handler: DslSignalHandlerValue): ThemeBuilder;
+  onScrollViewChanged(handler: DslSignalHandlerValue): ThemeBuilder;
+  onSliderChanged(handler: DslSignalHandlerValue): ThemeBuilder;
+  onSpinBoxChanged(handler: DslSignalHandlerValue): ThemeBuilder;
+  onSwitchControlChanged(handler: DslSignalHandlerValue): ThemeBuilder;
+  onTabBarChanged(handler: DslSignalHandlerValue): ThemeBuilder;
+  onTabButtonChanged(handler: DslSignalHandlerValue): ThemeBuilder;
+  onTextAreaChanged(handler: DslSignalHandlerValue): ThemeBuilder;
+  onTextFieldChanged(handler: DslSignalHandlerValue): ThemeBuilder;
+  onTextInputChanged(handler: DslSignalHandlerValue): ThemeBuilder;
+  onToolBarChanged(handler: DslSignalHandlerValue): ThemeBuilder;
+  onToolButtonChanged(handler: DslSignalHandlerValue): ThemeBuilder;
+  onToolSeparatorChanged(handler: DslSignalHandlerValue): ThemeBuilder;
   styleKit(setup: (b: StyleKitAttachedBuilder) => void): ThemeBuilder;
   styleVariation(setup: (b: StyleVariationAttachedBuilder) => void): ThemeBuilder;
 }

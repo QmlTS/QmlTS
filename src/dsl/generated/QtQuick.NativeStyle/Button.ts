@@ -2,7 +2,12 @@
 // Type: Button
 // Generated from Qt 6.11.0
 
-import type { QmlEnumToken, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlEnumToken,
+  QmlObjectBuilder,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { QtObjectBuilder } from '../QML/QtObject.js';
 import type { ItemBuilder } from '../QtQuick/Item.js';
@@ -12,6 +17,7 @@ import type { LayerBuilder } from '../QtQuick/QQuickItemLayer.js';
 export interface ButtonBuilder {
   id(id: string): ButtonBuilder;
   child(obj: QmlObjectBuilder): ButtonBuilder;
+  children(...objs: QmlObjectBuilder[]): ButtonBuilder;
 
   activeFocusOnTab(value: boolean): ButtonBuilder;
   activeFocusOnTabBind(expr: string): ButtonBuilder;
@@ -75,42 +81,42 @@ export interface ButtonBuilder {
   yBind(expr: string): ButtonBuilder;
   z(value: number): ButtonBuilder;
   zBind(expr: string): ButtonBuilder;
-  onActiveFocusChanged(body: string): ButtonBuilder;
-  onActiveFocusOnTabChanged(body: string): ButtonBuilder;
-  onAntialiasingChanged(body: string): ButtonBuilder;
-  onBaselineOffsetChanged(body: string): ButtonBuilder;
-  onChildrenChanged(body: string): ButtonBuilder;
-  onChildrenRectChanged(body: string): ButtonBuilder;
-  onClipChanged(body: string): ButtonBuilder;
-  onContainmentMaskChanged(body: string): ButtonBuilder;
-  onContentPaddingChanged(body: string): ButtonBuilder;
-  onControlChanged(body: string): ButtonBuilder;
-  onEnabledChanged(body: string): ButtonBuilder;
-  onFocusChanged(body: string): ButtonBuilder;
-  onFocusPolicyChanged(body: string): ButtonBuilder;
-  onFontChanged(body: string): ButtonBuilder;
-  onHeightChanged(body: string): ButtonBuilder;
-  onImplicitHeightChanged(body: string): ButtonBuilder;
-  onImplicitWidthChanged(body: string): ButtonBuilder;
-  onLayoutMarginsChanged(body: string): ButtonBuilder;
-  onMinimumSizeChanged(body: string): ButtonBuilder;
-  onObjectNameChanged(body: string): ButtonBuilder;
-  onOpacityChanged(body: string): ButtonBuilder;
-  onPaletteChanged(body: string): ButtonBuilder;
-  onPaletteCreated(body: string): ButtonBuilder;
-  onParentChanged(body: string): ButtonBuilder;
-  onRotationChanged(body: string): ButtonBuilder;
-  onScaleChanged(body: string): ButtonBuilder;
-  onSmoothChanged(body: string): ButtonBuilder;
-  onStateChanged(body: string): ButtonBuilder;
-  onTransformOriginChanged(body: string): ButtonBuilder;
-  onVisibleChanged(body: string): ButtonBuilder;
-  onVisibleChildrenChanged(body: string): ButtonBuilder;
-  onWidthChanged(body: string): ButtonBuilder;
-  onWindowChanged(body: string): ButtonBuilder;
-  onXChanged(body: string): ButtonBuilder;
-  onYChanged(body: string): ButtonBuilder;
-  onZChanged(body: string): ButtonBuilder;
+  onActiveFocusChanged(handler: DslSignalHandlerValue): ButtonBuilder;
+  onActiveFocusOnTabChanged(handler: DslSignalHandlerValue): ButtonBuilder;
+  onAntialiasingChanged(handler: DslSignalHandlerValue): ButtonBuilder;
+  onBaselineOffsetChanged(handler: DslSignalHandlerValue): ButtonBuilder;
+  onChildrenChanged(handler: DslSignalHandlerValue): ButtonBuilder;
+  onChildrenRectChanged(handler: DslSignalHandlerValue): ButtonBuilder;
+  onClipChanged(handler: DslSignalHandlerValue): ButtonBuilder;
+  onContainmentMaskChanged(handler: DslSignalHandlerValue): ButtonBuilder;
+  onContentPaddingChanged(handler: DslSignalHandlerValue): ButtonBuilder;
+  onControlChanged(handler: DslSignalHandlerValue): ButtonBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): ButtonBuilder;
+  onFocusChanged(handler: DslSignalHandlerValue): ButtonBuilder;
+  onFocusPolicyChanged(handler: DslSignalHandlerValue): ButtonBuilder;
+  onFontChanged(handler: DslSignalHandlerValue): ButtonBuilder;
+  onHeightChanged(handler: DslSignalHandlerValue): ButtonBuilder;
+  onImplicitHeightChanged(handler: DslSignalHandlerValue): ButtonBuilder;
+  onImplicitWidthChanged(handler: DslSignalHandlerValue): ButtonBuilder;
+  onLayoutMarginsChanged(handler: DslSignalHandlerValue): ButtonBuilder;
+  onMinimumSizeChanged(handler: DslSignalHandlerValue): ButtonBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): ButtonBuilder;
+  onOpacityChanged(handler: DslSignalHandlerValue): ButtonBuilder;
+  onPaletteChanged(handler: DslSignalHandlerValue): ButtonBuilder;
+  onPaletteCreated(handler: DslSignalHandlerValue): ButtonBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): ButtonBuilder;
+  onRotationChanged(handler: DslSignalHandlerValue): ButtonBuilder;
+  onScaleChanged(handler: DslSignalHandlerValue): ButtonBuilder;
+  onSmoothChanged(handler: DslSignalHandlerValue): ButtonBuilder;
+  onStateChanged(handler: DslSignalHandlerValue): ButtonBuilder;
+  onTransformOriginChanged(handler: DslSignalHandlerValue): ButtonBuilder;
+  onVisibleChanged(handler: DslSignalHandlerValue): ButtonBuilder;
+  onVisibleChildrenChanged(handler: DslSignalHandlerValue): ButtonBuilder;
+  onWidthChanged(handler: DslSignalHandlerValue): ButtonBuilder;
+  onWindowChanged(handler: DslSignalHandlerValue): ButtonBuilder;
+  onXChanged(handler: DslSignalHandlerValue): ButtonBuilder;
+  onYChanged(handler: DslSignalHandlerValue): ButtonBuilder;
+  onZChanged(handler: DslSignalHandlerValue): ButtonBuilder;
   anchors(setup: (b: AnchorsBuilder) => void): ButtonBuilder;
   layer(setup: (b: LayerBuilder) => void): ButtonBuilder;
 }

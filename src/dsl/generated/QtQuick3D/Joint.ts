@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlObjectBuilder,
   QmlQuaternion,
   QmlValue,
@@ -14,6 +15,7 @@ import type { SkeletonBuilder } from './Skeleton.js';
 export interface JointBuilder {
   id(id: string): JointBuilder;
   child(obj: QmlObjectBuilder): JointBuilder;
+  children(...objs: QmlObjectBuilder[]): JointBuilder;
 
   eulerRotation(value: QmlVector3d): JointBuilder;
   eulerRotationBind(expr: string): JointBuilder;
@@ -49,31 +51,31 @@ export interface JointBuilder {
   yBind(expr: string): JointBuilder;
   z(value: number): JointBuilder;
   zBind(expr: string): JointBuilder;
-  onChildrenChanged(body: string): JointBuilder;
-  onEulerRotationChanged(body: string): JointBuilder;
-  onForwardChanged(body: string): JointBuilder;
-  onIndexChanged(body: string): JointBuilder;
-  onLayersChanged(body: string): JointBuilder;
-  onLocalOpacityChanged(body: string): JointBuilder;
-  onObjectNameChanged(body: string): JointBuilder;
-  onParentChanged(body: string): JointBuilder;
-  onPivotChanged(body: string): JointBuilder;
-  onPositionChanged(body: string): JointBuilder;
-  onRightChanged(body: string): JointBuilder;
-  onRotationChanged(body: string): JointBuilder;
-  onScaleChanged(body: string): JointBuilder;
-  onScenePositionChanged(body: string): JointBuilder;
-  onSceneRotationChanged(body: string): JointBuilder;
-  onSceneScaleChanged(body: string): JointBuilder;
-  onSceneTransformChanged(body: string): JointBuilder;
-  onSkeletonRootChanged(body: string): JointBuilder;
-  onStateChanged(body: string): JointBuilder;
-  onStaticFlagsChanged(body: string): JointBuilder;
-  onUpChanged(body: string): JointBuilder;
-  onVisibleChanged(body: string): JointBuilder;
-  onXChanged(body: string): JointBuilder;
-  onYChanged(body: string): JointBuilder;
-  onZChanged(body: string): JointBuilder;
+  onChildrenChanged(handler: DslSignalHandlerValue): JointBuilder;
+  onEulerRotationChanged(handler: DslSignalHandlerValue): JointBuilder;
+  onForwardChanged(handler: DslSignalHandlerValue): JointBuilder;
+  onIndexChanged(handler: DslSignalHandlerValue): JointBuilder;
+  onLayersChanged(handler: DslSignalHandlerValue): JointBuilder;
+  onLocalOpacityChanged(handler: DslSignalHandlerValue): JointBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): JointBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): JointBuilder;
+  onPivotChanged(handler: DslSignalHandlerValue): JointBuilder;
+  onPositionChanged(handler: DslSignalHandlerValue): JointBuilder;
+  onRightChanged(handler: DslSignalHandlerValue): JointBuilder;
+  onRotationChanged(handler: DslSignalHandlerValue): JointBuilder;
+  onScaleChanged(handler: DslSignalHandlerValue): JointBuilder;
+  onScenePositionChanged(handler: DslSignalHandlerValue): JointBuilder;
+  onSceneRotationChanged(handler: DslSignalHandlerValue): JointBuilder;
+  onSceneScaleChanged(handler: DslSignalHandlerValue): JointBuilder;
+  onSceneTransformChanged(handler: DslSignalHandlerValue): JointBuilder;
+  onSkeletonRootChanged(handler: DslSignalHandlerValue): JointBuilder;
+  onStateChanged(handler: DslSignalHandlerValue): JointBuilder;
+  onStaticFlagsChanged(handler: DslSignalHandlerValue): JointBuilder;
+  onUpChanged(handler: DslSignalHandlerValue): JointBuilder;
+  onVisibleChanged(handler: DslSignalHandlerValue): JointBuilder;
+  onXChanged(handler: DslSignalHandlerValue): JointBuilder;
+  onYChanged(handler: DslSignalHandlerValue): JointBuilder;
+  onZChanged(handler: DslSignalHandlerValue): JointBuilder;
 }
 
 const JOINT_META: TypeMetadata = {

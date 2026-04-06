@@ -2,11 +2,17 @@
 // Type: NoDraw
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 export interface NoDrawBuilder {
   id(id: string): NoDrawBuilder;
   child(obj: QmlObjectBuilder): NoDrawBuilder;
+  children(...objs: QmlObjectBuilder[]): NoDrawBuilder;
 
   enabled(value: boolean): NoDrawBuilder;
   enabledBind(expr: string): NoDrawBuilder;
@@ -14,10 +20,10 @@ export interface NoDrawBuilder {
   objectNameBind(expr: string): NoDrawBuilder;
   parent(value: QmlValue): NoDrawBuilder;
   parentBind(expr: string): NoDrawBuilder;
-  onEnabledChanged(body: string): NoDrawBuilder;
-  onNodeDestroyed(body: string): NoDrawBuilder;
-  onObjectNameChanged(body: string): NoDrawBuilder;
-  onParentChanged(body: string): NoDrawBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): NoDrawBuilder;
+  onNodeDestroyed(handler: DslSignalHandlerValue): NoDrawBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): NoDrawBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): NoDrawBuilder;
 }
 
 const NODRAW_META: TypeMetadata = {

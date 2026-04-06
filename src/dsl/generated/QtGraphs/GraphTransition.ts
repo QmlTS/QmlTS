@@ -2,15 +2,16 @@
 // Type: GraphTransition
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import type { DslSignalHandlerValue, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface GraphTransitionBuilder {
   id(id: string): GraphTransitionBuilder;
   child(obj: QmlObjectBuilder): GraphTransitionBuilder;
+  children(...objs: QmlObjectBuilder[]): GraphTransitionBuilder;
 
   objectName(value: string): GraphTransitionBuilder;
   objectNameBind(expr: string): GraphTransitionBuilder;
-  onObjectNameChanged(body: string): GraphTransitionBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): GraphTransitionBuilder;
 }
 
 const GRAPHTRANSITION_META: TypeMetadata = {

@@ -2,12 +2,18 @@
 // Type: RenderTargetSelector
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 import type { RenderTargetBuilder } from './RenderTarget.js';
 export interface RenderTargetSelectorBuilder {
   id(id: string): RenderTargetSelectorBuilder;
   child(obj: QmlObjectBuilder): RenderTargetSelectorBuilder;
+  children(...objs: QmlObjectBuilder[]): RenderTargetSelectorBuilder;
 
   enabled(value: boolean): RenderTargetSelectorBuilder;
   enabledBind(expr: string): RenderTargetSelectorBuilder;
@@ -17,11 +23,11 @@ export interface RenderTargetSelectorBuilder {
   parentBind(expr: string): RenderTargetSelectorBuilder;
   target(value: RenderTargetBuilder): RenderTargetSelectorBuilder;
   targetBind(expr: string): RenderTargetSelectorBuilder;
-  onEnabledChanged(body: string): RenderTargetSelectorBuilder;
-  onNodeDestroyed(body: string): RenderTargetSelectorBuilder;
-  onObjectNameChanged(body: string): RenderTargetSelectorBuilder;
-  onParentChanged(body: string): RenderTargetSelectorBuilder;
-  onTargetChanged(body: string): RenderTargetSelectorBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): RenderTargetSelectorBuilder;
+  onNodeDestroyed(handler: DslSignalHandlerValue): RenderTargetSelectorBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): RenderTargetSelectorBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): RenderTargetSelectorBuilder;
+  onTargetChanged(handler: DslSignalHandlerValue): RenderTargetSelectorBuilder;
 }
 
 const RENDERTARGETSELECTOR_META: TypeMetadata = {

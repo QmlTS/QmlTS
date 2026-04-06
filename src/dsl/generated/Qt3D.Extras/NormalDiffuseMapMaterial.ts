@@ -2,12 +2,19 @@
 // Type: NormalDiffuseMapMaterial
 // Generated from Qt 6.11.0
 
-import type { QmlColor, QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlColor,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 import type { EffectBuilder } from '../Qt3D.Render/Effect.js';
 export interface NormalDiffuseMapMaterialBuilder {
   id(id: string): NormalDiffuseMapMaterialBuilder;
   child(obj: QmlObjectBuilder): NormalDiffuseMapMaterialBuilder;
+  children(...objs: QmlObjectBuilder[]): NormalDiffuseMapMaterialBuilder;
 
   ambient(value: QmlColor): NormalDiffuseMapMaterialBuilder;
   ambientBind(expr: string): NormalDiffuseMapMaterialBuilder;
@@ -31,20 +38,20 @@ export interface NormalDiffuseMapMaterialBuilder {
   specularBind(expr: string): NormalDiffuseMapMaterialBuilder;
   textureScale(value: number): NormalDiffuseMapMaterialBuilder;
   textureScaleBind(expr: string): NormalDiffuseMapMaterialBuilder;
-  onAddedToEntity(body: string): NormalDiffuseMapMaterialBuilder;
-  onAmbientChanged(body: string): NormalDiffuseMapMaterialBuilder;
-  onDiffuseChanged(body: string): NormalDiffuseMapMaterialBuilder;
-  onEffectChanged(body: string): NormalDiffuseMapMaterialBuilder;
-  onEnabledChanged(body: string): NormalDiffuseMapMaterialBuilder;
-  onNodeDestroyed(body: string): NormalDiffuseMapMaterialBuilder;
-  onNormalChanged(body: string): NormalDiffuseMapMaterialBuilder;
-  onObjectNameChanged(body: string): NormalDiffuseMapMaterialBuilder;
-  onParentChanged(body: string): NormalDiffuseMapMaterialBuilder;
-  onRemovedFromEntity(body: string): NormalDiffuseMapMaterialBuilder;
-  onShareableChanged(body: string): NormalDiffuseMapMaterialBuilder;
-  onShininessChanged(body: string): NormalDiffuseMapMaterialBuilder;
-  onSpecularChanged(body: string): NormalDiffuseMapMaterialBuilder;
-  onTextureScaleChanged(body: string): NormalDiffuseMapMaterialBuilder;
+  onAddedToEntity(handler: DslSignalHandlerValue): NormalDiffuseMapMaterialBuilder;
+  onAmbientChanged(handler: DslSignalHandlerValue): NormalDiffuseMapMaterialBuilder;
+  onDiffuseChanged(handler: DslSignalHandlerValue): NormalDiffuseMapMaterialBuilder;
+  onEffectChanged(handler: DslSignalHandlerValue): NormalDiffuseMapMaterialBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): NormalDiffuseMapMaterialBuilder;
+  onNodeDestroyed(handler: DslSignalHandlerValue): NormalDiffuseMapMaterialBuilder;
+  onNormalChanged(handler: DslSignalHandlerValue): NormalDiffuseMapMaterialBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): NormalDiffuseMapMaterialBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): NormalDiffuseMapMaterialBuilder;
+  onRemovedFromEntity(handler: DslSignalHandlerValue): NormalDiffuseMapMaterialBuilder;
+  onShareableChanged(handler: DslSignalHandlerValue): NormalDiffuseMapMaterialBuilder;
+  onShininessChanged(handler: DslSignalHandlerValue): NormalDiffuseMapMaterialBuilder;
+  onSpecularChanged(handler: DslSignalHandlerValue): NormalDiffuseMapMaterialBuilder;
+  onTextureScaleChanged(handler: DslSignalHandlerValue): NormalDiffuseMapMaterialBuilder;
 }
 
 const NORMALDIFFUSEMAPMATERIAL_META: TypeMetadata = {

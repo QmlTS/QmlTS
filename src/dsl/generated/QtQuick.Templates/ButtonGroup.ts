@@ -2,7 +2,12 @@
 // Type: ButtonGroup
 // Generated from Qt 6.11.0
 
-import type { QmlEnumToken, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlEnumToken,
+  QmlObjectBuilder,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 import type { AbstractButtonBuilder } from './AbstractButton.js';
 import type { ContextMenuAttachedBuilder } from './ContextMenu.js';
@@ -26,6 +31,7 @@ import type { SplitHandleAttachedBuilder } from './SplitHandle.js';
 export interface ButtonGroupBuilder {
   id(id: string): ButtonGroupBuilder;
   child(obj: QmlObjectBuilder): ButtonGroupBuilder;
+  children(...objs: QmlObjectBuilder[]): ButtonGroupBuilder;
 
   checkState(value: QmlEnumToken): ButtonGroupBuilder;
   checkStateBind(expr: string): ButtonGroupBuilder;
@@ -35,12 +41,12 @@ export interface ButtonGroupBuilder {
   exclusiveBind(expr: string): ButtonGroupBuilder;
   objectName(value: string): ButtonGroupBuilder;
   objectNameBind(expr: string): ButtonGroupBuilder;
-  onButtonsChanged(body: string): ButtonGroupBuilder;
-  onCheckStateChanged(body: string): ButtonGroupBuilder;
-  onCheckedButtonChanged(body: string): ButtonGroupBuilder;
-  onClicked(body: string): ButtonGroupBuilder;
-  onExclusiveChanged(body: string): ButtonGroupBuilder;
-  onObjectNameChanged(body: string): ButtonGroupBuilder;
+  onButtonsChanged(handler: DslSignalHandlerValue): ButtonGroupBuilder;
+  onCheckStateChanged(handler: DslSignalHandlerValue): ButtonGroupBuilder;
+  onCheckedButtonChanged(handler: DslSignalHandlerValue): ButtonGroupBuilder;
+  onClicked(handler: DslSignalHandlerValue): ButtonGroupBuilder;
+  onExclusiveChanged(handler: DslSignalHandlerValue): ButtonGroupBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): ButtonGroupBuilder;
   actionGroup(setup: (b: ActionGroupAttachedBuilder) => void): ButtonGroupBuilder;
   applicationWindow(setup: (b: ApplicationWindowAttachedBuilder) => void): ButtonGroupBuilder;
   buttonGroup(setup: (b: ButtonGroupAttachedBuilder) => void): ButtonGroupBuilder;

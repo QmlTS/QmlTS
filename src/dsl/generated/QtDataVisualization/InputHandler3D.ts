@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlEnumToken,
   QmlObjectBuilder,
   QmlPoint,
@@ -13,6 +14,7 @@ import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface InputHandler3DBuilder {
   id(id: string): InputHandler3DBuilder;
   child(obj: QmlObjectBuilder): InputHandler3DBuilder;
+  children(...objs: QmlObjectBuilder[]): InputHandler3DBuilder;
 
   inputPosition(value: QmlPoint): InputHandler3DBuilder;
   inputPositionBind(expr: string): InputHandler3DBuilder;
@@ -30,14 +32,14 @@ export interface InputHandler3DBuilder {
   zoomAtTargetEnabledBind(expr: string): InputHandler3DBuilder;
   zoomEnabled(value: boolean): InputHandler3DBuilder;
   zoomEnabledBind(expr: string): InputHandler3DBuilder;
-  onInputViewChanged(body: string): InputHandler3DBuilder;
-  onObjectNameChanged(body: string): InputHandler3DBuilder;
-  onPositionChanged(body: string): InputHandler3DBuilder;
-  onRotationEnabledChanged(body: string): InputHandler3DBuilder;
-  onSceneChanged(body: string): InputHandler3DBuilder;
-  onSelectionEnabledChanged(body: string): InputHandler3DBuilder;
-  onZoomAtTargetEnabledChanged(body: string): InputHandler3DBuilder;
-  onZoomEnabledChanged(body: string): InputHandler3DBuilder;
+  onInputViewChanged(handler: DslSignalHandlerValue): InputHandler3DBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): InputHandler3DBuilder;
+  onPositionChanged(handler: DslSignalHandlerValue): InputHandler3DBuilder;
+  onRotationEnabledChanged(handler: DslSignalHandlerValue): InputHandler3DBuilder;
+  onSceneChanged(handler: DslSignalHandlerValue): InputHandler3DBuilder;
+  onSelectionEnabledChanged(handler: DslSignalHandlerValue): InputHandler3DBuilder;
+  onZoomAtTargetEnabledChanged(handler: DslSignalHandlerValue): InputHandler3DBuilder;
+  onZoomEnabledChanged(handler: DslSignalHandlerValue): InputHandler3DBuilder;
 }
 
 const INPUTHANDLER3D_META: TypeMetadata = {

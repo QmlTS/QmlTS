@@ -2,18 +2,19 @@
 // Type: JapaneseInputMethod
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import type { DslSignalHandlerValue, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 export interface JapaneseInputMethodBuilder {
   id(id: string): JapaneseInputMethodBuilder;
   child(obj: QmlObjectBuilder): JapaneseInputMethodBuilder;
+  children(...objs: QmlObjectBuilder[]): JapaneseInputMethodBuilder;
 
   objectName(value: string): JapaneseInputMethodBuilder;
   objectNameBind(expr: string): JapaneseInputMethodBuilder;
-  onObjectNameChanged(body: string): JapaneseInputMethodBuilder;
-  onSelectionListActiveItemChanged(body: string): JapaneseInputMethodBuilder;
-  onSelectionListChanged(body: string): JapaneseInputMethodBuilder;
-  onSelectionListsChanged(body: string): JapaneseInputMethodBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): JapaneseInputMethodBuilder;
+  onSelectionListActiveItemChanged(handler: DslSignalHandlerValue): JapaneseInputMethodBuilder;
+  onSelectionListChanged(handler: DslSignalHandlerValue): JapaneseInputMethodBuilder;
+  onSelectionListsChanged(handler: DslSignalHandlerValue): JapaneseInputMethodBuilder;
 }
 
 const JAPANESEINPUTMETHOD_META: TypeMetadata = {

@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlColor,
   QmlEnumToken,
   QmlObjectBuilder,
@@ -18,6 +19,7 @@ import type { LayerBuilder } from '../QtQuick/QQuickItemLayer.js';
 export interface RectangularShadowBuilder {
   id(id: string): RectangularShadowBuilder;
   child(obj: QmlObjectBuilder): RectangularShadowBuilder;
+  children(...objs: QmlObjectBuilder[]): RectangularShadowBuilder;
 
   activeFocusOnTab(value: boolean): RectangularShadowBuilder;
   activeFocusOnTabBind(expr: string): RectangularShadowBuilder;
@@ -91,48 +93,48 @@ export interface RectangularShadowBuilder {
   yBind(expr: string): RectangularShadowBuilder;
   z(value: number): RectangularShadowBuilder;
   zBind(expr: string): RectangularShadowBuilder;
-  onActiveFocusChanged(body: string): RectangularShadowBuilder;
-  onActiveFocusOnTabChanged(body: string): RectangularShadowBuilder;
-  onAntialiasingChanged(body: string): RectangularShadowBuilder;
-  onBaselineOffsetChanged(body: string): RectangularShadowBuilder;
-  onBlurChanged(body: string): RectangularShadowBuilder;
-  onBottomLeftRadiusChanged(body: string): RectangularShadowBuilder;
-  onBottomRightRadiusChanged(body: string): RectangularShadowBuilder;
-  onCachedChanged(body: string): RectangularShadowBuilder;
-  onChildrenChanged(body: string): RectangularShadowBuilder;
-  onChildrenRectChanged(body: string): RectangularShadowBuilder;
-  onClipChanged(body: string): RectangularShadowBuilder;
-  onColorChanged(body: string): RectangularShadowBuilder;
-  onContainmentMaskChanged(body: string): RectangularShadowBuilder;
-  onEnabledChanged(body: string): RectangularShadowBuilder;
-  onFocusChanged(body: string): RectangularShadowBuilder;
-  onFocusPolicyChanged(body: string): RectangularShadowBuilder;
-  onHeightChanged(body: string): RectangularShadowBuilder;
-  onImplicitHeightChanged(body: string): RectangularShadowBuilder;
-  onImplicitWidthChanged(body: string): RectangularShadowBuilder;
-  onMaterialChanged(body: string): RectangularShadowBuilder;
-  onObjectNameChanged(body: string): RectangularShadowBuilder;
-  onOffsetChanged(body: string): RectangularShadowBuilder;
-  onOpacityChanged(body: string): RectangularShadowBuilder;
-  onPaletteChanged(body: string): RectangularShadowBuilder;
-  onPaletteCreated(body: string): RectangularShadowBuilder;
-  onParentChanged(body: string): RectangularShadowBuilder;
-  onRadiusChanged(body: string): RectangularShadowBuilder;
-  onRotationChanged(body: string): RectangularShadowBuilder;
-  onScaleChanged(body: string): RectangularShadowBuilder;
-  onSmoothChanged(body: string): RectangularShadowBuilder;
-  onSpreadChanged(body: string): RectangularShadowBuilder;
-  onStateChanged(body: string): RectangularShadowBuilder;
-  onTopLeftRadiusChanged(body: string): RectangularShadowBuilder;
-  onTopRightRadiusChanged(body: string): RectangularShadowBuilder;
-  onTransformOriginChanged(body: string): RectangularShadowBuilder;
-  onVisibleChanged(body: string): RectangularShadowBuilder;
-  onVisibleChildrenChanged(body: string): RectangularShadowBuilder;
-  onWidthChanged(body: string): RectangularShadowBuilder;
-  onWindowChanged(body: string): RectangularShadowBuilder;
-  onXChanged(body: string): RectangularShadowBuilder;
-  onYChanged(body: string): RectangularShadowBuilder;
-  onZChanged(body: string): RectangularShadowBuilder;
+  onActiveFocusChanged(handler: DslSignalHandlerValue): RectangularShadowBuilder;
+  onActiveFocusOnTabChanged(handler: DslSignalHandlerValue): RectangularShadowBuilder;
+  onAntialiasingChanged(handler: DslSignalHandlerValue): RectangularShadowBuilder;
+  onBaselineOffsetChanged(handler: DslSignalHandlerValue): RectangularShadowBuilder;
+  onBlurChanged(handler: DslSignalHandlerValue): RectangularShadowBuilder;
+  onBottomLeftRadiusChanged(handler: DslSignalHandlerValue): RectangularShadowBuilder;
+  onBottomRightRadiusChanged(handler: DslSignalHandlerValue): RectangularShadowBuilder;
+  onCachedChanged(handler: DslSignalHandlerValue): RectangularShadowBuilder;
+  onChildrenChanged(handler: DslSignalHandlerValue): RectangularShadowBuilder;
+  onChildrenRectChanged(handler: DslSignalHandlerValue): RectangularShadowBuilder;
+  onClipChanged(handler: DslSignalHandlerValue): RectangularShadowBuilder;
+  onColorChanged(handler: DslSignalHandlerValue): RectangularShadowBuilder;
+  onContainmentMaskChanged(handler: DslSignalHandlerValue): RectangularShadowBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): RectangularShadowBuilder;
+  onFocusChanged(handler: DslSignalHandlerValue): RectangularShadowBuilder;
+  onFocusPolicyChanged(handler: DslSignalHandlerValue): RectangularShadowBuilder;
+  onHeightChanged(handler: DslSignalHandlerValue): RectangularShadowBuilder;
+  onImplicitHeightChanged(handler: DslSignalHandlerValue): RectangularShadowBuilder;
+  onImplicitWidthChanged(handler: DslSignalHandlerValue): RectangularShadowBuilder;
+  onMaterialChanged(handler: DslSignalHandlerValue): RectangularShadowBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): RectangularShadowBuilder;
+  onOffsetChanged(handler: DslSignalHandlerValue): RectangularShadowBuilder;
+  onOpacityChanged(handler: DslSignalHandlerValue): RectangularShadowBuilder;
+  onPaletteChanged(handler: DslSignalHandlerValue): RectangularShadowBuilder;
+  onPaletteCreated(handler: DslSignalHandlerValue): RectangularShadowBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): RectangularShadowBuilder;
+  onRadiusChanged(handler: DslSignalHandlerValue): RectangularShadowBuilder;
+  onRotationChanged(handler: DslSignalHandlerValue): RectangularShadowBuilder;
+  onScaleChanged(handler: DslSignalHandlerValue): RectangularShadowBuilder;
+  onSmoothChanged(handler: DslSignalHandlerValue): RectangularShadowBuilder;
+  onSpreadChanged(handler: DslSignalHandlerValue): RectangularShadowBuilder;
+  onStateChanged(handler: DslSignalHandlerValue): RectangularShadowBuilder;
+  onTopLeftRadiusChanged(handler: DslSignalHandlerValue): RectangularShadowBuilder;
+  onTopRightRadiusChanged(handler: DslSignalHandlerValue): RectangularShadowBuilder;
+  onTransformOriginChanged(handler: DslSignalHandlerValue): RectangularShadowBuilder;
+  onVisibleChanged(handler: DslSignalHandlerValue): RectangularShadowBuilder;
+  onVisibleChildrenChanged(handler: DslSignalHandlerValue): RectangularShadowBuilder;
+  onWidthChanged(handler: DslSignalHandlerValue): RectangularShadowBuilder;
+  onWindowChanged(handler: DslSignalHandlerValue): RectangularShadowBuilder;
+  onXChanged(handler: DslSignalHandlerValue): RectangularShadowBuilder;
+  onYChanged(handler: DslSignalHandlerValue): RectangularShadowBuilder;
+  onZChanged(handler: DslSignalHandlerValue): RectangularShadowBuilder;
   anchors(setup: (b: AnchorsBuilder) => void): RectangularShadowBuilder;
   layer(setup: (b: LayerBuilder) => void): RectangularShadowBuilder;
 }

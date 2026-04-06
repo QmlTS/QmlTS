@@ -2,12 +2,13 @@
 // Type: Synchronizer
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import type { DslSignalHandlerValue, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 import type { QtObjectBuilder } from '../QML/QtObject.js';
 export interface SynchronizerBuilder {
   id(id: string): SynchronizerBuilder;
   child(obj: QmlObjectBuilder): SynchronizerBuilder;
+  children(...objs: QmlObjectBuilder[]): SynchronizerBuilder;
 
   objectName(value: string): SynchronizerBuilder;
   objectNameBind(expr: string): SynchronizerBuilder;
@@ -19,13 +20,13 @@ export interface SynchronizerBuilder {
   targetObjectBind(expr: string): SynchronizerBuilder;
   targetProperty(value: string): SynchronizerBuilder;
   targetPropertyBind(expr: string): SynchronizerBuilder;
-  onObjectNameChanged(body: string): SynchronizerBuilder;
-  onSourceObjectChanged(body: string): SynchronizerBuilder;
-  onSourcePropertyChanged(body: string): SynchronizerBuilder;
-  onTargetObjectChanged(body: string): SynchronizerBuilder;
-  onTargetPropertyChanged(body: string): SynchronizerBuilder;
-  onValueBounced(body: string): SynchronizerBuilder;
-  onValueIgnored(body: string): SynchronizerBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): SynchronizerBuilder;
+  onSourceObjectChanged(handler: DslSignalHandlerValue): SynchronizerBuilder;
+  onSourcePropertyChanged(handler: DslSignalHandlerValue): SynchronizerBuilder;
+  onTargetObjectChanged(handler: DslSignalHandlerValue): SynchronizerBuilder;
+  onTargetPropertyChanged(handler: DslSignalHandlerValue): SynchronizerBuilder;
+  onValueBounced(handler: DslSignalHandlerValue): SynchronizerBuilder;
+  onValueIgnored(handler: DslSignalHandlerValue): SynchronizerBuilder;
 }
 
 const SYNCHRONIZER_META: TypeMetadata = {

@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlEnumToken,
   QmlObjectBuilder,
   QmlValue,
@@ -14,6 +15,7 @@ import type { PluginBuilder } from './Plugin.js';
 export interface PlaceBuilder {
   id(id: string): PlaceBuilder;
   child(obj: QmlObjectBuilder): PlaceBuilder;
+  children(...objs: QmlObjectBuilder[]): PlaceBuilder;
 
   attribution(value: string): PlaceBuilder;
   attributionBind(expr: string): PlaceBuilder;
@@ -39,29 +41,29 @@ export interface PlaceBuilder {
   supplierBind(expr: string): PlaceBuilder;
   visibility(value: QmlEnumToken): PlaceBuilder;
   visibilityBind(expr: string): PlaceBuilder;
-  onAttributionChanged(body: string): PlaceBuilder;
-  onCategoriesChanged(body: string): PlaceBuilder;
-  onContactDetailsChanged(body: string): PlaceBuilder;
-  onDetailsFetchedChanged(body: string): PlaceBuilder;
-  onEditorialModelChanged(body: string): PlaceBuilder;
-  onExtendedAttributesChanged(body: string): PlaceBuilder;
-  onFavoriteChanged(body: string): PlaceBuilder;
-  onIconChanged(body: string): PlaceBuilder;
-  onImageModelChanged(body: string): PlaceBuilder;
-  onLocationChanged(body: string): PlaceBuilder;
-  onNameChanged(body: string): PlaceBuilder;
-  onObjectNameChanged(body: string): PlaceBuilder;
-  onPlaceIdChanged(body: string): PlaceBuilder;
-  onPluginChanged(body: string): PlaceBuilder;
-  onPrimaryEmailChanged(body: string): PlaceBuilder;
-  onPrimaryFaxChanged(body: string): PlaceBuilder;
-  onPrimaryPhoneChanged(body: string): PlaceBuilder;
-  onPrimaryWebsiteChanged(body: string): PlaceBuilder;
-  onRatingsChanged(body: string): PlaceBuilder;
-  onReviewModelChanged(body: string): PlaceBuilder;
-  onStatusChanged(body: string): PlaceBuilder;
-  onSupplierChanged(body: string): PlaceBuilder;
-  onVisibilityChanged(body: string): PlaceBuilder;
+  onAttributionChanged(handler: DslSignalHandlerValue): PlaceBuilder;
+  onCategoriesChanged(handler: DslSignalHandlerValue): PlaceBuilder;
+  onContactDetailsChanged(handler: DslSignalHandlerValue): PlaceBuilder;
+  onDetailsFetchedChanged(handler: DslSignalHandlerValue): PlaceBuilder;
+  onEditorialModelChanged(handler: DslSignalHandlerValue): PlaceBuilder;
+  onExtendedAttributesChanged(handler: DslSignalHandlerValue): PlaceBuilder;
+  onFavoriteChanged(handler: DslSignalHandlerValue): PlaceBuilder;
+  onIconChanged(handler: DslSignalHandlerValue): PlaceBuilder;
+  onImageModelChanged(handler: DslSignalHandlerValue): PlaceBuilder;
+  onLocationChanged(handler: DslSignalHandlerValue): PlaceBuilder;
+  onNameChanged(handler: DslSignalHandlerValue): PlaceBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): PlaceBuilder;
+  onPlaceIdChanged(handler: DslSignalHandlerValue): PlaceBuilder;
+  onPluginChanged(handler: DslSignalHandlerValue): PlaceBuilder;
+  onPrimaryEmailChanged(handler: DslSignalHandlerValue): PlaceBuilder;
+  onPrimaryFaxChanged(handler: DslSignalHandlerValue): PlaceBuilder;
+  onPrimaryPhoneChanged(handler: DslSignalHandlerValue): PlaceBuilder;
+  onPrimaryWebsiteChanged(handler: DslSignalHandlerValue): PlaceBuilder;
+  onRatingsChanged(handler: DslSignalHandlerValue): PlaceBuilder;
+  onReviewModelChanged(handler: DslSignalHandlerValue): PlaceBuilder;
+  onStatusChanged(handler: DslSignalHandlerValue): PlaceBuilder;
+  onSupplierChanged(handler: DslSignalHandlerValue): PlaceBuilder;
+  onVisibilityChanged(handler: DslSignalHandlerValue): PlaceBuilder;
 }
 
 const PLACE_META: TypeMetadata = {

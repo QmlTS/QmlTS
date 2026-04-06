@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlMatrix4x4,
   QmlObjectBuilder,
   QmlQuaternion,
@@ -14,6 +15,7 @@ import { createFluentBuilder } from '../../runtime/index.js';
 export interface JointBuilder {
   id(id: string): JointBuilder;
   child(obj: QmlObjectBuilder): JointBuilder;
+  children(...objs: QmlObjectBuilder[]): JointBuilder;
 
   enabled(value: boolean): JointBuilder;
   enabledBind(expr: string): JointBuilder;
@@ -37,18 +39,18 @@ export interface JointBuilder {
   scaleBind(expr: string): JointBuilder;
   translation(value: QmlVector3d): JointBuilder;
   translationBind(expr: string): JointBuilder;
-  onEnabledChanged(body: string): JointBuilder;
-  onInverseBindMatrixChanged(body: string): JointBuilder;
-  onNameChanged(body: string): JointBuilder;
-  onNodeDestroyed(body: string): JointBuilder;
-  onObjectNameChanged(body: string): JointBuilder;
-  onParentChanged(body: string): JointBuilder;
-  onRotationChanged(body: string): JointBuilder;
-  onRotationXChanged(body: string): JointBuilder;
-  onRotationYChanged(body: string): JointBuilder;
-  onRotationZChanged(body: string): JointBuilder;
-  onScaleChanged(body: string): JointBuilder;
-  onTranslationChanged(body: string): JointBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): JointBuilder;
+  onInverseBindMatrixChanged(handler: DslSignalHandlerValue): JointBuilder;
+  onNameChanged(handler: DslSignalHandlerValue): JointBuilder;
+  onNodeDestroyed(handler: DslSignalHandlerValue): JointBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): JointBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): JointBuilder;
+  onRotationChanged(handler: DslSignalHandlerValue): JointBuilder;
+  onRotationXChanged(handler: DslSignalHandlerValue): JointBuilder;
+  onRotationYChanged(handler: DslSignalHandlerValue): JointBuilder;
+  onRotationZChanged(handler: DslSignalHandlerValue): JointBuilder;
+  onScaleChanged(handler: DslSignalHandlerValue): JointBuilder;
+  onTranslationChanged(handler: DslSignalHandlerValue): JointBuilder;
 }
 
 const JOINT_META: TypeMetadata = {

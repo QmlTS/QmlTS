@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlColor,
   QmlComponent,
   QmlEnumToken,
@@ -16,6 +17,7 @@ import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface ModelParticle3DBuilder {
   id(id: string): ModelParticle3DBuilder;
   child(obj: QmlObjectBuilder): ModelParticle3DBuilder;
+  children(...objs: QmlObjectBuilder[]): ModelParticle3DBuilder;
 
   alignMode(value: QmlEnumToken): ModelParticle3DBuilder;
   alignModeBind(expr: string): ModelParticle3DBuilder;
@@ -49,25 +51,25 @@ export interface ModelParticle3DBuilder {
   stateBind(expr: string): ModelParticle3DBuilder;
   unifiedColorVariation(value: boolean): ModelParticle3DBuilder;
   unifiedColorVariationBind(expr: string): ModelParticle3DBuilder;
-  onAlignModeChanged(body: string): ModelParticle3DBuilder;
-  onAlignTargetPositionChanged(body: string): ModelParticle3DBuilder;
-  onChildrenChanged(body: string): ModelParticle3DBuilder;
-  onColorChanged(body: string): ModelParticle3DBuilder;
-  onColorVariationChanged(body: string): ModelParticle3DBuilder;
-  onDelegateChanged(body: string): ModelParticle3DBuilder;
-  onFadeInDurationChanged(body: string): ModelParticle3DBuilder;
-  onFadeInEffectChanged(body: string): ModelParticle3DBuilder;
-  onFadeOutDurationChanged(body: string): ModelParticle3DBuilder;
-  onFadeOutEffectChanged(body: string): ModelParticle3DBuilder;
-  onHasTransparencyChanged(body: string): ModelParticle3DBuilder;
-  onInstanceTableChanged(body: string): ModelParticle3DBuilder;
-  onMaxAmountChanged(body: string): ModelParticle3DBuilder;
-  onObjectNameChanged(body: string): ModelParticle3DBuilder;
-  onParentChanged(body: string): ModelParticle3DBuilder;
-  onSortModeChanged(body: string): ModelParticle3DBuilder;
-  onStateChanged(body: string): ModelParticle3DBuilder;
-  onSystemChanged(body: string): ModelParticle3DBuilder;
-  onUnifiedColorVariationChanged(body: string): ModelParticle3DBuilder;
+  onAlignModeChanged(handler: DslSignalHandlerValue): ModelParticle3DBuilder;
+  onAlignTargetPositionChanged(handler: DslSignalHandlerValue): ModelParticle3DBuilder;
+  onChildrenChanged(handler: DslSignalHandlerValue): ModelParticle3DBuilder;
+  onColorChanged(handler: DslSignalHandlerValue): ModelParticle3DBuilder;
+  onColorVariationChanged(handler: DslSignalHandlerValue): ModelParticle3DBuilder;
+  onDelegateChanged(handler: DslSignalHandlerValue): ModelParticle3DBuilder;
+  onFadeInDurationChanged(handler: DslSignalHandlerValue): ModelParticle3DBuilder;
+  onFadeInEffectChanged(handler: DslSignalHandlerValue): ModelParticle3DBuilder;
+  onFadeOutDurationChanged(handler: DslSignalHandlerValue): ModelParticle3DBuilder;
+  onFadeOutEffectChanged(handler: DslSignalHandlerValue): ModelParticle3DBuilder;
+  onHasTransparencyChanged(handler: DslSignalHandlerValue): ModelParticle3DBuilder;
+  onInstanceTableChanged(handler: DslSignalHandlerValue): ModelParticle3DBuilder;
+  onMaxAmountChanged(handler: DslSignalHandlerValue): ModelParticle3DBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): ModelParticle3DBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): ModelParticle3DBuilder;
+  onSortModeChanged(handler: DslSignalHandlerValue): ModelParticle3DBuilder;
+  onStateChanged(handler: DslSignalHandlerValue): ModelParticle3DBuilder;
+  onSystemChanged(handler: DslSignalHandlerValue): ModelParticle3DBuilder;
+  onUnifiedColorVariationChanged(handler: DslSignalHandlerValue): ModelParticle3DBuilder;
 }
 
 const MODELPARTICLE3D_META: TypeMetadata = {

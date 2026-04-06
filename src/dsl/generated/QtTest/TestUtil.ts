@@ -2,17 +2,18 @@
 // Type: TestUtil
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import type { DslSignalHandlerValue, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 export interface TestUtilBuilder {
   id(id: string): TestUtilBuilder;
   child(obj: QmlObjectBuilder): TestUtilBuilder;
+  children(...objs: QmlObjectBuilder[]): TestUtilBuilder;
 
   objectName(value: string): TestUtilBuilder;
   objectNameBind(expr: string): TestUtilBuilder;
-  onDragThresholdChanged(body: string): TestUtilBuilder;
-  onObjectNameChanged(body: string): TestUtilBuilder;
-  onPrintAvailableFunctionsChanged(body: string): TestUtilBuilder;
+  onDragThresholdChanged(handler: DslSignalHandlerValue): TestUtilBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): TestUtilBuilder;
+  onPrintAvailableFunctionsChanged(handler: DslSignalHandlerValue): TestUtilBuilder;
 }
 
 const TESTUTIL_META: TypeMetadata = {

@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlEnumToken,
   QmlObjectBuilder,
   QmlQuaternion,
@@ -15,6 +16,7 @@ import type { ParticleSystem3DBuilder } from './ParticleSystem3D.js';
 export interface ParticleEmitter3DBuilder {
   id(id: string): ParticleEmitter3DBuilder;
   child(obj: QmlObjectBuilder): ParticleEmitter3DBuilder;
+  children(...objs: QmlObjectBuilder[]): ParticleEmitter3DBuilder;
 
   depthBias(value: number): ParticleEmitter3DBuilder;
   depthBiasBind(expr: string): ParticleEmitter3DBuilder;
@@ -84,48 +86,50 @@ export interface ParticleEmitter3DBuilder {
   yBind(expr: string): ParticleEmitter3DBuilder;
   z(value: number): ParticleEmitter3DBuilder;
   zBind(expr: string): ParticleEmitter3DBuilder;
-  onChildrenChanged(body: string): ParticleEmitter3DBuilder;
-  onDepthBiasChanged(body: string): ParticleEmitter3DBuilder;
-  onEmitModeChanged(body: string): ParticleEmitter3DBuilder;
-  onEmitRateChanged(body: string): ParticleEmitter3DBuilder;
-  onEnabledChanged(body: string): ParticleEmitter3DBuilder;
-  onEulerRotationChanged(body: string): ParticleEmitter3DBuilder;
-  onForwardChanged(body: string): ParticleEmitter3DBuilder;
-  onLayersChanged(body: string): ParticleEmitter3DBuilder;
-  onLifeSpanChanged(body: string): ParticleEmitter3DBuilder;
-  onLifeSpanVariationChanged(body: string): ParticleEmitter3DBuilder;
-  onLocalOpacityChanged(body: string): ParticleEmitter3DBuilder;
-  onObjectNameChanged(body: string): ParticleEmitter3DBuilder;
-  onParentChanged(body: string): ParticleEmitter3DBuilder;
-  onParticleChanged(body: string): ParticleEmitter3DBuilder;
-  onParticleEndScaleChanged(body: string): ParticleEmitter3DBuilder;
-  onParticleEndScaleVariationChanged(body: string): ParticleEmitter3DBuilder;
-  onParticleRotationChanged(body: string): ParticleEmitter3DBuilder;
-  onParticleRotationVariationChanged(body: string): ParticleEmitter3DBuilder;
-  onParticleRotationVariationVelocityChanged(body: string): ParticleEmitter3DBuilder;
-  onParticleRotationVelocityChanged(body: string): ParticleEmitter3DBuilder;
-  onParticleScaleChanged(body: string): ParticleEmitter3DBuilder;
-  onParticleScaleVariationChanged(body: string): ParticleEmitter3DBuilder;
-  onPivotChanged(body: string): ParticleEmitter3DBuilder;
-  onPositionChanged(body: string): ParticleEmitter3DBuilder;
-  onReversedChanged(body: string): ParticleEmitter3DBuilder;
-  onRightChanged(body: string): ParticleEmitter3DBuilder;
-  onRotationChanged(body: string): ParticleEmitter3DBuilder;
-  onScaleChanged(body: string): ParticleEmitter3DBuilder;
-  onScenePositionChanged(body: string): ParticleEmitter3DBuilder;
-  onSceneRotationChanged(body: string): ParticleEmitter3DBuilder;
-  onSceneScaleChanged(body: string): ParticleEmitter3DBuilder;
-  onSceneTransformChanged(body: string): ParticleEmitter3DBuilder;
-  onShapeChanged(body: string): ParticleEmitter3DBuilder;
-  onStateChanged(body: string): ParticleEmitter3DBuilder;
-  onStaticFlagsChanged(body: string): ParticleEmitter3DBuilder;
-  onSystemChanged(body: string): ParticleEmitter3DBuilder;
-  onUpChanged(body: string): ParticleEmitter3DBuilder;
-  onVelocityChanged(body: string): ParticleEmitter3DBuilder;
-  onVisibleChanged(body: string): ParticleEmitter3DBuilder;
-  onXChanged(body: string): ParticleEmitter3DBuilder;
-  onYChanged(body: string): ParticleEmitter3DBuilder;
-  onZChanged(body: string): ParticleEmitter3DBuilder;
+  onChildrenChanged(handler: DslSignalHandlerValue): ParticleEmitter3DBuilder;
+  onDepthBiasChanged(handler: DslSignalHandlerValue): ParticleEmitter3DBuilder;
+  onEmitModeChanged(handler: DslSignalHandlerValue): ParticleEmitter3DBuilder;
+  onEmitRateChanged(handler: DslSignalHandlerValue): ParticleEmitter3DBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): ParticleEmitter3DBuilder;
+  onEulerRotationChanged(handler: DslSignalHandlerValue): ParticleEmitter3DBuilder;
+  onForwardChanged(handler: DslSignalHandlerValue): ParticleEmitter3DBuilder;
+  onLayersChanged(handler: DslSignalHandlerValue): ParticleEmitter3DBuilder;
+  onLifeSpanChanged(handler: DslSignalHandlerValue): ParticleEmitter3DBuilder;
+  onLifeSpanVariationChanged(handler: DslSignalHandlerValue): ParticleEmitter3DBuilder;
+  onLocalOpacityChanged(handler: DslSignalHandlerValue): ParticleEmitter3DBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): ParticleEmitter3DBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): ParticleEmitter3DBuilder;
+  onParticleChanged(handler: DslSignalHandlerValue): ParticleEmitter3DBuilder;
+  onParticleEndScaleChanged(handler: DslSignalHandlerValue): ParticleEmitter3DBuilder;
+  onParticleEndScaleVariationChanged(handler: DslSignalHandlerValue): ParticleEmitter3DBuilder;
+  onParticleRotationChanged(handler: DslSignalHandlerValue): ParticleEmitter3DBuilder;
+  onParticleRotationVariationChanged(handler: DslSignalHandlerValue): ParticleEmitter3DBuilder;
+  onParticleRotationVariationVelocityChanged(
+    handler: DslSignalHandlerValue,
+  ): ParticleEmitter3DBuilder;
+  onParticleRotationVelocityChanged(handler: DslSignalHandlerValue): ParticleEmitter3DBuilder;
+  onParticleScaleChanged(handler: DslSignalHandlerValue): ParticleEmitter3DBuilder;
+  onParticleScaleVariationChanged(handler: DslSignalHandlerValue): ParticleEmitter3DBuilder;
+  onPivotChanged(handler: DslSignalHandlerValue): ParticleEmitter3DBuilder;
+  onPositionChanged(handler: DslSignalHandlerValue): ParticleEmitter3DBuilder;
+  onReversedChanged(handler: DslSignalHandlerValue): ParticleEmitter3DBuilder;
+  onRightChanged(handler: DslSignalHandlerValue): ParticleEmitter3DBuilder;
+  onRotationChanged(handler: DslSignalHandlerValue): ParticleEmitter3DBuilder;
+  onScaleChanged(handler: DslSignalHandlerValue): ParticleEmitter3DBuilder;
+  onScenePositionChanged(handler: DslSignalHandlerValue): ParticleEmitter3DBuilder;
+  onSceneRotationChanged(handler: DslSignalHandlerValue): ParticleEmitter3DBuilder;
+  onSceneScaleChanged(handler: DslSignalHandlerValue): ParticleEmitter3DBuilder;
+  onSceneTransformChanged(handler: DslSignalHandlerValue): ParticleEmitter3DBuilder;
+  onShapeChanged(handler: DslSignalHandlerValue): ParticleEmitter3DBuilder;
+  onStateChanged(handler: DslSignalHandlerValue): ParticleEmitter3DBuilder;
+  onStaticFlagsChanged(handler: DslSignalHandlerValue): ParticleEmitter3DBuilder;
+  onSystemChanged(handler: DslSignalHandlerValue): ParticleEmitter3DBuilder;
+  onUpChanged(handler: DslSignalHandlerValue): ParticleEmitter3DBuilder;
+  onVelocityChanged(handler: DslSignalHandlerValue): ParticleEmitter3DBuilder;
+  onVisibleChanged(handler: DslSignalHandlerValue): ParticleEmitter3DBuilder;
+  onXChanged(handler: DslSignalHandlerValue): ParticleEmitter3DBuilder;
+  onYChanged(handler: DslSignalHandlerValue): ParticleEmitter3DBuilder;
+  onZChanged(handler: DslSignalHandlerValue): ParticleEmitter3DBuilder;
 }
 
 const PARTICLEEMITTER3D_META: TypeMetadata = {

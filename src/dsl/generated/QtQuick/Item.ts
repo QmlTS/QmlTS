@@ -2,7 +2,12 @@
 // Type: Item
 // Generated from Qt 6.11.0
 
-import type { QmlEnumToken, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlEnumToken,
+  QmlObjectBuilder,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { QtObjectBuilder } from '../QML/QtObject.js';
 import type { AccessibleAttachedBuilder } from './Accessible.js';
@@ -27,6 +32,7 @@ import type { ViewTransitionAttachedBuilder } from './ViewTransition.js';
 export interface ItemBuilder {
   id(id: string): ItemBuilder;
   child(obj: QmlObjectBuilder): ItemBuilder;
+  children(...objs: QmlObjectBuilder[]): ItemBuilder;
 
   activeFocusOnTab(value: boolean): ItemBuilder;
   activeFocusOnTabBind(expr: string): ItemBuilder;
@@ -78,37 +84,37 @@ export interface ItemBuilder {
   yBind(expr: string): ItemBuilder;
   z(value: number): ItemBuilder;
   zBind(expr: string): ItemBuilder;
-  onActiveFocusChanged(body: string): ItemBuilder;
-  onActiveFocusOnTabChanged(body: string): ItemBuilder;
-  onAntialiasingChanged(body: string): ItemBuilder;
-  onBaselineOffsetChanged(body: string): ItemBuilder;
-  onChildrenChanged(body: string): ItemBuilder;
-  onChildrenRectChanged(body: string): ItemBuilder;
-  onClipChanged(body: string): ItemBuilder;
-  onContainmentMaskChanged(body: string): ItemBuilder;
-  onEnabledChanged(body: string): ItemBuilder;
-  onFocusChanged(body: string): ItemBuilder;
-  onFocusPolicyChanged(body: string): ItemBuilder;
-  onHeightChanged(body: string): ItemBuilder;
-  onImplicitHeightChanged(body: string): ItemBuilder;
-  onImplicitWidthChanged(body: string): ItemBuilder;
-  onObjectNameChanged(body: string): ItemBuilder;
-  onOpacityChanged(body: string): ItemBuilder;
-  onPaletteChanged(body: string): ItemBuilder;
-  onPaletteCreated(body: string): ItemBuilder;
-  onParentChanged(body: string): ItemBuilder;
-  onRotationChanged(body: string): ItemBuilder;
-  onScaleChanged(body: string): ItemBuilder;
-  onSmoothChanged(body: string): ItemBuilder;
-  onStateChanged(body: string): ItemBuilder;
-  onTransformOriginChanged(body: string): ItemBuilder;
-  onVisibleChanged(body: string): ItemBuilder;
-  onVisibleChildrenChanged(body: string): ItemBuilder;
-  onWidthChanged(body: string): ItemBuilder;
-  onWindowChanged(body: string): ItemBuilder;
-  onXChanged(body: string): ItemBuilder;
-  onYChanged(body: string): ItemBuilder;
-  onZChanged(body: string): ItemBuilder;
+  onActiveFocusChanged(handler: DslSignalHandlerValue): ItemBuilder;
+  onActiveFocusOnTabChanged(handler: DslSignalHandlerValue): ItemBuilder;
+  onAntialiasingChanged(handler: DslSignalHandlerValue): ItemBuilder;
+  onBaselineOffsetChanged(handler: DslSignalHandlerValue): ItemBuilder;
+  onChildrenChanged(handler: DslSignalHandlerValue): ItemBuilder;
+  onChildrenRectChanged(handler: DslSignalHandlerValue): ItemBuilder;
+  onClipChanged(handler: DslSignalHandlerValue): ItemBuilder;
+  onContainmentMaskChanged(handler: DslSignalHandlerValue): ItemBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): ItemBuilder;
+  onFocusChanged(handler: DslSignalHandlerValue): ItemBuilder;
+  onFocusPolicyChanged(handler: DslSignalHandlerValue): ItemBuilder;
+  onHeightChanged(handler: DslSignalHandlerValue): ItemBuilder;
+  onImplicitHeightChanged(handler: DslSignalHandlerValue): ItemBuilder;
+  onImplicitWidthChanged(handler: DslSignalHandlerValue): ItemBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): ItemBuilder;
+  onOpacityChanged(handler: DslSignalHandlerValue): ItemBuilder;
+  onPaletteChanged(handler: DslSignalHandlerValue): ItemBuilder;
+  onPaletteCreated(handler: DslSignalHandlerValue): ItemBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): ItemBuilder;
+  onRotationChanged(handler: DslSignalHandlerValue): ItemBuilder;
+  onScaleChanged(handler: DslSignalHandlerValue): ItemBuilder;
+  onSmoothChanged(handler: DslSignalHandlerValue): ItemBuilder;
+  onStateChanged(handler: DslSignalHandlerValue): ItemBuilder;
+  onTransformOriginChanged(handler: DslSignalHandlerValue): ItemBuilder;
+  onVisibleChanged(handler: DslSignalHandlerValue): ItemBuilder;
+  onVisibleChildrenChanged(handler: DslSignalHandlerValue): ItemBuilder;
+  onWidthChanged(handler: DslSignalHandlerValue): ItemBuilder;
+  onWindowChanged(handler: DslSignalHandlerValue): ItemBuilder;
+  onXChanged(handler: DslSignalHandlerValue): ItemBuilder;
+  onYChanged(handler: DslSignalHandlerValue): ItemBuilder;
+  onZChanged(handler: DslSignalHandlerValue): ItemBuilder;
   anchors(setup: (b: AnchorsBuilder) => void): ItemBuilder;
   layer(setup: (b: LayerBuilder) => void): ItemBuilder;
   accessible(setup: (b: AccessibleAttachedBuilder) => void): ItemBuilder;

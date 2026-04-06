@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlEnumToken,
   QmlObjectBuilder,
   QmlUrl,
@@ -35,6 +36,7 @@ import type { ViewTransitionAttachedBuilder } from './ViewTransition.js';
 export interface BorderImageBuilder {
   id(id: string): BorderImageBuilder;
   child(obj: QmlObjectBuilder): BorderImageBuilder;
+  children(...objs: QmlObjectBuilder[]): BorderImageBuilder;
 
   activeFocusOnTab(value: boolean): BorderImageBuilder;
   activeFocusOnTabBind(expr: string): BorderImageBuilder;
@@ -102,52 +104,52 @@ export interface BorderImageBuilder {
   yBind(expr: string): BorderImageBuilder;
   z(value: number): BorderImageBuilder;
   zBind(expr: string): BorderImageBuilder;
-  onActiveFocusChanged(body: string): BorderImageBuilder;
-  onActiveFocusOnTabChanged(body: string): BorderImageBuilder;
-  onAntialiasingChanged(body: string): BorderImageBuilder;
-  onAsynchronousChanged(body: string): BorderImageBuilder;
-  onBaselineOffsetChanged(body: string): BorderImageBuilder;
-  onCacheChanged(body: string): BorderImageBuilder;
-  onChildrenChanged(body: string): BorderImageBuilder;
-  onChildrenRectChanged(body: string): BorderImageBuilder;
-  onClipChanged(body: string): BorderImageBuilder;
-  onColorSpaceChanged(body: string): BorderImageBuilder;
-  onContainmentMaskChanged(body: string): BorderImageBuilder;
-  onCurrentFrameChanged(body: string): BorderImageBuilder;
-  onEnabledChanged(body: string): BorderImageBuilder;
-  onFocusChanged(body: string): BorderImageBuilder;
-  onFocusPolicyChanged(body: string): BorderImageBuilder;
-  onFrameCountChanged(body: string): BorderImageBuilder;
-  onHeightChanged(body: string): BorderImageBuilder;
-  onHorizontalTileModeChanged(body: string): BorderImageBuilder;
-  onImplicitHeightChanged(body: string): BorderImageBuilder;
-  onImplicitWidthChanged(body: string): BorderImageBuilder;
-  onMirrorChanged(body: string): BorderImageBuilder;
-  onMirrorVerticallyChanged(body: string): BorderImageBuilder;
-  onObjectNameChanged(body: string): BorderImageBuilder;
-  onOpacityChanged(body: string): BorderImageBuilder;
-  onPaletteChanged(body: string): BorderImageBuilder;
-  onPaletteCreated(body: string): BorderImageBuilder;
-  onParentChanged(body: string): BorderImageBuilder;
-  onProgressChanged(body: string): BorderImageBuilder;
-  onRetainWhileLoadingChanged(body: string): BorderImageBuilder;
-  onRotationChanged(body: string): BorderImageBuilder;
-  onScaleChanged(body: string): BorderImageBuilder;
-  onSmoothChanged(body: string): BorderImageBuilder;
-  onSourceChanged(body: string): BorderImageBuilder;
-  onSourceClipRectChanged(body: string): BorderImageBuilder;
-  onSourceSizeChanged(body: string): BorderImageBuilder;
-  onStateChanged(body: string): BorderImageBuilder;
-  onStatusChanged(body: string): BorderImageBuilder;
-  onTransformOriginChanged(body: string): BorderImageBuilder;
-  onVerticalTileModeChanged(body: string): BorderImageBuilder;
-  onVisibleChanged(body: string): BorderImageBuilder;
-  onVisibleChildrenChanged(body: string): BorderImageBuilder;
-  onWidthChanged(body: string): BorderImageBuilder;
-  onWindowChanged(body: string): BorderImageBuilder;
-  onXChanged(body: string): BorderImageBuilder;
-  onYChanged(body: string): BorderImageBuilder;
-  onZChanged(body: string): BorderImageBuilder;
+  onActiveFocusChanged(handler: DslSignalHandlerValue): BorderImageBuilder;
+  onActiveFocusOnTabChanged(handler: DslSignalHandlerValue): BorderImageBuilder;
+  onAntialiasingChanged(handler: DslSignalHandlerValue): BorderImageBuilder;
+  onAsynchronousChanged(handler: DslSignalHandlerValue): BorderImageBuilder;
+  onBaselineOffsetChanged(handler: DslSignalHandlerValue): BorderImageBuilder;
+  onCacheChanged(handler: DslSignalHandlerValue): BorderImageBuilder;
+  onChildrenChanged(handler: DslSignalHandlerValue): BorderImageBuilder;
+  onChildrenRectChanged(handler: DslSignalHandlerValue): BorderImageBuilder;
+  onClipChanged(handler: DslSignalHandlerValue): BorderImageBuilder;
+  onColorSpaceChanged(handler: DslSignalHandlerValue): BorderImageBuilder;
+  onContainmentMaskChanged(handler: DslSignalHandlerValue): BorderImageBuilder;
+  onCurrentFrameChanged(handler: DslSignalHandlerValue): BorderImageBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): BorderImageBuilder;
+  onFocusChanged(handler: DslSignalHandlerValue): BorderImageBuilder;
+  onFocusPolicyChanged(handler: DslSignalHandlerValue): BorderImageBuilder;
+  onFrameCountChanged(handler: DslSignalHandlerValue): BorderImageBuilder;
+  onHeightChanged(handler: DslSignalHandlerValue): BorderImageBuilder;
+  onHorizontalTileModeChanged(handler: DslSignalHandlerValue): BorderImageBuilder;
+  onImplicitHeightChanged(handler: DslSignalHandlerValue): BorderImageBuilder;
+  onImplicitWidthChanged(handler: DslSignalHandlerValue): BorderImageBuilder;
+  onMirrorChanged(handler: DslSignalHandlerValue): BorderImageBuilder;
+  onMirrorVerticallyChanged(handler: DslSignalHandlerValue): BorderImageBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): BorderImageBuilder;
+  onOpacityChanged(handler: DslSignalHandlerValue): BorderImageBuilder;
+  onPaletteChanged(handler: DslSignalHandlerValue): BorderImageBuilder;
+  onPaletteCreated(handler: DslSignalHandlerValue): BorderImageBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): BorderImageBuilder;
+  onProgressChanged(handler: DslSignalHandlerValue): BorderImageBuilder;
+  onRetainWhileLoadingChanged(handler: DslSignalHandlerValue): BorderImageBuilder;
+  onRotationChanged(handler: DslSignalHandlerValue): BorderImageBuilder;
+  onScaleChanged(handler: DslSignalHandlerValue): BorderImageBuilder;
+  onSmoothChanged(handler: DslSignalHandlerValue): BorderImageBuilder;
+  onSourceChanged(handler: DslSignalHandlerValue): BorderImageBuilder;
+  onSourceClipRectChanged(handler: DslSignalHandlerValue): BorderImageBuilder;
+  onSourceSizeChanged(handler: DslSignalHandlerValue): BorderImageBuilder;
+  onStateChanged(handler: DslSignalHandlerValue): BorderImageBuilder;
+  onStatusChanged(handler: DslSignalHandlerValue): BorderImageBuilder;
+  onTransformOriginChanged(handler: DslSignalHandlerValue): BorderImageBuilder;
+  onVerticalTileModeChanged(handler: DslSignalHandlerValue): BorderImageBuilder;
+  onVisibleChanged(handler: DslSignalHandlerValue): BorderImageBuilder;
+  onVisibleChildrenChanged(handler: DslSignalHandlerValue): BorderImageBuilder;
+  onWidthChanged(handler: DslSignalHandlerValue): BorderImageBuilder;
+  onWindowChanged(handler: DslSignalHandlerValue): BorderImageBuilder;
+  onXChanged(handler: DslSignalHandlerValue): BorderImageBuilder;
+  onYChanged(handler: DslSignalHandlerValue): BorderImageBuilder;
+  onZChanged(handler: DslSignalHandlerValue): BorderImageBuilder;
   anchors(setup: (b: AnchorsBuilder) => void): BorderImageBuilder;
   border(setup: (b: BorderBuilder) => void): BorderImageBuilder;
   layer(setup: (b: LayerBuilder) => void): BorderImageBuilder;

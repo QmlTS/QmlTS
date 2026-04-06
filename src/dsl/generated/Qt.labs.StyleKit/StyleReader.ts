@@ -2,7 +2,12 @@
 // Type: StyleReader
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { PaletteBuilder } from '../QtQuick/Palette.js';
 import type { TransitionBuilder } from '../QtQuick/Transition.js';
@@ -12,6 +17,7 @@ import type { StyleVariationAttachedBuilder } from './QQStyleKitVariationAttache
 export interface StyleReaderBuilder {
   id(id: string): StyleReaderBuilder;
   child(obj: QmlObjectBuilder): StyleReaderBuilder;
+  children(...objs: QmlObjectBuilder[]): StyleReaderBuilder;
 
   bottomPadding(value: number): StyleReaderBuilder;
   bottomPaddingBind(expr: string): StyleReaderBuilder;
@@ -47,30 +53,30 @@ export interface StyleReaderBuilder {
   transitionBind(expr: string): StyleReaderBuilder;
   vertical(value: boolean): StyleReaderBuilder;
   verticalBind(expr: string): StyleReaderBuilder;
-  onBackgroundChanged(body: string): StyleReaderBuilder;
-  onBottomPaddingChanged(body: string): StyleReaderBuilder;
-  onCheckedChanged(body: string): StyleReaderBuilder;
-  onControlTypeChanged(body: string): StyleReaderBuilder;
-  onCustomTypeChanged(body: string): StyleReaderBuilder;
-  onEnabledChanged(body: string): StyleReaderBuilder;
-  onFocusedChanged(body: string): StyleReaderBuilder;
-  onFontChanged(body: string): StyleReaderBuilder;
-  onHandleChanged(body: string): StyleReaderBuilder;
-  onHighlightedChanged(body: string): StyleReaderBuilder;
-  onHoveredChanged(body: string): StyleReaderBuilder;
-  onIndicatorChanged(body: string): StyleReaderBuilder;
-  onLeftPaddingChanged(body: string): StyleReaderBuilder;
-  onObjectNameChanged(body: string): StyleReaderBuilder;
-  onPaddingChanged(body: string): StyleReaderBuilder;
-  onPaletteChanged(body: string): StyleReaderBuilder;
-  onPressedChanged(body: string): StyleReaderBuilder;
-  onPropertiesChanged(body: string): StyleReaderBuilder;
-  onRightPaddingChanged(body: string): StyleReaderBuilder;
-  onSpacingChanged(body: string): StyleReaderBuilder;
-  onTextChanged(body: string): StyleReaderBuilder;
-  onTopPaddingChanged(body: string): StyleReaderBuilder;
-  onTransitionChanged(body: string): StyleReaderBuilder;
-  onVerticalChanged(body: string): StyleReaderBuilder;
+  onBackgroundChanged(handler: DslSignalHandlerValue): StyleReaderBuilder;
+  onBottomPaddingChanged(handler: DslSignalHandlerValue): StyleReaderBuilder;
+  onCheckedChanged(handler: DslSignalHandlerValue): StyleReaderBuilder;
+  onControlTypeChanged(handler: DslSignalHandlerValue): StyleReaderBuilder;
+  onCustomTypeChanged(handler: DslSignalHandlerValue): StyleReaderBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): StyleReaderBuilder;
+  onFocusedChanged(handler: DslSignalHandlerValue): StyleReaderBuilder;
+  onFontChanged(handler: DslSignalHandlerValue): StyleReaderBuilder;
+  onHandleChanged(handler: DslSignalHandlerValue): StyleReaderBuilder;
+  onHighlightedChanged(handler: DslSignalHandlerValue): StyleReaderBuilder;
+  onHoveredChanged(handler: DslSignalHandlerValue): StyleReaderBuilder;
+  onIndicatorChanged(handler: DslSignalHandlerValue): StyleReaderBuilder;
+  onLeftPaddingChanged(handler: DslSignalHandlerValue): StyleReaderBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): StyleReaderBuilder;
+  onPaddingChanged(handler: DslSignalHandlerValue): StyleReaderBuilder;
+  onPaletteChanged(handler: DslSignalHandlerValue): StyleReaderBuilder;
+  onPressedChanged(handler: DslSignalHandlerValue): StyleReaderBuilder;
+  onPropertiesChanged(handler: DslSignalHandlerValue): StyleReaderBuilder;
+  onRightPaddingChanged(handler: DslSignalHandlerValue): StyleReaderBuilder;
+  onSpacingChanged(handler: DslSignalHandlerValue): StyleReaderBuilder;
+  onTextChanged(handler: DslSignalHandlerValue): StyleReaderBuilder;
+  onTopPaddingChanged(handler: DslSignalHandlerValue): StyleReaderBuilder;
+  onTransitionChanged(handler: DslSignalHandlerValue): StyleReaderBuilder;
+  onVerticalChanged(handler: DslSignalHandlerValue): StyleReaderBuilder;
   global(setup: (b: GlobalBuilder) => void): StyleReaderBuilder;
   styleKit(setup: (b: StyleKitAttachedBuilder) => void): StyleReaderBuilder;
   styleVariation(setup: (b: StyleVariationAttachedBuilder) => void): StyleReaderBuilder;

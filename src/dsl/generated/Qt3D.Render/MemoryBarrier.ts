@@ -2,11 +2,17 @@
 // Type: MemoryBarrier
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface MemoryBarrierBuilder {
   id(id: string): MemoryBarrierBuilder;
   child(obj: QmlObjectBuilder): MemoryBarrierBuilder;
+  children(...objs: QmlObjectBuilder[]): MemoryBarrierBuilder;
 
   enabled(value: boolean): MemoryBarrierBuilder;
   enabledBind(expr: string): MemoryBarrierBuilder;
@@ -14,11 +20,11 @@ export interface MemoryBarrierBuilder {
   objectNameBind(expr: string): MemoryBarrierBuilder;
   parent(value: QmlValue): MemoryBarrierBuilder;
   parentBind(expr: string): MemoryBarrierBuilder;
-  onEnabledChanged(body: string): MemoryBarrierBuilder;
-  onNodeDestroyed(body: string): MemoryBarrierBuilder;
-  onObjectNameChanged(body: string): MemoryBarrierBuilder;
-  onParentChanged(body: string): MemoryBarrierBuilder;
-  onWaitOperationsChanged(body: string): MemoryBarrierBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): MemoryBarrierBuilder;
+  onNodeDestroyed(handler: DslSignalHandlerValue): MemoryBarrierBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): MemoryBarrierBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): MemoryBarrierBuilder;
+  onWaitOperationsChanged(handler: DslSignalHandlerValue): MemoryBarrierBuilder;
 }
 
 const MEMORYBARRIER_META: TypeMetadata = {

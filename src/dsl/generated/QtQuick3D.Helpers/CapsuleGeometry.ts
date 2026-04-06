@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlEnumToken,
   QmlObjectBuilder,
   QmlValue,
@@ -12,6 +13,7 @@ import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface CapsuleGeometryBuilder {
   id(id: string): CapsuleGeometryBuilder;
   child(obj: QmlObjectBuilder): CapsuleGeometryBuilder;
+  children(...objs: QmlObjectBuilder[]): CapsuleGeometryBuilder;
 
   asynchronous(value: boolean): CapsuleGeometryBuilder;
   asynchronousBind(expr: string): CapsuleGeometryBuilder;
@@ -37,22 +39,22 @@ export interface CapsuleGeometryBuilder {
   stateBind(expr: string): CapsuleGeometryBuilder;
   uvProfile(value: QmlEnumToken): CapsuleGeometryBuilder;
   uvProfileBind(expr: string): CapsuleGeometryBuilder;
-  onAsynchronousChanged(body: string): CapsuleGeometryBuilder;
-  onChildrenChanged(body: string): CapsuleGeometryBuilder;
-  onDiameterChanged(body: string): CapsuleGeometryBuilder;
-  onEnableNormalsChanged(body: string): CapsuleGeometryBuilder;
-  onEnableUVChanged(body: string): CapsuleGeometryBuilder;
-  onGeometryChanged(body: string): CapsuleGeometryBuilder;
-  onGeometryNodeDirty(body: string): CapsuleGeometryBuilder;
-  onHeightChanged(body: string): CapsuleGeometryBuilder;
-  onLatitudesChanged(body: string): CapsuleGeometryBuilder;
-  onLongitudesChanged(body: string): CapsuleGeometryBuilder;
-  onObjectNameChanged(body: string): CapsuleGeometryBuilder;
-  onParentChanged(body: string): CapsuleGeometryBuilder;
-  onRingsChanged(body: string): CapsuleGeometryBuilder;
-  onStateChanged(body: string): CapsuleGeometryBuilder;
-  onStatusChanged(body: string): CapsuleGeometryBuilder;
-  onUvProfileChanged(body: string): CapsuleGeometryBuilder;
+  onAsynchronousChanged(handler: DslSignalHandlerValue): CapsuleGeometryBuilder;
+  onChildrenChanged(handler: DslSignalHandlerValue): CapsuleGeometryBuilder;
+  onDiameterChanged(handler: DslSignalHandlerValue): CapsuleGeometryBuilder;
+  onEnableNormalsChanged(handler: DslSignalHandlerValue): CapsuleGeometryBuilder;
+  onEnableUVChanged(handler: DslSignalHandlerValue): CapsuleGeometryBuilder;
+  onGeometryChanged(handler: DslSignalHandlerValue): CapsuleGeometryBuilder;
+  onGeometryNodeDirty(handler: DslSignalHandlerValue): CapsuleGeometryBuilder;
+  onHeightChanged(handler: DslSignalHandlerValue): CapsuleGeometryBuilder;
+  onLatitudesChanged(handler: DslSignalHandlerValue): CapsuleGeometryBuilder;
+  onLongitudesChanged(handler: DslSignalHandlerValue): CapsuleGeometryBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): CapsuleGeometryBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): CapsuleGeometryBuilder;
+  onRingsChanged(handler: DslSignalHandlerValue): CapsuleGeometryBuilder;
+  onStateChanged(handler: DslSignalHandlerValue): CapsuleGeometryBuilder;
+  onStatusChanged(handler: DslSignalHandlerValue): CapsuleGeometryBuilder;
+  onUvProfileChanged(handler: DslSignalHandlerValue): CapsuleGeometryBuilder;
 }
 
 const CAPSULEGEOMETRY_META: TypeMetadata = {

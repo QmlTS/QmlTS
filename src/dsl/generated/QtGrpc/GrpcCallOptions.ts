@@ -2,12 +2,13 @@
 // Type: GrpcCallOptions
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import type { DslSignalHandlerValue, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 import type { GrpcMetadataBuilder } from './GrpcMetadata.js';
 export interface GrpcCallOptionsBuilder {
   id(id: string): GrpcCallOptionsBuilder;
   child(obj: QmlObjectBuilder): GrpcCallOptionsBuilder;
+  children(...objs: QmlObjectBuilder[]): GrpcCallOptionsBuilder;
 
   deadlineTimeout(value: number): GrpcCallOptionsBuilder;
   deadlineTimeoutBind(expr: string): GrpcCallOptionsBuilder;
@@ -15,9 +16,9 @@ export interface GrpcCallOptionsBuilder {
   metadataBind(expr: string): GrpcCallOptionsBuilder;
   objectName(value: string): GrpcCallOptionsBuilder;
   objectNameBind(expr: string): GrpcCallOptionsBuilder;
-  onDeadlineTimeoutChanged(body: string): GrpcCallOptionsBuilder;
-  onMetadataChanged(body: string): GrpcCallOptionsBuilder;
-  onObjectNameChanged(body: string): GrpcCallOptionsBuilder;
+  onDeadlineTimeoutChanged(handler: DslSignalHandlerValue): GrpcCallOptionsBuilder;
+  onMetadataChanged(handler: DslSignalHandlerValue): GrpcCallOptionsBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): GrpcCallOptionsBuilder;
 }
 
 const GRPCCALLOPTIONS_META: TypeMetadata = {

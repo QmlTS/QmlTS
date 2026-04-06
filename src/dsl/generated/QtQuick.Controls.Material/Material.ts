@@ -2,7 +2,7 @@
 // Type: Attached type: Material
 // Generated from Qt 6.11.0
 
-import type { QmlEnumToken, QmlValue } from '../../runtime/index.js';
+import type { DslSignalHandlerValue, QmlEnumToken, QmlValue } from '../../runtime/index.js';
 export interface MaterialAttachedBuilder {
   accent(value: QmlValue): MaterialAttachedBuilder;
   accentBind(expr: string): MaterialAttachedBuilder;
@@ -22,19 +22,19 @@ export interface MaterialAttachedBuilder {
   themeBind(expr: string): MaterialAttachedBuilder;
   objectName(value: string): MaterialAttachedBuilder;
   objectNameBind(expr: string): MaterialAttachedBuilder;
-  onAccentChanged(body: string): MaterialAttachedBuilder;
-  onBackgroundChanged(body: string): MaterialAttachedBuilder;
-  onContainerStyleChanged(body: string): MaterialAttachedBuilder;
-  onDialogColorChanged(body: string): MaterialAttachedBuilder;
-  onElevationChanged(body: string): MaterialAttachedBuilder;
-  onForegroundChanged(body: string): MaterialAttachedBuilder;
-  onPrimaryChanged(body: string): MaterialAttachedBuilder;
-  onPrimaryHighlightedTextColorChanged(body: string): MaterialAttachedBuilder;
-  onRoundedScaleChanged(body: string): MaterialAttachedBuilder;
-  onThemeChanged(body: string): MaterialAttachedBuilder;
-  onThemeOrAccentChanged(body: string): MaterialAttachedBuilder;
-  onToolBarColorChanged(body: string): MaterialAttachedBuilder;
-  onToolTextColorChanged(body: string): MaterialAttachedBuilder;
-  onTooltipColorChanged(body: string): MaterialAttachedBuilder;
-  onObjectNameChanged(body: string): MaterialAttachedBuilder;
+  onAccentChanged(handler: DslSignalHandlerValue): MaterialAttachedBuilder;
+  onBackgroundChanged(handler: DslSignalHandlerValue): MaterialAttachedBuilder;
+  onContainerStyleChanged(handler: DslSignalHandlerValue): MaterialAttachedBuilder;
+  onDialogColorChanged(handler: DslSignalHandlerValue): MaterialAttachedBuilder;
+  onElevationChanged(handler: DslSignalHandlerValue): MaterialAttachedBuilder;
+  onForegroundChanged(handler: DslSignalHandlerValue): MaterialAttachedBuilder;
+  onPrimaryChanged(handler: DslSignalHandlerValue): MaterialAttachedBuilder;
+  onPrimaryHighlightedTextColorChanged(handler: DslSignalHandlerValue): MaterialAttachedBuilder;
+  onRoundedScaleChanged(handler: DslSignalHandlerValue): MaterialAttachedBuilder;
+  onThemeChanged(handler: DslSignalHandlerValue): MaterialAttachedBuilder;
+  onThemeOrAccentChanged(handler: DslSignalHandlerValue): MaterialAttachedBuilder;
+  onToolBarColorChanged(handler: DslSignalHandlerValue): MaterialAttachedBuilder;
+  onToolTextColorChanged(handler: DslSignalHandlerValue): MaterialAttachedBuilder;
+  onTooltipColorChanged(handler: DslSignalHandlerValue): MaterialAttachedBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): MaterialAttachedBuilder;
 }

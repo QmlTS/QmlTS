@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlEnumToken,
   QmlObjectBuilder,
   QmlValue,
@@ -12,6 +13,7 @@ import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface BufferBuilder {
   id(id: string): BufferBuilder;
   child(obj: QmlObjectBuilder): BufferBuilder;
+  children(...objs: QmlObjectBuilder[]): BufferBuilder;
 
   bufferFlags(value: QmlEnumToken): BufferBuilder;
   bufferFlagsBind(expr: string): BufferBuilder;
@@ -31,11 +33,11 @@ export interface BufferBuilder {
   textureCoordOperationBind(expr: string): BufferBuilder;
   textureFilterOperation(value: QmlEnumToken): BufferBuilder;
   textureFilterOperationBind(expr: string): BufferBuilder;
-  onChanged(body: string): BufferBuilder;
-  onChildrenChanged(body: string): BufferBuilder;
-  onObjectNameChanged(body: string): BufferBuilder;
-  onParentChanged(body: string): BufferBuilder;
-  onStateChanged(body: string): BufferBuilder;
+  onChanged(handler: DslSignalHandlerValue): BufferBuilder;
+  onChildrenChanged(handler: DslSignalHandlerValue): BufferBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): BufferBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): BufferBuilder;
+  onStateChanged(handler: DslSignalHandlerValue): BufferBuilder;
 }
 
 const BUFFER_META: TypeMetadata = {

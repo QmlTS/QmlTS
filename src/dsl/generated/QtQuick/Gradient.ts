@@ -2,7 +2,12 @@
 // Type: Gradient
 // Generated from Qt 6.11.0
 
-import type { QmlEnumToken, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlEnumToken,
+  QmlObjectBuilder,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { AccessibleAttachedBuilder } from './Accessible.js';
 import type { EnterKeyAttachedBuilder } from './EnterKey.js';
@@ -23,14 +28,15 @@ import type { ViewTransitionAttachedBuilder } from './ViewTransition.js';
 export interface GradientBuilder {
   id(id: string): GradientBuilder;
   child(obj: QmlObjectBuilder): GradientBuilder;
+  children(...objs: QmlObjectBuilder[]): GradientBuilder;
 
   objectName(value: string): GradientBuilder;
   objectNameBind(expr: string): GradientBuilder;
   orientation(value: QmlEnumToken): GradientBuilder;
   orientationBind(expr: string): GradientBuilder;
-  onObjectNameChanged(body: string): GradientBuilder;
-  onOrientationChanged(body: string): GradientBuilder;
-  onUpdated(body: string): GradientBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): GradientBuilder;
+  onOrientationChanged(handler: DslSignalHandlerValue): GradientBuilder;
+  onUpdated(handler: DslSignalHandlerValue): GradientBuilder;
   accessible(setup: (b: AccessibleAttachedBuilder) => void): GradientBuilder;
   drag(setup: (b: DragAttachedBuilder) => void): GradientBuilder;
   enterKey(setup: (b: EnterKeyAttachedBuilder) => void): GradientBuilder;

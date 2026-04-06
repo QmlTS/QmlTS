@@ -2,7 +2,13 @@
 // Type: AnimatedSprite
 // Generated from Qt 6.11.0
 
-import type { QmlEnumToken, QmlObjectBuilder, QmlUrl, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlEnumToken,
+  QmlObjectBuilder,
+  QmlUrl,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { QtObjectBuilder } from '../QML/QtObject.js';
 import type { AccessibleAttachedBuilder } from './Accessible.js';
@@ -28,6 +34,7 @@ import type { ViewTransitionAttachedBuilder } from './ViewTransition.js';
 export interface AnimatedSpriteBuilder {
   id(id: string): AnimatedSpriteBuilder;
   child(obj: QmlObjectBuilder): AnimatedSpriteBuilder;
+  children(...objs: QmlObjectBuilder[]): AnimatedSpriteBuilder;
 
   activeFocusOnTab(value: boolean): AnimatedSpriteBuilder;
   activeFocusOnTabBind(expr: string): AnimatedSpriteBuilder;
@@ -111,54 +118,54 @@ export interface AnimatedSpriteBuilder {
   yBind(expr: string): AnimatedSpriteBuilder;
   z(value: number): AnimatedSpriteBuilder;
   zBind(expr: string): AnimatedSpriteBuilder;
-  onActiveFocusChanged(body: string): AnimatedSpriteBuilder;
-  onActiveFocusOnTabChanged(body: string): AnimatedSpriteBuilder;
-  onAntialiasingChanged(body: string): AnimatedSpriteBuilder;
-  onBaselineOffsetChanged(body: string): AnimatedSpriteBuilder;
-  onChildrenChanged(body: string): AnimatedSpriteBuilder;
-  onChildrenRectChanged(body: string): AnimatedSpriteBuilder;
-  onClipChanged(body: string): AnimatedSpriteBuilder;
-  onContainmentMaskChanged(body: string): AnimatedSpriteBuilder;
-  onCurrentFrameChanged(body: string): AnimatedSpriteBuilder;
-  onEnabledChanged(body: string): AnimatedSpriteBuilder;
-  onFinishBehaviorChanged(body: string): AnimatedSpriteBuilder;
-  onFinished(body: string): AnimatedSpriteBuilder;
-  onFocusChanged(body: string): AnimatedSpriteBuilder;
-  onFocusPolicyChanged(body: string): AnimatedSpriteBuilder;
-  onFrameCountChanged(body: string): AnimatedSpriteBuilder;
-  onFrameDurationChanged(body: string): AnimatedSpriteBuilder;
-  onFrameHeightChanged(body: string): AnimatedSpriteBuilder;
-  onFrameRateChanged(body: string): AnimatedSpriteBuilder;
-  onFrameSyncChanged(body: string): AnimatedSpriteBuilder;
-  onFrameWidthChanged(body: string): AnimatedSpriteBuilder;
-  onFrameXChanged(body: string): AnimatedSpriteBuilder;
-  onFrameYChanged(body: string): AnimatedSpriteBuilder;
-  onHeightChanged(body: string): AnimatedSpriteBuilder;
-  onImplicitHeightChanged(body: string): AnimatedSpriteBuilder;
-  onImplicitWidthChanged(body: string): AnimatedSpriteBuilder;
-  onInterpolateChanged(body: string): AnimatedSpriteBuilder;
-  onLoopsChanged(body: string): AnimatedSpriteBuilder;
-  onObjectNameChanged(body: string): AnimatedSpriteBuilder;
-  onOpacityChanged(body: string): AnimatedSpriteBuilder;
-  onPaletteChanged(body: string): AnimatedSpriteBuilder;
-  onPaletteCreated(body: string): AnimatedSpriteBuilder;
-  onParentChanged(body: string): AnimatedSpriteBuilder;
-  onPausedChanged(body: string): AnimatedSpriteBuilder;
-  onReverseChanged(body: string): AnimatedSpriteBuilder;
-  onRotationChanged(body: string): AnimatedSpriteBuilder;
-  onRunningChanged(body: string): AnimatedSpriteBuilder;
-  onScaleChanged(body: string): AnimatedSpriteBuilder;
-  onSmoothChanged(body: string): AnimatedSpriteBuilder;
-  onSourceChanged(body: string): AnimatedSpriteBuilder;
-  onStateChanged(body: string): AnimatedSpriteBuilder;
-  onTransformOriginChanged(body: string): AnimatedSpriteBuilder;
-  onVisibleChanged(body: string): AnimatedSpriteBuilder;
-  onVisibleChildrenChanged(body: string): AnimatedSpriteBuilder;
-  onWidthChanged(body: string): AnimatedSpriteBuilder;
-  onWindowChanged(body: string): AnimatedSpriteBuilder;
-  onXChanged(body: string): AnimatedSpriteBuilder;
-  onYChanged(body: string): AnimatedSpriteBuilder;
-  onZChanged(body: string): AnimatedSpriteBuilder;
+  onActiveFocusChanged(handler: DslSignalHandlerValue): AnimatedSpriteBuilder;
+  onActiveFocusOnTabChanged(handler: DslSignalHandlerValue): AnimatedSpriteBuilder;
+  onAntialiasingChanged(handler: DslSignalHandlerValue): AnimatedSpriteBuilder;
+  onBaselineOffsetChanged(handler: DslSignalHandlerValue): AnimatedSpriteBuilder;
+  onChildrenChanged(handler: DslSignalHandlerValue): AnimatedSpriteBuilder;
+  onChildrenRectChanged(handler: DslSignalHandlerValue): AnimatedSpriteBuilder;
+  onClipChanged(handler: DslSignalHandlerValue): AnimatedSpriteBuilder;
+  onContainmentMaskChanged(handler: DslSignalHandlerValue): AnimatedSpriteBuilder;
+  onCurrentFrameChanged(handler: DslSignalHandlerValue): AnimatedSpriteBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): AnimatedSpriteBuilder;
+  onFinishBehaviorChanged(handler: DslSignalHandlerValue): AnimatedSpriteBuilder;
+  onFinished(handler: DslSignalHandlerValue): AnimatedSpriteBuilder;
+  onFocusChanged(handler: DslSignalHandlerValue): AnimatedSpriteBuilder;
+  onFocusPolicyChanged(handler: DslSignalHandlerValue): AnimatedSpriteBuilder;
+  onFrameCountChanged(handler: DslSignalHandlerValue): AnimatedSpriteBuilder;
+  onFrameDurationChanged(handler: DslSignalHandlerValue): AnimatedSpriteBuilder;
+  onFrameHeightChanged(handler: DslSignalHandlerValue): AnimatedSpriteBuilder;
+  onFrameRateChanged(handler: DslSignalHandlerValue): AnimatedSpriteBuilder;
+  onFrameSyncChanged(handler: DslSignalHandlerValue): AnimatedSpriteBuilder;
+  onFrameWidthChanged(handler: DslSignalHandlerValue): AnimatedSpriteBuilder;
+  onFrameXChanged(handler: DslSignalHandlerValue): AnimatedSpriteBuilder;
+  onFrameYChanged(handler: DslSignalHandlerValue): AnimatedSpriteBuilder;
+  onHeightChanged(handler: DslSignalHandlerValue): AnimatedSpriteBuilder;
+  onImplicitHeightChanged(handler: DslSignalHandlerValue): AnimatedSpriteBuilder;
+  onImplicitWidthChanged(handler: DslSignalHandlerValue): AnimatedSpriteBuilder;
+  onInterpolateChanged(handler: DslSignalHandlerValue): AnimatedSpriteBuilder;
+  onLoopsChanged(handler: DslSignalHandlerValue): AnimatedSpriteBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): AnimatedSpriteBuilder;
+  onOpacityChanged(handler: DslSignalHandlerValue): AnimatedSpriteBuilder;
+  onPaletteChanged(handler: DslSignalHandlerValue): AnimatedSpriteBuilder;
+  onPaletteCreated(handler: DslSignalHandlerValue): AnimatedSpriteBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): AnimatedSpriteBuilder;
+  onPausedChanged(handler: DslSignalHandlerValue): AnimatedSpriteBuilder;
+  onReverseChanged(handler: DslSignalHandlerValue): AnimatedSpriteBuilder;
+  onRotationChanged(handler: DslSignalHandlerValue): AnimatedSpriteBuilder;
+  onRunningChanged(handler: DslSignalHandlerValue): AnimatedSpriteBuilder;
+  onScaleChanged(handler: DslSignalHandlerValue): AnimatedSpriteBuilder;
+  onSmoothChanged(handler: DslSignalHandlerValue): AnimatedSpriteBuilder;
+  onSourceChanged(handler: DslSignalHandlerValue): AnimatedSpriteBuilder;
+  onStateChanged(handler: DslSignalHandlerValue): AnimatedSpriteBuilder;
+  onTransformOriginChanged(handler: DslSignalHandlerValue): AnimatedSpriteBuilder;
+  onVisibleChanged(handler: DslSignalHandlerValue): AnimatedSpriteBuilder;
+  onVisibleChildrenChanged(handler: DslSignalHandlerValue): AnimatedSpriteBuilder;
+  onWidthChanged(handler: DslSignalHandlerValue): AnimatedSpriteBuilder;
+  onWindowChanged(handler: DslSignalHandlerValue): AnimatedSpriteBuilder;
+  onXChanged(handler: DslSignalHandlerValue): AnimatedSpriteBuilder;
+  onYChanged(handler: DslSignalHandlerValue): AnimatedSpriteBuilder;
+  onZChanged(handler: DslSignalHandlerValue): AnimatedSpriteBuilder;
   anchors(setup: (b: AnchorsBuilder) => void): AnimatedSpriteBuilder;
   layer(setup: (b: LayerBuilder) => void): AnimatedSpriteBuilder;
   accessible(setup: (b: AccessibleAttachedBuilder) => void): AnimatedSpriteBuilder;

@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlEnumToken,
   QmlObjectBuilder,
   QmlSize,
@@ -16,6 +17,7 @@ import type { GeometryViewBuilder } from '../Qt3D.Core/GeometryView.js';
 export interface CuboidMeshBuilder {
   id(id: string): CuboidMeshBuilder;
   child(obj: QmlObjectBuilder): CuboidMeshBuilder;
+  children(...objs: QmlObjectBuilder[]): CuboidMeshBuilder;
 
   enabled(value: boolean): CuboidMeshBuilder;
   enabledBind(expr: string): CuboidMeshBuilder;
@@ -67,37 +69,37 @@ export interface CuboidMeshBuilder {
   yzMeshResolutionBind(expr: string): CuboidMeshBuilder;
   zExtent(value: number): CuboidMeshBuilder;
   zExtentBind(expr: string): CuboidMeshBuilder;
-  onAddedToEntity(body: string): CuboidMeshBuilder;
-  onEnabledChanged(body: string): CuboidMeshBuilder;
-  onFirstInstanceChanged(body: string): CuboidMeshBuilder;
-  onFirstVertexChanged(body: string): CuboidMeshBuilder;
-  onGeometryChanged(body: string): CuboidMeshBuilder;
-  onImplicitMaxPointChanged(body: string): CuboidMeshBuilder;
-  onImplicitMinPointChanged(body: string): CuboidMeshBuilder;
-  onImplicitPointsValidChanged(body: string): CuboidMeshBuilder;
-  onIndexBufferByteOffsetChanged(body: string): CuboidMeshBuilder;
-  onIndexOffsetChanged(body: string): CuboidMeshBuilder;
-  onInstanceCountChanged(body: string): CuboidMeshBuilder;
-  onMaxPointChanged(body: string): CuboidMeshBuilder;
-  onMinPointChanged(body: string): CuboidMeshBuilder;
-  onNodeDestroyed(body: string): CuboidMeshBuilder;
-  onObjectNameChanged(body: string): CuboidMeshBuilder;
-  onParentChanged(body: string): CuboidMeshBuilder;
-  onPrimitiveRestartEnabledChanged(body: string): CuboidMeshBuilder;
-  onPrimitiveTypeChanged(body: string): CuboidMeshBuilder;
-  onRemovedFromEntity(body: string): CuboidMeshBuilder;
-  onRestartIndexValueChanged(body: string): CuboidMeshBuilder;
-  onShareableChanged(body: string): CuboidMeshBuilder;
-  onSortIndexChanged(body: string): CuboidMeshBuilder;
-  onVertexCountChanged(body: string): CuboidMeshBuilder;
-  onVerticesPerPatchChanged(body: string): CuboidMeshBuilder;
-  onViewChanged(body: string): CuboidMeshBuilder;
-  onXExtentChanged(body: string): CuboidMeshBuilder;
-  onXyMeshResolutionChanged(body: string): CuboidMeshBuilder;
-  onXzMeshResolutionChanged(body: string): CuboidMeshBuilder;
-  onYExtentChanged(body: string): CuboidMeshBuilder;
-  onYzMeshResolutionChanged(body: string): CuboidMeshBuilder;
-  onZExtentChanged(body: string): CuboidMeshBuilder;
+  onAddedToEntity(handler: DslSignalHandlerValue): CuboidMeshBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): CuboidMeshBuilder;
+  onFirstInstanceChanged(handler: DslSignalHandlerValue): CuboidMeshBuilder;
+  onFirstVertexChanged(handler: DslSignalHandlerValue): CuboidMeshBuilder;
+  onGeometryChanged(handler: DslSignalHandlerValue): CuboidMeshBuilder;
+  onImplicitMaxPointChanged(handler: DslSignalHandlerValue): CuboidMeshBuilder;
+  onImplicitMinPointChanged(handler: DslSignalHandlerValue): CuboidMeshBuilder;
+  onImplicitPointsValidChanged(handler: DslSignalHandlerValue): CuboidMeshBuilder;
+  onIndexBufferByteOffsetChanged(handler: DslSignalHandlerValue): CuboidMeshBuilder;
+  onIndexOffsetChanged(handler: DslSignalHandlerValue): CuboidMeshBuilder;
+  onInstanceCountChanged(handler: DslSignalHandlerValue): CuboidMeshBuilder;
+  onMaxPointChanged(handler: DslSignalHandlerValue): CuboidMeshBuilder;
+  onMinPointChanged(handler: DslSignalHandlerValue): CuboidMeshBuilder;
+  onNodeDestroyed(handler: DslSignalHandlerValue): CuboidMeshBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): CuboidMeshBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): CuboidMeshBuilder;
+  onPrimitiveRestartEnabledChanged(handler: DslSignalHandlerValue): CuboidMeshBuilder;
+  onPrimitiveTypeChanged(handler: DslSignalHandlerValue): CuboidMeshBuilder;
+  onRemovedFromEntity(handler: DslSignalHandlerValue): CuboidMeshBuilder;
+  onRestartIndexValueChanged(handler: DslSignalHandlerValue): CuboidMeshBuilder;
+  onShareableChanged(handler: DslSignalHandlerValue): CuboidMeshBuilder;
+  onSortIndexChanged(handler: DslSignalHandlerValue): CuboidMeshBuilder;
+  onVertexCountChanged(handler: DslSignalHandlerValue): CuboidMeshBuilder;
+  onVerticesPerPatchChanged(handler: DslSignalHandlerValue): CuboidMeshBuilder;
+  onViewChanged(handler: DslSignalHandlerValue): CuboidMeshBuilder;
+  onXExtentChanged(handler: DslSignalHandlerValue): CuboidMeshBuilder;
+  onXyMeshResolutionChanged(handler: DslSignalHandlerValue): CuboidMeshBuilder;
+  onXzMeshResolutionChanged(handler: DslSignalHandlerValue): CuboidMeshBuilder;
+  onYExtentChanged(handler: DslSignalHandlerValue): CuboidMeshBuilder;
+  onYzMeshResolutionChanged(handler: DslSignalHandlerValue): CuboidMeshBuilder;
+  onZExtentChanged(handler: DslSignalHandlerValue): CuboidMeshBuilder;
 }
 
 const CUBOIDMESH_META: TypeMetadata = {

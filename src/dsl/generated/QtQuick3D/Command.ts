@@ -2,11 +2,17 @@
 // Type: Command
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 export interface CommandBuilder {
   id(id: string): CommandBuilder;
   child(obj: QmlObjectBuilder): CommandBuilder;
+  children(...objs: QmlObjectBuilder[]): CommandBuilder;
 
   objectName(value: string): CommandBuilder;
   objectNameBind(expr: string): CommandBuilder;
@@ -14,10 +20,10 @@ export interface CommandBuilder {
   parentBind(expr: string): CommandBuilder;
   state(value: string): CommandBuilder;
   stateBind(expr: string): CommandBuilder;
-  onChildrenChanged(body: string): CommandBuilder;
-  onObjectNameChanged(body: string): CommandBuilder;
-  onParentChanged(body: string): CommandBuilder;
-  onStateChanged(body: string): CommandBuilder;
+  onChildrenChanged(handler: DslSignalHandlerValue): CommandBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): CommandBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): CommandBuilder;
+  onStateChanged(handler: DslSignalHandlerValue): CommandBuilder;
 }
 
 const COMMAND_META: TypeMetadata = {

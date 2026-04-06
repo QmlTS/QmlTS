@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlColor,
   QmlComponent,
   QmlEnumToken,
@@ -14,6 +15,7 @@ import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface LineSeriesBuilder {
   id(id: string): LineSeriesBuilder;
   child(obj: QmlObjectBuilder): LineSeriesBuilder;
+  children(...objs: QmlObjectBuilder[]): LineSeriesBuilder;
 
   axisX(value: QmlValue): LineSeriesBuilder;
   axisXBind(expr: string): LineSeriesBuilder;
@@ -57,46 +59,46 @@ export interface LineSeriesBuilder {
   widthBind(expr: string): LineSeriesBuilder;
   zValue(value: number): LineSeriesBuilder;
   zValueBind(expr: string): LineSeriesBuilder;
-  onAxisXChanged(body: string): LineSeriesBuilder;
-  onAxisYChanged(body: string): LineSeriesBuilder;
-  onCapStyleChanged(body: string): LineSeriesBuilder;
-  onClicked(body: string): LineSeriesBuilder;
-  onColorChanged(body: string): LineSeriesBuilder;
-  onCountChanged(body: string): LineSeriesBuilder;
-  onDashOffsetChanged(body: string): LineSeriesBuilder;
-  onDashPatternChanged(body: string): LineSeriesBuilder;
-  onDoubleClicked(body: string): LineSeriesBuilder;
-  onDraggableChanged(body: string): LineSeriesBuilder;
-  onHover(body: string): LineSeriesBuilder;
-  onHoverEnter(body: string): LineSeriesBuilder;
-  onHoverExit(body: string): LineSeriesBuilder;
-  onHoverableChanged(body: string): LineSeriesBuilder;
-  onHoveredChanged(body: string): LineSeriesBuilder;
-  onJoinStyleChanged(body: string): LineSeriesBuilder;
-  onLegendDataChanged(body: string): LineSeriesBuilder;
-  onLineStyleChanged(body: string): LineSeriesBuilder;
-  onNameChanged(body: string): LineSeriesBuilder;
-  onObjectNameChanged(body: string): LineSeriesBuilder;
-  onOpacityChanged(body: string): LineSeriesBuilder;
-  onPointAdded(body: string): LineSeriesBuilder;
-  onPointDelegateChanged(body: string): LineSeriesBuilder;
-  onPointRemoved(body: string): LineSeriesBuilder;
-  onPointReplaced(body: string): LineSeriesBuilder;
-  onPointsAdded(body: string): LineSeriesBuilder;
-  onPointsRemoved(body: string): LineSeriesBuilder;
-  onPointsReplaced(body: string): LineSeriesBuilder;
-  onPressed(body: string): LineSeriesBuilder;
-  onReleased(body: string): LineSeriesBuilder;
-  onSelectableChanged(body: string): LineSeriesBuilder;
-  onSelectedColorChanged(body: string): LineSeriesBuilder;
-  onSelectedPointsChanged(body: string): LineSeriesBuilder;
-  onSeriesUpdated(body: string): LineSeriesBuilder;
-  onStrokeStyleChanged(body: string): LineSeriesBuilder;
-  onUpdate(body: string): LineSeriesBuilder;
-  onValuesMultiplierChanged(body: string): LineSeriesBuilder;
-  onVisibleChanged(body: string): LineSeriesBuilder;
-  onWidthChanged(body: string): LineSeriesBuilder;
-  onZValueChanged(body: string): LineSeriesBuilder;
+  onAxisXChanged(handler: DslSignalHandlerValue): LineSeriesBuilder;
+  onAxisYChanged(handler: DslSignalHandlerValue): LineSeriesBuilder;
+  onCapStyleChanged(handler: DslSignalHandlerValue): LineSeriesBuilder;
+  onClicked(handler: DslSignalHandlerValue): LineSeriesBuilder;
+  onColorChanged(handler: DslSignalHandlerValue): LineSeriesBuilder;
+  onCountChanged(handler: DslSignalHandlerValue): LineSeriesBuilder;
+  onDashOffsetChanged(handler: DslSignalHandlerValue): LineSeriesBuilder;
+  onDashPatternChanged(handler: DslSignalHandlerValue): LineSeriesBuilder;
+  onDoubleClicked(handler: DslSignalHandlerValue): LineSeriesBuilder;
+  onDraggableChanged(handler: DslSignalHandlerValue): LineSeriesBuilder;
+  onHover(handler: DslSignalHandlerValue): LineSeriesBuilder;
+  onHoverEnter(handler: DslSignalHandlerValue): LineSeriesBuilder;
+  onHoverExit(handler: DslSignalHandlerValue): LineSeriesBuilder;
+  onHoverableChanged(handler: DslSignalHandlerValue): LineSeriesBuilder;
+  onHoveredChanged(handler: DslSignalHandlerValue): LineSeriesBuilder;
+  onJoinStyleChanged(handler: DslSignalHandlerValue): LineSeriesBuilder;
+  onLegendDataChanged(handler: DslSignalHandlerValue): LineSeriesBuilder;
+  onLineStyleChanged(handler: DslSignalHandlerValue): LineSeriesBuilder;
+  onNameChanged(handler: DslSignalHandlerValue): LineSeriesBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): LineSeriesBuilder;
+  onOpacityChanged(handler: DslSignalHandlerValue): LineSeriesBuilder;
+  onPointAdded(handler: DslSignalHandlerValue): LineSeriesBuilder;
+  onPointDelegateChanged(handler: DslSignalHandlerValue): LineSeriesBuilder;
+  onPointRemoved(handler: DslSignalHandlerValue): LineSeriesBuilder;
+  onPointReplaced(handler: DslSignalHandlerValue): LineSeriesBuilder;
+  onPointsAdded(handler: DslSignalHandlerValue): LineSeriesBuilder;
+  onPointsRemoved(handler: DslSignalHandlerValue): LineSeriesBuilder;
+  onPointsReplaced(handler: DslSignalHandlerValue): LineSeriesBuilder;
+  onPressed(handler: DslSignalHandlerValue): LineSeriesBuilder;
+  onReleased(handler: DslSignalHandlerValue): LineSeriesBuilder;
+  onSelectableChanged(handler: DslSignalHandlerValue): LineSeriesBuilder;
+  onSelectedColorChanged(handler: DslSignalHandlerValue): LineSeriesBuilder;
+  onSelectedPointsChanged(handler: DslSignalHandlerValue): LineSeriesBuilder;
+  onSeriesUpdated(handler: DslSignalHandlerValue): LineSeriesBuilder;
+  onStrokeStyleChanged(handler: DslSignalHandlerValue): LineSeriesBuilder;
+  onUpdate(handler: DslSignalHandlerValue): LineSeriesBuilder;
+  onValuesMultiplierChanged(handler: DslSignalHandlerValue): LineSeriesBuilder;
+  onVisibleChanged(handler: DslSignalHandlerValue): LineSeriesBuilder;
+  onWidthChanged(handler: DslSignalHandlerValue): LineSeriesBuilder;
+  onZValueChanged(handler: DslSignalHandlerValue): LineSeriesBuilder;
 }
 
 const LINESERIES_META: TypeMetadata = {

@@ -2,7 +2,7 @@
 // Type: TouchPoint
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import type { DslSignalHandlerValue, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 import type { AccessibleAttachedBuilder } from './Accessible.js';
 import type { EnterKeyAttachedBuilder } from './EnterKey.js';
@@ -23,26 +23,27 @@ import type { ViewTransitionAttachedBuilder } from './ViewTransition.js';
 export interface TouchPointBuilder {
   id(id: string): TouchPointBuilder;
   child(obj: QmlObjectBuilder): TouchPointBuilder;
+  children(...objs: QmlObjectBuilder[]): TouchPointBuilder;
 
   objectName(value: string): TouchPointBuilder;
   objectNameBind(expr: string): TouchPointBuilder;
-  onAreaChanged(body: string): TouchPointBuilder;
-  onEllipseDiametersChanged(body: string): TouchPointBuilder;
-  onObjectNameChanged(body: string): TouchPointBuilder;
-  onPointIdChanged(body: string): TouchPointBuilder;
-  onPressedChanged(body: string): TouchPointBuilder;
-  onPressureChanged(body: string): TouchPointBuilder;
-  onPreviousXChanged(body: string): TouchPointBuilder;
-  onPreviousYChanged(body: string): TouchPointBuilder;
-  onRotationChanged(body: string): TouchPointBuilder;
-  onSceneXChanged(body: string): TouchPointBuilder;
-  onSceneYChanged(body: string): TouchPointBuilder;
-  onStartXChanged(body: string): TouchPointBuilder;
-  onStartYChanged(body: string): TouchPointBuilder;
-  onUniqueIdChanged(body: string): TouchPointBuilder;
-  onVelocityChanged(body: string): TouchPointBuilder;
-  onXChanged(body: string): TouchPointBuilder;
-  onYChanged(body: string): TouchPointBuilder;
+  onAreaChanged(handler: DslSignalHandlerValue): TouchPointBuilder;
+  onEllipseDiametersChanged(handler: DslSignalHandlerValue): TouchPointBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): TouchPointBuilder;
+  onPointIdChanged(handler: DslSignalHandlerValue): TouchPointBuilder;
+  onPressedChanged(handler: DslSignalHandlerValue): TouchPointBuilder;
+  onPressureChanged(handler: DslSignalHandlerValue): TouchPointBuilder;
+  onPreviousXChanged(handler: DslSignalHandlerValue): TouchPointBuilder;
+  onPreviousYChanged(handler: DslSignalHandlerValue): TouchPointBuilder;
+  onRotationChanged(handler: DslSignalHandlerValue): TouchPointBuilder;
+  onSceneXChanged(handler: DslSignalHandlerValue): TouchPointBuilder;
+  onSceneYChanged(handler: DslSignalHandlerValue): TouchPointBuilder;
+  onStartXChanged(handler: DslSignalHandlerValue): TouchPointBuilder;
+  onStartYChanged(handler: DslSignalHandlerValue): TouchPointBuilder;
+  onUniqueIdChanged(handler: DslSignalHandlerValue): TouchPointBuilder;
+  onVelocityChanged(handler: DslSignalHandlerValue): TouchPointBuilder;
+  onXChanged(handler: DslSignalHandlerValue): TouchPointBuilder;
+  onYChanged(handler: DslSignalHandlerValue): TouchPointBuilder;
   accessible(setup: (b: AccessibleAttachedBuilder) => void): TouchPointBuilder;
   drag(setup: (b: DragAttachedBuilder) => void): TouchPointBuilder;
   enterKey(setup: (b: EnterKeyAttachedBuilder) => void): TouchPointBuilder;

@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlObjectBuilder,
   QmlQuaternion,
   QmlVector3d,
@@ -12,6 +13,7 @@ import { createFluentBuilder } from '../../runtime/index.js';
 export interface Custom3DItemBuilder {
   id(id: string): Custom3DItemBuilder;
   child(obj: QmlObjectBuilder): Custom3DItemBuilder;
+  children(...objs: QmlObjectBuilder[]): Custom3DItemBuilder;
 
   meshFile(value: string): Custom3DItemBuilder;
   meshFileBind(expr: string): Custom3DItemBuilder;
@@ -35,18 +37,18 @@ export interface Custom3DItemBuilder {
   textureFileBind(expr: string): Custom3DItemBuilder;
   visible(value: boolean): Custom3DItemBuilder;
   visibleBind(expr: string): Custom3DItemBuilder;
-  onMeshFileChanged(body: string): Custom3DItemBuilder;
-  onNeedUpdate(body: string): Custom3DItemBuilder;
-  onObjectNameChanged(body: string): Custom3DItemBuilder;
-  onPositionAbsoluteChanged(body: string): Custom3DItemBuilder;
-  onPositionChanged(body: string): Custom3DItemBuilder;
-  onRotationAbsoluteChanged(body: string): Custom3DItemBuilder;
-  onRotationChanged(body: string): Custom3DItemBuilder;
-  onScalingAbsoluteChanged(body: string): Custom3DItemBuilder;
-  onScalingChanged(body: string): Custom3DItemBuilder;
-  onShadowCastingChanged(body: string): Custom3DItemBuilder;
-  onTextureFileChanged(body: string): Custom3DItemBuilder;
-  onVisibleChanged(body: string): Custom3DItemBuilder;
+  onMeshFileChanged(handler: DslSignalHandlerValue): Custom3DItemBuilder;
+  onNeedUpdate(handler: DslSignalHandlerValue): Custom3DItemBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): Custom3DItemBuilder;
+  onPositionAbsoluteChanged(handler: DslSignalHandlerValue): Custom3DItemBuilder;
+  onPositionChanged(handler: DslSignalHandlerValue): Custom3DItemBuilder;
+  onRotationAbsoluteChanged(handler: DslSignalHandlerValue): Custom3DItemBuilder;
+  onRotationChanged(handler: DslSignalHandlerValue): Custom3DItemBuilder;
+  onScalingAbsoluteChanged(handler: DslSignalHandlerValue): Custom3DItemBuilder;
+  onScalingChanged(handler: DslSignalHandlerValue): Custom3DItemBuilder;
+  onShadowCastingChanged(handler: DslSignalHandlerValue): Custom3DItemBuilder;
+  onTextureFileChanged(handler: DslSignalHandlerValue): Custom3DItemBuilder;
+  onVisibleChanged(handler: DslSignalHandlerValue): Custom3DItemBuilder;
 }
 
 const CUSTOM3DITEM_META: TypeMetadata = {

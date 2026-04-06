@@ -2,7 +2,12 @@
 // Type: Flipable
 // Generated from Qt 6.11.0
 
-import type { QmlEnumToken, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlEnumToken,
+  QmlObjectBuilder,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { QtObjectBuilder } from '../QML/QtObject.js';
 import type { AccessibleAttachedBuilder } from './Accessible.js';
@@ -28,6 +33,7 @@ import type { ViewTransitionAttachedBuilder } from './ViewTransition.js';
 export interface FlipableBuilder {
   id(id: string): FlipableBuilder;
   child(obj: QmlObjectBuilder): FlipableBuilder;
+  children(...objs: QmlObjectBuilder[]): FlipableBuilder;
 
   activeFocusOnTab(value: boolean): FlipableBuilder;
   activeFocusOnTabBind(expr: string): FlipableBuilder;
@@ -83,40 +89,40 @@ export interface FlipableBuilder {
   yBind(expr: string): FlipableBuilder;
   z(value: number): FlipableBuilder;
   zBind(expr: string): FlipableBuilder;
-  onActiveFocusChanged(body: string): FlipableBuilder;
-  onActiveFocusOnTabChanged(body: string): FlipableBuilder;
-  onAntialiasingChanged(body: string): FlipableBuilder;
-  onBackChanged(body: string): FlipableBuilder;
-  onBaselineOffsetChanged(body: string): FlipableBuilder;
-  onChildrenChanged(body: string): FlipableBuilder;
-  onChildrenRectChanged(body: string): FlipableBuilder;
-  onClipChanged(body: string): FlipableBuilder;
-  onContainmentMaskChanged(body: string): FlipableBuilder;
-  onEnabledChanged(body: string): FlipableBuilder;
-  onFocusChanged(body: string): FlipableBuilder;
-  onFocusPolicyChanged(body: string): FlipableBuilder;
-  onFrontChanged(body: string): FlipableBuilder;
-  onHeightChanged(body: string): FlipableBuilder;
-  onImplicitHeightChanged(body: string): FlipableBuilder;
-  onImplicitWidthChanged(body: string): FlipableBuilder;
-  onObjectNameChanged(body: string): FlipableBuilder;
-  onOpacityChanged(body: string): FlipableBuilder;
-  onPaletteChanged(body: string): FlipableBuilder;
-  onPaletteCreated(body: string): FlipableBuilder;
-  onParentChanged(body: string): FlipableBuilder;
-  onRotationChanged(body: string): FlipableBuilder;
-  onScaleChanged(body: string): FlipableBuilder;
-  onSideChanged(body: string): FlipableBuilder;
-  onSmoothChanged(body: string): FlipableBuilder;
-  onStateChanged(body: string): FlipableBuilder;
-  onTransformOriginChanged(body: string): FlipableBuilder;
-  onVisibleChanged(body: string): FlipableBuilder;
-  onVisibleChildrenChanged(body: string): FlipableBuilder;
-  onWidthChanged(body: string): FlipableBuilder;
-  onWindowChanged(body: string): FlipableBuilder;
-  onXChanged(body: string): FlipableBuilder;
-  onYChanged(body: string): FlipableBuilder;
-  onZChanged(body: string): FlipableBuilder;
+  onActiveFocusChanged(handler: DslSignalHandlerValue): FlipableBuilder;
+  onActiveFocusOnTabChanged(handler: DslSignalHandlerValue): FlipableBuilder;
+  onAntialiasingChanged(handler: DslSignalHandlerValue): FlipableBuilder;
+  onBackChanged(handler: DslSignalHandlerValue): FlipableBuilder;
+  onBaselineOffsetChanged(handler: DslSignalHandlerValue): FlipableBuilder;
+  onChildrenChanged(handler: DslSignalHandlerValue): FlipableBuilder;
+  onChildrenRectChanged(handler: DslSignalHandlerValue): FlipableBuilder;
+  onClipChanged(handler: DslSignalHandlerValue): FlipableBuilder;
+  onContainmentMaskChanged(handler: DslSignalHandlerValue): FlipableBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): FlipableBuilder;
+  onFocusChanged(handler: DslSignalHandlerValue): FlipableBuilder;
+  onFocusPolicyChanged(handler: DslSignalHandlerValue): FlipableBuilder;
+  onFrontChanged(handler: DslSignalHandlerValue): FlipableBuilder;
+  onHeightChanged(handler: DslSignalHandlerValue): FlipableBuilder;
+  onImplicitHeightChanged(handler: DslSignalHandlerValue): FlipableBuilder;
+  onImplicitWidthChanged(handler: DslSignalHandlerValue): FlipableBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): FlipableBuilder;
+  onOpacityChanged(handler: DslSignalHandlerValue): FlipableBuilder;
+  onPaletteChanged(handler: DslSignalHandlerValue): FlipableBuilder;
+  onPaletteCreated(handler: DslSignalHandlerValue): FlipableBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): FlipableBuilder;
+  onRotationChanged(handler: DslSignalHandlerValue): FlipableBuilder;
+  onScaleChanged(handler: DslSignalHandlerValue): FlipableBuilder;
+  onSideChanged(handler: DslSignalHandlerValue): FlipableBuilder;
+  onSmoothChanged(handler: DslSignalHandlerValue): FlipableBuilder;
+  onStateChanged(handler: DslSignalHandlerValue): FlipableBuilder;
+  onTransformOriginChanged(handler: DslSignalHandlerValue): FlipableBuilder;
+  onVisibleChanged(handler: DslSignalHandlerValue): FlipableBuilder;
+  onVisibleChildrenChanged(handler: DslSignalHandlerValue): FlipableBuilder;
+  onWidthChanged(handler: DslSignalHandlerValue): FlipableBuilder;
+  onWindowChanged(handler: DslSignalHandlerValue): FlipableBuilder;
+  onXChanged(handler: DslSignalHandlerValue): FlipableBuilder;
+  onYChanged(handler: DslSignalHandlerValue): FlipableBuilder;
+  onZChanged(handler: DslSignalHandlerValue): FlipableBuilder;
   anchors(setup: (b: AnchorsBuilder) => void): FlipableBuilder;
   layer(setup: (b: LayerBuilder) => void): FlipableBuilder;
   accessible(setup: (b: AccessibleAttachedBuilder) => void): FlipableBuilder;

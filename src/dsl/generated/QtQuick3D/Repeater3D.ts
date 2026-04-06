@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlComponent,
   QmlEnumToken,
   QmlObjectBuilder,
@@ -15,6 +16,7 @@ import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface Repeater3DBuilder {
   id(id: string): Repeater3DBuilder;
   child(obj: QmlObjectBuilder): Repeater3DBuilder;
+  children(...objs: QmlObjectBuilder[]): Repeater3DBuilder;
 
   delegate(value: QmlComponent): Repeater3DBuilder;
   delegateBind(expr: string): Repeater3DBuilder;
@@ -52,35 +54,35 @@ export interface Repeater3DBuilder {
   yBind(expr: string): Repeater3DBuilder;
   z(value: number): Repeater3DBuilder;
   zBind(expr: string): Repeater3DBuilder;
-  onChildrenChanged(body: string): Repeater3DBuilder;
-  onCountChanged(body: string): Repeater3DBuilder;
-  onDelegateChanged(body: string): Repeater3DBuilder;
-  onDelegateModelAccessChanged(body: string): Repeater3DBuilder;
-  onEulerRotationChanged(body: string): Repeater3DBuilder;
-  onForwardChanged(body: string): Repeater3DBuilder;
-  onLayersChanged(body: string): Repeater3DBuilder;
-  onLocalOpacityChanged(body: string): Repeater3DBuilder;
-  onModelChanged(body: string): Repeater3DBuilder;
-  onObjectAdded(body: string): Repeater3DBuilder;
-  onObjectNameChanged(body: string): Repeater3DBuilder;
-  onObjectRemoved(body: string): Repeater3DBuilder;
-  onParentChanged(body: string): Repeater3DBuilder;
-  onPivotChanged(body: string): Repeater3DBuilder;
-  onPositionChanged(body: string): Repeater3DBuilder;
-  onRightChanged(body: string): Repeater3DBuilder;
-  onRotationChanged(body: string): Repeater3DBuilder;
-  onScaleChanged(body: string): Repeater3DBuilder;
-  onScenePositionChanged(body: string): Repeater3DBuilder;
-  onSceneRotationChanged(body: string): Repeater3DBuilder;
-  onSceneScaleChanged(body: string): Repeater3DBuilder;
-  onSceneTransformChanged(body: string): Repeater3DBuilder;
-  onStateChanged(body: string): Repeater3DBuilder;
-  onStaticFlagsChanged(body: string): Repeater3DBuilder;
-  onUpChanged(body: string): Repeater3DBuilder;
-  onVisibleChanged(body: string): Repeater3DBuilder;
-  onXChanged(body: string): Repeater3DBuilder;
-  onYChanged(body: string): Repeater3DBuilder;
-  onZChanged(body: string): Repeater3DBuilder;
+  onChildrenChanged(handler: DslSignalHandlerValue): Repeater3DBuilder;
+  onCountChanged(handler: DslSignalHandlerValue): Repeater3DBuilder;
+  onDelegateChanged(handler: DslSignalHandlerValue): Repeater3DBuilder;
+  onDelegateModelAccessChanged(handler: DslSignalHandlerValue): Repeater3DBuilder;
+  onEulerRotationChanged(handler: DslSignalHandlerValue): Repeater3DBuilder;
+  onForwardChanged(handler: DslSignalHandlerValue): Repeater3DBuilder;
+  onLayersChanged(handler: DslSignalHandlerValue): Repeater3DBuilder;
+  onLocalOpacityChanged(handler: DslSignalHandlerValue): Repeater3DBuilder;
+  onModelChanged(handler: DslSignalHandlerValue): Repeater3DBuilder;
+  onObjectAdded(handler: DslSignalHandlerValue): Repeater3DBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): Repeater3DBuilder;
+  onObjectRemoved(handler: DslSignalHandlerValue): Repeater3DBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): Repeater3DBuilder;
+  onPivotChanged(handler: DslSignalHandlerValue): Repeater3DBuilder;
+  onPositionChanged(handler: DslSignalHandlerValue): Repeater3DBuilder;
+  onRightChanged(handler: DslSignalHandlerValue): Repeater3DBuilder;
+  onRotationChanged(handler: DslSignalHandlerValue): Repeater3DBuilder;
+  onScaleChanged(handler: DslSignalHandlerValue): Repeater3DBuilder;
+  onScenePositionChanged(handler: DslSignalHandlerValue): Repeater3DBuilder;
+  onSceneRotationChanged(handler: DslSignalHandlerValue): Repeater3DBuilder;
+  onSceneScaleChanged(handler: DslSignalHandlerValue): Repeater3DBuilder;
+  onSceneTransformChanged(handler: DslSignalHandlerValue): Repeater3DBuilder;
+  onStateChanged(handler: DslSignalHandlerValue): Repeater3DBuilder;
+  onStaticFlagsChanged(handler: DslSignalHandlerValue): Repeater3DBuilder;
+  onUpChanged(handler: DslSignalHandlerValue): Repeater3DBuilder;
+  onVisibleChanged(handler: DslSignalHandlerValue): Repeater3DBuilder;
+  onXChanged(handler: DslSignalHandlerValue): Repeater3DBuilder;
+  onYChanged(handler: DslSignalHandlerValue): Repeater3DBuilder;
+  onZChanged(handler: DslSignalHandlerValue): Repeater3DBuilder;
 }
 
 const REPEATER3D_META: TypeMetadata = {

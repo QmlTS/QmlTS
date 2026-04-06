@@ -2,11 +2,12 @@
 // Type: Timer
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import type { DslSignalHandlerValue, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 export interface TimerBuilder {
   id(id: string): TimerBuilder;
   child(obj: QmlObjectBuilder): TimerBuilder;
+  children(...objs: QmlObjectBuilder[]): TimerBuilder;
 
   interval(value: number): TimerBuilder;
   intervalBind(expr: string): TimerBuilder;
@@ -18,12 +19,12 @@ export interface TimerBuilder {
   runningBind(expr: string): TimerBuilder;
   triggeredOnStart(value: boolean): TimerBuilder;
   triggeredOnStartBind(expr: string): TimerBuilder;
-  onIntervalChanged(body: string): TimerBuilder;
-  onObjectNameChanged(body: string): TimerBuilder;
-  onRepeatChanged(body: string): TimerBuilder;
-  onRunningChanged(body: string): TimerBuilder;
-  onTriggered(body: string): TimerBuilder;
-  onTriggeredOnStartChanged(body: string): TimerBuilder;
+  onIntervalChanged(handler: DslSignalHandlerValue): TimerBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): TimerBuilder;
+  onRepeatChanged(handler: DslSignalHandlerValue): TimerBuilder;
+  onRunningChanged(handler: DslSignalHandlerValue): TimerBuilder;
+  onTriggered(handler: DslSignalHandlerValue): TimerBuilder;
+  onTriggeredOnStartChanged(handler: DslSignalHandlerValue): TimerBuilder;
 }
 
 const TIMER_META: TypeMetadata = {

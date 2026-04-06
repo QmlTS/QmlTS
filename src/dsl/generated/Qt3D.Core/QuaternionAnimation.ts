@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlEnumToken,
   QmlObjectBuilder,
   QmlQuaternion,
@@ -14,6 +15,7 @@ import type { QtObjectBuilder } from '../QML/QtObject.js';
 export interface QuaternionAnimationBuilder {
   id(id: string): QuaternionAnimationBuilder;
   child(obj: QmlObjectBuilder): QuaternionAnimationBuilder;
+  children(...objs: QmlObjectBuilder[]): QuaternionAnimationBuilder;
 
   alwaysRunToEnd(value: boolean): QuaternionAnimationBuilder;
   alwaysRunToEndBind(expr: string): QuaternionAnimationBuilder;
@@ -53,28 +55,28 @@ export interface QuaternionAnimationBuilder {
   toZRotationBind(expr: string): QuaternionAnimationBuilder;
   type(value: QmlEnumToken): QuaternionAnimationBuilder;
   typeBind(expr: string): QuaternionAnimationBuilder;
-  onAlwaysRunToEndChanged(body: string): QuaternionAnimationBuilder;
-  onDurationChanged(body: string): QuaternionAnimationBuilder;
-  onEasingChanged(body: string): QuaternionAnimationBuilder;
-  onFinished(body: string): QuaternionAnimationBuilder;
-  onFromChanged(body: string): QuaternionAnimationBuilder;
-  onFromXRotationChanged(body: string): QuaternionAnimationBuilder;
-  onFromYRotationChanged(body: string): QuaternionAnimationBuilder;
-  onFromZRotationChanged(body: string): QuaternionAnimationBuilder;
-  onLoopCountChanged(body: string): QuaternionAnimationBuilder;
-  onObjectNameChanged(body: string): QuaternionAnimationBuilder;
-  onPausedChanged(body: string): QuaternionAnimationBuilder;
-  onPropertiesChanged(body: string): QuaternionAnimationBuilder;
-  onPropertyChanged(body: string): QuaternionAnimationBuilder;
-  onRunningChanged(body: string): QuaternionAnimationBuilder;
-  onStarted(body: string): QuaternionAnimationBuilder;
-  onStopped(body: string): QuaternionAnimationBuilder;
-  onTargetChanged(body: string): QuaternionAnimationBuilder;
-  onToChanged(body: string): QuaternionAnimationBuilder;
-  onToXRotationChanged(body: string): QuaternionAnimationBuilder;
-  onToYRotationChanged(body: string): QuaternionAnimationBuilder;
-  onToZRotationChanged(body: string): QuaternionAnimationBuilder;
-  onTypeChanged(body: string): QuaternionAnimationBuilder;
+  onAlwaysRunToEndChanged(handler: DslSignalHandlerValue): QuaternionAnimationBuilder;
+  onDurationChanged(handler: DslSignalHandlerValue): QuaternionAnimationBuilder;
+  onEasingChanged(handler: DslSignalHandlerValue): QuaternionAnimationBuilder;
+  onFinished(handler: DslSignalHandlerValue): QuaternionAnimationBuilder;
+  onFromChanged(handler: DslSignalHandlerValue): QuaternionAnimationBuilder;
+  onFromXRotationChanged(handler: DslSignalHandlerValue): QuaternionAnimationBuilder;
+  onFromYRotationChanged(handler: DslSignalHandlerValue): QuaternionAnimationBuilder;
+  onFromZRotationChanged(handler: DslSignalHandlerValue): QuaternionAnimationBuilder;
+  onLoopCountChanged(handler: DslSignalHandlerValue): QuaternionAnimationBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): QuaternionAnimationBuilder;
+  onPausedChanged(handler: DslSignalHandlerValue): QuaternionAnimationBuilder;
+  onPropertiesChanged(handler: DslSignalHandlerValue): QuaternionAnimationBuilder;
+  onPropertyChanged(handler: DslSignalHandlerValue): QuaternionAnimationBuilder;
+  onRunningChanged(handler: DslSignalHandlerValue): QuaternionAnimationBuilder;
+  onStarted(handler: DslSignalHandlerValue): QuaternionAnimationBuilder;
+  onStopped(handler: DslSignalHandlerValue): QuaternionAnimationBuilder;
+  onTargetChanged(handler: DslSignalHandlerValue): QuaternionAnimationBuilder;
+  onToChanged(handler: DslSignalHandlerValue): QuaternionAnimationBuilder;
+  onToXRotationChanged(handler: DslSignalHandlerValue): QuaternionAnimationBuilder;
+  onToYRotationChanged(handler: DslSignalHandlerValue): QuaternionAnimationBuilder;
+  onToZRotationChanged(handler: DslSignalHandlerValue): QuaternionAnimationBuilder;
+  onTypeChanged(handler: DslSignalHandlerValue): QuaternionAnimationBuilder;
 }
 
 const QUATERNIONANIMATION_META: TypeMetadata = {

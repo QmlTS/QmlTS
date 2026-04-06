@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlObjectBuilder,
   QmlQuaternion,
   QmlValue,
@@ -13,6 +14,7 @@ import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface SkeletonBuilder {
   id(id: string): SkeletonBuilder;
   child(obj: QmlObjectBuilder): SkeletonBuilder;
+  children(...objs: QmlObjectBuilder[]): SkeletonBuilder;
 
   eulerRotation(value: QmlVector3d): SkeletonBuilder;
   eulerRotationBind(expr: string): SkeletonBuilder;
@@ -44,30 +46,30 @@ export interface SkeletonBuilder {
   yBind(expr: string): SkeletonBuilder;
   z(value: number): SkeletonBuilder;
   zBind(expr: string): SkeletonBuilder;
-  onChildrenChanged(body: string): SkeletonBuilder;
-  onEulerRotationChanged(body: string): SkeletonBuilder;
-  onForwardChanged(body: string): SkeletonBuilder;
-  onLayersChanged(body: string): SkeletonBuilder;
-  onLocalOpacityChanged(body: string): SkeletonBuilder;
-  onObjectNameChanged(body: string): SkeletonBuilder;
-  onParentChanged(body: string): SkeletonBuilder;
-  onPivotChanged(body: string): SkeletonBuilder;
-  onPositionChanged(body: string): SkeletonBuilder;
-  onRightChanged(body: string): SkeletonBuilder;
-  onRotationChanged(body: string): SkeletonBuilder;
-  onScaleChanged(body: string): SkeletonBuilder;
-  onScenePositionChanged(body: string): SkeletonBuilder;
-  onSceneRotationChanged(body: string): SkeletonBuilder;
-  onSceneScaleChanged(body: string): SkeletonBuilder;
-  onSceneTransformChanged(body: string): SkeletonBuilder;
-  onSkeletonNodeDirty(body: string): SkeletonBuilder;
-  onStateChanged(body: string): SkeletonBuilder;
-  onStaticFlagsChanged(body: string): SkeletonBuilder;
-  onUpChanged(body: string): SkeletonBuilder;
-  onVisibleChanged(body: string): SkeletonBuilder;
-  onXChanged(body: string): SkeletonBuilder;
-  onYChanged(body: string): SkeletonBuilder;
-  onZChanged(body: string): SkeletonBuilder;
+  onChildrenChanged(handler: DslSignalHandlerValue): SkeletonBuilder;
+  onEulerRotationChanged(handler: DslSignalHandlerValue): SkeletonBuilder;
+  onForwardChanged(handler: DslSignalHandlerValue): SkeletonBuilder;
+  onLayersChanged(handler: DslSignalHandlerValue): SkeletonBuilder;
+  onLocalOpacityChanged(handler: DslSignalHandlerValue): SkeletonBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): SkeletonBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): SkeletonBuilder;
+  onPivotChanged(handler: DslSignalHandlerValue): SkeletonBuilder;
+  onPositionChanged(handler: DslSignalHandlerValue): SkeletonBuilder;
+  onRightChanged(handler: DslSignalHandlerValue): SkeletonBuilder;
+  onRotationChanged(handler: DslSignalHandlerValue): SkeletonBuilder;
+  onScaleChanged(handler: DslSignalHandlerValue): SkeletonBuilder;
+  onScenePositionChanged(handler: DslSignalHandlerValue): SkeletonBuilder;
+  onSceneRotationChanged(handler: DslSignalHandlerValue): SkeletonBuilder;
+  onSceneScaleChanged(handler: DslSignalHandlerValue): SkeletonBuilder;
+  onSceneTransformChanged(handler: DslSignalHandlerValue): SkeletonBuilder;
+  onSkeletonNodeDirty(handler: DslSignalHandlerValue): SkeletonBuilder;
+  onStateChanged(handler: DslSignalHandlerValue): SkeletonBuilder;
+  onStaticFlagsChanged(handler: DslSignalHandlerValue): SkeletonBuilder;
+  onUpChanged(handler: DslSignalHandlerValue): SkeletonBuilder;
+  onVisibleChanged(handler: DslSignalHandlerValue): SkeletonBuilder;
+  onXChanged(handler: DslSignalHandlerValue): SkeletonBuilder;
+  onYChanged(handler: DslSignalHandlerValue): SkeletonBuilder;
+  onZChanged(handler: DslSignalHandlerValue): SkeletonBuilder;
 }
 
 const SKELETON_META: TypeMetadata = {

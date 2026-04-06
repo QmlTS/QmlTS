@@ -2,12 +2,19 @@
 // Type: ExtrudedTextGeometry
 // Generated from Qt 6.11.0
 
-import type { QmlFont, QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlFont,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 import type { AttributeBuilder } from '../Qt3D.Core/Attribute.js';
 export interface ExtrudedTextGeometryBuilder {
   id(id: string): ExtrudedTextGeometryBuilder;
   child(obj: QmlObjectBuilder): ExtrudedTextGeometryBuilder;
+  children(...objs: QmlObjectBuilder[]): ExtrudedTextGeometryBuilder;
 
   boundingVolumePositionAttribute(value: AttributeBuilder): ExtrudedTextGeometryBuilder;
   boundingVolumePositionAttributeBind(expr: string): ExtrudedTextGeometryBuilder;
@@ -23,16 +30,18 @@ export interface ExtrudedTextGeometryBuilder {
   parentBind(expr: string): ExtrudedTextGeometryBuilder;
   text(value: string): ExtrudedTextGeometryBuilder;
   textBind(expr: string): ExtrudedTextGeometryBuilder;
-  onBoundingVolumePositionAttributeChanged(body: string): ExtrudedTextGeometryBuilder;
-  onDepthChanged(body: string): ExtrudedTextGeometryBuilder;
-  onEnabledChanged(body: string): ExtrudedTextGeometryBuilder;
-  onFontChanged(body: string): ExtrudedTextGeometryBuilder;
-  onMaxExtentChanged(body: string): ExtrudedTextGeometryBuilder;
-  onMinExtentChanged(body: string): ExtrudedTextGeometryBuilder;
-  onNodeDestroyed(body: string): ExtrudedTextGeometryBuilder;
-  onObjectNameChanged(body: string): ExtrudedTextGeometryBuilder;
-  onParentChanged(body: string): ExtrudedTextGeometryBuilder;
-  onTextChanged(body: string): ExtrudedTextGeometryBuilder;
+  onBoundingVolumePositionAttributeChanged(
+    handler: DslSignalHandlerValue,
+  ): ExtrudedTextGeometryBuilder;
+  onDepthChanged(handler: DslSignalHandlerValue): ExtrudedTextGeometryBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): ExtrudedTextGeometryBuilder;
+  onFontChanged(handler: DslSignalHandlerValue): ExtrudedTextGeometryBuilder;
+  onMaxExtentChanged(handler: DslSignalHandlerValue): ExtrudedTextGeometryBuilder;
+  onMinExtentChanged(handler: DslSignalHandlerValue): ExtrudedTextGeometryBuilder;
+  onNodeDestroyed(handler: DslSignalHandlerValue): ExtrudedTextGeometryBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): ExtrudedTextGeometryBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): ExtrudedTextGeometryBuilder;
+  onTextChanged(handler: DslSignalHandlerValue): ExtrudedTextGeometryBuilder;
 }
 
 const EXTRUDEDTEXTGEOMETRY_META: TypeMetadata = {

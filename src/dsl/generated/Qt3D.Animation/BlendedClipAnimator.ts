@@ -2,13 +2,19 @@
 // Type: BlendedClipAnimator
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { ChannelMapperBuilder } from './ChannelMapper.js';
 import type { ClockBuilder } from './Clock.js';
 export interface BlendedClipAnimatorBuilder {
   id(id: string): BlendedClipAnimatorBuilder;
   child(obj: QmlObjectBuilder): BlendedClipAnimatorBuilder;
+  children(...objs: QmlObjectBuilder[]): BlendedClipAnimatorBuilder;
 
   blendTree(value: QmlValue): BlendedClipAnimatorBuilder;
   blendTreeBind(expr: string): BlendedClipAnimatorBuilder;
@@ -30,19 +36,19 @@ export interface BlendedClipAnimatorBuilder {
   parentBind(expr: string): BlendedClipAnimatorBuilder;
   running(value: boolean): BlendedClipAnimatorBuilder;
   runningBind(expr: string): BlendedClipAnimatorBuilder;
-  onAddedToEntity(body: string): BlendedClipAnimatorBuilder;
-  onBlendTreeChanged(body: string): BlendedClipAnimatorBuilder;
-  onChannelMapperChanged(body: string): BlendedClipAnimatorBuilder;
-  onClockChanged(body: string): BlendedClipAnimatorBuilder;
-  onEnabledChanged(body: string): BlendedClipAnimatorBuilder;
-  onLoopCountChanged(body: string): BlendedClipAnimatorBuilder;
-  onNodeDestroyed(body: string): BlendedClipAnimatorBuilder;
-  onNormalizedTimeChanged(body: string): BlendedClipAnimatorBuilder;
-  onObjectNameChanged(body: string): BlendedClipAnimatorBuilder;
-  onParentChanged(body: string): BlendedClipAnimatorBuilder;
-  onRemovedFromEntity(body: string): BlendedClipAnimatorBuilder;
-  onRunningChanged(body: string): BlendedClipAnimatorBuilder;
-  onShareableChanged(body: string): BlendedClipAnimatorBuilder;
+  onAddedToEntity(handler: DslSignalHandlerValue): BlendedClipAnimatorBuilder;
+  onBlendTreeChanged(handler: DslSignalHandlerValue): BlendedClipAnimatorBuilder;
+  onChannelMapperChanged(handler: DslSignalHandlerValue): BlendedClipAnimatorBuilder;
+  onClockChanged(handler: DslSignalHandlerValue): BlendedClipAnimatorBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): BlendedClipAnimatorBuilder;
+  onLoopCountChanged(handler: DslSignalHandlerValue): BlendedClipAnimatorBuilder;
+  onNodeDestroyed(handler: DslSignalHandlerValue): BlendedClipAnimatorBuilder;
+  onNormalizedTimeChanged(handler: DslSignalHandlerValue): BlendedClipAnimatorBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): BlendedClipAnimatorBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): BlendedClipAnimatorBuilder;
+  onRemovedFromEntity(handler: DslSignalHandlerValue): BlendedClipAnimatorBuilder;
+  onRunningChanged(handler: DslSignalHandlerValue): BlendedClipAnimatorBuilder;
+  onShareableChanged(handler: DslSignalHandlerValue): BlendedClipAnimatorBuilder;
 }
 
 const BLENDEDCLIPANIMATOR_META: TypeMetadata = {

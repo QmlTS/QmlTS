@@ -2,11 +2,18 @@
 // Type: StateMachineLoader
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlUrl, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlObjectBuilder,
+  QmlUrl,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 export interface StateMachineLoaderBuilder {
   id(id: string): StateMachineLoaderBuilder;
   child(obj: QmlObjectBuilder): StateMachineLoaderBuilder;
+  children(...objs: QmlObjectBuilder[]): StateMachineLoaderBuilder;
 
   dataModel(value: QmlValue): StateMachineLoaderBuilder;
   dataModelBind(expr: string): StateMachineLoaderBuilder;
@@ -16,11 +23,11 @@ export interface StateMachineLoaderBuilder {
   objectNameBind(expr: string): StateMachineLoaderBuilder;
   source(value: QmlUrl): StateMachineLoaderBuilder;
   sourceBind(expr: string): StateMachineLoaderBuilder;
-  onDataModelChanged(body: string): StateMachineLoaderBuilder;
-  onInitialValuesChanged(body: string): StateMachineLoaderBuilder;
-  onObjectNameChanged(body: string): StateMachineLoaderBuilder;
-  onSourceChanged(body: string): StateMachineLoaderBuilder;
-  onStateMachineChanged(body: string): StateMachineLoaderBuilder;
+  onDataModelChanged(handler: DslSignalHandlerValue): StateMachineLoaderBuilder;
+  onInitialValuesChanged(handler: DslSignalHandlerValue): StateMachineLoaderBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): StateMachineLoaderBuilder;
+  onSourceChanged(handler: DslSignalHandlerValue): StateMachineLoaderBuilder;
+  onStateMachineChanged(handler: DslSignalHandlerValue): StateMachineLoaderBuilder;
 }
 
 const STATEMACHINELOADER_META: TypeMetadata = {

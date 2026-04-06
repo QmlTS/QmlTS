@@ -2,7 +2,13 @@
 // Type: BorderImageMesh
 // Generated from Qt 6.11.0
 
-import type { QmlEnumToken, QmlObjectBuilder, QmlSize, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlEnumToken,
+  QmlObjectBuilder,
+  QmlSize,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { AccessibleAttachedBuilder } from './Accessible.js';
 import type { EnterKeyAttachedBuilder } from './EnterKey.js';
@@ -24,6 +30,7 @@ import type { ViewTransitionAttachedBuilder } from './ViewTransition.js';
 export interface BorderImageMeshBuilder {
   id(id: string): BorderImageMeshBuilder;
   child(obj: QmlObjectBuilder): BorderImageMeshBuilder;
+  children(...objs: QmlObjectBuilder[]): BorderImageMeshBuilder;
 
   horizontalTileMode(value: QmlEnumToken): BorderImageMeshBuilder;
   horizontalTileModeBind(expr: string): BorderImageMeshBuilder;
@@ -33,11 +40,11 @@ export interface BorderImageMeshBuilder {
   sizeBind(expr: string): BorderImageMeshBuilder;
   verticalTileMode(value: QmlEnumToken): BorderImageMeshBuilder;
   verticalTileModeBind(expr: string): BorderImageMeshBuilder;
-  onGeometryChanged(body: string): BorderImageMeshBuilder;
-  onHorizontalTileModeChanged(body: string): BorderImageMeshBuilder;
-  onObjectNameChanged(body: string): BorderImageMeshBuilder;
-  onSizeChanged(body: string): BorderImageMeshBuilder;
-  onVerticalTileModeChanged(body: string): BorderImageMeshBuilder;
+  onGeometryChanged(handler: DslSignalHandlerValue): BorderImageMeshBuilder;
+  onHorizontalTileModeChanged(handler: DslSignalHandlerValue): BorderImageMeshBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): BorderImageMeshBuilder;
+  onSizeChanged(handler: DslSignalHandlerValue): BorderImageMeshBuilder;
+  onVerticalTileModeChanged(handler: DslSignalHandlerValue): BorderImageMeshBuilder;
   border(setup: (b: BorderBuilder) => void): BorderImageMeshBuilder;
   accessible(setup: (b: AccessibleAttachedBuilder) => void): BorderImageMeshBuilder;
   drag(setup: (b: DragAttachedBuilder) => void): BorderImageMeshBuilder;

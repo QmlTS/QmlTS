@@ -2,11 +2,17 @@
 // Type: LidSensor
 // Generated from Qt 6.11.0
 
-import type { QmlEnumToken, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlEnumToken,
+  QmlObjectBuilder,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface LidSensorBuilder {
   id(id: string): LidSensorBuilder;
   child(obj: QmlObjectBuilder): LidSensorBuilder;
+  children(...objs: QmlObjectBuilder[]): LidSensorBuilder;
 
   active(value: boolean): LidSensorBuilder;
   activeBind(expr: string): LidSensorBuilder;
@@ -28,26 +34,26 @@ export interface LidSensorBuilder {
   skipDuplicatesBind(expr: string): LidSensorBuilder;
   userOrientation(value: number): LidSensorBuilder;
   userOrientationBind(expr: string): LidSensorBuilder;
-  onActiveChanged(body: string): LidSensorBuilder;
-  onAlwaysOnChanged(body: string): LidSensorBuilder;
-  onAvailableDataRatesChanged(body: string): LidSensorBuilder;
-  onAxesOrientationModeChanged(body: string): LidSensorBuilder;
-  onBufferSizeChanged(body: string): LidSensorBuilder;
-  onBusyChanged(body: string): LidSensorBuilder;
-  onConnectedToBackendChanged(body: string): LidSensorBuilder;
-  onCurrentOrientationChanged(body: string): LidSensorBuilder;
-  onDataRateChanged(body: string): LidSensorBuilder;
-  onDescriptionChanged(body: string): LidSensorBuilder;
-  onEfficientBufferSizeChanged(body: string): LidSensorBuilder;
-  onErrorChanged(body: string): LidSensorBuilder;
-  onIdentifierChanged(body: string): LidSensorBuilder;
-  onMaxBufferSizeChanged(body: string): LidSensorBuilder;
-  onObjectNameChanged(body: string): LidSensorBuilder;
-  onOutputRangeChanged(body: string): LidSensorBuilder;
-  onOutputRangesChanged(body: string): LidSensorBuilder;
-  onReadingChanged(body: string): LidSensorBuilder;
-  onSkipDuplicatesChanged(body: string): LidSensorBuilder;
-  onUserOrientationChanged(body: string): LidSensorBuilder;
+  onActiveChanged(handler: DslSignalHandlerValue): LidSensorBuilder;
+  onAlwaysOnChanged(handler: DslSignalHandlerValue): LidSensorBuilder;
+  onAvailableDataRatesChanged(handler: DslSignalHandlerValue): LidSensorBuilder;
+  onAxesOrientationModeChanged(handler: DslSignalHandlerValue): LidSensorBuilder;
+  onBufferSizeChanged(handler: DslSignalHandlerValue): LidSensorBuilder;
+  onBusyChanged(handler: DslSignalHandlerValue): LidSensorBuilder;
+  onConnectedToBackendChanged(handler: DslSignalHandlerValue): LidSensorBuilder;
+  onCurrentOrientationChanged(handler: DslSignalHandlerValue): LidSensorBuilder;
+  onDataRateChanged(handler: DslSignalHandlerValue): LidSensorBuilder;
+  onDescriptionChanged(handler: DslSignalHandlerValue): LidSensorBuilder;
+  onEfficientBufferSizeChanged(handler: DslSignalHandlerValue): LidSensorBuilder;
+  onErrorChanged(handler: DslSignalHandlerValue): LidSensorBuilder;
+  onIdentifierChanged(handler: DslSignalHandlerValue): LidSensorBuilder;
+  onMaxBufferSizeChanged(handler: DslSignalHandlerValue): LidSensorBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): LidSensorBuilder;
+  onOutputRangeChanged(handler: DslSignalHandlerValue): LidSensorBuilder;
+  onOutputRangesChanged(handler: DslSignalHandlerValue): LidSensorBuilder;
+  onReadingChanged(handler: DslSignalHandlerValue): LidSensorBuilder;
+  onSkipDuplicatesChanged(handler: DslSignalHandlerValue): LidSensorBuilder;
+  onUserOrientationChanged(handler: DslSignalHandlerValue): LidSensorBuilder;
 }
 
 const LIDSENSOR_META: TypeMetadata = {

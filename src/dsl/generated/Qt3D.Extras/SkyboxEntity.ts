@@ -2,11 +2,17 @@
 // Type: SkyboxEntity
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 export interface SkyboxEntityBuilder {
   id(id: string): SkyboxEntityBuilder;
   child(obj: QmlObjectBuilder): SkyboxEntityBuilder;
+  children(...objs: QmlObjectBuilder[]): SkyboxEntityBuilder;
 
   baseName(value: string): SkyboxEntityBuilder;
   baseNameBind(expr: string): SkyboxEntityBuilder;
@@ -20,13 +26,13 @@ export interface SkyboxEntityBuilder {
   objectNameBind(expr: string): SkyboxEntityBuilder;
   parent(value: QmlValue): SkyboxEntityBuilder;
   parentBind(expr: string): SkyboxEntityBuilder;
-  onBaseNameChanged(body: string): SkyboxEntityBuilder;
-  onEnabledChanged(body: string): SkyboxEntityBuilder;
-  onExtensionChanged(body: string): SkyboxEntityBuilder;
-  onGammaCorrectEnabledChanged(body: string): SkyboxEntityBuilder;
-  onNodeDestroyed(body: string): SkyboxEntityBuilder;
-  onObjectNameChanged(body: string): SkyboxEntityBuilder;
-  onParentChanged(body: string): SkyboxEntityBuilder;
+  onBaseNameChanged(handler: DslSignalHandlerValue): SkyboxEntityBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): SkyboxEntityBuilder;
+  onExtensionChanged(handler: DslSignalHandlerValue): SkyboxEntityBuilder;
+  onGammaCorrectEnabledChanged(handler: DslSignalHandlerValue): SkyboxEntityBuilder;
+  onNodeDestroyed(handler: DslSignalHandlerValue): SkyboxEntityBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): SkyboxEntityBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): SkyboxEntityBuilder;
 }
 
 const SKYBOXENTITY_META: TypeMetadata = {

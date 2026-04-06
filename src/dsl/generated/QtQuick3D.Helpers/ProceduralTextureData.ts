@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlEnumToken,
   QmlObjectBuilder,
   QmlValue,
@@ -12,6 +13,7 @@ import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface ProceduralTextureDataBuilder {
   id(id: string): ProceduralTextureDataBuilder;
   child(obj: QmlObjectBuilder): ProceduralTextureDataBuilder;
+  children(...objs: QmlObjectBuilder[]): ProceduralTextureDataBuilder;
 
   depth(value: number): ProceduralTextureDataBuilder;
   depthBind(expr: string): ProceduralTextureDataBuilder;
@@ -31,17 +33,17 @@ export interface ProceduralTextureDataBuilder {
   textureDataBind(expr: string): ProceduralTextureDataBuilder;
   width(value: number): ProceduralTextureDataBuilder;
   widthBind(expr: string): ProceduralTextureDataBuilder;
-  onChildrenChanged(body: string): ProceduralTextureDataBuilder;
-  onDepthChanged(body: string): ProceduralTextureDataBuilder;
-  onFormatChanged(body: string): ProceduralTextureDataBuilder;
-  onHasTransparencyChanged(body: string): ProceduralTextureDataBuilder;
-  onHeightChanged(body: string): ProceduralTextureDataBuilder;
-  onObjectNameChanged(body: string): ProceduralTextureDataBuilder;
-  onParentChanged(body: string): ProceduralTextureDataBuilder;
-  onStateChanged(body: string): ProceduralTextureDataBuilder;
-  onTextureDataChanged(body: string): ProceduralTextureDataBuilder;
-  onTextureDataNodeDirty(body: string): ProceduralTextureDataBuilder;
-  onWidthChanged(body: string): ProceduralTextureDataBuilder;
+  onChildrenChanged(handler: DslSignalHandlerValue): ProceduralTextureDataBuilder;
+  onDepthChanged(handler: DslSignalHandlerValue): ProceduralTextureDataBuilder;
+  onFormatChanged(handler: DslSignalHandlerValue): ProceduralTextureDataBuilder;
+  onHasTransparencyChanged(handler: DslSignalHandlerValue): ProceduralTextureDataBuilder;
+  onHeightChanged(handler: DslSignalHandlerValue): ProceduralTextureDataBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): ProceduralTextureDataBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): ProceduralTextureDataBuilder;
+  onStateChanged(handler: DslSignalHandlerValue): ProceduralTextureDataBuilder;
+  onTextureDataChanged(handler: DslSignalHandlerValue): ProceduralTextureDataBuilder;
+  onTextureDataNodeDirty(handler: DslSignalHandlerValue): ProceduralTextureDataBuilder;
+  onWidthChanged(handler: DslSignalHandlerValue): ProceduralTextureDataBuilder;
 }
 
 const PROCEDURALTEXTUREDATA_META: TypeMetadata = {

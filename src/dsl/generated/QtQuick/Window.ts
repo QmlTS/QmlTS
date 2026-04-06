@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlColor,
   QmlEnumToken,
   QmlObjectBuilder,
@@ -30,6 +31,7 @@ import type { ViewTransitionAttachedBuilder } from './ViewTransition.js';
 export interface WindowBuilder {
   id(id: string): WindowBuilder;
   child(obj: QmlObjectBuilder): WindowBuilder;
+  children(...objs: QmlObjectBuilder[]): WindowBuilder;
 
   color(value: QmlColor): WindowBuilder;
   colorBind(expr: string): WindowBuilder;
@@ -71,48 +73,48 @@ export interface WindowBuilder {
   xBind(expr: string): WindowBuilder;
   y(value: number): WindowBuilder;
   yBind(expr: string): WindowBuilder;
-  onActiveChanged(body: string): WindowBuilder;
-  onActiveFocusItemChanged(body: string): WindowBuilder;
-  onAfterAnimating(body: string): WindowBuilder;
-  onAfterFrameEnd(body: string): WindowBuilder;
-  onAfterRenderPassRecording(body: string): WindowBuilder;
-  onAfterRendering(body: string): WindowBuilder;
-  onAfterSynchronizing(body: string): WindowBuilder;
-  onBeforeFrameBegin(body: string): WindowBuilder;
-  onBeforeRenderPassRecording(body: string): WindowBuilder;
-  onBeforeRendering(body: string): WindowBuilder;
-  onBeforeSynchronizing(body: string): WindowBuilder;
-  onClosing(body: string): WindowBuilder;
-  onColorChanged(body: string): WindowBuilder;
-  onContentOrientationChanged(body: string): WindowBuilder;
-  onDevicePixelRatioChanged(body: string): WindowBuilder;
-  onFlagsChanged(body: string): WindowBuilder;
-  onFocusObjectChanged(body: string): WindowBuilder;
-  onFrameSwapped(body: string): WindowBuilder;
-  onHeightChanged(body: string): WindowBuilder;
-  onMaximumHeightChanged(body: string): WindowBuilder;
-  onMaximumWidthChanged(body: string): WindowBuilder;
-  onMinimumHeightChanged(body: string): WindowBuilder;
-  onMinimumWidthChanged(body: string): WindowBuilder;
-  onModalityChanged(body: string): WindowBuilder;
-  onObjectNameChanged(body: string): WindowBuilder;
-  onOpacityChanged(body: string): WindowBuilder;
-  onPaletteChanged(body: string): WindowBuilder;
-  onPaletteCreated(body: string): WindowBuilder;
-  onSafeAreaMarginsChanged(body: string): WindowBuilder;
-  onSceneGraphAboutToStop(body: string): WindowBuilder;
-  onSceneGraphError(body: string): WindowBuilder;
-  onSceneGraphInitialized(body: string): WindowBuilder;
-  onSceneGraphInvalidated(body: string): WindowBuilder;
-  onScreenChanged(body: string): WindowBuilder;
-  onTransientParentChanged(body: string): WindowBuilder;
-  onVisibilityChanged(body: string): WindowBuilder;
-  onVisibleChanged(body: string): WindowBuilder;
-  onWidthChanged(body: string): WindowBuilder;
-  onWindowStateChanged(body: string): WindowBuilder;
-  onWindowTitleChanged(body: string): WindowBuilder;
-  onXChanged(body: string): WindowBuilder;
-  onYChanged(body: string): WindowBuilder;
+  onActiveChanged(handler: DslSignalHandlerValue): WindowBuilder;
+  onActiveFocusItemChanged(handler: DslSignalHandlerValue): WindowBuilder;
+  onAfterAnimating(handler: DslSignalHandlerValue): WindowBuilder;
+  onAfterFrameEnd(handler: DslSignalHandlerValue): WindowBuilder;
+  onAfterRenderPassRecording(handler: DslSignalHandlerValue): WindowBuilder;
+  onAfterRendering(handler: DslSignalHandlerValue): WindowBuilder;
+  onAfterSynchronizing(handler: DslSignalHandlerValue): WindowBuilder;
+  onBeforeFrameBegin(handler: DslSignalHandlerValue): WindowBuilder;
+  onBeforeRenderPassRecording(handler: DslSignalHandlerValue): WindowBuilder;
+  onBeforeRendering(handler: DslSignalHandlerValue): WindowBuilder;
+  onBeforeSynchronizing(handler: DslSignalHandlerValue): WindowBuilder;
+  onClosing(handler: DslSignalHandlerValue): WindowBuilder;
+  onColorChanged(handler: DslSignalHandlerValue): WindowBuilder;
+  onContentOrientationChanged(handler: DslSignalHandlerValue): WindowBuilder;
+  onDevicePixelRatioChanged(handler: DslSignalHandlerValue): WindowBuilder;
+  onFlagsChanged(handler: DslSignalHandlerValue): WindowBuilder;
+  onFocusObjectChanged(handler: DslSignalHandlerValue): WindowBuilder;
+  onFrameSwapped(handler: DslSignalHandlerValue): WindowBuilder;
+  onHeightChanged(handler: DslSignalHandlerValue): WindowBuilder;
+  onMaximumHeightChanged(handler: DslSignalHandlerValue): WindowBuilder;
+  onMaximumWidthChanged(handler: DslSignalHandlerValue): WindowBuilder;
+  onMinimumHeightChanged(handler: DslSignalHandlerValue): WindowBuilder;
+  onMinimumWidthChanged(handler: DslSignalHandlerValue): WindowBuilder;
+  onModalityChanged(handler: DslSignalHandlerValue): WindowBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): WindowBuilder;
+  onOpacityChanged(handler: DslSignalHandlerValue): WindowBuilder;
+  onPaletteChanged(handler: DslSignalHandlerValue): WindowBuilder;
+  onPaletteCreated(handler: DslSignalHandlerValue): WindowBuilder;
+  onSafeAreaMarginsChanged(handler: DslSignalHandlerValue): WindowBuilder;
+  onSceneGraphAboutToStop(handler: DslSignalHandlerValue): WindowBuilder;
+  onSceneGraphError(handler: DslSignalHandlerValue): WindowBuilder;
+  onSceneGraphInitialized(handler: DslSignalHandlerValue): WindowBuilder;
+  onSceneGraphInvalidated(handler: DslSignalHandlerValue): WindowBuilder;
+  onScreenChanged(handler: DslSignalHandlerValue): WindowBuilder;
+  onTransientParentChanged(handler: DslSignalHandlerValue): WindowBuilder;
+  onVisibilityChanged(handler: DslSignalHandlerValue): WindowBuilder;
+  onVisibleChanged(handler: DslSignalHandlerValue): WindowBuilder;
+  onWidthChanged(handler: DslSignalHandlerValue): WindowBuilder;
+  onWindowStateChanged(handler: DslSignalHandlerValue): WindowBuilder;
+  onWindowTitleChanged(handler: DslSignalHandlerValue): WindowBuilder;
+  onXChanged(handler: DslSignalHandlerValue): WindowBuilder;
+  onYChanged(handler: DslSignalHandlerValue): WindowBuilder;
   accessible(setup: (b: AccessibleAttachedBuilder) => void): WindowBuilder;
   drag(setup: (b: DragAttachedBuilder) => void): WindowBuilder;
   enterKey(setup: (b: EnterKeyAttachedBuilder) => void): WindowBuilder;

@@ -2,12 +2,18 @@
 // Type: TextToSpeech
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { VoiceSelectorAttachedBuilder } from './VoiceSelector.js';
 export interface TextToSpeechBuilder {
   id(id: string): TextToSpeechBuilder;
   child(obj: QmlObjectBuilder): TextToSpeechBuilder;
+  children(...objs: QmlObjectBuilder[]): TextToSpeechBuilder;
 
   engine(value: string): TextToSpeechBuilder;
   engineBind(expr: string): TextToSpeechBuilder;
@@ -25,18 +31,18 @@ export interface TextToSpeechBuilder {
   voiceBind(expr: string): TextToSpeechBuilder;
   volume(value: number): TextToSpeechBuilder;
   volumeBind(expr: string): TextToSpeechBuilder;
-  onAboutToSynthesize(body: string): TextToSpeechBuilder;
-  onEngineChanged(body: string): TextToSpeechBuilder;
-  onEngineParametersChanged(body: string): TextToSpeechBuilder;
-  onErrorOccurred(body: string): TextToSpeechBuilder;
-  onLocaleChanged(body: string): TextToSpeechBuilder;
-  onObjectNameChanged(body: string): TextToSpeechBuilder;
-  onPitchChanged(body: string): TextToSpeechBuilder;
-  onRateChanged(body: string): TextToSpeechBuilder;
-  onSayingWord(body: string): TextToSpeechBuilder;
-  onStateChanged(body: string): TextToSpeechBuilder;
-  onVoiceChanged(body: string): TextToSpeechBuilder;
-  onVolumeChanged(body: string): TextToSpeechBuilder;
+  onAboutToSynthesize(handler: DslSignalHandlerValue): TextToSpeechBuilder;
+  onEngineChanged(handler: DslSignalHandlerValue): TextToSpeechBuilder;
+  onEngineParametersChanged(handler: DslSignalHandlerValue): TextToSpeechBuilder;
+  onErrorOccurred(handler: DslSignalHandlerValue): TextToSpeechBuilder;
+  onLocaleChanged(handler: DslSignalHandlerValue): TextToSpeechBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): TextToSpeechBuilder;
+  onPitchChanged(handler: DslSignalHandlerValue): TextToSpeechBuilder;
+  onRateChanged(handler: DslSignalHandlerValue): TextToSpeechBuilder;
+  onSayingWord(handler: DslSignalHandlerValue): TextToSpeechBuilder;
+  onStateChanged(handler: DslSignalHandlerValue): TextToSpeechBuilder;
+  onVoiceChanged(handler: DslSignalHandlerValue): TextToSpeechBuilder;
+  onVolumeChanged(handler: DslSignalHandlerValue): TextToSpeechBuilder;
   voiceSelector(setup: (b: VoiceSelectorAttachedBuilder) => void): TextToSpeechBuilder;
 }
 

@@ -2,16 +2,17 @@
 // Type: QtObject
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import type { DslSignalHandlerValue, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 import type { ComponentAttachedBuilder } from './QQmlComponentAttached.js';
 export interface QtObjectBuilder {
   id(id: string): QtObjectBuilder;
   child(obj: QmlObjectBuilder): QtObjectBuilder;
+  children(...objs: QmlObjectBuilder[]): QtObjectBuilder;
 
   objectName(value: string): QtObjectBuilder;
   objectNameBind(expr: string): QtObjectBuilder;
-  onObjectNameChanged(body: string): QtObjectBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): QtObjectBuilder;
   component(setup: (b: ComponentAttachedBuilder) => void): QtObjectBuilder;
 }
 

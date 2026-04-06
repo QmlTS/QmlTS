@@ -2,11 +2,17 @@
 // Type: ColorMask
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 export interface ColorMaskBuilder {
   id(id: string): ColorMaskBuilder;
   child(obj: QmlObjectBuilder): ColorMaskBuilder;
+  children(...objs: QmlObjectBuilder[]): ColorMaskBuilder;
 
   alphaMasked(value: boolean): ColorMaskBuilder;
   alphaMaskedBind(expr: string): ColorMaskBuilder;
@@ -22,14 +28,14 @@ export interface ColorMaskBuilder {
   parentBind(expr: string): ColorMaskBuilder;
   redMasked(value: boolean): ColorMaskBuilder;
   redMaskedBind(expr: string): ColorMaskBuilder;
-  onAlphaMaskedChanged(body: string): ColorMaskBuilder;
-  onBlueMaskedChanged(body: string): ColorMaskBuilder;
-  onEnabledChanged(body: string): ColorMaskBuilder;
-  onGreenMaskedChanged(body: string): ColorMaskBuilder;
-  onNodeDestroyed(body: string): ColorMaskBuilder;
-  onObjectNameChanged(body: string): ColorMaskBuilder;
-  onParentChanged(body: string): ColorMaskBuilder;
-  onRedMaskedChanged(body: string): ColorMaskBuilder;
+  onAlphaMaskedChanged(handler: DslSignalHandlerValue): ColorMaskBuilder;
+  onBlueMaskedChanged(handler: DslSignalHandlerValue): ColorMaskBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): ColorMaskBuilder;
+  onGreenMaskedChanged(handler: DslSignalHandlerValue): ColorMaskBuilder;
+  onNodeDestroyed(handler: DslSignalHandlerValue): ColorMaskBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): ColorMaskBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): ColorMaskBuilder;
+  onRedMaskedChanged(handler: DslSignalHandlerValue): ColorMaskBuilder;
 }
 
 const COLORMASK_META: TypeMetadata = {

@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlColor,
   QmlEnumToken,
   QmlObjectBuilder,
@@ -13,6 +14,7 @@ import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface ProceduralSkyTextureDataBuilder {
   id(id: string): ProceduralSkyTextureDataBuilder;
   child(obj: QmlObjectBuilder): ProceduralSkyTextureDataBuilder;
+  children(...objs: QmlObjectBuilder[]): ProceduralSkyTextureDataBuilder;
 
   groundBottomColor(value: QmlColor): ProceduralSkyTextureDataBuilder;
   groundBottomColorBind(expr: string): ProceduralSkyTextureDataBuilder;
@@ -52,27 +54,27 @@ export interface ProceduralSkyTextureDataBuilder {
   sunLongitudeBind(expr: string): ProceduralSkyTextureDataBuilder;
   textureQuality(value: QmlEnumToken): ProceduralSkyTextureDataBuilder;
   textureQualityBind(expr: string): ProceduralSkyTextureDataBuilder;
-  onChildrenChanged(body: string): ProceduralSkyTextureDataBuilder;
-  onGroundBottomColorChanged(body: string): ProceduralSkyTextureDataBuilder;
-  onGroundCurveChanged(body: string): ProceduralSkyTextureDataBuilder;
-  onGroundEnergyChanged(body: string): ProceduralSkyTextureDataBuilder;
-  onGroundHorizonColorChanged(body: string): ProceduralSkyTextureDataBuilder;
-  onObjectNameChanged(body: string): ProceduralSkyTextureDataBuilder;
-  onParentChanged(body: string): ProceduralSkyTextureDataBuilder;
-  onSkyCurveChanged(body: string): ProceduralSkyTextureDataBuilder;
-  onSkyEnergyChanged(body: string): ProceduralSkyTextureDataBuilder;
-  onSkyHorizonColorChanged(body: string): ProceduralSkyTextureDataBuilder;
-  onSkyTopColorChanged(body: string): ProceduralSkyTextureDataBuilder;
-  onStateChanged(body: string): ProceduralSkyTextureDataBuilder;
-  onSunAngleMaxChanged(body: string): ProceduralSkyTextureDataBuilder;
-  onSunAngleMinChanged(body: string): ProceduralSkyTextureDataBuilder;
-  onSunColorChanged(body: string): ProceduralSkyTextureDataBuilder;
-  onSunCurveChanged(body: string): ProceduralSkyTextureDataBuilder;
-  onSunEnergyChanged(body: string): ProceduralSkyTextureDataBuilder;
-  onSunLatitudeChanged(body: string): ProceduralSkyTextureDataBuilder;
-  onSunLongitudeChanged(body: string): ProceduralSkyTextureDataBuilder;
-  onTextureDataNodeDirty(body: string): ProceduralSkyTextureDataBuilder;
-  onTextureQualityChanged(body: string): ProceduralSkyTextureDataBuilder;
+  onChildrenChanged(handler: DslSignalHandlerValue): ProceduralSkyTextureDataBuilder;
+  onGroundBottomColorChanged(handler: DslSignalHandlerValue): ProceduralSkyTextureDataBuilder;
+  onGroundCurveChanged(handler: DslSignalHandlerValue): ProceduralSkyTextureDataBuilder;
+  onGroundEnergyChanged(handler: DslSignalHandlerValue): ProceduralSkyTextureDataBuilder;
+  onGroundHorizonColorChanged(handler: DslSignalHandlerValue): ProceduralSkyTextureDataBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): ProceduralSkyTextureDataBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): ProceduralSkyTextureDataBuilder;
+  onSkyCurveChanged(handler: DslSignalHandlerValue): ProceduralSkyTextureDataBuilder;
+  onSkyEnergyChanged(handler: DslSignalHandlerValue): ProceduralSkyTextureDataBuilder;
+  onSkyHorizonColorChanged(handler: DslSignalHandlerValue): ProceduralSkyTextureDataBuilder;
+  onSkyTopColorChanged(handler: DslSignalHandlerValue): ProceduralSkyTextureDataBuilder;
+  onStateChanged(handler: DslSignalHandlerValue): ProceduralSkyTextureDataBuilder;
+  onSunAngleMaxChanged(handler: DslSignalHandlerValue): ProceduralSkyTextureDataBuilder;
+  onSunAngleMinChanged(handler: DslSignalHandlerValue): ProceduralSkyTextureDataBuilder;
+  onSunColorChanged(handler: DslSignalHandlerValue): ProceduralSkyTextureDataBuilder;
+  onSunCurveChanged(handler: DslSignalHandlerValue): ProceduralSkyTextureDataBuilder;
+  onSunEnergyChanged(handler: DslSignalHandlerValue): ProceduralSkyTextureDataBuilder;
+  onSunLatitudeChanged(handler: DslSignalHandlerValue): ProceduralSkyTextureDataBuilder;
+  onSunLongitudeChanged(handler: DslSignalHandlerValue): ProceduralSkyTextureDataBuilder;
+  onTextureDataNodeDirty(handler: DslSignalHandlerValue): ProceduralSkyTextureDataBuilder;
+  onTextureQualityChanged(handler: DslSignalHandlerValue): ProceduralSkyTextureDataBuilder;
 }
 
 const PROCEDURALSKYTEXTUREDATA_META: TypeMetadata = {

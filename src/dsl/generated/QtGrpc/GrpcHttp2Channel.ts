@@ -2,12 +2,18 @@
 // Type: GrpcHttp2Channel
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlUrl, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlObjectBuilder,
+  QmlUrl,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 import type { GrpcChannelOptionsBuilder } from './GrpcChannelOptions.js';
 export interface GrpcHttp2ChannelBuilder {
   id(id: string): GrpcHttp2ChannelBuilder;
   child(obj: QmlObjectBuilder): GrpcHttp2ChannelBuilder;
+  children(...objs: QmlObjectBuilder[]): GrpcHttp2ChannelBuilder;
 
   hostUri(value: QmlUrl): GrpcHttp2ChannelBuilder;
   hostUriBind(expr: string): GrpcHttp2ChannelBuilder;
@@ -15,10 +21,10 @@ export interface GrpcHttp2ChannelBuilder {
   objectNameBind(expr: string): GrpcHttp2ChannelBuilder;
   options(value: GrpcChannelOptionsBuilder): GrpcHttp2ChannelBuilder;
   optionsBind(expr: string): GrpcHttp2ChannelBuilder;
-  onChannelUpdated(body: string): GrpcHttp2ChannelBuilder;
-  onHostUriChanged(body: string): GrpcHttp2ChannelBuilder;
-  onObjectNameChanged(body: string): GrpcHttp2ChannelBuilder;
-  onOptionsChanged(body: string): GrpcHttp2ChannelBuilder;
+  onChannelUpdated(handler: DslSignalHandlerValue): GrpcHttp2ChannelBuilder;
+  onHostUriChanged(handler: DslSignalHandlerValue): GrpcHttp2ChannelBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): GrpcHttp2ChannelBuilder;
+  onOptionsChanged(handler: DslSignalHandlerValue): GrpcHttp2ChannelBuilder;
 }
 
 const GRPCHTTP2CHANNEL_META: TypeMetadata = {

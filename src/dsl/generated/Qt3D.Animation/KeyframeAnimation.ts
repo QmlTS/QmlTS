@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlEnumToken,
   QmlObjectBuilder,
   QmlValue,
@@ -13,6 +14,7 @@ import type { TransformBuilder } from '../Qt3D.Core/Transform.js';
 export interface KeyframeAnimationBuilder {
   id(id: string): KeyframeAnimationBuilder;
   child(obj: QmlObjectBuilder): KeyframeAnimationBuilder;
+  children(...objs: QmlObjectBuilder[]): KeyframeAnimationBuilder;
 
   animationName(value: string): KeyframeAnimationBuilder;
   animationNameBind(expr: string): KeyframeAnimationBuilder;
@@ -32,16 +34,16 @@ export interface KeyframeAnimationBuilder {
   targetBind(expr: string): KeyframeAnimationBuilder;
   targetName(value: string): KeyframeAnimationBuilder;
   targetNameBind(expr: string): KeyframeAnimationBuilder;
-  onAnimationNameChanged(body: string): KeyframeAnimationBuilder;
-  onDurationChanged(body: string): KeyframeAnimationBuilder;
-  onEasingChanged(body: string): KeyframeAnimationBuilder;
-  onEndModeChanged(body: string): KeyframeAnimationBuilder;
-  onFramePositionsChanged(body: string): KeyframeAnimationBuilder;
-  onObjectNameChanged(body: string): KeyframeAnimationBuilder;
-  onPositionChanged(body: string): KeyframeAnimationBuilder;
-  onStartModeChanged(body: string): KeyframeAnimationBuilder;
-  onTargetChanged(body: string): KeyframeAnimationBuilder;
-  onTargetNameChanged(body: string): KeyframeAnimationBuilder;
+  onAnimationNameChanged(handler: DslSignalHandlerValue): KeyframeAnimationBuilder;
+  onDurationChanged(handler: DslSignalHandlerValue): KeyframeAnimationBuilder;
+  onEasingChanged(handler: DslSignalHandlerValue): KeyframeAnimationBuilder;
+  onEndModeChanged(handler: DslSignalHandlerValue): KeyframeAnimationBuilder;
+  onFramePositionsChanged(handler: DslSignalHandlerValue): KeyframeAnimationBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): KeyframeAnimationBuilder;
+  onPositionChanged(handler: DslSignalHandlerValue): KeyframeAnimationBuilder;
+  onStartModeChanged(handler: DslSignalHandlerValue): KeyframeAnimationBuilder;
+  onTargetChanged(handler: DslSignalHandlerValue): KeyframeAnimationBuilder;
+  onTargetNameChanged(handler: DslSignalHandlerValue): KeyframeAnimationBuilder;
 }
 
 const KEYFRAMEANIMATION_META: TypeMetadata = {

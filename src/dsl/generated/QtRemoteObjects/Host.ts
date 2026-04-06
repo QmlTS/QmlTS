@@ -2,11 +2,18 @@
 // Type: Host
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlUrl, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlObjectBuilder,
+  QmlUrl,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface HostBuilder {
   id(id: string): HostBuilder;
   child(obj: QmlObjectBuilder): HostBuilder;
+  children(...objs: QmlObjectBuilder[]): HostBuilder;
 
   heartbeatInterval(value: number): HostBuilder;
   heartbeatIntervalBind(expr: string): HostBuilder;
@@ -18,12 +25,12 @@ export interface HostBuilder {
   persistedStoreBind(expr: string): HostBuilder;
   registryUrl(value: QmlUrl): HostBuilder;
   registryUrlBind(expr: string): HostBuilder;
-  onError(body: string): HostBuilder;
-  onHeartbeatIntervalChanged(body: string): HostBuilder;
-  onHostUrlChanged(body: string): HostBuilder;
-  onObjectNameChanged(body: string): HostBuilder;
-  onRemoteObjectAdded(body: string): HostBuilder;
-  onRemoteObjectRemoved(body: string): HostBuilder;
+  onError(handler: DslSignalHandlerValue): HostBuilder;
+  onHeartbeatIntervalChanged(handler: DslSignalHandlerValue): HostBuilder;
+  onHostUrlChanged(handler: DslSignalHandlerValue): HostBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): HostBuilder;
+  onRemoteObjectAdded(handler: DslSignalHandlerValue): HostBuilder;
+  onRemoteObjectRemoved(handler: DslSignalHandlerValue): HostBuilder;
 }
 
 const HOST_META: TypeMetadata = {

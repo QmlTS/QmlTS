@@ -2,7 +2,12 @@
 // Type: DoubleValidator
 // Generated from Qt 6.11.0
 
-import type { QmlEnumToken, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlEnumToken,
+  QmlObjectBuilder,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { AccessibleAttachedBuilder } from './Accessible.js';
 import type { EnterKeyAttachedBuilder } from './EnterKey.js';
@@ -23,6 +28,7 @@ import type { ViewTransitionAttachedBuilder } from './ViewTransition.js';
 export interface DoubleValidatorBuilder {
   id(id: string): DoubleValidatorBuilder;
   child(obj: QmlObjectBuilder): DoubleValidatorBuilder;
+  children(...objs: QmlObjectBuilder[]): DoubleValidatorBuilder;
 
   bottom(value: number): DoubleValidatorBuilder;
   bottomBind(expr: string): DoubleValidatorBuilder;
@@ -36,13 +42,13 @@ export interface DoubleValidatorBuilder {
   objectNameBind(expr: string): DoubleValidatorBuilder;
   top(value: number): DoubleValidatorBuilder;
   topBind(expr: string): DoubleValidatorBuilder;
-  onBottomChanged(body: string): DoubleValidatorBuilder;
-  onChanged(body: string): DoubleValidatorBuilder;
-  onDecimalsChanged(body: string): DoubleValidatorBuilder;
-  onLocaleNameChanged(body: string): DoubleValidatorBuilder;
-  onNotationChanged(body: string): DoubleValidatorBuilder;
-  onObjectNameChanged(body: string): DoubleValidatorBuilder;
-  onTopChanged(body: string): DoubleValidatorBuilder;
+  onBottomChanged(handler: DslSignalHandlerValue): DoubleValidatorBuilder;
+  onChanged(handler: DslSignalHandlerValue): DoubleValidatorBuilder;
+  onDecimalsChanged(handler: DslSignalHandlerValue): DoubleValidatorBuilder;
+  onLocaleNameChanged(handler: DslSignalHandlerValue): DoubleValidatorBuilder;
+  onNotationChanged(handler: DslSignalHandlerValue): DoubleValidatorBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): DoubleValidatorBuilder;
+  onTopChanged(handler: DslSignalHandlerValue): DoubleValidatorBuilder;
   accessible(setup: (b: AccessibleAttachedBuilder) => void): DoubleValidatorBuilder;
   drag(setup: (b: DragAttachedBuilder) => void): DoubleValidatorBuilder;
   enterKey(setup: (b: EnterKeyAttachedBuilder) => void): DoubleValidatorBuilder;

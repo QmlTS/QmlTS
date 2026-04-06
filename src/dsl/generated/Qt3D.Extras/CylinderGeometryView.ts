@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlEnumToken,
   QmlObjectBuilder,
   QmlValue,
@@ -13,6 +14,7 @@ import type { GeometryBuilder } from '../Qt3D.Core/Geometry.js';
 export interface CylinderGeometryViewBuilder {
   id(id: string): CylinderGeometryViewBuilder;
   child(obj: QmlObjectBuilder): CylinderGeometryViewBuilder;
+  children(...objs: QmlObjectBuilder[]): CylinderGeometryViewBuilder;
 
   enabled(value: boolean): CylinderGeometryViewBuilder;
   enabledBind(expr: string): CylinderGeometryViewBuilder;
@@ -50,25 +52,25 @@ export interface CylinderGeometryViewBuilder {
   vertexCountBind(expr: string): CylinderGeometryViewBuilder;
   verticesPerPatch(value: number): CylinderGeometryViewBuilder;
   verticesPerPatchBind(expr: string): CylinderGeometryViewBuilder;
-  onEnabledChanged(body: string): CylinderGeometryViewBuilder;
-  onFirstInstanceChanged(body: string): CylinderGeometryViewBuilder;
-  onFirstVertexChanged(body: string): CylinderGeometryViewBuilder;
-  onGeometryChanged(body: string): CylinderGeometryViewBuilder;
-  onIndexBufferByteOffsetChanged(body: string): CylinderGeometryViewBuilder;
-  onIndexOffsetChanged(body: string): CylinderGeometryViewBuilder;
-  onInstanceCountChanged(body: string): CylinderGeometryViewBuilder;
-  onLengthChanged(body: string): CylinderGeometryViewBuilder;
-  onNodeDestroyed(body: string): CylinderGeometryViewBuilder;
-  onObjectNameChanged(body: string): CylinderGeometryViewBuilder;
-  onParentChanged(body: string): CylinderGeometryViewBuilder;
-  onPrimitiveRestartEnabledChanged(body: string): CylinderGeometryViewBuilder;
-  onPrimitiveTypeChanged(body: string): CylinderGeometryViewBuilder;
-  onRadiusChanged(body: string): CylinderGeometryViewBuilder;
-  onRestartIndexValueChanged(body: string): CylinderGeometryViewBuilder;
-  onRingsChanged(body: string): CylinderGeometryViewBuilder;
-  onSlicesChanged(body: string): CylinderGeometryViewBuilder;
-  onVertexCountChanged(body: string): CylinderGeometryViewBuilder;
-  onVerticesPerPatchChanged(body: string): CylinderGeometryViewBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): CylinderGeometryViewBuilder;
+  onFirstInstanceChanged(handler: DslSignalHandlerValue): CylinderGeometryViewBuilder;
+  onFirstVertexChanged(handler: DslSignalHandlerValue): CylinderGeometryViewBuilder;
+  onGeometryChanged(handler: DslSignalHandlerValue): CylinderGeometryViewBuilder;
+  onIndexBufferByteOffsetChanged(handler: DslSignalHandlerValue): CylinderGeometryViewBuilder;
+  onIndexOffsetChanged(handler: DslSignalHandlerValue): CylinderGeometryViewBuilder;
+  onInstanceCountChanged(handler: DslSignalHandlerValue): CylinderGeometryViewBuilder;
+  onLengthChanged(handler: DslSignalHandlerValue): CylinderGeometryViewBuilder;
+  onNodeDestroyed(handler: DslSignalHandlerValue): CylinderGeometryViewBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): CylinderGeometryViewBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): CylinderGeometryViewBuilder;
+  onPrimitiveRestartEnabledChanged(handler: DslSignalHandlerValue): CylinderGeometryViewBuilder;
+  onPrimitiveTypeChanged(handler: DslSignalHandlerValue): CylinderGeometryViewBuilder;
+  onRadiusChanged(handler: DslSignalHandlerValue): CylinderGeometryViewBuilder;
+  onRestartIndexValueChanged(handler: DslSignalHandlerValue): CylinderGeometryViewBuilder;
+  onRingsChanged(handler: DslSignalHandlerValue): CylinderGeometryViewBuilder;
+  onSlicesChanged(handler: DslSignalHandlerValue): CylinderGeometryViewBuilder;
+  onVertexCountChanged(handler: DslSignalHandlerValue): CylinderGeometryViewBuilder;
+  onVerticesPerPatchChanged(handler: DslSignalHandlerValue): CylinderGeometryViewBuilder;
 }
 
 const CYLINDERGEOMETRYVIEW_META: TypeMetadata = {

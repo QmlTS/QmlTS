@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlEnumToken,
   QmlObjectBuilder,
   QmlRect,
@@ -14,6 +15,7 @@ import type { RenderTargetBuilder } from './RenderTarget.js';
 export interface BlitFramebufferBuilder {
   id(id: string): BlitFramebufferBuilder;
   child(obj: QmlObjectBuilder): BlitFramebufferBuilder;
+  children(...objs: QmlObjectBuilder[]): BlitFramebufferBuilder;
 
   destination(value: RenderTargetBuilder): BlitFramebufferBuilder;
   destinationBind(expr: string): BlitFramebufferBuilder;
@@ -35,17 +37,17 @@ export interface BlitFramebufferBuilder {
   sourceAttachmentPointBind(expr: string): BlitFramebufferBuilder;
   sourceRect(value: QmlRect): BlitFramebufferBuilder;
   sourceRectBind(expr: string): BlitFramebufferBuilder;
-  onDestinationAttachmentPointChanged(body: string): BlitFramebufferBuilder;
-  onDestinationChanged(body: string): BlitFramebufferBuilder;
-  onDestinationRectChanged(body: string): BlitFramebufferBuilder;
-  onEnabledChanged(body: string): BlitFramebufferBuilder;
-  onInterpolationMethodChanged(body: string): BlitFramebufferBuilder;
-  onNodeDestroyed(body: string): BlitFramebufferBuilder;
-  onObjectNameChanged(body: string): BlitFramebufferBuilder;
-  onParentChanged(body: string): BlitFramebufferBuilder;
-  onSourceAttachmentPointChanged(body: string): BlitFramebufferBuilder;
-  onSourceChanged(body: string): BlitFramebufferBuilder;
-  onSourceRectChanged(body: string): BlitFramebufferBuilder;
+  onDestinationAttachmentPointChanged(handler: DslSignalHandlerValue): BlitFramebufferBuilder;
+  onDestinationChanged(handler: DslSignalHandlerValue): BlitFramebufferBuilder;
+  onDestinationRectChanged(handler: DslSignalHandlerValue): BlitFramebufferBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): BlitFramebufferBuilder;
+  onInterpolationMethodChanged(handler: DslSignalHandlerValue): BlitFramebufferBuilder;
+  onNodeDestroyed(handler: DslSignalHandlerValue): BlitFramebufferBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): BlitFramebufferBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): BlitFramebufferBuilder;
+  onSourceAttachmentPointChanged(handler: DslSignalHandlerValue): BlitFramebufferBuilder;
+  onSourceChanged(handler: DslSignalHandlerValue): BlitFramebufferBuilder;
+  onSourceRectChanged(handler: DslSignalHandlerValue): BlitFramebufferBuilder;
 }
 
 const BLITFRAMEBUFFER_META: TypeMetadata = {

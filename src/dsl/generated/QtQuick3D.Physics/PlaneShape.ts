@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlObjectBuilder,
   QmlQuaternion,
   QmlValue,
@@ -13,6 +14,7 @@ import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface PlaneShapeBuilder {
   id(id: string): PlaneShapeBuilder;
   child(obj: QmlObjectBuilder): PlaneShapeBuilder;
+  children(...objs: QmlObjectBuilder[]): PlaneShapeBuilder;
 
   enableDebugDraw(value: boolean): PlaneShapeBuilder;
   enableDebugDrawBind(expr: string): PlaneShapeBuilder;
@@ -46,31 +48,31 @@ export interface PlaneShapeBuilder {
   yBind(expr: string): PlaneShapeBuilder;
   z(value: number): PlaneShapeBuilder;
   zBind(expr: string): PlaneShapeBuilder;
-  onChildrenChanged(body: string): PlaneShapeBuilder;
-  onEnableDebugDrawChanged(body: string): PlaneShapeBuilder;
-  onEulerRotationChanged(body: string): PlaneShapeBuilder;
-  onForwardChanged(body: string): PlaneShapeBuilder;
-  onLayersChanged(body: string): PlaneShapeBuilder;
-  onLocalOpacityChanged(body: string): PlaneShapeBuilder;
-  onNeedsRebuild(body: string): PlaneShapeBuilder;
-  onObjectNameChanged(body: string): PlaneShapeBuilder;
-  onParentChanged(body: string): PlaneShapeBuilder;
-  onPivotChanged(body: string): PlaneShapeBuilder;
-  onPositionChanged(body: string): PlaneShapeBuilder;
-  onRightChanged(body: string): PlaneShapeBuilder;
-  onRotationChanged(body: string): PlaneShapeBuilder;
-  onScaleChanged(body: string): PlaneShapeBuilder;
-  onScenePositionChanged(body: string): PlaneShapeBuilder;
-  onSceneRotationChanged(body: string): PlaneShapeBuilder;
-  onSceneScaleChanged(body: string): PlaneShapeBuilder;
-  onSceneTransformChanged(body: string): PlaneShapeBuilder;
-  onStateChanged(body: string): PlaneShapeBuilder;
-  onStaticFlagsChanged(body: string): PlaneShapeBuilder;
-  onUpChanged(body: string): PlaneShapeBuilder;
-  onVisibleChanged(body: string): PlaneShapeBuilder;
-  onXChanged(body: string): PlaneShapeBuilder;
-  onYChanged(body: string): PlaneShapeBuilder;
-  onZChanged(body: string): PlaneShapeBuilder;
+  onChildrenChanged(handler: DslSignalHandlerValue): PlaneShapeBuilder;
+  onEnableDebugDrawChanged(handler: DslSignalHandlerValue): PlaneShapeBuilder;
+  onEulerRotationChanged(handler: DslSignalHandlerValue): PlaneShapeBuilder;
+  onForwardChanged(handler: DslSignalHandlerValue): PlaneShapeBuilder;
+  onLayersChanged(handler: DslSignalHandlerValue): PlaneShapeBuilder;
+  onLocalOpacityChanged(handler: DslSignalHandlerValue): PlaneShapeBuilder;
+  onNeedsRebuild(handler: DslSignalHandlerValue): PlaneShapeBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): PlaneShapeBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): PlaneShapeBuilder;
+  onPivotChanged(handler: DslSignalHandlerValue): PlaneShapeBuilder;
+  onPositionChanged(handler: DslSignalHandlerValue): PlaneShapeBuilder;
+  onRightChanged(handler: DslSignalHandlerValue): PlaneShapeBuilder;
+  onRotationChanged(handler: DslSignalHandlerValue): PlaneShapeBuilder;
+  onScaleChanged(handler: DslSignalHandlerValue): PlaneShapeBuilder;
+  onScenePositionChanged(handler: DslSignalHandlerValue): PlaneShapeBuilder;
+  onSceneRotationChanged(handler: DslSignalHandlerValue): PlaneShapeBuilder;
+  onSceneScaleChanged(handler: DslSignalHandlerValue): PlaneShapeBuilder;
+  onSceneTransformChanged(handler: DslSignalHandlerValue): PlaneShapeBuilder;
+  onStateChanged(handler: DslSignalHandlerValue): PlaneShapeBuilder;
+  onStaticFlagsChanged(handler: DslSignalHandlerValue): PlaneShapeBuilder;
+  onUpChanged(handler: DslSignalHandlerValue): PlaneShapeBuilder;
+  onVisibleChanged(handler: DslSignalHandlerValue): PlaneShapeBuilder;
+  onXChanged(handler: DslSignalHandlerValue): PlaneShapeBuilder;
+  onYChanged(handler: DslSignalHandlerValue): PlaneShapeBuilder;
+  onZChanged(handler: DslSignalHandlerValue): PlaneShapeBuilder;
 }
 
 const PLANESHAPE_META: TypeMetadata = {

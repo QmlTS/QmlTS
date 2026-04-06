@@ -2,11 +2,17 @@
 // Type: HeightMapSurfaceDataProxy
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface HeightMapSurfaceDataProxyBuilder {
   id(id: string): HeightMapSurfaceDataProxyBuilder;
   child(obj: QmlObjectBuilder): HeightMapSurfaceDataProxyBuilder;
+  children(...objs: QmlObjectBuilder[]): HeightMapSurfaceDataProxyBuilder;
 
   autoScaleY(value: boolean): HeightMapSurfaceDataProxyBuilder;
   autoScaleYBind(expr: string): HeightMapSurfaceDataProxyBuilder;
@@ -28,25 +34,25 @@ export interface HeightMapSurfaceDataProxyBuilder {
   minZValueBind(expr: string): HeightMapSurfaceDataProxyBuilder;
   objectName(value: string): HeightMapSurfaceDataProxyBuilder;
   objectNameBind(expr: string): HeightMapSurfaceDataProxyBuilder;
-  onArrayReset(body: string): HeightMapSurfaceDataProxyBuilder;
-  onAutoScaleYChanged(body: string): HeightMapSurfaceDataProxyBuilder;
-  onColumnCountChanged(body: string): HeightMapSurfaceDataProxyBuilder;
-  onHeightMapChanged(body: string): HeightMapSurfaceDataProxyBuilder;
-  onHeightMapFileChanged(body: string): HeightMapSurfaceDataProxyBuilder;
-  onItemChanged(body: string): HeightMapSurfaceDataProxyBuilder;
-  onMaxXValueChanged(body: string): HeightMapSurfaceDataProxyBuilder;
-  onMaxYValueChanged(body: string): HeightMapSurfaceDataProxyBuilder;
-  onMaxZValueChanged(body: string): HeightMapSurfaceDataProxyBuilder;
-  onMinXValueChanged(body: string): HeightMapSurfaceDataProxyBuilder;
-  onMinYValueChanged(body: string): HeightMapSurfaceDataProxyBuilder;
-  onMinZValueChanged(body: string): HeightMapSurfaceDataProxyBuilder;
-  onObjectNameChanged(body: string): HeightMapSurfaceDataProxyBuilder;
-  onRowCountChanged(body: string): HeightMapSurfaceDataProxyBuilder;
-  onRowsAdded(body: string): HeightMapSurfaceDataProxyBuilder;
-  onRowsChanged(body: string): HeightMapSurfaceDataProxyBuilder;
-  onRowsInserted(body: string): HeightMapSurfaceDataProxyBuilder;
-  onRowsRemoved(body: string): HeightMapSurfaceDataProxyBuilder;
-  onSeriesChanged(body: string): HeightMapSurfaceDataProxyBuilder;
+  onArrayReset(handler: DslSignalHandlerValue): HeightMapSurfaceDataProxyBuilder;
+  onAutoScaleYChanged(handler: DslSignalHandlerValue): HeightMapSurfaceDataProxyBuilder;
+  onColumnCountChanged(handler: DslSignalHandlerValue): HeightMapSurfaceDataProxyBuilder;
+  onHeightMapChanged(handler: DslSignalHandlerValue): HeightMapSurfaceDataProxyBuilder;
+  onHeightMapFileChanged(handler: DslSignalHandlerValue): HeightMapSurfaceDataProxyBuilder;
+  onItemChanged(handler: DslSignalHandlerValue): HeightMapSurfaceDataProxyBuilder;
+  onMaxXValueChanged(handler: DslSignalHandlerValue): HeightMapSurfaceDataProxyBuilder;
+  onMaxYValueChanged(handler: DslSignalHandlerValue): HeightMapSurfaceDataProxyBuilder;
+  onMaxZValueChanged(handler: DslSignalHandlerValue): HeightMapSurfaceDataProxyBuilder;
+  onMinXValueChanged(handler: DslSignalHandlerValue): HeightMapSurfaceDataProxyBuilder;
+  onMinYValueChanged(handler: DslSignalHandlerValue): HeightMapSurfaceDataProxyBuilder;
+  onMinZValueChanged(handler: DslSignalHandlerValue): HeightMapSurfaceDataProxyBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): HeightMapSurfaceDataProxyBuilder;
+  onRowCountChanged(handler: DslSignalHandlerValue): HeightMapSurfaceDataProxyBuilder;
+  onRowsAdded(handler: DslSignalHandlerValue): HeightMapSurfaceDataProxyBuilder;
+  onRowsChanged(handler: DslSignalHandlerValue): HeightMapSurfaceDataProxyBuilder;
+  onRowsInserted(handler: DslSignalHandlerValue): HeightMapSurfaceDataProxyBuilder;
+  onRowsRemoved(handler: DslSignalHandlerValue): HeightMapSurfaceDataProxyBuilder;
+  onSeriesChanged(handler: DslSignalHandlerValue): HeightMapSurfaceDataProxyBuilder;
 }
 
 const HEIGHTMAPSURFACEDATAPROXY_META: TypeMetadata = {

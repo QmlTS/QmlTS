@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlColor,
   QmlEnumToken,
   QmlFont,
@@ -14,6 +15,7 @@ import type { ColorGradientBuilder } from './ColorGradient.js';
 export interface Theme3DBuilder {
   id(id: string): Theme3DBuilder;
   child(obj: QmlObjectBuilder): Theme3DBuilder;
+  children(...objs: QmlObjectBuilder[]): Theme3DBuilder;
 
   ambientLightStrength(value: number): Theme3DBuilder;
   ambientLightStrengthBind(expr: string): Theme3DBuilder;
@@ -57,29 +59,29 @@ export interface Theme3DBuilder {
   typeBind(expr: string): Theme3DBuilder;
   windowColor(value: QmlColor): Theme3DBuilder;
   windowColorBind(expr: string): Theme3DBuilder;
-  onAmbientLightStrengthChanged(body: string): Theme3DBuilder;
-  onBackgroundColorChanged(body: string): Theme3DBuilder;
-  onBackgroundEnabledChanged(body: string): Theme3DBuilder;
-  onBaseColorsChanged(body: string): Theme3DBuilder;
-  onBaseGradientsChanged(body: string): Theme3DBuilder;
-  onColorStyleChanged(body: string): Theme3DBuilder;
-  onFontChanged(body: string): Theme3DBuilder;
-  onGridEnabledChanged(body: string): Theme3DBuilder;
-  onGridLineColorChanged(body: string): Theme3DBuilder;
-  onHighlightLightStrengthChanged(body: string): Theme3DBuilder;
-  onLabelBackgroundColorChanged(body: string): Theme3DBuilder;
-  onLabelBackgroundEnabledChanged(body: string): Theme3DBuilder;
-  onLabelBorderEnabledChanged(body: string): Theme3DBuilder;
-  onLabelTextColorChanged(body: string): Theme3DBuilder;
-  onLightColorChanged(body: string): Theme3DBuilder;
-  onLightStrengthChanged(body: string): Theme3DBuilder;
-  onMultiHighlightColorChanged(body: string): Theme3DBuilder;
-  onMultiHighlightGradientChanged(body: string): Theme3DBuilder;
-  onObjectNameChanged(body: string): Theme3DBuilder;
-  onSingleHighlightColorChanged(body: string): Theme3DBuilder;
-  onSingleHighlightGradientChanged(body: string): Theme3DBuilder;
-  onTypeChanged(body: string): Theme3DBuilder;
-  onWindowColorChanged(body: string): Theme3DBuilder;
+  onAmbientLightStrengthChanged(handler: DslSignalHandlerValue): Theme3DBuilder;
+  onBackgroundColorChanged(handler: DslSignalHandlerValue): Theme3DBuilder;
+  onBackgroundEnabledChanged(handler: DslSignalHandlerValue): Theme3DBuilder;
+  onBaseColorsChanged(handler: DslSignalHandlerValue): Theme3DBuilder;
+  onBaseGradientsChanged(handler: DslSignalHandlerValue): Theme3DBuilder;
+  onColorStyleChanged(handler: DslSignalHandlerValue): Theme3DBuilder;
+  onFontChanged(handler: DslSignalHandlerValue): Theme3DBuilder;
+  onGridEnabledChanged(handler: DslSignalHandlerValue): Theme3DBuilder;
+  onGridLineColorChanged(handler: DslSignalHandlerValue): Theme3DBuilder;
+  onHighlightLightStrengthChanged(handler: DslSignalHandlerValue): Theme3DBuilder;
+  onLabelBackgroundColorChanged(handler: DslSignalHandlerValue): Theme3DBuilder;
+  onLabelBackgroundEnabledChanged(handler: DslSignalHandlerValue): Theme3DBuilder;
+  onLabelBorderEnabledChanged(handler: DslSignalHandlerValue): Theme3DBuilder;
+  onLabelTextColorChanged(handler: DslSignalHandlerValue): Theme3DBuilder;
+  onLightColorChanged(handler: DslSignalHandlerValue): Theme3DBuilder;
+  onLightStrengthChanged(handler: DslSignalHandlerValue): Theme3DBuilder;
+  onMultiHighlightColorChanged(handler: DslSignalHandlerValue): Theme3DBuilder;
+  onMultiHighlightGradientChanged(handler: DslSignalHandlerValue): Theme3DBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): Theme3DBuilder;
+  onSingleHighlightColorChanged(handler: DslSignalHandlerValue): Theme3DBuilder;
+  onSingleHighlightGradientChanged(handler: DslSignalHandlerValue): Theme3DBuilder;
+  onTypeChanged(handler: DslSignalHandlerValue): Theme3DBuilder;
+  onWindowColorChanged(handler: DslSignalHandlerValue): Theme3DBuilder;
 }
 
 const THEME3D_META: TypeMetadata = {

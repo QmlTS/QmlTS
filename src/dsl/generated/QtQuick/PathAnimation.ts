@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlEnumToken,
   QmlObjectBuilder,
   QmlPoint,
@@ -31,6 +32,7 @@ import type { ViewTransitionAttachedBuilder } from './ViewTransition.js';
 export interface PathAnimationBuilder {
   id(id: string): PathAnimationBuilder;
   child(obj: QmlObjectBuilder): PathAnimationBuilder;
+  children(...objs: QmlObjectBuilder[]): PathAnimationBuilder;
 
   alwaysRunToEnd(value: boolean): PathAnimationBuilder;
   alwaysRunToEndBind(expr: string): PathAnimationBuilder;
@@ -60,23 +62,23 @@ export interface PathAnimationBuilder {
   runningBind(expr: string): PathAnimationBuilder;
   target(value: ItemBuilder): PathAnimationBuilder;
   targetBind(expr: string): PathAnimationBuilder;
-  onAlwaysRunToEndChanged(body: string): PathAnimationBuilder;
-  onAnchorPointChanged(body: string): PathAnimationBuilder;
-  onDurationChanged(body: string): PathAnimationBuilder;
-  onEasingChanged(body: string): PathAnimationBuilder;
-  onEndRotationChanged(body: string): PathAnimationBuilder;
-  onFinished(body: string): PathAnimationBuilder;
-  onLoopCountChanged(body: string): PathAnimationBuilder;
-  onObjectNameChanged(body: string): PathAnimationBuilder;
-  onOrientationChanged(body: string): PathAnimationBuilder;
-  onOrientationEntryDurationChanged(body: string): PathAnimationBuilder;
-  onOrientationExitDurationChanged(body: string): PathAnimationBuilder;
-  onPathChanged(body: string): PathAnimationBuilder;
-  onPausedChanged(body: string): PathAnimationBuilder;
-  onRunningChanged(body: string): PathAnimationBuilder;
-  onStarted(body: string): PathAnimationBuilder;
-  onStopped(body: string): PathAnimationBuilder;
-  onTargetChanged(body: string): PathAnimationBuilder;
+  onAlwaysRunToEndChanged(handler: DslSignalHandlerValue): PathAnimationBuilder;
+  onAnchorPointChanged(handler: DslSignalHandlerValue): PathAnimationBuilder;
+  onDurationChanged(handler: DslSignalHandlerValue): PathAnimationBuilder;
+  onEasingChanged(handler: DslSignalHandlerValue): PathAnimationBuilder;
+  onEndRotationChanged(handler: DslSignalHandlerValue): PathAnimationBuilder;
+  onFinished(handler: DslSignalHandlerValue): PathAnimationBuilder;
+  onLoopCountChanged(handler: DslSignalHandlerValue): PathAnimationBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): PathAnimationBuilder;
+  onOrientationChanged(handler: DslSignalHandlerValue): PathAnimationBuilder;
+  onOrientationEntryDurationChanged(handler: DslSignalHandlerValue): PathAnimationBuilder;
+  onOrientationExitDurationChanged(handler: DslSignalHandlerValue): PathAnimationBuilder;
+  onPathChanged(handler: DslSignalHandlerValue): PathAnimationBuilder;
+  onPausedChanged(handler: DslSignalHandlerValue): PathAnimationBuilder;
+  onRunningChanged(handler: DslSignalHandlerValue): PathAnimationBuilder;
+  onStarted(handler: DslSignalHandlerValue): PathAnimationBuilder;
+  onStopped(handler: DslSignalHandlerValue): PathAnimationBuilder;
+  onTargetChanged(handler: DslSignalHandlerValue): PathAnimationBuilder;
   accessible(setup: (b: AccessibleAttachedBuilder) => void): PathAnimationBuilder;
   drag(setup: (b: DragAttachedBuilder) => void): PathAnimationBuilder;
   enterKey(setup: (b: EnterKeyAttachedBuilder) => void): PathAnimationBuilder;

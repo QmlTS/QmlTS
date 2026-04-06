@@ -2,7 +2,12 @@
 // Type: ItemSelectionModel
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { DelegateModelAttachedBuilder } from './QQmlDelegateModelAttached.js';
 import type { ObjectModelAttachedBuilder } from './QQmlObjectModelAttached.js';
@@ -10,17 +15,18 @@ import type { PackageAttachedBuilder } from './QQuickPackageAttached.js';
 export interface ItemSelectionModelBuilder {
   id(id: string): ItemSelectionModelBuilder;
   child(obj: QmlObjectBuilder): ItemSelectionModelBuilder;
+  children(...objs: QmlObjectBuilder[]): ItemSelectionModelBuilder;
 
   model(value: QmlValue): ItemSelectionModelBuilder;
   modelBind(expr: string): ItemSelectionModelBuilder;
   objectName(value: string): ItemSelectionModelBuilder;
   objectNameBind(expr: string): ItemSelectionModelBuilder;
-  onCurrentChanged(body: string): ItemSelectionModelBuilder;
-  onCurrentColumnChanged(body: string): ItemSelectionModelBuilder;
-  onCurrentRowChanged(body: string): ItemSelectionModelBuilder;
-  onModelChanged(body: string): ItemSelectionModelBuilder;
-  onObjectNameChanged(body: string): ItemSelectionModelBuilder;
-  onSelectionChanged(body: string): ItemSelectionModelBuilder;
+  onCurrentChanged(handler: DslSignalHandlerValue): ItemSelectionModelBuilder;
+  onCurrentColumnChanged(handler: DslSignalHandlerValue): ItemSelectionModelBuilder;
+  onCurrentRowChanged(handler: DslSignalHandlerValue): ItemSelectionModelBuilder;
+  onModelChanged(handler: DslSignalHandlerValue): ItemSelectionModelBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): ItemSelectionModelBuilder;
+  onSelectionChanged(handler: DslSignalHandlerValue): ItemSelectionModelBuilder;
   delegateModel(setup: (b: DelegateModelAttachedBuilder) => void): ItemSelectionModelBuilder;
   objectModel(setup: (b: ObjectModelAttachedBuilder) => void): ItemSelectionModelBuilder;
   package(setup: (b: PackageAttachedBuilder) => void): ItemSelectionModelBuilder;

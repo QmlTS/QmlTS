@@ -2,11 +2,12 @@
 // Type: LogValue3DAxisFormatter
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import type { DslSignalHandlerValue, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 export interface LogValue3DAxisFormatterBuilder {
   id(id: string): LogValue3DAxisFormatterBuilder;
   child(obj: QmlObjectBuilder): LogValue3DAxisFormatterBuilder;
+  children(...objs: QmlObjectBuilder[]): LogValue3DAxisFormatterBuilder;
 
   autoSubGrid(value: boolean): LogValue3DAxisFormatterBuilder;
   autoSubGridBind(expr: string): LogValue3DAxisFormatterBuilder;
@@ -16,10 +17,10 @@ export interface LogValue3DAxisFormatterBuilder {
   edgeLabelsVisibleBind(expr: string): LogValue3DAxisFormatterBuilder;
   objectName(value: string): LogValue3DAxisFormatterBuilder;
   objectNameBind(expr: string): LogValue3DAxisFormatterBuilder;
-  onAutoSubGridChanged(body: string): LogValue3DAxisFormatterBuilder;
-  onBaseChanged(body: string): LogValue3DAxisFormatterBuilder;
-  onEdgeLabelsVisibleChanged(body: string): LogValue3DAxisFormatterBuilder;
-  onObjectNameChanged(body: string): LogValue3DAxisFormatterBuilder;
+  onAutoSubGridChanged(handler: DslSignalHandlerValue): LogValue3DAxisFormatterBuilder;
+  onBaseChanged(handler: DslSignalHandlerValue): LogValue3DAxisFormatterBuilder;
+  onEdgeLabelsVisibleChanged(handler: DslSignalHandlerValue): LogValue3DAxisFormatterBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): LogValue3DAxisFormatterBuilder;
 }
 
 const LOGVALUE3DAXISFORMATTER_META: TypeMetadata = {

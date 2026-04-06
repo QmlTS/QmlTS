@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlComponent,
   QmlObjectBuilder,
   QmlUrl,
@@ -13,6 +14,7 @@ import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface EntityLoaderBuilder {
   id(id: string): EntityLoaderBuilder;
   child(obj: QmlObjectBuilder): EntityLoaderBuilder;
+  children(...objs: QmlObjectBuilder[]): EntityLoaderBuilder;
 
   enabled(value: boolean): EntityLoaderBuilder;
   enabledBind(expr: string): EntityLoaderBuilder;
@@ -24,14 +26,14 @@ export interface EntityLoaderBuilder {
   sourceBind(expr: string): EntityLoaderBuilder;
   sourceComponent(value: QmlComponent): EntityLoaderBuilder;
   sourceComponentBind(expr: string): EntityLoaderBuilder;
-  onEnabledChanged(body: string): EntityLoaderBuilder;
-  onEntityChanged(body: string): EntityLoaderBuilder;
-  onNodeDestroyed(body: string): EntityLoaderBuilder;
-  onObjectNameChanged(body: string): EntityLoaderBuilder;
-  onParentChanged(body: string): EntityLoaderBuilder;
-  onSourceChanged(body: string): EntityLoaderBuilder;
-  onSourceComponentChanged(body: string): EntityLoaderBuilder;
-  onStatusChanged(body: string): EntityLoaderBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): EntityLoaderBuilder;
+  onEntityChanged(handler: DslSignalHandlerValue): EntityLoaderBuilder;
+  onNodeDestroyed(handler: DslSignalHandlerValue): EntityLoaderBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): EntityLoaderBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): EntityLoaderBuilder;
+  onSourceChanged(handler: DslSignalHandlerValue): EntityLoaderBuilder;
+  onSourceComponentChanged(handler: DslSignalHandlerValue): EntityLoaderBuilder;
+  onStatusChanged(handler: DslSignalHandlerValue): EntityLoaderBuilder;
 }
 
 const ENTITYLOADER_META: TypeMetadata = {

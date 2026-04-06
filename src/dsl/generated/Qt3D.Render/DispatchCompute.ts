@@ -2,11 +2,17 @@
 // Type: DispatchCompute
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 export interface DispatchComputeBuilder {
   id(id: string): DispatchComputeBuilder;
   child(obj: QmlObjectBuilder): DispatchComputeBuilder;
+  children(...objs: QmlObjectBuilder[]): DispatchComputeBuilder;
 
   enabled(value: boolean): DispatchComputeBuilder;
   enabledBind(expr: string): DispatchComputeBuilder;
@@ -20,13 +26,13 @@ export interface DispatchComputeBuilder {
   workGroupYBind(expr: string): DispatchComputeBuilder;
   workGroupZ(value: number): DispatchComputeBuilder;
   workGroupZBind(expr: string): DispatchComputeBuilder;
-  onEnabledChanged(body: string): DispatchComputeBuilder;
-  onNodeDestroyed(body: string): DispatchComputeBuilder;
-  onObjectNameChanged(body: string): DispatchComputeBuilder;
-  onParentChanged(body: string): DispatchComputeBuilder;
-  onWorkGroupXChanged(body: string): DispatchComputeBuilder;
-  onWorkGroupYChanged(body: string): DispatchComputeBuilder;
-  onWorkGroupZChanged(body: string): DispatchComputeBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): DispatchComputeBuilder;
+  onNodeDestroyed(handler: DslSignalHandlerValue): DispatchComputeBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): DispatchComputeBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): DispatchComputeBuilder;
+  onWorkGroupXChanged(handler: DslSignalHandlerValue): DispatchComputeBuilder;
+  onWorkGroupYChanged(handler: DslSignalHandlerValue): DispatchComputeBuilder;
+  onWorkGroupZChanged(handler: DslSignalHandlerValue): DispatchComputeBuilder;
 }
 
 const DISPATCHCOMPUTE_META: TypeMetadata = {

@@ -2,37 +2,38 @@
 // Type: PdfBookmarkModel
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import type { DslSignalHandlerValue, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { PdfDocumentBuilder } from './PdfDocument.js';
 export interface PdfBookmarkModelBuilder {
   id(id: string): PdfBookmarkModelBuilder;
   child(obj: QmlObjectBuilder): PdfBookmarkModelBuilder;
+  children(...objs: QmlObjectBuilder[]): PdfBookmarkModelBuilder;
 
   document(value: PdfDocumentBuilder): PdfBookmarkModelBuilder;
   documentBind(expr: string): PdfBookmarkModelBuilder;
   objectName(value: string): PdfBookmarkModelBuilder;
   objectNameBind(expr: string): PdfBookmarkModelBuilder;
-  onColumnsAboutToBeInserted(body: string): PdfBookmarkModelBuilder;
-  onColumnsAboutToBeMoved(body: string): PdfBookmarkModelBuilder;
-  onColumnsAboutToBeRemoved(body: string): PdfBookmarkModelBuilder;
-  onColumnsInserted(body: string): PdfBookmarkModelBuilder;
-  onColumnsMoved(body: string): PdfBookmarkModelBuilder;
-  onColumnsRemoved(body: string): PdfBookmarkModelBuilder;
-  onDataChanged(body: string): PdfBookmarkModelBuilder;
-  onDocumentChanged(body: string): PdfBookmarkModelBuilder;
-  onHeaderDataChanged(body: string): PdfBookmarkModelBuilder;
-  onLayoutAboutToBeChanged(body: string): PdfBookmarkModelBuilder;
-  onLayoutChanged(body: string): PdfBookmarkModelBuilder;
-  onModelAboutToBeReset(body: string): PdfBookmarkModelBuilder;
-  onModelReset(body: string): PdfBookmarkModelBuilder;
-  onObjectNameChanged(body: string): PdfBookmarkModelBuilder;
-  onRowsAboutToBeInserted(body: string): PdfBookmarkModelBuilder;
-  onRowsAboutToBeMoved(body: string): PdfBookmarkModelBuilder;
-  onRowsAboutToBeRemoved(body: string): PdfBookmarkModelBuilder;
-  onRowsInserted(body: string): PdfBookmarkModelBuilder;
-  onRowsMoved(body: string): PdfBookmarkModelBuilder;
-  onRowsRemoved(body: string): PdfBookmarkModelBuilder;
+  onColumnsAboutToBeInserted(handler: DslSignalHandlerValue): PdfBookmarkModelBuilder;
+  onColumnsAboutToBeMoved(handler: DslSignalHandlerValue): PdfBookmarkModelBuilder;
+  onColumnsAboutToBeRemoved(handler: DslSignalHandlerValue): PdfBookmarkModelBuilder;
+  onColumnsInserted(handler: DslSignalHandlerValue): PdfBookmarkModelBuilder;
+  onColumnsMoved(handler: DslSignalHandlerValue): PdfBookmarkModelBuilder;
+  onColumnsRemoved(handler: DslSignalHandlerValue): PdfBookmarkModelBuilder;
+  onDataChanged(handler: DslSignalHandlerValue): PdfBookmarkModelBuilder;
+  onDocumentChanged(handler: DslSignalHandlerValue): PdfBookmarkModelBuilder;
+  onHeaderDataChanged(handler: DslSignalHandlerValue): PdfBookmarkModelBuilder;
+  onLayoutAboutToBeChanged(handler: DslSignalHandlerValue): PdfBookmarkModelBuilder;
+  onLayoutChanged(handler: DslSignalHandlerValue): PdfBookmarkModelBuilder;
+  onModelAboutToBeReset(handler: DslSignalHandlerValue): PdfBookmarkModelBuilder;
+  onModelReset(handler: DslSignalHandlerValue): PdfBookmarkModelBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): PdfBookmarkModelBuilder;
+  onRowsAboutToBeInserted(handler: DslSignalHandlerValue): PdfBookmarkModelBuilder;
+  onRowsAboutToBeMoved(handler: DslSignalHandlerValue): PdfBookmarkModelBuilder;
+  onRowsAboutToBeRemoved(handler: DslSignalHandlerValue): PdfBookmarkModelBuilder;
+  onRowsInserted(handler: DslSignalHandlerValue): PdfBookmarkModelBuilder;
+  onRowsMoved(handler: DslSignalHandlerValue): PdfBookmarkModelBuilder;
+  onRowsRemoved(handler: DslSignalHandlerValue): PdfBookmarkModelBuilder;
 }
 
 const PDFBOOKMARKMODEL_META: TypeMetadata = {

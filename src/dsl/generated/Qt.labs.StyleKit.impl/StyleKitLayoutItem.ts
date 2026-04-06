@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlEnumToken,
   QmlObjectBuilder,
   QmlValue,
@@ -13,6 +14,7 @@ import type { ItemBuilder } from '../QtQuick/Item.js';
 export interface StyleKitLayoutItemBuilder {
   id(id: string): StyleKitLayoutItemBuilder;
   child(obj: QmlObjectBuilder): StyleKitLayoutItemBuilder;
+  children(...objs: QmlObjectBuilder[]): StyleKitLayoutItemBuilder;
 
   alignment(value: QmlEnumToken): StyleKitLayoutItemBuilder;
   alignmentBind(expr: string): StyleKitLayoutItemBuilder;
@@ -26,16 +28,16 @@ export interface StyleKitLayoutItemBuilder {
   marginsBind(expr: string): StyleKitLayoutItemBuilder;
   objectName(value: string): StyleKitLayoutItemBuilder;
   objectNameBind(expr: string): StyleKitLayoutItemBuilder;
-  onAlignmentChanged(body: string): StyleKitLayoutItemBuilder;
-  onFillHeightChanged(body: string): StyleKitLayoutItemBuilder;
-  onFillWidthChanged(body: string): StyleKitLayoutItemBuilder;
-  onHeightChanged(body: string): StyleKitLayoutItemBuilder;
-  onItemChanged(body: string): StyleKitLayoutItemBuilder;
-  onMarginsChanged(body: string): StyleKitLayoutItemBuilder;
-  onObjectNameChanged(body: string): StyleKitLayoutItemBuilder;
-  onWidthChanged(body: string): StyleKitLayoutItemBuilder;
-  onXChanged(body: string): StyleKitLayoutItemBuilder;
-  onYChanged(body: string): StyleKitLayoutItemBuilder;
+  onAlignmentChanged(handler: DslSignalHandlerValue): StyleKitLayoutItemBuilder;
+  onFillHeightChanged(handler: DslSignalHandlerValue): StyleKitLayoutItemBuilder;
+  onFillWidthChanged(handler: DslSignalHandlerValue): StyleKitLayoutItemBuilder;
+  onHeightChanged(handler: DslSignalHandlerValue): StyleKitLayoutItemBuilder;
+  onItemChanged(handler: DslSignalHandlerValue): StyleKitLayoutItemBuilder;
+  onMarginsChanged(handler: DslSignalHandlerValue): StyleKitLayoutItemBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): StyleKitLayoutItemBuilder;
+  onWidthChanged(handler: DslSignalHandlerValue): StyleKitLayoutItemBuilder;
+  onXChanged(handler: DslSignalHandlerValue): StyleKitLayoutItemBuilder;
+  onYChanged(handler: DslSignalHandlerValue): StyleKitLayoutItemBuilder;
 }
 
 const STYLEKITLAYOUTITEM_META: TypeMetadata = {

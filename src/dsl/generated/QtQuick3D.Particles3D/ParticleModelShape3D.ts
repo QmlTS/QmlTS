@@ -2,11 +2,17 @@
 // Type: ParticleModelShape3D
 // Generated from Qt 6.11.0
 
-import type { QmlComponent, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlComponent,
+  QmlObjectBuilder,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 export interface ParticleModelShape3DBuilder {
   id(id: string): ParticleModelShape3DBuilder;
   child(obj: QmlObjectBuilder): ParticleModelShape3DBuilder;
+  children(...objs: QmlObjectBuilder[]): ParticleModelShape3DBuilder;
 
   delegate(value: QmlComponent): ParticleModelShape3DBuilder;
   delegateBind(expr: string): ParticleModelShape3DBuilder;
@@ -14,9 +20,9 @@ export interface ParticleModelShape3DBuilder {
   fillBind(expr: string): ParticleModelShape3DBuilder;
   objectName(value: string): ParticleModelShape3DBuilder;
   objectNameBind(expr: string): ParticleModelShape3DBuilder;
-  onDelegateChanged(body: string): ParticleModelShape3DBuilder;
-  onFillChanged(body: string): ParticleModelShape3DBuilder;
-  onObjectNameChanged(body: string): ParticleModelShape3DBuilder;
+  onDelegateChanged(handler: DslSignalHandlerValue): ParticleModelShape3DBuilder;
+  onFillChanged(handler: DslSignalHandlerValue): ParticleModelShape3DBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): ParticleModelShape3DBuilder;
 }
 
 const PARTICLEMODELSHAPE3D_META: TypeMetadata = {

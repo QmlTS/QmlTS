@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlColor,
   QmlEnumToken,
   QmlObjectBuilder,
@@ -16,6 +17,7 @@ import type { NodeBuilder } from './Node.js';
 export interface PointLightBuilder {
   id(id: string): PointLightBuilder;
   child(obj: QmlObjectBuilder): PointLightBuilder;
+  children(...objs: QmlObjectBuilder[]): PointLightBuilder;
 
   ambientColor(value: QmlColor): PointLightBuilder;
   ambientColorBind(expr: string): PointLightBuilder;
@@ -81,46 +83,46 @@ export interface PointLightBuilder {
   yBind(expr: string): PointLightBuilder;
   z(value: number): PointLightBuilder;
   zBind(expr: string): PointLightBuilder;
-  onAmbientColorChanged(body: string): PointLightBuilder;
-  onBakeModeChanged(body: string): PointLightBuilder;
-  onBrightnessChanged(body: string): PointLightBuilder;
-  onCastsShadowChanged(body: string): PointLightBuilder;
-  onChildrenChanged(body: string): PointLightBuilder;
-  onColorChanged(body: string): PointLightBuilder;
-  onConstantFadeChanged(body: string): PointLightBuilder;
-  onEulerRotationChanged(body: string): PointLightBuilder;
-  onForwardChanged(body: string): PointLightBuilder;
-  onLayersChanged(body: string): PointLightBuilder;
-  onLinearFadeChanged(body: string): PointLightBuilder;
-  onLocalOpacityChanged(body: string): PointLightBuilder;
-  onObjectNameChanged(body: string): PointLightBuilder;
-  onParentChanged(body: string): PointLightBuilder;
-  onPcfFactorChanged(body: string): PointLightBuilder;
-  onPivotChanged(body: string): PointLightBuilder;
-  onPositionChanged(body: string): PointLightBuilder;
-  onQuadraticFadeChanged(body: string): PointLightBuilder;
-  onRightChanged(body: string): PointLightBuilder;
-  onRotationChanged(body: string): PointLightBuilder;
-  onScaleChanged(body: string): PointLightBuilder;
-  onScenePositionChanged(body: string): PointLightBuilder;
-  onSceneRotationChanged(body: string): PointLightBuilder;
-  onSceneScaleChanged(body: string): PointLightBuilder;
-  onSceneTransformChanged(body: string): PointLightBuilder;
-  onScopeChanged(body: string): PointLightBuilder;
-  onShadowBiasChanged(body: string): PointLightBuilder;
-  onShadowFactorChanged(body: string): PointLightBuilder;
-  onShadowFilterChanged(body: string): PointLightBuilder;
-  onShadowMapFarChanged(body: string): PointLightBuilder;
-  onShadowMapQualityChanged(body: string): PointLightBuilder;
-  onSoftShadowQualityChanged(body: string): PointLightBuilder;
-  onStateChanged(body: string): PointLightBuilder;
-  onStaticFlagsChanged(body: string): PointLightBuilder;
-  onUpChanged(body: string): PointLightBuilder;
-  onUse32BitShadowmapChanged(body: string): PointLightBuilder;
-  onVisibleChanged(body: string): PointLightBuilder;
-  onXChanged(body: string): PointLightBuilder;
-  onYChanged(body: string): PointLightBuilder;
-  onZChanged(body: string): PointLightBuilder;
+  onAmbientColorChanged(handler: DslSignalHandlerValue): PointLightBuilder;
+  onBakeModeChanged(handler: DslSignalHandlerValue): PointLightBuilder;
+  onBrightnessChanged(handler: DslSignalHandlerValue): PointLightBuilder;
+  onCastsShadowChanged(handler: DslSignalHandlerValue): PointLightBuilder;
+  onChildrenChanged(handler: DslSignalHandlerValue): PointLightBuilder;
+  onColorChanged(handler: DslSignalHandlerValue): PointLightBuilder;
+  onConstantFadeChanged(handler: DslSignalHandlerValue): PointLightBuilder;
+  onEulerRotationChanged(handler: DslSignalHandlerValue): PointLightBuilder;
+  onForwardChanged(handler: DslSignalHandlerValue): PointLightBuilder;
+  onLayersChanged(handler: DslSignalHandlerValue): PointLightBuilder;
+  onLinearFadeChanged(handler: DslSignalHandlerValue): PointLightBuilder;
+  onLocalOpacityChanged(handler: DslSignalHandlerValue): PointLightBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): PointLightBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): PointLightBuilder;
+  onPcfFactorChanged(handler: DslSignalHandlerValue): PointLightBuilder;
+  onPivotChanged(handler: DslSignalHandlerValue): PointLightBuilder;
+  onPositionChanged(handler: DslSignalHandlerValue): PointLightBuilder;
+  onQuadraticFadeChanged(handler: DslSignalHandlerValue): PointLightBuilder;
+  onRightChanged(handler: DslSignalHandlerValue): PointLightBuilder;
+  onRotationChanged(handler: DslSignalHandlerValue): PointLightBuilder;
+  onScaleChanged(handler: DslSignalHandlerValue): PointLightBuilder;
+  onScenePositionChanged(handler: DslSignalHandlerValue): PointLightBuilder;
+  onSceneRotationChanged(handler: DslSignalHandlerValue): PointLightBuilder;
+  onSceneScaleChanged(handler: DslSignalHandlerValue): PointLightBuilder;
+  onSceneTransformChanged(handler: DslSignalHandlerValue): PointLightBuilder;
+  onScopeChanged(handler: DslSignalHandlerValue): PointLightBuilder;
+  onShadowBiasChanged(handler: DslSignalHandlerValue): PointLightBuilder;
+  onShadowFactorChanged(handler: DslSignalHandlerValue): PointLightBuilder;
+  onShadowFilterChanged(handler: DslSignalHandlerValue): PointLightBuilder;
+  onShadowMapFarChanged(handler: DslSignalHandlerValue): PointLightBuilder;
+  onShadowMapQualityChanged(handler: DslSignalHandlerValue): PointLightBuilder;
+  onSoftShadowQualityChanged(handler: DslSignalHandlerValue): PointLightBuilder;
+  onStateChanged(handler: DslSignalHandlerValue): PointLightBuilder;
+  onStaticFlagsChanged(handler: DslSignalHandlerValue): PointLightBuilder;
+  onUpChanged(handler: DslSignalHandlerValue): PointLightBuilder;
+  onUse32BitShadowmapChanged(handler: DslSignalHandlerValue): PointLightBuilder;
+  onVisibleChanged(handler: DslSignalHandlerValue): PointLightBuilder;
+  onXChanged(handler: DslSignalHandlerValue): PointLightBuilder;
+  onYChanged(handler: DslSignalHandlerValue): PointLightBuilder;
+  onZChanged(handler: DslSignalHandlerValue): PointLightBuilder;
 }
 
 const POINTLIGHT_META: TypeMetadata = {

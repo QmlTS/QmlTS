@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlObjectBuilder,
   QmlQuaternion,
   QmlValue,
@@ -14,6 +15,7 @@ import type { XrCameraBuilder } from './XrCamera.js';
 export interface XrOriginBuilder {
   id(id: string): XrOriginBuilder;
   child(obj: QmlObjectBuilder): XrOriginBuilder;
+  children(...objs: QmlObjectBuilder[]): XrOriginBuilder;
 
   camera(value: XrCameraBuilder): XrOriginBuilder;
   cameraBind(expr: string): XrOriginBuilder;
@@ -47,30 +49,30 @@ export interface XrOriginBuilder {
   yBind(expr: string): XrOriginBuilder;
   z(value: number): XrOriginBuilder;
   zBind(expr: string): XrOriginBuilder;
-  onCameraChanged(body: string): XrOriginBuilder;
-  onChildrenChanged(body: string): XrOriginBuilder;
-  onEulerRotationChanged(body: string): XrOriginBuilder;
-  onForwardChanged(body: string): XrOriginBuilder;
-  onLayersChanged(body: string): XrOriginBuilder;
-  onLocalOpacityChanged(body: string): XrOriginBuilder;
-  onObjectNameChanged(body: string): XrOriginBuilder;
-  onParentChanged(body: string): XrOriginBuilder;
-  onPivotChanged(body: string): XrOriginBuilder;
-  onPositionChanged(body: string): XrOriginBuilder;
-  onRightChanged(body: string): XrOriginBuilder;
-  onRotationChanged(body: string): XrOriginBuilder;
-  onScaleChanged(body: string): XrOriginBuilder;
-  onScenePositionChanged(body: string): XrOriginBuilder;
-  onSceneRotationChanged(body: string): XrOriginBuilder;
-  onSceneScaleChanged(body: string): XrOriginBuilder;
-  onSceneTransformChanged(body: string): XrOriginBuilder;
-  onStateChanged(body: string): XrOriginBuilder;
-  onStaticFlagsChanged(body: string): XrOriginBuilder;
-  onUpChanged(body: string): XrOriginBuilder;
-  onVisibleChanged(body: string): XrOriginBuilder;
-  onXChanged(body: string): XrOriginBuilder;
-  onYChanged(body: string): XrOriginBuilder;
-  onZChanged(body: string): XrOriginBuilder;
+  onCameraChanged(handler: DslSignalHandlerValue): XrOriginBuilder;
+  onChildrenChanged(handler: DslSignalHandlerValue): XrOriginBuilder;
+  onEulerRotationChanged(handler: DslSignalHandlerValue): XrOriginBuilder;
+  onForwardChanged(handler: DslSignalHandlerValue): XrOriginBuilder;
+  onLayersChanged(handler: DslSignalHandlerValue): XrOriginBuilder;
+  onLocalOpacityChanged(handler: DslSignalHandlerValue): XrOriginBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): XrOriginBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): XrOriginBuilder;
+  onPivotChanged(handler: DslSignalHandlerValue): XrOriginBuilder;
+  onPositionChanged(handler: DslSignalHandlerValue): XrOriginBuilder;
+  onRightChanged(handler: DslSignalHandlerValue): XrOriginBuilder;
+  onRotationChanged(handler: DslSignalHandlerValue): XrOriginBuilder;
+  onScaleChanged(handler: DslSignalHandlerValue): XrOriginBuilder;
+  onScenePositionChanged(handler: DslSignalHandlerValue): XrOriginBuilder;
+  onSceneRotationChanged(handler: DslSignalHandlerValue): XrOriginBuilder;
+  onSceneScaleChanged(handler: DslSignalHandlerValue): XrOriginBuilder;
+  onSceneTransformChanged(handler: DslSignalHandlerValue): XrOriginBuilder;
+  onStateChanged(handler: DslSignalHandlerValue): XrOriginBuilder;
+  onStaticFlagsChanged(handler: DslSignalHandlerValue): XrOriginBuilder;
+  onUpChanged(handler: DslSignalHandlerValue): XrOriginBuilder;
+  onVisibleChanged(handler: DslSignalHandlerValue): XrOriginBuilder;
+  onXChanged(handler: DslSignalHandlerValue): XrOriginBuilder;
+  onYChanged(handler: DslSignalHandlerValue): XrOriginBuilder;
+  onZChanged(handler: DslSignalHandlerValue): XrOriginBuilder;
 }
 
 const XRORIGIN_META: TypeMetadata = {

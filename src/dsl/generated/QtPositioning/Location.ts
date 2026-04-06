@@ -2,12 +2,18 @@
 // Type: Location
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 import type { AddressBuilder } from './Address.js';
 export interface LocationBuilder {
   id(id: string): LocationBuilder;
   child(obj: QmlObjectBuilder): LocationBuilder;
+  children(...objs: QmlObjectBuilder[]): LocationBuilder;
 
   address(value: AddressBuilder): LocationBuilder;
   addressBind(expr: string): LocationBuilder;
@@ -21,7 +27,7 @@ export interface LocationBuilder {
   locationBind(expr: string): LocationBuilder;
   objectName(value: string): LocationBuilder;
   objectNameBind(expr: string): LocationBuilder;
-  onObjectNameChanged(body: string): LocationBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): LocationBuilder;
 }
 
 const LOCATION_META: TypeMetadata = {

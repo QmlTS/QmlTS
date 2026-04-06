@@ -2,7 +2,12 @@
 // Type: VideoOutput
 // Generated from Qt 6.11.0
 
-import type { QmlEnumToken, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlEnumToken,
+  QmlObjectBuilder,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { QtObjectBuilder } from '../QML/QtObject.js';
 import type { ItemBuilder } from '../QtQuick/Item.js';
@@ -13,6 +18,7 @@ import type { VideoSinkBuilder } from './QVideoSink.js';
 export interface VideoOutputBuilder {
   id(id: string): VideoOutputBuilder;
   child(obj: QmlObjectBuilder): VideoOutputBuilder;
+  children(...objs: QmlObjectBuilder[]): VideoOutputBuilder;
 
   activeFocusOnTab(value: boolean): VideoOutputBuilder;
   activeFocusOnTabBind(expr: string): VideoOutputBuilder;
@@ -72,44 +78,44 @@ export interface VideoOutputBuilder {
   yBind(expr: string): VideoOutputBuilder;
   z(value: number): VideoOutputBuilder;
   zBind(expr: string): VideoOutputBuilder;
-  onActiveFocusChanged(body: string): VideoOutputBuilder;
-  onActiveFocusOnTabChanged(body: string): VideoOutputBuilder;
-  onAntialiasingChanged(body: string): VideoOutputBuilder;
-  onBaselineOffsetChanged(body: string): VideoOutputBuilder;
-  onChildrenChanged(body: string): VideoOutputBuilder;
-  onChildrenRectChanged(body: string): VideoOutputBuilder;
-  onClipChanged(body: string): VideoOutputBuilder;
-  onContainmentMaskChanged(body: string): VideoOutputBuilder;
-  onContentRectChanged(body: string): VideoOutputBuilder;
-  onEnabledChanged(body: string): VideoOutputBuilder;
-  onEndOfStreamPolicyChanged(body: string): VideoOutputBuilder;
-  onFillModeChanged(body: string): VideoOutputBuilder;
-  onFocusChanged(body: string): VideoOutputBuilder;
-  onFocusPolicyChanged(body: string): VideoOutputBuilder;
-  onHeightChanged(body: string): VideoOutputBuilder;
-  onImplicitHeightChanged(body: string): VideoOutputBuilder;
-  onImplicitWidthChanged(body: string): VideoOutputBuilder;
-  onMirroredChanged(body: string): VideoOutputBuilder;
-  onObjectNameChanged(body: string): VideoOutputBuilder;
-  onOpacityChanged(body: string): VideoOutputBuilder;
-  onOrientationChanged(body: string): VideoOutputBuilder;
-  onPaletteChanged(body: string): VideoOutputBuilder;
-  onPaletteCreated(body: string): VideoOutputBuilder;
-  onParentChanged(body: string): VideoOutputBuilder;
-  onRotationChanged(body: string): VideoOutputBuilder;
-  onScaleChanged(body: string): VideoOutputBuilder;
-  onSmoothChanged(body: string): VideoOutputBuilder;
-  onSourceChanged(body: string): VideoOutputBuilder;
-  onSourceRectChanged(body: string): VideoOutputBuilder;
-  onStateChanged(body: string): VideoOutputBuilder;
-  onTransformOriginChanged(body: string): VideoOutputBuilder;
-  onVisibleChanged(body: string): VideoOutputBuilder;
-  onVisibleChildrenChanged(body: string): VideoOutputBuilder;
-  onWidthChanged(body: string): VideoOutputBuilder;
-  onWindowChanged(body: string): VideoOutputBuilder;
-  onXChanged(body: string): VideoOutputBuilder;
-  onYChanged(body: string): VideoOutputBuilder;
-  onZChanged(body: string): VideoOutputBuilder;
+  onActiveFocusChanged(handler: DslSignalHandlerValue): VideoOutputBuilder;
+  onActiveFocusOnTabChanged(handler: DslSignalHandlerValue): VideoOutputBuilder;
+  onAntialiasingChanged(handler: DslSignalHandlerValue): VideoOutputBuilder;
+  onBaselineOffsetChanged(handler: DslSignalHandlerValue): VideoOutputBuilder;
+  onChildrenChanged(handler: DslSignalHandlerValue): VideoOutputBuilder;
+  onChildrenRectChanged(handler: DslSignalHandlerValue): VideoOutputBuilder;
+  onClipChanged(handler: DslSignalHandlerValue): VideoOutputBuilder;
+  onContainmentMaskChanged(handler: DslSignalHandlerValue): VideoOutputBuilder;
+  onContentRectChanged(handler: DslSignalHandlerValue): VideoOutputBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): VideoOutputBuilder;
+  onEndOfStreamPolicyChanged(handler: DslSignalHandlerValue): VideoOutputBuilder;
+  onFillModeChanged(handler: DslSignalHandlerValue): VideoOutputBuilder;
+  onFocusChanged(handler: DslSignalHandlerValue): VideoOutputBuilder;
+  onFocusPolicyChanged(handler: DslSignalHandlerValue): VideoOutputBuilder;
+  onHeightChanged(handler: DslSignalHandlerValue): VideoOutputBuilder;
+  onImplicitHeightChanged(handler: DslSignalHandlerValue): VideoOutputBuilder;
+  onImplicitWidthChanged(handler: DslSignalHandlerValue): VideoOutputBuilder;
+  onMirroredChanged(handler: DslSignalHandlerValue): VideoOutputBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): VideoOutputBuilder;
+  onOpacityChanged(handler: DslSignalHandlerValue): VideoOutputBuilder;
+  onOrientationChanged(handler: DslSignalHandlerValue): VideoOutputBuilder;
+  onPaletteChanged(handler: DslSignalHandlerValue): VideoOutputBuilder;
+  onPaletteCreated(handler: DslSignalHandlerValue): VideoOutputBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): VideoOutputBuilder;
+  onRotationChanged(handler: DslSignalHandlerValue): VideoOutputBuilder;
+  onScaleChanged(handler: DslSignalHandlerValue): VideoOutputBuilder;
+  onSmoothChanged(handler: DslSignalHandlerValue): VideoOutputBuilder;
+  onSourceChanged(handler: DslSignalHandlerValue): VideoOutputBuilder;
+  onSourceRectChanged(handler: DslSignalHandlerValue): VideoOutputBuilder;
+  onStateChanged(handler: DslSignalHandlerValue): VideoOutputBuilder;
+  onTransformOriginChanged(handler: DslSignalHandlerValue): VideoOutputBuilder;
+  onVisibleChanged(handler: DslSignalHandlerValue): VideoOutputBuilder;
+  onVisibleChildrenChanged(handler: DslSignalHandlerValue): VideoOutputBuilder;
+  onWidthChanged(handler: DslSignalHandlerValue): VideoOutputBuilder;
+  onWindowChanged(handler: DslSignalHandlerValue): VideoOutputBuilder;
+  onXChanged(handler: DslSignalHandlerValue): VideoOutputBuilder;
+  onYChanged(handler: DslSignalHandlerValue): VideoOutputBuilder;
+  onZChanged(handler: DslSignalHandlerValue): VideoOutputBuilder;
   anchors(setup: (b: AnchorsBuilder) => void): VideoOutputBuilder;
   layer(setup: (b: LayerBuilder) => void): VideoOutputBuilder;
   videoSink(setup: (b: VideoSinkBuilder) => void): VideoOutputBuilder;

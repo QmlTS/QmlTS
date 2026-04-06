@@ -2,6 +2,7 @@
 // Type: Attached type: FileDialogImpl
 // Generated from Qt 6.11.0
 
+import type { DslSignalHandlerValue } from '../../runtime/index.js';
 import type { ListViewBuilder } from '../QtQuick/ListView.js';
 import type { ComboBoxBuilder } from '../QtQuick.Templates/ComboBox.js';
 import type { DialogBuilder } from '../QtQuick.Templates/Dialog.js';
@@ -31,14 +32,16 @@ export interface FileDialogImplAttachedBuilder {
   sideBarBind(expr: string): FileDialogImplAttachedBuilder;
   objectName(value: string): FileDialogImplAttachedBuilder;
   objectNameBind(expr: string): FileDialogImplAttachedBuilder;
-  onBreadcrumbBarChanged(body: string): FileDialogImplAttachedBuilder;
-  onButtonBoxChanged(body: string): FileDialogImplAttachedBuilder;
-  onFileDialogListViewChanged(body: string): FileDialogImplAttachedBuilder;
-  onFileNameLabelChanged(body: string): FileDialogImplAttachedBuilder;
-  onFileNameTextFieldChanged(body: string): FileDialogImplAttachedBuilder;
-  onFilterLabelChanged(body: string): FileDialogImplAttachedBuilder;
-  onNameFiltersComboBoxChanged(body: string): FileDialogImplAttachedBuilder;
-  onOverwriteConfirmationDialogChanged(body: string): FileDialogImplAttachedBuilder;
-  onSideBarChanged(body: string): FileDialogImplAttachedBuilder;
-  onObjectNameChanged(body: string): FileDialogImplAttachedBuilder;
+  onBreadcrumbBarChanged(handler: DslSignalHandlerValue): FileDialogImplAttachedBuilder;
+  onButtonBoxChanged(handler: DslSignalHandlerValue): FileDialogImplAttachedBuilder;
+  onFileDialogListViewChanged(handler: DslSignalHandlerValue): FileDialogImplAttachedBuilder;
+  onFileNameLabelChanged(handler: DslSignalHandlerValue): FileDialogImplAttachedBuilder;
+  onFileNameTextFieldChanged(handler: DslSignalHandlerValue): FileDialogImplAttachedBuilder;
+  onFilterLabelChanged(handler: DslSignalHandlerValue): FileDialogImplAttachedBuilder;
+  onNameFiltersComboBoxChanged(handler: DslSignalHandlerValue): FileDialogImplAttachedBuilder;
+  onOverwriteConfirmationDialogChanged(
+    handler: DslSignalHandlerValue,
+  ): FileDialogImplAttachedBuilder;
+  onSideBarChanged(handler: DslSignalHandlerValue): FileDialogImplAttachedBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): FileDialogImplAttachedBuilder;
 }

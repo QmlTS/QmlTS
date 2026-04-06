@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlEnumToken,
   QmlObjectBuilder,
   QmlValue,
@@ -19,6 +20,7 @@ import type { ItemParticleAttachedBuilder } from './QQuickItemParticleAttached.j
 export interface FrictionBuilder {
   id(id: string): FrictionBuilder;
   child(obj: QmlObjectBuilder): FrictionBuilder;
+  children(...objs: QmlObjectBuilder[]): FrictionBuilder;
 
   activeFocusOnTab(value: boolean): FrictionBuilder;
   activeFocusOnTabBind(expr: string): FrictionBuilder;
@@ -84,45 +86,45 @@ export interface FrictionBuilder {
   yBind(expr: string): FrictionBuilder;
   z(value: number): FrictionBuilder;
   zBind(expr: string): FrictionBuilder;
-  onActiveFocusChanged(body: string): FrictionBuilder;
-  onActiveFocusOnTabChanged(body: string): FrictionBuilder;
-  onAffected(body: string): FrictionBuilder;
-  onAntialiasingChanged(body: string): FrictionBuilder;
-  onBaselineOffsetChanged(body: string): FrictionBuilder;
-  onChildrenChanged(body: string): FrictionBuilder;
-  onChildrenRectChanged(body: string): FrictionBuilder;
-  onClipChanged(body: string): FrictionBuilder;
-  onContainmentMaskChanged(body: string): FrictionBuilder;
-  onEnabledChanged(body: string): FrictionBuilder;
-  onFactorChanged(body: string): FrictionBuilder;
-  onFocusChanged(body: string): FrictionBuilder;
-  onFocusPolicyChanged(body: string): FrictionBuilder;
-  onGroupsChanged(body: string): FrictionBuilder;
-  onHeightChanged(body: string): FrictionBuilder;
-  onImplicitHeightChanged(body: string): FrictionBuilder;
-  onImplicitWidthChanged(body: string): FrictionBuilder;
-  onObjectNameChanged(body: string): FrictionBuilder;
-  onOnceChanged(body: string): FrictionBuilder;
-  onOpacityChanged(body: string): FrictionBuilder;
-  onPaletteChanged(body: string): FrictionBuilder;
-  onPaletteCreated(body: string): FrictionBuilder;
-  onParentChanged(body: string): FrictionBuilder;
-  onRotationChanged(body: string): FrictionBuilder;
-  onScaleChanged(body: string): FrictionBuilder;
-  onShapeChanged(body: string): FrictionBuilder;
-  onSmoothChanged(body: string): FrictionBuilder;
-  onStateChanged(body: string): FrictionBuilder;
-  onSystemChanged(body: string): FrictionBuilder;
-  onThresholdChanged(body: string): FrictionBuilder;
-  onTransformOriginChanged(body: string): FrictionBuilder;
-  onVisibleChanged(body: string): FrictionBuilder;
-  onVisibleChildrenChanged(body: string): FrictionBuilder;
-  onWhenCollidingWithChanged(body: string): FrictionBuilder;
-  onWidthChanged(body: string): FrictionBuilder;
-  onWindowChanged(body: string): FrictionBuilder;
-  onXChanged(body: string): FrictionBuilder;
-  onYChanged(body: string): FrictionBuilder;
-  onZChanged(body: string): FrictionBuilder;
+  onActiveFocusChanged(handler: DslSignalHandlerValue): FrictionBuilder;
+  onActiveFocusOnTabChanged(handler: DslSignalHandlerValue): FrictionBuilder;
+  onAffected(handler: DslSignalHandlerValue): FrictionBuilder;
+  onAntialiasingChanged(handler: DslSignalHandlerValue): FrictionBuilder;
+  onBaselineOffsetChanged(handler: DslSignalHandlerValue): FrictionBuilder;
+  onChildrenChanged(handler: DslSignalHandlerValue): FrictionBuilder;
+  onChildrenRectChanged(handler: DslSignalHandlerValue): FrictionBuilder;
+  onClipChanged(handler: DslSignalHandlerValue): FrictionBuilder;
+  onContainmentMaskChanged(handler: DslSignalHandlerValue): FrictionBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): FrictionBuilder;
+  onFactorChanged(handler: DslSignalHandlerValue): FrictionBuilder;
+  onFocusChanged(handler: DslSignalHandlerValue): FrictionBuilder;
+  onFocusPolicyChanged(handler: DslSignalHandlerValue): FrictionBuilder;
+  onGroupsChanged(handler: DslSignalHandlerValue): FrictionBuilder;
+  onHeightChanged(handler: DslSignalHandlerValue): FrictionBuilder;
+  onImplicitHeightChanged(handler: DslSignalHandlerValue): FrictionBuilder;
+  onImplicitWidthChanged(handler: DslSignalHandlerValue): FrictionBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): FrictionBuilder;
+  onOnceChanged(handler: DslSignalHandlerValue): FrictionBuilder;
+  onOpacityChanged(handler: DslSignalHandlerValue): FrictionBuilder;
+  onPaletteChanged(handler: DslSignalHandlerValue): FrictionBuilder;
+  onPaletteCreated(handler: DslSignalHandlerValue): FrictionBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): FrictionBuilder;
+  onRotationChanged(handler: DslSignalHandlerValue): FrictionBuilder;
+  onScaleChanged(handler: DslSignalHandlerValue): FrictionBuilder;
+  onShapeChanged(handler: DslSignalHandlerValue): FrictionBuilder;
+  onSmoothChanged(handler: DslSignalHandlerValue): FrictionBuilder;
+  onStateChanged(handler: DslSignalHandlerValue): FrictionBuilder;
+  onSystemChanged(handler: DslSignalHandlerValue): FrictionBuilder;
+  onThresholdChanged(handler: DslSignalHandlerValue): FrictionBuilder;
+  onTransformOriginChanged(handler: DslSignalHandlerValue): FrictionBuilder;
+  onVisibleChanged(handler: DslSignalHandlerValue): FrictionBuilder;
+  onVisibleChildrenChanged(handler: DslSignalHandlerValue): FrictionBuilder;
+  onWhenCollidingWithChanged(handler: DslSignalHandlerValue): FrictionBuilder;
+  onWidthChanged(handler: DslSignalHandlerValue): FrictionBuilder;
+  onWindowChanged(handler: DslSignalHandlerValue): FrictionBuilder;
+  onXChanged(handler: DslSignalHandlerValue): FrictionBuilder;
+  onYChanged(handler: DslSignalHandlerValue): FrictionBuilder;
+  onZChanged(handler: DslSignalHandlerValue): FrictionBuilder;
   anchors(setup: (b: AnchorsBuilder) => void): FrictionBuilder;
   layer(setup: (b: LayerBuilder) => void): FrictionBuilder;
   itemParticle(setup: (b: ItemParticleAttachedBuilder) => void): FrictionBuilder;

@@ -2,11 +2,17 @@
 // Type: ProximitySensor
 // Generated from Qt 6.11.0
 
-import type { QmlEnumToken, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlEnumToken,
+  QmlObjectBuilder,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface ProximitySensorBuilder {
   id(id: string): ProximitySensorBuilder;
   child(obj: QmlObjectBuilder): ProximitySensorBuilder;
+  children(...objs: QmlObjectBuilder[]): ProximitySensorBuilder;
 
   active(value: boolean): ProximitySensorBuilder;
   activeBind(expr: string): ProximitySensorBuilder;
@@ -28,26 +34,26 @@ export interface ProximitySensorBuilder {
   skipDuplicatesBind(expr: string): ProximitySensorBuilder;
   userOrientation(value: number): ProximitySensorBuilder;
   userOrientationBind(expr: string): ProximitySensorBuilder;
-  onActiveChanged(body: string): ProximitySensorBuilder;
-  onAlwaysOnChanged(body: string): ProximitySensorBuilder;
-  onAvailableDataRatesChanged(body: string): ProximitySensorBuilder;
-  onAxesOrientationModeChanged(body: string): ProximitySensorBuilder;
-  onBufferSizeChanged(body: string): ProximitySensorBuilder;
-  onBusyChanged(body: string): ProximitySensorBuilder;
-  onConnectedToBackendChanged(body: string): ProximitySensorBuilder;
-  onCurrentOrientationChanged(body: string): ProximitySensorBuilder;
-  onDataRateChanged(body: string): ProximitySensorBuilder;
-  onDescriptionChanged(body: string): ProximitySensorBuilder;
-  onEfficientBufferSizeChanged(body: string): ProximitySensorBuilder;
-  onErrorChanged(body: string): ProximitySensorBuilder;
-  onIdentifierChanged(body: string): ProximitySensorBuilder;
-  onMaxBufferSizeChanged(body: string): ProximitySensorBuilder;
-  onObjectNameChanged(body: string): ProximitySensorBuilder;
-  onOutputRangeChanged(body: string): ProximitySensorBuilder;
-  onOutputRangesChanged(body: string): ProximitySensorBuilder;
-  onReadingChanged(body: string): ProximitySensorBuilder;
-  onSkipDuplicatesChanged(body: string): ProximitySensorBuilder;
-  onUserOrientationChanged(body: string): ProximitySensorBuilder;
+  onActiveChanged(handler: DslSignalHandlerValue): ProximitySensorBuilder;
+  onAlwaysOnChanged(handler: DslSignalHandlerValue): ProximitySensorBuilder;
+  onAvailableDataRatesChanged(handler: DslSignalHandlerValue): ProximitySensorBuilder;
+  onAxesOrientationModeChanged(handler: DslSignalHandlerValue): ProximitySensorBuilder;
+  onBufferSizeChanged(handler: DslSignalHandlerValue): ProximitySensorBuilder;
+  onBusyChanged(handler: DslSignalHandlerValue): ProximitySensorBuilder;
+  onConnectedToBackendChanged(handler: DslSignalHandlerValue): ProximitySensorBuilder;
+  onCurrentOrientationChanged(handler: DslSignalHandlerValue): ProximitySensorBuilder;
+  onDataRateChanged(handler: DslSignalHandlerValue): ProximitySensorBuilder;
+  onDescriptionChanged(handler: DslSignalHandlerValue): ProximitySensorBuilder;
+  onEfficientBufferSizeChanged(handler: DslSignalHandlerValue): ProximitySensorBuilder;
+  onErrorChanged(handler: DslSignalHandlerValue): ProximitySensorBuilder;
+  onIdentifierChanged(handler: DslSignalHandlerValue): ProximitySensorBuilder;
+  onMaxBufferSizeChanged(handler: DslSignalHandlerValue): ProximitySensorBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): ProximitySensorBuilder;
+  onOutputRangeChanged(handler: DslSignalHandlerValue): ProximitySensorBuilder;
+  onOutputRangesChanged(handler: DslSignalHandlerValue): ProximitySensorBuilder;
+  onReadingChanged(handler: DslSignalHandlerValue): ProximitySensorBuilder;
+  onSkipDuplicatesChanged(handler: DslSignalHandlerValue): ProximitySensorBuilder;
+  onUserOrientationChanged(handler: DslSignalHandlerValue): ProximitySensorBuilder;
 }
 
 const PROXIMITYSENSOR_META: TypeMetadata = {

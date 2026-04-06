@@ -2,7 +2,12 @@
 // Type: StringSorter
 // Generated from Qt 6.11.0
 
-import type { QmlEnumToken, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlEnumToken,
+  QmlObjectBuilder,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 import type { DelegateModelAttachedBuilder } from './QQmlDelegateModelAttached.js';
 import type { ObjectModelAttachedBuilder } from './QQmlObjectModelAttached.js';
@@ -10,6 +15,7 @@ import type { PackageAttachedBuilder } from './QQuickPackageAttached.js';
 export interface StringSorterBuilder {
   id(id: string): StringSorterBuilder;
   child(obj: QmlObjectBuilder): StringSorterBuilder;
+  children(...objs: QmlObjectBuilder[]): StringSorterBuilder;
 
   caseSensitivity(value: QmlEnumToken): StringSorterBuilder;
   caseSensitivityBind(expr: string): StringSorterBuilder;
@@ -31,18 +37,18 @@ export interface StringSorterBuilder {
   roleNameBind(expr: string): StringSorterBuilder;
   sortOrder(value: QmlEnumToken): StringSorterBuilder;
   sortOrderBind(expr: string): StringSorterBuilder;
-  onCaseSensitivityChanged(body: string): StringSorterBuilder;
-  onColumnChanged(body: string): StringSorterBuilder;
-  onEnabledChanged(body: string): StringSorterBuilder;
-  onIgnorePunctuationChanged(body: string): StringSorterBuilder;
-  onInvalidateCache(body: string): StringSorterBuilder;
-  onInvalidateModel(body: string): StringSorterBuilder;
-  onLocaleChanged(body: string): StringSorterBuilder;
-  onNumericModeChanged(body: string): StringSorterBuilder;
-  onObjectNameChanged(body: string): StringSorterBuilder;
-  onPriorityChanged(body: string): StringSorterBuilder;
-  onRoleNameChanged(body: string): StringSorterBuilder;
-  onSortOrderChanged(body: string): StringSorterBuilder;
+  onCaseSensitivityChanged(handler: DslSignalHandlerValue): StringSorterBuilder;
+  onColumnChanged(handler: DslSignalHandlerValue): StringSorterBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): StringSorterBuilder;
+  onIgnorePunctuationChanged(handler: DslSignalHandlerValue): StringSorterBuilder;
+  onInvalidateCache(handler: DslSignalHandlerValue): StringSorterBuilder;
+  onInvalidateModel(handler: DslSignalHandlerValue): StringSorterBuilder;
+  onLocaleChanged(handler: DslSignalHandlerValue): StringSorterBuilder;
+  onNumericModeChanged(handler: DslSignalHandlerValue): StringSorterBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): StringSorterBuilder;
+  onPriorityChanged(handler: DslSignalHandlerValue): StringSorterBuilder;
+  onRoleNameChanged(handler: DslSignalHandlerValue): StringSorterBuilder;
+  onSortOrderChanged(handler: DslSignalHandlerValue): StringSorterBuilder;
   delegateModel(setup: (b: DelegateModelAttachedBuilder) => void): StringSorterBuilder;
   objectModel(setup: (b: ObjectModelAttachedBuilder) => void): StringSorterBuilder;
   package(setup: (b: PackageAttachedBuilder) => void): StringSorterBuilder;

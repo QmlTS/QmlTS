@@ -2,16 +2,17 @@
 // Type: CameraPermission
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import type { DslSignalHandlerValue, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 export interface CameraPermissionBuilder {
   id(id: string): CameraPermissionBuilder;
   child(obj: QmlObjectBuilder): CameraPermissionBuilder;
+  children(...objs: QmlObjectBuilder[]): CameraPermissionBuilder;
 
   objectName(value: string): CameraPermissionBuilder;
   objectNameBind(expr: string): CameraPermissionBuilder;
-  onObjectNameChanged(body: string): CameraPermissionBuilder;
-  onStatusChanged(body: string): CameraPermissionBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): CameraPermissionBuilder;
+  onStatusChanged(handler: DslSignalHandlerValue): CameraPermissionBuilder;
 }
 
 const CAMERAPERMISSION_META: TypeMetadata = {

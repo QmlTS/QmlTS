@@ -2,11 +2,17 @@
 // Type: NoDepthMask
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 export interface NoDepthMaskBuilder {
   id(id: string): NoDepthMaskBuilder;
   child(obj: QmlObjectBuilder): NoDepthMaskBuilder;
+  children(...objs: QmlObjectBuilder[]): NoDepthMaskBuilder;
 
   enabled(value: boolean): NoDepthMaskBuilder;
   enabledBind(expr: string): NoDepthMaskBuilder;
@@ -14,10 +20,10 @@ export interface NoDepthMaskBuilder {
   objectNameBind(expr: string): NoDepthMaskBuilder;
   parent(value: QmlValue): NoDepthMaskBuilder;
   parentBind(expr: string): NoDepthMaskBuilder;
-  onEnabledChanged(body: string): NoDepthMaskBuilder;
-  onNodeDestroyed(body: string): NoDepthMaskBuilder;
-  onObjectNameChanged(body: string): NoDepthMaskBuilder;
-  onParentChanged(body: string): NoDepthMaskBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): NoDepthMaskBuilder;
+  onNodeDestroyed(handler: DslSignalHandlerValue): NoDepthMaskBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): NoDepthMaskBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): NoDepthMaskBuilder;
 }
 
 const NODEPTHMASK_META: TypeMetadata = {

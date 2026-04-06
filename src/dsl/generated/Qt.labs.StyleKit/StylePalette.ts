@@ -2,32 +2,33 @@
 // Type: StylePalette
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import type { DslSignalHandlerValue, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 import type { StyleKitAttachedBuilder } from './QQStyleKitAttached.js';
 import type { StyleVariationAttachedBuilder } from './QQStyleKitVariationAttached.js';
 export interface StylePaletteBuilder {
   id(id: string): StylePaletteBuilder;
   child(obj: QmlObjectBuilder): StylePaletteBuilder;
+  children(...objs: QmlObjectBuilder[]): StylePaletteBuilder;
 
   objectName(value: string): StylePaletteBuilder;
   objectNameBind(expr: string): StylePaletteBuilder;
-  onButtonChanged(body: string): StylePaletteBuilder;
-  onCheckBoxChanged(body: string): StylePaletteBuilder;
-  onComboBoxChanged(body: string): StylePaletteBuilder;
-  onFallbackPaletteChanged(body: string): StylePaletteBuilder;
-  onGroupBoxChanged(body: string): StylePaletteBuilder;
-  onItemDelegateChanged(body: string): StylePaletteBuilder;
-  onLabelChanged(body: string): StylePaletteBuilder;
-  onObjectNameChanged(body: string): StylePaletteBuilder;
-  onRadioButtonChanged(body: string): StylePaletteBuilder;
-  onSpinBoxChanged(body: string): StylePaletteBuilder;
-  onSwitchControlChanged(body: string): StylePaletteBuilder;
-  onSystemChanged(body: string): StylePaletteBuilder;
-  onTabBarChanged(body: string): StylePaletteBuilder;
-  onTextAreaChanged(body: string): StylePaletteBuilder;
-  onTextFieldChanged(body: string): StylePaletteBuilder;
-  onToolBarChanged(body: string): StylePaletteBuilder;
+  onButtonChanged(handler: DslSignalHandlerValue): StylePaletteBuilder;
+  onCheckBoxChanged(handler: DslSignalHandlerValue): StylePaletteBuilder;
+  onComboBoxChanged(handler: DslSignalHandlerValue): StylePaletteBuilder;
+  onFallbackPaletteChanged(handler: DslSignalHandlerValue): StylePaletteBuilder;
+  onGroupBoxChanged(handler: DslSignalHandlerValue): StylePaletteBuilder;
+  onItemDelegateChanged(handler: DslSignalHandlerValue): StylePaletteBuilder;
+  onLabelChanged(handler: DslSignalHandlerValue): StylePaletteBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): StylePaletteBuilder;
+  onRadioButtonChanged(handler: DslSignalHandlerValue): StylePaletteBuilder;
+  onSpinBoxChanged(handler: DslSignalHandlerValue): StylePaletteBuilder;
+  onSwitchControlChanged(handler: DslSignalHandlerValue): StylePaletteBuilder;
+  onSystemChanged(handler: DslSignalHandlerValue): StylePaletteBuilder;
+  onTabBarChanged(handler: DslSignalHandlerValue): StylePaletteBuilder;
+  onTextAreaChanged(handler: DslSignalHandlerValue): StylePaletteBuilder;
+  onTextFieldChanged(handler: DslSignalHandlerValue): StylePaletteBuilder;
+  onToolBarChanged(handler: DslSignalHandlerValue): StylePaletteBuilder;
   styleKit(setup: (b: StyleKitAttachedBuilder) => void): StylePaletteBuilder;
   styleVariation(setup: (b: StyleVariationAttachedBuilder) => void): StylePaletteBuilder;
 }

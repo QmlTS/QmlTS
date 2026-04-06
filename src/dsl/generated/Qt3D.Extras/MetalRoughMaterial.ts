@@ -2,12 +2,18 @@
 // Type: MetalRoughMaterial
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 import type { EffectBuilder } from '../Qt3D.Render/Effect.js';
 export interface MetalRoughMaterialBuilder {
   id(id: string): MetalRoughMaterialBuilder;
   child(obj: QmlObjectBuilder): MetalRoughMaterialBuilder;
+  children(...objs: QmlObjectBuilder[]): MetalRoughMaterialBuilder;
 
   ambientOcclusion(value: QmlValue): MetalRoughMaterialBuilder;
   ambientOcclusionBind(expr: string): MetalRoughMaterialBuilder;
@@ -31,20 +37,20 @@ export interface MetalRoughMaterialBuilder {
   roughnessBind(expr: string): MetalRoughMaterialBuilder;
   textureScale(value: number): MetalRoughMaterialBuilder;
   textureScaleBind(expr: string): MetalRoughMaterialBuilder;
-  onAddedToEntity(body: string): MetalRoughMaterialBuilder;
-  onAmbientOcclusionChanged(body: string): MetalRoughMaterialBuilder;
-  onBaseColorChanged(body: string): MetalRoughMaterialBuilder;
-  onEffectChanged(body: string): MetalRoughMaterialBuilder;
-  onEnabledChanged(body: string): MetalRoughMaterialBuilder;
-  onMetalnessChanged(body: string): MetalRoughMaterialBuilder;
-  onNodeDestroyed(body: string): MetalRoughMaterialBuilder;
-  onNormalChanged(body: string): MetalRoughMaterialBuilder;
-  onObjectNameChanged(body: string): MetalRoughMaterialBuilder;
-  onParentChanged(body: string): MetalRoughMaterialBuilder;
-  onRemovedFromEntity(body: string): MetalRoughMaterialBuilder;
-  onRoughnessChanged(body: string): MetalRoughMaterialBuilder;
-  onShareableChanged(body: string): MetalRoughMaterialBuilder;
-  onTextureScaleChanged(body: string): MetalRoughMaterialBuilder;
+  onAddedToEntity(handler: DslSignalHandlerValue): MetalRoughMaterialBuilder;
+  onAmbientOcclusionChanged(handler: DslSignalHandlerValue): MetalRoughMaterialBuilder;
+  onBaseColorChanged(handler: DslSignalHandlerValue): MetalRoughMaterialBuilder;
+  onEffectChanged(handler: DslSignalHandlerValue): MetalRoughMaterialBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): MetalRoughMaterialBuilder;
+  onMetalnessChanged(handler: DslSignalHandlerValue): MetalRoughMaterialBuilder;
+  onNodeDestroyed(handler: DslSignalHandlerValue): MetalRoughMaterialBuilder;
+  onNormalChanged(handler: DslSignalHandlerValue): MetalRoughMaterialBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): MetalRoughMaterialBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): MetalRoughMaterialBuilder;
+  onRemovedFromEntity(handler: DslSignalHandlerValue): MetalRoughMaterialBuilder;
+  onRoughnessChanged(handler: DslSignalHandlerValue): MetalRoughMaterialBuilder;
+  onShareableChanged(handler: DslSignalHandlerValue): MetalRoughMaterialBuilder;
+  onTextureScaleChanged(handler: DslSignalHandlerValue): MetalRoughMaterialBuilder;
 }
 
 const METALROUGHMATERIAL_META: TypeMetadata = {

@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlEnumToken,
   QmlObjectBuilder,
   QmlValue,
@@ -12,6 +13,7 @@ import { createFluentBuilder } from '../../runtime/index.js';
 export interface VBarModelMapperBuilder {
   id(id: string): VBarModelMapperBuilder;
   child(obj: QmlObjectBuilder): VBarModelMapperBuilder;
+  children(...objs: QmlObjectBuilder[]): VBarModelMapperBuilder;
 
   count(value: number): VBarModelMapperBuilder;
   countBind(expr: string): VBarModelMapperBuilder;
@@ -37,20 +39,20 @@ export interface VBarModelMapperBuilder {
   rowCountBind(expr: string): VBarModelMapperBuilder;
   series(value: QmlValue): VBarModelMapperBuilder;
   seriesBind(expr: string): VBarModelMapperBuilder;
-  onCountChanged(body: string): VBarModelMapperBuilder;
-  onFirstBarSetColumnChanged(body: string): VBarModelMapperBuilder;
-  onFirstBarSetSectionChanged(body: string): VBarModelMapperBuilder;
-  onFirstChanged(body: string): VBarModelMapperBuilder;
-  onFirstRowChanged(body: string): VBarModelMapperBuilder;
-  onLastBarSetColumnChanged(body: string): VBarModelMapperBuilder;
-  onLastBarSetSectionChanged(body: string): VBarModelMapperBuilder;
-  onModelChanged(body: string): VBarModelMapperBuilder;
-  onModelReplaced(body: string): VBarModelMapperBuilder;
-  onObjectNameChanged(body: string): VBarModelMapperBuilder;
-  onOrientationChanged(body: string): VBarModelMapperBuilder;
-  onRowCountChanged(body: string): VBarModelMapperBuilder;
-  onSeriesChanged(body: string): VBarModelMapperBuilder;
-  onSeriesReplaced(body: string): VBarModelMapperBuilder;
+  onCountChanged(handler: DslSignalHandlerValue): VBarModelMapperBuilder;
+  onFirstBarSetColumnChanged(handler: DslSignalHandlerValue): VBarModelMapperBuilder;
+  onFirstBarSetSectionChanged(handler: DslSignalHandlerValue): VBarModelMapperBuilder;
+  onFirstChanged(handler: DslSignalHandlerValue): VBarModelMapperBuilder;
+  onFirstRowChanged(handler: DslSignalHandlerValue): VBarModelMapperBuilder;
+  onLastBarSetColumnChanged(handler: DslSignalHandlerValue): VBarModelMapperBuilder;
+  onLastBarSetSectionChanged(handler: DslSignalHandlerValue): VBarModelMapperBuilder;
+  onModelChanged(handler: DslSignalHandlerValue): VBarModelMapperBuilder;
+  onModelReplaced(handler: DslSignalHandlerValue): VBarModelMapperBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): VBarModelMapperBuilder;
+  onOrientationChanged(handler: DslSignalHandlerValue): VBarModelMapperBuilder;
+  onRowCountChanged(handler: DslSignalHandlerValue): VBarModelMapperBuilder;
+  onSeriesChanged(handler: DslSignalHandlerValue): VBarModelMapperBuilder;
+  onSeriesReplaced(handler: DslSignalHandlerValue): VBarModelMapperBuilder;
 }
 
 const VBARMODELMAPPER_META: TypeMetadata = {

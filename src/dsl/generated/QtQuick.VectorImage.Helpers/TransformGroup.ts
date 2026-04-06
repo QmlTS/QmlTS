@@ -2,15 +2,16 @@
 // Type: TransformGroup
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import type { DslSignalHandlerValue, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 export interface TransformGroupBuilder {
   id(id: string): TransformGroupBuilder;
   child(obj: QmlObjectBuilder): TransformGroupBuilder;
+  children(...objs: QmlObjectBuilder[]): TransformGroupBuilder;
 
   objectName(value: string): TransformGroupBuilder;
   objectNameBind(expr: string): TransformGroupBuilder;
-  onObjectNameChanged(body: string): TransformGroupBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): TransformGroupBuilder;
 }
 
 const TRANSFORMGROUP_META: TypeMetadata = {

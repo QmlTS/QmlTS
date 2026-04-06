@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlEnumToken,
   QmlObjectBuilder,
   QmlValue,
@@ -12,6 +13,7 @@ import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface FrontFaceBuilder {
   id(id: string): FrontFaceBuilder;
   child(obj: QmlObjectBuilder): FrontFaceBuilder;
+  children(...objs: QmlObjectBuilder[]): FrontFaceBuilder;
 
   direction(value: QmlEnumToken): FrontFaceBuilder;
   directionBind(expr: string): FrontFaceBuilder;
@@ -21,11 +23,11 @@ export interface FrontFaceBuilder {
   objectNameBind(expr: string): FrontFaceBuilder;
   parent(value: QmlValue): FrontFaceBuilder;
   parentBind(expr: string): FrontFaceBuilder;
-  onDirectionChanged(body: string): FrontFaceBuilder;
-  onEnabledChanged(body: string): FrontFaceBuilder;
-  onNodeDestroyed(body: string): FrontFaceBuilder;
-  onObjectNameChanged(body: string): FrontFaceBuilder;
-  onParentChanged(body: string): FrontFaceBuilder;
+  onDirectionChanged(handler: DslSignalHandlerValue): FrontFaceBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): FrontFaceBuilder;
+  onNodeDestroyed(handler: DslSignalHandlerValue): FrontFaceBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): FrontFaceBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): FrontFaceBuilder;
 }
 
 const FRONTFACE_META: TypeMetadata = {

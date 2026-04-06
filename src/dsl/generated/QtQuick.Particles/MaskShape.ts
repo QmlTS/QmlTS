@@ -2,19 +2,25 @@
 // Type: MaskShape
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlUrl, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlObjectBuilder,
+  QmlUrl,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 import type { ItemParticleAttachedBuilder } from './QQuickItemParticleAttached.js';
 export interface MaskShapeBuilder {
   id(id: string): MaskShapeBuilder;
   child(obj: QmlObjectBuilder): MaskShapeBuilder;
+  children(...objs: QmlObjectBuilder[]): MaskShapeBuilder;
 
   objectName(value: string): MaskShapeBuilder;
   objectNameBind(expr: string): MaskShapeBuilder;
   source(value: QmlUrl): MaskShapeBuilder;
   sourceBind(expr: string): MaskShapeBuilder;
-  onObjectNameChanged(body: string): MaskShapeBuilder;
-  onSourceChanged(body: string): MaskShapeBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): MaskShapeBuilder;
+  onSourceChanged(handler: DslSignalHandlerValue): MaskShapeBuilder;
   itemParticle(setup: (b: ItemParticleAttachedBuilder) => void): MaskShapeBuilder;
 }
 

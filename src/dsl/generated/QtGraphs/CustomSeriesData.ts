@@ -2,17 +2,23 @@
 // Type: CustomSeriesData
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 export interface CustomSeriesDataBuilder {
   id(id: string): CustomSeriesDataBuilder;
   child(obj: QmlObjectBuilder): CustomSeriesDataBuilder;
+  children(...objs: QmlObjectBuilder[]): CustomSeriesDataBuilder;
 
   data(value: QmlValue): CustomSeriesDataBuilder;
   dataBind(expr: string): CustomSeriesDataBuilder;
   objectName(value: string): CustomSeriesDataBuilder;
   objectNameBind(expr: string): CustomSeriesDataBuilder;
-  onObjectNameChanged(body: string): CustomSeriesDataBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): CustomSeriesDataBuilder;
 }
 
 const CUSTOMSERIESDATA_META: TypeMetadata = {

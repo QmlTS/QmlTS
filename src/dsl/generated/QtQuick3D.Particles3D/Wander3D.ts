@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlObjectBuilder,
   QmlQuaternion,
   QmlValue,
@@ -14,6 +15,7 @@ import type { ParticleSystem3DBuilder } from './ParticleSystem3D.js';
 export interface Wander3DBuilder {
   id(id: string): Wander3DBuilder;
   child(obj: QmlObjectBuilder): Wander3DBuilder;
+  children(...objs: QmlObjectBuilder[]): Wander3DBuilder;
 
   enabled(value: boolean): Wander3DBuilder;
   enabledBind(expr: string): Wander3DBuilder;
@@ -67,41 +69,41 @@ export interface Wander3DBuilder {
   yBind(expr: string): Wander3DBuilder;
   z(value: number): Wander3DBuilder;
   zBind(expr: string): Wander3DBuilder;
-  onChildrenChanged(body: string): Wander3DBuilder;
-  onEnabledChanged(body: string): Wander3DBuilder;
-  onEulerRotationChanged(body: string): Wander3DBuilder;
-  onFadeInDurationChanged(body: string): Wander3DBuilder;
-  onFadeOutDurationChanged(body: string): Wander3DBuilder;
-  onForwardChanged(body: string): Wander3DBuilder;
-  onGlobalAmountChanged(body: string): Wander3DBuilder;
-  onGlobalPaceChanged(body: string): Wander3DBuilder;
-  onGlobalPaceStartChanged(body: string): Wander3DBuilder;
-  onLayersChanged(body: string): Wander3DBuilder;
-  onLocalOpacityChanged(body: string): Wander3DBuilder;
-  onObjectNameChanged(body: string): Wander3DBuilder;
-  onParentChanged(body: string): Wander3DBuilder;
-  onPivotChanged(body: string): Wander3DBuilder;
-  onPositionChanged(body: string): Wander3DBuilder;
-  onRightChanged(body: string): Wander3DBuilder;
-  onRotationChanged(body: string): Wander3DBuilder;
-  onScaleChanged(body: string): Wander3DBuilder;
-  onScenePositionChanged(body: string): Wander3DBuilder;
-  onSceneRotationChanged(body: string): Wander3DBuilder;
-  onSceneScaleChanged(body: string): Wander3DBuilder;
-  onSceneTransformChanged(body: string): Wander3DBuilder;
-  onStateChanged(body: string): Wander3DBuilder;
-  onStaticFlagsChanged(body: string): Wander3DBuilder;
-  onSystemChanged(body: string): Wander3DBuilder;
-  onUniqueAmountChanged(body: string): Wander3DBuilder;
-  onUniqueAmountVariationChanged(body: string): Wander3DBuilder;
-  onUniquePaceChanged(body: string): Wander3DBuilder;
-  onUniquePaceVariationChanged(body: string): Wander3DBuilder;
-  onUpChanged(body: string): Wander3DBuilder;
-  onUpdate(body: string): Wander3DBuilder;
-  onVisibleChanged(body: string): Wander3DBuilder;
-  onXChanged(body: string): Wander3DBuilder;
-  onYChanged(body: string): Wander3DBuilder;
-  onZChanged(body: string): Wander3DBuilder;
+  onChildrenChanged(handler: DslSignalHandlerValue): Wander3DBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): Wander3DBuilder;
+  onEulerRotationChanged(handler: DslSignalHandlerValue): Wander3DBuilder;
+  onFadeInDurationChanged(handler: DslSignalHandlerValue): Wander3DBuilder;
+  onFadeOutDurationChanged(handler: DslSignalHandlerValue): Wander3DBuilder;
+  onForwardChanged(handler: DslSignalHandlerValue): Wander3DBuilder;
+  onGlobalAmountChanged(handler: DslSignalHandlerValue): Wander3DBuilder;
+  onGlobalPaceChanged(handler: DslSignalHandlerValue): Wander3DBuilder;
+  onGlobalPaceStartChanged(handler: DslSignalHandlerValue): Wander3DBuilder;
+  onLayersChanged(handler: DslSignalHandlerValue): Wander3DBuilder;
+  onLocalOpacityChanged(handler: DslSignalHandlerValue): Wander3DBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): Wander3DBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): Wander3DBuilder;
+  onPivotChanged(handler: DslSignalHandlerValue): Wander3DBuilder;
+  onPositionChanged(handler: DslSignalHandlerValue): Wander3DBuilder;
+  onRightChanged(handler: DslSignalHandlerValue): Wander3DBuilder;
+  onRotationChanged(handler: DslSignalHandlerValue): Wander3DBuilder;
+  onScaleChanged(handler: DslSignalHandlerValue): Wander3DBuilder;
+  onScenePositionChanged(handler: DslSignalHandlerValue): Wander3DBuilder;
+  onSceneRotationChanged(handler: DslSignalHandlerValue): Wander3DBuilder;
+  onSceneScaleChanged(handler: DslSignalHandlerValue): Wander3DBuilder;
+  onSceneTransformChanged(handler: DslSignalHandlerValue): Wander3DBuilder;
+  onStateChanged(handler: DslSignalHandlerValue): Wander3DBuilder;
+  onStaticFlagsChanged(handler: DslSignalHandlerValue): Wander3DBuilder;
+  onSystemChanged(handler: DslSignalHandlerValue): Wander3DBuilder;
+  onUniqueAmountChanged(handler: DslSignalHandlerValue): Wander3DBuilder;
+  onUniqueAmountVariationChanged(handler: DslSignalHandlerValue): Wander3DBuilder;
+  onUniquePaceChanged(handler: DslSignalHandlerValue): Wander3DBuilder;
+  onUniquePaceVariationChanged(handler: DslSignalHandlerValue): Wander3DBuilder;
+  onUpChanged(handler: DslSignalHandlerValue): Wander3DBuilder;
+  onUpdate(handler: DslSignalHandlerValue): Wander3DBuilder;
+  onVisibleChanged(handler: DslSignalHandlerValue): Wander3DBuilder;
+  onXChanged(handler: DslSignalHandlerValue): Wander3DBuilder;
+  onYChanged(handler: DslSignalHandlerValue): Wander3DBuilder;
+  onZChanged(handler: DslSignalHandlerValue): Wander3DBuilder;
 }
 
 const WANDER3D_META: TypeMetadata = {

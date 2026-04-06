@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlEnumToken,
   QmlObjectBuilder,
   QmlQuaternion,
@@ -16,6 +17,7 @@ import type { XrOriginBuilder } from './XrOrigin.js';
 export interface XrViewBuilder {
   id(id: string): XrViewBuilder;
   child(obj: QmlObjectBuilder): XrViewBuilder;
+  children(...objs: QmlObjectBuilder[]): XrViewBuilder;
 
   depthSubmissionEnabled(value: boolean): XrViewBuilder;
   depthSubmissionEnabledBind(expr: string): XrViewBuilder;
@@ -61,40 +63,40 @@ export interface XrViewBuilder {
   yBind(expr: string): XrViewBuilder;
   z(value: number): XrViewBuilder;
   zBind(expr: string): XrViewBuilder;
-  onChildrenChanged(body: string): XrViewBuilder;
-  onDepthSubmissionEnabledChanged(body: string): XrViewBuilder;
-  onEnvironmentChanged(body: string): XrViewBuilder;
-  onEulerRotationChanged(body: string): XrViewBuilder;
-  onFixedFoveationChanged(body: string): XrViewBuilder;
-  onForwardChanged(body: string): XrViewBuilder;
-  onFrameReady(body: string): XrViewBuilder;
-  onInitializeFailed(body: string): XrViewBuilder;
-  onLayersChanged(body: string): XrViewBuilder;
-  onLocalOpacityChanged(body: string): XrViewBuilder;
-  onMultiViewRenderingEnabledChanged(body: string): XrViewBuilder;
-  onObjectNameChanged(body: string): XrViewBuilder;
-  onParentChanged(body: string): XrViewBuilder;
-  onPassthroughEnabledChanged(body: string): XrViewBuilder;
-  onPivotChanged(body: string): XrViewBuilder;
-  onPositionChanged(body: string): XrViewBuilder;
-  onQuitOnSessionEndChanged(body: string): XrViewBuilder;
-  onReferenceSpaceChanged(body: string): XrViewBuilder;
-  onRightChanged(body: string): XrViewBuilder;
-  onRotationChanged(body: string): XrViewBuilder;
-  onScaleChanged(body: string): XrViewBuilder;
-  onScenePositionChanged(body: string): XrViewBuilder;
-  onSceneRotationChanged(body: string): XrViewBuilder;
-  onSceneScaleChanged(body: string): XrViewBuilder;
-  onSceneTransformChanged(body: string): XrViewBuilder;
-  onSessionEnded(body: string): XrViewBuilder;
-  onStateChanged(body: string): XrViewBuilder;
-  onStaticFlagsChanged(body: string): XrViewBuilder;
-  onUpChanged(body: string): XrViewBuilder;
-  onVisibleChanged(body: string): XrViewBuilder;
-  onXChanged(body: string): XrViewBuilder;
-  onXrOriginChanged(body: string): XrViewBuilder;
-  onYChanged(body: string): XrViewBuilder;
-  onZChanged(body: string): XrViewBuilder;
+  onChildrenChanged(handler: DslSignalHandlerValue): XrViewBuilder;
+  onDepthSubmissionEnabledChanged(handler: DslSignalHandlerValue): XrViewBuilder;
+  onEnvironmentChanged(handler: DslSignalHandlerValue): XrViewBuilder;
+  onEulerRotationChanged(handler: DslSignalHandlerValue): XrViewBuilder;
+  onFixedFoveationChanged(handler: DslSignalHandlerValue): XrViewBuilder;
+  onForwardChanged(handler: DslSignalHandlerValue): XrViewBuilder;
+  onFrameReady(handler: DslSignalHandlerValue): XrViewBuilder;
+  onInitializeFailed(handler: DslSignalHandlerValue): XrViewBuilder;
+  onLayersChanged(handler: DslSignalHandlerValue): XrViewBuilder;
+  onLocalOpacityChanged(handler: DslSignalHandlerValue): XrViewBuilder;
+  onMultiViewRenderingEnabledChanged(handler: DslSignalHandlerValue): XrViewBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): XrViewBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): XrViewBuilder;
+  onPassthroughEnabledChanged(handler: DslSignalHandlerValue): XrViewBuilder;
+  onPivotChanged(handler: DslSignalHandlerValue): XrViewBuilder;
+  onPositionChanged(handler: DslSignalHandlerValue): XrViewBuilder;
+  onQuitOnSessionEndChanged(handler: DslSignalHandlerValue): XrViewBuilder;
+  onReferenceSpaceChanged(handler: DslSignalHandlerValue): XrViewBuilder;
+  onRightChanged(handler: DslSignalHandlerValue): XrViewBuilder;
+  onRotationChanged(handler: DslSignalHandlerValue): XrViewBuilder;
+  onScaleChanged(handler: DslSignalHandlerValue): XrViewBuilder;
+  onScenePositionChanged(handler: DslSignalHandlerValue): XrViewBuilder;
+  onSceneRotationChanged(handler: DslSignalHandlerValue): XrViewBuilder;
+  onSceneScaleChanged(handler: DslSignalHandlerValue): XrViewBuilder;
+  onSceneTransformChanged(handler: DslSignalHandlerValue): XrViewBuilder;
+  onSessionEnded(handler: DslSignalHandlerValue): XrViewBuilder;
+  onStateChanged(handler: DslSignalHandlerValue): XrViewBuilder;
+  onStaticFlagsChanged(handler: DslSignalHandlerValue): XrViewBuilder;
+  onUpChanged(handler: DslSignalHandlerValue): XrViewBuilder;
+  onVisibleChanged(handler: DslSignalHandlerValue): XrViewBuilder;
+  onXChanged(handler: DslSignalHandlerValue): XrViewBuilder;
+  onXrOriginChanged(handler: DslSignalHandlerValue): XrViewBuilder;
+  onYChanged(handler: DslSignalHandlerValue): XrViewBuilder;
+  onZChanged(handler: DslSignalHandlerValue): XrViewBuilder;
 }
 
 const XRVIEW_META: TypeMetadata = {

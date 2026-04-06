@@ -2,11 +2,17 @@
 // Type: InstanceRange
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 export interface InstanceRangeBuilder {
   id(id: string): InstanceRangeBuilder;
   child(obj: QmlObjectBuilder): InstanceRangeBuilder;
+  children(...objs: QmlObjectBuilder[]): InstanceRangeBuilder;
 
   from(value: QmlValue): InstanceRangeBuilder;
   fromBind(expr: string): InstanceRangeBuilder;
@@ -20,14 +26,14 @@ export interface InstanceRangeBuilder {
   stateBind(expr: string): InstanceRangeBuilder;
   to(value: QmlValue): InstanceRangeBuilder;
   toBind(expr: string): InstanceRangeBuilder;
-  onChanged(body: string): InstanceRangeBuilder;
-  onChildrenChanged(body: string): InstanceRangeBuilder;
-  onFromChanged(body: string): InstanceRangeBuilder;
-  onObjectNameChanged(body: string): InstanceRangeBuilder;
-  onParentChanged(body: string): InstanceRangeBuilder;
-  onProportionalChanged(body: string): InstanceRangeBuilder;
-  onStateChanged(body: string): InstanceRangeBuilder;
-  onToChanged(body: string): InstanceRangeBuilder;
+  onChanged(handler: DslSignalHandlerValue): InstanceRangeBuilder;
+  onChildrenChanged(handler: DslSignalHandlerValue): InstanceRangeBuilder;
+  onFromChanged(handler: DslSignalHandlerValue): InstanceRangeBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): InstanceRangeBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): InstanceRangeBuilder;
+  onProportionalChanged(handler: DslSignalHandlerValue): InstanceRangeBuilder;
+  onStateChanged(handler: DslSignalHandlerValue): InstanceRangeBuilder;
+  onToChanged(handler: DslSignalHandlerValue): InstanceRangeBuilder;
 }
 
 const INSTANCERANGE_META: TypeMetadata = {

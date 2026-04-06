@@ -2,7 +2,7 @@
 // Type: IntValidator
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import type { DslSignalHandlerValue, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { AccessibleAttachedBuilder } from './Accessible.js';
 import type { EnterKeyAttachedBuilder } from './EnterKey.js';
@@ -23,6 +23,7 @@ import type { ViewTransitionAttachedBuilder } from './ViewTransition.js';
 export interface IntValidatorBuilder {
   id(id: string): IntValidatorBuilder;
   child(obj: QmlObjectBuilder): IntValidatorBuilder;
+  children(...objs: QmlObjectBuilder[]): IntValidatorBuilder;
 
   bottom(value: number): IntValidatorBuilder;
   bottomBind(expr: string): IntValidatorBuilder;
@@ -32,11 +33,11 @@ export interface IntValidatorBuilder {
   objectNameBind(expr: string): IntValidatorBuilder;
   top(value: number): IntValidatorBuilder;
   topBind(expr: string): IntValidatorBuilder;
-  onBottomChanged(body: string): IntValidatorBuilder;
-  onChanged(body: string): IntValidatorBuilder;
-  onLocaleNameChanged(body: string): IntValidatorBuilder;
-  onObjectNameChanged(body: string): IntValidatorBuilder;
-  onTopChanged(body: string): IntValidatorBuilder;
+  onBottomChanged(handler: DslSignalHandlerValue): IntValidatorBuilder;
+  onChanged(handler: DslSignalHandlerValue): IntValidatorBuilder;
+  onLocaleNameChanged(handler: DslSignalHandlerValue): IntValidatorBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): IntValidatorBuilder;
+  onTopChanged(handler: DslSignalHandlerValue): IntValidatorBuilder;
   accessible(setup: (b: AccessibleAttachedBuilder) => void): IntValidatorBuilder;
   drag(setup: (b: DragAttachedBuilder) => void): IntValidatorBuilder;
   enterKey(setup: (b: EnterKeyAttachedBuilder) => void): IntValidatorBuilder;

@@ -2,11 +2,17 @@
 // Type: BlendAnimationNode
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 export interface BlendAnimationNodeBuilder {
   id(id: string): BlendAnimationNodeBuilder;
   child(obj: QmlObjectBuilder): BlendAnimationNodeBuilder;
+  children(...objs: QmlObjectBuilder[]): BlendAnimationNodeBuilder;
 
   objectName(value: string): BlendAnimationNodeBuilder;
   objectNameBind(expr: string): BlendAnimationNodeBuilder;
@@ -18,12 +24,12 @@ export interface BlendAnimationNodeBuilder {
   source2Bind(expr: string): BlendAnimationNodeBuilder;
   weight(value: number): BlendAnimationNodeBuilder;
   weightBind(expr: string): BlendAnimationNodeBuilder;
-  onFrameDataChanged(body: string): BlendAnimationNodeBuilder;
-  onObjectNameChanged(body: string): BlendAnimationNodeBuilder;
-  onOutputEnabledChanged(body: string): BlendAnimationNodeBuilder;
-  onSource1Changed(body: string): BlendAnimationNodeBuilder;
-  onSource2Changed(body: string): BlendAnimationNodeBuilder;
-  onWeightChanged(body: string): BlendAnimationNodeBuilder;
+  onFrameDataChanged(handler: DslSignalHandlerValue): BlendAnimationNodeBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): BlendAnimationNodeBuilder;
+  onOutputEnabledChanged(handler: DslSignalHandlerValue): BlendAnimationNodeBuilder;
+  onSource1Changed(handler: DslSignalHandlerValue): BlendAnimationNodeBuilder;
+  onSource2Changed(handler: DslSignalHandlerValue): BlendAnimationNodeBuilder;
+  onWeightChanged(handler: DslSignalHandlerValue): BlendAnimationNodeBuilder;
 }
 
 const BLENDANIMATIONNODE_META: TypeMetadata = {

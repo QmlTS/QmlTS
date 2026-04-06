@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlComponent,
   QmlEnumToken,
   QmlObjectBuilder,
@@ -19,6 +20,7 @@ import type { ItemParticleAttachedBuilder } from './QQuickItemParticleAttached.j
 export interface ItemParticleBuilder {
   id(id: string): ItemParticleBuilder;
   child(obj: QmlObjectBuilder): ItemParticleBuilder;
+  children(...objs: QmlObjectBuilder[]): ItemParticleBuilder;
 
   activeFocusOnTab(value: boolean): ItemParticleBuilder;
   activeFocusOnTabBind(expr: string): ItemParticleBuilder;
@@ -78,42 +80,42 @@ export interface ItemParticleBuilder {
   yBind(expr: string): ItemParticleBuilder;
   z(value: number): ItemParticleBuilder;
   zBind(expr: string): ItemParticleBuilder;
-  onActiveFocusChanged(body: string): ItemParticleBuilder;
-  onActiveFocusOnTabChanged(body: string): ItemParticleBuilder;
-  onAntialiasingChanged(body: string): ItemParticleBuilder;
-  onBaselineOffsetChanged(body: string): ItemParticleBuilder;
-  onChildrenChanged(body: string): ItemParticleBuilder;
-  onChildrenRectChanged(body: string): ItemParticleBuilder;
-  onClipChanged(body: string): ItemParticleBuilder;
-  onContainmentMaskChanged(body: string): ItemParticleBuilder;
-  onCountChanged(body: string): ItemParticleBuilder;
-  onDelegateChanged(body: string): ItemParticleBuilder;
-  onEnabledChanged(body: string): ItemParticleBuilder;
-  onFadeChanged(body: string): ItemParticleBuilder;
-  onFocusChanged(body: string): ItemParticleBuilder;
-  onFocusPolicyChanged(body: string): ItemParticleBuilder;
-  onGroupsChanged(body: string): ItemParticleBuilder;
-  onHeightChanged(body: string): ItemParticleBuilder;
-  onImplicitHeightChanged(body: string): ItemParticleBuilder;
-  onImplicitWidthChanged(body: string): ItemParticleBuilder;
-  onObjectNameChanged(body: string): ItemParticleBuilder;
-  onOpacityChanged(body: string): ItemParticleBuilder;
-  onPaletteChanged(body: string): ItemParticleBuilder;
-  onPaletteCreated(body: string): ItemParticleBuilder;
-  onParentChanged(body: string): ItemParticleBuilder;
-  onRotationChanged(body: string): ItemParticleBuilder;
-  onScaleChanged(body: string): ItemParticleBuilder;
-  onSmoothChanged(body: string): ItemParticleBuilder;
-  onStateChanged(body: string): ItemParticleBuilder;
-  onSystemChanged(body: string): ItemParticleBuilder;
-  onTransformOriginChanged(body: string): ItemParticleBuilder;
-  onVisibleChanged(body: string): ItemParticleBuilder;
-  onVisibleChildrenChanged(body: string): ItemParticleBuilder;
-  onWidthChanged(body: string): ItemParticleBuilder;
-  onWindowChanged(body: string): ItemParticleBuilder;
-  onXChanged(body: string): ItemParticleBuilder;
-  onYChanged(body: string): ItemParticleBuilder;
-  onZChanged(body: string): ItemParticleBuilder;
+  onActiveFocusChanged(handler: DslSignalHandlerValue): ItemParticleBuilder;
+  onActiveFocusOnTabChanged(handler: DslSignalHandlerValue): ItemParticleBuilder;
+  onAntialiasingChanged(handler: DslSignalHandlerValue): ItemParticleBuilder;
+  onBaselineOffsetChanged(handler: DslSignalHandlerValue): ItemParticleBuilder;
+  onChildrenChanged(handler: DslSignalHandlerValue): ItemParticleBuilder;
+  onChildrenRectChanged(handler: DslSignalHandlerValue): ItemParticleBuilder;
+  onClipChanged(handler: DslSignalHandlerValue): ItemParticleBuilder;
+  onContainmentMaskChanged(handler: DslSignalHandlerValue): ItemParticleBuilder;
+  onCountChanged(handler: DslSignalHandlerValue): ItemParticleBuilder;
+  onDelegateChanged(handler: DslSignalHandlerValue): ItemParticleBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): ItemParticleBuilder;
+  onFadeChanged(handler: DslSignalHandlerValue): ItemParticleBuilder;
+  onFocusChanged(handler: DslSignalHandlerValue): ItemParticleBuilder;
+  onFocusPolicyChanged(handler: DslSignalHandlerValue): ItemParticleBuilder;
+  onGroupsChanged(handler: DslSignalHandlerValue): ItemParticleBuilder;
+  onHeightChanged(handler: DslSignalHandlerValue): ItemParticleBuilder;
+  onImplicitHeightChanged(handler: DslSignalHandlerValue): ItemParticleBuilder;
+  onImplicitWidthChanged(handler: DslSignalHandlerValue): ItemParticleBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): ItemParticleBuilder;
+  onOpacityChanged(handler: DslSignalHandlerValue): ItemParticleBuilder;
+  onPaletteChanged(handler: DslSignalHandlerValue): ItemParticleBuilder;
+  onPaletteCreated(handler: DslSignalHandlerValue): ItemParticleBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): ItemParticleBuilder;
+  onRotationChanged(handler: DslSignalHandlerValue): ItemParticleBuilder;
+  onScaleChanged(handler: DslSignalHandlerValue): ItemParticleBuilder;
+  onSmoothChanged(handler: DslSignalHandlerValue): ItemParticleBuilder;
+  onStateChanged(handler: DslSignalHandlerValue): ItemParticleBuilder;
+  onSystemChanged(handler: DslSignalHandlerValue): ItemParticleBuilder;
+  onTransformOriginChanged(handler: DslSignalHandlerValue): ItemParticleBuilder;
+  onVisibleChanged(handler: DslSignalHandlerValue): ItemParticleBuilder;
+  onVisibleChildrenChanged(handler: DslSignalHandlerValue): ItemParticleBuilder;
+  onWidthChanged(handler: DslSignalHandlerValue): ItemParticleBuilder;
+  onWindowChanged(handler: DslSignalHandlerValue): ItemParticleBuilder;
+  onXChanged(handler: DslSignalHandlerValue): ItemParticleBuilder;
+  onYChanged(handler: DslSignalHandlerValue): ItemParticleBuilder;
+  onZChanged(handler: DslSignalHandlerValue): ItemParticleBuilder;
   anchors(setup: (b: AnchorsBuilder) => void): ItemParticleBuilder;
   layer(setup: (b: LayerBuilder) => void): ItemParticleBuilder;
   itemParticle(setup: (b: ItemParticleAttachedBuilder) => void): ItemParticleBuilder;

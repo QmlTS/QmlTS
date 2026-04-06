@@ -2,7 +2,12 @@
 // Type: LayoutItemProxy
 // Generated from Qt 6.11.0
 
-import type { QmlEnumToken, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlEnumToken,
+  QmlObjectBuilder,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { QtObjectBuilder } from '../QML/QtObject.js';
 import type { ItemBuilder } from '../QtQuick/Item.js';
@@ -15,6 +20,7 @@ import type { StackLayoutAttachedBuilder } from './QQuickStackLayoutAttached.js'
 export interface LayoutItemProxyBuilder {
   id(id: string): LayoutItemProxyBuilder;
   child(obj: QmlObjectBuilder): LayoutItemProxyBuilder;
+  children(...objs: QmlObjectBuilder[]): LayoutItemProxyBuilder;
 
   activeFocusOnTab(value: boolean): LayoutItemProxyBuilder;
   activeFocusOnTabBind(expr: string): LayoutItemProxyBuilder;
@@ -68,38 +74,38 @@ export interface LayoutItemProxyBuilder {
   yBind(expr: string): LayoutItemProxyBuilder;
   z(value: number): LayoutItemProxyBuilder;
   zBind(expr: string): LayoutItemProxyBuilder;
-  onActiveFocusChanged(body: string): LayoutItemProxyBuilder;
-  onActiveFocusOnTabChanged(body: string): LayoutItemProxyBuilder;
-  onAntialiasingChanged(body: string): LayoutItemProxyBuilder;
-  onBaselineOffsetChanged(body: string): LayoutItemProxyBuilder;
-  onChildrenChanged(body: string): LayoutItemProxyBuilder;
-  onChildrenRectChanged(body: string): LayoutItemProxyBuilder;
-  onClipChanged(body: string): LayoutItemProxyBuilder;
-  onContainmentMaskChanged(body: string): LayoutItemProxyBuilder;
-  onEnabledChanged(body: string): LayoutItemProxyBuilder;
-  onFocusChanged(body: string): LayoutItemProxyBuilder;
-  onFocusPolicyChanged(body: string): LayoutItemProxyBuilder;
-  onHeightChanged(body: string): LayoutItemProxyBuilder;
-  onImplicitHeightChanged(body: string): LayoutItemProxyBuilder;
-  onImplicitWidthChanged(body: string): LayoutItemProxyBuilder;
-  onObjectNameChanged(body: string): LayoutItemProxyBuilder;
-  onOpacityChanged(body: string): LayoutItemProxyBuilder;
-  onPaletteChanged(body: string): LayoutItemProxyBuilder;
-  onPaletteCreated(body: string): LayoutItemProxyBuilder;
-  onParentChanged(body: string): LayoutItemProxyBuilder;
-  onRotationChanged(body: string): LayoutItemProxyBuilder;
-  onScaleChanged(body: string): LayoutItemProxyBuilder;
-  onSmoothChanged(body: string): LayoutItemProxyBuilder;
-  onStateChanged(body: string): LayoutItemProxyBuilder;
-  onTargetChanged(body: string): LayoutItemProxyBuilder;
-  onTransformOriginChanged(body: string): LayoutItemProxyBuilder;
-  onVisibleChanged(body: string): LayoutItemProxyBuilder;
-  onVisibleChildrenChanged(body: string): LayoutItemProxyBuilder;
-  onWidthChanged(body: string): LayoutItemProxyBuilder;
-  onWindowChanged(body: string): LayoutItemProxyBuilder;
-  onXChanged(body: string): LayoutItemProxyBuilder;
-  onYChanged(body: string): LayoutItemProxyBuilder;
-  onZChanged(body: string): LayoutItemProxyBuilder;
+  onActiveFocusChanged(handler: DslSignalHandlerValue): LayoutItemProxyBuilder;
+  onActiveFocusOnTabChanged(handler: DslSignalHandlerValue): LayoutItemProxyBuilder;
+  onAntialiasingChanged(handler: DslSignalHandlerValue): LayoutItemProxyBuilder;
+  onBaselineOffsetChanged(handler: DslSignalHandlerValue): LayoutItemProxyBuilder;
+  onChildrenChanged(handler: DslSignalHandlerValue): LayoutItemProxyBuilder;
+  onChildrenRectChanged(handler: DslSignalHandlerValue): LayoutItemProxyBuilder;
+  onClipChanged(handler: DslSignalHandlerValue): LayoutItemProxyBuilder;
+  onContainmentMaskChanged(handler: DslSignalHandlerValue): LayoutItemProxyBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): LayoutItemProxyBuilder;
+  onFocusChanged(handler: DslSignalHandlerValue): LayoutItemProxyBuilder;
+  onFocusPolicyChanged(handler: DslSignalHandlerValue): LayoutItemProxyBuilder;
+  onHeightChanged(handler: DslSignalHandlerValue): LayoutItemProxyBuilder;
+  onImplicitHeightChanged(handler: DslSignalHandlerValue): LayoutItemProxyBuilder;
+  onImplicitWidthChanged(handler: DslSignalHandlerValue): LayoutItemProxyBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): LayoutItemProxyBuilder;
+  onOpacityChanged(handler: DslSignalHandlerValue): LayoutItemProxyBuilder;
+  onPaletteChanged(handler: DslSignalHandlerValue): LayoutItemProxyBuilder;
+  onPaletteCreated(handler: DslSignalHandlerValue): LayoutItemProxyBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): LayoutItemProxyBuilder;
+  onRotationChanged(handler: DslSignalHandlerValue): LayoutItemProxyBuilder;
+  onScaleChanged(handler: DslSignalHandlerValue): LayoutItemProxyBuilder;
+  onSmoothChanged(handler: DslSignalHandlerValue): LayoutItemProxyBuilder;
+  onStateChanged(handler: DslSignalHandlerValue): LayoutItemProxyBuilder;
+  onTargetChanged(handler: DslSignalHandlerValue): LayoutItemProxyBuilder;
+  onTransformOriginChanged(handler: DslSignalHandlerValue): LayoutItemProxyBuilder;
+  onVisibleChanged(handler: DslSignalHandlerValue): LayoutItemProxyBuilder;
+  onVisibleChildrenChanged(handler: DslSignalHandlerValue): LayoutItemProxyBuilder;
+  onWidthChanged(handler: DslSignalHandlerValue): LayoutItemProxyBuilder;
+  onWindowChanged(handler: DslSignalHandlerValue): LayoutItemProxyBuilder;
+  onXChanged(handler: DslSignalHandlerValue): LayoutItemProxyBuilder;
+  onYChanged(handler: DslSignalHandlerValue): LayoutItemProxyBuilder;
+  onZChanged(handler: DslSignalHandlerValue): LayoutItemProxyBuilder;
   anchors(setup: (b: AnchorsBuilder) => void): LayoutItemProxyBuilder;
   layer(setup: (b: LayerBuilder) => void): LayoutItemProxyBuilder;
   flexboxLayout(setup: (b: FlexboxLayoutAttachedBuilder) => void): LayoutItemProxyBuilder;

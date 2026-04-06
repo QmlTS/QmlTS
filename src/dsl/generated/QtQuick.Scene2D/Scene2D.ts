@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlEnumToken,
   QmlObjectBuilder,
   QmlValue,
@@ -14,6 +15,7 @@ import type { ItemBuilder } from '../QtQuick/Item.js';
 export interface Scene2DBuilder {
   id(id: string): Scene2DBuilder;
   child(obj: QmlObjectBuilder): Scene2DBuilder;
+  children(...objs: QmlObjectBuilder[]): Scene2DBuilder;
 
   enabled(value: boolean): Scene2DBuilder;
   enabledBind(expr: string): Scene2DBuilder;
@@ -29,14 +31,14 @@ export interface Scene2DBuilder {
   parentBind(expr: string): Scene2DBuilder;
   renderPolicy(value: QmlEnumToken): Scene2DBuilder;
   renderPolicyBind(expr: string): Scene2DBuilder;
-  onEnabledChanged(body: string): Scene2DBuilder;
-  onItemChanged(body: string): Scene2DBuilder;
-  onMouseEnabledChanged(body: string): Scene2DBuilder;
-  onNodeDestroyed(body: string): Scene2DBuilder;
-  onObjectNameChanged(body: string): Scene2DBuilder;
-  onOutputChanged(body: string): Scene2DBuilder;
-  onParentChanged(body: string): Scene2DBuilder;
-  onRenderPolicyChanged(body: string): Scene2DBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): Scene2DBuilder;
+  onItemChanged(handler: DslSignalHandlerValue): Scene2DBuilder;
+  onMouseEnabledChanged(handler: DslSignalHandlerValue): Scene2DBuilder;
+  onNodeDestroyed(handler: DslSignalHandlerValue): Scene2DBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): Scene2DBuilder;
+  onOutputChanged(handler: DslSignalHandlerValue): Scene2DBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): Scene2DBuilder;
+  onRenderPolicyChanged(handler: DslSignalHandlerValue): Scene2DBuilder;
 }
 
 const SCENE2D_META: TypeMetadata = {

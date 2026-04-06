@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlColor,
   QmlEnumToken,
   QmlObjectBuilder,
@@ -19,6 +20,7 @@ import type { BorderBuilder } from '../QtQuick/QQuickPen.js';
 export interface PaddedRectangleBuilder {
   id(id: string): PaddedRectangleBuilder;
   child(obj: QmlObjectBuilder): PaddedRectangleBuilder;
+  children(...objs: QmlObjectBuilder[]): PaddedRectangleBuilder;
 
   activeFocusOnTab(value: boolean): PaddedRectangleBuilder;
   activeFocusOnTabBind(expr: string): PaddedRectangleBuilder;
@@ -94,48 +96,48 @@ export interface PaddedRectangleBuilder {
   yBind(expr: string): PaddedRectangleBuilder;
   z(value: number): PaddedRectangleBuilder;
   zBind(expr: string): PaddedRectangleBuilder;
-  onActiveFocusChanged(body: string): PaddedRectangleBuilder;
-  onActiveFocusOnTabChanged(body: string): PaddedRectangleBuilder;
-  onAntialiasingChanged(body: string): PaddedRectangleBuilder;
-  onBaselineOffsetChanged(body: string): PaddedRectangleBuilder;
-  onBottomLeftRadiusChanged(body: string): PaddedRectangleBuilder;
-  onBottomPaddingChanged(body: string): PaddedRectangleBuilder;
-  onBottomRightRadiusChanged(body: string): PaddedRectangleBuilder;
-  onChildrenChanged(body: string): PaddedRectangleBuilder;
-  onChildrenRectChanged(body: string): PaddedRectangleBuilder;
-  onClipChanged(body: string): PaddedRectangleBuilder;
-  onColorChanged(body: string): PaddedRectangleBuilder;
-  onContainmentMaskChanged(body: string): PaddedRectangleBuilder;
-  onEnabledChanged(body: string): PaddedRectangleBuilder;
-  onFocusChanged(body: string): PaddedRectangleBuilder;
-  onFocusPolicyChanged(body: string): PaddedRectangleBuilder;
-  onHeightChanged(body: string): PaddedRectangleBuilder;
-  onImplicitHeightChanged(body: string): PaddedRectangleBuilder;
-  onImplicitWidthChanged(body: string): PaddedRectangleBuilder;
-  onLeftPaddingChanged(body: string): PaddedRectangleBuilder;
-  onObjectNameChanged(body: string): PaddedRectangleBuilder;
-  onOpacityChanged(body: string): PaddedRectangleBuilder;
-  onPaddingChanged(body: string): PaddedRectangleBuilder;
-  onPaletteChanged(body: string): PaddedRectangleBuilder;
-  onPaletteCreated(body: string): PaddedRectangleBuilder;
-  onParentChanged(body: string): PaddedRectangleBuilder;
-  onRadiusChanged(body: string): PaddedRectangleBuilder;
-  onRightPaddingChanged(body: string): PaddedRectangleBuilder;
-  onRotationChanged(body: string): PaddedRectangleBuilder;
-  onScaleChanged(body: string): PaddedRectangleBuilder;
-  onSmoothChanged(body: string): PaddedRectangleBuilder;
-  onStateChanged(body: string): PaddedRectangleBuilder;
-  onTopLeftRadiusChanged(body: string): PaddedRectangleBuilder;
-  onTopPaddingChanged(body: string): PaddedRectangleBuilder;
-  onTopRightRadiusChanged(body: string): PaddedRectangleBuilder;
-  onTransformOriginChanged(body: string): PaddedRectangleBuilder;
-  onVisibleChanged(body: string): PaddedRectangleBuilder;
-  onVisibleChildrenChanged(body: string): PaddedRectangleBuilder;
-  onWidthChanged(body: string): PaddedRectangleBuilder;
-  onWindowChanged(body: string): PaddedRectangleBuilder;
-  onXChanged(body: string): PaddedRectangleBuilder;
-  onYChanged(body: string): PaddedRectangleBuilder;
-  onZChanged(body: string): PaddedRectangleBuilder;
+  onActiveFocusChanged(handler: DslSignalHandlerValue): PaddedRectangleBuilder;
+  onActiveFocusOnTabChanged(handler: DslSignalHandlerValue): PaddedRectangleBuilder;
+  onAntialiasingChanged(handler: DslSignalHandlerValue): PaddedRectangleBuilder;
+  onBaselineOffsetChanged(handler: DslSignalHandlerValue): PaddedRectangleBuilder;
+  onBottomLeftRadiusChanged(handler: DslSignalHandlerValue): PaddedRectangleBuilder;
+  onBottomPaddingChanged(handler: DslSignalHandlerValue): PaddedRectangleBuilder;
+  onBottomRightRadiusChanged(handler: DslSignalHandlerValue): PaddedRectangleBuilder;
+  onChildrenChanged(handler: DslSignalHandlerValue): PaddedRectangleBuilder;
+  onChildrenRectChanged(handler: DslSignalHandlerValue): PaddedRectangleBuilder;
+  onClipChanged(handler: DslSignalHandlerValue): PaddedRectangleBuilder;
+  onColorChanged(handler: DslSignalHandlerValue): PaddedRectangleBuilder;
+  onContainmentMaskChanged(handler: DslSignalHandlerValue): PaddedRectangleBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): PaddedRectangleBuilder;
+  onFocusChanged(handler: DslSignalHandlerValue): PaddedRectangleBuilder;
+  onFocusPolicyChanged(handler: DslSignalHandlerValue): PaddedRectangleBuilder;
+  onHeightChanged(handler: DslSignalHandlerValue): PaddedRectangleBuilder;
+  onImplicitHeightChanged(handler: DslSignalHandlerValue): PaddedRectangleBuilder;
+  onImplicitWidthChanged(handler: DslSignalHandlerValue): PaddedRectangleBuilder;
+  onLeftPaddingChanged(handler: DslSignalHandlerValue): PaddedRectangleBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): PaddedRectangleBuilder;
+  onOpacityChanged(handler: DslSignalHandlerValue): PaddedRectangleBuilder;
+  onPaddingChanged(handler: DslSignalHandlerValue): PaddedRectangleBuilder;
+  onPaletteChanged(handler: DslSignalHandlerValue): PaddedRectangleBuilder;
+  onPaletteCreated(handler: DslSignalHandlerValue): PaddedRectangleBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): PaddedRectangleBuilder;
+  onRadiusChanged(handler: DslSignalHandlerValue): PaddedRectangleBuilder;
+  onRightPaddingChanged(handler: DslSignalHandlerValue): PaddedRectangleBuilder;
+  onRotationChanged(handler: DslSignalHandlerValue): PaddedRectangleBuilder;
+  onScaleChanged(handler: DslSignalHandlerValue): PaddedRectangleBuilder;
+  onSmoothChanged(handler: DslSignalHandlerValue): PaddedRectangleBuilder;
+  onStateChanged(handler: DslSignalHandlerValue): PaddedRectangleBuilder;
+  onTopLeftRadiusChanged(handler: DslSignalHandlerValue): PaddedRectangleBuilder;
+  onTopPaddingChanged(handler: DslSignalHandlerValue): PaddedRectangleBuilder;
+  onTopRightRadiusChanged(handler: DslSignalHandlerValue): PaddedRectangleBuilder;
+  onTransformOriginChanged(handler: DslSignalHandlerValue): PaddedRectangleBuilder;
+  onVisibleChanged(handler: DslSignalHandlerValue): PaddedRectangleBuilder;
+  onVisibleChildrenChanged(handler: DslSignalHandlerValue): PaddedRectangleBuilder;
+  onWidthChanged(handler: DslSignalHandlerValue): PaddedRectangleBuilder;
+  onWindowChanged(handler: DslSignalHandlerValue): PaddedRectangleBuilder;
+  onXChanged(handler: DslSignalHandlerValue): PaddedRectangleBuilder;
+  onYChanged(handler: DslSignalHandlerValue): PaddedRectangleBuilder;
+  onZChanged(handler: DslSignalHandlerValue): PaddedRectangleBuilder;
   anchors(setup: (b: AnchorsBuilder) => void): PaddedRectangleBuilder;
   border(setup: (b: BorderBuilder) => void): PaddedRectangleBuilder;
   layer(setup: (b: LayerBuilder) => void): PaddedRectangleBuilder;

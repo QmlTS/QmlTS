@@ -2,12 +2,18 @@
 // Type: StyleKitLayout
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 import type { ItemBuilder } from '../QtQuick/Item.js';
 export interface StyleKitLayoutBuilder {
   id(id: string): StyleKitLayoutBuilder;
   child(obj: QmlObjectBuilder): StyleKitLayoutBuilder;
+  children(...objs: QmlObjectBuilder[]): StyleKitLayoutBuilder;
 
   container(value: ItemBuilder): StyleKitLayoutBuilder;
   containerBind(expr: string): StyleKitLayoutBuilder;
@@ -21,17 +27,17 @@ export interface StyleKitLayoutBuilder {
   objectNameBind(expr: string): StyleKitLayoutBuilder;
   spacing(value: number): StyleKitLayoutBuilder;
   spacingBind(expr: string): StyleKitLayoutBuilder;
-  onContainerChanged(body: string): StyleKitLayoutBuilder;
-  onContentMarginsChanged(body: string): StyleKitLayoutBuilder;
-  onEnabledChanged(body: string): StyleKitLayoutBuilder;
-  onImplicitHeightChanged(body: string): StyleKitLayoutBuilder;
-  onImplicitWidthChanged(body: string): StyleKitLayoutBuilder;
-  onLayoutChanged(body: string): StyleKitLayoutBuilder;
-  onLayoutItemsChanged(body: string): StyleKitLayoutBuilder;
-  onMirroredChanged(body: string): StyleKitLayoutBuilder;
-  onObjectNameChanged(body: string): StyleKitLayoutBuilder;
-  onPaddingChanged(body: string): StyleKitLayoutBuilder;
-  onSpacingChanged(body: string): StyleKitLayoutBuilder;
+  onContainerChanged(handler: DslSignalHandlerValue): StyleKitLayoutBuilder;
+  onContentMarginsChanged(handler: DslSignalHandlerValue): StyleKitLayoutBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): StyleKitLayoutBuilder;
+  onImplicitHeightChanged(handler: DslSignalHandlerValue): StyleKitLayoutBuilder;
+  onImplicitWidthChanged(handler: DslSignalHandlerValue): StyleKitLayoutBuilder;
+  onLayoutChanged(handler: DslSignalHandlerValue): StyleKitLayoutBuilder;
+  onLayoutItemsChanged(handler: DslSignalHandlerValue): StyleKitLayoutBuilder;
+  onMirroredChanged(handler: DslSignalHandlerValue): StyleKitLayoutBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): StyleKitLayoutBuilder;
+  onPaddingChanged(handler: DslSignalHandlerValue): StyleKitLayoutBuilder;
+  onSpacingChanged(handler: DslSignalHandlerValue): StyleKitLayoutBuilder;
 }
 
 const STYLEKITLAYOUT_META: TypeMetadata = {

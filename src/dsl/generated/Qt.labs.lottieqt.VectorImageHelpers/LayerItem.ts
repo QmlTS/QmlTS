@@ -2,7 +2,12 @@
 // Type: LayerItem
 // Generated from Qt 6.11.0
 
-import type { QmlEnumToken, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlEnumToken,
+  QmlObjectBuilder,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { QtObjectBuilder } from '../QML/QtObject.js';
 import type { ItemBuilder } from '../QtQuick/Item.js';
@@ -12,6 +17,7 @@ import type { LayerBuilder } from '../QtQuick/QQuickItemLayer.js';
 export interface LayerItemBuilder {
   id(id: string): LayerItemBuilder;
   child(obj: QmlObjectBuilder): LayerItemBuilder;
+  children(...objs: QmlObjectBuilder[]): LayerItemBuilder;
 
   activeFocusOnTab(value: boolean): LayerItemBuilder;
   activeFocusOnTabBind(expr: string): LayerItemBuilder;
@@ -63,38 +69,38 @@ export interface LayerItemBuilder {
   yBind(expr: string): LayerItemBuilder;
   z(value: number): LayerItemBuilder;
   zBind(expr: string): LayerItemBuilder;
-  onActiveFocusChanged(body: string): LayerItemBuilder;
-  onActiveFocusOnTabChanged(body: string): LayerItemBuilder;
-  onAntialiasingChanged(body: string): LayerItemBuilder;
-  onBaselineOffsetChanged(body: string): LayerItemBuilder;
-  onChildrenChanged(body: string): LayerItemBuilder;
-  onChildrenRectChanged(body: string): LayerItemBuilder;
-  onClipChanged(body: string): LayerItemBuilder;
-  onContainmentMaskChanged(body: string): LayerItemBuilder;
-  onEnabledChanged(body: string): LayerItemBuilder;
-  onFocusChanged(body: string): LayerItemBuilder;
-  onFocusPolicyChanged(body: string): LayerItemBuilder;
-  onHeightChanged(body: string): LayerItemBuilder;
-  onImplicitHeightChanged(body: string): LayerItemBuilder;
-  onImplicitWidthChanged(body: string): LayerItemBuilder;
-  onObjectNameChanged(body: string): LayerItemBuilder;
-  onOpacityChanged(body: string): LayerItemBuilder;
-  onPaletteChanged(body: string): LayerItemBuilder;
-  onPaletteCreated(body: string): LayerItemBuilder;
-  onParentChanged(body: string): LayerItemBuilder;
-  onRotationChanged(body: string): LayerItemBuilder;
-  onScaleChanged(body: string): LayerItemBuilder;
-  onSmoothChanged(body: string): LayerItemBuilder;
-  onStateChanged(body: string): LayerItemBuilder;
-  onTransformMatrixChanged(body: string): LayerItemBuilder;
-  onTransformOriginChanged(body: string): LayerItemBuilder;
-  onVisibleChanged(body: string): LayerItemBuilder;
-  onVisibleChildrenChanged(body: string): LayerItemBuilder;
-  onWidthChanged(body: string): LayerItemBuilder;
-  onWindowChanged(body: string): LayerItemBuilder;
-  onXChanged(body: string): LayerItemBuilder;
-  onYChanged(body: string): LayerItemBuilder;
-  onZChanged(body: string): LayerItemBuilder;
+  onActiveFocusChanged(handler: DslSignalHandlerValue): LayerItemBuilder;
+  onActiveFocusOnTabChanged(handler: DslSignalHandlerValue): LayerItemBuilder;
+  onAntialiasingChanged(handler: DslSignalHandlerValue): LayerItemBuilder;
+  onBaselineOffsetChanged(handler: DslSignalHandlerValue): LayerItemBuilder;
+  onChildrenChanged(handler: DslSignalHandlerValue): LayerItemBuilder;
+  onChildrenRectChanged(handler: DslSignalHandlerValue): LayerItemBuilder;
+  onClipChanged(handler: DslSignalHandlerValue): LayerItemBuilder;
+  onContainmentMaskChanged(handler: DslSignalHandlerValue): LayerItemBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): LayerItemBuilder;
+  onFocusChanged(handler: DslSignalHandlerValue): LayerItemBuilder;
+  onFocusPolicyChanged(handler: DslSignalHandlerValue): LayerItemBuilder;
+  onHeightChanged(handler: DslSignalHandlerValue): LayerItemBuilder;
+  onImplicitHeightChanged(handler: DslSignalHandlerValue): LayerItemBuilder;
+  onImplicitWidthChanged(handler: DslSignalHandlerValue): LayerItemBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): LayerItemBuilder;
+  onOpacityChanged(handler: DslSignalHandlerValue): LayerItemBuilder;
+  onPaletteChanged(handler: DslSignalHandlerValue): LayerItemBuilder;
+  onPaletteCreated(handler: DslSignalHandlerValue): LayerItemBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): LayerItemBuilder;
+  onRotationChanged(handler: DslSignalHandlerValue): LayerItemBuilder;
+  onScaleChanged(handler: DslSignalHandlerValue): LayerItemBuilder;
+  onSmoothChanged(handler: DslSignalHandlerValue): LayerItemBuilder;
+  onStateChanged(handler: DslSignalHandlerValue): LayerItemBuilder;
+  onTransformMatrixChanged(handler: DslSignalHandlerValue): LayerItemBuilder;
+  onTransformOriginChanged(handler: DslSignalHandlerValue): LayerItemBuilder;
+  onVisibleChanged(handler: DslSignalHandlerValue): LayerItemBuilder;
+  onVisibleChildrenChanged(handler: DslSignalHandlerValue): LayerItemBuilder;
+  onWidthChanged(handler: DslSignalHandlerValue): LayerItemBuilder;
+  onWindowChanged(handler: DslSignalHandlerValue): LayerItemBuilder;
+  onXChanged(handler: DslSignalHandlerValue): LayerItemBuilder;
+  onYChanged(handler: DslSignalHandlerValue): LayerItemBuilder;
+  onZChanged(handler: DslSignalHandlerValue): LayerItemBuilder;
   anchors(setup: (b: AnchorsBuilder) => void): LayerItemBuilder;
   layer(setup: (b: LayerBuilder) => void): LayerItemBuilder;
 }

@@ -2,11 +2,17 @@
 // Type: BufferCapture
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 export interface BufferCaptureBuilder {
   id(id: string): BufferCaptureBuilder;
   child(obj: QmlObjectBuilder): BufferCaptureBuilder;
+  children(...objs: QmlObjectBuilder[]): BufferCaptureBuilder;
 
   enabled(value: boolean): BufferCaptureBuilder;
   enabledBind(expr: string): BufferCaptureBuilder;
@@ -14,10 +20,10 @@ export interface BufferCaptureBuilder {
   objectNameBind(expr: string): BufferCaptureBuilder;
   parent(value: QmlValue): BufferCaptureBuilder;
   parentBind(expr: string): BufferCaptureBuilder;
-  onEnabledChanged(body: string): BufferCaptureBuilder;
-  onNodeDestroyed(body: string): BufferCaptureBuilder;
-  onObjectNameChanged(body: string): BufferCaptureBuilder;
-  onParentChanged(body: string): BufferCaptureBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): BufferCaptureBuilder;
+  onNodeDestroyed(handler: DslSignalHandlerValue): BufferCaptureBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): BufferCaptureBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): BufferCaptureBuilder;
 }
 
 const BUFFERCAPTURE_META: TypeMetadata = {

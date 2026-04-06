@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlEnumToken,
   QmlFont,
   QmlObjectBuilder,
@@ -14,6 +15,7 @@ import type { MenuItemGroupBuilder } from './MenuItemGroup.js';
 export interface MenuItemBuilder {
   id(id: string): MenuItemBuilder;
   child(obj: QmlObjectBuilder): MenuItemBuilder;
+  children(...objs: QmlObjectBuilder[]): MenuItemBuilder;
 
   checkable(value: boolean): MenuItemBuilder;
   checkableBind(expr: string): MenuItemBuilder;
@@ -39,22 +41,22 @@ export interface MenuItemBuilder {
   textBind(expr: string): MenuItemBuilder;
   visible(value: boolean): MenuItemBuilder;
   visibleBind(expr: string): MenuItemBuilder;
-  onCheckableChanged(body: string): MenuItemBuilder;
-  onCheckedChanged(body: string): MenuItemBuilder;
-  onEnabledChanged(body: string): MenuItemBuilder;
-  onFontChanged(body: string): MenuItemBuilder;
-  onGroupChanged(body: string): MenuItemBuilder;
-  onHovered(body: string): MenuItemBuilder;
-  onIconChanged(body: string): MenuItemBuilder;
-  onMenuChanged(body: string): MenuItemBuilder;
-  onObjectNameChanged(body: string): MenuItemBuilder;
-  onRoleChanged(body: string): MenuItemBuilder;
-  onSeparatorChanged(body: string): MenuItemBuilder;
-  onShortcutChanged(body: string): MenuItemBuilder;
-  onSubMenuChanged(body: string): MenuItemBuilder;
-  onTextChanged(body: string): MenuItemBuilder;
-  onTriggered(body: string): MenuItemBuilder;
-  onVisibleChanged(body: string): MenuItemBuilder;
+  onCheckableChanged(handler: DslSignalHandlerValue): MenuItemBuilder;
+  onCheckedChanged(handler: DslSignalHandlerValue): MenuItemBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): MenuItemBuilder;
+  onFontChanged(handler: DslSignalHandlerValue): MenuItemBuilder;
+  onGroupChanged(handler: DslSignalHandlerValue): MenuItemBuilder;
+  onHovered(handler: DslSignalHandlerValue): MenuItemBuilder;
+  onIconChanged(handler: DslSignalHandlerValue): MenuItemBuilder;
+  onMenuChanged(handler: DslSignalHandlerValue): MenuItemBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): MenuItemBuilder;
+  onRoleChanged(handler: DslSignalHandlerValue): MenuItemBuilder;
+  onSeparatorChanged(handler: DslSignalHandlerValue): MenuItemBuilder;
+  onShortcutChanged(handler: DslSignalHandlerValue): MenuItemBuilder;
+  onSubMenuChanged(handler: DslSignalHandlerValue): MenuItemBuilder;
+  onTextChanged(handler: DslSignalHandlerValue): MenuItemBuilder;
+  onTriggered(handler: DslSignalHandlerValue): MenuItemBuilder;
+  onVisibleChanged(handler: DslSignalHandlerValue): MenuItemBuilder;
 }
 
 const MENUITEM_META: TypeMetadata = {

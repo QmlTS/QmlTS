@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlColor,
   QmlComponent,
   QmlEnumToken,
@@ -14,6 +15,7 @@ import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface CategoryAxisBuilder {
   id(id: string): CategoryAxisBuilder;
   child(obj: QmlObjectBuilder): CategoryAxisBuilder;
+  children(...objs: QmlObjectBuilder[]): CategoryAxisBuilder;
 
   alignment(value: QmlEnumToken): CategoryAxisBuilder;
   alignmentBind(expr: string): CategoryAxisBuilder;
@@ -69,37 +71,37 @@ export interface CategoryAxisBuilder {
   visibleBind(expr: string): CategoryAxisBuilder;
   zoom(value: number): CategoryAxisBuilder;
   zoomBind(expr: string): CategoryAxisBuilder;
-  onAlignmentChanged(body: string): CategoryAxisBuilder;
-  onCategoriesChanged(body: string): CategoryAxisBuilder;
-  onColorChanged(body: string): CategoryAxisBuilder;
-  onGridVisibleChanged(body: string): CategoryAxisBuilder;
-  onLabelDecimalsChanged(body: string): CategoryAxisBuilder;
-  onLabelDelegateChanged(body: string): CategoryAxisBuilder;
-  onLabelFormatChanged(body: string): CategoryAxisBuilder;
-  onLabelsAngleChanged(body: string): CategoryAxisBuilder;
-  onLabelsPositionChanged(body: string): CategoryAxisBuilder;
-  onLabelsVisibleChanged(body: string): CategoryAxisBuilder;
-  onLineVisibleChanged(body: string): CategoryAxisBuilder;
-  onMaxChanged(body: string): CategoryAxisBuilder;
-  onMinChanged(body: string): CategoryAxisBuilder;
-  onObjectNameChanged(body: string): CategoryAxisBuilder;
-  onPanChanged(body: string): CategoryAxisBuilder;
-  onRangeChanged(body: string): CategoryAxisBuilder;
-  onSubColorChanged(body: string): CategoryAxisBuilder;
-  onSubGridVisibleChanged(body: string): CategoryAxisBuilder;
-  onSubTickCountChanged(body: string): CategoryAxisBuilder;
-  onTextElideModeChanged(body: string): CategoryAxisBuilder;
-  onTickAnchorChanged(body: string): CategoryAxisBuilder;
-  onTickIntervalChanged(body: string): CategoryAxisBuilder;
-  onTitleColorChanged(body: string): CategoryAxisBuilder;
-  onTitleFontChanged(body: string): CategoryAxisBuilder;
-  onTitleTextChanged(body: string): CategoryAxisBuilder;
-  onTitleVisibleChanged(body: string): CategoryAxisBuilder;
-  onUpdate(body: string): CategoryAxisBuilder;
-  onVisibleChanged(body: string): CategoryAxisBuilder;
-  onVisualMaxChanged(body: string): CategoryAxisBuilder;
-  onVisualMinChanged(body: string): CategoryAxisBuilder;
-  onZoomChanged(body: string): CategoryAxisBuilder;
+  onAlignmentChanged(handler: DslSignalHandlerValue): CategoryAxisBuilder;
+  onCategoriesChanged(handler: DslSignalHandlerValue): CategoryAxisBuilder;
+  onColorChanged(handler: DslSignalHandlerValue): CategoryAxisBuilder;
+  onGridVisibleChanged(handler: DslSignalHandlerValue): CategoryAxisBuilder;
+  onLabelDecimalsChanged(handler: DslSignalHandlerValue): CategoryAxisBuilder;
+  onLabelDelegateChanged(handler: DslSignalHandlerValue): CategoryAxisBuilder;
+  onLabelFormatChanged(handler: DslSignalHandlerValue): CategoryAxisBuilder;
+  onLabelsAngleChanged(handler: DslSignalHandlerValue): CategoryAxisBuilder;
+  onLabelsPositionChanged(handler: DslSignalHandlerValue): CategoryAxisBuilder;
+  onLabelsVisibleChanged(handler: DslSignalHandlerValue): CategoryAxisBuilder;
+  onLineVisibleChanged(handler: DslSignalHandlerValue): CategoryAxisBuilder;
+  onMaxChanged(handler: DslSignalHandlerValue): CategoryAxisBuilder;
+  onMinChanged(handler: DslSignalHandlerValue): CategoryAxisBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): CategoryAxisBuilder;
+  onPanChanged(handler: DslSignalHandlerValue): CategoryAxisBuilder;
+  onRangeChanged(handler: DslSignalHandlerValue): CategoryAxisBuilder;
+  onSubColorChanged(handler: DslSignalHandlerValue): CategoryAxisBuilder;
+  onSubGridVisibleChanged(handler: DslSignalHandlerValue): CategoryAxisBuilder;
+  onSubTickCountChanged(handler: DslSignalHandlerValue): CategoryAxisBuilder;
+  onTextElideModeChanged(handler: DslSignalHandlerValue): CategoryAxisBuilder;
+  onTickAnchorChanged(handler: DslSignalHandlerValue): CategoryAxisBuilder;
+  onTickIntervalChanged(handler: DslSignalHandlerValue): CategoryAxisBuilder;
+  onTitleColorChanged(handler: DslSignalHandlerValue): CategoryAxisBuilder;
+  onTitleFontChanged(handler: DslSignalHandlerValue): CategoryAxisBuilder;
+  onTitleTextChanged(handler: DslSignalHandlerValue): CategoryAxisBuilder;
+  onTitleVisibleChanged(handler: DslSignalHandlerValue): CategoryAxisBuilder;
+  onUpdate(handler: DslSignalHandlerValue): CategoryAxisBuilder;
+  onVisibleChanged(handler: DslSignalHandlerValue): CategoryAxisBuilder;
+  onVisualMaxChanged(handler: DslSignalHandlerValue): CategoryAxisBuilder;
+  onVisualMinChanged(handler: DslSignalHandlerValue): CategoryAxisBuilder;
+  onZoomChanged(handler: DslSignalHandlerValue): CategoryAxisBuilder;
 }
 
 const CATEGORYAXIS_META: TypeMetadata = {

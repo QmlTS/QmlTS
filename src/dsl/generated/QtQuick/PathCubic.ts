@@ -2,7 +2,7 @@
 // Type: PathCubic
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import type { DslSignalHandlerValue, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 import type { AccessibleAttachedBuilder } from './Accessible.js';
 import type { EnterKeyAttachedBuilder } from './EnterKey.js';
@@ -23,6 +23,7 @@ import type { ViewTransitionAttachedBuilder } from './ViewTransition.js';
 export interface PathCubicBuilder {
   id(id: string): PathCubicBuilder;
   child(obj: QmlObjectBuilder): PathCubicBuilder;
+  children(...objs: QmlObjectBuilder[]): PathCubicBuilder;
 
   control1X(value: number): PathCubicBuilder;
   control1XBind(expr: string): PathCubicBuilder;
@@ -50,20 +51,20 @@ export interface PathCubicBuilder {
   xBind(expr: string): PathCubicBuilder;
   y(value: number): PathCubicBuilder;
   yBind(expr: string): PathCubicBuilder;
-  onChanged(body: string): PathCubicBuilder;
-  onControl1XChanged(body: string): PathCubicBuilder;
-  onControl1YChanged(body: string): PathCubicBuilder;
-  onControl2XChanged(body: string): PathCubicBuilder;
-  onControl2YChanged(body: string): PathCubicBuilder;
-  onObjectNameChanged(body: string): PathCubicBuilder;
-  onRelativeControl1XChanged(body: string): PathCubicBuilder;
-  onRelativeControl1YChanged(body: string): PathCubicBuilder;
-  onRelativeControl2XChanged(body: string): PathCubicBuilder;
-  onRelativeControl2YChanged(body: string): PathCubicBuilder;
-  onRelativeXChanged(body: string): PathCubicBuilder;
-  onRelativeYChanged(body: string): PathCubicBuilder;
-  onXChanged(body: string): PathCubicBuilder;
-  onYChanged(body: string): PathCubicBuilder;
+  onChanged(handler: DslSignalHandlerValue): PathCubicBuilder;
+  onControl1XChanged(handler: DslSignalHandlerValue): PathCubicBuilder;
+  onControl1YChanged(handler: DslSignalHandlerValue): PathCubicBuilder;
+  onControl2XChanged(handler: DslSignalHandlerValue): PathCubicBuilder;
+  onControl2YChanged(handler: DslSignalHandlerValue): PathCubicBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): PathCubicBuilder;
+  onRelativeControl1XChanged(handler: DslSignalHandlerValue): PathCubicBuilder;
+  onRelativeControl1YChanged(handler: DslSignalHandlerValue): PathCubicBuilder;
+  onRelativeControl2XChanged(handler: DslSignalHandlerValue): PathCubicBuilder;
+  onRelativeControl2YChanged(handler: DslSignalHandlerValue): PathCubicBuilder;
+  onRelativeXChanged(handler: DslSignalHandlerValue): PathCubicBuilder;
+  onRelativeYChanged(handler: DslSignalHandlerValue): PathCubicBuilder;
+  onXChanged(handler: DslSignalHandlerValue): PathCubicBuilder;
+  onYChanged(handler: DslSignalHandlerValue): PathCubicBuilder;
   accessible(setup: (b: AccessibleAttachedBuilder) => void): PathCubicBuilder;
   drag(setup: (b: DragAttachedBuilder) => void): PathCubicBuilder;
   enterKey(setup: (b: EnterKeyAttachedBuilder) => void): PathCubicBuilder;

@@ -2,11 +2,17 @@
 // Type: AdditiveClipBlend
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 export interface AdditiveClipBlendBuilder {
   id(id: string): AdditiveClipBlendBuilder;
   child(obj: QmlObjectBuilder): AdditiveClipBlendBuilder;
+  children(...objs: QmlObjectBuilder[]): AdditiveClipBlendBuilder;
 
   additiveClip(value: QmlValue): AdditiveClipBlendBuilder;
   additiveClipBind(expr: string): AdditiveClipBlendBuilder;
@@ -20,13 +26,13 @@ export interface AdditiveClipBlendBuilder {
   objectNameBind(expr: string): AdditiveClipBlendBuilder;
   parent(value: QmlValue): AdditiveClipBlendBuilder;
   parentBind(expr: string): AdditiveClipBlendBuilder;
-  onAdditiveClipChanged(body: string): AdditiveClipBlendBuilder;
-  onAdditiveFactorChanged(body: string): AdditiveClipBlendBuilder;
-  onBaseClipChanged(body: string): AdditiveClipBlendBuilder;
-  onEnabledChanged(body: string): AdditiveClipBlendBuilder;
-  onNodeDestroyed(body: string): AdditiveClipBlendBuilder;
-  onObjectNameChanged(body: string): AdditiveClipBlendBuilder;
-  onParentChanged(body: string): AdditiveClipBlendBuilder;
+  onAdditiveClipChanged(handler: DslSignalHandlerValue): AdditiveClipBlendBuilder;
+  onAdditiveFactorChanged(handler: DslSignalHandlerValue): AdditiveClipBlendBuilder;
+  onBaseClipChanged(handler: DslSignalHandlerValue): AdditiveClipBlendBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): AdditiveClipBlendBuilder;
+  onNodeDestroyed(handler: DslSignalHandlerValue): AdditiveClipBlendBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): AdditiveClipBlendBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): AdditiveClipBlendBuilder;
 }
 
 const ADDITIVECLIPBLEND_META: TypeMetadata = {

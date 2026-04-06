@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlEnumToken,
   QmlObjectBuilder,
   QmlValue,
@@ -12,6 +13,7 @@ import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface AttributeBuilder {
   id(id: string): AttributeBuilder;
   child(obj: QmlObjectBuilder): AttributeBuilder;
+  children(...objs: QmlObjectBuilder[]): AttributeBuilder;
 
   attributeType(value: QmlEnumToken): AttributeBuilder;
   attributeTypeBind(expr: string): AttributeBuilder;
@@ -37,21 +39,21 @@ export interface AttributeBuilder {
   vertexBaseTypeBind(expr: string): AttributeBuilder;
   vertexSize(value: number): AttributeBuilder;
   vertexSizeBind(expr: string): AttributeBuilder;
-  onAttributeTypeChanged(body: string): AttributeBuilder;
-  onBufferChanged(body: string): AttributeBuilder;
-  onByteOffsetChanged(body: string): AttributeBuilder;
-  onByteStrideChanged(body: string): AttributeBuilder;
-  onCountChanged(body: string): AttributeBuilder;
-  onDataSizeChanged(body: string): AttributeBuilder;
-  onDataTypeChanged(body: string): AttributeBuilder;
-  onDivisorChanged(body: string): AttributeBuilder;
-  onEnabledChanged(body: string): AttributeBuilder;
-  onNameChanged(body: string): AttributeBuilder;
-  onNodeDestroyed(body: string): AttributeBuilder;
-  onObjectNameChanged(body: string): AttributeBuilder;
-  onParentChanged(body: string): AttributeBuilder;
-  onVertexBaseTypeChanged(body: string): AttributeBuilder;
-  onVertexSizeChanged(body: string): AttributeBuilder;
+  onAttributeTypeChanged(handler: DslSignalHandlerValue): AttributeBuilder;
+  onBufferChanged(handler: DslSignalHandlerValue): AttributeBuilder;
+  onByteOffsetChanged(handler: DslSignalHandlerValue): AttributeBuilder;
+  onByteStrideChanged(handler: DslSignalHandlerValue): AttributeBuilder;
+  onCountChanged(handler: DslSignalHandlerValue): AttributeBuilder;
+  onDataSizeChanged(handler: DslSignalHandlerValue): AttributeBuilder;
+  onDataTypeChanged(handler: DslSignalHandlerValue): AttributeBuilder;
+  onDivisorChanged(handler: DslSignalHandlerValue): AttributeBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): AttributeBuilder;
+  onNameChanged(handler: DslSignalHandlerValue): AttributeBuilder;
+  onNodeDestroyed(handler: DslSignalHandlerValue): AttributeBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): AttributeBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): AttributeBuilder;
+  onVertexBaseTypeChanged(handler: DslSignalHandlerValue): AttributeBuilder;
+  onVertexSizeChanged(handler: DslSignalHandlerValue): AttributeBuilder;
 }
 
 const ATTRIBUTE_META: TypeMetadata = {

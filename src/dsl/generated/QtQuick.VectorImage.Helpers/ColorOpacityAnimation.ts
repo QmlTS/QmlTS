@@ -2,12 +2,18 @@
 // Type: ColorOpacityAnimation
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { QtObjectBuilder } from '../QML/QtObject.js';
 export interface ColorOpacityAnimationBuilder {
   id(id: string): ColorOpacityAnimationBuilder;
   child(obj: QmlObjectBuilder): ColorOpacityAnimationBuilder;
+  children(...objs: QmlObjectBuilder[]): ColorOpacityAnimationBuilder;
 
   alwaysRunToEnd(value: boolean): ColorOpacityAnimationBuilder;
   alwaysRunToEndBind(expr: string): ColorOpacityAnimationBuilder;
@@ -33,21 +39,21 @@ export interface ColorOpacityAnimationBuilder {
   targetBind(expr: string): ColorOpacityAnimationBuilder;
   to(value: number): ColorOpacityAnimationBuilder;
   toBind(expr: string): ColorOpacityAnimationBuilder;
-  onAlwaysRunToEndChanged(body: string): ColorOpacityAnimationBuilder;
-  onDurationChanged(body: string): ColorOpacityAnimationBuilder;
-  onEasingChanged(body: string): ColorOpacityAnimationBuilder;
-  onFinished(body: string): ColorOpacityAnimationBuilder;
-  onFromChanged(body: string): ColorOpacityAnimationBuilder;
-  onLoopCountChanged(body: string): ColorOpacityAnimationBuilder;
-  onObjectNameChanged(body: string): ColorOpacityAnimationBuilder;
-  onPausedChanged(body: string): ColorOpacityAnimationBuilder;
-  onPropertiesChanged(body: string): ColorOpacityAnimationBuilder;
-  onPropertyChanged(body: string): ColorOpacityAnimationBuilder;
-  onRunningChanged(body: string): ColorOpacityAnimationBuilder;
-  onStarted(body: string): ColorOpacityAnimationBuilder;
-  onStopped(body: string): ColorOpacityAnimationBuilder;
-  onTargetChanged(body: string): ColorOpacityAnimationBuilder;
-  onToChanged(body: string): ColorOpacityAnimationBuilder;
+  onAlwaysRunToEndChanged(handler: DslSignalHandlerValue): ColorOpacityAnimationBuilder;
+  onDurationChanged(handler: DslSignalHandlerValue): ColorOpacityAnimationBuilder;
+  onEasingChanged(handler: DslSignalHandlerValue): ColorOpacityAnimationBuilder;
+  onFinished(handler: DslSignalHandlerValue): ColorOpacityAnimationBuilder;
+  onFromChanged(handler: DslSignalHandlerValue): ColorOpacityAnimationBuilder;
+  onLoopCountChanged(handler: DslSignalHandlerValue): ColorOpacityAnimationBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): ColorOpacityAnimationBuilder;
+  onPausedChanged(handler: DslSignalHandlerValue): ColorOpacityAnimationBuilder;
+  onPropertiesChanged(handler: DslSignalHandlerValue): ColorOpacityAnimationBuilder;
+  onPropertyChanged(handler: DslSignalHandlerValue): ColorOpacityAnimationBuilder;
+  onRunningChanged(handler: DslSignalHandlerValue): ColorOpacityAnimationBuilder;
+  onStarted(handler: DslSignalHandlerValue): ColorOpacityAnimationBuilder;
+  onStopped(handler: DslSignalHandlerValue): ColorOpacityAnimationBuilder;
+  onTargetChanged(handler: DslSignalHandlerValue): ColorOpacityAnimationBuilder;
+  onToChanged(handler: DslSignalHandlerValue): ColorOpacityAnimationBuilder;
 }
 
 const COLOROPACITYANIMATION_META: TypeMetadata = {

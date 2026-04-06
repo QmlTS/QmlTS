@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlEnumToken,
   QmlObjectBuilder,
   QmlValue,
@@ -12,6 +13,7 @@ import { createFluentBuilder } from '../../runtime/index.js';
 export interface HBarModelMapperBuilder {
   id(id: string): HBarModelMapperBuilder;
   child(obj: QmlObjectBuilder): HBarModelMapperBuilder;
+  children(...objs: QmlObjectBuilder[]): HBarModelMapperBuilder;
 
   columnCount(value: number): HBarModelMapperBuilder;
   columnCountBind(expr: string): HBarModelMapperBuilder;
@@ -37,20 +39,20 @@ export interface HBarModelMapperBuilder {
   orientationBind(expr: string): HBarModelMapperBuilder;
   series(value: QmlValue): HBarModelMapperBuilder;
   seriesBind(expr: string): HBarModelMapperBuilder;
-  onColumnCountChanged(body: string): HBarModelMapperBuilder;
-  onCountChanged(body: string): HBarModelMapperBuilder;
-  onFirstBarSetRowChanged(body: string): HBarModelMapperBuilder;
-  onFirstBarSetSectionChanged(body: string): HBarModelMapperBuilder;
-  onFirstChanged(body: string): HBarModelMapperBuilder;
-  onFirstColumnChanged(body: string): HBarModelMapperBuilder;
-  onLastBarSetRowChanged(body: string): HBarModelMapperBuilder;
-  onLastBarSetSectionChanged(body: string): HBarModelMapperBuilder;
-  onModelChanged(body: string): HBarModelMapperBuilder;
-  onModelReplaced(body: string): HBarModelMapperBuilder;
-  onObjectNameChanged(body: string): HBarModelMapperBuilder;
-  onOrientationChanged(body: string): HBarModelMapperBuilder;
-  onSeriesChanged(body: string): HBarModelMapperBuilder;
-  onSeriesReplaced(body: string): HBarModelMapperBuilder;
+  onColumnCountChanged(handler: DslSignalHandlerValue): HBarModelMapperBuilder;
+  onCountChanged(handler: DslSignalHandlerValue): HBarModelMapperBuilder;
+  onFirstBarSetRowChanged(handler: DslSignalHandlerValue): HBarModelMapperBuilder;
+  onFirstBarSetSectionChanged(handler: DslSignalHandlerValue): HBarModelMapperBuilder;
+  onFirstChanged(handler: DslSignalHandlerValue): HBarModelMapperBuilder;
+  onFirstColumnChanged(handler: DslSignalHandlerValue): HBarModelMapperBuilder;
+  onLastBarSetRowChanged(handler: DslSignalHandlerValue): HBarModelMapperBuilder;
+  onLastBarSetSectionChanged(handler: DslSignalHandlerValue): HBarModelMapperBuilder;
+  onModelChanged(handler: DslSignalHandlerValue): HBarModelMapperBuilder;
+  onModelReplaced(handler: DslSignalHandlerValue): HBarModelMapperBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): HBarModelMapperBuilder;
+  onOrientationChanged(handler: DslSignalHandlerValue): HBarModelMapperBuilder;
+  onSeriesChanged(handler: DslSignalHandlerValue): HBarModelMapperBuilder;
+  onSeriesReplaced(handler: DslSignalHandlerValue): HBarModelMapperBuilder;
 }
 
 const HBARMODELMAPPER_META: TypeMetadata = {

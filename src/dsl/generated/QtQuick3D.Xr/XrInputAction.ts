@@ -2,11 +2,17 @@
 // Type: XrInputAction
 // Generated from Qt 6.11.0
 
-import type { QmlEnumToken, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlEnumToken,
+  QmlObjectBuilder,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface XrInputActionBuilder {
   id(id: string): XrInputActionBuilder;
   child(obj: QmlObjectBuilder): XrInputActionBuilder;
+  children(...objs: QmlObjectBuilder[]): XrInputActionBuilder;
 
   actionId(value: QmlEnumToken): XrInputActionBuilder;
   actionIdBind(expr: string): XrInputActionBuilder;
@@ -20,15 +26,15 @@ export interface XrInputActionBuilder {
   handBind(expr: string): XrInputActionBuilder;
   objectName(value: string): XrInputActionBuilder;
   objectNameBind(expr: string): XrInputActionBuilder;
-  onActionIdChanged(body: string): XrInputActionBuilder;
-  onActionNameChanged(body: string): XrInputActionBuilder;
-  onControllerChanged(body: string): XrInputActionBuilder;
-  onEnabledChanged(body: string): XrInputActionBuilder;
-  onHandChanged(body: string): XrInputActionBuilder;
-  onObjectNameChanged(body: string): XrInputActionBuilder;
-  onPressedChanged(body: string): XrInputActionBuilder;
-  onTriggered(body: string): XrInputActionBuilder;
-  onValueChanged(body: string): XrInputActionBuilder;
+  onActionIdChanged(handler: DslSignalHandlerValue): XrInputActionBuilder;
+  onActionNameChanged(handler: DslSignalHandlerValue): XrInputActionBuilder;
+  onControllerChanged(handler: DslSignalHandlerValue): XrInputActionBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): XrInputActionBuilder;
+  onHandChanged(handler: DslSignalHandlerValue): XrInputActionBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): XrInputActionBuilder;
+  onPressedChanged(handler: DslSignalHandlerValue): XrInputActionBuilder;
+  onTriggered(handler: DslSignalHandlerValue): XrInputActionBuilder;
+  onValueChanged(handler: DslSignalHandlerValue): XrInputActionBuilder;
 }
 
 const XRINPUTACTION_META: TypeMetadata = {

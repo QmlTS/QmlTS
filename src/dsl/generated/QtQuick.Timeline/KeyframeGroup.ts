@@ -2,12 +2,18 @@
 // Type: KeyframeGroup
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlUrl, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlObjectBuilder,
+  QmlUrl,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 import type { QtObjectBuilder } from '../QML/QtObject.js';
 export interface KeyframeGroupBuilder {
   id(id: string): KeyframeGroupBuilder;
   child(obj: QmlObjectBuilder): KeyframeGroupBuilder;
+  children(...objs: QmlObjectBuilder[]): KeyframeGroupBuilder;
 
   keyframeSource(value: QmlUrl): KeyframeGroupBuilder;
   keyframeSourceBind(expr: string): KeyframeGroupBuilder;
@@ -17,10 +23,10 @@ export interface KeyframeGroupBuilder {
   propertyBind(expr: string): KeyframeGroupBuilder;
   target(value: QtObjectBuilder): KeyframeGroupBuilder;
   targetBind(expr: string): KeyframeGroupBuilder;
-  onKeyframeSourceChanged(body: string): KeyframeGroupBuilder;
-  onObjectNameChanged(body: string): KeyframeGroupBuilder;
-  onPropertyChanged(body: string): KeyframeGroupBuilder;
-  onTargetChanged(body: string): KeyframeGroupBuilder;
+  onKeyframeSourceChanged(handler: DslSignalHandlerValue): KeyframeGroupBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): KeyframeGroupBuilder;
+  onPropertyChanged(handler: DslSignalHandlerValue): KeyframeGroupBuilder;
+  onTargetChanged(handler: DslSignalHandlerValue): KeyframeGroupBuilder;
 }
 
 const KEYFRAMEGROUP_META: TypeMetadata = {

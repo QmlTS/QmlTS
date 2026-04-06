@@ -2,11 +2,12 @@
 // Type: XmlListModelRole
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import type { DslSignalHandlerValue, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 export interface XmlListModelRoleBuilder {
   id(id: string): XmlListModelRoleBuilder;
   child(obj: QmlObjectBuilder): XmlListModelRoleBuilder;
+  children(...objs: QmlObjectBuilder[]): XmlListModelRoleBuilder;
 
   attributeName(value: string): XmlListModelRoleBuilder;
   attributeNameBind(expr: string): XmlListModelRoleBuilder;
@@ -16,10 +17,10 @@ export interface XmlListModelRoleBuilder {
   nameBind(expr: string): XmlListModelRoleBuilder;
   objectName(value: string): XmlListModelRoleBuilder;
   objectNameBind(expr: string): XmlListModelRoleBuilder;
-  onAttributeNameChanged(body: string): XmlListModelRoleBuilder;
-  onElementNameChanged(body: string): XmlListModelRoleBuilder;
-  onNameChanged(body: string): XmlListModelRoleBuilder;
-  onObjectNameChanged(body: string): XmlListModelRoleBuilder;
+  onAttributeNameChanged(handler: DslSignalHandlerValue): XmlListModelRoleBuilder;
+  onElementNameChanged(handler: DslSignalHandlerValue): XmlListModelRoleBuilder;
+  onNameChanged(handler: DslSignalHandlerValue): XmlListModelRoleBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): XmlListModelRoleBuilder;
 }
 
 const XMLLISTMODELROLE_META: TypeMetadata = {

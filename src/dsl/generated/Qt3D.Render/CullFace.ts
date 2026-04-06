@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlEnumToken,
   QmlObjectBuilder,
   QmlValue,
@@ -12,6 +13,7 @@ import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface CullFaceBuilder {
   id(id: string): CullFaceBuilder;
   child(obj: QmlObjectBuilder): CullFaceBuilder;
+  children(...objs: QmlObjectBuilder[]): CullFaceBuilder;
 
   enabled(value: boolean): CullFaceBuilder;
   enabledBind(expr: string): CullFaceBuilder;
@@ -21,11 +23,11 @@ export interface CullFaceBuilder {
   objectNameBind(expr: string): CullFaceBuilder;
   parent(value: QmlValue): CullFaceBuilder;
   parentBind(expr: string): CullFaceBuilder;
-  onEnabledChanged(body: string): CullFaceBuilder;
-  onModeChanged(body: string): CullFaceBuilder;
-  onNodeDestroyed(body: string): CullFaceBuilder;
-  onObjectNameChanged(body: string): CullFaceBuilder;
-  onParentChanged(body: string): CullFaceBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): CullFaceBuilder;
+  onModeChanged(handler: DslSignalHandlerValue): CullFaceBuilder;
+  onNodeDestroyed(handler: DslSignalHandlerValue): CullFaceBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): CullFaceBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): CullFaceBuilder;
 }
 
 const CULLFACE_META: TypeMetadata = {

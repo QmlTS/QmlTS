@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlEnumToken,
   QmlObjectBuilder,
   QmlQuaternion,
@@ -16,6 +17,7 @@ import type { Value3DAxisBuilder } from './Value3DAxis.js';
 export interface Surface3DNodeBuilder {
   id(id: string): Surface3DNodeBuilder;
   child(obj: QmlObjectBuilder): Surface3DNodeBuilder;
+  children(...objs: QmlObjectBuilder[]): Surface3DNodeBuilder;
 
   aspectRatio(value: number): Surface3DNodeBuilder;
   aspectRatioBind(expr: string): Surface3DNodeBuilder;
@@ -77,47 +79,47 @@ export interface Surface3DNodeBuilder {
   yBind(expr: string): Surface3DNodeBuilder;
   z(value: number): Surface3DNodeBuilder;
   zBind(expr: string): Surface3DNodeBuilder;
-  onAspectRatioChanged(body: string): Surface3DNodeBuilder;
-  onAxisXChanged(body: string): Surface3DNodeBuilder;
-  onAxisYChanged(body: string): Surface3DNodeBuilder;
-  onAxisZChanged(body: string): Surface3DNodeBuilder;
-  onChildrenChanged(body: string): Surface3DNodeBuilder;
-  onEulerRotationChanged(body: string): Surface3DNodeBuilder;
-  onFlipHorizontalGridChanged(body: string): Surface3DNodeBuilder;
-  onForwardChanged(body: string): Surface3DNodeBuilder;
-  onGridLineTypeChanged(body: string): Surface3DNodeBuilder;
-  onHorizontalAspectRatioChanged(body: string): Surface3DNodeBuilder;
-  onLabelMarginChanged(body: string): Surface3DNodeBuilder;
-  onLayersChanged(body: string): Surface3DNodeBuilder;
-  onLocalOpacityChanged(body: string): Surface3DNodeBuilder;
-  onLocaleChanged(body: string): Surface3DNodeBuilder;
-  onMarginChanged(body: string): Surface3DNodeBuilder;
-  onObjectNameChanged(body: string): Surface3DNodeBuilder;
-  onOptimizationHintChanged(body: string): Surface3DNodeBuilder;
-  onParentChanged(body: string): Surface3DNodeBuilder;
-  onPivotChanged(body: string): Surface3DNodeBuilder;
-  onPolarChanged(body: string): Surface3DNodeBuilder;
-  onPositionChanged(body: string): Surface3DNodeBuilder;
-  onQueriedGraphPositionChanged(body: string): Surface3DNodeBuilder;
-  onRadialLabelOffsetChanged(body: string): Surface3DNodeBuilder;
-  onRightChanged(body: string): Surface3DNodeBuilder;
-  onRotationChanged(body: string): Surface3DNodeBuilder;
-  onScaleChanged(body: string): Surface3DNodeBuilder;
-  onScenePositionChanged(body: string): Surface3DNodeBuilder;
-  onSceneRotationChanged(body: string): Surface3DNodeBuilder;
-  onSceneScaleChanged(body: string): Surface3DNodeBuilder;
-  onSceneTransformChanged(body: string): Surface3DNodeBuilder;
-  onSelectedElementChanged(body: string): Surface3DNodeBuilder;
-  onSelectedSeriesChanged(body: string): Surface3DNodeBuilder;
-  onSelectionModeChanged(body: string): Surface3DNodeBuilder;
-  onStateChanged(body: string): Surface3DNodeBuilder;
-  onStaticFlagsChanged(body: string): Surface3DNodeBuilder;
-  onThemeChanged(body: string): Surface3DNodeBuilder;
-  onUpChanged(body: string): Surface3DNodeBuilder;
-  onVisibleChanged(body: string): Surface3DNodeBuilder;
-  onXChanged(body: string): Surface3DNodeBuilder;
-  onYChanged(body: string): Surface3DNodeBuilder;
-  onZChanged(body: string): Surface3DNodeBuilder;
+  onAspectRatioChanged(handler: DslSignalHandlerValue): Surface3DNodeBuilder;
+  onAxisXChanged(handler: DslSignalHandlerValue): Surface3DNodeBuilder;
+  onAxisYChanged(handler: DslSignalHandlerValue): Surface3DNodeBuilder;
+  onAxisZChanged(handler: DslSignalHandlerValue): Surface3DNodeBuilder;
+  onChildrenChanged(handler: DslSignalHandlerValue): Surface3DNodeBuilder;
+  onEulerRotationChanged(handler: DslSignalHandlerValue): Surface3DNodeBuilder;
+  onFlipHorizontalGridChanged(handler: DslSignalHandlerValue): Surface3DNodeBuilder;
+  onForwardChanged(handler: DslSignalHandlerValue): Surface3DNodeBuilder;
+  onGridLineTypeChanged(handler: DslSignalHandlerValue): Surface3DNodeBuilder;
+  onHorizontalAspectRatioChanged(handler: DslSignalHandlerValue): Surface3DNodeBuilder;
+  onLabelMarginChanged(handler: DslSignalHandlerValue): Surface3DNodeBuilder;
+  onLayersChanged(handler: DslSignalHandlerValue): Surface3DNodeBuilder;
+  onLocalOpacityChanged(handler: DslSignalHandlerValue): Surface3DNodeBuilder;
+  onLocaleChanged(handler: DslSignalHandlerValue): Surface3DNodeBuilder;
+  onMarginChanged(handler: DslSignalHandlerValue): Surface3DNodeBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): Surface3DNodeBuilder;
+  onOptimizationHintChanged(handler: DslSignalHandlerValue): Surface3DNodeBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): Surface3DNodeBuilder;
+  onPivotChanged(handler: DslSignalHandlerValue): Surface3DNodeBuilder;
+  onPolarChanged(handler: DslSignalHandlerValue): Surface3DNodeBuilder;
+  onPositionChanged(handler: DslSignalHandlerValue): Surface3DNodeBuilder;
+  onQueriedGraphPositionChanged(handler: DslSignalHandlerValue): Surface3DNodeBuilder;
+  onRadialLabelOffsetChanged(handler: DslSignalHandlerValue): Surface3DNodeBuilder;
+  onRightChanged(handler: DslSignalHandlerValue): Surface3DNodeBuilder;
+  onRotationChanged(handler: DslSignalHandlerValue): Surface3DNodeBuilder;
+  onScaleChanged(handler: DslSignalHandlerValue): Surface3DNodeBuilder;
+  onScenePositionChanged(handler: DslSignalHandlerValue): Surface3DNodeBuilder;
+  onSceneRotationChanged(handler: DslSignalHandlerValue): Surface3DNodeBuilder;
+  onSceneScaleChanged(handler: DslSignalHandlerValue): Surface3DNodeBuilder;
+  onSceneTransformChanged(handler: DslSignalHandlerValue): Surface3DNodeBuilder;
+  onSelectedElementChanged(handler: DslSignalHandlerValue): Surface3DNodeBuilder;
+  onSelectedSeriesChanged(handler: DslSignalHandlerValue): Surface3DNodeBuilder;
+  onSelectionModeChanged(handler: DslSignalHandlerValue): Surface3DNodeBuilder;
+  onStateChanged(handler: DslSignalHandlerValue): Surface3DNodeBuilder;
+  onStaticFlagsChanged(handler: DslSignalHandlerValue): Surface3DNodeBuilder;
+  onThemeChanged(handler: DslSignalHandlerValue): Surface3DNodeBuilder;
+  onUpChanged(handler: DslSignalHandlerValue): Surface3DNodeBuilder;
+  onVisibleChanged(handler: DslSignalHandlerValue): Surface3DNodeBuilder;
+  onXChanged(handler: DslSignalHandlerValue): Surface3DNodeBuilder;
+  onYChanged(handler: DslSignalHandlerValue): Surface3DNodeBuilder;
+  onZChanged(handler: DslSignalHandlerValue): Surface3DNodeBuilder;
 }
 
 const SURFACE3DNODE_META: TypeMetadata = {

@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlComponent,
   QmlEnumToken,
   QmlObjectBuilder,
@@ -34,6 +35,7 @@ import type { ViewTransitionAttachedBuilder } from './ViewTransition.js';
 export interface LoaderBuilder {
   id(id: string): LoaderBuilder;
   child(obj: QmlObjectBuilder): LoaderBuilder;
+  children(...objs: QmlObjectBuilder[]): LoaderBuilder;
 
   active(value: boolean): LoaderBuilder;
   activeBind(expr: string): LoaderBuilder;
@@ -89,45 +91,45 @@ export interface LoaderBuilder {
   yBind(expr: string): LoaderBuilder;
   z(value: number): LoaderBuilder;
   zBind(expr: string): LoaderBuilder;
-  onActiveChanged(body: string): LoaderBuilder;
-  onActiveFocusChanged(body: string): LoaderBuilder;
-  onActiveFocusOnTabChanged(body: string): LoaderBuilder;
-  onAntialiasingChanged(body: string): LoaderBuilder;
-  onAsynchronousChanged(body: string): LoaderBuilder;
-  onBaselineOffsetChanged(body: string): LoaderBuilder;
-  onChildrenChanged(body: string): LoaderBuilder;
-  onChildrenRectChanged(body: string): LoaderBuilder;
-  onClipChanged(body: string): LoaderBuilder;
-  onContainmentMaskChanged(body: string): LoaderBuilder;
-  onEnabledChanged(body: string): LoaderBuilder;
-  onFocusChanged(body: string): LoaderBuilder;
-  onFocusPolicyChanged(body: string): LoaderBuilder;
-  onHeightChanged(body: string): LoaderBuilder;
-  onImplicitHeightChanged(body: string): LoaderBuilder;
-  onImplicitWidthChanged(body: string): LoaderBuilder;
-  onItemChanged(body: string): LoaderBuilder;
-  onLoaded(body: string): LoaderBuilder;
-  onObjectNameChanged(body: string): LoaderBuilder;
-  onOpacityChanged(body: string): LoaderBuilder;
-  onPaletteChanged(body: string): LoaderBuilder;
-  onPaletteCreated(body: string): LoaderBuilder;
-  onParentChanged(body: string): LoaderBuilder;
-  onProgressChanged(body: string): LoaderBuilder;
-  onRotationChanged(body: string): LoaderBuilder;
-  onScaleChanged(body: string): LoaderBuilder;
-  onSmoothChanged(body: string): LoaderBuilder;
-  onSourceChanged(body: string): LoaderBuilder;
-  onSourceComponentChanged(body: string): LoaderBuilder;
-  onStateChanged(body: string): LoaderBuilder;
-  onStatusChanged(body: string): LoaderBuilder;
-  onTransformOriginChanged(body: string): LoaderBuilder;
-  onVisibleChanged(body: string): LoaderBuilder;
-  onVisibleChildrenChanged(body: string): LoaderBuilder;
-  onWidthChanged(body: string): LoaderBuilder;
-  onWindowChanged(body: string): LoaderBuilder;
-  onXChanged(body: string): LoaderBuilder;
-  onYChanged(body: string): LoaderBuilder;
-  onZChanged(body: string): LoaderBuilder;
+  onActiveChanged(handler: DslSignalHandlerValue): LoaderBuilder;
+  onActiveFocusChanged(handler: DslSignalHandlerValue): LoaderBuilder;
+  onActiveFocusOnTabChanged(handler: DslSignalHandlerValue): LoaderBuilder;
+  onAntialiasingChanged(handler: DslSignalHandlerValue): LoaderBuilder;
+  onAsynchronousChanged(handler: DslSignalHandlerValue): LoaderBuilder;
+  onBaselineOffsetChanged(handler: DslSignalHandlerValue): LoaderBuilder;
+  onChildrenChanged(handler: DslSignalHandlerValue): LoaderBuilder;
+  onChildrenRectChanged(handler: DslSignalHandlerValue): LoaderBuilder;
+  onClipChanged(handler: DslSignalHandlerValue): LoaderBuilder;
+  onContainmentMaskChanged(handler: DslSignalHandlerValue): LoaderBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): LoaderBuilder;
+  onFocusChanged(handler: DslSignalHandlerValue): LoaderBuilder;
+  onFocusPolicyChanged(handler: DslSignalHandlerValue): LoaderBuilder;
+  onHeightChanged(handler: DslSignalHandlerValue): LoaderBuilder;
+  onImplicitHeightChanged(handler: DslSignalHandlerValue): LoaderBuilder;
+  onImplicitWidthChanged(handler: DslSignalHandlerValue): LoaderBuilder;
+  onItemChanged(handler: DslSignalHandlerValue): LoaderBuilder;
+  onLoaded(handler: DslSignalHandlerValue): LoaderBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): LoaderBuilder;
+  onOpacityChanged(handler: DslSignalHandlerValue): LoaderBuilder;
+  onPaletteChanged(handler: DslSignalHandlerValue): LoaderBuilder;
+  onPaletteCreated(handler: DslSignalHandlerValue): LoaderBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): LoaderBuilder;
+  onProgressChanged(handler: DslSignalHandlerValue): LoaderBuilder;
+  onRotationChanged(handler: DslSignalHandlerValue): LoaderBuilder;
+  onScaleChanged(handler: DslSignalHandlerValue): LoaderBuilder;
+  onSmoothChanged(handler: DslSignalHandlerValue): LoaderBuilder;
+  onSourceChanged(handler: DslSignalHandlerValue): LoaderBuilder;
+  onSourceComponentChanged(handler: DslSignalHandlerValue): LoaderBuilder;
+  onStateChanged(handler: DslSignalHandlerValue): LoaderBuilder;
+  onStatusChanged(handler: DslSignalHandlerValue): LoaderBuilder;
+  onTransformOriginChanged(handler: DslSignalHandlerValue): LoaderBuilder;
+  onVisibleChanged(handler: DslSignalHandlerValue): LoaderBuilder;
+  onVisibleChildrenChanged(handler: DslSignalHandlerValue): LoaderBuilder;
+  onWidthChanged(handler: DslSignalHandlerValue): LoaderBuilder;
+  onWindowChanged(handler: DslSignalHandlerValue): LoaderBuilder;
+  onXChanged(handler: DslSignalHandlerValue): LoaderBuilder;
+  onYChanged(handler: DslSignalHandlerValue): LoaderBuilder;
+  onZChanged(handler: DslSignalHandlerValue): LoaderBuilder;
   anchors(setup: (b: AnchorsBuilder) => void): LoaderBuilder;
   layer(setup: (b: LayerBuilder) => void): LoaderBuilder;
   accessible(setup: (b: AccessibleAttachedBuilder) => void): LoaderBuilder;

@@ -2,11 +2,18 @@
 // Type: WavefrontMesh
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlUrl, QmlVector3d, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlObjectBuilder,
+  QmlUrl,
+  QmlVector3d,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface WavefrontMeshBuilder {
   id(id: string): WavefrontMeshBuilder;
   child(obj: QmlObjectBuilder): WavefrontMeshBuilder;
+  children(...objs: QmlObjectBuilder[]): WavefrontMeshBuilder;
 
   objectName(value: string): WavefrontMeshBuilder;
   objectNameBind(expr: string): WavefrontMeshBuilder;
@@ -16,12 +23,12 @@ export interface WavefrontMeshBuilder {
   projectionPlaneWBind(expr: string): WavefrontMeshBuilder;
   source(value: QmlUrl): WavefrontMeshBuilder;
   sourceBind(expr: string): WavefrontMeshBuilder;
-  onGeometryChanged(body: string): WavefrontMeshBuilder;
-  onLastErrorChanged(body: string): WavefrontMeshBuilder;
-  onObjectNameChanged(body: string): WavefrontMeshBuilder;
-  onProjectionPlaneVChanged(body: string): WavefrontMeshBuilder;
-  onProjectionPlaneWChanged(body: string): WavefrontMeshBuilder;
-  onSourceChanged(body: string): WavefrontMeshBuilder;
+  onGeometryChanged(handler: DslSignalHandlerValue): WavefrontMeshBuilder;
+  onLastErrorChanged(handler: DslSignalHandlerValue): WavefrontMeshBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): WavefrontMeshBuilder;
+  onProjectionPlaneVChanged(handler: DslSignalHandlerValue): WavefrontMeshBuilder;
+  onProjectionPlaneWChanged(handler: DslSignalHandlerValue): WavefrontMeshBuilder;
+  onSourceChanged(handler: DslSignalHandlerValue): WavefrontMeshBuilder;
 }
 
 const WAVEFRONTMESH_META: TypeMetadata = {

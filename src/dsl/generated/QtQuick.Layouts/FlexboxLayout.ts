@@ -2,7 +2,12 @@
 // Type: FlexboxLayout
 // Generated from Qt 6.11.0
 
-import type { QmlEnumToken, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlEnumToken,
+  QmlObjectBuilder,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { QtObjectBuilder } from '../QML/QtObject.js';
 import type { ItemBuilder } from '../QtQuick/Item.js';
@@ -15,6 +20,7 @@ import type { StackLayoutAttachedBuilder } from './QQuickStackLayoutAttached.js'
 export interface FlexboxLayoutBuilder {
   id(id: string): FlexboxLayoutBuilder;
   child(obj: QmlObjectBuilder): FlexboxLayoutBuilder;
+  children(...objs: QmlObjectBuilder[]): FlexboxLayoutBuilder;
 
   activeFocusOnTab(value: boolean): FlexboxLayoutBuilder;
   activeFocusOnTabBind(expr: string): FlexboxLayoutBuilder;
@@ -82,46 +88,46 @@ export interface FlexboxLayoutBuilder {
   yBind(expr: string): FlexboxLayoutBuilder;
   z(value: number): FlexboxLayoutBuilder;
   zBind(expr: string): FlexboxLayoutBuilder;
-  onActiveFocusChanged(body: string): FlexboxLayoutBuilder;
-  onActiveFocusOnTabChanged(body: string): FlexboxLayoutBuilder;
-  onAlignContentChanged(body: string): FlexboxLayoutBuilder;
-  onAlignItemsChanged(body: string): FlexboxLayoutBuilder;
-  onAntialiasingChanged(body: string): FlexboxLayoutBuilder;
-  onBaselineOffsetChanged(body: string): FlexboxLayoutBuilder;
-  onChildrenChanged(body: string): FlexboxLayoutBuilder;
-  onChildrenRectChanged(body: string): FlexboxLayoutBuilder;
-  onClipChanged(body: string): FlexboxLayoutBuilder;
-  onColumnGapChanged(body: string): FlexboxLayoutBuilder;
-  onContainmentMaskChanged(body: string): FlexboxLayoutBuilder;
-  onCountChanged(body: string): FlexboxLayoutBuilder;
-  onDirectionChanged(body: string): FlexboxLayoutBuilder;
-  onEnabledChanged(body: string): FlexboxLayoutBuilder;
-  onFocusChanged(body: string): FlexboxLayoutBuilder;
-  onFocusPolicyChanged(body: string): FlexboxLayoutBuilder;
-  onGapChanged(body: string): FlexboxLayoutBuilder;
-  onHeightChanged(body: string): FlexboxLayoutBuilder;
-  onImplicitHeightChanged(body: string): FlexboxLayoutBuilder;
-  onImplicitWidthChanged(body: string): FlexboxLayoutBuilder;
-  onJustifyContentChanged(body: string): FlexboxLayoutBuilder;
-  onObjectNameChanged(body: string): FlexboxLayoutBuilder;
-  onOpacityChanged(body: string): FlexboxLayoutBuilder;
-  onPaletteChanged(body: string): FlexboxLayoutBuilder;
-  onPaletteCreated(body: string): FlexboxLayoutBuilder;
-  onParentChanged(body: string): FlexboxLayoutBuilder;
-  onRotationChanged(body: string): FlexboxLayoutBuilder;
-  onRowGapChanged(body: string): FlexboxLayoutBuilder;
-  onScaleChanged(body: string): FlexboxLayoutBuilder;
-  onSmoothChanged(body: string): FlexboxLayoutBuilder;
-  onStateChanged(body: string): FlexboxLayoutBuilder;
-  onTransformOriginChanged(body: string): FlexboxLayoutBuilder;
-  onVisibleChanged(body: string): FlexboxLayoutBuilder;
-  onVisibleChildrenChanged(body: string): FlexboxLayoutBuilder;
-  onWidthChanged(body: string): FlexboxLayoutBuilder;
-  onWindowChanged(body: string): FlexboxLayoutBuilder;
-  onWrapChanged(body: string): FlexboxLayoutBuilder;
-  onXChanged(body: string): FlexboxLayoutBuilder;
-  onYChanged(body: string): FlexboxLayoutBuilder;
-  onZChanged(body: string): FlexboxLayoutBuilder;
+  onActiveFocusChanged(handler: DslSignalHandlerValue): FlexboxLayoutBuilder;
+  onActiveFocusOnTabChanged(handler: DslSignalHandlerValue): FlexboxLayoutBuilder;
+  onAlignContentChanged(handler: DslSignalHandlerValue): FlexboxLayoutBuilder;
+  onAlignItemsChanged(handler: DslSignalHandlerValue): FlexboxLayoutBuilder;
+  onAntialiasingChanged(handler: DslSignalHandlerValue): FlexboxLayoutBuilder;
+  onBaselineOffsetChanged(handler: DslSignalHandlerValue): FlexboxLayoutBuilder;
+  onChildrenChanged(handler: DslSignalHandlerValue): FlexboxLayoutBuilder;
+  onChildrenRectChanged(handler: DslSignalHandlerValue): FlexboxLayoutBuilder;
+  onClipChanged(handler: DslSignalHandlerValue): FlexboxLayoutBuilder;
+  onColumnGapChanged(handler: DslSignalHandlerValue): FlexboxLayoutBuilder;
+  onContainmentMaskChanged(handler: DslSignalHandlerValue): FlexboxLayoutBuilder;
+  onCountChanged(handler: DslSignalHandlerValue): FlexboxLayoutBuilder;
+  onDirectionChanged(handler: DslSignalHandlerValue): FlexboxLayoutBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): FlexboxLayoutBuilder;
+  onFocusChanged(handler: DslSignalHandlerValue): FlexboxLayoutBuilder;
+  onFocusPolicyChanged(handler: DslSignalHandlerValue): FlexboxLayoutBuilder;
+  onGapChanged(handler: DslSignalHandlerValue): FlexboxLayoutBuilder;
+  onHeightChanged(handler: DslSignalHandlerValue): FlexboxLayoutBuilder;
+  onImplicitHeightChanged(handler: DslSignalHandlerValue): FlexboxLayoutBuilder;
+  onImplicitWidthChanged(handler: DslSignalHandlerValue): FlexboxLayoutBuilder;
+  onJustifyContentChanged(handler: DslSignalHandlerValue): FlexboxLayoutBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): FlexboxLayoutBuilder;
+  onOpacityChanged(handler: DslSignalHandlerValue): FlexboxLayoutBuilder;
+  onPaletteChanged(handler: DslSignalHandlerValue): FlexboxLayoutBuilder;
+  onPaletteCreated(handler: DslSignalHandlerValue): FlexboxLayoutBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): FlexboxLayoutBuilder;
+  onRotationChanged(handler: DslSignalHandlerValue): FlexboxLayoutBuilder;
+  onRowGapChanged(handler: DslSignalHandlerValue): FlexboxLayoutBuilder;
+  onScaleChanged(handler: DslSignalHandlerValue): FlexboxLayoutBuilder;
+  onSmoothChanged(handler: DslSignalHandlerValue): FlexboxLayoutBuilder;
+  onStateChanged(handler: DslSignalHandlerValue): FlexboxLayoutBuilder;
+  onTransformOriginChanged(handler: DslSignalHandlerValue): FlexboxLayoutBuilder;
+  onVisibleChanged(handler: DslSignalHandlerValue): FlexboxLayoutBuilder;
+  onVisibleChildrenChanged(handler: DslSignalHandlerValue): FlexboxLayoutBuilder;
+  onWidthChanged(handler: DslSignalHandlerValue): FlexboxLayoutBuilder;
+  onWindowChanged(handler: DslSignalHandlerValue): FlexboxLayoutBuilder;
+  onWrapChanged(handler: DslSignalHandlerValue): FlexboxLayoutBuilder;
+  onXChanged(handler: DslSignalHandlerValue): FlexboxLayoutBuilder;
+  onYChanged(handler: DslSignalHandlerValue): FlexboxLayoutBuilder;
+  onZChanged(handler: DslSignalHandlerValue): FlexboxLayoutBuilder;
   anchors(setup: (b: AnchorsBuilder) => void): FlexboxLayoutBuilder;
   layer(setup: (b: LayerBuilder) => void): FlexboxLayoutBuilder;
   flexboxLayout(setup: (b: FlexboxLayoutAttachedBuilder) => void): FlexboxLayoutBuilder;

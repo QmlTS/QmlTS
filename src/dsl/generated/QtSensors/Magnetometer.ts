@@ -2,11 +2,17 @@
 // Type: Magnetometer
 // Generated from Qt 6.11.0
 
-import type { QmlEnumToken, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlEnumToken,
+  QmlObjectBuilder,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface MagnetometerBuilder {
   id(id: string): MagnetometerBuilder;
   child(obj: QmlObjectBuilder): MagnetometerBuilder;
+  children(...objs: QmlObjectBuilder[]): MagnetometerBuilder;
 
   active(value: boolean): MagnetometerBuilder;
   activeBind(expr: string): MagnetometerBuilder;
@@ -30,27 +36,27 @@ export interface MagnetometerBuilder {
   skipDuplicatesBind(expr: string): MagnetometerBuilder;
   userOrientation(value: number): MagnetometerBuilder;
   userOrientationBind(expr: string): MagnetometerBuilder;
-  onActiveChanged(body: string): MagnetometerBuilder;
-  onAlwaysOnChanged(body: string): MagnetometerBuilder;
-  onAvailableDataRatesChanged(body: string): MagnetometerBuilder;
-  onAxesOrientationModeChanged(body: string): MagnetometerBuilder;
-  onBufferSizeChanged(body: string): MagnetometerBuilder;
-  onBusyChanged(body: string): MagnetometerBuilder;
-  onConnectedToBackendChanged(body: string): MagnetometerBuilder;
-  onCurrentOrientationChanged(body: string): MagnetometerBuilder;
-  onDataRateChanged(body: string): MagnetometerBuilder;
-  onDescriptionChanged(body: string): MagnetometerBuilder;
-  onEfficientBufferSizeChanged(body: string): MagnetometerBuilder;
-  onErrorChanged(body: string): MagnetometerBuilder;
-  onIdentifierChanged(body: string): MagnetometerBuilder;
-  onMaxBufferSizeChanged(body: string): MagnetometerBuilder;
-  onObjectNameChanged(body: string): MagnetometerBuilder;
-  onOutputRangeChanged(body: string): MagnetometerBuilder;
-  onOutputRangesChanged(body: string): MagnetometerBuilder;
-  onReadingChanged(body: string): MagnetometerBuilder;
-  onReturnGeoValuesChanged(body: string): MagnetometerBuilder;
-  onSkipDuplicatesChanged(body: string): MagnetometerBuilder;
-  onUserOrientationChanged(body: string): MagnetometerBuilder;
+  onActiveChanged(handler: DslSignalHandlerValue): MagnetometerBuilder;
+  onAlwaysOnChanged(handler: DslSignalHandlerValue): MagnetometerBuilder;
+  onAvailableDataRatesChanged(handler: DslSignalHandlerValue): MagnetometerBuilder;
+  onAxesOrientationModeChanged(handler: DslSignalHandlerValue): MagnetometerBuilder;
+  onBufferSizeChanged(handler: DslSignalHandlerValue): MagnetometerBuilder;
+  onBusyChanged(handler: DslSignalHandlerValue): MagnetometerBuilder;
+  onConnectedToBackendChanged(handler: DslSignalHandlerValue): MagnetometerBuilder;
+  onCurrentOrientationChanged(handler: DslSignalHandlerValue): MagnetometerBuilder;
+  onDataRateChanged(handler: DslSignalHandlerValue): MagnetometerBuilder;
+  onDescriptionChanged(handler: DslSignalHandlerValue): MagnetometerBuilder;
+  onEfficientBufferSizeChanged(handler: DslSignalHandlerValue): MagnetometerBuilder;
+  onErrorChanged(handler: DslSignalHandlerValue): MagnetometerBuilder;
+  onIdentifierChanged(handler: DslSignalHandlerValue): MagnetometerBuilder;
+  onMaxBufferSizeChanged(handler: DslSignalHandlerValue): MagnetometerBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): MagnetometerBuilder;
+  onOutputRangeChanged(handler: DslSignalHandlerValue): MagnetometerBuilder;
+  onOutputRangesChanged(handler: DslSignalHandlerValue): MagnetometerBuilder;
+  onReadingChanged(handler: DslSignalHandlerValue): MagnetometerBuilder;
+  onReturnGeoValuesChanged(handler: DslSignalHandlerValue): MagnetometerBuilder;
+  onSkipDuplicatesChanged(handler: DslSignalHandlerValue): MagnetometerBuilder;
+  onUserOrientationChanged(handler: DslSignalHandlerValue): MagnetometerBuilder;
 }
 
 const MAGNETOMETER_META: TypeMetadata = {

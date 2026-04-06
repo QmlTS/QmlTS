@@ -2,12 +2,19 @@
 // Type: RenderSurfaceSelector
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlSize, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlObjectBuilder,
+  QmlSize,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 import type { QtObjectBuilder } from '../QML/QtObject.js';
 export interface RenderSurfaceSelectorBuilder {
   id(id: string): RenderSurfaceSelectorBuilder;
   child(obj: QmlObjectBuilder): RenderSurfaceSelectorBuilder;
+  children(...objs: QmlObjectBuilder[]): RenderSurfaceSelectorBuilder;
 
   enabled(value: boolean): RenderSurfaceSelectorBuilder;
   enabledBind(expr: string): RenderSurfaceSelectorBuilder;
@@ -21,13 +28,13 @@ export interface RenderSurfaceSelectorBuilder {
   surfaceBind(expr: string): RenderSurfaceSelectorBuilder;
   surfacePixelRatio(value: number): RenderSurfaceSelectorBuilder;
   surfacePixelRatioBind(expr: string): RenderSurfaceSelectorBuilder;
-  onEnabledChanged(body: string): RenderSurfaceSelectorBuilder;
-  onExternalRenderTargetSizeChanged(body: string): RenderSurfaceSelectorBuilder;
-  onNodeDestroyed(body: string): RenderSurfaceSelectorBuilder;
-  onObjectNameChanged(body: string): RenderSurfaceSelectorBuilder;
-  onParentChanged(body: string): RenderSurfaceSelectorBuilder;
-  onSurfaceChanged(body: string): RenderSurfaceSelectorBuilder;
-  onSurfacePixelRatioChanged(body: string): RenderSurfaceSelectorBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): RenderSurfaceSelectorBuilder;
+  onExternalRenderTargetSizeChanged(handler: DslSignalHandlerValue): RenderSurfaceSelectorBuilder;
+  onNodeDestroyed(handler: DslSignalHandlerValue): RenderSurfaceSelectorBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): RenderSurfaceSelectorBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): RenderSurfaceSelectorBuilder;
+  onSurfaceChanged(handler: DslSignalHandlerValue): RenderSurfaceSelectorBuilder;
+  onSurfacePixelRatioChanged(handler: DslSignalHandlerValue): RenderSurfaceSelectorBuilder;
 }
 
 const RENDERSURFACESELECTOR_META: TypeMetadata = {

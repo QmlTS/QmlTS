@@ -2,11 +2,17 @@
 // Type: TapSensor
 // Generated from Qt 6.11.0
 
-import type { QmlEnumToken, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlEnumToken,
+  QmlObjectBuilder,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface TapSensorBuilder {
   id(id: string): TapSensorBuilder;
   child(obj: QmlObjectBuilder): TapSensorBuilder;
+  children(...objs: QmlObjectBuilder[]): TapSensorBuilder;
 
   active(value: boolean): TapSensorBuilder;
   activeBind(expr: string): TapSensorBuilder;
@@ -30,27 +36,27 @@ export interface TapSensorBuilder {
   skipDuplicatesBind(expr: string): TapSensorBuilder;
   userOrientation(value: number): TapSensorBuilder;
   userOrientationBind(expr: string): TapSensorBuilder;
-  onActiveChanged(body: string): TapSensorBuilder;
-  onAlwaysOnChanged(body: string): TapSensorBuilder;
-  onAvailableDataRatesChanged(body: string): TapSensorBuilder;
-  onAxesOrientationModeChanged(body: string): TapSensorBuilder;
-  onBufferSizeChanged(body: string): TapSensorBuilder;
-  onBusyChanged(body: string): TapSensorBuilder;
-  onConnectedToBackendChanged(body: string): TapSensorBuilder;
-  onCurrentOrientationChanged(body: string): TapSensorBuilder;
-  onDataRateChanged(body: string): TapSensorBuilder;
-  onDescriptionChanged(body: string): TapSensorBuilder;
-  onEfficientBufferSizeChanged(body: string): TapSensorBuilder;
-  onErrorChanged(body: string): TapSensorBuilder;
-  onIdentifierChanged(body: string): TapSensorBuilder;
-  onMaxBufferSizeChanged(body: string): TapSensorBuilder;
-  onObjectNameChanged(body: string): TapSensorBuilder;
-  onOutputRangeChanged(body: string): TapSensorBuilder;
-  onOutputRangesChanged(body: string): TapSensorBuilder;
-  onReadingChanged(body: string): TapSensorBuilder;
-  onReturnDoubleTapEventsChanged(body: string): TapSensorBuilder;
-  onSkipDuplicatesChanged(body: string): TapSensorBuilder;
-  onUserOrientationChanged(body: string): TapSensorBuilder;
+  onActiveChanged(handler: DslSignalHandlerValue): TapSensorBuilder;
+  onAlwaysOnChanged(handler: DslSignalHandlerValue): TapSensorBuilder;
+  onAvailableDataRatesChanged(handler: DslSignalHandlerValue): TapSensorBuilder;
+  onAxesOrientationModeChanged(handler: DslSignalHandlerValue): TapSensorBuilder;
+  onBufferSizeChanged(handler: DslSignalHandlerValue): TapSensorBuilder;
+  onBusyChanged(handler: DslSignalHandlerValue): TapSensorBuilder;
+  onConnectedToBackendChanged(handler: DslSignalHandlerValue): TapSensorBuilder;
+  onCurrentOrientationChanged(handler: DslSignalHandlerValue): TapSensorBuilder;
+  onDataRateChanged(handler: DslSignalHandlerValue): TapSensorBuilder;
+  onDescriptionChanged(handler: DslSignalHandlerValue): TapSensorBuilder;
+  onEfficientBufferSizeChanged(handler: DslSignalHandlerValue): TapSensorBuilder;
+  onErrorChanged(handler: DslSignalHandlerValue): TapSensorBuilder;
+  onIdentifierChanged(handler: DslSignalHandlerValue): TapSensorBuilder;
+  onMaxBufferSizeChanged(handler: DslSignalHandlerValue): TapSensorBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): TapSensorBuilder;
+  onOutputRangeChanged(handler: DslSignalHandlerValue): TapSensorBuilder;
+  onOutputRangesChanged(handler: DslSignalHandlerValue): TapSensorBuilder;
+  onReadingChanged(handler: DslSignalHandlerValue): TapSensorBuilder;
+  onReturnDoubleTapEventsChanged(handler: DslSignalHandlerValue): TapSensorBuilder;
+  onSkipDuplicatesChanged(handler: DslSignalHandlerValue): TapSensorBuilder;
+  onUserOrientationChanged(handler: DslSignalHandlerValue): TapSensorBuilder;
 }
 
 const TAPSENSOR_META: TypeMetadata = {

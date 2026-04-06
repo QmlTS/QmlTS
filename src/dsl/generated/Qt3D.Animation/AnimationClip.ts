@@ -2,11 +2,17 @@
 // Type: AnimationClip
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 export interface AnimationClipBuilder {
   id(id: string): AnimationClipBuilder;
   child(obj: QmlObjectBuilder): AnimationClipBuilder;
+  children(...objs: QmlObjectBuilder[]): AnimationClipBuilder;
 
   clipData(value: QmlValue): AnimationClipBuilder;
   clipDataBind(expr: string): AnimationClipBuilder;
@@ -16,12 +22,12 @@ export interface AnimationClipBuilder {
   objectNameBind(expr: string): AnimationClipBuilder;
   parent(value: QmlValue): AnimationClipBuilder;
   parentBind(expr: string): AnimationClipBuilder;
-  onClipDataChanged(body: string): AnimationClipBuilder;
-  onDurationChanged(body: string): AnimationClipBuilder;
-  onEnabledChanged(body: string): AnimationClipBuilder;
-  onNodeDestroyed(body: string): AnimationClipBuilder;
-  onObjectNameChanged(body: string): AnimationClipBuilder;
-  onParentChanged(body: string): AnimationClipBuilder;
+  onClipDataChanged(handler: DslSignalHandlerValue): AnimationClipBuilder;
+  onDurationChanged(handler: DslSignalHandlerValue): AnimationClipBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): AnimationClipBuilder;
+  onNodeDestroyed(handler: DslSignalHandlerValue): AnimationClipBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): AnimationClipBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): AnimationClipBuilder;
 }
 
 const ANIMATIONCLIP_META: TypeMetadata = {

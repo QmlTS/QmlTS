@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlEnumToken,
   QmlObjectBuilder,
   QmlValue,
@@ -12,6 +13,7 @@ import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface HorizontalPercentBarSeriesBuilder {
   id(id: string): HorizontalPercentBarSeriesBuilder;
   child(obj: QmlObjectBuilder): HorizontalPercentBarSeriesBuilder;
+  children(...objs: QmlObjectBuilder[]): HorizontalPercentBarSeriesBuilder;
 
   axisX(value: QmlValue): HorizontalPercentBarSeriesBuilder;
   axisXBind(expr: string): HorizontalPercentBarSeriesBuilder;
@@ -49,37 +51,37 @@ export interface HorizontalPercentBarSeriesBuilder {
   visibleBind(expr: string): HorizontalPercentBarSeriesBuilder;
   zValue(value: number): HorizontalPercentBarSeriesBuilder;
   zValueBind(expr: string): HorizontalPercentBarSeriesBuilder;
-  onAxisXChanged(body: string): HorizontalPercentBarSeriesBuilder;
-  onAxisXTopChanged(body: string): HorizontalPercentBarSeriesBuilder;
-  onAxisYChanged(body: string): HorizontalPercentBarSeriesBuilder;
-  onAxisYRightChanged(body: string): HorizontalPercentBarSeriesBuilder;
-  onBarsetsAdded(body: string): HorizontalPercentBarSeriesBuilder;
-  onBarsetsRemoved(body: string): HorizontalPercentBarSeriesBuilder;
-  onClicked(body: string): HorizontalPercentBarSeriesBuilder;
-  onCountChanged(body: string): HorizontalPercentBarSeriesBuilder;
-  onDoubleClicked(body: string): HorizontalPercentBarSeriesBuilder;
-  onHover(body: string): HorizontalPercentBarSeriesBuilder;
-  onHoverEnter(body: string): HorizontalPercentBarSeriesBuilder;
-  onHoverExit(body: string): HorizontalPercentBarSeriesBuilder;
-  onHoverableChanged(body: string): HorizontalPercentBarSeriesBuilder;
-  onHovered(body: string): HorizontalPercentBarSeriesBuilder;
-  onHoveredChanged(body: string): HorizontalPercentBarSeriesBuilder;
-  onLabelsAngleChanged(body: string): HorizontalPercentBarSeriesBuilder;
-  onLabelsFormatChanged(body: string): HorizontalPercentBarSeriesBuilder;
-  onLabelsPositionChanged(body: string): HorizontalPercentBarSeriesBuilder;
-  onLabelsPrecisionChanged(body: string): HorizontalPercentBarSeriesBuilder;
-  onLabelsVisibleChanged(body: string): HorizontalPercentBarSeriesBuilder;
-  onLegendDataChanged(body: string): HorizontalPercentBarSeriesBuilder;
-  onNameChanged(body: string): HorizontalPercentBarSeriesBuilder;
-  onObjectNameChanged(body: string): HorizontalPercentBarSeriesBuilder;
-  onOpacityChanged(body: string): HorizontalPercentBarSeriesBuilder;
-  onPressed(body: string): HorizontalPercentBarSeriesBuilder;
-  onReleased(body: string): HorizontalPercentBarSeriesBuilder;
-  onSelectableChanged(body: string): HorizontalPercentBarSeriesBuilder;
-  onUpdate(body: string): HorizontalPercentBarSeriesBuilder;
-  onValuesMultiplierChanged(body: string): HorizontalPercentBarSeriesBuilder;
-  onVisibleChanged(body: string): HorizontalPercentBarSeriesBuilder;
-  onZValueChanged(body: string): HorizontalPercentBarSeriesBuilder;
+  onAxisXChanged(handler: DslSignalHandlerValue): HorizontalPercentBarSeriesBuilder;
+  onAxisXTopChanged(handler: DslSignalHandlerValue): HorizontalPercentBarSeriesBuilder;
+  onAxisYChanged(handler: DslSignalHandlerValue): HorizontalPercentBarSeriesBuilder;
+  onAxisYRightChanged(handler: DslSignalHandlerValue): HorizontalPercentBarSeriesBuilder;
+  onBarsetsAdded(handler: DslSignalHandlerValue): HorizontalPercentBarSeriesBuilder;
+  onBarsetsRemoved(handler: DslSignalHandlerValue): HorizontalPercentBarSeriesBuilder;
+  onClicked(handler: DslSignalHandlerValue): HorizontalPercentBarSeriesBuilder;
+  onCountChanged(handler: DslSignalHandlerValue): HorizontalPercentBarSeriesBuilder;
+  onDoubleClicked(handler: DslSignalHandlerValue): HorizontalPercentBarSeriesBuilder;
+  onHover(handler: DslSignalHandlerValue): HorizontalPercentBarSeriesBuilder;
+  onHoverEnter(handler: DslSignalHandlerValue): HorizontalPercentBarSeriesBuilder;
+  onHoverExit(handler: DslSignalHandlerValue): HorizontalPercentBarSeriesBuilder;
+  onHoverableChanged(handler: DslSignalHandlerValue): HorizontalPercentBarSeriesBuilder;
+  onHovered(handler: DslSignalHandlerValue): HorizontalPercentBarSeriesBuilder;
+  onHoveredChanged(handler: DslSignalHandlerValue): HorizontalPercentBarSeriesBuilder;
+  onLabelsAngleChanged(handler: DslSignalHandlerValue): HorizontalPercentBarSeriesBuilder;
+  onLabelsFormatChanged(handler: DslSignalHandlerValue): HorizontalPercentBarSeriesBuilder;
+  onLabelsPositionChanged(handler: DslSignalHandlerValue): HorizontalPercentBarSeriesBuilder;
+  onLabelsPrecisionChanged(handler: DslSignalHandlerValue): HorizontalPercentBarSeriesBuilder;
+  onLabelsVisibleChanged(handler: DslSignalHandlerValue): HorizontalPercentBarSeriesBuilder;
+  onLegendDataChanged(handler: DslSignalHandlerValue): HorizontalPercentBarSeriesBuilder;
+  onNameChanged(handler: DslSignalHandlerValue): HorizontalPercentBarSeriesBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): HorizontalPercentBarSeriesBuilder;
+  onOpacityChanged(handler: DslSignalHandlerValue): HorizontalPercentBarSeriesBuilder;
+  onPressed(handler: DslSignalHandlerValue): HorizontalPercentBarSeriesBuilder;
+  onReleased(handler: DslSignalHandlerValue): HorizontalPercentBarSeriesBuilder;
+  onSelectableChanged(handler: DslSignalHandlerValue): HorizontalPercentBarSeriesBuilder;
+  onUpdate(handler: DslSignalHandlerValue): HorizontalPercentBarSeriesBuilder;
+  onValuesMultiplierChanged(handler: DslSignalHandlerValue): HorizontalPercentBarSeriesBuilder;
+  onVisibleChanged(handler: DslSignalHandlerValue): HorizontalPercentBarSeriesBuilder;
+  onZValueChanged(handler: DslSignalHandlerValue): HorizontalPercentBarSeriesBuilder;
 }
 
 const HORIZONTALPERCENTBARSERIES_META: TypeMetadata = {

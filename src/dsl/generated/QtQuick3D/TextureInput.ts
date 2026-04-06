@@ -2,12 +2,18 @@
 // Type: TextureInput
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 import type { TextureBuilder } from './Texture.js';
 export interface TextureInputBuilder {
   id(id: string): TextureInputBuilder;
   child(obj: QmlObjectBuilder): TextureInputBuilder;
+  children(...objs: QmlObjectBuilder[]): TextureInputBuilder;
 
   enabled(value: boolean): TextureInputBuilder;
   enabledBind(expr: string): TextureInputBuilder;
@@ -19,12 +25,12 @@ export interface TextureInputBuilder {
   stateBind(expr: string): TextureInputBuilder;
   texture(value: TextureBuilder): TextureInputBuilder;
   textureBind(expr: string): TextureInputBuilder;
-  onChildrenChanged(body: string): TextureInputBuilder;
-  onEnabledChanged(body: string): TextureInputBuilder;
-  onObjectNameChanged(body: string): TextureInputBuilder;
-  onParentChanged(body: string): TextureInputBuilder;
-  onStateChanged(body: string): TextureInputBuilder;
-  onTextureChanged(body: string): TextureInputBuilder;
+  onChildrenChanged(handler: DslSignalHandlerValue): TextureInputBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): TextureInputBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): TextureInputBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): TextureInputBuilder;
+  onStateChanged(handler: DslSignalHandlerValue): TextureInputBuilder;
+  onTextureChanged(handler: DslSignalHandlerValue): TextureInputBuilder;
 }
 
 const TEXTUREINPUT_META: TypeMetadata = {

@@ -2,7 +2,7 @@
 // Type: PauseAnimation
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import type { DslSignalHandlerValue, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { AccessibleAttachedBuilder } from './Accessible.js';
 import type { EnterKeyAttachedBuilder } from './EnterKey.js';
@@ -23,6 +23,7 @@ import type { ViewTransitionAttachedBuilder } from './ViewTransition.js';
 export interface PauseAnimationBuilder {
   id(id: string): PauseAnimationBuilder;
   child(obj: QmlObjectBuilder): PauseAnimationBuilder;
+  children(...objs: QmlObjectBuilder[]): PauseAnimationBuilder;
 
   alwaysRunToEnd(value: boolean): PauseAnimationBuilder;
   alwaysRunToEndBind(expr: string): PauseAnimationBuilder;
@@ -36,15 +37,15 @@ export interface PauseAnimationBuilder {
   pausedBind(expr: string): PauseAnimationBuilder;
   running(value: boolean): PauseAnimationBuilder;
   runningBind(expr: string): PauseAnimationBuilder;
-  onAlwaysRunToEndChanged(body: string): PauseAnimationBuilder;
-  onDurationChanged(body: string): PauseAnimationBuilder;
-  onFinished(body: string): PauseAnimationBuilder;
-  onLoopCountChanged(body: string): PauseAnimationBuilder;
-  onObjectNameChanged(body: string): PauseAnimationBuilder;
-  onPausedChanged(body: string): PauseAnimationBuilder;
-  onRunningChanged(body: string): PauseAnimationBuilder;
-  onStarted(body: string): PauseAnimationBuilder;
-  onStopped(body: string): PauseAnimationBuilder;
+  onAlwaysRunToEndChanged(handler: DslSignalHandlerValue): PauseAnimationBuilder;
+  onDurationChanged(handler: DslSignalHandlerValue): PauseAnimationBuilder;
+  onFinished(handler: DslSignalHandlerValue): PauseAnimationBuilder;
+  onLoopCountChanged(handler: DslSignalHandlerValue): PauseAnimationBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): PauseAnimationBuilder;
+  onPausedChanged(handler: DslSignalHandlerValue): PauseAnimationBuilder;
+  onRunningChanged(handler: DslSignalHandlerValue): PauseAnimationBuilder;
+  onStarted(handler: DslSignalHandlerValue): PauseAnimationBuilder;
+  onStopped(handler: DslSignalHandlerValue): PauseAnimationBuilder;
   accessible(setup: (b: AccessibleAttachedBuilder) => void): PauseAnimationBuilder;
   drag(setup: (b: DragAttachedBuilder) => void): PauseAnimationBuilder;
   enterKey(setup: (b: EnterKeyAttachedBuilder) => void): PauseAnimationBuilder;

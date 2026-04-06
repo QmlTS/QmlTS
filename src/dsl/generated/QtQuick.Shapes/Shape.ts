@@ -2,7 +2,12 @@
 // Type: Shape
 // Generated from Qt 6.11.0
 
-import type { QmlEnumToken, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlEnumToken,
+  QmlObjectBuilder,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { QtObjectBuilder } from '../QML/QtObject.js';
 import type { ItemBuilder } from '../QtQuick/Item.js';
@@ -12,6 +17,7 @@ import type { LayerBuilder } from '../QtQuick/QQuickItemLayer.js';
 export interface ShapeBuilder {
   id(id: string): ShapeBuilder;
   child(obj: QmlObjectBuilder): ShapeBuilder;
+  children(...objs: QmlObjectBuilder[]): ShapeBuilder;
 
   activeFocusOnTab(value: boolean): ShapeBuilder;
   activeFocusOnTabBind(expr: string): ShapeBuilder;
@@ -77,47 +83,47 @@ export interface ShapeBuilder {
   yBind(expr: string): ShapeBuilder;
   z(value: number): ShapeBuilder;
   zBind(expr: string): ShapeBuilder;
-  onActiveFocusChanged(body: string): ShapeBuilder;
-  onActiveFocusOnTabChanged(body: string): ShapeBuilder;
-  onAntialiasingChanged(body: string): ShapeBuilder;
-  onAsynchronousChanged(body: string): ShapeBuilder;
-  onBaselineOffsetChanged(body: string): ShapeBuilder;
-  onBoundingRectChanged(body: string): ShapeBuilder;
-  onChildrenChanged(body: string): ShapeBuilder;
-  onChildrenRectChanged(body: string): ShapeBuilder;
-  onClipChanged(body: string): ShapeBuilder;
-  onContainmentMaskChanged(body: string): ShapeBuilder;
-  onContainsModeChanged(body: string): ShapeBuilder;
-  onEnabledChanged(body: string): ShapeBuilder;
-  onFillModeChanged(body: string): ShapeBuilder;
-  onFocusChanged(body: string): ShapeBuilder;
-  onFocusPolicyChanged(body: string): ShapeBuilder;
-  onHeightChanged(body: string): ShapeBuilder;
-  onHorizontalAlignmentChanged(body: string): ShapeBuilder;
-  onImplicitHeightChanged(body: string): ShapeBuilder;
-  onImplicitWidthChanged(body: string): ShapeBuilder;
-  onObjectNameChanged(body: string): ShapeBuilder;
-  onOpacityChanged(body: string): ShapeBuilder;
-  onPaletteChanged(body: string): ShapeBuilder;
-  onPaletteCreated(body: string): ShapeBuilder;
-  onParentChanged(body: string): ShapeBuilder;
-  onPreferredRendererTypeChanged(body: string): ShapeBuilder;
-  onRendererChanged(body: string): ShapeBuilder;
-  onRotationChanged(body: string): ShapeBuilder;
-  onScaleChanged(body: string): ShapeBuilder;
-  onSmoothChanged(body: string): ShapeBuilder;
-  onStateChanged(body: string): ShapeBuilder;
-  onStatusChanged(body: string): ShapeBuilder;
-  onTransformOriginChanged(body: string): ShapeBuilder;
-  onVendorExtensionsEnabledChanged(body: string): ShapeBuilder;
-  onVerticalAlignmentChanged(body: string): ShapeBuilder;
-  onVisibleChanged(body: string): ShapeBuilder;
-  onVisibleChildrenChanged(body: string): ShapeBuilder;
-  onWidthChanged(body: string): ShapeBuilder;
-  onWindowChanged(body: string): ShapeBuilder;
-  onXChanged(body: string): ShapeBuilder;
-  onYChanged(body: string): ShapeBuilder;
-  onZChanged(body: string): ShapeBuilder;
+  onActiveFocusChanged(handler: DslSignalHandlerValue): ShapeBuilder;
+  onActiveFocusOnTabChanged(handler: DslSignalHandlerValue): ShapeBuilder;
+  onAntialiasingChanged(handler: DslSignalHandlerValue): ShapeBuilder;
+  onAsynchronousChanged(handler: DslSignalHandlerValue): ShapeBuilder;
+  onBaselineOffsetChanged(handler: DslSignalHandlerValue): ShapeBuilder;
+  onBoundingRectChanged(handler: DslSignalHandlerValue): ShapeBuilder;
+  onChildrenChanged(handler: DslSignalHandlerValue): ShapeBuilder;
+  onChildrenRectChanged(handler: DslSignalHandlerValue): ShapeBuilder;
+  onClipChanged(handler: DslSignalHandlerValue): ShapeBuilder;
+  onContainmentMaskChanged(handler: DslSignalHandlerValue): ShapeBuilder;
+  onContainsModeChanged(handler: DslSignalHandlerValue): ShapeBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): ShapeBuilder;
+  onFillModeChanged(handler: DslSignalHandlerValue): ShapeBuilder;
+  onFocusChanged(handler: DslSignalHandlerValue): ShapeBuilder;
+  onFocusPolicyChanged(handler: DslSignalHandlerValue): ShapeBuilder;
+  onHeightChanged(handler: DslSignalHandlerValue): ShapeBuilder;
+  onHorizontalAlignmentChanged(handler: DslSignalHandlerValue): ShapeBuilder;
+  onImplicitHeightChanged(handler: DslSignalHandlerValue): ShapeBuilder;
+  onImplicitWidthChanged(handler: DslSignalHandlerValue): ShapeBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): ShapeBuilder;
+  onOpacityChanged(handler: DslSignalHandlerValue): ShapeBuilder;
+  onPaletteChanged(handler: DslSignalHandlerValue): ShapeBuilder;
+  onPaletteCreated(handler: DslSignalHandlerValue): ShapeBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): ShapeBuilder;
+  onPreferredRendererTypeChanged(handler: DslSignalHandlerValue): ShapeBuilder;
+  onRendererChanged(handler: DslSignalHandlerValue): ShapeBuilder;
+  onRotationChanged(handler: DslSignalHandlerValue): ShapeBuilder;
+  onScaleChanged(handler: DslSignalHandlerValue): ShapeBuilder;
+  onSmoothChanged(handler: DslSignalHandlerValue): ShapeBuilder;
+  onStateChanged(handler: DslSignalHandlerValue): ShapeBuilder;
+  onStatusChanged(handler: DslSignalHandlerValue): ShapeBuilder;
+  onTransformOriginChanged(handler: DslSignalHandlerValue): ShapeBuilder;
+  onVendorExtensionsEnabledChanged(handler: DslSignalHandlerValue): ShapeBuilder;
+  onVerticalAlignmentChanged(handler: DslSignalHandlerValue): ShapeBuilder;
+  onVisibleChanged(handler: DslSignalHandlerValue): ShapeBuilder;
+  onVisibleChildrenChanged(handler: DslSignalHandlerValue): ShapeBuilder;
+  onWidthChanged(handler: DslSignalHandlerValue): ShapeBuilder;
+  onWindowChanged(handler: DslSignalHandlerValue): ShapeBuilder;
+  onXChanged(handler: DslSignalHandlerValue): ShapeBuilder;
+  onYChanged(handler: DslSignalHandlerValue): ShapeBuilder;
+  onZChanged(handler: DslSignalHandlerValue): ShapeBuilder;
   anchors(setup: (b: AnchorsBuilder) => void): ShapeBuilder;
   layer(setup: (b: LayerBuilder) => void): ShapeBuilder;
 }

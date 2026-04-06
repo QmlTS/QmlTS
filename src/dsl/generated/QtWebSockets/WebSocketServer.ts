@@ -2,11 +2,12 @@
 // Type: WebSocketServer
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import type { DslSignalHandlerValue, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 export interface WebSocketServerBuilder {
   id(id: string): WebSocketServerBuilder;
   child(obj: QmlObjectBuilder): WebSocketServerBuilder;
+  children(...objs: QmlObjectBuilder[]): WebSocketServerBuilder;
 
   accept(value: boolean): WebSocketServerBuilder;
   acceptBind(expr: string): WebSocketServerBuilder;
@@ -22,16 +23,16 @@ export interface WebSocketServerBuilder {
   portBind(expr: string): WebSocketServerBuilder;
   supportedSubprotocols(value: string[]): WebSocketServerBuilder;
   supportedSubprotocolsBind(expr: string): WebSocketServerBuilder;
-  onAcceptChanged(body: string): WebSocketServerBuilder;
-  onClientConnected(body: string): WebSocketServerBuilder;
-  onErrorStringChanged(body: string): WebSocketServerBuilder;
-  onHostChanged(body: string): WebSocketServerBuilder;
-  onListenChanged(body: string): WebSocketServerBuilder;
-  onNameChanged(body: string): WebSocketServerBuilder;
-  onObjectNameChanged(body: string): WebSocketServerBuilder;
-  onPortChanged(body: string): WebSocketServerBuilder;
-  onSupportedSubprotocolsChanged(body: string): WebSocketServerBuilder;
-  onUrlChanged(body: string): WebSocketServerBuilder;
+  onAcceptChanged(handler: DslSignalHandlerValue): WebSocketServerBuilder;
+  onClientConnected(handler: DslSignalHandlerValue): WebSocketServerBuilder;
+  onErrorStringChanged(handler: DslSignalHandlerValue): WebSocketServerBuilder;
+  onHostChanged(handler: DslSignalHandlerValue): WebSocketServerBuilder;
+  onListenChanged(handler: DslSignalHandlerValue): WebSocketServerBuilder;
+  onNameChanged(handler: DslSignalHandlerValue): WebSocketServerBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): WebSocketServerBuilder;
+  onPortChanged(handler: DslSignalHandlerValue): WebSocketServerBuilder;
+  onSupportedSubprotocolsChanged(handler: DslSignalHandlerValue): WebSocketServerBuilder;
+  onUrlChanged(handler: DslSignalHandlerValue): WebSocketServerBuilder;
 }
 
 const WEBSOCKETSERVER_META: TypeMetadata = {

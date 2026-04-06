@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlEnumToken,
   QmlObjectBuilder,
   QmlSize,
@@ -14,6 +15,7 @@ import type { GeometryBuilder } from '../Qt3D.Core/Geometry.js';
 export interface PlaneGeometryViewBuilder {
   id(id: string): PlaneGeometryViewBuilder;
   child(obj: QmlObjectBuilder): PlaneGeometryViewBuilder;
+  children(...objs: QmlObjectBuilder[]): PlaneGeometryViewBuilder;
 
   enabled(value: boolean): PlaneGeometryViewBuilder;
   enabledBind(expr: string): PlaneGeometryViewBuilder;
@@ -51,25 +53,25 @@ export interface PlaneGeometryViewBuilder {
   verticesPerPatchBind(expr: string): PlaneGeometryViewBuilder;
   width(value: number): PlaneGeometryViewBuilder;
   widthBind(expr: string): PlaneGeometryViewBuilder;
-  onEnabledChanged(body: string): PlaneGeometryViewBuilder;
-  onFirstInstanceChanged(body: string): PlaneGeometryViewBuilder;
-  onFirstVertexChanged(body: string): PlaneGeometryViewBuilder;
-  onGeometryChanged(body: string): PlaneGeometryViewBuilder;
-  onHeightChanged(body: string): PlaneGeometryViewBuilder;
-  onIndexBufferByteOffsetChanged(body: string): PlaneGeometryViewBuilder;
-  onIndexOffsetChanged(body: string): PlaneGeometryViewBuilder;
-  onInstanceCountChanged(body: string): PlaneGeometryViewBuilder;
-  onMeshResolutionChanged(body: string): PlaneGeometryViewBuilder;
-  onMirroredChanged(body: string): PlaneGeometryViewBuilder;
-  onNodeDestroyed(body: string): PlaneGeometryViewBuilder;
-  onObjectNameChanged(body: string): PlaneGeometryViewBuilder;
-  onParentChanged(body: string): PlaneGeometryViewBuilder;
-  onPrimitiveRestartEnabledChanged(body: string): PlaneGeometryViewBuilder;
-  onPrimitiveTypeChanged(body: string): PlaneGeometryViewBuilder;
-  onRestartIndexValueChanged(body: string): PlaneGeometryViewBuilder;
-  onVertexCountChanged(body: string): PlaneGeometryViewBuilder;
-  onVerticesPerPatchChanged(body: string): PlaneGeometryViewBuilder;
-  onWidthChanged(body: string): PlaneGeometryViewBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): PlaneGeometryViewBuilder;
+  onFirstInstanceChanged(handler: DslSignalHandlerValue): PlaneGeometryViewBuilder;
+  onFirstVertexChanged(handler: DslSignalHandlerValue): PlaneGeometryViewBuilder;
+  onGeometryChanged(handler: DslSignalHandlerValue): PlaneGeometryViewBuilder;
+  onHeightChanged(handler: DslSignalHandlerValue): PlaneGeometryViewBuilder;
+  onIndexBufferByteOffsetChanged(handler: DslSignalHandlerValue): PlaneGeometryViewBuilder;
+  onIndexOffsetChanged(handler: DslSignalHandlerValue): PlaneGeometryViewBuilder;
+  onInstanceCountChanged(handler: DslSignalHandlerValue): PlaneGeometryViewBuilder;
+  onMeshResolutionChanged(handler: DslSignalHandlerValue): PlaneGeometryViewBuilder;
+  onMirroredChanged(handler: DslSignalHandlerValue): PlaneGeometryViewBuilder;
+  onNodeDestroyed(handler: DslSignalHandlerValue): PlaneGeometryViewBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): PlaneGeometryViewBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): PlaneGeometryViewBuilder;
+  onPrimitiveRestartEnabledChanged(handler: DslSignalHandlerValue): PlaneGeometryViewBuilder;
+  onPrimitiveTypeChanged(handler: DslSignalHandlerValue): PlaneGeometryViewBuilder;
+  onRestartIndexValueChanged(handler: DslSignalHandlerValue): PlaneGeometryViewBuilder;
+  onVertexCountChanged(handler: DslSignalHandlerValue): PlaneGeometryViewBuilder;
+  onVerticesPerPatchChanged(handler: DslSignalHandlerValue): PlaneGeometryViewBuilder;
+  onWidthChanged(handler: DslSignalHandlerValue): PlaneGeometryViewBuilder;
 }
 
 const PLANEGEOMETRYVIEW_META: TypeMetadata = {

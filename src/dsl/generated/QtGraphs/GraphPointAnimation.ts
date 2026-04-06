@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlEnumToken,
   QmlObjectBuilder,
   QmlValue,
@@ -12,6 +13,7 @@ import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface GraphPointAnimationBuilder {
   id(id: string): GraphPointAnimationBuilder;
   child(obj: QmlObjectBuilder): GraphPointAnimationBuilder;
+  children(...objs: QmlObjectBuilder[]): GraphPointAnimationBuilder;
 
   animating(value: QmlEnumToken): GraphPointAnimationBuilder;
   animatingBind(expr: string): GraphPointAnimationBuilder;
@@ -31,13 +33,13 @@ export interface GraphPointAnimationBuilder {
   objectNameBind(expr: string): GraphPointAnimationBuilder;
   startValue(value: QmlValue): GraphPointAnimationBuilder;
   startValueBind(expr: string): GraphPointAnimationBuilder;
-  onAnimatingChanged(body: string): GraphPointAnimationBuilder;
-  onCurrentLoopChanged(body: string): GraphPointAnimationBuilder;
-  onDirectionChanged(body: string): GraphPointAnimationBuilder;
-  onFinished(body: string): GraphPointAnimationBuilder;
-  onObjectNameChanged(body: string): GraphPointAnimationBuilder;
-  onStateChanged(body: string): GraphPointAnimationBuilder;
-  onValueChanged(body: string): GraphPointAnimationBuilder;
+  onAnimatingChanged(handler: DslSignalHandlerValue): GraphPointAnimationBuilder;
+  onCurrentLoopChanged(handler: DslSignalHandlerValue): GraphPointAnimationBuilder;
+  onDirectionChanged(handler: DslSignalHandlerValue): GraphPointAnimationBuilder;
+  onFinished(handler: DslSignalHandlerValue): GraphPointAnimationBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): GraphPointAnimationBuilder;
+  onStateChanged(handler: DslSignalHandlerValue): GraphPointAnimationBuilder;
+  onValueChanged(handler: DslSignalHandlerValue): GraphPointAnimationBuilder;
 }
 
 const GRAPHPOINTANIMATION_META: TypeMetadata = {

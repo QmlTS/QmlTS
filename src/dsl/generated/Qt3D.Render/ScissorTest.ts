@@ -2,11 +2,17 @@
 // Type: ScissorTest
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 export interface ScissorTestBuilder {
   id(id: string): ScissorTestBuilder;
   child(obj: QmlObjectBuilder): ScissorTestBuilder;
+  children(...objs: QmlObjectBuilder[]): ScissorTestBuilder;
 
   bottom(value: number): ScissorTestBuilder;
   bottomBind(expr: string): ScissorTestBuilder;
@@ -22,14 +28,14 @@ export interface ScissorTestBuilder {
   parentBind(expr: string): ScissorTestBuilder;
   width(value: number): ScissorTestBuilder;
   widthBind(expr: string): ScissorTestBuilder;
-  onBottomChanged(body: string): ScissorTestBuilder;
-  onEnabledChanged(body: string): ScissorTestBuilder;
-  onHeightChanged(body: string): ScissorTestBuilder;
-  onLeftChanged(body: string): ScissorTestBuilder;
-  onNodeDestroyed(body: string): ScissorTestBuilder;
-  onObjectNameChanged(body: string): ScissorTestBuilder;
-  onParentChanged(body: string): ScissorTestBuilder;
-  onWidthChanged(body: string): ScissorTestBuilder;
+  onBottomChanged(handler: DslSignalHandlerValue): ScissorTestBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): ScissorTestBuilder;
+  onHeightChanged(handler: DslSignalHandlerValue): ScissorTestBuilder;
+  onLeftChanged(handler: DslSignalHandlerValue): ScissorTestBuilder;
+  onNodeDestroyed(handler: DslSignalHandlerValue): ScissorTestBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): ScissorTestBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): ScissorTestBuilder;
+  onWidthChanged(handler: DslSignalHandlerValue): ScissorTestBuilder;
 }
 
 const SCISSORTEST_META: TypeMetadata = {

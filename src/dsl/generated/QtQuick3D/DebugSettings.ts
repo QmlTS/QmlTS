@@ -2,11 +2,17 @@
 // Type: DebugSettings
 // Generated from Qt 6.11.0
 
-import type { QmlEnumToken, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlEnumToken,
+  QmlObjectBuilder,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface DebugSettingsBuilder {
   id(id: string): DebugSettingsBuilder;
   child(obj: QmlObjectBuilder): DebugSettingsBuilder;
+  children(...objs: QmlObjectBuilder[]): DebugSettingsBuilder;
 
   disableShadowCameraUpdate(value: boolean): DebugSettingsBuilder;
   disableShadowCameraUpdateBind(expr: string): DebugSettingsBuilder;
@@ -30,18 +36,18 @@ export interface DebugSettingsBuilder {
   objectNameBind(expr: string): DebugSettingsBuilder;
   wireframeEnabled(value: boolean): DebugSettingsBuilder;
   wireframeEnabledBind(expr: string): DebugSettingsBuilder;
-  onChanged(body: string): DebugSettingsBuilder;
-  onDisableShadowCameraUpdateChanged(body: string): DebugSettingsBuilder;
-  onDrawCascadesChanged(body: string): DebugSettingsBuilder;
-  onDrawCulledObjectsChanged(body: string): DebugSettingsBuilder;
-  onDrawDirectionalLightShadowBoxesChanged(body: string): DebugSettingsBuilder;
-  onDrawPointLightShadowBoxesChanged(body: string): DebugSettingsBuilder;
-  onDrawSceneCascadeIntersectionChanged(body: string): DebugSettingsBuilder;
-  onDrawShadowCastingBoundsChanged(body: string): DebugSettingsBuilder;
-  onDrawShadowReceivingBoundsChanged(body: string): DebugSettingsBuilder;
-  onMaterialOverrideChanged(body: string): DebugSettingsBuilder;
-  onObjectNameChanged(body: string): DebugSettingsBuilder;
-  onWireframeEnabledChanged(body: string): DebugSettingsBuilder;
+  onChanged(handler: DslSignalHandlerValue): DebugSettingsBuilder;
+  onDisableShadowCameraUpdateChanged(handler: DslSignalHandlerValue): DebugSettingsBuilder;
+  onDrawCascadesChanged(handler: DslSignalHandlerValue): DebugSettingsBuilder;
+  onDrawCulledObjectsChanged(handler: DslSignalHandlerValue): DebugSettingsBuilder;
+  onDrawDirectionalLightShadowBoxesChanged(handler: DslSignalHandlerValue): DebugSettingsBuilder;
+  onDrawPointLightShadowBoxesChanged(handler: DslSignalHandlerValue): DebugSettingsBuilder;
+  onDrawSceneCascadeIntersectionChanged(handler: DslSignalHandlerValue): DebugSettingsBuilder;
+  onDrawShadowCastingBoundsChanged(handler: DslSignalHandlerValue): DebugSettingsBuilder;
+  onDrawShadowReceivingBoundsChanged(handler: DslSignalHandlerValue): DebugSettingsBuilder;
+  onMaterialOverrideChanged(handler: DslSignalHandlerValue): DebugSettingsBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): DebugSettingsBuilder;
+  onWireframeEnabledChanged(handler: DslSignalHandlerValue): DebugSettingsBuilder;
 }
 
 const DEBUGSETTINGS_META: TypeMetadata = {

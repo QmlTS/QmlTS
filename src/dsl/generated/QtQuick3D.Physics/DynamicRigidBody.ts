@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlEnumToken,
   QmlObjectBuilder,
   QmlQuaternion,
@@ -15,6 +16,7 @@ import type { PhysicsMaterialBuilder } from './PhysicsMaterial.js';
 export interface DynamicRigidBodyBuilder {
   id(id: string): DynamicRigidBodyBuilder;
   child(obj: QmlObjectBuilder): DynamicRigidBodyBuilder;
+  children(...objs: QmlObjectBuilder[]): DynamicRigidBodyBuilder;
 
   angularAxisLock(value: QmlEnumToken): DynamicRigidBodyBuilder;
   angularAxisLockBind(expr: string): DynamicRigidBodyBuilder;
@@ -94,56 +96,56 @@ export interface DynamicRigidBodyBuilder {
   yBind(expr: string): DynamicRigidBodyBuilder;
   z(value: number): DynamicRigidBodyBuilder;
   zBind(expr: string): DynamicRigidBodyBuilder;
-  onAngularAxisLockChanged(body: string): DynamicRigidBodyBuilder;
-  onBodyContact(body: string): DynamicRigidBodyBuilder;
-  onCenterOfMassPositionChanged(body: string): DynamicRigidBodyBuilder;
-  onCenterOfMassRotationChanged(body: string): DynamicRigidBodyBuilder;
-  onChildrenChanged(body: string): DynamicRigidBodyBuilder;
-  onDensityChanged(body: string): DynamicRigidBodyBuilder;
-  onEnteredTriggerBody(body: string): DynamicRigidBodyBuilder;
-  onEulerRotationChanged(body: string): DynamicRigidBodyBuilder;
-  onExitedTriggerBody(body: string): DynamicRigidBodyBuilder;
-  onFilterGroupChanged(body: string): DynamicRigidBodyBuilder;
-  onFilterIgnoreGroupsChanged(body: string): DynamicRigidBodyBuilder;
-  onForwardChanged(body: string): DynamicRigidBodyBuilder;
-  onGravityEnabledChanged(body: string): DynamicRigidBodyBuilder;
-  onInertiaMatrixChanged(body: string): DynamicRigidBodyBuilder;
-  onInertiaTensorChanged(body: string): DynamicRigidBodyBuilder;
-  onIsKinematicChanged(body: string): DynamicRigidBodyBuilder;
-  onIsSleepingChanged(body: string): DynamicRigidBodyBuilder;
-  onKinematicEulerRotationChanged(body: string): DynamicRigidBodyBuilder;
-  onKinematicPivotChanged(body: string): DynamicRigidBodyBuilder;
-  onKinematicPositionChanged(body: string): DynamicRigidBodyBuilder;
-  onKinematicRotationChanged(body: string): DynamicRigidBodyBuilder;
-  onLayersChanged(body: string): DynamicRigidBodyBuilder;
-  onLinearAxisLockChanged(body: string): DynamicRigidBodyBuilder;
-  onLocalOpacityChanged(body: string): DynamicRigidBodyBuilder;
-  onMassChanged(body: string): DynamicRigidBodyBuilder;
-  onMassModeChanged(body: string): DynamicRigidBodyBuilder;
-  onObjectNameChanged(body: string): DynamicRigidBodyBuilder;
-  onParentChanged(body: string): DynamicRigidBodyBuilder;
-  onPhysicsMaterialChanged(body: string): DynamicRigidBodyBuilder;
-  onPivotChanged(body: string): DynamicRigidBodyBuilder;
-  onPositionChanged(body: string): DynamicRigidBodyBuilder;
-  onReceiveContactReportsChanged(body: string): DynamicRigidBodyBuilder;
-  onReceiveTriggerReportsChanged(body: string): DynamicRigidBodyBuilder;
-  onRightChanged(body: string): DynamicRigidBodyBuilder;
-  onRotationChanged(body: string): DynamicRigidBodyBuilder;
-  onScaleChanged(body: string): DynamicRigidBodyBuilder;
-  onScenePositionChanged(body: string): DynamicRigidBodyBuilder;
-  onSceneRotationChanged(body: string): DynamicRigidBodyBuilder;
-  onSceneScaleChanged(body: string): DynamicRigidBodyBuilder;
-  onSceneTransformChanged(body: string): DynamicRigidBodyBuilder;
-  onSendContactReportsChanged(body: string): DynamicRigidBodyBuilder;
-  onSendTriggerReportsChanged(body: string): DynamicRigidBodyBuilder;
-  onSimulationEnabledChanged(body: string): DynamicRigidBodyBuilder;
-  onStateChanged(body: string): DynamicRigidBodyBuilder;
-  onStaticFlagsChanged(body: string): DynamicRigidBodyBuilder;
-  onUpChanged(body: string): DynamicRigidBodyBuilder;
-  onVisibleChanged(body: string): DynamicRigidBodyBuilder;
-  onXChanged(body: string): DynamicRigidBodyBuilder;
-  onYChanged(body: string): DynamicRigidBodyBuilder;
-  onZChanged(body: string): DynamicRigidBodyBuilder;
+  onAngularAxisLockChanged(handler: DslSignalHandlerValue): DynamicRigidBodyBuilder;
+  onBodyContact(handler: DslSignalHandlerValue): DynamicRigidBodyBuilder;
+  onCenterOfMassPositionChanged(handler: DslSignalHandlerValue): DynamicRigidBodyBuilder;
+  onCenterOfMassRotationChanged(handler: DslSignalHandlerValue): DynamicRigidBodyBuilder;
+  onChildrenChanged(handler: DslSignalHandlerValue): DynamicRigidBodyBuilder;
+  onDensityChanged(handler: DslSignalHandlerValue): DynamicRigidBodyBuilder;
+  onEnteredTriggerBody(handler: DslSignalHandlerValue): DynamicRigidBodyBuilder;
+  onEulerRotationChanged(handler: DslSignalHandlerValue): DynamicRigidBodyBuilder;
+  onExitedTriggerBody(handler: DslSignalHandlerValue): DynamicRigidBodyBuilder;
+  onFilterGroupChanged(handler: DslSignalHandlerValue): DynamicRigidBodyBuilder;
+  onFilterIgnoreGroupsChanged(handler: DslSignalHandlerValue): DynamicRigidBodyBuilder;
+  onForwardChanged(handler: DslSignalHandlerValue): DynamicRigidBodyBuilder;
+  onGravityEnabledChanged(handler: DslSignalHandlerValue): DynamicRigidBodyBuilder;
+  onInertiaMatrixChanged(handler: DslSignalHandlerValue): DynamicRigidBodyBuilder;
+  onInertiaTensorChanged(handler: DslSignalHandlerValue): DynamicRigidBodyBuilder;
+  onIsKinematicChanged(handler: DslSignalHandlerValue): DynamicRigidBodyBuilder;
+  onIsSleepingChanged(handler: DslSignalHandlerValue): DynamicRigidBodyBuilder;
+  onKinematicEulerRotationChanged(handler: DslSignalHandlerValue): DynamicRigidBodyBuilder;
+  onKinematicPivotChanged(handler: DslSignalHandlerValue): DynamicRigidBodyBuilder;
+  onKinematicPositionChanged(handler: DslSignalHandlerValue): DynamicRigidBodyBuilder;
+  onKinematicRotationChanged(handler: DslSignalHandlerValue): DynamicRigidBodyBuilder;
+  onLayersChanged(handler: DslSignalHandlerValue): DynamicRigidBodyBuilder;
+  onLinearAxisLockChanged(handler: DslSignalHandlerValue): DynamicRigidBodyBuilder;
+  onLocalOpacityChanged(handler: DslSignalHandlerValue): DynamicRigidBodyBuilder;
+  onMassChanged(handler: DslSignalHandlerValue): DynamicRigidBodyBuilder;
+  onMassModeChanged(handler: DslSignalHandlerValue): DynamicRigidBodyBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): DynamicRigidBodyBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): DynamicRigidBodyBuilder;
+  onPhysicsMaterialChanged(handler: DslSignalHandlerValue): DynamicRigidBodyBuilder;
+  onPivotChanged(handler: DslSignalHandlerValue): DynamicRigidBodyBuilder;
+  onPositionChanged(handler: DslSignalHandlerValue): DynamicRigidBodyBuilder;
+  onReceiveContactReportsChanged(handler: DslSignalHandlerValue): DynamicRigidBodyBuilder;
+  onReceiveTriggerReportsChanged(handler: DslSignalHandlerValue): DynamicRigidBodyBuilder;
+  onRightChanged(handler: DslSignalHandlerValue): DynamicRigidBodyBuilder;
+  onRotationChanged(handler: DslSignalHandlerValue): DynamicRigidBodyBuilder;
+  onScaleChanged(handler: DslSignalHandlerValue): DynamicRigidBodyBuilder;
+  onScenePositionChanged(handler: DslSignalHandlerValue): DynamicRigidBodyBuilder;
+  onSceneRotationChanged(handler: DslSignalHandlerValue): DynamicRigidBodyBuilder;
+  onSceneScaleChanged(handler: DslSignalHandlerValue): DynamicRigidBodyBuilder;
+  onSceneTransformChanged(handler: DslSignalHandlerValue): DynamicRigidBodyBuilder;
+  onSendContactReportsChanged(handler: DslSignalHandlerValue): DynamicRigidBodyBuilder;
+  onSendTriggerReportsChanged(handler: DslSignalHandlerValue): DynamicRigidBodyBuilder;
+  onSimulationEnabledChanged(handler: DslSignalHandlerValue): DynamicRigidBodyBuilder;
+  onStateChanged(handler: DslSignalHandlerValue): DynamicRigidBodyBuilder;
+  onStaticFlagsChanged(handler: DslSignalHandlerValue): DynamicRigidBodyBuilder;
+  onUpChanged(handler: DslSignalHandlerValue): DynamicRigidBodyBuilder;
+  onVisibleChanged(handler: DslSignalHandlerValue): DynamicRigidBodyBuilder;
+  onXChanged(handler: DslSignalHandlerValue): DynamicRigidBodyBuilder;
+  onYChanged(handler: DslSignalHandlerValue): DynamicRigidBodyBuilder;
+  onZChanged(handler: DslSignalHandlerValue): DynamicRigidBodyBuilder;
 }
 
 const DYNAMICRIGIDBODY_META: TypeMetadata = {

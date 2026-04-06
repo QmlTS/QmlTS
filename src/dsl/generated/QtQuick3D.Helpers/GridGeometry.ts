@@ -2,11 +2,17 @@
 // Type: GridGeometry
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 export interface GridGeometryBuilder {
   id(id: string): GridGeometryBuilder;
   child(obj: QmlObjectBuilder): GridGeometryBuilder;
+  children(...objs: QmlObjectBuilder[]): GridGeometryBuilder;
 
   horizontalLines(value: number): GridGeometryBuilder;
   horizontalLinesBind(expr: string): GridGeometryBuilder;
@@ -22,16 +28,16 @@ export interface GridGeometryBuilder {
   verticalLinesBind(expr: string): GridGeometryBuilder;
   verticalStep(value: number): GridGeometryBuilder;
   verticalStepBind(expr: string): GridGeometryBuilder;
-  onChildrenChanged(body: string): GridGeometryBuilder;
-  onGeometryChanged(body: string): GridGeometryBuilder;
-  onGeometryNodeDirty(body: string): GridGeometryBuilder;
-  onHorizontalLinesChanged(body: string): GridGeometryBuilder;
-  onHorizontalStepChanged(body: string): GridGeometryBuilder;
-  onObjectNameChanged(body: string): GridGeometryBuilder;
-  onParentChanged(body: string): GridGeometryBuilder;
-  onStateChanged(body: string): GridGeometryBuilder;
-  onVerticalLinesChanged(body: string): GridGeometryBuilder;
-  onVerticalStepChanged(body: string): GridGeometryBuilder;
+  onChildrenChanged(handler: DslSignalHandlerValue): GridGeometryBuilder;
+  onGeometryChanged(handler: DslSignalHandlerValue): GridGeometryBuilder;
+  onGeometryNodeDirty(handler: DslSignalHandlerValue): GridGeometryBuilder;
+  onHorizontalLinesChanged(handler: DslSignalHandlerValue): GridGeometryBuilder;
+  onHorizontalStepChanged(handler: DslSignalHandlerValue): GridGeometryBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): GridGeometryBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): GridGeometryBuilder;
+  onStateChanged(handler: DslSignalHandlerValue): GridGeometryBuilder;
+  onVerticalLinesChanged(handler: DslSignalHandlerValue): GridGeometryBuilder;
+  onVerticalStepChanged(handler: DslSignalHandlerValue): GridGeometryBuilder;
 }
 
 const GRIDGEOMETRY_META: TypeMetadata = {

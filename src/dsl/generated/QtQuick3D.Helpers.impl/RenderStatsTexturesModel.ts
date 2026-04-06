@@ -2,36 +2,37 @@
 // Type: RenderStatsTexturesModel
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import type { DslSignalHandlerValue, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface RenderStatsTexturesModelBuilder {
   id(id: string): RenderStatsTexturesModelBuilder;
   child(obj: QmlObjectBuilder): RenderStatsTexturesModelBuilder;
+  children(...objs: QmlObjectBuilder[]): RenderStatsTexturesModelBuilder;
 
   objectName(value: string): RenderStatsTexturesModelBuilder;
   objectNameBind(expr: string): RenderStatsTexturesModelBuilder;
   textureData(value: string): RenderStatsTexturesModelBuilder;
   textureDataBind(expr: string): RenderStatsTexturesModelBuilder;
-  onColumnsAboutToBeInserted(body: string): RenderStatsTexturesModelBuilder;
-  onColumnsAboutToBeMoved(body: string): RenderStatsTexturesModelBuilder;
-  onColumnsAboutToBeRemoved(body: string): RenderStatsTexturesModelBuilder;
-  onColumnsInserted(body: string): RenderStatsTexturesModelBuilder;
-  onColumnsMoved(body: string): RenderStatsTexturesModelBuilder;
-  onColumnsRemoved(body: string): RenderStatsTexturesModelBuilder;
-  onDataChanged(body: string): RenderStatsTexturesModelBuilder;
-  onHeaderDataChanged(body: string): RenderStatsTexturesModelBuilder;
-  onLayoutAboutToBeChanged(body: string): RenderStatsTexturesModelBuilder;
-  onLayoutChanged(body: string): RenderStatsTexturesModelBuilder;
-  onModelAboutToBeReset(body: string): RenderStatsTexturesModelBuilder;
-  onModelReset(body: string): RenderStatsTexturesModelBuilder;
-  onObjectNameChanged(body: string): RenderStatsTexturesModelBuilder;
-  onRowsAboutToBeInserted(body: string): RenderStatsTexturesModelBuilder;
-  onRowsAboutToBeMoved(body: string): RenderStatsTexturesModelBuilder;
-  onRowsAboutToBeRemoved(body: string): RenderStatsTexturesModelBuilder;
-  onRowsInserted(body: string): RenderStatsTexturesModelBuilder;
-  onRowsMoved(body: string): RenderStatsTexturesModelBuilder;
-  onRowsRemoved(body: string): RenderStatsTexturesModelBuilder;
-  onTextureDataChanged(body: string): RenderStatsTexturesModelBuilder;
+  onColumnsAboutToBeInserted(handler: DslSignalHandlerValue): RenderStatsTexturesModelBuilder;
+  onColumnsAboutToBeMoved(handler: DslSignalHandlerValue): RenderStatsTexturesModelBuilder;
+  onColumnsAboutToBeRemoved(handler: DslSignalHandlerValue): RenderStatsTexturesModelBuilder;
+  onColumnsInserted(handler: DslSignalHandlerValue): RenderStatsTexturesModelBuilder;
+  onColumnsMoved(handler: DslSignalHandlerValue): RenderStatsTexturesModelBuilder;
+  onColumnsRemoved(handler: DslSignalHandlerValue): RenderStatsTexturesModelBuilder;
+  onDataChanged(handler: DslSignalHandlerValue): RenderStatsTexturesModelBuilder;
+  onHeaderDataChanged(handler: DslSignalHandlerValue): RenderStatsTexturesModelBuilder;
+  onLayoutAboutToBeChanged(handler: DslSignalHandlerValue): RenderStatsTexturesModelBuilder;
+  onLayoutChanged(handler: DslSignalHandlerValue): RenderStatsTexturesModelBuilder;
+  onModelAboutToBeReset(handler: DslSignalHandlerValue): RenderStatsTexturesModelBuilder;
+  onModelReset(handler: DslSignalHandlerValue): RenderStatsTexturesModelBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): RenderStatsTexturesModelBuilder;
+  onRowsAboutToBeInserted(handler: DslSignalHandlerValue): RenderStatsTexturesModelBuilder;
+  onRowsAboutToBeMoved(handler: DslSignalHandlerValue): RenderStatsTexturesModelBuilder;
+  onRowsAboutToBeRemoved(handler: DslSignalHandlerValue): RenderStatsTexturesModelBuilder;
+  onRowsInserted(handler: DslSignalHandlerValue): RenderStatsTexturesModelBuilder;
+  onRowsMoved(handler: DslSignalHandlerValue): RenderStatsTexturesModelBuilder;
+  onRowsRemoved(handler: DslSignalHandlerValue): RenderStatsTexturesModelBuilder;
+  onTextureDataChanged(handler: DslSignalHandlerValue): RenderStatsTexturesModelBuilder;
 }
 
 const RENDERSTATSTEXTURESMODEL_META: TypeMetadata = {

@@ -2,7 +2,12 @@
 // Type: Frame
 // Generated from Qt 6.11.0
 
-import type { QmlEnumToken, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlEnumToken,
+  QmlObjectBuilder,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { QtObjectBuilder } from '../QML/QtObject.js';
 import type { ItemBuilder } from '../QtQuick/Item.js';
@@ -12,6 +17,7 @@ import type { LayerBuilder } from '../QtQuick/QQuickItemLayer.js';
 export interface FrameBuilder {
   id(id: string): FrameBuilder;
   child(obj: QmlObjectBuilder): FrameBuilder;
+  children(...objs: QmlObjectBuilder[]): FrameBuilder;
 
   activeFocusOnTab(value: boolean): FrameBuilder;
   activeFocusOnTabBind(expr: string): FrameBuilder;
@@ -75,42 +81,42 @@ export interface FrameBuilder {
   yBind(expr: string): FrameBuilder;
   z(value: number): FrameBuilder;
   zBind(expr: string): FrameBuilder;
-  onActiveFocusChanged(body: string): FrameBuilder;
-  onActiveFocusOnTabChanged(body: string): FrameBuilder;
-  onAntialiasingChanged(body: string): FrameBuilder;
-  onBaselineOffsetChanged(body: string): FrameBuilder;
-  onChildrenChanged(body: string): FrameBuilder;
-  onChildrenRectChanged(body: string): FrameBuilder;
-  onClipChanged(body: string): FrameBuilder;
-  onContainmentMaskChanged(body: string): FrameBuilder;
-  onContentPaddingChanged(body: string): FrameBuilder;
-  onControlChanged(body: string): FrameBuilder;
-  onEnabledChanged(body: string): FrameBuilder;
-  onFocusChanged(body: string): FrameBuilder;
-  onFocusPolicyChanged(body: string): FrameBuilder;
-  onFontChanged(body: string): FrameBuilder;
-  onHeightChanged(body: string): FrameBuilder;
-  onImplicitHeightChanged(body: string): FrameBuilder;
-  onImplicitWidthChanged(body: string): FrameBuilder;
-  onLayoutMarginsChanged(body: string): FrameBuilder;
-  onMinimumSizeChanged(body: string): FrameBuilder;
-  onObjectNameChanged(body: string): FrameBuilder;
-  onOpacityChanged(body: string): FrameBuilder;
-  onPaletteChanged(body: string): FrameBuilder;
-  onPaletteCreated(body: string): FrameBuilder;
-  onParentChanged(body: string): FrameBuilder;
-  onRotationChanged(body: string): FrameBuilder;
-  onScaleChanged(body: string): FrameBuilder;
-  onSmoothChanged(body: string): FrameBuilder;
-  onStateChanged(body: string): FrameBuilder;
-  onTransformOriginChanged(body: string): FrameBuilder;
-  onVisibleChanged(body: string): FrameBuilder;
-  onVisibleChildrenChanged(body: string): FrameBuilder;
-  onWidthChanged(body: string): FrameBuilder;
-  onWindowChanged(body: string): FrameBuilder;
-  onXChanged(body: string): FrameBuilder;
-  onYChanged(body: string): FrameBuilder;
-  onZChanged(body: string): FrameBuilder;
+  onActiveFocusChanged(handler: DslSignalHandlerValue): FrameBuilder;
+  onActiveFocusOnTabChanged(handler: DslSignalHandlerValue): FrameBuilder;
+  onAntialiasingChanged(handler: DslSignalHandlerValue): FrameBuilder;
+  onBaselineOffsetChanged(handler: DslSignalHandlerValue): FrameBuilder;
+  onChildrenChanged(handler: DslSignalHandlerValue): FrameBuilder;
+  onChildrenRectChanged(handler: DslSignalHandlerValue): FrameBuilder;
+  onClipChanged(handler: DslSignalHandlerValue): FrameBuilder;
+  onContainmentMaskChanged(handler: DslSignalHandlerValue): FrameBuilder;
+  onContentPaddingChanged(handler: DslSignalHandlerValue): FrameBuilder;
+  onControlChanged(handler: DslSignalHandlerValue): FrameBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): FrameBuilder;
+  onFocusChanged(handler: DslSignalHandlerValue): FrameBuilder;
+  onFocusPolicyChanged(handler: DslSignalHandlerValue): FrameBuilder;
+  onFontChanged(handler: DslSignalHandlerValue): FrameBuilder;
+  onHeightChanged(handler: DslSignalHandlerValue): FrameBuilder;
+  onImplicitHeightChanged(handler: DslSignalHandlerValue): FrameBuilder;
+  onImplicitWidthChanged(handler: DslSignalHandlerValue): FrameBuilder;
+  onLayoutMarginsChanged(handler: DslSignalHandlerValue): FrameBuilder;
+  onMinimumSizeChanged(handler: DslSignalHandlerValue): FrameBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): FrameBuilder;
+  onOpacityChanged(handler: DslSignalHandlerValue): FrameBuilder;
+  onPaletteChanged(handler: DslSignalHandlerValue): FrameBuilder;
+  onPaletteCreated(handler: DslSignalHandlerValue): FrameBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): FrameBuilder;
+  onRotationChanged(handler: DslSignalHandlerValue): FrameBuilder;
+  onScaleChanged(handler: DslSignalHandlerValue): FrameBuilder;
+  onSmoothChanged(handler: DslSignalHandlerValue): FrameBuilder;
+  onStateChanged(handler: DslSignalHandlerValue): FrameBuilder;
+  onTransformOriginChanged(handler: DslSignalHandlerValue): FrameBuilder;
+  onVisibleChanged(handler: DslSignalHandlerValue): FrameBuilder;
+  onVisibleChildrenChanged(handler: DslSignalHandlerValue): FrameBuilder;
+  onWidthChanged(handler: DslSignalHandlerValue): FrameBuilder;
+  onWindowChanged(handler: DslSignalHandlerValue): FrameBuilder;
+  onXChanged(handler: DslSignalHandlerValue): FrameBuilder;
+  onYChanged(handler: DslSignalHandlerValue): FrameBuilder;
+  onZChanged(handler: DslSignalHandlerValue): FrameBuilder;
   anchors(setup: (b: AnchorsBuilder) => void): FrameBuilder;
   layer(setup: (b: LayerBuilder) => void): FrameBuilder;
 }

@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlColor,
   QmlComponent,
   QmlEnumToken,
@@ -17,6 +18,7 @@ import type { NodeBuilder } from '../QtQuick3D/Node.js';
 export interface ModelBlendParticle3DBuilder {
   id(id: string): ModelBlendParticle3DBuilder;
   child(obj: QmlObjectBuilder): ModelBlendParticle3DBuilder;
+  children(...objs: QmlObjectBuilder[]): ModelBlendParticle3DBuilder;
 
   activationNode(value: NodeBuilder): ModelBlendParticle3DBuilder;
   activationNodeBind(expr: string): ModelBlendParticle3DBuilder;
@@ -60,30 +62,30 @@ export interface ModelBlendParticle3DBuilder {
   stateBind(expr: string): ModelBlendParticle3DBuilder;
   unifiedColorVariation(value: boolean): ModelBlendParticle3DBuilder;
   unifiedColorVariationBind(expr: string): ModelBlendParticle3DBuilder;
-  onActivationNodeChanged(body: string): ModelBlendParticle3DBuilder;
-  onAlignModeChanged(body: string): ModelBlendParticle3DBuilder;
-  onAlignTargetPositionChanged(body: string): ModelBlendParticle3DBuilder;
-  onBlendFactorChanged(body: string): ModelBlendParticle3DBuilder;
-  onChildrenChanged(body: string): ModelBlendParticle3DBuilder;
-  onColorChanged(body: string): ModelBlendParticle3DBuilder;
-  onColorVariationChanged(body: string): ModelBlendParticle3DBuilder;
-  onDelegateChanged(body: string): ModelBlendParticle3DBuilder;
-  onEmitModeChanged(body: string): ModelBlendParticle3DBuilder;
-  onEndNodeChanged(body: string): ModelBlendParticle3DBuilder;
-  onEndTimeChanged(body: string): ModelBlendParticle3DBuilder;
-  onFadeInDurationChanged(body: string): ModelBlendParticle3DBuilder;
-  onFadeInEffectChanged(body: string): ModelBlendParticle3DBuilder;
-  onFadeOutDurationChanged(body: string): ModelBlendParticle3DBuilder;
-  onFadeOutEffectChanged(body: string): ModelBlendParticle3DBuilder;
-  onHasTransparencyChanged(body: string): ModelBlendParticle3DBuilder;
-  onMaxAmountChanged(body: string): ModelBlendParticle3DBuilder;
-  onModelBlendModeChanged(body: string): ModelBlendParticle3DBuilder;
-  onObjectNameChanged(body: string): ModelBlendParticle3DBuilder;
-  onParentChanged(body: string): ModelBlendParticle3DBuilder;
-  onSortModeChanged(body: string): ModelBlendParticle3DBuilder;
-  onStateChanged(body: string): ModelBlendParticle3DBuilder;
-  onSystemChanged(body: string): ModelBlendParticle3DBuilder;
-  onUnifiedColorVariationChanged(body: string): ModelBlendParticle3DBuilder;
+  onActivationNodeChanged(handler: DslSignalHandlerValue): ModelBlendParticle3DBuilder;
+  onAlignModeChanged(handler: DslSignalHandlerValue): ModelBlendParticle3DBuilder;
+  onAlignTargetPositionChanged(handler: DslSignalHandlerValue): ModelBlendParticle3DBuilder;
+  onBlendFactorChanged(handler: DslSignalHandlerValue): ModelBlendParticle3DBuilder;
+  onChildrenChanged(handler: DslSignalHandlerValue): ModelBlendParticle3DBuilder;
+  onColorChanged(handler: DslSignalHandlerValue): ModelBlendParticle3DBuilder;
+  onColorVariationChanged(handler: DslSignalHandlerValue): ModelBlendParticle3DBuilder;
+  onDelegateChanged(handler: DslSignalHandlerValue): ModelBlendParticle3DBuilder;
+  onEmitModeChanged(handler: DslSignalHandlerValue): ModelBlendParticle3DBuilder;
+  onEndNodeChanged(handler: DslSignalHandlerValue): ModelBlendParticle3DBuilder;
+  onEndTimeChanged(handler: DslSignalHandlerValue): ModelBlendParticle3DBuilder;
+  onFadeInDurationChanged(handler: DslSignalHandlerValue): ModelBlendParticle3DBuilder;
+  onFadeInEffectChanged(handler: DslSignalHandlerValue): ModelBlendParticle3DBuilder;
+  onFadeOutDurationChanged(handler: DslSignalHandlerValue): ModelBlendParticle3DBuilder;
+  onFadeOutEffectChanged(handler: DslSignalHandlerValue): ModelBlendParticle3DBuilder;
+  onHasTransparencyChanged(handler: DslSignalHandlerValue): ModelBlendParticle3DBuilder;
+  onMaxAmountChanged(handler: DslSignalHandlerValue): ModelBlendParticle3DBuilder;
+  onModelBlendModeChanged(handler: DslSignalHandlerValue): ModelBlendParticle3DBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): ModelBlendParticle3DBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): ModelBlendParticle3DBuilder;
+  onSortModeChanged(handler: DslSignalHandlerValue): ModelBlendParticle3DBuilder;
+  onStateChanged(handler: DslSignalHandlerValue): ModelBlendParticle3DBuilder;
+  onSystemChanged(handler: DslSignalHandlerValue): ModelBlendParticle3DBuilder;
+  onUnifiedColorVariationChanged(handler: DslSignalHandlerValue): ModelBlendParticle3DBuilder;
 }
 
 const MODELBLENDPARTICLE3D_META: TypeMetadata = {

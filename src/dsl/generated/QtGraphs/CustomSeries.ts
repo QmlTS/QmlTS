@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlComponent,
   QmlObjectBuilder,
   QmlValue,
@@ -12,6 +13,7 @@ import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface CustomSeriesBuilder {
   id(id: string): CustomSeriesBuilder;
   child(obj: QmlObjectBuilder): CustomSeriesBuilder;
+  children(...objs: QmlObjectBuilder[]): CustomSeriesBuilder;
 
   axisX(value: QmlValue): CustomSeriesBuilder;
   axisXBind(expr: string): CustomSeriesBuilder;
@@ -35,23 +37,23 @@ export interface CustomSeriesBuilder {
   visibleBind(expr: string): CustomSeriesBuilder;
   zValue(value: number): CustomSeriesBuilder;
   zValueBind(expr: string): CustomSeriesBuilder;
-  onAxisXChanged(body: string): CustomSeriesBuilder;
-  onAxisYChanged(body: string): CustomSeriesBuilder;
-  onDelegateChanged(body: string): CustomSeriesBuilder;
-  onHover(body: string): CustomSeriesBuilder;
-  onHoverEnter(body: string): CustomSeriesBuilder;
-  onHoverExit(body: string): CustomSeriesBuilder;
-  onHoverableChanged(body: string): CustomSeriesBuilder;
-  onHoveredChanged(body: string): CustomSeriesBuilder;
-  onLegendDataChanged(body: string): CustomSeriesBuilder;
-  onNameChanged(body: string): CustomSeriesBuilder;
-  onObjectNameChanged(body: string): CustomSeriesBuilder;
-  onOpacityChanged(body: string): CustomSeriesBuilder;
-  onSelectableChanged(body: string): CustomSeriesBuilder;
-  onUpdate(body: string): CustomSeriesBuilder;
-  onValuesMultiplierChanged(body: string): CustomSeriesBuilder;
-  onVisibleChanged(body: string): CustomSeriesBuilder;
-  onZValueChanged(body: string): CustomSeriesBuilder;
+  onAxisXChanged(handler: DslSignalHandlerValue): CustomSeriesBuilder;
+  onAxisYChanged(handler: DslSignalHandlerValue): CustomSeriesBuilder;
+  onDelegateChanged(handler: DslSignalHandlerValue): CustomSeriesBuilder;
+  onHover(handler: DslSignalHandlerValue): CustomSeriesBuilder;
+  onHoverEnter(handler: DslSignalHandlerValue): CustomSeriesBuilder;
+  onHoverExit(handler: DslSignalHandlerValue): CustomSeriesBuilder;
+  onHoverableChanged(handler: DslSignalHandlerValue): CustomSeriesBuilder;
+  onHoveredChanged(handler: DslSignalHandlerValue): CustomSeriesBuilder;
+  onLegendDataChanged(handler: DslSignalHandlerValue): CustomSeriesBuilder;
+  onNameChanged(handler: DslSignalHandlerValue): CustomSeriesBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): CustomSeriesBuilder;
+  onOpacityChanged(handler: DslSignalHandlerValue): CustomSeriesBuilder;
+  onSelectableChanged(handler: DslSignalHandlerValue): CustomSeriesBuilder;
+  onUpdate(handler: DslSignalHandlerValue): CustomSeriesBuilder;
+  onValuesMultiplierChanged(handler: DslSignalHandlerValue): CustomSeriesBuilder;
+  onVisibleChanged(handler: DslSignalHandlerValue): CustomSeriesBuilder;
+  onZValueChanged(handler: DslSignalHandlerValue): CustomSeriesBuilder;
 }
 
 const CUSTOMSERIES_META: TypeMetadata = {

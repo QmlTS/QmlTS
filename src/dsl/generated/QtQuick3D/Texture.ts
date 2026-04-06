@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlEnumToken,
   QmlObjectBuilder,
   QmlUrl,
@@ -14,6 +15,7 @@ import type { ItemBuilder } from '../QtQuick/Item.js';
 export interface TextureBuilder {
   id(id: string): TextureBuilder;
   child(obj: QmlObjectBuilder): TextureBuilder;
+  children(...objs: QmlObjectBuilder[]): TextureBuilder;
 
   autoOrientation(value: boolean): TextureBuilder;
   autoOrientationBind(expr: string): TextureBuilder;
@@ -67,33 +69,33 @@ export interface TextureBuilder {
   tilingModeHorizontalBind(expr: string): TextureBuilder;
   tilingModeVertical(value: QmlEnumToken): TextureBuilder;
   tilingModeVerticalBind(expr: string): TextureBuilder;
-  onAutoOrientationChanged(body: string): TextureBuilder;
-  onChildrenChanged(body: string): TextureBuilder;
-  onDepthTilingChanged(body: string): TextureBuilder;
-  onFlipUChanged(body: string): TextureBuilder;
-  onFlipVChanged(body: string): TextureBuilder;
-  onGenerateMipmapsChanged(body: string): TextureBuilder;
-  onHorizontalTilingChanged(body: string): TextureBuilder;
-  onIndexUVChanged(body: string): TextureBuilder;
-  onMagFilterChanged(body: string): TextureBuilder;
-  onMappingModeChanged(body: string): TextureBuilder;
-  onMinFilterChanged(body: string): TextureBuilder;
-  onMipFilterChanged(body: string): TextureBuilder;
-  onObjectNameChanged(body: string): TextureBuilder;
-  onParentChanged(body: string): TextureBuilder;
-  onPivotUChanged(body: string): TextureBuilder;
-  onPivotVChanged(body: string): TextureBuilder;
-  onPositionUChanged(body: string): TextureBuilder;
-  onPositionVChanged(body: string): TextureBuilder;
-  onRotationUVChanged(body: string): TextureBuilder;
-  onScaleUChanged(body: string): TextureBuilder;
-  onScaleVChanged(body: string): TextureBuilder;
-  onSourceChanged(body: string): TextureBuilder;
-  onSourceItemChanged(body: string): TextureBuilder;
-  onStateChanged(body: string): TextureBuilder;
-  onTextureDataChanged(body: string): TextureBuilder;
-  onTextureProviderChanged(body: string): TextureBuilder;
-  onVerticalTilingChanged(body: string): TextureBuilder;
+  onAutoOrientationChanged(handler: DslSignalHandlerValue): TextureBuilder;
+  onChildrenChanged(handler: DslSignalHandlerValue): TextureBuilder;
+  onDepthTilingChanged(handler: DslSignalHandlerValue): TextureBuilder;
+  onFlipUChanged(handler: DslSignalHandlerValue): TextureBuilder;
+  onFlipVChanged(handler: DslSignalHandlerValue): TextureBuilder;
+  onGenerateMipmapsChanged(handler: DslSignalHandlerValue): TextureBuilder;
+  onHorizontalTilingChanged(handler: DslSignalHandlerValue): TextureBuilder;
+  onIndexUVChanged(handler: DslSignalHandlerValue): TextureBuilder;
+  onMagFilterChanged(handler: DslSignalHandlerValue): TextureBuilder;
+  onMappingModeChanged(handler: DslSignalHandlerValue): TextureBuilder;
+  onMinFilterChanged(handler: DslSignalHandlerValue): TextureBuilder;
+  onMipFilterChanged(handler: DslSignalHandlerValue): TextureBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): TextureBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): TextureBuilder;
+  onPivotUChanged(handler: DslSignalHandlerValue): TextureBuilder;
+  onPivotVChanged(handler: DslSignalHandlerValue): TextureBuilder;
+  onPositionUChanged(handler: DslSignalHandlerValue): TextureBuilder;
+  onPositionVChanged(handler: DslSignalHandlerValue): TextureBuilder;
+  onRotationUVChanged(handler: DslSignalHandlerValue): TextureBuilder;
+  onScaleUChanged(handler: DslSignalHandlerValue): TextureBuilder;
+  onScaleVChanged(handler: DslSignalHandlerValue): TextureBuilder;
+  onSourceChanged(handler: DslSignalHandlerValue): TextureBuilder;
+  onSourceItemChanged(handler: DslSignalHandlerValue): TextureBuilder;
+  onStateChanged(handler: DslSignalHandlerValue): TextureBuilder;
+  onTextureDataChanged(handler: DslSignalHandlerValue): TextureBuilder;
+  onTextureProviderChanged(handler: DslSignalHandlerValue): TextureBuilder;
+  onVerticalTilingChanged(handler: DslSignalHandlerValue): TextureBuilder;
 }
 
 const TEXTURE_META: TypeMetadata = {

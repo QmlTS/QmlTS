@@ -2,21 +2,22 @@
 // Type: TCInputMethod
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import type { DslSignalHandlerValue, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 export interface TCInputMethodBuilder {
   id(id: string): TCInputMethodBuilder;
   child(obj: QmlObjectBuilder): TCInputMethodBuilder;
+  children(...objs: QmlObjectBuilder[]): TCInputMethodBuilder;
 
   objectName(value: string): TCInputMethodBuilder;
   objectNameBind(expr: string): TCInputMethodBuilder;
   simplified(value: boolean): TCInputMethodBuilder;
   simplifiedBind(expr: string): TCInputMethodBuilder;
-  onObjectNameChanged(body: string): TCInputMethodBuilder;
-  onSelectionListActiveItemChanged(body: string): TCInputMethodBuilder;
-  onSelectionListChanged(body: string): TCInputMethodBuilder;
-  onSelectionListsChanged(body: string): TCInputMethodBuilder;
-  onSimplifiedChanged(body: string): TCInputMethodBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): TCInputMethodBuilder;
+  onSelectionListActiveItemChanged(handler: DslSignalHandlerValue): TCInputMethodBuilder;
+  onSelectionListChanged(handler: DslSignalHandlerValue): TCInputMethodBuilder;
+  onSelectionListsChanged(handler: DslSignalHandlerValue): TCInputMethodBuilder;
+  onSimplifiedChanged(handler: DslSignalHandlerValue): TCInputMethodBuilder;
 }
 
 const TCINPUTMETHOD_META: TypeMetadata = {

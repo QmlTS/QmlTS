@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlColor,
   QmlComponent,
   QmlEnumToken,
@@ -14,6 +15,7 @@ import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface ValueAxisBuilder {
   id(id: string): ValueAxisBuilder;
   child(obj: QmlObjectBuilder): ValueAxisBuilder;
+  children(...objs: QmlObjectBuilder[]): ValueAxisBuilder;
 
   alignment(value: QmlEnumToken): ValueAxisBuilder;
   alignmentBind(expr: string): ValueAxisBuilder;
@@ -65,35 +67,35 @@ export interface ValueAxisBuilder {
   visibleBind(expr: string): ValueAxisBuilder;
   zoom(value: number): ValueAxisBuilder;
   zoomBind(expr: string): ValueAxisBuilder;
-  onAlignmentChanged(body: string): ValueAxisBuilder;
-  onColorChanged(body: string): ValueAxisBuilder;
-  onGridVisibleChanged(body: string): ValueAxisBuilder;
-  onLabelDecimalsChanged(body: string): ValueAxisBuilder;
-  onLabelDelegateChanged(body: string): ValueAxisBuilder;
-  onLabelFormatChanged(body: string): ValueAxisBuilder;
-  onLabelsAngleChanged(body: string): ValueAxisBuilder;
-  onLabelsVisibleChanged(body: string): ValueAxisBuilder;
-  onLineVisibleChanged(body: string): ValueAxisBuilder;
-  onMaxChanged(body: string): ValueAxisBuilder;
-  onMinChanged(body: string): ValueAxisBuilder;
-  onObjectNameChanged(body: string): ValueAxisBuilder;
-  onPanChanged(body: string): ValueAxisBuilder;
-  onRangeChanged(body: string): ValueAxisBuilder;
-  onSubColorChanged(body: string): ValueAxisBuilder;
-  onSubGridVisibleChanged(body: string): ValueAxisBuilder;
-  onSubTickCountChanged(body: string): ValueAxisBuilder;
-  onTextElideModeChanged(body: string): ValueAxisBuilder;
-  onTickAnchorChanged(body: string): ValueAxisBuilder;
-  onTickIntervalChanged(body: string): ValueAxisBuilder;
-  onTitleColorChanged(body: string): ValueAxisBuilder;
-  onTitleFontChanged(body: string): ValueAxisBuilder;
-  onTitleTextChanged(body: string): ValueAxisBuilder;
-  onTitleVisibleChanged(body: string): ValueAxisBuilder;
-  onUpdate(body: string): ValueAxisBuilder;
-  onVisibleChanged(body: string): ValueAxisBuilder;
-  onVisualMaxChanged(body: string): ValueAxisBuilder;
-  onVisualMinChanged(body: string): ValueAxisBuilder;
-  onZoomChanged(body: string): ValueAxisBuilder;
+  onAlignmentChanged(handler: DslSignalHandlerValue): ValueAxisBuilder;
+  onColorChanged(handler: DslSignalHandlerValue): ValueAxisBuilder;
+  onGridVisibleChanged(handler: DslSignalHandlerValue): ValueAxisBuilder;
+  onLabelDecimalsChanged(handler: DslSignalHandlerValue): ValueAxisBuilder;
+  onLabelDelegateChanged(handler: DslSignalHandlerValue): ValueAxisBuilder;
+  onLabelFormatChanged(handler: DslSignalHandlerValue): ValueAxisBuilder;
+  onLabelsAngleChanged(handler: DslSignalHandlerValue): ValueAxisBuilder;
+  onLabelsVisibleChanged(handler: DslSignalHandlerValue): ValueAxisBuilder;
+  onLineVisibleChanged(handler: DslSignalHandlerValue): ValueAxisBuilder;
+  onMaxChanged(handler: DslSignalHandlerValue): ValueAxisBuilder;
+  onMinChanged(handler: DslSignalHandlerValue): ValueAxisBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): ValueAxisBuilder;
+  onPanChanged(handler: DslSignalHandlerValue): ValueAxisBuilder;
+  onRangeChanged(handler: DslSignalHandlerValue): ValueAxisBuilder;
+  onSubColorChanged(handler: DslSignalHandlerValue): ValueAxisBuilder;
+  onSubGridVisibleChanged(handler: DslSignalHandlerValue): ValueAxisBuilder;
+  onSubTickCountChanged(handler: DslSignalHandlerValue): ValueAxisBuilder;
+  onTextElideModeChanged(handler: DslSignalHandlerValue): ValueAxisBuilder;
+  onTickAnchorChanged(handler: DslSignalHandlerValue): ValueAxisBuilder;
+  onTickIntervalChanged(handler: DslSignalHandlerValue): ValueAxisBuilder;
+  onTitleColorChanged(handler: DslSignalHandlerValue): ValueAxisBuilder;
+  onTitleFontChanged(handler: DslSignalHandlerValue): ValueAxisBuilder;
+  onTitleTextChanged(handler: DslSignalHandlerValue): ValueAxisBuilder;
+  onTitleVisibleChanged(handler: DslSignalHandlerValue): ValueAxisBuilder;
+  onUpdate(handler: DslSignalHandlerValue): ValueAxisBuilder;
+  onVisibleChanged(handler: DslSignalHandlerValue): ValueAxisBuilder;
+  onVisualMaxChanged(handler: DslSignalHandlerValue): ValueAxisBuilder;
+  onVisualMinChanged(handler: DslSignalHandlerValue): ValueAxisBuilder;
+  onZoomChanged(handler: DslSignalHandlerValue): ValueAxisBuilder;
 }
 
 const VALUEAXIS_META: TypeMetadata = {

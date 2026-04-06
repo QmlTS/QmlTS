@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlEnumToken,
   QmlMatrix4x4,
   QmlObjectBuilder,
@@ -14,6 +15,7 @@ import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface CameraBuilder {
   id(id: string): CameraBuilder;
   child(obj: QmlObjectBuilder): CameraBuilder;
+  children(...objs: QmlObjectBuilder[]): CameraBuilder;
 
   aspectRatio(value: number): CameraBuilder;
   aspectRatioBind(expr: string): CameraBuilder;
@@ -49,26 +51,26 @@ export interface CameraBuilder {
   upVectorBind(expr: string): CameraBuilder;
   viewCenter(value: QmlVector3d): CameraBuilder;
   viewCenterBind(expr: string): CameraBuilder;
-  onAspectRatioChanged(body: string): CameraBuilder;
-  onBottomChanged(body: string): CameraBuilder;
-  onEnabledChanged(body: string): CameraBuilder;
-  onExposureChanged(body: string): CameraBuilder;
-  onFarPlaneChanged(body: string): CameraBuilder;
-  onFieldOfViewChanged(body: string): CameraBuilder;
-  onLeftChanged(body: string): CameraBuilder;
-  onNearPlaneChanged(body: string): CameraBuilder;
-  onNodeDestroyed(body: string): CameraBuilder;
-  onObjectNameChanged(body: string): CameraBuilder;
-  onParentChanged(body: string): CameraBuilder;
-  onPositionChanged(body: string): CameraBuilder;
-  onProjectionMatrixChanged(body: string): CameraBuilder;
-  onProjectionTypeChanged(body: string): CameraBuilder;
-  onRightChanged(body: string): CameraBuilder;
-  onTopChanged(body: string): CameraBuilder;
-  onUpVectorChanged(body: string): CameraBuilder;
-  onViewCenterChanged(body: string): CameraBuilder;
-  onViewMatrixChanged(body: string): CameraBuilder;
-  onViewVectorChanged(body: string): CameraBuilder;
+  onAspectRatioChanged(handler: DslSignalHandlerValue): CameraBuilder;
+  onBottomChanged(handler: DslSignalHandlerValue): CameraBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): CameraBuilder;
+  onExposureChanged(handler: DslSignalHandlerValue): CameraBuilder;
+  onFarPlaneChanged(handler: DslSignalHandlerValue): CameraBuilder;
+  onFieldOfViewChanged(handler: DslSignalHandlerValue): CameraBuilder;
+  onLeftChanged(handler: DslSignalHandlerValue): CameraBuilder;
+  onNearPlaneChanged(handler: DslSignalHandlerValue): CameraBuilder;
+  onNodeDestroyed(handler: DslSignalHandlerValue): CameraBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): CameraBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): CameraBuilder;
+  onPositionChanged(handler: DslSignalHandlerValue): CameraBuilder;
+  onProjectionMatrixChanged(handler: DslSignalHandlerValue): CameraBuilder;
+  onProjectionTypeChanged(handler: DslSignalHandlerValue): CameraBuilder;
+  onRightChanged(handler: DslSignalHandlerValue): CameraBuilder;
+  onTopChanged(handler: DslSignalHandlerValue): CameraBuilder;
+  onUpVectorChanged(handler: DslSignalHandlerValue): CameraBuilder;
+  onViewCenterChanged(handler: DslSignalHandlerValue): CameraBuilder;
+  onViewMatrixChanged(handler: DslSignalHandlerValue): CameraBuilder;
+  onViewVectorChanged(handler: DslSignalHandlerValue): CameraBuilder;
 }
 
 const CAMERA_META: TypeMetadata = {

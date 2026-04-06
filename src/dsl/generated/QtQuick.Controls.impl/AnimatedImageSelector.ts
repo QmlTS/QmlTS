@@ -2,11 +2,17 @@
 // Type: AnimatedImageSelector
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 export interface AnimatedImageSelectorBuilder {
   id(id: string): AnimatedImageSelectorBuilder;
   child(obj: QmlObjectBuilder): AnimatedImageSelectorBuilder;
+  children(...objs: QmlObjectBuilder[]): AnimatedImageSelectorBuilder;
 
   cache(value: boolean): AnimatedImageSelectorBuilder;
   cacheBind(expr: string): AnimatedImageSelectorBuilder;
@@ -20,8 +26,8 @@ export interface AnimatedImageSelectorBuilder {
   separatorBind(expr: string): AnimatedImageSelectorBuilder;
   states(value: QmlValue[]): AnimatedImageSelectorBuilder;
   statesBind(expr: string): AnimatedImageSelectorBuilder;
-  onObjectNameChanged(body: string): AnimatedImageSelectorBuilder;
-  onSourceChanged(body: string): AnimatedImageSelectorBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): AnimatedImageSelectorBuilder;
+  onSourceChanged(handler: DslSignalHandlerValue): AnimatedImageSelectorBuilder;
 }
 
 const ANIMATEDIMAGESELECTOR_META: TypeMetadata = {

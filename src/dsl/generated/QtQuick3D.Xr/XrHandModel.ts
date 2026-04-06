@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlEnumToken,
   QmlMatrix4x4,
   QmlObjectBuilder,
@@ -20,6 +21,7 @@ import type { SkinBuilder } from '../QtQuick3D/Skin.js';
 export interface XrHandModelBuilder {
   id(id: string): XrHandModelBuilder;
   child(obj: QmlObjectBuilder): XrHandModelBuilder;
+  children(...objs: QmlObjectBuilder[]): XrHandModelBuilder;
 
   bakedLightmap(value: BakedLightmapBuilder): XrHandModelBuilder;
   bakedLightmapBind(expr: string): XrHandModelBuilder;
@@ -97,55 +99,55 @@ export interface XrHandModelBuilder {
   yBind(expr: string): XrHandModelBuilder;
   z(value: number): XrHandModelBuilder;
   zBind(expr: string): XrHandModelBuilder;
-  onBakedLightmapChanged(body: string): XrHandModelBuilder;
-  onBoundsChanged(body: string): XrHandModelBuilder;
-  onCastsReflectionsChanged(body: string): XrHandModelBuilder;
-  onCastsShadowsChanged(body: string): XrHandModelBuilder;
-  onChildrenChanged(body: string): XrHandModelBuilder;
-  onDepthBiasChanged(body: string): XrHandModelBuilder;
-  onEulerRotationChanged(body: string): XrHandModelBuilder;
-  onForwardChanged(body: string): XrHandModelBuilder;
-  onGeometryChanged(body: string): XrHandModelBuilder;
-  onHandChanged(body: string): XrHandModelBuilder;
-  onHandTrackerChanged(body: string): XrHandModelBuilder;
-  onInstanceRootChanged(body: string): XrHandModelBuilder;
-  onInstancingChanged(body: string): XrHandModelBuilder;
-  onInstancingLodMaxChanged(body: string): XrHandModelBuilder;
-  onInstancingLodMinChanged(body: string): XrHandModelBuilder;
-  onInverseBindPosesChanged(body: string): XrHandModelBuilder;
-  onLayersChanged(body: string): XrHandModelBuilder;
-  onLevelOfDetailBiasChanged(body: string): XrHandModelBuilder;
-  onLightmapBaseResolutionChanged(body: string): XrHandModelBuilder;
-  onLocalOpacityChanged(body: string): XrHandModelBuilder;
-  onMorphTargetsChanged(body: string): XrHandModelBuilder;
-  onMotionVectorEnabledChanged(body: string): XrHandModelBuilder;
-  onMotionVectorScaleChanged(body: string): XrHandModelBuilder;
-  onObjectNameChanged(body: string): XrHandModelBuilder;
-  onParentChanged(body: string): XrHandModelBuilder;
-  onPickableChanged(body: string): XrHandModelBuilder;
-  onPivotChanged(body: string): XrHandModelBuilder;
-  onPositionChanged(body: string): XrHandModelBuilder;
-  onReceivesReflectionsChanged(body: string): XrHandModelBuilder;
-  onReceivesShadowsChanged(body: string): XrHandModelBuilder;
-  onRightChanged(body: string): XrHandModelBuilder;
-  onRotationChanged(body: string): XrHandModelBuilder;
-  onScaleChanged(body: string): XrHandModelBuilder;
-  onScenePositionChanged(body: string): XrHandModelBuilder;
-  onSceneRotationChanged(body: string): XrHandModelBuilder;
-  onSceneScaleChanged(body: string): XrHandModelBuilder;
-  onSceneTransformChanged(body: string): XrHandModelBuilder;
-  onSkeletonChanged(body: string): XrHandModelBuilder;
-  onSkinChanged(body: string): XrHandModelBuilder;
-  onSourceChanged(body: string): XrHandModelBuilder;
-  onStateChanged(body: string): XrHandModelBuilder;
-  onStaticFlagsChanged(body: string): XrHandModelBuilder;
-  onTexelsPerUnitChanged(body: string): XrHandModelBuilder;
-  onUpChanged(body: string): XrHandModelBuilder;
-  onUsedInBakedLightingChanged(body: string): XrHandModelBuilder;
-  onVisibleChanged(body: string): XrHandModelBuilder;
-  onXChanged(body: string): XrHandModelBuilder;
-  onYChanged(body: string): XrHandModelBuilder;
-  onZChanged(body: string): XrHandModelBuilder;
+  onBakedLightmapChanged(handler: DslSignalHandlerValue): XrHandModelBuilder;
+  onBoundsChanged(handler: DslSignalHandlerValue): XrHandModelBuilder;
+  onCastsReflectionsChanged(handler: DslSignalHandlerValue): XrHandModelBuilder;
+  onCastsShadowsChanged(handler: DslSignalHandlerValue): XrHandModelBuilder;
+  onChildrenChanged(handler: DslSignalHandlerValue): XrHandModelBuilder;
+  onDepthBiasChanged(handler: DslSignalHandlerValue): XrHandModelBuilder;
+  onEulerRotationChanged(handler: DslSignalHandlerValue): XrHandModelBuilder;
+  onForwardChanged(handler: DslSignalHandlerValue): XrHandModelBuilder;
+  onGeometryChanged(handler: DslSignalHandlerValue): XrHandModelBuilder;
+  onHandChanged(handler: DslSignalHandlerValue): XrHandModelBuilder;
+  onHandTrackerChanged(handler: DslSignalHandlerValue): XrHandModelBuilder;
+  onInstanceRootChanged(handler: DslSignalHandlerValue): XrHandModelBuilder;
+  onInstancingChanged(handler: DslSignalHandlerValue): XrHandModelBuilder;
+  onInstancingLodMaxChanged(handler: DslSignalHandlerValue): XrHandModelBuilder;
+  onInstancingLodMinChanged(handler: DslSignalHandlerValue): XrHandModelBuilder;
+  onInverseBindPosesChanged(handler: DslSignalHandlerValue): XrHandModelBuilder;
+  onLayersChanged(handler: DslSignalHandlerValue): XrHandModelBuilder;
+  onLevelOfDetailBiasChanged(handler: DslSignalHandlerValue): XrHandModelBuilder;
+  onLightmapBaseResolutionChanged(handler: DslSignalHandlerValue): XrHandModelBuilder;
+  onLocalOpacityChanged(handler: DslSignalHandlerValue): XrHandModelBuilder;
+  onMorphTargetsChanged(handler: DslSignalHandlerValue): XrHandModelBuilder;
+  onMotionVectorEnabledChanged(handler: DslSignalHandlerValue): XrHandModelBuilder;
+  onMotionVectorScaleChanged(handler: DslSignalHandlerValue): XrHandModelBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): XrHandModelBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): XrHandModelBuilder;
+  onPickableChanged(handler: DslSignalHandlerValue): XrHandModelBuilder;
+  onPivotChanged(handler: DslSignalHandlerValue): XrHandModelBuilder;
+  onPositionChanged(handler: DslSignalHandlerValue): XrHandModelBuilder;
+  onReceivesReflectionsChanged(handler: DslSignalHandlerValue): XrHandModelBuilder;
+  onReceivesShadowsChanged(handler: DslSignalHandlerValue): XrHandModelBuilder;
+  onRightChanged(handler: DslSignalHandlerValue): XrHandModelBuilder;
+  onRotationChanged(handler: DslSignalHandlerValue): XrHandModelBuilder;
+  onScaleChanged(handler: DslSignalHandlerValue): XrHandModelBuilder;
+  onScenePositionChanged(handler: DslSignalHandlerValue): XrHandModelBuilder;
+  onSceneRotationChanged(handler: DslSignalHandlerValue): XrHandModelBuilder;
+  onSceneScaleChanged(handler: DslSignalHandlerValue): XrHandModelBuilder;
+  onSceneTransformChanged(handler: DslSignalHandlerValue): XrHandModelBuilder;
+  onSkeletonChanged(handler: DslSignalHandlerValue): XrHandModelBuilder;
+  onSkinChanged(handler: DslSignalHandlerValue): XrHandModelBuilder;
+  onSourceChanged(handler: DslSignalHandlerValue): XrHandModelBuilder;
+  onStateChanged(handler: DslSignalHandlerValue): XrHandModelBuilder;
+  onStaticFlagsChanged(handler: DslSignalHandlerValue): XrHandModelBuilder;
+  onTexelsPerUnitChanged(handler: DslSignalHandlerValue): XrHandModelBuilder;
+  onUpChanged(handler: DslSignalHandlerValue): XrHandModelBuilder;
+  onUsedInBakedLightingChanged(handler: DslSignalHandlerValue): XrHandModelBuilder;
+  onVisibleChanged(handler: DslSignalHandlerValue): XrHandModelBuilder;
+  onXChanged(handler: DslSignalHandlerValue): XrHandModelBuilder;
+  onYChanged(handler: DslSignalHandlerValue): XrHandModelBuilder;
+  onZChanged(handler: DslSignalHandlerValue): XrHandModelBuilder;
 }
 
 const XRHANDMODEL_META: TypeMetadata = {

@@ -2,12 +2,19 @@
 // Type: TextureMaterial
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlValue, QmlVector2d, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlObjectBuilder,
+  QmlValue,
+  QmlVector2d,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 import type { EffectBuilder } from '../Qt3D.Render/Effect.js';
 export interface TextureMaterialBuilder {
   id(id: string): TextureMaterialBuilder;
   child(obj: QmlObjectBuilder): TextureMaterialBuilder;
+  children(...objs: QmlObjectBuilder[]): TextureMaterialBuilder;
 
   alphaBlending(value: boolean): TextureMaterialBuilder;
   alphaBlendingBind(expr: string): TextureMaterialBuilder;
@@ -27,18 +34,18 @@ export interface TextureMaterialBuilder {
   textureOffsetBind(expr: string): TextureMaterialBuilder;
   textureTransform(value: QmlValue): TextureMaterialBuilder;
   textureTransformBind(expr: string): TextureMaterialBuilder;
-  onAddedToEntity(body: string): TextureMaterialBuilder;
-  onAlphaBlendingEnabledChanged(body: string): TextureMaterialBuilder;
-  onEffectChanged(body: string): TextureMaterialBuilder;
-  onEnabledChanged(body: string): TextureMaterialBuilder;
-  onNodeDestroyed(body: string): TextureMaterialBuilder;
-  onObjectNameChanged(body: string): TextureMaterialBuilder;
-  onParentChanged(body: string): TextureMaterialBuilder;
-  onRemovedFromEntity(body: string): TextureMaterialBuilder;
-  onShareableChanged(body: string): TextureMaterialBuilder;
-  onTextureChanged(body: string): TextureMaterialBuilder;
-  onTextureOffsetChanged(body: string): TextureMaterialBuilder;
-  onTextureTransformChanged(body: string): TextureMaterialBuilder;
+  onAddedToEntity(handler: DslSignalHandlerValue): TextureMaterialBuilder;
+  onAlphaBlendingEnabledChanged(handler: DslSignalHandlerValue): TextureMaterialBuilder;
+  onEffectChanged(handler: DslSignalHandlerValue): TextureMaterialBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): TextureMaterialBuilder;
+  onNodeDestroyed(handler: DslSignalHandlerValue): TextureMaterialBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): TextureMaterialBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): TextureMaterialBuilder;
+  onRemovedFromEntity(handler: DslSignalHandlerValue): TextureMaterialBuilder;
+  onShareableChanged(handler: DslSignalHandlerValue): TextureMaterialBuilder;
+  onTextureChanged(handler: DslSignalHandlerValue): TextureMaterialBuilder;
+  onTextureOffsetChanged(handler: DslSignalHandlerValue): TextureMaterialBuilder;
+  onTextureTransformChanged(handler: DslSignalHandlerValue): TextureMaterialBuilder;
 }
 
 const TEXTUREMATERIAL_META: TypeMetadata = {

@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlEnumToken,
   QmlObjectBuilder,
   QmlRect,
@@ -21,6 +22,7 @@ import type { PdfDocumentBuilder } from './PdfDocument.js';
 export interface PdfPageImageBuilder {
   id(id: string): PdfPageImageBuilder;
   child(obj: QmlObjectBuilder): PdfPageImageBuilder;
+  children(...objs: QmlObjectBuilder[]): PdfPageImageBuilder;
 
   activeFocusOnTab(value: boolean): PdfPageImageBuilder;
   activeFocusOnTabBind(expr: string): PdfPageImageBuilder;
@@ -100,57 +102,57 @@ export interface PdfPageImageBuilder {
   yBind(expr: string): PdfPageImageBuilder;
   z(value: number): PdfPageImageBuilder;
   zBind(expr: string): PdfPageImageBuilder;
-  onActiveFocusChanged(body: string): PdfPageImageBuilder;
-  onActiveFocusOnTabChanged(body: string): PdfPageImageBuilder;
-  onAntialiasingChanged(body: string): PdfPageImageBuilder;
-  onAsynchronousChanged(body: string): PdfPageImageBuilder;
-  onAutoTransformChanged(body: string): PdfPageImageBuilder;
-  onBaselineOffsetChanged(body: string): PdfPageImageBuilder;
-  onCacheChanged(body: string): PdfPageImageBuilder;
-  onChildrenChanged(body: string): PdfPageImageBuilder;
-  onChildrenRectChanged(body: string): PdfPageImageBuilder;
-  onClipChanged(body: string): PdfPageImageBuilder;
-  onColorSpaceChanged(body: string): PdfPageImageBuilder;
-  onContainmentMaskChanged(body: string): PdfPageImageBuilder;
-  onCurrentFrameChanged(body: string): PdfPageImageBuilder;
-  onDocumentChanged(body: string): PdfPageImageBuilder;
-  onEnabledChanged(body: string): PdfPageImageBuilder;
-  onFillModeChanged(body: string): PdfPageImageBuilder;
-  onFocusChanged(body: string): PdfPageImageBuilder;
-  onFocusPolicyChanged(body: string): PdfPageImageBuilder;
-  onFrameCountChanged(body: string): PdfPageImageBuilder;
-  onHeightChanged(body: string): PdfPageImageBuilder;
-  onHorizontalAlignmentChanged(body: string): PdfPageImageBuilder;
-  onImplicitHeightChanged(body: string): PdfPageImageBuilder;
-  onImplicitWidthChanged(body: string): PdfPageImageBuilder;
-  onMipmapChanged(body: string): PdfPageImageBuilder;
-  onMirrorChanged(body: string): PdfPageImageBuilder;
-  onMirrorVerticallyChanged(body: string): PdfPageImageBuilder;
-  onObjectNameChanged(body: string): PdfPageImageBuilder;
-  onOpacityChanged(body: string): PdfPageImageBuilder;
-  onPaintedGeometryChanged(body: string): PdfPageImageBuilder;
-  onPaletteChanged(body: string): PdfPageImageBuilder;
-  onPaletteCreated(body: string): PdfPageImageBuilder;
-  onParentChanged(body: string): PdfPageImageBuilder;
-  onProgressChanged(body: string): PdfPageImageBuilder;
-  onRetainWhileLoadingChanged(body: string): PdfPageImageBuilder;
-  onRotationChanged(body: string): PdfPageImageBuilder;
-  onScaleChanged(body: string): PdfPageImageBuilder;
-  onSmoothChanged(body: string): PdfPageImageBuilder;
-  onSourceChanged(body: string): PdfPageImageBuilder;
-  onSourceClipRectChanged(body: string): PdfPageImageBuilder;
-  onSourceSizeChanged(body: string): PdfPageImageBuilder;
-  onStateChanged(body: string): PdfPageImageBuilder;
-  onStatusChanged(body: string): PdfPageImageBuilder;
-  onTransformOriginChanged(body: string): PdfPageImageBuilder;
-  onVerticalAlignmentChanged(body: string): PdfPageImageBuilder;
-  onVisibleChanged(body: string): PdfPageImageBuilder;
-  onVisibleChildrenChanged(body: string): PdfPageImageBuilder;
-  onWidthChanged(body: string): PdfPageImageBuilder;
-  onWindowChanged(body: string): PdfPageImageBuilder;
-  onXChanged(body: string): PdfPageImageBuilder;
-  onYChanged(body: string): PdfPageImageBuilder;
-  onZChanged(body: string): PdfPageImageBuilder;
+  onActiveFocusChanged(handler: DslSignalHandlerValue): PdfPageImageBuilder;
+  onActiveFocusOnTabChanged(handler: DslSignalHandlerValue): PdfPageImageBuilder;
+  onAntialiasingChanged(handler: DslSignalHandlerValue): PdfPageImageBuilder;
+  onAsynchronousChanged(handler: DslSignalHandlerValue): PdfPageImageBuilder;
+  onAutoTransformChanged(handler: DslSignalHandlerValue): PdfPageImageBuilder;
+  onBaselineOffsetChanged(handler: DslSignalHandlerValue): PdfPageImageBuilder;
+  onCacheChanged(handler: DslSignalHandlerValue): PdfPageImageBuilder;
+  onChildrenChanged(handler: DslSignalHandlerValue): PdfPageImageBuilder;
+  onChildrenRectChanged(handler: DslSignalHandlerValue): PdfPageImageBuilder;
+  onClipChanged(handler: DslSignalHandlerValue): PdfPageImageBuilder;
+  onColorSpaceChanged(handler: DslSignalHandlerValue): PdfPageImageBuilder;
+  onContainmentMaskChanged(handler: DslSignalHandlerValue): PdfPageImageBuilder;
+  onCurrentFrameChanged(handler: DslSignalHandlerValue): PdfPageImageBuilder;
+  onDocumentChanged(handler: DslSignalHandlerValue): PdfPageImageBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): PdfPageImageBuilder;
+  onFillModeChanged(handler: DslSignalHandlerValue): PdfPageImageBuilder;
+  onFocusChanged(handler: DslSignalHandlerValue): PdfPageImageBuilder;
+  onFocusPolicyChanged(handler: DslSignalHandlerValue): PdfPageImageBuilder;
+  onFrameCountChanged(handler: DslSignalHandlerValue): PdfPageImageBuilder;
+  onHeightChanged(handler: DslSignalHandlerValue): PdfPageImageBuilder;
+  onHorizontalAlignmentChanged(handler: DslSignalHandlerValue): PdfPageImageBuilder;
+  onImplicitHeightChanged(handler: DslSignalHandlerValue): PdfPageImageBuilder;
+  onImplicitWidthChanged(handler: DslSignalHandlerValue): PdfPageImageBuilder;
+  onMipmapChanged(handler: DslSignalHandlerValue): PdfPageImageBuilder;
+  onMirrorChanged(handler: DslSignalHandlerValue): PdfPageImageBuilder;
+  onMirrorVerticallyChanged(handler: DslSignalHandlerValue): PdfPageImageBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): PdfPageImageBuilder;
+  onOpacityChanged(handler: DslSignalHandlerValue): PdfPageImageBuilder;
+  onPaintedGeometryChanged(handler: DslSignalHandlerValue): PdfPageImageBuilder;
+  onPaletteChanged(handler: DslSignalHandlerValue): PdfPageImageBuilder;
+  onPaletteCreated(handler: DslSignalHandlerValue): PdfPageImageBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): PdfPageImageBuilder;
+  onProgressChanged(handler: DslSignalHandlerValue): PdfPageImageBuilder;
+  onRetainWhileLoadingChanged(handler: DslSignalHandlerValue): PdfPageImageBuilder;
+  onRotationChanged(handler: DslSignalHandlerValue): PdfPageImageBuilder;
+  onScaleChanged(handler: DslSignalHandlerValue): PdfPageImageBuilder;
+  onSmoothChanged(handler: DslSignalHandlerValue): PdfPageImageBuilder;
+  onSourceChanged(handler: DslSignalHandlerValue): PdfPageImageBuilder;
+  onSourceClipRectChanged(handler: DslSignalHandlerValue): PdfPageImageBuilder;
+  onSourceSizeChanged(handler: DslSignalHandlerValue): PdfPageImageBuilder;
+  onStateChanged(handler: DslSignalHandlerValue): PdfPageImageBuilder;
+  onStatusChanged(handler: DslSignalHandlerValue): PdfPageImageBuilder;
+  onTransformOriginChanged(handler: DslSignalHandlerValue): PdfPageImageBuilder;
+  onVerticalAlignmentChanged(handler: DslSignalHandlerValue): PdfPageImageBuilder;
+  onVisibleChanged(handler: DslSignalHandlerValue): PdfPageImageBuilder;
+  onVisibleChildrenChanged(handler: DslSignalHandlerValue): PdfPageImageBuilder;
+  onWidthChanged(handler: DslSignalHandlerValue): PdfPageImageBuilder;
+  onWindowChanged(handler: DslSignalHandlerValue): PdfPageImageBuilder;
+  onXChanged(handler: DslSignalHandlerValue): PdfPageImageBuilder;
+  onYChanged(handler: DslSignalHandlerValue): PdfPageImageBuilder;
+  onZChanged(handler: DslSignalHandlerValue): PdfPageImageBuilder;
   anchors(setup: (b: AnchorsBuilder) => void): PdfPageImageBuilder;
   layer(setup: (b: LayerBuilder) => void): PdfPageImageBuilder;
 }

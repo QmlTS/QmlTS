@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlEnumToken,
   QmlObjectBuilder,
   QmlValue,
@@ -13,6 +14,7 @@ import type { GeometryRendererBuilder } from '../Qt3D.Render/GeometryRenderer.js
 export interface MorphingAnimationBuilder {
   id(id: string): MorphingAnimationBuilder;
   child(obj: QmlObjectBuilder): MorphingAnimationBuilder;
+  children(...objs: QmlObjectBuilder[]): MorphingAnimationBuilder;
 
   animationName(value: string): MorphingAnimationBuilder;
   animationNameBind(expr: string): MorphingAnimationBuilder;
@@ -30,16 +32,16 @@ export interface MorphingAnimationBuilder {
   targetNameBind(expr: string): MorphingAnimationBuilder;
   targetPositions(value: number): MorphingAnimationBuilder;
   targetPositionsBind(expr: string): MorphingAnimationBuilder;
-  onAnimationNameChanged(body: string): MorphingAnimationBuilder;
-  onDurationChanged(body: string): MorphingAnimationBuilder;
-  onEasingChanged(body: string): MorphingAnimationBuilder;
-  onInterpolatorChanged(body: string): MorphingAnimationBuilder;
-  onMethodChanged(body: string): MorphingAnimationBuilder;
-  onObjectNameChanged(body: string): MorphingAnimationBuilder;
-  onPositionChanged(body: string): MorphingAnimationBuilder;
-  onTargetChanged(body: string): MorphingAnimationBuilder;
-  onTargetNameChanged(body: string): MorphingAnimationBuilder;
-  onTargetPositionsChanged(body: string): MorphingAnimationBuilder;
+  onAnimationNameChanged(handler: DslSignalHandlerValue): MorphingAnimationBuilder;
+  onDurationChanged(handler: DslSignalHandlerValue): MorphingAnimationBuilder;
+  onEasingChanged(handler: DslSignalHandlerValue): MorphingAnimationBuilder;
+  onInterpolatorChanged(handler: DslSignalHandlerValue): MorphingAnimationBuilder;
+  onMethodChanged(handler: DslSignalHandlerValue): MorphingAnimationBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): MorphingAnimationBuilder;
+  onPositionChanged(handler: DslSignalHandlerValue): MorphingAnimationBuilder;
+  onTargetChanged(handler: DslSignalHandlerValue): MorphingAnimationBuilder;
+  onTargetNameChanged(handler: DslSignalHandlerValue): MorphingAnimationBuilder;
+  onTargetPositionsChanged(handler: DslSignalHandlerValue): MorphingAnimationBuilder;
 }
 
 const MORPHINGANIMATION_META: TypeMetadata = {

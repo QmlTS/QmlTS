@@ -2,11 +2,12 @@
 // Type: Attached type: StackLayout
 // Generated from Qt 6.11.0
 
+import type { DslSignalHandlerValue } from '../../runtime/index.js';
 export interface StackLayoutAttachedBuilder {
   objectName(value: string): StackLayoutAttachedBuilder;
   objectNameBind(expr: string): StackLayoutAttachedBuilder;
-  onIndexChanged(body: string): StackLayoutAttachedBuilder;
-  onIsCurrentItemChanged(body: string): StackLayoutAttachedBuilder;
-  onLayoutChanged(body: string): StackLayoutAttachedBuilder;
-  onObjectNameChanged(body: string): StackLayoutAttachedBuilder;
+  onIndexChanged(handler: DslSignalHandlerValue): StackLayoutAttachedBuilder;
+  onIsCurrentItemChanged(handler: DslSignalHandlerValue): StackLayoutAttachedBuilder;
+  onLayoutChanged(handler: DslSignalHandlerValue): StackLayoutAttachedBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): StackLayoutAttachedBuilder;
 }

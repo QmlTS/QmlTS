@@ -2,7 +2,13 @@
 // Type: Vector3dAnimation
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlValue, QmlVector3d, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlObjectBuilder,
+  QmlValue,
+  QmlVector3d,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { QtObjectBuilder } from '../QML/QtObject.js';
 import type { AccessibleAttachedBuilder } from './Accessible.js';
@@ -24,6 +30,7 @@ import type { ViewTransitionAttachedBuilder } from './ViewTransition.js';
 export interface Vector3dAnimationBuilder {
   id(id: string): Vector3dAnimationBuilder;
   child(obj: QmlObjectBuilder): Vector3dAnimationBuilder;
+  children(...objs: QmlObjectBuilder[]): Vector3dAnimationBuilder;
 
   alwaysRunToEnd(value: boolean): Vector3dAnimationBuilder;
   alwaysRunToEndBind(expr: string): Vector3dAnimationBuilder;
@@ -49,21 +56,21 @@ export interface Vector3dAnimationBuilder {
   targetBind(expr: string): Vector3dAnimationBuilder;
   to(value: QmlVector3d): Vector3dAnimationBuilder;
   toBind(expr: string): Vector3dAnimationBuilder;
-  onAlwaysRunToEndChanged(body: string): Vector3dAnimationBuilder;
-  onDurationChanged(body: string): Vector3dAnimationBuilder;
-  onEasingChanged(body: string): Vector3dAnimationBuilder;
-  onFinished(body: string): Vector3dAnimationBuilder;
-  onFromChanged(body: string): Vector3dAnimationBuilder;
-  onLoopCountChanged(body: string): Vector3dAnimationBuilder;
-  onObjectNameChanged(body: string): Vector3dAnimationBuilder;
-  onPausedChanged(body: string): Vector3dAnimationBuilder;
-  onPropertiesChanged(body: string): Vector3dAnimationBuilder;
-  onPropertyChanged(body: string): Vector3dAnimationBuilder;
-  onRunningChanged(body: string): Vector3dAnimationBuilder;
-  onStarted(body: string): Vector3dAnimationBuilder;
-  onStopped(body: string): Vector3dAnimationBuilder;
-  onTargetChanged(body: string): Vector3dAnimationBuilder;
-  onToChanged(body: string): Vector3dAnimationBuilder;
+  onAlwaysRunToEndChanged(handler: DslSignalHandlerValue): Vector3dAnimationBuilder;
+  onDurationChanged(handler: DslSignalHandlerValue): Vector3dAnimationBuilder;
+  onEasingChanged(handler: DslSignalHandlerValue): Vector3dAnimationBuilder;
+  onFinished(handler: DslSignalHandlerValue): Vector3dAnimationBuilder;
+  onFromChanged(handler: DslSignalHandlerValue): Vector3dAnimationBuilder;
+  onLoopCountChanged(handler: DslSignalHandlerValue): Vector3dAnimationBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): Vector3dAnimationBuilder;
+  onPausedChanged(handler: DslSignalHandlerValue): Vector3dAnimationBuilder;
+  onPropertiesChanged(handler: DslSignalHandlerValue): Vector3dAnimationBuilder;
+  onPropertyChanged(handler: DslSignalHandlerValue): Vector3dAnimationBuilder;
+  onRunningChanged(handler: DslSignalHandlerValue): Vector3dAnimationBuilder;
+  onStarted(handler: DslSignalHandlerValue): Vector3dAnimationBuilder;
+  onStopped(handler: DslSignalHandlerValue): Vector3dAnimationBuilder;
+  onTargetChanged(handler: DslSignalHandlerValue): Vector3dAnimationBuilder;
+  onToChanged(handler: DslSignalHandlerValue): Vector3dAnimationBuilder;
   accessible(setup: (b: AccessibleAttachedBuilder) => void): Vector3dAnimationBuilder;
   drag(setup: (b: DragAttachedBuilder) => void): Vector3dAnimationBuilder;
   enterKey(setup: (b: EnterKeyAttachedBuilder) => void): Vector3dAnimationBuilder;

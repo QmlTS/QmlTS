@@ -2,11 +2,17 @@
 // Type: Action
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 export interface ActionBuilder {
   id(id: string): ActionBuilder;
   child(obj: QmlObjectBuilder): ActionBuilder;
+  children(...objs: QmlObjectBuilder[]): ActionBuilder;
 
   enabled(value: boolean): ActionBuilder;
   enabledBind(expr: string): ActionBuilder;
@@ -14,11 +20,11 @@ export interface ActionBuilder {
   objectNameBind(expr: string): ActionBuilder;
   parent(value: QmlValue): ActionBuilder;
   parentBind(expr: string): ActionBuilder;
-  onActiveChanged(body: string): ActionBuilder;
-  onEnabledChanged(body: string): ActionBuilder;
-  onNodeDestroyed(body: string): ActionBuilder;
-  onObjectNameChanged(body: string): ActionBuilder;
-  onParentChanged(body: string): ActionBuilder;
+  onActiveChanged(handler: DslSignalHandlerValue): ActionBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): ActionBuilder;
+  onNodeDestroyed(handler: DslSignalHandlerValue): ActionBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): ActionBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): ActionBuilder;
 }
 
 const ACTION_META: TypeMetadata = {

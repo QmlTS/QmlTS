@@ -2,11 +2,12 @@
 // Type: Timeline
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import type { DslSignalHandlerValue, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 export interface TimelineBuilder {
   id(id: string): TimelineBuilder;
   child(obj: QmlObjectBuilder): TimelineBuilder;
+  children(...objs: QmlObjectBuilder[]): TimelineBuilder;
 
   currentFrame(value: number): TimelineBuilder;
   currentFrameBind(expr: string): TimelineBuilder;
@@ -18,11 +19,11 @@ export interface TimelineBuilder {
   objectNameBind(expr: string): TimelineBuilder;
   startFrame(value: number): TimelineBuilder;
   startFrameBind(expr: string): TimelineBuilder;
-  onCurrentFrameChanged(body: string): TimelineBuilder;
-  onEnabledChanged(body: string): TimelineBuilder;
-  onEndFrameChanged(body: string): TimelineBuilder;
-  onObjectNameChanged(body: string): TimelineBuilder;
-  onStartFrameChanged(body: string): TimelineBuilder;
+  onCurrentFrameChanged(handler: DslSignalHandlerValue): TimelineBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): TimelineBuilder;
+  onEndFrameChanged(handler: DslSignalHandlerValue): TimelineBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): TimelineBuilder;
+  onStartFrameChanged(handler: DslSignalHandlerValue): TimelineBuilder;
 }
 
 const TIMELINE_META: TypeMetadata = {

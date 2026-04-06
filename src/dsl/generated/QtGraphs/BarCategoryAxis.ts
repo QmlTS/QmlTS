@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlColor,
   QmlComponent,
   QmlEnumToken,
@@ -14,6 +15,7 @@ import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface BarCategoryAxisBuilder {
   id(id: string): BarCategoryAxisBuilder;
   child(obj: QmlObjectBuilder): BarCategoryAxisBuilder;
+  children(...objs: QmlObjectBuilder[]): BarCategoryAxisBuilder;
 
   alignment(value: QmlEnumToken): BarCategoryAxisBuilder;
   alignmentBind(expr: string): BarCategoryAxisBuilder;
@@ -55,30 +57,30 @@ export interface BarCategoryAxisBuilder {
   titleVisibleBind(expr: string): BarCategoryAxisBuilder;
   visible(value: boolean): BarCategoryAxisBuilder;
   visibleBind(expr: string): BarCategoryAxisBuilder;
-  onAlignmentChanged(body: string): BarCategoryAxisBuilder;
-  onCategoriesChanged(body: string): BarCategoryAxisBuilder;
-  onCategoryRangeChanged(body: string): BarCategoryAxisBuilder;
-  onColorChanged(body: string): BarCategoryAxisBuilder;
-  onCountChanged(body: string): BarCategoryAxisBuilder;
-  onGridVisibleChanged(body: string): BarCategoryAxisBuilder;
-  onLabelDelegateChanged(body: string): BarCategoryAxisBuilder;
-  onLabelPositionChanged(body: string): BarCategoryAxisBuilder;
-  onLabelsAngleChanged(body: string): BarCategoryAxisBuilder;
-  onLabelsVisibleChanged(body: string): BarCategoryAxisBuilder;
-  onLineVisibleChanged(body: string): BarCategoryAxisBuilder;
-  onMaxChanged(body: string): BarCategoryAxisBuilder;
-  onMinChanged(body: string): BarCategoryAxisBuilder;
-  onObjectNameChanged(body: string): BarCategoryAxisBuilder;
-  onRangeChanged(body: string): BarCategoryAxisBuilder;
-  onSubColorChanged(body: string): BarCategoryAxisBuilder;
-  onSubGridVisibleChanged(body: string): BarCategoryAxisBuilder;
-  onTextElideModeChanged(body: string): BarCategoryAxisBuilder;
-  onTitleColorChanged(body: string): BarCategoryAxisBuilder;
-  onTitleFontChanged(body: string): BarCategoryAxisBuilder;
-  onTitleTextChanged(body: string): BarCategoryAxisBuilder;
-  onTitleVisibleChanged(body: string): BarCategoryAxisBuilder;
-  onUpdate(body: string): BarCategoryAxisBuilder;
-  onVisibleChanged(body: string): BarCategoryAxisBuilder;
+  onAlignmentChanged(handler: DslSignalHandlerValue): BarCategoryAxisBuilder;
+  onCategoriesChanged(handler: DslSignalHandlerValue): BarCategoryAxisBuilder;
+  onCategoryRangeChanged(handler: DslSignalHandlerValue): BarCategoryAxisBuilder;
+  onColorChanged(handler: DslSignalHandlerValue): BarCategoryAxisBuilder;
+  onCountChanged(handler: DslSignalHandlerValue): BarCategoryAxisBuilder;
+  onGridVisibleChanged(handler: DslSignalHandlerValue): BarCategoryAxisBuilder;
+  onLabelDelegateChanged(handler: DslSignalHandlerValue): BarCategoryAxisBuilder;
+  onLabelPositionChanged(handler: DslSignalHandlerValue): BarCategoryAxisBuilder;
+  onLabelsAngleChanged(handler: DslSignalHandlerValue): BarCategoryAxisBuilder;
+  onLabelsVisibleChanged(handler: DslSignalHandlerValue): BarCategoryAxisBuilder;
+  onLineVisibleChanged(handler: DslSignalHandlerValue): BarCategoryAxisBuilder;
+  onMaxChanged(handler: DslSignalHandlerValue): BarCategoryAxisBuilder;
+  onMinChanged(handler: DslSignalHandlerValue): BarCategoryAxisBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): BarCategoryAxisBuilder;
+  onRangeChanged(handler: DslSignalHandlerValue): BarCategoryAxisBuilder;
+  onSubColorChanged(handler: DslSignalHandlerValue): BarCategoryAxisBuilder;
+  onSubGridVisibleChanged(handler: DslSignalHandlerValue): BarCategoryAxisBuilder;
+  onTextElideModeChanged(handler: DslSignalHandlerValue): BarCategoryAxisBuilder;
+  onTitleColorChanged(handler: DslSignalHandlerValue): BarCategoryAxisBuilder;
+  onTitleFontChanged(handler: DslSignalHandlerValue): BarCategoryAxisBuilder;
+  onTitleTextChanged(handler: DslSignalHandlerValue): BarCategoryAxisBuilder;
+  onTitleVisibleChanged(handler: DslSignalHandlerValue): BarCategoryAxisBuilder;
+  onUpdate(handler: DslSignalHandlerValue): BarCategoryAxisBuilder;
+  onVisibleChanged(handler: DslSignalHandlerValue): BarCategoryAxisBuilder;
 }
 
 const BARCATEGORYAXIS_META: TypeMetadata = {

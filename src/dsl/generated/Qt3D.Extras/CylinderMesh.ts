@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlEnumToken,
   QmlObjectBuilder,
   QmlValue,
@@ -15,6 +16,7 @@ import type { GeometryViewBuilder } from '../Qt3D.Core/GeometryView.js';
 export interface CylinderMeshBuilder {
   id(id: string): CylinderMeshBuilder;
   child(obj: QmlObjectBuilder): CylinderMeshBuilder;
+  children(...objs: QmlObjectBuilder[]): CylinderMeshBuilder;
 
   enabled(value: boolean): CylinderMeshBuilder;
   enabledBind(expr: string): CylinderMeshBuilder;
@@ -62,35 +64,35 @@ export interface CylinderMeshBuilder {
   verticesPerPatchBind(expr: string): CylinderMeshBuilder;
   view(value: GeometryViewBuilder): CylinderMeshBuilder;
   viewBind(expr: string): CylinderMeshBuilder;
-  onAddedToEntity(body: string): CylinderMeshBuilder;
-  onEnabledChanged(body: string): CylinderMeshBuilder;
-  onFirstInstanceChanged(body: string): CylinderMeshBuilder;
-  onFirstVertexChanged(body: string): CylinderMeshBuilder;
-  onGeometryChanged(body: string): CylinderMeshBuilder;
-  onImplicitMaxPointChanged(body: string): CylinderMeshBuilder;
-  onImplicitMinPointChanged(body: string): CylinderMeshBuilder;
-  onImplicitPointsValidChanged(body: string): CylinderMeshBuilder;
-  onIndexBufferByteOffsetChanged(body: string): CylinderMeshBuilder;
-  onIndexOffsetChanged(body: string): CylinderMeshBuilder;
-  onInstanceCountChanged(body: string): CylinderMeshBuilder;
-  onLengthChanged(body: string): CylinderMeshBuilder;
-  onMaxPointChanged(body: string): CylinderMeshBuilder;
-  onMinPointChanged(body: string): CylinderMeshBuilder;
-  onNodeDestroyed(body: string): CylinderMeshBuilder;
-  onObjectNameChanged(body: string): CylinderMeshBuilder;
-  onParentChanged(body: string): CylinderMeshBuilder;
-  onPrimitiveRestartEnabledChanged(body: string): CylinderMeshBuilder;
-  onPrimitiveTypeChanged(body: string): CylinderMeshBuilder;
-  onRadiusChanged(body: string): CylinderMeshBuilder;
-  onRemovedFromEntity(body: string): CylinderMeshBuilder;
-  onRestartIndexValueChanged(body: string): CylinderMeshBuilder;
-  onRingsChanged(body: string): CylinderMeshBuilder;
-  onShareableChanged(body: string): CylinderMeshBuilder;
-  onSlicesChanged(body: string): CylinderMeshBuilder;
-  onSortIndexChanged(body: string): CylinderMeshBuilder;
-  onVertexCountChanged(body: string): CylinderMeshBuilder;
-  onVerticesPerPatchChanged(body: string): CylinderMeshBuilder;
-  onViewChanged(body: string): CylinderMeshBuilder;
+  onAddedToEntity(handler: DslSignalHandlerValue): CylinderMeshBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): CylinderMeshBuilder;
+  onFirstInstanceChanged(handler: DslSignalHandlerValue): CylinderMeshBuilder;
+  onFirstVertexChanged(handler: DslSignalHandlerValue): CylinderMeshBuilder;
+  onGeometryChanged(handler: DslSignalHandlerValue): CylinderMeshBuilder;
+  onImplicitMaxPointChanged(handler: DslSignalHandlerValue): CylinderMeshBuilder;
+  onImplicitMinPointChanged(handler: DslSignalHandlerValue): CylinderMeshBuilder;
+  onImplicitPointsValidChanged(handler: DslSignalHandlerValue): CylinderMeshBuilder;
+  onIndexBufferByteOffsetChanged(handler: DslSignalHandlerValue): CylinderMeshBuilder;
+  onIndexOffsetChanged(handler: DslSignalHandlerValue): CylinderMeshBuilder;
+  onInstanceCountChanged(handler: DslSignalHandlerValue): CylinderMeshBuilder;
+  onLengthChanged(handler: DslSignalHandlerValue): CylinderMeshBuilder;
+  onMaxPointChanged(handler: DslSignalHandlerValue): CylinderMeshBuilder;
+  onMinPointChanged(handler: DslSignalHandlerValue): CylinderMeshBuilder;
+  onNodeDestroyed(handler: DslSignalHandlerValue): CylinderMeshBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): CylinderMeshBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): CylinderMeshBuilder;
+  onPrimitiveRestartEnabledChanged(handler: DslSignalHandlerValue): CylinderMeshBuilder;
+  onPrimitiveTypeChanged(handler: DslSignalHandlerValue): CylinderMeshBuilder;
+  onRadiusChanged(handler: DslSignalHandlerValue): CylinderMeshBuilder;
+  onRemovedFromEntity(handler: DslSignalHandlerValue): CylinderMeshBuilder;
+  onRestartIndexValueChanged(handler: DslSignalHandlerValue): CylinderMeshBuilder;
+  onRingsChanged(handler: DslSignalHandlerValue): CylinderMeshBuilder;
+  onShareableChanged(handler: DslSignalHandlerValue): CylinderMeshBuilder;
+  onSlicesChanged(handler: DslSignalHandlerValue): CylinderMeshBuilder;
+  onSortIndexChanged(handler: DslSignalHandlerValue): CylinderMeshBuilder;
+  onVertexCountChanged(handler: DslSignalHandlerValue): CylinderMeshBuilder;
+  onVerticesPerPatchChanged(handler: DslSignalHandlerValue): CylinderMeshBuilder;
+  onViewChanged(handler: DslSignalHandlerValue): CylinderMeshBuilder;
 }
 
 const CYLINDERMESH_META: TypeMetadata = {

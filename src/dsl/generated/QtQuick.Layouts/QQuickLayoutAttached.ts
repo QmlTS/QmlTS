@@ -2,7 +2,7 @@
 // Type: Attached type: Layout
 // Generated from Qt 6.11.0
 
-import type { QmlEnumToken } from '../../runtime/index.js';
+import type { DslSignalHandlerValue, QmlEnumToken } from '../../runtime/index.js';
 export interface LayoutAttachedBuilder {
   alignment(value: QmlEnumToken): LayoutAttachedBuilder;
   alignmentBind(expr: string): LayoutAttachedBuilder;
@@ -48,26 +48,26 @@ export interface LayoutAttachedBuilder {
   verticalStretchFactorBind(expr: string): LayoutAttachedBuilder;
   objectName(value: string): LayoutAttachedBuilder;
   objectNameBind(expr: string): LayoutAttachedBuilder;
-  onAlignmentChanged(body: string): LayoutAttachedBuilder;
-  onBottomMarginChanged(body: string): LayoutAttachedBuilder;
-  onColumnChanged(body: string): LayoutAttachedBuilder;
-  onColumnSpanChanged(body: string): LayoutAttachedBuilder;
-  onFillHeightChanged(body: string): LayoutAttachedBuilder;
-  onFillWidthChanged(body: string): LayoutAttachedBuilder;
-  onHorizontalStretchFactorChanged(body: string): LayoutAttachedBuilder;
-  onLeftMarginChanged(body: string): LayoutAttachedBuilder;
-  onMarginsChanged(body: string): LayoutAttachedBuilder;
-  onMaximumHeightChanged(body: string): LayoutAttachedBuilder;
-  onMaximumWidthChanged(body: string): LayoutAttachedBuilder;
-  onMinimumHeightChanged(body: string): LayoutAttachedBuilder;
-  onMinimumWidthChanged(body: string): LayoutAttachedBuilder;
-  onPreferredHeightChanged(body: string): LayoutAttachedBuilder;
-  onPreferredWidthChanged(body: string): LayoutAttachedBuilder;
-  onRightMarginChanged(body: string): LayoutAttachedBuilder;
-  onRowChanged(body: string): LayoutAttachedBuilder;
-  onRowSpanChanged(body: string): LayoutAttachedBuilder;
-  onTopMarginChanged(body: string): LayoutAttachedBuilder;
-  onUseDefaultSizePolicyChanged(body: string): LayoutAttachedBuilder;
-  onVerticalStretchFactorChanged(body: string): LayoutAttachedBuilder;
-  onObjectNameChanged(body: string): LayoutAttachedBuilder;
+  onAlignmentChanged(handler: DslSignalHandlerValue): LayoutAttachedBuilder;
+  onBottomMarginChanged(handler: DslSignalHandlerValue): LayoutAttachedBuilder;
+  onColumnChanged(handler: DslSignalHandlerValue): LayoutAttachedBuilder;
+  onColumnSpanChanged(handler: DslSignalHandlerValue): LayoutAttachedBuilder;
+  onFillHeightChanged(handler: DslSignalHandlerValue): LayoutAttachedBuilder;
+  onFillWidthChanged(handler: DslSignalHandlerValue): LayoutAttachedBuilder;
+  onHorizontalStretchFactorChanged(handler: DslSignalHandlerValue): LayoutAttachedBuilder;
+  onLeftMarginChanged(handler: DslSignalHandlerValue): LayoutAttachedBuilder;
+  onMarginsChanged(handler: DslSignalHandlerValue): LayoutAttachedBuilder;
+  onMaximumHeightChanged(handler: DslSignalHandlerValue): LayoutAttachedBuilder;
+  onMaximumWidthChanged(handler: DslSignalHandlerValue): LayoutAttachedBuilder;
+  onMinimumHeightChanged(handler: DslSignalHandlerValue): LayoutAttachedBuilder;
+  onMinimumWidthChanged(handler: DslSignalHandlerValue): LayoutAttachedBuilder;
+  onPreferredHeightChanged(handler: DslSignalHandlerValue): LayoutAttachedBuilder;
+  onPreferredWidthChanged(handler: DslSignalHandlerValue): LayoutAttachedBuilder;
+  onRightMarginChanged(handler: DslSignalHandlerValue): LayoutAttachedBuilder;
+  onRowChanged(handler: DslSignalHandlerValue): LayoutAttachedBuilder;
+  onRowSpanChanged(handler: DslSignalHandlerValue): LayoutAttachedBuilder;
+  onTopMarginChanged(handler: DslSignalHandlerValue): LayoutAttachedBuilder;
+  onUseDefaultSizePolicyChanged(handler: DslSignalHandlerValue): LayoutAttachedBuilder;
+  onVerticalStretchFactorChanged(handler: DslSignalHandlerValue): LayoutAttachedBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): LayoutAttachedBuilder;
 }

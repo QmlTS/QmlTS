@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlEnumToken,
   QmlObjectBuilder,
   QmlValue,
@@ -15,6 +16,7 @@ import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface ProceduralMeshBuilder {
   id(id: string): ProceduralMeshBuilder;
   child(obj: QmlObjectBuilder): ProceduralMeshBuilder;
+  children(...objs: QmlObjectBuilder[]): ProceduralMeshBuilder;
 
   binormals(value: QmlVector3d): ProceduralMeshBuilder;
   binormalsBind(expr: string): ProceduralMeshBuilder;
@@ -44,23 +46,23 @@ export interface ProceduralMeshBuilder {
   uv1sBind(expr: string): ProceduralMeshBuilder;
   weights(value: QmlVector4d): ProceduralMeshBuilder;
   weightsBind(expr: string): ProceduralMeshBuilder;
-  onBinormalsChanged(body: string): ProceduralMeshBuilder;
-  onChildrenChanged(body: string): ProceduralMeshBuilder;
-  onColorsChanged(body: string): ProceduralMeshBuilder;
-  onGeometryChanged(body: string): ProceduralMeshBuilder;
-  onGeometryNodeDirty(body: string): ProceduralMeshBuilder;
-  onIndexesChanged(body: string): ProceduralMeshBuilder;
-  onJointsChanged(body: string): ProceduralMeshBuilder;
-  onNormalsChanged(body: string): ProceduralMeshBuilder;
-  onObjectNameChanged(body: string): ProceduralMeshBuilder;
-  onParentChanged(body: string): ProceduralMeshBuilder;
-  onPositionsChanged(body: string): ProceduralMeshBuilder;
-  onPrimitiveModeChanged(body: string): ProceduralMeshBuilder;
-  onStateChanged(body: string): ProceduralMeshBuilder;
-  onTangentsChanged(body: string): ProceduralMeshBuilder;
-  onUv0sChanged(body: string): ProceduralMeshBuilder;
-  onUv1sChanged(body: string): ProceduralMeshBuilder;
-  onWeightsChanged(body: string): ProceduralMeshBuilder;
+  onBinormalsChanged(handler: DslSignalHandlerValue): ProceduralMeshBuilder;
+  onChildrenChanged(handler: DslSignalHandlerValue): ProceduralMeshBuilder;
+  onColorsChanged(handler: DslSignalHandlerValue): ProceduralMeshBuilder;
+  onGeometryChanged(handler: DslSignalHandlerValue): ProceduralMeshBuilder;
+  onGeometryNodeDirty(handler: DslSignalHandlerValue): ProceduralMeshBuilder;
+  onIndexesChanged(handler: DslSignalHandlerValue): ProceduralMeshBuilder;
+  onJointsChanged(handler: DslSignalHandlerValue): ProceduralMeshBuilder;
+  onNormalsChanged(handler: DslSignalHandlerValue): ProceduralMeshBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): ProceduralMeshBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): ProceduralMeshBuilder;
+  onPositionsChanged(handler: DslSignalHandlerValue): ProceduralMeshBuilder;
+  onPrimitiveModeChanged(handler: DslSignalHandlerValue): ProceduralMeshBuilder;
+  onStateChanged(handler: DslSignalHandlerValue): ProceduralMeshBuilder;
+  onTangentsChanged(handler: DslSignalHandlerValue): ProceduralMeshBuilder;
+  onUv0sChanged(handler: DslSignalHandlerValue): ProceduralMeshBuilder;
+  onUv1sChanged(handler: DslSignalHandlerValue): ProceduralMeshBuilder;
+  onWeightsChanged(handler: DslSignalHandlerValue): ProceduralMeshBuilder;
 }
 
 const PROCEDURALMESH_META: TypeMetadata = {

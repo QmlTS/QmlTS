@@ -2,11 +2,17 @@
 // Type: SeamlessCubemap
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 export interface SeamlessCubemapBuilder {
   id(id: string): SeamlessCubemapBuilder;
   child(obj: QmlObjectBuilder): SeamlessCubemapBuilder;
+  children(...objs: QmlObjectBuilder[]): SeamlessCubemapBuilder;
 
   enabled(value: boolean): SeamlessCubemapBuilder;
   enabledBind(expr: string): SeamlessCubemapBuilder;
@@ -14,10 +20,10 @@ export interface SeamlessCubemapBuilder {
   objectNameBind(expr: string): SeamlessCubemapBuilder;
   parent(value: QmlValue): SeamlessCubemapBuilder;
   parentBind(expr: string): SeamlessCubemapBuilder;
-  onEnabledChanged(body: string): SeamlessCubemapBuilder;
-  onNodeDestroyed(body: string): SeamlessCubemapBuilder;
-  onObjectNameChanged(body: string): SeamlessCubemapBuilder;
-  onParentChanged(body: string): SeamlessCubemapBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): SeamlessCubemapBuilder;
+  onNodeDestroyed(handler: DslSignalHandlerValue): SeamlessCubemapBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): SeamlessCubemapBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): SeamlessCubemapBuilder;
 }
 
 const SEAMLESSCUBEMAP_META: TypeMetadata = {

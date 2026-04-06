@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlEnumToken,
   QmlObjectBuilder,
   QmlQuaternion,
@@ -15,6 +16,7 @@ import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface SpatialSoundBuilder {
   id(id: string): SpatialSoundBuilder;
   child(obj: QmlObjectBuilder): SpatialSoundBuilder;
+  children(...objs: QmlObjectBuilder[]): SpatialSoundBuilder;
 
   autoPlay(value: boolean): SpatialSoundBuilder;
   autoPlayBind(expr: string): SpatialSoundBuilder;
@@ -70,41 +72,41 @@ export interface SpatialSoundBuilder {
   yBind(expr: string): SpatialSoundBuilder;
   z(value: number): SpatialSoundBuilder;
   zBind(expr: string): SpatialSoundBuilder;
-  onAutoPlayChanged(body: string): SpatialSoundBuilder;
-  onChildrenChanged(body: string): SpatialSoundBuilder;
-  onDirectivityChanged(body: string): SpatialSoundBuilder;
-  onDirectivityOrderChanged(body: string): SpatialSoundBuilder;
-  onDistanceCutoffChanged(body: string): SpatialSoundBuilder;
-  onDistanceModelChanged(body: string): SpatialSoundBuilder;
-  onEulerRotationChanged(body: string): SpatialSoundBuilder;
-  onForwardChanged(body: string): SpatialSoundBuilder;
-  onLayersChanged(body: string): SpatialSoundBuilder;
-  onLocalOpacityChanged(body: string): SpatialSoundBuilder;
-  onLoopsChanged(body: string): SpatialSoundBuilder;
-  onManualAttenuationChanged(body: string): SpatialSoundBuilder;
-  onNearFieldGainChanged(body: string): SpatialSoundBuilder;
-  onObjectNameChanged(body: string): SpatialSoundBuilder;
-  onOcclusionIntensityChanged(body: string): SpatialSoundBuilder;
-  onParentChanged(body: string): SpatialSoundBuilder;
-  onPivotChanged(body: string): SpatialSoundBuilder;
-  onPositionChanged(body: string): SpatialSoundBuilder;
-  onRightChanged(body: string): SpatialSoundBuilder;
-  onRotationChanged(body: string): SpatialSoundBuilder;
-  onScaleChanged(body: string): SpatialSoundBuilder;
-  onScenePositionChanged(body: string): SpatialSoundBuilder;
-  onSceneRotationChanged(body: string): SpatialSoundBuilder;
-  onSceneScaleChanged(body: string): SpatialSoundBuilder;
-  onSceneTransformChanged(body: string): SpatialSoundBuilder;
-  onSizeChanged(body: string): SpatialSoundBuilder;
-  onSourceChanged(body: string): SpatialSoundBuilder;
-  onStateChanged(body: string): SpatialSoundBuilder;
-  onStaticFlagsChanged(body: string): SpatialSoundBuilder;
-  onUpChanged(body: string): SpatialSoundBuilder;
-  onVisibleChanged(body: string): SpatialSoundBuilder;
-  onVolumeChanged(body: string): SpatialSoundBuilder;
-  onXChanged(body: string): SpatialSoundBuilder;
-  onYChanged(body: string): SpatialSoundBuilder;
-  onZChanged(body: string): SpatialSoundBuilder;
+  onAutoPlayChanged(handler: DslSignalHandlerValue): SpatialSoundBuilder;
+  onChildrenChanged(handler: DslSignalHandlerValue): SpatialSoundBuilder;
+  onDirectivityChanged(handler: DslSignalHandlerValue): SpatialSoundBuilder;
+  onDirectivityOrderChanged(handler: DslSignalHandlerValue): SpatialSoundBuilder;
+  onDistanceCutoffChanged(handler: DslSignalHandlerValue): SpatialSoundBuilder;
+  onDistanceModelChanged(handler: DslSignalHandlerValue): SpatialSoundBuilder;
+  onEulerRotationChanged(handler: DslSignalHandlerValue): SpatialSoundBuilder;
+  onForwardChanged(handler: DslSignalHandlerValue): SpatialSoundBuilder;
+  onLayersChanged(handler: DslSignalHandlerValue): SpatialSoundBuilder;
+  onLocalOpacityChanged(handler: DslSignalHandlerValue): SpatialSoundBuilder;
+  onLoopsChanged(handler: DslSignalHandlerValue): SpatialSoundBuilder;
+  onManualAttenuationChanged(handler: DslSignalHandlerValue): SpatialSoundBuilder;
+  onNearFieldGainChanged(handler: DslSignalHandlerValue): SpatialSoundBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): SpatialSoundBuilder;
+  onOcclusionIntensityChanged(handler: DslSignalHandlerValue): SpatialSoundBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): SpatialSoundBuilder;
+  onPivotChanged(handler: DslSignalHandlerValue): SpatialSoundBuilder;
+  onPositionChanged(handler: DslSignalHandlerValue): SpatialSoundBuilder;
+  onRightChanged(handler: DslSignalHandlerValue): SpatialSoundBuilder;
+  onRotationChanged(handler: DslSignalHandlerValue): SpatialSoundBuilder;
+  onScaleChanged(handler: DslSignalHandlerValue): SpatialSoundBuilder;
+  onScenePositionChanged(handler: DslSignalHandlerValue): SpatialSoundBuilder;
+  onSceneRotationChanged(handler: DslSignalHandlerValue): SpatialSoundBuilder;
+  onSceneScaleChanged(handler: DslSignalHandlerValue): SpatialSoundBuilder;
+  onSceneTransformChanged(handler: DslSignalHandlerValue): SpatialSoundBuilder;
+  onSizeChanged(handler: DslSignalHandlerValue): SpatialSoundBuilder;
+  onSourceChanged(handler: DslSignalHandlerValue): SpatialSoundBuilder;
+  onStateChanged(handler: DslSignalHandlerValue): SpatialSoundBuilder;
+  onStaticFlagsChanged(handler: DslSignalHandlerValue): SpatialSoundBuilder;
+  onUpChanged(handler: DslSignalHandlerValue): SpatialSoundBuilder;
+  onVisibleChanged(handler: DslSignalHandlerValue): SpatialSoundBuilder;
+  onVolumeChanged(handler: DslSignalHandlerValue): SpatialSoundBuilder;
+  onXChanged(handler: DslSignalHandlerValue): SpatialSoundBuilder;
+  onYChanged(handler: DslSignalHandlerValue): SpatialSoundBuilder;
+  onZChanged(handler: DslSignalHandlerValue): SpatialSoundBuilder;
 }
 
 const SPATIALSOUND_META: TypeMetadata = {

@@ -2,7 +2,12 @@
 // Type: SystemPalette
 // Generated from Qt 6.11.0
 
-import type { QmlEnumToken, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlEnumToken,
+  QmlObjectBuilder,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { AccessibleAttachedBuilder } from './Accessible.js';
 import type { EnterKeyAttachedBuilder } from './EnterKey.js';
@@ -23,13 +28,14 @@ import type { ViewTransitionAttachedBuilder } from './ViewTransition.js';
 export interface SystemPaletteBuilder {
   id(id: string): SystemPaletteBuilder;
   child(obj: QmlObjectBuilder): SystemPaletteBuilder;
+  children(...objs: QmlObjectBuilder[]): SystemPaletteBuilder;
 
   colorGroup(value: QmlEnumToken): SystemPaletteBuilder;
   colorGroupBind(expr: string): SystemPaletteBuilder;
   objectName(value: string): SystemPaletteBuilder;
   objectNameBind(expr: string): SystemPaletteBuilder;
-  onObjectNameChanged(body: string): SystemPaletteBuilder;
-  onPaletteChanged(body: string): SystemPaletteBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): SystemPaletteBuilder;
+  onPaletteChanged(handler: DslSignalHandlerValue): SystemPaletteBuilder;
   accessible(setup: (b: AccessibleAttachedBuilder) => void): SystemPaletteBuilder;
   drag(setup: (b: DragAttachedBuilder) => void): SystemPaletteBuilder;
   enterKey(setup: (b: EnterKeyAttachedBuilder) => void): SystemPaletteBuilder;

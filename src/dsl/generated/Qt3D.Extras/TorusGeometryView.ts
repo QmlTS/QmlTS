@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlEnumToken,
   QmlObjectBuilder,
   QmlValue,
@@ -13,6 +14,7 @@ import type { GeometryBuilder } from '../Qt3D.Core/Geometry.js';
 export interface TorusGeometryViewBuilder {
   id(id: string): TorusGeometryViewBuilder;
   child(obj: QmlObjectBuilder): TorusGeometryViewBuilder;
+  children(...objs: QmlObjectBuilder[]): TorusGeometryViewBuilder;
 
   enabled(value: boolean): TorusGeometryViewBuilder;
   enabledBind(expr: string): TorusGeometryViewBuilder;
@@ -50,25 +52,25 @@ export interface TorusGeometryViewBuilder {
   vertexCountBind(expr: string): TorusGeometryViewBuilder;
   verticesPerPatch(value: number): TorusGeometryViewBuilder;
   verticesPerPatchBind(expr: string): TorusGeometryViewBuilder;
-  onEnabledChanged(body: string): TorusGeometryViewBuilder;
-  onFirstInstanceChanged(body: string): TorusGeometryViewBuilder;
-  onFirstVertexChanged(body: string): TorusGeometryViewBuilder;
-  onGeometryChanged(body: string): TorusGeometryViewBuilder;
-  onIndexBufferByteOffsetChanged(body: string): TorusGeometryViewBuilder;
-  onIndexOffsetChanged(body: string): TorusGeometryViewBuilder;
-  onInstanceCountChanged(body: string): TorusGeometryViewBuilder;
-  onMinorRadiusChanged(body: string): TorusGeometryViewBuilder;
-  onNodeDestroyed(body: string): TorusGeometryViewBuilder;
-  onObjectNameChanged(body: string): TorusGeometryViewBuilder;
-  onParentChanged(body: string): TorusGeometryViewBuilder;
-  onPrimitiveRestartEnabledChanged(body: string): TorusGeometryViewBuilder;
-  onPrimitiveTypeChanged(body: string): TorusGeometryViewBuilder;
-  onRadiusChanged(body: string): TorusGeometryViewBuilder;
-  onRestartIndexValueChanged(body: string): TorusGeometryViewBuilder;
-  onRingsChanged(body: string): TorusGeometryViewBuilder;
-  onSlicesChanged(body: string): TorusGeometryViewBuilder;
-  onVertexCountChanged(body: string): TorusGeometryViewBuilder;
-  onVerticesPerPatchChanged(body: string): TorusGeometryViewBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): TorusGeometryViewBuilder;
+  onFirstInstanceChanged(handler: DslSignalHandlerValue): TorusGeometryViewBuilder;
+  onFirstVertexChanged(handler: DslSignalHandlerValue): TorusGeometryViewBuilder;
+  onGeometryChanged(handler: DslSignalHandlerValue): TorusGeometryViewBuilder;
+  onIndexBufferByteOffsetChanged(handler: DslSignalHandlerValue): TorusGeometryViewBuilder;
+  onIndexOffsetChanged(handler: DslSignalHandlerValue): TorusGeometryViewBuilder;
+  onInstanceCountChanged(handler: DslSignalHandlerValue): TorusGeometryViewBuilder;
+  onMinorRadiusChanged(handler: DslSignalHandlerValue): TorusGeometryViewBuilder;
+  onNodeDestroyed(handler: DslSignalHandlerValue): TorusGeometryViewBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): TorusGeometryViewBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): TorusGeometryViewBuilder;
+  onPrimitiveRestartEnabledChanged(handler: DslSignalHandlerValue): TorusGeometryViewBuilder;
+  onPrimitiveTypeChanged(handler: DslSignalHandlerValue): TorusGeometryViewBuilder;
+  onRadiusChanged(handler: DslSignalHandlerValue): TorusGeometryViewBuilder;
+  onRestartIndexValueChanged(handler: DslSignalHandlerValue): TorusGeometryViewBuilder;
+  onRingsChanged(handler: DslSignalHandlerValue): TorusGeometryViewBuilder;
+  onSlicesChanged(handler: DslSignalHandlerValue): TorusGeometryViewBuilder;
+  onVertexCountChanged(handler: DslSignalHandlerValue): TorusGeometryViewBuilder;
+  onVerticesPerPatchChanged(handler: DslSignalHandlerValue): TorusGeometryViewBuilder;
 }
 
 const TORUSGEOMETRYVIEW_META: TypeMetadata = {

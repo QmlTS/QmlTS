@@ -2,11 +2,12 @@
 // Type: PathInterpolated
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import type { DslSignalHandlerValue, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 export interface PathInterpolatedBuilder {
   id(id: string): PathInterpolatedBuilder;
   child(obj: QmlObjectBuilder): PathInterpolatedBuilder;
+  children(...objs: QmlObjectBuilder[]): PathInterpolatedBuilder;
 
   factor(value: number): PathInterpolatedBuilder;
   factorBind(expr: string): PathInterpolatedBuilder;
@@ -22,14 +23,14 @@ export interface PathInterpolatedBuilder {
   xBind(expr: string): PathInterpolatedBuilder;
   y(value: number): PathInterpolatedBuilder;
   yBind(expr: string): PathInterpolatedBuilder;
-  onChanged(body: string): PathInterpolatedBuilder;
-  onFactorChanged(body: string): PathInterpolatedBuilder;
-  onObjectNameChanged(body: string): PathInterpolatedBuilder;
-  onRelativeXChanged(body: string): PathInterpolatedBuilder;
-  onRelativeYChanged(body: string): PathInterpolatedBuilder;
-  onSvgPathsChanged(body: string): PathInterpolatedBuilder;
-  onXChanged(body: string): PathInterpolatedBuilder;
-  onYChanged(body: string): PathInterpolatedBuilder;
+  onChanged(handler: DslSignalHandlerValue): PathInterpolatedBuilder;
+  onFactorChanged(handler: DslSignalHandlerValue): PathInterpolatedBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): PathInterpolatedBuilder;
+  onRelativeXChanged(handler: DslSignalHandlerValue): PathInterpolatedBuilder;
+  onRelativeYChanged(handler: DslSignalHandlerValue): PathInterpolatedBuilder;
+  onSvgPathsChanged(handler: DslSignalHandlerValue): PathInterpolatedBuilder;
+  onXChanged(handler: DslSignalHandlerValue): PathInterpolatedBuilder;
+  onYChanged(handler: DslSignalHandlerValue): PathInterpolatedBuilder;
 }
 
 const PATHINTERPOLATED_META: TypeMetadata = {

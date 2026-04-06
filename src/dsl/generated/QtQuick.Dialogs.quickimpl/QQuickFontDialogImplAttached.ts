@@ -2,6 +2,7 @@
 // Type: Attached type: FontDialogImpl
 // Generated from Qt 6.11.0
 
+import type { DslSignalHandlerValue } from '../../runtime/index.js';
 import type { ListViewBuilder } from '../QtQuick/ListView.js';
 import type { TextEditBuilder } from '../QtQuick/TextEdit.js';
 import type { CheckBoxBuilder } from '../QtQuick.Templates/CheckBox.js';
@@ -33,16 +34,16 @@ export interface FontDialogImplAttachedBuilder {
   writingSystemComboBoxBind(expr: string): FontDialogImplAttachedBuilder;
   objectName(value: string): FontDialogImplAttachedBuilder;
   objectNameBind(expr: string): FontDialogImplAttachedBuilder;
-  onButtonBoxChanged(body: string): FontDialogImplAttachedBuilder;
-  onFamilyEditChanged(body: string): FontDialogImplAttachedBuilder;
-  onFamilyListViewChanged(body: string): FontDialogImplAttachedBuilder;
-  onSampleEditChanged(body: string): FontDialogImplAttachedBuilder;
-  onSizeEditChanged(body: string): FontDialogImplAttachedBuilder;
-  onSizeListViewChanged(body: string): FontDialogImplAttachedBuilder;
-  onStrikeoutCheckBoxChanged(body: string): FontDialogImplAttachedBuilder;
-  onStyleEditChanged(body: string): FontDialogImplAttachedBuilder;
-  onStyleListViewChanged(body: string): FontDialogImplAttachedBuilder;
-  onUnderlineCheckBoxChanged(body: string): FontDialogImplAttachedBuilder;
-  onWritingSystemComboBoxChanged(body: string): FontDialogImplAttachedBuilder;
-  onObjectNameChanged(body: string): FontDialogImplAttachedBuilder;
+  onButtonBoxChanged(handler: DslSignalHandlerValue): FontDialogImplAttachedBuilder;
+  onFamilyEditChanged(handler: DslSignalHandlerValue): FontDialogImplAttachedBuilder;
+  onFamilyListViewChanged(handler: DslSignalHandlerValue): FontDialogImplAttachedBuilder;
+  onSampleEditChanged(handler: DslSignalHandlerValue): FontDialogImplAttachedBuilder;
+  onSizeEditChanged(handler: DslSignalHandlerValue): FontDialogImplAttachedBuilder;
+  onSizeListViewChanged(handler: DslSignalHandlerValue): FontDialogImplAttachedBuilder;
+  onStrikeoutCheckBoxChanged(handler: DslSignalHandlerValue): FontDialogImplAttachedBuilder;
+  onStyleEditChanged(handler: DslSignalHandlerValue): FontDialogImplAttachedBuilder;
+  onStyleListViewChanged(handler: DslSignalHandlerValue): FontDialogImplAttachedBuilder;
+  onUnderlineCheckBoxChanged(handler: DslSignalHandlerValue): FontDialogImplAttachedBuilder;
+  onWritingSystemComboBoxChanged(handler: DslSignalHandlerValue): FontDialogImplAttachedBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): FontDialogImplAttachedBuilder;
 }

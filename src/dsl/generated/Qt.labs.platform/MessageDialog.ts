@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlEnumToken,
   QmlObjectBuilder,
   QmlValue,
@@ -12,6 +13,7 @@ import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface MessageDialogBuilder {
   id(id: string): MessageDialogBuilder;
   child(obj: QmlObjectBuilder): MessageDialogBuilder;
+  children(...objs: QmlObjectBuilder[]): MessageDialogBuilder;
 
   buttons(value: QmlEnumToken): MessageDialogBuilder;
   buttonsBind(expr: string): MessageDialogBuilder;
@@ -35,38 +37,38 @@ export interface MessageDialogBuilder {
   titleBind(expr: string): MessageDialogBuilder;
   visible(value: boolean): MessageDialogBuilder;
   visibleBind(expr: string): MessageDialogBuilder;
-  onAbortClicked(body: string): MessageDialogBuilder;
-  onAccepted(body: string): MessageDialogBuilder;
-  onApplyClicked(body: string): MessageDialogBuilder;
-  onButtonsChanged(body: string): MessageDialogBuilder;
-  onCancelClicked(body: string): MessageDialogBuilder;
-  onClicked(body: string): MessageDialogBuilder;
-  onCloseClicked(body: string): MessageDialogBuilder;
-  onDetailedTextChanged(body: string): MessageDialogBuilder;
-  onDiscardClicked(body: string): MessageDialogBuilder;
-  onFlagsChanged(body: string): MessageDialogBuilder;
-  onHelpClicked(body: string): MessageDialogBuilder;
-  onIgnoreClicked(body: string): MessageDialogBuilder;
-  onInformativeTextChanged(body: string): MessageDialogBuilder;
-  onModalityChanged(body: string): MessageDialogBuilder;
-  onNoClicked(body: string): MessageDialogBuilder;
-  onNoToAllClicked(body: string): MessageDialogBuilder;
-  onObjectNameChanged(body: string): MessageDialogBuilder;
-  onOkClicked(body: string): MessageDialogBuilder;
-  onOpenClicked(body: string): MessageDialogBuilder;
-  onParentWindowChanged(body: string): MessageDialogBuilder;
-  onRejected(body: string): MessageDialogBuilder;
-  onResetClicked(body: string): MessageDialogBuilder;
-  onRestoreDefaultsClicked(body: string): MessageDialogBuilder;
-  onResultChanged(body: string): MessageDialogBuilder;
-  onRetryClicked(body: string): MessageDialogBuilder;
-  onSaveAllClicked(body: string): MessageDialogBuilder;
-  onSaveClicked(body: string): MessageDialogBuilder;
-  onTextChanged(body: string): MessageDialogBuilder;
-  onTitleChanged(body: string): MessageDialogBuilder;
-  onVisibleChanged(body: string): MessageDialogBuilder;
-  onYesClicked(body: string): MessageDialogBuilder;
-  onYesToAllClicked(body: string): MessageDialogBuilder;
+  onAbortClicked(handler: DslSignalHandlerValue): MessageDialogBuilder;
+  onAccepted(handler: DslSignalHandlerValue): MessageDialogBuilder;
+  onApplyClicked(handler: DslSignalHandlerValue): MessageDialogBuilder;
+  onButtonsChanged(handler: DslSignalHandlerValue): MessageDialogBuilder;
+  onCancelClicked(handler: DslSignalHandlerValue): MessageDialogBuilder;
+  onClicked(handler: DslSignalHandlerValue): MessageDialogBuilder;
+  onCloseClicked(handler: DslSignalHandlerValue): MessageDialogBuilder;
+  onDetailedTextChanged(handler: DslSignalHandlerValue): MessageDialogBuilder;
+  onDiscardClicked(handler: DslSignalHandlerValue): MessageDialogBuilder;
+  onFlagsChanged(handler: DslSignalHandlerValue): MessageDialogBuilder;
+  onHelpClicked(handler: DslSignalHandlerValue): MessageDialogBuilder;
+  onIgnoreClicked(handler: DslSignalHandlerValue): MessageDialogBuilder;
+  onInformativeTextChanged(handler: DslSignalHandlerValue): MessageDialogBuilder;
+  onModalityChanged(handler: DslSignalHandlerValue): MessageDialogBuilder;
+  onNoClicked(handler: DslSignalHandlerValue): MessageDialogBuilder;
+  onNoToAllClicked(handler: DslSignalHandlerValue): MessageDialogBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): MessageDialogBuilder;
+  onOkClicked(handler: DslSignalHandlerValue): MessageDialogBuilder;
+  onOpenClicked(handler: DslSignalHandlerValue): MessageDialogBuilder;
+  onParentWindowChanged(handler: DslSignalHandlerValue): MessageDialogBuilder;
+  onRejected(handler: DslSignalHandlerValue): MessageDialogBuilder;
+  onResetClicked(handler: DslSignalHandlerValue): MessageDialogBuilder;
+  onRestoreDefaultsClicked(handler: DslSignalHandlerValue): MessageDialogBuilder;
+  onResultChanged(handler: DslSignalHandlerValue): MessageDialogBuilder;
+  onRetryClicked(handler: DslSignalHandlerValue): MessageDialogBuilder;
+  onSaveAllClicked(handler: DslSignalHandlerValue): MessageDialogBuilder;
+  onSaveClicked(handler: DslSignalHandlerValue): MessageDialogBuilder;
+  onTextChanged(handler: DslSignalHandlerValue): MessageDialogBuilder;
+  onTitleChanged(handler: DslSignalHandlerValue): MessageDialogBuilder;
+  onVisibleChanged(handler: DslSignalHandlerValue): MessageDialogBuilder;
+  onYesClicked(handler: DslSignalHandlerValue): MessageDialogBuilder;
+  onYesToAllClicked(handler: DslSignalHandlerValue): MessageDialogBuilder;
 }
 
 const MESSAGEDIALOG_META: TypeMetadata = {

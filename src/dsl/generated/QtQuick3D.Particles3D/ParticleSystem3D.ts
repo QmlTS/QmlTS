@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlObjectBuilder,
   QmlQuaternion,
   QmlValue,
@@ -14,6 +15,7 @@ import type { LoggingDataBuilder } from './QQuick3DParticleSystemLogging.js';
 export interface ParticleSystem3DBuilder {
   id(id: string): ParticleSystem3DBuilder;
   child(obj: QmlObjectBuilder): ParticleSystem3DBuilder;
+  children(...objs: QmlObjectBuilder[]): ParticleSystem3DBuilder;
 
   eulerRotation(value: QmlVector3d): ParticleSystem3DBuilder;
   eulerRotationBind(expr: string): ParticleSystem3DBuilder;
@@ -59,37 +61,37 @@ export interface ParticleSystem3DBuilder {
   yBind(expr: string): ParticleSystem3DBuilder;
   z(value: number): ParticleSystem3DBuilder;
   zBind(expr: string): ParticleSystem3DBuilder;
-  onChildrenChanged(body: string): ParticleSystem3DBuilder;
-  onEulerRotationChanged(body: string): ParticleSystem3DBuilder;
-  onForwardChanged(body: string): ParticleSystem3DBuilder;
-  onLayersChanged(body: string): ParticleSystem3DBuilder;
-  onLocalOpacityChanged(body: string): ParticleSystem3DBuilder;
-  onLoggingChanged(body: string): ParticleSystem3DBuilder;
-  onLoggingDataChanged(body: string): ParticleSystem3DBuilder;
-  onObjectNameChanged(body: string): ParticleSystem3DBuilder;
-  onParentChanged(body: string): ParticleSystem3DBuilder;
-  onPausedChanged(body: string): ParticleSystem3DBuilder;
-  onPivotChanged(body: string): ParticleSystem3DBuilder;
-  onPositionChanged(body: string): ParticleSystem3DBuilder;
-  onRightChanged(body: string): ParticleSystem3DBuilder;
-  onRotationChanged(body: string): ParticleSystem3DBuilder;
-  onRunningChanged(body: string): ParticleSystem3DBuilder;
-  onScaleChanged(body: string): ParticleSystem3DBuilder;
-  onScenePositionChanged(body: string): ParticleSystem3DBuilder;
-  onSceneRotationChanged(body: string): ParticleSystem3DBuilder;
-  onSceneScaleChanged(body: string): ParticleSystem3DBuilder;
-  onSceneTransformChanged(body: string): ParticleSystem3DBuilder;
-  onSeedChanged(body: string): ParticleSystem3DBuilder;
-  onStartTimeChanged(body: string): ParticleSystem3DBuilder;
-  onStateChanged(body: string): ParticleSystem3DBuilder;
-  onStaticFlagsChanged(body: string): ParticleSystem3DBuilder;
-  onTimeChanged(body: string): ParticleSystem3DBuilder;
-  onUpChanged(body: string): ParticleSystem3DBuilder;
-  onUseRandomSeedChanged(body: string): ParticleSystem3DBuilder;
-  onVisibleChanged(body: string): ParticleSystem3DBuilder;
-  onXChanged(body: string): ParticleSystem3DBuilder;
-  onYChanged(body: string): ParticleSystem3DBuilder;
-  onZChanged(body: string): ParticleSystem3DBuilder;
+  onChildrenChanged(handler: DslSignalHandlerValue): ParticleSystem3DBuilder;
+  onEulerRotationChanged(handler: DslSignalHandlerValue): ParticleSystem3DBuilder;
+  onForwardChanged(handler: DslSignalHandlerValue): ParticleSystem3DBuilder;
+  onLayersChanged(handler: DslSignalHandlerValue): ParticleSystem3DBuilder;
+  onLocalOpacityChanged(handler: DslSignalHandlerValue): ParticleSystem3DBuilder;
+  onLoggingChanged(handler: DslSignalHandlerValue): ParticleSystem3DBuilder;
+  onLoggingDataChanged(handler: DslSignalHandlerValue): ParticleSystem3DBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): ParticleSystem3DBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): ParticleSystem3DBuilder;
+  onPausedChanged(handler: DslSignalHandlerValue): ParticleSystem3DBuilder;
+  onPivotChanged(handler: DslSignalHandlerValue): ParticleSystem3DBuilder;
+  onPositionChanged(handler: DslSignalHandlerValue): ParticleSystem3DBuilder;
+  onRightChanged(handler: DslSignalHandlerValue): ParticleSystem3DBuilder;
+  onRotationChanged(handler: DslSignalHandlerValue): ParticleSystem3DBuilder;
+  onRunningChanged(handler: DslSignalHandlerValue): ParticleSystem3DBuilder;
+  onScaleChanged(handler: DslSignalHandlerValue): ParticleSystem3DBuilder;
+  onScenePositionChanged(handler: DslSignalHandlerValue): ParticleSystem3DBuilder;
+  onSceneRotationChanged(handler: DslSignalHandlerValue): ParticleSystem3DBuilder;
+  onSceneScaleChanged(handler: DslSignalHandlerValue): ParticleSystem3DBuilder;
+  onSceneTransformChanged(handler: DslSignalHandlerValue): ParticleSystem3DBuilder;
+  onSeedChanged(handler: DslSignalHandlerValue): ParticleSystem3DBuilder;
+  onStartTimeChanged(handler: DslSignalHandlerValue): ParticleSystem3DBuilder;
+  onStateChanged(handler: DslSignalHandlerValue): ParticleSystem3DBuilder;
+  onStaticFlagsChanged(handler: DslSignalHandlerValue): ParticleSystem3DBuilder;
+  onTimeChanged(handler: DslSignalHandlerValue): ParticleSystem3DBuilder;
+  onUpChanged(handler: DslSignalHandlerValue): ParticleSystem3DBuilder;
+  onUseRandomSeedChanged(handler: DslSignalHandlerValue): ParticleSystem3DBuilder;
+  onVisibleChanged(handler: DslSignalHandlerValue): ParticleSystem3DBuilder;
+  onXChanged(handler: DslSignalHandlerValue): ParticleSystem3DBuilder;
+  onYChanged(handler: DslSignalHandlerValue): ParticleSystem3DBuilder;
+  onZChanged(handler: DslSignalHandlerValue): ParticleSystem3DBuilder;
   loggingData(setup: (b: LoggingDataBuilder) => void): ParticleSystem3DBuilder;
 }
 

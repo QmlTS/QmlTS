@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlEnumToken,
   QmlObjectBuilder,
   QmlValue,
@@ -12,6 +13,7 @@ import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface ImageCaptureBuilder {
   id(id: string): ImageCaptureBuilder;
   child(obj: QmlObjectBuilder): ImageCaptureBuilder;
+  children(...objs: QmlObjectBuilder[]): ImageCaptureBuilder;
 
   fileFormat(value: QmlEnumToken): ImageCaptureBuilder;
   fileFormatBind(expr: string): ImageCaptureBuilder;
@@ -21,20 +23,20 @@ export interface ImageCaptureBuilder {
   objectNameBind(expr: string): ImageCaptureBuilder;
   quality(value: QmlEnumToken): ImageCaptureBuilder;
   qualityBind(expr: string): ImageCaptureBuilder;
-  onErrorChanged(body: string): ImageCaptureBuilder;
-  onErrorOccurred(body: string): ImageCaptureBuilder;
-  onFileFormatChanged(body: string): ImageCaptureBuilder;
-  onImageAvailable(body: string): ImageCaptureBuilder;
-  onImageCaptured(body: string): ImageCaptureBuilder;
-  onImageExposed(body: string): ImageCaptureBuilder;
-  onImageMetadataAvailable(body: string): ImageCaptureBuilder;
-  onImageSaved(body: string): ImageCaptureBuilder;
-  onMetaDataChanged(body: string): ImageCaptureBuilder;
-  onObjectNameChanged(body: string): ImageCaptureBuilder;
-  onPreviewChanged(body: string): ImageCaptureBuilder;
-  onQualityChanged(body: string): ImageCaptureBuilder;
-  onReadyForCaptureChanged(body: string): ImageCaptureBuilder;
-  onResolutionChanged(body: string): ImageCaptureBuilder;
+  onErrorChanged(handler: DslSignalHandlerValue): ImageCaptureBuilder;
+  onErrorOccurred(handler: DslSignalHandlerValue): ImageCaptureBuilder;
+  onFileFormatChanged(handler: DslSignalHandlerValue): ImageCaptureBuilder;
+  onImageAvailable(handler: DslSignalHandlerValue): ImageCaptureBuilder;
+  onImageCaptured(handler: DslSignalHandlerValue): ImageCaptureBuilder;
+  onImageExposed(handler: DslSignalHandlerValue): ImageCaptureBuilder;
+  onImageMetadataAvailable(handler: DslSignalHandlerValue): ImageCaptureBuilder;
+  onImageSaved(handler: DslSignalHandlerValue): ImageCaptureBuilder;
+  onMetaDataChanged(handler: DslSignalHandlerValue): ImageCaptureBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): ImageCaptureBuilder;
+  onPreviewChanged(handler: DslSignalHandlerValue): ImageCaptureBuilder;
+  onQualityChanged(handler: DslSignalHandlerValue): ImageCaptureBuilder;
+  onReadyForCaptureChanged(handler: DslSignalHandlerValue): ImageCaptureBuilder;
+  onResolutionChanged(handler: DslSignalHandlerValue): ImageCaptureBuilder;
 }
 
 const IMAGECAPTURE_META: TypeMetadata = {

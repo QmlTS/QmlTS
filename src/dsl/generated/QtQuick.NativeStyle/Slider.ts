@@ -2,7 +2,12 @@
 // Type: Slider
 // Generated from Qt 6.11.0
 
-import type { QmlEnumToken, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlEnumToken,
+  QmlObjectBuilder,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { QtObjectBuilder } from '../QML/QtObject.js';
 import type { ItemBuilder } from '../QtQuick/Item.js';
@@ -12,6 +17,7 @@ import type { LayerBuilder } from '../QtQuick/QQuickItemLayer.js';
 export interface SliderBuilder {
   id(id: string): SliderBuilder;
   child(obj: QmlObjectBuilder): SliderBuilder;
+  children(...objs: QmlObjectBuilder[]): SliderBuilder;
 
   activeFocusOnTab(value: boolean): SliderBuilder;
   activeFocusOnTabBind(expr: string): SliderBuilder;
@@ -77,42 +83,42 @@ export interface SliderBuilder {
   yBind(expr: string): SliderBuilder;
   z(value: number): SliderBuilder;
   zBind(expr: string): SliderBuilder;
-  onActiveFocusChanged(body: string): SliderBuilder;
-  onActiveFocusOnTabChanged(body: string): SliderBuilder;
-  onAntialiasingChanged(body: string): SliderBuilder;
-  onBaselineOffsetChanged(body: string): SliderBuilder;
-  onChildrenChanged(body: string): SliderBuilder;
-  onChildrenRectChanged(body: string): SliderBuilder;
-  onClipChanged(body: string): SliderBuilder;
-  onContainmentMaskChanged(body: string): SliderBuilder;
-  onContentPaddingChanged(body: string): SliderBuilder;
-  onControlChanged(body: string): SliderBuilder;
-  onEnabledChanged(body: string): SliderBuilder;
-  onFocusChanged(body: string): SliderBuilder;
-  onFocusPolicyChanged(body: string): SliderBuilder;
-  onFontChanged(body: string): SliderBuilder;
-  onHeightChanged(body: string): SliderBuilder;
-  onImplicitHeightChanged(body: string): SliderBuilder;
-  onImplicitWidthChanged(body: string): SliderBuilder;
-  onLayoutMarginsChanged(body: string): SliderBuilder;
-  onMinimumSizeChanged(body: string): SliderBuilder;
-  onObjectNameChanged(body: string): SliderBuilder;
-  onOpacityChanged(body: string): SliderBuilder;
-  onPaletteChanged(body: string): SliderBuilder;
-  onPaletteCreated(body: string): SliderBuilder;
-  onParentChanged(body: string): SliderBuilder;
-  onRotationChanged(body: string): SliderBuilder;
-  onScaleChanged(body: string): SliderBuilder;
-  onSmoothChanged(body: string): SliderBuilder;
-  onStateChanged(body: string): SliderBuilder;
-  onTransformOriginChanged(body: string): SliderBuilder;
-  onVisibleChanged(body: string): SliderBuilder;
-  onVisibleChildrenChanged(body: string): SliderBuilder;
-  onWidthChanged(body: string): SliderBuilder;
-  onWindowChanged(body: string): SliderBuilder;
-  onXChanged(body: string): SliderBuilder;
-  onYChanged(body: string): SliderBuilder;
-  onZChanged(body: string): SliderBuilder;
+  onActiveFocusChanged(handler: DslSignalHandlerValue): SliderBuilder;
+  onActiveFocusOnTabChanged(handler: DslSignalHandlerValue): SliderBuilder;
+  onAntialiasingChanged(handler: DslSignalHandlerValue): SliderBuilder;
+  onBaselineOffsetChanged(handler: DslSignalHandlerValue): SliderBuilder;
+  onChildrenChanged(handler: DslSignalHandlerValue): SliderBuilder;
+  onChildrenRectChanged(handler: DslSignalHandlerValue): SliderBuilder;
+  onClipChanged(handler: DslSignalHandlerValue): SliderBuilder;
+  onContainmentMaskChanged(handler: DslSignalHandlerValue): SliderBuilder;
+  onContentPaddingChanged(handler: DslSignalHandlerValue): SliderBuilder;
+  onControlChanged(handler: DslSignalHandlerValue): SliderBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): SliderBuilder;
+  onFocusChanged(handler: DslSignalHandlerValue): SliderBuilder;
+  onFocusPolicyChanged(handler: DslSignalHandlerValue): SliderBuilder;
+  onFontChanged(handler: DslSignalHandlerValue): SliderBuilder;
+  onHeightChanged(handler: DslSignalHandlerValue): SliderBuilder;
+  onImplicitHeightChanged(handler: DslSignalHandlerValue): SliderBuilder;
+  onImplicitWidthChanged(handler: DslSignalHandlerValue): SliderBuilder;
+  onLayoutMarginsChanged(handler: DslSignalHandlerValue): SliderBuilder;
+  onMinimumSizeChanged(handler: DslSignalHandlerValue): SliderBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): SliderBuilder;
+  onOpacityChanged(handler: DslSignalHandlerValue): SliderBuilder;
+  onPaletteChanged(handler: DslSignalHandlerValue): SliderBuilder;
+  onPaletteCreated(handler: DslSignalHandlerValue): SliderBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): SliderBuilder;
+  onRotationChanged(handler: DslSignalHandlerValue): SliderBuilder;
+  onScaleChanged(handler: DslSignalHandlerValue): SliderBuilder;
+  onSmoothChanged(handler: DslSignalHandlerValue): SliderBuilder;
+  onStateChanged(handler: DslSignalHandlerValue): SliderBuilder;
+  onTransformOriginChanged(handler: DslSignalHandlerValue): SliderBuilder;
+  onVisibleChanged(handler: DslSignalHandlerValue): SliderBuilder;
+  onVisibleChildrenChanged(handler: DslSignalHandlerValue): SliderBuilder;
+  onWidthChanged(handler: DslSignalHandlerValue): SliderBuilder;
+  onWindowChanged(handler: DslSignalHandlerValue): SliderBuilder;
+  onXChanged(handler: DslSignalHandlerValue): SliderBuilder;
+  onYChanged(handler: DslSignalHandlerValue): SliderBuilder;
+  onZChanged(handler: DslSignalHandlerValue): SliderBuilder;
   anchors(setup: (b: AnchorsBuilder) => void): SliderBuilder;
   layer(setup: (b: LayerBuilder) => void): SliderBuilder;
 }

@@ -2,7 +2,7 @@
 // Type: StateGroup
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import type { DslSignalHandlerValue, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 import type { AccessibleAttachedBuilder } from './Accessible.js';
 import type { EnterKeyAttachedBuilder } from './EnterKey.js';
@@ -23,13 +23,14 @@ import type { ViewTransitionAttachedBuilder } from './ViewTransition.js';
 export interface StateGroupBuilder {
   id(id: string): StateGroupBuilder;
   child(obj: QmlObjectBuilder): StateGroupBuilder;
+  children(...objs: QmlObjectBuilder[]): StateGroupBuilder;
 
   objectName(value: string): StateGroupBuilder;
   objectNameBind(expr: string): StateGroupBuilder;
   state(value: string): StateGroupBuilder;
   stateBind(expr: string): StateGroupBuilder;
-  onObjectNameChanged(body: string): StateGroupBuilder;
-  onStateChanged(body: string): StateGroupBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): StateGroupBuilder;
+  onStateChanged(handler: DslSignalHandlerValue): StateGroupBuilder;
   accessible(setup: (b: AccessibleAttachedBuilder) => void): StateGroupBuilder;
   drag(setup: (b: DragAttachedBuilder) => void): StateGroupBuilder;
   enterKey(setup: (b: EnterKeyAttachedBuilder) => void): StateGroupBuilder;

@@ -2,11 +2,17 @@
 // Type: EnvironmentLight
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 export interface EnvironmentLightBuilder {
   id(id: string): EnvironmentLightBuilder;
   child(obj: QmlObjectBuilder): EnvironmentLightBuilder;
+  children(...objs: QmlObjectBuilder[]): EnvironmentLightBuilder;
 
   enabled(value: boolean): EnvironmentLightBuilder;
   enabledBind(expr: string): EnvironmentLightBuilder;
@@ -20,15 +26,15 @@ export interface EnvironmentLightBuilder {
   parentBind(expr: string): EnvironmentLightBuilder;
   specular(value: QmlValue): EnvironmentLightBuilder;
   specularBind(expr: string): EnvironmentLightBuilder;
-  onAddedToEntity(body: string): EnvironmentLightBuilder;
-  onEnabledChanged(body: string): EnvironmentLightBuilder;
-  onIrradianceChanged(body: string): EnvironmentLightBuilder;
-  onNodeDestroyed(body: string): EnvironmentLightBuilder;
-  onObjectNameChanged(body: string): EnvironmentLightBuilder;
-  onParentChanged(body: string): EnvironmentLightBuilder;
-  onRemovedFromEntity(body: string): EnvironmentLightBuilder;
-  onShareableChanged(body: string): EnvironmentLightBuilder;
-  onSpecularChanged(body: string): EnvironmentLightBuilder;
+  onAddedToEntity(handler: DslSignalHandlerValue): EnvironmentLightBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): EnvironmentLightBuilder;
+  onIrradianceChanged(handler: DslSignalHandlerValue): EnvironmentLightBuilder;
+  onNodeDestroyed(handler: DslSignalHandlerValue): EnvironmentLightBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): EnvironmentLightBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): EnvironmentLightBuilder;
+  onRemovedFromEntity(handler: DslSignalHandlerValue): EnvironmentLightBuilder;
+  onShareableChanged(handler: DslSignalHandlerValue): EnvironmentLightBuilder;
+  onSpecularChanged(handler: DslSignalHandlerValue): EnvironmentLightBuilder;
 }
 
 const ENVIRONMENTLIGHT_META: TypeMetadata = {

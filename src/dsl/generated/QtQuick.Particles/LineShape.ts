@@ -2,19 +2,20 @@
 // Type: LineShape
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import type { DslSignalHandlerValue, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 import type { ItemParticleAttachedBuilder } from './QQuickItemParticleAttached.js';
 export interface LineShapeBuilder {
   id(id: string): LineShapeBuilder;
   child(obj: QmlObjectBuilder): LineShapeBuilder;
+  children(...objs: QmlObjectBuilder[]): LineShapeBuilder;
 
   mirrored(value: boolean): LineShapeBuilder;
   mirroredBind(expr: string): LineShapeBuilder;
   objectName(value: string): LineShapeBuilder;
   objectNameBind(expr: string): LineShapeBuilder;
-  onMirroredChanged(body: string): LineShapeBuilder;
-  onObjectNameChanged(body: string): LineShapeBuilder;
+  onMirroredChanged(handler: DslSignalHandlerValue): LineShapeBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): LineShapeBuilder;
   itemParticle(setup: (b: ItemParticleAttachedBuilder) => void): LineShapeBuilder;
 }
 

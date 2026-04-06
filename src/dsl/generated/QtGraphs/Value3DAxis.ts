@@ -2,12 +2,13 @@
 // Type: Value3DAxis
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import type { DslSignalHandlerValue, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { Value3DAxisFormatterBuilder } from './Value3DAxisFormatter.js';
 export interface Value3DAxisBuilder {
   id(id: string): Value3DAxisBuilder;
   child(obj: QmlObjectBuilder): Value3DAxisBuilder;
+  children(...objs: QmlObjectBuilder[]): Value3DAxisBuilder;
 
   autoAdjustRange(value: boolean): Value3DAxisBuilder;
   autoAdjustRangeBind(expr: string): Value3DAxisBuilder;
@@ -45,27 +46,27 @@ export interface Value3DAxisBuilder {
   titleOffsetBind(expr: string): Value3DAxisBuilder;
   titleVisible(value: boolean): Value3DAxisBuilder;
   titleVisibleBind(expr: string): Value3DAxisBuilder;
-  onAutoAdjustRangeChanged(body: string): Value3DAxisBuilder;
-  onFormatterChanged(body: string): Value3DAxisBuilder;
-  onFormatterDirty(body: string): Value3DAxisBuilder;
-  onLabelAutoAngleChanged(body: string): Value3DAxisBuilder;
-  onLabelFormatChanged(body: string): Value3DAxisBuilder;
-  onLabelSizeChanged(body: string): Value3DAxisBuilder;
-  onLabelVisibleChanged(body: string): Value3DAxisBuilder;
-  onLabelsChanged(body: string): Value3DAxisBuilder;
-  onMaxChanged(body: string): Value3DAxisBuilder;
-  onMinChanged(body: string): Value3DAxisBuilder;
-  onObjectNameChanged(body: string): Value3DAxisBuilder;
-  onOrientationChanged(body: string): Value3DAxisBuilder;
-  onRangeChanged(body: string): Value3DAxisBuilder;
-  onReversedChanged(body: string): Value3DAxisBuilder;
-  onScaleLabelsByCountChanged(body: string): Value3DAxisBuilder;
-  onSegmentCountChanged(body: string): Value3DAxisBuilder;
-  onSubSegmentCountChanged(body: string): Value3DAxisBuilder;
-  onTitleChanged(body: string): Value3DAxisBuilder;
-  onTitleFixedChanged(body: string): Value3DAxisBuilder;
-  onTitleOffsetChanged(body: string): Value3DAxisBuilder;
-  onTitleVisibleChanged(body: string): Value3DAxisBuilder;
+  onAutoAdjustRangeChanged(handler: DslSignalHandlerValue): Value3DAxisBuilder;
+  onFormatterChanged(handler: DslSignalHandlerValue): Value3DAxisBuilder;
+  onFormatterDirty(handler: DslSignalHandlerValue): Value3DAxisBuilder;
+  onLabelAutoAngleChanged(handler: DslSignalHandlerValue): Value3DAxisBuilder;
+  onLabelFormatChanged(handler: DslSignalHandlerValue): Value3DAxisBuilder;
+  onLabelSizeChanged(handler: DslSignalHandlerValue): Value3DAxisBuilder;
+  onLabelVisibleChanged(handler: DslSignalHandlerValue): Value3DAxisBuilder;
+  onLabelsChanged(handler: DslSignalHandlerValue): Value3DAxisBuilder;
+  onMaxChanged(handler: DslSignalHandlerValue): Value3DAxisBuilder;
+  onMinChanged(handler: DslSignalHandlerValue): Value3DAxisBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): Value3DAxisBuilder;
+  onOrientationChanged(handler: DslSignalHandlerValue): Value3DAxisBuilder;
+  onRangeChanged(handler: DslSignalHandlerValue): Value3DAxisBuilder;
+  onReversedChanged(handler: DslSignalHandlerValue): Value3DAxisBuilder;
+  onScaleLabelsByCountChanged(handler: DslSignalHandlerValue): Value3DAxisBuilder;
+  onSegmentCountChanged(handler: DslSignalHandlerValue): Value3DAxisBuilder;
+  onSubSegmentCountChanged(handler: DslSignalHandlerValue): Value3DAxisBuilder;
+  onTitleChanged(handler: DslSignalHandlerValue): Value3DAxisBuilder;
+  onTitleFixedChanged(handler: DslSignalHandlerValue): Value3DAxisBuilder;
+  onTitleOffsetChanged(handler: DslSignalHandlerValue): Value3DAxisBuilder;
+  onTitleVisibleChanged(handler: DslSignalHandlerValue): Value3DAxisBuilder;
 }
 
 const VALUE3DAXIS_META: TypeMetadata = {

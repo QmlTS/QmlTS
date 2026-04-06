@@ -2,11 +2,18 @@
 // Type: SceneLoader
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlUrl, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlObjectBuilder,
+  QmlUrl,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface SceneLoaderBuilder {
   id(id: string): SceneLoaderBuilder;
   child(obj: QmlObjectBuilder): SceneLoaderBuilder;
+  children(...objs: QmlObjectBuilder[]): SceneLoaderBuilder;
 
   enabled(value: boolean): SceneLoaderBuilder;
   enabledBind(expr: string): SceneLoaderBuilder;
@@ -18,15 +25,15 @@ export interface SceneLoaderBuilder {
   parentBind(expr: string): SceneLoaderBuilder;
   source(value: QmlUrl): SceneLoaderBuilder;
   sourceBind(expr: string): SceneLoaderBuilder;
-  onAddedToEntity(body: string): SceneLoaderBuilder;
-  onEnabledChanged(body: string): SceneLoaderBuilder;
-  onNodeDestroyed(body: string): SceneLoaderBuilder;
-  onObjectNameChanged(body: string): SceneLoaderBuilder;
-  onParentChanged(body: string): SceneLoaderBuilder;
-  onRemovedFromEntity(body: string): SceneLoaderBuilder;
-  onShareableChanged(body: string): SceneLoaderBuilder;
-  onSourceChanged(body: string): SceneLoaderBuilder;
-  onStatusChanged(body: string): SceneLoaderBuilder;
+  onAddedToEntity(handler: DslSignalHandlerValue): SceneLoaderBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): SceneLoaderBuilder;
+  onNodeDestroyed(handler: DslSignalHandlerValue): SceneLoaderBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): SceneLoaderBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): SceneLoaderBuilder;
+  onRemovedFromEntity(handler: DslSignalHandlerValue): SceneLoaderBuilder;
+  onShareableChanged(handler: DslSignalHandlerValue): SceneLoaderBuilder;
+  onSourceChanged(handler: DslSignalHandlerValue): SceneLoaderBuilder;
+  onStatusChanged(handler: DslSignalHandlerValue): SceneLoaderBuilder;
 }
 
 const SCENELOADER_META: TypeMetadata = {

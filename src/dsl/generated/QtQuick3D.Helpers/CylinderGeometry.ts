@@ -2,11 +2,17 @@
 // Type: CylinderGeometry
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface CylinderGeometryBuilder {
   id(id: string): CylinderGeometryBuilder;
   child(obj: QmlObjectBuilder): CylinderGeometryBuilder;
+  children(...objs: QmlObjectBuilder[]): CylinderGeometryBuilder;
 
   asynchronous(value: boolean): CylinderGeometryBuilder;
   asynchronousBind(expr: string): CylinderGeometryBuilder;
@@ -24,18 +30,18 @@ export interface CylinderGeometryBuilder {
   segmentsBind(expr: string): CylinderGeometryBuilder;
   state(value: string): CylinderGeometryBuilder;
   stateBind(expr: string): CylinderGeometryBuilder;
-  onAsynchronousChanged(body: string): CylinderGeometryBuilder;
-  onChildrenChanged(body: string): CylinderGeometryBuilder;
-  onGeometryChanged(body: string): CylinderGeometryBuilder;
-  onGeometryNodeDirty(body: string): CylinderGeometryBuilder;
-  onLengthChanged(body: string): CylinderGeometryBuilder;
-  onObjectNameChanged(body: string): CylinderGeometryBuilder;
-  onParentChanged(body: string): CylinderGeometryBuilder;
-  onRadiusChanged(body: string): CylinderGeometryBuilder;
-  onRingsChanged(body: string): CylinderGeometryBuilder;
-  onSegmentsChanged(body: string): CylinderGeometryBuilder;
-  onStateChanged(body: string): CylinderGeometryBuilder;
-  onStatusChanged(body: string): CylinderGeometryBuilder;
+  onAsynchronousChanged(handler: DslSignalHandlerValue): CylinderGeometryBuilder;
+  onChildrenChanged(handler: DslSignalHandlerValue): CylinderGeometryBuilder;
+  onGeometryChanged(handler: DslSignalHandlerValue): CylinderGeometryBuilder;
+  onGeometryNodeDirty(handler: DslSignalHandlerValue): CylinderGeometryBuilder;
+  onLengthChanged(handler: DslSignalHandlerValue): CylinderGeometryBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): CylinderGeometryBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): CylinderGeometryBuilder;
+  onRadiusChanged(handler: DslSignalHandlerValue): CylinderGeometryBuilder;
+  onRingsChanged(handler: DslSignalHandlerValue): CylinderGeometryBuilder;
+  onSegmentsChanged(handler: DslSignalHandlerValue): CylinderGeometryBuilder;
+  onStateChanged(handler: DslSignalHandlerValue): CylinderGeometryBuilder;
+  onStatusChanged(handler: DslSignalHandlerValue): CylinderGeometryBuilder;
 }
 
 const CYLINDERGEOMETRY_META: TypeMetadata = {

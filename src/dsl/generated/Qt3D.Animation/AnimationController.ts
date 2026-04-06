@@ -2,12 +2,13 @@
 // Type: AnimationController
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import type { DslSignalHandlerValue, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 import type { EntityBuilder } from '../Qt3D.Core/Entity.js';
 export interface AnimationControllerBuilder {
   id(id: string): AnimationControllerBuilder;
   child(obj: QmlObjectBuilder): AnimationControllerBuilder;
+  children(...objs: QmlObjectBuilder[]): AnimationControllerBuilder;
 
   activeAnimationGroup(value: number): AnimationControllerBuilder;
   activeAnimationGroupBind(expr: string): AnimationControllerBuilder;
@@ -23,13 +24,13 @@ export interface AnimationControllerBuilder {
   positionScaleBind(expr: string): AnimationControllerBuilder;
   recursive(value: boolean): AnimationControllerBuilder;
   recursiveBind(expr: string): AnimationControllerBuilder;
-  onActiveAnimationGroupChanged(body: string): AnimationControllerBuilder;
-  onEntityChanged(body: string): AnimationControllerBuilder;
-  onObjectNameChanged(body: string): AnimationControllerBuilder;
-  onPositionChanged(body: string): AnimationControllerBuilder;
-  onPositionOffsetChanged(body: string): AnimationControllerBuilder;
-  onPositionScaleChanged(body: string): AnimationControllerBuilder;
-  onRecursiveChanged(body: string): AnimationControllerBuilder;
+  onActiveAnimationGroupChanged(handler: DslSignalHandlerValue): AnimationControllerBuilder;
+  onEntityChanged(handler: DslSignalHandlerValue): AnimationControllerBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): AnimationControllerBuilder;
+  onPositionChanged(handler: DslSignalHandlerValue): AnimationControllerBuilder;
+  onPositionOffsetChanged(handler: DslSignalHandlerValue): AnimationControllerBuilder;
+  onPositionScaleChanged(handler: DslSignalHandlerValue): AnimationControllerBuilder;
+  onRecursiveChanged(handler: DslSignalHandlerValue): AnimationControllerBuilder;
 }
 
 const ANIMATIONCONTROLLER_META: TypeMetadata = {

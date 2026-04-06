@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlEnumToken,
   QmlObjectBuilder,
   QmlValue,
@@ -12,6 +13,7 @@ import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface Texture2DArrayBuilder {
   id(id: string): Texture2DArrayBuilder;
   child(obj: QmlObjectBuilder): Texture2DArrayBuilder;
+  children(...objs: QmlObjectBuilder[]): Texture2DArrayBuilder;
 
   comparisonFunction(value: QmlEnumToken): Texture2DArrayBuilder;
   comparisonFunctionBind(expr: string): Texture2DArrayBuilder;
@@ -45,26 +47,26 @@ export interface Texture2DArrayBuilder {
   samplesBind(expr: string): Texture2DArrayBuilder;
   width(value: number): Texture2DArrayBuilder;
   widthBind(expr: string): Texture2DArrayBuilder;
-  onComparisonFunctionChanged(body: string): Texture2DArrayBuilder;
-  onComparisonModeChanged(body: string): Texture2DArrayBuilder;
-  onDepthChanged(body: string): Texture2DArrayBuilder;
-  onEnabledChanged(body: string): Texture2DArrayBuilder;
-  onFormatChanged(body: string): Texture2DArrayBuilder;
-  onGenerateMipMapsChanged(body: string): Texture2DArrayBuilder;
-  onHandleChanged(body: string): Texture2DArrayBuilder;
-  onHandleTypeChanged(body: string): Texture2DArrayBuilder;
-  onHeightChanged(body: string): Texture2DArrayBuilder;
-  onLayersChanged(body: string): Texture2DArrayBuilder;
-  onMagnificationFilterChanged(body: string): Texture2DArrayBuilder;
-  onMaximumAnisotropyChanged(body: string): Texture2DArrayBuilder;
-  onMinificationFilterChanged(body: string): Texture2DArrayBuilder;
-  onMipLevelsChanged(body: string): Texture2DArrayBuilder;
-  onNodeDestroyed(body: string): Texture2DArrayBuilder;
-  onObjectNameChanged(body: string): Texture2DArrayBuilder;
-  onParentChanged(body: string): Texture2DArrayBuilder;
-  onSamplesChanged(body: string): Texture2DArrayBuilder;
-  onStatusChanged(body: string): Texture2DArrayBuilder;
-  onWidthChanged(body: string): Texture2DArrayBuilder;
+  onComparisonFunctionChanged(handler: DslSignalHandlerValue): Texture2DArrayBuilder;
+  onComparisonModeChanged(handler: DslSignalHandlerValue): Texture2DArrayBuilder;
+  onDepthChanged(handler: DslSignalHandlerValue): Texture2DArrayBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): Texture2DArrayBuilder;
+  onFormatChanged(handler: DslSignalHandlerValue): Texture2DArrayBuilder;
+  onGenerateMipMapsChanged(handler: DslSignalHandlerValue): Texture2DArrayBuilder;
+  onHandleChanged(handler: DslSignalHandlerValue): Texture2DArrayBuilder;
+  onHandleTypeChanged(handler: DslSignalHandlerValue): Texture2DArrayBuilder;
+  onHeightChanged(handler: DslSignalHandlerValue): Texture2DArrayBuilder;
+  onLayersChanged(handler: DslSignalHandlerValue): Texture2DArrayBuilder;
+  onMagnificationFilterChanged(handler: DslSignalHandlerValue): Texture2DArrayBuilder;
+  onMaximumAnisotropyChanged(handler: DslSignalHandlerValue): Texture2DArrayBuilder;
+  onMinificationFilterChanged(handler: DslSignalHandlerValue): Texture2DArrayBuilder;
+  onMipLevelsChanged(handler: DslSignalHandlerValue): Texture2DArrayBuilder;
+  onNodeDestroyed(handler: DslSignalHandlerValue): Texture2DArrayBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): Texture2DArrayBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): Texture2DArrayBuilder;
+  onSamplesChanged(handler: DslSignalHandlerValue): Texture2DArrayBuilder;
+  onStatusChanged(handler: DslSignalHandlerValue): Texture2DArrayBuilder;
+  onWidthChanged(handler: DslSignalHandlerValue): Texture2DArrayBuilder;
 }
 
 const TEXTURE2DARRAY_META: TypeMetadata = {

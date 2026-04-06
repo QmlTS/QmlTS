@@ -2,11 +2,17 @@
 // Type: StencilOperation
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 export interface StencilOperationBuilder {
   id(id: string): StencilOperationBuilder;
   child(obj: QmlObjectBuilder): StencilOperationBuilder;
+  children(...objs: QmlObjectBuilder[]): StencilOperationBuilder;
 
   enabled(value: boolean): StencilOperationBuilder;
   enabledBind(expr: string): StencilOperationBuilder;
@@ -14,10 +20,10 @@ export interface StencilOperationBuilder {
   objectNameBind(expr: string): StencilOperationBuilder;
   parent(value: QmlValue): StencilOperationBuilder;
   parentBind(expr: string): StencilOperationBuilder;
-  onEnabledChanged(body: string): StencilOperationBuilder;
-  onNodeDestroyed(body: string): StencilOperationBuilder;
-  onObjectNameChanged(body: string): StencilOperationBuilder;
-  onParentChanged(body: string): StencilOperationBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): StencilOperationBuilder;
+  onNodeDestroyed(handler: DslSignalHandlerValue): StencilOperationBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): StencilOperationBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): StencilOperationBuilder;
 }
 
 const STENCILOPERATION_META: TypeMetadata = {

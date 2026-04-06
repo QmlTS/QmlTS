@@ -2,11 +2,17 @@
 // Type: PolygonOffset
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 export interface PolygonOffsetBuilder {
   id(id: string): PolygonOffsetBuilder;
   child(obj: QmlObjectBuilder): PolygonOffsetBuilder;
+  children(...objs: QmlObjectBuilder[]): PolygonOffsetBuilder;
 
   depthSteps(value: number): PolygonOffsetBuilder;
   depthStepsBind(expr: string): PolygonOffsetBuilder;
@@ -18,12 +24,12 @@ export interface PolygonOffsetBuilder {
   parentBind(expr: string): PolygonOffsetBuilder;
   scaleFactor(value: number): PolygonOffsetBuilder;
   scaleFactorBind(expr: string): PolygonOffsetBuilder;
-  onDepthStepsChanged(body: string): PolygonOffsetBuilder;
-  onEnabledChanged(body: string): PolygonOffsetBuilder;
-  onNodeDestroyed(body: string): PolygonOffsetBuilder;
-  onObjectNameChanged(body: string): PolygonOffsetBuilder;
-  onParentChanged(body: string): PolygonOffsetBuilder;
-  onScaleFactorChanged(body: string): PolygonOffsetBuilder;
+  onDepthStepsChanged(handler: DslSignalHandlerValue): PolygonOffsetBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): PolygonOffsetBuilder;
+  onNodeDestroyed(handler: DslSignalHandlerValue): PolygonOffsetBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): PolygonOffsetBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): PolygonOffsetBuilder;
+  onScaleFactorChanged(handler: DslSignalHandlerValue): PolygonOffsetBuilder;
 }
 
 const POLYGONOFFSET_META: TypeMetadata = {

@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlEnumToken,
   QmlObjectBuilder,
   QmlValue,
@@ -12,6 +13,7 @@ import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface SharedGLTextureBuilder {
   id(id: string): SharedGLTextureBuilder;
   child(obj: QmlObjectBuilder): SharedGLTextureBuilder;
+  children(...objs: QmlObjectBuilder[]): SharedGLTextureBuilder;
 
   comparisonFunction(value: QmlEnumToken): SharedGLTextureBuilder;
   comparisonFunctionBind(expr: string): SharedGLTextureBuilder;
@@ -47,27 +49,27 @@ export interface SharedGLTextureBuilder {
   textureIdBind(expr: string): SharedGLTextureBuilder;
   width(value: number): SharedGLTextureBuilder;
   widthBind(expr: string): SharedGLTextureBuilder;
-  onComparisonFunctionChanged(body: string): SharedGLTextureBuilder;
-  onComparisonModeChanged(body: string): SharedGLTextureBuilder;
-  onDepthChanged(body: string): SharedGLTextureBuilder;
-  onEnabledChanged(body: string): SharedGLTextureBuilder;
-  onFormatChanged(body: string): SharedGLTextureBuilder;
-  onGenerateMipMapsChanged(body: string): SharedGLTextureBuilder;
-  onHandleChanged(body: string): SharedGLTextureBuilder;
-  onHandleTypeChanged(body: string): SharedGLTextureBuilder;
-  onHeightChanged(body: string): SharedGLTextureBuilder;
-  onLayersChanged(body: string): SharedGLTextureBuilder;
-  onMagnificationFilterChanged(body: string): SharedGLTextureBuilder;
-  onMaximumAnisotropyChanged(body: string): SharedGLTextureBuilder;
-  onMinificationFilterChanged(body: string): SharedGLTextureBuilder;
-  onMipLevelsChanged(body: string): SharedGLTextureBuilder;
-  onNodeDestroyed(body: string): SharedGLTextureBuilder;
-  onObjectNameChanged(body: string): SharedGLTextureBuilder;
-  onParentChanged(body: string): SharedGLTextureBuilder;
-  onSamplesChanged(body: string): SharedGLTextureBuilder;
-  onStatusChanged(body: string): SharedGLTextureBuilder;
-  onTextureIdChanged(body: string): SharedGLTextureBuilder;
-  onWidthChanged(body: string): SharedGLTextureBuilder;
+  onComparisonFunctionChanged(handler: DslSignalHandlerValue): SharedGLTextureBuilder;
+  onComparisonModeChanged(handler: DslSignalHandlerValue): SharedGLTextureBuilder;
+  onDepthChanged(handler: DslSignalHandlerValue): SharedGLTextureBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): SharedGLTextureBuilder;
+  onFormatChanged(handler: DslSignalHandlerValue): SharedGLTextureBuilder;
+  onGenerateMipMapsChanged(handler: DslSignalHandlerValue): SharedGLTextureBuilder;
+  onHandleChanged(handler: DslSignalHandlerValue): SharedGLTextureBuilder;
+  onHandleTypeChanged(handler: DslSignalHandlerValue): SharedGLTextureBuilder;
+  onHeightChanged(handler: DslSignalHandlerValue): SharedGLTextureBuilder;
+  onLayersChanged(handler: DslSignalHandlerValue): SharedGLTextureBuilder;
+  onMagnificationFilterChanged(handler: DslSignalHandlerValue): SharedGLTextureBuilder;
+  onMaximumAnisotropyChanged(handler: DslSignalHandlerValue): SharedGLTextureBuilder;
+  onMinificationFilterChanged(handler: DslSignalHandlerValue): SharedGLTextureBuilder;
+  onMipLevelsChanged(handler: DslSignalHandlerValue): SharedGLTextureBuilder;
+  onNodeDestroyed(handler: DslSignalHandlerValue): SharedGLTextureBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): SharedGLTextureBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): SharedGLTextureBuilder;
+  onSamplesChanged(handler: DslSignalHandlerValue): SharedGLTextureBuilder;
+  onStatusChanged(handler: DslSignalHandlerValue): SharedGLTextureBuilder;
+  onTextureIdChanged(handler: DslSignalHandlerValue): SharedGLTextureBuilder;
+  onWidthChanged(handler: DslSignalHandlerValue): SharedGLTextureBuilder;
 }
 
 const SHAREDGLTEXTURE_META: TypeMetadata = {

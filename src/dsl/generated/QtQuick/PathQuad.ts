@@ -2,7 +2,7 @@
 // Type: PathQuad
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import type { DslSignalHandlerValue, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 import type { AccessibleAttachedBuilder } from './Accessible.js';
 import type { EnterKeyAttachedBuilder } from './EnterKey.js';
@@ -23,6 +23,7 @@ import type { ViewTransitionAttachedBuilder } from './ViewTransition.js';
 export interface PathQuadBuilder {
   id(id: string): PathQuadBuilder;
   child(obj: QmlObjectBuilder): PathQuadBuilder;
+  children(...objs: QmlObjectBuilder[]): PathQuadBuilder;
 
   controlX(value: number): PathQuadBuilder;
   controlXBind(expr: string): PathQuadBuilder;
@@ -42,16 +43,16 @@ export interface PathQuadBuilder {
   xBind(expr: string): PathQuadBuilder;
   y(value: number): PathQuadBuilder;
   yBind(expr: string): PathQuadBuilder;
-  onChanged(body: string): PathQuadBuilder;
-  onControlXChanged(body: string): PathQuadBuilder;
-  onControlYChanged(body: string): PathQuadBuilder;
-  onObjectNameChanged(body: string): PathQuadBuilder;
-  onRelativeControlXChanged(body: string): PathQuadBuilder;
-  onRelativeControlYChanged(body: string): PathQuadBuilder;
-  onRelativeXChanged(body: string): PathQuadBuilder;
-  onRelativeYChanged(body: string): PathQuadBuilder;
-  onXChanged(body: string): PathQuadBuilder;
-  onYChanged(body: string): PathQuadBuilder;
+  onChanged(handler: DslSignalHandlerValue): PathQuadBuilder;
+  onControlXChanged(handler: DslSignalHandlerValue): PathQuadBuilder;
+  onControlYChanged(handler: DslSignalHandlerValue): PathQuadBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): PathQuadBuilder;
+  onRelativeControlXChanged(handler: DslSignalHandlerValue): PathQuadBuilder;
+  onRelativeControlYChanged(handler: DslSignalHandlerValue): PathQuadBuilder;
+  onRelativeXChanged(handler: DslSignalHandlerValue): PathQuadBuilder;
+  onRelativeYChanged(handler: DslSignalHandlerValue): PathQuadBuilder;
+  onXChanged(handler: DslSignalHandlerValue): PathQuadBuilder;
+  onYChanged(handler: DslSignalHandlerValue): PathQuadBuilder;
   accessible(setup: (b: AccessibleAttachedBuilder) => void): PathQuadBuilder;
   drag(setup: (b: DragAttachedBuilder) => void): PathQuadBuilder;
   enterKey(setup: (b: EnterKeyAttachedBuilder) => void): PathQuadBuilder;

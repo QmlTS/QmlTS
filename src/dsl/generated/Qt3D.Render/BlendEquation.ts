@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlEnumToken,
   QmlObjectBuilder,
   QmlValue,
@@ -12,6 +13,7 @@ import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface BlendEquationBuilder {
   id(id: string): BlendEquationBuilder;
   child(obj: QmlObjectBuilder): BlendEquationBuilder;
+  children(...objs: QmlObjectBuilder[]): BlendEquationBuilder;
 
   blendFunction(value: QmlEnumToken): BlendEquationBuilder;
   blendFunctionBind(expr: string): BlendEquationBuilder;
@@ -21,11 +23,11 @@ export interface BlendEquationBuilder {
   objectNameBind(expr: string): BlendEquationBuilder;
   parent(value: QmlValue): BlendEquationBuilder;
   parentBind(expr: string): BlendEquationBuilder;
-  onBlendFunctionChanged(body: string): BlendEquationBuilder;
-  onEnabledChanged(body: string): BlendEquationBuilder;
-  onNodeDestroyed(body: string): BlendEquationBuilder;
-  onObjectNameChanged(body: string): BlendEquationBuilder;
-  onParentChanged(body: string): BlendEquationBuilder;
+  onBlendFunctionChanged(handler: DslSignalHandlerValue): BlendEquationBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): BlendEquationBuilder;
+  onNodeDestroyed(handler: DslSignalHandlerValue): BlendEquationBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): BlendEquationBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): BlendEquationBuilder;
 }
 
 const BLENDEQUATION_META: TypeMetadata = {

@@ -2,13 +2,20 @@
 // Type: MaterialAdapter
 // Generated from Qt 6.11.0
 
-import type { QmlEnumToken, QmlObjectBuilder, QmlUrl, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlEnumToken,
+  QmlObjectBuilder,
+  QmlUrl,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 import type { NodeBuilder } from '../QtQuick3D/Node.js';
 import type { UniformModelBuilder } from './UniformModel.js';
 export interface MaterialAdapterBuilder {
   id(id: string): MaterialAdapterBuilder;
   child(obj: QmlObjectBuilder): MaterialAdapterBuilder;
+  children(...objs: QmlObjectBuilder[]): MaterialAdapterBuilder;
 
   cullMode(value: QmlEnumToken): MaterialAdapterBuilder;
   cullModeBind(expr: string): MaterialAdapterBuilder;
@@ -34,23 +41,23 @@ export interface MaterialAdapterBuilder {
   unsavedChangesBind(expr: string): MaterialAdapterBuilder;
   vertexShader(value: string): MaterialAdapterBuilder;
   vertexShaderBind(expr: string): MaterialAdapterBuilder;
-  onCullModeChanged(body: string): MaterialAdapterBuilder;
-  onDepthDrawModeChanged(body: string): MaterialAdapterBuilder;
-  onDstBlendChanged(body: string): MaterialAdapterBuilder;
-  onErrorOccurred(body: string): MaterialAdapterBuilder;
-  onFragmentShaderChanged(body: string): MaterialAdapterBuilder;
-  onFragmentStatusChanged(body: string): MaterialAdapterBuilder;
-  onMaterialChanged(body: string): MaterialAdapterBuilder;
-  onMaterialSaveFileChanged(body: string): MaterialAdapterBuilder;
-  onObjectNameChanged(body: string): MaterialAdapterBuilder;
-  onPostMaterialSaved(body: string): MaterialAdapterBuilder;
-  onRootNodeChanged(body: string): MaterialAdapterBuilder;
-  onShadingModeChanged(body: string): MaterialAdapterBuilder;
-  onSrcBlendChanged(body: string): MaterialAdapterBuilder;
-  onUniformModelChanged(body: string): MaterialAdapterBuilder;
-  onUnsavedChangesChanged(body: string): MaterialAdapterBuilder;
-  onVertexShaderChanged(body: string): MaterialAdapterBuilder;
-  onVertexStatusChanged(body: string): MaterialAdapterBuilder;
+  onCullModeChanged(handler: DslSignalHandlerValue): MaterialAdapterBuilder;
+  onDepthDrawModeChanged(handler: DslSignalHandlerValue): MaterialAdapterBuilder;
+  onDstBlendChanged(handler: DslSignalHandlerValue): MaterialAdapterBuilder;
+  onErrorOccurred(handler: DslSignalHandlerValue): MaterialAdapterBuilder;
+  onFragmentShaderChanged(handler: DslSignalHandlerValue): MaterialAdapterBuilder;
+  onFragmentStatusChanged(handler: DslSignalHandlerValue): MaterialAdapterBuilder;
+  onMaterialChanged(handler: DslSignalHandlerValue): MaterialAdapterBuilder;
+  onMaterialSaveFileChanged(handler: DslSignalHandlerValue): MaterialAdapterBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): MaterialAdapterBuilder;
+  onPostMaterialSaved(handler: DslSignalHandlerValue): MaterialAdapterBuilder;
+  onRootNodeChanged(handler: DslSignalHandlerValue): MaterialAdapterBuilder;
+  onShadingModeChanged(handler: DslSignalHandlerValue): MaterialAdapterBuilder;
+  onSrcBlendChanged(handler: DslSignalHandlerValue): MaterialAdapterBuilder;
+  onUniformModelChanged(handler: DslSignalHandlerValue): MaterialAdapterBuilder;
+  onUnsavedChangesChanged(handler: DslSignalHandlerValue): MaterialAdapterBuilder;
+  onVertexShaderChanged(handler: DslSignalHandlerValue): MaterialAdapterBuilder;
+  onVertexStatusChanged(handler: DslSignalHandlerValue): MaterialAdapterBuilder;
 }
 
 const MATERIALADAPTER_META: TypeMetadata = {

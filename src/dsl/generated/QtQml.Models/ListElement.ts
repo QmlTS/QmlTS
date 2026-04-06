@@ -2,7 +2,7 @@
 // Type: ListElement
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import type { DslSignalHandlerValue, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 import type { DelegateModelAttachedBuilder } from './QQmlDelegateModelAttached.js';
 import type { ObjectModelAttachedBuilder } from './QQmlObjectModelAttached.js';
@@ -10,10 +10,11 @@ import type { PackageAttachedBuilder } from './QQuickPackageAttached.js';
 export interface ListElementBuilder {
   id(id: string): ListElementBuilder;
   child(obj: QmlObjectBuilder): ListElementBuilder;
+  children(...objs: QmlObjectBuilder[]): ListElementBuilder;
 
   objectName(value: string): ListElementBuilder;
   objectNameBind(expr: string): ListElementBuilder;
-  onObjectNameChanged(body: string): ListElementBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): ListElementBuilder;
   delegateModel(setup: (b: DelegateModelAttachedBuilder) => void): ListElementBuilder;
   objectModel(setup: (b: ObjectModelAttachedBuilder) => void): ListElementBuilder;
   package(setup: (b: PackageAttachedBuilder) => void): ListElementBuilder;

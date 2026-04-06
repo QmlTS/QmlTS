@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlEnumToken,
   QmlObjectBuilder,
   QmlUrl,
@@ -14,6 +15,7 @@ import type { SelectedNameFilterBuilder } from './QQuickLabsPlatformFileNameFilt
 export interface FileDialogBuilder {
   id(id: string): FileDialogBuilder;
   child(obj: QmlObjectBuilder): FileDialogBuilder;
+  children(...objs: QmlObjectBuilder[]): FileDialogBuilder;
 
   acceptLabel(value: string): FileDialogBuilder;
   acceptLabelBind(expr: string): FileDialogBuilder;
@@ -51,26 +53,26 @@ export interface FileDialogBuilder {
   titleBind(expr: string): FileDialogBuilder;
   visible(value: boolean): FileDialogBuilder;
   visibleBind(expr: string): FileDialogBuilder;
-  onAcceptLabelChanged(body: string): FileDialogBuilder;
-  onAccepted(body: string): FileDialogBuilder;
-  onCurrentFileChanged(body: string): FileDialogBuilder;
-  onCurrentFilesChanged(body: string): FileDialogBuilder;
-  onDefaultSuffixChanged(body: string): FileDialogBuilder;
-  onFileChanged(body: string): FileDialogBuilder;
-  onFileModeChanged(body: string): FileDialogBuilder;
-  onFilesChanged(body: string): FileDialogBuilder;
-  onFlagsChanged(body: string): FileDialogBuilder;
-  onFolderChanged(body: string): FileDialogBuilder;
-  onModalityChanged(body: string): FileDialogBuilder;
-  onNameFiltersChanged(body: string): FileDialogBuilder;
-  onObjectNameChanged(body: string): FileDialogBuilder;
-  onOptionsChanged(body: string): FileDialogBuilder;
-  onParentWindowChanged(body: string): FileDialogBuilder;
-  onRejectLabelChanged(body: string): FileDialogBuilder;
-  onRejected(body: string): FileDialogBuilder;
-  onResultChanged(body: string): FileDialogBuilder;
-  onTitleChanged(body: string): FileDialogBuilder;
-  onVisibleChanged(body: string): FileDialogBuilder;
+  onAcceptLabelChanged(handler: DslSignalHandlerValue): FileDialogBuilder;
+  onAccepted(handler: DslSignalHandlerValue): FileDialogBuilder;
+  onCurrentFileChanged(handler: DslSignalHandlerValue): FileDialogBuilder;
+  onCurrentFilesChanged(handler: DslSignalHandlerValue): FileDialogBuilder;
+  onDefaultSuffixChanged(handler: DslSignalHandlerValue): FileDialogBuilder;
+  onFileChanged(handler: DslSignalHandlerValue): FileDialogBuilder;
+  onFileModeChanged(handler: DslSignalHandlerValue): FileDialogBuilder;
+  onFilesChanged(handler: DslSignalHandlerValue): FileDialogBuilder;
+  onFlagsChanged(handler: DslSignalHandlerValue): FileDialogBuilder;
+  onFolderChanged(handler: DslSignalHandlerValue): FileDialogBuilder;
+  onModalityChanged(handler: DslSignalHandlerValue): FileDialogBuilder;
+  onNameFiltersChanged(handler: DslSignalHandlerValue): FileDialogBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): FileDialogBuilder;
+  onOptionsChanged(handler: DslSignalHandlerValue): FileDialogBuilder;
+  onParentWindowChanged(handler: DslSignalHandlerValue): FileDialogBuilder;
+  onRejectLabelChanged(handler: DslSignalHandlerValue): FileDialogBuilder;
+  onRejected(handler: DslSignalHandlerValue): FileDialogBuilder;
+  onResultChanged(handler: DslSignalHandlerValue): FileDialogBuilder;
+  onTitleChanged(handler: DslSignalHandlerValue): FileDialogBuilder;
+  onVisibleChanged(handler: DslSignalHandlerValue): FileDialogBuilder;
   selectedNameFilter(setup: (b: SelectedNameFilterBuilder) => void): FileDialogBuilder;
 }
 

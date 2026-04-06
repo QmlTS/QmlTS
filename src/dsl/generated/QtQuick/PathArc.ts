@@ -2,7 +2,12 @@
 // Type: PathArc
 // Generated from Qt 6.11.0
 
-import type { QmlEnumToken, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlEnumToken,
+  QmlObjectBuilder,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { AccessibleAttachedBuilder } from './Accessible.js';
 import type { EnterKeyAttachedBuilder } from './EnterKey.js';
@@ -23,6 +28,7 @@ import type { ViewTransitionAttachedBuilder } from './ViewTransition.js';
 export interface PathArcBuilder {
   id(id: string): PathArcBuilder;
   child(obj: QmlObjectBuilder): PathArcBuilder;
+  children(...objs: QmlObjectBuilder[]): PathArcBuilder;
 
   direction(value: QmlEnumToken): PathArcBuilder;
   directionBind(expr: string): PathArcBuilder;
@@ -44,17 +50,17 @@ export interface PathArcBuilder {
   xAxisRotationBind(expr: string): PathArcBuilder;
   y(value: number): PathArcBuilder;
   yBind(expr: string): PathArcBuilder;
-  onChanged(body: string): PathArcBuilder;
-  onDirectionChanged(body: string): PathArcBuilder;
-  onObjectNameChanged(body: string): PathArcBuilder;
-  onRadiusXChanged(body: string): PathArcBuilder;
-  onRadiusYChanged(body: string): PathArcBuilder;
-  onRelativeXChanged(body: string): PathArcBuilder;
-  onRelativeYChanged(body: string): PathArcBuilder;
-  onUseLargeArcChanged(body: string): PathArcBuilder;
-  onXAxisRotationChanged(body: string): PathArcBuilder;
-  onXChanged(body: string): PathArcBuilder;
-  onYChanged(body: string): PathArcBuilder;
+  onChanged(handler: DslSignalHandlerValue): PathArcBuilder;
+  onDirectionChanged(handler: DslSignalHandlerValue): PathArcBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): PathArcBuilder;
+  onRadiusXChanged(handler: DslSignalHandlerValue): PathArcBuilder;
+  onRadiusYChanged(handler: DslSignalHandlerValue): PathArcBuilder;
+  onRelativeXChanged(handler: DslSignalHandlerValue): PathArcBuilder;
+  onRelativeYChanged(handler: DslSignalHandlerValue): PathArcBuilder;
+  onUseLargeArcChanged(handler: DslSignalHandlerValue): PathArcBuilder;
+  onXAxisRotationChanged(handler: DslSignalHandlerValue): PathArcBuilder;
+  onXChanged(handler: DslSignalHandlerValue): PathArcBuilder;
+  onYChanged(handler: DslSignalHandlerValue): PathArcBuilder;
   accessible(setup: (b: AccessibleAttachedBuilder) => void): PathArcBuilder;
   drag(setup: (b: DragAttachedBuilder) => void): PathArcBuilder;
   enterKey(setup: (b: EnterKeyAttachedBuilder) => void): PathArcBuilder;

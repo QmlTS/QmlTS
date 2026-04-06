@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlColor,
   QmlObjectBuilder,
   QmlQuaternion,
@@ -13,6 +14,7 @@ import { createFluentBuilder } from '../../runtime/index.js';
 export interface Custom3DVolumeBuilder {
   id(id: string): Custom3DVolumeBuilder;
   child(obj: QmlObjectBuilder): Custom3DVolumeBuilder;
+  children(...objs: QmlObjectBuilder[]): Custom3DVolumeBuilder;
 
   alphaMultiplier(value: number): Custom3DVolumeBuilder;
   alphaMultiplierBind(expr: string): Custom3DVolumeBuilder;
@@ -70,36 +72,36 @@ export interface Custom3DVolumeBuilder {
   useHighDefShaderBind(expr: string): Custom3DVolumeBuilder;
   visible(value: boolean): Custom3DVolumeBuilder;
   visibleBind(expr: string): Custom3DVolumeBuilder;
-  onAlphaMultiplierChanged(body: string): Custom3DVolumeBuilder;
-  onColorTableChanged(body: string): Custom3DVolumeBuilder;
-  onDrawSliceFramesChanged(body: string): Custom3DVolumeBuilder;
-  onDrawSlicesChanged(body: string): Custom3DVolumeBuilder;
-  onMeshFileChanged(body: string): Custom3DVolumeBuilder;
-  onNeedUpdate(body: string): Custom3DVolumeBuilder;
-  onObjectNameChanged(body: string): Custom3DVolumeBuilder;
-  onPositionAbsoluteChanged(body: string): Custom3DVolumeBuilder;
-  onPositionChanged(body: string): Custom3DVolumeBuilder;
-  onPreserveOpacityChanged(body: string): Custom3DVolumeBuilder;
-  onRotationAbsoluteChanged(body: string): Custom3DVolumeBuilder;
-  onRotationChanged(body: string): Custom3DVolumeBuilder;
-  onScalingAbsoluteChanged(body: string): Custom3DVolumeBuilder;
-  onScalingChanged(body: string): Custom3DVolumeBuilder;
-  onShadowCastingChanged(body: string): Custom3DVolumeBuilder;
-  onSliceFrameColorChanged(body: string): Custom3DVolumeBuilder;
-  onSliceFrameGapsChanged(body: string): Custom3DVolumeBuilder;
-  onSliceFrameThicknessesChanged(body: string): Custom3DVolumeBuilder;
-  onSliceFrameWidthsChanged(body: string): Custom3DVolumeBuilder;
-  onSliceIndexXChanged(body: string): Custom3DVolumeBuilder;
-  onSliceIndexYChanged(body: string): Custom3DVolumeBuilder;
-  onSliceIndexZChanged(body: string): Custom3DVolumeBuilder;
-  onTextureDataChanged(body: string): Custom3DVolumeBuilder;
-  onTextureDepthChanged(body: string): Custom3DVolumeBuilder;
-  onTextureFileChanged(body: string): Custom3DVolumeBuilder;
-  onTextureFormatChanged(body: string): Custom3DVolumeBuilder;
-  onTextureHeightChanged(body: string): Custom3DVolumeBuilder;
-  onTextureWidthChanged(body: string): Custom3DVolumeBuilder;
-  onUseHighDefShaderChanged(body: string): Custom3DVolumeBuilder;
-  onVisibleChanged(body: string): Custom3DVolumeBuilder;
+  onAlphaMultiplierChanged(handler: DslSignalHandlerValue): Custom3DVolumeBuilder;
+  onColorTableChanged(handler: DslSignalHandlerValue): Custom3DVolumeBuilder;
+  onDrawSliceFramesChanged(handler: DslSignalHandlerValue): Custom3DVolumeBuilder;
+  onDrawSlicesChanged(handler: DslSignalHandlerValue): Custom3DVolumeBuilder;
+  onMeshFileChanged(handler: DslSignalHandlerValue): Custom3DVolumeBuilder;
+  onNeedUpdate(handler: DslSignalHandlerValue): Custom3DVolumeBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): Custom3DVolumeBuilder;
+  onPositionAbsoluteChanged(handler: DslSignalHandlerValue): Custom3DVolumeBuilder;
+  onPositionChanged(handler: DslSignalHandlerValue): Custom3DVolumeBuilder;
+  onPreserveOpacityChanged(handler: DslSignalHandlerValue): Custom3DVolumeBuilder;
+  onRotationAbsoluteChanged(handler: DslSignalHandlerValue): Custom3DVolumeBuilder;
+  onRotationChanged(handler: DslSignalHandlerValue): Custom3DVolumeBuilder;
+  onScalingAbsoluteChanged(handler: DslSignalHandlerValue): Custom3DVolumeBuilder;
+  onScalingChanged(handler: DslSignalHandlerValue): Custom3DVolumeBuilder;
+  onShadowCastingChanged(handler: DslSignalHandlerValue): Custom3DVolumeBuilder;
+  onSliceFrameColorChanged(handler: DslSignalHandlerValue): Custom3DVolumeBuilder;
+  onSliceFrameGapsChanged(handler: DslSignalHandlerValue): Custom3DVolumeBuilder;
+  onSliceFrameThicknessesChanged(handler: DslSignalHandlerValue): Custom3DVolumeBuilder;
+  onSliceFrameWidthsChanged(handler: DslSignalHandlerValue): Custom3DVolumeBuilder;
+  onSliceIndexXChanged(handler: DslSignalHandlerValue): Custom3DVolumeBuilder;
+  onSliceIndexYChanged(handler: DslSignalHandlerValue): Custom3DVolumeBuilder;
+  onSliceIndexZChanged(handler: DslSignalHandlerValue): Custom3DVolumeBuilder;
+  onTextureDataChanged(handler: DslSignalHandlerValue): Custom3DVolumeBuilder;
+  onTextureDepthChanged(handler: DslSignalHandlerValue): Custom3DVolumeBuilder;
+  onTextureFileChanged(handler: DslSignalHandlerValue): Custom3DVolumeBuilder;
+  onTextureFormatChanged(handler: DslSignalHandlerValue): Custom3DVolumeBuilder;
+  onTextureHeightChanged(handler: DslSignalHandlerValue): Custom3DVolumeBuilder;
+  onTextureWidthChanged(handler: DslSignalHandlerValue): Custom3DVolumeBuilder;
+  onUseHighDefShaderChanged(handler: DslSignalHandlerValue): Custom3DVolumeBuilder;
+  onVisibleChanged(handler: DslSignalHandlerValue): Custom3DVolumeBuilder;
 }
 
 const CUSTOM3DVOLUME_META: TypeMetadata = {

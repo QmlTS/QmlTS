@@ -2,7 +2,12 @@
 // Type: ScriptAction
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { AccessibleAttachedBuilder } from './Accessible.js';
 import type { EnterKeyAttachedBuilder } from './EnterKey.js';
@@ -23,6 +28,7 @@ import type { ViewTransitionAttachedBuilder } from './ViewTransition.js';
 export interface ScriptActionBuilder {
   id(id: string): ScriptActionBuilder;
   child(obj: QmlObjectBuilder): ScriptActionBuilder;
+  children(...objs: QmlObjectBuilder[]): ScriptActionBuilder;
 
   alwaysRunToEnd(value: boolean): ScriptActionBuilder;
   alwaysRunToEndBind(expr: string): ScriptActionBuilder;
@@ -38,14 +44,14 @@ export interface ScriptActionBuilder {
   scriptBind(expr: string): ScriptActionBuilder;
   scriptName(value: string): ScriptActionBuilder;
   scriptNameBind(expr: string): ScriptActionBuilder;
-  onAlwaysRunToEndChanged(body: string): ScriptActionBuilder;
-  onFinished(body: string): ScriptActionBuilder;
-  onLoopCountChanged(body: string): ScriptActionBuilder;
-  onObjectNameChanged(body: string): ScriptActionBuilder;
-  onPausedChanged(body: string): ScriptActionBuilder;
-  onRunningChanged(body: string): ScriptActionBuilder;
-  onStarted(body: string): ScriptActionBuilder;
-  onStopped(body: string): ScriptActionBuilder;
+  onAlwaysRunToEndChanged(handler: DslSignalHandlerValue): ScriptActionBuilder;
+  onFinished(handler: DslSignalHandlerValue): ScriptActionBuilder;
+  onLoopCountChanged(handler: DslSignalHandlerValue): ScriptActionBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): ScriptActionBuilder;
+  onPausedChanged(handler: DslSignalHandlerValue): ScriptActionBuilder;
+  onRunningChanged(handler: DslSignalHandlerValue): ScriptActionBuilder;
+  onStarted(handler: DslSignalHandlerValue): ScriptActionBuilder;
+  onStopped(handler: DslSignalHandlerValue): ScriptActionBuilder;
   accessible(setup: (b: AccessibleAttachedBuilder) => void): ScriptActionBuilder;
   drag(setup: (b: DragAttachedBuilder) => void): ScriptActionBuilder;
   enterKey(setup: (b: EnterKeyAttachedBuilder) => void): ScriptActionBuilder;

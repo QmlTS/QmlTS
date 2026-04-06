@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlEnumToken,
   QmlObjectBuilder,
   QmlValue,
@@ -12,6 +13,7 @@ import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface Texture2DMultisampleArrayBuilder {
   id(id: string): Texture2DMultisampleArrayBuilder;
   child(obj: QmlObjectBuilder): Texture2DMultisampleArrayBuilder;
+  children(...objs: QmlObjectBuilder[]): Texture2DMultisampleArrayBuilder;
 
   comparisonFunction(value: QmlEnumToken): Texture2DMultisampleArrayBuilder;
   comparisonFunctionBind(expr: string): Texture2DMultisampleArrayBuilder;
@@ -45,26 +47,26 @@ export interface Texture2DMultisampleArrayBuilder {
   samplesBind(expr: string): Texture2DMultisampleArrayBuilder;
   width(value: number): Texture2DMultisampleArrayBuilder;
   widthBind(expr: string): Texture2DMultisampleArrayBuilder;
-  onComparisonFunctionChanged(body: string): Texture2DMultisampleArrayBuilder;
-  onComparisonModeChanged(body: string): Texture2DMultisampleArrayBuilder;
-  onDepthChanged(body: string): Texture2DMultisampleArrayBuilder;
-  onEnabledChanged(body: string): Texture2DMultisampleArrayBuilder;
-  onFormatChanged(body: string): Texture2DMultisampleArrayBuilder;
-  onGenerateMipMapsChanged(body: string): Texture2DMultisampleArrayBuilder;
-  onHandleChanged(body: string): Texture2DMultisampleArrayBuilder;
-  onHandleTypeChanged(body: string): Texture2DMultisampleArrayBuilder;
-  onHeightChanged(body: string): Texture2DMultisampleArrayBuilder;
-  onLayersChanged(body: string): Texture2DMultisampleArrayBuilder;
-  onMagnificationFilterChanged(body: string): Texture2DMultisampleArrayBuilder;
-  onMaximumAnisotropyChanged(body: string): Texture2DMultisampleArrayBuilder;
-  onMinificationFilterChanged(body: string): Texture2DMultisampleArrayBuilder;
-  onMipLevelsChanged(body: string): Texture2DMultisampleArrayBuilder;
-  onNodeDestroyed(body: string): Texture2DMultisampleArrayBuilder;
-  onObjectNameChanged(body: string): Texture2DMultisampleArrayBuilder;
-  onParentChanged(body: string): Texture2DMultisampleArrayBuilder;
-  onSamplesChanged(body: string): Texture2DMultisampleArrayBuilder;
-  onStatusChanged(body: string): Texture2DMultisampleArrayBuilder;
-  onWidthChanged(body: string): Texture2DMultisampleArrayBuilder;
+  onComparisonFunctionChanged(handler: DslSignalHandlerValue): Texture2DMultisampleArrayBuilder;
+  onComparisonModeChanged(handler: DslSignalHandlerValue): Texture2DMultisampleArrayBuilder;
+  onDepthChanged(handler: DslSignalHandlerValue): Texture2DMultisampleArrayBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): Texture2DMultisampleArrayBuilder;
+  onFormatChanged(handler: DslSignalHandlerValue): Texture2DMultisampleArrayBuilder;
+  onGenerateMipMapsChanged(handler: DslSignalHandlerValue): Texture2DMultisampleArrayBuilder;
+  onHandleChanged(handler: DslSignalHandlerValue): Texture2DMultisampleArrayBuilder;
+  onHandleTypeChanged(handler: DslSignalHandlerValue): Texture2DMultisampleArrayBuilder;
+  onHeightChanged(handler: DslSignalHandlerValue): Texture2DMultisampleArrayBuilder;
+  onLayersChanged(handler: DslSignalHandlerValue): Texture2DMultisampleArrayBuilder;
+  onMagnificationFilterChanged(handler: DslSignalHandlerValue): Texture2DMultisampleArrayBuilder;
+  onMaximumAnisotropyChanged(handler: DslSignalHandlerValue): Texture2DMultisampleArrayBuilder;
+  onMinificationFilterChanged(handler: DslSignalHandlerValue): Texture2DMultisampleArrayBuilder;
+  onMipLevelsChanged(handler: DslSignalHandlerValue): Texture2DMultisampleArrayBuilder;
+  onNodeDestroyed(handler: DslSignalHandlerValue): Texture2DMultisampleArrayBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): Texture2DMultisampleArrayBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): Texture2DMultisampleArrayBuilder;
+  onSamplesChanged(handler: DslSignalHandlerValue): Texture2DMultisampleArrayBuilder;
+  onStatusChanged(handler: DslSignalHandlerValue): Texture2DMultisampleArrayBuilder;
+  onWidthChanged(handler: DslSignalHandlerValue): Texture2DMultisampleArrayBuilder;
 }
 
 const TEXTURE2DMULTISAMPLEARRAY_META: TypeMetadata = {

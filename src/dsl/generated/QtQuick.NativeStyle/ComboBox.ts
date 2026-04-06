@@ -2,7 +2,12 @@
 // Type: ComboBox
 // Generated from Qt 6.11.0
 
-import type { QmlEnumToken, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlEnumToken,
+  QmlObjectBuilder,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { QtObjectBuilder } from '../QML/QtObject.js';
 import type { ItemBuilder } from '../QtQuick/Item.js';
@@ -12,6 +17,7 @@ import type { LayerBuilder } from '../QtQuick/QQuickItemLayer.js';
 export interface ComboBoxBuilder {
   id(id: string): ComboBoxBuilder;
   child(obj: QmlObjectBuilder): ComboBoxBuilder;
+  children(...objs: QmlObjectBuilder[]): ComboBoxBuilder;
 
   activeFocusOnTab(value: boolean): ComboBoxBuilder;
   activeFocusOnTabBind(expr: string): ComboBoxBuilder;
@@ -75,42 +81,42 @@ export interface ComboBoxBuilder {
   yBind(expr: string): ComboBoxBuilder;
   z(value: number): ComboBoxBuilder;
   zBind(expr: string): ComboBoxBuilder;
-  onActiveFocusChanged(body: string): ComboBoxBuilder;
-  onActiveFocusOnTabChanged(body: string): ComboBoxBuilder;
-  onAntialiasingChanged(body: string): ComboBoxBuilder;
-  onBaselineOffsetChanged(body: string): ComboBoxBuilder;
-  onChildrenChanged(body: string): ComboBoxBuilder;
-  onChildrenRectChanged(body: string): ComboBoxBuilder;
-  onClipChanged(body: string): ComboBoxBuilder;
-  onContainmentMaskChanged(body: string): ComboBoxBuilder;
-  onContentPaddingChanged(body: string): ComboBoxBuilder;
-  onControlChanged(body: string): ComboBoxBuilder;
-  onEnabledChanged(body: string): ComboBoxBuilder;
-  onFocusChanged(body: string): ComboBoxBuilder;
-  onFocusPolicyChanged(body: string): ComboBoxBuilder;
-  onFontChanged(body: string): ComboBoxBuilder;
-  onHeightChanged(body: string): ComboBoxBuilder;
-  onImplicitHeightChanged(body: string): ComboBoxBuilder;
-  onImplicitWidthChanged(body: string): ComboBoxBuilder;
-  onLayoutMarginsChanged(body: string): ComboBoxBuilder;
-  onMinimumSizeChanged(body: string): ComboBoxBuilder;
-  onObjectNameChanged(body: string): ComboBoxBuilder;
-  onOpacityChanged(body: string): ComboBoxBuilder;
-  onPaletteChanged(body: string): ComboBoxBuilder;
-  onPaletteCreated(body: string): ComboBoxBuilder;
-  onParentChanged(body: string): ComboBoxBuilder;
-  onRotationChanged(body: string): ComboBoxBuilder;
-  onScaleChanged(body: string): ComboBoxBuilder;
-  onSmoothChanged(body: string): ComboBoxBuilder;
-  onStateChanged(body: string): ComboBoxBuilder;
-  onTransformOriginChanged(body: string): ComboBoxBuilder;
-  onVisibleChanged(body: string): ComboBoxBuilder;
-  onVisibleChildrenChanged(body: string): ComboBoxBuilder;
-  onWidthChanged(body: string): ComboBoxBuilder;
-  onWindowChanged(body: string): ComboBoxBuilder;
-  onXChanged(body: string): ComboBoxBuilder;
-  onYChanged(body: string): ComboBoxBuilder;
-  onZChanged(body: string): ComboBoxBuilder;
+  onActiveFocusChanged(handler: DslSignalHandlerValue): ComboBoxBuilder;
+  onActiveFocusOnTabChanged(handler: DslSignalHandlerValue): ComboBoxBuilder;
+  onAntialiasingChanged(handler: DslSignalHandlerValue): ComboBoxBuilder;
+  onBaselineOffsetChanged(handler: DslSignalHandlerValue): ComboBoxBuilder;
+  onChildrenChanged(handler: DslSignalHandlerValue): ComboBoxBuilder;
+  onChildrenRectChanged(handler: DslSignalHandlerValue): ComboBoxBuilder;
+  onClipChanged(handler: DslSignalHandlerValue): ComboBoxBuilder;
+  onContainmentMaskChanged(handler: DslSignalHandlerValue): ComboBoxBuilder;
+  onContentPaddingChanged(handler: DslSignalHandlerValue): ComboBoxBuilder;
+  onControlChanged(handler: DslSignalHandlerValue): ComboBoxBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): ComboBoxBuilder;
+  onFocusChanged(handler: DslSignalHandlerValue): ComboBoxBuilder;
+  onFocusPolicyChanged(handler: DslSignalHandlerValue): ComboBoxBuilder;
+  onFontChanged(handler: DslSignalHandlerValue): ComboBoxBuilder;
+  onHeightChanged(handler: DslSignalHandlerValue): ComboBoxBuilder;
+  onImplicitHeightChanged(handler: DslSignalHandlerValue): ComboBoxBuilder;
+  onImplicitWidthChanged(handler: DslSignalHandlerValue): ComboBoxBuilder;
+  onLayoutMarginsChanged(handler: DslSignalHandlerValue): ComboBoxBuilder;
+  onMinimumSizeChanged(handler: DslSignalHandlerValue): ComboBoxBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): ComboBoxBuilder;
+  onOpacityChanged(handler: DslSignalHandlerValue): ComboBoxBuilder;
+  onPaletteChanged(handler: DslSignalHandlerValue): ComboBoxBuilder;
+  onPaletteCreated(handler: DslSignalHandlerValue): ComboBoxBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): ComboBoxBuilder;
+  onRotationChanged(handler: DslSignalHandlerValue): ComboBoxBuilder;
+  onScaleChanged(handler: DslSignalHandlerValue): ComboBoxBuilder;
+  onSmoothChanged(handler: DslSignalHandlerValue): ComboBoxBuilder;
+  onStateChanged(handler: DslSignalHandlerValue): ComboBoxBuilder;
+  onTransformOriginChanged(handler: DslSignalHandlerValue): ComboBoxBuilder;
+  onVisibleChanged(handler: DslSignalHandlerValue): ComboBoxBuilder;
+  onVisibleChildrenChanged(handler: DslSignalHandlerValue): ComboBoxBuilder;
+  onWidthChanged(handler: DslSignalHandlerValue): ComboBoxBuilder;
+  onWindowChanged(handler: DslSignalHandlerValue): ComboBoxBuilder;
+  onXChanged(handler: DslSignalHandlerValue): ComboBoxBuilder;
+  onYChanged(handler: DslSignalHandlerValue): ComboBoxBuilder;
+  onZChanged(handler: DslSignalHandlerValue): ComboBoxBuilder;
   anchors(setup: (b: AnchorsBuilder) => void): ComboBoxBuilder;
   layer(setup: (b: LayerBuilder) => void): ComboBoxBuilder;
 }

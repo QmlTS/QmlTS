@@ -2,11 +2,17 @@
 // Type: ItemModelScatterDataProxy
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface ItemModelScatterDataProxyBuilder {
   id(id: string): ItemModelScatterDataProxyBuilder;
   child(obj: QmlObjectBuilder): ItemModelScatterDataProxyBuilder;
+  children(...objs: QmlObjectBuilder[]): ItemModelScatterDataProxyBuilder;
 
   itemModel(value: QmlValue): ItemModelScatterDataProxyBuilder;
   itemModelBind(expr: string): ItemModelScatterDataProxyBuilder;
@@ -42,31 +48,31 @@ export interface ItemModelScatterDataProxyBuilder {
   zPosRolePatternBind(expr: string): ItemModelScatterDataProxyBuilder;
   zPosRoleReplace(value: string): ItemModelScatterDataProxyBuilder;
   zPosRoleReplaceBind(expr: string): ItemModelScatterDataProxyBuilder;
-  onArrayReset(body: string): ItemModelScatterDataProxyBuilder;
-  onItemCountChanged(body: string): ItemModelScatterDataProxyBuilder;
-  onItemModelChanged(body: string): ItemModelScatterDataProxyBuilder;
-  onItemsAdded(body: string): ItemModelScatterDataProxyBuilder;
-  onItemsChanged(body: string): ItemModelScatterDataProxyBuilder;
-  onItemsInserted(body: string): ItemModelScatterDataProxyBuilder;
-  onItemsRemoved(body: string): ItemModelScatterDataProxyBuilder;
-  onObjectNameChanged(body: string): ItemModelScatterDataProxyBuilder;
-  onRotationRoleChanged(body: string): ItemModelScatterDataProxyBuilder;
-  onRotationRolePatternChanged(body: string): ItemModelScatterDataProxyBuilder;
-  onRotationRoleReplaceChanged(body: string): ItemModelScatterDataProxyBuilder;
-  onScaleArrayReset(body: string): ItemModelScatterDataProxyBuilder;
-  onScaleRoleChanged(body: string): ItemModelScatterDataProxyBuilder;
-  onScaleRolePatternChanged(body: string): ItemModelScatterDataProxyBuilder;
-  onScaleRoleReplaceChanged(body: string): ItemModelScatterDataProxyBuilder;
-  onSeriesChanged(body: string): ItemModelScatterDataProxyBuilder;
-  onXPosRoleChanged(body: string): ItemModelScatterDataProxyBuilder;
-  onXPosRolePatternChanged(body: string): ItemModelScatterDataProxyBuilder;
-  onXPosRoleReplaceChanged(body: string): ItemModelScatterDataProxyBuilder;
-  onYPosRoleChanged(body: string): ItemModelScatterDataProxyBuilder;
-  onYPosRolePatternChanged(body: string): ItemModelScatterDataProxyBuilder;
-  onYPosRoleReplaceChanged(body: string): ItemModelScatterDataProxyBuilder;
-  onZPosRoleChanged(body: string): ItemModelScatterDataProxyBuilder;
-  onZPosRolePatternChanged(body: string): ItemModelScatterDataProxyBuilder;
-  onZPosRoleReplaceChanged(body: string): ItemModelScatterDataProxyBuilder;
+  onArrayReset(handler: DslSignalHandlerValue): ItemModelScatterDataProxyBuilder;
+  onItemCountChanged(handler: DslSignalHandlerValue): ItemModelScatterDataProxyBuilder;
+  onItemModelChanged(handler: DslSignalHandlerValue): ItemModelScatterDataProxyBuilder;
+  onItemsAdded(handler: DslSignalHandlerValue): ItemModelScatterDataProxyBuilder;
+  onItemsChanged(handler: DslSignalHandlerValue): ItemModelScatterDataProxyBuilder;
+  onItemsInserted(handler: DslSignalHandlerValue): ItemModelScatterDataProxyBuilder;
+  onItemsRemoved(handler: DslSignalHandlerValue): ItemModelScatterDataProxyBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): ItemModelScatterDataProxyBuilder;
+  onRotationRoleChanged(handler: DslSignalHandlerValue): ItemModelScatterDataProxyBuilder;
+  onRotationRolePatternChanged(handler: DslSignalHandlerValue): ItemModelScatterDataProxyBuilder;
+  onRotationRoleReplaceChanged(handler: DslSignalHandlerValue): ItemModelScatterDataProxyBuilder;
+  onScaleArrayReset(handler: DslSignalHandlerValue): ItemModelScatterDataProxyBuilder;
+  onScaleRoleChanged(handler: DslSignalHandlerValue): ItemModelScatterDataProxyBuilder;
+  onScaleRolePatternChanged(handler: DslSignalHandlerValue): ItemModelScatterDataProxyBuilder;
+  onScaleRoleReplaceChanged(handler: DslSignalHandlerValue): ItemModelScatterDataProxyBuilder;
+  onSeriesChanged(handler: DslSignalHandlerValue): ItemModelScatterDataProxyBuilder;
+  onXPosRoleChanged(handler: DslSignalHandlerValue): ItemModelScatterDataProxyBuilder;
+  onXPosRolePatternChanged(handler: DslSignalHandlerValue): ItemModelScatterDataProxyBuilder;
+  onXPosRoleReplaceChanged(handler: DslSignalHandlerValue): ItemModelScatterDataProxyBuilder;
+  onYPosRoleChanged(handler: DslSignalHandlerValue): ItemModelScatterDataProxyBuilder;
+  onYPosRolePatternChanged(handler: DslSignalHandlerValue): ItemModelScatterDataProxyBuilder;
+  onYPosRoleReplaceChanged(handler: DslSignalHandlerValue): ItemModelScatterDataProxyBuilder;
+  onZPosRoleChanged(handler: DslSignalHandlerValue): ItemModelScatterDataProxyBuilder;
+  onZPosRolePatternChanged(handler: DslSignalHandlerValue): ItemModelScatterDataProxyBuilder;
+  onZPosRoleReplaceChanged(handler: DslSignalHandlerValue): ItemModelScatterDataProxyBuilder;
 }
 
 const ITEMMODELSCATTERDATAPROXY_META: TypeMetadata = {

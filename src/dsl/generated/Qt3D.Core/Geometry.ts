@@ -2,12 +2,18 @@
 // Type: Geometry
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 import type { AttributeBuilder } from './Attribute.js';
 export interface GeometryBuilder {
   id(id: string): GeometryBuilder;
   child(obj: QmlObjectBuilder): GeometryBuilder;
+  children(...objs: QmlObjectBuilder[]): GeometryBuilder;
 
   boundingVolumePositionAttribute(value: AttributeBuilder): GeometryBuilder;
   boundingVolumePositionAttributeBind(expr: string): GeometryBuilder;
@@ -17,13 +23,13 @@ export interface GeometryBuilder {
   objectNameBind(expr: string): GeometryBuilder;
   parent(value: QmlValue): GeometryBuilder;
   parentBind(expr: string): GeometryBuilder;
-  onBoundingVolumePositionAttributeChanged(body: string): GeometryBuilder;
-  onEnabledChanged(body: string): GeometryBuilder;
-  onMaxExtentChanged(body: string): GeometryBuilder;
-  onMinExtentChanged(body: string): GeometryBuilder;
-  onNodeDestroyed(body: string): GeometryBuilder;
-  onObjectNameChanged(body: string): GeometryBuilder;
-  onParentChanged(body: string): GeometryBuilder;
+  onBoundingVolumePositionAttributeChanged(handler: DslSignalHandlerValue): GeometryBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): GeometryBuilder;
+  onMaxExtentChanged(handler: DslSignalHandlerValue): GeometryBuilder;
+  onMinExtentChanged(handler: DslSignalHandlerValue): GeometryBuilder;
+  onNodeDestroyed(handler: DslSignalHandlerValue): GeometryBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): GeometryBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): GeometryBuilder;
 }
 
 const GEOMETRY_META: TypeMetadata = {

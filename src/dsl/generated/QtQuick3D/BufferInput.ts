@@ -2,12 +2,18 @@
 // Type: BufferInput
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 import type { BufferBuilder } from './Buffer.js';
 export interface BufferInputBuilder {
   id(id: string): BufferInputBuilder;
   child(obj: QmlObjectBuilder): BufferInputBuilder;
+  children(...objs: QmlObjectBuilder[]): BufferInputBuilder;
 
   buffer(value: BufferBuilder): BufferInputBuilder;
   bufferBind(expr: string): BufferInputBuilder;
@@ -19,10 +25,10 @@ export interface BufferInputBuilder {
   samplerBind(expr: string): BufferInputBuilder;
   state(value: string): BufferInputBuilder;
   stateBind(expr: string): BufferInputBuilder;
-  onChildrenChanged(body: string): BufferInputBuilder;
-  onObjectNameChanged(body: string): BufferInputBuilder;
-  onParentChanged(body: string): BufferInputBuilder;
-  onStateChanged(body: string): BufferInputBuilder;
+  onChildrenChanged(handler: DslSignalHandlerValue): BufferInputBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): BufferInputBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): BufferInputBuilder;
+  onStateChanged(handler: DslSignalHandlerValue): BufferInputBuilder;
 }
 
 const BUFFERINPUT_META: TypeMetadata = {

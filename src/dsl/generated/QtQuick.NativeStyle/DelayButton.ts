@@ -2,7 +2,12 @@
 // Type: DelayButton
 // Generated from Qt 6.11.0
 
-import type { QmlEnumToken, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlEnumToken,
+  QmlObjectBuilder,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { QtObjectBuilder } from '../QML/QtObject.js';
 import type { ItemBuilder } from '../QtQuick/Item.js';
@@ -12,6 +17,7 @@ import type { LayerBuilder } from '../QtQuick/QQuickItemLayer.js';
 export interface DelayButtonBuilder {
   id(id: string): DelayButtonBuilder;
   child(obj: QmlObjectBuilder): DelayButtonBuilder;
+  children(...objs: QmlObjectBuilder[]): DelayButtonBuilder;
 
   activeFocusOnTab(value: boolean): DelayButtonBuilder;
   activeFocusOnTabBind(expr: string): DelayButtonBuilder;
@@ -75,42 +81,42 @@ export interface DelayButtonBuilder {
   yBind(expr: string): DelayButtonBuilder;
   z(value: number): DelayButtonBuilder;
   zBind(expr: string): DelayButtonBuilder;
-  onActiveFocusChanged(body: string): DelayButtonBuilder;
-  onActiveFocusOnTabChanged(body: string): DelayButtonBuilder;
-  onAntialiasingChanged(body: string): DelayButtonBuilder;
-  onBaselineOffsetChanged(body: string): DelayButtonBuilder;
-  onChildrenChanged(body: string): DelayButtonBuilder;
-  onChildrenRectChanged(body: string): DelayButtonBuilder;
-  onClipChanged(body: string): DelayButtonBuilder;
-  onContainmentMaskChanged(body: string): DelayButtonBuilder;
-  onContentPaddingChanged(body: string): DelayButtonBuilder;
-  onControlChanged(body: string): DelayButtonBuilder;
-  onEnabledChanged(body: string): DelayButtonBuilder;
-  onFocusChanged(body: string): DelayButtonBuilder;
-  onFocusPolicyChanged(body: string): DelayButtonBuilder;
-  onFontChanged(body: string): DelayButtonBuilder;
-  onHeightChanged(body: string): DelayButtonBuilder;
-  onImplicitHeightChanged(body: string): DelayButtonBuilder;
-  onImplicitWidthChanged(body: string): DelayButtonBuilder;
-  onLayoutMarginsChanged(body: string): DelayButtonBuilder;
-  onMinimumSizeChanged(body: string): DelayButtonBuilder;
-  onObjectNameChanged(body: string): DelayButtonBuilder;
-  onOpacityChanged(body: string): DelayButtonBuilder;
-  onPaletteChanged(body: string): DelayButtonBuilder;
-  onPaletteCreated(body: string): DelayButtonBuilder;
-  onParentChanged(body: string): DelayButtonBuilder;
-  onRotationChanged(body: string): DelayButtonBuilder;
-  onScaleChanged(body: string): DelayButtonBuilder;
-  onSmoothChanged(body: string): DelayButtonBuilder;
-  onStateChanged(body: string): DelayButtonBuilder;
-  onTransformOriginChanged(body: string): DelayButtonBuilder;
-  onVisibleChanged(body: string): DelayButtonBuilder;
-  onVisibleChildrenChanged(body: string): DelayButtonBuilder;
-  onWidthChanged(body: string): DelayButtonBuilder;
-  onWindowChanged(body: string): DelayButtonBuilder;
-  onXChanged(body: string): DelayButtonBuilder;
-  onYChanged(body: string): DelayButtonBuilder;
-  onZChanged(body: string): DelayButtonBuilder;
+  onActiveFocusChanged(handler: DslSignalHandlerValue): DelayButtonBuilder;
+  onActiveFocusOnTabChanged(handler: DslSignalHandlerValue): DelayButtonBuilder;
+  onAntialiasingChanged(handler: DslSignalHandlerValue): DelayButtonBuilder;
+  onBaselineOffsetChanged(handler: DslSignalHandlerValue): DelayButtonBuilder;
+  onChildrenChanged(handler: DslSignalHandlerValue): DelayButtonBuilder;
+  onChildrenRectChanged(handler: DslSignalHandlerValue): DelayButtonBuilder;
+  onClipChanged(handler: DslSignalHandlerValue): DelayButtonBuilder;
+  onContainmentMaskChanged(handler: DslSignalHandlerValue): DelayButtonBuilder;
+  onContentPaddingChanged(handler: DslSignalHandlerValue): DelayButtonBuilder;
+  onControlChanged(handler: DslSignalHandlerValue): DelayButtonBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): DelayButtonBuilder;
+  onFocusChanged(handler: DslSignalHandlerValue): DelayButtonBuilder;
+  onFocusPolicyChanged(handler: DslSignalHandlerValue): DelayButtonBuilder;
+  onFontChanged(handler: DslSignalHandlerValue): DelayButtonBuilder;
+  onHeightChanged(handler: DslSignalHandlerValue): DelayButtonBuilder;
+  onImplicitHeightChanged(handler: DslSignalHandlerValue): DelayButtonBuilder;
+  onImplicitWidthChanged(handler: DslSignalHandlerValue): DelayButtonBuilder;
+  onLayoutMarginsChanged(handler: DslSignalHandlerValue): DelayButtonBuilder;
+  onMinimumSizeChanged(handler: DslSignalHandlerValue): DelayButtonBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): DelayButtonBuilder;
+  onOpacityChanged(handler: DslSignalHandlerValue): DelayButtonBuilder;
+  onPaletteChanged(handler: DslSignalHandlerValue): DelayButtonBuilder;
+  onPaletteCreated(handler: DslSignalHandlerValue): DelayButtonBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): DelayButtonBuilder;
+  onRotationChanged(handler: DslSignalHandlerValue): DelayButtonBuilder;
+  onScaleChanged(handler: DslSignalHandlerValue): DelayButtonBuilder;
+  onSmoothChanged(handler: DslSignalHandlerValue): DelayButtonBuilder;
+  onStateChanged(handler: DslSignalHandlerValue): DelayButtonBuilder;
+  onTransformOriginChanged(handler: DslSignalHandlerValue): DelayButtonBuilder;
+  onVisibleChanged(handler: DslSignalHandlerValue): DelayButtonBuilder;
+  onVisibleChildrenChanged(handler: DslSignalHandlerValue): DelayButtonBuilder;
+  onWidthChanged(handler: DslSignalHandlerValue): DelayButtonBuilder;
+  onWindowChanged(handler: DslSignalHandlerValue): DelayButtonBuilder;
+  onXChanged(handler: DslSignalHandlerValue): DelayButtonBuilder;
+  onYChanged(handler: DslSignalHandlerValue): DelayButtonBuilder;
+  onZChanged(handler: DslSignalHandlerValue): DelayButtonBuilder;
   anchors(setup: (b: AnchorsBuilder) => void): DelayButtonBuilder;
   layer(setup: (b: LayerBuilder) => void): DelayButtonBuilder;
 }

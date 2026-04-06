@@ -2,12 +2,18 @@
 // Type: ColorAttachment
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 import type { RenderPassTextureBuilder } from './RenderPassTexture.js';
 export interface ColorAttachmentBuilder {
   id(id: string): ColorAttachmentBuilder;
   child(obj: QmlObjectBuilder): ColorAttachmentBuilder;
+  children(...objs: QmlObjectBuilder[]): ColorAttachmentBuilder;
 
   name(value: string): ColorAttachmentBuilder;
   nameBind(expr: string): ColorAttachmentBuilder;
@@ -19,10 +25,10 @@ export interface ColorAttachmentBuilder {
   stateBind(expr: string): ColorAttachmentBuilder;
   target(value: RenderPassTextureBuilder): ColorAttachmentBuilder;
   targetBind(expr: string): ColorAttachmentBuilder;
-  onChildrenChanged(body: string): ColorAttachmentBuilder;
-  onObjectNameChanged(body: string): ColorAttachmentBuilder;
-  onParentChanged(body: string): ColorAttachmentBuilder;
-  onStateChanged(body: string): ColorAttachmentBuilder;
+  onChildrenChanged(handler: DslSignalHandlerValue): ColorAttachmentBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): ColorAttachmentBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): ColorAttachmentBuilder;
+  onStateChanged(handler: DslSignalHandlerValue): ColorAttachmentBuilder;
 }
 
 const COLORATTACHMENT_META: TypeMetadata = {

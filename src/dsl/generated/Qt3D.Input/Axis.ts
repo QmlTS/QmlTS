@@ -2,11 +2,17 @@
 // Type: Axis
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 export interface AxisBuilder {
   id(id: string): AxisBuilder;
   child(obj: QmlObjectBuilder): AxisBuilder;
+  children(...objs: QmlObjectBuilder[]): AxisBuilder;
 
   enabled(value: boolean): AxisBuilder;
   enabledBind(expr: string): AxisBuilder;
@@ -14,11 +20,11 @@ export interface AxisBuilder {
   objectNameBind(expr: string): AxisBuilder;
   parent(value: QmlValue): AxisBuilder;
   parentBind(expr: string): AxisBuilder;
-  onEnabledChanged(body: string): AxisBuilder;
-  onNodeDestroyed(body: string): AxisBuilder;
-  onObjectNameChanged(body: string): AxisBuilder;
-  onParentChanged(body: string): AxisBuilder;
-  onValueChanged(body: string): AxisBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): AxisBuilder;
+  onNodeDestroyed(handler: DslSignalHandlerValue): AxisBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): AxisBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): AxisBuilder;
+  onValueChanged(handler: DslSignalHandlerValue): AxisBuilder;
 }
 
 const AXIS_META: TypeMetadata = {

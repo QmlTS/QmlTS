@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlEnumToken,
   QmlObjectBuilder,
   QmlValue,
@@ -13,6 +14,7 @@ import type { FrameGraphNodeBuilder } from './FrameGraphNode.js';
 export interface RenderSettingsBuilder {
   id(id: string): RenderSettingsBuilder;
   child(obj: QmlObjectBuilder): RenderSettingsBuilder;
+  children(...objs: QmlObjectBuilder[]): RenderSettingsBuilder;
 
   activeFrameGraph(value: FrameGraphNodeBuilder): RenderSettingsBuilder;
   activeFrameGraphBind(expr: string): RenderSettingsBuilder;
@@ -26,15 +28,15 @@ export interface RenderSettingsBuilder {
   parentBind(expr: string): RenderSettingsBuilder;
   renderPolicy(value: QmlEnumToken): RenderSettingsBuilder;
   renderPolicyBind(expr: string): RenderSettingsBuilder;
-  onActiveFrameGraphChanged(body: string): RenderSettingsBuilder;
-  onAddedToEntity(body: string): RenderSettingsBuilder;
-  onEnabledChanged(body: string): RenderSettingsBuilder;
-  onNodeDestroyed(body: string): RenderSettingsBuilder;
-  onObjectNameChanged(body: string): RenderSettingsBuilder;
-  onParentChanged(body: string): RenderSettingsBuilder;
-  onRemovedFromEntity(body: string): RenderSettingsBuilder;
-  onRenderPolicyChanged(body: string): RenderSettingsBuilder;
-  onShareableChanged(body: string): RenderSettingsBuilder;
+  onActiveFrameGraphChanged(handler: DslSignalHandlerValue): RenderSettingsBuilder;
+  onAddedToEntity(handler: DslSignalHandlerValue): RenderSettingsBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): RenderSettingsBuilder;
+  onNodeDestroyed(handler: DslSignalHandlerValue): RenderSettingsBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): RenderSettingsBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): RenderSettingsBuilder;
+  onRemovedFromEntity(handler: DslSignalHandlerValue): RenderSettingsBuilder;
+  onRenderPolicyChanged(handler: DslSignalHandlerValue): RenderSettingsBuilder;
+  onShareableChanged(handler: DslSignalHandlerValue): RenderSettingsBuilder;
 }
 
 const RENDERSETTINGS_META: TypeMetadata = {

@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlEnumToken,
   QmlObjectBuilder,
   QmlValue,
@@ -15,6 +16,7 @@ import type { GeometryViewBuilder } from '../Qt3D.Core/GeometryView.js';
 export interface GeometryRendererBuilder {
   id(id: string): GeometryRendererBuilder;
   child(obj: QmlObjectBuilder): GeometryRendererBuilder;
+  children(...objs: QmlObjectBuilder[]): GeometryRendererBuilder;
 
   enabled(value: boolean): GeometryRendererBuilder;
   enabledBind(expr: string): GeometryRendererBuilder;
@@ -54,31 +56,31 @@ export interface GeometryRendererBuilder {
   verticesPerPatchBind(expr: string): GeometryRendererBuilder;
   view(value: GeometryViewBuilder): GeometryRendererBuilder;
   viewBind(expr: string): GeometryRendererBuilder;
-  onAddedToEntity(body: string): GeometryRendererBuilder;
-  onEnabledChanged(body: string): GeometryRendererBuilder;
-  onFirstInstanceChanged(body: string): GeometryRendererBuilder;
-  onFirstVertexChanged(body: string): GeometryRendererBuilder;
-  onGeometryChanged(body: string): GeometryRendererBuilder;
-  onImplicitMaxPointChanged(body: string): GeometryRendererBuilder;
-  onImplicitMinPointChanged(body: string): GeometryRendererBuilder;
-  onImplicitPointsValidChanged(body: string): GeometryRendererBuilder;
-  onIndexBufferByteOffsetChanged(body: string): GeometryRendererBuilder;
-  onIndexOffsetChanged(body: string): GeometryRendererBuilder;
-  onInstanceCountChanged(body: string): GeometryRendererBuilder;
-  onMaxPointChanged(body: string): GeometryRendererBuilder;
-  onMinPointChanged(body: string): GeometryRendererBuilder;
-  onNodeDestroyed(body: string): GeometryRendererBuilder;
-  onObjectNameChanged(body: string): GeometryRendererBuilder;
-  onParentChanged(body: string): GeometryRendererBuilder;
-  onPrimitiveRestartEnabledChanged(body: string): GeometryRendererBuilder;
-  onPrimitiveTypeChanged(body: string): GeometryRendererBuilder;
-  onRemovedFromEntity(body: string): GeometryRendererBuilder;
-  onRestartIndexValueChanged(body: string): GeometryRendererBuilder;
-  onShareableChanged(body: string): GeometryRendererBuilder;
-  onSortIndexChanged(body: string): GeometryRendererBuilder;
-  onVertexCountChanged(body: string): GeometryRendererBuilder;
-  onVerticesPerPatchChanged(body: string): GeometryRendererBuilder;
-  onViewChanged(body: string): GeometryRendererBuilder;
+  onAddedToEntity(handler: DslSignalHandlerValue): GeometryRendererBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): GeometryRendererBuilder;
+  onFirstInstanceChanged(handler: DslSignalHandlerValue): GeometryRendererBuilder;
+  onFirstVertexChanged(handler: DslSignalHandlerValue): GeometryRendererBuilder;
+  onGeometryChanged(handler: DslSignalHandlerValue): GeometryRendererBuilder;
+  onImplicitMaxPointChanged(handler: DslSignalHandlerValue): GeometryRendererBuilder;
+  onImplicitMinPointChanged(handler: DslSignalHandlerValue): GeometryRendererBuilder;
+  onImplicitPointsValidChanged(handler: DslSignalHandlerValue): GeometryRendererBuilder;
+  onIndexBufferByteOffsetChanged(handler: DslSignalHandlerValue): GeometryRendererBuilder;
+  onIndexOffsetChanged(handler: DslSignalHandlerValue): GeometryRendererBuilder;
+  onInstanceCountChanged(handler: DslSignalHandlerValue): GeometryRendererBuilder;
+  onMaxPointChanged(handler: DslSignalHandlerValue): GeometryRendererBuilder;
+  onMinPointChanged(handler: DslSignalHandlerValue): GeometryRendererBuilder;
+  onNodeDestroyed(handler: DslSignalHandlerValue): GeometryRendererBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): GeometryRendererBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): GeometryRendererBuilder;
+  onPrimitiveRestartEnabledChanged(handler: DslSignalHandlerValue): GeometryRendererBuilder;
+  onPrimitiveTypeChanged(handler: DslSignalHandlerValue): GeometryRendererBuilder;
+  onRemovedFromEntity(handler: DslSignalHandlerValue): GeometryRendererBuilder;
+  onRestartIndexValueChanged(handler: DslSignalHandlerValue): GeometryRendererBuilder;
+  onShareableChanged(handler: DslSignalHandlerValue): GeometryRendererBuilder;
+  onSortIndexChanged(handler: DslSignalHandlerValue): GeometryRendererBuilder;
+  onVertexCountChanged(handler: DslSignalHandlerValue): GeometryRendererBuilder;
+  onVerticesPerPatchChanged(handler: DslSignalHandlerValue): GeometryRendererBuilder;
+  onViewChanged(handler: DslSignalHandlerValue): GeometryRendererBuilder;
 }
 
 const GEOMETRYRENDERER_META: TypeMetadata = {

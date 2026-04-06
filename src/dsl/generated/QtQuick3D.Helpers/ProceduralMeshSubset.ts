@@ -2,11 +2,12 @@
 // Type: ProceduralMeshSubset
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import type { DslSignalHandlerValue, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 export interface ProceduralMeshSubsetBuilder {
   id(id: string): ProceduralMeshSubsetBuilder;
   child(obj: QmlObjectBuilder): ProceduralMeshSubsetBuilder;
+  children(...objs: QmlObjectBuilder[]): ProceduralMeshSubsetBuilder;
 
   count(value: number): ProceduralMeshSubsetBuilder;
   countBind(expr: string): ProceduralMeshSubsetBuilder;
@@ -16,11 +17,11 @@ export interface ProceduralMeshSubsetBuilder {
   objectNameBind(expr: string): ProceduralMeshSubsetBuilder;
   offset(value: number): ProceduralMeshSubsetBuilder;
   offsetBind(expr: string): ProceduralMeshSubsetBuilder;
-  onCountChanged(body: string): ProceduralMeshSubsetBuilder;
-  onIsDirty(body: string): ProceduralMeshSubsetBuilder;
-  onNameChanged(body: string): ProceduralMeshSubsetBuilder;
-  onObjectNameChanged(body: string): ProceduralMeshSubsetBuilder;
-  onOffsetChanged(body: string): ProceduralMeshSubsetBuilder;
+  onCountChanged(handler: DslSignalHandlerValue): ProceduralMeshSubsetBuilder;
+  onIsDirty(handler: DslSignalHandlerValue): ProceduralMeshSubsetBuilder;
+  onNameChanged(handler: DslSignalHandlerValue): ProceduralMeshSubsetBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): ProceduralMeshSubsetBuilder;
+  onOffsetChanged(handler: DslSignalHandlerValue): ProceduralMeshSubsetBuilder;
 }
 
 const PROCEDURALMESHSUBSET_META: TypeMetadata = {

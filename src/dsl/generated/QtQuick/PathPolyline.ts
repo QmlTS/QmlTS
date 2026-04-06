@@ -2,7 +2,12 @@
 // Type: PathPolyline
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 import type { AccessibleAttachedBuilder } from './Accessible.js';
 import type { EnterKeyAttachedBuilder } from './EnterKey.js';
@@ -23,6 +28,7 @@ import type { ViewTransitionAttachedBuilder } from './ViewTransition.js';
 export interface PathPolylineBuilder {
   id(id: string): PathPolylineBuilder;
   child(obj: QmlObjectBuilder): PathPolylineBuilder;
+  children(...objs: QmlObjectBuilder[]): PathPolylineBuilder;
 
   objectName(value: string): PathPolylineBuilder;
   objectNameBind(expr: string): PathPolylineBuilder;
@@ -36,14 +42,14 @@ export interface PathPolylineBuilder {
   xBind(expr: string): PathPolylineBuilder;
   y(value: number): PathPolylineBuilder;
   yBind(expr: string): PathPolylineBuilder;
-  onChanged(body: string): PathPolylineBuilder;
-  onObjectNameChanged(body: string): PathPolylineBuilder;
-  onPathChanged(body: string): PathPolylineBuilder;
-  onRelativeXChanged(body: string): PathPolylineBuilder;
-  onRelativeYChanged(body: string): PathPolylineBuilder;
-  onStartChanged(body: string): PathPolylineBuilder;
-  onXChanged(body: string): PathPolylineBuilder;
-  onYChanged(body: string): PathPolylineBuilder;
+  onChanged(handler: DslSignalHandlerValue): PathPolylineBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): PathPolylineBuilder;
+  onPathChanged(handler: DslSignalHandlerValue): PathPolylineBuilder;
+  onRelativeXChanged(handler: DslSignalHandlerValue): PathPolylineBuilder;
+  onRelativeYChanged(handler: DslSignalHandlerValue): PathPolylineBuilder;
+  onStartChanged(handler: DslSignalHandlerValue): PathPolylineBuilder;
+  onXChanged(handler: DslSignalHandlerValue): PathPolylineBuilder;
+  onYChanged(handler: DslSignalHandlerValue): PathPolylineBuilder;
   accessible(setup: (b: AccessibleAttachedBuilder) => void): PathPolylineBuilder;
   drag(setup: (b: DragAttachedBuilder) => void): PathPolylineBuilder;
   enterKey(setup: (b: EnterKeyAttachedBuilder) => void): PathPolylineBuilder;

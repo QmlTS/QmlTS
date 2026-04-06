@@ -2,11 +2,17 @@
 // Type: Fog
 // Generated from Qt 6.11.0
 
-import type { QmlColor, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlColor,
+  QmlObjectBuilder,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 export interface FogBuilder {
   id(id: string): FogBuilder;
   child(obj: QmlObjectBuilder): FogBuilder;
+  children(...objs: QmlObjectBuilder[]): FogBuilder;
 
   color(value: QmlColor): FogBuilder;
   colorBind(expr: string): FogBuilder;
@@ -36,21 +42,21 @@ export interface FogBuilder {
   transmitCurveBind(expr: string): FogBuilder;
   transmitEnabled(value: boolean): FogBuilder;
   transmitEnabledBind(expr: string): FogBuilder;
-  onChanged(body: string): FogBuilder;
-  onColorChanged(body: string): FogBuilder;
-  onDensityChanged(body: string): FogBuilder;
-  onDepthCurveChanged(body: string): FogBuilder;
-  onDepthEnabledChanged(body: string): FogBuilder;
-  onDepthFarChanged(body: string): FogBuilder;
-  onDepthNearChanged(body: string): FogBuilder;
-  onEnabledChanged(body: string): FogBuilder;
-  onHeightCurveChanged(body: string): FogBuilder;
-  onHeightEnabledChanged(body: string): FogBuilder;
-  onLeastIntenseYChanged(body: string): FogBuilder;
-  onMostIntenseYChanged(body: string): FogBuilder;
-  onObjectNameChanged(body: string): FogBuilder;
-  onTransmitCurveChanged(body: string): FogBuilder;
-  onTransmitEnabledChanged(body: string): FogBuilder;
+  onChanged(handler: DslSignalHandlerValue): FogBuilder;
+  onColorChanged(handler: DslSignalHandlerValue): FogBuilder;
+  onDensityChanged(handler: DslSignalHandlerValue): FogBuilder;
+  onDepthCurveChanged(handler: DslSignalHandlerValue): FogBuilder;
+  onDepthEnabledChanged(handler: DslSignalHandlerValue): FogBuilder;
+  onDepthFarChanged(handler: DslSignalHandlerValue): FogBuilder;
+  onDepthNearChanged(handler: DslSignalHandlerValue): FogBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): FogBuilder;
+  onHeightCurveChanged(handler: DslSignalHandlerValue): FogBuilder;
+  onHeightEnabledChanged(handler: DslSignalHandlerValue): FogBuilder;
+  onLeastIntenseYChanged(handler: DslSignalHandlerValue): FogBuilder;
+  onMostIntenseYChanged(handler: DslSignalHandlerValue): FogBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): FogBuilder;
+  onTransmitCurveChanged(handler: DslSignalHandlerValue): FogBuilder;
+  onTransmitEnabledChanged(handler: DslSignalHandlerValue): FogBuilder;
 }
 
 const FOG_META: TypeMetadata = {

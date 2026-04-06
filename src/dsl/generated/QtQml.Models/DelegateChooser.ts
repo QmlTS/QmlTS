@@ -2,7 +2,7 @@
 // Type: DelegateChooser
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import type { DslSignalHandlerValue, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { DelegateModelAttachedBuilder } from './QQmlDelegateModelAttached.js';
 import type { ObjectModelAttachedBuilder } from './QQmlObjectModelAttached.js';
@@ -10,16 +10,17 @@ import type { PackageAttachedBuilder } from './QQuickPackageAttached.js';
 export interface DelegateChooserBuilder {
   id(id: string): DelegateChooserBuilder;
   child(obj: QmlObjectBuilder): DelegateChooserBuilder;
+  children(...objs: QmlObjectBuilder[]): DelegateChooserBuilder;
 
   objectName(value: string): DelegateChooserBuilder;
   objectNameBind(expr: string): DelegateChooserBuilder;
   role(value: string): DelegateChooserBuilder;
   roleBind(expr: string): DelegateChooserBuilder;
-  onDelegateChanged(body: string): DelegateChooserBuilder;
-  onObjectNameChanged(body: string): DelegateChooserBuilder;
-  onProgressChanged(body: string): DelegateChooserBuilder;
-  onRoleChanged(body: string): DelegateChooserBuilder;
-  onStatusChanged(body: string): DelegateChooserBuilder;
+  onDelegateChanged(handler: DslSignalHandlerValue): DelegateChooserBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): DelegateChooserBuilder;
+  onProgressChanged(handler: DslSignalHandlerValue): DelegateChooserBuilder;
+  onRoleChanged(handler: DslSignalHandlerValue): DelegateChooserBuilder;
+  onStatusChanged(handler: DslSignalHandlerValue): DelegateChooserBuilder;
   delegateModel(setup: (b: DelegateModelAttachedBuilder) => void): DelegateChooserBuilder;
   objectModel(setup: (b: ObjectModelAttachedBuilder) => void): DelegateChooserBuilder;
   package(setup: (b: PackageAttachedBuilder) => void): DelegateChooserBuilder;

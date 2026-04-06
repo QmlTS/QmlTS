@@ -2,11 +2,17 @@
 // Type: Lightmapper
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlUrl, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlObjectBuilder,
+  QmlUrl,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 export interface LightmapperBuilder {
   id(id: string): LightmapperBuilder;
   child(obj: QmlObjectBuilder): LightmapperBuilder;
+  children(...objs: QmlObjectBuilder[]): LightmapperBuilder;
 
   adaptiveBiasEnabled(value: boolean): LightmapperBuilder;
   adaptiveBiasEnabledBind(expr: string): LightmapperBuilder;
@@ -32,19 +38,19 @@ export interface LightmapperBuilder {
   sourceBind(expr: string): LightmapperBuilder;
   texelsPerUnit(value: number): LightmapperBuilder;
   texelsPerUnitBind(expr: string): LightmapperBuilder;
-  onAdaptiveBiasEnabledChanged(body: string): LightmapperBuilder;
-  onBiasChanged(body: string): LightmapperBuilder;
-  onBouncesChanged(body: string): LightmapperBuilder;
-  onChanged(body: string): LightmapperBuilder;
-  onDenoiseSigmaChanged(body: string): LightmapperBuilder;
-  onIndirectLightEnabledChanged(body: string): LightmapperBuilder;
-  onIndirectLightFactorChanged(body: string): LightmapperBuilder;
-  onIndirectLightWorkgroupSizeChanged(body: string): LightmapperBuilder;
-  onObjectNameChanged(body: string): LightmapperBuilder;
-  onOpacityThresholdChanged(body: string): LightmapperBuilder;
-  onSamplesChanged(body: string): LightmapperBuilder;
-  onSourceChanged(body: string): LightmapperBuilder;
-  onTexelsPerUnitChanged(body: string): LightmapperBuilder;
+  onAdaptiveBiasEnabledChanged(handler: DslSignalHandlerValue): LightmapperBuilder;
+  onBiasChanged(handler: DslSignalHandlerValue): LightmapperBuilder;
+  onBouncesChanged(handler: DslSignalHandlerValue): LightmapperBuilder;
+  onChanged(handler: DslSignalHandlerValue): LightmapperBuilder;
+  onDenoiseSigmaChanged(handler: DslSignalHandlerValue): LightmapperBuilder;
+  onIndirectLightEnabledChanged(handler: DslSignalHandlerValue): LightmapperBuilder;
+  onIndirectLightFactorChanged(handler: DslSignalHandlerValue): LightmapperBuilder;
+  onIndirectLightWorkgroupSizeChanged(handler: DslSignalHandlerValue): LightmapperBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): LightmapperBuilder;
+  onOpacityThresholdChanged(handler: DslSignalHandlerValue): LightmapperBuilder;
+  onSamplesChanged(handler: DslSignalHandlerValue): LightmapperBuilder;
+  onSourceChanged(handler: DslSignalHandlerValue): LightmapperBuilder;
+  onTexelsPerUnitChanged(handler: DslSignalHandlerValue): LightmapperBuilder;
 }
 
 const LIGHTMAPPER_META: TypeMetadata = {

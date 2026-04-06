@@ -2,19 +2,25 @@
 // Type: MenuBar
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 export interface MenuBarBuilder {
   id(id: string): MenuBarBuilder;
   child(obj: QmlObjectBuilder): MenuBarBuilder;
+  children(...objs: QmlObjectBuilder[]): MenuBarBuilder;
 
   objectName(value: string): MenuBarBuilder;
   objectNameBind(expr: string): MenuBarBuilder;
   window(value: QmlValue): MenuBarBuilder;
   windowBind(expr: string): MenuBarBuilder;
-  onMenusChanged(body: string): MenuBarBuilder;
-  onObjectNameChanged(body: string): MenuBarBuilder;
-  onWindowChanged(body: string): MenuBarBuilder;
+  onMenusChanged(handler: DslSignalHandlerValue): MenuBarBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): MenuBarBuilder;
+  onWindowChanged(handler: DslSignalHandlerValue): MenuBarBuilder;
 }
 
 const MENUBAR_META: TypeMetadata = {

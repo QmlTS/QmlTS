@@ -2,11 +2,17 @@
 // Type: LoggingCategory
 // Generated from Qt 6.11.0
 
-import type { QmlEnumToken, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlEnumToken,
+  QmlObjectBuilder,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface LoggingCategoryBuilder {
   id(id: string): LoggingCategoryBuilder;
   child(obj: QmlObjectBuilder): LoggingCategoryBuilder;
+  children(...objs: QmlObjectBuilder[]): LoggingCategoryBuilder;
 
   defaultLogLevel(value: QmlEnumToken): LoggingCategoryBuilder;
   defaultLogLevelBind(expr: string): LoggingCategoryBuilder;
@@ -14,7 +20,7 @@ export interface LoggingCategoryBuilder {
   nameBind(expr: string): LoggingCategoryBuilder;
   objectName(value: string): LoggingCategoryBuilder;
   objectNameBind(expr: string): LoggingCategoryBuilder;
-  onObjectNameChanged(body: string): LoggingCategoryBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): LoggingCategoryBuilder;
 }
 
 const LOGGINGCATEGORY_META: TypeMetadata = {

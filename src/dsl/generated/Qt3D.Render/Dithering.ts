@@ -2,11 +2,17 @@
 // Type: Dithering
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 export interface DitheringBuilder {
   id(id: string): DitheringBuilder;
   child(obj: QmlObjectBuilder): DitheringBuilder;
+  children(...objs: QmlObjectBuilder[]): DitheringBuilder;
 
   enabled(value: boolean): DitheringBuilder;
   enabledBind(expr: string): DitheringBuilder;
@@ -14,10 +20,10 @@ export interface DitheringBuilder {
   objectNameBind(expr: string): DitheringBuilder;
   parent(value: QmlValue): DitheringBuilder;
   parentBind(expr: string): DitheringBuilder;
-  onEnabledChanged(body: string): DitheringBuilder;
-  onNodeDestroyed(body: string): DitheringBuilder;
-  onObjectNameChanged(body: string): DitheringBuilder;
-  onParentChanged(body: string): DitheringBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): DitheringBuilder;
+  onNodeDestroyed(handler: DslSignalHandlerValue): DitheringBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): DitheringBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): DitheringBuilder;
 }
 
 const DITHERING_META: TypeMetadata = {

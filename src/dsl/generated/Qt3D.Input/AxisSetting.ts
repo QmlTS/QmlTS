@@ -2,11 +2,17 @@
 // Type: AxisSetting
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 export interface AxisSettingBuilder {
   id(id: string): AxisSettingBuilder;
   child(obj: QmlObjectBuilder): AxisSettingBuilder;
+  children(...objs: QmlObjectBuilder[]): AxisSettingBuilder;
 
   axes(value: number): AxisSettingBuilder;
   axesBind(expr: string): AxisSettingBuilder;
@@ -20,13 +26,13 @@ export interface AxisSettingBuilder {
   parentBind(expr: string): AxisSettingBuilder;
   smooth(value: boolean): AxisSettingBuilder;
   smoothBind(expr: string): AxisSettingBuilder;
-  onAxesChanged(body: string): AxisSettingBuilder;
-  onDeadZoneRadiusChanged(body: string): AxisSettingBuilder;
-  onEnabledChanged(body: string): AxisSettingBuilder;
-  onNodeDestroyed(body: string): AxisSettingBuilder;
-  onObjectNameChanged(body: string): AxisSettingBuilder;
-  onParentChanged(body: string): AxisSettingBuilder;
-  onSmoothChanged(body: string): AxisSettingBuilder;
+  onAxesChanged(handler: DslSignalHandlerValue): AxisSettingBuilder;
+  onDeadZoneRadiusChanged(handler: DslSignalHandlerValue): AxisSettingBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): AxisSettingBuilder;
+  onNodeDestroyed(handler: DslSignalHandlerValue): AxisSettingBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): AxisSettingBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): AxisSettingBuilder;
+  onSmoothChanged(handler: DslSignalHandlerValue): AxisSettingBuilder;
 }
 
 const AXISSETTING_META: TypeMetadata = {

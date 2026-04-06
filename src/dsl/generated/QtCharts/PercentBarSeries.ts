@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlEnumToken,
   QmlObjectBuilder,
   QmlValue,
@@ -12,6 +13,7 @@ import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface PercentBarSeriesBuilder {
   id(id: string): PercentBarSeriesBuilder;
   child(obj: QmlObjectBuilder): PercentBarSeriesBuilder;
+  children(...objs: QmlObjectBuilder[]): PercentBarSeriesBuilder;
 
   axisX(value: QmlValue): PercentBarSeriesBuilder;
   axisXBind(expr: string): PercentBarSeriesBuilder;
@@ -49,37 +51,37 @@ export interface PercentBarSeriesBuilder {
   visibleBind(expr: string): PercentBarSeriesBuilder;
   zValue(value: number): PercentBarSeriesBuilder;
   zValueBind(expr: string): PercentBarSeriesBuilder;
-  onAxisXChanged(body: string): PercentBarSeriesBuilder;
-  onAxisXTopChanged(body: string): PercentBarSeriesBuilder;
-  onAxisYChanged(body: string): PercentBarSeriesBuilder;
-  onAxisYRightChanged(body: string): PercentBarSeriesBuilder;
-  onBarsetsAdded(body: string): PercentBarSeriesBuilder;
-  onBarsetsRemoved(body: string): PercentBarSeriesBuilder;
-  onClicked(body: string): PercentBarSeriesBuilder;
-  onCountChanged(body: string): PercentBarSeriesBuilder;
-  onDoubleClicked(body: string): PercentBarSeriesBuilder;
-  onHover(body: string): PercentBarSeriesBuilder;
-  onHoverEnter(body: string): PercentBarSeriesBuilder;
-  onHoverExit(body: string): PercentBarSeriesBuilder;
-  onHoverableChanged(body: string): PercentBarSeriesBuilder;
-  onHovered(body: string): PercentBarSeriesBuilder;
-  onHoveredChanged(body: string): PercentBarSeriesBuilder;
-  onLabelsAngleChanged(body: string): PercentBarSeriesBuilder;
-  onLabelsFormatChanged(body: string): PercentBarSeriesBuilder;
-  onLabelsPositionChanged(body: string): PercentBarSeriesBuilder;
-  onLabelsPrecisionChanged(body: string): PercentBarSeriesBuilder;
-  onLabelsVisibleChanged(body: string): PercentBarSeriesBuilder;
-  onLegendDataChanged(body: string): PercentBarSeriesBuilder;
-  onNameChanged(body: string): PercentBarSeriesBuilder;
-  onObjectNameChanged(body: string): PercentBarSeriesBuilder;
-  onOpacityChanged(body: string): PercentBarSeriesBuilder;
-  onPressed(body: string): PercentBarSeriesBuilder;
-  onReleased(body: string): PercentBarSeriesBuilder;
-  onSelectableChanged(body: string): PercentBarSeriesBuilder;
-  onUpdate(body: string): PercentBarSeriesBuilder;
-  onValuesMultiplierChanged(body: string): PercentBarSeriesBuilder;
-  onVisibleChanged(body: string): PercentBarSeriesBuilder;
-  onZValueChanged(body: string): PercentBarSeriesBuilder;
+  onAxisXChanged(handler: DslSignalHandlerValue): PercentBarSeriesBuilder;
+  onAxisXTopChanged(handler: DslSignalHandlerValue): PercentBarSeriesBuilder;
+  onAxisYChanged(handler: DslSignalHandlerValue): PercentBarSeriesBuilder;
+  onAxisYRightChanged(handler: DslSignalHandlerValue): PercentBarSeriesBuilder;
+  onBarsetsAdded(handler: DslSignalHandlerValue): PercentBarSeriesBuilder;
+  onBarsetsRemoved(handler: DslSignalHandlerValue): PercentBarSeriesBuilder;
+  onClicked(handler: DslSignalHandlerValue): PercentBarSeriesBuilder;
+  onCountChanged(handler: DslSignalHandlerValue): PercentBarSeriesBuilder;
+  onDoubleClicked(handler: DslSignalHandlerValue): PercentBarSeriesBuilder;
+  onHover(handler: DslSignalHandlerValue): PercentBarSeriesBuilder;
+  onHoverEnter(handler: DslSignalHandlerValue): PercentBarSeriesBuilder;
+  onHoverExit(handler: DslSignalHandlerValue): PercentBarSeriesBuilder;
+  onHoverableChanged(handler: DslSignalHandlerValue): PercentBarSeriesBuilder;
+  onHovered(handler: DslSignalHandlerValue): PercentBarSeriesBuilder;
+  onHoveredChanged(handler: DslSignalHandlerValue): PercentBarSeriesBuilder;
+  onLabelsAngleChanged(handler: DslSignalHandlerValue): PercentBarSeriesBuilder;
+  onLabelsFormatChanged(handler: DslSignalHandlerValue): PercentBarSeriesBuilder;
+  onLabelsPositionChanged(handler: DslSignalHandlerValue): PercentBarSeriesBuilder;
+  onLabelsPrecisionChanged(handler: DslSignalHandlerValue): PercentBarSeriesBuilder;
+  onLabelsVisibleChanged(handler: DslSignalHandlerValue): PercentBarSeriesBuilder;
+  onLegendDataChanged(handler: DslSignalHandlerValue): PercentBarSeriesBuilder;
+  onNameChanged(handler: DslSignalHandlerValue): PercentBarSeriesBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): PercentBarSeriesBuilder;
+  onOpacityChanged(handler: DslSignalHandlerValue): PercentBarSeriesBuilder;
+  onPressed(handler: DslSignalHandlerValue): PercentBarSeriesBuilder;
+  onReleased(handler: DslSignalHandlerValue): PercentBarSeriesBuilder;
+  onSelectableChanged(handler: DslSignalHandlerValue): PercentBarSeriesBuilder;
+  onUpdate(handler: DslSignalHandlerValue): PercentBarSeriesBuilder;
+  onValuesMultiplierChanged(handler: DslSignalHandlerValue): PercentBarSeriesBuilder;
+  onVisibleChanged(handler: DslSignalHandlerValue): PercentBarSeriesBuilder;
+  onZValueChanged(handler: DslSignalHandlerValue): PercentBarSeriesBuilder;
 }
 
 const PERCENTBARSERIES_META: TypeMetadata = {

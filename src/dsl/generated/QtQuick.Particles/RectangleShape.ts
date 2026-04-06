@@ -2,19 +2,20 @@
 // Type: RectangleShape
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import type { DslSignalHandlerValue, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 import type { ItemParticleAttachedBuilder } from './QQuickItemParticleAttached.js';
 export interface RectangleShapeBuilder {
   id(id: string): RectangleShapeBuilder;
   child(obj: QmlObjectBuilder): RectangleShapeBuilder;
+  children(...objs: QmlObjectBuilder[]): RectangleShapeBuilder;
 
   fill(value: boolean): RectangleShapeBuilder;
   fillBind(expr: string): RectangleShapeBuilder;
   objectName(value: string): RectangleShapeBuilder;
   objectNameBind(expr: string): RectangleShapeBuilder;
-  onFillChanged(body: string): RectangleShapeBuilder;
-  onObjectNameChanged(body: string): RectangleShapeBuilder;
+  onFillChanged(handler: DslSignalHandlerValue): RectangleShapeBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): RectangleShapeBuilder;
   itemParticle(setup: (b: ItemParticleAttachedBuilder) => void): RectangleShapeBuilder;
 }
 

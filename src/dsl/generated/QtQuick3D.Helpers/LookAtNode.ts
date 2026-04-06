@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlObjectBuilder,
   QmlQuaternion,
   QmlValue,
@@ -14,6 +15,7 @@ import type { NodeBuilder } from '../QtQuick3D/Node.js';
 export interface LookAtNodeBuilder {
   id(id: string): LookAtNodeBuilder;
   child(obj: QmlObjectBuilder): LookAtNodeBuilder;
+  children(...objs: QmlObjectBuilder[]): LookAtNodeBuilder;
 
   eulerRotation(value: QmlVector3d): LookAtNodeBuilder;
   eulerRotationBind(expr: string): LookAtNodeBuilder;
@@ -47,30 +49,30 @@ export interface LookAtNodeBuilder {
   yBind(expr: string): LookAtNodeBuilder;
   z(value: number): LookAtNodeBuilder;
   zBind(expr: string): LookAtNodeBuilder;
-  onChildrenChanged(body: string): LookAtNodeBuilder;
-  onEulerRotationChanged(body: string): LookAtNodeBuilder;
-  onForwardChanged(body: string): LookAtNodeBuilder;
-  onLayersChanged(body: string): LookAtNodeBuilder;
-  onLocalOpacityChanged(body: string): LookAtNodeBuilder;
-  onObjectNameChanged(body: string): LookAtNodeBuilder;
-  onParentChanged(body: string): LookAtNodeBuilder;
-  onPivotChanged(body: string): LookAtNodeBuilder;
-  onPositionChanged(body: string): LookAtNodeBuilder;
-  onRightChanged(body: string): LookAtNodeBuilder;
-  onRotationChanged(body: string): LookAtNodeBuilder;
-  onScaleChanged(body: string): LookAtNodeBuilder;
-  onScenePositionChanged(body: string): LookAtNodeBuilder;
-  onSceneRotationChanged(body: string): LookAtNodeBuilder;
-  onSceneScaleChanged(body: string): LookAtNodeBuilder;
-  onSceneTransformChanged(body: string): LookAtNodeBuilder;
-  onStateChanged(body: string): LookAtNodeBuilder;
-  onStaticFlagsChanged(body: string): LookAtNodeBuilder;
-  onTargetChanged(body: string): LookAtNodeBuilder;
-  onUpChanged(body: string): LookAtNodeBuilder;
-  onVisibleChanged(body: string): LookAtNodeBuilder;
-  onXChanged(body: string): LookAtNodeBuilder;
-  onYChanged(body: string): LookAtNodeBuilder;
-  onZChanged(body: string): LookAtNodeBuilder;
+  onChildrenChanged(handler: DslSignalHandlerValue): LookAtNodeBuilder;
+  onEulerRotationChanged(handler: DslSignalHandlerValue): LookAtNodeBuilder;
+  onForwardChanged(handler: DslSignalHandlerValue): LookAtNodeBuilder;
+  onLayersChanged(handler: DslSignalHandlerValue): LookAtNodeBuilder;
+  onLocalOpacityChanged(handler: DslSignalHandlerValue): LookAtNodeBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): LookAtNodeBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): LookAtNodeBuilder;
+  onPivotChanged(handler: DslSignalHandlerValue): LookAtNodeBuilder;
+  onPositionChanged(handler: DslSignalHandlerValue): LookAtNodeBuilder;
+  onRightChanged(handler: DslSignalHandlerValue): LookAtNodeBuilder;
+  onRotationChanged(handler: DslSignalHandlerValue): LookAtNodeBuilder;
+  onScaleChanged(handler: DslSignalHandlerValue): LookAtNodeBuilder;
+  onScenePositionChanged(handler: DslSignalHandlerValue): LookAtNodeBuilder;
+  onSceneRotationChanged(handler: DslSignalHandlerValue): LookAtNodeBuilder;
+  onSceneScaleChanged(handler: DslSignalHandlerValue): LookAtNodeBuilder;
+  onSceneTransformChanged(handler: DslSignalHandlerValue): LookAtNodeBuilder;
+  onStateChanged(handler: DslSignalHandlerValue): LookAtNodeBuilder;
+  onStaticFlagsChanged(handler: DslSignalHandlerValue): LookAtNodeBuilder;
+  onTargetChanged(handler: DslSignalHandlerValue): LookAtNodeBuilder;
+  onUpChanged(handler: DslSignalHandlerValue): LookAtNodeBuilder;
+  onVisibleChanged(handler: DslSignalHandlerValue): LookAtNodeBuilder;
+  onXChanged(handler: DslSignalHandlerValue): LookAtNodeBuilder;
+  onYChanged(handler: DslSignalHandlerValue): LookAtNodeBuilder;
+  onZChanged(handler: DslSignalHandlerValue): LookAtNodeBuilder;
 }
 
 const LOOKATNODE_META: TypeMetadata = {

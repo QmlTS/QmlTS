@@ -2,12 +2,18 @@
 // Type: GeocodeModel
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { PluginBuilder } from './Plugin.js';
 export interface GeocodeModelBuilder {
   id(id: string): GeocodeModelBuilder;
   child(obj: QmlObjectBuilder): GeocodeModelBuilder;
+  children(...objs: QmlObjectBuilder[]): GeocodeModelBuilder;
 
   autoUpdate(value: boolean): GeocodeModelBuilder;
   autoUpdateBind(expr: string): GeocodeModelBuilder;
@@ -23,35 +29,35 @@ export interface GeocodeModelBuilder {
   pluginBind(expr: string): GeocodeModelBuilder;
   query(value: QmlValue): GeocodeModelBuilder;
   queryBind(expr: string): GeocodeModelBuilder;
-  onAutoUpdateChanged(body: string): GeocodeModelBuilder;
-  onBoundsChanged(body: string): GeocodeModelBuilder;
-  onColumnsAboutToBeInserted(body: string): GeocodeModelBuilder;
-  onColumnsAboutToBeMoved(body: string): GeocodeModelBuilder;
-  onColumnsAboutToBeRemoved(body: string): GeocodeModelBuilder;
-  onColumnsInserted(body: string): GeocodeModelBuilder;
-  onColumnsMoved(body: string): GeocodeModelBuilder;
-  onColumnsRemoved(body: string): GeocodeModelBuilder;
-  onCountChanged(body: string): GeocodeModelBuilder;
-  onDataChanged(body: string): GeocodeModelBuilder;
-  onErrorChanged(body: string): GeocodeModelBuilder;
-  onHeaderDataChanged(body: string): GeocodeModelBuilder;
-  onLayoutAboutToBeChanged(body: string): GeocodeModelBuilder;
-  onLayoutChanged(body: string): GeocodeModelBuilder;
-  onLimitChanged(body: string): GeocodeModelBuilder;
-  onLocationsChanged(body: string): GeocodeModelBuilder;
-  onModelAboutToBeReset(body: string): GeocodeModelBuilder;
-  onModelReset(body: string): GeocodeModelBuilder;
-  onObjectNameChanged(body: string): GeocodeModelBuilder;
-  onOffsetChanged(body: string): GeocodeModelBuilder;
-  onPluginChanged(body: string): GeocodeModelBuilder;
-  onQueryChanged(body: string): GeocodeModelBuilder;
-  onRowsAboutToBeInserted(body: string): GeocodeModelBuilder;
-  onRowsAboutToBeMoved(body: string): GeocodeModelBuilder;
-  onRowsAboutToBeRemoved(body: string): GeocodeModelBuilder;
-  onRowsInserted(body: string): GeocodeModelBuilder;
-  onRowsMoved(body: string): GeocodeModelBuilder;
-  onRowsRemoved(body: string): GeocodeModelBuilder;
-  onStatusChanged(body: string): GeocodeModelBuilder;
+  onAutoUpdateChanged(handler: DslSignalHandlerValue): GeocodeModelBuilder;
+  onBoundsChanged(handler: DslSignalHandlerValue): GeocodeModelBuilder;
+  onColumnsAboutToBeInserted(handler: DslSignalHandlerValue): GeocodeModelBuilder;
+  onColumnsAboutToBeMoved(handler: DslSignalHandlerValue): GeocodeModelBuilder;
+  onColumnsAboutToBeRemoved(handler: DslSignalHandlerValue): GeocodeModelBuilder;
+  onColumnsInserted(handler: DslSignalHandlerValue): GeocodeModelBuilder;
+  onColumnsMoved(handler: DslSignalHandlerValue): GeocodeModelBuilder;
+  onColumnsRemoved(handler: DslSignalHandlerValue): GeocodeModelBuilder;
+  onCountChanged(handler: DslSignalHandlerValue): GeocodeModelBuilder;
+  onDataChanged(handler: DslSignalHandlerValue): GeocodeModelBuilder;
+  onErrorChanged(handler: DslSignalHandlerValue): GeocodeModelBuilder;
+  onHeaderDataChanged(handler: DslSignalHandlerValue): GeocodeModelBuilder;
+  onLayoutAboutToBeChanged(handler: DslSignalHandlerValue): GeocodeModelBuilder;
+  onLayoutChanged(handler: DslSignalHandlerValue): GeocodeModelBuilder;
+  onLimitChanged(handler: DslSignalHandlerValue): GeocodeModelBuilder;
+  onLocationsChanged(handler: DslSignalHandlerValue): GeocodeModelBuilder;
+  onModelAboutToBeReset(handler: DslSignalHandlerValue): GeocodeModelBuilder;
+  onModelReset(handler: DslSignalHandlerValue): GeocodeModelBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): GeocodeModelBuilder;
+  onOffsetChanged(handler: DslSignalHandlerValue): GeocodeModelBuilder;
+  onPluginChanged(handler: DslSignalHandlerValue): GeocodeModelBuilder;
+  onQueryChanged(handler: DslSignalHandlerValue): GeocodeModelBuilder;
+  onRowsAboutToBeInserted(handler: DslSignalHandlerValue): GeocodeModelBuilder;
+  onRowsAboutToBeMoved(handler: DslSignalHandlerValue): GeocodeModelBuilder;
+  onRowsAboutToBeRemoved(handler: DslSignalHandlerValue): GeocodeModelBuilder;
+  onRowsInserted(handler: DslSignalHandlerValue): GeocodeModelBuilder;
+  onRowsMoved(handler: DslSignalHandlerValue): GeocodeModelBuilder;
+  onRowsRemoved(handler: DslSignalHandlerValue): GeocodeModelBuilder;
+  onStatusChanged(handler: DslSignalHandlerValue): GeocodeModelBuilder;
 }
 
 const GEOCODEMODEL_META: TypeMetadata = {

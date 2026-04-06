@@ -2,15 +2,16 @@
 // Type: Value3DAxisFormatter
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import type { DslSignalHandlerValue, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 export interface Value3DAxisFormatterBuilder {
   id(id: string): Value3DAxisFormatterBuilder;
   child(obj: QmlObjectBuilder): Value3DAxisFormatterBuilder;
+  children(...objs: QmlObjectBuilder[]): Value3DAxisFormatterBuilder;
 
   objectName(value: string): Value3DAxisFormatterBuilder;
   objectNameBind(expr: string): Value3DAxisFormatterBuilder;
-  onObjectNameChanged(body: string): Value3DAxisFormatterBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): Value3DAxisFormatterBuilder;
 }
 
 const VALUE3DAXISFORMATTER_META: TypeMetadata = {

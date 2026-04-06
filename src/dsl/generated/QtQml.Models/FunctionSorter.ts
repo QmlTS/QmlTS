@@ -2,7 +2,12 @@
 // Type: FunctionSorter
 // Generated from Qt 6.11.0
 
-import type { QmlEnumToken, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlEnumToken,
+  QmlObjectBuilder,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 import type { DelegateModelAttachedBuilder } from './QQmlDelegateModelAttached.js';
 import type { ObjectModelAttachedBuilder } from './QQmlObjectModelAttached.js';
@@ -10,6 +15,7 @@ import type { PackageAttachedBuilder } from './QQuickPackageAttached.js';
 export interface FunctionSorterBuilder {
   id(id: string): FunctionSorterBuilder;
   child(obj: QmlObjectBuilder): FunctionSorterBuilder;
+  children(...objs: QmlObjectBuilder[]): FunctionSorterBuilder;
 
   column(value: number): FunctionSorterBuilder;
   columnBind(expr: string): FunctionSorterBuilder;
@@ -21,13 +27,13 @@ export interface FunctionSorterBuilder {
   priorityBind(expr: string): FunctionSorterBuilder;
   sortOrder(value: QmlEnumToken): FunctionSorterBuilder;
   sortOrderBind(expr: string): FunctionSorterBuilder;
-  onColumnChanged(body: string): FunctionSorterBuilder;
-  onEnabledChanged(body: string): FunctionSorterBuilder;
-  onInvalidateCache(body: string): FunctionSorterBuilder;
-  onInvalidateModel(body: string): FunctionSorterBuilder;
-  onObjectNameChanged(body: string): FunctionSorterBuilder;
-  onPriorityChanged(body: string): FunctionSorterBuilder;
-  onSortOrderChanged(body: string): FunctionSorterBuilder;
+  onColumnChanged(handler: DslSignalHandlerValue): FunctionSorterBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): FunctionSorterBuilder;
+  onInvalidateCache(handler: DslSignalHandlerValue): FunctionSorterBuilder;
+  onInvalidateModel(handler: DslSignalHandlerValue): FunctionSorterBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): FunctionSorterBuilder;
+  onPriorityChanged(handler: DslSignalHandlerValue): FunctionSorterBuilder;
+  onSortOrderChanged(handler: DslSignalHandlerValue): FunctionSorterBuilder;
   delegateModel(setup: (b: DelegateModelAttachedBuilder) => void): FunctionSorterBuilder;
   objectModel(setup: (b: ObjectModelAttachedBuilder) => void): FunctionSorterBuilder;
   package(setup: (b: PackageAttachedBuilder) => void): FunctionSorterBuilder;

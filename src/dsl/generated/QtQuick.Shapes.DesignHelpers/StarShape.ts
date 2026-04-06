@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlColor,
   QmlEnumToken,
   QmlObjectBuilder,
@@ -18,6 +19,7 @@ import type { LayerBuilder } from '../QtQuick/QQuickItemLayer.js';
 export interface StarShapeBuilder {
   id(id: string): StarShapeBuilder;
   child(obj: QmlObjectBuilder): StarShapeBuilder;
+  children(...objs: QmlObjectBuilder[]): StarShapeBuilder;
 
   activeFocusOnTab(value: boolean): StarShapeBuilder;
   activeFocusOnTabBind(expr: string): StarShapeBuilder;
@@ -107,59 +109,59 @@ export interface StarShapeBuilder {
   yBind(expr: string): StarShapeBuilder;
   z(value: number): StarShapeBuilder;
   zBind(expr: string): StarShapeBuilder;
-  onActiveFocusChanged(body: string): StarShapeBuilder;
-  onActiveFocusOnTabChanged(body: string): StarShapeBuilder;
-  onAntialiasingChanged(body: string): StarShapeBuilder;
-  onAsynchronousChanged(body: string): StarShapeBuilder;
-  onBaselineOffsetChanged(body: string): StarShapeBuilder;
-  onBoundingRectChanged(body: string): StarShapeBuilder;
-  onCapStyleChanged(body: string): StarShapeBuilder;
-  onChildrenChanged(body: string): StarShapeBuilder;
-  onChildrenRectChanged(body: string): StarShapeBuilder;
-  onClipChanged(body: string): StarShapeBuilder;
-  onContainmentMaskChanged(body: string): StarShapeBuilder;
-  onContainsModeChanged(body: string): StarShapeBuilder;
-  onCornerRadiusChanged(body: string): StarShapeBuilder;
-  onDashOffsetChanged(body: string): StarShapeBuilder;
-  onDashPatternChanged(body: string): StarShapeBuilder;
-  onEnabledChanged(body: string): StarShapeBuilder;
-  onFillColorChanged(body: string): StarShapeBuilder;
-  onFillModeChanged(body: string): StarShapeBuilder;
-  onFocusChanged(body: string): StarShapeBuilder;
-  onFocusPolicyChanged(body: string): StarShapeBuilder;
-  onGradientChanged(body: string): StarShapeBuilder;
-  onHeightChanged(body: string): StarShapeBuilder;
-  onHorizontalAlignmentChanged(body: string): StarShapeBuilder;
-  onImplicitHeightChanged(body: string): StarShapeBuilder;
-  onImplicitWidthChanged(body: string): StarShapeBuilder;
-  onJoinStyleChanged(body: string): StarShapeBuilder;
-  onObjectNameChanged(body: string): StarShapeBuilder;
-  onOpacityChanged(body: string): StarShapeBuilder;
-  onPaletteChanged(body: string): StarShapeBuilder;
-  onPaletteCreated(body: string): StarShapeBuilder;
-  onParentChanged(body: string): StarShapeBuilder;
-  onPointCountChanged(body: string): StarShapeBuilder;
-  onPreferredRendererTypeChanged(body: string): StarShapeBuilder;
-  onRatioChanged(body: string): StarShapeBuilder;
-  onRendererChanged(body: string): StarShapeBuilder;
-  onRotationChanged(body: string): StarShapeBuilder;
-  onScaleChanged(body: string): StarShapeBuilder;
-  onSmoothChanged(body: string): StarShapeBuilder;
-  onStateChanged(body: string): StarShapeBuilder;
-  onStatusChanged(body: string): StarShapeBuilder;
-  onStrokeColorChanged(body: string): StarShapeBuilder;
-  onStrokeStyleChanged(body: string): StarShapeBuilder;
-  onStrokeWidthChanged(body: string): StarShapeBuilder;
-  onTransformOriginChanged(body: string): StarShapeBuilder;
-  onVendorExtensionsEnabledChanged(body: string): StarShapeBuilder;
-  onVerticalAlignmentChanged(body: string): StarShapeBuilder;
-  onVisibleChanged(body: string): StarShapeBuilder;
-  onVisibleChildrenChanged(body: string): StarShapeBuilder;
-  onWidthChanged(body: string): StarShapeBuilder;
-  onWindowChanged(body: string): StarShapeBuilder;
-  onXChanged(body: string): StarShapeBuilder;
-  onYChanged(body: string): StarShapeBuilder;
-  onZChanged(body: string): StarShapeBuilder;
+  onActiveFocusChanged(handler: DslSignalHandlerValue): StarShapeBuilder;
+  onActiveFocusOnTabChanged(handler: DslSignalHandlerValue): StarShapeBuilder;
+  onAntialiasingChanged(handler: DslSignalHandlerValue): StarShapeBuilder;
+  onAsynchronousChanged(handler: DslSignalHandlerValue): StarShapeBuilder;
+  onBaselineOffsetChanged(handler: DslSignalHandlerValue): StarShapeBuilder;
+  onBoundingRectChanged(handler: DslSignalHandlerValue): StarShapeBuilder;
+  onCapStyleChanged(handler: DslSignalHandlerValue): StarShapeBuilder;
+  onChildrenChanged(handler: DslSignalHandlerValue): StarShapeBuilder;
+  onChildrenRectChanged(handler: DslSignalHandlerValue): StarShapeBuilder;
+  onClipChanged(handler: DslSignalHandlerValue): StarShapeBuilder;
+  onContainmentMaskChanged(handler: DslSignalHandlerValue): StarShapeBuilder;
+  onContainsModeChanged(handler: DslSignalHandlerValue): StarShapeBuilder;
+  onCornerRadiusChanged(handler: DslSignalHandlerValue): StarShapeBuilder;
+  onDashOffsetChanged(handler: DslSignalHandlerValue): StarShapeBuilder;
+  onDashPatternChanged(handler: DslSignalHandlerValue): StarShapeBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): StarShapeBuilder;
+  onFillColorChanged(handler: DslSignalHandlerValue): StarShapeBuilder;
+  onFillModeChanged(handler: DslSignalHandlerValue): StarShapeBuilder;
+  onFocusChanged(handler: DslSignalHandlerValue): StarShapeBuilder;
+  onFocusPolicyChanged(handler: DslSignalHandlerValue): StarShapeBuilder;
+  onGradientChanged(handler: DslSignalHandlerValue): StarShapeBuilder;
+  onHeightChanged(handler: DslSignalHandlerValue): StarShapeBuilder;
+  onHorizontalAlignmentChanged(handler: DslSignalHandlerValue): StarShapeBuilder;
+  onImplicitHeightChanged(handler: DslSignalHandlerValue): StarShapeBuilder;
+  onImplicitWidthChanged(handler: DslSignalHandlerValue): StarShapeBuilder;
+  onJoinStyleChanged(handler: DslSignalHandlerValue): StarShapeBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): StarShapeBuilder;
+  onOpacityChanged(handler: DslSignalHandlerValue): StarShapeBuilder;
+  onPaletteChanged(handler: DslSignalHandlerValue): StarShapeBuilder;
+  onPaletteCreated(handler: DslSignalHandlerValue): StarShapeBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): StarShapeBuilder;
+  onPointCountChanged(handler: DslSignalHandlerValue): StarShapeBuilder;
+  onPreferredRendererTypeChanged(handler: DslSignalHandlerValue): StarShapeBuilder;
+  onRatioChanged(handler: DslSignalHandlerValue): StarShapeBuilder;
+  onRendererChanged(handler: DslSignalHandlerValue): StarShapeBuilder;
+  onRotationChanged(handler: DslSignalHandlerValue): StarShapeBuilder;
+  onScaleChanged(handler: DslSignalHandlerValue): StarShapeBuilder;
+  onSmoothChanged(handler: DslSignalHandlerValue): StarShapeBuilder;
+  onStateChanged(handler: DslSignalHandlerValue): StarShapeBuilder;
+  onStatusChanged(handler: DslSignalHandlerValue): StarShapeBuilder;
+  onStrokeColorChanged(handler: DslSignalHandlerValue): StarShapeBuilder;
+  onStrokeStyleChanged(handler: DslSignalHandlerValue): StarShapeBuilder;
+  onStrokeWidthChanged(handler: DslSignalHandlerValue): StarShapeBuilder;
+  onTransformOriginChanged(handler: DslSignalHandlerValue): StarShapeBuilder;
+  onVendorExtensionsEnabledChanged(handler: DslSignalHandlerValue): StarShapeBuilder;
+  onVerticalAlignmentChanged(handler: DslSignalHandlerValue): StarShapeBuilder;
+  onVisibleChanged(handler: DslSignalHandlerValue): StarShapeBuilder;
+  onVisibleChildrenChanged(handler: DslSignalHandlerValue): StarShapeBuilder;
+  onWidthChanged(handler: DslSignalHandlerValue): StarShapeBuilder;
+  onWindowChanged(handler: DslSignalHandlerValue): StarShapeBuilder;
+  onXChanged(handler: DslSignalHandlerValue): StarShapeBuilder;
+  onYChanged(handler: DslSignalHandlerValue): StarShapeBuilder;
+  onZChanged(handler: DslSignalHandlerValue): StarShapeBuilder;
   anchors(setup: (b: AnchorsBuilder) => void): StarShapeBuilder;
   layer(setup: (b: LayerBuilder) => void): StarShapeBuilder;
 }

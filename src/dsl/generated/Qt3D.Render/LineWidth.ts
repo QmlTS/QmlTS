@@ -2,11 +2,17 @@
 // Type: LineWidth
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 export interface LineWidthBuilder {
   id(id: string): LineWidthBuilder;
   child(obj: QmlObjectBuilder): LineWidthBuilder;
+  children(...objs: QmlObjectBuilder[]): LineWidthBuilder;
 
   enabled(value: boolean): LineWidthBuilder;
   enabledBind(expr: string): LineWidthBuilder;
@@ -18,12 +24,12 @@ export interface LineWidthBuilder {
   smoothBind(expr: string): LineWidthBuilder;
   value(value: number): LineWidthBuilder;
   valueBind(expr: string): LineWidthBuilder;
-  onEnabledChanged(body: string): LineWidthBuilder;
-  onNodeDestroyed(body: string): LineWidthBuilder;
-  onObjectNameChanged(body: string): LineWidthBuilder;
-  onParentChanged(body: string): LineWidthBuilder;
-  onSmoothChanged(body: string): LineWidthBuilder;
-  onValueChanged(body: string): LineWidthBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): LineWidthBuilder;
+  onNodeDestroyed(handler: DslSignalHandlerValue): LineWidthBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): LineWidthBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): LineWidthBuilder;
+  onSmoothChanged(handler: DslSignalHandlerValue): LineWidthBuilder;
+  onValueChanged(handler: DslSignalHandlerValue): LineWidthBuilder;
 }
 
 const LINEWIDTH_META: TypeMetadata = {

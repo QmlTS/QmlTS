@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlDate,
   QmlEnumToken,
   QmlObjectBuilder,
@@ -13,6 +14,7 @@ import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface RouteQueryBuilder {
   id(id: string): RouteQueryBuilder;
   child(obj: QmlObjectBuilder): RouteQueryBuilder;
+  children(...objs: QmlObjectBuilder[]): RouteQueryBuilder;
 
   departureTime(value: QmlDate): RouteQueryBuilder;
   departureTimeBind(expr: string): RouteQueryBuilder;
@@ -32,17 +34,17 @@ export interface RouteQueryBuilder {
   travelModesBind(expr: string): RouteQueryBuilder;
   waypoints(value: QmlValue): RouteQueryBuilder;
   waypointsBind(expr: string): RouteQueryBuilder;
-  onDepartureTimeChanged(body: string): RouteQueryBuilder;
-  onExcludedAreasChanged(body: string): RouteQueryBuilder;
-  onFeatureTypesChanged(body: string): RouteQueryBuilder;
-  onManeuverDetailChanged(body: string): RouteQueryBuilder;
-  onNumberAlternativeRoutesChanged(body: string): RouteQueryBuilder;
-  onObjectNameChanged(body: string): RouteQueryBuilder;
-  onQueryDetailsChanged(body: string): RouteQueryBuilder;
-  onRouteOptimizationsChanged(body: string): RouteQueryBuilder;
-  onSegmentDetailChanged(body: string): RouteQueryBuilder;
-  onTravelModesChanged(body: string): RouteQueryBuilder;
-  onWaypointsChanged(body: string): RouteQueryBuilder;
+  onDepartureTimeChanged(handler: DslSignalHandlerValue): RouteQueryBuilder;
+  onExcludedAreasChanged(handler: DslSignalHandlerValue): RouteQueryBuilder;
+  onFeatureTypesChanged(handler: DslSignalHandlerValue): RouteQueryBuilder;
+  onManeuverDetailChanged(handler: DslSignalHandlerValue): RouteQueryBuilder;
+  onNumberAlternativeRoutesChanged(handler: DslSignalHandlerValue): RouteQueryBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): RouteQueryBuilder;
+  onQueryDetailsChanged(handler: DslSignalHandlerValue): RouteQueryBuilder;
+  onRouteOptimizationsChanged(handler: DslSignalHandlerValue): RouteQueryBuilder;
+  onSegmentDetailChanged(handler: DslSignalHandlerValue): RouteQueryBuilder;
+  onTravelModesChanged(handler: DslSignalHandlerValue): RouteQueryBuilder;
+  onWaypointsChanged(handler: DslSignalHandlerValue): RouteQueryBuilder;
 }
 
 const ROUTEQUERY_META: TypeMetadata = {

@@ -2,12 +2,18 @@
 // Type: DepthOfFieldEffect
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 import type { SceneEnvironmentBuilder } from '../QtQuick3D/SceneEnvironment.js';
 export interface DepthOfFieldEffectBuilder {
   id(id: string): DepthOfFieldEffectBuilder;
   child(obj: QmlObjectBuilder): DepthOfFieldEffectBuilder;
+  children(...objs: QmlObjectBuilder[]): DepthOfFieldEffectBuilder;
 
   enabled(value: boolean): DepthOfFieldEffectBuilder;
   enabledBind(expr: string): DepthOfFieldEffectBuilder;
@@ -19,12 +25,12 @@ export interface DepthOfFieldEffectBuilder {
   parentBind(expr: string): DepthOfFieldEffectBuilder;
   state(value: string): DepthOfFieldEffectBuilder;
   stateBind(expr: string): DepthOfFieldEffectBuilder;
-  onChildrenChanged(body: string): DepthOfFieldEffectBuilder;
-  onEnabledChanged(body: string): DepthOfFieldEffectBuilder;
-  onEnvironmentChanged(body: string): DepthOfFieldEffectBuilder;
-  onObjectNameChanged(body: string): DepthOfFieldEffectBuilder;
-  onParentChanged(body: string): DepthOfFieldEffectBuilder;
-  onStateChanged(body: string): DepthOfFieldEffectBuilder;
+  onChildrenChanged(handler: DslSignalHandlerValue): DepthOfFieldEffectBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): DepthOfFieldEffectBuilder;
+  onEnvironmentChanged(handler: DslSignalHandlerValue): DepthOfFieldEffectBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): DepthOfFieldEffectBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): DepthOfFieldEffectBuilder;
+  onStateChanged(handler: DslSignalHandlerValue): DepthOfFieldEffectBuilder;
 }
 
 const DEPTHOFFIELDEFFECT_META: TypeMetadata = {

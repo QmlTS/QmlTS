@@ -2,7 +2,12 @@
 // Type: PropertyAction
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { QtObjectBuilder } from '../QML/QtObject.js';
 import type { AccessibleAttachedBuilder } from './Accessible.js';
@@ -24,6 +29,7 @@ import type { ViewTransitionAttachedBuilder } from './ViewTransition.js';
 export interface PropertyActionBuilder {
   id(id: string): PropertyActionBuilder;
   child(obj: QmlObjectBuilder): PropertyActionBuilder;
+  children(...objs: QmlObjectBuilder[]): PropertyActionBuilder;
 
   alwaysRunToEnd(value: boolean): PropertyActionBuilder;
   alwaysRunToEndBind(expr: string): PropertyActionBuilder;
@@ -43,18 +49,18 @@ export interface PropertyActionBuilder {
   targetBind(expr: string): PropertyActionBuilder;
   value(value: QmlValue): PropertyActionBuilder;
   valueBind(expr: string): PropertyActionBuilder;
-  onAlwaysRunToEndChanged(body: string): PropertyActionBuilder;
-  onFinished(body: string): PropertyActionBuilder;
-  onLoopCountChanged(body: string): PropertyActionBuilder;
-  onObjectNameChanged(body: string): PropertyActionBuilder;
-  onPausedChanged(body: string): PropertyActionBuilder;
-  onPropertiesChanged(body: string): PropertyActionBuilder;
-  onPropertyChanged(body: string): PropertyActionBuilder;
-  onRunningChanged(body: string): PropertyActionBuilder;
-  onStarted(body: string): PropertyActionBuilder;
-  onStopped(body: string): PropertyActionBuilder;
-  onTargetChanged(body: string): PropertyActionBuilder;
-  onValueChanged(body: string): PropertyActionBuilder;
+  onAlwaysRunToEndChanged(handler: DslSignalHandlerValue): PropertyActionBuilder;
+  onFinished(handler: DslSignalHandlerValue): PropertyActionBuilder;
+  onLoopCountChanged(handler: DslSignalHandlerValue): PropertyActionBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): PropertyActionBuilder;
+  onPausedChanged(handler: DslSignalHandlerValue): PropertyActionBuilder;
+  onPropertiesChanged(handler: DslSignalHandlerValue): PropertyActionBuilder;
+  onPropertyChanged(handler: DslSignalHandlerValue): PropertyActionBuilder;
+  onRunningChanged(handler: DslSignalHandlerValue): PropertyActionBuilder;
+  onStarted(handler: DslSignalHandlerValue): PropertyActionBuilder;
+  onStopped(handler: DslSignalHandlerValue): PropertyActionBuilder;
+  onTargetChanged(handler: DslSignalHandlerValue): PropertyActionBuilder;
+  onValueChanged(handler: DslSignalHandlerValue): PropertyActionBuilder;
   accessible(setup: (b: AccessibleAttachedBuilder) => void): PropertyActionBuilder;
   drag(setup: (b: DragAttachedBuilder) => void): PropertyActionBuilder;
   enterKey(setup: (b: EnterKeyAttachedBuilder) => void): PropertyActionBuilder;

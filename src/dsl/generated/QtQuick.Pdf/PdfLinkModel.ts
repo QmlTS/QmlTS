@@ -2,12 +2,13 @@
 // Type: PdfLinkModel
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import type { DslSignalHandlerValue, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { PdfDocumentBuilder } from './PdfDocument.js';
 export interface PdfLinkModelBuilder {
   id(id: string): PdfLinkModelBuilder;
   child(obj: QmlObjectBuilder): PdfLinkModelBuilder;
+  children(...objs: QmlObjectBuilder[]): PdfLinkModelBuilder;
 
   document(value: PdfDocumentBuilder): PdfLinkModelBuilder;
   documentBind(expr: string): PdfLinkModelBuilder;
@@ -15,27 +16,27 @@ export interface PdfLinkModelBuilder {
   objectNameBind(expr: string): PdfLinkModelBuilder;
   page(value: number): PdfLinkModelBuilder;
   pageBind(expr: string): PdfLinkModelBuilder;
-  onColumnsAboutToBeInserted(body: string): PdfLinkModelBuilder;
-  onColumnsAboutToBeMoved(body: string): PdfLinkModelBuilder;
-  onColumnsAboutToBeRemoved(body: string): PdfLinkModelBuilder;
-  onColumnsInserted(body: string): PdfLinkModelBuilder;
-  onColumnsMoved(body: string): PdfLinkModelBuilder;
-  onColumnsRemoved(body: string): PdfLinkModelBuilder;
-  onDataChanged(body: string): PdfLinkModelBuilder;
-  onDocumentChanged(body: string): PdfLinkModelBuilder;
-  onHeaderDataChanged(body: string): PdfLinkModelBuilder;
-  onLayoutAboutToBeChanged(body: string): PdfLinkModelBuilder;
-  onLayoutChanged(body: string): PdfLinkModelBuilder;
-  onModelAboutToBeReset(body: string): PdfLinkModelBuilder;
-  onModelReset(body: string): PdfLinkModelBuilder;
-  onObjectNameChanged(body: string): PdfLinkModelBuilder;
-  onPageChanged(body: string): PdfLinkModelBuilder;
-  onRowsAboutToBeInserted(body: string): PdfLinkModelBuilder;
-  onRowsAboutToBeMoved(body: string): PdfLinkModelBuilder;
-  onRowsAboutToBeRemoved(body: string): PdfLinkModelBuilder;
-  onRowsInserted(body: string): PdfLinkModelBuilder;
-  onRowsMoved(body: string): PdfLinkModelBuilder;
-  onRowsRemoved(body: string): PdfLinkModelBuilder;
+  onColumnsAboutToBeInserted(handler: DslSignalHandlerValue): PdfLinkModelBuilder;
+  onColumnsAboutToBeMoved(handler: DslSignalHandlerValue): PdfLinkModelBuilder;
+  onColumnsAboutToBeRemoved(handler: DslSignalHandlerValue): PdfLinkModelBuilder;
+  onColumnsInserted(handler: DslSignalHandlerValue): PdfLinkModelBuilder;
+  onColumnsMoved(handler: DslSignalHandlerValue): PdfLinkModelBuilder;
+  onColumnsRemoved(handler: DslSignalHandlerValue): PdfLinkModelBuilder;
+  onDataChanged(handler: DslSignalHandlerValue): PdfLinkModelBuilder;
+  onDocumentChanged(handler: DslSignalHandlerValue): PdfLinkModelBuilder;
+  onHeaderDataChanged(handler: DslSignalHandlerValue): PdfLinkModelBuilder;
+  onLayoutAboutToBeChanged(handler: DslSignalHandlerValue): PdfLinkModelBuilder;
+  onLayoutChanged(handler: DslSignalHandlerValue): PdfLinkModelBuilder;
+  onModelAboutToBeReset(handler: DslSignalHandlerValue): PdfLinkModelBuilder;
+  onModelReset(handler: DslSignalHandlerValue): PdfLinkModelBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): PdfLinkModelBuilder;
+  onPageChanged(handler: DslSignalHandlerValue): PdfLinkModelBuilder;
+  onRowsAboutToBeInserted(handler: DslSignalHandlerValue): PdfLinkModelBuilder;
+  onRowsAboutToBeMoved(handler: DslSignalHandlerValue): PdfLinkModelBuilder;
+  onRowsAboutToBeRemoved(handler: DslSignalHandlerValue): PdfLinkModelBuilder;
+  onRowsInserted(handler: DslSignalHandlerValue): PdfLinkModelBuilder;
+  onRowsMoved(handler: DslSignalHandlerValue): PdfLinkModelBuilder;
+  onRowsRemoved(handler: DslSignalHandlerValue): PdfLinkModelBuilder;
 }
 
 const PDFLINKMODEL_META: TypeMetadata = {

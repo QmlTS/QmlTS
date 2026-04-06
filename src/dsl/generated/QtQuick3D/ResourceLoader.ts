@@ -2,11 +2,18 @@
 // Type: ResourceLoader
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlUrl, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlObjectBuilder,
+  QmlUrl,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 export interface ResourceLoaderBuilder {
   id(id: string): ResourceLoaderBuilder;
   child(obj: QmlObjectBuilder): ResourceLoaderBuilder;
+  children(...objs: QmlObjectBuilder[]): ResourceLoaderBuilder;
 
   meshSources(value: QmlUrl): ResourceLoaderBuilder;
   meshSourcesBind(expr: string): ResourceLoaderBuilder;
@@ -16,11 +23,11 @@ export interface ResourceLoaderBuilder {
   parentBind(expr: string): ResourceLoaderBuilder;
   state(value: string): ResourceLoaderBuilder;
   stateBind(expr: string): ResourceLoaderBuilder;
-  onChildrenChanged(body: string): ResourceLoaderBuilder;
-  onMeshSourcesChanged(body: string): ResourceLoaderBuilder;
-  onObjectNameChanged(body: string): ResourceLoaderBuilder;
-  onParentChanged(body: string): ResourceLoaderBuilder;
-  onStateChanged(body: string): ResourceLoaderBuilder;
+  onChildrenChanged(handler: DslSignalHandlerValue): ResourceLoaderBuilder;
+  onMeshSourcesChanged(handler: DslSignalHandlerValue): ResourceLoaderBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): ResourceLoaderBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): ResourceLoaderBuilder;
+  onStateChanged(handler: DslSignalHandlerValue): ResourceLoaderBuilder;
 }
 
 const RESOURCELOADER_META: TypeMetadata = {

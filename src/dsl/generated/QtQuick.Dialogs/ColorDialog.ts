@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlColor,
   QmlEnumToken,
   QmlObjectBuilder,
@@ -13,6 +14,7 @@ import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface ColorDialogBuilder {
   id(id: string): ColorDialogBuilder;
   child(obj: QmlObjectBuilder): ColorDialogBuilder;
+  children(...objs: QmlObjectBuilder[]): ColorDialogBuilder;
 
   flags(value: QmlEnumToken): ColorDialogBuilder;
   flagsBind(expr: string): ColorDialogBuilder;
@@ -34,18 +36,18 @@ export interface ColorDialogBuilder {
   titleBind(expr: string): ColorDialogBuilder;
   visible(value: boolean): ColorDialogBuilder;
   visibleBind(expr: string): ColorDialogBuilder;
-  onAccepted(body: string): ColorDialogBuilder;
-  onFlagsChanged(body: string): ColorDialogBuilder;
-  onModalityChanged(body: string): ColorDialogBuilder;
-  onObjectNameChanged(body: string): ColorDialogBuilder;
-  onOptionsChanged(body: string): ColorDialogBuilder;
-  onParentWindowChanged(body: string): ColorDialogBuilder;
-  onPopupTypeChanged(body: string): ColorDialogBuilder;
-  onRejected(body: string): ColorDialogBuilder;
-  onResultChanged(body: string): ColorDialogBuilder;
-  onSelectedColorChanged(body: string): ColorDialogBuilder;
-  onTitleChanged(body: string): ColorDialogBuilder;
-  onVisibleChanged(body: string): ColorDialogBuilder;
+  onAccepted(handler: DslSignalHandlerValue): ColorDialogBuilder;
+  onFlagsChanged(handler: DslSignalHandlerValue): ColorDialogBuilder;
+  onModalityChanged(handler: DslSignalHandlerValue): ColorDialogBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): ColorDialogBuilder;
+  onOptionsChanged(handler: DslSignalHandlerValue): ColorDialogBuilder;
+  onParentWindowChanged(handler: DslSignalHandlerValue): ColorDialogBuilder;
+  onPopupTypeChanged(handler: DslSignalHandlerValue): ColorDialogBuilder;
+  onRejected(handler: DslSignalHandlerValue): ColorDialogBuilder;
+  onResultChanged(handler: DslSignalHandlerValue): ColorDialogBuilder;
+  onSelectedColorChanged(handler: DslSignalHandlerValue): ColorDialogBuilder;
+  onTitleChanged(handler: DslSignalHandlerValue): ColorDialogBuilder;
+  onVisibleChanged(handler: DslSignalHandlerValue): ColorDialogBuilder;
 }
 
 const COLORDIALOG_META: TypeMetadata = {

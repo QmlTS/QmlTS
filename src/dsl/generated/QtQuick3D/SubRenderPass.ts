@@ -2,12 +2,18 @@
 // Type: SubRenderPass
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 import type { RenderPassBuilder } from './RenderPass.js';
 export interface SubRenderPassBuilder {
   id(id: string): SubRenderPassBuilder;
   child(obj: QmlObjectBuilder): SubRenderPassBuilder;
+  children(...objs: QmlObjectBuilder[]): SubRenderPassBuilder;
 
   objectName(value: string): SubRenderPassBuilder;
   objectNameBind(expr: string): SubRenderPassBuilder;
@@ -17,11 +23,11 @@ export interface SubRenderPassBuilder {
   renderPassBind(expr: string): SubRenderPassBuilder;
   state(value: string): SubRenderPassBuilder;
   stateBind(expr: string): SubRenderPassBuilder;
-  onChildrenChanged(body: string): SubRenderPassBuilder;
-  onObjectNameChanged(body: string): SubRenderPassBuilder;
-  onParentChanged(body: string): SubRenderPassBuilder;
-  onRenderPassChanged(body: string): SubRenderPassBuilder;
-  onStateChanged(body: string): SubRenderPassBuilder;
+  onChildrenChanged(handler: DslSignalHandlerValue): SubRenderPassBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): SubRenderPassBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): SubRenderPassBuilder;
+  onRenderPassChanged(handler: DslSignalHandlerValue): SubRenderPassBuilder;
+  onStateChanged(handler: DslSignalHandlerValue): SubRenderPassBuilder;
 }
 
 const SUBRENDERPASS_META: TypeMetadata = {

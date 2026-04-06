@@ -2,12 +2,18 @@
 // Type: SimpleQuadRenderer
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 import type { TextureBuilder } from '../QtQuick3D/Texture.js';
 export interface SimpleQuadRendererBuilder {
   id(id: string): SimpleQuadRendererBuilder;
   child(obj: QmlObjectBuilder): SimpleQuadRendererBuilder;
+  children(...objs: QmlObjectBuilder[]): SimpleQuadRendererBuilder;
 
   objectName(value: string): SimpleQuadRendererBuilder;
   objectNameBind(expr: string): SimpleQuadRendererBuilder;
@@ -17,11 +23,11 @@ export interface SimpleQuadRendererBuilder {
   stateBind(expr: string): SimpleQuadRendererBuilder;
   texture(value: TextureBuilder): SimpleQuadRendererBuilder;
   textureBind(expr: string): SimpleQuadRendererBuilder;
-  onChildrenChanged(body: string): SimpleQuadRendererBuilder;
-  onObjectNameChanged(body: string): SimpleQuadRendererBuilder;
-  onParentChanged(body: string): SimpleQuadRendererBuilder;
-  onStateChanged(body: string): SimpleQuadRendererBuilder;
-  onTextureChanged(body: string): SimpleQuadRendererBuilder;
+  onChildrenChanged(handler: DslSignalHandlerValue): SimpleQuadRendererBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): SimpleQuadRendererBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): SimpleQuadRendererBuilder;
+  onStateChanged(handler: DslSignalHandlerValue): SimpleQuadRendererBuilder;
+  onTextureChanged(handler: DslSignalHandlerValue): SimpleQuadRendererBuilder;
 }
 
 const SIMPLEQUADRENDERER_META: TypeMetadata = {

@@ -2,7 +2,12 @@
 // Type: DropArea
 // Generated from Qt 6.11.0
 
-import type { QmlEnumToken, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlEnumToken,
+  QmlObjectBuilder,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { QtObjectBuilder } from '../QML/QtObject.js';
 import type { AccessibleAttachedBuilder } from './Accessible.js';
@@ -28,6 +33,7 @@ import type { ViewTransitionAttachedBuilder } from './ViewTransition.js';
 export interface DropAreaBuilder {
   id(id: string): DropAreaBuilder;
   child(obj: QmlObjectBuilder): DropAreaBuilder;
+  children(...objs: QmlObjectBuilder[]): DropAreaBuilder;
 
   activeFocusOnTab(value: boolean): DropAreaBuilder;
   activeFocusOnTabBind(expr: string): DropAreaBuilder;
@@ -81,44 +87,44 @@ export interface DropAreaBuilder {
   yBind(expr: string): DropAreaBuilder;
   z(value: number): DropAreaBuilder;
   zBind(expr: string): DropAreaBuilder;
-  onActiveFocusChanged(body: string): DropAreaBuilder;
-  onActiveFocusOnTabChanged(body: string): DropAreaBuilder;
-  onAntialiasingChanged(body: string): DropAreaBuilder;
-  onBaselineOffsetChanged(body: string): DropAreaBuilder;
-  onChildrenChanged(body: string): DropAreaBuilder;
-  onChildrenRectChanged(body: string): DropAreaBuilder;
-  onClipChanged(body: string): DropAreaBuilder;
-  onContainmentMaskChanged(body: string): DropAreaBuilder;
-  onContainsDragChanged(body: string): DropAreaBuilder;
-  onDropped(body: string): DropAreaBuilder;
-  onEnabledChanged(body: string): DropAreaBuilder;
-  onEntered(body: string): DropAreaBuilder;
-  onExited(body: string): DropAreaBuilder;
-  onFocusChanged(body: string): DropAreaBuilder;
-  onFocusPolicyChanged(body: string): DropAreaBuilder;
-  onHeightChanged(body: string): DropAreaBuilder;
-  onImplicitHeightChanged(body: string): DropAreaBuilder;
-  onImplicitWidthChanged(body: string): DropAreaBuilder;
-  onKeysChanged(body: string): DropAreaBuilder;
-  onObjectNameChanged(body: string): DropAreaBuilder;
-  onOpacityChanged(body: string): DropAreaBuilder;
-  onPaletteChanged(body: string): DropAreaBuilder;
-  onPaletteCreated(body: string): DropAreaBuilder;
-  onParentChanged(body: string): DropAreaBuilder;
-  onPositionChanged(body: string): DropAreaBuilder;
-  onRotationChanged(body: string): DropAreaBuilder;
-  onScaleChanged(body: string): DropAreaBuilder;
-  onSmoothChanged(body: string): DropAreaBuilder;
-  onSourceChanged(body: string): DropAreaBuilder;
-  onStateChanged(body: string): DropAreaBuilder;
-  onTransformOriginChanged(body: string): DropAreaBuilder;
-  onVisibleChanged(body: string): DropAreaBuilder;
-  onVisibleChildrenChanged(body: string): DropAreaBuilder;
-  onWidthChanged(body: string): DropAreaBuilder;
-  onWindowChanged(body: string): DropAreaBuilder;
-  onXChanged(body: string): DropAreaBuilder;
-  onYChanged(body: string): DropAreaBuilder;
-  onZChanged(body: string): DropAreaBuilder;
+  onActiveFocusChanged(handler: DslSignalHandlerValue): DropAreaBuilder;
+  onActiveFocusOnTabChanged(handler: DslSignalHandlerValue): DropAreaBuilder;
+  onAntialiasingChanged(handler: DslSignalHandlerValue): DropAreaBuilder;
+  onBaselineOffsetChanged(handler: DslSignalHandlerValue): DropAreaBuilder;
+  onChildrenChanged(handler: DslSignalHandlerValue): DropAreaBuilder;
+  onChildrenRectChanged(handler: DslSignalHandlerValue): DropAreaBuilder;
+  onClipChanged(handler: DslSignalHandlerValue): DropAreaBuilder;
+  onContainmentMaskChanged(handler: DslSignalHandlerValue): DropAreaBuilder;
+  onContainsDragChanged(handler: DslSignalHandlerValue): DropAreaBuilder;
+  onDropped(handler: DslSignalHandlerValue): DropAreaBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): DropAreaBuilder;
+  onEntered(handler: DslSignalHandlerValue): DropAreaBuilder;
+  onExited(handler: DslSignalHandlerValue): DropAreaBuilder;
+  onFocusChanged(handler: DslSignalHandlerValue): DropAreaBuilder;
+  onFocusPolicyChanged(handler: DslSignalHandlerValue): DropAreaBuilder;
+  onHeightChanged(handler: DslSignalHandlerValue): DropAreaBuilder;
+  onImplicitHeightChanged(handler: DslSignalHandlerValue): DropAreaBuilder;
+  onImplicitWidthChanged(handler: DslSignalHandlerValue): DropAreaBuilder;
+  onKeysChanged(handler: DslSignalHandlerValue): DropAreaBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): DropAreaBuilder;
+  onOpacityChanged(handler: DslSignalHandlerValue): DropAreaBuilder;
+  onPaletteChanged(handler: DslSignalHandlerValue): DropAreaBuilder;
+  onPaletteCreated(handler: DslSignalHandlerValue): DropAreaBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): DropAreaBuilder;
+  onPositionChanged(handler: DslSignalHandlerValue): DropAreaBuilder;
+  onRotationChanged(handler: DslSignalHandlerValue): DropAreaBuilder;
+  onScaleChanged(handler: DslSignalHandlerValue): DropAreaBuilder;
+  onSmoothChanged(handler: DslSignalHandlerValue): DropAreaBuilder;
+  onSourceChanged(handler: DslSignalHandlerValue): DropAreaBuilder;
+  onStateChanged(handler: DslSignalHandlerValue): DropAreaBuilder;
+  onTransformOriginChanged(handler: DslSignalHandlerValue): DropAreaBuilder;
+  onVisibleChanged(handler: DslSignalHandlerValue): DropAreaBuilder;
+  onVisibleChildrenChanged(handler: DslSignalHandlerValue): DropAreaBuilder;
+  onWidthChanged(handler: DslSignalHandlerValue): DropAreaBuilder;
+  onWindowChanged(handler: DslSignalHandlerValue): DropAreaBuilder;
+  onXChanged(handler: DslSignalHandlerValue): DropAreaBuilder;
+  onYChanged(handler: DslSignalHandlerValue): DropAreaBuilder;
+  onZChanged(handler: DslSignalHandlerValue): DropAreaBuilder;
   anchors(setup: (b: AnchorsBuilder) => void): DropAreaBuilder;
   layer(setup: (b: LayerBuilder) => void): DropAreaBuilder;
   accessible(setup: (b: AccessibleAttachedBuilder) => void): DropAreaBuilder;

@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlColor,
   QmlEnumToken,
   QmlObjectBuilder,
@@ -17,6 +18,7 @@ import type { Value3DAxisBuilder } from './Value3DAxis.js';
 export interface Surface3DSeriesBuilder {
   id(id: string): Surface3DSeriesBuilder;
   child(obj: QmlObjectBuilder): Surface3DSeriesBuilder;
+  children(...objs: QmlObjectBuilder[]): Surface3DSeriesBuilder;
 
   axisX(value: Value3DAxisBuilder): Surface3DSeriesBuilder;
   axisXBind(expr: string): Surface3DSeriesBuilder;
@@ -76,38 +78,38 @@ export interface Surface3DSeriesBuilder {
   visibleBind(expr: string): Surface3DSeriesBuilder;
   wireframeColor(value: QmlColor): Surface3DSeriesBuilder;
   wireframeColorBind(expr: string): Surface3DSeriesBuilder;
-  onAxisXChanged(body: string): Surface3DSeriesBuilder;
-  onAxisYChanged(body: string): Surface3DSeriesBuilder;
-  onAxisZChanged(body: string): Surface3DSeriesBuilder;
-  onBaseColorChanged(body: string): Surface3DSeriesBuilder;
-  onBaseGradientChanged(body: string): Surface3DSeriesBuilder;
-  onColorStyleChanged(body: string): Surface3DSeriesBuilder;
-  onDataArrayChanged(body: string): Surface3DSeriesBuilder;
-  onDataProxyChanged(body: string): Surface3DSeriesBuilder;
-  onDrawModeChanged(body: string): Surface3DSeriesBuilder;
-  onFlatShadingSupportedChanged(body: string): Surface3DSeriesBuilder;
-  onGradientsChanged(body: string): Surface3DSeriesBuilder;
-  onItemLabelChanged(body: string): Surface3DSeriesBuilder;
-  onItemLabelFormatChanged(body: string): Surface3DSeriesBuilder;
-  onItemLabelVisibleChanged(body: string): Surface3DSeriesBuilder;
-  onLightingModeChanged(body: string): Surface3DSeriesBuilder;
-  onMeshChanged(body: string): Surface3DSeriesBuilder;
-  onMeshRotationChanged(body: string): Surface3DSeriesBuilder;
-  onMeshSmoothChanged(body: string): Surface3DSeriesBuilder;
-  onMultiHighlightColorChanged(body: string): Surface3DSeriesBuilder;
-  onMultiHighlightGradientChanged(body: string): Surface3DSeriesBuilder;
-  onNameChanged(body: string): Surface3DSeriesBuilder;
-  onObjectNameChanged(body: string): Surface3DSeriesBuilder;
-  onRowsSanitizedChanged(body: string): Surface3DSeriesBuilder;
-  onSelectedPointChanged(body: string): Surface3DSeriesBuilder;
-  onShadingChanged(body: string): Surface3DSeriesBuilder;
-  onSingleHighlightColorChanged(body: string): Surface3DSeriesBuilder;
-  onSingleHighlightGradientChanged(body: string): Surface3DSeriesBuilder;
-  onTextureChanged(body: string): Surface3DSeriesBuilder;
-  onTextureFileChanged(body: string): Surface3DSeriesBuilder;
-  onUserDefinedMeshChanged(body: string): Surface3DSeriesBuilder;
-  onVisibleChanged(body: string): Surface3DSeriesBuilder;
-  onWireframeColorChanged(body: string): Surface3DSeriesBuilder;
+  onAxisXChanged(handler: DslSignalHandlerValue): Surface3DSeriesBuilder;
+  onAxisYChanged(handler: DslSignalHandlerValue): Surface3DSeriesBuilder;
+  onAxisZChanged(handler: DslSignalHandlerValue): Surface3DSeriesBuilder;
+  onBaseColorChanged(handler: DslSignalHandlerValue): Surface3DSeriesBuilder;
+  onBaseGradientChanged(handler: DslSignalHandlerValue): Surface3DSeriesBuilder;
+  onColorStyleChanged(handler: DslSignalHandlerValue): Surface3DSeriesBuilder;
+  onDataArrayChanged(handler: DslSignalHandlerValue): Surface3DSeriesBuilder;
+  onDataProxyChanged(handler: DslSignalHandlerValue): Surface3DSeriesBuilder;
+  onDrawModeChanged(handler: DslSignalHandlerValue): Surface3DSeriesBuilder;
+  onFlatShadingSupportedChanged(handler: DslSignalHandlerValue): Surface3DSeriesBuilder;
+  onGradientsChanged(handler: DslSignalHandlerValue): Surface3DSeriesBuilder;
+  onItemLabelChanged(handler: DslSignalHandlerValue): Surface3DSeriesBuilder;
+  onItemLabelFormatChanged(handler: DslSignalHandlerValue): Surface3DSeriesBuilder;
+  onItemLabelVisibleChanged(handler: DslSignalHandlerValue): Surface3DSeriesBuilder;
+  onLightingModeChanged(handler: DslSignalHandlerValue): Surface3DSeriesBuilder;
+  onMeshChanged(handler: DslSignalHandlerValue): Surface3DSeriesBuilder;
+  onMeshRotationChanged(handler: DslSignalHandlerValue): Surface3DSeriesBuilder;
+  onMeshSmoothChanged(handler: DslSignalHandlerValue): Surface3DSeriesBuilder;
+  onMultiHighlightColorChanged(handler: DslSignalHandlerValue): Surface3DSeriesBuilder;
+  onMultiHighlightGradientChanged(handler: DslSignalHandlerValue): Surface3DSeriesBuilder;
+  onNameChanged(handler: DslSignalHandlerValue): Surface3DSeriesBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): Surface3DSeriesBuilder;
+  onRowsSanitizedChanged(handler: DslSignalHandlerValue): Surface3DSeriesBuilder;
+  onSelectedPointChanged(handler: DslSignalHandlerValue): Surface3DSeriesBuilder;
+  onShadingChanged(handler: DslSignalHandlerValue): Surface3DSeriesBuilder;
+  onSingleHighlightColorChanged(handler: DslSignalHandlerValue): Surface3DSeriesBuilder;
+  onSingleHighlightGradientChanged(handler: DslSignalHandlerValue): Surface3DSeriesBuilder;
+  onTextureChanged(handler: DslSignalHandlerValue): Surface3DSeriesBuilder;
+  onTextureFileChanged(handler: DslSignalHandlerValue): Surface3DSeriesBuilder;
+  onUserDefinedMeshChanged(handler: DslSignalHandlerValue): Surface3DSeriesBuilder;
+  onVisibleChanged(handler: DslSignalHandlerValue): Surface3DSeriesBuilder;
+  onWireframeColorChanged(handler: DslSignalHandlerValue): Surface3DSeriesBuilder;
 }
 
 const SURFACE3DSERIES_META: TypeMetadata = {

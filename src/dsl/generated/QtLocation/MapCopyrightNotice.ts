@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlColor,
   QmlEnumToken,
   QmlObjectBuilder,
@@ -19,6 +20,7 @@ import type { MapBuilder } from './Map.js';
 export interface MapCopyrightNoticeBuilder {
   id(id: string): MapCopyrightNoticeBuilder;
   child(obj: QmlObjectBuilder): MapCopyrightNoticeBuilder;
+  children(...objs: QmlObjectBuilder[]): MapCopyrightNoticeBuilder;
 
   activeFocusOnTab(value: boolean): MapCopyrightNoticeBuilder;
   activeFocusOnTabBind(expr: string): MapCopyrightNoticeBuilder;
@@ -84,47 +86,47 @@ export interface MapCopyrightNoticeBuilder {
   yBind(expr: string): MapCopyrightNoticeBuilder;
   z(value: number): MapCopyrightNoticeBuilder;
   zBind(expr: string): MapCopyrightNoticeBuilder;
-  onActiveFocusChanged(body: string): MapCopyrightNoticeBuilder;
-  onActiveFocusOnTabChanged(body: string): MapCopyrightNoticeBuilder;
-  onAntialiasingChanged(body: string): MapCopyrightNoticeBuilder;
-  onBackgroundColorChanged(body: string): MapCopyrightNoticeBuilder;
-  onBaselineOffsetChanged(body: string): MapCopyrightNoticeBuilder;
-  onChildrenChanged(body: string): MapCopyrightNoticeBuilder;
-  onChildrenRectChanged(body: string): MapCopyrightNoticeBuilder;
-  onClipChanged(body: string): MapCopyrightNoticeBuilder;
-  onContainmentMaskChanged(body: string): MapCopyrightNoticeBuilder;
-  onContentsScaleChanged(body: string): MapCopyrightNoticeBuilder;
-  onContentsSizeChanged(body: string): MapCopyrightNoticeBuilder;
-  onCopyrightsVisibleChanged(body: string): MapCopyrightNoticeBuilder;
-  onEnabledChanged(body: string): MapCopyrightNoticeBuilder;
-  onFillColorChanged(body: string): MapCopyrightNoticeBuilder;
-  onFocusChanged(body: string): MapCopyrightNoticeBuilder;
-  onFocusPolicyChanged(body: string): MapCopyrightNoticeBuilder;
-  onHeightChanged(body: string): MapCopyrightNoticeBuilder;
-  onImplicitHeightChanged(body: string): MapCopyrightNoticeBuilder;
-  onImplicitWidthChanged(body: string): MapCopyrightNoticeBuilder;
-  onLinkActivated(body: string): MapCopyrightNoticeBuilder;
-  onMapSourceChanged(body: string): MapCopyrightNoticeBuilder;
-  onObjectNameChanged(body: string): MapCopyrightNoticeBuilder;
-  onOpacityChanged(body: string): MapCopyrightNoticeBuilder;
-  onPaletteChanged(body: string): MapCopyrightNoticeBuilder;
-  onPaletteCreated(body: string): MapCopyrightNoticeBuilder;
-  onParentChanged(body: string): MapCopyrightNoticeBuilder;
-  onRenderTargetChanged(body: string): MapCopyrightNoticeBuilder;
-  onRotationChanged(body: string): MapCopyrightNoticeBuilder;
-  onScaleChanged(body: string): MapCopyrightNoticeBuilder;
-  onSmoothChanged(body: string): MapCopyrightNoticeBuilder;
-  onStateChanged(body: string): MapCopyrightNoticeBuilder;
-  onStyleSheetChanged(body: string): MapCopyrightNoticeBuilder;
-  onTextureSizeChanged(body: string): MapCopyrightNoticeBuilder;
-  onTransformOriginChanged(body: string): MapCopyrightNoticeBuilder;
-  onVisibleChanged(body: string): MapCopyrightNoticeBuilder;
-  onVisibleChildrenChanged(body: string): MapCopyrightNoticeBuilder;
-  onWidthChanged(body: string): MapCopyrightNoticeBuilder;
-  onWindowChanged(body: string): MapCopyrightNoticeBuilder;
-  onXChanged(body: string): MapCopyrightNoticeBuilder;
-  onYChanged(body: string): MapCopyrightNoticeBuilder;
-  onZChanged(body: string): MapCopyrightNoticeBuilder;
+  onActiveFocusChanged(handler: DslSignalHandlerValue): MapCopyrightNoticeBuilder;
+  onActiveFocusOnTabChanged(handler: DslSignalHandlerValue): MapCopyrightNoticeBuilder;
+  onAntialiasingChanged(handler: DslSignalHandlerValue): MapCopyrightNoticeBuilder;
+  onBackgroundColorChanged(handler: DslSignalHandlerValue): MapCopyrightNoticeBuilder;
+  onBaselineOffsetChanged(handler: DslSignalHandlerValue): MapCopyrightNoticeBuilder;
+  onChildrenChanged(handler: DslSignalHandlerValue): MapCopyrightNoticeBuilder;
+  onChildrenRectChanged(handler: DslSignalHandlerValue): MapCopyrightNoticeBuilder;
+  onClipChanged(handler: DslSignalHandlerValue): MapCopyrightNoticeBuilder;
+  onContainmentMaskChanged(handler: DslSignalHandlerValue): MapCopyrightNoticeBuilder;
+  onContentsScaleChanged(handler: DslSignalHandlerValue): MapCopyrightNoticeBuilder;
+  onContentsSizeChanged(handler: DslSignalHandlerValue): MapCopyrightNoticeBuilder;
+  onCopyrightsVisibleChanged(handler: DslSignalHandlerValue): MapCopyrightNoticeBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): MapCopyrightNoticeBuilder;
+  onFillColorChanged(handler: DslSignalHandlerValue): MapCopyrightNoticeBuilder;
+  onFocusChanged(handler: DslSignalHandlerValue): MapCopyrightNoticeBuilder;
+  onFocusPolicyChanged(handler: DslSignalHandlerValue): MapCopyrightNoticeBuilder;
+  onHeightChanged(handler: DslSignalHandlerValue): MapCopyrightNoticeBuilder;
+  onImplicitHeightChanged(handler: DslSignalHandlerValue): MapCopyrightNoticeBuilder;
+  onImplicitWidthChanged(handler: DslSignalHandlerValue): MapCopyrightNoticeBuilder;
+  onLinkActivated(handler: DslSignalHandlerValue): MapCopyrightNoticeBuilder;
+  onMapSourceChanged(handler: DslSignalHandlerValue): MapCopyrightNoticeBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): MapCopyrightNoticeBuilder;
+  onOpacityChanged(handler: DslSignalHandlerValue): MapCopyrightNoticeBuilder;
+  onPaletteChanged(handler: DslSignalHandlerValue): MapCopyrightNoticeBuilder;
+  onPaletteCreated(handler: DslSignalHandlerValue): MapCopyrightNoticeBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): MapCopyrightNoticeBuilder;
+  onRenderTargetChanged(handler: DslSignalHandlerValue): MapCopyrightNoticeBuilder;
+  onRotationChanged(handler: DslSignalHandlerValue): MapCopyrightNoticeBuilder;
+  onScaleChanged(handler: DslSignalHandlerValue): MapCopyrightNoticeBuilder;
+  onSmoothChanged(handler: DslSignalHandlerValue): MapCopyrightNoticeBuilder;
+  onStateChanged(handler: DslSignalHandlerValue): MapCopyrightNoticeBuilder;
+  onStyleSheetChanged(handler: DslSignalHandlerValue): MapCopyrightNoticeBuilder;
+  onTextureSizeChanged(handler: DslSignalHandlerValue): MapCopyrightNoticeBuilder;
+  onTransformOriginChanged(handler: DslSignalHandlerValue): MapCopyrightNoticeBuilder;
+  onVisibleChanged(handler: DslSignalHandlerValue): MapCopyrightNoticeBuilder;
+  onVisibleChildrenChanged(handler: DslSignalHandlerValue): MapCopyrightNoticeBuilder;
+  onWidthChanged(handler: DslSignalHandlerValue): MapCopyrightNoticeBuilder;
+  onWindowChanged(handler: DslSignalHandlerValue): MapCopyrightNoticeBuilder;
+  onXChanged(handler: DslSignalHandlerValue): MapCopyrightNoticeBuilder;
+  onYChanged(handler: DslSignalHandlerValue): MapCopyrightNoticeBuilder;
+  onZChanged(handler: DslSignalHandlerValue): MapCopyrightNoticeBuilder;
   anchors(setup: (b: AnchorsBuilder) => void): MapCopyrightNoticeBuilder;
   layer(setup: (b: LayerBuilder) => void): MapCopyrightNoticeBuilder;
 }

@@ -2,11 +2,17 @@
 // Type: NoPicking
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 export interface NoPickingBuilder {
   id(id: string): NoPickingBuilder;
   child(obj: QmlObjectBuilder): NoPickingBuilder;
+  children(...objs: QmlObjectBuilder[]): NoPickingBuilder;
 
   enabled(value: boolean): NoPickingBuilder;
   enabledBind(expr: string): NoPickingBuilder;
@@ -14,10 +20,10 @@ export interface NoPickingBuilder {
   objectNameBind(expr: string): NoPickingBuilder;
   parent(value: QmlValue): NoPickingBuilder;
   parentBind(expr: string): NoPickingBuilder;
-  onEnabledChanged(body: string): NoPickingBuilder;
-  onNodeDestroyed(body: string): NoPickingBuilder;
-  onObjectNameChanged(body: string): NoPickingBuilder;
-  onParentChanged(body: string): NoPickingBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): NoPickingBuilder;
+  onNodeDestroyed(handler: DslSignalHandlerValue): NoPickingBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): NoPickingBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): NoPickingBuilder;
 }
 
 const NOPICKING_META: TypeMetadata = {

@@ -2,19 +2,20 @@
 // Type: FinalState
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import type { DslSignalHandlerValue, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 export interface FinalStateBuilder {
   id(id: string): FinalStateBuilder;
   child(obj: QmlObjectBuilder): FinalStateBuilder;
+  children(...objs: QmlObjectBuilder[]): FinalStateBuilder;
 
   objectName(value: string): FinalStateBuilder;
   objectNameBind(expr: string): FinalStateBuilder;
-  onActiveChanged(body: string): FinalStateBuilder;
-  onChildrenChanged(body: string): FinalStateBuilder;
-  onEntered(body: string): FinalStateBuilder;
-  onExited(body: string): FinalStateBuilder;
-  onObjectNameChanged(body: string): FinalStateBuilder;
+  onActiveChanged(handler: DslSignalHandlerValue): FinalStateBuilder;
+  onChildrenChanged(handler: DslSignalHandlerValue): FinalStateBuilder;
+  onEntered(handler: DslSignalHandlerValue): FinalStateBuilder;
+  onExited(handler: DslSignalHandlerValue): FinalStateBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): FinalStateBuilder;
 }
 
 const FINALSTATE_META: TypeMetadata = {

@@ -2,12 +2,13 @@
 // Type: AngleDirection
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import type { DslSignalHandlerValue, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 import type { ItemParticleAttachedBuilder } from './QQuickItemParticleAttached.js';
 export interface AngleDirectionBuilder {
   id(id: string): AngleDirectionBuilder;
   child(obj: QmlObjectBuilder): AngleDirectionBuilder;
+  children(...objs: QmlObjectBuilder[]): AngleDirectionBuilder;
 
   angle(value: number): AngleDirectionBuilder;
   angleBind(expr: string): AngleDirectionBuilder;
@@ -19,11 +20,11 @@ export interface AngleDirectionBuilder {
   magnitudeVariationBind(expr: string): AngleDirectionBuilder;
   objectName(value: string): AngleDirectionBuilder;
   objectNameBind(expr: string): AngleDirectionBuilder;
-  onAngleChanged(body: string): AngleDirectionBuilder;
-  onAngleVariationChanged(body: string): AngleDirectionBuilder;
-  onMagnitudeChanged(body: string): AngleDirectionBuilder;
-  onMagnitudeVariationChanged(body: string): AngleDirectionBuilder;
-  onObjectNameChanged(body: string): AngleDirectionBuilder;
+  onAngleChanged(handler: DslSignalHandlerValue): AngleDirectionBuilder;
+  onAngleVariationChanged(handler: DslSignalHandlerValue): AngleDirectionBuilder;
+  onMagnitudeChanged(handler: DslSignalHandlerValue): AngleDirectionBuilder;
+  onMagnitudeVariationChanged(handler: DslSignalHandlerValue): AngleDirectionBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): AngleDirectionBuilder;
   itemParticle(setup: (b: ItemParticleAttachedBuilder) => void): AngleDirectionBuilder;
 }
 

@@ -2,12 +2,13 @@
 // Type: Attached type: ActionGroup
 // Generated from Qt 6.11.0
 
+import type { DslSignalHandlerValue } from '../../runtime/index.js';
 import type { ActionGroupBuilder } from './ActionGroup.js';
 export interface ActionGroupAttachedBuilder {
   group(value: ActionGroupBuilder): ActionGroupAttachedBuilder;
   groupBind(expr: string): ActionGroupAttachedBuilder;
   objectName(value: string): ActionGroupAttachedBuilder;
   objectNameBind(expr: string): ActionGroupAttachedBuilder;
-  onGroupChanged(body: string): ActionGroupAttachedBuilder;
-  onObjectNameChanged(body: string): ActionGroupAttachedBuilder;
+  onGroupChanged(handler: DslSignalHandlerValue): ActionGroupAttachedBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): ActionGroupAttachedBuilder;
 }

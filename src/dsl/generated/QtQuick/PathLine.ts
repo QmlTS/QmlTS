@@ -2,7 +2,7 @@
 // Type: PathLine
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import type { DslSignalHandlerValue, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 import type { AccessibleAttachedBuilder } from './Accessible.js';
 import type { EnterKeyAttachedBuilder } from './EnterKey.js';
@@ -23,6 +23,7 @@ import type { ViewTransitionAttachedBuilder } from './ViewTransition.js';
 export interface PathLineBuilder {
   id(id: string): PathLineBuilder;
   child(obj: QmlObjectBuilder): PathLineBuilder;
+  children(...objs: QmlObjectBuilder[]): PathLineBuilder;
 
   objectName(value: string): PathLineBuilder;
   objectNameBind(expr: string): PathLineBuilder;
@@ -34,12 +35,12 @@ export interface PathLineBuilder {
   xBind(expr: string): PathLineBuilder;
   y(value: number): PathLineBuilder;
   yBind(expr: string): PathLineBuilder;
-  onChanged(body: string): PathLineBuilder;
-  onObjectNameChanged(body: string): PathLineBuilder;
-  onRelativeXChanged(body: string): PathLineBuilder;
-  onRelativeYChanged(body: string): PathLineBuilder;
-  onXChanged(body: string): PathLineBuilder;
-  onYChanged(body: string): PathLineBuilder;
+  onChanged(handler: DslSignalHandlerValue): PathLineBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): PathLineBuilder;
+  onRelativeXChanged(handler: DslSignalHandlerValue): PathLineBuilder;
+  onRelativeYChanged(handler: DslSignalHandlerValue): PathLineBuilder;
+  onXChanged(handler: DslSignalHandlerValue): PathLineBuilder;
+  onYChanged(handler: DslSignalHandlerValue): PathLineBuilder;
   accessible(setup: (b: AccessibleAttachedBuilder) => void): PathLineBuilder;
   drag(setup: (b: DragAttachedBuilder) => void): PathLineBuilder;
   enterKey(setup: (b: EnterKeyAttachedBuilder) => void): PathLineBuilder;

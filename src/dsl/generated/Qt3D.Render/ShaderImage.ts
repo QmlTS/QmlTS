@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlEnumToken,
   QmlObjectBuilder,
   QmlValue,
@@ -12,6 +13,7 @@ import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface ShaderImageBuilder {
   id(id: string): ShaderImageBuilder;
   child(obj: QmlObjectBuilder): ShaderImageBuilder;
+  children(...objs: QmlObjectBuilder[]): ShaderImageBuilder;
 
   access(value: QmlEnumToken): ShaderImageBuilder;
   accessBind(expr: string): ShaderImageBuilder;
@@ -31,16 +33,16 @@ export interface ShaderImageBuilder {
   parentBind(expr: string): ShaderImageBuilder;
   texture(value: QmlValue): ShaderImageBuilder;
   textureBind(expr: string): ShaderImageBuilder;
-  onAccessChanged(body: string): ShaderImageBuilder;
-  onEnabledChanged(body: string): ShaderImageBuilder;
-  onFormatChanged(body: string): ShaderImageBuilder;
-  onLayerChanged(body: string): ShaderImageBuilder;
-  onLayeredChanged(body: string): ShaderImageBuilder;
-  onMipLevelChanged(body: string): ShaderImageBuilder;
-  onNodeDestroyed(body: string): ShaderImageBuilder;
-  onObjectNameChanged(body: string): ShaderImageBuilder;
-  onParentChanged(body: string): ShaderImageBuilder;
-  onTextureChanged(body: string): ShaderImageBuilder;
+  onAccessChanged(handler: DslSignalHandlerValue): ShaderImageBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): ShaderImageBuilder;
+  onFormatChanged(handler: DslSignalHandlerValue): ShaderImageBuilder;
+  onLayerChanged(handler: DslSignalHandlerValue): ShaderImageBuilder;
+  onLayeredChanged(handler: DslSignalHandlerValue): ShaderImageBuilder;
+  onMipLevelChanged(handler: DslSignalHandlerValue): ShaderImageBuilder;
+  onNodeDestroyed(handler: DslSignalHandlerValue): ShaderImageBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): ShaderImageBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): ShaderImageBuilder;
+  onTextureChanged(handler: DslSignalHandlerValue): ShaderImageBuilder;
 }
 
 const SHADERIMAGE_META: TypeMetadata = {

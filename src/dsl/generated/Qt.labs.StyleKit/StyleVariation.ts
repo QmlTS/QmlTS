@@ -2,7 +2,7 @@
 // Type: StyleVariation
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import type { DslSignalHandlerValue, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 import type { ControlStyleBuilder } from './ControlStyle.js';
 import type { StyleKitAttachedBuilder } from './QQStyleKitAttached.js';
@@ -10,6 +10,7 @@ import type { StyleVariationAttachedBuilder } from './QQStyleKitVariationAttache
 export interface StyleVariationBuilder {
   id(id: string): StyleVariationBuilder;
   child(obj: QmlObjectBuilder): StyleVariationBuilder;
+  children(...objs: QmlObjectBuilder[]): StyleVariationBuilder;
 
   abstractButton(value: ControlStyleBuilder): StyleVariationBuilder;
   abstractButtonBind(expr: string): StyleVariationBuilder;
@@ -75,39 +76,39 @@ export interface StyleVariationBuilder {
   toolButtonBind(expr: string): StyleVariationBuilder;
   toolSeparator(value: ControlStyleBuilder): StyleVariationBuilder;
   toolSeparatorBind(expr: string): StyleVariationBuilder;
-  onAbstractButtonChanged(body: string): StyleVariationBuilder;
-  onApplicationWindowChanged(body: string): StyleVariationBuilder;
-  onButtonChanged(body: string): StyleVariationBuilder;
-  onCheckBoxChanged(body: string): StyleVariationBuilder;
-  onComboBoxChanged(body: string): StyleVariationBuilder;
-  onControlChanged(body: string): StyleVariationBuilder;
-  onDataChanged(body: string): StyleVariationBuilder;
-  onFlatButtonChanged(body: string): StyleVariationBuilder;
-  onFrameChanged(body: string): StyleVariationBuilder;
-  onGroupBoxChanged(body: string): StyleVariationBuilder;
-  onItemDelegateChanged(body: string): StyleVariationBuilder;
-  onLabelChanged(body: string): StyleVariationBuilder;
-  onNameChanged(body: string): StyleVariationBuilder;
-  onObjectNameChanged(body: string): StyleVariationBuilder;
-  onPageChanged(body: string): StyleVariationBuilder;
-  onPaneChanged(body: string): StyleVariationBuilder;
-  onPopupChanged(body: string): StyleVariationBuilder;
-  onProgressBarChanged(body: string): StyleVariationBuilder;
-  onRadioButtonChanged(body: string): StyleVariationBuilder;
-  onScrollBarChanged(body: string): StyleVariationBuilder;
-  onScrollIndicatorChanged(body: string): StyleVariationBuilder;
-  onScrollViewChanged(body: string): StyleVariationBuilder;
-  onSliderChanged(body: string): StyleVariationBuilder;
-  onSpinBoxChanged(body: string): StyleVariationBuilder;
-  onSwitchControlChanged(body: string): StyleVariationBuilder;
-  onTabBarChanged(body: string): StyleVariationBuilder;
-  onTabButtonChanged(body: string): StyleVariationBuilder;
-  onTextAreaChanged(body: string): StyleVariationBuilder;
-  onTextFieldChanged(body: string): StyleVariationBuilder;
-  onTextInputChanged(body: string): StyleVariationBuilder;
-  onToolBarChanged(body: string): StyleVariationBuilder;
-  onToolButtonChanged(body: string): StyleVariationBuilder;
-  onToolSeparatorChanged(body: string): StyleVariationBuilder;
+  onAbstractButtonChanged(handler: DslSignalHandlerValue): StyleVariationBuilder;
+  onApplicationWindowChanged(handler: DslSignalHandlerValue): StyleVariationBuilder;
+  onButtonChanged(handler: DslSignalHandlerValue): StyleVariationBuilder;
+  onCheckBoxChanged(handler: DslSignalHandlerValue): StyleVariationBuilder;
+  onComboBoxChanged(handler: DslSignalHandlerValue): StyleVariationBuilder;
+  onControlChanged(handler: DslSignalHandlerValue): StyleVariationBuilder;
+  onDataChanged(handler: DslSignalHandlerValue): StyleVariationBuilder;
+  onFlatButtonChanged(handler: DslSignalHandlerValue): StyleVariationBuilder;
+  onFrameChanged(handler: DslSignalHandlerValue): StyleVariationBuilder;
+  onGroupBoxChanged(handler: DslSignalHandlerValue): StyleVariationBuilder;
+  onItemDelegateChanged(handler: DslSignalHandlerValue): StyleVariationBuilder;
+  onLabelChanged(handler: DslSignalHandlerValue): StyleVariationBuilder;
+  onNameChanged(handler: DslSignalHandlerValue): StyleVariationBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): StyleVariationBuilder;
+  onPageChanged(handler: DslSignalHandlerValue): StyleVariationBuilder;
+  onPaneChanged(handler: DslSignalHandlerValue): StyleVariationBuilder;
+  onPopupChanged(handler: DslSignalHandlerValue): StyleVariationBuilder;
+  onProgressBarChanged(handler: DslSignalHandlerValue): StyleVariationBuilder;
+  onRadioButtonChanged(handler: DslSignalHandlerValue): StyleVariationBuilder;
+  onScrollBarChanged(handler: DslSignalHandlerValue): StyleVariationBuilder;
+  onScrollIndicatorChanged(handler: DslSignalHandlerValue): StyleVariationBuilder;
+  onScrollViewChanged(handler: DslSignalHandlerValue): StyleVariationBuilder;
+  onSliderChanged(handler: DslSignalHandlerValue): StyleVariationBuilder;
+  onSpinBoxChanged(handler: DslSignalHandlerValue): StyleVariationBuilder;
+  onSwitchControlChanged(handler: DslSignalHandlerValue): StyleVariationBuilder;
+  onTabBarChanged(handler: DslSignalHandlerValue): StyleVariationBuilder;
+  onTabButtonChanged(handler: DslSignalHandlerValue): StyleVariationBuilder;
+  onTextAreaChanged(handler: DslSignalHandlerValue): StyleVariationBuilder;
+  onTextFieldChanged(handler: DslSignalHandlerValue): StyleVariationBuilder;
+  onTextInputChanged(handler: DslSignalHandlerValue): StyleVariationBuilder;
+  onToolBarChanged(handler: DslSignalHandlerValue): StyleVariationBuilder;
+  onToolButtonChanged(handler: DslSignalHandlerValue): StyleVariationBuilder;
+  onToolSeparatorChanged(handler: DslSignalHandlerValue): StyleVariationBuilder;
   styleKit(setup: (b: StyleKitAttachedBuilder) => void): StyleVariationBuilder;
   styleVariation(setup: (b: StyleVariationAttachedBuilder) => void): StyleVariationBuilder;
 }

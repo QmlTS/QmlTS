@@ -2,7 +2,12 @@
 // Type: Scene3D
 // Generated from Qt 6.11.0
 
-import type { QmlEnumToken, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlEnumToken,
+  QmlObjectBuilder,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { QtObjectBuilder } from '../QML/QtObject.js';
 import type { EntityBuilder } from '../Qt3D.Core/Entity.js';
@@ -13,6 +18,7 @@ import type { LayerBuilder } from '../QtQuick/QQuickItemLayer.js';
 export interface Scene3DBuilder {
   id(id: string): Scene3DBuilder;
   child(obj: QmlObjectBuilder): Scene3DBuilder;
+  children(...objs: QmlObjectBuilder[]): Scene3DBuilder;
 
   activeFocusOnTab(value: boolean): Scene3DBuilder;
   activeFocusOnTabBind(expr: string): Scene3DBuilder;
@@ -76,43 +82,43 @@ export interface Scene3DBuilder {
   yBind(expr: string): Scene3DBuilder;
   z(value: number): Scene3DBuilder;
   zBind(expr: string): Scene3DBuilder;
-  onActiveFocusChanged(body: string): Scene3DBuilder;
-  onActiveFocusOnTabChanged(body: string): Scene3DBuilder;
-  onAntialiasingChanged(body: string): Scene3DBuilder;
-  onAspectsChanged(body: string): Scene3DBuilder;
-  onBaselineOffsetChanged(body: string): Scene3DBuilder;
-  onCameraAspectRatioModeChanged(body: string): Scene3DBuilder;
-  onChildrenChanged(body: string): Scene3DBuilder;
-  onChildrenRectChanged(body: string): Scene3DBuilder;
-  onClipChanged(body: string): Scene3DBuilder;
-  onCompositingModeChanged(body: string): Scene3DBuilder;
-  onContainmentMaskChanged(body: string): Scene3DBuilder;
-  onEnabledChanged(body: string): Scene3DBuilder;
-  onEntityChanged(body: string): Scene3DBuilder;
-  onFocusChanged(body: string): Scene3DBuilder;
-  onFocusPolicyChanged(body: string): Scene3DBuilder;
-  onHeightChanged(body: string): Scene3DBuilder;
-  onHoverEnabledChanged(body: string): Scene3DBuilder;
-  onImplicitHeightChanged(body: string): Scene3DBuilder;
-  onImplicitWidthChanged(body: string): Scene3DBuilder;
-  onMultisampleChanged(body: string): Scene3DBuilder;
-  onObjectNameChanged(body: string): Scene3DBuilder;
-  onOpacityChanged(body: string): Scene3DBuilder;
-  onPaletteChanged(body: string): Scene3DBuilder;
-  onPaletteCreated(body: string): Scene3DBuilder;
-  onParentChanged(body: string): Scene3DBuilder;
-  onRotationChanged(body: string): Scene3DBuilder;
-  onScaleChanged(body: string): Scene3DBuilder;
-  onSmoothChanged(body: string): Scene3DBuilder;
-  onStateChanged(body: string): Scene3DBuilder;
-  onTransformOriginChanged(body: string): Scene3DBuilder;
-  onVisibleChanged(body: string): Scene3DBuilder;
-  onVisibleChildrenChanged(body: string): Scene3DBuilder;
-  onWidthChanged(body: string): Scene3DBuilder;
-  onWindowChanged(body: string): Scene3DBuilder;
-  onXChanged(body: string): Scene3DBuilder;
-  onYChanged(body: string): Scene3DBuilder;
-  onZChanged(body: string): Scene3DBuilder;
+  onActiveFocusChanged(handler: DslSignalHandlerValue): Scene3DBuilder;
+  onActiveFocusOnTabChanged(handler: DslSignalHandlerValue): Scene3DBuilder;
+  onAntialiasingChanged(handler: DslSignalHandlerValue): Scene3DBuilder;
+  onAspectsChanged(handler: DslSignalHandlerValue): Scene3DBuilder;
+  onBaselineOffsetChanged(handler: DslSignalHandlerValue): Scene3DBuilder;
+  onCameraAspectRatioModeChanged(handler: DslSignalHandlerValue): Scene3DBuilder;
+  onChildrenChanged(handler: DslSignalHandlerValue): Scene3DBuilder;
+  onChildrenRectChanged(handler: DslSignalHandlerValue): Scene3DBuilder;
+  onClipChanged(handler: DslSignalHandlerValue): Scene3DBuilder;
+  onCompositingModeChanged(handler: DslSignalHandlerValue): Scene3DBuilder;
+  onContainmentMaskChanged(handler: DslSignalHandlerValue): Scene3DBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): Scene3DBuilder;
+  onEntityChanged(handler: DslSignalHandlerValue): Scene3DBuilder;
+  onFocusChanged(handler: DslSignalHandlerValue): Scene3DBuilder;
+  onFocusPolicyChanged(handler: DslSignalHandlerValue): Scene3DBuilder;
+  onHeightChanged(handler: DslSignalHandlerValue): Scene3DBuilder;
+  onHoverEnabledChanged(handler: DslSignalHandlerValue): Scene3DBuilder;
+  onImplicitHeightChanged(handler: DslSignalHandlerValue): Scene3DBuilder;
+  onImplicitWidthChanged(handler: DslSignalHandlerValue): Scene3DBuilder;
+  onMultisampleChanged(handler: DslSignalHandlerValue): Scene3DBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): Scene3DBuilder;
+  onOpacityChanged(handler: DslSignalHandlerValue): Scene3DBuilder;
+  onPaletteChanged(handler: DslSignalHandlerValue): Scene3DBuilder;
+  onPaletteCreated(handler: DslSignalHandlerValue): Scene3DBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): Scene3DBuilder;
+  onRotationChanged(handler: DslSignalHandlerValue): Scene3DBuilder;
+  onScaleChanged(handler: DslSignalHandlerValue): Scene3DBuilder;
+  onSmoothChanged(handler: DslSignalHandlerValue): Scene3DBuilder;
+  onStateChanged(handler: DslSignalHandlerValue): Scene3DBuilder;
+  onTransformOriginChanged(handler: DslSignalHandlerValue): Scene3DBuilder;
+  onVisibleChanged(handler: DslSignalHandlerValue): Scene3DBuilder;
+  onVisibleChildrenChanged(handler: DslSignalHandlerValue): Scene3DBuilder;
+  onWidthChanged(handler: DslSignalHandlerValue): Scene3DBuilder;
+  onWindowChanged(handler: DslSignalHandlerValue): Scene3DBuilder;
+  onXChanged(handler: DslSignalHandlerValue): Scene3DBuilder;
+  onYChanged(handler: DslSignalHandlerValue): Scene3DBuilder;
+  onZChanged(handler: DslSignalHandlerValue): Scene3DBuilder;
   anchors(setup: (b: AnchorsBuilder) => void): Scene3DBuilder;
   layer(setup: (b: LayerBuilder) => void): Scene3DBuilder;
 }

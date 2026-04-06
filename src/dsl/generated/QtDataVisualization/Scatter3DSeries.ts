@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlColor,
   QmlEnumToken,
   QmlObjectBuilder,
@@ -17,6 +18,7 @@ import type { ColorGradientBuilder } from './ColorGradient.js';
 export interface Scatter3DSeriesBuilder {
   id(id: string): Scatter3DSeriesBuilder;
   child(obj: QmlObjectBuilder): Scatter3DSeriesBuilder;
+  children(...objs: QmlObjectBuilder[]): Scatter3DSeriesBuilder;
 
   axisX(value: Value3DAxisBuilder): Scatter3DSeriesBuilder;
   axisXBind(expr: string): Scatter3DSeriesBuilder;
@@ -68,32 +70,32 @@ export interface Scatter3DSeriesBuilder {
   userDefinedMeshBind(expr: string): Scatter3DSeriesBuilder;
   visible(value: boolean): Scatter3DSeriesBuilder;
   visibleBind(expr: string): Scatter3DSeriesBuilder;
-  onAxisXChanged(body: string): Scatter3DSeriesBuilder;
-  onAxisYChanged(body: string): Scatter3DSeriesBuilder;
-  onAxisZChanged(body: string): Scatter3DSeriesBuilder;
-  onBaseColorChanged(body: string): Scatter3DSeriesBuilder;
-  onBaseGradientChanged(body: string): Scatter3DSeriesBuilder;
-  onColorStyleChanged(body: string): Scatter3DSeriesBuilder;
-  onDataArrayChanged(body: string): Scatter3DSeriesBuilder;
-  onDataProxyChanged(body: string): Scatter3DSeriesBuilder;
-  onItemLabelChanged(body: string): Scatter3DSeriesBuilder;
-  onItemLabelFormatChanged(body: string): Scatter3DSeriesBuilder;
-  onItemLabelVisibleChanged(body: string): Scatter3DSeriesBuilder;
-  onItemSizeChanged(body: string): Scatter3DSeriesBuilder;
-  onLightingModeChanged(body: string): Scatter3DSeriesBuilder;
-  onMeshChanged(body: string): Scatter3DSeriesBuilder;
-  onMeshRotationChanged(body: string): Scatter3DSeriesBuilder;
-  onMeshSmoothChanged(body: string): Scatter3DSeriesBuilder;
-  onMultiHighlightColorChanged(body: string): Scatter3DSeriesBuilder;
-  onMultiHighlightGradientChanged(body: string): Scatter3DSeriesBuilder;
-  onNameChanged(body: string): Scatter3DSeriesBuilder;
-  onObjectNameChanged(body: string): Scatter3DSeriesBuilder;
-  onScaleArrayChanged(body: string): Scatter3DSeriesBuilder;
-  onSelectedItemChanged(body: string): Scatter3DSeriesBuilder;
-  onSingleHighlightColorChanged(body: string): Scatter3DSeriesBuilder;
-  onSingleHighlightGradientChanged(body: string): Scatter3DSeriesBuilder;
-  onUserDefinedMeshChanged(body: string): Scatter3DSeriesBuilder;
-  onVisibleChanged(body: string): Scatter3DSeriesBuilder;
+  onAxisXChanged(handler: DslSignalHandlerValue): Scatter3DSeriesBuilder;
+  onAxisYChanged(handler: DslSignalHandlerValue): Scatter3DSeriesBuilder;
+  onAxisZChanged(handler: DslSignalHandlerValue): Scatter3DSeriesBuilder;
+  onBaseColorChanged(handler: DslSignalHandlerValue): Scatter3DSeriesBuilder;
+  onBaseGradientChanged(handler: DslSignalHandlerValue): Scatter3DSeriesBuilder;
+  onColorStyleChanged(handler: DslSignalHandlerValue): Scatter3DSeriesBuilder;
+  onDataArrayChanged(handler: DslSignalHandlerValue): Scatter3DSeriesBuilder;
+  onDataProxyChanged(handler: DslSignalHandlerValue): Scatter3DSeriesBuilder;
+  onItemLabelChanged(handler: DslSignalHandlerValue): Scatter3DSeriesBuilder;
+  onItemLabelFormatChanged(handler: DslSignalHandlerValue): Scatter3DSeriesBuilder;
+  onItemLabelVisibleChanged(handler: DslSignalHandlerValue): Scatter3DSeriesBuilder;
+  onItemSizeChanged(handler: DslSignalHandlerValue): Scatter3DSeriesBuilder;
+  onLightingModeChanged(handler: DslSignalHandlerValue): Scatter3DSeriesBuilder;
+  onMeshChanged(handler: DslSignalHandlerValue): Scatter3DSeriesBuilder;
+  onMeshRotationChanged(handler: DslSignalHandlerValue): Scatter3DSeriesBuilder;
+  onMeshSmoothChanged(handler: DslSignalHandlerValue): Scatter3DSeriesBuilder;
+  onMultiHighlightColorChanged(handler: DslSignalHandlerValue): Scatter3DSeriesBuilder;
+  onMultiHighlightGradientChanged(handler: DslSignalHandlerValue): Scatter3DSeriesBuilder;
+  onNameChanged(handler: DslSignalHandlerValue): Scatter3DSeriesBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): Scatter3DSeriesBuilder;
+  onScaleArrayChanged(handler: DslSignalHandlerValue): Scatter3DSeriesBuilder;
+  onSelectedItemChanged(handler: DslSignalHandlerValue): Scatter3DSeriesBuilder;
+  onSingleHighlightColorChanged(handler: DslSignalHandlerValue): Scatter3DSeriesBuilder;
+  onSingleHighlightGradientChanged(handler: DslSignalHandlerValue): Scatter3DSeriesBuilder;
+  onUserDefinedMeshChanged(handler: DslSignalHandlerValue): Scatter3DSeriesBuilder;
+  onVisibleChanged(handler: DslSignalHandlerValue): Scatter3DSeriesBuilder;
 }
 
 const SCATTER3DSERIES_META: TypeMetadata = {

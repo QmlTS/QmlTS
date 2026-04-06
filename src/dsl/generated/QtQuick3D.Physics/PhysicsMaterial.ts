@@ -2,11 +2,12 @@
 // Type: PhysicsMaterial
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import type { DslSignalHandlerValue, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 export interface PhysicsMaterialBuilder {
   id(id: string): PhysicsMaterialBuilder;
   child(obj: QmlObjectBuilder): PhysicsMaterialBuilder;
+  children(...objs: QmlObjectBuilder[]): PhysicsMaterialBuilder;
 
   dynamicFriction(value: number): PhysicsMaterialBuilder;
   dynamicFrictionBind(expr: string): PhysicsMaterialBuilder;
@@ -16,10 +17,10 @@ export interface PhysicsMaterialBuilder {
   restitutionBind(expr: string): PhysicsMaterialBuilder;
   staticFriction(value: number): PhysicsMaterialBuilder;
   staticFrictionBind(expr: string): PhysicsMaterialBuilder;
-  onDynamicFrictionChanged(body: string): PhysicsMaterialBuilder;
-  onObjectNameChanged(body: string): PhysicsMaterialBuilder;
-  onRestitutionChanged(body: string): PhysicsMaterialBuilder;
-  onStaticFrictionChanged(body: string): PhysicsMaterialBuilder;
+  onDynamicFrictionChanged(handler: DslSignalHandlerValue): PhysicsMaterialBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): PhysicsMaterialBuilder;
+  onRestitutionChanged(handler: DslSignalHandlerValue): PhysicsMaterialBuilder;
+  onStaticFrictionChanged(handler: DslSignalHandlerValue): PhysicsMaterialBuilder;
 }
 
 const PHYSICSMATERIAL_META: TypeMetadata = {

@@ -2,7 +2,12 @@
 // Type: Rotation
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlVector3d, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlObjectBuilder,
+  QmlVector3d,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 import type { AccessibleAttachedBuilder } from './Accessible.js';
 import type { EnterKeyAttachedBuilder } from './EnterKey.js';
@@ -23,6 +28,7 @@ import type { ViewTransitionAttachedBuilder } from './ViewTransition.js';
 export interface RotationBuilder {
   id(id: string): RotationBuilder;
   child(obj: QmlObjectBuilder): RotationBuilder;
+  children(...objs: QmlObjectBuilder[]): RotationBuilder;
 
   angle(value: number): RotationBuilder;
   angleBind(expr: string): RotationBuilder;
@@ -34,11 +40,11 @@ export interface RotationBuilder {
   objectNameBind(expr: string): RotationBuilder;
   origin(value: QmlVector3d): RotationBuilder;
   originBind(expr: string): RotationBuilder;
-  onAngleChanged(body: string): RotationBuilder;
-  onAxisChanged(body: string): RotationBuilder;
-  onDistanceToPlaneChanged(body: string): RotationBuilder;
-  onObjectNameChanged(body: string): RotationBuilder;
-  onOriginChanged(body: string): RotationBuilder;
+  onAngleChanged(handler: DslSignalHandlerValue): RotationBuilder;
+  onAxisChanged(handler: DslSignalHandlerValue): RotationBuilder;
+  onDistanceToPlaneChanged(handler: DslSignalHandlerValue): RotationBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): RotationBuilder;
+  onOriginChanged(handler: DslSignalHandlerValue): RotationBuilder;
   accessible(setup: (b: AccessibleAttachedBuilder) => void): RotationBuilder;
   drag(setup: (b: DragAttachedBuilder) => void): RotationBuilder;
   enterKey(setup: (b: EnterKeyAttachedBuilder) => void): RotationBuilder;

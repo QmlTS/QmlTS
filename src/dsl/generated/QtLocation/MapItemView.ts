@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlComponent,
   QmlEnumToken,
   QmlObjectBuilder,
@@ -19,6 +20,7 @@ import type { TransitionBuilder } from '../QtQuick/Transition.js';
 export interface MapItemViewBuilder {
   id(id: string): MapItemViewBuilder;
   child(obj: QmlObjectBuilder): MapItemViewBuilder;
+  children(...objs: QmlObjectBuilder[]): MapItemViewBuilder;
 
   activeFocusOnTab(value: boolean): MapItemViewBuilder;
   activeFocusOnTabBind(expr: string): MapItemViewBuilder;
@@ -84,45 +86,45 @@ export interface MapItemViewBuilder {
   yBind(expr: string): MapItemViewBuilder;
   z(value: number): MapItemViewBuilder;
   zBind(expr: string): MapItemViewBuilder;
-  onActiveFocusChanged(body: string): MapItemViewBuilder;
-  onActiveFocusOnTabChanged(body: string): MapItemViewBuilder;
-  onAddTransitionFinished(body: string): MapItemViewBuilder;
-  onAntialiasingChanged(body: string): MapItemViewBuilder;
-  onAutoFitViewportChanged(body: string): MapItemViewBuilder;
-  onBaselineOffsetChanged(body: string): MapItemViewBuilder;
-  onChildrenChanged(body: string): MapItemViewBuilder;
-  onChildrenRectChanged(body: string): MapItemViewBuilder;
-  onClipChanged(body: string): MapItemViewBuilder;
-  onContainmentMaskChanged(body: string): MapItemViewBuilder;
-  onDelegateChanged(body: string): MapItemViewBuilder;
-  onDelegateModelAccessChanged(body: string): MapItemViewBuilder;
-  onEnabledChanged(body: string): MapItemViewBuilder;
-  onFocusChanged(body: string): MapItemViewBuilder;
-  onFocusPolicyChanged(body: string): MapItemViewBuilder;
-  onHeightChanged(body: string): MapItemViewBuilder;
-  onImplicitHeightChanged(body: string): MapItemViewBuilder;
-  onImplicitWidthChanged(body: string): MapItemViewBuilder;
-  onIncubateDelegatesChanged(body: string): MapItemViewBuilder;
-  onMapItemOpacityChanged(body: string): MapItemViewBuilder;
-  onModelChanged(body: string): MapItemViewBuilder;
-  onObjectNameChanged(body: string): MapItemViewBuilder;
-  onOpacityChanged(body: string): MapItemViewBuilder;
-  onPaletteChanged(body: string): MapItemViewBuilder;
-  onPaletteCreated(body: string): MapItemViewBuilder;
-  onParentChanged(body: string): MapItemViewBuilder;
-  onRemoveTransitionFinished(body: string): MapItemViewBuilder;
-  onRotationChanged(body: string): MapItemViewBuilder;
-  onScaleChanged(body: string): MapItemViewBuilder;
-  onSmoothChanged(body: string): MapItemViewBuilder;
-  onStateChanged(body: string): MapItemViewBuilder;
-  onTransformOriginChanged(body: string): MapItemViewBuilder;
-  onVisibleChanged(body: string): MapItemViewBuilder;
-  onVisibleChildrenChanged(body: string): MapItemViewBuilder;
-  onWidthChanged(body: string): MapItemViewBuilder;
-  onWindowChanged(body: string): MapItemViewBuilder;
-  onXChanged(body: string): MapItemViewBuilder;
-  onYChanged(body: string): MapItemViewBuilder;
-  onZChanged(body: string): MapItemViewBuilder;
+  onActiveFocusChanged(handler: DslSignalHandlerValue): MapItemViewBuilder;
+  onActiveFocusOnTabChanged(handler: DslSignalHandlerValue): MapItemViewBuilder;
+  onAddTransitionFinished(handler: DslSignalHandlerValue): MapItemViewBuilder;
+  onAntialiasingChanged(handler: DslSignalHandlerValue): MapItemViewBuilder;
+  onAutoFitViewportChanged(handler: DslSignalHandlerValue): MapItemViewBuilder;
+  onBaselineOffsetChanged(handler: DslSignalHandlerValue): MapItemViewBuilder;
+  onChildrenChanged(handler: DslSignalHandlerValue): MapItemViewBuilder;
+  onChildrenRectChanged(handler: DslSignalHandlerValue): MapItemViewBuilder;
+  onClipChanged(handler: DslSignalHandlerValue): MapItemViewBuilder;
+  onContainmentMaskChanged(handler: DslSignalHandlerValue): MapItemViewBuilder;
+  onDelegateChanged(handler: DslSignalHandlerValue): MapItemViewBuilder;
+  onDelegateModelAccessChanged(handler: DslSignalHandlerValue): MapItemViewBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): MapItemViewBuilder;
+  onFocusChanged(handler: DslSignalHandlerValue): MapItemViewBuilder;
+  onFocusPolicyChanged(handler: DslSignalHandlerValue): MapItemViewBuilder;
+  onHeightChanged(handler: DslSignalHandlerValue): MapItemViewBuilder;
+  onImplicitHeightChanged(handler: DslSignalHandlerValue): MapItemViewBuilder;
+  onImplicitWidthChanged(handler: DslSignalHandlerValue): MapItemViewBuilder;
+  onIncubateDelegatesChanged(handler: DslSignalHandlerValue): MapItemViewBuilder;
+  onMapItemOpacityChanged(handler: DslSignalHandlerValue): MapItemViewBuilder;
+  onModelChanged(handler: DslSignalHandlerValue): MapItemViewBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): MapItemViewBuilder;
+  onOpacityChanged(handler: DslSignalHandlerValue): MapItemViewBuilder;
+  onPaletteChanged(handler: DslSignalHandlerValue): MapItemViewBuilder;
+  onPaletteCreated(handler: DslSignalHandlerValue): MapItemViewBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): MapItemViewBuilder;
+  onRemoveTransitionFinished(handler: DslSignalHandlerValue): MapItemViewBuilder;
+  onRotationChanged(handler: DslSignalHandlerValue): MapItemViewBuilder;
+  onScaleChanged(handler: DslSignalHandlerValue): MapItemViewBuilder;
+  onSmoothChanged(handler: DslSignalHandlerValue): MapItemViewBuilder;
+  onStateChanged(handler: DslSignalHandlerValue): MapItemViewBuilder;
+  onTransformOriginChanged(handler: DslSignalHandlerValue): MapItemViewBuilder;
+  onVisibleChanged(handler: DslSignalHandlerValue): MapItemViewBuilder;
+  onVisibleChildrenChanged(handler: DslSignalHandlerValue): MapItemViewBuilder;
+  onWidthChanged(handler: DslSignalHandlerValue): MapItemViewBuilder;
+  onWindowChanged(handler: DslSignalHandlerValue): MapItemViewBuilder;
+  onXChanged(handler: DslSignalHandlerValue): MapItemViewBuilder;
+  onYChanged(handler: DslSignalHandlerValue): MapItemViewBuilder;
+  onZChanged(handler: DslSignalHandlerValue): MapItemViewBuilder;
   anchors(setup: (b: AnchorsBuilder) => void): MapItemViewBuilder;
   layer(setup: (b: LayerBuilder) => void): MapItemViewBuilder;
 }

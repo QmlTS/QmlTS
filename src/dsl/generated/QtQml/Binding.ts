@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlEnumToken,
   QmlObjectBuilder,
   QmlValue,
@@ -13,6 +14,7 @@ import type { QtObjectBuilder } from '../QML/QtObject.js';
 export interface BindingBuilder {
   id(id: string): BindingBuilder;
   child(obj: QmlObjectBuilder): BindingBuilder;
+  children(...objs: QmlObjectBuilder[]): BindingBuilder;
 
   delayed(value: boolean): BindingBuilder;
   delayedBind(expr: string): BindingBuilder;
@@ -28,13 +30,13 @@ export interface BindingBuilder {
   valueBind(expr: string): BindingBuilder;
   when(value: boolean): BindingBuilder;
   whenBind(expr: string): BindingBuilder;
-  onDelayedChanged(body: string): BindingBuilder;
-  onObjectChanged(body: string): BindingBuilder;
-  onObjectNameChanged(body: string): BindingBuilder;
-  onPropertyChanged(body: string): BindingBuilder;
-  onRestoreModeChanged(body: string): BindingBuilder;
-  onValueChanged(body: string): BindingBuilder;
-  onWhenChanged(body: string): BindingBuilder;
+  onDelayedChanged(handler: DslSignalHandlerValue): BindingBuilder;
+  onObjectChanged(handler: DslSignalHandlerValue): BindingBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): BindingBuilder;
+  onPropertyChanged(handler: DslSignalHandlerValue): BindingBuilder;
+  onRestoreModeChanged(handler: DslSignalHandlerValue): BindingBuilder;
+  onValueChanged(handler: DslSignalHandlerValue): BindingBuilder;
+  onWhenChanged(handler: DslSignalHandlerValue): BindingBuilder;
 }
 
 const BINDING_META: TypeMetadata = {

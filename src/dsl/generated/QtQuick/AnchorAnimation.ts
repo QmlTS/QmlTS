@@ -2,7 +2,12 @@
 // Type: AnchorAnimation
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { AccessibleAttachedBuilder } from './Accessible.js';
 import type { EnterKeyAttachedBuilder } from './EnterKey.js';
@@ -23,6 +28,7 @@ import type { ViewTransitionAttachedBuilder } from './ViewTransition.js';
 export interface AnchorAnimationBuilder {
   id(id: string): AnchorAnimationBuilder;
   child(obj: QmlObjectBuilder): AnchorAnimationBuilder;
+  children(...objs: QmlObjectBuilder[]): AnchorAnimationBuilder;
 
   alwaysRunToEnd(value: boolean): AnchorAnimationBuilder;
   alwaysRunToEndBind(expr: string): AnchorAnimationBuilder;
@@ -38,16 +44,16 @@ export interface AnchorAnimationBuilder {
   pausedBind(expr: string): AnchorAnimationBuilder;
   running(value: boolean): AnchorAnimationBuilder;
   runningBind(expr: string): AnchorAnimationBuilder;
-  onAlwaysRunToEndChanged(body: string): AnchorAnimationBuilder;
-  onDurationChanged(body: string): AnchorAnimationBuilder;
-  onEasingChanged(body: string): AnchorAnimationBuilder;
-  onFinished(body: string): AnchorAnimationBuilder;
-  onLoopCountChanged(body: string): AnchorAnimationBuilder;
-  onObjectNameChanged(body: string): AnchorAnimationBuilder;
-  onPausedChanged(body: string): AnchorAnimationBuilder;
-  onRunningChanged(body: string): AnchorAnimationBuilder;
-  onStarted(body: string): AnchorAnimationBuilder;
-  onStopped(body: string): AnchorAnimationBuilder;
+  onAlwaysRunToEndChanged(handler: DslSignalHandlerValue): AnchorAnimationBuilder;
+  onDurationChanged(handler: DslSignalHandlerValue): AnchorAnimationBuilder;
+  onEasingChanged(handler: DslSignalHandlerValue): AnchorAnimationBuilder;
+  onFinished(handler: DslSignalHandlerValue): AnchorAnimationBuilder;
+  onLoopCountChanged(handler: DslSignalHandlerValue): AnchorAnimationBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): AnchorAnimationBuilder;
+  onPausedChanged(handler: DslSignalHandlerValue): AnchorAnimationBuilder;
+  onRunningChanged(handler: DslSignalHandlerValue): AnchorAnimationBuilder;
+  onStarted(handler: DslSignalHandlerValue): AnchorAnimationBuilder;
+  onStopped(handler: DslSignalHandlerValue): AnchorAnimationBuilder;
   accessible(setup: (b: AccessibleAttachedBuilder) => void): AnchorAnimationBuilder;
   drag(setup: (b: DragAttachedBuilder) => void): AnchorAnimationBuilder;
   enterKey(setup: (b: EnterKeyAttachedBuilder) => void): AnchorAnimationBuilder;

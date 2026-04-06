@@ -2,11 +2,17 @@
 // Type: SortPolicy
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface SortPolicyBuilder {
   id(id: string): SortPolicyBuilder;
   child(obj: QmlObjectBuilder): SortPolicyBuilder;
+  children(...objs: QmlObjectBuilder[]): SortPolicyBuilder;
 
   enabled(value: boolean): SortPolicyBuilder;
   enabledBind(expr: string): SortPolicyBuilder;
@@ -16,11 +22,11 @@ export interface SortPolicyBuilder {
   parentBind(expr: string): SortPolicyBuilder;
   sortTypes(value: number): SortPolicyBuilder;
   sortTypesBind(expr: string): SortPolicyBuilder;
-  onEnabledChanged(body: string): SortPolicyBuilder;
-  onNodeDestroyed(body: string): SortPolicyBuilder;
-  onObjectNameChanged(body: string): SortPolicyBuilder;
-  onParentChanged(body: string): SortPolicyBuilder;
-  onSortTypesChanged(body: string): SortPolicyBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): SortPolicyBuilder;
+  onNodeDestroyed(handler: DslSignalHandlerValue): SortPolicyBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): SortPolicyBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): SortPolicyBuilder;
+  onSortTypesChanged(handler: DslSignalHandlerValue): SortPolicyBuilder;
 }
 
 const SORTPOLICY_META: TypeMetadata = {

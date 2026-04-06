@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlObjectBuilder,
   QmlQuaternion,
   QmlValue,
@@ -13,6 +14,7 @@ import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface CapsuleShapeBuilder {
   id(id: string): CapsuleShapeBuilder;
   child(obj: QmlObjectBuilder): CapsuleShapeBuilder;
+  children(...objs: QmlObjectBuilder[]): CapsuleShapeBuilder;
 
   diameter(value: number): CapsuleShapeBuilder;
   diameterBind(expr: string): CapsuleShapeBuilder;
@@ -50,33 +52,33 @@ export interface CapsuleShapeBuilder {
   yBind(expr: string): CapsuleShapeBuilder;
   z(value: number): CapsuleShapeBuilder;
   zBind(expr: string): CapsuleShapeBuilder;
-  onChildrenChanged(body: string): CapsuleShapeBuilder;
-  onDiameterChanged(body: string): CapsuleShapeBuilder;
-  onEnableDebugDrawChanged(body: string): CapsuleShapeBuilder;
-  onEulerRotationChanged(body: string): CapsuleShapeBuilder;
-  onForwardChanged(body: string): CapsuleShapeBuilder;
-  onHeightChanged(body: string): CapsuleShapeBuilder;
-  onLayersChanged(body: string): CapsuleShapeBuilder;
-  onLocalOpacityChanged(body: string): CapsuleShapeBuilder;
-  onNeedsRebuild(body: string): CapsuleShapeBuilder;
-  onObjectNameChanged(body: string): CapsuleShapeBuilder;
-  onParentChanged(body: string): CapsuleShapeBuilder;
-  onPivotChanged(body: string): CapsuleShapeBuilder;
-  onPositionChanged(body: string): CapsuleShapeBuilder;
-  onRightChanged(body: string): CapsuleShapeBuilder;
-  onRotationChanged(body: string): CapsuleShapeBuilder;
-  onScaleChanged(body: string): CapsuleShapeBuilder;
-  onScenePositionChanged(body: string): CapsuleShapeBuilder;
-  onSceneRotationChanged(body: string): CapsuleShapeBuilder;
-  onSceneScaleChanged(body: string): CapsuleShapeBuilder;
-  onSceneTransformChanged(body: string): CapsuleShapeBuilder;
-  onStateChanged(body: string): CapsuleShapeBuilder;
-  onStaticFlagsChanged(body: string): CapsuleShapeBuilder;
-  onUpChanged(body: string): CapsuleShapeBuilder;
-  onVisibleChanged(body: string): CapsuleShapeBuilder;
-  onXChanged(body: string): CapsuleShapeBuilder;
-  onYChanged(body: string): CapsuleShapeBuilder;
-  onZChanged(body: string): CapsuleShapeBuilder;
+  onChildrenChanged(handler: DslSignalHandlerValue): CapsuleShapeBuilder;
+  onDiameterChanged(handler: DslSignalHandlerValue): CapsuleShapeBuilder;
+  onEnableDebugDrawChanged(handler: DslSignalHandlerValue): CapsuleShapeBuilder;
+  onEulerRotationChanged(handler: DslSignalHandlerValue): CapsuleShapeBuilder;
+  onForwardChanged(handler: DslSignalHandlerValue): CapsuleShapeBuilder;
+  onHeightChanged(handler: DslSignalHandlerValue): CapsuleShapeBuilder;
+  onLayersChanged(handler: DslSignalHandlerValue): CapsuleShapeBuilder;
+  onLocalOpacityChanged(handler: DslSignalHandlerValue): CapsuleShapeBuilder;
+  onNeedsRebuild(handler: DslSignalHandlerValue): CapsuleShapeBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): CapsuleShapeBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): CapsuleShapeBuilder;
+  onPivotChanged(handler: DslSignalHandlerValue): CapsuleShapeBuilder;
+  onPositionChanged(handler: DslSignalHandlerValue): CapsuleShapeBuilder;
+  onRightChanged(handler: DslSignalHandlerValue): CapsuleShapeBuilder;
+  onRotationChanged(handler: DslSignalHandlerValue): CapsuleShapeBuilder;
+  onScaleChanged(handler: DslSignalHandlerValue): CapsuleShapeBuilder;
+  onScenePositionChanged(handler: DslSignalHandlerValue): CapsuleShapeBuilder;
+  onSceneRotationChanged(handler: DslSignalHandlerValue): CapsuleShapeBuilder;
+  onSceneScaleChanged(handler: DslSignalHandlerValue): CapsuleShapeBuilder;
+  onSceneTransformChanged(handler: DslSignalHandlerValue): CapsuleShapeBuilder;
+  onStateChanged(handler: DslSignalHandlerValue): CapsuleShapeBuilder;
+  onStaticFlagsChanged(handler: DslSignalHandlerValue): CapsuleShapeBuilder;
+  onUpChanged(handler: DslSignalHandlerValue): CapsuleShapeBuilder;
+  onVisibleChanged(handler: DslSignalHandlerValue): CapsuleShapeBuilder;
+  onXChanged(handler: DslSignalHandlerValue): CapsuleShapeBuilder;
+  onYChanged(handler: DslSignalHandlerValue): CapsuleShapeBuilder;
+  onZChanged(handler: DslSignalHandlerValue): CapsuleShapeBuilder;
 }
 
 const CAPSULESHAPE_META: TypeMetadata = {

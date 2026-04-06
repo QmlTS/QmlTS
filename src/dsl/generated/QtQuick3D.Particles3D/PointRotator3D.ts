@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlObjectBuilder,
   QmlQuaternion,
   QmlValue,
@@ -14,6 +15,7 @@ import type { ParticleSystem3DBuilder } from './ParticleSystem3D.js';
 export interface PointRotator3DBuilder {
   id(id: string): PointRotator3DBuilder;
   child(obj: QmlObjectBuilder): PointRotator3DBuilder;
+  children(...objs: QmlObjectBuilder[]): PointRotator3DBuilder;
 
   direction(value: QmlVector3d): PointRotator3DBuilder;
   directionBind(expr: string): PointRotator3DBuilder;
@@ -55,35 +57,35 @@ export interface PointRotator3DBuilder {
   yBind(expr: string): PointRotator3DBuilder;
   z(value: number): PointRotator3DBuilder;
   zBind(expr: string): PointRotator3DBuilder;
-  onChildrenChanged(body: string): PointRotator3DBuilder;
-  onDirectionChanged(body: string): PointRotator3DBuilder;
-  onEnabledChanged(body: string): PointRotator3DBuilder;
-  onEulerRotationChanged(body: string): PointRotator3DBuilder;
-  onForwardChanged(body: string): PointRotator3DBuilder;
-  onLayersChanged(body: string): PointRotator3DBuilder;
-  onLocalOpacityChanged(body: string): PointRotator3DBuilder;
-  onMagnitudeChanged(body: string): PointRotator3DBuilder;
-  onObjectNameChanged(body: string): PointRotator3DBuilder;
-  onParentChanged(body: string): PointRotator3DBuilder;
-  onPivotChanged(body: string): PointRotator3DBuilder;
-  onPivotPointChanged(body: string): PointRotator3DBuilder;
-  onPositionChanged(body: string): PointRotator3DBuilder;
-  onRightChanged(body: string): PointRotator3DBuilder;
-  onRotationChanged(body: string): PointRotator3DBuilder;
-  onScaleChanged(body: string): PointRotator3DBuilder;
-  onScenePositionChanged(body: string): PointRotator3DBuilder;
-  onSceneRotationChanged(body: string): PointRotator3DBuilder;
-  onSceneScaleChanged(body: string): PointRotator3DBuilder;
-  onSceneTransformChanged(body: string): PointRotator3DBuilder;
-  onStateChanged(body: string): PointRotator3DBuilder;
-  onStaticFlagsChanged(body: string): PointRotator3DBuilder;
-  onSystemChanged(body: string): PointRotator3DBuilder;
-  onUpChanged(body: string): PointRotator3DBuilder;
-  onUpdate(body: string): PointRotator3DBuilder;
-  onVisibleChanged(body: string): PointRotator3DBuilder;
-  onXChanged(body: string): PointRotator3DBuilder;
-  onYChanged(body: string): PointRotator3DBuilder;
-  onZChanged(body: string): PointRotator3DBuilder;
+  onChildrenChanged(handler: DslSignalHandlerValue): PointRotator3DBuilder;
+  onDirectionChanged(handler: DslSignalHandlerValue): PointRotator3DBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): PointRotator3DBuilder;
+  onEulerRotationChanged(handler: DslSignalHandlerValue): PointRotator3DBuilder;
+  onForwardChanged(handler: DslSignalHandlerValue): PointRotator3DBuilder;
+  onLayersChanged(handler: DslSignalHandlerValue): PointRotator3DBuilder;
+  onLocalOpacityChanged(handler: DslSignalHandlerValue): PointRotator3DBuilder;
+  onMagnitudeChanged(handler: DslSignalHandlerValue): PointRotator3DBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): PointRotator3DBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): PointRotator3DBuilder;
+  onPivotChanged(handler: DslSignalHandlerValue): PointRotator3DBuilder;
+  onPivotPointChanged(handler: DslSignalHandlerValue): PointRotator3DBuilder;
+  onPositionChanged(handler: DslSignalHandlerValue): PointRotator3DBuilder;
+  onRightChanged(handler: DslSignalHandlerValue): PointRotator3DBuilder;
+  onRotationChanged(handler: DslSignalHandlerValue): PointRotator3DBuilder;
+  onScaleChanged(handler: DslSignalHandlerValue): PointRotator3DBuilder;
+  onScenePositionChanged(handler: DslSignalHandlerValue): PointRotator3DBuilder;
+  onSceneRotationChanged(handler: DslSignalHandlerValue): PointRotator3DBuilder;
+  onSceneScaleChanged(handler: DslSignalHandlerValue): PointRotator3DBuilder;
+  onSceneTransformChanged(handler: DslSignalHandlerValue): PointRotator3DBuilder;
+  onStateChanged(handler: DslSignalHandlerValue): PointRotator3DBuilder;
+  onStaticFlagsChanged(handler: DslSignalHandlerValue): PointRotator3DBuilder;
+  onSystemChanged(handler: DslSignalHandlerValue): PointRotator3DBuilder;
+  onUpChanged(handler: DslSignalHandlerValue): PointRotator3DBuilder;
+  onUpdate(handler: DslSignalHandlerValue): PointRotator3DBuilder;
+  onVisibleChanged(handler: DslSignalHandlerValue): PointRotator3DBuilder;
+  onXChanged(handler: DslSignalHandlerValue): PointRotator3DBuilder;
+  onYChanged(handler: DslSignalHandlerValue): PointRotator3DBuilder;
+  onZChanged(handler: DslSignalHandlerValue): PointRotator3DBuilder;
 }
 
 const POINTROTATOR3D_META: TypeMetadata = {

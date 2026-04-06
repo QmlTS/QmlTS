@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlEnumToken,
   QmlObjectBuilder,
   QmlValue,
@@ -19,6 +20,7 @@ import type { SceneEnvironmentBuilder } from './SceneEnvironment.js';
 export interface View3DBuilder {
   id(id: string): View3DBuilder;
   child(obj: QmlObjectBuilder): View3DBuilder;
+  children(...objs: QmlObjectBuilder[]): View3DBuilder;
 
   activeFocusOnTab(value: boolean): View3DBuilder;
   activeFocusOnTabBind(expr: string): View3DBuilder;
@@ -86,47 +88,47 @@ export interface View3DBuilder {
   yBind(expr: string): View3DBuilder;
   z(value: number): View3DBuilder;
   zBind(expr: string): View3DBuilder;
-  onActiveFocusChanged(body: string): View3DBuilder;
-  onActiveFocusOnTabChanged(body: string): View3DBuilder;
-  onAntialiasingChanged(body: string): View3DBuilder;
-  onBaselineOffsetChanged(body: string): View3DBuilder;
-  onCameraChanged(body: string): View3DBuilder;
-  onChildrenChanged(body: string): View3DBuilder;
-  onChildrenRectChanged(body: string): View3DBuilder;
-  onClipChanged(body: string): View3DBuilder;
-  onContainmentMaskChanged(body: string): View3DBuilder;
-  onEffectiveTextureSizeChanged(body: string): View3DBuilder;
-  onEnabledChanged(body: string): View3DBuilder;
-  onEnvironmentChanged(body: string): View3DBuilder;
-  onExplicitTextureHeightChanged(body: string): View3DBuilder;
-  onExplicitTextureWidthChanged(body: string): View3DBuilder;
-  onFocusChanged(body: string): View3DBuilder;
-  onFocusPolicyChanged(body: string): View3DBuilder;
-  onHeightChanged(body: string): View3DBuilder;
-  onImplicitHeightChanged(body: string): View3DBuilder;
-  onImplicitWidthChanged(body: string): View3DBuilder;
-  onImportSceneChanged(body: string): View3DBuilder;
-  onObjectNameChanged(body: string): View3DBuilder;
-  onOpacityChanged(body: string): View3DBuilder;
-  onPaletteChanged(body: string): View3DBuilder;
-  onPaletteCreated(body: string): View3DBuilder;
-  onParentChanged(body: string): View3DBuilder;
-  onRenderFormatChanged(body: string): View3DBuilder;
-  onRenderModeChanged(body: string): View3DBuilder;
-  onRenderOverridesChanged(body: string): View3DBuilder;
-  onRotationChanged(body: string): View3DBuilder;
-  onScaleChanged(body: string): View3DBuilder;
-  onSceneChanged(body: string): View3DBuilder;
-  onSmoothChanged(body: string): View3DBuilder;
-  onStateChanged(body: string): View3DBuilder;
-  onTransformOriginChanged(body: string): View3DBuilder;
-  onVisibleChanged(body: string): View3DBuilder;
-  onVisibleChildrenChanged(body: string): View3DBuilder;
-  onWidthChanged(body: string): View3DBuilder;
-  onWindowChanged(body: string): View3DBuilder;
-  onXChanged(body: string): View3DBuilder;
-  onYChanged(body: string): View3DBuilder;
-  onZChanged(body: string): View3DBuilder;
+  onActiveFocusChanged(handler: DslSignalHandlerValue): View3DBuilder;
+  onActiveFocusOnTabChanged(handler: DslSignalHandlerValue): View3DBuilder;
+  onAntialiasingChanged(handler: DslSignalHandlerValue): View3DBuilder;
+  onBaselineOffsetChanged(handler: DslSignalHandlerValue): View3DBuilder;
+  onCameraChanged(handler: DslSignalHandlerValue): View3DBuilder;
+  onChildrenChanged(handler: DslSignalHandlerValue): View3DBuilder;
+  onChildrenRectChanged(handler: DslSignalHandlerValue): View3DBuilder;
+  onClipChanged(handler: DslSignalHandlerValue): View3DBuilder;
+  onContainmentMaskChanged(handler: DslSignalHandlerValue): View3DBuilder;
+  onEffectiveTextureSizeChanged(handler: DslSignalHandlerValue): View3DBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): View3DBuilder;
+  onEnvironmentChanged(handler: DslSignalHandlerValue): View3DBuilder;
+  onExplicitTextureHeightChanged(handler: DslSignalHandlerValue): View3DBuilder;
+  onExplicitTextureWidthChanged(handler: DslSignalHandlerValue): View3DBuilder;
+  onFocusChanged(handler: DslSignalHandlerValue): View3DBuilder;
+  onFocusPolicyChanged(handler: DslSignalHandlerValue): View3DBuilder;
+  onHeightChanged(handler: DslSignalHandlerValue): View3DBuilder;
+  onImplicitHeightChanged(handler: DslSignalHandlerValue): View3DBuilder;
+  onImplicitWidthChanged(handler: DslSignalHandlerValue): View3DBuilder;
+  onImportSceneChanged(handler: DslSignalHandlerValue): View3DBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): View3DBuilder;
+  onOpacityChanged(handler: DslSignalHandlerValue): View3DBuilder;
+  onPaletteChanged(handler: DslSignalHandlerValue): View3DBuilder;
+  onPaletteCreated(handler: DslSignalHandlerValue): View3DBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): View3DBuilder;
+  onRenderFormatChanged(handler: DslSignalHandlerValue): View3DBuilder;
+  onRenderModeChanged(handler: DslSignalHandlerValue): View3DBuilder;
+  onRenderOverridesChanged(handler: DslSignalHandlerValue): View3DBuilder;
+  onRotationChanged(handler: DslSignalHandlerValue): View3DBuilder;
+  onScaleChanged(handler: DslSignalHandlerValue): View3DBuilder;
+  onSceneChanged(handler: DslSignalHandlerValue): View3DBuilder;
+  onSmoothChanged(handler: DslSignalHandlerValue): View3DBuilder;
+  onStateChanged(handler: DslSignalHandlerValue): View3DBuilder;
+  onTransformOriginChanged(handler: DslSignalHandlerValue): View3DBuilder;
+  onVisibleChanged(handler: DslSignalHandlerValue): View3DBuilder;
+  onVisibleChildrenChanged(handler: DslSignalHandlerValue): View3DBuilder;
+  onWidthChanged(handler: DslSignalHandlerValue): View3DBuilder;
+  onWindowChanged(handler: DslSignalHandlerValue): View3DBuilder;
+  onXChanged(handler: DslSignalHandlerValue): View3DBuilder;
+  onYChanged(handler: DslSignalHandlerValue): View3DBuilder;
+  onZChanged(handler: DslSignalHandlerValue): View3DBuilder;
   anchors(setup: (b: AnchorsBuilder) => void): View3DBuilder;
   layer(setup: (b: LayerBuilder) => void): View3DBuilder;
 }

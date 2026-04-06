@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlEnumToken,
   QmlObjectBuilder,
   QmlVector3d,
@@ -12,6 +13,7 @@ import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface ParticleShape3DBuilder {
   id(id: string): ParticleShape3DBuilder;
   child(obj: QmlObjectBuilder): ParticleShape3DBuilder;
+  children(...objs: QmlObjectBuilder[]): ParticleShape3DBuilder;
 
   extents(value: QmlVector3d): ParticleShape3DBuilder;
   extentsBind(expr: string): ParticleShape3DBuilder;
@@ -21,10 +23,10 @@ export interface ParticleShape3DBuilder {
   objectNameBind(expr: string): ParticleShape3DBuilder;
   type(value: QmlEnumToken): ParticleShape3DBuilder;
   typeBind(expr: string): ParticleShape3DBuilder;
-  onExtentsChanged(body: string): ParticleShape3DBuilder;
-  onFillChanged(body: string): ParticleShape3DBuilder;
-  onObjectNameChanged(body: string): ParticleShape3DBuilder;
-  onTypeChanged(body: string): ParticleShape3DBuilder;
+  onExtentsChanged(handler: DslSignalHandlerValue): ParticleShape3DBuilder;
+  onFillChanged(handler: DslSignalHandlerValue): ParticleShape3DBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): ParticleShape3DBuilder;
+  onTypeChanged(handler: DslSignalHandlerValue): ParticleShape3DBuilder;
 }
 
 const PARTICLESHAPE3D_META: TypeMetadata = {

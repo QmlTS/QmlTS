@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlColor,
   QmlEnumToken,
   QmlObjectBuilder,
@@ -18,6 +19,7 @@ import type { LayerBuilder } from '../QtQuick/QQuickItemLayer.js';
 export interface FocusStrokeBuilder {
   id(id: string): FocusStrokeBuilder;
   child(obj: QmlObjectBuilder): FocusStrokeBuilder;
+  children(...objs: QmlObjectBuilder[]): FocusStrokeBuilder;
 
   activeFocusOnTab(value: boolean): FocusStrokeBuilder;
   activeFocusOnTabBind(expr: string): FocusStrokeBuilder;
@@ -83,42 +85,42 @@ export interface FocusStrokeBuilder {
   yBind(expr: string): FocusStrokeBuilder;
   z(value: number): FocusStrokeBuilder;
   zBind(expr: string): FocusStrokeBuilder;
-  onActiveFocusChanged(body: string): FocusStrokeBuilder;
-  onActiveFocusOnTabChanged(body: string): FocusStrokeBuilder;
-  onAntialiasingChanged(body: string): FocusStrokeBuilder;
-  onBaselineOffsetChanged(body: string): FocusStrokeBuilder;
-  onChildrenChanged(body: string): FocusStrokeBuilder;
-  onChildrenRectChanged(body: string): FocusStrokeBuilder;
-  onClipChanged(body: string): FocusStrokeBuilder;
-  onContainmentMaskChanged(body: string): FocusStrokeBuilder;
-  onContentsScaleChanged(body: string): FocusStrokeBuilder;
-  onContentsSizeChanged(body: string): FocusStrokeBuilder;
-  onEnabledChanged(body: string): FocusStrokeBuilder;
-  onFillColorChanged(body: string): FocusStrokeBuilder;
-  onFocusChanged(body: string): FocusStrokeBuilder;
-  onFocusPolicyChanged(body: string): FocusStrokeBuilder;
-  onHeightChanged(body: string): FocusStrokeBuilder;
-  onImplicitHeightChanged(body: string): FocusStrokeBuilder;
-  onImplicitWidthChanged(body: string): FocusStrokeBuilder;
-  onObjectNameChanged(body: string): FocusStrokeBuilder;
-  onOpacityChanged(body: string): FocusStrokeBuilder;
-  onPaletteChanged(body: string): FocusStrokeBuilder;
-  onPaletteCreated(body: string): FocusStrokeBuilder;
-  onParentChanged(body: string): FocusStrokeBuilder;
-  onRenderTargetChanged(body: string): FocusStrokeBuilder;
-  onRotationChanged(body: string): FocusStrokeBuilder;
-  onScaleChanged(body: string): FocusStrokeBuilder;
-  onSmoothChanged(body: string): FocusStrokeBuilder;
-  onStateChanged(body: string): FocusStrokeBuilder;
-  onTextureSizeChanged(body: string): FocusStrokeBuilder;
-  onTransformOriginChanged(body: string): FocusStrokeBuilder;
-  onVisibleChanged(body: string): FocusStrokeBuilder;
-  onVisibleChildrenChanged(body: string): FocusStrokeBuilder;
-  onWidthChanged(body: string): FocusStrokeBuilder;
-  onWindowChanged(body: string): FocusStrokeBuilder;
-  onXChanged(body: string): FocusStrokeBuilder;
-  onYChanged(body: string): FocusStrokeBuilder;
-  onZChanged(body: string): FocusStrokeBuilder;
+  onActiveFocusChanged(handler: DslSignalHandlerValue): FocusStrokeBuilder;
+  onActiveFocusOnTabChanged(handler: DslSignalHandlerValue): FocusStrokeBuilder;
+  onAntialiasingChanged(handler: DslSignalHandlerValue): FocusStrokeBuilder;
+  onBaselineOffsetChanged(handler: DslSignalHandlerValue): FocusStrokeBuilder;
+  onChildrenChanged(handler: DslSignalHandlerValue): FocusStrokeBuilder;
+  onChildrenRectChanged(handler: DslSignalHandlerValue): FocusStrokeBuilder;
+  onClipChanged(handler: DslSignalHandlerValue): FocusStrokeBuilder;
+  onContainmentMaskChanged(handler: DslSignalHandlerValue): FocusStrokeBuilder;
+  onContentsScaleChanged(handler: DslSignalHandlerValue): FocusStrokeBuilder;
+  onContentsSizeChanged(handler: DslSignalHandlerValue): FocusStrokeBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): FocusStrokeBuilder;
+  onFillColorChanged(handler: DslSignalHandlerValue): FocusStrokeBuilder;
+  onFocusChanged(handler: DslSignalHandlerValue): FocusStrokeBuilder;
+  onFocusPolicyChanged(handler: DslSignalHandlerValue): FocusStrokeBuilder;
+  onHeightChanged(handler: DslSignalHandlerValue): FocusStrokeBuilder;
+  onImplicitHeightChanged(handler: DslSignalHandlerValue): FocusStrokeBuilder;
+  onImplicitWidthChanged(handler: DslSignalHandlerValue): FocusStrokeBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): FocusStrokeBuilder;
+  onOpacityChanged(handler: DslSignalHandlerValue): FocusStrokeBuilder;
+  onPaletteChanged(handler: DslSignalHandlerValue): FocusStrokeBuilder;
+  onPaletteCreated(handler: DslSignalHandlerValue): FocusStrokeBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): FocusStrokeBuilder;
+  onRenderTargetChanged(handler: DslSignalHandlerValue): FocusStrokeBuilder;
+  onRotationChanged(handler: DslSignalHandlerValue): FocusStrokeBuilder;
+  onScaleChanged(handler: DslSignalHandlerValue): FocusStrokeBuilder;
+  onSmoothChanged(handler: DslSignalHandlerValue): FocusStrokeBuilder;
+  onStateChanged(handler: DslSignalHandlerValue): FocusStrokeBuilder;
+  onTextureSizeChanged(handler: DslSignalHandlerValue): FocusStrokeBuilder;
+  onTransformOriginChanged(handler: DslSignalHandlerValue): FocusStrokeBuilder;
+  onVisibleChanged(handler: DslSignalHandlerValue): FocusStrokeBuilder;
+  onVisibleChildrenChanged(handler: DslSignalHandlerValue): FocusStrokeBuilder;
+  onWidthChanged(handler: DslSignalHandlerValue): FocusStrokeBuilder;
+  onWindowChanged(handler: DslSignalHandlerValue): FocusStrokeBuilder;
+  onXChanged(handler: DslSignalHandlerValue): FocusStrokeBuilder;
+  onYChanged(handler: DslSignalHandlerValue): FocusStrokeBuilder;
+  onZChanged(handler: DslSignalHandlerValue): FocusStrokeBuilder;
   anchors(setup: (b: AnchorsBuilder) => void): FocusStrokeBuilder;
   layer(setup: (b: LayerBuilder) => void): FocusStrokeBuilder;
 }

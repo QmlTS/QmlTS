@@ -2,12 +2,18 @@
 // Type: SpriteSheet
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 import type { SpriteItemBuilder } from './SpriteItem.js';
 export interface SpriteSheetBuilder {
   id(id: string): SpriteSheetBuilder;
   child(obj: QmlObjectBuilder): SpriteSheetBuilder;
+  children(...objs: QmlObjectBuilder[]): SpriteSheetBuilder;
 
   currentIndex(value: number): SpriteSheetBuilder;
   currentIndexBind(expr: string): SpriteSheetBuilder;
@@ -21,14 +27,14 @@ export interface SpriteSheetBuilder {
   spritesBind(expr: string): SpriteSheetBuilder;
   texture(value: QmlValue): SpriteSheetBuilder;
   textureBind(expr: string): SpriteSheetBuilder;
-  onCurrentIndexChanged(body: string): SpriteSheetBuilder;
-  onEnabledChanged(body: string): SpriteSheetBuilder;
-  onNodeDestroyed(body: string): SpriteSheetBuilder;
-  onObjectNameChanged(body: string): SpriteSheetBuilder;
-  onParentChanged(body: string): SpriteSheetBuilder;
-  onSpritesChanged(body: string): SpriteSheetBuilder;
-  onTextureChanged(body: string): SpriteSheetBuilder;
-  onTextureTransformChanged(body: string): SpriteSheetBuilder;
+  onCurrentIndexChanged(handler: DslSignalHandlerValue): SpriteSheetBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): SpriteSheetBuilder;
+  onNodeDestroyed(handler: DslSignalHandlerValue): SpriteSheetBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): SpriteSheetBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): SpriteSheetBuilder;
+  onSpritesChanged(handler: DslSignalHandlerValue): SpriteSheetBuilder;
+  onTextureChanged(handler: DslSignalHandlerValue): SpriteSheetBuilder;
+  onTextureTransformChanged(handler: DslSignalHandlerValue): SpriteSheetBuilder;
 }
 
 const SPRITESHEET_META: TypeMetadata = {

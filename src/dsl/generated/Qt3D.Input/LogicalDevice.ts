@@ -2,11 +2,17 @@
 // Type: LogicalDevice
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 export interface LogicalDeviceBuilder {
   id(id: string): LogicalDeviceBuilder;
   child(obj: QmlObjectBuilder): LogicalDeviceBuilder;
+  children(...objs: QmlObjectBuilder[]): LogicalDeviceBuilder;
 
   enabled(value: boolean): LogicalDeviceBuilder;
   enabledBind(expr: string): LogicalDeviceBuilder;
@@ -16,13 +22,13 @@ export interface LogicalDeviceBuilder {
   objectNameBind(expr: string): LogicalDeviceBuilder;
   parent(value: QmlValue): LogicalDeviceBuilder;
   parentBind(expr: string): LogicalDeviceBuilder;
-  onAddedToEntity(body: string): LogicalDeviceBuilder;
-  onEnabledChanged(body: string): LogicalDeviceBuilder;
-  onNodeDestroyed(body: string): LogicalDeviceBuilder;
-  onObjectNameChanged(body: string): LogicalDeviceBuilder;
-  onParentChanged(body: string): LogicalDeviceBuilder;
-  onRemovedFromEntity(body: string): LogicalDeviceBuilder;
-  onShareableChanged(body: string): LogicalDeviceBuilder;
+  onAddedToEntity(handler: DslSignalHandlerValue): LogicalDeviceBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): LogicalDeviceBuilder;
+  onNodeDestroyed(handler: DslSignalHandlerValue): LogicalDeviceBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): LogicalDeviceBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): LogicalDeviceBuilder;
+  onRemovedFromEntity(handler: DslSignalHandlerValue): LogicalDeviceBuilder;
+  onShareableChanged(handler: DslSignalHandlerValue): LogicalDeviceBuilder;
 }
 
 const LOGICALDEVICE_META: TypeMetadata = {

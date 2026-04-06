@@ -2,11 +2,17 @@
 // Type: ClipBlendValue
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 export interface ClipBlendValueBuilder {
   id(id: string): ClipBlendValueBuilder;
   child(obj: QmlObjectBuilder): ClipBlendValueBuilder;
+  children(...objs: QmlObjectBuilder[]): ClipBlendValueBuilder;
 
   clip(value: QmlValue): ClipBlendValueBuilder;
   clipBind(expr: string): ClipBlendValueBuilder;
@@ -16,11 +22,11 @@ export interface ClipBlendValueBuilder {
   objectNameBind(expr: string): ClipBlendValueBuilder;
   parent(value: QmlValue): ClipBlendValueBuilder;
   parentBind(expr: string): ClipBlendValueBuilder;
-  onClipChanged(body: string): ClipBlendValueBuilder;
-  onEnabledChanged(body: string): ClipBlendValueBuilder;
-  onNodeDestroyed(body: string): ClipBlendValueBuilder;
-  onObjectNameChanged(body: string): ClipBlendValueBuilder;
-  onParentChanged(body: string): ClipBlendValueBuilder;
+  onClipChanged(handler: DslSignalHandlerValue): ClipBlendValueBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): ClipBlendValueBuilder;
+  onNodeDestroyed(handler: DslSignalHandlerValue): ClipBlendValueBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): ClipBlendValueBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): ClipBlendValueBuilder;
 }
 
 const CLIPBLENDVALUE_META: TypeMetadata = {

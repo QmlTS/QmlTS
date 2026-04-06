@@ -2,7 +2,12 @@
 // Type: Behavior
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 import type { AccessibleAttachedBuilder } from './Accessible.js';
 import type { EnterKeyAttachedBuilder } from './EnterKey.js';
@@ -23,6 +28,7 @@ import type { ViewTransitionAttachedBuilder } from './ViewTransition.js';
 export interface BehaviorBuilder {
   id(id: string): BehaviorBuilder;
   child(obj: QmlObjectBuilder): BehaviorBuilder;
+  children(...objs: QmlObjectBuilder[]): BehaviorBuilder;
 
   animation(value: QmlValue): BehaviorBuilder;
   animationBind(expr: string): BehaviorBuilder;
@@ -30,10 +36,10 @@ export interface BehaviorBuilder {
   enabledBind(expr: string): BehaviorBuilder;
   objectName(value: string): BehaviorBuilder;
   objectNameBind(expr: string): BehaviorBuilder;
-  onEnabledChanged(body: string): BehaviorBuilder;
-  onObjectNameChanged(body: string): BehaviorBuilder;
-  onTargetPropertyChanged(body: string): BehaviorBuilder;
-  onTargetValueChanged(body: string): BehaviorBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): BehaviorBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): BehaviorBuilder;
+  onTargetPropertyChanged(handler: DslSignalHandlerValue): BehaviorBuilder;
+  onTargetValueChanged(handler: DslSignalHandlerValue): BehaviorBuilder;
   accessible(setup: (b: AccessibleAttachedBuilder) => void): BehaviorBuilder;
   drag(setup: (b: DragAttachedBuilder) => void): BehaviorBuilder;
   enterKey(setup: (b: EnterKeyAttachedBuilder) => void): BehaviorBuilder;

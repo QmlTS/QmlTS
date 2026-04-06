@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlColor,
   QmlEnumToken,
   QmlObjectBuilder,
@@ -16,6 +17,7 @@ import type { CubeMapTextureBuilder } from './CubeMapTexture.js';
 export interface ReflectionProbeBuilder {
   id(id: string): ReflectionProbeBuilder;
   child(obj: QmlObjectBuilder): ReflectionProbeBuilder;
+  children(...objs: QmlObjectBuilder[]): ReflectionProbeBuilder;
 
   boxOffset(value: QmlVector3d): ReflectionProbeBuilder;
   boxOffsetBind(expr: string): ReflectionProbeBuilder;
@@ -65,38 +67,38 @@ export interface ReflectionProbeBuilder {
   yBind(expr: string): ReflectionProbeBuilder;
   z(value: number): ReflectionProbeBuilder;
   zBind(expr: string): ReflectionProbeBuilder;
-  onBoxOffsetChanged(body: string): ReflectionProbeBuilder;
-  onBoxSizeChanged(body: string): ReflectionProbeBuilder;
-  onChildrenChanged(body: string): ReflectionProbeBuilder;
-  onClearColorChanged(body: string): ReflectionProbeBuilder;
-  onDebugViewChanged(body: string): ReflectionProbeBuilder;
-  onEulerRotationChanged(body: string): ReflectionProbeBuilder;
-  onForwardChanged(body: string): ReflectionProbeBuilder;
-  onLayersChanged(body: string): ReflectionProbeBuilder;
-  onLocalOpacityChanged(body: string): ReflectionProbeBuilder;
-  onObjectNameChanged(body: string): ReflectionProbeBuilder;
-  onParallaxCorrectionChanged(body: string): ReflectionProbeBuilder;
-  onParentChanged(body: string): ReflectionProbeBuilder;
-  onPivotChanged(body: string): ReflectionProbeBuilder;
-  onPositionChanged(body: string): ReflectionProbeBuilder;
-  onQualityChanged(body: string): ReflectionProbeBuilder;
-  onRefreshModeChanged(body: string): ReflectionProbeBuilder;
-  onRightChanged(body: string): ReflectionProbeBuilder;
-  onRotationChanged(body: string): ReflectionProbeBuilder;
-  onScaleChanged(body: string): ReflectionProbeBuilder;
-  onScenePositionChanged(body: string): ReflectionProbeBuilder;
-  onSceneRotationChanged(body: string): ReflectionProbeBuilder;
-  onSceneScaleChanged(body: string): ReflectionProbeBuilder;
-  onSceneTransformChanged(body: string): ReflectionProbeBuilder;
-  onStateChanged(body: string): ReflectionProbeBuilder;
-  onStaticFlagsChanged(body: string): ReflectionProbeBuilder;
-  onTextureChanged(body: string): ReflectionProbeBuilder;
-  onTimeSlicingChanged(body: string): ReflectionProbeBuilder;
-  onUpChanged(body: string): ReflectionProbeBuilder;
-  onVisibleChanged(body: string): ReflectionProbeBuilder;
-  onXChanged(body: string): ReflectionProbeBuilder;
-  onYChanged(body: string): ReflectionProbeBuilder;
-  onZChanged(body: string): ReflectionProbeBuilder;
+  onBoxOffsetChanged(handler: DslSignalHandlerValue): ReflectionProbeBuilder;
+  onBoxSizeChanged(handler: DslSignalHandlerValue): ReflectionProbeBuilder;
+  onChildrenChanged(handler: DslSignalHandlerValue): ReflectionProbeBuilder;
+  onClearColorChanged(handler: DslSignalHandlerValue): ReflectionProbeBuilder;
+  onDebugViewChanged(handler: DslSignalHandlerValue): ReflectionProbeBuilder;
+  onEulerRotationChanged(handler: DslSignalHandlerValue): ReflectionProbeBuilder;
+  onForwardChanged(handler: DslSignalHandlerValue): ReflectionProbeBuilder;
+  onLayersChanged(handler: DslSignalHandlerValue): ReflectionProbeBuilder;
+  onLocalOpacityChanged(handler: DslSignalHandlerValue): ReflectionProbeBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): ReflectionProbeBuilder;
+  onParallaxCorrectionChanged(handler: DslSignalHandlerValue): ReflectionProbeBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): ReflectionProbeBuilder;
+  onPivotChanged(handler: DslSignalHandlerValue): ReflectionProbeBuilder;
+  onPositionChanged(handler: DslSignalHandlerValue): ReflectionProbeBuilder;
+  onQualityChanged(handler: DslSignalHandlerValue): ReflectionProbeBuilder;
+  onRefreshModeChanged(handler: DslSignalHandlerValue): ReflectionProbeBuilder;
+  onRightChanged(handler: DslSignalHandlerValue): ReflectionProbeBuilder;
+  onRotationChanged(handler: DslSignalHandlerValue): ReflectionProbeBuilder;
+  onScaleChanged(handler: DslSignalHandlerValue): ReflectionProbeBuilder;
+  onScenePositionChanged(handler: DslSignalHandlerValue): ReflectionProbeBuilder;
+  onSceneRotationChanged(handler: DslSignalHandlerValue): ReflectionProbeBuilder;
+  onSceneScaleChanged(handler: DslSignalHandlerValue): ReflectionProbeBuilder;
+  onSceneTransformChanged(handler: DslSignalHandlerValue): ReflectionProbeBuilder;
+  onStateChanged(handler: DslSignalHandlerValue): ReflectionProbeBuilder;
+  onStaticFlagsChanged(handler: DslSignalHandlerValue): ReflectionProbeBuilder;
+  onTextureChanged(handler: DslSignalHandlerValue): ReflectionProbeBuilder;
+  onTimeSlicingChanged(handler: DslSignalHandlerValue): ReflectionProbeBuilder;
+  onUpChanged(handler: DslSignalHandlerValue): ReflectionProbeBuilder;
+  onVisibleChanged(handler: DslSignalHandlerValue): ReflectionProbeBuilder;
+  onXChanged(handler: DslSignalHandlerValue): ReflectionProbeBuilder;
+  onYChanged(handler: DslSignalHandlerValue): ReflectionProbeBuilder;
+  onZChanged(handler: DslSignalHandlerValue): ReflectionProbeBuilder;
 }
 
 const REFLECTIONPROBE_META: TypeMetadata = {

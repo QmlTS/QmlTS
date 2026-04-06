@@ -2,7 +2,12 @@
 // Type: GridLayout
 // Generated from Qt 6.11.0
 
-import type { QmlEnumToken, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlEnumToken,
+  QmlObjectBuilder,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { QtObjectBuilder } from '../QML/QtObject.js';
 import type { ItemBuilder } from '../QtQuick/Item.js';
@@ -15,6 +20,7 @@ import type { StackLayoutAttachedBuilder } from './QQuickStackLayoutAttached.js'
 export interface GridLayoutBuilder {
   id(id: string): GridLayoutBuilder;
   child(obj: QmlObjectBuilder): GridLayoutBuilder;
+  children(...objs: QmlObjectBuilder[]): GridLayoutBuilder;
 
   activeFocusOnTab(value: boolean): GridLayoutBuilder;
   activeFocusOnTabBind(expr: string): GridLayoutBuilder;
@@ -82,45 +88,45 @@ export interface GridLayoutBuilder {
   yBind(expr: string): GridLayoutBuilder;
   z(value: number): GridLayoutBuilder;
   zBind(expr: string): GridLayoutBuilder;
-  onActiveFocusChanged(body: string): GridLayoutBuilder;
-  onActiveFocusOnTabChanged(body: string): GridLayoutBuilder;
-  onAntialiasingChanged(body: string): GridLayoutBuilder;
-  onBaselineOffsetChanged(body: string): GridLayoutBuilder;
-  onChildrenChanged(body: string): GridLayoutBuilder;
-  onChildrenRectChanged(body: string): GridLayoutBuilder;
-  onClipChanged(body: string): GridLayoutBuilder;
-  onColumnSpacingChanged(body: string): GridLayoutBuilder;
-  onColumnsChanged(body: string): GridLayoutBuilder;
-  onContainmentMaskChanged(body: string): GridLayoutBuilder;
-  onEnabledChanged(body: string): GridLayoutBuilder;
-  onFlowChanged(body: string): GridLayoutBuilder;
-  onFocusChanged(body: string): GridLayoutBuilder;
-  onFocusPolicyChanged(body: string): GridLayoutBuilder;
-  onHeightChanged(body: string): GridLayoutBuilder;
-  onImplicitHeightChanged(body: string): GridLayoutBuilder;
-  onImplicitWidthChanged(body: string): GridLayoutBuilder;
-  onLayoutDirectionChanged(body: string): GridLayoutBuilder;
-  onObjectNameChanged(body: string): GridLayoutBuilder;
-  onOpacityChanged(body: string): GridLayoutBuilder;
-  onPaletteChanged(body: string): GridLayoutBuilder;
-  onPaletteCreated(body: string): GridLayoutBuilder;
-  onParentChanged(body: string): GridLayoutBuilder;
-  onRotationChanged(body: string): GridLayoutBuilder;
-  onRowSpacingChanged(body: string): GridLayoutBuilder;
-  onRowsChanged(body: string): GridLayoutBuilder;
-  onScaleChanged(body: string): GridLayoutBuilder;
-  onSmoothChanged(body: string): GridLayoutBuilder;
-  onStateChanged(body: string): GridLayoutBuilder;
-  onTransformOriginChanged(body: string): GridLayoutBuilder;
-  onUniformCellHeightsChanged(body: string): GridLayoutBuilder;
-  onUniformCellWidthsChanged(body: string): GridLayoutBuilder;
-  onVisibleChanged(body: string): GridLayoutBuilder;
-  onVisibleChildrenChanged(body: string): GridLayoutBuilder;
-  onWidthChanged(body: string): GridLayoutBuilder;
-  onWindowChanged(body: string): GridLayoutBuilder;
-  onXChanged(body: string): GridLayoutBuilder;
-  onYChanged(body: string): GridLayoutBuilder;
-  onZChanged(body: string): GridLayoutBuilder;
+  onActiveFocusChanged(handler: DslSignalHandlerValue): GridLayoutBuilder;
+  onActiveFocusOnTabChanged(handler: DslSignalHandlerValue): GridLayoutBuilder;
+  onAntialiasingChanged(handler: DslSignalHandlerValue): GridLayoutBuilder;
+  onBaselineOffsetChanged(handler: DslSignalHandlerValue): GridLayoutBuilder;
+  onChildrenChanged(handler: DslSignalHandlerValue): GridLayoutBuilder;
+  onChildrenRectChanged(handler: DslSignalHandlerValue): GridLayoutBuilder;
+  onClipChanged(handler: DslSignalHandlerValue): GridLayoutBuilder;
+  onColumnSpacingChanged(handler: DslSignalHandlerValue): GridLayoutBuilder;
+  onColumnsChanged(handler: DslSignalHandlerValue): GridLayoutBuilder;
+  onContainmentMaskChanged(handler: DslSignalHandlerValue): GridLayoutBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): GridLayoutBuilder;
+  onFlowChanged(handler: DslSignalHandlerValue): GridLayoutBuilder;
+  onFocusChanged(handler: DslSignalHandlerValue): GridLayoutBuilder;
+  onFocusPolicyChanged(handler: DslSignalHandlerValue): GridLayoutBuilder;
+  onHeightChanged(handler: DslSignalHandlerValue): GridLayoutBuilder;
+  onImplicitHeightChanged(handler: DslSignalHandlerValue): GridLayoutBuilder;
+  onImplicitWidthChanged(handler: DslSignalHandlerValue): GridLayoutBuilder;
+  onLayoutDirectionChanged(handler: DslSignalHandlerValue): GridLayoutBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): GridLayoutBuilder;
+  onOpacityChanged(handler: DslSignalHandlerValue): GridLayoutBuilder;
+  onPaletteChanged(handler: DslSignalHandlerValue): GridLayoutBuilder;
+  onPaletteCreated(handler: DslSignalHandlerValue): GridLayoutBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): GridLayoutBuilder;
+  onRotationChanged(handler: DslSignalHandlerValue): GridLayoutBuilder;
+  onRowSpacingChanged(handler: DslSignalHandlerValue): GridLayoutBuilder;
+  onRowsChanged(handler: DslSignalHandlerValue): GridLayoutBuilder;
+  onScaleChanged(handler: DslSignalHandlerValue): GridLayoutBuilder;
+  onSmoothChanged(handler: DslSignalHandlerValue): GridLayoutBuilder;
+  onStateChanged(handler: DslSignalHandlerValue): GridLayoutBuilder;
+  onTransformOriginChanged(handler: DslSignalHandlerValue): GridLayoutBuilder;
+  onUniformCellHeightsChanged(handler: DslSignalHandlerValue): GridLayoutBuilder;
+  onUniformCellWidthsChanged(handler: DslSignalHandlerValue): GridLayoutBuilder;
+  onVisibleChanged(handler: DslSignalHandlerValue): GridLayoutBuilder;
+  onVisibleChildrenChanged(handler: DslSignalHandlerValue): GridLayoutBuilder;
+  onWidthChanged(handler: DslSignalHandlerValue): GridLayoutBuilder;
+  onWindowChanged(handler: DslSignalHandlerValue): GridLayoutBuilder;
+  onXChanged(handler: DslSignalHandlerValue): GridLayoutBuilder;
+  onYChanged(handler: DslSignalHandlerValue): GridLayoutBuilder;
+  onZChanged(handler: DslSignalHandlerValue): GridLayoutBuilder;
   anchors(setup: (b: AnchorsBuilder) => void): GridLayoutBuilder;
   layer(setup: (b: LayerBuilder) => void): GridLayoutBuilder;
   flexboxLayout(setup: (b: FlexboxLayoutAttachedBuilder) => void): GridLayoutBuilder;

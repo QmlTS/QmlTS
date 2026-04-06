@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlObjectBuilder,
   QmlQuaternion,
   QmlValue,
@@ -14,6 +15,7 @@ import type { PhysicsMaterialBuilder } from './PhysicsMaterial.js';
 export interface StaticRigidBodyBuilder {
   id(id: string): StaticRigidBodyBuilder;
   child(obj: QmlObjectBuilder): StaticRigidBodyBuilder;
+  children(...objs: QmlObjectBuilder[]): StaticRigidBodyBuilder;
 
   eulerRotation(value: QmlVector3d): StaticRigidBodyBuilder;
   eulerRotationBind(expr: string): StaticRigidBodyBuilder;
@@ -61,40 +63,40 @@ export interface StaticRigidBodyBuilder {
   yBind(expr: string): StaticRigidBodyBuilder;
   z(value: number): StaticRigidBodyBuilder;
   zBind(expr: string): StaticRigidBodyBuilder;
-  onBodyContact(body: string): StaticRigidBodyBuilder;
-  onChildrenChanged(body: string): StaticRigidBodyBuilder;
-  onEnteredTriggerBody(body: string): StaticRigidBodyBuilder;
-  onEulerRotationChanged(body: string): StaticRigidBodyBuilder;
-  onExitedTriggerBody(body: string): StaticRigidBodyBuilder;
-  onFilterGroupChanged(body: string): StaticRigidBodyBuilder;
-  onFilterIgnoreGroupsChanged(body: string): StaticRigidBodyBuilder;
-  onForwardChanged(body: string): StaticRigidBodyBuilder;
-  onLayersChanged(body: string): StaticRigidBodyBuilder;
-  onLocalOpacityChanged(body: string): StaticRigidBodyBuilder;
-  onObjectNameChanged(body: string): StaticRigidBodyBuilder;
-  onParentChanged(body: string): StaticRigidBodyBuilder;
-  onPhysicsMaterialChanged(body: string): StaticRigidBodyBuilder;
-  onPivotChanged(body: string): StaticRigidBodyBuilder;
-  onPositionChanged(body: string): StaticRigidBodyBuilder;
-  onReceiveContactReportsChanged(body: string): StaticRigidBodyBuilder;
-  onReceiveTriggerReportsChanged(body: string): StaticRigidBodyBuilder;
-  onRightChanged(body: string): StaticRigidBodyBuilder;
-  onRotationChanged(body: string): StaticRigidBodyBuilder;
-  onScaleChanged(body: string): StaticRigidBodyBuilder;
-  onScenePositionChanged(body: string): StaticRigidBodyBuilder;
-  onSceneRotationChanged(body: string): StaticRigidBodyBuilder;
-  onSceneScaleChanged(body: string): StaticRigidBodyBuilder;
-  onSceneTransformChanged(body: string): StaticRigidBodyBuilder;
-  onSendContactReportsChanged(body: string): StaticRigidBodyBuilder;
-  onSendTriggerReportsChanged(body: string): StaticRigidBodyBuilder;
-  onSimulationEnabledChanged(body: string): StaticRigidBodyBuilder;
-  onStateChanged(body: string): StaticRigidBodyBuilder;
-  onStaticFlagsChanged(body: string): StaticRigidBodyBuilder;
-  onUpChanged(body: string): StaticRigidBodyBuilder;
-  onVisibleChanged(body: string): StaticRigidBodyBuilder;
-  onXChanged(body: string): StaticRigidBodyBuilder;
-  onYChanged(body: string): StaticRigidBodyBuilder;
-  onZChanged(body: string): StaticRigidBodyBuilder;
+  onBodyContact(handler: DslSignalHandlerValue): StaticRigidBodyBuilder;
+  onChildrenChanged(handler: DslSignalHandlerValue): StaticRigidBodyBuilder;
+  onEnteredTriggerBody(handler: DslSignalHandlerValue): StaticRigidBodyBuilder;
+  onEulerRotationChanged(handler: DslSignalHandlerValue): StaticRigidBodyBuilder;
+  onExitedTriggerBody(handler: DslSignalHandlerValue): StaticRigidBodyBuilder;
+  onFilterGroupChanged(handler: DslSignalHandlerValue): StaticRigidBodyBuilder;
+  onFilterIgnoreGroupsChanged(handler: DslSignalHandlerValue): StaticRigidBodyBuilder;
+  onForwardChanged(handler: DslSignalHandlerValue): StaticRigidBodyBuilder;
+  onLayersChanged(handler: DslSignalHandlerValue): StaticRigidBodyBuilder;
+  onLocalOpacityChanged(handler: DslSignalHandlerValue): StaticRigidBodyBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): StaticRigidBodyBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): StaticRigidBodyBuilder;
+  onPhysicsMaterialChanged(handler: DslSignalHandlerValue): StaticRigidBodyBuilder;
+  onPivotChanged(handler: DslSignalHandlerValue): StaticRigidBodyBuilder;
+  onPositionChanged(handler: DslSignalHandlerValue): StaticRigidBodyBuilder;
+  onReceiveContactReportsChanged(handler: DslSignalHandlerValue): StaticRigidBodyBuilder;
+  onReceiveTriggerReportsChanged(handler: DslSignalHandlerValue): StaticRigidBodyBuilder;
+  onRightChanged(handler: DslSignalHandlerValue): StaticRigidBodyBuilder;
+  onRotationChanged(handler: DslSignalHandlerValue): StaticRigidBodyBuilder;
+  onScaleChanged(handler: DslSignalHandlerValue): StaticRigidBodyBuilder;
+  onScenePositionChanged(handler: DslSignalHandlerValue): StaticRigidBodyBuilder;
+  onSceneRotationChanged(handler: DslSignalHandlerValue): StaticRigidBodyBuilder;
+  onSceneScaleChanged(handler: DslSignalHandlerValue): StaticRigidBodyBuilder;
+  onSceneTransformChanged(handler: DslSignalHandlerValue): StaticRigidBodyBuilder;
+  onSendContactReportsChanged(handler: DslSignalHandlerValue): StaticRigidBodyBuilder;
+  onSendTriggerReportsChanged(handler: DslSignalHandlerValue): StaticRigidBodyBuilder;
+  onSimulationEnabledChanged(handler: DslSignalHandlerValue): StaticRigidBodyBuilder;
+  onStateChanged(handler: DslSignalHandlerValue): StaticRigidBodyBuilder;
+  onStaticFlagsChanged(handler: DslSignalHandlerValue): StaticRigidBodyBuilder;
+  onUpChanged(handler: DslSignalHandlerValue): StaticRigidBodyBuilder;
+  onVisibleChanged(handler: DslSignalHandlerValue): StaticRigidBodyBuilder;
+  onXChanged(handler: DslSignalHandlerValue): StaticRigidBodyBuilder;
+  onYChanged(handler: DslSignalHandlerValue): StaticRigidBodyBuilder;
+  onZChanged(handler: DslSignalHandlerValue): StaticRigidBodyBuilder;
 }
 
 const STATICRIGIDBODY_META: TypeMetadata = {

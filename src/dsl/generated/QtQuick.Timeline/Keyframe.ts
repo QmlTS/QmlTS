@@ -2,11 +2,17 @@
 // Type: Keyframe
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 export interface KeyframeBuilder {
   id(id: string): KeyframeBuilder;
   child(obj: QmlObjectBuilder): KeyframeBuilder;
+  children(...objs: QmlObjectBuilder[]): KeyframeBuilder;
 
   easing(value: QmlValue): KeyframeBuilder;
   easingBind(expr: string): KeyframeBuilder;
@@ -16,10 +22,10 @@ export interface KeyframeBuilder {
   objectNameBind(expr: string): KeyframeBuilder;
   value(value: QmlValue): KeyframeBuilder;
   valueBind(expr: string): KeyframeBuilder;
-  onEasingCurveChanged(body: string): KeyframeBuilder;
-  onFrameChanged(body: string): KeyframeBuilder;
-  onObjectNameChanged(body: string): KeyframeBuilder;
-  onValueChanged(body: string): KeyframeBuilder;
+  onEasingCurveChanged(handler: DslSignalHandlerValue): KeyframeBuilder;
+  onFrameChanged(handler: DslSignalHandlerValue): KeyframeBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): KeyframeBuilder;
+  onValueChanged(handler: DslSignalHandlerValue): KeyframeBuilder;
 }
 
 const KEYFRAME_META: TypeMetadata = {

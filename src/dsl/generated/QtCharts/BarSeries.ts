@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlColor,
   QmlComponent,
   QmlEnumToken,
@@ -14,6 +15,7 @@ import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface BarSeriesBuilder {
   id(id: string): BarSeriesBuilder;
   child(obj: QmlObjectBuilder): BarSeriesBuilder;
+  children(...objs: QmlObjectBuilder[]): BarSeriesBuilder;
 
   axisX(value: QmlValue): BarSeriesBuilder;
   axisXBind(expr: string): BarSeriesBuilder;
@@ -61,48 +63,48 @@ export interface BarSeriesBuilder {
   visibleBind(expr: string): BarSeriesBuilder;
   zValue(value: number): BarSeriesBuilder;
   zValueBind(expr: string): BarSeriesBuilder;
-  onAxisXChanged(body: string): BarSeriesBuilder;
-  onAxisXTopChanged(body: string): BarSeriesBuilder;
-  onAxisYChanged(body: string): BarSeriesBuilder;
-  onAxisYRightChanged(body: string): BarSeriesBuilder;
-  onBarDelegateChanged(body: string): BarSeriesBuilder;
-  onBarSetsChanged(body: string): BarSeriesBuilder;
-  onBarWidthChanged(body: string): BarSeriesBuilder;
-  onBarsTypeChanged(body: string): BarSeriesBuilder;
-  onBarsetsAdded(body: string): BarSeriesBuilder;
-  onBarsetsRemoved(body: string): BarSeriesBuilder;
-  onBarsetsReplaced(body: string): BarSeriesBuilder;
-  onBorderColorsChanged(body: string): BarSeriesBuilder;
-  onClicked(body: string): BarSeriesBuilder;
-  onCountChanged(body: string): BarSeriesBuilder;
-  onDoubleClicked(body: string): BarSeriesBuilder;
-  onHover(body: string): BarSeriesBuilder;
-  onHoverEnter(body: string): BarSeriesBuilder;
-  onHoverExit(body: string): BarSeriesBuilder;
-  onHoverableChanged(body: string): BarSeriesBuilder;
-  onHoveredChanged(body: string): BarSeriesBuilder;
-  onLabelsAngleChanged(body: string): BarSeriesBuilder;
-  onLabelsFormatChanged(body: string): BarSeriesBuilder;
-  onLabelsMarginChanged(body: string): BarSeriesBuilder;
-  onLabelsPositionChanged(body: string): BarSeriesBuilder;
-  onLabelsPrecisionChanged(body: string): BarSeriesBuilder;
-  onLabelsVisibleChanged(body: string): BarSeriesBuilder;
-  onLegendDataChanged(body: string): BarSeriesBuilder;
-  onNameChanged(body: string): BarSeriesBuilder;
-  onObjectNameChanged(body: string): BarSeriesBuilder;
-  onOpacityChanged(body: string): BarSeriesBuilder;
-  onPressed(body: string): BarSeriesBuilder;
-  onReleased(body: string): BarSeriesBuilder;
-  onSelectableChanged(body: string): BarSeriesBuilder;
-  onSeriesColorsChanged(body: string): BarSeriesBuilder;
-  onSetValueAdded(body: string): BarSeriesBuilder;
-  onSetValueChanged(body: string): BarSeriesBuilder;
-  onSetValueRemoved(body: string): BarSeriesBuilder;
-  onUpdate(body: string): BarSeriesBuilder;
-  onUpdatedBars(body: string): BarSeriesBuilder;
-  onValuesMultiplierChanged(body: string): BarSeriesBuilder;
-  onVisibleChanged(body: string): BarSeriesBuilder;
-  onZValueChanged(body: string): BarSeriesBuilder;
+  onAxisXChanged(handler: DslSignalHandlerValue): BarSeriesBuilder;
+  onAxisXTopChanged(handler: DslSignalHandlerValue): BarSeriesBuilder;
+  onAxisYChanged(handler: DslSignalHandlerValue): BarSeriesBuilder;
+  onAxisYRightChanged(handler: DslSignalHandlerValue): BarSeriesBuilder;
+  onBarDelegateChanged(handler: DslSignalHandlerValue): BarSeriesBuilder;
+  onBarSetsChanged(handler: DslSignalHandlerValue): BarSeriesBuilder;
+  onBarWidthChanged(handler: DslSignalHandlerValue): BarSeriesBuilder;
+  onBarsTypeChanged(handler: DslSignalHandlerValue): BarSeriesBuilder;
+  onBarsetsAdded(handler: DslSignalHandlerValue): BarSeriesBuilder;
+  onBarsetsRemoved(handler: DslSignalHandlerValue): BarSeriesBuilder;
+  onBarsetsReplaced(handler: DslSignalHandlerValue): BarSeriesBuilder;
+  onBorderColorsChanged(handler: DslSignalHandlerValue): BarSeriesBuilder;
+  onClicked(handler: DslSignalHandlerValue): BarSeriesBuilder;
+  onCountChanged(handler: DslSignalHandlerValue): BarSeriesBuilder;
+  onDoubleClicked(handler: DslSignalHandlerValue): BarSeriesBuilder;
+  onHover(handler: DslSignalHandlerValue): BarSeriesBuilder;
+  onHoverEnter(handler: DslSignalHandlerValue): BarSeriesBuilder;
+  onHoverExit(handler: DslSignalHandlerValue): BarSeriesBuilder;
+  onHoverableChanged(handler: DslSignalHandlerValue): BarSeriesBuilder;
+  onHoveredChanged(handler: DslSignalHandlerValue): BarSeriesBuilder;
+  onLabelsAngleChanged(handler: DslSignalHandlerValue): BarSeriesBuilder;
+  onLabelsFormatChanged(handler: DslSignalHandlerValue): BarSeriesBuilder;
+  onLabelsMarginChanged(handler: DslSignalHandlerValue): BarSeriesBuilder;
+  onLabelsPositionChanged(handler: DslSignalHandlerValue): BarSeriesBuilder;
+  onLabelsPrecisionChanged(handler: DslSignalHandlerValue): BarSeriesBuilder;
+  onLabelsVisibleChanged(handler: DslSignalHandlerValue): BarSeriesBuilder;
+  onLegendDataChanged(handler: DslSignalHandlerValue): BarSeriesBuilder;
+  onNameChanged(handler: DslSignalHandlerValue): BarSeriesBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): BarSeriesBuilder;
+  onOpacityChanged(handler: DslSignalHandlerValue): BarSeriesBuilder;
+  onPressed(handler: DslSignalHandlerValue): BarSeriesBuilder;
+  onReleased(handler: DslSignalHandlerValue): BarSeriesBuilder;
+  onSelectableChanged(handler: DslSignalHandlerValue): BarSeriesBuilder;
+  onSeriesColorsChanged(handler: DslSignalHandlerValue): BarSeriesBuilder;
+  onSetValueAdded(handler: DslSignalHandlerValue): BarSeriesBuilder;
+  onSetValueChanged(handler: DslSignalHandlerValue): BarSeriesBuilder;
+  onSetValueRemoved(handler: DslSignalHandlerValue): BarSeriesBuilder;
+  onUpdate(handler: DslSignalHandlerValue): BarSeriesBuilder;
+  onUpdatedBars(handler: DslSignalHandlerValue): BarSeriesBuilder;
+  onValuesMultiplierChanged(handler: DslSignalHandlerValue): BarSeriesBuilder;
+  onVisibleChanged(handler: DslSignalHandlerValue): BarSeriesBuilder;
+  onZValueChanged(handler: DslSignalHandlerValue): BarSeriesBuilder;
 }
 
 const BARSERIES_META: TypeMetadata = {

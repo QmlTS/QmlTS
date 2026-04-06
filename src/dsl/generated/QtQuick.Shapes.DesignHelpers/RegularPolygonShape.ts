@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlColor,
   QmlEnumToken,
   QmlObjectBuilder,
@@ -18,6 +19,7 @@ import type { LayerBuilder } from '../QtQuick/QQuickItemLayer.js';
 export interface RegularPolygonShapeBuilder {
   id(id: string): RegularPolygonShapeBuilder;
   child(obj: QmlObjectBuilder): RegularPolygonShapeBuilder;
+  children(...objs: QmlObjectBuilder[]): RegularPolygonShapeBuilder;
 
   activeFocusOnTab(value: boolean): RegularPolygonShapeBuilder;
   activeFocusOnTabBind(expr: string): RegularPolygonShapeBuilder;
@@ -105,58 +107,58 @@ export interface RegularPolygonShapeBuilder {
   yBind(expr: string): RegularPolygonShapeBuilder;
   z(value: number): RegularPolygonShapeBuilder;
   zBind(expr: string): RegularPolygonShapeBuilder;
-  onActiveFocusChanged(body: string): RegularPolygonShapeBuilder;
-  onActiveFocusOnTabChanged(body: string): RegularPolygonShapeBuilder;
-  onAntialiasingChanged(body: string): RegularPolygonShapeBuilder;
-  onAsynchronousChanged(body: string): RegularPolygonShapeBuilder;
-  onBaselineOffsetChanged(body: string): RegularPolygonShapeBuilder;
-  onBoundingRectChanged(body: string): RegularPolygonShapeBuilder;
-  onCapStyleChanged(body: string): RegularPolygonShapeBuilder;
-  onChildrenChanged(body: string): RegularPolygonShapeBuilder;
-  onChildrenRectChanged(body: string): RegularPolygonShapeBuilder;
-  onClipChanged(body: string): RegularPolygonShapeBuilder;
-  onContainmentMaskChanged(body: string): RegularPolygonShapeBuilder;
-  onContainsModeChanged(body: string): RegularPolygonShapeBuilder;
-  onCornerRadiusChanged(body: string): RegularPolygonShapeBuilder;
-  onDashOffsetChanged(body: string): RegularPolygonShapeBuilder;
-  onDashPatternChanged(body: string): RegularPolygonShapeBuilder;
-  onEnabledChanged(body: string): RegularPolygonShapeBuilder;
-  onFillColorChanged(body: string): RegularPolygonShapeBuilder;
-  onFillModeChanged(body: string): RegularPolygonShapeBuilder;
-  onFocusChanged(body: string): RegularPolygonShapeBuilder;
-  onFocusPolicyChanged(body: string): RegularPolygonShapeBuilder;
-  onGradientChanged(body: string): RegularPolygonShapeBuilder;
-  onHeightChanged(body: string): RegularPolygonShapeBuilder;
-  onHorizontalAlignmentChanged(body: string): RegularPolygonShapeBuilder;
-  onImplicitHeightChanged(body: string): RegularPolygonShapeBuilder;
-  onImplicitWidthChanged(body: string): RegularPolygonShapeBuilder;
-  onJoinStyleChanged(body: string): RegularPolygonShapeBuilder;
-  onObjectNameChanged(body: string): RegularPolygonShapeBuilder;
-  onOpacityChanged(body: string): RegularPolygonShapeBuilder;
-  onPaletteChanged(body: string): RegularPolygonShapeBuilder;
-  onPaletteCreated(body: string): RegularPolygonShapeBuilder;
-  onParentChanged(body: string): RegularPolygonShapeBuilder;
-  onPreferredRendererTypeChanged(body: string): RegularPolygonShapeBuilder;
-  onRendererChanged(body: string): RegularPolygonShapeBuilder;
-  onRotationChanged(body: string): RegularPolygonShapeBuilder;
-  onScaleChanged(body: string): RegularPolygonShapeBuilder;
-  onSideCountChanged(body: string): RegularPolygonShapeBuilder;
-  onSmoothChanged(body: string): RegularPolygonShapeBuilder;
-  onStateChanged(body: string): RegularPolygonShapeBuilder;
-  onStatusChanged(body: string): RegularPolygonShapeBuilder;
-  onStrokeColorChanged(body: string): RegularPolygonShapeBuilder;
-  onStrokeStyleChanged(body: string): RegularPolygonShapeBuilder;
-  onStrokeWidthChanged(body: string): RegularPolygonShapeBuilder;
-  onTransformOriginChanged(body: string): RegularPolygonShapeBuilder;
-  onVendorExtensionsEnabledChanged(body: string): RegularPolygonShapeBuilder;
-  onVerticalAlignmentChanged(body: string): RegularPolygonShapeBuilder;
-  onVisibleChanged(body: string): RegularPolygonShapeBuilder;
-  onVisibleChildrenChanged(body: string): RegularPolygonShapeBuilder;
-  onWidthChanged(body: string): RegularPolygonShapeBuilder;
-  onWindowChanged(body: string): RegularPolygonShapeBuilder;
-  onXChanged(body: string): RegularPolygonShapeBuilder;
-  onYChanged(body: string): RegularPolygonShapeBuilder;
-  onZChanged(body: string): RegularPolygonShapeBuilder;
+  onActiveFocusChanged(handler: DslSignalHandlerValue): RegularPolygonShapeBuilder;
+  onActiveFocusOnTabChanged(handler: DslSignalHandlerValue): RegularPolygonShapeBuilder;
+  onAntialiasingChanged(handler: DslSignalHandlerValue): RegularPolygonShapeBuilder;
+  onAsynchronousChanged(handler: DslSignalHandlerValue): RegularPolygonShapeBuilder;
+  onBaselineOffsetChanged(handler: DslSignalHandlerValue): RegularPolygonShapeBuilder;
+  onBoundingRectChanged(handler: DslSignalHandlerValue): RegularPolygonShapeBuilder;
+  onCapStyleChanged(handler: DslSignalHandlerValue): RegularPolygonShapeBuilder;
+  onChildrenChanged(handler: DslSignalHandlerValue): RegularPolygonShapeBuilder;
+  onChildrenRectChanged(handler: DslSignalHandlerValue): RegularPolygonShapeBuilder;
+  onClipChanged(handler: DslSignalHandlerValue): RegularPolygonShapeBuilder;
+  onContainmentMaskChanged(handler: DslSignalHandlerValue): RegularPolygonShapeBuilder;
+  onContainsModeChanged(handler: DslSignalHandlerValue): RegularPolygonShapeBuilder;
+  onCornerRadiusChanged(handler: DslSignalHandlerValue): RegularPolygonShapeBuilder;
+  onDashOffsetChanged(handler: DslSignalHandlerValue): RegularPolygonShapeBuilder;
+  onDashPatternChanged(handler: DslSignalHandlerValue): RegularPolygonShapeBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): RegularPolygonShapeBuilder;
+  onFillColorChanged(handler: DslSignalHandlerValue): RegularPolygonShapeBuilder;
+  onFillModeChanged(handler: DslSignalHandlerValue): RegularPolygonShapeBuilder;
+  onFocusChanged(handler: DslSignalHandlerValue): RegularPolygonShapeBuilder;
+  onFocusPolicyChanged(handler: DslSignalHandlerValue): RegularPolygonShapeBuilder;
+  onGradientChanged(handler: DslSignalHandlerValue): RegularPolygonShapeBuilder;
+  onHeightChanged(handler: DslSignalHandlerValue): RegularPolygonShapeBuilder;
+  onHorizontalAlignmentChanged(handler: DslSignalHandlerValue): RegularPolygonShapeBuilder;
+  onImplicitHeightChanged(handler: DslSignalHandlerValue): RegularPolygonShapeBuilder;
+  onImplicitWidthChanged(handler: DslSignalHandlerValue): RegularPolygonShapeBuilder;
+  onJoinStyleChanged(handler: DslSignalHandlerValue): RegularPolygonShapeBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): RegularPolygonShapeBuilder;
+  onOpacityChanged(handler: DslSignalHandlerValue): RegularPolygonShapeBuilder;
+  onPaletteChanged(handler: DslSignalHandlerValue): RegularPolygonShapeBuilder;
+  onPaletteCreated(handler: DslSignalHandlerValue): RegularPolygonShapeBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): RegularPolygonShapeBuilder;
+  onPreferredRendererTypeChanged(handler: DslSignalHandlerValue): RegularPolygonShapeBuilder;
+  onRendererChanged(handler: DslSignalHandlerValue): RegularPolygonShapeBuilder;
+  onRotationChanged(handler: DslSignalHandlerValue): RegularPolygonShapeBuilder;
+  onScaleChanged(handler: DslSignalHandlerValue): RegularPolygonShapeBuilder;
+  onSideCountChanged(handler: DslSignalHandlerValue): RegularPolygonShapeBuilder;
+  onSmoothChanged(handler: DslSignalHandlerValue): RegularPolygonShapeBuilder;
+  onStateChanged(handler: DslSignalHandlerValue): RegularPolygonShapeBuilder;
+  onStatusChanged(handler: DslSignalHandlerValue): RegularPolygonShapeBuilder;
+  onStrokeColorChanged(handler: DslSignalHandlerValue): RegularPolygonShapeBuilder;
+  onStrokeStyleChanged(handler: DslSignalHandlerValue): RegularPolygonShapeBuilder;
+  onStrokeWidthChanged(handler: DslSignalHandlerValue): RegularPolygonShapeBuilder;
+  onTransformOriginChanged(handler: DslSignalHandlerValue): RegularPolygonShapeBuilder;
+  onVendorExtensionsEnabledChanged(handler: DslSignalHandlerValue): RegularPolygonShapeBuilder;
+  onVerticalAlignmentChanged(handler: DslSignalHandlerValue): RegularPolygonShapeBuilder;
+  onVisibleChanged(handler: DslSignalHandlerValue): RegularPolygonShapeBuilder;
+  onVisibleChildrenChanged(handler: DslSignalHandlerValue): RegularPolygonShapeBuilder;
+  onWidthChanged(handler: DslSignalHandlerValue): RegularPolygonShapeBuilder;
+  onWindowChanged(handler: DslSignalHandlerValue): RegularPolygonShapeBuilder;
+  onXChanged(handler: DslSignalHandlerValue): RegularPolygonShapeBuilder;
+  onYChanged(handler: DslSignalHandlerValue): RegularPolygonShapeBuilder;
+  onZChanged(handler: DslSignalHandlerValue): RegularPolygonShapeBuilder;
   anchors(setup: (b: AnchorsBuilder) => void): RegularPolygonShapeBuilder;
   layer(setup: (b: LayerBuilder) => void): RegularPolygonShapeBuilder;
 }

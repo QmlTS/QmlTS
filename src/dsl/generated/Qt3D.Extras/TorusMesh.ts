@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlEnumToken,
   QmlObjectBuilder,
   QmlValue,
@@ -15,6 +16,7 @@ import type { GeometryViewBuilder } from '../Qt3D.Core/GeometryView.js';
 export interface TorusMeshBuilder {
   id(id: string): TorusMeshBuilder;
   child(obj: QmlObjectBuilder): TorusMeshBuilder;
+  children(...objs: QmlObjectBuilder[]): TorusMeshBuilder;
 
   enabled(value: boolean): TorusMeshBuilder;
   enabledBind(expr: string): TorusMeshBuilder;
@@ -62,35 +64,35 @@ export interface TorusMeshBuilder {
   verticesPerPatchBind(expr: string): TorusMeshBuilder;
   view(value: GeometryViewBuilder): TorusMeshBuilder;
   viewBind(expr: string): TorusMeshBuilder;
-  onAddedToEntity(body: string): TorusMeshBuilder;
-  onEnabledChanged(body: string): TorusMeshBuilder;
-  onFirstInstanceChanged(body: string): TorusMeshBuilder;
-  onFirstVertexChanged(body: string): TorusMeshBuilder;
-  onGeometryChanged(body: string): TorusMeshBuilder;
-  onImplicitMaxPointChanged(body: string): TorusMeshBuilder;
-  onImplicitMinPointChanged(body: string): TorusMeshBuilder;
-  onImplicitPointsValidChanged(body: string): TorusMeshBuilder;
-  onIndexBufferByteOffsetChanged(body: string): TorusMeshBuilder;
-  onIndexOffsetChanged(body: string): TorusMeshBuilder;
-  onInstanceCountChanged(body: string): TorusMeshBuilder;
-  onMaxPointChanged(body: string): TorusMeshBuilder;
-  onMinPointChanged(body: string): TorusMeshBuilder;
-  onMinorRadiusChanged(body: string): TorusMeshBuilder;
-  onNodeDestroyed(body: string): TorusMeshBuilder;
-  onObjectNameChanged(body: string): TorusMeshBuilder;
-  onParentChanged(body: string): TorusMeshBuilder;
-  onPrimitiveRestartEnabledChanged(body: string): TorusMeshBuilder;
-  onPrimitiveTypeChanged(body: string): TorusMeshBuilder;
-  onRadiusChanged(body: string): TorusMeshBuilder;
-  onRemovedFromEntity(body: string): TorusMeshBuilder;
-  onRestartIndexValueChanged(body: string): TorusMeshBuilder;
-  onRingsChanged(body: string): TorusMeshBuilder;
-  onShareableChanged(body: string): TorusMeshBuilder;
-  onSlicesChanged(body: string): TorusMeshBuilder;
-  onSortIndexChanged(body: string): TorusMeshBuilder;
-  onVertexCountChanged(body: string): TorusMeshBuilder;
-  onVerticesPerPatchChanged(body: string): TorusMeshBuilder;
-  onViewChanged(body: string): TorusMeshBuilder;
+  onAddedToEntity(handler: DslSignalHandlerValue): TorusMeshBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): TorusMeshBuilder;
+  onFirstInstanceChanged(handler: DslSignalHandlerValue): TorusMeshBuilder;
+  onFirstVertexChanged(handler: DslSignalHandlerValue): TorusMeshBuilder;
+  onGeometryChanged(handler: DslSignalHandlerValue): TorusMeshBuilder;
+  onImplicitMaxPointChanged(handler: DslSignalHandlerValue): TorusMeshBuilder;
+  onImplicitMinPointChanged(handler: DslSignalHandlerValue): TorusMeshBuilder;
+  onImplicitPointsValidChanged(handler: DslSignalHandlerValue): TorusMeshBuilder;
+  onIndexBufferByteOffsetChanged(handler: DslSignalHandlerValue): TorusMeshBuilder;
+  onIndexOffsetChanged(handler: DslSignalHandlerValue): TorusMeshBuilder;
+  onInstanceCountChanged(handler: DslSignalHandlerValue): TorusMeshBuilder;
+  onMaxPointChanged(handler: DslSignalHandlerValue): TorusMeshBuilder;
+  onMinPointChanged(handler: DslSignalHandlerValue): TorusMeshBuilder;
+  onMinorRadiusChanged(handler: DslSignalHandlerValue): TorusMeshBuilder;
+  onNodeDestroyed(handler: DslSignalHandlerValue): TorusMeshBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): TorusMeshBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): TorusMeshBuilder;
+  onPrimitiveRestartEnabledChanged(handler: DslSignalHandlerValue): TorusMeshBuilder;
+  onPrimitiveTypeChanged(handler: DslSignalHandlerValue): TorusMeshBuilder;
+  onRadiusChanged(handler: DslSignalHandlerValue): TorusMeshBuilder;
+  onRemovedFromEntity(handler: DslSignalHandlerValue): TorusMeshBuilder;
+  onRestartIndexValueChanged(handler: DslSignalHandlerValue): TorusMeshBuilder;
+  onRingsChanged(handler: DslSignalHandlerValue): TorusMeshBuilder;
+  onShareableChanged(handler: DslSignalHandlerValue): TorusMeshBuilder;
+  onSlicesChanged(handler: DslSignalHandlerValue): TorusMeshBuilder;
+  onSortIndexChanged(handler: DslSignalHandlerValue): TorusMeshBuilder;
+  onVertexCountChanged(handler: DslSignalHandlerValue): TorusMeshBuilder;
+  onVerticesPerPatchChanged(handler: DslSignalHandlerValue): TorusMeshBuilder;
+  onViewChanged(handler: DslSignalHandlerValue): TorusMeshBuilder;
 }
 
 const TORUSMESH_META: TypeMetadata = {

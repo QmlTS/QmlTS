@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlColor,
   QmlEnumToken,
   QmlObjectBuilder,
@@ -18,6 +19,7 @@ import type { LayerBuilder } from '../QtQuick/QQuickItemLayer.js';
 export interface FocusRectangleBuilder {
   id(id: string): FocusRectangleBuilder;
   child(obj: QmlObjectBuilder): FocusRectangleBuilder;
+  children(...objs: QmlObjectBuilder[]): FocusRectangleBuilder;
 
   activeFocusOnTab(value: boolean): FocusRectangleBuilder;
   activeFocusOnTabBind(expr: string): FocusRectangleBuilder;
@@ -79,42 +81,42 @@ export interface FocusRectangleBuilder {
   yBind(expr: string): FocusRectangleBuilder;
   z(value: number): FocusRectangleBuilder;
   zBind(expr: string): FocusRectangleBuilder;
-  onActiveFocusChanged(body: string): FocusRectangleBuilder;
-  onActiveFocusOnTabChanged(body: string): FocusRectangleBuilder;
-  onAntialiasingChanged(body: string): FocusRectangleBuilder;
-  onBaselineOffsetChanged(body: string): FocusRectangleBuilder;
-  onChildrenChanged(body: string): FocusRectangleBuilder;
-  onChildrenRectChanged(body: string): FocusRectangleBuilder;
-  onClipChanged(body: string): FocusRectangleBuilder;
-  onContainmentMaskChanged(body: string): FocusRectangleBuilder;
-  onContentsScaleChanged(body: string): FocusRectangleBuilder;
-  onContentsSizeChanged(body: string): FocusRectangleBuilder;
-  onEnabledChanged(body: string): FocusRectangleBuilder;
-  onFillColorChanged(body: string): FocusRectangleBuilder;
-  onFocusChanged(body: string): FocusRectangleBuilder;
-  onFocusPolicyChanged(body: string): FocusRectangleBuilder;
-  onHeightChanged(body: string): FocusRectangleBuilder;
-  onImplicitHeightChanged(body: string): FocusRectangleBuilder;
-  onImplicitWidthChanged(body: string): FocusRectangleBuilder;
-  onObjectNameChanged(body: string): FocusRectangleBuilder;
-  onOpacityChanged(body: string): FocusRectangleBuilder;
-  onPaletteChanged(body: string): FocusRectangleBuilder;
-  onPaletteCreated(body: string): FocusRectangleBuilder;
-  onParentChanged(body: string): FocusRectangleBuilder;
-  onRenderTargetChanged(body: string): FocusRectangleBuilder;
-  onRotationChanged(body: string): FocusRectangleBuilder;
-  onScaleChanged(body: string): FocusRectangleBuilder;
-  onSmoothChanged(body: string): FocusRectangleBuilder;
-  onStateChanged(body: string): FocusRectangleBuilder;
-  onTextureSizeChanged(body: string): FocusRectangleBuilder;
-  onTransformOriginChanged(body: string): FocusRectangleBuilder;
-  onVisibleChanged(body: string): FocusRectangleBuilder;
-  onVisibleChildrenChanged(body: string): FocusRectangleBuilder;
-  onWidthChanged(body: string): FocusRectangleBuilder;
-  onWindowChanged(body: string): FocusRectangleBuilder;
-  onXChanged(body: string): FocusRectangleBuilder;
-  onYChanged(body: string): FocusRectangleBuilder;
-  onZChanged(body: string): FocusRectangleBuilder;
+  onActiveFocusChanged(handler: DslSignalHandlerValue): FocusRectangleBuilder;
+  onActiveFocusOnTabChanged(handler: DslSignalHandlerValue): FocusRectangleBuilder;
+  onAntialiasingChanged(handler: DslSignalHandlerValue): FocusRectangleBuilder;
+  onBaselineOffsetChanged(handler: DslSignalHandlerValue): FocusRectangleBuilder;
+  onChildrenChanged(handler: DslSignalHandlerValue): FocusRectangleBuilder;
+  onChildrenRectChanged(handler: DslSignalHandlerValue): FocusRectangleBuilder;
+  onClipChanged(handler: DslSignalHandlerValue): FocusRectangleBuilder;
+  onContainmentMaskChanged(handler: DslSignalHandlerValue): FocusRectangleBuilder;
+  onContentsScaleChanged(handler: DslSignalHandlerValue): FocusRectangleBuilder;
+  onContentsSizeChanged(handler: DslSignalHandlerValue): FocusRectangleBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): FocusRectangleBuilder;
+  onFillColorChanged(handler: DslSignalHandlerValue): FocusRectangleBuilder;
+  onFocusChanged(handler: DslSignalHandlerValue): FocusRectangleBuilder;
+  onFocusPolicyChanged(handler: DslSignalHandlerValue): FocusRectangleBuilder;
+  onHeightChanged(handler: DslSignalHandlerValue): FocusRectangleBuilder;
+  onImplicitHeightChanged(handler: DslSignalHandlerValue): FocusRectangleBuilder;
+  onImplicitWidthChanged(handler: DslSignalHandlerValue): FocusRectangleBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): FocusRectangleBuilder;
+  onOpacityChanged(handler: DslSignalHandlerValue): FocusRectangleBuilder;
+  onPaletteChanged(handler: DslSignalHandlerValue): FocusRectangleBuilder;
+  onPaletteCreated(handler: DslSignalHandlerValue): FocusRectangleBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): FocusRectangleBuilder;
+  onRenderTargetChanged(handler: DslSignalHandlerValue): FocusRectangleBuilder;
+  onRotationChanged(handler: DslSignalHandlerValue): FocusRectangleBuilder;
+  onScaleChanged(handler: DslSignalHandlerValue): FocusRectangleBuilder;
+  onSmoothChanged(handler: DslSignalHandlerValue): FocusRectangleBuilder;
+  onStateChanged(handler: DslSignalHandlerValue): FocusRectangleBuilder;
+  onTextureSizeChanged(handler: DslSignalHandlerValue): FocusRectangleBuilder;
+  onTransformOriginChanged(handler: DslSignalHandlerValue): FocusRectangleBuilder;
+  onVisibleChanged(handler: DslSignalHandlerValue): FocusRectangleBuilder;
+  onVisibleChildrenChanged(handler: DslSignalHandlerValue): FocusRectangleBuilder;
+  onWidthChanged(handler: DslSignalHandlerValue): FocusRectangleBuilder;
+  onWindowChanged(handler: DslSignalHandlerValue): FocusRectangleBuilder;
+  onXChanged(handler: DslSignalHandlerValue): FocusRectangleBuilder;
+  onYChanged(handler: DslSignalHandlerValue): FocusRectangleBuilder;
+  onZChanged(handler: DslSignalHandlerValue): FocusRectangleBuilder;
   anchors(setup: (b: AnchorsBuilder) => void): FocusRectangleBuilder;
   layer(setup: (b: LayerBuilder) => void): FocusRectangleBuilder;
 }

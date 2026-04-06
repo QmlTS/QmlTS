@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlColor,
   QmlEnumToken,
   QmlMatrix4x4,
@@ -17,6 +18,7 @@ import type { TrimBuilder } from './QQuickShapeTrim.js';
 export interface ShapePathBuilder {
   id(id: string): ShapePathBuilder;
   child(obj: QmlObjectBuilder): ShapePathBuilder;
+  children(...objs: QmlObjectBuilder[]): ShapePathBuilder;
 
   asynchronous(value: boolean): ShapePathBuilder;
   asynchronousBind(expr: string): ShapePathBuilder;
@@ -60,29 +62,29 @@ export interface ShapePathBuilder {
   strokeStyleBind(expr: string): ShapePathBuilder;
   strokeWidth(value: number): ShapePathBuilder;
   strokeWidthBind(expr: string): ShapePathBuilder;
-  onAsynchronousChanged(body: string): ShapePathBuilder;
-  onCapStyleChanged(body: string): ShapePathBuilder;
-  onChanged(body: string): ShapePathBuilder;
-  onCosmeticStrokeChanged(body: string): ShapePathBuilder;
-  onDashOffsetChanged(body: string): ShapePathBuilder;
-  onDashPatternChanged(body: string): ShapePathBuilder;
-  onFillColorChanged(body: string): ShapePathBuilder;
-  onFillGradientChanged(body: string): ShapePathBuilder;
-  onFillItemChanged(body: string): ShapePathBuilder;
-  onFillRuleChanged(body: string): ShapePathBuilder;
-  onFillTransformChanged(body: string): ShapePathBuilder;
-  onJoinStyleChanged(body: string): ShapePathBuilder;
-  onMiterLimitChanged(body: string): ShapePathBuilder;
-  onObjectNameChanged(body: string): ShapePathBuilder;
-  onPathHintsChanged(body: string): ShapePathBuilder;
-  onScaleChanged(body: string): ShapePathBuilder;
-  onShapePathChanged(body: string): ShapePathBuilder;
-  onSimplifyChanged(body: string): ShapePathBuilder;
-  onStartXChanged(body: string): ShapePathBuilder;
-  onStartYChanged(body: string): ShapePathBuilder;
-  onStrokeColorChanged(body: string): ShapePathBuilder;
-  onStrokeStyleChanged(body: string): ShapePathBuilder;
-  onStrokeWidthChanged(body: string): ShapePathBuilder;
+  onAsynchronousChanged(handler: DslSignalHandlerValue): ShapePathBuilder;
+  onCapStyleChanged(handler: DslSignalHandlerValue): ShapePathBuilder;
+  onChanged(handler: DslSignalHandlerValue): ShapePathBuilder;
+  onCosmeticStrokeChanged(handler: DslSignalHandlerValue): ShapePathBuilder;
+  onDashOffsetChanged(handler: DslSignalHandlerValue): ShapePathBuilder;
+  onDashPatternChanged(handler: DslSignalHandlerValue): ShapePathBuilder;
+  onFillColorChanged(handler: DslSignalHandlerValue): ShapePathBuilder;
+  onFillGradientChanged(handler: DslSignalHandlerValue): ShapePathBuilder;
+  onFillItemChanged(handler: DslSignalHandlerValue): ShapePathBuilder;
+  onFillRuleChanged(handler: DslSignalHandlerValue): ShapePathBuilder;
+  onFillTransformChanged(handler: DslSignalHandlerValue): ShapePathBuilder;
+  onJoinStyleChanged(handler: DslSignalHandlerValue): ShapePathBuilder;
+  onMiterLimitChanged(handler: DslSignalHandlerValue): ShapePathBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): ShapePathBuilder;
+  onPathHintsChanged(handler: DslSignalHandlerValue): ShapePathBuilder;
+  onScaleChanged(handler: DslSignalHandlerValue): ShapePathBuilder;
+  onShapePathChanged(handler: DslSignalHandlerValue): ShapePathBuilder;
+  onSimplifyChanged(handler: DslSignalHandlerValue): ShapePathBuilder;
+  onStartXChanged(handler: DslSignalHandlerValue): ShapePathBuilder;
+  onStartYChanged(handler: DslSignalHandlerValue): ShapePathBuilder;
+  onStrokeColorChanged(handler: DslSignalHandlerValue): ShapePathBuilder;
+  onStrokeStyleChanged(handler: DslSignalHandlerValue): ShapePathBuilder;
+  onStrokeWidthChanged(handler: DslSignalHandlerValue): ShapePathBuilder;
   trim(setup: (b: TrimBuilder) => void): ShapePathBuilder;
 }
 

@@ -2,11 +2,12 @@
 // Type: Category3DAxis
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import type { DslSignalHandlerValue, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface Category3DAxisBuilder {
   id(id: string): Category3DAxisBuilder;
   child(obj: QmlObjectBuilder): Category3DAxisBuilder;
+  children(...objs: QmlObjectBuilder[]): Category3DAxisBuilder;
 
   autoAdjustRange(value: boolean): Category3DAxisBuilder;
   autoAdjustRangeBind(expr: string): Category3DAxisBuilder;
@@ -34,23 +35,23 @@ export interface Category3DAxisBuilder {
   titleOffsetBind(expr: string): Category3DAxisBuilder;
   titleVisible(value: boolean): Category3DAxisBuilder;
   titleVisibleBind(expr: string): Category3DAxisBuilder;
-  onAutoAdjustRangeChanged(body: string): Category3DAxisBuilder;
-  onColumnLabelsChanged(body: string): Category3DAxisBuilder;
-  onLabelAutoAngleChanged(body: string): Category3DAxisBuilder;
-  onLabelSizeChanged(body: string): Category3DAxisBuilder;
-  onLabelVisibleChanged(body: string): Category3DAxisBuilder;
-  onLabelsChanged(body: string): Category3DAxisBuilder;
-  onMaxChanged(body: string): Category3DAxisBuilder;
-  onMinChanged(body: string): Category3DAxisBuilder;
-  onObjectNameChanged(body: string): Category3DAxisBuilder;
-  onOrientationChanged(body: string): Category3DAxisBuilder;
-  onRangeChanged(body: string): Category3DAxisBuilder;
-  onRowLabelsChanged(body: string): Category3DAxisBuilder;
-  onScaleLabelsByCountChanged(body: string): Category3DAxisBuilder;
-  onTitleChanged(body: string): Category3DAxisBuilder;
-  onTitleFixedChanged(body: string): Category3DAxisBuilder;
-  onTitleOffsetChanged(body: string): Category3DAxisBuilder;
-  onTitleVisibleChanged(body: string): Category3DAxisBuilder;
+  onAutoAdjustRangeChanged(handler: DslSignalHandlerValue): Category3DAxisBuilder;
+  onColumnLabelsChanged(handler: DslSignalHandlerValue): Category3DAxisBuilder;
+  onLabelAutoAngleChanged(handler: DslSignalHandlerValue): Category3DAxisBuilder;
+  onLabelSizeChanged(handler: DslSignalHandlerValue): Category3DAxisBuilder;
+  onLabelVisibleChanged(handler: DslSignalHandlerValue): Category3DAxisBuilder;
+  onLabelsChanged(handler: DslSignalHandlerValue): Category3DAxisBuilder;
+  onMaxChanged(handler: DslSignalHandlerValue): Category3DAxisBuilder;
+  onMinChanged(handler: DslSignalHandlerValue): Category3DAxisBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): Category3DAxisBuilder;
+  onOrientationChanged(handler: DslSignalHandlerValue): Category3DAxisBuilder;
+  onRangeChanged(handler: DslSignalHandlerValue): Category3DAxisBuilder;
+  onRowLabelsChanged(handler: DslSignalHandlerValue): Category3DAxisBuilder;
+  onScaleLabelsByCountChanged(handler: DslSignalHandlerValue): Category3DAxisBuilder;
+  onTitleChanged(handler: DslSignalHandlerValue): Category3DAxisBuilder;
+  onTitleFixedChanged(handler: DslSignalHandlerValue): Category3DAxisBuilder;
+  onTitleOffsetChanged(handler: DslSignalHandlerValue): Category3DAxisBuilder;
+  onTitleVisibleChanged(handler: DslSignalHandlerValue): Category3DAxisBuilder;
 }
 
 const CATEGORY3DAXIS_META: TypeMetadata = {

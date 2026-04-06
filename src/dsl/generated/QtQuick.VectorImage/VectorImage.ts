@@ -2,7 +2,13 @@
 // Type: VectorImage
 // Generated from Qt 6.11.0
 
-import type { QmlEnumToken, QmlObjectBuilder, QmlUrl, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlEnumToken,
+  QmlObjectBuilder,
+  QmlUrl,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { QtObjectBuilder } from '../QML/QtObject.js';
 import type { ItemBuilder } from '../QtQuick/Item.js';
@@ -13,6 +19,7 @@ import type { AnimationsBuilder } from './QQuickVectorImageAnimations.js';
 export interface VectorImageBuilder {
   id(id: string): VectorImageBuilder;
   child(obj: QmlObjectBuilder): VectorImageBuilder;
+  children(...objs: QmlObjectBuilder[]): VectorImageBuilder;
 
   activeFocusOnTab(value: boolean): VectorImageBuilder;
   activeFocusOnTabBind(expr: string): VectorImageBuilder;
@@ -74,42 +81,42 @@ export interface VectorImageBuilder {
   yBind(expr: string): VectorImageBuilder;
   z(value: number): VectorImageBuilder;
   zBind(expr: string): VectorImageBuilder;
-  onActiveFocusChanged(body: string): VectorImageBuilder;
-  onActiveFocusOnTabChanged(body: string): VectorImageBuilder;
-  onAntialiasingChanged(body: string): VectorImageBuilder;
-  onAssumeTrustedSourceChanged(body: string): VectorImageBuilder;
-  onAsynchronousShapesChanged(body: string): VectorImageBuilder;
-  onBaselineOffsetChanged(body: string): VectorImageBuilder;
-  onChildrenChanged(body: string): VectorImageBuilder;
-  onChildrenRectChanged(body: string): VectorImageBuilder;
-  onClipChanged(body: string): VectorImageBuilder;
-  onContainmentMaskChanged(body: string): VectorImageBuilder;
-  onEnabledChanged(body: string): VectorImageBuilder;
-  onFillModeChanged(body: string): VectorImageBuilder;
-  onFocusChanged(body: string): VectorImageBuilder;
-  onFocusPolicyChanged(body: string): VectorImageBuilder;
-  onHeightChanged(body: string): VectorImageBuilder;
-  onImplicitHeightChanged(body: string): VectorImageBuilder;
-  onImplicitWidthChanged(body: string): VectorImageBuilder;
-  onObjectNameChanged(body: string): VectorImageBuilder;
-  onOpacityChanged(body: string): VectorImageBuilder;
-  onPaletteChanged(body: string): VectorImageBuilder;
-  onPaletteCreated(body: string): VectorImageBuilder;
-  onParentChanged(body: string): VectorImageBuilder;
-  onPreferredRendererTypeChanged(body: string): VectorImageBuilder;
-  onRotationChanged(body: string): VectorImageBuilder;
-  onScaleChanged(body: string): VectorImageBuilder;
-  onSmoothChanged(body: string): VectorImageBuilder;
-  onSourceChanged(body: string): VectorImageBuilder;
-  onStateChanged(body: string): VectorImageBuilder;
-  onTransformOriginChanged(body: string): VectorImageBuilder;
-  onVisibleChanged(body: string): VectorImageBuilder;
-  onVisibleChildrenChanged(body: string): VectorImageBuilder;
-  onWidthChanged(body: string): VectorImageBuilder;
-  onWindowChanged(body: string): VectorImageBuilder;
-  onXChanged(body: string): VectorImageBuilder;
-  onYChanged(body: string): VectorImageBuilder;
-  onZChanged(body: string): VectorImageBuilder;
+  onActiveFocusChanged(handler: DslSignalHandlerValue): VectorImageBuilder;
+  onActiveFocusOnTabChanged(handler: DslSignalHandlerValue): VectorImageBuilder;
+  onAntialiasingChanged(handler: DslSignalHandlerValue): VectorImageBuilder;
+  onAssumeTrustedSourceChanged(handler: DslSignalHandlerValue): VectorImageBuilder;
+  onAsynchronousShapesChanged(handler: DslSignalHandlerValue): VectorImageBuilder;
+  onBaselineOffsetChanged(handler: DslSignalHandlerValue): VectorImageBuilder;
+  onChildrenChanged(handler: DslSignalHandlerValue): VectorImageBuilder;
+  onChildrenRectChanged(handler: DslSignalHandlerValue): VectorImageBuilder;
+  onClipChanged(handler: DslSignalHandlerValue): VectorImageBuilder;
+  onContainmentMaskChanged(handler: DslSignalHandlerValue): VectorImageBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): VectorImageBuilder;
+  onFillModeChanged(handler: DslSignalHandlerValue): VectorImageBuilder;
+  onFocusChanged(handler: DslSignalHandlerValue): VectorImageBuilder;
+  onFocusPolicyChanged(handler: DslSignalHandlerValue): VectorImageBuilder;
+  onHeightChanged(handler: DslSignalHandlerValue): VectorImageBuilder;
+  onImplicitHeightChanged(handler: DslSignalHandlerValue): VectorImageBuilder;
+  onImplicitWidthChanged(handler: DslSignalHandlerValue): VectorImageBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): VectorImageBuilder;
+  onOpacityChanged(handler: DslSignalHandlerValue): VectorImageBuilder;
+  onPaletteChanged(handler: DslSignalHandlerValue): VectorImageBuilder;
+  onPaletteCreated(handler: DslSignalHandlerValue): VectorImageBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): VectorImageBuilder;
+  onPreferredRendererTypeChanged(handler: DslSignalHandlerValue): VectorImageBuilder;
+  onRotationChanged(handler: DslSignalHandlerValue): VectorImageBuilder;
+  onScaleChanged(handler: DslSignalHandlerValue): VectorImageBuilder;
+  onSmoothChanged(handler: DslSignalHandlerValue): VectorImageBuilder;
+  onSourceChanged(handler: DslSignalHandlerValue): VectorImageBuilder;
+  onStateChanged(handler: DslSignalHandlerValue): VectorImageBuilder;
+  onTransformOriginChanged(handler: DslSignalHandlerValue): VectorImageBuilder;
+  onVisibleChanged(handler: DslSignalHandlerValue): VectorImageBuilder;
+  onVisibleChildrenChanged(handler: DslSignalHandlerValue): VectorImageBuilder;
+  onWidthChanged(handler: DslSignalHandlerValue): VectorImageBuilder;
+  onWindowChanged(handler: DslSignalHandlerValue): VectorImageBuilder;
+  onXChanged(handler: DslSignalHandlerValue): VectorImageBuilder;
+  onYChanged(handler: DslSignalHandlerValue): VectorImageBuilder;
+  onZChanged(handler: DslSignalHandlerValue): VectorImageBuilder;
   anchors(setup: (b: AnchorsBuilder) => void): VectorImageBuilder;
   animations(setup: (b: AnimationsBuilder) => void): VectorImageBuilder;
   layer(setup: (b: LayerBuilder) => void): VectorImageBuilder;

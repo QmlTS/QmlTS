@@ -2,11 +2,17 @@
 // Type: VectorDirection3D
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlVector3d, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlObjectBuilder,
+  QmlVector3d,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 export interface VectorDirection3DBuilder {
   id(id: string): VectorDirection3DBuilder;
   child(obj: QmlObjectBuilder): VectorDirection3DBuilder;
+  children(...objs: QmlObjectBuilder[]): VectorDirection3DBuilder;
 
   direction(value: QmlVector3d): VectorDirection3DBuilder;
   directionBind(expr: string): VectorDirection3DBuilder;
@@ -16,10 +22,10 @@ export interface VectorDirection3DBuilder {
   normalizedBind(expr: string): VectorDirection3DBuilder;
   objectName(value: string): VectorDirection3DBuilder;
   objectNameBind(expr: string): VectorDirection3DBuilder;
-  onDirectionChanged(body: string): VectorDirection3DBuilder;
-  onDirectionVariationChanged(body: string): VectorDirection3DBuilder;
-  onNormalizedChanged(body: string): VectorDirection3DBuilder;
-  onObjectNameChanged(body: string): VectorDirection3DBuilder;
+  onDirectionChanged(handler: DslSignalHandlerValue): VectorDirection3DBuilder;
+  onDirectionVariationChanged(handler: DslSignalHandlerValue): VectorDirection3DBuilder;
+  onNormalizedChanged(handler: DslSignalHandlerValue): VectorDirection3DBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): VectorDirection3DBuilder;
 }
 
 const VECTORDIRECTION3D_META: TypeMetadata = {

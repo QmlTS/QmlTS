@@ -2,7 +2,12 @@
 // Type: ColumnLayout
 // Generated from Qt 6.11.0
 
-import type { QmlEnumToken, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlEnumToken,
+  QmlObjectBuilder,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { QtObjectBuilder } from '../QML/QtObject.js';
 import type { ItemBuilder } from '../QtQuick/Item.js';
@@ -15,6 +20,7 @@ import type { StackLayoutAttachedBuilder } from './QQuickStackLayoutAttached.js'
 export interface ColumnLayoutBuilder {
   id(id: string): ColumnLayoutBuilder;
   child(obj: QmlObjectBuilder): ColumnLayoutBuilder;
+  children(...objs: QmlObjectBuilder[]): ColumnLayoutBuilder;
 
   activeFocusOnTab(value: boolean): ColumnLayoutBuilder;
   activeFocusOnTabBind(expr: string): ColumnLayoutBuilder;
@@ -72,40 +78,40 @@ export interface ColumnLayoutBuilder {
   yBind(expr: string): ColumnLayoutBuilder;
   z(value: number): ColumnLayoutBuilder;
   zBind(expr: string): ColumnLayoutBuilder;
-  onActiveFocusChanged(body: string): ColumnLayoutBuilder;
-  onActiveFocusOnTabChanged(body: string): ColumnLayoutBuilder;
-  onAntialiasingChanged(body: string): ColumnLayoutBuilder;
-  onBaselineOffsetChanged(body: string): ColumnLayoutBuilder;
-  onChildrenChanged(body: string): ColumnLayoutBuilder;
-  onChildrenRectChanged(body: string): ColumnLayoutBuilder;
-  onClipChanged(body: string): ColumnLayoutBuilder;
-  onContainmentMaskChanged(body: string): ColumnLayoutBuilder;
-  onEnabledChanged(body: string): ColumnLayoutBuilder;
-  onFocusChanged(body: string): ColumnLayoutBuilder;
-  onFocusPolicyChanged(body: string): ColumnLayoutBuilder;
-  onHeightChanged(body: string): ColumnLayoutBuilder;
-  onImplicitHeightChanged(body: string): ColumnLayoutBuilder;
-  onImplicitWidthChanged(body: string): ColumnLayoutBuilder;
-  onLayoutDirectionChanged(body: string): ColumnLayoutBuilder;
-  onObjectNameChanged(body: string): ColumnLayoutBuilder;
-  onOpacityChanged(body: string): ColumnLayoutBuilder;
-  onPaletteChanged(body: string): ColumnLayoutBuilder;
-  onPaletteCreated(body: string): ColumnLayoutBuilder;
-  onParentChanged(body: string): ColumnLayoutBuilder;
-  onRotationChanged(body: string): ColumnLayoutBuilder;
-  onScaleChanged(body: string): ColumnLayoutBuilder;
-  onSmoothChanged(body: string): ColumnLayoutBuilder;
-  onSpacingChanged(body: string): ColumnLayoutBuilder;
-  onStateChanged(body: string): ColumnLayoutBuilder;
-  onTransformOriginChanged(body: string): ColumnLayoutBuilder;
-  onUniformCellSizesChanged(body: string): ColumnLayoutBuilder;
-  onVisibleChanged(body: string): ColumnLayoutBuilder;
-  onVisibleChildrenChanged(body: string): ColumnLayoutBuilder;
-  onWidthChanged(body: string): ColumnLayoutBuilder;
-  onWindowChanged(body: string): ColumnLayoutBuilder;
-  onXChanged(body: string): ColumnLayoutBuilder;
-  onYChanged(body: string): ColumnLayoutBuilder;
-  onZChanged(body: string): ColumnLayoutBuilder;
+  onActiveFocusChanged(handler: DslSignalHandlerValue): ColumnLayoutBuilder;
+  onActiveFocusOnTabChanged(handler: DslSignalHandlerValue): ColumnLayoutBuilder;
+  onAntialiasingChanged(handler: DslSignalHandlerValue): ColumnLayoutBuilder;
+  onBaselineOffsetChanged(handler: DslSignalHandlerValue): ColumnLayoutBuilder;
+  onChildrenChanged(handler: DslSignalHandlerValue): ColumnLayoutBuilder;
+  onChildrenRectChanged(handler: DslSignalHandlerValue): ColumnLayoutBuilder;
+  onClipChanged(handler: DslSignalHandlerValue): ColumnLayoutBuilder;
+  onContainmentMaskChanged(handler: DslSignalHandlerValue): ColumnLayoutBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): ColumnLayoutBuilder;
+  onFocusChanged(handler: DslSignalHandlerValue): ColumnLayoutBuilder;
+  onFocusPolicyChanged(handler: DslSignalHandlerValue): ColumnLayoutBuilder;
+  onHeightChanged(handler: DslSignalHandlerValue): ColumnLayoutBuilder;
+  onImplicitHeightChanged(handler: DslSignalHandlerValue): ColumnLayoutBuilder;
+  onImplicitWidthChanged(handler: DslSignalHandlerValue): ColumnLayoutBuilder;
+  onLayoutDirectionChanged(handler: DslSignalHandlerValue): ColumnLayoutBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): ColumnLayoutBuilder;
+  onOpacityChanged(handler: DslSignalHandlerValue): ColumnLayoutBuilder;
+  onPaletteChanged(handler: DslSignalHandlerValue): ColumnLayoutBuilder;
+  onPaletteCreated(handler: DslSignalHandlerValue): ColumnLayoutBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): ColumnLayoutBuilder;
+  onRotationChanged(handler: DslSignalHandlerValue): ColumnLayoutBuilder;
+  onScaleChanged(handler: DslSignalHandlerValue): ColumnLayoutBuilder;
+  onSmoothChanged(handler: DslSignalHandlerValue): ColumnLayoutBuilder;
+  onSpacingChanged(handler: DslSignalHandlerValue): ColumnLayoutBuilder;
+  onStateChanged(handler: DslSignalHandlerValue): ColumnLayoutBuilder;
+  onTransformOriginChanged(handler: DslSignalHandlerValue): ColumnLayoutBuilder;
+  onUniformCellSizesChanged(handler: DslSignalHandlerValue): ColumnLayoutBuilder;
+  onVisibleChanged(handler: DslSignalHandlerValue): ColumnLayoutBuilder;
+  onVisibleChildrenChanged(handler: DslSignalHandlerValue): ColumnLayoutBuilder;
+  onWidthChanged(handler: DslSignalHandlerValue): ColumnLayoutBuilder;
+  onWindowChanged(handler: DslSignalHandlerValue): ColumnLayoutBuilder;
+  onXChanged(handler: DslSignalHandlerValue): ColumnLayoutBuilder;
+  onYChanged(handler: DslSignalHandlerValue): ColumnLayoutBuilder;
+  onZChanged(handler: DslSignalHandlerValue): ColumnLayoutBuilder;
   anchors(setup: (b: AnchorsBuilder) => void): ColumnLayoutBuilder;
   layer(setup: (b: LayerBuilder) => void): ColumnLayoutBuilder;
   flexboxLayout(setup: (b: FlexboxLayoutAttachedBuilder) => void): ColumnLayoutBuilder;

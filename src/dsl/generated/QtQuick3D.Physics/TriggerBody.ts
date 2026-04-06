@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlObjectBuilder,
   QmlQuaternion,
   QmlValue,
@@ -13,6 +14,7 @@ import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface TriggerBodyBuilder {
   id(id: string): TriggerBodyBuilder;
   child(obj: QmlObjectBuilder): TriggerBodyBuilder;
+  children(...objs: QmlObjectBuilder[]): TriggerBodyBuilder;
 
   eulerRotation(value: QmlVector3d): TriggerBodyBuilder;
   eulerRotationBind(expr: string): TriggerBodyBuilder;
@@ -56,41 +58,41 @@ export interface TriggerBodyBuilder {
   yBind(expr: string): TriggerBodyBuilder;
   z(value: number): TriggerBodyBuilder;
   zBind(expr: string): TriggerBodyBuilder;
-  onBodyContact(body: string): TriggerBodyBuilder;
-  onBodyEntered(body: string): TriggerBodyBuilder;
-  onBodyExited(body: string): TriggerBodyBuilder;
-  onChildrenChanged(body: string): TriggerBodyBuilder;
-  onCollisionCountChanged(body: string): TriggerBodyBuilder;
-  onEnteredTriggerBody(body: string): TriggerBodyBuilder;
-  onEulerRotationChanged(body: string): TriggerBodyBuilder;
-  onExitedTriggerBody(body: string): TriggerBodyBuilder;
-  onFilterGroupChanged(body: string): TriggerBodyBuilder;
-  onFilterIgnoreGroupsChanged(body: string): TriggerBodyBuilder;
-  onForwardChanged(body: string): TriggerBodyBuilder;
-  onLayersChanged(body: string): TriggerBodyBuilder;
-  onLocalOpacityChanged(body: string): TriggerBodyBuilder;
-  onObjectNameChanged(body: string): TriggerBodyBuilder;
-  onParentChanged(body: string): TriggerBodyBuilder;
-  onPivotChanged(body: string): TriggerBodyBuilder;
-  onPositionChanged(body: string): TriggerBodyBuilder;
-  onReceiveContactReportsChanged(body: string): TriggerBodyBuilder;
-  onReceiveTriggerReportsChanged(body: string): TriggerBodyBuilder;
-  onRightChanged(body: string): TriggerBodyBuilder;
-  onRotationChanged(body: string): TriggerBodyBuilder;
-  onScaleChanged(body: string): TriggerBodyBuilder;
-  onScenePositionChanged(body: string): TriggerBodyBuilder;
-  onSceneRotationChanged(body: string): TriggerBodyBuilder;
-  onSceneScaleChanged(body: string): TriggerBodyBuilder;
-  onSceneTransformChanged(body: string): TriggerBodyBuilder;
-  onSendContactReportsChanged(body: string): TriggerBodyBuilder;
-  onSendTriggerReportsChanged(body: string): TriggerBodyBuilder;
-  onStateChanged(body: string): TriggerBodyBuilder;
-  onStaticFlagsChanged(body: string): TriggerBodyBuilder;
-  onUpChanged(body: string): TriggerBodyBuilder;
-  onVisibleChanged(body: string): TriggerBodyBuilder;
-  onXChanged(body: string): TriggerBodyBuilder;
-  onYChanged(body: string): TriggerBodyBuilder;
-  onZChanged(body: string): TriggerBodyBuilder;
+  onBodyContact(handler: DslSignalHandlerValue): TriggerBodyBuilder;
+  onBodyEntered(handler: DslSignalHandlerValue): TriggerBodyBuilder;
+  onBodyExited(handler: DslSignalHandlerValue): TriggerBodyBuilder;
+  onChildrenChanged(handler: DslSignalHandlerValue): TriggerBodyBuilder;
+  onCollisionCountChanged(handler: DslSignalHandlerValue): TriggerBodyBuilder;
+  onEnteredTriggerBody(handler: DslSignalHandlerValue): TriggerBodyBuilder;
+  onEulerRotationChanged(handler: DslSignalHandlerValue): TriggerBodyBuilder;
+  onExitedTriggerBody(handler: DslSignalHandlerValue): TriggerBodyBuilder;
+  onFilterGroupChanged(handler: DslSignalHandlerValue): TriggerBodyBuilder;
+  onFilterIgnoreGroupsChanged(handler: DslSignalHandlerValue): TriggerBodyBuilder;
+  onForwardChanged(handler: DslSignalHandlerValue): TriggerBodyBuilder;
+  onLayersChanged(handler: DslSignalHandlerValue): TriggerBodyBuilder;
+  onLocalOpacityChanged(handler: DslSignalHandlerValue): TriggerBodyBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): TriggerBodyBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): TriggerBodyBuilder;
+  onPivotChanged(handler: DslSignalHandlerValue): TriggerBodyBuilder;
+  onPositionChanged(handler: DslSignalHandlerValue): TriggerBodyBuilder;
+  onReceiveContactReportsChanged(handler: DslSignalHandlerValue): TriggerBodyBuilder;
+  onReceiveTriggerReportsChanged(handler: DslSignalHandlerValue): TriggerBodyBuilder;
+  onRightChanged(handler: DslSignalHandlerValue): TriggerBodyBuilder;
+  onRotationChanged(handler: DslSignalHandlerValue): TriggerBodyBuilder;
+  onScaleChanged(handler: DslSignalHandlerValue): TriggerBodyBuilder;
+  onScenePositionChanged(handler: DslSignalHandlerValue): TriggerBodyBuilder;
+  onSceneRotationChanged(handler: DslSignalHandlerValue): TriggerBodyBuilder;
+  onSceneScaleChanged(handler: DslSignalHandlerValue): TriggerBodyBuilder;
+  onSceneTransformChanged(handler: DslSignalHandlerValue): TriggerBodyBuilder;
+  onSendContactReportsChanged(handler: DslSignalHandlerValue): TriggerBodyBuilder;
+  onSendTriggerReportsChanged(handler: DslSignalHandlerValue): TriggerBodyBuilder;
+  onStateChanged(handler: DslSignalHandlerValue): TriggerBodyBuilder;
+  onStaticFlagsChanged(handler: DslSignalHandlerValue): TriggerBodyBuilder;
+  onUpChanged(handler: DslSignalHandlerValue): TriggerBodyBuilder;
+  onVisibleChanged(handler: DslSignalHandlerValue): TriggerBodyBuilder;
+  onXChanged(handler: DslSignalHandlerValue): TriggerBodyBuilder;
+  onYChanged(handler: DslSignalHandlerValue): TriggerBodyBuilder;
+  onZChanged(handler: DslSignalHandlerValue): TriggerBodyBuilder;
 }
 
 const TRIGGERBODY_META: TypeMetadata = {

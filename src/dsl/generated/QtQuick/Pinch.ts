@@ -2,7 +2,12 @@
 // Type: Pinch
 // Generated from Qt 6.11.0
 
-import type { QmlEnumToken, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlEnumToken,
+  QmlObjectBuilder,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { AccessibleAttachedBuilder } from './Accessible.js';
 import type { EnterKeyAttachedBuilder } from './EnterKey.js';
@@ -24,6 +29,7 @@ import type { ViewTransitionAttachedBuilder } from './ViewTransition.js';
 export interface PinchBuilder {
   id(id: string): PinchBuilder;
   child(obj: QmlObjectBuilder): PinchBuilder;
+  children(...objs: QmlObjectBuilder[]): PinchBuilder;
 
   dragAxis(value: QmlEnumToken): PinchBuilder;
   dragAxisBind(expr: string): PinchBuilder;
@@ -47,18 +53,18 @@ export interface PinchBuilder {
   objectNameBind(expr: string): PinchBuilder;
   target(value: ItemBuilder): PinchBuilder;
   targetBind(expr: string): PinchBuilder;
-  onActiveChanged(body: string): PinchBuilder;
-  onDragAxisChanged(body: string): PinchBuilder;
-  onMaximumRotationChanged(body: string): PinchBuilder;
-  onMaximumScaleChanged(body: string): PinchBuilder;
-  onMaximumXChanged(body: string): PinchBuilder;
-  onMaximumYChanged(body: string): PinchBuilder;
-  onMinimumRotationChanged(body: string): PinchBuilder;
-  onMinimumScaleChanged(body: string): PinchBuilder;
-  onMinimumXChanged(body: string): PinchBuilder;
-  onMinimumYChanged(body: string): PinchBuilder;
-  onObjectNameChanged(body: string): PinchBuilder;
-  onTargetChanged(body: string): PinchBuilder;
+  onActiveChanged(handler: DslSignalHandlerValue): PinchBuilder;
+  onDragAxisChanged(handler: DslSignalHandlerValue): PinchBuilder;
+  onMaximumRotationChanged(handler: DslSignalHandlerValue): PinchBuilder;
+  onMaximumScaleChanged(handler: DslSignalHandlerValue): PinchBuilder;
+  onMaximumXChanged(handler: DslSignalHandlerValue): PinchBuilder;
+  onMaximumYChanged(handler: DslSignalHandlerValue): PinchBuilder;
+  onMinimumRotationChanged(handler: DslSignalHandlerValue): PinchBuilder;
+  onMinimumScaleChanged(handler: DslSignalHandlerValue): PinchBuilder;
+  onMinimumXChanged(handler: DslSignalHandlerValue): PinchBuilder;
+  onMinimumYChanged(handler: DslSignalHandlerValue): PinchBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): PinchBuilder;
+  onTargetChanged(handler: DslSignalHandlerValue): PinchBuilder;
   accessible(setup: (b: AccessibleAttachedBuilder) => void): PinchBuilder;
   drag(setup: (b: DragAttachedBuilder) => void): PinchBuilder;
   enterKey(setup: (b: EnterKeyAttachedBuilder) => void): PinchBuilder;

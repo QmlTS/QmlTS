@@ -2,11 +2,17 @@
 // Type: ColorGradientStop
 // Generated from Qt 6.11.0
 
-import type { QmlColor, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlColor,
+  QmlObjectBuilder,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 export interface ColorGradientStopBuilder {
   id(id: string): ColorGradientStopBuilder;
   child(obj: QmlObjectBuilder): ColorGradientStopBuilder;
+  children(...objs: QmlObjectBuilder[]): ColorGradientStopBuilder;
 
   color(value: QmlColor): ColorGradientStopBuilder;
   colorBind(expr: string): ColorGradientStopBuilder;
@@ -14,9 +20,9 @@ export interface ColorGradientStopBuilder {
   objectNameBind(expr: string): ColorGradientStopBuilder;
   position(value: number): ColorGradientStopBuilder;
   positionBind(expr: string): ColorGradientStopBuilder;
-  onColorChanged(body: string): ColorGradientStopBuilder;
-  onObjectNameChanged(body: string): ColorGradientStopBuilder;
-  onPositionChanged(body: string): ColorGradientStopBuilder;
+  onColorChanged(handler: DslSignalHandlerValue): ColorGradientStopBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): ColorGradientStopBuilder;
+  onPositionChanged(handler: DslSignalHandlerValue): ColorGradientStopBuilder;
 }
 
 const COLORGRADIENTSTOP_META: TypeMetadata = {

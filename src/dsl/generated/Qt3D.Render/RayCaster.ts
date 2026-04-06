@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlEnumToken,
   QmlObjectBuilder,
   QmlValue,
@@ -13,6 +14,7 @@ import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface RayCasterBuilder {
   id(id: string): RayCasterBuilder;
   child(obj: QmlObjectBuilder): RayCasterBuilder;
+  children(...objs: QmlObjectBuilder[]): RayCasterBuilder;
 
   direction(value: QmlVector3d): RayCasterBuilder;
   directionBind(expr: string): RayCasterBuilder;
@@ -32,19 +34,19 @@ export interface RayCasterBuilder {
   parentBind(expr: string): RayCasterBuilder;
   runMode(value: QmlEnumToken): RayCasterBuilder;
   runModeBind(expr: string): RayCasterBuilder;
-  onAddedToEntity(body: string): RayCasterBuilder;
-  onDirectionChanged(body: string): RayCasterBuilder;
-  onEnabledChanged(body: string): RayCasterBuilder;
-  onFilterModeChanged(body: string): RayCasterBuilder;
-  onHitsChanged(body: string): RayCasterBuilder;
-  onLengthChanged(body: string): RayCasterBuilder;
-  onNodeDestroyed(body: string): RayCasterBuilder;
-  onObjectNameChanged(body: string): RayCasterBuilder;
-  onOriginChanged(body: string): RayCasterBuilder;
-  onParentChanged(body: string): RayCasterBuilder;
-  onRemovedFromEntity(body: string): RayCasterBuilder;
-  onRunModeChanged(body: string): RayCasterBuilder;
-  onShareableChanged(body: string): RayCasterBuilder;
+  onAddedToEntity(handler: DslSignalHandlerValue): RayCasterBuilder;
+  onDirectionChanged(handler: DslSignalHandlerValue): RayCasterBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): RayCasterBuilder;
+  onFilterModeChanged(handler: DslSignalHandlerValue): RayCasterBuilder;
+  onHitsChanged(handler: DslSignalHandlerValue): RayCasterBuilder;
+  onLengthChanged(handler: DslSignalHandlerValue): RayCasterBuilder;
+  onNodeDestroyed(handler: DslSignalHandlerValue): RayCasterBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): RayCasterBuilder;
+  onOriginChanged(handler: DslSignalHandlerValue): RayCasterBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): RayCasterBuilder;
+  onRemovedFromEntity(handler: DslSignalHandlerValue): RayCasterBuilder;
+  onRunModeChanged(handler: DslSignalHandlerValue): RayCasterBuilder;
+  onShareableChanged(handler: DslSignalHandlerValue): RayCasterBuilder;
 }
 
 const RAYCASTER_META: TypeMetadata = {

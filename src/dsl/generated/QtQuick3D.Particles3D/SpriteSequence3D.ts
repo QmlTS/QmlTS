@@ -2,11 +2,17 @@
 // Type: SpriteSequence3D
 // Generated from Qt 6.11.0
 
-import type { QmlEnumToken, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlEnumToken,
+  QmlObjectBuilder,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface SpriteSequence3DBuilder {
   id(id: string): SpriteSequence3DBuilder;
   child(obj: QmlObjectBuilder): SpriteSequence3DBuilder;
+  children(...objs: QmlObjectBuilder[]): SpriteSequence3DBuilder;
 
   animationDirection(value: QmlEnumToken): SpriteSequence3DBuilder;
   animationDirectionBind(expr: string): SpriteSequence3DBuilder;
@@ -24,14 +30,14 @@ export interface SpriteSequence3DBuilder {
   objectNameBind(expr: string): SpriteSequence3DBuilder;
   randomStart(value: boolean): SpriteSequence3DBuilder;
   randomStartBind(expr: string): SpriteSequence3DBuilder;
-  onAnimationDirectionChanged(body: string): SpriteSequence3DBuilder;
-  onDurationChanged(body: string): SpriteSequence3DBuilder;
-  onDurationVariationChanged(body: string): SpriteSequence3DBuilder;
-  onFrameCountChanged(body: string): SpriteSequence3DBuilder;
-  onFrameIndexChanged(body: string): SpriteSequence3DBuilder;
-  onInterpolateChanged(body: string): SpriteSequence3DBuilder;
-  onObjectNameChanged(body: string): SpriteSequence3DBuilder;
-  onRandomStartChanged(body: string): SpriteSequence3DBuilder;
+  onAnimationDirectionChanged(handler: DslSignalHandlerValue): SpriteSequence3DBuilder;
+  onDurationChanged(handler: DslSignalHandlerValue): SpriteSequence3DBuilder;
+  onDurationVariationChanged(handler: DslSignalHandlerValue): SpriteSequence3DBuilder;
+  onFrameCountChanged(handler: DslSignalHandlerValue): SpriteSequence3DBuilder;
+  onFrameIndexChanged(handler: DslSignalHandlerValue): SpriteSequence3DBuilder;
+  onInterpolateChanged(handler: DslSignalHandlerValue): SpriteSequence3DBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): SpriteSequence3DBuilder;
+  onRandomStartChanged(handler: DslSignalHandlerValue): SpriteSequence3DBuilder;
 }
 
 const SPRITESEQUENCE3D_META: TypeMetadata = {

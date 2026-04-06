@@ -2,7 +2,12 @@
 // Type: CheckDelegate
 // Generated from Qt 6.11.0
 
-import type { QmlEnumToken, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlEnumToken,
+  QmlObjectBuilder,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { QtObjectBuilder } from '../QML/QtObject.js';
 import type { ItemBuilder } from '../QtQuick/Item.js';
@@ -12,6 +17,7 @@ import type { LayerBuilder } from '../QtQuick/QQuickItemLayer.js';
 export interface CheckDelegateBuilder {
   id(id: string): CheckDelegateBuilder;
   child(obj: QmlObjectBuilder): CheckDelegateBuilder;
+  children(...objs: QmlObjectBuilder[]): CheckDelegateBuilder;
 
   activeFocusOnTab(value: boolean): CheckDelegateBuilder;
   activeFocusOnTabBind(expr: string): CheckDelegateBuilder;
@@ -75,42 +81,42 @@ export interface CheckDelegateBuilder {
   yBind(expr: string): CheckDelegateBuilder;
   z(value: number): CheckDelegateBuilder;
   zBind(expr: string): CheckDelegateBuilder;
-  onActiveFocusChanged(body: string): CheckDelegateBuilder;
-  onActiveFocusOnTabChanged(body: string): CheckDelegateBuilder;
-  onAntialiasingChanged(body: string): CheckDelegateBuilder;
-  onBaselineOffsetChanged(body: string): CheckDelegateBuilder;
-  onChildrenChanged(body: string): CheckDelegateBuilder;
-  onChildrenRectChanged(body: string): CheckDelegateBuilder;
-  onClipChanged(body: string): CheckDelegateBuilder;
-  onContainmentMaskChanged(body: string): CheckDelegateBuilder;
-  onContentPaddingChanged(body: string): CheckDelegateBuilder;
-  onControlChanged(body: string): CheckDelegateBuilder;
-  onEnabledChanged(body: string): CheckDelegateBuilder;
-  onFocusChanged(body: string): CheckDelegateBuilder;
-  onFocusPolicyChanged(body: string): CheckDelegateBuilder;
-  onFontChanged(body: string): CheckDelegateBuilder;
-  onHeightChanged(body: string): CheckDelegateBuilder;
-  onImplicitHeightChanged(body: string): CheckDelegateBuilder;
-  onImplicitWidthChanged(body: string): CheckDelegateBuilder;
-  onLayoutMarginsChanged(body: string): CheckDelegateBuilder;
-  onMinimumSizeChanged(body: string): CheckDelegateBuilder;
-  onObjectNameChanged(body: string): CheckDelegateBuilder;
-  onOpacityChanged(body: string): CheckDelegateBuilder;
-  onPaletteChanged(body: string): CheckDelegateBuilder;
-  onPaletteCreated(body: string): CheckDelegateBuilder;
-  onParentChanged(body: string): CheckDelegateBuilder;
-  onRotationChanged(body: string): CheckDelegateBuilder;
-  onScaleChanged(body: string): CheckDelegateBuilder;
-  onSmoothChanged(body: string): CheckDelegateBuilder;
-  onStateChanged(body: string): CheckDelegateBuilder;
-  onTransformOriginChanged(body: string): CheckDelegateBuilder;
-  onVisibleChanged(body: string): CheckDelegateBuilder;
-  onVisibleChildrenChanged(body: string): CheckDelegateBuilder;
-  onWidthChanged(body: string): CheckDelegateBuilder;
-  onWindowChanged(body: string): CheckDelegateBuilder;
-  onXChanged(body: string): CheckDelegateBuilder;
-  onYChanged(body: string): CheckDelegateBuilder;
-  onZChanged(body: string): CheckDelegateBuilder;
+  onActiveFocusChanged(handler: DslSignalHandlerValue): CheckDelegateBuilder;
+  onActiveFocusOnTabChanged(handler: DslSignalHandlerValue): CheckDelegateBuilder;
+  onAntialiasingChanged(handler: DslSignalHandlerValue): CheckDelegateBuilder;
+  onBaselineOffsetChanged(handler: DslSignalHandlerValue): CheckDelegateBuilder;
+  onChildrenChanged(handler: DslSignalHandlerValue): CheckDelegateBuilder;
+  onChildrenRectChanged(handler: DslSignalHandlerValue): CheckDelegateBuilder;
+  onClipChanged(handler: DslSignalHandlerValue): CheckDelegateBuilder;
+  onContainmentMaskChanged(handler: DslSignalHandlerValue): CheckDelegateBuilder;
+  onContentPaddingChanged(handler: DslSignalHandlerValue): CheckDelegateBuilder;
+  onControlChanged(handler: DslSignalHandlerValue): CheckDelegateBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): CheckDelegateBuilder;
+  onFocusChanged(handler: DslSignalHandlerValue): CheckDelegateBuilder;
+  onFocusPolicyChanged(handler: DslSignalHandlerValue): CheckDelegateBuilder;
+  onFontChanged(handler: DslSignalHandlerValue): CheckDelegateBuilder;
+  onHeightChanged(handler: DslSignalHandlerValue): CheckDelegateBuilder;
+  onImplicitHeightChanged(handler: DslSignalHandlerValue): CheckDelegateBuilder;
+  onImplicitWidthChanged(handler: DslSignalHandlerValue): CheckDelegateBuilder;
+  onLayoutMarginsChanged(handler: DslSignalHandlerValue): CheckDelegateBuilder;
+  onMinimumSizeChanged(handler: DslSignalHandlerValue): CheckDelegateBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): CheckDelegateBuilder;
+  onOpacityChanged(handler: DslSignalHandlerValue): CheckDelegateBuilder;
+  onPaletteChanged(handler: DslSignalHandlerValue): CheckDelegateBuilder;
+  onPaletteCreated(handler: DslSignalHandlerValue): CheckDelegateBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): CheckDelegateBuilder;
+  onRotationChanged(handler: DslSignalHandlerValue): CheckDelegateBuilder;
+  onScaleChanged(handler: DslSignalHandlerValue): CheckDelegateBuilder;
+  onSmoothChanged(handler: DslSignalHandlerValue): CheckDelegateBuilder;
+  onStateChanged(handler: DslSignalHandlerValue): CheckDelegateBuilder;
+  onTransformOriginChanged(handler: DslSignalHandlerValue): CheckDelegateBuilder;
+  onVisibleChanged(handler: DslSignalHandlerValue): CheckDelegateBuilder;
+  onVisibleChildrenChanged(handler: DslSignalHandlerValue): CheckDelegateBuilder;
+  onWidthChanged(handler: DslSignalHandlerValue): CheckDelegateBuilder;
+  onWindowChanged(handler: DslSignalHandlerValue): CheckDelegateBuilder;
+  onXChanged(handler: DslSignalHandlerValue): CheckDelegateBuilder;
+  onYChanged(handler: DslSignalHandlerValue): CheckDelegateBuilder;
+  onZChanged(handler: DslSignalHandlerValue): CheckDelegateBuilder;
   anchors(setup: (b: AnchorsBuilder) => void): CheckDelegateBuilder;
   layer(setup: (b: LayerBuilder) => void): CheckDelegateBuilder;
 }

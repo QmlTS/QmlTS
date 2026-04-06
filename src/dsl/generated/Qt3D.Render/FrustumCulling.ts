@@ -2,11 +2,17 @@
 // Type: FrustumCulling
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 export interface FrustumCullingBuilder {
   id(id: string): FrustumCullingBuilder;
   child(obj: QmlObjectBuilder): FrustumCullingBuilder;
+  children(...objs: QmlObjectBuilder[]): FrustumCullingBuilder;
 
   enabled(value: boolean): FrustumCullingBuilder;
   enabledBind(expr: string): FrustumCullingBuilder;
@@ -14,10 +20,10 @@ export interface FrustumCullingBuilder {
   objectNameBind(expr: string): FrustumCullingBuilder;
   parent(value: QmlValue): FrustumCullingBuilder;
   parentBind(expr: string): FrustumCullingBuilder;
-  onEnabledChanged(body: string): FrustumCullingBuilder;
-  onNodeDestroyed(body: string): FrustumCullingBuilder;
-  onObjectNameChanged(body: string): FrustumCullingBuilder;
-  onParentChanged(body: string): FrustumCullingBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): FrustumCullingBuilder;
+  onNodeDestroyed(handler: DslSignalHandlerValue): FrustumCullingBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): FrustumCullingBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): FrustumCullingBuilder;
 }
 
 const FRUSTUMCULLING_META: TypeMetadata = {

@@ -2,7 +2,12 @@
 // Type: ValueFilter
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 import type { DelegateModelAttachedBuilder } from './QQmlDelegateModelAttached.js';
 import type { ObjectModelAttachedBuilder } from './QQmlObjectModelAttached.js';
@@ -10,6 +15,7 @@ import type { PackageAttachedBuilder } from './QQuickPackageAttached.js';
 export interface ValueFilterBuilder {
   id(id: string): ValueFilterBuilder;
   child(obj: QmlObjectBuilder): ValueFilterBuilder;
+  children(...objs: QmlObjectBuilder[]): ValueFilterBuilder;
 
   column(value: number): ValueFilterBuilder;
   columnBind(expr: string): ValueFilterBuilder;
@@ -23,14 +29,14 @@ export interface ValueFilterBuilder {
   roleNameBind(expr: string): ValueFilterBuilder;
   value(value: QmlValue): ValueFilterBuilder;
   valueBind(expr: string): ValueFilterBuilder;
-  onColumnChanged(body: string): ValueFilterBuilder;
-  onEnabledChanged(body: string): ValueFilterBuilder;
-  onInvalidateCache(body: string): ValueFilterBuilder;
-  onInvalidateModel(body: string): ValueFilterBuilder;
-  onInvertedChanged(body: string): ValueFilterBuilder;
-  onObjectNameChanged(body: string): ValueFilterBuilder;
-  onRoleNameChanged(body: string): ValueFilterBuilder;
-  onValueChanged(body: string): ValueFilterBuilder;
+  onColumnChanged(handler: DslSignalHandlerValue): ValueFilterBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): ValueFilterBuilder;
+  onInvalidateCache(handler: DslSignalHandlerValue): ValueFilterBuilder;
+  onInvalidateModel(handler: DslSignalHandlerValue): ValueFilterBuilder;
+  onInvertedChanged(handler: DslSignalHandlerValue): ValueFilterBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): ValueFilterBuilder;
+  onRoleNameChanged(handler: DslSignalHandlerValue): ValueFilterBuilder;
+  onValueChanged(handler: DslSignalHandlerValue): ValueFilterBuilder;
   delegateModel(setup: (b: DelegateModelAttachedBuilder) => void): ValueFilterBuilder;
   objectModel(setup: (b: ObjectModelAttachedBuilder) => void): ValueFilterBuilder;
   package(setup: (b: PackageAttachedBuilder) => void): ValueFilterBuilder;

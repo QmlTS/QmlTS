@@ -2,11 +2,17 @@
 // Type: Layer
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 export interface LayerBuilder {
   id(id: string): LayerBuilder;
   child(obj: QmlObjectBuilder): LayerBuilder;
+  children(...objs: QmlObjectBuilder[]): LayerBuilder;
 
   enabled(value: boolean): LayerBuilder;
   enabledBind(expr: string): LayerBuilder;
@@ -18,14 +24,14 @@ export interface LayerBuilder {
   parentBind(expr: string): LayerBuilder;
   recursive(value: boolean): LayerBuilder;
   recursiveBind(expr: string): LayerBuilder;
-  onAddedToEntity(body: string): LayerBuilder;
-  onEnabledChanged(body: string): LayerBuilder;
-  onNodeDestroyed(body: string): LayerBuilder;
-  onObjectNameChanged(body: string): LayerBuilder;
-  onParentChanged(body: string): LayerBuilder;
-  onRecursiveChanged(body: string): LayerBuilder;
-  onRemovedFromEntity(body: string): LayerBuilder;
-  onShareableChanged(body: string): LayerBuilder;
+  onAddedToEntity(handler: DslSignalHandlerValue): LayerBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): LayerBuilder;
+  onNodeDestroyed(handler: DslSignalHandlerValue): LayerBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): LayerBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): LayerBuilder;
+  onRecursiveChanged(handler: DslSignalHandlerValue): LayerBuilder;
+  onRemovedFromEntity(handler: DslSignalHandlerValue): LayerBuilder;
+  onShareableChanged(handler: DslSignalHandlerValue): LayerBuilder;
 }
 
 const LAYER_META: TypeMetadata = {

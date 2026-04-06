@@ -2,7 +2,12 @@
 // Type: PathMultiline
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 import type { AccessibleAttachedBuilder } from './Accessible.js';
 import type { EnterKeyAttachedBuilder } from './EnterKey.js';
@@ -23,6 +28,7 @@ import type { ViewTransitionAttachedBuilder } from './ViewTransition.js';
 export interface PathMultilineBuilder {
   id(id: string): PathMultilineBuilder;
   child(obj: QmlObjectBuilder): PathMultilineBuilder;
+  children(...objs: QmlObjectBuilder[]): PathMultilineBuilder;
 
   objectName(value: string): PathMultilineBuilder;
   objectNameBind(expr: string): PathMultilineBuilder;
@@ -36,14 +42,14 @@ export interface PathMultilineBuilder {
   xBind(expr: string): PathMultilineBuilder;
   y(value: number): PathMultilineBuilder;
   yBind(expr: string): PathMultilineBuilder;
-  onChanged(body: string): PathMultilineBuilder;
-  onObjectNameChanged(body: string): PathMultilineBuilder;
-  onPathsChanged(body: string): PathMultilineBuilder;
-  onRelativeXChanged(body: string): PathMultilineBuilder;
-  onRelativeYChanged(body: string): PathMultilineBuilder;
-  onStartChanged(body: string): PathMultilineBuilder;
-  onXChanged(body: string): PathMultilineBuilder;
-  onYChanged(body: string): PathMultilineBuilder;
+  onChanged(handler: DslSignalHandlerValue): PathMultilineBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): PathMultilineBuilder;
+  onPathsChanged(handler: DslSignalHandlerValue): PathMultilineBuilder;
+  onRelativeXChanged(handler: DslSignalHandlerValue): PathMultilineBuilder;
+  onRelativeYChanged(handler: DslSignalHandlerValue): PathMultilineBuilder;
+  onStartChanged(handler: DslSignalHandlerValue): PathMultilineBuilder;
+  onXChanged(handler: DslSignalHandlerValue): PathMultilineBuilder;
+  onYChanged(handler: DslSignalHandlerValue): PathMultilineBuilder;
   accessible(setup: (b: AccessibleAttachedBuilder) => void): PathMultilineBuilder;
   drag(setup: (b: DragAttachedBuilder) => void): PathMultilineBuilder;
   enterKey(setup: (b: EnterKeyAttachedBuilder) => void): PathMultilineBuilder;

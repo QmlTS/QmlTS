@@ -2,7 +2,7 @@
 // Type: StyleKitDebug
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import type { DslSignalHandlerValue, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 import type { ItemBuilder } from '../QtQuick/Item.js';
 import type { StyleKitAttachedBuilder } from './QQStyleKitAttached.js';
@@ -10,6 +10,7 @@ import type { StyleVariationAttachedBuilder } from './QQStyleKitVariationAttache
 export interface StyleKitDebugBuilder {
   id(id: string): StyleKitDebugBuilder;
   child(obj: QmlObjectBuilder): StyleKitDebugBuilder;
+  children(...objs: QmlObjectBuilder[]): StyleKitDebugBuilder;
 
   control(value: ItemBuilder): StyleKitDebugBuilder;
   controlBind(expr: string): StyleKitDebugBuilder;
@@ -17,9 +18,9 @@ export interface StyleKitDebugBuilder {
   filterBind(expr: string): StyleKitDebugBuilder;
   objectName(value: string): StyleKitDebugBuilder;
   objectNameBind(expr: string): StyleKitDebugBuilder;
-  onControlChanged(body: string): StyleKitDebugBuilder;
-  onFilterChanged(body: string): StyleKitDebugBuilder;
-  onObjectNameChanged(body: string): StyleKitDebugBuilder;
+  onControlChanged(handler: DslSignalHandlerValue): StyleKitDebugBuilder;
+  onFilterChanged(handler: DslSignalHandlerValue): StyleKitDebugBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): StyleKitDebugBuilder;
   styleKit(setup: (b: StyleKitAttachedBuilder) => void): StyleKitDebugBuilder;
   styleVariation(setup: (b: StyleVariationAttachedBuilder) => void): StyleKitDebugBuilder;
 }

@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlComponent,
   QmlEnumToken,
   QmlObjectBuilder,
@@ -16,6 +17,7 @@ import type { PackageAttachedBuilder } from './QQuickPackageAttached.js';
 export interface InstantiatorBuilder {
   id(id: string): InstantiatorBuilder;
   child(obj: QmlObjectBuilder): InstantiatorBuilder;
+  children(...objs: QmlObjectBuilder[]): InstantiatorBuilder;
 
   active(value: boolean): InstantiatorBuilder;
   activeBind(expr: string): InstantiatorBuilder;
@@ -29,16 +31,16 @@ export interface InstantiatorBuilder {
   modelBind(expr: string): InstantiatorBuilder;
   objectName(value: string): InstantiatorBuilder;
   objectNameBind(expr: string): InstantiatorBuilder;
-  onActiveChanged(body: string): InstantiatorBuilder;
-  onAsynchronousChanged(body: string): InstantiatorBuilder;
-  onCountChanged(body: string): InstantiatorBuilder;
-  onDelegateChanged(body: string): InstantiatorBuilder;
-  onDelegateModelAccessChanged(body: string): InstantiatorBuilder;
-  onModelChanged(body: string): InstantiatorBuilder;
-  onObjectAdded(body: string): InstantiatorBuilder;
-  onObjectChanged(body: string): InstantiatorBuilder;
-  onObjectNameChanged(body: string): InstantiatorBuilder;
-  onObjectRemoved(body: string): InstantiatorBuilder;
+  onActiveChanged(handler: DslSignalHandlerValue): InstantiatorBuilder;
+  onAsynchronousChanged(handler: DslSignalHandlerValue): InstantiatorBuilder;
+  onCountChanged(handler: DslSignalHandlerValue): InstantiatorBuilder;
+  onDelegateChanged(handler: DslSignalHandlerValue): InstantiatorBuilder;
+  onDelegateModelAccessChanged(handler: DslSignalHandlerValue): InstantiatorBuilder;
+  onModelChanged(handler: DslSignalHandlerValue): InstantiatorBuilder;
+  onObjectAdded(handler: DslSignalHandlerValue): InstantiatorBuilder;
+  onObjectChanged(handler: DslSignalHandlerValue): InstantiatorBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): InstantiatorBuilder;
+  onObjectRemoved(handler: DslSignalHandlerValue): InstantiatorBuilder;
   delegateModel(setup: (b: DelegateModelAttachedBuilder) => void): InstantiatorBuilder;
   objectModel(setup: (b: ObjectModelAttachedBuilder) => void): InstantiatorBuilder;
   package(setup: (b: PackageAttachedBuilder) => void): InstantiatorBuilder;

@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlEnumToken,
   QmlObjectBuilder,
   QmlValue,
@@ -12,6 +13,7 @@ import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface PickingSettingsBuilder {
   id(id: string): PickingSettingsBuilder;
   child(obj: QmlObjectBuilder): PickingSettingsBuilder;
+  children(...objs: QmlObjectBuilder[]): PickingSettingsBuilder;
 
   enabled(value: boolean): PickingSettingsBuilder;
   enabledBind(expr: string): PickingSettingsBuilder;
@@ -27,14 +29,14 @@ export interface PickingSettingsBuilder {
   pickResultModeBind(expr: string): PickingSettingsBuilder;
   worldSpaceTolerance(value: number): PickingSettingsBuilder;
   worldSpaceToleranceBind(expr: string): PickingSettingsBuilder;
-  onEnabledChanged(body: string): PickingSettingsBuilder;
-  onFaceOrientationPickingModeChanged(body: string): PickingSettingsBuilder;
-  onNodeDestroyed(body: string): PickingSettingsBuilder;
-  onObjectNameChanged(body: string): PickingSettingsBuilder;
-  onParentChanged(body: string): PickingSettingsBuilder;
-  onPickMethodChanged(body: string): PickingSettingsBuilder;
-  onPickResultModeChanged(body: string): PickingSettingsBuilder;
-  onWorldSpaceToleranceChanged(body: string): PickingSettingsBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): PickingSettingsBuilder;
+  onFaceOrientationPickingModeChanged(handler: DslSignalHandlerValue): PickingSettingsBuilder;
+  onNodeDestroyed(handler: DslSignalHandlerValue): PickingSettingsBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): PickingSettingsBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): PickingSettingsBuilder;
+  onPickMethodChanged(handler: DslSignalHandlerValue): PickingSettingsBuilder;
+  onPickResultModeChanged(handler: DslSignalHandlerValue): PickingSettingsBuilder;
+  onWorldSpaceToleranceChanged(handler: DslSignalHandlerValue): PickingSettingsBuilder;
 }
 
 const PICKINGSETTINGS_META: TypeMetadata = {

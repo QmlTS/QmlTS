@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlEnumToken,
   QmlObjectBuilder,
   QmlValue,
@@ -19,6 +20,7 @@ import type { ItemParticleAttachedBuilder } from './QQuickItemParticleAttached.j
 export interface SpriteGoalBuilder {
   id(id: string): SpriteGoalBuilder;
   child(obj: QmlObjectBuilder): SpriteGoalBuilder;
+  children(...objs: QmlObjectBuilder[]): SpriteGoalBuilder;
 
   activeFocusOnTab(value: boolean): SpriteGoalBuilder;
   activeFocusOnTabBind(expr: string): SpriteGoalBuilder;
@@ -86,46 +88,46 @@ export interface SpriteGoalBuilder {
   yBind(expr: string): SpriteGoalBuilder;
   z(value: number): SpriteGoalBuilder;
   zBind(expr: string): SpriteGoalBuilder;
-  onActiveFocusChanged(body: string): SpriteGoalBuilder;
-  onActiveFocusOnTabChanged(body: string): SpriteGoalBuilder;
-  onAffected(body: string): SpriteGoalBuilder;
-  onAntialiasingChanged(body: string): SpriteGoalBuilder;
-  onBaselineOffsetChanged(body: string): SpriteGoalBuilder;
-  onChildrenChanged(body: string): SpriteGoalBuilder;
-  onChildrenRectChanged(body: string): SpriteGoalBuilder;
-  onClipChanged(body: string): SpriteGoalBuilder;
-  onContainmentMaskChanged(body: string): SpriteGoalBuilder;
-  onEnabledChanged(body: string): SpriteGoalBuilder;
-  onFocusChanged(body: string): SpriteGoalBuilder;
-  onFocusPolicyChanged(body: string): SpriteGoalBuilder;
-  onGoalStateChanged(body: string): SpriteGoalBuilder;
-  onGroupsChanged(body: string): SpriteGoalBuilder;
-  onHeightChanged(body: string): SpriteGoalBuilder;
-  onImplicitHeightChanged(body: string): SpriteGoalBuilder;
-  onImplicitWidthChanged(body: string): SpriteGoalBuilder;
-  onJumpChanged(body: string): SpriteGoalBuilder;
-  onObjectNameChanged(body: string): SpriteGoalBuilder;
-  onOnceChanged(body: string): SpriteGoalBuilder;
-  onOpacityChanged(body: string): SpriteGoalBuilder;
-  onPaletteChanged(body: string): SpriteGoalBuilder;
-  onPaletteCreated(body: string): SpriteGoalBuilder;
-  onParentChanged(body: string): SpriteGoalBuilder;
-  onRotationChanged(body: string): SpriteGoalBuilder;
-  onScaleChanged(body: string): SpriteGoalBuilder;
-  onShapeChanged(body: string): SpriteGoalBuilder;
-  onSmoothChanged(body: string): SpriteGoalBuilder;
-  onStateChanged(body: string): SpriteGoalBuilder;
-  onSystemChanged(body: string): SpriteGoalBuilder;
-  onSystemStatesChanged(body: string): SpriteGoalBuilder;
-  onTransformOriginChanged(body: string): SpriteGoalBuilder;
-  onVisibleChanged(body: string): SpriteGoalBuilder;
-  onVisibleChildrenChanged(body: string): SpriteGoalBuilder;
-  onWhenCollidingWithChanged(body: string): SpriteGoalBuilder;
-  onWidthChanged(body: string): SpriteGoalBuilder;
-  onWindowChanged(body: string): SpriteGoalBuilder;
-  onXChanged(body: string): SpriteGoalBuilder;
-  onYChanged(body: string): SpriteGoalBuilder;
-  onZChanged(body: string): SpriteGoalBuilder;
+  onActiveFocusChanged(handler: DslSignalHandlerValue): SpriteGoalBuilder;
+  onActiveFocusOnTabChanged(handler: DslSignalHandlerValue): SpriteGoalBuilder;
+  onAffected(handler: DslSignalHandlerValue): SpriteGoalBuilder;
+  onAntialiasingChanged(handler: DslSignalHandlerValue): SpriteGoalBuilder;
+  onBaselineOffsetChanged(handler: DslSignalHandlerValue): SpriteGoalBuilder;
+  onChildrenChanged(handler: DslSignalHandlerValue): SpriteGoalBuilder;
+  onChildrenRectChanged(handler: DslSignalHandlerValue): SpriteGoalBuilder;
+  onClipChanged(handler: DslSignalHandlerValue): SpriteGoalBuilder;
+  onContainmentMaskChanged(handler: DslSignalHandlerValue): SpriteGoalBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): SpriteGoalBuilder;
+  onFocusChanged(handler: DslSignalHandlerValue): SpriteGoalBuilder;
+  onFocusPolicyChanged(handler: DslSignalHandlerValue): SpriteGoalBuilder;
+  onGoalStateChanged(handler: DslSignalHandlerValue): SpriteGoalBuilder;
+  onGroupsChanged(handler: DslSignalHandlerValue): SpriteGoalBuilder;
+  onHeightChanged(handler: DslSignalHandlerValue): SpriteGoalBuilder;
+  onImplicitHeightChanged(handler: DslSignalHandlerValue): SpriteGoalBuilder;
+  onImplicitWidthChanged(handler: DslSignalHandlerValue): SpriteGoalBuilder;
+  onJumpChanged(handler: DslSignalHandlerValue): SpriteGoalBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): SpriteGoalBuilder;
+  onOnceChanged(handler: DslSignalHandlerValue): SpriteGoalBuilder;
+  onOpacityChanged(handler: DslSignalHandlerValue): SpriteGoalBuilder;
+  onPaletteChanged(handler: DslSignalHandlerValue): SpriteGoalBuilder;
+  onPaletteCreated(handler: DslSignalHandlerValue): SpriteGoalBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): SpriteGoalBuilder;
+  onRotationChanged(handler: DslSignalHandlerValue): SpriteGoalBuilder;
+  onScaleChanged(handler: DslSignalHandlerValue): SpriteGoalBuilder;
+  onShapeChanged(handler: DslSignalHandlerValue): SpriteGoalBuilder;
+  onSmoothChanged(handler: DslSignalHandlerValue): SpriteGoalBuilder;
+  onStateChanged(handler: DslSignalHandlerValue): SpriteGoalBuilder;
+  onSystemChanged(handler: DslSignalHandlerValue): SpriteGoalBuilder;
+  onSystemStatesChanged(handler: DslSignalHandlerValue): SpriteGoalBuilder;
+  onTransformOriginChanged(handler: DslSignalHandlerValue): SpriteGoalBuilder;
+  onVisibleChanged(handler: DslSignalHandlerValue): SpriteGoalBuilder;
+  onVisibleChildrenChanged(handler: DslSignalHandlerValue): SpriteGoalBuilder;
+  onWhenCollidingWithChanged(handler: DslSignalHandlerValue): SpriteGoalBuilder;
+  onWidthChanged(handler: DslSignalHandlerValue): SpriteGoalBuilder;
+  onWindowChanged(handler: DslSignalHandlerValue): SpriteGoalBuilder;
+  onXChanged(handler: DslSignalHandlerValue): SpriteGoalBuilder;
+  onYChanged(handler: DslSignalHandlerValue): SpriteGoalBuilder;
+  onZChanged(handler: DslSignalHandlerValue): SpriteGoalBuilder;
   anchors(setup: (b: AnchorsBuilder) => void): SpriteGoalBuilder;
   layer(setup: (b: LayerBuilder) => void): SpriteGoalBuilder;
   itemParticle(setup: (b: ItemParticleAttachedBuilder) => void): SpriteGoalBuilder;

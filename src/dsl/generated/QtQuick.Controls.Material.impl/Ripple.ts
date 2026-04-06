@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlColor,
   QmlEnumToken,
   QmlObjectBuilder,
@@ -17,6 +18,7 @@ import type { LayerBuilder } from '../QtQuick/QQuickItemLayer.js';
 export interface RippleBuilder {
   id(id: string): RippleBuilder;
   child(obj: QmlObjectBuilder): RippleBuilder;
+  children(...objs: QmlObjectBuilder[]): RippleBuilder;
 
   active(value: boolean): RippleBuilder;
   activeBind(expr: string): RippleBuilder;
@@ -80,37 +82,37 @@ export interface RippleBuilder {
   yBind(expr: string): RippleBuilder;
   z(value: number): RippleBuilder;
   zBind(expr: string): RippleBuilder;
-  onActiveFocusChanged(body: string): RippleBuilder;
-  onActiveFocusOnTabChanged(body: string): RippleBuilder;
-  onAntialiasingChanged(body: string): RippleBuilder;
-  onBaselineOffsetChanged(body: string): RippleBuilder;
-  onChildrenChanged(body: string): RippleBuilder;
-  onChildrenRectChanged(body: string): RippleBuilder;
-  onClipChanged(body: string): RippleBuilder;
-  onContainmentMaskChanged(body: string): RippleBuilder;
-  onEnabledChanged(body: string): RippleBuilder;
-  onFocusChanged(body: string): RippleBuilder;
-  onFocusPolicyChanged(body: string): RippleBuilder;
-  onHeightChanged(body: string): RippleBuilder;
-  onImplicitHeightChanged(body: string): RippleBuilder;
-  onImplicitWidthChanged(body: string): RippleBuilder;
-  onObjectNameChanged(body: string): RippleBuilder;
-  onOpacityChanged(body: string): RippleBuilder;
-  onPaletteChanged(body: string): RippleBuilder;
-  onPaletteCreated(body: string): RippleBuilder;
-  onParentChanged(body: string): RippleBuilder;
-  onRotationChanged(body: string): RippleBuilder;
-  onScaleChanged(body: string): RippleBuilder;
-  onSmoothChanged(body: string): RippleBuilder;
-  onStateChanged(body: string): RippleBuilder;
-  onTransformOriginChanged(body: string): RippleBuilder;
-  onVisibleChanged(body: string): RippleBuilder;
-  onVisibleChildrenChanged(body: string): RippleBuilder;
-  onWidthChanged(body: string): RippleBuilder;
-  onWindowChanged(body: string): RippleBuilder;
-  onXChanged(body: string): RippleBuilder;
-  onYChanged(body: string): RippleBuilder;
-  onZChanged(body: string): RippleBuilder;
+  onActiveFocusChanged(handler: DslSignalHandlerValue): RippleBuilder;
+  onActiveFocusOnTabChanged(handler: DslSignalHandlerValue): RippleBuilder;
+  onAntialiasingChanged(handler: DslSignalHandlerValue): RippleBuilder;
+  onBaselineOffsetChanged(handler: DslSignalHandlerValue): RippleBuilder;
+  onChildrenChanged(handler: DslSignalHandlerValue): RippleBuilder;
+  onChildrenRectChanged(handler: DslSignalHandlerValue): RippleBuilder;
+  onClipChanged(handler: DslSignalHandlerValue): RippleBuilder;
+  onContainmentMaskChanged(handler: DslSignalHandlerValue): RippleBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): RippleBuilder;
+  onFocusChanged(handler: DslSignalHandlerValue): RippleBuilder;
+  onFocusPolicyChanged(handler: DslSignalHandlerValue): RippleBuilder;
+  onHeightChanged(handler: DslSignalHandlerValue): RippleBuilder;
+  onImplicitHeightChanged(handler: DslSignalHandlerValue): RippleBuilder;
+  onImplicitWidthChanged(handler: DslSignalHandlerValue): RippleBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): RippleBuilder;
+  onOpacityChanged(handler: DslSignalHandlerValue): RippleBuilder;
+  onPaletteChanged(handler: DslSignalHandlerValue): RippleBuilder;
+  onPaletteCreated(handler: DslSignalHandlerValue): RippleBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): RippleBuilder;
+  onRotationChanged(handler: DslSignalHandlerValue): RippleBuilder;
+  onScaleChanged(handler: DslSignalHandlerValue): RippleBuilder;
+  onSmoothChanged(handler: DslSignalHandlerValue): RippleBuilder;
+  onStateChanged(handler: DslSignalHandlerValue): RippleBuilder;
+  onTransformOriginChanged(handler: DslSignalHandlerValue): RippleBuilder;
+  onVisibleChanged(handler: DslSignalHandlerValue): RippleBuilder;
+  onVisibleChildrenChanged(handler: DslSignalHandlerValue): RippleBuilder;
+  onWidthChanged(handler: DslSignalHandlerValue): RippleBuilder;
+  onWindowChanged(handler: DslSignalHandlerValue): RippleBuilder;
+  onXChanged(handler: DslSignalHandlerValue): RippleBuilder;
+  onYChanged(handler: DslSignalHandlerValue): RippleBuilder;
+  onZChanged(handler: DslSignalHandlerValue): RippleBuilder;
   anchors(setup: (b: AnchorsBuilder) => void): RippleBuilder;
   layer(setup: (b: LayerBuilder) => void): RippleBuilder;
 }

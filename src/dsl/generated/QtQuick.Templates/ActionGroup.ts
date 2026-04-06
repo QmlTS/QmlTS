@@ -2,7 +2,7 @@
 // Type: ActionGroup
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import type { DslSignalHandlerValue, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 import type { ActionBuilder } from './Action.js';
 import type { ContextMenuAttachedBuilder } from './ContextMenu.js';
@@ -26,6 +26,7 @@ import type { SplitHandleAttachedBuilder } from './SplitHandle.js';
 export interface ActionGroupBuilder {
   id(id: string): ActionGroupBuilder;
   child(obj: QmlObjectBuilder): ActionGroupBuilder;
+  children(...objs: QmlObjectBuilder[]): ActionGroupBuilder;
 
   checkedAction(value: ActionBuilder): ActionGroupBuilder;
   checkedActionBind(expr: string): ActionGroupBuilder;
@@ -35,12 +36,12 @@ export interface ActionGroupBuilder {
   exclusiveBind(expr: string): ActionGroupBuilder;
   objectName(value: string): ActionGroupBuilder;
   objectNameBind(expr: string): ActionGroupBuilder;
-  onActionsChanged(body: string): ActionGroupBuilder;
-  onCheckedActionChanged(body: string): ActionGroupBuilder;
-  onEnabledChanged(body: string): ActionGroupBuilder;
-  onExclusiveChanged(body: string): ActionGroupBuilder;
-  onObjectNameChanged(body: string): ActionGroupBuilder;
-  onTriggered(body: string): ActionGroupBuilder;
+  onActionsChanged(handler: DslSignalHandlerValue): ActionGroupBuilder;
+  onCheckedActionChanged(handler: DslSignalHandlerValue): ActionGroupBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): ActionGroupBuilder;
+  onExclusiveChanged(handler: DslSignalHandlerValue): ActionGroupBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): ActionGroupBuilder;
+  onTriggered(handler: DslSignalHandlerValue): ActionGroupBuilder;
   actionGroup(setup: (b: ActionGroupAttachedBuilder) => void): ActionGroupBuilder;
   applicationWindow(setup: (b: ApplicationWindowAttachedBuilder) => void): ActionGroupBuilder;
   buttonGroup(setup: (b: ButtonGroupAttachedBuilder) => void): ActionGroupBuilder;

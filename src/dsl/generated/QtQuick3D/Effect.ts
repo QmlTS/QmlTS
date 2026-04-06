@@ -2,11 +2,17 @@
 // Type: Effect
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 export interface EffectBuilder {
   id(id: string): EffectBuilder;
   child(obj: QmlObjectBuilder): EffectBuilder;
+  children(...objs: QmlObjectBuilder[]): EffectBuilder;
 
   objectName(value: string): EffectBuilder;
   objectNameBind(expr: string): EffectBuilder;
@@ -14,10 +20,10 @@ export interface EffectBuilder {
   parentBind(expr: string): EffectBuilder;
   state(value: string): EffectBuilder;
   stateBind(expr: string): EffectBuilder;
-  onChildrenChanged(body: string): EffectBuilder;
-  onObjectNameChanged(body: string): EffectBuilder;
-  onParentChanged(body: string): EffectBuilder;
-  onStateChanged(body: string): EffectBuilder;
+  onChildrenChanged(handler: DslSignalHandlerValue): EffectBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): EffectBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): EffectBuilder;
+  onStateChanged(handler: DslSignalHandlerValue): EffectBuilder;
 }
 
 const EFFECT_META: TypeMetadata = {

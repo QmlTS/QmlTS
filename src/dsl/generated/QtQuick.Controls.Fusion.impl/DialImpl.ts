@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlColor,
   QmlEnumToken,
   QmlObjectBuilder,
@@ -18,6 +19,7 @@ import type { LayerBuilder } from '../QtQuick/QQuickItemLayer.js';
 export interface DialImplBuilder {
   id(id: string): DialImplBuilder;
   child(obj: QmlObjectBuilder): DialImplBuilder;
+  children(...objs: QmlObjectBuilder[]): DialImplBuilder;
 
   activeFocusOnTab(value: boolean): DialImplBuilder;
   activeFocusOnTabBind(expr: string): DialImplBuilder;
@@ -81,42 +83,42 @@ export interface DialImplBuilder {
   yBind(expr: string): DialImplBuilder;
   z(value: number): DialImplBuilder;
   zBind(expr: string): DialImplBuilder;
-  onActiveFocusChanged(body: string): DialImplBuilder;
-  onActiveFocusOnTabChanged(body: string): DialImplBuilder;
-  onAntialiasingChanged(body: string): DialImplBuilder;
-  onBaselineOffsetChanged(body: string): DialImplBuilder;
-  onChildrenChanged(body: string): DialImplBuilder;
-  onChildrenRectChanged(body: string): DialImplBuilder;
-  onClipChanged(body: string): DialImplBuilder;
-  onContainmentMaskChanged(body: string): DialImplBuilder;
-  onContentsScaleChanged(body: string): DialImplBuilder;
-  onContentsSizeChanged(body: string): DialImplBuilder;
-  onEnabledChanged(body: string): DialImplBuilder;
-  onFillColorChanged(body: string): DialImplBuilder;
-  onFocusChanged(body: string): DialImplBuilder;
-  onFocusPolicyChanged(body: string): DialImplBuilder;
-  onHeightChanged(body: string): DialImplBuilder;
-  onImplicitHeightChanged(body: string): DialImplBuilder;
-  onImplicitWidthChanged(body: string): DialImplBuilder;
-  onObjectNameChanged(body: string): DialImplBuilder;
-  onOpacityChanged(body: string): DialImplBuilder;
-  onPaletteChanged(body: string): DialImplBuilder;
-  onPaletteCreated(body: string): DialImplBuilder;
-  onParentChanged(body: string): DialImplBuilder;
-  onRenderTargetChanged(body: string): DialImplBuilder;
-  onRotationChanged(body: string): DialImplBuilder;
-  onScaleChanged(body: string): DialImplBuilder;
-  onSmoothChanged(body: string): DialImplBuilder;
-  onStateChanged(body: string): DialImplBuilder;
-  onTextureSizeChanged(body: string): DialImplBuilder;
-  onTransformOriginChanged(body: string): DialImplBuilder;
-  onVisibleChanged(body: string): DialImplBuilder;
-  onVisibleChildrenChanged(body: string): DialImplBuilder;
-  onWidthChanged(body: string): DialImplBuilder;
-  onWindowChanged(body: string): DialImplBuilder;
-  onXChanged(body: string): DialImplBuilder;
-  onYChanged(body: string): DialImplBuilder;
-  onZChanged(body: string): DialImplBuilder;
+  onActiveFocusChanged(handler: DslSignalHandlerValue): DialImplBuilder;
+  onActiveFocusOnTabChanged(handler: DslSignalHandlerValue): DialImplBuilder;
+  onAntialiasingChanged(handler: DslSignalHandlerValue): DialImplBuilder;
+  onBaselineOffsetChanged(handler: DslSignalHandlerValue): DialImplBuilder;
+  onChildrenChanged(handler: DslSignalHandlerValue): DialImplBuilder;
+  onChildrenRectChanged(handler: DslSignalHandlerValue): DialImplBuilder;
+  onClipChanged(handler: DslSignalHandlerValue): DialImplBuilder;
+  onContainmentMaskChanged(handler: DslSignalHandlerValue): DialImplBuilder;
+  onContentsScaleChanged(handler: DslSignalHandlerValue): DialImplBuilder;
+  onContentsSizeChanged(handler: DslSignalHandlerValue): DialImplBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): DialImplBuilder;
+  onFillColorChanged(handler: DslSignalHandlerValue): DialImplBuilder;
+  onFocusChanged(handler: DslSignalHandlerValue): DialImplBuilder;
+  onFocusPolicyChanged(handler: DslSignalHandlerValue): DialImplBuilder;
+  onHeightChanged(handler: DslSignalHandlerValue): DialImplBuilder;
+  onImplicitHeightChanged(handler: DslSignalHandlerValue): DialImplBuilder;
+  onImplicitWidthChanged(handler: DslSignalHandlerValue): DialImplBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): DialImplBuilder;
+  onOpacityChanged(handler: DslSignalHandlerValue): DialImplBuilder;
+  onPaletteChanged(handler: DslSignalHandlerValue): DialImplBuilder;
+  onPaletteCreated(handler: DslSignalHandlerValue): DialImplBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): DialImplBuilder;
+  onRenderTargetChanged(handler: DslSignalHandlerValue): DialImplBuilder;
+  onRotationChanged(handler: DslSignalHandlerValue): DialImplBuilder;
+  onScaleChanged(handler: DslSignalHandlerValue): DialImplBuilder;
+  onSmoothChanged(handler: DslSignalHandlerValue): DialImplBuilder;
+  onStateChanged(handler: DslSignalHandlerValue): DialImplBuilder;
+  onTextureSizeChanged(handler: DslSignalHandlerValue): DialImplBuilder;
+  onTransformOriginChanged(handler: DslSignalHandlerValue): DialImplBuilder;
+  onVisibleChanged(handler: DslSignalHandlerValue): DialImplBuilder;
+  onVisibleChildrenChanged(handler: DslSignalHandlerValue): DialImplBuilder;
+  onWidthChanged(handler: DslSignalHandlerValue): DialImplBuilder;
+  onWindowChanged(handler: DslSignalHandlerValue): DialImplBuilder;
+  onXChanged(handler: DslSignalHandlerValue): DialImplBuilder;
+  onYChanged(handler: DslSignalHandlerValue): DialImplBuilder;
+  onZChanged(handler: DslSignalHandlerValue): DialImplBuilder;
   anchors(setup: (b: AnchorsBuilder) => void): DialImplBuilder;
   layer(setup: (b: LayerBuilder) => void): DialImplBuilder;
 }

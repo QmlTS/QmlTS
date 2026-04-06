@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlObjectBuilder,
   QmlQuaternion,
   QmlValue,
@@ -14,6 +15,7 @@ import type { ParticleSystem3DBuilder } from './ParticleSystem3D.js';
 export interface Repeller3DBuilder {
   id(id: string): Repeller3DBuilder;
   child(obj: QmlObjectBuilder): Repeller3DBuilder;
+  children(...objs: QmlObjectBuilder[]): Repeller3DBuilder;
 
   enabled(value: boolean): Repeller3DBuilder;
   enabledBind(expr: string): Repeller3DBuilder;
@@ -55,35 +57,35 @@ export interface Repeller3DBuilder {
   yBind(expr: string): Repeller3DBuilder;
   z(value: number): Repeller3DBuilder;
   zBind(expr: string): Repeller3DBuilder;
-  onChildrenChanged(body: string): Repeller3DBuilder;
-  onEnabledChanged(body: string): Repeller3DBuilder;
-  onEulerRotationChanged(body: string): Repeller3DBuilder;
-  onForwardChanged(body: string): Repeller3DBuilder;
-  onLayersChanged(body: string): Repeller3DBuilder;
-  onLocalOpacityChanged(body: string): Repeller3DBuilder;
-  onObjectNameChanged(body: string): Repeller3DBuilder;
-  onOuterRadiusChanged(body: string): Repeller3DBuilder;
-  onParentChanged(body: string): Repeller3DBuilder;
-  onPivotChanged(body: string): Repeller3DBuilder;
-  onPositionChanged(body: string): Repeller3DBuilder;
-  onRadiusChanged(body: string): Repeller3DBuilder;
-  onRightChanged(body: string): Repeller3DBuilder;
-  onRotationChanged(body: string): Repeller3DBuilder;
-  onScaleChanged(body: string): Repeller3DBuilder;
-  onScenePositionChanged(body: string): Repeller3DBuilder;
-  onSceneRotationChanged(body: string): Repeller3DBuilder;
-  onSceneScaleChanged(body: string): Repeller3DBuilder;
-  onSceneTransformChanged(body: string): Repeller3DBuilder;
-  onStateChanged(body: string): Repeller3DBuilder;
-  onStaticFlagsChanged(body: string): Repeller3DBuilder;
-  onStrengthChanged(body: string): Repeller3DBuilder;
-  onSystemChanged(body: string): Repeller3DBuilder;
-  onUpChanged(body: string): Repeller3DBuilder;
-  onUpdate(body: string): Repeller3DBuilder;
-  onVisibleChanged(body: string): Repeller3DBuilder;
-  onXChanged(body: string): Repeller3DBuilder;
-  onYChanged(body: string): Repeller3DBuilder;
-  onZChanged(body: string): Repeller3DBuilder;
+  onChildrenChanged(handler: DslSignalHandlerValue): Repeller3DBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): Repeller3DBuilder;
+  onEulerRotationChanged(handler: DslSignalHandlerValue): Repeller3DBuilder;
+  onForwardChanged(handler: DslSignalHandlerValue): Repeller3DBuilder;
+  onLayersChanged(handler: DslSignalHandlerValue): Repeller3DBuilder;
+  onLocalOpacityChanged(handler: DslSignalHandlerValue): Repeller3DBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): Repeller3DBuilder;
+  onOuterRadiusChanged(handler: DslSignalHandlerValue): Repeller3DBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): Repeller3DBuilder;
+  onPivotChanged(handler: DslSignalHandlerValue): Repeller3DBuilder;
+  onPositionChanged(handler: DslSignalHandlerValue): Repeller3DBuilder;
+  onRadiusChanged(handler: DslSignalHandlerValue): Repeller3DBuilder;
+  onRightChanged(handler: DslSignalHandlerValue): Repeller3DBuilder;
+  onRotationChanged(handler: DslSignalHandlerValue): Repeller3DBuilder;
+  onScaleChanged(handler: DslSignalHandlerValue): Repeller3DBuilder;
+  onScenePositionChanged(handler: DslSignalHandlerValue): Repeller3DBuilder;
+  onSceneRotationChanged(handler: DslSignalHandlerValue): Repeller3DBuilder;
+  onSceneScaleChanged(handler: DslSignalHandlerValue): Repeller3DBuilder;
+  onSceneTransformChanged(handler: DslSignalHandlerValue): Repeller3DBuilder;
+  onStateChanged(handler: DslSignalHandlerValue): Repeller3DBuilder;
+  onStaticFlagsChanged(handler: DslSignalHandlerValue): Repeller3DBuilder;
+  onStrengthChanged(handler: DslSignalHandlerValue): Repeller3DBuilder;
+  onSystemChanged(handler: DslSignalHandlerValue): Repeller3DBuilder;
+  onUpChanged(handler: DslSignalHandlerValue): Repeller3DBuilder;
+  onUpdate(handler: DslSignalHandlerValue): Repeller3DBuilder;
+  onVisibleChanged(handler: DslSignalHandlerValue): Repeller3DBuilder;
+  onXChanged(handler: DslSignalHandlerValue): Repeller3DBuilder;
+  onYChanged(handler: DslSignalHandlerValue): Repeller3DBuilder;
+  onZChanged(handler: DslSignalHandlerValue): Repeller3DBuilder;
 }
 
 const REPELLER3D_META: TypeMetadata = {

@@ -2,11 +2,17 @@
 // Type: AudioOutput
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 export interface AudioOutputBuilder {
   id(id: string): AudioOutputBuilder;
   child(obj: QmlObjectBuilder): AudioOutputBuilder;
+  children(...objs: QmlObjectBuilder[]): AudioOutputBuilder;
 
   device(value: QmlValue): AudioOutputBuilder;
   deviceBind(expr: string): AudioOutputBuilder;
@@ -16,10 +22,10 @@ export interface AudioOutputBuilder {
   objectNameBind(expr: string): AudioOutputBuilder;
   volume(value: number): AudioOutputBuilder;
   volumeBind(expr: string): AudioOutputBuilder;
-  onDeviceChanged(body: string): AudioOutputBuilder;
-  onMutedChanged(body: string): AudioOutputBuilder;
-  onObjectNameChanged(body: string): AudioOutputBuilder;
-  onVolumeChanged(body: string): AudioOutputBuilder;
+  onDeviceChanged(handler: DslSignalHandlerValue): AudioOutputBuilder;
+  onMutedChanged(handler: DslSignalHandlerValue): AudioOutputBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): AudioOutputBuilder;
+  onVolumeChanged(handler: DslSignalHandlerValue): AudioOutputBuilder;
 }
 
 const AUDIOOUTPUT_META: TypeMetadata = {

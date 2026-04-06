@@ -2,11 +2,17 @@
 // Type: RenderPassFilter
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 export interface RenderPassFilterBuilder {
   id(id: string): RenderPassFilterBuilder;
   child(obj: QmlObjectBuilder): RenderPassFilterBuilder;
+  children(...objs: QmlObjectBuilder[]): RenderPassFilterBuilder;
 
   enabled(value: boolean): RenderPassFilterBuilder;
   enabledBind(expr: string): RenderPassFilterBuilder;
@@ -14,10 +20,10 @@ export interface RenderPassFilterBuilder {
   objectNameBind(expr: string): RenderPassFilterBuilder;
   parent(value: QmlValue): RenderPassFilterBuilder;
   parentBind(expr: string): RenderPassFilterBuilder;
-  onEnabledChanged(body: string): RenderPassFilterBuilder;
-  onNodeDestroyed(body: string): RenderPassFilterBuilder;
-  onObjectNameChanged(body: string): RenderPassFilterBuilder;
-  onParentChanged(body: string): RenderPassFilterBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): RenderPassFilterBuilder;
+  onNodeDestroyed(handler: DslSignalHandlerValue): RenderPassFilterBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): RenderPassFilterBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): RenderPassFilterBuilder;
 }
 
 const RENDERPASSFILTER_META: TypeMetadata = {

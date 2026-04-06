@@ -2,11 +2,17 @@
 // Type: VBoxPlotModelMapper
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 export interface VBoxPlotModelMapperBuilder {
   id(id: string): VBoxPlotModelMapperBuilder;
   child(obj: QmlObjectBuilder): VBoxPlotModelMapperBuilder;
+  children(...objs: QmlObjectBuilder[]): VBoxPlotModelMapperBuilder;
 
   firstBoxSetColumn(value: number): VBoxPlotModelMapperBuilder;
   firstBoxSetColumnBind(expr: string): VBoxPlotModelMapperBuilder;
@@ -22,13 +28,13 @@ export interface VBoxPlotModelMapperBuilder {
   rowCountBind(expr: string): VBoxPlotModelMapperBuilder;
   series(value: QmlValue): VBoxPlotModelMapperBuilder;
   seriesBind(expr: string): VBoxPlotModelMapperBuilder;
-  onFirstBoxSetColumnChanged(body: string): VBoxPlotModelMapperBuilder;
-  onFirstRowChanged(body: string): VBoxPlotModelMapperBuilder;
-  onLastBoxSetColumnChanged(body: string): VBoxPlotModelMapperBuilder;
-  onModelReplaced(body: string): VBoxPlotModelMapperBuilder;
-  onObjectNameChanged(body: string): VBoxPlotModelMapperBuilder;
-  onRowCountChanged(body: string): VBoxPlotModelMapperBuilder;
-  onSeriesReplaced(body: string): VBoxPlotModelMapperBuilder;
+  onFirstBoxSetColumnChanged(handler: DslSignalHandlerValue): VBoxPlotModelMapperBuilder;
+  onFirstRowChanged(handler: DslSignalHandlerValue): VBoxPlotModelMapperBuilder;
+  onLastBoxSetColumnChanged(handler: DslSignalHandlerValue): VBoxPlotModelMapperBuilder;
+  onModelReplaced(handler: DslSignalHandlerValue): VBoxPlotModelMapperBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): VBoxPlotModelMapperBuilder;
+  onRowCountChanged(handler: DslSignalHandlerValue): VBoxPlotModelMapperBuilder;
+  onSeriesReplaced(handler: DslSignalHandlerValue): VBoxPlotModelMapperBuilder;
 }
 
 const VBOXPLOTMODELMAPPER_META: TypeMetadata = {

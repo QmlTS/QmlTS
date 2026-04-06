@@ -2,18 +2,19 @@
 // Type: PinyinInputMethod
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import type { DslSignalHandlerValue, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 export interface PinyinInputMethodBuilder {
   id(id: string): PinyinInputMethodBuilder;
   child(obj: QmlObjectBuilder): PinyinInputMethodBuilder;
+  children(...objs: QmlObjectBuilder[]): PinyinInputMethodBuilder;
 
   objectName(value: string): PinyinInputMethodBuilder;
   objectNameBind(expr: string): PinyinInputMethodBuilder;
-  onObjectNameChanged(body: string): PinyinInputMethodBuilder;
-  onSelectionListActiveItemChanged(body: string): PinyinInputMethodBuilder;
-  onSelectionListChanged(body: string): PinyinInputMethodBuilder;
-  onSelectionListsChanged(body: string): PinyinInputMethodBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): PinyinInputMethodBuilder;
+  onSelectionListActiveItemChanged(handler: DslSignalHandlerValue): PinyinInputMethodBuilder;
+  onSelectionListChanged(handler: DslSignalHandlerValue): PinyinInputMethodBuilder;
+  onSelectionListsChanged(handler: DslSignalHandlerValue): PinyinInputMethodBuilder;
 }
 
 const PINYININPUTMETHOD_META: TypeMetadata = {

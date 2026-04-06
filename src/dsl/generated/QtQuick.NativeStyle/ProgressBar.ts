@@ -2,7 +2,12 @@
 // Type: ProgressBar
 // Generated from Qt 6.11.0
 
-import type { QmlEnumToken, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlEnumToken,
+  QmlObjectBuilder,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { QtObjectBuilder } from '../QML/QtObject.js';
 import type { ItemBuilder } from '../QtQuick/Item.js';
@@ -12,6 +17,7 @@ import type { LayerBuilder } from '../QtQuick/QQuickItemLayer.js';
 export interface ProgressBarBuilder {
   id(id: string): ProgressBarBuilder;
   child(obj: QmlObjectBuilder): ProgressBarBuilder;
+  children(...objs: QmlObjectBuilder[]): ProgressBarBuilder;
 
   activeFocusOnTab(value: boolean): ProgressBarBuilder;
   activeFocusOnTabBind(expr: string): ProgressBarBuilder;
@@ -75,42 +81,42 @@ export interface ProgressBarBuilder {
   yBind(expr: string): ProgressBarBuilder;
   z(value: number): ProgressBarBuilder;
   zBind(expr: string): ProgressBarBuilder;
-  onActiveFocusChanged(body: string): ProgressBarBuilder;
-  onActiveFocusOnTabChanged(body: string): ProgressBarBuilder;
-  onAntialiasingChanged(body: string): ProgressBarBuilder;
-  onBaselineOffsetChanged(body: string): ProgressBarBuilder;
-  onChildrenChanged(body: string): ProgressBarBuilder;
-  onChildrenRectChanged(body: string): ProgressBarBuilder;
-  onClipChanged(body: string): ProgressBarBuilder;
-  onContainmentMaskChanged(body: string): ProgressBarBuilder;
-  onContentPaddingChanged(body: string): ProgressBarBuilder;
-  onControlChanged(body: string): ProgressBarBuilder;
-  onEnabledChanged(body: string): ProgressBarBuilder;
-  onFocusChanged(body: string): ProgressBarBuilder;
-  onFocusPolicyChanged(body: string): ProgressBarBuilder;
-  onFontChanged(body: string): ProgressBarBuilder;
-  onHeightChanged(body: string): ProgressBarBuilder;
-  onImplicitHeightChanged(body: string): ProgressBarBuilder;
-  onImplicitWidthChanged(body: string): ProgressBarBuilder;
-  onLayoutMarginsChanged(body: string): ProgressBarBuilder;
-  onMinimumSizeChanged(body: string): ProgressBarBuilder;
-  onObjectNameChanged(body: string): ProgressBarBuilder;
-  onOpacityChanged(body: string): ProgressBarBuilder;
-  onPaletteChanged(body: string): ProgressBarBuilder;
-  onPaletteCreated(body: string): ProgressBarBuilder;
-  onParentChanged(body: string): ProgressBarBuilder;
-  onRotationChanged(body: string): ProgressBarBuilder;
-  onScaleChanged(body: string): ProgressBarBuilder;
-  onSmoothChanged(body: string): ProgressBarBuilder;
-  onStateChanged(body: string): ProgressBarBuilder;
-  onTransformOriginChanged(body: string): ProgressBarBuilder;
-  onVisibleChanged(body: string): ProgressBarBuilder;
-  onVisibleChildrenChanged(body: string): ProgressBarBuilder;
-  onWidthChanged(body: string): ProgressBarBuilder;
-  onWindowChanged(body: string): ProgressBarBuilder;
-  onXChanged(body: string): ProgressBarBuilder;
-  onYChanged(body: string): ProgressBarBuilder;
-  onZChanged(body: string): ProgressBarBuilder;
+  onActiveFocusChanged(handler: DslSignalHandlerValue): ProgressBarBuilder;
+  onActiveFocusOnTabChanged(handler: DslSignalHandlerValue): ProgressBarBuilder;
+  onAntialiasingChanged(handler: DslSignalHandlerValue): ProgressBarBuilder;
+  onBaselineOffsetChanged(handler: DslSignalHandlerValue): ProgressBarBuilder;
+  onChildrenChanged(handler: DslSignalHandlerValue): ProgressBarBuilder;
+  onChildrenRectChanged(handler: DslSignalHandlerValue): ProgressBarBuilder;
+  onClipChanged(handler: DslSignalHandlerValue): ProgressBarBuilder;
+  onContainmentMaskChanged(handler: DslSignalHandlerValue): ProgressBarBuilder;
+  onContentPaddingChanged(handler: DslSignalHandlerValue): ProgressBarBuilder;
+  onControlChanged(handler: DslSignalHandlerValue): ProgressBarBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): ProgressBarBuilder;
+  onFocusChanged(handler: DslSignalHandlerValue): ProgressBarBuilder;
+  onFocusPolicyChanged(handler: DslSignalHandlerValue): ProgressBarBuilder;
+  onFontChanged(handler: DslSignalHandlerValue): ProgressBarBuilder;
+  onHeightChanged(handler: DslSignalHandlerValue): ProgressBarBuilder;
+  onImplicitHeightChanged(handler: DslSignalHandlerValue): ProgressBarBuilder;
+  onImplicitWidthChanged(handler: DslSignalHandlerValue): ProgressBarBuilder;
+  onLayoutMarginsChanged(handler: DslSignalHandlerValue): ProgressBarBuilder;
+  onMinimumSizeChanged(handler: DslSignalHandlerValue): ProgressBarBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): ProgressBarBuilder;
+  onOpacityChanged(handler: DslSignalHandlerValue): ProgressBarBuilder;
+  onPaletteChanged(handler: DslSignalHandlerValue): ProgressBarBuilder;
+  onPaletteCreated(handler: DslSignalHandlerValue): ProgressBarBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): ProgressBarBuilder;
+  onRotationChanged(handler: DslSignalHandlerValue): ProgressBarBuilder;
+  onScaleChanged(handler: DslSignalHandlerValue): ProgressBarBuilder;
+  onSmoothChanged(handler: DslSignalHandlerValue): ProgressBarBuilder;
+  onStateChanged(handler: DslSignalHandlerValue): ProgressBarBuilder;
+  onTransformOriginChanged(handler: DslSignalHandlerValue): ProgressBarBuilder;
+  onVisibleChanged(handler: DslSignalHandlerValue): ProgressBarBuilder;
+  onVisibleChildrenChanged(handler: DslSignalHandlerValue): ProgressBarBuilder;
+  onWidthChanged(handler: DslSignalHandlerValue): ProgressBarBuilder;
+  onWindowChanged(handler: DslSignalHandlerValue): ProgressBarBuilder;
+  onXChanged(handler: DslSignalHandlerValue): ProgressBarBuilder;
+  onYChanged(handler: DslSignalHandlerValue): ProgressBarBuilder;
+  onZChanged(handler: DslSignalHandlerValue): ProgressBarBuilder;
   anchors(setup: (b: AnchorsBuilder) => void): ProgressBarBuilder;
   layer(setup: (b: LayerBuilder) => void): ProgressBarBuilder;
 }

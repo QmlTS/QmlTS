@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlEnumToken,
   QmlObjectBuilder,
   QmlValue,
@@ -13,6 +14,7 @@ import type { QtObjectBuilder } from '../QML/QtObject.js';
 export interface CoordinateAnimationBuilder {
   id(id: string): CoordinateAnimationBuilder;
   child(obj: QmlObjectBuilder): CoordinateAnimationBuilder;
+  children(...objs: QmlObjectBuilder[]): CoordinateAnimationBuilder;
 
   alwaysRunToEnd(value: boolean): CoordinateAnimationBuilder;
   alwaysRunToEndBind(expr: string): CoordinateAnimationBuilder;
@@ -40,22 +42,22 @@ export interface CoordinateAnimationBuilder {
   targetBind(expr: string): CoordinateAnimationBuilder;
   to(value: QmlValue): CoordinateAnimationBuilder;
   toBind(expr: string): CoordinateAnimationBuilder;
-  onAlwaysRunToEndChanged(body: string): CoordinateAnimationBuilder;
-  onDirectionChanged(body: string): CoordinateAnimationBuilder;
-  onDurationChanged(body: string): CoordinateAnimationBuilder;
-  onEasingChanged(body: string): CoordinateAnimationBuilder;
-  onFinished(body: string): CoordinateAnimationBuilder;
-  onFromChanged(body: string): CoordinateAnimationBuilder;
-  onLoopCountChanged(body: string): CoordinateAnimationBuilder;
-  onObjectNameChanged(body: string): CoordinateAnimationBuilder;
-  onPausedChanged(body: string): CoordinateAnimationBuilder;
-  onPropertiesChanged(body: string): CoordinateAnimationBuilder;
-  onPropertyChanged(body: string): CoordinateAnimationBuilder;
-  onRunningChanged(body: string): CoordinateAnimationBuilder;
-  onStarted(body: string): CoordinateAnimationBuilder;
-  onStopped(body: string): CoordinateAnimationBuilder;
-  onTargetChanged(body: string): CoordinateAnimationBuilder;
-  onToChanged(body: string): CoordinateAnimationBuilder;
+  onAlwaysRunToEndChanged(handler: DslSignalHandlerValue): CoordinateAnimationBuilder;
+  onDirectionChanged(handler: DslSignalHandlerValue): CoordinateAnimationBuilder;
+  onDurationChanged(handler: DslSignalHandlerValue): CoordinateAnimationBuilder;
+  onEasingChanged(handler: DslSignalHandlerValue): CoordinateAnimationBuilder;
+  onFinished(handler: DslSignalHandlerValue): CoordinateAnimationBuilder;
+  onFromChanged(handler: DslSignalHandlerValue): CoordinateAnimationBuilder;
+  onLoopCountChanged(handler: DslSignalHandlerValue): CoordinateAnimationBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): CoordinateAnimationBuilder;
+  onPausedChanged(handler: DslSignalHandlerValue): CoordinateAnimationBuilder;
+  onPropertiesChanged(handler: DslSignalHandlerValue): CoordinateAnimationBuilder;
+  onPropertyChanged(handler: DslSignalHandlerValue): CoordinateAnimationBuilder;
+  onRunningChanged(handler: DslSignalHandlerValue): CoordinateAnimationBuilder;
+  onStarted(handler: DslSignalHandlerValue): CoordinateAnimationBuilder;
+  onStopped(handler: DslSignalHandlerValue): CoordinateAnimationBuilder;
+  onTargetChanged(handler: DslSignalHandlerValue): CoordinateAnimationBuilder;
+  onToChanged(handler: DslSignalHandlerValue): CoordinateAnimationBuilder;
 }
 
 const COORDINATEANIMATION_META: TypeMetadata = {

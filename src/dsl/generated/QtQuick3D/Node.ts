@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlObjectBuilder,
   QmlQuaternion,
   QmlValue,
@@ -13,6 +14,7 @@ import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface NodeBuilder {
   id(id: string): NodeBuilder;
   child(obj: QmlObjectBuilder): NodeBuilder;
+  children(...objs: QmlObjectBuilder[]): NodeBuilder;
 
   eulerRotation(value: QmlVector3d): NodeBuilder;
   eulerRotationBind(expr: string): NodeBuilder;
@@ -44,29 +46,29 @@ export interface NodeBuilder {
   yBind(expr: string): NodeBuilder;
   z(value: number): NodeBuilder;
   zBind(expr: string): NodeBuilder;
-  onChildrenChanged(body: string): NodeBuilder;
-  onEulerRotationChanged(body: string): NodeBuilder;
-  onForwardChanged(body: string): NodeBuilder;
-  onLayersChanged(body: string): NodeBuilder;
-  onLocalOpacityChanged(body: string): NodeBuilder;
-  onObjectNameChanged(body: string): NodeBuilder;
-  onParentChanged(body: string): NodeBuilder;
-  onPivotChanged(body: string): NodeBuilder;
-  onPositionChanged(body: string): NodeBuilder;
-  onRightChanged(body: string): NodeBuilder;
-  onRotationChanged(body: string): NodeBuilder;
-  onScaleChanged(body: string): NodeBuilder;
-  onScenePositionChanged(body: string): NodeBuilder;
-  onSceneRotationChanged(body: string): NodeBuilder;
-  onSceneScaleChanged(body: string): NodeBuilder;
-  onSceneTransformChanged(body: string): NodeBuilder;
-  onStateChanged(body: string): NodeBuilder;
-  onStaticFlagsChanged(body: string): NodeBuilder;
-  onUpChanged(body: string): NodeBuilder;
-  onVisibleChanged(body: string): NodeBuilder;
-  onXChanged(body: string): NodeBuilder;
-  onYChanged(body: string): NodeBuilder;
-  onZChanged(body: string): NodeBuilder;
+  onChildrenChanged(handler: DslSignalHandlerValue): NodeBuilder;
+  onEulerRotationChanged(handler: DslSignalHandlerValue): NodeBuilder;
+  onForwardChanged(handler: DslSignalHandlerValue): NodeBuilder;
+  onLayersChanged(handler: DslSignalHandlerValue): NodeBuilder;
+  onLocalOpacityChanged(handler: DslSignalHandlerValue): NodeBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): NodeBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): NodeBuilder;
+  onPivotChanged(handler: DslSignalHandlerValue): NodeBuilder;
+  onPositionChanged(handler: DslSignalHandlerValue): NodeBuilder;
+  onRightChanged(handler: DslSignalHandlerValue): NodeBuilder;
+  onRotationChanged(handler: DslSignalHandlerValue): NodeBuilder;
+  onScaleChanged(handler: DslSignalHandlerValue): NodeBuilder;
+  onScenePositionChanged(handler: DslSignalHandlerValue): NodeBuilder;
+  onSceneRotationChanged(handler: DslSignalHandlerValue): NodeBuilder;
+  onSceneScaleChanged(handler: DslSignalHandlerValue): NodeBuilder;
+  onSceneTransformChanged(handler: DslSignalHandlerValue): NodeBuilder;
+  onStateChanged(handler: DslSignalHandlerValue): NodeBuilder;
+  onStaticFlagsChanged(handler: DslSignalHandlerValue): NodeBuilder;
+  onUpChanged(handler: DslSignalHandlerValue): NodeBuilder;
+  onVisibleChanged(handler: DslSignalHandlerValue): NodeBuilder;
+  onXChanged(handler: DslSignalHandlerValue): NodeBuilder;
+  onYChanged(handler: DslSignalHandlerValue): NodeBuilder;
+  onZChanged(handler: DslSignalHandlerValue): NodeBuilder;
 }
 
 const NODE_META: TypeMetadata = {

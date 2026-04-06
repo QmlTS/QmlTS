@@ -2,6 +2,7 @@
 // Type: Attached type: SplitView
 // Generated from Qt 6.11.0
 
+import type { DslSignalHandlerValue } from '../../runtime/index.js';
 export interface SplitViewAttachedBuilder {
   fillHeight(value: boolean): SplitViewAttachedBuilder;
   fillHeightBind(expr: string): SplitViewAttachedBuilder;
@@ -21,14 +22,14 @@ export interface SplitViewAttachedBuilder {
   preferredWidthBind(expr: string): SplitViewAttachedBuilder;
   objectName(value: string): SplitViewAttachedBuilder;
   objectNameBind(expr: string): SplitViewAttachedBuilder;
-  onFillHeightChanged(body: string): SplitViewAttachedBuilder;
-  onFillWidthChanged(body: string): SplitViewAttachedBuilder;
-  onMaximumHeightChanged(body: string): SplitViewAttachedBuilder;
-  onMaximumWidthChanged(body: string): SplitViewAttachedBuilder;
-  onMinimumHeightChanged(body: string): SplitViewAttachedBuilder;
-  onMinimumWidthChanged(body: string): SplitViewAttachedBuilder;
-  onPreferredHeightChanged(body: string): SplitViewAttachedBuilder;
-  onPreferredWidthChanged(body: string): SplitViewAttachedBuilder;
-  onViewChanged(body: string): SplitViewAttachedBuilder;
-  onObjectNameChanged(body: string): SplitViewAttachedBuilder;
+  onFillHeightChanged(handler: DslSignalHandlerValue): SplitViewAttachedBuilder;
+  onFillWidthChanged(handler: DslSignalHandlerValue): SplitViewAttachedBuilder;
+  onMaximumHeightChanged(handler: DslSignalHandlerValue): SplitViewAttachedBuilder;
+  onMaximumWidthChanged(handler: DslSignalHandlerValue): SplitViewAttachedBuilder;
+  onMinimumHeightChanged(handler: DslSignalHandlerValue): SplitViewAttachedBuilder;
+  onMinimumWidthChanged(handler: DslSignalHandlerValue): SplitViewAttachedBuilder;
+  onPreferredHeightChanged(handler: DslSignalHandlerValue): SplitViewAttachedBuilder;
+  onPreferredWidthChanged(handler: DslSignalHandlerValue): SplitViewAttachedBuilder;
+  onViewChanged(handler: DslSignalHandlerValue): SplitViewAttachedBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): SplitViewAttachedBuilder;
 }

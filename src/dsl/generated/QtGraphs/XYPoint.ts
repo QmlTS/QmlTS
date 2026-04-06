@@ -2,11 +2,12 @@
 // Type: XYPoint
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import type { DslSignalHandlerValue, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 export interface XYPointBuilder {
   id(id: string): XYPointBuilder;
   child(obj: QmlObjectBuilder): XYPointBuilder;
+  children(...objs: QmlObjectBuilder[]): XYPointBuilder;
 
   objectName(value: string): XYPointBuilder;
   objectNameBind(expr: string): XYPointBuilder;
@@ -14,7 +15,7 @@ export interface XYPointBuilder {
   xBind(expr: string): XYPointBuilder;
   y(value: number): XYPointBuilder;
   yBind(expr: string): XYPointBuilder;
-  onObjectNameChanged(body: string): XYPointBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): XYPointBuilder;
 }
 
 const XYPOINT_META: TypeMetadata = {

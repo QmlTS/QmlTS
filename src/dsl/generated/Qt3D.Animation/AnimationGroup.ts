@@ -2,11 +2,12 @@
 // Type: AnimationGroup
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import type { DslSignalHandlerValue, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 export interface AnimationGroupBuilder {
   id(id: string): AnimationGroupBuilder;
   child(obj: QmlObjectBuilder): AnimationGroupBuilder;
+  children(...objs: QmlObjectBuilder[]): AnimationGroupBuilder;
 
   name(value: string): AnimationGroupBuilder;
   nameBind(expr: string): AnimationGroupBuilder;
@@ -14,10 +15,10 @@ export interface AnimationGroupBuilder {
   objectNameBind(expr: string): AnimationGroupBuilder;
   position(value: number): AnimationGroupBuilder;
   positionBind(expr: string): AnimationGroupBuilder;
-  onDurationChanged(body: string): AnimationGroupBuilder;
-  onNameChanged(body: string): AnimationGroupBuilder;
-  onObjectNameChanged(body: string): AnimationGroupBuilder;
-  onPositionChanged(body: string): AnimationGroupBuilder;
+  onDurationChanged(handler: DslSignalHandlerValue): AnimationGroupBuilder;
+  onNameChanged(handler: DslSignalHandlerValue): AnimationGroupBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): AnimationGroupBuilder;
+  onPositionChanged(handler: DslSignalHandlerValue): AnimationGroupBuilder;
 }
 
 const ANIMATIONGROUP_META: TypeMetadata = {

@@ -2,12 +2,19 @@
 // Type: PhongMaterial
 // Generated from Qt 6.11.0
 
-import type { QmlColor, QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlColor,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 import type { EffectBuilder } from '../Qt3D.Render/Effect.js';
 export interface PhongMaterialBuilder {
   id(id: string): PhongMaterialBuilder;
   child(obj: QmlObjectBuilder): PhongMaterialBuilder;
+  children(...objs: QmlObjectBuilder[]): PhongMaterialBuilder;
 
   ambient(value: QmlColor): PhongMaterialBuilder;
   ambientBind(expr: string): PhongMaterialBuilder;
@@ -27,18 +34,18 @@ export interface PhongMaterialBuilder {
   shininessBind(expr: string): PhongMaterialBuilder;
   specular(value: QmlColor): PhongMaterialBuilder;
   specularBind(expr: string): PhongMaterialBuilder;
-  onAddedToEntity(body: string): PhongMaterialBuilder;
-  onAmbientChanged(body: string): PhongMaterialBuilder;
-  onDiffuseChanged(body: string): PhongMaterialBuilder;
-  onEffectChanged(body: string): PhongMaterialBuilder;
-  onEnabledChanged(body: string): PhongMaterialBuilder;
-  onNodeDestroyed(body: string): PhongMaterialBuilder;
-  onObjectNameChanged(body: string): PhongMaterialBuilder;
-  onParentChanged(body: string): PhongMaterialBuilder;
-  onRemovedFromEntity(body: string): PhongMaterialBuilder;
-  onShareableChanged(body: string): PhongMaterialBuilder;
-  onShininessChanged(body: string): PhongMaterialBuilder;
-  onSpecularChanged(body: string): PhongMaterialBuilder;
+  onAddedToEntity(handler: DslSignalHandlerValue): PhongMaterialBuilder;
+  onAmbientChanged(handler: DslSignalHandlerValue): PhongMaterialBuilder;
+  onDiffuseChanged(handler: DslSignalHandlerValue): PhongMaterialBuilder;
+  onEffectChanged(handler: DslSignalHandlerValue): PhongMaterialBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): PhongMaterialBuilder;
+  onNodeDestroyed(handler: DslSignalHandlerValue): PhongMaterialBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): PhongMaterialBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): PhongMaterialBuilder;
+  onRemovedFromEntity(handler: DslSignalHandlerValue): PhongMaterialBuilder;
+  onShareableChanged(handler: DslSignalHandlerValue): PhongMaterialBuilder;
+  onShininessChanged(handler: DslSignalHandlerValue): PhongMaterialBuilder;
+  onSpecularChanged(handler: DslSignalHandlerValue): PhongMaterialBuilder;
 }
 
 const PHONGMATERIAL_META: TypeMetadata = {

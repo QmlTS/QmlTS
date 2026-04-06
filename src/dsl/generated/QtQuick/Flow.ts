@@ -2,7 +2,12 @@
 // Type: Flow
 // Generated from Qt 6.11.0
 
-import type { QmlEnumToken, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlEnumToken,
+  QmlObjectBuilder,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { QtObjectBuilder } from '../QML/QtObject.js';
 import type { AccessibleAttachedBuilder } from './Accessible.js';
@@ -29,6 +34,7 @@ import type { ViewTransitionAttachedBuilder } from './ViewTransition.js';
 export interface FlowBuilder {
   id(id: string): FlowBuilder;
   child(obj: QmlObjectBuilder): FlowBuilder;
+  children(...objs: QmlObjectBuilder[]): FlowBuilder;
 
   activeFocusOnTab(value: boolean): FlowBuilder;
   activeFocusOnTabBind(expr: string): FlowBuilder;
@@ -98,50 +104,50 @@ export interface FlowBuilder {
   yBind(expr: string): FlowBuilder;
   z(value: number): FlowBuilder;
   zBind(expr: string): FlowBuilder;
-  onActiveFocusChanged(body: string): FlowBuilder;
-  onActiveFocusOnTabChanged(body: string): FlowBuilder;
-  onAddChanged(body: string): FlowBuilder;
-  onAntialiasingChanged(body: string): FlowBuilder;
-  onBaselineOffsetChanged(body: string): FlowBuilder;
-  onBottomPaddingChanged(body: string): FlowBuilder;
-  onChildrenChanged(body: string): FlowBuilder;
-  onChildrenRectChanged(body: string): FlowBuilder;
-  onClipChanged(body: string): FlowBuilder;
-  onContainmentMaskChanged(body: string): FlowBuilder;
-  onEffectiveLayoutDirectionChanged(body: string): FlowBuilder;
-  onEnabledChanged(body: string): FlowBuilder;
-  onFlowChanged(body: string): FlowBuilder;
-  onFocusChanged(body: string): FlowBuilder;
-  onFocusPolicyChanged(body: string): FlowBuilder;
-  onHeightChanged(body: string): FlowBuilder;
-  onImplicitHeightChanged(body: string): FlowBuilder;
-  onImplicitWidthChanged(body: string): FlowBuilder;
-  onLayoutDirectionChanged(body: string): FlowBuilder;
-  onLeftPaddingChanged(body: string): FlowBuilder;
-  onMoveChanged(body: string): FlowBuilder;
-  onObjectNameChanged(body: string): FlowBuilder;
-  onOpacityChanged(body: string): FlowBuilder;
-  onPaddingChanged(body: string): FlowBuilder;
-  onPaletteChanged(body: string): FlowBuilder;
-  onPaletteCreated(body: string): FlowBuilder;
-  onParentChanged(body: string): FlowBuilder;
-  onPopulateChanged(body: string): FlowBuilder;
-  onPositioningComplete(body: string): FlowBuilder;
-  onRightPaddingChanged(body: string): FlowBuilder;
-  onRotationChanged(body: string): FlowBuilder;
-  onScaleChanged(body: string): FlowBuilder;
-  onSmoothChanged(body: string): FlowBuilder;
-  onSpacingChanged(body: string): FlowBuilder;
-  onStateChanged(body: string): FlowBuilder;
-  onTopPaddingChanged(body: string): FlowBuilder;
-  onTransformOriginChanged(body: string): FlowBuilder;
-  onVisibleChanged(body: string): FlowBuilder;
-  onVisibleChildrenChanged(body: string): FlowBuilder;
-  onWidthChanged(body: string): FlowBuilder;
-  onWindowChanged(body: string): FlowBuilder;
-  onXChanged(body: string): FlowBuilder;
-  onYChanged(body: string): FlowBuilder;
-  onZChanged(body: string): FlowBuilder;
+  onActiveFocusChanged(handler: DslSignalHandlerValue): FlowBuilder;
+  onActiveFocusOnTabChanged(handler: DslSignalHandlerValue): FlowBuilder;
+  onAddChanged(handler: DslSignalHandlerValue): FlowBuilder;
+  onAntialiasingChanged(handler: DslSignalHandlerValue): FlowBuilder;
+  onBaselineOffsetChanged(handler: DslSignalHandlerValue): FlowBuilder;
+  onBottomPaddingChanged(handler: DslSignalHandlerValue): FlowBuilder;
+  onChildrenChanged(handler: DslSignalHandlerValue): FlowBuilder;
+  onChildrenRectChanged(handler: DslSignalHandlerValue): FlowBuilder;
+  onClipChanged(handler: DslSignalHandlerValue): FlowBuilder;
+  onContainmentMaskChanged(handler: DslSignalHandlerValue): FlowBuilder;
+  onEffectiveLayoutDirectionChanged(handler: DslSignalHandlerValue): FlowBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): FlowBuilder;
+  onFlowChanged(handler: DslSignalHandlerValue): FlowBuilder;
+  onFocusChanged(handler: DslSignalHandlerValue): FlowBuilder;
+  onFocusPolicyChanged(handler: DslSignalHandlerValue): FlowBuilder;
+  onHeightChanged(handler: DslSignalHandlerValue): FlowBuilder;
+  onImplicitHeightChanged(handler: DslSignalHandlerValue): FlowBuilder;
+  onImplicitWidthChanged(handler: DslSignalHandlerValue): FlowBuilder;
+  onLayoutDirectionChanged(handler: DslSignalHandlerValue): FlowBuilder;
+  onLeftPaddingChanged(handler: DslSignalHandlerValue): FlowBuilder;
+  onMoveChanged(handler: DslSignalHandlerValue): FlowBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): FlowBuilder;
+  onOpacityChanged(handler: DslSignalHandlerValue): FlowBuilder;
+  onPaddingChanged(handler: DslSignalHandlerValue): FlowBuilder;
+  onPaletteChanged(handler: DslSignalHandlerValue): FlowBuilder;
+  onPaletteCreated(handler: DslSignalHandlerValue): FlowBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): FlowBuilder;
+  onPopulateChanged(handler: DslSignalHandlerValue): FlowBuilder;
+  onPositioningComplete(handler: DslSignalHandlerValue): FlowBuilder;
+  onRightPaddingChanged(handler: DslSignalHandlerValue): FlowBuilder;
+  onRotationChanged(handler: DslSignalHandlerValue): FlowBuilder;
+  onScaleChanged(handler: DslSignalHandlerValue): FlowBuilder;
+  onSmoothChanged(handler: DslSignalHandlerValue): FlowBuilder;
+  onSpacingChanged(handler: DslSignalHandlerValue): FlowBuilder;
+  onStateChanged(handler: DslSignalHandlerValue): FlowBuilder;
+  onTopPaddingChanged(handler: DslSignalHandlerValue): FlowBuilder;
+  onTransformOriginChanged(handler: DslSignalHandlerValue): FlowBuilder;
+  onVisibleChanged(handler: DslSignalHandlerValue): FlowBuilder;
+  onVisibleChildrenChanged(handler: DslSignalHandlerValue): FlowBuilder;
+  onWidthChanged(handler: DslSignalHandlerValue): FlowBuilder;
+  onWindowChanged(handler: DslSignalHandlerValue): FlowBuilder;
+  onXChanged(handler: DslSignalHandlerValue): FlowBuilder;
+  onYChanged(handler: DslSignalHandlerValue): FlowBuilder;
+  onZChanged(handler: DslSignalHandlerValue): FlowBuilder;
   anchors(setup: (b: AnchorsBuilder) => void): FlowBuilder;
   layer(setup: (b: LayerBuilder) => void): FlowBuilder;
   accessible(setup: (b: AccessibleAttachedBuilder) => void): FlowBuilder;

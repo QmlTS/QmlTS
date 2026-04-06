@@ -2,13 +2,19 @@
 // Type: RouteModel
 // Generated from Qt 6.11.0
 
-import type { QmlEnumToken, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlEnumToken,
+  QmlObjectBuilder,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { PluginBuilder } from './Plugin.js';
 import type { RouteQueryBuilder } from './RouteQuery.js';
 export interface RouteModelBuilder {
   id(id: string): RouteModelBuilder;
   child(obj: QmlObjectBuilder): RouteModelBuilder;
+  children(...objs: QmlObjectBuilder[]): RouteModelBuilder;
 
   autoUpdate(value: boolean): RouteModelBuilder;
   autoUpdateBind(expr: string): RouteModelBuilder;
@@ -20,34 +26,34 @@ export interface RouteModelBuilder {
   pluginBind(expr: string): RouteModelBuilder;
   query(value: RouteQueryBuilder): RouteModelBuilder;
   queryBind(expr: string): RouteModelBuilder;
-  onAbortRequested(body: string): RouteModelBuilder;
-  onAutoUpdateChanged(body: string): RouteModelBuilder;
-  onColumnsAboutToBeInserted(body: string): RouteModelBuilder;
-  onColumnsAboutToBeMoved(body: string): RouteModelBuilder;
-  onColumnsAboutToBeRemoved(body: string): RouteModelBuilder;
-  onColumnsInserted(body: string): RouteModelBuilder;
-  onColumnsMoved(body: string): RouteModelBuilder;
-  onColumnsRemoved(body: string): RouteModelBuilder;
-  onCountChanged(body: string): RouteModelBuilder;
-  onDataChanged(body: string): RouteModelBuilder;
-  onErrorChanged(body: string): RouteModelBuilder;
-  onHeaderDataChanged(body: string): RouteModelBuilder;
-  onLayoutAboutToBeChanged(body: string): RouteModelBuilder;
-  onLayoutChanged(body: string): RouteModelBuilder;
-  onMeasurementSystemChanged(body: string): RouteModelBuilder;
-  onModelAboutToBeReset(body: string): RouteModelBuilder;
-  onModelReset(body: string): RouteModelBuilder;
-  onObjectNameChanged(body: string): RouteModelBuilder;
-  onPluginChanged(body: string): RouteModelBuilder;
-  onQueryChanged(body: string): RouteModelBuilder;
-  onRoutesChanged(body: string): RouteModelBuilder;
-  onRowsAboutToBeInserted(body: string): RouteModelBuilder;
-  onRowsAboutToBeMoved(body: string): RouteModelBuilder;
-  onRowsAboutToBeRemoved(body: string): RouteModelBuilder;
-  onRowsInserted(body: string): RouteModelBuilder;
-  onRowsMoved(body: string): RouteModelBuilder;
-  onRowsRemoved(body: string): RouteModelBuilder;
-  onStatusChanged(body: string): RouteModelBuilder;
+  onAbortRequested(handler: DslSignalHandlerValue): RouteModelBuilder;
+  onAutoUpdateChanged(handler: DslSignalHandlerValue): RouteModelBuilder;
+  onColumnsAboutToBeInserted(handler: DslSignalHandlerValue): RouteModelBuilder;
+  onColumnsAboutToBeMoved(handler: DslSignalHandlerValue): RouteModelBuilder;
+  onColumnsAboutToBeRemoved(handler: DslSignalHandlerValue): RouteModelBuilder;
+  onColumnsInserted(handler: DslSignalHandlerValue): RouteModelBuilder;
+  onColumnsMoved(handler: DslSignalHandlerValue): RouteModelBuilder;
+  onColumnsRemoved(handler: DslSignalHandlerValue): RouteModelBuilder;
+  onCountChanged(handler: DslSignalHandlerValue): RouteModelBuilder;
+  onDataChanged(handler: DslSignalHandlerValue): RouteModelBuilder;
+  onErrorChanged(handler: DslSignalHandlerValue): RouteModelBuilder;
+  onHeaderDataChanged(handler: DslSignalHandlerValue): RouteModelBuilder;
+  onLayoutAboutToBeChanged(handler: DslSignalHandlerValue): RouteModelBuilder;
+  onLayoutChanged(handler: DslSignalHandlerValue): RouteModelBuilder;
+  onMeasurementSystemChanged(handler: DslSignalHandlerValue): RouteModelBuilder;
+  onModelAboutToBeReset(handler: DslSignalHandlerValue): RouteModelBuilder;
+  onModelReset(handler: DslSignalHandlerValue): RouteModelBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): RouteModelBuilder;
+  onPluginChanged(handler: DslSignalHandlerValue): RouteModelBuilder;
+  onQueryChanged(handler: DslSignalHandlerValue): RouteModelBuilder;
+  onRoutesChanged(handler: DslSignalHandlerValue): RouteModelBuilder;
+  onRowsAboutToBeInserted(handler: DslSignalHandlerValue): RouteModelBuilder;
+  onRowsAboutToBeMoved(handler: DslSignalHandlerValue): RouteModelBuilder;
+  onRowsAboutToBeRemoved(handler: DslSignalHandlerValue): RouteModelBuilder;
+  onRowsInserted(handler: DslSignalHandlerValue): RouteModelBuilder;
+  onRowsMoved(handler: DslSignalHandlerValue): RouteModelBuilder;
+  onRowsRemoved(handler: DslSignalHandlerValue): RouteModelBuilder;
+  onStatusChanged(handler: DslSignalHandlerValue): RouteModelBuilder;
 }
 
 const ROUTEMODEL_META: TypeMetadata = {

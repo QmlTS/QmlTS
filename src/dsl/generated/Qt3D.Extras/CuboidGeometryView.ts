@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlEnumToken,
   QmlObjectBuilder,
   QmlSize,
@@ -14,6 +15,7 @@ import type { GeometryBuilder } from '../Qt3D.Core/Geometry.js';
 export interface CuboidGeometryViewBuilder {
   id(id: string): CuboidGeometryViewBuilder;
   child(obj: QmlObjectBuilder): CuboidGeometryViewBuilder;
+  children(...objs: QmlObjectBuilder[]): CuboidGeometryViewBuilder;
 
   enabled(value: boolean): CuboidGeometryViewBuilder;
   enabledBind(expr: string): CuboidGeometryViewBuilder;
@@ -55,27 +57,27 @@ export interface CuboidGeometryViewBuilder {
   yzMeshResolutionBind(expr: string): CuboidGeometryViewBuilder;
   zExtent(value: number): CuboidGeometryViewBuilder;
   zExtentBind(expr: string): CuboidGeometryViewBuilder;
-  onEnabledChanged(body: string): CuboidGeometryViewBuilder;
-  onFirstInstanceChanged(body: string): CuboidGeometryViewBuilder;
-  onFirstVertexChanged(body: string): CuboidGeometryViewBuilder;
-  onGeometryChanged(body: string): CuboidGeometryViewBuilder;
-  onIndexBufferByteOffsetChanged(body: string): CuboidGeometryViewBuilder;
-  onIndexOffsetChanged(body: string): CuboidGeometryViewBuilder;
-  onInstanceCountChanged(body: string): CuboidGeometryViewBuilder;
-  onNodeDestroyed(body: string): CuboidGeometryViewBuilder;
-  onObjectNameChanged(body: string): CuboidGeometryViewBuilder;
-  onParentChanged(body: string): CuboidGeometryViewBuilder;
-  onPrimitiveRestartEnabledChanged(body: string): CuboidGeometryViewBuilder;
-  onPrimitiveTypeChanged(body: string): CuboidGeometryViewBuilder;
-  onRestartIndexValueChanged(body: string): CuboidGeometryViewBuilder;
-  onVertexCountChanged(body: string): CuboidGeometryViewBuilder;
-  onVerticesPerPatchChanged(body: string): CuboidGeometryViewBuilder;
-  onXExtentChanged(body: string): CuboidGeometryViewBuilder;
-  onXyMeshResolutionChanged(body: string): CuboidGeometryViewBuilder;
-  onXzMeshResolutionChanged(body: string): CuboidGeometryViewBuilder;
-  onYExtentChanged(body: string): CuboidGeometryViewBuilder;
-  onYzMeshResolutionChanged(body: string): CuboidGeometryViewBuilder;
-  onZExtentChanged(body: string): CuboidGeometryViewBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): CuboidGeometryViewBuilder;
+  onFirstInstanceChanged(handler: DslSignalHandlerValue): CuboidGeometryViewBuilder;
+  onFirstVertexChanged(handler: DslSignalHandlerValue): CuboidGeometryViewBuilder;
+  onGeometryChanged(handler: DslSignalHandlerValue): CuboidGeometryViewBuilder;
+  onIndexBufferByteOffsetChanged(handler: DslSignalHandlerValue): CuboidGeometryViewBuilder;
+  onIndexOffsetChanged(handler: DslSignalHandlerValue): CuboidGeometryViewBuilder;
+  onInstanceCountChanged(handler: DslSignalHandlerValue): CuboidGeometryViewBuilder;
+  onNodeDestroyed(handler: DslSignalHandlerValue): CuboidGeometryViewBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): CuboidGeometryViewBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): CuboidGeometryViewBuilder;
+  onPrimitiveRestartEnabledChanged(handler: DslSignalHandlerValue): CuboidGeometryViewBuilder;
+  onPrimitiveTypeChanged(handler: DslSignalHandlerValue): CuboidGeometryViewBuilder;
+  onRestartIndexValueChanged(handler: DslSignalHandlerValue): CuboidGeometryViewBuilder;
+  onVertexCountChanged(handler: DslSignalHandlerValue): CuboidGeometryViewBuilder;
+  onVerticesPerPatchChanged(handler: DslSignalHandlerValue): CuboidGeometryViewBuilder;
+  onXExtentChanged(handler: DslSignalHandlerValue): CuboidGeometryViewBuilder;
+  onXyMeshResolutionChanged(handler: DslSignalHandlerValue): CuboidGeometryViewBuilder;
+  onXzMeshResolutionChanged(handler: DslSignalHandlerValue): CuboidGeometryViewBuilder;
+  onYExtentChanged(handler: DslSignalHandlerValue): CuboidGeometryViewBuilder;
+  onYzMeshResolutionChanged(handler: DslSignalHandlerValue): CuboidGeometryViewBuilder;
+  onZExtentChanged(handler: DslSignalHandlerValue): CuboidGeometryViewBuilder;
 }
 
 const CUBOIDGEOMETRYVIEW_META: TypeMetadata = {

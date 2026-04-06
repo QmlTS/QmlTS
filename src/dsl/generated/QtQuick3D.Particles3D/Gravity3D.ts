@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlObjectBuilder,
   QmlQuaternion,
   QmlValue,
@@ -14,6 +15,7 @@ import type { ParticleSystem3DBuilder } from './ParticleSystem3D.js';
 export interface Gravity3DBuilder {
   id(id: string): Gravity3DBuilder;
   child(obj: QmlObjectBuilder): Gravity3DBuilder;
+  children(...objs: QmlObjectBuilder[]): Gravity3DBuilder;
 
   direction(value: QmlVector3d): Gravity3DBuilder;
   directionBind(expr: string): Gravity3DBuilder;
@@ -53,34 +55,34 @@ export interface Gravity3DBuilder {
   yBind(expr: string): Gravity3DBuilder;
   z(value: number): Gravity3DBuilder;
   zBind(expr: string): Gravity3DBuilder;
-  onChildrenChanged(body: string): Gravity3DBuilder;
-  onDirectionChanged(body: string): Gravity3DBuilder;
-  onEnabledChanged(body: string): Gravity3DBuilder;
-  onEulerRotationChanged(body: string): Gravity3DBuilder;
-  onForwardChanged(body: string): Gravity3DBuilder;
-  onLayersChanged(body: string): Gravity3DBuilder;
-  onLocalOpacityChanged(body: string): Gravity3DBuilder;
-  onMagnitudeChanged(body: string): Gravity3DBuilder;
-  onObjectNameChanged(body: string): Gravity3DBuilder;
-  onParentChanged(body: string): Gravity3DBuilder;
-  onPivotChanged(body: string): Gravity3DBuilder;
-  onPositionChanged(body: string): Gravity3DBuilder;
-  onRightChanged(body: string): Gravity3DBuilder;
-  onRotationChanged(body: string): Gravity3DBuilder;
-  onScaleChanged(body: string): Gravity3DBuilder;
-  onScenePositionChanged(body: string): Gravity3DBuilder;
-  onSceneRotationChanged(body: string): Gravity3DBuilder;
-  onSceneScaleChanged(body: string): Gravity3DBuilder;
-  onSceneTransformChanged(body: string): Gravity3DBuilder;
-  onStateChanged(body: string): Gravity3DBuilder;
-  onStaticFlagsChanged(body: string): Gravity3DBuilder;
-  onSystemChanged(body: string): Gravity3DBuilder;
-  onUpChanged(body: string): Gravity3DBuilder;
-  onUpdate(body: string): Gravity3DBuilder;
-  onVisibleChanged(body: string): Gravity3DBuilder;
-  onXChanged(body: string): Gravity3DBuilder;
-  onYChanged(body: string): Gravity3DBuilder;
-  onZChanged(body: string): Gravity3DBuilder;
+  onChildrenChanged(handler: DslSignalHandlerValue): Gravity3DBuilder;
+  onDirectionChanged(handler: DslSignalHandlerValue): Gravity3DBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): Gravity3DBuilder;
+  onEulerRotationChanged(handler: DslSignalHandlerValue): Gravity3DBuilder;
+  onForwardChanged(handler: DslSignalHandlerValue): Gravity3DBuilder;
+  onLayersChanged(handler: DslSignalHandlerValue): Gravity3DBuilder;
+  onLocalOpacityChanged(handler: DslSignalHandlerValue): Gravity3DBuilder;
+  onMagnitudeChanged(handler: DslSignalHandlerValue): Gravity3DBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): Gravity3DBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): Gravity3DBuilder;
+  onPivotChanged(handler: DslSignalHandlerValue): Gravity3DBuilder;
+  onPositionChanged(handler: DslSignalHandlerValue): Gravity3DBuilder;
+  onRightChanged(handler: DslSignalHandlerValue): Gravity3DBuilder;
+  onRotationChanged(handler: DslSignalHandlerValue): Gravity3DBuilder;
+  onScaleChanged(handler: DslSignalHandlerValue): Gravity3DBuilder;
+  onScenePositionChanged(handler: DslSignalHandlerValue): Gravity3DBuilder;
+  onSceneRotationChanged(handler: DslSignalHandlerValue): Gravity3DBuilder;
+  onSceneScaleChanged(handler: DslSignalHandlerValue): Gravity3DBuilder;
+  onSceneTransformChanged(handler: DslSignalHandlerValue): Gravity3DBuilder;
+  onStateChanged(handler: DslSignalHandlerValue): Gravity3DBuilder;
+  onStaticFlagsChanged(handler: DslSignalHandlerValue): Gravity3DBuilder;
+  onSystemChanged(handler: DslSignalHandlerValue): Gravity3DBuilder;
+  onUpChanged(handler: DslSignalHandlerValue): Gravity3DBuilder;
+  onUpdate(handler: DslSignalHandlerValue): Gravity3DBuilder;
+  onVisibleChanged(handler: DslSignalHandlerValue): Gravity3DBuilder;
+  onXChanged(handler: DslSignalHandlerValue): Gravity3DBuilder;
+  onYChanged(handler: DslSignalHandlerValue): Gravity3DBuilder;
+  onZChanged(handler: DslSignalHandlerValue): Gravity3DBuilder;
 }
 
 const GRAVITY3D_META: TypeMetadata = {

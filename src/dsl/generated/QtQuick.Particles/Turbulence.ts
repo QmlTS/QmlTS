@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlEnumToken,
   QmlObjectBuilder,
   QmlUrl,
@@ -20,6 +21,7 @@ import type { ItemParticleAttachedBuilder } from './QQuickItemParticleAttached.j
 export interface TurbulenceBuilder {
   id(id: string): TurbulenceBuilder;
   child(obj: QmlObjectBuilder): TurbulenceBuilder;
+  children(...objs: QmlObjectBuilder[]): TurbulenceBuilder;
 
   activeFocusOnTab(value: boolean): TurbulenceBuilder;
   activeFocusOnTabBind(expr: string): TurbulenceBuilder;
@@ -85,45 +87,45 @@ export interface TurbulenceBuilder {
   yBind(expr: string): TurbulenceBuilder;
   z(value: number): TurbulenceBuilder;
   zBind(expr: string): TurbulenceBuilder;
-  onActiveFocusChanged(body: string): TurbulenceBuilder;
-  onActiveFocusOnTabChanged(body: string): TurbulenceBuilder;
-  onAffected(body: string): TurbulenceBuilder;
-  onAntialiasingChanged(body: string): TurbulenceBuilder;
-  onBaselineOffsetChanged(body: string): TurbulenceBuilder;
-  onChildrenChanged(body: string): TurbulenceBuilder;
-  onChildrenRectChanged(body: string): TurbulenceBuilder;
-  onClipChanged(body: string): TurbulenceBuilder;
-  onContainmentMaskChanged(body: string): TurbulenceBuilder;
-  onEnabledChanged(body: string): TurbulenceBuilder;
-  onFocusChanged(body: string): TurbulenceBuilder;
-  onFocusPolicyChanged(body: string): TurbulenceBuilder;
-  onGroupsChanged(body: string): TurbulenceBuilder;
-  onHeightChanged(body: string): TurbulenceBuilder;
-  onImplicitHeightChanged(body: string): TurbulenceBuilder;
-  onImplicitWidthChanged(body: string): TurbulenceBuilder;
-  onNoiseSourceChanged(body: string): TurbulenceBuilder;
-  onObjectNameChanged(body: string): TurbulenceBuilder;
-  onOnceChanged(body: string): TurbulenceBuilder;
-  onOpacityChanged(body: string): TurbulenceBuilder;
-  onPaletteChanged(body: string): TurbulenceBuilder;
-  onPaletteCreated(body: string): TurbulenceBuilder;
-  onParentChanged(body: string): TurbulenceBuilder;
-  onRotationChanged(body: string): TurbulenceBuilder;
-  onScaleChanged(body: string): TurbulenceBuilder;
-  onShapeChanged(body: string): TurbulenceBuilder;
-  onSmoothChanged(body: string): TurbulenceBuilder;
-  onStateChanged(body: string): TurbulenceBuilder;
-  onStrengthChanged(body: string): TurbulenceBuilder;
-  onSystemChanged(body: string): TurbulenceBuilder;
-  onTransformOriginChanged(body: string): TurbulenceBuilder;
-  onVisibleChanged(body: string): TurbulenceBuilder;
-  onVisibleChildrenChanged(body: string): TurbulenceBuilder;
-  onWhenCollidingWithChanged(body: string): TurbulenceBuilder;
-  onWidthChanged(body: string): TurbulenceBuilder;
-  onWindowChanged(body: string): TurbulenceBuilder;
-  onXChanged(body: string): TurbulenceBuilder;
-  onYChanged(body: string): TurbulenceBuilder;
-  onZChanged(body: string): TurbulenceBuilder;
+  onActiveFocusChanged(handler: DslSignalHandlerValue): TurbulenceBuilder;
+  onActiveFocusOnTabChanged(handler: DslSignalHandlerValue): TurbulenceBuilder;
+  onAffected(handler: DslSignalHandlerValue): TurbulenceBuilder;
+  onAntialiasingChanged(handler: DslSignalHandlerValue): TurbulenceBuilder;
+  onBaselineOffsetChanged(handler: DslSignalHandlerValue): TurbulenceBuilder;
+  onChildrenChanged(handler: DslSignalHandlerValue): TurbulenceBuilder;
+  onChildrenRectChanged(handler: DslSignalHandlerValue): TurbulenceBuilder;
+  onClipChanged(handler: DslSignalHandlerValue): TurbulenceBuilder;
+  onContainmentMaskChanged(handler: DslSignalHandlerValue): TurbulenceBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): TurbulenceBuilder;
+  onFocusChanged(handler: DslSignalHandlerValue): TurbulenceBuilder;
+  onFocusPolicyChanged(handler: DslSignalHandlerValue): TurbulenceBuilder;
+  onGroupsChanged(handler: DslSignalHandlerValue): TurbulenceBuilder;
+  onHeightChanged(handler: DslSignalHandlerValue): TurbulenceBuilder;
+  onImplicitHeightChanged(handler: DslSignalHandlerValue): TurbulenceBuilder;
+  onImplicitWidthChanged(handler: DslSignalHandlerValue): TurbulenceBuilder;
+  onNoiseSourceChanged(handler: DslSignalHandlerValue): TurbulenceBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): TurbulenceBuilder;
+  onOnceChanged(handler: DslSignalHandlerValue): TurbulenceBuilder;
+  onOpacityChanged(handler: DslSignalHandlerValue): TurbulenceBuilder;
+  onPaletteChanged(handler: DslSignalHandlerValue): TurbulenceBuilder;
+  onPaletteCreated(handler: DslSignalHandlerValue): TurbulenceBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): TurbulenceBuilder;
+  onRotationChanged(handler: DslSignalHandlerValue): TurbulenceBuilder;
+  onScaleChanged(handler: DslSignalHandlerValue): TurbulenceBuilder;
+  onShapeChanged(handler: DslSignalHandlerValue): TurbulenceBuilder;
+  onSmoothChanged(handler: DslSignalHandlerValue): TurbulenceBuilder;
+  onStateChanged(handler: DslSignalHandlerValue): TurbulenceBuilder;
+  onStrengthChanged(handler: DslSignalHandlerValue): TurbulenceBuilder;
+  onSystemChanged(handler: DslSignalHandlerValue): TurbulenceBuilder;
+  onTransformOriginChanged(handler: DslSignalHandlerValue): TurbulenceBuilder;
+  onVisibleChanged(handler: DslSignalHandlerValue): TurbulenceBuilder;
+  onVisibleChildrenChanged(handler: DslSignalHandlerValue): TurbulenceBuilder;
+  onWhenCollidingWithChanged(handler: DslSignalHandlerValue): TurbulenceBuilder;
+  onWidthChanged(handler: DslSignalHandlerValue): TurbulenceBuilder;
+  onWindowChanged(handler: DslSignalHandlerValue): TurbulenceBuilder;
+  onXChanged(handler: DslSignalHandlerValue): TurbulenceBuilder;
+  onYChanged(handler: DslSignalHandlerValue): TurbulenceBuilder;
+  onZChanged(handler: DslSignalHandlerValue): TurbulenceBuilder;
   anchors(setup: (b: AnchorsBuilder) => void): TurbulenceBuilder;
   layer(setup: (b: LayerBuilder) => void): TurbulenceBuilder;
   itemParticle(setup: (b: ItemParticleAttachedBuilder) => void): TurbulenceBuilder;

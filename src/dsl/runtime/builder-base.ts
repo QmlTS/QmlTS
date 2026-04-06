@@ -6,6 +6,7 @@ import type {
   IdAssignmentNode,
   ObjectDefinitionNode,
   ObjectMember,
+  SignalHandlerBody,
   SignalHandlerNode,
 } from '../../ast/types.js';
 import { isEnumToken, type QmlEnumToken } from './enum-token.js';
@@ -15,11 +16,20 @@ export interface QmlObjectBuilder {
   readonly __typeName: string;
   id(id: string): this;
   child(obj: QmlObjectBuilder): this;
+  children(...objs: QmlObjectBuilder[]): this;
   build(): ObjectDefinitionNode;
 }
 
 /** Value that can be passed to a property setter */
 export type DslPropertyValue = number | string | boolean | null | QmlEnumToken;
+
+/**
+ * Value accepted by signal handler methods (onXxx).
+ * - `string`: block handler body — emitted as `onXxx: { code }`
+ * - Arrow function: parsed at runtime — emitted as `onXxx: (params) => body`
+ * - Named/bound function: command reference — typechecks but requires compiler resolution
+ */
+export type DslSignalHandlerValue = string | ((...args: any[]) => any);
 
 /** A single property entry for grouped/attached callbacks */
 export interface BuilderEntry {
@@ -51,6 +61,13 @@ export class DslBuilderImpl implements QmlObjectBuilder {
     return this;
   }
 
+  children(...objs: QmlObjectBuilder[]): this {
+    for (const obj of objs) {
+      this.members.push(obj.build());
+    }
+    return this;
+  }
+
   /** Set a property to a literal value. */
   setProp(property: string, value: DslPropertyValue): this {
     const bindingValue = toDslBindingValue(value);
@@ -70,13 +87,10 @@ export class DslBuilderImpl implements QmlObjectBuilder {
     return this;
   }
 
-  /** Add a signal handler. */
-  handleSignal(name: string, body: string): this {
-    const node: SignalHandlerNode = {
-      kind: 'SignalHandler',
-      name,
-      body: { form: 'block', code: body },
-    };
+  /** Add a signal handler. Accepts a string body, an arrow function, or a command reference. */
+  handleSignal(name: string, handler: DslSignalHandlerValue): this {
+    const body = toSignalHandlerBody(handler);
+    const node: SignalHandlerNode = { kind: 'SignalHandler', name, body };
     this.members.push(node);
     return this;
   }
@@ -144,4 +158,69 @@ function toDslBindingValue(value: DslPropertyValue): BindingValue {
     };
   }
   return { kind: 'null' };
+}
+
+// ─── Signal Handler Parsing ─────────────────────────────────────────────
+
+function toSignalHandlerBody(handler: DslSignalHandlerValue): SignalHandlerBody {
+  if (typeof handler === 'string') {
+    return { form: 'block', code: handler };
+  }
+
+  if (typeof handler === 'function') {
+    const parsed = parseArrowFunction(handler);
+    if (parsed) {
+      return {
+        form: 'arrow',
+        parameters: parsed.params,
+        body: parsed.body,
+        isBlock: parsed.isBlock,
+      };
+    }
+    throw new TypeError(
+      'Function command references require compiler processing. ' +
+        'Use a string body or inline arrow function for runtime usage.',
+    );
+  }
+
+  throw new TypeError(`Invalid signal handler value: ${typeof handler}`);
+}
+
+/**
+ * Parse a JavaScript arrow function's toString() into its components.
+ * Returns null if the function is not an arrow function (e.g., bound method, named function).
+ */
+export function parseArrowFunction(fn: (...args: any[]) => any): {
+  params: string[];
+  body: string;
+  isBlock: boolean;
+} | null {
+  const source = fn.toString().trim();
+
+  // Named/bound functions are not arrow functions
+  if (
+    source.startsWith('function') ||
+    source.startsWith('class') ||
+    source.includes('[native code]')
+  ) {
+    return null;
+  }
+
+  // Match arrow function: [async] params => body
+  // Handles: () => expr, (a, b) => expr, x => expr, (a) => { stmts }
+  const match = source.match(/^(?:async\s+)?(?:\(([^)]*)\)|(\w+))\s*=>\s*([\s\S]*)$/);
+  if (!match) return null;
+
+  const paramStr = (match[1] ?? match[2] ?? '').trim();
+  const params = paramStr ? paramStr.split(',').map((p) => p.trim()) : [];
+
+  let body = match[3]!.trim();
+  let isBlock = false;
+
+  if (body.startsWith('{') && body.endsWith('}')) {
+    isBlock = true;
+    body = body.slice(1, -1).trim();
+  }
+
+  return { params, body, isBlock };
 }

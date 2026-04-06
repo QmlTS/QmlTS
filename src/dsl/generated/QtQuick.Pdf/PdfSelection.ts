@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlEnumToken,
   QmlObjectBuilder,
   QmlPoint,
@@ -18,6 +19,7 @@ import type { PdfDocumentBuilder } from './PdfDocument.js';
 export interface PdfSelectionBuilder {
   id(id: string): PdfSelectionBuilder;
   child(obj: QmlObjectBuilder): PdfSelectionBuilder;
+  children(...objs: QmlObjectBuilder[]): PdfSelectionBuilder;
 
   activeFocusOnTab(value: boolean): PdfSelectionBuilder;
   activeFocusOnTabBind(expr: string): PdfSelectionBuilder;
@@ -81,45 +83,45 @@ export interface PdfSelectionBuilder {
   yBind(expr: string): PdfSelectionBuilder;
   z(value: number): PdfSelectionBuilder;
   zBind(expr: string): PdfSelectionBuilder;
-  onActiveFocusChanged(body: string): PdfSelectionBuilder;
-  onActiveFocusOnTabChanged(body: string): PdfSelectionBuilder;
-  onAntialiasingChanged(body: string): PdfSelectionBuilder;
-  onBaselineOffsetChanged(body: string): PdfSelectionBuilder;
-  onChildrenChanged(body: string): PdfSelectionBuilder;
-  onChildrenRectChanged(body: string): PdfSelectionBuilder;
-  onClipChanged(body: string): PdfSelectionBuilder;
-  onContainmentMaskChanged(body: string): PdfSelectionBuilder;
-  onDocumentChanged(body: string): PdfSelectionBuilder;
-  onEnabledChanged(body: string): PdfSelectionBuilder;
-  onFocusChanged(body: string): PdfSelectionBuilder;
-  onFocusPolicyChanged(body: string): PdfSelectionBuilder;
-  onFromChanged(body: string): PdfSelectionBuilder;
-  onHeightChanged(body: string): PdfSelectionBuilder;
-  onHoldChanged(body: string): PdfSelectionBuilder;
-  onImplicitHeightChanged(body: string): PdfSelectionBuilder;
-  onImplicitWidthChanged(body: string): PdfSelectionBuilder;
-  onObjectNameChanged(body: string): PdfSelectionBuilder;
-  onOpacityChanged(body: string): PdfSelectionBuilder;
-  onPageChanged(body: string): PdfSelectionBuilder;
-  onPaletteChanged(body: string): PdfSelectionBuilder;
-  onPaletteCreated(body: string): PdfSelectionBuilder;
-  onParentChanged(body: string): PdfSelectionBuilder;
-  onRenderScaleChanged(body: string): PdfSelectionBuilder;
-  onRotationChanged(body: string): PdfSelectionBuilder;
-  onScaleChanged(body: string): PdfSelectionBuilder;
-  onSelectedAreaChanged(body: string): PdfSelectionBuilder;
-  onSmoothChanged(body: string): PdfSelectionBuilder;
-  onStateChanged(body: string): PdfSelectionBuilder;
-  onTextChanged(body: string): PdfSelectionBuilder;
-  onToChanged(body: string): PdfSelectionBuilder;
-  onTransformOriginChanged(body: string): PdfSelectionBuilder;
-  onVisibleChanged(body: string): PdfSelectionBuilder;
-  onVisibleChildrenChanged(body: string): PdfSelectionBuilder;
-  onWidthChanged(body: string): PdfSelectionBuilder;
-  onWindowChanged(body: string): PdfSelectionBuilder;
-  onXChanged(body: string): PdfSelectionBuilder;
-  onYChanged(body: string): PdfSelectionBuilder;
-  onZChanged(body: string): PdfSelectionBuilder;
+  onActiveFocusChanged(handler: DslSignalHandlerValue): PdfSelectionBuilder;
+  onActiveFocusOnTabChanged(handler: DslSignalHandlerValue): PdfSelectionBuilder;
+  onAntialiasingChanged(handler: DslSignalHandlerValue): PdfSelectionBuilder;
+  onBaselineOffsetChanged(handler: DslSignalHandlerValue): PdfSelectionBuilder;
+  onChildrenChanged(handler: DslSignalHandlerValue): PdfSelectionBuilder;
+  onChildrenRectChanged(handler: DslSignalHandlerValue): PdfSelectionBuilder;
+  onClipChanged(handler: DslSignalHandlerValue): PdfSelectionBuilder;
+  onContainmentMaskChanged(handler: DslSignalHandlerValue): PdfSelectionBuilder;
+  onDocumentChanged(handler: DslSignalHandlerValue): PdfSelectionBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): PdfSelectionBuilder;
+  onFocusChanged(handler: DslSignalHandlerValue): PdfSelectionBuilder;
+  onFocusPolicyChanged(handler: DslSignalHandlerValue): PdfSelectionBuilder;
+  onFromChanged(handler: DslSignalHandlerValue): PdfSelectionBuilder;
+  onHeightChanged(handler: DslSignalHandlerValue): PdfSelectionBuilder;
+  onHoldChanged(handler: DslSignalHandlerValue): PdfSelectionBuilder;
+  onImplicitHeightChanged(handler: DslSignalHandlerValue): PdfSelectionBuilder;
+  onImplicitWidthChanged(handler: DslSignalHandlerValue): PdfSelectionBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): PdfSelectionBuilder;
+  onOpacityChanged(handler: DslSignalHandlerValue): PdfSelectionBuilder;
+  onPageChanged(handler: DslSignalHandlerValue): PdfSelectionBuilder;
+  onPaletteChanged(handler: DslSignalHandlerValue): PdfSelectionBuilder;
+  onPaletteCreated(handler: DslSignalHandlerValue): PdfSelectionBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): PdfSelectionBuilder;
+  onRenderScaleChanged(handler: DslSignalHandlerValue): PdfSelectionBuilder;
+  onRotationChanged(handler: DslSignalHandlerValue): PdfSelectionBuilder;
+  onScaleChanged(handler: DslSignalHandlerValue): PdfSelectionBuilder;
+  onSelectedAreaChanged(handler: DslSignalHandlerValue): PdfSelectionBuilder;
+  onSmoothChanged(handler: DslSignalHandlerValue): PdfSelectionBuilder;
+  onStateChanged(handler: DslSignalHandlerValue): PdfSelectionBuilder;
+  onTextChanged(handler: DslSignalHandlerValue): PdfSelectionBuilder;
+  onToChanged(handler: DslSignalHandlerValue): PdfSelectionBuilder;
+  onTransformOriginChanged(handler: DslSignalHandlerValue): PdfSelectionBuilder;
+  onVisibleChanged(handler: DslSignalHandlerValue): PdfSelectionBuilder;
+  onVisibleChildrenChanged(handler: DslSignalHandlerValue): PdfSelectionBuilder;
+  onWidthChanged(handler: DslSignalHandlerValue): PdfSelectionBuilder;
+  onWindowChanged(handler: DslSignalHandlerValue): PdfSelectionBuilder;
+  onXChanged(handler: DslSignalHandlerValue): PdfSelectionBuilder;
+  onYChanged(handler: DslSignalHandlerValue): PdfSelectionBuilder;
+  onZChanged(handler: DslSignalHandlerValue): PdfSelectionBuilder;
   anchors(setup: (b: AnchorsBuilder) => void): PdfSelectionBuilder;
   layer(setup: (b: LayerBuilder) => void): PdfSelectionBuilder;
 }

@@ -2,12 +2,13 @@
 // Type: MenuItemGroup
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import type { DslSignalHandlerValue, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 import type { MenuItemBuilder } from './MenuItem.js';
 export interface MenuItemGroupBuilder {
   id(id: string): MenuItemGroupBuilder;
   child(obj: QmlObjectBuilder): MenuItemGroupBuilder;
+  children(...objs: QmlObjectBuilder[]): MenuItemGroupBuilder;
 
   checkedItem(value: MenuItemBuilder): MenuItemGroupBuilder;
   checkedItemBind(expr: string): MenuItemGroupBuilder;
@@ -19,14 +20,14 @@ export interface MenuItemGroupBuilder {
   objectNameBind(expr: string): MenuItemGroupBuilder;
   visible(value: boolean): MenuItemGroupBuilder;
   visibleBind(expr: string): MenuItemGroupBuilder;
-  onCheckedItemChanged(body: string): MenuItemGroupBuilder;
-  onEnabledChanged(body: string): MenuItemGroupBuilder;
-  onExclusiveChanged(body: string): MenuItemGroupBuilder;
-  onHovered(body: string): MenuItemGroupBuilder;
-  onItemsChanged(body: string): MenuItemGroupBuilder;
-  onObjectNameChanged(body: string): MenuItemGroupBuilder;
-  onTriggered(body: string): MenuItemGroupBuilder;
-  onVisibleChanged(body: string): MenuItemGroupBuilder;
+  onCheckedItemChanged(handler: DslSignalHandlerValue): MenuItemGroupBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): MenuItemGroupBuilder;
+  onExclusiveChanged(handler: DslSignalHandlerValue): MenuItemGroupBuilder;
+  onHovered(handler: DslSignalHandlerValue): MenuItemGroupBuilder;
+  onItemsChanged(handler: DslSignalHandlerValue): MenuItemGroupBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): MenuItemGroupBuilder;
+  onTriggered(handler: DslSignalHandlerValue): MenuItemGroupBuilder;
+  onVisibleChanged(handler: DslSignalHandlerValue): MenuItemGroupBuilder;
 }
 
 const MENUITEMGROUP_META: TypeMetadata = {

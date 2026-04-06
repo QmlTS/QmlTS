@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlColor,
   QmlFont,
   QmlObjectBuilder,
@@ -14,6 +15,7 @@ import { createFluentBuilder } from '../../runtime/index.js';
 export interface Custom3DLabelBuilder {
   id(id: string): Custom3DLabelBuilder;
   child(obj: QmlObjectBuilder): Custom3DLabelBuilder;
+  children(...objs: QmlObjectBuilder[]): Custom3DLabelBuilder;
 
   backgroundColor(value: QmlColor): Custom3DLabelBuilder;
   backgroundColorBind(expr: string): Custom3DLabelBuilder;
@@ -51,25 +53,25 @@ export interface Custom3DLabelBuilder {
   textureFileBind(expr: string): Custom3DLabelBuilder;
   visible(value: boolean): Custom3DLabelBuilder;
   visibleBind(expr: string): Custom3DLabelBuilder;
-  onBackgroundColorChanged(body: string): Custom3DLabelBuilder;
-  onBackgroundVisibleChanged(body: string): Custom3DLabelBuilder;
-  onBorderVisibleChanged(body: string): Custom3DLabelBuilder;
-  onFacingCameraChanged(body: string): Custom3DLabelBuilder;
-  onFontChanged(body: string): Custom3DLabelBuilder;
-  onMeshFileChanged(body: string): Custom3DLabelBuilder;
-  onNeedUpdate(body: string): Custom3DLabelBuilder;
-  onObjectNameChanged(body: string): Custom3DLabelBuilder;
-  onPositionAbsoluteChanged(body: string): Custom3DLabelBuilder;
-  onPositionChanged(body: string): Custom3DLabelBuilder;
-  onRotationAbsoluteChanged(body: string): Custom3DLabelBuilder;
-  onRotationChanged(body: string): Custom3DLabelBuilder;
-  onScalingAbsoluteChanged(body: string): Custom3DLabelBuilder;
-  onScalingChanged(body: string): Custom3DLabelBuilder;
-  onShadowCastingChanged(body: string): Custom3DLabelBuilder;
-  onTextChanged(body: string): Custom3DLabelBuilder;
-  onTextColorChanged(body: string): Custom3DLabelBuilder;
-  onTextureFileChanged(body: string): Custom3DLabelBuilder;
-  onVisibleChanged(body: string): Custom3DLabelBuilder;
+  onBackgroundColorChanged(handler: DslSignalHandlerValue): Custom3DLabelBuilder;
+  onBackgroundVisibleChanged(handler: DslSignalHandlerValue): Custom3DLabelBuilder;
+  onBorderVisibleChanged(handler: DslSignalHandlerValue): Custom3DLabelBuilder;
+  onFacingCameraChanged(handler: DslSignalHandlerValue): Custom3DLabelBuilder;
+  onFontChanged(handler: DslSignalHandlerValue): Custom3DLabelBuilder;
+  onMeshFileChanged(handler: DslSignalHandlerValue): Custom3DLabelBuilder;
+  onNeedUpdate(handler: DslSignalHandlerValue): Custom3DLabelBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): Custom3DLabelBuilder;
+  onPositionAbsoluteChanged(handler: DslSignalHandlerValue): Custom3DLabelBuilder;
+  onPositionChanged(handler: DslSignalHandlerValue): Custom3DLabelBuilder;
+  onRotationAbsoluteChanged(handler: DslSignalHandlerValue): Custom3DLabelBuilder;
+  onRotationChanged(handler: DslSignalHandlerValue): Custom3DLabelBuilder;
+  onScalingAbsoluteChanged(handler: DslSignalHandlerValue): Custom3DLabelBuilder;
+  onScalingChanged(handler: DslSignalHandlerValue): Custom3DLabelBuilder;
+  onShadowCastingChanged(handler: DslSignalHandlerValue): Custom3DLabelBuilder;
+  onTextChanged(handler: DslSignalHandlerValue): Custom3DLabelBuilder;
+  onTextColorChanged(handler: DslSignalHandlerValue): Custom3DLabelBuilder;
+  onTextureFileChanged(handler: DslSignalHandlerValue): Custom3DLabelBuilder;
+  onVisibleChanged(handler: DslSignalHandlerValue): Custom3DLabelBuilder;
 }
 
 const CUSTOM3DLABEL_META: TypeMetadata = {

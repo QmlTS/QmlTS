@@ -2,11 +2,18 @@
 // Type: LightmapMesh
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlUrl, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlObjectBuilder,
+  QmlUrl,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 export interface LightmapMeshBuilder {
   id(id: string): LightmapMeshBuilder;
   child(obj: QmlObjectBuilder): LightmapMeshBuilder;
+  children(...objs: QmlObjectBuilder[]): LightmapMeshBuilder;
 
   key(value: string): LightmapMeshBuilder;
   keyBind(expr: string): LightmapMeshBuilder;
@@ -18,15 +25,15 @@ export interface LightmapMeshBuilder {
   sourceBind(expr: string): LightmapMeshBuilder;
   state(value: string): LightmapMeshBuilder;
   stateBind(expr: string): LightmapMeshBuilder;
-  onBoundsChanged(body: string): LightmapMeshBuilder;
-  onChildrenChanged(body: string): LightmapMeshBuilder;
-  onGeometryChanged(body: string): LightmapMeshBuilder;
-  onGeometryNodeDirty(body: string): LightmapMeshBuilder;
-  onKeyChanged(body: string): LightmapMeshBuilder;
-  onObjectNameChanged(body: string): LightmapMeshBuilder;
-  onParentChanged(body: string): LightmapMeshBuilder;
-  onSourceChanged(body: string): LightmapMeshBuilder;
-  onStateChanged(body: string): LightmapMeshBuilder;
+  onBoundsChanged(handler: DslSignalHandlerValue): LightmapMeshBuilder;
+  onChildrenChanged(handler: DslSignalHandlerValue): LightmapMeshBuilder;
+  onGeometryChanged(handler: DslSignalHandlerValue): LightmapMeshBuilder;
+  onGeometryNodeDirty(handler: DslSignalHandlerValue): LightmapMeshBuilder;
+  onKeyChanged(handler: DslSignalHandlerValue): LightmapMeshBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): LightmapMeshBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): LightmapMeshBuilder;
+  onSourceChanged(handler: DslSignalHandlerValue): LightmapMeshBuilder;
+  onStateChanged(handler: DslSignalHandlerValue): LightmapMeshBuilder;
 }
 
 const LIGHTMAPMESH_META: TypeMetadata = {

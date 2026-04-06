@@ -2,11 +2,17 @@
 // Type: TorusGeometry
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface TorusGeometryBuilder {
   id(id: string): TorusGeometryBuilder;
   child(obj: QmlObjectBuilder): TorusGeometryBuilder;
+  children(...objs: QmlObjectBuilder[]): TorusGeometryBuilder;
 
   asynchronous(value: boolean): TorusGeometryBuilder;
   asynchronousBind(expr: string): TorusGeometryBuilder;
@@ -24,18 +30,18 @@ export interface TorusGeometryBuilder {
   stateBind(expr: string): TorusGeometryBuilder;
   tubeRadius(value: number): TorusGeometryBuilder;
   tubeRadiusBind(expr: string): TorusGeometryBuilder;
-  onAsynchronousChanged(body: string): TorusGeometryBuilder;
-  onChildrenChanged(body: string): TorusGeometryBuilder;
-  onGeometryChanged(body: string): TorusGeometryBuilder;
-  onGeometryNodeDirty(body: string): TorusGeometryBuilder;
-  onObjectNameChanged(body: string): TorusGeometryBuilder;
-  onParentChanged(body: string): TorusGeometryBuilder;
-  onRadiusChanged(body: string): TorusGeometryBuilder;
-  onRingsChanged(body: string): TorusGeometryBuilder;
-  onSegmentsChanged(body: string): TorusGeometryBuilder;
-  onStateChanged(body: string): TorusGeometryBuilder;
-  onStatusChanged(body: string): TorusGeometryBuilder;
-  onTubeRadiusChanged(body: string): TorusGeometryBuilder;
+  onAsynchronousChanged(handler: DslSignalHandlerValue): TorusGeometryBuilder;
+  onChildrenChanged(handler: DslSignalHandlerValue): TorusGeometryBuilder;
+  onGeometryChanged(handler: DslSignalHandlerValue): TorusGeometryBuilder;
+  onGeometryNodeDirty(handler: DslSignalHandlerValue): TorusGeometryBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): TorusGeometryBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): TorusGeometryBuilder;
+  onRadiusChanged(handler: DslSignalHandlerValue): TorusGeometryBuilder;
+  onRingsChanged(handler: DslSignalHandlerValue): TorusGeometryBuilder;
+  onSegmentsChanged(handler: DslSignalHandlerValue): TorusGeometryBuilder;
+  onStateChanged(handler: DslSignalHandlerValue): TorusGeometryBuilder;
+  onStatusChanged(handler: DslSignalHandlerValue): TorusGeometryBuilder;
+  onTubeRadiusChanged(handler: DslSignalHandlerValue): TorusGeometryBuilder;
 }
 
 const TORUSGEOMETRY_META: TypeMetadata = {

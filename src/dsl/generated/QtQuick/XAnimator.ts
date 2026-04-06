@@ -2,7 +2,12 @@
 // Type: XAnimator
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 import type { AccessibleAttachedBuilder } from './Accessible.js';
 import type { EnterKeyAttachedBuilder } from './EnterKey.js';
@@ -24,6 +29,7 @@ import type { ViewTransitionAttachedBuilder } from './ViewTransition.js';
 export interface XAnimatorBuilder {
   id(id: string): XAnimatorBuilder;
   child(obj: QmlObjectBuilder): XAnimatorBuilder;
+  children(...objs: QmlObjectBuilder[]): XAnimatorBuilder;
 
   alwaysRunToEnd(value: boolean): XAnimatorBuilder;
   alwaysRunToEndBind(expr: string): XAnimatorBuilder;
@@ -45,19 +51,19 @@ export interface XAnimatorBuilder {
   targetBind(expr: string): XAnimatorBuilder;
   to(value: number): XAnimatorBuilder;
   toBind(expr: string): XAnimatorBuilder;
-  onAlwaysRunToEndChanged(body: string): XAnimatorBuilder;
-  onDurationChanged(body: string): XAnimatorBuilder;
-  onEasingChanged(body: string): XAnimatorBuilder;
-  onFinished(body: string): XAnimatorBuilder;
-  onFromChanged(body: string): XAnimatorBuilder;
-  onLoopCountChanged(body: string): XAnimatorBuilder;
-  onObjectNameChanged(body: string): XAnimatorBuilder;
-  onPausedChanged(body: string): XAnimatorBuilder;
-  onRunningChanged(body: string): XAnimatorBuilder;
-  onStarted(body: string): XAnimatorBuilder;
-  onStopped(body: string): XAnimatorBuilder;
-  onTargetItemChanged(body: string): XAnimatorBuilder;
-  onToChanged(body: string): XAnimatorBuilder;
+  onAlwaysRunToEndChanged(handler: DslSignalHandlerValue): XAnimatorBuilder;
+  onDurationChanged(handler: DslSignalHandlerValue): XAnimatorBuilder;
+  onEasingChanged(handler: DslSignalHandlerValue): XAnimatorBuilder;
+  onFinished(handler: DslSignalHandlerValue): XAnimatorBuilder;
+  onFromChanged(handler: DslSignalHandlerValue): XAnimatorBuilder;
+  onLoopCountChanged(handler: DslSignalHandlerValue): XAnimatorBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): XAnimatorBuilder;
+  onPausedChanged(handler: DslSignalHandlerValue): XAnimatorBuilder;
+  onRunningChanged(handler: DslSignalHandlerValue): XAnimatorBuilder;
+  onStarted(handler: DslSignalHandlerValue): XAnimatorBuilder;
+  onStopped(handler: DslSignalHandlerValue): XAnimatorBuilder;
+  onTargetItemChanged(handler: DslSignalHandlerValue): XAnimatorBuilder;
+  onToChanged(handler: DslSignalHandlerValue): XAnimatorBuilder;
   accessible(setup: (b: AccessibleAttachedBuilder) => void): XAnimatorBuilder;
   drag(setup: (b: DragAttachedBuilder) => void): XAnimatorBuilder;
   enterKey(setup: (b: EnterKeyAttachedBuilder) => void): XAnimatorBuilder;

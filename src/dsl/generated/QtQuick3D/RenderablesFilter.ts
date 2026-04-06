@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlEnumToken,
   QmlObjectBuilder,
   QmlValue,
@@ -12,6 +13,7 @@ import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface RenderablesFilterBuilder {
   id(id: string): RenderablesFilterBuilder;
   child(obj: QmlObjectBuilder): RenderablesFilterBuilder;
+  children(...objs: QmlObjectBuilder[]): RenderablesFilterBuilder;
 
   layerMask(value: number): RenderablesFilterBuilder;
   layerMaskBind(expr: string): RenderablesFilterBuilder;
@@ -23,10 +25,10 @@ export interface RenderablesFilterBuilder {
   renderableTypesBind(expr: string): RenderablesFilterBuilder;
   state(value: string): RenderablesFilterBuilder;
   stateBind(expr: string): RenderablesFilterBuilder;
-  onChildrenChanged(body: string): RenderablesFilterBuilder;
-  onObjectNameChanged(body: string): RenderablesFilterBuilder;
-  onParentChanged(body: string): RenderablesFilterBuilder;
-  onStateChanged(body: string): RenderablesFilterBuilder;
+  onChildrenChanged(handler: DslSignalHandlerValue): RenderablesFilterBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): RenderablesFilterBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): RenderablesFilterBuilder;
+  onStateChanged(handler: DslSignalHandlerValue): RenderablesFilterBuilder;
 }
 
 const RENDERABLESFILTER_META: TypeMetadata = {

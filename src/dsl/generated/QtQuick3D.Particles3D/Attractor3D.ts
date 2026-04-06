@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlObjectBuilder,
   QmlQuaternion,
   QmlValue,
@@ -14,6 +15,7 @@ import type { ParticleSystem3DBuilder } from './ParticleSystem3D.js';
 export interface Attractor3DBuilder {
   id(id: string): Attractor3DBuilder;
   child(obj: QmlObjectBuilder): Attractor3DBuilder;
+  children(...objs: QmlObjectBuilder[]): Attractor3DBuilder;
 
   duration(value: number): Attractor3DBuilder;
   durationBind(expr: string): Attractor3DBuilder;
@@ -63,39 +65,39 @@ export interface Attractor3DBuilder {
   yBind(expr: string): Attractor3DBuilder;
   z(value: number): Attractor3DBuilder;
   zBind(expr: string): Attractor3DBuilder;
-  onChildrenChanged(body: string): Attractor3DBuilder;
-  onDurationChanged(body: string): Attractor3DBuilder;
-  onDurationVariationChanged(body: string): Attractor3DBuilder;
-  onEnabledChanged(body: string): Attractor3DBuilder;
-  onEulerRotationChanged(body: string): Attractor3DBuilder;
-  onForwardChanged(body: string): Attractor3DBuilder;
-  onHideAtEndChanged(body: string): Attractor3DBuilder;
-  onLayersChanged(body: string): Attractor3DBuilder;
-  onLocalOpacityChanged(body: string): Attractor3DBuilder;
-  onObjectNameChanged(body: string): Attractor3DBuilder;
-  onParentChanged(body: string): Attractor3DBuilder;
-  onPivotChanged(body: string): Attractor3DBuilder;
-  onPositionChanged(body: string): Attractor3DBuilder;
-  onPositionVariationChanged(body: string): Attractor3DBuilder;
-  onPositionsAmountChanged(body: string): Attractor3DBuilder;
-  onRightChanged(body: string): Attractor3DBuilder;
-  onRotationChanged(body: string): Attractor3DBuilder;
-  onScaleChanged(body: string): Attractor3DBuilder;
-  onScenePositionChanged(body: string): Attractor3DBuilder;
-  onSceneRotationChanged(body: string): Attractor3DBuilder;
-  onSceneScaleChanged(body: string): Attractor3DBuilder;
-  onSceneTransformChanged(body: string): Attractor3DBuilder;
-  onShapeChanged(body: string): Attractor3DBuilder;
-  onStateChanged(body: string): Attractor3DBuilder;
-  onStaticFlagsChanged(body: string): Attractor3DBuilder;
-  onSystemChanged(body: string): Attractor3DBuilder;
-  onUpChanged(body: string): Attractor3DBuilder;
-  onUpdate(body: string): Attractor3DBuilder;
-  onUseCachedPositionsChanged(body: string): Attractor3DBuilder;
-  onVisibleChanged(body: string): Attractor3DBuilder;
-  onXChanged(body: string): Attractor3DBuilder;
-  onYChanged(body: string): Attractor3DBuilder;
-  onZChanged(body: string): Attractor3DBuilder;
+  onChildrenChanged(handler: DslSignalHandlerValue): Attractor3DBuilder;
+  onDurationChanged(handler: DslSignalHandlerValue): Attractor3DBuilder;
+  onDurationVariationChanged(handler: DslSignalHandlerValue): Attractor3DBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): Attractor3DBuilder;
+  onEulerRotationChanged(handler: DslSignalHandlerValue): Attractor3DBuilder;
+  onForwardChanged(handler: DslSignalHandlerValue): Attractor3DBuilder;
+  onHideAtEndChanged(handler: DslSignalHandlerValue): Attractor3DBuilder;
+  onLayersChanged(handler: DslSignalHandlerValue): Attractor3DBuilder;
+  onLocalOpacityChanged(handler: DslSignalHandlerValue): Attractor3DBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): Attractor3DBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): Attractor3DBuilder;
+  onPivotChanged(handler: DslSignalHandlerValue): Attractor3DBuilder;
+  onPositionChanged(handler: DslSignalHandlerValue): Attractor3DBuilder;
+  onPositionVariationChanged(handler: DslSignalHandlerValue): Attractor3DBuilder;
+  onPositionsAmountChanged(handler: DslSignalHandlerValue): Attractor3DBuilder;
+  onRightChanged(handler: DslSignalHandlerValue): Attractor3DBuilder;
+  onRotationChanged(handler: DslSignalHandlerValue): Attractor3DBuilder;
+  onScaleChanged(handler: DslSignalHandlerValue): Attractor3DBuilder;
+  onScenePositionChanged(handler: DslSignalHandlerValue): Attractor3DBuilder;
+  onSceneRotationChanged(handler: DslSignalHandlerValue): Attractor3DBuilder;
+  onSceneScaleChanged(handler: DslSignalHandlerValue): Attractor3DBuilder;
+  onSceneTransformChanged(handler: DslSignalHandlerValue): Attractor3DBuilder;
+  onShapeChanged(handler: DslSignalHandlerValue): Attractor3DBuilder;
+  onStateChanged(handler: DslSignalHandlerValue): Attractor3DBuilder;
+  onStaticFlagsChanged(handler: DslSignalHandlerValue): Attractor3DBuilder;
+  onSystemChanged(handler: DslSignalHandlerValue): Attractor3DBuilder;
+  onUpChanged(handler: DslSignalHandlerValue): Attractor3DBuilder;
+  onUpdate(handler: DslSignalHandlerValue): Attractor3DBuilder;
+  onUseCachedPositionsChanged(handler: DslSignalHandlerValue): Attractor3DBuilder;
+  onVisibleChanged(handler: DslSignalHandlerValue): Attractor3DBuilder;
+  onXChanged(handler: DslSignalHandlerValue): Attractor3DBuilder;
+  onYChanged(handler: DslSignalHandlerValue): Attractor3DBuilder;
+  onZChanged(handler: DslSignalHandlerValue): Attractor3DBuilder;
 }
 
 const ATTRACTOR3D_META: TypeMetadata = {

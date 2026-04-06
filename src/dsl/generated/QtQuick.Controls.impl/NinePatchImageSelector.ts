@@ -2,11 +2,17 @@
 // Type: NinePatchImageSelector
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 export interface NinePatchImageSelectorBuilder {
   id(id: string): NinePatchImageSelectorBuilder;
   child(obj: QmlObjectBuilder): NinePatchImageSelectorBuilder;
+  children(...objs: QmlObjectBuilder[]): NinePatchImageSelectorBuilder;
 
   cache(value: boolean): NinePatchImageSelectorBuilder;
   cacheBind(expr: string): NinePatchImageSelectorBuilder;
@@ -20,8 +26,8 @@ export interface NinePatchImageSelectorBuilder {
   separatorBind(expr: string): NinePatchImageSelectorBuilder;
   states(value: QmlValue[]): NinePatchImageSelectorBuilder;
   statesBind(expr: string): NinePatchImageSelectorBuilder;
-  onObjectNameChanged(body: string): NinePatchImageSelectorBuilder;
-  onSourceChanged(body: string): NinePatchImageSelectorBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): NinePatchImageSelectorBuilder;
+  onSourceChanged(handler: DslSignalHandlerValue): NinePatchImageSelectorBuilder;
 }
 
 const NINEPATCHIMAGESELECTOR_META: TypeMetadata = {

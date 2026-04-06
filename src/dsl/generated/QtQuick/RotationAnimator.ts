@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlEnumToken,
   QmlObjectBuilder,
   QmlValue,
@@ -29,6 +30,7 @@ import type { ViewTransitionAttachedBuilder } from './ViewTransition.js';
 export interface RotationAnimatorBuilder {
   id(id: string): RotationAnimatorBuilder;
   child(obj: QmlObjectBuilder): RotationAnimatorBuilder;
+  children(...objs: QmlObjectBuilder[]): RotationAnimatorBuilder;
 
   alwaysRunToEnd(value: boolean): RotationAnimatorBuilder;
   alwaysRunToEndBind(expr: string): RotationAnimatorBuilder;
@@ -52,20 +54,20 @@ export interface RotationAnimatorBuilder {
   targetBind(expr: string): RotationAnimatorBuilder;
   to(value: number): RotationAnimatorBuilder;
   toBind(expr: string): RotationAnimatorBuilder;
-  onAlwaysRunToEndChanged(body: string): RotationAnimatorBuilder;
-  onDirectionChanged(body: string): RotationAnimatorBuilder;
-  onDurationChanged(body: string): RotationAnimatorBuilder;
-  onEasingChanged(body: string): RotationAnimatorBuilder;
-  onFinished(body: string): RotationAnimatorBuilder;
-  onFromChanged(body: string): RotationAnimatorBuilder;
-  onLoopCountChanged(body: string): RotationAnimatorBuilder;
-  onObjectNameChanged(body: string): RotationAnimatorBuilder;
-  onPausedChanged(body: string): RotationAnimatorBuilder;
-  onRunningChanged(body: string): RotationAnimatorBuilder;
-  onStarted(body: string): RotationAnimatorBuilder;
-  onStopped(body: string): RotationAnimatorBuilder;
-  onTargetItemChanged(body: string): RotationAnimatorBuilder;
-  onToChanged(body: string): RotationAnimatorBuilder;
+  onAlwaysRunToEndChanged(handler: DslSignalHandlerValue): RotationAnimatorBuilder;
+  onDirectionChanged(handler: DslSignalHandlerValue): RotationAnimatorBuilder;
+  onDurationChanged(handler: DslSignalHandlerValue): RotationAnimatorBuilder;
+  onEasingChanged(handler: DslSignalHandlerValue): RotationAnimatorBuilder;
+  onFinished(handler: DslSignalHandlerValue): RotationAnimatorBuilder;
+  onFromChanged(handler: DslSignalHandlerValue): RotationAnimatorBuilder;
+  onLoopCountChanged(handler: DslSignalHandlerValue): RotationAnimatorBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): RotationAnimatorBuilder;
+  onPausedChanged(handler: DslSignalHandlerValue): RotationAnimatorBuilder;
+  onRunningChanged(handler: DslSignalHandlerValue): RotationAnimatorBuilder;
+  onStarted(handler: DslSignalHandlerValue): RotationAnimatorBuilder;
+  onStopped(handler: DslSignalHandlerValue): RotationAnimatorBuilder;
+  onTargetItemChanged(handler: DslSignalHandlerValue): RotationAnimatorBuilder;
+  onToChanged(handler: DslSignalHandlerValue): RotationAnimatorBuilder;
   accessible(setup: (b: AccessibleAttachedBuilder) => void): RotationAnimatorBuilder;
   drag(setup: (b: DragAttachedBuilder) => void): RotationAnimatorBuilder;
   enterKey(setup: (b: EnterKeyAttachedBuilder) => void): RotationAnimatorBuilder;

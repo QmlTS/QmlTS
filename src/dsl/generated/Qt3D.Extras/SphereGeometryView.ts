@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlEnumToken,
   QmlObjectBuilder,
   QmlValue,
@@ -13,6 +14,7 @@ import type { GeometryBuilder } from '../Qt3D.Core/Geometry.js';
 export interface SphereGeometryViewBuilder {
   id(id: string): SphereGeometryViewBuilder;
   child(obj: QmlObjectBuilder): SphereGeometryViewBuilder;
+  children(...objs: QmlObjectBuilder[]): SphereGeometryViewBuilder;
 
   enabled(value: boolean): SphereGeometryViewBuilder;
   enabledBind(expr: string): SphereGeometryViewBuilder;
@@ -50,25 +52,25 @@ export interface SphereGeometryViewBuilder {
   vertexCountBind(expr: string): SphereGeometryViewBuilder;
   verticesPerPatch(value: number): SphereGeometryViewBuilder;
   verticesPerPatchBind(expr: string): SphereGeometryViewBuilder;
-  onEnabledChanged(body: string): SphereGeometryViewBuilder;
-  onFirstInstanceChanged(body: string): SphereGeometryViewBuilder;
-  onFirstVertexChanged(body: string): SphereGeometryViewBuilder;
-  onGenerateTangentsChanged(body: string): SphereGeometryViewBuilder;
-  onGeometryChanged(body: string): SphereGeometryViewBuilder;
-  onIndexBufferByteOffsetChanged(body: string): SphereGeometryViewBuilder;
-  onIndexOffsetChanged(body: string): SphereGeometryViewBuilder;
-  onInstanceCountChanged(body: string): SphereGeometryViewBuilder;
-  onNodeDestroyed(body: string): SphereGeometryViewBuilder;
-  onObjectNameChanged(body: string): SphereGeometryViewBuilder;
-  onParentChanged(body: string): SphereGeometryViewBuilder;
-  onPrimitiveRestartEnabledChanged(body: string): SphereGeometryViewBuilder;
-  onPrimitiveTypeChanged(body: string): SphereGeometryViewBuilder;
-  onRadiusChanged(body: string): SphereGeometryViewBuilder;
-  onRestartIndexValueChanged(body: string): SphereGeometryViewBuilder;
-  onRingsChanged(body: string): SphereGeometryViewBuilder;
-  onSlicesChanged(body: string): SphereGeometryViewBuilder;
-  onVertexCountChanged(body: string): SphereGeometryViewBuilder;
-  onVerticesPerPatchChanged(body: string): SphereGeometryViewBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): SphereGeometryViewBuilder;
+  onFirstInstanceChanged(handler: DslSignalHandlerValue): SphereGeometryViewBuilder;
+  onFirstVertexChanged(handler: DslSignalHandlerValue): SphereGeometryViewBuilder;
+  onGenerateTangentsChanged(handler: DslSignalHandlerValue): SphereGeometryViewBuilder;
+  onGeometryChanged(handler: DslSignalHandlerValue): SphereGeometryViewBuilder;
+  onIndexBufferByteOffsetChanged(handler: DslSignalHandlerValue): SphereGeometryViewBuilder;
+  onIndexOffsetChanged(handler: DslSignalHandlerValue): SphereGeometryViewBuilder;
+  onInstanceCountChanged(handler: DslSignalHandlerValue): SphereGeometryViewBuilder;
+  onNodeDestroyed(handler: DslSignalHandlerValue): SphereGeometryViewBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): SphereGeometryViewBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): SphereGeometryViewBuilder;
+  onPrimitiveRestartEnabledChanged(handler: DslSignalHandlerValue): SphereGeometryViewBuilder;
+  onPrimitiveTypeChanged(handler: DslSignalHandlerValue): SphereGeometryViewBuilder;
+  onRadiusChanged(handler: DslSignalHandlerValue): SphereGeometryViewBuilder;
+  onRestartIndexValueChanged(handler: DslSignalHandlerValue): SphereGeometryViewBuilder;
+  onRingsChanged(handler: DslSignalHandlerValue): SphereGeometryViewBuilder;
+  onSlicesChanged(handler: DslSignalHandlerValue): SphereGeometryViewBuilder;
+  onVertexCountChanged(handler: DslSignalHandlerValue): SphereGeometryViewBuilder;
+  onVerticesPerPatchChanged(handler: DslSignalHandlerValue): SphereGeometryViewBuilder;
 }
 
 const SPHEREGEOMETRYVIEW_META: TypeMetadata = {

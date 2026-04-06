@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlEnumToken,
   QmlObjectBuilder,
   QmlValue,
@@ -19,6 +20,7 @@ import type { StyleVariationAttachedBuilder } from './QQStyleKitVariationAttache
 export interface StyledItemBaseBuilder {
   id(id: string): StyledItemBaseBuilder;
   child(obj: QmlObjectBuilder): StyledItemBaseBuilder;
+  children(...objs: QmlObjectBuilder[]): StyledItemBaseBuilder;
 
   activeFocusOnTab(value: boolean): StyledItemBaseBuilder;
   activeFocusOnTabBind(expr: string): StyledItemBaseBuilder;
@@ -68,38 +70,38 @@ export interface StyledItemBaseBuilder {
   yBind(expr: string): StyledItemBaseBuilder;
   z(value: number): StyledItemBaseBuilder;
   zBind(expr: string): StyledItemBaseBuilder;
-  onActiveFocusChanged(body: string): StyledItemBaseBuilder;
-  onActiveFocusOnTabChanged(body: string): StyledItemBaseBuilder;
-  onAntialiasingChanged(body: string): StyledItemBaseBuilder;
-  onBaselineOffsetChanged(body: string): StyledItemBaseBuilder;
-  onChildrenChanged(body: string): StyledItemBaseBuilder;
-  onChildrenRectChanged(body: string): StyledItemBaseBuilder;
-  onClipChanged(body: string): StyledItemBaseBuilder;
-  onContainmentMaskChanged(body: string): StyledItemBaseBuilder;
-  onDelegateStyleChanged(body: string): StyledItemBaseBuilder;
-  onEnabledChanged(body: string): StyledItemBaseBuilder;
-  onFocusChanged(body: string): StyledItemBaseBuilder;
-  onFocusPolicyChanged(body: string): StyledItemBaseBuilder;
-  onHeightChanged(body: string): StyledItemBaseBuilder;
-  onImplicitHeightChanged(body: string): StyledItemBaseBuilder;
-  onImplicitWidthChanged(body: string): StyledItemBaseBuilder;
-  onObjectNameChanged(body: string): StyledItemBaseBuilder;
-  onOpacityChanged(body: string): StyledItemBaseBuilder;
-  onPaletteChanged(body: string): StyledItemBaseBuilder;
-  onPaletteCreated(body: string): StyledItemBaseBuilder;
-  onParentChanged(body: string): StyledItemBaseBuilder;
-  onRotationChanged(body: string): StyledItemBaseBuilder;
-  onScaleChanged(body: string): StyledItemBaseBuilder;
-  onSmoothChanged(body: string): StyledItemBaseBuilder;
-  onStateChanged(body: string): StyledItemBaseBuilder;
-  onTransformOriginChanged(body: string): StyledItemBaseBuilder;
-  onVisibleChanged(body: string): StyledItemBaseBuilder;
-  onVisibleChildrenChanged(body: string): StyledItemBaseBuilder;
-  onWidthChanged(body: string): StyledItemBaseBuilder;
-  onWindowChanged(body: string): StyledItemBaseBuilder;
-  onXChanged(body: string): StyledItemBaseBuilder;
-  onYChanged(body: string): StyledItemBaseBuilder;
-  onZChanged(body: string): StyledItemBaseBuilder;
+  onActiveFocusChanged(handler: DslSignalHandlerValue): StyledItemBaseBuilder;
+  onActiveFocusOnTabChanged(handler: DslSignalHandlerValue): StyledItemBaseBuilder;
+  onAntialiasingChanged(handler: DslSignalHandlerValue): StyledItemBaseBuilder;
+  onBaselineOffsetChanged(handler: DslSignalHandlerValue): StyledItemBaseBuilder;
+  onChildrenChanged(handler: DslSignalHandlerValue): StyledItemBaseBuilder;
+  onChildrenRectChanged(handler: DslSignalHandlerValue): StyledItemBaseBuilder;
+  onClipChanged(handler: DslSignalHandlerValue): StyledItemBaseBuilder;
+  onContainmentMaskChanged(handler: DslSignalHandlerValue): StyledItemBaseBuilder;
+  onDelegateStyleChanged(handler: DslSignalHandlerValue): StyledItemBaseBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): StyledItemBaseBuilder;
+  onFocusChanged(handler: DslSignalHandlerValue): StyledItemBaseBuilder;
+  onFocusPolicyChanged(handler: DslSignalHandlerValue): StyledItemBaseBuilder;
+  onHeightChanged(handler: DslSignalHandlerValue): StyledItemBaseBuilder;
+  onImplicitHeightChanged(handler: DslSignalHandlerValue): StyledItemBaseBuilder;
+  onImplicitWidthChanged(handler: DslSignalHandlerValue): StyledItemBaseBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): StyledItemBaseBuilder;
+  onOpacityChanged(handler: DslSignalHandlerValue): StyledItemBaseBuilder;
+  onPaletteChanged(handler: DslSignalHandlerValue): StyledItemBaseBuilder;
+  onPaletteCreated(handler: DslSignalHandlerValue): StyledItemBaseBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): StyledItemBaseBuilder;
+  onRotationChanged(handler: DslSignalHandlerValue): StyledItemBaseBuilder;
+  onScaleChanged(handler: DslSignalHandlerValue): StyledItemBaseBuilder;
+  onSmoothChanged(handler: DslSignalHandlerValue): StyledItemBaseBuilder;
+  onStateChanged(handler: DslSignalHandlerValue): StyledItemBaseBuilder;
+  onTransformOriginChanged(handler: DslSignalHandlerValue): StyledItemBaseBuilder;
+  onVisibleChanged(handler: DslSignalHandlerValue): StyledItemBaseBuilder;
+  onVisibleChildrenChanged(handler: DslSignalHandlerValue): StyledItemBaseBuilder;
+  onWidthChanged(handler: DslSignalHandlerValue): StyledItemBaseBuilder;
+  onWindowChanged(handler: DslSignalHandlerValue): StyledItemBaseBuilder;
+  onXChanged(handler: DslSignalHandlerValue): StyledItemBaseBuilder;
+  onYChanged(handler: DslSignalHandlerValue): StyledItemBaseBuilder;
+  onZChanged(handler: DslSignalHandlerValue): StyledItemBaseBuilder;
   anchors(setup: (b: AnchorsBuilder) => void): StyledItemBaseBuilder;
   layer(setup: (b: LayerBuilder) => void): StyledItemBaseBuilder;
   styleKit(setup: (b: StyleKitAttachedBuilder) => void): StyledItemBaseBuilder;

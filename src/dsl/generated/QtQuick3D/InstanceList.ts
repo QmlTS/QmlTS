@@ -2,11 +2,18 @@
 // Type: InstanceList
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlValue, QmlVector3d, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlObjectBuilder,
+  QmlValue,
+  QmlVector3d,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 export interface InstanceListBuilder {
   id(id: string): InstanceListBuilder;
   child(obj: QmlObjectBuilder): InstanceListBuilder;
+  children(...objs: QmlObjectBuilder[]): InstanceListBuilder;
 
   depthSortingEnabled(value: boolean): InstanceListBuilder;
   depthSortingEnabledBind(expr: string): InstanceListBuilder;
@@ -24,18 +31,18 @@ export interface InstanceListBuilder {
   shadowBoundsMinimumBind(expr: string): InstanceListBuilder;
   state(value: string): InstanceListBuilder;
   stateBind(expr: string): InstanceListBuilder;
-  onChildrenChanged(body: string): InstanceListBuilder;
-  onDepthSortingEnabledChanged(body: string): InstanceListBuilder;
-  onHasTransparencyChanged(body: string): InstanceListBuilder;
-  onInstanceCountChanged(body: string): InstanceListBuilder;
-  onInstanceCountOverrideChanged(body: string): InstanceListBuilder;
-  onInstanceNodeDirty(body: string): InstanceListBuilder;
-  onInstanceTableChanged(body: string): InstanceListBuilder;
-  onObjectNameChanged(body: string): InstanceListBuilder;
-  onParentChanged(body: string): InstanceListBuilder;
-  onShadowBoundsMaximumChanged(body: string): InstanceListBuilder;
-  onShadowBoundsMinimumChanged(body: string): InstanceListBuilder;
-  onStateChanged(body: string): InstanceListBuilder;
+  onChildrenChanged(handler: DslSignalHandlerValue): InstanceListBuilder;
+  onDepthSortingEnabledChanged(handler: DslSignalHandlerValue): InstanceListBuilder;
+  onHasTransparencyChanged(handler: DslSignalHandlerValue): InstanceListBuilder;
+  onInstanceCountChanged(handler: DslSignalHandlerValue): InstanceListBuilder;
+  onInstanceCountOverrideChanged(handler: DslSignalHandlerValue): InstanceListBuilder;
+  onInstanceNodeDirty(handler: DslSignalHandlerValue): InstanceListBuilder;
+  onInstanceTableChanged(handler: DslSignalHandlerValue): InstanceListBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): InstanceListBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): InstanceListBuilder;
+  onShadowBoundsMaximumChanged(handler: DslSignalHandlerValue): InstanceListBuilder;
+  onShadowBoundsMinimumChanged(handler: DslSignalHandlerValue): InstanceListBuilder;
+  onStateChanged(handler: DslSignalHandlerValue): InstanceListBuilder;
 }
 
 const INSTANCELIST_META: TypeMetadata = {

@@ -2,17 +2,23 @@
 // Type: Timer
 // Generated from Qt 6.11.0
 
-import type { QmlComponent, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlComponent,
+  QmlObjectBuilder,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 export interface TimerBuilder {
   id(id: string): TimerBuilder;
   child(obj: QmlObjectBuilder): TimerBuilder;
+  children(...objs: QmlObjectBuilder[]): TimerBuilder;
 
   component(value: QmlComponent): TimerBuilder;
   componentBind(expr: string): TimerBuilder;
   objectName(value: string): TimerBuilder;
   objectNameBind(expr: string): TimerBuilder;
-  onObjectNameChanged(body: string): TimerBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): TimerBuilder;
 }
 
 const TIMER_META: TypeMetadata = {

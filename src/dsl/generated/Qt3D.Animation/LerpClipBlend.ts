@@ -2,11 +2,17 @@
 // Type: LerpClipBlend
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 export interface LerpClipBlendBuilder {
   id(id: string): LerpClipBlendBuilder;
   child(obj: QmlObjectBuilder): LerpClipBlendBuilder;
+  children(...objs: QmlObjectBuilder[]): LerpClipBlendBuilder;
 
   blendFactor(value: number): LerpClipBlendBuilder;
   blendFactorBind(expr: string): LerpClipBlendBuilder;
@@ -20,13 +26,13 @@ export interface LerpClipBlendBuilder {
   parentBind(expr: string): LerpClipBlendBuilder;
   startClip(value: QmlValue): LerpClipBlendBuilder;
   startClipBind(expr: string): LerpClipBlendBuilder;
-  onBlendFactorChanged(body: string): LerpClipBlendBuilder;
-  onEnabledChanged(body: string): LerpClipBlendBuilder;
-  onEndClipChanged(body: string): LerpClipBlendBuilder;
-  onNodeDestroyed(body: string): LerpClipBlendBuilder;
-  onObjectNameChanged(body: string): LerpClipBlendBuilder;
-  onParentChanged(body: string): LerpClipBlendBuilder;
-  onStartClipChanged(body: string): LerpClipBlendBuilder;
+  onBlendFactorChanged(handler: DslSignalHandlerValue): LerpClipBlendBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): LerpClipBlendBuilder;
+  onEndClipChanged(handler: DslSignalHandlerValue): LerpClipBlendBuilder;
+  onNodeDestroyed(handler: DslSignalHandlerValue): LerpClipBlendBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): LerpClipBlendBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): LerpClipBlendBuilder;
+  onStartClipChanged(handler: DslSignalHandlerValue): LerpClipBlendBuilder;
 }
 
 const LERPCLIPBLEND_META: TypeMetadata = {

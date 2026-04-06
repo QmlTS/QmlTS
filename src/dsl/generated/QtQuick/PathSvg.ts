@@ -2,7 +2,7 @@
 // Type: PathSvg
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
+import type { DslSignalHandlerValue, QmlObjectBuilder, TypeMetadata } from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 import type { AccessibleAttachedBuilder } from './Accessible.js';
 import type { EnterKeyAttachedBuilder } from './EnterKey.js';
@@ -23,6 +23,7 @@ import type { ViewTransitionAttachedBuilder } from './ViewTransition.js';
 export interface PathSvgBuilder {
   id(id: string): PathSvgBuilder;
   child(obj: QmlObjectBuilder): PathSvgBuilder;
+  children(...objs: QmlObjectBuilder[]): PathSvgBuilder;
 
   objectName(value: string): PathSvgBuilder;
   objectNameBind(expr: string): PathSvgBuilder;
@@ -36,13 +37,13 @@ export interface PathSvgBuilder {
   xBind(expr: string): PathSvgBuilder;
   y(value: number): PathSvgBuilder;
   yBind(expr: string): PathSvgBuilder;
-  onChanged(body: string): PathSvgBuilder;
-  onObjectNameChanged(body: string): PathSvgBuilder;
-  onPathChanged(body: string): PathSvgBuilder;
-  onRelativeXChanged(body: string): PathSvgBuilder;
-  onRelativeYChanged(body: string): PathSvgBuilder;
-  onXChanged(body: string): PathSvgBuilder;
-  onYChanged(body: string): PathSvgBuilder;
+  onChanged(handler: DslSignalHandlerValue): PathSvgBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): PathSvgBuilder;
+  onPathChanged(handler: DslSignalHandlerValue): PathSvgBuilder;
+  onRelativeXChanged(handler: DslSignalHandlerValue): PathSvgBuilder;
+  onRelativeYChanged(handler: DslSignalHandlerValue): PathSvgBuilder;
+  onXChanged(handler: DslSignalHandlerValue): PathSvgBuilder;
+  onYChanged(handler: DslSignalHandlerValue): PathSvgBuilder;
   accessible(setup: (b: AccessibleAttachedBuilder) => void): PathSvgBuilder;
   drag(setup: (b: DragAttachedBuilder) => void): PathSvgBuilder;
   enterKey(setup: (b: EnterKeyAttachedBuilder) => void): PathSvgBuilder;

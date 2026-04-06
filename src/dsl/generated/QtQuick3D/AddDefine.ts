@@ -2,11 +2,17 @@
 // Type: AddDefine
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createFluentBuilder } from '../../runtime/index.js';
 export interface AddDefineBuilder {
   id(id: string): AddDefineBuilder;
   child(obj: QmlObjectBuilder): AddDefineBuilder;
+  children(...objs: QmlObjectBuilder[]): AddDefineBuilder;
 
   name(value: string): AddDefineBuilder;
   nameBind(expr: string): AddDefineBuilder;
@@ -18,10 +24,10 @@ export interface AddDefineBuilder {
   stateBind(expr: string): AddDefineBuilder;
   value(value: number): AddDefineBuilder;
   valueBind(expr: string): AddDefineBuilder;
-  onChildrenChanged(body: string): AddDefineBuilder;
-  onObjectNameChanged(body: string): AddDefineBuilder;
-  onParentChanged(body: string): AddDefineBuilder;
-  onStateChanged(body: string): AddDefineBuilder;
+  onChildrenChanged(handler: DslSignalHandlerValue): AddDefineBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): AddDefineBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): AddDefineBuilder;
+  onStateChanged(handler: DslSignalHandlerValue): AddDefineBuilder;
 }
 
 const ADDDEFINE_META: TypeMetadata = {

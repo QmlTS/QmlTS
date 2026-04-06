@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlColor,
   QmlEnumToken,
   QmlObjectBuilder,
@@ -17,6 +18,7 @@ import type { SpriteSequence3DBuilder } from './SpriteSequence3D.js';
 export interface SpriteParticle3DBuilder {
   id(id: string): SpriteParticle3DBuilder;
   child(obj: QmlObjectBuilder): SpriteParticle3DBuilder;
+  children(...objs: QmlObjectBuilder[]): SpriteParticle3DBuilder;
 
   alignMode(value: QmlEnumToken): SpriteParticle3DBuilder;
   alignModeBind(expr: string): SpriteParticle3DBuilder;
@@ -66,33 +68,33 @@ export interface SpriteParticle3DBuilder {
   stateBind(expr: string): SpriteParticle3DBuilder;
   unifiedColorVariation(value: boolean): SpriteParticle3DBuilder;
   unifiedColorVariationBind(expr: string): SpriteParticle3DBuilder;
-  onAlignModeChanged(body: string): SpriteParticle3DBuilder;
-  onAlignTargetPositionChanged(body: string): SpriteParticle3DBuilder;
-  onBillboardChanged(body: string): SpriteParticle3DBuilder;
-  onBlendModeChanged(body: string): SpriteParticle3DBuilder;
-  onCastsReflectionsChanged(body: string): SpriteParticle3DBuilder;
-  onChildrenChanged(body: string): SpriteParticle3DBuilder;
-  onColorChanged(body: string): SpriteParticle3DBuilder;
-  onColorTableChanged(body: string): SpriteParticle3DBuilder;
-  onColorVariationChanged(body: string): SpriteParticle3DBuilder;
-  onFadeInDurationChanged(body: string): SpriteParticle3DBuilder;
-  onFadeInEffectChanged(body: string): SpriteParticle3DBuilder;
-  onFadeOutDurationChanged(body: string): SpriteParticle3DBuilder;
-  onFadeOutEffectChanged(body: string): SpriteParticle3DBuilder;
-  onHasTransparencyChanged(body: string): SpriteParticle3DBuilder;
-  onLightsChanged(body: string): SpriteParticle3DBuilder;
-  onMaxAmountChanged(body: string): SpriteParticle3DBuilder;
-  onObjectNameChanged(body: string): SpriteParticle3DBuilder;
-  onOffsetXChanged(body: string): SpriteParticle3DBuilder;
-  onOffsetYChanged(body: string): SpriteParticle3DBuilder;
-  onParentChanged(body: string): SpriteParticle3DBuilder;
-  onParticleScaleChanged(body: string): SpriteParticle3DBuilder;
-  onSortModeChanged(body: string): SpriteParticle3DBuilder;
-  onSpriteChanged(body: string): SpriteParticle3DBuilder;
-  onSpriteSequenceChanged(body: string): SpriteParticle3DBuilder;
-  onStateChanged(body: string): SpriteParticle3DBuilder;
-  onSystemChanged(body: string): SpriteParticle3DBuilder;
-  onUnifiedColorVariationChanged(body: string): SpriteParticle3DBuilder;
+  onAlignModeChanged(handler: DslSignalHandlerValue): SpriteParticle3DBuilder;
+  onAlignTargetPositionChanged(handler: DslSignalHandlerValue): SpriteParticle3DBuilder;
+  onBillboardChanged(handler: DslSignalHandlerValue): SpriteParticle3DBuilder;
+  onBlendModeChanged(handler: DslSignalHandlerValue): SpriteParticle3DBuilder;
+  onCastsReflectionsChanged(handler: DslSignalHandlerValue): SpriteParticle3DBuilder;
+  onChildrenChanged(handler: DslSignalHandlerValue): SpriteParticle3DBuilder;
+  onColorChanged(handler: DslSignalHandlerValue): SpriteParticle3DBuilder;
+  onColorTableChanged(handler: DslSignalHandlerValue): SpriteParticle3DBuilder;
+  onColorVariationChanged(handler: DslSignalHandlerValue): SpriteParticle3DBuilder;
+  onFadeInDurationChanged(handler: DslSignalHandlerValue): SpriteParticle3DBuilder;
+  onFadeInEffectChanged(handler: DslSignalHandlerValue): SpriteParticle3DBuilder;
+  onFadeOutDurationChanged(handler: DslSignalHandlerValue): SpriteParticle3DBuilder;
+  onFadeOutEffectChanged(handler: DslSignalHandlerValue): SpriteParticle3DBuilder;
+  onHasTransparencyChanged(handler: DslSignalHandlerValue): SpriteParticle3DBuilder;
+  onLightsChanged(handler: DslSignalHandlerValue): SpriteParticle3DBuilder;
+  onMaxAmountChanged(handler: DslSignalHandlerValue): SpriteParticle3DBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): SpriteParticle3DBuilder;
+  onOffsetXChanged(handler: DslSignalHandlerValue): SpriteParticle3DBuilder;
+  onOffsetYChanged(handler: DslSignalHandlerValue): SpriteParticle3DBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): SpriteParticle3DBuilder;
+  onParticleScaleChanged(handler: DslSignalHandlerValue): SpriteParticle3DBuilder;
+  onSortModeChanged(handler: DslSignalHandlerValue): SpriteParticle3DBuilder;
+  onSpriteChanged(handler: DslSignalHandlerValue): SpriteParticle3DBuilder;
+  onSpriteSequenceChanged(handler: DslSignalHandlerValue): SpriteParticle3DBuilder;
+  onStateChanged(handler: DslSignalHandlerValue): SpriteParticle3DBuilder;
+  onSystemChanged(handler: DslSignalHandlerValue): SpriteParticle3DBuilder;
+  onUnifiedColorVariationChanged(handler: DslSignalHandlerValue): SpriteParticle3DBuilder;
 }
 
 const SPRITEPARTICLE3D_META: TypeMetadata = {

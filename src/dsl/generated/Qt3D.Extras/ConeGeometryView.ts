@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlEnumToken,
   QmlObjectBuilder,
   QmlValue,
@@ -13,6 +14,7 @@ import type { GeometryBuilder } from '../Qt3D.Core/Geometry.js';
 export interface ConeGeometryViewBuilder {
   id(id: string): ConeGeometryViewBuilder;
   child(obj: QmlObjectBuilder): ConeGeometryViewBuilder;
+  children(...objs: QmlObjectBuilder[]): ConeGeometryViewBuilder;
 
   bottomRadius(value: number): ConeGeometryViewBuilder;
   bottomRadiusBind(expr: string): ConeGeometryViewBuilder;
@@ -56,28 +58,28 @@ export interface ConeGeometryViewBuilder {
   vertexCountBind(expr: string): ConeGeometryViewBuilder;
   verticesPerPatch(value: number): ConeGeometryViewBuilder;
   verticesPerPatchBind(expr: string): ConeGeometryViewBuilder;
-  onBottomRadiusChanged(body: string): ConeGeometryViewBuilder;
-  onEnabledChanged(body: string): ConeGeometryViewBuilder;
-  onFirstInstanceChanged(body: string): ConeGeometryViewBuilder;
-  onFirstVertexChanged(body: string): ConeGeometryViewBuilder;
-  onGeometryChanged(body: string): ConeGeometryViewBuilder;
-  onHasBottomEndcapChanged(body: string): ConeGeometryViewBuilder;
-  onHasTopEndcapChanged(body: string): ConeGeometryViewBuilder;
-  onIndexBufferByteOffsetChanged(body: string): ConeGeometryViewBuilder;
-  onIndexOffsetChanged(body: string): ConeGeometryViewBuilder;
-  onInstanceCountChanged(body: string): ConeGeometryViewBuilder;
-  onLengthChanged(body: string): ConeGeometryViewBuilder;
-  onNodeDestroyed(body: string): ConeGeometryViewBuilder;
-  onObjectNameChanged(body: string): ConeGeometryViewBuilder;
-  onParentChanged(body: string): ConeGeometryViewBuilder;
-  onPrimitiveRestartEnabledChanged(body: string): ConeGeometryViewBuilder;
-  onPrimitiveTypeChanged(body: string): ConeGeometryViewBuilder;
-  onRestartIndexValueChanged(body: string): ConeGeometryViewBuilder;
-  onRingsChanged(body: string): ConeGeometryViewBuilder;
-  onSlicesChanged(body: string): ConeGeometryViewBuilder;
-  onTopRadiusChanged(body: string): ConeGeometryViewBuilder;
-  onVertexCountChanged(body: string): ConeGeometryViewBuilder;
-  onVerticesPerPatchChanged(body: string): ConeGeometryViewBuilder;
+  onBottomRadiusChanged(handler: DslSignalHandlerValue): ConeGeometryViewBuilder;
+  onEnabledChanged(handler: DslSignalHandlerValue): ConeGeometryViewBuilder;
+  onFirstInstanceChanged(handler: DslSignalHandlerValue): ConeGeometryViewBuilder;
+  onFirstVertexChanged(handler: DslSignalHandlerValue): ConeGeometryViewBuilder;
+  onGeometryChanged(handler: DslSignalHandlerValue): ConeGeometryViewBuilder;
+  onHasBottomEndcapChanged(handler: DslSignalHandlerValue): ConeGeometryViewBuilder;
+  onHasTopEndcapChanged(handler: DslSignalHandlerValue): ConeGeometryViewBuilder;
+  onIndexBufferByteOffsetChanged(handler: DslSignalHandlerValue): ConeGeometryViewBuilder;
+  onIndexOffsetChanged(handler: DslSignalHandlerValue): ConeGeometryViewBuilder;
+  onInstanceCountChanged(handler: DslSignalHandlerValue): ConeGeometryViewBuilder;
+  onLengthChanged(handler: DslSignalHandlerValue): ConeGeometryViewBuilder;
+  onNodeDestroyed(handler: DslSignalHandlerValue): ConeGeometryViewBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): ConeGeometryViewBuilder;
+  onParentChanged(handler: DslSignalHandlerValue): ConeGeometryViewBuilder;
+  onPrimitiveRestartEnabledChanged(handler: DslSignalHandlerValue): ConeGeometryViewBuilder;
+  onPrimitiveTypeChanged(handler: DslSignalHandlerValue): ConeGeometryViewBuilder;
+  onRestartIndexValueChanged(handler: DslSignalHandlerValue): ConeGeometryViewBuilder;
+  onRingsChanged(handler: DslSignalHandlerValue): ConeGeometryViewBuilder;
+  onSlicesChanged(handler: DslSignalHandlerValue): ConeGeometryViewBuilder;
+  onTopRadiusChanged(handler: DslSignalHandlerValue): ConeGeometryViewBuilder;
+  onVertexCountChanged(handler: DslSignalHandlerValue): ConeGeometryViewBuilder;
+  onVerticesPerPatchChanged(handler: DslSignalHandlerValue): ConeGeometryViewBuilder;
 }
 
 const CONEGEOMETRYVIEW_META: TypeMetadata = {

@@ -2,11 +2,17 @@
 // Type: ScreenCapture
 // Generated from Qt 6.11.0
 
-import type { QmlObjectBuilder, QmlValue, TypeMetadata } from '../../runtime/index.js';
+import type {
+  DslSignalHandlerValue,
+  QmlObjectBuilder,
+  QmlValue,
+  TypeMetadata,
+} from '../../runtime/index.js';
 import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface ScreenCaptureBuilder {
   id(id: string): ScreenCaptureBuilder;
   child(obj: QmlObjectBuilder): ScreenCaptureBuilder;
+  children(...objs: QmlObjectBuilder[]): ScreenCaptureBuilder;
 
   active(value: boolean): ScreenCaptureBuilder;
   activeBind(expr: string): ScreenCaptureBuilder;
@@ -14,11 +20,11 @@ export interface ScreenCaptureBuilder {
   objectNameBind(expr: string): ScreenCaptureBuilder;
   screen(value: QmlValue): ScreenCaptureBuilder;
   screenBind(expr: string): ScreenCaptureBuilder;
-  onActiveChanged(body: string): ScreenCaptureBuilder;
-  onErrorChanged(body: string): ScreenCaptureBuilder;
-  onErrorOccurred(body: string): ScreenCaptureBuilder;
-  onObjectNameChanged(body: string): ScreenCaptureBuilder;
-  onScreenChanged(body: string): ScreenCaptureBuilder;
+  onActiveChanged(handler: DslSignalHandlerValue): ScreenCaptureBuilder;
+  onErrorChanged(handler: DslSignalHandlerValue): ScreenCaptureBuilder;
+  onErrorOccurred(handler: DslSignalHandlerValue): ScreenCaptureBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): ScreenCaptureBuilder;
+  onScreenChanged(handler: DslSignalHandlerValue): ScreenCaptureBuilder;
 }
 
 const SCREENCAPTURE_META: TypeMetadata = {

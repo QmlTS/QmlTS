@@ -3,6 +3,7 @@
 // Generated from Qt 6.11.0
 
 import type {
+  DslSignalHandlerValue,
   QmlColor,
   QmlComponent,
   QmlDate,
@@ -15,6 +16,7 @@ import { createEnumToken, createFluentBuilder } from '../../runtime/index.js';
 export interface DateTimeAxisBuilder {
   id(id: string): DateTimeAxisBuilder;
   child(obj: QmlObjectBuilder): DateTimeAxisBuilder;
+  children(...objs: QmlObjectBuilder[]): DateTimeAxisBuilder;
 
   alignment(value: QmlEnumToken): DateTimeAxisBuilder;
   alignmentBind(expr: string): DateTimeAxisBuilder;
@@ -64,34 +66,34 @@ export interface DateTimeAxisBuilder {
   visibleBind(expr: string): DateTimeAxisBuilder;
   zoom(value: number): DateTimeAxisBuilder;
   zoomBind(expr: string): DateTimeAxisBuilder;
-  onAlignmentChanged(body: string): DateTimeAxisBuilder;
-  onColorChanged(body: string): DateTimeAxisBuilder;
-  onGridVisibleChanged(body: string): DateTimeAxisBuilder;
-  onLabelDelegateChanged(body: string): DateTimeAxisBuilder;
-  onLabelFormatChanged(body: string): DateTimeAxisBuilder;
-  onLabelsAngleChanged(body: string): DateTimeAxisBuilder;
-  onLabelsVisibleChanged(body: string): DateTimeAxisBuilder;
-  onLineVisibleChanged(body: string): DateTimeAxisBuilder;
-  onMaxChanged(body: string): DateTimeAxisBuilder;
-  onMinChanged(body: string): DateTimeAxisBuilder;
-  onObjectNameChanged(body: string): DateTimeAxisBuilder;
-  onPanChanged(body: string): DateTimeAxisBuilder;
-  onRangeChanged(body: string): DateTimeAxisBuilder;
-  onSubColorChanged(body: string): DateTimeAxisBuilder;
-  onSubGridVisibleChanged(body: string): DateTimeAxisBuilder;
-  onSubTickCountChanged(body: string): DateTimeAxisBuilder;
-  onTextElideModeChanged(body: string): DateTimeAxisBuilder;
-  onTickIntervalChanged(body: string): DateTimeAxisBuilder;
-  onTimeZoneChanged(body: string): DateTimeAxisBuilder;
-  onTitleColorChanged(body: string): DateTimeAxisBuilder;
-  onTitleFontChanged(body: string): DateTimeAxisBuilder;
-  onTitleTextChanged(body: string): DateTimeAxisBuilder;
-  onTitleVisibleChanged(body: string): DateTimeAxisBuilder;
-  onUpdate(body: string): DateTimeAxisBuilder;
-  onVisibleChanged(body: string): DateTimeAxisBuilder;
-  onVisualMaxChanged(body: string): DateTimeAxisBuilder;
-  onVisualMinChanged(body: string): DateTimeAxisBuilder;
-  onZoomChanged(body: string): DateTimeAxisBuilder;
+  onAlignmentChanged(handler: DslSignalHandlerValue): DateTimeAxisBuilder;
+  onColorChanged(handler: DslSignalHandlerValue): DateTimeAxisBuilder;
+  onGridVisibleChanged(handler: DslSignalHandlerValue): DateTimeAxisBuilder;
+  onLabelDelegateChanged(handler: DslSignalHandlerValue): DateTimeAxisBuilder;
+  onLabelFormatChanged(handler: DslSignalHandlerValue): DateTimeAxisBuilder;
+  onLabelsAngleChanged(handler: DslSignalHandlerValue): DateTimeAxisBuilder;
+  onLabelsVisibleChanged(handler: DslSignalHandlerValue): DateTimeAxisBuilder;
+  onLineVisibleChanged(handler: DslSignalHandlerValue): DateTimeAxisBuilder;
+  onMaxChanged(handler: DslSignalHandlerValue): DateTimeAxisBuilder;
+  onMinChanged(handler: DslSignalHandlerValue): DateTimeAxisBuilder;
+  onObjectNameChanged(handler: DslSignalHandlerValue): DateTimeAxisBuilder;
+  onPanChanged(handler: DslSignalHandlerValue): DateTimeAxisBuilder;
+  onRangeChanged(handler: DslSignalHandlerValue): DateTimeAxisBuilder;
+  onSubColorChanged(handler: DslSignalHandlerValue): DateTimeAxisBuilder;
+  onSubGridVisibleChanged(handler: DslSignalHandlerValue): DateTimeAxisBuilder;
+  onSubTickCountChanged(handler: DslSignalHandlerValue): DateTimeAxisBuilder;
+  onTextElideModeChanged(handler: DslSignalHandlerValue): DateTimeAxisBuilder;
+  onTickIntervalChanged(handler: DslSignalHandlerValue): DateTimeAxisBuilder;
+  onTimeZoneChanged(handler: DslSignalHandlerValue): DateTimeAxisBuilder;
+  onTitleColorChanged(handler: DslSignalHandlerValue): DateTimeAxisBuilder;
+  onTitleFontChanged(handler: DslSignalHandlerValue): DateTimeAxisBuilder;
+  onTitleTextChanged(handler: DslSignalHandlerValue): DateTimeAxisBuilder;
+  onTitleVisibleChanged(handler: DslSignalHandlerValue): DateTimeAxisBuilder;
+  onUpdate(handler: DslSignalHandlerValue): DateTimeAxisBuilder;
+  onVisibleChanged(handler: DslSignalHandlerValue): DateTimeAxisBuilder;
+  onVisualMaxChanged(handler: DslSignalHandlerValue): DateTimeAxisBuilder;
+  onVisualMinChanged(handler: DslSignalHandlerValue): DateTimeAxisBuilder;
+  onZoomChanged(handler: DslSignalHandlerValue): DateTimeAxisBuilder;
 }
 
 const DATETIMEAXIS_META: TypeMetadata = {
