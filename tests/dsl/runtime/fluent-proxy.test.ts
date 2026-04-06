@@ -256,9 +256,33 @@ describe('createFluentBuilder', () => {
     }
   });
 
-  test('signal handler with named function throws', () => {
+  test('signal handler with named function creates expression handler', () => {
     const builder = createFluentBuilder('TestRect', testMeta);
     function myHandler() {}
-    expect(() => (builder as any).onClicked(myHandler)).toThrow(TypeError);
+    (builder as any).onClicked(myHandler);
+    const ast = builder.build();
+    const handler = ast.members.find((m) => m.kind === 'SignalHandler');
+    expect(handler).toBeDefined();
+    if (handler && handler.kind === 'SignalHandler') {
+      expect(handler.body.form).toBe('expression');
+      if (handler.body.form === 'expression') {
+        expect(handler.body.code).toBe('myHandler');
+      }
+    }
+  });
+
+  test('signal handler with method reference (vm.login form)', () => {
+    const builder = createFluentBuilder('TestRect', testMeta);
+    const vm = { login() {} };
+    (builder as any).onClicked(vm.login);
+    const ast = builder.build();
+    const handler = ast.members.find((m) => m.kind === 'SignalHandler');
+    expect(handler).toBeDefined();
+    if (handler && handler.kind === 'SignalHandler') {
+      expect(handler.body.form).toBe('expression');
+      if (handler.body.form === 'expression') {
+        expect(handler.body.code).toBe('login');
+      }
+    }
   });
 });
