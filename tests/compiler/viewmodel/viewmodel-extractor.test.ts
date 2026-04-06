@@ -237,6 +237,34 @@ describe('ViewModelExtractor — extract()', () => {
     expect(vm.effects[0]!.parameters[0]!.tsType).toBe('string');
   });
 
+  test('VE-21b: @Effect function type alias is treated as function-typed', () => {
+    const cls = getClass(`
+      import { Effect, State } from './decorators.js';
+      type Notify = (msg: string) => void;
+      export class TestVM {
+        @State() x = 0;
+        @Effect() notify!: Notify;
+      }
+    `);
+    const vm = extractor.extract(cls);
+    expect(vm.effects[0]!.isFunctionTyped).toBe(true);
+    expect(vm.effects[0]!.parameters).toEqual([{ name: 'msg', tsType: 'string' }]);
+  });
+
+  test('negative numeric decorator options are parsed as numbers', () => {
+    const cls = getClass(`
+      import { Command, Effect, State } from './decorators.js';
+      export class TestVM {
+        @State() x = 0;
+        @Command({ throttleMs: -1 }) search() {}
+        @Effect({ id: -7 }) notify!: () => void;
+      }
+    `);
+    const vm = extractor.extract(cls);
+    expect(vm.commands[0]!.options.throttleMs).toBe(-1);
+    expect(vm.effects[0]!.options.id).toBe(-7);
+  });
+
   test('VE-23: constructor param extraction', () => {
     const cls = getClass(`
       import { State } from './decorators.js';

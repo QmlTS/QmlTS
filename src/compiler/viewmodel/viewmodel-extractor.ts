@@ -1,5 +1,5 @@
 import type { ClassDeclaration, MethodDeclaration, PropertyDeclaration } from 'ts-morph';
-import { SyntaxKind } from 'ts-morph';
+import { Node, SyntaxKind } from 'ts-morph';
 import type { ViewModelSchema } from '../../viewmodel/schema.js';
 import type { Diagnostic, DiagnosticSeverity } from '../diagnostics.js';
 import type { IdAllocator } from '../ids/id-allocator.js';
@@ -50,10 +50,23 @@ function getDecoratorOptions(
       const init = pa.getInitializer();
       if (!init) continue;
       const text = init.getText();
-      if (init.getKind() === SyntaxKind.StringLiteral) {
+      if (Node.isStringLiteral(init)) {
         result[propName] = text.slice(1, -1);
-      } else if (init.getKind() === SyntaxKind.NumericLiteral) {
+      } else if (Node.isNumericLiteral(init)) {
         result[propName] = Number(text);
+      } else if (Node.isPrefixUnaryExpression(init) && Node.isNumericLiteral(init.getOperand())) {
+        const operand = Number(init.getOperand().getText());
+        switch (init.getOperatorToken()) {
+          case SyntaxKind.MinusToken:
+            result[propName] = -operand;
+            break;
+          case SyntaxKind.PlusToken:
+            result[propName] = operand;
+            break;
+          default:
+            result[propName] = text;
+            break;
+        }
       } else if (
         init.getKind() === SyntaxKind.TrueKeyword ||
         init.getKind() === SyntaxKind.FalseKeyword
@@ -159,17 +172,20 @@ function extractEffects(cls: ClassDeclaration): AnalyzedEffect[] {
     const fieldName = prop.getName();
     const opts = getDecoratorOptions(prop, 'Effect');
     const parameters: AnalyzedEffectParameter[] = [];
-    const typeNode = prop.getTypeNode();
-    const isFunctionTyped = typeNode?.getKind() === SyntaxKind.FunctionType;
+    const callSignatures = prop.getType().getCallSignatures();
+    const isFunctionTyped = callSignatures.length > 0;
     if (isFunctionTyped) {
-      const funcType = typeNode!.asKind(SyntaxKind.FunctionType);
-      if (funcType) {
-        for (const param of funcType.getParameters()) {
-          parameters.push({
-            name: param.getName(),
-            tsType: param.getTypeNode()?.getText() ?? param.getType().getText(),
-          });
+      const signature = callSignatures[0]!;
+      for (const param of signature.getParameters()) {
+        const declaration = param.getDeclarations()[0];
+        let tsType = param.getTypeAtLocation(prop).getText();
+        if (declaration && Node.isParameterDeclaration(declaration)) {
+          tsType = declaration.getTypeNode()?.getText() ?? declaration.getType().getText();
         }
+        parameters.push({
+          name: param.getName(),
+          tsType,
+        });
       }
     }
     effects.push({

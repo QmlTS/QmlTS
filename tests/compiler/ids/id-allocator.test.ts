@@ -1,6 +1,15 @@
 import { describe, expect, test } from 'bun:test';
 import { createIdAllocator } from '../../../src/compiler/ids/id-allocator.js';
 
+function fnv1a32(input: string): number {
+  let hash = 0x811c9dc5;
+  for (let i = 0; i < input.length; i++) {
+    hash ^= input.charCodeAt(i);
+    hash = Math.imul(hash, 0x01000193);
+  }
+  return (hash >>> 0) & 0x7fffffff;
+}
+
 describe('IdAllocator', () => {
   test('ID-01: allocateMemberId first call returns 0', () => {
     const alloc = createIdAllocator();
@@ -74,17 +83,25 @@ describe('IdAllocator', () => {
 
   test('ID-10: hash collision resolution produces distinct IDs', () => {
     const alloc = createIdAllocator();
-    // Allocate many keys and verify all IDs are unique.
-    const ids = new Set<number>();
-    for (let i = 0; i < 100; i++) {
-      const id = alloc.allocateCommandId('VM', `method${i}`);
-      expect(ids.has(id)).toBe(false);
-      ids.add(id);
-    }
-    // Also verify command and effect IDs don't collide (shared namespace)
-    const effectId = alloc.allocateEffectId('VM', 'signal0');
-    for (const cmdId of ids) {
-      expect(effectId).not.toBe(cmdId);
-    }
+    const methodA = 'method228598';
+    const methodB = 'method800716';
+    const baseA = fnv1a32(`cmd:VM.${methodA}`);
+    const baseB = fnv1a32(`cmd:VM.${methodB}`);
+
+    expect(baseA).toBe(baseB);
+
+    const idA = alloc.allocateCommandId('VM', methodA);
+    const idB = alloc.allocateCommandId('VM', methodB);
+
+    expect(idA).toBe(baseA);
+    expect(idB).toBe(idA + 1);
+    expect(idA).not.toBe(idB);
+  });
+
+  test('command and effect IDs do not collide across the shared hash namespace', () => {
+    const alloc = createIdAllocator();
+    const cmdId = alloc.allocateCommandId('VM', 'login');
+    const effectId = alloc.allocateEffectId('VM', 'notify');
+    expect(effectId).not.toBe(cmdId);
   });
 });
