@@ -23,11 +23,11 @@ import { createDiagnosticReporter } from './diagnostic-reporter.js';
 import { buildEventBindings } from './event-bindings.js';
 import type {
   CompilationResult,
-  CompilationStats,
   CompilationUnit,
   CompilerOptions,
   CompilerSourceMap,
   DiagnosticReporter,
+  FileCacheEntry,
   SourceMapKind,
 } from './pipeline-types.js';
 import {
@@ -35,6 +35,216 @@ import {
   annotateInjectedNodes,
   buildCompilerSourceMap,
 } from './source-location-annotator.js';
+
+// ─── Internal Project-Context Core ──────────────────────────────────────
+
+export interface ProjectCompileContext {
+  readonly project: readonly DiscoveredSourceFile[];
+  readonly tsMorphProject: InstanceType<typeof Project>;
+  readonly options: CompilerOptions;
+}
+
+interface ProjectCoreResult {
+  readonly units: CompilationUnit[];
+  readonly schemas: ViewModelSchema[];
+  readonly diagnostics: readonly import('../diagnostics.js').Diagnostic[];
+  readonly stats: {
+    totalFiles: number;
+    totalViewModels: number;
+    totalViews: number;
+    totalStates: number;
+    totalCommands: number;
+    totalEffects: number;
+  };
+}
+
+/**
+ * Create a project context for compilation. Used internally by both
+ * compile() and IncrementalCompiler.
+ */
+export function createProjectContext(
+  options: CompilerOptions,
+  reporter: DiagnosticReporter,
+): ProjectCompileContext | null {
+  const analyzer = createTsAnalyzer(options.tsconfigPath);
+  const tsconfigPath = options.tsconfigPath ?? join(options.inputDir, 'tsconfig.json');
+
+  let project: DiscoveredSourceFile[];
+  try {
+    const discovered = analyzer.analyzeProject(tsconfigPath);
+    project = [...discovered.files];
+    for (const d of discovered.diagnostics) {
+      reporter.report(d);
+    }
+  } catch {
+    reporter.error('QMLTS-G001', `Failed to analyze project at ${tsconfigPath}`);
+    return null;
+  }
+
+  const tsMorphProject = createTsMorphProject(tsconfigPath);
+  return { project, tsMorphProject, options };
+}
+
+/**
+ * Internal compilation core that supports selective recompilation.
+ *
+ * @param ctx - Full project context (analyzer results + ts-morph project)
+ * @param dirtyFiles - Set of file paths to recompile. Files not in this set
+ *                     use cached entries if available.
+ * @param cachedEntries - File-level cache from previous compilation
+ * @param reporter - Diagnostic reporter for this compilation pass
+ */
+export function compileProjectCore(
+  ctx: ProjectCompileContext,
+  dirtyFiles: ReadonlySet<string>,
+  cachedEntries: ReadonlyMap<string, FileCacheEntry>,
+  reporter: DiagnosticReporter,
+): ProjectCoreResult {
+  const { project, tsMorphProject, options } = ctx;
+  const query = getQuery();
+
+  // Phase 1: Extract all ViewModels and generate schemas
+  const idAllocator = createIdAllocator();
+  const extractor = createViewModelExtractor();
+  const vmMap = new Map<string, { vm: AnalyzedViewModel; schema: ViewModelSchema }>();
+  const allSchemas: ViewModelSchema[] = [];
+
+  let totalStates = 0;
+  let totalCommands = 0;
+  let totalEffects = 0;
+
+  for (const file of project) {
+    const isDirty = dirtyFiles.has(file.filePath);
+    const cached = cachedEntries.get(file.filePath);
+
+    if (!isDirty && cached) {
+      for (const schema of cached.schemas) {
+        allSchemas.push(schema);
+        vmMap.set(schema.className, {
+          vm: { className: schema.className } as AnalyzedViewModel,
+          schema,
+        });
+        totalStates += schema.states.length;
+        totalCommands += schema.commands.length;
+        totalEffects += schema.effects.length;
+      }
+      continue;
+    }
+
+    for (const discoveredVm of file.viewModels) {
+      const sf = getOrAddSourceFile(tsMorphProject, file.filePath);
+      if (!sf) continue;
+      const classDecl = sf.getClass(discoveredVm.className);
+      if (!classDecl) continue;
+
+      const vm = extractor.extract(classDecl);
+      for (const d of extractor.validate(vm)) {
+        reporter.report(d);
+      }
+      const schema = extractor.generateSchema(vm, idAllocator);
+      vmMap.set(vm.className, { vm, schema });
+      allSchemas.push(schema);
+
+      totalStates += vm.states.length;
+      totalCommands += vm.commands.length;
+      totalEffects += vm.effects.length;
+    }
+  }
+
+  // Phase 2: Compile each view
+  const transformer = createDslTransformer(query);
+  const importResolver = createImportResolver();
+  const postProcessor = createPostProcessor(importResolver, query);
+  const units: CompilationUnit[] = [];
+  let totalViews = 0;
+
+  for (const file of project) {
+    const isDirty = dirtyFiles.has(file.filePath);
+    const cached = cachedEntries.get(file.filePath);
+
+    if (!isDirty && cached) {
+      for (const unit of cached.units) {
+        units.push(unit);
+      }
+      totalViews += file.views.length;
+      continue;
+    }
+
+    for (const discoveredView of file.views) {
+      totalViews++;
+      const sf = getOrAddSourceFile(tsMorphProject, file.filePath);
+      if (!sf) continue;
+
+      const dslFactoryNames = buildDslFactoryNameSet(file.imports);
+      const { analyzedView, diagnostics: classifyDiags } = analyzeView(
+        discoveredView,
+        sf,
+        query,
+        dslFactoryNames,
+      );
+      for (const d of classifyDiags) reporter.report(d);
+
+      if (!analyzedView) continue;
+
+      const pairedVm = discoveredView.vmParam?.type
+        ? vmMap.get(discoveredView.vmParam.type)
+        : undefined;
+
+      const unit = compileView(
+        analyzedView,
+        pairedVm?.vm,
+        pairedVm?.schema,
+        file.filePath,
+        transformer,
+        postProcessor,
+        reporter,
+        options,
+      );
+      units.push(unit);
+    }
+
+    // Schema-only units for ViewModels without views
+    for (const discoveredVm of file.viewModels) {
+      const entry = vmMap.get(discoveredVm.className);
+      if (!entry) continue;
+
+      const alreadyHasSchema = units.some(
+        (u) => u.viewModelName === discoveredVm.className && u.schema,
+      );
+      if (alreadyHasSchema) continue;
+
+      const hasView = project.some((f) =>
+        f.views.some((v) => v.vmParam?.type === discoveredVm.className),
+      );
+      if (!hasView) {
+        units.push({
+          sourceFile: file.filePath,
+          viewName: discoveredVm.className,
+          viewModelName: discoveredVm.className,
+          qmlOutputPath: computeOutputPath(file.filePath, options, '.qml'),
+          qmlContent: '',
+          schema: entry.schema,
+          schemaOutputPath: computeOutputPath(file.filePath, options, '.schema.json'),
+          diagnostics: [],
+        });
+      }
+    }
+  }
+
+  return {
+    units,
+    schemas: allSchemas,
+    diagnostics: reporter.getDiagnostics(),
+    stats: {
+      totalFiles: project.length,
+      totalViewModels: vmMap.size,
+      totalViews,
+      totalStates,
+      totalCommands,
+      totalEffects,
+    },
+  };
+}
 
 // ─── Public API ─────────────────────────────────────────────────────────
 
@@ -96,151 +306,33 @@ export function compileFile(filePath: string, options?: Partial<CompilerOptions>
 export function compile(options: CompilerOptions): CompilationResult {
   const startTime = performance.now();
   const reporter = createDiagnosticReporter(options.diagnostics);
-  const query = getQuery();
 
-  const analyzer = createTsAnalyzer(options.tsconfigPath);
-  const tsconfigPath = options.tsconfigPath ?? join(options.inputDir, 'tsconfig.json');
-
-  let project: DiscoveredSourceFile[];
-  try {
-    const discovered = analyzer.analyzeProject(tsconfigPath);
-    project = [...discovered.files];
-    for (const d of discovered.diagnostics) {
-      reporter.report(d);
-    }
-  } catch {
-    reporter.error('QMLTS-G001', `Failed to analyze project at ${tsconfigPath}`);
+  const ctx = createProjectContext(options, reporter);
+  if (!ctx) {
     return buildEmptyResult(reporter, startTime);
   }
 
-  // Phase 1: Extract all ViewModels and generate schemas
-  const idAllocator = createIdAllocator();
-  const extractor = createViewModelExtractor();
-  const vmMap = new Map<string, { vm: AnalyzedViewModel; schema: ViewModelSchema }>();
-  const allSchemas: ViewModelSchema[] = [];
+  // Full compilation: all files are dirty, no cache
+  const allDirty = new Set(ctx.project.map((f) => f.filePath));
+  const noCache = new Map<string, FileCacheEntry>();
 
-  // We need ts-morph SourceFiles for extraction — create a parallel project
-  const tsMorphProject = createTsMorphProject(tsconfigPath);
-
-  let totalStates = 0;
-  let totalCommands = 0;
-  let totalEffects = 0;
-
-  for (const file of project) {
-    for (const discoveredVm of file.viewModels) {
-      const sf = getOrAddSourceFile(tsMorphProject, file.filePath);
-      if (!sf) continue;
-      const classDecl = sf.getClass(discoveredVm.className);
-      if (!classDecl) continue;
-
-      const vm = extractor.extract(classDecl);
-      for (const d of extractor.validate(vm)) {
-        reporter.report(d);
-      }
-      const schema = extractor.generateSchema(vm, idAllocator);
-      vmMap.set(vm.className, { vm, schema });
-      allSchemas.push(schema);
-
-      totalStates += vm.states.length;
-      totalCommands += vm.commands.length;
-      totalEffects += vm.effects.length;
-    }
-  }
-
-  // Phase 2: Compile each view
-  const transformer = createDslTransformer(query);
-  const importResolver = createImportResolver();
-  const postProcessor = createPostProcessor(importResolver, query);
-  const units: CompilationUnit[] = [];
-  let totalViews = 0;
-
-  for (const file of project) {
-    for (const discoveredView of file.views) {
-      totalViews++;
-      const sf = getOrAddSourceFile(tsMorphProject, file.filePath);
-      if (!sf) continue;
-
-      const dslFactoryNames = buildDslFactoryNameSet(file.imports);
-      const { analyzedView, diagnostics: classifyDiags } = analyzeView(
-        discoveredView,
-        sf,
-        query,
-        dslFactoryNames,
-      );
-      for (const d of classifyDiags) reporter.report(d);
-
-      if (!analyzedView) continue;
-
-      // Pair with ViewModel
-      const pairedVm = discoveredView.vmParam?.type
-        ? vmMap.get(discoveredView.vmParam.type)
-        : undefined;
-
-      const unit = compileView(
-        analyzedView,
-        pairedVm?.vm,
-        pairedVm?.schema,
-        file.filePath,
-        transformer,
-        postProcessor,
-        reporter,
-        options,
-      );
-      units.push(unit);
-    }
-
-    // Also produce schema-only units for ViewModels without views in the same file
-    for (const discoveredVm of file.viewModels) {
-      const entry = vmMap.get(discoveredVm.className);
-      if (!entry) continue;
-
-      // Check if any unit already has this schema
-      const alreadyHasSchema = units.some(
-        (u) => u.viewModelName === discoveredVm.className && u.schema,
-      );
-      if (alreadyHasSchema) continue;
-
-      // Schema-only unit if this VM is not paired with any view in this project
-      const hasView = project.some((f) =>
-        f.views.some((v) => v.vmParam?.type === discoveredVm.className),
-      );
-      if (!hasView) {
-        units.push({
-          sourceFile: file.filePath,
-          viewName: discoveredVm.className,
-          viewModelName: discoveredVm.className,
-          qmlOutputPath: computeOutputPath(file.filePath, options, '.qml'),
-          qmlContent: '',
-          schema: entry.schema,
-          schemaOutputPath: computeOutputPath(file.filePath, options, '.schema.json'),
-          diagnostics: [],
-        });
-      }
-    }
-  }
-
-  const eventBindings = buildEventBindings(allSchemas);
+  const coreResult = compileProjectCore(ctx, allDirty, noCache, reporter);
+  const eventBindings = buildEventBindings(coreResult.schemas);
   const durationMs = Math.round(performance.now() - startTime);
 
-  const stats: CompilationStats = {
-    totalFiles: project.length,
-    totalViewModels: vmMap.size,
-    totalViews,
-    totalStates,
-    totalCommands,
-    totalEffects,
-    durationMs,
-  };
-
-  const allDiagnostics = [...reporter.getDiagnostics(), ...units.flatMap((u) => u.diagnostics)];
-  const success = !allDiagnostics.some((d) => d.severity === 'error');
+  const allDiagnostics = [
+    ...coreResult.diagnostics,
+    ...coreResult.units.flatMap((u) => u.diagnostics),
+  ];
+  const deduped = dedupeDiagnostics(allDiagnostics);
+  const success = !deduped.some((d) => d.severity === 'error');
 
   return {
-    units,
+    units: coreResult.units,
     eventBindings,
-    diagnostics: allDiagnostics,
+    diagnostics: deduped,
     success,
-    stats,
+    stats: { ...coreResult.stats, durationMs },
   };
 }
 
