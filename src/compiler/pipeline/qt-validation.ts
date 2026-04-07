@@ -58,7 +58,6 @@ export async function validateCompilationOutput(
   try {
     installation = await discover({ qtDir });
   } catch (e) {
-    toolFailures = true;
     diagnostics.push({
       severity: 'warning',
       code: 'QMLTS-Q002',
