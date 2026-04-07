@@ -1,3 +1,4 @@
+export { watch } from './compiler-watcher.js';
 export { compile, compileFile, compileSource } from './compiler.js';
 export { createDiagnosticReporter } from './diagnostic-reporter.js';
 export { buildEventBindings } from './event-bindings.js';
