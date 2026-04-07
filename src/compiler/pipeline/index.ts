@@ -4,6 +4,7 @@ export { buildEventBindings } from './event-bindings.js';
 export { fnv1a32, hashContent } from './hash-utils.js';
 export { createIncrementalCompiler } from './incremental-compiler.js';
 export { writeCompilationOutput } from './output-writer.js';
+export { compileWithQt, validateCompilationOutput } from './qt-validation.js';
 export type {
   CodegenOptions,
   CompilationResult,
