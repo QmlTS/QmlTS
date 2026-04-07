@@ -1,3 +1,5 @@
+import { statSync } from 'node:fs';
+import { resolve } from 'node:path';
 import chokidar from 'chokidar';
 import { createIncrementalCompiler } from './incremental-compiler.js';
 import type { CompilationResult, CompilerOptions, CompilerWatcher } from './pipeline-types.js';
@@ -18,6 +20,19 @@ export function watch(
   const debounceMs = options.watch?.debounceMs ?? 100;
   let closed = false;
   let debounceTimer: ReturnType<typeof setTimeout> | null = null;
+  const resolvedInputDir = resolve(options.inputDir).replace(/\\/g, '/').toLowerCase();
+  const resolvedOutputDir = resolve(options.outputDir).replace(/\\/g, '/').toLowerCase();
+
+  function isDirectoryPath(path: string, stats?: { isDirectory(): boolean }): boolean {
+    if (stats) {
+      return stats.isDirectory();
+    }
+    try {
+      return statSync(path).isDirectory();
+    } catch {
+      return false;
+    }
+  }
 
   // Run initial compile synchronously but defer callback until watcher ready
   let initialResult: CompilationResult | undefined;
@@ -28,16 +43,25 @@ export function watch(
   }
 
   const watcher = chokidar.watch(options.inputDir, {
-    ignored: [
-      '**/node_modules/**',
-      '**/dist/**',
-      '**/*.d.ts',
-      (path: string) => {
-        // Only watch .ts files and directories
-        const isDir = !path.includes('.');
-        return !isDir && !path.endsWith('.ts');
-      },
-    ],
+    ignored: (path: string, stats?: { isDirectory(): boolean }) => {
+      const normalized = resolve(path).replace(/\\/g, '/').toLowerCase();
+      const isDirectory = isDirectoryPath(path, stats);
+
+      if (!normalized.startsWith(resolvedInputDir)) {
+        return true;
+      }
+      if (normalized.startsWith(resolvedOutputDir)) {
+        return true;
+      }
+      if (normalized.includes('/node_modules/')) {
+        return true;
+      }
+      if (isDirectory) {
+        return false;
+      }
+
+      return !normalized.endsWith('.ts') && !normalized.endsWith('/tsconfig.json');
+    },
     ignoreInitial: true,
     usePolling: true,
     interval: 100,
@@ -69,8 +93,6 @@ export function watch(
     ic.clearCache();
     scheduleRecompile();
   });
-
-  // Deliver initial result only after chokidar is ready to detect changes
   watcher.on('ready', () => {
     if (!closed && initialResult) {
       callback(initialResult);

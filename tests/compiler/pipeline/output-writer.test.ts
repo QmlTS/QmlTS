@@ -74,4 +74,49 @@ describe('writeCompilationOutput', () => {
       expect(existsSync(unit.qmlOutputPath)).toBe(false);
     }
   });
+
+  test('writes schema for schema-only units even when qmlContent is empty', () => {
+    const result = {
+      units: [
+        {
+          sourceFile: join(FIXTURES, 'SchemaOnly.ts'),
+          viewName: 'SchemaOnlyViewModel',
+          viewModelName: 'SchemaOnlyViewModel',
+          qmlOutputPath: join(outputDir, 'SchemaOnly.qml'),
+          qmlContent: '',
+          schema: {
+            className: 'SchemaOnlyViewModel',
+            version: 1,
+            states: [],
+            commands: [],
+            effects: [],
+            lifecycle: {
+              onMounted: false,
+              onUnmounting: false,
+              hotReload: false,
+            },
+          },
+          schemaOutputPath: join(outputDir, 'SchemaOnly.schema.json'),
+          diagnostics: [],
+        },
+      ],
+      eventBindings: { commands: [], effects: [] },
+      diagnostics: [],
+      success: true,
+      stats: {
+        totalFiles: 1,
+        totalViewModels: 1,
+        totalViews: 0,
+        totalStates: 0,
+        totalCommands: 0,
+        totalEffects: 0,
+        durationMs: 0,
+      },
+    };
+
+    writeCompilationOutput(result);
+
+    expect(existsSync(join(outputDir, 'SchemaOnly.qml'))).toBe(false);
+    expect(existsSync(join(outputDir, 'SchemaOnly.schema.json'))).toBe(true);
+  });
 });

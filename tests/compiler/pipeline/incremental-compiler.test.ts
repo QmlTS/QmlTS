@@ -91,6 +91,38 @@ describe('IncrementalCompiler', () => {
     expect(loginUnit!.schema!.states.length).toBe(4);
   });
 
+  test('schema-stable ViewModel edit does not invalidate dependent views', () => {
+    const ic = createIncrementalCompiler();
+    ic.compile(options);
+
+    const vmPath = join(tempDir, 'LoginViewModel.ts');
+    const original = readFileSync(vmPath, 'utf-8');
+    writeFileSync(vmPath, original.replace('/* login logic */', '/* updated login logic */'));
+
+    ic.compile(options);
+    const dirtyFiles = new Set(ic.getChangedFiles());
+
+    expect(dirtyFiles.has(vmPath)).toBe(true);
+    expect(dirtyFiles.has(join(tempDir, 'LoginView.ts'))).toBe(false);
+  });
+
+  test('dirty view can still pair with clean cached ViewModel metadata', () => {
+    const ic = createIncrementalCompiler();
+    ic.compile(options);
+
+    const viewPath = join(tempDir, 'LoginView.ts');
+    const original = readFileSync(viewPath, 'utf-8');
+    writeFileSync(viewPath, original.replace('width(400)', 'width(444)'));
+
+    const result = ic.compile(options);
+    const loginUnit = result.units.find((u) => u.viewName === 'LoginView');
+
+    expect(loginUnit).toBeDefined();
+    expect(loginUnit!.qmlContent).toContain('width: 444');
+    expect(loginUnit!.qmlContent).toContain('Connections');
+    expect(loginUnit!.qmlContent).toContain('Component.onCompleted');
+  });
+
   test('IC-05: clearCache — full recompile', () => {
     const ic = createIncrementalCompiler();
     ic.compile(options);

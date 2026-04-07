@@ -2,6 +2,9 @@ import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import type { ViewModelSchema } from '../../viewmodel/schema.js';
 import type { Diagnostic } from '../diagnostics.js';
+import { createIdAllocator } from '../ids/id-allocator.js';
+import { createViewModelExtractor } from '../viewmodel/viewmodel-extractor.js';
+import type { ProjectCompileContext } from './compiler.js';
 import { compileProjectCore, createProjectContext } from './compiler.js';
 import { createDiagnosticReporter } from './diagnostic-reporter.js';
 import { buildEventBindings } from './event-bindings.js';
@@ -87,10 +90,11 @@ export function createIncrementalCompiler(): IncrementalCompiler {
     return { entries, hitRate, sizeBytes };
   }
 
-  function buildDirtySet(
-    project: readonly import('../analyzer/analyzer-types.js').DiscoveredSourceFile[],
-  ): Set<string> {
+  function buildDirtySet(ctx: ProjectCompileContext): Set<string> {
     const dirty = new Set<string>();
+    const extractor = createViewModelExtractor();
+    const vmFilesToCheck = new Set<string>();
+    const project = ctx.project;
 
     for (const file of project) {
       const absPath = resolve(file.filePath);
@@ -113,21 +117,44 @@ export function createIncrementalCompiler(): IncrementalCompiler {
       const currentHash = hashContent(content);
       if (currentHash !== cached.contentHash) {
         dirty.add(absPath);
+        if (file.viewModels.length > 0) {
+          vmFilesToCheck.add(absPath);
+        }
       } else {
         totalHits++;
       }
     }
 
-    // Schema-based invalidation: if a dirty VM file changes,
-    // invalidate dependent view files
-    const vmDirtyFiles = [...dirty].filter((f) => vmFileDeps.has(f));
-    for (const vmFile of vmDirtyFiles) {
+    // Schema-based invalidation: only invalidate dependent views when the
+    // changed ViewModel file also changes its emitted schema shape.
+    for (const vmFile of vmFilesToCheck) {
+      const cached = cache.get(vmFile);
+      if (!cached) continue;
+
+      const discoveredFile = project.find((file) => resolve(file.filePath) === vmFile);
+      if (!discoveredFile || discoveredFile.viewModels.length === 0) continue;
+
+      const sf = ctx.tsMorphProject.getSourceFile(vmFile);
+      if (!sf) continue;
+
+      const idAllocator = createIdAllocator();
+      const nextSchemas: ViewModelSchema[] = [];
+      for (const discoveredVm of discoveredFile.viewModels) {
+        const classDecl = sf.getClass(discoveredVm.className);
+        if (!classDecl) continue;
+        const vm = extractor.extract(classDecl);
+        nextSchemas.push(extractor.generateSchema(vm, idAllocator));
+      }
+
+      const nextSchemaHash = hashContent(JSON.stringify(nextSchemas));
+      if (nextSchemaHash === cached.schemaHash) {
+        continue;
+      }
+
       const deps = vmFileDeps.get(vmFile);
       if (deps) {
         for (const viewFile of deps) {
-          if (!dirty.has(viewFile)) {
-            dirty.add(viewFile);
-          }
+          dirty.add(viewFile);
         }
       }
     }
@@ -168,21 +195,17 @@ export function createIncrementalCompiler(): IncrementalCompiler {
     coreResult: {
       units: CompilationUnit[];
       schemas: ViewModelSchema[];
+      schemasByFile: ReadonlyMap<string, readonly ViewModelSchema[]>;
     },
     dirtyFiles: ReadonlySet<string>,
   ): void {
     const fileUnits = new Map<string, CompilationUnit[]>();
-    const fileSchemas = new Map<string, ViewModelSchema[]>();
 
     for (const unit of coreResult.units) {
       const absPath = resolve(unit.sourceFile);
       if (!dirtyFiles.has(absPath)) continue;
       if (!fileUnits.has(absPath)) fileUnits.set(absPath, []);
       fileUnits.get(absPath)!.push(unit);
-      if (unit.schema) {
-        if (!fileSchemas.has(absPath)) fileSchemas.set(absPath, []);
-        fileSchemas.get(absPath)!.push(unit.schema);
-      }
     }
 
     for (const filePath of dirtyFiles) {
@@ -195,7 +218,7 @@ export function createIncrementalCompiler(): IncrementalCompiler {
       }
 
       const units = fileUnits.get(filePath) ?? [];
-      const schemas = fileSchemas.get(filePath) ?? [];
+      const schemas = [...(coreResult.schemasByFile.get(filePath) ?? [])];
 
       cache.set(filePath, {
         contentHash: hashContent(content),
@@ -222,7 +245,7 @@ export function createIncrementalCompiler(): IncrementalCompiler {
     }));
     const resolvedCtx = { ...ctx, project: resolvedProject };
 
-    const dirtyFiles = buildDirtySet(resolvedProject);
+    const dirtyFiles = buildDirtySet(resolvedCtx);
     lastDirtySet = dirtyFiles;
 
     updateDependencyGraph(resolvedProject);

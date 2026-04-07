@@ -48,19 +48,38 @@ export async function validateCompilationOutput(
   type QmlFormatResult = import('../../qt-tools/types.js').QmlFormatResult;
   type QmlImportScannerResult = import('../../qt-tools/types.js').QmlImportScannerResult;
 
+  const lintResults = new Map<string, QmlLintResult>();
+  const formatResults = new Map<string, QmlFormatResult>();
+  let importScanResult: QmlImportScannerResult | undefined;
+  const diagnostics: Diagnostic[] = [];
+  let toolFailures = false;
   const qtDir = qtOptions.qtDir ?? process.env['QT_DIR'];
-  const installation = await discover({ qtDir });
+  let installation: Awaited<ReturnType<typeof discover>>;
+  try {
+    installation = await discover({ qtDir });
+  } catch (e) {
+    toolFailures = true;
+    diagnostics.push({
+      severity: 'warning',
+      code: 'QMLTS-Q002',
+      message: `Qt discovery failed${qtDir ? ` for ${qtDir}` : ''}: ${
+        e instanceof Error ? e.message : String(e)
+      }`,
+    });
+    return {
+      lintResults,
+      formatResults,
+      importScanResult,
+      diagnostics,
+      allValid: false,
+    };
+  }
 
   const qmlFiles = result.units.filter((u) => u.qmlContent).map((u) => u.qmlOutputPath);
 
   const shouldLint = qtOptions.lint !== false;
   const shouldFormat = qtOptions.format === true;
   const shouldScanImports = qtOptions.importScan !== false;
-
-  const lintResults = new Map<string, QmlLintResult>();
-  const formatResults = new Map<string, QmlFormatResult>();
-  let importScanResult: QmlImportScannerResult | undefined;
-  const diagnostics: Diagnostic[] = [];
 
   if (shouldLint) {
     for (const qmlPath of qmlFiles) {
@@ -80,6 +99,7 @@ export async function validateCompilationOutput(
           });
         }
       } catch (e) {
+        toolFailures = true;
         diagnostics.push({
           severity: 'warning',
           code: 'QMLTS-Q002',
@@ -105,7 +125,17 @@ export async function validateCompilationOutput(
             file: unit.qmlOutputPath,
           });
         }
+        if (fmtResult.exitCode !== 0) {
+          toolFailures = true;
+          diagnostics.push({
+            severity: 'warning',
+            code: 'QMLTS-Q002',
+            message: `qmlformat returned exit code ${fmtResult.exitCode} for ${unit.qmlOutputPath}`,
+            file: unit.qmlOutputPath,
+          });
+        }
       } catch (e) {
+        toolFailures = true;
         diagnostics.push({
           severity: 'warning',
           code: 'QMLTS-Q002',
@@ -123,7 +153,16 @@ export async function validateCompilationOutput(
         qtOptions.importPaths ? [...qtOptions.importPaths] : undefined,
       );
       importScanResult = await scanFiles(installation, qmlFiles, importPaths);
+      if (!importScanResult.success) {
+        toolFailures = true;
+        diagnostics.push({
+          severity: 'warning',
+          code: 'QMLTS-Q002',
+          message: 'qmlimportscanner reported unsuccessful import scanning',
+        });
+      }
     } catch (e) {
+      toolFailures = true;
       diagnostics.push({
         severity: 'warning',
         code: 'QMLTS-Q002',
@@ -132,7 +171,7 @@ export async function validateCompilationOutput(
     }
   }
 
-  const allValid = !diagnostics.some((d) => d.severity === 'error');
+  const allValid = !diagnostics.some((d) => d.severity === 'error') && !toolFailures;
 
   return {
     lintResults,

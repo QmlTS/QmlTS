@@ -11,24 +11,25 @@ export function writeCompilationOutput(result: CompilationResult): void {
   const dirs: string[] = [];
 
   for (const unit of result.units) {
-    if (!unit.qmlContent) continue;
+    if (unit.qmlContent) {
+      const dir = dirname(unit.qmlOutputPath);
+      mkdirSync(dir, { recursive: true });
+      writeFileSync(unit.qmlOutputPath, unit.qmlContent, 'utf-8');
+      dirs.push(dir);
 
-    const dir = dirname(unit.qmlOutputPath);
-    mkdirSync(dir, { recursive: true });
-    writeFileSync(unit.qmlOutputPath, unit.qmlContent, 'utf-8');
-    dirs.push(dir);
+      if (unit.sourceMap) {
+        const mapPath = `${unit.qmlOutputPath}.map`;
+        const mapDir = dirname(mapPath);
+        mkdirSync(mapDir, { recursive: true });
+        writeFileSync(mapPath, sourceMapToJson(unit.sourceMap), 'utf-8');
+      }
+    }
 
     if (unit.schema && unit.schemaOutputPath) {
       const schemaDir = dirname(unit.schemaOutputPath);
       mkdirSync(schemaDir, { recursive: true });
       writeFileSync(unit.schemaOutputPath, JSON.stringify(unit.schema, null, 2), 'utf-8');
-    }
-
-    if (unit.sourceMap) {
-      const mapPath = `${unit.qmlOutputPath}.map`;
-      const mapDir = dirname(mapPath);
-      mkdirSync(mapDir, { recursive: true });
-      writeFileSync(mapPath, sourceMapToJson(unit.sourceMap), 'utf-8');
+      dirs.push(schemaDir);
     }
   }
 

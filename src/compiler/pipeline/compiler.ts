@@ -47,6 +47,7 @@ export interface ProjectCompileContext {
 interface ProjectCoreResult {
   readonly units: CompilationUnit[];
   readonly schemas: ViewModelSchema[];
+  readonly schemasByFile: ReadonlyMap<string, readonly ViewModelSchema[]>;
   readonly diagnostics: readonly import('../diagnostics.js').Diagnostic[];
   readonly stats: {
     totalFiles: number;
@@ -108,6 +109,7 @@ export function compileProjectCore(
   const extractor = createViewModelExtractor();
   const vmMap = new Map<string, { vm: AnalyzedViewModel; schema: ViewModelSchema }>();
   const allSchemas: ViewModelSchema[] = [];
+  const schemasByFile = new Map<string, ViewModelSchema[]>();
 
   let totalStates = 0;
   let totalCommands = 0;
@@ -116,24 +118,10 @@ export function compileProjectCore(
   for (const file of project) {
     const isDirty = dirtyFiles.has(file.filePath);
     const cached = cachedEntries.get(file.filePath);
-
-    if (!isDirty && cached) {
-      for (const schema of cached.schemas) {
-        allSchemas.push(schema);
-        vmMap.set(schema.className, {
-          vm: { className: schema.className } as AnalyzedViewModel,
-          schema,
-        });
-        totalStates += schema.states.length;
-        totalCommands += schema.commands.length;
-        totalEffects += schema.effects.length;
-      }
-      continue;
-    }
+    const sf = getOrAddSourceFile(tsMorphProject, file.filePath);
+    if (!sf) continue;
 
     for (const discoveredVm of file.viewModels) {
-      const sf = getOrAddSourceFile(tsMorphProject, file.filePath);
-      if (!sf) continue;
       const classDecl = sf.getClass(discoveredVm.className);
       if (!classDecl) continue;
 
@@ -141,9 +129,17 @@ export function compileProjectCore(
       for (const d of extractor.validate(vm)) {
         reporter.report(d);
       }
-      const schema = extractor.generateSchema(vm, idAllocator);
+
+      const cachedSchema = isDirty
+        ? undefined
+        : cached?.schemas.find((schema) => schema.className === vm.className);
+      const schema = cachedSchema ?? extractor.generateSchema(vm, idAllocator);
       vmMap.set(vm.className, { vm, schema });
       allSchemas.push(schema);
+      if (!schemasByFile.has(file.filePath)) {
+        schemasByFile.set(file.filePath, []);
+      }
+      schemasByFile.get(file.filePath)!.push(schema);
 
       totalStates += vm.states.length;
       totalCommands += vm.commands.length;
@@ -234,6 +230,7 @@ export function compileProjectCore(
   return {
     units,
     schemas: allSchemas,
+    schemasByFile,
     diagnostics: reporter.getDiagnostics(),
     stats: {
       totalFiles: project.length,

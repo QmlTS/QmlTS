@@ -91,3 +91,24 @@ describe.skipIf(!QT_DIR)('Qt Validation', () => {
     expect(qtResult.lintResults.size).toBeGreaterThan(0);
   }, 30_000);
 });
+
+describe('Qt Validation discovery failures', () => {
+  test('invalid qtDir is converted into graceful validation result', async () => {
+    const invalidOutputDir = join(tmpdir(), 'qmlts-qt-invalid');
+    const result = compile({
+      inputDir: FIXTURES,
+      outputDir: invalidOutputDir,
+      tsconfigPath: join(FIXTURES, 'tsconfig.json'),
+      diagnostics: { suppress: ['QMLTS-A011'] },
+    });
+    writeCompilationOutput(result);
+
+    const qtResult = await validateCompilationOutput(result, {
+      qtDir: '/definitely/not/a/real/qt/path',
+      lint: true,
+    });
+
+    expect(qtResult.allValid).toBe(false);
+    expect(qtResult.diagnostics.some((d) => d.code === 'QMLTS-Q002')).toBe(true);
+  });
+});
