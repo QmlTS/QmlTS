@@ -1,0 +1,62 @@
+{
+  "className": "LoginViewModel",
+  "version": 1,
+  "states": [
+    {
+      "name": "username",
+      "qmlName": "username",
+      "qmlType": "string",
+      "memberId": 0,
+      "readonly": false,
+      "deferred": false,
+      "defaultValue": "''"
+    },
+    {
+      "name": "password",
+      "qmlName": "password",
+      "qmlType": "string",
+      "memberId": 1,
+      "readonly": false,
+      "deferred": false,
+      "defaultValue": "''"
+    },
+    {
+      "name": "isLoading",
+      "qmlName": "isLoading",
+      "qmlType": "bool",
+      "memberId": 2,
+      "readonly": true,
+      "deferred": false,
+      "defaultValue": "false"
+    }
+  ],
+  "commands": [
+    {
+      "name": "login",
+      "qmlName": "login",
+      "commandId": 927957157,
+      "parameters": [],
+      "async": true,
+      "throttle": "none",
+      "throttleMs": 0
+    }
+  ],
+  "effects": [
+    {
+      "name": "onLoginCompleted",
+      "qmlName": "onLoginCompleted",
+      "effectId": 1633635556,
+      "parameters": [
+        {
+          "name": "success",
+          "type": "boolean"
+        }
+      ]
+    }
+  ],
+  "lifecycle": {
+    "onMounted": true,
+    "onUnmounting": false,
+    "hotReload": false
+  }
+}

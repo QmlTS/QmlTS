@@ -7,6 +7,7 @@ export type {
   RelatedDiagnostic,
 } from './diagnostics.js';
 export * from './ids/index.js';
+export * from './pipeline/index.js';
 export * from './postprocess/index.js';
 export * from './transform/index.js';
 export * from './viewmodel/index.js';

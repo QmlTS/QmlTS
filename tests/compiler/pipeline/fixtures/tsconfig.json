@@ -1,0 +1,18 @@
+{
+	"compilerOptions": {
+		"target": "ESNext",
+		"module": "ESNext",
+		"moduleResolution": "bundler",
+		"experimentalDecorators": true,
+		"strict": false,
+		"skipLibCheck": true,
+		"noEmit": true,
+		"types": []
+	},
+	"include": [
+		"LoginViewModel.ts",
+		"LoginView.ts",
+		"CounterViewModel.ts",
+		"CounterView.ts"
+	]
+}

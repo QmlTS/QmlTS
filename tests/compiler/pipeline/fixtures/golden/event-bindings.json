@@ -1,0 +1,28 @@
+{
+  "commands": [
+    {
+      "viewModelClass": "CounterViewModel",
+      "methodName": "increment",
+      "commandId": 303501554,
+      "paramTypes": [],
+      "async": false
+    },
+    {
+      "viewModelClass": "LoginViewModel",
+      "methodName": "login",
+      "commandId": 927957157,
+      "paramTypes": [],
+      "async": true
+    }
+  ],
+  "effects": [
+    {
+      "viewModelClass": "LoginViewModel",
+      "effectName": "onLoginCompleted",
+      "effectId": 1633635556,
+      "paramTypes": [
+        "boolean"
+      ]
+    }
+  ]
+}
