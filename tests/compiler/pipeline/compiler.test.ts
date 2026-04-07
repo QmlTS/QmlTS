@@ -73,7 +73,7 @@ const GOLDEN_DIR = join(FIXTURES_DIR, 'golden');
 const TSCONFIG_PATH = join(FIXTURES_DIR, 'tsconfig.json');
 
 function readGolden(name: string): string {
-  return readFileSync(join(GOLDEN_DIR, name), 'utf-8');
+  return readFileSync(join(GOLDEN_DIR, name), 'utf-8').replace(/\r\n/g, '\n');
 }
 
 // ─── Tests ─────────────────────────────────────────────────────────────
@@ -358,6 +358,22 @@ describe('Compiler Pipeline', () => {
       });
       const t004 = unit.diagnostics.filter((d) => d.code === 'QMLTS-T004');
       expect(t004.length).toBe(0);
+    });
+  });
+
+  describe('Regression', () => {
+    test('CP-12: compileFile single file regression', () => {
+      const result = compileFile(join(FIXTURES_DIR, 'LoginView.ts'), {
+        inputDir: FIXTURES_DIR,
+        outputDir: 'dist',
+        tsconfigPath: join(FIXTURES_DIR, 'tsconfig.json'),
+        diagnostics: { suppress: ['QMLTS-A011'] },
+      });
+
+      expect(result.viewName).toBe('LoginView');
+      expect(result.qmlContent).toContain('Rectangle');
+      expect(result.qmlContent).toContain('vm.username');
+      expect(result.diagnostics.filter((d) => d.severity === 'error')).toHaveLength(0);
     });
   });
 });

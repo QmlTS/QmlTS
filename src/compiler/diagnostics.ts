@@ -62,4 +62,10 @@ export type DiagnosticCode =
   // General (G)
   | 'QMLTS-G001'
   | 'QMLTS-G002'
-  | 'QMLTS-G003';
+  | 'QMLTS-G003'
+  // Qt Validation (Q)
+  | 'QMLTS-Q001'
+  | 'QMLTS-Q002'
+  | 'QMLTS-Q003'
+  // Incremental (I)
+  | 'QMLTS-I001';
