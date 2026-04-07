@@ -59,14 +59,7 @@ export function compileSource(source: string, options?: Partial<CompilerOptions>
   // Merge all reporter diagnostics (analyzer, extractor) into the unit
   const unit = units[0]!;
   const allDiags = [...reporter.getDiagnostics(), ...unit.diagnostics];
-  // Deduplicate by code+message+line
-  const seen = new Set<string>();
-  const deduped = allDiags.filter((d) => {
-    const key = `${d.code}:${d.message}:${d.line}`;
-    if (seen.has(key)) return false;
-    seen.add(key);
-    return true;
-  });
+  const deduped = dedupeDiagnostics(allDiags);
 
   return { ...unit, diagnostics: deduped };
 }
@@ -92,13 +85,7 @@ export function compileFile(filePath: string, options?: Partial<CompilerOptions>
 
   const unit = units[0]!;
   const allDiags = [...reporter.getDiagnostics(), ...unit.diagnostics];
-  const seen = new Set<string>();
-  const deduped = allDiags.filter((d) => {
-    const key = `${d.code}:${d.message}:${d.line}`;
-    if (seen.has(key)) return false;
-    seen.add(key);
-    return true;
-  });
+  const deduped = dedupeDiagnostics(allDiags);
 
   return { ...unit, diagnostics: deduped };
 }
@@ -133,7 +120,7 @@ export function compile(options: CompilerOptions): CompilationResult {
   const allSchemas: ViewModelSchema[] = [];
 
   // We need ts-morph SourceFiles for extraction — create a parallel project
-  const tsMorphProject = createTsMorphProject(options.tsconfigPath);
+  const tsMorphProject = createTsMorphProject(tsconfigPath);
 
   let totalStates = 0;
   let totalCommands = 0;
@@ -222,7 +209,7 @@ export function compile(options: CompilerOptions): CompilationResult {
           sourceFile: file.filePath,
           viewName: discoveredVm.className,
           viewModelName: discoveredVm.className,
-          qmlOutputPath: computeOutputPath(file.filePath, options, '.schema.json'),
+          qmlOutputPath: computeOutputPath(file.filePath, options, '.qml'),
           qmlContent: '',
           schema: entry.schema,
           schemaOutputPath: computeOutputPath(file.filePath, options, '.schema.json'),
@@ -281,7 +268,7 @@ function compileSingleSource(
   for (const d of discovered.diagnostics) {
     // Skip TS module resolution errors for virtual sources — DSL imports
     // are pattern-matched, not TS-resolved, so they can't resolve from virtual paths.
-    if (isVirtual && d.code === 'QMLTS-A011') continue;
+    if (isVirtual && isVirtualModuleResolutionDiagnostic(d)) continue;
     reporter.report(d);
   }
 
@@ -496,4 +483,36 @@ function buildEmptyResult(reporter: DiagnosticReporter, startTime: number): Comp
       durationMs: Math.round(performance.now() - startTime),
     },
   };
+}
+
+function dedupeDiagnostics(
+  diagnostics: CompilationUnit['diagnostics'],
+): CompilationUnit['diagnostics'] {
+  const seen = new Set<string>();
+  return diagnostics.filter((d) => {
+    const key = [
+      d.severity,
+      d.code,
+      d.file ?? '',
+      d.line ?? '',
+      d.column ?? '',
+      d.endLine ?? '',
+      d.endColumn ?? '',
+      d.message,
+    ].join(':');
+    if (seen.has(key)) {
+      return false;
+    }
+    seen.add(key);
+    return true;
+  });
+}
+
+function isVirtualModuleResolutionDiagnostic(
+  diagnostic: CompilationUnit['diagnostics'][number],
+): boolean {
+  return (
+    diagnostic.code === 'QMLTS-A011' &&
+    (diagnostic.message.includes('TS2307:') || diagnostic.message.includes('Cannot find module'))
+  );
 }

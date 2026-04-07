@@ -19,6 +19,7 @@ export class LoginViewModel {
   }
 
   @Effect()
+  // biome-ignore lint/correctness/noUnusedFunctionParameters: fixture preserves effect parameter name for schema output
   readonly onLoginCompleted = (success: boolean) => {};
 
   onMounted() {

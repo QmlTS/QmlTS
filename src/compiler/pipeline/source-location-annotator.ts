@@ -32,7 +32,7 @@ export function annotateFromDslTree(
   dslTree: DslCallNode,
   kindMap: WeakMap<AstNode, SourceMapKind>,
 ): void {
-  annotateObject(document.rootObject, dslTree, kindMap, true);
+  annotateObject(document.rootObject, dslTree, kindMap);
 }
 
 /**
@@ -134,11 +134,10 @@ function annotateObject(
   obj: ObjectDefinitionNode,
   dsl: DslCallNode,
   kindMap: WeakMap<AstNode, SourceMapKind>,
-  isRoot: boolean,
 ): void {
   // Annotate the object node itself
   annotateFromLocation(obj, dsl.sourceLocation);
-  kindMap.set(obj, isRoot ? 'child' : 'child');
+  kindMap.set(obj, 'child');
 
   // Collect QML members by kind for matching
   const qmlBindings: BindingNode[] = [];
@@ -202,7 +201,7 @@ function annotateObject(
 
   // Match children by index (they preserve order from DSL tree)
   for (let i = 0; i < dsl.children.length && i < qmlChildren.length; i++) {
-    annotateObject(qmlChildren[i]!, dsl.children[i]!, kindMap, false);
+    annotateObject(qmlChildren[i]!, dsl.children[i]!, kindMap);
   }
 }
 

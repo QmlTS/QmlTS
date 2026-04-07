@@ -30,7 +30,7 @@ describe('CompilerSourceMap', () => {
   test('SM-02: findSource returns TS source location for QML line', () => {
     const builder = createSourceMapBuilder('a.ts', 'a.qml');
     builder.addMapping({
-      source: { line: 3, column: 0 },
+      source: { line: 3, column: 1 },
       target: { line: 7, column: 4 },
       kind: 'binding',
     });
@@ -51,7 +51,7 @@ describe('CompilerSourceMap', () => {
   test('SM-03: findTarget returns QML location for TS line', () => {
     const builder = createSourceMapBuilder('a.ts', 'a.qml');
     builder.addMapping({
-      source: { line: 5, column: 0 },
+      source: { line: 5, column: 1 },
       target: { line: 12, column: 4 },
       kind: 'child',
     });
@@ -67,8 +67,8 @@ describe('CompilerSourceMap', () => {
   test('SM-04: toJson and fromJson roundtrip preserves content', () => {
     const builder = createSourceMapBuilder('view.ts', 'view.qml');
     builder.addMapping({
-      source: { line: 1, column: 0 },
-      target: { line: 1, column: 0 },
+      source: { line: 1, column: 1 },
+      target: { line: 1, column: 1 },
       kind: 'import',
     });
     builder.addMapping({
@@ -111,8 +111,8 @@ describe('CompilerSourceMap', () => {
     const builder = createSourceMapBuilder('test.ts', 'test.qml');
     for (let i = 0; i < kinds.length; i++) {
       builder.addMapping({
-        source: { line: i + 1, column: 0 },
-        target: { line: (i + 1) * 2, column: 0 },
+        source: { line: i + 1, column: 1 },
+        target: { line: (i + 1) * 2, column: 1 },
         kind: kinds[i]!,
       });
     }
@@ -133,8 +133,8 @@ describe('CompilerSourceMap', () => {
   test('findSource returns undefined when no match at target line', () => {
     const builder = createSourceMapBuilder('a.ts', 'a.qml');
     builder.addMapping({
-      source: { line: 5, column: 0 },
-      target: { line: 10, column: 0 },
+      source: { line: 5, column: 1 },
+      target: { line: 10, column: 1 },
       kind: 'binding',
     });
     const map = builder.build();
@@ -145,8 +145,8 @@ describe('CompilerSourceMap', () => {
   test('findTarget returns undefined when no match at source line', () => {
     const builder = createSourceMapBuilder('a.ts', 'a.qml');
     builder.addMapping({
-      source: { line: 5, column: 0 },
-      target: { line: 10, column: 0 },
+      source: { line: 5, column: 1 },
+      target: { line: 10, column: 1 },
       kind: 'binding',
     });
     const map = builder.build();
@@ -157,7 +157,7 @@ describe('CompilerSourceMap', () => {
   test('findSource uses column to disambiguate multiple matches on same line', () => {
     const builder = createSourceMapBuilder('a.ts', 'a.qml');
     builder.addMapping({
-      source: { line: 3, column: 0 },
+      source: { line: 3, column: 1 },
       target: { line: 10, column: 4 },
       kind: 'binding',
     });
