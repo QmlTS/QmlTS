@@ -1,6 +1,7 @@
 export { compile, compileFile, compileSource } from './compiler.js';
 export { createDiagnosticReporter } from './diagnostic-reporter.js';
 export { buildEventBindings } from './event-bindings.js';
+export { fnv1a32, hashContent } from './hash-utils.js';
 export type {
   CodegenOptions,
   CompilationResult,
@@ -9,12 +10,18 @@ export type {
   CompilerOptions,
   CompilerSourceMap,
   CompilerSourceMapEntry,
+  CompilerWatcher,
   DiagnosticOptions,
   DiagnosticReporter,
   EventBindingCommand,
   EventBindingEffect,
   EventBindingIndex,
+  FileCacheEntry,
+  IncrementalCompiler,
+  QtValidationOptions,
+  QtValidationResult,
   SourceMapKind,
+  WatchOptions,
 } from './pipeline-types.js';
 export {
   annotateFromDslTree,
