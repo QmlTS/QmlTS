@@ -6,116 +6,88 @@ import { compile } from '../../../src/compiler/pipeline/compiler.js';
 import { writeCompilationOutput } from '../../../src/compiler/pipeline/output-writer.js';
 import type { CompilerOptions } from '../../../src/compiler/pipeline/pipeline-types.js';
 import {
-	compileWithQt,
-	validateCompilationOutput,
+  compileWithQt,
+  validateCompilationOutput,
 } from '../../../src/compiler/pipeline/qt-validation.js';
 
 const QT_DIR = process.env['QT_DIR'];
 const FIXTURES = join(import.meta.dir, 'fixtures');
 
 describe.skipIf(!QT_DIR)('Qt Validation', () => {
-	let tempDir: string;
-	let outputDir: string;
-	let options: CompilerOptions;
+  let tempDir: string;
+  let outputDir: string;
+  let options: CompilerOptions;
 
-	beforeEach(() => {
-		tempDir = mkdtempSync(join(tmpdir(), 'qmlts-qt-'));
-		outputDir = join(tempDir, 'dist');
-		options = {
-			inputDir: FIXTURES,
-			outputDir,
-			tsconfigPath: join(FIXTURES, 'tsconfig.json'),
-			diagnostics: { suppress: ['QMLTS-A011'] },
-			qt: {
-				qtDir: QT_DIR!,
-				lint: true,
-				format: true,
-				importScan: true,
-			},
-		};
-	});
+  beforeEach(() => {
+    tempDir = mkdtempSync(join(tmpdir(), 'qmlts-qt-'));
+    outputDir = join(tempDir, 'dist');
+    options = {
+      inputDir: FIXTURES,
+      outputDir,
+      tsconfigPath: join(FIXTURES, 'tsconfig.json'),
+      diagnostics: { suppress: ['QMLTS-A011'] },
+      qt: {
+        qtDir: QT_DIR!,
+        lint: true,
+        format: true,
+        importScan: true,
+      },
+    };
+  });
 
-	afterEach(() => {
-		rmSync(tempDir, { recursive: true, force: true });
-	});
+  afterEach(() => {
+    rmSync(tempDir, { recursive: true, force: true });
+  });
 
-	test(
-		'CP-10a: compileWithQt — output passes qmllint',
-		async () => {
-			const result = await compileWithQt(options);
+  test('CP-10a: compileWithQt — output passes qmllint', async () => {
+    const result = await compileWithQt(options);
 
-			expect(result.success).toBe(true);
-			expect(result.qtValidation).toBeDefined();
-			expect(result.qtValidation!.allValid).toBe(true);
-			expect(result.qtValidation!.lintResults.size).toBeGreaterThan(0);
-		},
-		30_000,
-	);
+    expect(result.success).toBe(true);
+    expect(result.qtValidation).toBeDefined();
+    expect(result.qtValidation!.allValid).toBe(true);
+    expect(result.qtValidation!.lintResults.size).toBeGreaterThan(0);
+  }, 30_000);
 
-	test(
-		'CP-10b: compileWithQt — qmlimportscanner returns results',
-		async () => {
-			const result = await compileWithQt(options);
+  test('CP-10b: compileWithQt — qmlimportscanner returns results', async () => {
+    const result = await compileWithQt(options);
 
-			expect(result.qtValidation).toBeDefined();
-			expect(result.qtValidation!.importScanResult).toBeDefined();
-			expect(result.qtValidation!.importScanResult!.success).toBe(true);
-		},
-		30_000,
-	);
+    expect(result.qtValidation).toBeDefined();
+    expect(result.qtValidation!.importScanResult).toBeDefined();
+    expect(result.qtValidation!.importScanResult!.success).toBe(true);
+  }, 30_000);
 
-	test(
-		'CP-10c: compileWithQt — qmlformat validates output',
-		async () => {
-			const result = await compileWithQt(options);
+  test('CP-10c: compileWithQt — qmlformat validates output', async () => {
+    const result = await compileWithQt(options);
 
-			expect(result.qtValidation).toBeDefined();
-			expect(
-				result.qtValidation!.formatResults.size,
-			).toBeGreaterThan(0);
-		},
-		30_000,
-	);
+    expect(result.qtValidation).toBeDefined();
+    expect(result.qtValidation!.formatResults.size).toBeGreaterThan(0);
+  }, 30_000);
 
-	test(
-		'CP-10d: compileWithQt — Qt diagnostics merged into result.diagnostics',
-		async () => {
-			const result = await compileWithQt(options);
+  test('CP-10d: compileWithQt — Qt diagnostics merged into result.diagnostics', async () => {
+    const result = await compileWithQt(options);
 
-			expect(result.qtValidation).toBeDefined();
-			expect(result.qtValidation!.diagnostics).toBeDefined();
-			const topLevelErrors = result.diagnostics.filter(
-				(d) => d.severity === 'error',
-			);
-			const qtErrors = result.qtValidation!.diagnostics.filter(
-				(d) => d.severity === 'error',
-			);
-			expect(topLevelErrors.length).toBeGreaterThanOrEqual(
-				qtErrors.length,
-			);
-		},
-		30_000,
-	);
+    expect(result.qtValidation).toBeDefined();
+    expect(result.qtValidation!.diagnostics).toBeDefined();
+    const topLevelErrors = result.diagnostics.filter((d) => d.severity === 'error');
+    const qtErrors = result.qtValidation!.diagnostics.filter((d) => d.severity === 'error');
+    expect(topLevelErrors.length).toBeGreaterThanOrEqual(qtErrors.length);
+  }, 30_000);
 
-	test(
-		'validateCompilationOutput standalone works',
-		async () => {
-			const result = compile({
-				inputDir: FIXTURES,
-				outputDir,
-				tsconfigPath: join(FIXTURES, 'tsconfig.json'),
-				diagnostics: { suppress: ['QMLTS-A011'] },
-			});
-			writeCompilationOutput(result);
+  test('validateCompilationOutput standalone works', async () => {
+    const result = compile({
+      inputDir: FIXTURES,
+      outputDir,
+      tsconfigPath: join(FIXTURES, 'tsconfig.json'),
+      diagnostics: { suppress: ['QMLTS-A011'] },
+    });
+    writeCompilationOutput(result);
 
-			const qtResult = await validateCompilationOutput(result, {
-				qtDir: QT_DIR!,
-				lint: true,
-			});
+    const qtResult = await validateCompilationOutput(result, {
+      qtDir: QT_DIR!,
+      lint: true,
+    });
 
-			expect(qtResult.allValid).toBe(true);
-			expect(qtResult.lintResults.size).toBeGreaterThan(0);
-		},
-		30_000,
-	);
+    expect(qtResult.allValid).toBe(true);
+    expect(qtResult.lintResults.size).toBeGreaterThan(0);
+  }, 30_000);
 });

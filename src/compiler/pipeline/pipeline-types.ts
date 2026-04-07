@@ -141,14 +141,8 @@ export interface QtValidationOptions {
 }
 
 export interface QtValidationResult {
-  readonly lintResults: ReadonlyMap<
-    string,
-    import('../../qt-tools/types.js').QmlLintResult
-  >;
-  readonly formatResults: ReadonlyMap<
-    string,
-    import('../../qt-tools/types.js').QmlFormatResult
-  >;
+  readonly lintResults: ReadonlyMap<string, import('../../qt-tools/types.js').QmlLintResult>;
+  readonly formatResults: ReadonlyMap<string, import('../../qt-tools/types.js').QmlFormatResult>;
   readonly importScanResult?: import('../../qt-tools/types.js').QmlImportScannerResult;
   readonly diagnostics: readonly Diagnostic[];
   readonly allValid: boolean;
