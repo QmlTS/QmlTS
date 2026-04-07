@@ -1,5 +1,7 @@
 export { createDiagnosticReporter } from './diagnostic-reporter.js';
 export { buildEventBindings } from './event-bindings.js';
+
+export { compile, compileFile, compileSource } from './compiler.js';
 export type {
   CodegenOptions,
   CompilationResult,
