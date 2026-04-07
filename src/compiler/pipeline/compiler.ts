@@ -373,18 +373,17 @@ function compileView(
     effectListeners: [...transformResult.effectListeners, ...effectListeners],
   };
 
-  // Source map annotation (before PostProcessor clones)
-  const kindMap = new WeakMap<AstNode, SourceMapKind>();
-  if (generateSourceMap) {
-    annotateFromDslTree(augmentedResult.document, analyzedView.dslTree, kindMap);
-  }
-
   // PostProcess: inject imports, Connections, lifecycle
   const postResult = postProcessor.process(augmentedResult, vm);
   for (const d of postResult.diagnostics) reporter.report(d);
 
-  // Source map: annotate injected nodes
+  // Source map annotation — must happen AFTER PostProcessor clone so that
+  // the kindMap references the same node objects the emitter will receive.
+  // PostProcessor's deepClone (JSON parse/stringify) creates new objects,
+  // breaking WeakMap references from pre-clone annotation.
+  const kindMap = new WeakMap<AstNode, SourceMapKind>();
   if (generateSourceMap) {
+    annotateFromDslTree(postResult.document, analyzedView.dslTree, kindMap);
     annotateInjectedNodes(postResult.document, vm, kindMap);
   }
 
