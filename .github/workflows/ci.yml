@@ -24,7 +24,7 @@ jobs:
     if: >-
       github.event_name != 'pull_request' ||
       github.event.pull_request.head.repo.full_name == github.repository
-    timeout-minutes: 15
+    timeout-minutes: 20
 
     steps:
       - name: Checkout
@@ -51,6 +51,25 @@ jobs:
             qtlocation
           cache: true
 
+      - name: Setup Rust
+        uses: dtolnay/rust-action@stable
+        with:
+          toolchain: stable
+          components: clippy, rustfmt
+
+      - name: Cache Cargo
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cargo/bin/
+            ~/.cargo/registry/index/
+            ~/.cargo/registry/cache/
+            ~/.cargo/git/db/
+            native/target/
+          key: ${{ runner.os }}-cargo-${{ hashFiles('native/**/Cargo.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-cargo-
+
       - name: Setup Bun
         uses: oven-sh/setup-bun@v2
         with:
@@ -67,6 +86,24 @@ jobs:
 
       - name: Type check
         run: bun run typecheck
+
+      - name: Rust format check
+        working-directory: native
+        run: cargo fmt --all -- --check
+
+      - name: Rust clippy
+        working-directory: native
+        run: cargo clippy --all-targets --all-features -- -D warnings
+
+      - name: Rust tests
+        working-directory: native
+        run: cargo test --all-features
+
+      - name: Build native module
+        working-directory: native
+        run: cargo build --release
+        env:
+          QT_DIR: ${{ env.QT_ROOT_DIR }}
 
       - name: Run tests
         run: QT_DIR="$QT_ROOT_DIR" bun run test:ci
