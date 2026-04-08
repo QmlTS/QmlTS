@@ -201,7 +201,7 @@ describe('host/napi-bindings (skip check)', () => {
   test('check native module availability', () => {
     if (!isNativeModuleAvailable) {
       console.log(
-        '⚠️  Native module not built. Run `bunx @napi-rs/cli build --manifest-path ../../crates/qmlts-host/Cargo.toml --package-json-path package.json --output-dir . --platform --release --no-js` in native/npm/qmlts-host/.',
+        '⚠️  Native module not built. Run `bunx @napi-rs/cli@3.0.0-alpha.65 build --manifest-path ../../crates/qmlts-host/Cargo.toml --package-json-path package.json --output-dir . --platform --release --no-js` in native/npm/qmlts-host/.',
       );
       console.log('   Skipping native binding tests.');
     } else {

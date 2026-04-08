@@ -35,6 +35,11 @@ jobs:
         with:
           python-version: '3.x'
 
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
       - name: Install Qt
         uses: jurplel/install-qt-action@v4
         with:
@@ -99,15 +104,8 @@ jobs:
         run: cargo test --all-features
 
       - name: Build native module
-        working-directory: native
-        run: >-
-          bunx @napi-rs/cli build
-          --manifest-path crates/qmlts-host/Cargo.toml
-          --package-json-path npm/qmlts-host/package.json
-          --output-dir npm/qmlts-host
-          --platform
-          --release
-          --no-js
+        working-directory: native/npm/qmlts-host
+        run: bun run build
         env:
           QT_DIR: ${{ env.QT_ROOT_DIR }}
 

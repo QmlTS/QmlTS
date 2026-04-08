@@ -59,7 +59,7 @@ native/
 ```bash
 # Build the published N-API addon (.node)
 cd npm/qmlts-host
-bunx @napi-rs/cli build \
+bunx @napi-rs/cli@3.0.0-alpha.65 build \
   --manifest-path ../../crates/qmlts-host/Cargo.toml \
   --package-json-path package.json \
   --output-dir . \
