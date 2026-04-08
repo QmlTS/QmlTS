@@ -205,8 +205,10 @@ pub fn load_string(
 /// ```
 #[napi(js_name = "addImportPath")]
 pub fn add_import_path(engine: &mut QmltsEngine, path: String) -> Result<()> {
-    engine.inner.add_import_path(&path);
-    Ok(())
+    engine
+        .inner
+        .add_import_path(&path)
+        .map_err(|e| -> napi::Error { e.into() })
 }
 
 /// Add a Qt plugin search path.
@@ -220,8 +222,10 @@ pub fn add_import_path(engine: &mut QmltsEngine, path: String) -> Result<()> {
 /// ```
 #[napi(js_name = "addPluginPath")]
 pub fn add_plugin_path(engine: &mut QmltsEngine, path: String) -> Result<()> {
-    engine.inner.add_plugin_path(&path);
-    Ok(())
+    engine
+        .inner
+        .add_plugin_path(&path)
+        .map_err(|e| -> napi::Error { e.into() })
 }
 
 // ─────────────────────────────────────────────────────────────────────────
@@ -243,7 +247,7 @@ pub fn add_plugin_path(engine: &mut QmltsEngine, path: String) -> Result<()> {
 /// ```
 #[napi]
 pub fn exec(engine: &QmltsEngine) -> Result<i32> {
-    Ok(engine.inner.exec())
+    engine.inner.exec().map_err(|e| -> napi::Error { e.into() })
 }
 
 /// Request the Qt event loop to quit.
@@ -257,8 +261,10 @@ pub fn exec(engine: &QmltsEngine) -> Result<i32> {
 /// ```
 #[napi]
 pub fn quit(engine: &QmltsEngine, exit_code: Option<i32>) -> Result<()> {
-    engine.inner.quit(exit_code);
-    Ok(())
+    engine
+        .inner
+        .quit(exit_code)
+        .map_err(|e| -> napi::Error { e.into() })
 }
 
 /// Process all pending Qt events.
@@ -275,8 +281,10 @@ pub fn quit(engine: &QmltsEngine, exit_code: Option<i32>) -> Result<()> {
 /// ```
 #[napi(js_name = "processEvents")]
 pub fn process_events(engine: &QmltsEngine) -> Result<()> {
-    engine.inner.process_events();
-    Ok(())
+    engine
+        .inner
+        .process_events()
+        .map_err(|e| -> napi::Error { e.into() })
 }
 
 /// Process Qt events for up to the specified duration.
@@ -290,8 +298,10 @@ pub fn process_events(engine: &QmltsEngine) -> Result<()> {
 /// ```
 #[napi(js_name = "processEventsFor")]
 pub fn process_events_for(engine: &QmltsEngine, timeout_ms: u32) -> Result<()> {
-    engine.inner.process_events_for(timeout_ms);
-    Ok(())
+    engine
+        .inner
+        .process_events_for(timeout_ms)
+        .map_err(|e| -> napi::Error { e.into() })
 }
 
 // ─────────────────────────────────────────────────────────────────────────
@@ -379,5 +389,17 @@ mod tests {
 
         let result = process_events_for(&engine, 100);
         assert!(result.is_ok());
+    }
+
+    #[test]
+    fn test_operations_fail_after_destroy() {
+        reset_qt();
+        let mut engine = create_engine(None).unwrap();
+        destroy_engine(&mut engine).unwrap();
+
+        let result = load_string(&mut engine, "import QtQuick\nItem { }".to_string(), None);
+        assert!(result.is_err());
+        let err = result.unwrap_err();
+        assert!(err.reason.contains("destroyed"));
     }
 }

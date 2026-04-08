@@ -12,18 +12,31 @@
 
 import { beforeAll, describe, expect, test } from 'bun:test';
 import { existsSync } from 'node:fs';
-import { join } from 'node:path';
+import { createRequire } from 'node:module';
+import { fileURLToPath } from 'node:url';
+
+const require = createRequire(import.meta.url);
 
 // Try to locate the native module
 const nativeModulePaths = [
   // Development build paths
-  join(import.meta.dirname, '../../native/npm/qmlts-host/qmlts-host.win32-x64-msvc.node'),
-  join(import.meta.dirname, '../../native/npm/qmlts-host/qmlts-host.linux-x64-gnu.node'),
-  join(import.meta.dirname, '../../native/npm/qmlts-host/qmlts-host.darwin-arm64.node'),
-  join(import.meta.dirname, '../../native/npm/qmlts-host/qmlts-host.darwin-x64.node'),
-  // Cargo build output
-  join(import.meta.dirname, '../../native/target/release/qmlts_host.node'),
-  join(import.meta.dirname, '../../native/target/debug/qmlts_host.node'),
+  fileURLToPath(
+    new URL('../../native/npm/qmlts-host/qmlts-host.win32-x64-msvc.node', import.meta.url),
+  ),
+  fileURLToPath(
+    new URL('../../native/npm/qmlts-host/qmlts-host.linux-x64-gnu.node', import.meta.url),
+  ),
+  fileURLToPath(
+    new URL('../../native/npm/qmlts-host/qmlts-host.darwin-arm64.node', import.meta.url),
+  ),
+  fileURLToPath(new URL('../../native/npm/qmlts-host/qmlts-host.darwin-x64.node', import.meta.url)),
+  // Common napi-rs CLI output folders
+  fileURLToPath(
+    new URL('../../native/npm/qmlts-host/build/Release/qmlts-host.node', import.meta.url),
+  ),
+  fileURLToPath(
+    new URL('../../native/npm/qmlts-host/build/Debug/qmlts-host.node', import.meta.url),
+  ),
 ];
 
 function findNativeModule(): string | null {
@@ -64,8 +77,8 @@ describe.skipIf(!isNativeModuleAvailable)('host/napi-bindings', () => {
     if (!nativeModulePath) {
       throw new Error('Native module not found');
     }
-    // Dynamic import of native module
-    nativeModule = await import(nativeModulePath);
+    // Node-API addons must be loaded via require()/dlopen
+    nativeModule = require(nativeModulePath) as Record<string, unknown>;
   });
 
   test('TB-01: native module loads successfully', () => {
@@ -187,7 +200,9 @@ describe.skipIf(!isNativeModuleAvailable)('host/napi-bindings', () => {
 describe('host/napi-bindings (skip check)', () => {
   test('check native module availability', () => {
     if (!isNativeModuleAvailable) {
-      console.log('⚠️  Native module not built. Run `cargo build` in native/ to build it.');
+      console.log(
+        '⚠️  Native module not built. Run `bunx @napi-rs/cli build --manifest-path ../../crates/qmlts-host/Cargo.toml --package-json-path package.json --output-dir . --platform --release --no-js` in native/npm/qmlts-host/.',
+      );
       console.log('   Skipping native binding tests.');
     } else {
       console.log(`✓ Native module found at: ${nativeModulePath}`);

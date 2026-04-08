@@ -100,7 +100,14 @@ jobs:
 
       - name: Build native module
         working-directory: native
-        run: cargo build --release
+        run: >-
+          bunx @napi-rs/cli build
+          --manifest-path crates/qmlts-host/Cargo.toml
+          --package-json-path npm/qmlts-host/package.json
+          --output-dir npm/qmlts-host
+          --platform
+          --release
+          --no-js
         env:
           QT_DIR: ${{ env.QT_ROOT_DIR }}
 

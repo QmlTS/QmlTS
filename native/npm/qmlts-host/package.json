@@ -20,8 +20,8 @@
     "*.node"
   ],
   "scripts": {
-    "build": "cargo build --release && napi build --release --platform",
-    "build:debug": "cargo build && napi build --platform",
+    "build": "bunx @napi-rs/cli build --manifest-path ../../crates/qmlts-host/Cargo.toml --package-json-path package.json --output-dir . --platform --release --no-js",
+    "build:debug": "bunx @napi-rs/cli build --manifest-path ../../crates/qmlts-host/Cargo.toml --package-json-path package.json --output-dir . --platform --no-js",
     "test": "bun test"
   },
   "napi": {

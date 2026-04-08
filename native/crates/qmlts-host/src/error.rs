@@ -11,6 +11,10 @@ pub enum QmltsError {
     #[error("Engine not initialized")]
     EngineNotInitialized,
 
+    /// Engine was explicitly destroyed and can no longer be used.
+    #[error("Engine has been destroyed")]
+    EngineDestroyed,
+
     /// QML document failed to load.
     #[error("QML load failed: {0}")]
     QmlLoadFailed(String),

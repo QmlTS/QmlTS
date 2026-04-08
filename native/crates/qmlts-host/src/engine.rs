@@ -110,6 +110,17 @@ impl QmltsEngine {
         tracing::debug!("Engine marked as destroyed");
     }
 
+    /// Ensure the engine is still valid for use.
+    fn ensure_alive(&self) -> Result<()> {
+        if self.destroyed {
+            return Err(QmltsError::EngineDestroyed);
+        }
+        if !self.initialized {
+            return Err(QmltsError::EngineNotInitialized);
+        }
+        Ok(())
+    }
+
     /// Ensure Qt is initialized (exactly once per process).
     #[cfg(not(feature = "mock-qt"))]
     fn ensure_qt_initialized(config: &EngineConfig) -> Result<()> {
@@ -159,6 +170,8 @@ impl QmltsEngine {
     /// Returns `QmltsError::FileNotFound` if the file doesn't exist.
     /// Returns `QmltsError::QmlLoadFailed` if the QML has errors.
     pub fn load_file(&mut self, path: &str) -> Result<()> {
+        self.ensure_alive()?;
+
         let file_path = Path::new(path);
 
         if !file_path.exists() {
@@ -193,6 +206,8 @@ impl QmltsEngine {
     ///
     /// Returns `QmltsError::QmlLoadFailed` if the QML has syntax errors.
     pub fn load_string(&mut self, source: &str, base_url: Option<&str>) -> Result<()> {
+        self.ensure_alive()?;
+
         if source.trim().is_empty() {
             return Err(QmltsError::QmlLoadFailed("Empty QML source".to_string()));
         }
@@ -242,13 +257,13 @@ impl QmltsEngine {
             });
         }
 
-        // Check for basic brace matching (very simple heuristic)
+        // Check for basic brace matching and report an approximate 1-based line.
         let open_braces = source.chars().filter(|&c| c == '{').count();
         let close_braces = source.chars().filter(|&c| c == '}').count();
 
         if open_braces != close_braces {
             return Err(QmltsError::QmlSyntaxError {
-                line: 0,
+                line: self.find_brace_mismatch_line(source).unwrap_or(1),
                 message: format!(
                     "Brace mismatch: {open_braces} opening braces vs {close_braces} closing braces"
                 ),
@@ -263,9 +278,11 @@ impl QmltsEngine {
     /// # Arguments
     ///
     /// * `path` - Directory path to add to import search paths.
-    pub fn add_import_path(&mut self, path: &str) {
+    pub fn add_import_path(&mut self, path: &str) -> Result<()> {
+        self.ensure_alive()?;
         self.config.import_paths.push(path.to_string());
         tracing::debug!("Added import path: {}", path);
+        Ok(())
     }
 
     /// Add a Qt plugin search path.
@@ -273,9 +290,11 @@ impl QmltsEngine {
     /// # Arguments
     ///
     /// * `path` - Directory path to add to plugin search paths.
-    pub fn add_plugin_path(&mut self, path: &str) {
+    pub fn add_plugin_path(&mut self, path: &str) -> Result<()> {
+        self.ensure_alive()?;
         self.config.plugin_paths.push(path.to_string());
         tracing::debug!("Added plugin path: {}", path);
+        Ok(())
     }
 
     /// Process all pending Qt events.
@@ -283,14 +302,18 @@ impl QmltsEngine {
     /// This processes the Qt event queue and returns immediately.
     /// Call this in a loop for non-blocking event processing.
     #[cfg(not(feature = "mock-qt"))]
-    pub fn process_events(&self) {
+    pub fn process_events(&self) -> Result<()> {
+        self.ensure_alive()?;
         // TODO: Call QCoreApplication::processEvents() via cxx-qt
         tracing::trace!("Processing Qt events");
+        Ok(())
     }
 
     #[cfg(feature = "mock-qt")]
-    pub fn process_events(&self) {
+    pub fn process_events(&self) -> Result<()> {
+        self.ensure_alive()?;
         tracing::trace!("Processing Qt events (mock)");
+        Ok(())
     }
 
     /// Process Qt events for up to the specified duration.
@@ -299,14 +322,18 @@ impl QmltsEngine {
     ///
     /// * `timeout_ms` - Maximum time to process events, in milliseconds.
     #[cfg(not(feature = "mock-qt"))]
-    pub fn process_events_for(&self, timeout_ms: u32) {
+    pub fn process_events_for(&self, timeout_ms: u32) -> Result<()> {
+        self.ensure_alive()?;
         // TODO: Call QCoreApplication::processEvents(maxtime) via cxx-qt
         tracing::trace!("Processing Qt events for {}ms", timeout_ms);
+        Ok(())
     }
 
     #[cfg(feature = "mock-qt")]
-    pub fn process_events_for(&self, timeout_ms: u32) {
+    pub fn process_events_for(&self, timeout_ms: u32) -> Result<()> {
+        self.ensure_alive()?;
         tracing::trace!("Processing Qt events for {}ms (mock)", timeout_ms);
+        Ok(())
     }
 
     /// Run the Qt event loop (blocking).
@@ -314,16 +341,18 @@ impl QmltsEngine {
     /// This starts the Qt event loop and blocks until `quit()` is called.
     /// Returns the exit code.
     #[cfg(not(feature = "mock-qt"))]
-    pub fn exec(&self) -> i32 {
+    pub fn exec(&self) -> Result<i32> {
+        self.ensure_alive()?;
         // TODO: Call QCoreApplication::exec() via cxx-qt
         tracing::info!("Starting Qt event loop");
-        0
+        Ok(0)
     }
 
     #[cfg(feature = "mock-qt")]
-    pub fn exec(&self) -> i32 {
+    pub fn exec(&self) -> Result<i32> {
+        self.ensure_alive()?;
         tracing::info!("Starting Qt event loop (mock)");
-        0
+        Ok(0)
     }
 
     /// Request the Qt event loop to quit.
@@ -332,16 +361,41 @@ impl QmltsEngine {
     ///
     /// * `exit_code` - Exit code to return from `exec()`.
     #[cfg(not(feature = "mock-qt"))]
-    pub fn quit(&self, exit_code: Option<i32>) {
+    pub fn quit(&self, exit_code: Option<i32>) -> Result<()> {
+        self.ensure_alive()?;
         let code = exit_code.unwrap_or(0);
         // TODO: Call QCoreApplication::exit(code) via cxx-qt
         tracing::info!("Requesting Qt event loop quit with code {}", code);
+        Ok(())
     }
 
     #[cfg(feature = "mock-qt")]
-    pub fn quit(&self, exit_code: Option<i32>) {
+    pub fn quit(&self, exit_code: Option<i32>) -> Result<()> {
+        self.ensure_alive()?;
         let code = exit_code.unwrap_or(0);
         tracing::info!("Requesting Qt event loop quit with code {} (mock)", code);
+        Ok(())
+    }
+
+    fn find_brace_mismatch_line(&self, source: &str) -> Option<u32> {
+        let mut open_lines = Vec::new();
+
+        for (line_index, line) in source.lines().enumerate() {
+            let line_number = u32::try_from(line_index + 1).unwrap_or(u32::MAX);
+            for ch in line.chars() {
+                match ch {
+                    '{' => open_lines.push(line_number),
+                    '}' => {
+                        if open_lines.pop().is_none() {
+                            return Some(line_number);
+                        }
+                    }
+                    _ => {}
+                }
+            }
+        }
+
+        open_lines.first().copied()
     }
 }
 
@@ -489,8 +543,8 @@ mod tests {
         reset_app_initialized();
 
         let mut engine = QmltsEngine::new(None).unwrap();
-        engine.add_import_path("/app/qml");
-        engine.add_plugin_path("/opt/qt/plugins");
+        engine.add_import_path("/app/qml").unwrap();
+        engine.add_plugin_path("/opt/qt/plugins").unwrap();
 
         assert!(engine.config.import_paths.contains(&"/app/qml".to_string()));
         assert!(
@@ -507,7 +561,36 @@ mod tests {
 
         let engine = QmltsEngine::new(None).unwrap();
         // Should not panic
-        engine.process_events();
-        engine.process_events_for(100);
+        engine.process_events().unwrap();
+        engine.process_events_for(100).unwrap();
+    }
+
+    #[test]
+    fn test_operations_fail_after_destroy() {
+        reset_app_initialized();
+
+        let mut engine = QmltsEngine::new(None).unwrap();
+        engine.mark_destroyed();
+
+        let load_result = engine.load_string("import QtQuick\nItem { }", None);
+        assert!(matches!(load_result, Err(QmltsError::EngineDestroyed)));
+
+        let path_result = engine.add_import_path("/app/qml");
+        assert!(matches!(path_result, Err(QmltsError::EngineDestroyed)));
+    }
+
+    #[test]
+    fn test_brace_mismatch_reports_one_based_line() {
+        reset_app_initialized();
+
+        let mut engine = QmltsEngine::new(None).unwrap();
+        let result = engine.load_string("import QtQuick\nItem {\n  Text {", None);
+        assert!(result.is_err());
+
+        if let Err(QmltsError::QmlSyntaxError { line, .. }) = result {
+            assert_eq!(line, 2);
+        } else {
+            panic!("Expected QmlSyntaxError");
+        }
     }
 }

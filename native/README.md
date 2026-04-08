@@ -38,6 +38,9 @@ native/
 └── npm/
     └── qmlts-host/         # npm package
         ├── package.json
+        ├── index.js        # ESM entry point
+        ├── index.cjs       # CJS entry point
+        ├── index.d.ts      # Published TypeScript types
         └── src/
             ├── index.ts    # Entry point
             └── types.ts    # TypeScript types
@@ -54,11 +57,24 @@ native/
 ### Build Commands
 
 ```bash
-# Build debug
-cargo build
+# Build the published N-API addon (.node)
+cd npm/qmlts-host
+bunx @napi-rs/cli build \
+  --manifest-path ../../crates/qmlts-host/Cargo.toml \
+  --package-json-path package.json \
+  --output-dir . \
+  --platform \
+  --release \
+  --no-js
 
-# Build release
-cargo build --release
+# Or from the package scripts
+bun run build
+
+# Build debug addon
+bun run build:debug
+
+# Return to the workspace root for Rust-only commands
+cd ../..
 
 # Run tests
 cargo test
@@ -69,6 +85,17 @@ cargo fmt --check
 # Run clippy
 cargo clippy --all-targets
 ```
+
+The consumable native artifact is a platform-tagged `.node` file written into
+`native/npm/qmlts-host/`, for example:
+
+- `qmlts-host.win32-x64-msvc.node`
+- `qmlts-host.linux-x64-gnu.node`
+- `qmlts-host.darwin-arm64.node`
+
+Use the `mock-qt` feature only for bootstrap-stage Rust-only validation in
+environments where you do not want to exercise real Qt integration yet. The
+normal Step 1 CI path still builds and tests against a real Qt installation.
 
 ## Exported API (Step 1)
 
