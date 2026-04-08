@@ -1,0 +1,2 @@
+# Clippy configuration for QmlTS native host
+doc-valid-idents = ["QmlTS", "QtQuick", "QtQml", "QObject", "QProperty", "cxx-qt", "napi-rs"]

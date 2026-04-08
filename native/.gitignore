@@ -1,0 +1,21 @@
+# Build artifacts
+/target/
+
+# Generated files
+*.node
+*.d.ts.map
+
+# IDE
+.idea/
+*.iml
+.vscode/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Cargo lock is committed for reproducibility
+# Cargo.lock
+
+# Node modules (managed by root package.json)
+node_modules/

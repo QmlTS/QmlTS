@@ -24,7 +24,7 @@ jobs:
     if: >-
       github.event_name != 'pull_request' ||
       github.event.pull_request.head.repo.full_name == github.repository
-    timeout-minutes: 15
+    timeout-minutes: 20
 
     steps:
       - name: Checkout
@@ -34,6 +34,11 @@ jobs:
         uses: actions/setup-python@v6
         with:
           python-version: '3.x'
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
 
       - name: Install Qt
         uses: jurplel/install-qt-action@v4
@@ -51,6 +56,24 @@ jobs:
             qtlocation
           cache: true
 
+      - name: Setup Rust
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          components: clippy, rustfmt
+
+      - name: Cache Cargo
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cargo/bin/
+            ~/.cargo/registry/index/
+            ~/.cargo/registry/cache/
+            ~/.cargo/git/db/
+            native/target/
+          key: ${{ runner.os }}-cargo-${{ hashFiles('native/**/Cargo.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-cargo-
+
       - name: Setup Bun
         uses: oven-sh/setup-bun@v2
         with:
@@ -67,6 +90,24 @@ jobs:
 
       - name: Type check
         run: bun run typecheck
+
+      - name: Rust format check
+        working-directory: native
+        run: cargo fmt --all -- --check
+
+      - name: Rust clippy
+        working-directory: native
+        run: cargo clippy --all-targets --all-features -- -D warnings
+
+      - name: Rust tests
+        working-directory: native
+        run: cargo test --all-features
+
+      - name: Build native module
+        working-directory: native/npm/qmlts-host
+        run: bun run build
+        env:
+          QT_DIR: ${{ env.QT_ROOT_DIR }}
 
       - name: Run tests
         run: QT_DIR="$QT_ROOT_DIR" bun run test:ci

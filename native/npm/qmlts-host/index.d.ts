@@ -1,0 +1,33 @@
+/**
+ * Published TypeScript declarations for @qmlts/host.
+ *
+ * These declarations are checked in during the bootstrap phase so the package
+ * can be consumed without a separate TS declaration build step.
+ */
+
+export interface EngineConfig {
+  pluginPaths?: string[];
+  importPaths?: string[];
+  enableLogging?: boolean;
+}
+
+export interface QmltsEngine {
+  readonly __brand: 'QmltsEngine';
+}
+
+export declare function createEngine(config?: EngineConfig): QmltsEngine;
+export declare function destroyEngine(engine: QmltsEngine): void;
+export declare function version(): string;
+export declare function qtVersion(): string;
+export declare function loadFile(engine: QmltsEngine, path: string): void;
+export declare function loadString(
+  engine: QmltsEngine,
+  qmlSource: string,
+  baseUrl?: string,
+): void;
+export declare function addImportPath(engine: QmltsEngine, path: string): void;
+export declare function addPluginPath(engine: QmltsEngine, path: string): void;
+export declare function exec(engine: QmltsEngine): number;
+export declare function quit(engine: QmltsEngine, exitCode?: number): void;
+export declare function processEvents(engine: QmltsEngine): void;
+export declare function processEventsFor(engine: QmltsEngine, timeoutMs: number): void;

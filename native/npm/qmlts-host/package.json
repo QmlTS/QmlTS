@@ -1,0 +1,53 @@
+{
+  "name": "@qmlts/host",
+  "version": "0.1.0",
+  "description": "QmlTS native host - napi-rs bridge for Qt QML engine",
+  "type": "module",
+  "main": "index.js",
+  "module": "index.js",
+  "types": "index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./index.d.ts",
+      "import": "./index.js",
+      "require": "./index.cjs"
+    }
+  },
+  "files": [
+    "index.js",
+    "index.cjs",
+    "index.d.ts",
+    "*.node"
+  ],
+  "scripts": {
+    "build": "bunx @napi-rs/cli@3.0.0-alpha.65 build --manifest-path ../../crates/qmlts-host/Cargo.toml --package-json-path package.json --output-dir . --platform --release --no-js",
+    "build:debug": "bunx @napi-rs/cli@3.0.0-alpha.65 build --manifest-path ../../crates/qmlts-host/Cargo.toml --package-json-path package.json --output-dir . --platform --no-js",
+    "test": "bun test"
+  },
+  "napi": {
+    "name": "qmlts-host",
+    "triples": {
+      "defaults": true,
+      "additional": []
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/QmlTS/QmlTS.git",
+    "directory": "native/npm/qmlts-host"
+  },
+  "keywords": [
+    "qml",
+    "qt",
+    "typescript",
+    "native",
+    "napi-rs"
+  ],
+  "license": "MIT",
+  "devDependencies": {
+    "@napi-rs/cli": "3.0.0-alpha.65"
+  },
+  "engines": {
+    "node": ">= 18"
+  }
+}
