@@ -42,7 +42,11 @@ pub mod ffi {
 
         /// Set property value from JSON string
         #[qinvokable]
-        fn set_property_json(self: Pin<&mut LoginViewModel>, name: &QString, value: &QString) -> bool;
+        fn set_property_json(
+            self: Pin<&mut LoginViewModel>,
+            name: &QString,
+            value: &QString,
+        ) -> bool;
 
         /// Invoke a command with optional JSON arguments
         #[qinvokable]
@@ -55,22 +59,12 @@ pub mod ffi {
 }
 
 /// Rust-side implementation for LoginViewModel
+#[derive(Default)]
 pub struct LoginViewModelRust {
     username: cxx_qt_lib::QString,
     password: cxx_qt_lib::QString,
     is_loading: bool,
     error: cxx_qt_lib::QString,
-}
-
-impl Default for LoginViewModelRust {
-    fn default() -> Self {
-        Self {
-            username: cxx_qt_lib::QString::default(),
-            password: cxx_qt_lib::QString::default(),
-            is_loading: false,
-            error: cxx_qt_lib::QString::default(),
-        }
-    }
 }
 
 impl ffi::LoginViewModel {
@@ -258,11 +252,7 @@ impl BridgeViewModel for LoginViewModelBridge {
         }
     }
 
-    fn invoke_command(
-        &mut self,
-        name: &str,
-        _args: Option<Value>,
-    ) -> Result<Value, String> {
+    fn invoke_command(&mut self, name: &str, _args: Option<Value>) -> Result<Value, String> {
         match name {
             "login" => {
                 self.is_loading = true;
@@ -300,8 +290,14 @@ mod tests {
         let mut vm = LoginViewModelBridge::new();
 
         // Initial state
-        assert_eq!(vm.get_property("username"), Some(Value::String(String::new())));
-        assert_eq!(vm.get_property("password"), Some(Value::String(String::new())));
+        assert_eq!(
+            vm.get_property("username"),
+            Some(Value::String(String::new()))
+        );
+        assert_eq!(
+            vm.get_property("password"),
+            Some(Value::String(String::new()))
+        );
         assert_eq!(vm.get_property("isLoading"), Some(Value::Bool(false)));
         assert_eq!(vm.get_property("error"), Some(Value::String(String::new())));
 
@@ -309,8 +305,14 @@ mod tests {
         vm.set_property("username", Value::String("testuser".to_string()));
         vm.set_property("password", Value::String("secret123".to_string()));
 
-        assert_eq!(vm.get_property("username"), Some(Value::String("testuser".to_string())));
-        assert_eq!(vm.get_property("password"), Some(Value::String("secret123".to_string())));
+        assert_eq!(
+            vm.get_property("username"),
+            Some(Value::String("testuser".to_string()))
+        );
+        assert_eq!(
+            vm.get_property("password"),
+            Some(Value::String("secret123".to_string()))
+        );
     }
 
     #[test]
@@ -336,8 +338,14 @@ mod tests {
         let result = vm.invoke_command("clear", None);
         assert!(result.is_ok());
 
-        assert_eq!(vm.get_property("username"), Some(Value::String(String::new())));
-        assert_eq!(vm.get_property("password"), Some(Value::String(String::new())));
+        assert_eq!(
+            vm.get_property("username"),
+            Some(Value::String(String::new()))
+        );
+        assert_eq!(
+            vm.get_property("password"),
+            Some(Value::String(String::new()))
+        );
         assert_eq!(vm.get_property("error"), Some(Value::String(String::new())));
     }
 
@@ -346,7 +354,10 @@ mod tests {
         let vm = LoginViewModelBridge::new();
         assert_eq!(vm.class_name(), "LoginViewModel");
         assert_eq!(vm.qml_name(), "LoginVM");
-        assert_eq!(vm.property_names(), &["username", "password", "isLoading", "error"]);
+        assert_eq!(
+            vm.property_names(),
+            &["username", "password", "isLoading", "error"]
+        );
         assert_eq!(vm.command_names(), &["login", "clear"]);
     }
 

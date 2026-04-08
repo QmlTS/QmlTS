@@ -76,12 +76,18 @@ impl BridgeRegistry {
 
     /// Creates and activates a ViewModel instance by class name
     pub fn activate(&mut self, class_name: &str) -> Result<(), QmltsError> {
-        let factory = self
-            .factories
-            .get(class_name)
-            .ok_or_else(|| QmltsError::ViewModelNotFound(class_name.to_string()))?;
+        let vm = {
+            let factory = self
+                .factories
+                .get(class_name)
+                .ok_or_else(|| QmltsError::ViewModelNotFound(class_name.to_string()))?;
+            factory()
+        };
 
-        let vm = factory();
+        if self.active_vm.is_some() || self.runtime.is_mounted() {
+            self.deactivate();
+        }
+
         self.active_vm = Some(vm);
         self.runtime.on_mounted();
 
@@ -90,7 +96,9 @@ impl BridgeRegistry {
 
     /// Deactivates the current ViewModel
     pub fn deactivate(&mut self) {
-        self.runtime.on_unmounting();
+        if self.active_vm.is_some() || self.runtime.is_mounted() {
+            self.runtime.on_unmounting();
+        }
         self.active_vm = None;
     }
 
@@ -130,18 +138,14 @@ impl BridgeRegistry {
     }
 
     /// Invokes a command on the active ViewModel
-    pub fn invoke_command(
-        &mut self,
-        name: &str,
-        args: Option<Value>,
-    ) -> Result<Value, QmltsError> {
+    pub fn invoke_command(&mut self, name: &str, args: Option<Value>) -> Result<Value, QmltsError> {
         let vm = self
             .active_vm
             .as_mut()
             .ok_or(QmltsError::NoActiveViewModel)?;
 
         vm.invoke_command(name, args)
-            .map_err(|e| QmltsError::CommandFailed(e))
+            .map_err(QmltsError::CommandFailed)
     }
 
     /// Returns property names for the active ViewModel
@@ -217,6 +221,20 @@ mod tests {
         registry.activate("LoginViewModel").unwrap();
         assert!(registry.has_active_vm());
         assert_eq!(registry.active_class_name(), Some("LoginViewModel"));
+    }
+
+    #[test]
+    fn test_registry_activate_replaces_existing_vm_and_cleans_runtime() {
+        let mut registry = BridgeRegistry::new();
+        registry.activate("CounterViewModel").unwrap();
+        registry.queue_effect("effect1");
+
+        registry.activate("LoginViewModel").unwrap();
+
+        assert!(registry.has_active_vm());
+        assert_eq!(registry.active_class_name(), Some("LoginViewModel"));
+        assert!(registry.is_mounted());
+        assert!(registry.drain_effects().is_empty());
     }
 
     #[test]

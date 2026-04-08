@@ -32,7 +32,11 @@ pub trait BridgeViewModel: Send + Sync {
     fn set_property(&mut self, name: &str, value: serde_json::Value) -> bool;
 
     /// Invokes a command by name with optional JSON arguments
-    fn invoke_command(&mut self, name: &str, args: Option<serde_json::Value>) -> Result<serde_json::Value, String>;
+    fn invoke_command(
+        &mut self,
+        name: &str,
+        args: Option<serde_json::Value>,
+    ) -> Result<serde_json::Value, String>;
 
     /// Returns all property names
     fn property_names(&self) -> &'static [&'static str];

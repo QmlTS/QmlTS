@@ -111,7 +111,7 @@ impl QmltsEngine {
     }
 
     /// Ensure the engine is still valid for use.
-    fn ensure_alive(&self) -> Result<()> {
+    pub(crate) fn ensure_alive(&self) -> Result<()> {
         if self.destroyed {
             return Err(QmltsError::EngineDestroyed);
         }

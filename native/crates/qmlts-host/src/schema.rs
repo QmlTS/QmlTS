@@ -5,19 +5,14 @@
 use serde::{Deserialize, Serialize};
 
 /// Throttle mode for commands.
-#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Eq, Serialize, Deserialize)]
 #[serde(rename_all = "lowercase")]
 pub enum ThrottleMode {
+    #[default]
     None,
     Debounce,
     Throttle,
     Drop,
-}
-
-impl Default for ThrottleMode {
-    fn default() -> Self {
-        Self::None
-    }
 }
 
 /// A parameter in a command or effect signature.

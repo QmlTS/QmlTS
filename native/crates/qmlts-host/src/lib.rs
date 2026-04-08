@@ -38,7 +38,7 @@ mod error;
 mod exports;
 mod schema;
 
-pub use bridge_registry::{create_shared_registry, BridgeRegistry, SharedBridgeRegistry};
+pub use bridge_registry::{BridgeRegistry, SharedBridgeRegistry, create_shared_registry};
 pub use engine::QmltsEngine;
 pub use error::QmltsError;
 pub use exports::*;

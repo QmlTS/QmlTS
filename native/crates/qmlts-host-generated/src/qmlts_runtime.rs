@@ -64,22 +64,12 @@ pub mod ffi {
 }
 
 /// Rust-side implementation for QmltsRuntime
+#[derive(Default)]
 pub struct QmltsRuntimeRust {
     mounted: bool,
     effect_queue: Vec<String>,
     command_handler_id: Option<String>,
     pending_commands: HashMap<String, String>, // command_id -> args
-}
-
-impl Default for QmltsRuntimeRust {
-    fn default() -> Self {
-        Self {
-            mounted: false,
-            effect_queue: Vec::new(),
-            command_handler_id: None,
-            pending_commands: HashMap::new(),
-        }
-    }
 }
 
 impl ffi::QmltsRuntime {

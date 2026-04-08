@@ -23,7 +23,11 @@ pub mod ffi {
 
         /// Signal emitted when a command completes
         #[qsignal]
-        fn command_completed(self: Pin<&mut CounterViewModel>, command_id: QString, result: QString);
+        fn command_completed(
+            self: Pin<&mut CounterViewModel>,
+            command_id: QString,
+            result: QString,
+        );
 
         /// Increment the counter
         #[qinvokable]
@@ -43,7 +47,11 @@ pub mod ffi {
 
         /// Set property value from JSON string
         #[qinvokable]
-        fn set_property_json(self: Pin<&mut CounterViewModel>, name: &QString, value: &QString) -> bool;
+        fn set_property_json(
+            self: Pin<&mut CounterViewModel>,
+            name: &QString,
+            value: &QString,
+        ) -> bool;
 
         /// Invoke a command with optional JSON arguments
         #[qinvokable]
@@ -175,11 +183,7 @@ impl BridgeViewModel for CounterViewModelBridge {
         }
     }
 
-    fn invoke_command(
-        &mut self,
-        name: &str,
-        _args: Option<Value>,
-    ) -> Result<Value, String> {
+    fn invoke_command(&mut self, name: &str, _args: Option<Value>) -> Result<Value, String> {
         match name {
             "increment" => {
                 self.count = self.count.saturating_add(1);

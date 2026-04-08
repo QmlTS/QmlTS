@@ -66,6 +66,13 @@ pub struct QmltsEngine {
     registry: BridgeRegistry,
 }
 
+fn ensure_engine_alive(engine: &QmltsEngine) -> Result<()> {
+    engine
+        .inner
+        .ensure_alive()
+        .map_err(|e| -> napi::Error { e.into() })
+}
+
 // ─────────────────────────────────────────────────────────────────────────
 //  §1 Engine Lifecycle
 // ─────────────────────────────────────────────────────────────────────────
@@ -322,8 +329,9 @@ pub fn process_events_for(engine: &QmltsEngine, timeout_ms: u32) -> Result<()> {
 /// // ['CounterViewModel', 'LoginViewModel']
 /// ```
 #[napi(js_name = "getRegisteredViewModels")]
-pub fn get_registered_viewmodels(engine: &QmltsEngine) -> Vec<String> {
-    engine.registry.registered_types()
+pub fn get_registered_viewmodels(engine: &QmltsEngine) -> Result<Vec<String>> {
+    ensure_engine_alive(engine)?;
+    Ok(engine.registry.registered_types())
 }
 
 /// Check if a ViewModel type is registered.
@@ -339,8 +347,9 @@ pub fn get_registered_viewmodels(engine: &QmltsEngine) -> Vec<String> {
 /// }
 /// ```
 #[napi(js_name = "isViewModelRegistered")]
-pub fn is_viewmodel_registered(engine: &QmltsEngine, class_name: String) -> bool {
-    engine.registry.is_registered(&class_name)
+pub fn is_viewmodel_registered(engine: &QmltsEngine, class_name: String) -> Result<bool> {
+    ensure_engine_alive(engine)?;
+    Ok(engine.registry.is_registered(&class_name))
 }
 
 /// Activate a ViewModel by class name.
@@ -360,6 +369,7 @@ pub fn is_viewmodel_registered(engine: &QmltsEngine, class_name: String) -> bool
 /// ```
 #[napi(js_name = "activateViewModel")]
 pub fn activate_viewmodel(engine: &mut QmltsEngine, class_name: String) -> Result<()> {
+    ensure_engine_alive(engine)?;
     engine
         .registry
         .activate(&class_name)
@@ -379,8 +389,10 @@ pub fn activate_viewmodel(engine: &mut QmltsEngine, class_name: String) -> Resul
 /// deactivateViewModel(engine);
 /// ```
 #[napi(js_name = "deactivateViewModel")]
-pub fn deactivate_viewmodel(engine: &mut QmltsEngine) {
+pub fn deactivate_viewmodel(engine: &mut QmltsEngine) -> Result<()> {
+    ensure_engine_alive(engine)?;
     engine.registry.deactivate();
+    Ok(())
 }
 
 /// Check if there is an active ViewModel.
@@ -395,8 +407,9 @@ pub fn deactivate_viewmodel(engine: &mut QmltsEngine) {
 /// }
 /// ```
 #[napi(js_name = "hasActiveViewModel")]
-pub fn has_active_viewmodel(engine: &QmltsEngine) -> bool {
-    engine.registry.has_active_vm()
+pub fn has_active_viewmodel(engine: &QmltsEngine) -> Result<bool> {
+    ensure_engine_alive(engine)?;
+    Ok(engine.registry.has_active_vm())
 }
 
 /// Get the class name of the active ViewModel.
@@ -410,8 +423,12 @@ pub fn has_active_viewmodel(engine: &QmltsEngine) -> bool {
 /// // 'CounterViewModel' or null
 /// ```
 #[napi(js_name = "getActiveViewModelName")]
-pub fn get_active_viewmodel_name(engine: &QmltsEngine) -> Option<String> {
-    engine.registry.active_class_name().map(|s| s.to_string())
+pub fn get_active_viewmodel_name(engine: &QmltsEngine) -> Result<Option<String>> {
+    ensure_engine_alive(engine)?;
+    Ok(engine
+        .registry
+        .active_class_name()
+        .map(std::string::ToString::to_string))
 }
 
 /// Get the property names of the active ViewModel.
@@ -427,6 +444,7 @@ pub fn get_active_viewmodel_name(engine: &QmltsEngine) -> Option<String> {
 /// ```
 #[napi(js_name = "getVmPropertyNames")]
 pub fn get_vm_property_names(engine: &QmltsEngine) -> Result<Vec<String>> {
+    ensure_engine_alive(engine)?;
     engine
         .registry
         .property_names()
@@ -447,6 +465,7 @@ pub fn get_vm_property_names(engine: &QmltsEngine) -> Result<Vec<String>> {
 /// ```
 #[napi(js_name = "getVmCommandNames")]
 pub fn get_vm_command_names(engine: &QmltsEngine) -> Result<Vec<String>> {
+    ensure_engine_alive(engine)?;
     engine
         .registry
         .command_names()
@@ -468,6 +487,7 @@ pub fn get_vm_command_names(engine: &QmltsEngine) -> Result<Vec<String>> {
 /// ```
 #[napi(js_name = "getVmProperty")]
 pub fn get_vm_property(engine: &QmltsEngine, name: String) -> Result<String> {
+    ensure_engine_alive(engine)?;
     let value = engine
         .registry
         .get_property(&name)
@@ -490,6 +510,7 @@ pub fn get_vm_property(engine: &QmltsEngine, name: String) -> Result<String> {
 /// ```
 #[napi(js_name = "setVmProperty")]
 pub fn set_vm_property(engine: &mut QmltsEngine, name: String, value_json: String) -> Result<()> {
+    ensure_engine_alive(engine)?;
     let value: serde_json::Value = serde_json::from_str(&value_json)
         .map_err(|e| napi::Error::new(napi::Status::GenericFailure, e.to_string()))?;
     engine
@@ -517,6 +538,7 @@ pub fn invoke_vm_command(
     name: String,
     args_json: Option<String>,
 ) -> Result<String> {
+    ensure_engine_alive(engine)?;
     let args = args_json
         .map(|s| serde_json::from_str(&s))
         .transpose()
@@ -541,8 +563,9 @@ pub fn invoke_vm_command(
 /// }
 /// ```
 #[napi(js_name = "isRuntimeMounted")]
-pub fn is_runtime_mounted(engine: &QmltsEngine) -> bool {
-    engine.registry.is_mounted()
+pub fn is_runtime_mounted(engine: &QmltsEngine) -> Result<bool> {
+    ensure_engine_alive(engine)?;
+    Ok(engine.registry.is_mounted())
 }
 
 /// Queue an effect to be triggered.
@@ -555,8 +578,10 @@ pub fn is_runtime_mounted(engine: &QmltsEngine) -> bool {
 /// queueEffect(engine, 'effect_1');
 /// ```
 #[napi(js_name = "queueEffect")]
-pub fn queue_effect(engine: &mut QmltsEngine, effect_id: String) {
+pub fn queue_effect(engine: &mut QmltsEngine, effect_id: String) -> Result<()> {
+    ensure_engine_alive(engine)?;
     engine.registry.queue_effect(&effect_id);
+    Ok(())
 }
 
 /// Drain all queued effects.
@@ -572,8 +597,9 @@ pub fn queue_effect(engine: &mut QmltsEngine, effect_id: String) {
 /// }
 /// ```
 #[napi(js_name = "drainEffects")]
-pub fn drain_effects(engine: &mut QmltsEngine) -> Vec<String> {
-    engine.registry.drain_effects()
+pub fn drain_effects(engine: &mut QmltsEngine) -> Result<Vec<String>> {
+    ensure_engine_alive(engine)?;
+    Ok(engine.registry.drain_effects())
 }
 
 // ─────────────────────────────────────────────────────────────────────────
@@ -673,5 +699,24 @@ mod tests {
         assert!(result.is_err());
         let err = result.unwrap_err();
         assert!(err.reason.contains("destroyed"));
+    }
+
+    #[test]
+    fn test_bridge_registry_operations_fail_after_destroy() {
+        reset_qt();
+        let mut engine = create_engine(None).unwrap();
+        destroy_engine(&mut engine).unwrap();
+
+        let activate_result = activate_viewmodel(&mut engine, "CounterViewModel".to_string());
+        assert!(activate_result.is_err());
+        assert!(activate_result.unwrap_err().reason.contains("destroyed"));
+
+        let registered_result = get_registered_viewmodels(&engine);
+        assert!(registered_result.is_err());
+        assert!(registered_result.unwrap_err().reason.contains("destroyed"));
+
+        let queue_result = queue_effect(&mut engine, "effect_1".to_string());
+        assert!(queue_result.is_err());
+        assert!(queue_result.unwrap_err().reason.contains("destroyed"));
     }
 }
