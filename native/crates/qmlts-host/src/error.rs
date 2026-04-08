@@ -31,9 +31,21 @@ pub enum QmltsError {
     #[error("Failed to read file '{path}': {message}")]
     FileReadError { path: String, message: String },
 
-    /// Property not found on ViewModel.
+    /// ViewModel type not found in registry.
+    #[error("ViewModel '{0}' not found in registry")]
+    ViewModelNotFound(String),
+
+    /// No active ViewModel.
+    #[error("No active ViewModel - call activateViewModel first")]
+    NoActiveViewModel,
+
+    /// Property not found on ViewModel (simple form).
+    #[error("Property '{0}' not found")]
+    PropertyNotFound(String),
+
+    /// Property not found on ViewModel (detailed form).
     #[error("Property '{prop}' not found on ViewModel '{vm}'")]
-    PropertyNotFound { vm: String, prop: String },
+    PropertyNotFoundDetailed { vm: String, prop: String },
 
     /// Type mismatch when setting property.
     #[error("Type mismatch: expected {expected}, got {actual} for '{prop}' on '{vm}'")]
@@ -43,6 +55,10 @@ pub enum QmltsError {
         expected: String,
         actual: String,
     },
+
+    /// Command invocation failed.
+    #[error("Command failed: {0}")]
+    CommandFailed(String),
 
     /// Schema validation failed.
     #[error("Schema validation failed: {0}")]
@@ -94,7 +110,7 @@ mod tests {
 
     #[test]
     fn test_property_not_found_display() {
-        let err = QmltsError::PropertyNotFound {
+        let err = QmltsError::PropertyNotFoundDetailed {
             vm: "LoginViewModel".to_string(),
             prop: "username".to_string(),
         };
@@ -102,6 +118,30 @@ mod tests {
             err.to_string(),
             "Property 'username' not found on ViewModel 'LoginViewModel'"
         );
+    }
+
+    #[test]
+    fn test_viewmodel_not_found_display() {
+        let err = QmltsError::ViewModelNotFound("UnknownVM".to_string());
+        assert_eq!(
+            err.to_string(),
+            "ViewModel 'UnknownVM' not found in registry"
+        );
+    }
+
+    #[test]
+    fn test_no_active_vm_display() {
+        let err = QmltsError::NoActiveViewModel;
+        assert_eq!(
+            err.to_string(),
+            "No active ViewModel - call activateViewModel first"
+        );
+    }
+
+    #[test]
+    fn test_command_failed_display() {
+        let err = QmltsError::CommandFailed("increment: overflow".to_string());
+        assert_eq!(err.to_string(), "Command failed: increment: overflow");
     }
 
     #[test]

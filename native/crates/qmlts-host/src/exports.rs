@@ -9,6 +9,7 @@ use napi::bindgen_prelude::*;
 use napi_derive::napi;
 use serde::{Deserialize, Serialize};
 
+use crate::bridge_registry::BridgeRegistry;
 use crate::engine::{self, EngineConfig as InternalEngineConfig, QmltsEngine as InternalEngine};
 
 // ─────────────────────────────────────────────────────────────────────────
@@ -62,6 +63,7 @@ impl From<EngineConfig> for InternalEngineConfig {
 #[napi]
 pub struct QmltsEngine {
     inner: InternalEngine,
+    registry: BridgeRegistry,
 }
 
 // ─────────────────────────────────────────────────────────────────────────
@@ -92,7 +94,8 @@ pub struct QmltsEngine {
 pub fn create_engine(config: Option<EngineConfig>) -> Result<QmltsEngine> {
     let internal_config = config.map(Into::into);
     let inner = InternalEngine::new(internal_config).map_err(|e| -> napi::Error { e.into() })?;
-    Ok(QmltsEngine { inner })
+    let registry = BridgeRegistry::new();
+    Ok(QmltsEngine { inner, registry })
 }
 
 /// Destroy an engine instance.
@@ -302,6 +305,275 @@ pub fn process_events_for(engine: &QmltsEngine, timeout_ms: u32) -> Result<()> {
         .inner
         .process_events_for(timeout_ms)
         .map_err(|e| -> napi::Error { e.into() })
+}
+
+// ─────────────────────────────────────────────────────────────────────────
+//  §4 Bridge Registry
+// ─────────────────────────────────────────────────────────────────────────
+
+/// Get the list of registered ViewModel types.
+///
+/// @param engine - The engine instance.
+/// @returns Array of registered ViewModel class names.
+///
+/// @example
+/// ```typescript
+/// const types = getRegisteredViewModels(engine);
+/// // ['CounterViewModel', 'LoginViewModel']
+/// ```
+#[napi(js_name = "getRegisteredViewModels")]
+pub fn get_registered_viewmodels(engine: &QmltsEngine) -> Vec<String> {
+    engine.registry.registered_types()
+}
+
+/// Check if a ViewModel type is registered.
+///
+/// @param engine - The engine instance.
+/// @param class_name - The ViewModel class name to check.
+/// @returns True if the ViewModel type is registered.
+///
+/// @example
+/// ```typescript
+/// if (isViewModelRegistered(engine, 'CounterViewModel')) {
+///   activateViewModel(engine, 'CounterViewModel');
+/// }
+/// ```
+#[napi(js_name = "isViewModelRegistered")]
+pub fn is_viewmodel_registered(engine: &QmltsEngine, class_name: String) -> bool {
+    engine.registry.is_registered(&class_name)
+}
+
+/// Activate a ViewModel by class name.
+///
+/// Creates a new instance of the specified ViewModel and makes it
+/// the active ViewModel for the engine. The ViewModel's properties
+/// and commands become available via `getVmProperty`, `setVmProperty`,
+/// and `invokeVmCommand`.
+///
+/// @param engine - The engine instance.
+/// @param class_name - The ViewModel class name to activate.
+/// @throws Error if the ViewModel type is not registered.
+///
+/// @example
+/// ```typescript
+/// activateViewModel(engine, 'CounterViewModel');
+/// ```
+#[napi(js_name = "activateViewModel")]
+pub fn activate_viewmodel(engine: &mut QmltsEngine, class_name: String) -> Result<()> {
+    engine
+        .registry
+        .activate(&class_name)
+        .map_err(|e| -> napi::Error { e.into() })
+}
+
+/// Deactivate the current ViewModel.
+///
+/// Clears the active ViewModel. After calling this, `getVmProperty`,
+/// `setVmProperty`, and `invokeVmCommand` will fail until a new
+/// ViewModel is activated.
+///
+/// @param engine - The engine instance.
+///
+/// @example
+/// ```typescript
+/// deactivateViewModel(engine);
+/// ```
+#[napi(js_name = "deactivateViewModel")]
+pub fn deactivate_viewmodel(engine: &mut QmltsEngine) {
+    engine.registry.deactivate();
+}
+
+/// Check if there is an active ViewModel.
+///
+/// @param engine - The engine instance.
+/// @returns True if a ViewModel is currently active.
+///
+/// @example
+/// ```typescript
+/// if (hasActiveViewModel(engine)) {
+///   const count = getVmProperty(engine, 'count');
+/// }
+/// ```
+#[napi(js_name = "hasActiveViewModel")]
+pub fn has_active_viewmodel(engine: &QmltsEngine) -> bool {
+    engine.registry.has_active_vm()
+}
+
+/// Get the class name of the active ViewModel.
+///
+/// @param engine - The engine instance.
+/// @returns The class name of the active ViewModel, or null if none.
+///
+/// @example
+/// ```typescript
+/// const vmName = getActiveViewModelName(engine);
+/// // 'CounterViewModel' or null
+/// ```
+#[napi(js_name = "getActiveViewModelName")]
+pub fn get_active_viewmodel_name(engine: &QmltsEngine) -> Option<String> {
+    engine.registry.active_class_name().map(|s| s.to_string())
+}
+
+/// Get the property names of the active ViewModel.
+///
+/// @param engine - The engine instance.
+/// @returns Array of property names.
+/// @throws Error if no ViewModel is active.
+///
+/// @example
+/// ```typescript
+/// const props = getVmPropertyNames(engine);
+/// // ['count'] for CounterViewModel
+/// ```
+#[napi(js_name = "getVmPropertyNames")]
+pub fn get_vm_property_names(engine: &QmltsEngine) -> Result<Vec<String>> {
+    engine
+        .registry
+        .property_names()
+        .map(|names| names.iter().map(|s| (*s).to_string()).collect())
+        .map_err(|e| -> napi::Error { e.into() })
+}
+
+/// Get the command names of the active ViewModel.
+///
+/// @param engine - The engine instance.
+/// @returns Array of command names.
+/// @throws Error if no ViewModel is active.
+///
+/// @example
+/// ```typescript
+/// const cmds = getVmCommandNames(engine);
+/// // ['increment', 'decrement', 'reset'] for CounterViewModel
+/// ```
+#[napi(js_name = "getVmCommandNames")]
+pub fn get_vm_command_names(engine: &QmltsEngine) -> Result<Vec<String>> {
+    engine
+        .registry
+        .command_names()
+        .map(|names| names.iter().map(|s| (*s).to_string()).collect())
+        .map_err(|e| -> napi::Error { e.into() })
+}
+
+/// Get a property value from the active ViewModel.
+///
+/// @param engine - The engine instance.
+/// @param name - The property name.
+/// @returns The property value as a JSON string.
+/// @throws Error if no ViewModel is active or property not found.
+///
+/// @example
+/// ```typescript
+/// const countJson = getVmProperty(engine, 'count');
+/// const count = JSON.parse(countJson);
+/// ```
+#[napi(js_name = "getVmProperty")]
+pub fn get_vm_property(engine: &QmltsEngine, name: String) -> Result<String> {
+    let value = engine
+        .registry
+        .get_property(&name)
+        .map_err(|e| -> napi::Error { e.into() })?;
+    serde_json::to_string(&value)
+        .map_err(|e| napi::Error::new(napi::Status::GenericFailure, e.to_string()))
+}
+
+/// Set a property value on the active ViewModel.
+///
+/// @param engine - The engine instance.
+/// @param name - The property name.
+/// @param value_json - The property value as a JSON string.
+/// @throws Error if no ViewModel is active, property not found, or type mismatch.
+///
+/// @example
+/// ```typescript
+/// setVmProperty(engine, 'count', '42');
+/// setVmProperty(engine, 'username', '"testuser"');
+/// ```
+#[napi(js_name = "setVmProperty")]
+pub fn set_vm_property(engine: &mut QmltsEngine, name: String, value_json: String) -> Result<()> {
+    let value: serde_json::Value = serde_json::from_str(&value_json)
+        .map_err(|e| napi::Error::new(napi::Status::GenericFailure, e.to_string()))?;
+    engine
+        .registry
+        .set_property(&name, value)
+        .map_err(|e| -> napi::Error { e.into() })
+}
+
+/// Invoke a command on the active ViewModel.
+///
+/// @param engine - The engine instance.
+/// @param name - The command name.
+/// @param args_json - Optional command arguments as a JSON string.
+/// @returns The command result as a JSON string.
+/// @throws Error if no ViewModel is active or command fails.
+///
+/// @example
+/// ```typescript
+/// invokeVmCommand(engine, 'increment', null);
+/// const result = invokeVmCommand(engine, 'login', '{"remember": true}');
+/// ```
+#[napi(js_name = "invokeVmCommand")]
+pub fn invoke_vm_command(
+    engine: &mut QmltsEngine,
+    name: String,
+    args_json: Option<String>,
+) -> Result<String> {
+    let args = args_json
+        .map(|s| serde_json::from_str(&s))
+        .transpose()
+        .map_err(|e| napi::Error::new(napi::Status::GenericFailure, e.to_string()))?;
+    let result = engine
+        .registry
+        .invoke_command(&name, args)
+        .map_err(|e| -> napi::Error { e.into() })?;
+    serde_json::to_string(&result)
+        .map_err(|e| napi::Error::new(napi::Status::GenericFailure, e.to_string()))
+}
+
+/// Check if the runtime is mounted.
+///
+/// @param engine - The engine instance.
+/// @returns True if the runtime is mounted.
+///
+/// @example
+/// ```typescript
+/// if (isRuntimeMounted(engine)) {
+///   // Component is ready
+/// }
+/// ```
+#[napi(js_name = "isRuntimeMounted")]
+pub fn is_runtime_mounted(engine: &QmltsEngine) -> bool {
+    engine.registry.is_mounted()
+}
+
+/// Queue an effect to be triggered.
+///
+/// @param engine - The engine instance.
+/// @param effect_id - The effect ID to queue.
+///
+/// @example
+/// ```typescript
+/// queueEffect(engine, 'effect_1');
+/// ```
+#[napi(js_name = "queueEffect")]
+pub fn queue_effect(engine: &mut QmltsEngine, effect_id: String) {
+    engine.registry.queue_effect(&effect_id);
+}
+
+/// Drain all queued effects.
+///
+/// @param engine - The engine instance.
+/// @returns Array of effect IDs that were queued.
+///
+/// @example
+/// ```typescript
+/// const effects = drainEffects(engine);
+/// for (const effectId of effects) {
+///   // Trigger effect
+/// }
+/// ```
+#[napi(js_name = "drainEffects")]
+pub fn drain_effects(engine: &mut QmltsEngine) -> Vec<String> {
+    engine.registry.drain_effects()
 }
 
 // ─────────────────────────────────────────────────────────────────────────
