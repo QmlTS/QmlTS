@@ -38,3 +38,27 @@ export declare function activeRuntimeI32Property(
   engine: QmltsEngine,
   name: string,
 ): number | null;
+
+export declare function syncState(
+  engine: QmltsEngine,
+  className: string,
+  propertyName: string,
+  jsonValue: string,
+): void;
+export declare function syncStateBatch(
+  engine: QmltsEngine,
+  className: string,
+  jsonStateMap: string,
+): void;
+export declare function getProperty(
+  engine: QmltsEngine,
+  className: string,
+  propertyName: string,
+): string;
+
+export { QmltsHost } from './src/qmlts-host';
+export { ViewModelManager } from './src/viewmodel-manager';
+export type {
+  ViewModelManagerSchema,
+  ViewModelInstance,
+} from './src/viewmodel-manager';

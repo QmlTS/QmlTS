@@ -70,4 +70,14 @@ export const {
   quit,
   processEvents,
   processEventsFor,
+  registerViewModel,
+  getRegisteredTypes,
+  hasBridgeType,
+  activeRuntimeI32Property,
+  syncState,
+  syncStateBatch,
+  getProperty,
 } = nativeModule;
+
+export { QmltsHost } from './src/qmlts-host.ts';
+export { ViewModelManager } from './src/viewmodel-manager.ts';

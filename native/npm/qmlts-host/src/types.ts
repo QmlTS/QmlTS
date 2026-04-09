@@ -154,6 +154,57 @@ export declare function hasBridgeType(
 ): boolean;
 
 // ────────────────────────────────────────────────────────────────────────────
+// §2c Property Synchronization
+// ────────────────────────────────────────────────────────────────────────────
+
+/**
+ * Synchronize a single TypeScript property value into the active ViewModel.
+ *
+ * @param engine - The engine instance.
+ * @param className - ViewModel class name (must match the active bridge).
+ * @param propertyName - Property name as declared in the schema.
+ * @param jsonValue - JSON-encoded value to set.
+ * @throws Error if class name doesn't match, property not found, or type mismatch.
+ */
+export declare function syncState(
+	engine: QmltsEngine,
+	className: string,
+	propertyName: string,
+	jsonValue: string,
+): void;
+
+/**
+ * Synchronize a batch of property values into the active ViewModel.
+ *
+ * Uses best-effort semantics: all properties are attempted, failures collected.
+ *
+ * @param engine - The engine instance.
+ * @param className - ViewModel class name (must match the active bridge).
+ * @param jsonStateMap - JSON object mapping property names to values.
+ * @throws Error with details of any failed properties.
+ */
+export declare function syncStateBatch(
+	engine: QmltsEngine,
+	className: string,
+	jsonStateMap: string,
+): void;
+
+/**
+ * Read a property value from the active ViewModel as a JSON string.
+ *
+ * @param engine - The engine instance.
+ * @param className - ViewModel class name (must match the active bridge).
+ * @param propertyName - Property name to read.
+ * @returns JSON-encoded property value.
+ * @throws Error if class name doesn't match or property not found.
+ */
+export declare function getProperty(
+	engine: QmltsEngine,
+	className: string,
+	propertyName: string,
+): string;
+
+// ────────────────────────────────────────────────────────────────────────────
 // §3 Event Loop
 // ────────────────────────────────────────────────────────────────────────────
 

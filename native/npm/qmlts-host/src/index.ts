@@ -96,26 +96,38 @@ const nativeModule = loadNativeBinding();
 
 // Re-export everything from native module
 export const {
-  // Engine lifecycle
-  createEngine,
-  destroyEngine,
-  version,
-  qtVersion,
-  // QML loading
-  loadFile,
-  loadString,
-  addImportPath,
-  addPluginPath,
-  // Bridge registry
-  registerViewModel,
-  getRegisteredTypes,
-  hasBridgeType,
-  // Event loop
-  exec,
-  quit,
-  processEvents,
-  processEventsFor,
+	// Engine lifecycle
+	createEngine,
+	destroyEngine,
+	version,
+	qtVersion,
+	// QML loading
+	loadFile,
+	loadString,
+	addImportPath,
+	addPluginPath,
+	// Bridge registry
+	registerViewModel,
+	getRegisteredTypes,
+	hasBridgeType,
+	// Property synchronization
+	syncState,
+	syncStateBatch,
+	getProperty,
+	// Event loop
+	exec,
+	quit,
+	processEvents,
+	processEventsFor,
 } = nativeModule;
 
 // Export types
 export type { QmltsEngine, EngineConfig } from './types';
+
+// Export high-level classes
+export { QmltsHost } from './qmlts-host';
+export { ViewModelManager } from './viewmodel-manager';
+export type {
+	ViewModelManagerSchema,
+	ViewModelInstance,
+} from './viewmodel-manager';
