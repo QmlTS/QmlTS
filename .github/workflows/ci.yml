@@ -125,4 +125,7 @@ jobs:
           QT_DIR: ${{ env.QT_ROOT_DIR }}
 
       - name: Run tests
-        run: QT_DIR="$QT_ROOT_DIR" bun run test:ci
+        run: bun run test:ci
+        env:
+          QT_DIR: ${{ env.QT_ROOT_DIR }}
+          QT_QPA_PLATFORM: offscreen
