@@ -1,7 +1,7 @@
-//! CounterViewModel bridge QObject — set as `vm` context property.
+//! `CounterViewModel` bridge QObject — set as `vm` context property.
 //!
 //! Properties match the compiler schema:
-//! - count: number (i32)
+//! - count: number (`i32`)
 
 #[cxx_qt::bridge]
 pub mod qobject {
@@ -12,7 +12,7 @@ pub mod qobject {
     }
 }
 
-/// Rust backing struct for CounterViewModel.
+/// Rust backing struct for `CounterViewModel`.
 #[derive(Default)]
 pub struct CounterViewModelRust {
     count: i32,

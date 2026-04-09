@@ -1,10 +1,10 @@
-//! LoginRuntime bridge QObject — set as `__qmlts` context property.
+//! `LoginRuntime` bridge QObject — set as `__qmlts` context property.
 //!
 //! Provides:
-//! - invoke(QVariant): command dispatch (increments invoke_count for observability)
-//! - onMounted(): lifecycle hook
-//! - onUnmounting(): lifecycle hook
-//! - onLoginCompleted(bool): effect signal
+//! - invoke(`QVariant`): command dispatch (increments `invoke_count` for observability)
+//! - `onMounted()`: lifecycle hook
+//! - `onUnmounting()`: lifecycle hook
+//! - `onLoginCompleted(bool)`: effect signal
 
 use core::pin::Pin;
 
@@ -38,14 +38,14 @@ pub mod qobject {
     }
 }
 
-/// Rust backing struct for LoginRuntime.
+/// Rust backing struct for `LoginRuntime`.
 #[derive(Default)]
 pub struct LoginRuntimeRust {
     invoke_count: i32,
 }
 
 impl qobject::LoginRuntime {
-    /// Handle command dispatch. Increments invoke_count for test observability.
+    /// Handle command dispatch. Increments `invoke_count` for test observability.
     pub fn invoke(self: Pin<&mut Self>, _command: cxx_qt_lib::QVariant) {
         let current = *self.invoke_count();
         self.set_invoke_count(current + 1);

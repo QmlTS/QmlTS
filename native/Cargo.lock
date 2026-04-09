@@ -489,6 +489,16 @@ dependencies = [
 ]
 
 [[package]]
+name = "qmlts-host-generated"
+version = "0.1.0"
+dependencies = [
+ "cxx",
+ "cxx-qt",
+ "cxx-qt-build",
+ "cxx-qt-lib",
+]
+
+[[package]]
 name = "qt-build-utils"
 version = "0.7.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"

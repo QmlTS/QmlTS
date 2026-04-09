@@ -1,9 +1,9 @@
-//! LoginViewModel bridge QObject — set as `vm` context property.
+//! `LoginViewModel` bridge QObject — set as `vm` context property.
 //!
 //! Properties match the compiler schema:
-//! - username: string (QString)
-//! - password: string (QString)
-//! - isLoading: bool (read-only in schema, but writable here for host to set)
+//! - username: string (`QString`)
+//! - password: string (`QString`)
+//! - `isLoading`: bool (read-only in schema, but writable here for host to set)
 
 #[cxx_qt::bridge]
 pub mod qobject {
@@ -23,7 +23,7 @@ pub mod qobject {
 
 use cxx_qt_lib::QString;
 
-/// Rust backing struct for LoginViewModel.
+/// Rust backing struct for `LoginViewModel`.
 #[derive(Default)]
 pub struct LoginViewModelRust {
     username: QString,

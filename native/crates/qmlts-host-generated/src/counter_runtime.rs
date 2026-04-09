@@ -1,7 +1,8 @@
-//! CounterRuntime bridge QObject — set as `__qmlts` context property.
+//! `CounterRuntime` bridge QObject — set as `__qmlts` context property.
 //!
 //! Provides:
-//! - invoke(QVariant): command dispatch (increments invoke_count for observability)
+//! - invoke(`QVariant`): command dispatch (increments `invoke_count` for observability)
+//!
 //! No lifecycle hooks, no effects (per schema).
 
 use core::pin::Pin;
@@ -24,14 +25,14 @@ pub mod qobject {
     }
 }
 
-/// Rust backing struct for CounterRuntime.
+/// Rust backing struct for `CounterRuntime`.
 #[derive(Default)]
 pub struct CounterRuntimeRust {
     invoke_count: i32,
 }
 
 impl qobject::CounterRuntime {
-    /// Handle command dispatch. Increments invoke_count for test observability.
+    /// Handle command dispatch. Increments `invoke_count` for test observability.
     pub fn invoke(self: Pin<&mut Self>, _command: cxx_qt_lib::QVariant) {
         let current = *self.invoke_count();
         self.set_invoke_count(current + 1);
