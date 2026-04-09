@@ -482,6 +482,7 @@ dependencies = [
  "napi",
  "napi-build",
  "napi-derive",
+ "qmlts-host-generated",
  "serde",
  "serde_json",
  "thiserror 2.0.18",
