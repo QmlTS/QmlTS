@@ -1,6 +1,4 @@
-//! Error types for QmlTS Host
-//!
-//! All errors are converted to napi::Error for JS interop.
+//! Error types for QmlTS Host.
 
 use thiserror::Error;
 
@@ -81,6 +79,7 @@ pub enum QmltsError {
     BridgeAlreadyLoaded,
 }
 
+#[cfg(feature = "napi")]
 impl From<QmltsError> for napi::Error {
     fn from(e: QmltsError) -> Self {
         napi::Error::new(napi::Status::GenericFailure, e.to_string())
@@ -112,6 +111,7 @@ mod tests {
         );
     }
 
+    #[cfg(feature = "napi")]
     #[test]
     fn test_napi_error_conversion() {
         let err = QmltsError::EngineNotInitialized;

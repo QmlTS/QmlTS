@@ -35,10 +35,12 @@
 mod bridge_registry;
 mod engine;
 mod error;
+#[cfg(feature = "napi")]
 mod exports;
 mod qt_context;
 
 pub use bridge_registry::BridgeRegistry;
 pub use engine::QmltsEngine;
 pub use error::QmltsError;
+#[cfg(feature = "napi")]
 pub use exports::*;

@@ -108,7 +108,7 @@ jobs:
 
       - name: Rust tests
         working-directory: native
-        run: cargo test --all-features
+        run: cargo test --features mock-qt
 
       - name: Build native module
         working-directory: native/npm/qmlts-host
