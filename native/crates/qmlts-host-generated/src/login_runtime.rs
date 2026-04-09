@@ -19,6 +19,7 @@ pub mod qobject {
     unsafe extern "RustQt" {
         #[qobject]
         #[qproperty(i32, invoke_count, cxx_name = "invokeCount")]
+        #[qproperty(i32, mounted_count, cxx_name = "mountedCount")]
         type LoginRuntime = super::LoginRuntimeRust;
 
         #[qinvokable]
@@ -42,6 +43,7 @@ pub mod qobject {
 #[derive(Default)]
 pub struct LoginRuntimeRust {
     invoke_count: i32,
+    mounted_count: i32,
 }
 
 impl qobject::LoginRuntime {
@@ -53,9 +55,8 @@ impl qobject::LoginRuntime {
 
     /// Called when the QML component is mounted.
     pub fn on_mounted(self: Pin<&mut Self>) {
-        // Step 2: record the call. Real wiring in Step 3+.
-        let current = *self.invoke_count();
-        self.set_invoke_count(current); // no-op, but proves method is callable
+        let current = *self.mounted_count();
+        self.set_mounted_count(current + 1);
     }
 
     /// Called when the QML component is about to unmount.

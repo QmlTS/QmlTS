@@ -34,3 +34,7 @@ export declare function processEventsFor(engine: QmltsEngine, timeoutMs: number)
 export declare function registerViewModel(engine: QmltsEngine, className: string): void;
 export declare function getRegisteredTypes(engine: QmltsEngine): string[];
 export declare function hasBridgeType(engine: QmltsEngine, className: string): boolean;
+export declare function activeRuntimeI32Property(
+  engine: QmltsEngine,
+  name: string,
+): number | null;

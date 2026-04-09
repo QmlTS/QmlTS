@@ -67,6 +67,7 @@ const expectedExports = [
   'registerViewModel',
   'getRegisteredTypes',
   'hasBridgeType',
+  'activeRuntimeI32Property',
   // §3 Event loop
   'exec',
   'quit',
@@ -240,22 +241,45 @@ describe.skipIf(!isNativeModuleAvailable)('host/napi-bindings', () => {
       engine: object,
       name: string,
     ) => void;
+    const activeRuntimeI32Property = nativeModule.activeRuntimeI32Property as (
+      engine: object,
+      name: string,
+    ) => number | null;
 
     const engine = createEngine();
-    expect(() => registerViewModel(engine, 'LoginViewModel')).not.toThrow();
-    expect(() =>
-      loadString(
-        engine,
-        [
-          'import QtQuick',
-          'Item {',
-          '  property string copiedUsername: vm.username',
-          '  Component.onCompleted: __qmlts.invoke(123)',
-          '}',
-        ].join('\n'),
-      ),
-    ).not.toThrow();
-    expect(() => processEvents(engine)).not.toThrow();
+    registerViewModel(engine, 'LoginViewModel');
+
+    // Load QML exercising ALL golden LoginView bindings
+    loadString(
+      engine,
+      [
+        'import QtQuick',
+        'Rectangle {',
+        '  width: 400; height: 300',
+        '  Column {',
+        '    Text { text: vm.username }',
+        '    Text { text: vm.password }',
+        '    Text { text: vm.isLoading }',
+        '  }',
+        '  Connections {',
+        '    target: __qmlts',
+        '    function onOnLoginCompleted(success) { }',
+        '  }',
+        '  Component.onCompleted: {',
+        '    __qmlts.invoke(42)',
+        '    __qmlts.onMounted()',
+        '  }',
+        '}',
+      ].join('\n'),
+    );
+    processEvents(engine);
+
+    // Verify observable behavioral outcomes, not just "did not throw"
+    const invokeCount = activeRuntimeI32Property(engine, 'invokeCount');
+    expect(invokeCount).toBe(1);
+
+    const mountedCount = activeRuntimeI32Property(engine, 'mountedCount');
+    expect(mountedCount).toBe(1);
   });
 
   test('TB-18: registerViewModel() throws after QML is loaded', () => {

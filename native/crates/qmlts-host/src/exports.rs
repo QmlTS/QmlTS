@@ -292,6 +292,28 @@ pub fn has_bridge_type(engine: &QmltsEngine, class_name: String) -> bool {
     engine.inner.has_bridge_type(&class_name)
 }
 
+/// Read an integer property from the active runtime QObject.
+///
+/// Returns the property value if a bridge is registered and the property
+/// exists on the runtime object. Returns `null` if no bridge is active
+/// or the property is not found.
+///
+/// @param engine - The engine instance.
+/// @param name - The property name (e.g., "invokeCount", "mountedCount").
+/// @returns The integer property value, or `null`.
+///
+/// @example
+/// ```typescript
+/// registerViewModel(engine, 'LoginViewModel');
+/// loadString(engine, qml);
+/// processEvents(engine);
+/// const count = activeRuntimeI32Property(engine, 'invokeCount');
+/// ```
+#[napi(js_name = "activeRuntimeI32Property")]
+pub fn active_runtime_i32_property(engine: &QmltsEngine, name: String) -> Option<i32> {
+    engine.inner.active_runtime_i32_property(&name)
+}
+
 // ─────────────────────────────────────────────────────────────────────────
 //  §3 Event Loop
 // ─────────────────────────────────────────────────────────────────────────
