@@ -382,9 +382,7 @@ describe.skipIf(!isNativeModuleAvailable)('host/napi-bindings', () => {
     const engine = createEngine();
     registerViewModel(engine, 'LoginViewModel');
 
-    expect(() => syncState(engine, 'LoginViewModel', 'nonexistent', '"x"')).toThrow(
-      /not found/i,
-    );
+    expect(() => syncState(engine, 'LoginViewModel', 'nonexistent', '"x"')).toThrow(/not found/i);
   });
 
   test('TB-23: syncState() throws for type mismatch', () => {
@@ -404,9 +402,7 @@ describe.skipIf(!isNativeModuleAvailable)('host/napi-bindings', () => {
     registerViewModel(engine, 'LoginViewModel');
 
     // username is string, pass a number
-    expect(() => syncState(engine, 'LoginViewModel', 'username', '42')).toThrow(
-      /type mismatch/i,
-    );
+    expect(() => syncState(engine, 'LoginViewModel', 'username', '42')).toThrow(/type mismatch/i);
   });
 
   test('TB-24: syncState() throws for wrong active class name', () => {
@@ -444,11 +440,7 @@ describe.skipIf(!isNativeModuleAvailable)('host/napi-bindings', () => {
     registerViewModel(engine, 'LoginViewModel');
 
     expect(() =>
-      syncStateBatch(
-        engine,
-        'LoginViewModel',
-        JSON.stringify({ username: 'ok', nonexistent: 42 }),
-      ),
+      syncStateBatch(engine, 'LoginViewModel', JSON.stringify({ username: 'ok', nonexistent: 42 })),
     ).toThrow(/partial failure.*1 of 2/i);
   });
 
