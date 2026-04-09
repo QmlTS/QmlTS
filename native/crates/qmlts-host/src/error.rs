@@ -71,6 +71,14 @@ pub enum QmltsError {
     /// Internal error.
     #[error("Internal error: {0}")]
     Internal(String),
+
+    /// Bridge type not found in the generated registry.
+    #[error("Bridge type not found: '{0}'")]
+    BridgeTypeNotFound(String),
+
+    /// Cannot register bridge types after engine has loaded QML.
+    #[error("Cannot register bridge type: engine has already loaded QML")]
+    BridgeAlreadyLoaded,
 }
 
 impl From<QmltsError> for napi::Error {
@@ -110,5 +118,23 @@ mod tests {
         let napi_err: napi::Error = err.into();
         assert_eq!(napi_err.status, napi::Status::GenericFailure);
         assert!(napi_err.reason.contains("Engine not initialized"));
+    }
+
+    #[test]
+    fn test_bridge_type_not_found_display() {
+        let err = QmltsError::BridgeTypeNotFound("FooViewModel".to_string());
+        assert_eq!(
+            err.to_string(),
+            "Bridge type not found: 'FooViewModel'"
+        );
+    }
+
+    #[test]
+    fn test_bridge_already_loaded_display() {
+        let err = QmltsError::BridgeAlreadyLoaded;
+        assert_eq!(
+            err.to_string(),
+            "Cannot register bridge type: engine has already loaded QML"
+        );
     }
 }
