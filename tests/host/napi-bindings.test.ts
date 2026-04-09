@@ -68,6 +68,10 @@ const expectedExports = [
   'getRegisteredTypes',
   'hasBridgeType',
   'activeRuntimeI32Property',
+  // §2c Property synchronization
+  'syncState',
+  'syncStateBatch',
+  'getProperty',
   // §3 Event loop
   'exec',
   'quit',
@@ -293,6 +297,230 @@ describe.skipIf(!isNativeModuleAvailable)('host/napi-bindings', () => {
     const engine = createEngine();
     loadString(engine, 'import QtQuick\nItem { }');
     expect(() => registerViewModel(engine, 'LoginViewModel')).toThrow(/already loaded/i);
+  });
+
+  // ─────────────────────────────────────────────────────────────────────
+  //  Step 3: Property synchronization behavioral tests
+  // ─────────────────────────────────────────────────────────────────────
+
+  test('TB-19: syncState exports exist and are callable', () => {
+    expect(typeof nativeModule.syncState).toBe('function');
+    expect(typeof nativeModule.syncStateBatch).toBe('function');
+    expect(typeof nativeModule.getProperty).toBe('function');
+  });
+
+  test('TB-20: syncState() sets a string property on the active bridge', () => {
+    const createEngine = nativeModule.createEngine as () => object;
+    const registerViewModel = nativeModule.registerViewModel as (
+      engine: object,
+      name: string,
+    ) => void;
+    const syncState = nativeModule.syncState as (
+      engine: object,
+      className: string,
+      propertyName: string,
+      jsonValue: string,
+    ) => void;
+    const getProperty = nativeModule.getProperty as (
+      engine: object,
+      className: string,
+      propertyName: string,
+    ) => string;
+
+    const engine = createEngine();
+    registerViewModel(engine, 'LoginViewModel');
+
+    syncState(engine, 'LoginViewModel', 'username', '"alice"');
+
+    const value = getProperty(engine, 'LoginViewModel', 'username');
+    expect(value).toBe('"alice"');
+  });
+
+  test('TB-21: syncStateBatch() sets multiple properties at once', () => {
+    const createEngine = nativeModule.createEngine as () => object;
+    const registerViewModel = nativeModule.registerViewModel as (
+      engine: object,
+      name: string,
+    ) => void;
+    const syncStateBatch = nativeModule.syncStateBatch as (
+      engine: object,
+      className: string,
+      jsonStateMap: string,
+    ) => void;
+    const getProperty = nativeModule.getProperty as (
+      engine: object,
+      className: string,
+      propertyName: string,
+    ) => string;
+
+    const engine = createEngine();
+    registerViewModel(engine, 'LoginViewModel');
+
+    syncStateBatch(
+      engine,
+      'LoginViewModel',
+      JSON.stringify({ username: 'bob', password: 's3cret' }),
+    );
+
+    expect(getProperty(engine, 'LoginViewModel', 'username')).toBe('"bob"');
+    expect(getProperty(engine, 'LoginViewModel', 'password')).toBe('"s3cret"');
+  });
+
+  test('TB-22: syncState() throws for unknown property', () => {
+    const createEngine = nativeModule.createEngine as () => object;
+    const registerViewModel = nativeModule.registerViewModel as (
+      engine: object,
+      name: string,
+    ) => void;
+    const syncState = nativeModule.syncState as (
+      engine: object,
+      className: string,
+      propertyName: string,
+      jsonValue: string,
+    ) => void;
+
+    const engine = createEngine();
+    registerViewModel(engine, 'LoginViewModel');
+
+    expect(() => syncState(engine, 'LoginViewModel', 'nonexistent', '"x"')).toThrow(
+      /not found/i,
+    );
+  });
+
+  test('TB-23: syncState() throws for type mismatch', () => {
+    const createEngine = nativeModule.createEngine as () => object;
+    const registerViewModel = nativeModule.registerViewModel as (
+      engine: object,
+      name: string,
+    ) => void;
+    const syncState = nativeModule.syncState as (
+      engine: object,
+      className: string,
+      propertyName: string,
+      jsonValue: string,
+    ) => void;
+
+    const engine = createEngine();
+    registerViewModel(engine, 'LoginViewModel');
+
+    // username is string, pass a number
+    expect(() => syncState(engine, 'LoginViewModel', 'username', '42')).toThrow(
+      /type mismatch/i,
+    );
+  });
+
+  test('TB-24: syncState() throws for wrong active class name', () => {
+    const createEngine = nativeModule.createEngine as () => object;
+    const registerViewModel = nativeModule.registerViewModel as (
+      engine: object,
+      name: string,
+    ) => void;
+    const syncState = nativeModule.syncState as (
+      engine: object,
+      className: string,
+      propertyName: string,
+      jsonValue: string,
+    ) => void;
+
+    const engine = createEngine();
+    registerViewModel(engine, 'LoginViewModel');
+
+    expect(() => syncState(engine, 'CounterViewModel', 'count', '0')).toThrow();
+  });
+
+  test('TB-25: syncStateBatch() partial failure includes details', () => {
+    const createEngine = nativeModule.createEngine as () => object;
+    const registerViewModel = nativeModule.registerViewModel as (
+      engine: object,
+      name: string,
+    ) => void;
+    const syncStateBatch = nativeModule.syncStateBatch as (
+      engine: object,
+      className: string,
+      jsonStateMap: string,
+    ) => void;
+
+    const engine = createEngine();
+    registerViewModel(engine, 'LoginViewModel');
+
+    expect(() =>
+      syncStateBatch(
+        engine,
+        'LoginViewModel',
+        JSON.stringify({ username: 'ok', nonexistent: 42 }),
+      ),
+    ).toThrow(/partial failure.*1 of 2/i);
+  });
+
+  test('TB-26: getProperty() roundtrip for bool property', () => {
+    const createEngine = nativeModule.createEngine as () => object;
+    const registerViewModel = nativeModule.registerViewModel as (
+      engine: object,
+      name: string,
+    ) => void;
+    const syncState = nativeModule.syncState as (
+      engine: object,
+      className: string,
+      propertyName: string,
+      jsonValue: string,
+    ) => void;
+    const getProperty = nativeModule.getProperty as (
+      engine: object,
+      className: string,
+      propertyName: string,
+    ) => string;
+
+    const engine = createEngine();
+    registerViewModel(engine, 'LoginViewModel');
+
+    syncState(engine, 'LoginViewModel', 'isLoading', 'true');
+    expect(getProperty(engine, 'LoginViewModel', 'isLoading')).toBe('true');
+  });
+
+  test('TB-27: full flow: register, sync, load QML, readback via process events', () => {
+    const createEngine = nativeModule.createEngine as () => object;
+    const registerViewModel = nativeModule.registerViewModel as (
+      engine: object,
+      name: string,
+    ) => void;
+    const syncState = nativeModule.syncState as (
+      engine: object,
+      className: string,
+      propertyName: string,
+      jsonValue: string,
+    ) => void;
+    const loadString = nativeModule.loadString as (engine: object, qml: string) => void;
+    const processEvents = nativeModule.processEvents as (engine: object) => void;
+    const getProperty = nativeModule.getProperty as (
+      engine: object,
+      className: string,
+      propertyName: string,
+    ) => string;
+
+    const engine = createEngine();
+    registerViewModel(engine, 'LoginViewModel');
+
+    // Set state before loading QML
+    syncState(engine, 'LoginViewModel', 'username', '"flowtest"');
+    syncState(engine, 'LoginViewModel', 'password', '"pw123"');
+
+    // Load QML that binds to the synced properties
+    loadString(
+      engine,
+      [
+        'import QtQuick',
+        'Item {',
+        '  property string u: vm.username',
+        '  property string p: vm.password',
+        '  Component.onCompleted: __qmlts.onMounted()',
+        '}',
+      ].join('\n'),
+    );
+    processEvents(engine);
+
+    // Verify round-trip: the properties we set can be read back
+    expect(getProperty(engine, 'LoginViewModel', 'username')).toBe('"flowtest"');
+    expect(getProperty(engine, 'LoginViewModel', 'password')).toBe('"pw123"');
   });
 });
 
