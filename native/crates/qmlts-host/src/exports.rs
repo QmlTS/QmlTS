@@ -229,6 +229,70 @@ pub fn add_plugin_path(engine: &mut QmltsEngine, path: String) -> Result<()> {
 }
 
 // ─────────────────────────────────────────────────────────────────────────
+//  §2b Bridge Registry
+// ─────────────────────────────────────────────────────────────────────────
+
+/// Register a ViewModel bridge type by class name.
+///
+/// Creates the bridge QObject pair and makes it available as `vm` and
+/// `__qmlts` context properties in the QML engine. Must be called
+/// before loading QML.
+///
+/// @param engine - The engine instance.
+/// @param class_name - ViewModel class name (e.g., "LoginViewModel").
+/// @throws Error if the class name is not found or QML already loaded.
+///
+/// @example
+/// ```typescript
+/// registerViewModel(engine, 'LoginViewModel');
+/// loadFile(engine, './app/LoginView.qml');
+/// ```
+#[napi(js_name = "registerViewModel")]
+pub fn register_view_model(engine: &mut QmltsEngine, class_name: String) -> Result<()> {
+    engine
+        .inner
+        .register_view_model(&class_name)
+        .map_err(|e| -> napi::Error { e.into() })
+}
+
+/// Get all registered bridge type names.
+///
+/// @param engine - The engine instance.
+/// @returns Sorted array of ViewModel class names.
+///
+/// @example
+/// ```typescript
+/// const types = getRegisteredTypes(engine);
+/// // ['CounterViewModel', 'LoginViewModel']
+/// ```
+#[napi(js_name = "getRegisteredTypes")]
+pub fn get_registered_types(engine: &QmltsEngine) -> Vec<String> {
+    engine
+        .inner
+        .get_registered_types()
+        .into_iter()
+        .map(String::from)
+        .collect()
+}
+
+/// Check whether a bridge type is available.
+///
+/// @param engine - The engine instance.
+/// @param class_name - ViewModel class name to check.
+/// @returns `true` if the bridge type exists in the registry.
+///
+/// @example
+/// ```typescript
+/// if (hasBridgeType(engine, 'LoginViewModel')) {
+///   registerViewModel(engine, 'LoginViewModel');
+/// }
+/// ```
+#[napi(js_name = "hasBridgeType")]
+pub fn has_bridge_type(engine: &QmltsEngine, class_name: String) -> bool {
+    engine.inner.has_bridge_type(&class_name)
+}
+
+// ─────────────────────────────────────────────────────────────────────────
 //  §3 Event Loop
 // ─────────────────────────────────────────────────────────────────────────
 
@@ -401,5 +465,43 @@ mod tests {
         assert!(result.is_err());
         let err = result.unwrap_err();
         assert!(err.reason.contains("destroyed"));
+    }
+
+    #[test]
+    fn test_get_registered_types_napi() {
+        reset_qt();
+        let engine = create_engine(None).unwrap();
+        let types = get_registered_types(&engine);
+        assert!(types.contains(&"LoginViewModel".to_string()));
+        assert!(types.contains(&"CounterViewModel".to_string()));
+    }
+
+    #[test]
+    fn test_has_bridge_type_napi() {
+        reset_qt();
+        let engine = create_engine(None).unwrap();
+        assert!(has_bridge_type(&engine, "LoginViewModel".to_string()));
+        assert!(!has_bridge_type(&engine, "FakeViewModel".to_string()));
+    }
+
+    #[test]
+    fn test_register_view_model_unknown_napi() {
+        reset_qt();
+        let mut engine = create_engine(None).unwrap();
+        let result = register_view_model(&mut engine, "NonExistent".to_string());
+        assert!(result.is_err());
+        let err = result.unwrap_err();
+        assert!(err.reason.contains("Bridge type not found"));
+    }
+
+    #[test]
+    fn test_register_after_load_napi() {
+        reset_qt();
+        let mut engine = create_engine(None).unwrap();
+        load_string(&mut engine, "import QtQuick\nItem { }".to_string(), None).unwrap();
+        let result = register_view_model(&mut engine, "LoginViewModel".to_string());
+        assert!(result.is_err());
+        let err = result.unwrap_err();
+        assert!(err.reason.contains("already loaded"));
     }
 }
