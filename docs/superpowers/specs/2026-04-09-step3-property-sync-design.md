@@ -109,16 +109,25 @@ SchemaCommand, SchemaEffect, and SchemaLifecycle are deserialized for schema com
 
 ### BridgeDescriptor extension
 
+The current Step 2 `BridgeDescriptor` uses an ownership-based model with `BridgeInstance`:
+
 ```rust
+// Existing Step 2 shape (unchanged):
+pub struct BridgeInstance {
+    _storage: Box<dyn Any>,
+    vm_ptr: *mut c_void,
+    runtime_ptr: *mut c_void,
+}
+
+// Step 3 adds only `schema_json` to the existing descriptor:
 pub struct BridgeDescriptor {
     pub class_name: &'static str,
-    pub create_fn: fn() -> *mut c_void,
-    pub destroy_fn: fn(*mut c_void),
-    pub schema_json: &'static str, // NEW
+    pub create: fn() -> BridgeInstance,
+    pub schema_json: &'static str, // NEW in Step 3
 }
 ```
 
-Each generated module provides its schema JSON as a `const &str`. The engine parses it at `register_view_model()` time.
+Each generated module provides its schema JSON as a `const &str`. The engine parses it at `register_view_model()` time and stores the result in `active_schema`.
 
 ### Engine changes
 
@@ -144,6 +153,9 @@ Read functions:
 
 Internal only:
 - `qmlts_free_string(ptr: *mut c_char)` — frees strings returned by `read_string_property`. Internal Rust↔C++ FFI detail, never exposed to JS/N-API.
+
+Testing helpers:
+- `qmlts_root_object(engine_ptr: *mut c_void) -> *mut c_void` — returns the engine's root QObject (first root object from `QQmlApplicationEngine::rootObjects()`). Used by integration tests to read QML-bound property values from the root element.
 
 ### Type dispatch logic (in `property_sync.rs`)
 
@@ -173,7 +185,22 @@ The `readonly` flag is NOT checked during sync. It is a QML-facing contract only
 
 After all entries are processed:
 - If no errors: return `Ok(())`
-- If errors: return a combined `QmltsError` listing all failed properties
+- If errors: return a new `BatchSyncPartialFailure` error variant
+
+A new error variant is added to `error.rs`:
+
+```rust
+/// One or more properties failed during batch sync.
+/// Successfully synced properties remain written.
+#[error("Batch sync partial failure ({count} of {total} failed): {details}")]
+BatchSyncPartialFailure {
+    count: usize,
+    total: usize,
+    details: String,
+}
+```
+
+The `details` field contains a semicolon-separated list of individual failure descriptions (e.g., `"Property 'foo' not found on ViewModel 'X'; Type mismatch: expected string, got number for 'bar'"`).
 
 ---
 
@@ -208,15 +235,30 @@ export class QmltsHost {
 
 ### N-API exports to add (`exports.rs`)
 
+These follow the existing Step 2 pattern where every function takes `engine: &mut QmltsEngine` (or `&QmltsEngine`) as its first parameter:
+
 ```rust
-#[napi]
-fn sync_state(class_name: String, property_name: String, json_value: String) -> Result<()>
+#[napi(js_name = "syncState")]
+pub fn sync_state(
+    engine: &mut QmltsEngine,
+    class_name: String,
+    property_name: String,
+    json_value: String,
+) -> Result<()>
 
-#[napi]
-fn sync_state_batch(class_name: String, json_state_map: String) -> Result<()>
+#[napi(js_name = "syncStateBatch")]
+pub fn sync_state_batch(
+    engine: &mut QmltsEngine,
+    class_name: String,
+    json_state_map: String,
+) -> Result<()>
 
-#[napi]
-fn get_property(class_name: String, property_name: String) -> Result<String>
+#[napi(js_name = "getProperty")]
+pub fn get_property(
+    engine: &QmltsEngine,
+    class_name: String,
+    property_name: String,
+) -> Result<String>
 ```
 
 JSON serialization/deserialization happens at the N-API boundary. The TS layer serializes values to JSON strings before calling native; native returns JSON strings that the TS layer deserializes.
@@ -246,6 +288,9 @@ export class ViewModelManager {
 **Boundary rules (Step 3):**
 - `ViewModelManager` depends only on `schema.className` and `schema.states[].{name, deferred}`.
 - It does NOT touch `commands`, `effects`, or `lifecycle`. Those are later-step concerns.
+
+**Single-active-ViewModel constraint:**
+The native engine supports only one active bridge at a time (`active_bridge: Option<BridgeInstance>`). The `ViewModelManager` may track multiple registrations internally, but only one ViewModel can be actively registered against the native engine at any given time. Calling `register()` a second time replaces the active bridge. `sync()` and `getProperty()` only operate on the currently active ViewModel. If `sync()` is called for a className that is not the active bridge, it returns an error. `syncAll()` is limited to syncing only the one active ViewModel in Step 3.
 
 **`register(schema, instance)`:**
 1. Store `{schema, instance}` in the internal Map keyed by `schema.className`
@@ -280,7 +325,17 @@ export class ViewModelManager {
 ### Rust integration tests (real Qt, `bridge_integration.rs`)
 
 **Observable value assertion pattern:**
-Tests use a helper QML snippet that assigns `vm.propName` into a `Text.text` binding. After sync, the test reads back the bound Text element's value through Qt's property system to prove the property propagated through the Qt binding system — not just that `setProperty` returned true.
+Tests use a helper QML snippet with a root `Item` that exposes bound values as root-level properties:
+
+```qml
+import QtQuick
+Item {
+    property string displayedUsername: vm.username
+    property string displayedPassword: vm.password
+}
+```
+
+A new C++ FFI helper `qmlts_root_object(engine_ptr) -> *mut c_void` returns the engine's root QObject. The test then reads the root object's `displayedUsername` property using `qmlts_read_string_property(root_ptr, "displayedUsername")`. This proves the value propagated through the Qt property binding system (QML evaluated `vm.username` and assigned it to the root property), not just that `setProperty` returned true.
 
 **Specific tests:**
 1. `sync_state` writes a string → QML-bound Text reads the updated value
@@ -317,8 +372,9 @@ Tests use a helper QML snippet that assigns `vm.propName` into a `Text.text` bin
 - `native/crates/qmlts-host/src/lib.rs` — add `mod property_sync`
 - `native/crates/qmlts-host/src/engine.rs` — add `active_schema`, sync/read methods
 - `native/crates/qmlts-host/src/exports.rs` — add N-API sync/read exports
-- `native/crates/qmlts-host/src/qt_context.rs` — add FFI declarations
-- `native/crates/qmlts-host/cpp/qt_context.cpp` — add C++ FFI implementations
+- `native/crates/qmlts-host/src/error.rs` — add `BatchSyncPartialFailure` variant
+- `native/crates/qmlts-host/src/qt_context.rs` — add FFI declarations + `qmlts_root_object`
+- `native/crates/qmlts-host/cpp/qt_context.cpp` — add C++ FFI implementations + root object helper
 - `native/crates/qmlts-host-generated/src/lib.rs` — add `schema_json` to `BridgeDescriptor`, add schema types
 - `native/npm/qmlts-host/src/index.ts` — re-export new classes
 - `native/npm/qmlts-host/src/types.ts` — add new type declarations
@@ -329,5 +385,4 @@ Tests use a helper QML snippet that assigns `vm.propName` into a `Text.text` bin
 
 ### Not modified
 - `native/crates/qmlts-host/src/bridge_registry.rs` — no changes needed
-- `native/crates/qmlts-host/src/error.rs` — already has `PropertyNotFound` and `TypeMismatch` variants
 - Generated bridge modules (`login_view_model.rs`, `counter_view_model.rs`) — no changes needed
