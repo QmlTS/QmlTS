@@ -7,6 +7,11 @@
 #![warn(clippy::pedantic)]
 #![allow(clippy::module_name_repetitions)]
 
+pub mod counter_runtime;
+pub mod counter_view_model;
+pub mod login_runtime;
+pub mod login_view_model;
+
 use std::any::Any;
 
 /// Owns a (vm, runtime) QObject pair. Drops both when dropped.
