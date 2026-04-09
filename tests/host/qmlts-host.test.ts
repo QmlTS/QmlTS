@@ -187,6 +187,17 @@ describe.skipIf(!isNativeModuleAvailable)('host/qmlts-host', () => {
 
     host.dispose();
   });
+
+  test('TH-19: emitEffect rejects multi-argument payloads', () => {
+    const host = new QmltsHost();
+    host.registerViewModel('LoginViewModel');
+
+    expect(() => host.emitEffect('LoginViewModel', 'onLoginCompleted', true, false)).toThrow(
+      /failed to emit signal|internal/i,
+    );
+
+    host.dispose();
+  });
 });
 
 describe('host/qmlts-host (skip check)', () => {

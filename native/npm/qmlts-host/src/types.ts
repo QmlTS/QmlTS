@@ -262,7 +262,11 @@ export declare function processEventsFor(
  */
 export declare function registerInvokeHandler(
 	engine: QmltsEngine,
-	callback: (className: string, commandId: number) => void,
+	callback: (
+		error: Error | null,
+		className: string,
+		commandId: number,
+	) => void,
 ): void;
 
 /**
@@ -276,7 +280,11 @@ export declare function registerInvokeHandler(
  */
 export declare function registerLifecycleHandler(
 	engine: QmltsEngine,
-	callback: (className: string, event: string) => void,
+	callback: (
+		error: Error | null,
+		className: string,
+		event: string,
+	) => void,
 ): void;
 
 // ────────────────────────────────────────────────────────────────────────────

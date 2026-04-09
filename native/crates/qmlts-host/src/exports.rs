@@ -480,7 +480,7 @@ pub fn process_events_for(engine: &QmltsEngine, timeout_ms: u32) -> Result<()> {
 /// It receives `(className: string, commandId: number)`.
 ///
 /// @param engine - The engine instance.
-/// @param callback - Handler function `(className: string, commandId: number) => void`.
+/// @param callback - Handler function `(error, className, commandId) => void`.
 ///
 /// @example
 /// ```typescript
@@ -491,12 +491,12 @@ pub fn process_events_for(engine: &QmltsEngine, timeout_ms: u32) -> Result<()> {
 #[napi(js_name = "registerInvokeHandler")]
 pub fn register_invoke_handler(
     engine: &QmltsEngine,
-    #[napi(ts_arg_type = "(className: string, commandId: number) => void")]
+    #[napi(ts_arg_type = "(error: Error | null, className: string, commandId: number) => void")]
     callback: napi::JsFunction,
 ) -> Result<()> {
     use napi::threadsafe_function::{ErrorStrategy, ThreadSafeCallContext, ThreadsafeFunction};
 
-    let tsfn: ThreadsafeFunction<(String, u32), ErrorStrategy::Fatal> = callback
+    let tsfn: ThreadsafeFunction<(String, u32), ErrorStrategy::CalleeHandled> = callback
         .create_threadsafe_function(0, |ctx: ThreadSafeCallContext<(String, u32)>| {
             let (class_name, command_id) = ctx.value;
             Ok(vec![
@@ -507,7 +507,7 @@ pub fn register_invoke_handler(
 
     let handler = Box::new(move |class_name: &str, command_id: u32| {
         tsfn.call(
-            (class_name.to_string(), command_id),
+            Ok((class_name.to_string(), command_id)),
             napi::threadsafe_function::ThreadsafeFunctionCallMode::NonBlocking,
         );
     });
@@ -525,7 +525,7 @@ pub fn register_invoke_handler(
 /// It receives `(className: string, event: string)`.
 ///
 /// @param engine - The engine instance.
-/// @param callback - Handler function `(className: string, event: string) => void`.
+/// @param callback - Handler function `(error, className, event) => void`.
 ///
 /// @example
 /// ```typescript
@@ -536,11 +536,12 @@ pub fn register_invoke_handler(
 #[napi(js_name = "registerLifecycleHandler")]
 pub fn register_lifecycle_handler(
     engine: &QmltsEngine,
-    #[napi(ts_arg_type = "(className: string, event: string) => void")] callback: napi::JsFunction,
+    #[napi(ts_arg_type = "(error: Error | null, className: string, event: string) => void")]
+    callback: napi::JsFunction,
 ) -> Result<()> {
     use napi::threadsafe_function::{ErrorStrategy, ThreadSafeCallContext, ThreadsafeFunction};
 
-    let tsfn: ThreadsafeFunction<(String, String), ErrorStrategy::Fatal> = callback
+    let tsfn: ThreadsafeFunction<(String, String), ErrorStrategy::CalleeHandled> = callback
         .create_threadsafe_function(0, |ctx: ThreadSafeCallContext<(String, String)>| {
             let (class_name, event) = ctx.value;
             Ok(vec![
@@ -551,7 +552,7 @@ pub fn register_lifecycle_handler(
 
     let handler = Box::new(move |class_name: &str, event: &str| {
         tsfn.call(
-            (class_name.to_string(), event.to_string()),
+            Ok((class_name.to_string(), event.to_string())),
             napi::threadsafe_function::ThreadsafeFunctionCallMode::NonBlocking,
         );
     });

@@ -263,7 +263,17 @@ export class QmltsHost {
 		callback: (className: string, commandId: number) => void,
 	): void {
 		const eng = this.requireEngine();
-		registerInvokeHandler(eng, callback);
+		registerInvokeHandler(eng, (error, className, commandId) => {
+			if (error) {
+				console.error('QmltsHost invoke handler received error:', error);
+				return;
+			}
+			try {
+				callback(className, commandId);
+			} catch (err) {
+				console.error('QmltsHost invoke handler threw:', err);
+			}
+		});
 	}
 
 	/**
@@ -277,7 +287,17 @@ export class QmltsHost {
 		callback: (className: string, event: string) => void,
 	): void {
 		const eng = this.requireEngine();
-		registerLifecycleHandler(eng, callback);
+		registerLifecycleHandler(eng, (error, className, event) => {
+			if (error) {
+				console.error('QmltsHost lifecycle handler received error:', error);
+				return;
+			}
+			try {
+				callback(className, event);
+			} catch (err) {
+				console.error('QmltsHost lifecycle handler threw:', err);
+			}
+		});
 	}
 
 	// ────────────────────────────────────────────────────────────────────

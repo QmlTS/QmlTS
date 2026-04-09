@@ -8,41 +8,87 @@
 //! This lives in the generated crate (not the host crate) so runtime
 //! `QObjects` can call it without creating a circular dependency.
 
-use std::sync::Mutex;
+use std::sync::{Arc, Mutex};
 
-type CommandDispatcher = Box<dyn Fn(&str, u32) + Send>;
-type LifecycleDispatcher = Box<dyn Fn(&str, &str) + Send>;
+type CommandDispatcher = Arc<dyn Fn(&str, u32) + Send + Sync>;
+type LifecycleDispatcher = Arc<dyn Fn(&str, &str) + Send + Sync>;
+type CommandDispatcherBox = Box<dyn Fn(&str, u32) + Send + Sync>;
+type LifecycleDispatcherBox = Box<dyn Fn(&str, &str) + Send + Sync>;
 
-static COMMAND_DISPATCHER: Mutex<Option<CommandDispatcher>> = Mutex::new(None);
-static LIFECYCLE_DISPATCHER: Mutex<Option<LifecycleDispatcher>> = Mutex::new(None);
+struct OwnedCommandDispatcher {
+    owner_id: usize,
+    callback: CommandDispatcher,
+}
+
+struct OwnedLifecycleDispatcher {
+    owner_id: usize,
+    callback: LifecycleDispatcher,
+}
+
+static COMMAND_DISPATCHER: Mutex<Option<OwnedCommandDispatcher>> = Mutex::new(None);
+static LIFECYCLE_DISPATCHER: Mutex<Option<OwnedLifecycleDispatcher>> = Mutex::new(None);
 
 /// Register the command dispatcher callback.
 ///
 /// Called by the host crate when `registerInvokeHandler` is invoked from TS.
 /// The closure typically wraps an N-API `ThreadsafeFunction`.
 ///
+/// # Errors
+///
+/// Returns an error if another engine already owns the process-global
+/// command dispatcher registration.
+///
 /// # Panics
 ///
 /// Panics if the internal mutex is poisoned.
-pub fn set_command_dispatcher(f: CommandDispatcher) {
+pub fn set_command_dispatcher(
+    owner_id: usize,
+    f: CommandDispatcherBox,
+) -> std::result::Result<(), &'static str> {
     let mut guard = COMMAND_DISPATCHER
         .lock()
         .expect("COMMAND_DISPATCHER lock poisoned");
-    *guard = Some(f);
+    if let Some(existing) = guard.as_ref()
+        && existing.owner_id != owner_id
+    {
+        return Err("command dispatcher already registered by another engine");
+    }
+    *guard = Some(OwnedCommandDispatcher {
+        owner_id,
+        callback: Arc::from(f),
+    });
+    Ok(())
 }
 
 /// Register the lifecycle dispatcher callback.
 ///
 /// Called by the host crate when `registerLifecycleHandler` is invoked from TS.
 ///
+/// # Errors
+///
+/// Returns an error if another engine already owns the process-global
+/// lifecycle dispatcher registration.
+///
 /// # Panics
 ///
 /// Panics if the internal mutex is poisoned.
-pub fn set_lifecycle_dispatcher(f: LifecycleDispatcher) {
+pub fn set_lifecycle_dispatcher(
+    owner_id: usize,
+    f: LifecycleDispatcherBox,
+) -> std::result::Result<(), &'static str> {
     let mut guard = LIFECYCLE_DISPATCHER
         .lock()
         .expect("LIFECYCLE_DISPATCHER lock poisoned");
-    *guard = Some(f);
+    if let Some(existing) = guard.as_ref()
+        && existing.owner_id != owner_id
+    {
+        return Err("lifecycle dispatcher already registered by another engine");
+    }
+    *guard = Some(OwnedLifecycleDispatcher {
+        owner_id,
+        callback: Arc::from(f),
+    });
+    Ok(())
 }
 
 /// Dispatch a command from a runtime QObject to the registered handler.
@@ -55,11 +101,13 @@ pub fn set_lifecycle_dispatcher(f: LifecycleDispatcher) {
 ///
 /// Panics if the internal mutex is poisoned.
 pub fn dispatch_command(class_name: &str, command_id: u32) {
-    let guard = COMMAND_DISPATCHER
+    let callback = COMMAND_DISPATCHER
         .lock()
-        .expect("COMMAND_DISPATCHER lock poisoned");
-    if let Some(ref f) = *guard {
-        f(class_name, command_id);
+        .expect("COMMAND_DISPATCHER lock poisoned")
+        .as_ref()
+        .map(|entry| Arc::clone(&entry.callback));
+    if let Some(callback) = callback {
+        callback(class_name, command_id);
     }
 }
 
@@ -72,15 +120,49 @@ pub fn dispatch_command(class_name: &str, command_id: u32) {
 ///
 /// Panics if the internal mutex is poisoned.
 pub fn dispatch_lifecycle(class_name: &str, event: &str) {
-    let guard = LIFECYCLE_DISPATCHER
+    let callback = LIFECYCLE_DISPATCHER
         .lock()
-        .expect("LIFECYCLE_DISPATCHER lock poisoned");
-    if let Some(ref f) = *guard {
-        f(class_name, event);
+        .expect("LIFECYCLE_DISPATCHER lock poisoned")
+        .as_ref()
+        .map(|entry| Arc::clone(&entry.callback));
+    if let Some(callback) = callback {
+        callback(class_name, event);
     }
 }
 
-/// Clear both dispatchers. Called during engine cleanup.
+/// Clear both dispatchers owned by a specific engine.
+///
+/// # Panics
+///
+/// Panics if the internal mutex is poisoned.
+pub fn clear_dispatchers_for_owner(owner_id: usize) {
+    {
+        let mut guard = COMMAND_DISPATCHER
+            .lock()
+            .expect("COMMAND_DISPATCHER lock poisoned");
+        if guard
+            .as_ref()
+            .is_some_and(|entry| entry.owner_id == owner_id)
+        {
+            *guard = None;
+        }
+    }
+    {
+        let mut guard = LIFECYCLE_DISPATCHER
+            .lock()
+            .expect("LIFECYCLE_DISPATCHER lock poisoned");
+        if guard
+            .as_ref()
+            .is_some_and(|entry| entry.owner_id == owner_id)
+        {
+            *guard = None;
+        }
+    }
+}
+
+/// Clear both dispatchers unconditionally.
+///
+/// Intended for tests and full process teardown only.
 ///
 /// # Panics
 ///
@@ -149,9 +231,13 @@ mod tests {
         clear_dispatchers();
         let counter = Arc::new(AtomicU32::new(0));
         let counter_clone = counter.clone();
-        set_command_dispatcher(Box::new(move |_class, id| {
-            counter_clone.store(id, Ordering::SeqCst);
-        }));
+        set_command_dispatcher(
+            1,
+            Box::new(move |_class, id| {
+                counter_clone.store(id, Ordering::SeqCst);
+            }),
+        )
+        .unwrap();
         dispatch_command("LoginViewModel", 927_957_157);
         assert_eq!(counter.load(Ordering::SeqCst), 927_957_157);
         clear_dispatchers();
@@ -162,10 +248,14 @@ mod tests {
         clear_dispatchers();
         let called = Arc::new(Mutex::new(String::new()));
         let called_clone = called.clone();
-        set_lifecycle_dispatcher(Box::new(move |class, event| {
-            let mut guard = called_clone.lock().unwrap();
-            *guard = format!("{class}:{event}");
-        }));
+        set_lifecycle_dispatcher(
+            1,
+            Box::new(move |class, event| {
+                let mut guard = called_clone.lock().unwrap();
+                *guard = format!("{class}:{event}");
+            }),
+        )
+        .unwrap();
         dispatch_lifecycle("LoginViewModel", "onMounted");
         let result = called.lock().unwrap().clone();
         assert_eq!(result, "LoginViewModel:onMounted");
@@ -174,8 +264,9 @@ mod tests {
 
     #[test]
     fn clear_dispatchers_removes_both() {
-        set_command_dispatcher(Box::new(|_, _| {}));
-        set_lifecycle_dispatcher(Box::new(|_, _| {}));
+        clear_dispatchers();
+        set_command_dispatcher(1, Box::new(|_, _| {})).unwrap();
+        set_lifecycle_dispatcher(1, Box::new(|_, _| {})).unwrap();
         assert!(has_command_dispatcher());
         assert!(has_lifecycle_dispatcher());
         clear_dispatchers();
@@ -188,9 +279,28 @@ mod tests {
         clear_dispatchers();
         assert!(!has_command_dispatcher());
         assert!(!has_lifecycle_dispatcher());
-        set_command_dispatcher(Box::new(|_, _| {}));
+        set_command_dispatcher(1, Box::new(|_, _| {})).unwrap();
         assert!(has_command_dispatcher());
         assert!(!has_lifecycle_dispatcher());
         clear_dispatchers();
+    }
+
+    #[test]
+    fn second_owner_cannot_overwrite_dispatcher() {
+        clear_dispatchers();
+        set_command_dispatcher(1, Box::new(|_, _| {})).unwrap();
+        let result = set_command_dispatcher(2, Box::new(|_, _| {}));
+        assert!(result.is_err());
+        clear_dispatchers();
+    }
+
+    #[test]
+    fn clear_dispatchers_for_other_owner_preserves_registration() {
+        clear_dispatchers();
+        set_lifecycle_dispatcher(1, Box::new(|_, _| {})).unwrap();
+        clear_dispatchers_for_owner(2);
+        assert!(has_lifecycle_dispatcher());
+        clear_dispatchers_for_owner(1);
+        assert!(!has_lifecycle_dispatcher());
     }
 }

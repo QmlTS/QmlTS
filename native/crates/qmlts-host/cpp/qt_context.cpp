@@ -326,9 +326,16 @@ bool qmlts_emit_signal(void* qobject_ptr, const char* signal_name, const char* p
         return false;
     }
 
-    const QJsonValue val = doc.isArray()
-        ? doc.array().first()
-        : QJsonValue(doc.toVariant().toJsonValue());
+    QJsonValue val;
+    if (doc.isArray()) {
+        const QJsonArray array = doc.array();
+        if (array.size() != 1) {
+            return false;
+        }
+        val = array.first();
+    } else {
+        val = QJsonValue::fromVariant(doc.toVariant());
+    }
 
     if (val.isBool()) {
         return QMetaObject::invokeMethod(object, signal_name,

@@ -20,6 +20,11 @@ const nativeModulePaths = [
 
 const isNativeModuleAvailable = nativeModulePaths.some((p) => existsSync(p));
 
+async function flushJsCallbacks(): Promise<void> {
+  await Promise.resolve();
+  await new Promise((resolve) => setTimeout(resolve, 0));
+}
+
 describe.skipIf(!isNativeModuleAvailable)('host/viewmodel-manager', () => {
   let QmltsHost: typeof import('../../native/npm/qmlts-host/src/qmlts-host').QmltsHost;
   let ViewModelManager: typeof import('../../native/npm/qmlts-host/src/viewmodel-manager').ViewModelManager;
@@ -177,53 +182,73 @@ describe.skipIf(!isNativeModuleAvailable)('host/viewmodel-manager', () => {
   //  Step 4: Command dispatch, lifecycle, and effect tests
   // ─────────────────────────────────────────────────────────────────────
 
-  test('TV-09: register with command handler receives dispatched commands', () => {
+  test('TV-09: register with command handler receives dispatched commands', async () => {
     const host = new QmltsHost();
     const manager = new ViewModelManager(host);
+    const calls: Array<[string, number]> = [];
+    try {
+      const instance = { username: '', password: '', isLoading: false };
+      manager.register(loginSchema, instance, {
+        onCommand: (name, id) => {
+          calls.push([name, id]);
+        },
+      });
 
-    const instance = { username: '', password: '', isLoading: false };
-    manager.register(loginSchema, instance, {
-      onCommand: (_name, _id) => {},
-    });
+      // Load QML that invokes a command
+      host.loadString(
+        [
+          'import QtQuick',
+          'Item {',
+          '  Component.onCompleted: __qmlts.invoke(927957157)',
+          '}',
+        ].join('\n'),
+      );
+      host.processEvents();
+      await flushJsCallbacks();
 
-    // Load QML that invokes a command
-    host.loadString(
-      ['import QtQuick', 'Item {', '  Component.onCompleted: __qmlts.invoke(927957157)', '}'].join(
-        '\n',
-      ),
-    );
-    host.processEvents();
-
-    host.dispose();
+      expect(calls).toEqual([['login', 927957157]]);
+    } finally {
+      host.dispose();
+    }
   });
 
-  test('TV-10: register with lifecycle handler', () => {
+  test('TV-10: register with lifecycle handler', async () => {
     const host = new QmltsHost();
     const manager = new ViewModelManager(host);
+    const events: string[] = [];
+    try {
+      const instance = { username: '', password: '', isLoading: false };
+      manager.register(loginSchema, instance, {
+        onLifecycle: (event) => {
+          events.push(event);
+        },
+      });
 
-    const instance = { username: '', password: '', isLoading: false };
-    manager.register(loginSchema, instance, {
-      onLifecycle: (_event) => {},
-    });
+      host.loadString(
+        ['import QtQuick', 'Item {', '  Component.onCompleted: __qmlts.onMounted()', '}'].join(
+          '\n',
+        ),
+      );
+      host.processEvents();
+      await flushJsCallbacks();
 
-    host.loadString(
-      ['import QtQuick', 'Item {', '  Component.onCompleted: __qmlts.onMounted()', '}'].join('\n'),
-    );
-    host.processEvents();
-
-    host.dispose();
+      expect(events).toEqual(['onMounted']);
+    } finally {
+      host.dispose();
+    }
   });
 
   test('TV-11: emitEffect through manager', () => {
     const host = new QmltsHost();
     const manager = new ViewModelManager(host);
+    try {
+      const instance = { username: '', password: '', isLoading: false };
+      manager.register(loginSchema, instance);
 
-    const instance = { username: '', password: '', isLoading: false };
-    manager.register(loginSchema, instance);
-
-    expect(() => manager.emitEffect('LoginViewModel', 'onLoginCompleted', true)).not.toThrow();
-
-    host.dispose();
+      expect(() => manager.emitEffect('LoginViewModel', 'onLoginCompleted', true)).not.toThrow();
+    } finally {
+      host.dispose();
+    }
   });
 
   test('TV-12: emitEffect throws for unregistered class', () => {

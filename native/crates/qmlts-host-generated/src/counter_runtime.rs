@@ -30,10 +30,12 @@ pub struct CounterRuntimeRust {
 
 impl qobject::CounterRuntime {
     /// Handle command dispatch from QML `__qmlts.invoke(commandId)`.
-    #[allow(clippy::cast_sign_loss)]
     pub fn invoke(self: Pin<&mut Self>, command_id: i32) {
+        let Ok(command_id) = u32::try_from(command_id) else {
+            return;
+        };
         let current = *self.invoke_count();
         self.set_invoke_count(current + 1);
-        dispatch::dispatch_command("CounterViewModel", command_id as u32);
+        dispatch::dispatch_command("CounterViewModel", command_id);
     }
 }

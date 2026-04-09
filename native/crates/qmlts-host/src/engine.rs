@@ -15,11 +15,12 @@ use qmlts_host_generated::{BridgeInstance, ViewModelSchema};
 use std::path::Path;
 #[cfg(not(feature = "mock-qt"))]
 use std::ptr;
-use std::sync::atomic::{AtomicBool, Ordering};
+use std::sync::atomic::{AtomicBool, AtomicUsize, Ordering};
 
 /// Global flag to track if QGuiApplication has been initialized.
 /// Qt requires exactly one QGuiApplication per process.
 static APP_INITIALIZED: AtomicBool = AtomicBool::new(false);
+static NEXT_DISPATCH_OWNER_ID: AtomicUsize = AtomicUsize::new(1);
 
 /// QmlTS Engine version (matches package version).
 #[allow(dead_code)]
@@ -91,6 +92,8 @@ pub struct QmltsEngine {
     /// Opaque pointer to the backing `QQmlApplicationEngine`.
     #[allow(dead_code)]
     engine_ptr: *mut std::ffi::c_void,
+    /// Owner token for process-global Step 4 dispatchers.
+    dispatch_owner_id: usize,
 }
 
 impl QmltsEngine {
@@ -130,6 +133,7 @@ impl QmltsEngine {
             active_schema: None,
             qml_loaded: false,
             engine_ptr,
+            dispatch_owner_id: NEXT_DISPATCH_OWNER_ID.fetch_add(1, Ordering::Relaxed),
         })
     }
 
@@ -376,9 +380,13 @@ impl QmltsEngine {
     ///
     /// Returns an error if the engine is destroyed.
     #[allow(clippy::type_complexity)]
-    pub fn register_invoke_handler(&self, handler: Box<dyn Fn(&str, u32) + Send>) -> Result<()> {
+    pub fn register_invoke_handler(
+        &self,
+        handler: Box<dyn Fn(&str, u32) + Send + Sync>,
+    ) -> Result<()> {
         self.ensure_alive()?;
-        qmlts_host_generated::dispatch::set_command_dispatcher(handler);
+        qmlts_host_generated::dispatch::set_command_dispatcher(self.dispatch_owner_id, handler)
+            .map_err(|e| QmltsError::Internal(e.to_string()))?;
         tracing::debug!("Registered invoke handler");
         Ok(())
     }
@@ -396,10 +404,11 @@ impl QmltsEngine {
     #[allow(clippy::type_complexity)]
     pub fn register_lifecycle_handler(
         &self,
-        handler: Box<dyn Fn(&str, &str) + Send>,
+        handler: Box<dyn Fn(&str, &str) + Send + Sync>,
     ) -> Result<()> {
         self.ensure_alive()?;
-        qmlts_host_generated::dispatch::set_lifecycle_dispatcher(handler);
+        qmlts_host_generated::dispatch::set_lifecycle_dispatcher(self.dispatch_owner_id, handler)
+            .map_err(|e| QmltsError::Internal(e.to_string()))?;
         tracing::debug!("Registered lifecycle handler");
         Ok(())
     }
@@ -775,7 +784,7 @@ impl QmltsEngine {
     }
 
     fn cleanup_qt_resources(&mut self) {
-        qmlts_host_generated::dispatch::clear_dispatchers();
+        qmlts_host_generated::dispatch::clear_dispatchers_for_owner(self.dispatch_owner_id);
 
         #[cfg(not(feature = "mock-qt"))]
         {
@@ -1198,6 +1207,42 @@ mod tests {
         engine.mark_destroyed();
         let result = engine.register_invoke_handler(Box::new(|_class, _id| {}));
         assert!(result.is_err());
+    }
+
+    #[cfg(feature = "mock-qt")]
+    #[test]
+    fn test_second_engine_cannot_overwrite_global_invoke_handler() {
+        reset_app_initialized();
+        qmlts_host_generated::dispatch::clear_dispatchers();
+
+        let engine1 = QmltsEngine::new(None).unwrap();
+        engine1
+            .register_invoke_handler(Box::new(|_class, _id| {}))
+            .unwrap();
+
+        let engine2 = QmltsEngine::new(None).unwrap();
+        let result = engine2.register_invoke_handler(Box::new(|_class, _id| {}));
+        assert!(result.is_err());
+
+        qmlts_host_generated::dispatch::clear_dispatchers();
+    }
+
+    #[cfg(feature = "mock-qt")]
+    #[test]
+    fn test_unowned_engine_drop_does_not_clear_global_dispatcher() {
+        reset_app_initialized();
+        qmlts_host_generated::dispatch::clear_dispatchers();
+
+        let engine1 = QmltsEngine::new(None).unwrap();
+        engine1
+            .register_invoke_handler(Box::new(|_class, _id| {}))
+            .unwrap();
+        {
+            let _engine2 = QmltsEngine::new(None).unwrap();
+        }
+
+        assert!(qmlts_host_generated::dispatch::has_command_dispatcher());
+        qmlts_host_generated::dispatch::clear_dispatchers();
     }
 
     #[cfg(feature = "mock-qt")]

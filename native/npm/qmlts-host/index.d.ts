@@ -313,7 +313,7 @@ export declare export declare function quit(engine: QmltsEngine, exitCode?: numb
  * It receives `(className: string, commandId: number)`.
  *
  * @param engine - The engine instance.
- * @param callback - Handler function `(className: string, commandId: number) => void`.
+ * @param callback - Handler function `(error, className, commandId) => void`.
  *
  * @example
  * ```typescript
@@ -322,7 +322,7 @@ export declare export declare function quit(engine: QmltsEngine, exitCode?: numb
  * });
  * ```
  */
-export declare export declare function registerInvokeHandler(engine: QmltsEngine, callback: (className: string, commandId: number) => void): void
+export declare export declare function registerInvokeHandler(engine: QmltsEngine, callback: (error: Error | null, className: string, commandId: number) => void): void
 
 /**
  * Register a lifecycle event handler.
@@ -332,7 +332,7 @@ export declare export declare function registerInvokeHandler(engine: QmltsEngine
  * It receives `(className: string, event: string)`.
  *
  * @param engine - The engine instance.
- * @param callback - Handler function `(className: string, event: string) => void`.
+ * @param callback - Handler function `(error, className, event) => void`.
  *
  * @example
  * ```typescript
@@ -341,7 +341,7 @@ export declare export declare function registerInvokeHandler(engine: QmltsEngine
  * });
  * ```
  */
-export declare export declare function registerLifecycleHandler(engine: QmltsEngine, callback: (className: string, event: string) => void): void
+export declare export declare function registerLifecycleHandler(engine: QmltsEngine, callback: (error: Error | null, className: string, event: string) => void): void
 
 /**
  * Register a ViewModel bridge type by class name.
