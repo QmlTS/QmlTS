@@ -114,6 +114,46 @@ export declare function addImportPath(engine: QmltsEngine, path: string): void;
 export declare function addPluginPath(engine: QmltsEngine, path: string): void;
 
 // ────────────────────────────────────────────────────────────────────────────
+// §2b Bridge Registry
+// ────────────────────────────────────────────────────────────────────────────
+
+/**
+ * Register a ViewModel bridge type by class name.
+ *
+ * Creates the bridge QObject pair and makes it available as `vm` and
+ * `__qmlts` context properties in the QML engine. Must be called
+ * before loading QML.
+ *
+ * @param engine - The engine instance.
+ * @param className - ViewModel class name (e.g., "LoginViewModel").
+ * @throws Error if the class name is not found or QML already loaded.
+ */
+export declare function registerViewModel(
+  engine: QmltsEngine,
+  className: string
+): void;
+
+/**
+ * Get all registered bridge type names.
+ *
+ * @param engine - The engine instance.
+ * @returns Sorted array of ViewModel class names.
+ */
+export declare function getRegisteredTypes(engine: QmltsEngine): string[];
+
+/**
+ * Check whether a bridge type is available.
+ *
+ * @param engine - The engine instance.
+ * @param className - ViewModel class name to check.
+ * @returns `true` if the bridge type exists in the registry.
+ */
+export declare function hasBridgeType(
+  engine: QmltsEngine,
+  className: string
+): boolean;
+
+// ────────────────────────────────────────────────────────────────────────────
 // §3 Event Loop
 // ────────────────────────────────────────────────────────────────────────────
 
