@@ -65,18 +65,22 @@ pub unsafe fn clear_context_property(_engine_ptr: *mut c_void, name: &str) {
 
 #[cfg(test)]
 mod tests {
+    #[cfg(feature = "mock-qt")]
     use super::*;
-    use std::ptr;
 
+    #[cfg(feature = "mock-qt")]
     #[test]
     fn set_context_property_mock_does_not_panic() {
+        use std::ptr;
         unsafe {
             set_context_property(ptr::null_mut(), "vm", ptr::null_mut());
         }
     }
 
+    #[cfg(feature = "mock-qt")]
     #[test]
     fn clear_context_property_mock_does_not_panic() {
+        use std::ptr;
         unsafe {
             clear_context_property(ptr::null_mut(), "vm");
         }
