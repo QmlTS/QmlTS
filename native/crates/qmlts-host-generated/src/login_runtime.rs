@@ -1,20 +1,17 @@
 //! `LoginRuntime` bridge QObject — set as `__qmlts` context property.
 //!
 //! Provides:
-//! - invoke(`QVariant`): command dispatch (increments `invoke_count` for observability)
-//! - `onMounted()`: lifecycle hook
-//! - `onUnmounting()`: lifecycle hook
-//! - `onLoginCompleted(bool)`: effect signal
+//! - invoke(i32): command dispatch (routes to global dispatcher + increments invoke_count)
+//! - onMounted(): lifecycle hook (routes to global dispatcher + increments mounted_count)
+//! - onUnmounting(): lifecycle hook (routes to global dispatcher)
+//! - onLoginCompleted(bool): effect signal
 
 use core::pin::Pin;
 
+use crate::dispatch;
+
 #[cxx_qt::bridge]
 pub mod qobject {
-    unsafe extern "C++" {
-        include!("cxx-qt-lib/qvariant.h");
-        type QVariant = cxx_qt_lib::QVariant;
-    }
-
     #[auto_cxx_name]
     unsafe extern "RustQt" {
         #[qobject]
@@ -23,7 +20,7 @@ pub mod qobject {
         type LoginRuntime = super::LoginRuntimeRust;
 
         #[qinvokable]
-        fn invoke(self: Pin<&mut LoginRuntime>, command: QVariant);
+        fn invoke(self: Pin<&mut LoginRuntime>, command_id: i32);
 
         #[qinvokable]
         fn on_mounted(self: Pin<&mut LoginRuntime>);
@@ -47,20 +44,22 @@ pub struct LoginRuntimeRust {
 }
 
 impl qobject::LoginRuntime {
-    /// Handle command dispatch. Increments `invoke_count` for test observability.
-    pub fn invoke(self: Pin<&mut Self>, _command: cxx_qt_lib::QVariant) {
+    /// Handle command dispatch from QML `__qmlts.invoke(commandId)`.
+    pub fn invoke(self: Pin<&mut Self>, command_id: i32) {
         let current = *self.invoke_count();
         self.set_invoke_count(current + 1);
+        dispatch::dispatch_command("LoginViewModel", command_id as u32);
     }
 
     /// Called when the QML component is mounted.
     pub fn on_mounted(self: Pin<&mut Self>) {
         let current = *self.mounted_count();
         self.set_mounted_count(current + 1);
+        dispatch::dispatch_lifecycle("LoginViewModel", "onMounted");
     }
 
     /// Called when the QML component is about to unmount.
     pub fn on_unmounting(self: Pin<&mut Self>) {
-        // Step 2: record the call. Real wiring in Step 3+.
+        dispatch::dispatch_lifecycle("LoginViewModel", "onUnmounting");
     }
 }

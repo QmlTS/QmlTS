@@ -80,6 +80,11 @@ unsafe extern "C" {
     ) -> bool;
     fn qmlts_free_string(ptr: *mut std::ffi::c_char);
     fn qmlts_root_object(engine_ptr: *mut c_void) -> *mut c_void;
+    fn qmlts_emit_signal(
+        qobject_ptr: *mut c_void,
+        signal_name: *const std::ffi::c_char,
+        payload_json: *const std::ffi::c_char,
+    ) -> bool;
 }
 
 #[cfg(not(feature = "mock-qt"))]
@@ -355,6 +360,18 @@ pub fn root_object(engine_ptr: *mut c_void) -> *mut c_void {
     unsafe { qmlts_root_object(engine_ptr) }
 }
 
+#[cfg(not(feature = "mock-qt"))]
+#[allow(dead_code)]
+#[must_use]
+pub fn emit_signal(qobject_ptr: *mut c_void, signal_name: &str, payload_json: Option<&str>) -> bool {
+    let c_name = CString::new(signal_name).expect("signal name must not contain NUL");
+    let c_json = payload_json.map(|j| CString::new(j).expect("payload JSON must not contain NUL"));
+    let json_ptr = c_json
+        .as_ref()
+        .map_or(std::ptr::null(), |c| c.as_ptr());
+    unsafe { qmlts_emit_signal(qobject_ptr, c_name.as_ptr(), json_ptr) }
+}
+
 // Mock implementations for testing without Qt
 #[cfg(feature = "mock-qt")]
 #[allow(dead_code)]
@@ -449,6 +466,18 @@ pub fn read_double_property(_qobject_ptr: *mut c_void, _name: &str) -> Option<f6
 #[must_use]
 pub fn root_object(_engine_ptr: *mut c_void) -> *mut c_void {
     std::ptr::null_mut()
+}
+
+#[cfg(feature = "mock-qt")]
+#[allow(dead_code)]
+#[must_use]
+pub fn emit_signal(
+    _qobject_ptr: *mut c_void,
+    signal_name: &str,
+    payload_json: Option<&str>,
+) -> bool {
+    tracing::debug!("Mock: emit_signal('{signal_name}', {:?})", payload_json);
+    true
 }
 
 #[cfg(test)]

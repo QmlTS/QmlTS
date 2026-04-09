@@ -363,6 +363,139 @@ impl QmltsEngine {
         Ok((bridge, schema))
     }
 
+    // ─────────────────────────────────────────────────────────────────────
+    //  Command dispatch & lifecycle routing (Step 4)
+    // ─────────────────────────────────────────────────────────────────────
+
+    /// Register a command invoke handler.
+    ///
+    /// The handler is called when QML calls `__qmlts.invoke(commandId)`.
+    /// The handler receives `(className: &str, commandId: u32)`.
+    ///
+    /// # Errors
+    ///
+    /// Returns an error if the engine is destroyed.
+    pub fn register_invoke_handler(
+        &self,
+        handler: Box<dyn Fn(&str, u32) + Send>,
+    ) -> Result<()> {
+        self.ensure_alive()?;
+        qmlts_host_generated::dispatch::set_command_dispatcher(handler);
+        tracing::debug!("Registered invoke handler");
+        Ok(())
+    }
+
+    /// Register a lifecycle event handler.
+    ///
+    /// The handler is called when QML calls `__qmlts.onMounted()` or
+    /// `__qmlts.onUnmounting()`.
+    /// The handler receives `(className: &str, event: &str)` where
+    /// event is `"onMounted"` or `"onUnmounting"`.
+    ///
+    /// # Errors
+    ///
+    /// Returns an error if the engine is destroyed.
+    pub fn register_lifecycle_handler(
+        &self,
+        handler: Box<dyn Fn(&str, &str) + Send>,
+    ) -> Result<()> {
+        self.ensure_alive()?;
+        qmlts_host_generated::dispatch::set_lifecycle_dispatcher(handler);
+        tracing::debug!("Registered lifecycle handler");
+        Ok(())
+    }
+
+    /// Emit an effect signal on the active runtime QObject by effect name.
+    ///
+    /// Looks up the effect in the active schema to find its `qml_name`,
+    /// then emits the corresponding Qt signal on the runtime QObject.
+    ///
+    /// # Errors
+    ///
+    /// - `EffectNotFound` if the effect name is not in the schema.
+    /// - `BridgeTypeNotFound` if no bridge is active or class name doesn't match.
+    pub fn emit_effect(
+        &self,
+        class_name: &str,
+        effect_name: &str,
+        payload_json: Option<&str>,
+    ) -> Result<()> {
+        self.ensure_alive()?;
+
+        let (bridge, schema) = self.require_active_bridge(class_name)?;
+
+        let effect = schema
+            .effects
+            .iter()
+            .find(|e| e.name == effect_name)
+            .ok_or_else(|| QmltsError::EffectNotFound {
+                vm: class_name.to_string(),
+                effect: effect_name.to_string(),
+            })?;
+
+        let runtime_ptr = bridge.runtime_qobject_ptr();
+        let ok = qt_context::emit_signal(runtime_ptr, &effect.qml_name, payload_json);
+        if ok {
+            tracing::debug!(
+                "Emitted effect '{}' on '{}'",
+                effect_name,
+                class_name
+            );
+            Ok(())
+        } else {
+            Err(QmltsError::Internal(format!(
+                "Failed to emit signal '{}' on '{class_name}'",
+                effect.qml_name
+            )))
+        }
+    }
+
+    /// Emit an effect signal on the active runtime QObject by effect ID.
+    ///
+    /// Looks up the effect in the active schema by `effect_id`,
+    /// then emits the corresponding Qt signal on the runtime QObject.
+    ///
+    /// # Errors
+    ///
+    /// - `EffectNotFound` if no effect with the given ID exists.
+    /// - `BridgeTypeNotFound` if no bridge is active or class name doesn't match.
+    pub fn emit_effect_by_id(
+        &self,
+        class_name: &str,
+        effect_id: u32,
+        payload_json: Option<&str>,
+    ) -> Result<()> {
+        self.ensure_alive()?;
+
+        let (bridge, schema) = self.require_active_bridge(class_name)?;
+
+        let effect = schema
+            .effects
+            .iter()
+            .find(|e| e.effect_id == effect_id)
+            .ok_or_else(|| QmltsError::EffectNotFound {
+                vm: class_name.to_string(),
+                effect: format!("effectId={effect_id}"),
+            })?;
+
+        let runtime_ptr = bridge.runtime_qobject_ptr();
+        let ok = qt_context::emit_signal(runtime_ptr, &effect.qml_name, payload_json);
+        if ok {
+            tracing::debug!(
+                "Emitted effect id={} ('{}') on '{}'",
+                effect_id,
+                effect.name,
+                class_name
+            );
+            Ok(())
+        } else {
+            Err(QmltsError::Internal(format!(
+                "Failed to emit signal '{}' on '{class_name}'",
+                effect.qml_name
+            )))
+        }
+    }
+
     /// Check whether a QML context property is currently published.
     #[must_use]
     pub fn has_context_property(&self, name: &str) -> bool {
@@ -647,6 +780,8 @@ impl QmltsEngine {
     }
 
     fn cleanup_qt_resources(&mut self) {
+        qmlts_host_generated::dispatch::clear_dispatchers();
+
         #[cfg(not(feature = "mock-qt"))]
         {
             if !self.engine_ptr.is_null() {
@@ -1029,5 +1164,141 @@ mod tests {
 
         let result = engine.sync_state("LoginViewModel", "username", "\"x\"");
         assert!(matches!(result, Err(QmltsError::EngineDestroyed)));
+    }
+
+    // ─────────────────────────────────────────────────────────────────────
+    //  Step 4: Command dispatch, lifecycle, effect tests
+    // ─────────────────────────────────────────────────────────────────────
+
+    #[cfg(feature = "mock-qt")]
+    #[test]
+    fn test_register_invoke_handler() {
+        reset_app_initialized();
+
+        let engine = QmltsEngine::new(None).unwrap();
+        let result = engine.register_invoke_handler(Box::new(|_class, _id| {}));
+        assert!(result.is_ok());
+        assert!(qmlts_host_generated::dispatch::has_command_dispatcher());
+        qmlts_host_generated::dispatch::clear_dispatchers();
+    }
+
+    #[cfg(feature = "mock-qt")]
+    #[test]
+    fn test_register_lifecycle_handler() {
+        reset_app_initialized();
+
+        let engine = QmltsEngine::new(None).unwrap();
+        let result = engine.register_lifecycle_handler(Box::new(|_class, _event| {}));
+        assert!(result.is_ok());
+        assert!(qmlts_host_generated::dispatch::has_lifecycle_dispatcher());
+        qmlts_host_generated::dispatch::clear_dispatchers();
+    }
+
+    #[cfg(feature = "mock-qt")]
+    #[test]
+    fn test_register_handler_fails_after_destroy() {
+        reset_app_initialized();
+
+        let mut engine = QmltsEngine::new(None).unwrap();
+        engine.mark_destroyed();
+        let result = engine.register_invoke_handler(Box::new(|_class, _id| {}));
+        assert!(result.is_err());
+    }
+
+    #[cfg(feature = "mock-qt")]
+    #[test]
+    fn test_emit_effect_by_name() {
+        reset_app_initialized();
+
+        let mut engine = QmltsEngine::new(None).unwrap();
+        engine.register_view_model("LoginViewModel").unwrap();
+
+        let result = engine.emit_effect("LoginViewModel", "onLoginCompleted", Some("[true]"));
+        assert!(result.is_ok());
+    }
+
+    #[cfg(feature = "mock-qt")]
+    #[test]
+    fn test_emit_effect_by_id() {
+        reset_app_initialized();
+
+        let mut engine = QmltsEngine::new(None).unwrap();
+        engine.register_view_model("LoginViewModel").unwrap();
+
+        let result = engine.emit_effect_by_id("LoginViewModel", 1_633_635_556, Some("[true]"));
+        assert!(result.is_ok());
+    }
+
+    #[cfg(feature = "mock-qt")]
+    #[test]
+    fn test_emit_effect_unknown_name() {
+        reset_app_initialized();
+
+        let mut engine = QmltsEngine::new(None).unwrap();
+        engine.register_view_model("LoginViewModel").unwrap();
+
+        let result = engine.emit_effect("LoginViewModel", "nonExistent", None);
+        assert!(matches!(
+            result,
+            Err(QmltsError::EffectNotFound { ref vm, ref effect })
+            if vm == "LoginViewModel" && effect == "nonExistent"
+        ));
+    }
+
+    #[cfg(feature = "mock-qt")]
+    #[test]
+    fn test_emit_effect_unknown_id() {
+        reset_app_initialized();
+
+        let mut engine = QmltsEngine::new(None).unwrap();
+        engine.register_view_model("LoginViewModel").unwrap();
+
+        let result = engine.emit_effect_by_id("LoginViewModel", 999_999, None);
+        assert!(matches!(result, Err(QmltsError::EffectNotFound { .. })));
+    }
+
+    #[cfg(feature = "mock-qt")]
+    #[test]
+    fn test_emit_effect_no_effects_on_counter() {
+        reset_app_initialized();
+
+        let mut engine = QmltsEngine::new(None).unwrap();
+        engine.register_view_model("CounterViewModel").unwrap();
+
+        let result = engine.emit_effect("CounterViewModel", "anything", None);
+        assert!(matches!(result, Err(QmltsError::EffectNotFound { .. })));
+    }
+
+    #[cfg(feature = "mock-qt")]
+    #[test]
+    fn test_emit_effect_without_payload() {
+        reset_app_initialized();
+
+        let mut engine = QmltsEngine::new(None).unwrap();
+        engine.register_view_model("LoginViewModel").unwrap();
+
+        let result = engine.emit_effect("LoginViewModel", "onLoginCompleted", None);
+        assert!(result.is_ok());
+    }
+
+    #[test]
+    fn test_cleanup_clears_dispatchers() {
+        reset_app_initialized();
+
+        let mut engine = QmltsEngine::new(None).unwrap();
+        engine
+            .register_invoke_handler(Box::new(|_, _| {}))
+            .unwrap();
+        engine
+            .register_lifecycle_handler(Box::new(|_, _| {}))
+            .unwrap();
+
+        assert!(qmlts_host_generated::dispatch::has_command_dispatcher());
+        assert!(qmlts_host_generated::dispatch::has_lifecycle_dispatcher());
+
+        engine.mark_destroyed();
+
+        assert!(!qmlts_host_generated::dispatch::has_command_dispatcher());
+        assert!(!qmlts_host_generated::dispatch::has_lifecycle_dispatcher());
     }
 }

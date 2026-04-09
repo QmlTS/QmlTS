@@ -53,6 +53,7 @@ pub use exports::*;
 /// It is NOT part of the public API and only exists for test support.
 pub mod qt_context_test {
     pub use crate::qt_context::{
-        read_bool_property, read_double_property, read_int_property, read_string_property,
+        emit_signal, read_bool_property, read_double_property, read_int_property,
+        read_string_property,
     };
 }
