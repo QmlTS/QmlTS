@@ -9,8 +9,9 @@
 
 use crate::bridge_registry::BridgeRegistry;
 use crate::error::{QmltsError, Result};
+use crate::property_sync;
 use crate::qt_context;
-use qmlts_host_generated::BridgeInstance;
+use qmlts_host_generated::{BridgeInstance, ViewModelSchema};
 use std::path::Path;
 #[cfg(not(feature = "mock-qt"))]
 use std::ptr;
@@ -83,6 +84,8 @@ pub struct QmltsEngine {
     registry: BridgeRegistry,
     /// Currently active bridge instance (one ViewModel at a time).
     active_bridge: Option<BridgeInstance>,
+    /// Parsed schema of the currently active ViewModel.
+    active_schema: Option<ViewModelSchema>,
     /// Whether QML has been loaded (prevents further registrations).
     qml_loaded: bool,
     /// Opaque pointer to the backing `QQmlApplicationEngine`.
@@ -124,6 +127,7 @@ impl QmltsEngine {
             loaded_components: Vec::new(),
             registry: BridgeRegistry::from_descriptors(qmlts_host_generated::descriptors()),
             active_bridge: None,
+            active_schema: None,
             qml_loaded: false,
             engine_ptr,
         })
@@ -210,6 +214,14 @@ impl QmltsEngine {
             .create_instance(class_name)
             .ok_or_else(|| QmltsError::BridgeTypeNotFound(class_name.to_string()))?;
 
+        // Parse and store schema
+        let schema_json = self.registry.get_schema_json(class_name).ok_or_else(|| {
+            QmltsError::SchemaValidation(format!("No schema found for '{class_name}'"))
+        })?;
+        let schema: ViewModelSchema = serde_json::from_str(schema_json).map_err(|e| {
+            QmltsError::SchemaValidation(format!("Failed to parse schema for '{class_name}': {e}"))
+        })?;
+
         #[cfg(not(feature = "mock-qt"))]
         {
             if self.engine_ptr.is_null() {
@@ -237,6 +249,7 @@ impl QmltsEngine {
 
         tracing::debug!("Registered bridge for '{class_name}'");
         self.active_bridge = Some(instance);
+        self.active_schema = Some(schema);
         Ok(())
     }
 
@@ -256,6 +269,98 @@ impl QmltsEngine {
     #[must_use]
     pub fn active_bridge(&self) -> Option<&BridgeInstance> {
         self.active_bridge.as_ref()
+    }
+
+    /// Get a reference to the active schema, if any.
+    #[must_use]
+    pub fn active_schema(&self) -> Option<&ViewModelSchema> {
+        self.active_schema.as_ref()
+    }
+
+    // ─────────────────────────────────────────────────────────────────────
+    //  Property synchronization (Step 3)
+    // ─────────────────────────────────────────────────────────────────────
+
+    /// Synchronize a single TypeScript property value into the active ViewModel.
+    ///
+    /// # Errors
+    ///
+    /// - `EngineNotInitialized` / `EngineDestroyed` if the engine is invalid.
+    /// - `BridgeTypeNotFound` if `class_name` doesn't match the active bridge.
+    /// - `PropertyNotFound` if the property is not in the schema.
+    /// - `TypeMismatch` if the JSON value doesn't match the property's qmlType.
+    pub fn sync_state(
+        &self,
+        class_name: &str,
+        property_name: &str,
+        json_value: &str,
+    ) -> Result<()> {
+        self.ensure_alive()?;
+
+        let (bridge, schema) = self.require_active_bridge(class_name)?;
+        let vm_ptr = bridge.vm_qobject_ptr();
+        property_sync::sync_one(vm_ptr, schema, property_name, json_value)
+    }
+
+    /// Synchronize a batch of property values into the active ViewModel.
+    ///
+    /// Uses best-effort semantics: all properties are attempted, failures collected.
+    ///
+    /// # Errors
+    ///
+    /// - `BatchSyncPartialFailure` if one or more properties fail.
+    pub fn sync_state_batch(&self, class_name: &str, json_state_map: &str) -> Result<()> {
+        self.ensure_alive()?;
+
+        let (bridge, schema) = self.require_active_bridge(class_name)?;
+        let vm_ptr = bridge.vm_qobject_ptr();
+        property_sync::sync_batch(vm_ptr, schema, json_state_map)
+    }
+
+    /// Read a property value from the active ViewModel as a JSON string.
+    ///
+    /// # Errors
+    ///
+    /// - `PropertyNotFound` if the property is not in the schema.
+    pub fn get_property(&self, class_name: &str, property_name: &str) -> Result<String> {
+        self.ensure_alive()?;
+
+        let (bridge, schema) = self.require_active_bridge(class_name)?;
+        let vm_ptr = bridge.vm_qobject_ptr();
+        let value = property_sync::read_one(vm_ptr, schema, property_name)?;
+        serde_json::to_string(&value)
+            .map_err(|e| QmltsError::Internal(format!("JSON serialization failed: {e}")))
+    }
+
+    /// Get a pointer to the first QML root object (for integration testing).
+    #[must_use]
+    pub fn root_object_ptr(&self) -> *mut std::ffi::c_void {
+        qt_context::root_object(self.engine_ptr)
+    }
+
+    /// Validate that `class_name` matches the active bridge, then return refs.
+    fn require_active_bridge(
+        &self,
+        class_name: &str,
+    ) -> Result<(&BridgeInstance, &ViewModelSchema)> {
+        let bridge = self
+            .active_bridge
+            .as_ref()
+            .ok_or_else(|| QmltsError::BridgeTypeNotFound(class_name.to_string()))?;
+
+        let schema = self
+            .active_schema
+            .as_ref()
+            .ok_or_else(|| QmltsError::BridgeTypeNotFound(class_name.to_string()))?;
+
+        if schema.class_name != class_name {
+            return Err(QmltsError::BridgeTypeNotFound(format!(
+                "Active bridge is '{}', not '{class_name}'",
+                schema.class_name
+            )));
+        }
+
+        Ok((bridge, schema))
     }
 
     /// Check whether a QML context property is currently published.
@@ -550,6 +655,7 @@ impl QmltsEngine {
                     let _ = qt_context::clear_context_property(self.engine_ptr, "__qmlts");
                 }
                 self.active_bridge = None;
+                self.active_schema = None;
                 unsafe {
                     qt_context::destroy_engine(self.engine_ptr);
                 }
@@ -560,6 +666,7 @@ impl QmltsEngine {
         #[cfg(feature = "mock-qt")]
         {
             self.active_bridge = None;
+            self.active_schema = None;
         }
     }
 }
@@ -813,5 +920,114 @@ mod tests {
             assert!(engine.has_context_property("vm"));
             assert!(engine.has_context_property("__qmlts"));
         }
+    }
+
+    #[test]
+    fn test_register_view_model_stores_schema() {
+        reset_app_initialized();
+
+        let mut engine = QmltsEngine::new(None).unwrap();
+        engine.register_view_model("LoginViewModel").unwrap();
+
+        let schema = engine.active_schema().expect("schema should be set");
+        assert_eq!(schema.class_name, "LoginViewModel");
+        assert!(!schema.states.is_empty());
+    }
+
+    #[test]
+    fn test_sync_state_succeeds() {
+        reset_app_initialized();
+
+        let mut engine = QmltsEngine::new(None).unwrap();
+        engine.register_view_model("LoginViewModel").unwrap();
+
+        let result = engine.sync_state("LoginViewModel", "username", "\"alice\"");
+        assert!(result.is_ok());
+    }
+
+    #[test]
+    fn test_sync_state_wrong_class_name() {
+        reset_app_initialized();
+
+        let mut engine = QmltsEngine::new(None).unwrap();
+        engine.register_view_model("LoginViewModel").unwrap();
+
+        let result = engine.sync_state("CounterViewModel", "username", "\"alice\"");
+        assert!(matches!(result, Err(QmltsError::BridgeTypeNotFound(_))));
+    }
+
+    #[test]
+    fn test_sync_state_no_active_bridge() {
+        reset_app_initialized();
+
+        let engine = QmltsEngine::new(None).unwrap();
+        let result = engine.sync_state("LoginViewModel", "username", "\"alice\"");
+        assert!(matches!(result, Err(QmltsError::BridgeTypeNotFound(_))));
+    }
+
+    #[test]
+    fn test_sync_state_property_not_found() {
+        reset_app_initialized();
+
+        let mut engine = QmltsEngine::new(None).unwrap();
+        engine.register_view_model("LoginViewModel").unwrap();
+
+        let result = engine.sync_state("LoginViewModel", "nonexistent", "\"x\"");
+        assert!(matches!(result, Err(QmltsError::PropertyNotFound { .. })));
+    }
+
+    #[test]
+    fn test_sync_state_type_mismatch() {
+        reset_app_initialized();
+
+        let mut engine = QmltsEngine::new(None).unwrap();
+        engine.register_view_model("LoginViewModel").unwrap();
+
+        // username is "string", pass a number
+        let result = engine.sync_state("LoginViewModel", "username", "42");
+        assert!(matches!(result, Err(QmltsError::TypeMismatch { .. })));
+    }
+
+    #[test]
+    fn test_sync_state_batch_succeeds() {
+        reset_app_initialized();
+
+        let mut engine = QmltsEngine::new(None).unwrap();
+        engine.register_view_model("LoginViewModel").unwrap();
+
+        let result = engine.sync_state_batch(
+            "LoginViewModel",
+            r#"{"username": "bob", "password": "secret"}"#,
+        );
+        assert!(result.is_ok());
+    }
+
+    #[test]
+    fn test_sync_state_batch_partial_failure() {
+        reset_app_initialized();
+
+        let mut engine = QmltsEngine::new(None).unwrap();
+        engine.register_view_model("LoginViewModel").unwrap();
+
+        let result = engine.sync_state_batch(
+            "LoginViewModel",
+            r#"{"username": "bob", "nonexistent": 42}"#,
+        );
+        assert!(matches!(
+            result,
+            Err(QmltsError::BatchSyncPartialFailure { .. })
+        ));
+    }
+
+    #[test]
+    fn test_sync_state_after_destroy_fails() {
+        reset_app_initialized();
+
+        let mut engine = QmltsEngine::new(None).unwrap();
+        engine.register_view_model("LoginViewModel").unwrap();
+        engine.mark_destroyed();
+
+        let result = engine.sync_state("LoginViewModel", "username", "\"x\"");
+        assert!(matches!(result, Err(QmltsError::EngineDestroyed)));
     }
 }

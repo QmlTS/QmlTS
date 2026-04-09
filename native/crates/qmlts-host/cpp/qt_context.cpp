@@ -7,6 +7,8 @@
 #include <QCoreApplication>
 #include <QEventLoop>
 #include <QGuiApplication>
+#include <QJsonDocument>
+#include <QJsonValue>
 #include <QObject>
 #include <QQmlApplicationEngine>
 #include <QQmlContext>
@@ -15,6 +17,8 @@
 #include <QVariant>
 #include <cstddef>
 #include <cstdint>
+#include <cstdlib>
+#include <cstring>
 
 namespace {
 QGuiApplication* ensure_application()
@@ -155,6 +159,147 @@ bool qmlts_read_int_property(void* qobject_ptr, const char* name, std::int32_t* 
 
     *out_value = static_cast<std::int32_t>(converted);
     return true;
+}
+
+// ─────────────────────────────────────────────────────────────────────────
+//  Property set functions (Step 3)
+// ─────────────────────────────────────────────────────────────────────────
+
+bool qmlts_set_string_property(void* qobject_ptr, const char* name, const char* value) {
+    if (!qobject_ptr || !name) {
+        return false;
+    }
+    auto* object = static_cast<QObject*>(qobject_ptr);
+    return object->setProperty(name, QString::fromUtf8(value));
+}
+
+bool qmlts_set_int_property(void* qobject_ptr, const char* name, std::int32_t value) {
+    if (!qobject_ptr || !name) {
+        return false;
+    }
+    auto* object = static_cast<QObject*>(qobject_ptr);
+    return object->setProperty(name, static_cast<int>(value));
+}
+
+bool qmlts_set_double_property(void* qobject_ptr, const char* name, double value) {
+    if (!qobject_ptr || !name) {
+        return false;
+    }
+    auto* object = static_cast<QObject*>(qobject_ptr);
+    return object->setProperty(name, value);
+}
+
+bool qmlts_set_bool_property(void* qobject_ptr, const char* name, bool value) {
+    if (!qobject_ptr || !name) {
+        return false;
+    }
+    auto* object = static_cast<QObject*>(qobject_ptr);
+    return object->setProperty(name, value);
+}
+
+bool qmlts_set_property_json(void* qobject_ptr, const char* name, const char* json) {
+    if (!qobject_ptr || !name || !json) {
+        return false;
+    }
+    auto* object = static_cast<QObject*>(qobject_ptr);
+    const QByteArray bytes(json);
+    const QJsonDocument doc = QJsonDocument::fromJson(bytes);
+    if (doc.isNull()) {
+        return false;
+    }
+    return object->setProperty(name, doc.toVariant());
+}
+
+// ─────────────────────────────────────────────────────────────────────────
+//  Property read functions (Step 3)
+// ─────────────────────────────────────────────────────────────────────────
+
+char* qmlts_read_string_property(void* qobject_ptr, const char* name) {
+    if (!qobject_ptr || !name) {
+        return nullptr;
+    }
+    auto* object = static_cast<QObject*>(qobject_ptr);
+    const QVariant value = object->property(name);
+    if (!value.isValid()) {
+        return nullptr;
+    }
+    const QByteArray utf8 = value.toString().toUtf8();
+    char* result = static_cast<char*>(std::malloc(static_cast<std::size_t>(utf8.size()) + 1));
+    if (result) {
+        std::memcpy(result, utf8.constData(), static_cast<std::size_t>(utf8.size()));
+        result[utf8.size()] = '\0';
+    }
+    return result;
+}
+
+char* qmlts_read_property_json(void* qobject_ptr, const char* name) {
+    if (!qobject_ptr || !name) {
+        return nullptr;
+    }
+    auto* object = static_cast<QObject*>(qobject_ptr);
+    const QVariant value = object->property(name);
+    if (!value.isValid()) {
+        return nullptr;
+    }
+
+    const QByteArray utf8 = QJsonValue::fromVariant(value).toJson(QJsonValue::JsonFormat::Compact);
+    char* result = static_cast<char*>(std::malloc(static_cast<std::size_t>(utf8.size()) + 1));
+    if (result) {
+        std::memcpy(result, utf8.constData(), static_cast<std::size_t>(utf8.size()));
+        result[utf8.size()] = '\0';
+    }
+    return result;
+}
+
+bool qmlts_read_bool_property(void* qobject_ptr, const char* name, bool* out_value) {
+    if (!qobject_ptr || !name || !out_value) {
+        return false;
+    }
+    auto* object = static_cast<QObject*>(qobject_ptr);
+    const QVariant value = object->property(name);
+    if (!value.isValid()) {
+        return false;
+    }
+    *out_value = value.toBool();
+    return true;
+}
+
+bool qmlts_read_double_property(void* qobject_ptr, const char* name, double* out_value) {
+    if (!qobject_ptr || !name || !out_value) {
+        return false;
+    }
+    auto* object = static_cast<QObject*>(qobject_ptr);
+    const QVariant value = object->property(name);
+    if (!value.isValid()) {
+        return false;
+    }
+    bool ok = false;
+    const double converted = value.toDouble(&ok);
+    if (!ok) {
+        return false;
+    }
+    *out_value = converted;
+    return true;
+}
+
+void qmlts_free_string(char* ptr) {
+    std::free(ptr);
+}
+
+// ─────────────────────────────────────────────────────────────────────────
+//  Root object helper (Step 3 — integration testing)
+// ─────────────────────────────────────────────────────────────────────────
+
+void* qmlts_root_object(void* engine_ptr) {
+    if (!engine_ptr) {
+        return nullptr;
+    }
+    auto* engine = static_cast<QQmlApplicationEngine*>(engine_ptr);
+    const auto roots = engine->rootObjects();
+    if (roots.isEmpty()) {
+        return nullptr;
+    }
+    return static_cast<void*>(roots.first());
 }
 
 } // extern "C"

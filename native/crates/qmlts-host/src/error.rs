@@ -77,6 +77,15 @@ pub enum QmltsError {
     /// Cannot register bridge types after engine has loaded QML.
     #[error("Cannot register bridge type: engine has already loaded QML")]
     BridgeAlreadyLoaded,
+
+    /// One or more properties failed during batch sync.
+    /// Successfully synced properties remain written.
+    #[error("Batch sync partial failure ({count} of {total} failed): {details}")]
+    BatchSyncPartialFailure {
+        count: usize,
+        total: usize,
+        details: String,
+    },
 }
 
 #[cfg(feature = "napi")]
@@ -132,6 +141,19 @@ mod tests {
         assert_eq!(
             err.to_string(),
             "Cannot register bridge type: engine has already loaded QML"
+        );
+    }
+
+    #[test]
+    fn test_batch_sync_partial_failure_display() {
+        let err = QmltsError::BatchSyncPartialFailure {
+            count: 1,
+            total: 3,
+            details: "Property 'foo' not found on ViewModel 'X'".to_string(),
+        };
+        assert_eq!(
+            err.to_string(),
+            "Batch sync partial failure (1 of 3 failed): Property 'foo' not found on ViewModel 'X'"
         );
     }
 }

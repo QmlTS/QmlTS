@@ -37,6 +37,7 @@ mod engine;
 mod error;
 #[cfg(feature = "napi")]
 mod exports;
+mod property_sync;
 mod qt_context;
 
 pub use bridge_registry::BridgeRegistry;
@@ -44,3 +45,14 @@ pub use engine::QmltsEngine;
 pub use error::QmltsError;
 #[cfg(feature = "napi")]
 pub use exports::*;
+
+/// Public test helpers for integration tests that need to read Qt properties.
+///
+/// This module re-exports the subset of `qt_context` functions needed by
+/// integration tests to read back property values from QObjects.
+/// It is NOT part of the public API and only exists for test support.
+pub mod qt_context_test {
+    pub use crate::qt_context::{
+        read_bool_property, read_double_property, read_int_property, read_string_property,
+    };
+}

@@ -315,6 +315,86 @@ pub fn active_runtime_i32_property(engine: &QmltsEngine, name: String) -> Option
 }
 
 // ─────────────────────────────────────────────────────────────────────────
+//  §2c Property Synchronization
+// ─────────────────────────────────────────────────────────────────────────
+
+/// Synchronize a single TypeScript property value into the active ViewModel.
+///
+/// @param engine - The engine instance.
+/// @param class_name - ViewModel class name (must match the active bridge).
+/// @param property_name - Property name as declared in the schema.
+/// @param json_value - JSON-encoded value to set.
+/// @throws Error if the class name doesn't match, property not found, or type mismatch.
+///
+/// @example
+/// ```typescript
+/// registerViewModel(engine, 'LoginViewModel');
+/// syncState(engine, 'LoginViewModel', 'username', '"alice"');
+/// ```
+#[napi(js_name = "syncState")]
+pub fn sync_state(
+    engine: &QmltsEngine,
+    class_name: String,
+    property_name: String,
+    json_value: String,
+) -> Result<()> {
+    engine
+        .inner
+        .sync_state(&class_name, &property_name, &json_value)
+        .map_err(|e| -> napi::Error { e.into() })
+}
+
+/// Synchronize a batch of property values into the active ViewModel.
+///
+/// Uses best-effort semantics: all properties are attempted, failures collected.
+///
+/// @param engine - The engine instance.
+/// @param class_name - ViewModel class name (must match the active bridge).
+/// @param json_state_map - JSON object mapping property names to values.
+/// @throws Error with details of any failed properties.
+///
+/// @example
+/// ```typescript
+/// syncStateBatch(engine, 'LoginViewModel', '{"username":"bob","password":"secret"}');
+/// ```
+#[napi(js_name = "syncStateBatch")]
+pub fn sync_state_batch(
+    engine: &QmltsEngine,
+    class_name: String,
+    json_state_map: String,
+) -> Result<()> {
+    engine
+        .inner
+        .sync_state_batch(&class_name, &json_state_map)
+        .map_err(|e| -> napi::Error { e.into() })
+}
+
+/// Read a property value from the active ViewModel as a JSON string.
+///
+/// @param engine - The engine instance.
+/// @param class_name - ViewModel class name (must match the active bridge).
+/// @param property_name - Property name to read.
+/// @returns JSON-encoded property value.
+/// @throws Error if the class name doesn't match or property not found.
+///
+/// @example
+/// ```typescript
+/// const value = getProperty(engine, 'LoginViewModel', 'username');
+/// // '"alice"'
+/// ```
+#[napi(js_name = "getProperty")]
+pub fn get_property(
+    engine: &QmltsEngine,
+    class_name: String,
+    property_name: String,
+) -> Result<String> {
+    engine
+        .inner
+        .get_property(&class_name, &property_name)
+        .map_err(|e| -> napi::Error { e.into() })
+}
+
+// ─────────────────────────────────────────────────────────────────────────
 //  §3 Event Loop
 // ─────────────────────────────────────────────────────────────────────────
 
@@ -525,5 +605,65 @@ mod tests {
         assert!(result.is_err());
         let err = result.unwrap_err();
         assert!(err.reason.contains("already loaded"));
+    }
+
+    #[test]
+    fn test_sync_state_napi() {
+        reset_qt();
+        let mut engine = create_engine(None).unwrap();
+        register_view_model(&mut engine, "LoginViewModel".to_string()).unwrap();
+
+        let result = sync_state(
+            &engine,
+            "LoginViewModel".to_string(),
+            "username".to_string(),
+            "\"alice\"".to_string(),
+        );
+        assert!(result.is_ok());
+    }
+
+    #[test]
+    fn test_sync_state_wrong_class_napi() {
+        reset_qt();
+        let mut engine = create_engine(None).unwrap();
+        register_view_model(&mut engine, "LoginViewModel".to_string()).unwrap();
+
+        let result = sync_state(
+            &engine,
+            "CounterViewModel".to_string(),
+            "username".to_string(),
+            "\"alice\"".to_string(),
+        );
+        assert!(result.is_err());
+    }
+
+    #[test]
+    fn test_sync_state_batch_napi() {
+        reset_qt();
+        let mut engine = create_engine(None).unwrap();
+        register_view_model(&mut engine, "LoginViewModel".to_string()).unwrap();
+
+        let result = sync_state_batch(
+            &engine,
+            "LoginViewModel".to_string(),
+            r#"{"username":"bob","password":"secret"}"#.to_string(),
+        );
+        assert!(result.is_ok());
+    }
+
+    #[test]
+    fn test_sync_state_batch_partial_failure_napi() {
+        reset_qt();
+        let mut engine = create_engine(None).unwrap();
+        register_view_model(&mut engine, "LoginViewModel".to_string()).unwrap();
+
+        let result = sync_state_batch(
+            &engine,
+            "LoginViewModel".to_string(),
+            r#"{"username":"bob","nonexistent":42}"#.to_string(),
+        );
+        assert!(result.is_err());
+        let err = result.unwrap_err();
+        assert!(err.reason.contains("partial failure"));
     }
 }

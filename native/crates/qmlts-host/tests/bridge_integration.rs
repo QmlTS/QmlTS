@@ -290,3 +290,227 @@ Item {
         "mountedCount should be 1 after one onMounted() call"
     );
 }
+
+// ─────────────────────────────────────────────────────────────────────────
+//  Property sync integration tests (Step 3)
+// ─────────────────────────────────────────────────────────────────────────
+
+#[test]
+fn test_sync_state_sets_string_property() {
+    let mut engine = QmltsEngine::new(None).unwrap();
+    engine.register_view_model("LoginViewModel").unwrap();
+
+    engine
+        .sync_state("LoginViewModel", "username", "\"alice\"")
+        .unwrap();
+
+    // Load QML with root-level property bound to vm.username for readback
+    engine
+        .load_string(
+            r#"import QtQuick
+Item {
+    objectName: "root"
+    property string displayedUsername: vm.username
+}"#,
+            None,
+        )
+        .unwrap();
+    engine.process_events().unwrap();
+
+    // Read the root object's displayedUsername property
+    let root = engine.root_object_ptr();
+    assert!(!root.is_null(), "root object should exist");
+    let val = qmlts_host::qt_context_test::read_string_property(root, "displayedUsername");
+    assert_eq!(val, Some("alice".to_string()));
+}
+
+#[test]
+fn test_sync_state_sets_bool_property() {
+    let mut engine = QmltsEngine::new(None).unwrap();
+    engine.register_view_model("LoginViewModel").unwrap();
+
+    // isLoading is bool, readonly in QML but host has full write access
+    engine
+        .sync_state("LoginViewModel", "isLoading", "true")
+        .unwrap();
+
+    engine
+        .load_string(
+            r#"import QtQuick
+Item {
+    property bool displayedLoading: vm.isLoading
+}"#,
+            None,
+        )
+        .unwrap();
+    engine.process_events().unwrap();
+
+    let root = engine.root_object_ptr();
+    let val = qmlts_host::qt_context_test::read_bool_property(root, "displayedLoading");
+    assert_eq!(val, Some(true));
+}
+
+#[test]
+fn test_sync_state_batch_sets_multiple_properties() {
+    let mut engine = QmltsEngine::new(None).unwrap();
+    engine.register_view_model("LoginViewModel").unwrap();
+
+    engine
+        .sync_state_batch(
+            "LoginViewModel",
+            r#"{"username":"bob","password":"s3cret"}"#,
+        )
+        .unwrap();
+
+    engine
+        .load_string(
+            r#"import QtQuick
+Item {
+    property string u: vm.username
+    property string p: vm.password
+}"#,
+            None,
+        )
+        .unwrap();
+    engine.process_events().unwrap();
+
+    let root = engine.root_object_ptr();
+    assert_eq!(
+        qmlts_host::qt_context_test::read_string_property(root, "u"),
+        Some("bob".to_string())
+    );
+    assert_eq!(
+        qmlts_host::qt_context_test::read_string_property(root, "p"),
+        Some("s3cret".to_string())
+    );
+}
+
+#[test]
+fn test_get_property_roundtrip() {
+    let mut engine = QmltsEngine::new(None).unwrap();
+    engine.register_view_model("LoginViewModel").unwrap();
+
+    engine
+        .sync_state("LoginViewModel", "username", "\"roundtrip\"")
+        .unwrap();
+
+    let result = engine.get_property("LoginViewModel", "username").unwrap();
+    assert_eq!(result, "\"roundtrip\"");
+}
+
+#[test]
+fn test_sync_state_property_not_found_error() {
+    let mut engine = QmltsEngine::new(None).unwrap();
+    engine.register_view_model("LoginViewModel").unwrap();
+
+    let result = engine.sync_state("LoginViewModel", "nonexistent", "\"x\"");
+    assert!(result.is_err());
+    let err_msg = result.unwrap_err().to_string();
+    assert!(err_msg.contains("nonexistent"));
+    assert!(err_msg.contains("not found"));
+}
+
+#[test]
+fn test_sync_state_type_mismatch_error() {
+    let mut engine = QmltsEngine::new(None).unwrap();
+    engine.register_view_model("LoginViewModel").unwrap();
+
+    // username is string, pass a number
+    let result = engine.sync_state("LoginViewModel", "username", "42");
+    assert!(result.is_err());
+    let err_msg = result.unwrap_err().to_string();
+    assert!(err_msg.contains("Type mismatch"));
+}
+
+#[test]
+fn test_sync_state_wrong_class_name_error() {
+    let mut engine = QmltsEngine::new(None).unwrap();
+    engine.register_view_model("LoginViewModel").unwrap();
+
+    let result = engine.sync_state("CounterViewModel", "count", "0");
+    assert!(result.is_err());
+}
+
+#[test]
+fn test_sync_state_batch_partial_failure() {
+    let mut engine = QmltsEngine::new(None).unwrap();
+    engine.register_view_model("LoginViewModel").unwrap();
+
+    let result = engine.sync_state_batch("LoginViewModel", r#"{"username":"ok","nonexistent":42}"#);
+    assert!(result.is_err());
+    let err_msg = result.unwrap_err().to_string();
+    assert!(err_msg.contains("partial failure"));
+    assert!(err_msg.contains("1 of 2"));
+    assert_eq!(
+        engine.get_property("LoginViewModel", "username").unwrap(),
+        "\"ok\""
+    );
+}
+
+#[test]
+fn test_counter_sync_int_property() {
+    let mut engine = QmltsEngine::new(None).unwrap();
+    engine.register_view_model("CounterViewModel").unwrap();
+
+    engine
+        .sync_state("CounterViewModel", "count", "99")
+        .unwrap();
+
+    engine
+        .load_string(
+            r#"import QtQuick
+Item {
+    property int displayedCount: vm.count
+}"#,
+            None,
+        )
+        .unwrap();
+    engine.process_events().unwrap();
+
+    let root = engine.root_object_ptr();
+    let val = qmlts_host::qt_context_test::read_int_property(root, "displayedCount");
+    assert_eq!(val, Some(99));
+}
+
+// ─────────────────────────────────────────────────────────────────────────
+//  Observable binding readback (root property pattern)
+// ─────────────────────────────────────────────────────────────────────────
+
+#[test]
+fn test_observable_binding_readback_after_sync() {
+    let mut engine = QmltsEngine::new(None).unwrap();
+    engine.register_view_model("LoginViewModel").unwrap();
+
+    // Load QML with observable bindings
+    engine
+        .load_string(
+            r#"import QtQuick
+Item {
+    property string boundUsername: vm.username
+    property string boundPassword: vm.password
+}"#,
+            None,
+        )
+        .unwrap();
+    engine.process_events().unwrap();
+
+    // Sync state AFTER load — bindings should update reactively
+    engine
+        .sync_state("LoginViewModel", "username", "\"reactive\"")
+        .unwrap();
+    engine
+        .sync_state("LoginViewModel", "password", "\"update\"")
+        .unwrap();
+    engine.process_events().unwrap();
+
+    let root = engine.root_object_ptr();
+    assert_eq!(
+        qmlts_host::qt_context_test::read_string_property(root, "boundUsername"),
+        Some("reactive".to_string()),
+        "Binding should update when vm property changes"
+    );
+    assert_eq!(
+        qmlts_host::qt_context_test::read_string_property(root, "boundPassword"),
+        Some("update".to_string()),
+    );
+}

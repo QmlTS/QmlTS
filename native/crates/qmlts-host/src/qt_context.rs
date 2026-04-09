@@ -35,6 +35,51 @@ unsafe extern "C" {
         name: *const std::ffi::c_char,
         out_value: *mut i32,
     ) -> bool;
+    fn qmlts_set_string_property(
+        qobject_ptr: *mut c_void,
+        name: *const std::ffi::c_char,
+        value: *const std::ffi::c_char,
+    ) -> bool;
+    fn qmlts_set_int_property(
+        qobject_ptr: *mut c_void,
+        name: *const std::ffi::c_char,
+        value: i32,
+    ) -> bool;
+    fn qmlts_set_double_property(
+        qobject_ptr: *mut c_void,
+        name: *const std::ffi::c_char,
+        value: f64,
+    ) -> bool;
+    fn qmlts_set_bool_property(
+        qobject_ptr: *mut c_void,
+        name: *const std::ffi::c_char,
+        value: bool,
+    ) -> bool;
+    fn qmlts_set_property_json(
+        qobject_ptr: *mut c_void,
+        name: *const std::ffi::c_char,
+        json: *const std::ffi::c_char,
+    ) -> bool;
+    fn qmlts_read_string_property(
+        qobject_ptr: *mut c_void,
+        name: *const std::ffi::c_char,
+    ) -> *mut std::ffi::c_char;
+    fn qmlts_read_property_json(
+        qobject_ptr: *mut c_void,
+        name: *const std::ffi::c_char,
+    ) -> *mut std::ffi::c_char;
+    fn qmlts_read_bool_property(
+        qobject_ptr: *mut c_void,
+        name: *const std::ffi::c_char,
+        out_value: *mut bool,
+    ) -> bool;
+    fn qmlts_read_double_property(
+        qobject_ptr: *mut c_void,
+        name: *const std::ffi::c_char,
+        out_value: *mut f64,
+    ) -> bool;
+    fn qmlts_free_string(ptr: *mut std::ffi::c_char);
+    fn qmlts_root_object(engine_ptr: *mut c_void) -> *mut c_void;
 }
 
 #[cfg(not(feature = "mock-qt"))]
@@ -209,6 +254,107 @@ pub unsafe fn clear_context_property(engine_ptr: *mut c_void, name: &str) -> boo
     unsafe { qmlts_clear_context_property(engine_ptr, c_name.as_ptr()) }
 }
 
+// ─────────────────────────────────────────────────────────────────────────
+//  Property set/read wrappers (Step 3)
+// ─────────────────────────────────────────────────────────────────────────
+
+#[cfg(not(feature = "mock-qt"))]
+#[allow(dead_code)]
+#[must_use]
+pub fn set_string_property(qobject_ptr: *mut c_void, name: &str, value: &str) -> bool {
+    let c_name = CString::new(name).expect("property name must not contain NUL");
+    let c_value = CString::new(value).expect("string value must not contain NUL");
+    unsafe { qmlts_set_string_property(qobject_ptr, c_name.as_ptr(), c_value.as_ptr()) }
+}
+
+#[cfg(not(feature = "mock-qt"))]
+#[allow(dead_code)]
+#[must_use]
+pub fn set_int_property(qobject_ptr: *mut c_void, name: &str, value: i32) -> bool {
+    let c_name = CString::new(name).expect("property name must not contain NUL");
+    unsafe { qmlts_set_int_property(qobject_ptr, c_name.as_ptr(), value) }
+}
+
+#[cfg(not(feature = "mock-qt"))]
+#[allow(dead_code)]
+#[must_use]
+pub fn set_double_property(qobject_ptr: *mut c_void, name: &str, value: f64) -> bool {
+    let c_name = CString::new(name).expect("property name must not contain NUL");
+    unsafe { qmlts_set_double_property(qobject_ptr, c_name.as_ptr(), value) }
+}
+
+#[cfg(not(feature = "mock-qt"))]
+#[allow(dead_code)]
+#[must_use]
+pub fn set_bool_property(qobject_ptr: *mut c_void, name: &str, value: bool) -> bool {
+    let c_name = CString::new(name).expect("property name must not contain NUL");
+    unsafe { qmlts_set_bool_property(qobject_ptr, c_name.as_ptr(), value) }
+}
+
+#[cfg(not(feature = "mock-qt"))]
+#[allow(dead_code)]
+#[must_use]
+pub fn set_property_json(qobject_ptr: *mut c_void, name: &str, json: &str) -> bool {
+    let c_name = CString::new(name).expect("property name must not contain NUL");
+    let c_json = CString::new(json).expect("JSON must not contain NUL");
+    unsafe { qmlts_set_property_json(qobject_ptr, c_name.as_ptr(), c_json.as_ptr()) }
+}
+
+#[cfg(not(feature = "mock-qt"))]
+#[allow(dead_code)]
+pub fn read_string_property(qobject_ptr: *mut c_void, name: &str) -> Option<String> {
+    let c_name = CString::new(name).expect("property name must not contain NUL");
+    let ptr = unsafe { qmlts_read_string_property(qobject_ptr, c_name.as_ptr()) };
+    if ptr.is_null() {
+        return None;
+    }
+    let result = unsafe { std::ffi::CStr::from_ptr(ptr) }
+        .to_string_lossy()
+        .into_owned();
+    unsafe { qmlts_free_string(ptr) };
+    Some(result)
+}
+
+#[cfg(not(feature = "mock-qt"))]
+#[allow(dead_code)]
+pub fn read_property_json(qobject_ptr: *mut c_void, name: &str) -> Option<String> {
+    let c_name = CString::new(name).expect("property name must not contain NUL");
+    let ptr = unsafe { qmlts_read_property_json(qobject_ptr, c_name.as_ptr()) };
+    if ptr.is_null() {
+        return None;
+    }
+    let result = unsafe { std::ffi::CStr::from_ptr(ptr) }
+        .to_string_lossy()
+        .into_owned();
+    unsafe { qmlts_free_string(ptr) };
+    Some(result)
+}
+
+#[cfg(not(feature = "mock-qt"))]
+#[allow(dead_code)]
+pub fn read_bool_property(qobject_ptr: *mut c_void, name: &str) -> Option<bool> {
+    let c_name = CString::new(name).expect("property name must not contain NUL");
+    let mut out_value = false;
+    let ok = unsafe { qmlts_read_bool_property(qobject_ptr, c_name.as_ptr(), &mut out_value) };
+    ok.then_some(out_value)
+}
+
+#[cfg(not(feature = "mock-qt"))]
+#[allow(dead_code)]
+pub fn read_double_property(qobject_ptr: *mut c_void, name: &str) -> Option<f64> {
+    let c_name = CString::new(name).expect("property name must not contain NUL");
+    let mut out_value = 0.0_f64;
+    let ok = unsafe { qmlts_read_double_property(qobject_ptr, c_name.as_ptr(), &mut out_value) };
+    ok.then_some(out_value)
+}
+
+#[cfg(not(feature = "mock-qt"))]
+#[allow(dead_code)]
+#[must_use]
+pub fn root_object(engine_ptr: *mut c_void) -> *mut c_void {
+    unsafe { qmlts_root_object(engine_ptr) }
+}
+
 // Mock implementations for testing without Qt
 #[cfg(feature = "mock-qt")]
 #[allow(dead_code)]
@@ -228,6 +374,81 @@ pub unsafe fn set_context_property(
 pub unsafe fn clear_context_property(_engine_ptr: *mut c_void, name: &str) -> bool {
     tracing::debug!("Mock: clear_context_property('{name}')");
     true
+}
+
+// ─────────────────────────────────────────────────────────────────────────
+//  Mock property set/read wrappers (Step 3)
+// ─────────────────────────────────────────────────────────────────────────
+
+#[cfg(feature = "mock-qt")]
+#[allow(dead_code)]
+#[must_use]
+pub fn set_string_property(_qobject_ptr: *mut c_void, name: &str, value: &str) -> bool {
+    tracing::debug!("Mock: set_string_property('{name}', '{value}')");
+    true
+}
+
+#[cfg(feature = "mock-qt")]
+#[allow(dead_code)]
+#[must_use]
+pub fn set_int_property(_qobject_ptr: *mut c_void, name: &str, value: i32) -> bool {
+    tracing::debug!("Mock: set_int_property('{name}', {value})");
+    true
+}
+
+#[cfg(feature = "mock-qt")]
+#[allow(dead_code)]
+#[must_use]
+pub fn set_double_property(_qobject_ptr: *mut c_void, name: &str, value: f64) -> bool {
+    tracing::debug!("Mock: set_double_property('{name}', {value})");
+    true
+}
+
+#[cfg(feature = "mock-qt")]
+#[allow(dead_code)]
+#[must_use]
+pub fn set_bool_property(_qobject_ptr: *mut c_void, name: &str, value: bool) -> bool {
+    tracing::debug!("Mock: set_bool_property('{name}', {value})");
+    true
+}
+
+#[cfg(feature = "mock-qt")]
+#[allow(dead_code)]
+#[must_use]
+pub fn set_property_json(_qobject_ptr: *mut c_void, name: &str, json: &str) -> bool {
+    tracing::debug!("Mock: set_property_json('{name}', '{json}')");
+    true
+}
+
+#[cfg(feature = "mock-qt")]
+#[allow(dead_code)]
+pub fn read_string_property(_qobject_ptr: *mut c_void, _name: &str) -> Option<String> {
+    None
+}
+
+#[cfg(feature = "mock-qt")]
+#[allow(dead_code)]
+pub fn read_property_json(_qobject_ptr: *mut c_void, _name: &str) -> Option<String> {
+    None
+}
+
+#[cfg(feature = "mock-qt")]
+#[allow(dead_code)]
+pub fn read_bool_property(_qobject_ptr: *mut c_void, _name: &str) -> Option<bool> {
+    None
+}
+
+#[cfg(feature = "mock-qt")]
+#[allow(dead_code)]
+pub fn read_double_property(_qobject_ptr: *mut c_void, _name: &str) -> Option<f64> {
+    None
+}
+
+#[cfg(feature = "mock-qt")]
+#[allow(dead_code)]
+#[must_use]
+pub fn root_object(_engine_ptr: *mut c_void) -> *mut c_void {
+    std::ptr::null_mut()
 }
 
 #[cfg(test)]
