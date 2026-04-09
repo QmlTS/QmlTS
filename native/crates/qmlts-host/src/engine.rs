@@ -7,7 +7,9 @@
 //!
 //! The engine uses cxx-qt for safe Qt interop.
 
+use crate::bridge_registry::BridgeRegistry;
 use crate::error::{QmltsError, Result};
+use qmlts_host_generated::BridgeInstance;
 use std::path::Path;
 use std::sync::atomic::{AtomicBool, Ordering};
 
@@ -71,6 +73,12 @@ pub struct QmltsEngine {
     /// Cached QML components (by URL or inline source hash).
     #[allow(dead_code)]
     loaded_components: Vec<String>,
+    /// Registry of generated bridge types.
+    registry: BridgeRegistry,
+    /// Currently active bridge instance (one ViewModel at a time).
+    active_bridge: Option<BridgeInstance>,
+    /// Whether QML has been loaded (prevents further registrations).
+    qml_loaded: bool,
 }
 
 impl QmltsEngine {
@@ -97,6 +105,11 @@ impl QmltsEngine {
             initialized: true,
             destroyed: false,
             loaded_components: Vec::new(),
+            registry: BridgeRegistry::from_descriptors(
+                qmlts_host_generated::descriptors(),
+            ),
+            active_bridge: None,
+            qml_loaded: false,
         })
     }
 
@@ -159,6 +172,50 @@ impl QmltsEngine {
         self.initialized
     }
 
+    /// Register a ViewModel bridge type by class name.
+    ///
+    /// Creates the bridge QObject pair and sets it as the active bridge.
+    /// Must be called before loading QML.
+    ///
+    /// # Errors
+    ///
+    /// Returns `BridgeAlreadyLoaded` if QML has already been loaded.
+    /// Returns `BridgeTypeNotFound` if the class name is not in the registry.
+    pub fn register_view_model(&mut self, class_name: &str) -> Result<()> {
+        self.ensure_alive()?;
+
+        if self.qml_loaded {
+            return Err(QmltsError::BridgeAlreadyLoaded);
+        }
+
+        let instance = self
+            .registry
+            .create_instance(class_name)
+            .ok_or_else(|| QmltsError::BridgeTypeNotFound(class_name.to_string()))?;
+
+        tracing::debug!("Registered bridge for '{class_name}'");
+        self.active_bridge = Some(instance);
+        Ok(())
+    }
+
+    /// Check whether a bridge type is available in the registry.
+    #[must_use]
+    pub fn has_bridge_type(&self, class_name: &str) -> bool {
+        self.registry.has_type(class_name)
+    }
+
+    /// Return all registered bridge type names (sorted).
+    #[must_use]
+    pub fn get_registered_types(&self) -> Vec<&'static str> {
+        self.registry.registered_types()
+    }
+
+    /// Get a reference to the active bridge instance, if any.
+    #[must_use]
+    pub fn active_bridge(&self) -> Option<&BridgeInstance> {
+        self.active_bridge.as_ref()
+    }
+
     /// Load a QML document from a file.
     ///
     /// # Arguments
@@ -190,6 +247,7 @@ impl QmltsEngine {
 
         // Store the loaded component path
         self.loaded_components.push(path.to_string());
+        self.qml_loaded = true;
 
         tracing::debug!("Loaded QML file: {}", path);
         Ok(())
@@ -218,6 +276,7 @@ impl QmltsEngine {
         // Store a marker for inline component
         let marker = base_url.unwrap_or("<inline>");
         self.loaded_components.push(marker.to_string());
+        self.qml_loaded = true;
 
         tracing::debug!("Loaded QML from string (base_url: {:?})", base_url);
         Ok(())
@@ -592,5 +651,49 @@ mod tests {
         } else {
             panic!("Expected QmlSyntaxError");
         }
+    }
+
+    #[test]
+    fn test_has_bridge_type() {
+        reset_app_initialized();
+
+        let engine = QmltsEngine::new(None).unwrap();
+        assert!(engine.has_bridge_type("LoginViewModel"));
+        assert!(engine.has_bridge_type("CounterViewModel"));
+        assert!(!engine.has_bridge_type("NonExistentViewModel"));
+    }
+
+    #[test]
+    fn test_get_registered_types() {
+        reset_app_initialized();
+
+        let engine = QmltsEngine::new(None).unwrap();
+        let types = engine.get_registered_types();
+        assert_eq!(types, vec!["CounterViewModel", "LoginViewModel"]);
+    }
+
+    #[test]
+    fn test_register_view_model_unknown_type() {
+        reset_app_initialized();
+
+        let mut engine = QmltsEngine::new(None).unwrap();
+        let result = engine.register_view_model("NonExistent");
+        assert!(matches!(
+            result,
+            Err(QmltsError::BridgeTypeNotFound(_))
+        ));
+    }
+
+    #[test]
+    fn test_register_after_load_fails() {
+        reset_app_initialized();
+
+        let mut engine = QmltsEngine::new(None).unwrap();
+        engine
+            .load_string("import QtQuick\nItem { }", None)
+            .unwrap();
+
+        let result = engine.register_view_model("LoginViewModel");
+        assert!(matches!(result, Err(QmltsError::BridgeAlreadyLoaded)));
     }
 }
