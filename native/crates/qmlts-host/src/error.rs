@@ -123,10 +123,7 @@ mod tests {
     #[test]
     fn test_bridge_type_not_found_display() {
         let err = QmltsError::BridgeTypeNotFound("FooViewModel".to_string());
-        assert_eq!(
-            err.to_string(),
-            "Bridge type not found: 'FooViewModel'"
-        );
+        assert_eq!(err.to_string(), "Bridge type not found: 'FooViewModel'");
     }
 
     #[test]

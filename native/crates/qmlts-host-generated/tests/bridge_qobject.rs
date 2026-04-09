@@ -53,10 +53,7 @@ fn test_multiple_creates_return_different_instances() {
 
     // Different QObject instances each time
     assert_ne!(bridge1.vm_qobject_ptr(), bridge2.vm_qobject_ptr());
-    assert_ne!(
-        bridge1.runtime_qobject_ptr(),
-        bridge2.runtime_qobject_ptr()
-    );
+    assert_ne!(bridge1.runtime_qobject_ptr(), bridge2.runtime_qobject_ptr());
 }
 
 #[test]

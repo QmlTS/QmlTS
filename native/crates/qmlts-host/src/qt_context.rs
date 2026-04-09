@@ -3,7 +3,9 @@
 //! Provides safe wrappers around the `extern "C"` functions in
 //! `cpp/qt_context.cpp` for setting QML context properties.
 
-use std::ffi::{CString, c_void};
+#[cfg(not(feature = "mock-qt"))]
+use std::ffi::CString;
+use std::ffi::c_void;
 
 #[cfg(not(feature = "mock-qt"))]
 unsafe extern "C" {
@@ -12,10 +14,7 @@ unsafe extern "C" {
         name: *const std::ffi::c_char,
         qobject_ptr: *mut c_void,
     );
-    fn qmlts_clear_context_property(
-        engine_ptr: *mut c_void,
-        name: *const std::ffi::c_char,
-    );
+    fn qmlts_clear_context_property(engine_ptr: *mut c_void, name: *const std::ffi::c_char);
 }
 
 /// Set a context property on a QML engine's root context.
@@ -25,11 +24,8 @@ unsafe extern "C" {
 /// - `qobject_ptr` must be a valid `QObject*`
 /// - Must be called on the Qt main thread
 #[cfg(not(feature = "mock-qt"))]
-pub unsafe fn set_context_property(
-    engine_ptr: *mut c_void,
-    name: &str,
-    qobject_ptr: *mut c_void,
-) {
+#[allow(dead_code)]
+pub unsafe fn set_context_property(engine_ptr: *mut c_void, name: &str, qobject_ptr: *mut c_void) {
     let c_name = CString::new(name).expect("context property name must not contain NUL");
     unsafe {
         qmlts_set_context_property(engine_ptr, c_name.as_ptr(), qobject_ptr);
@@ -42,6 +38,7 @@ pub unsafe fn set_context_property(
 /// - `engine_ptr` must be a valid `QQmlEngine*`
 /// - Must be called on the Qt main thread
 #[cfg(not(feature = "mock-qt"))]
+#[allow(dead_code)]
 pub unsafe fn clear_context_property(engine_ptr: *mut c_void, name: &str) {
     let c_name = CString::new(name).expect("context property name must not contain NUL");
     unsafe {
@@ -51,6 +48,7 @@ pub unsafe fn clear_context_property(engine_ptr: *mut c_void, name: &str) {
 
 // Mock implementations for testing without Qt
 #[cfg(feature = "mock-qt")]
+#[allow(dead_code)]
 pub unsafe fn set_context_property(
     _engine_ptr: *mut c_void,
     name: &str,
@@ -60,6 +58,7 @@ pub unsafe fn set_context_property(
 }
 
 #[cfg(feature = "mock-qt")]
+#[allow(dead_code)]
 pub unsafe fn clear_context_property(_engine_ptr: *mut c_void, name: &str) {
     tracing::debug!("Mock: clear_context_property('{name}')");
 }

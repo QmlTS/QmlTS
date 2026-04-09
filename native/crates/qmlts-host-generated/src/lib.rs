@@ -61,11 +61,7 @@ impl BridgeInstance {
     ///
     /// # Safety
     /// `vm_ptr` and `runtime_ptr` must point to valid `QObjects` owned by `storage`.
-    pub fn new(
-        storage: Box<dyn Any>,
-        vm_ptr: *mut c_void,
-        runtime_ptr: *mut c_void,
-    ) -> Self {
+    pub fn new(storage: Box<dyn Any>, vm_ptr: *mut c_void, runtime_ptr: *mut c_void) -> Self {
         Self {
             _storage: storage,
             vm_ptr,

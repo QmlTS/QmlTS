@@ -105,9 +105,7 @@ impl QmltsEngine {
             initialized: true,
             destroyed: false,
             loaded_components: Vec::new(),
-            registry: BridgeRegistry::from_descriptors(
-                qmlts_host_generated::descriptors(),
-            ),
+            registry: BridgeRegistry::from_descriptors(qmlts_host_generated::descriptors()),
             active_bridge: None,
             qml_loaded: false,
         })
@@ -678,10 +676,7 @@ mod tests {
 
         let mut engine = QmltsEngine::new(None).unwrap();
         let result = engine.register_view_model("NonExistent");
-        assert!(matches!(
-            result,
-            Err(QmltsError::BridgeTypeNotFound(_))
-        ));
+        assert!(matches!(result, Err(QmltsError::BridgeTypeNotFound(_))));
     }
 
     #[test]
