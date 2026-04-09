@@ -101,8 +101,8 @@ pub fn has_lifecycle_dispatcher() -> bool {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use std::sync::atomic::{AtomicU32, Ordering};
     use std::sync::Arc;
+    use std::sync::atomic::{AtomicU32, Ordering};
 
     #[test]
     fn dispatch_command_without_handler_does_not_panic() {

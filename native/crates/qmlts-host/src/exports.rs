@@ -496,8 +496,8 @@ pub fn register_invoke_handler(
 ) -> Result<()> {
     use napi::threadsafe_function::{ErrorStrategy, ThreadSafeCallContext, ThreadsafeFunction};
 
-    let tsfn: ThreadsafeFunction<(String, u32), ErrorStrategy::Fatal> =
-        callback.create_threadsafe_function(0, |ctx: ThreadSafeCallContext<(String, u32)>| {
+    let tsfn: ThreadsafeFunction<(String, u32), ErrorStrategy::Fatal> = callback
+        .create_threadsafe_function(0, |ctx: ThreadSafeCallContext<(String, u32)>| {
             let (class_name, command_id) = ctx.value;
             Ok(vec![
                 ctx.env.create_string_from_std(class_name)?.into_unknown(),
@@ -536,13 +536,12 @@ pub fn register_invoke_handler(
 #[napi(js_name = "registerLifecycleHandler")]
 pub fn register_lifecycle_handler(
     engine: &QmltsEngine,
-    #[napi(ts_arg_type = "(className: string, event: string) => void")]
-    callback: napi::JsFunction,
+    #[napi(ts_arg_type = "(className: string, event: string) => void")] callback: napi::JsFunction,
 ) -> Result<()> {
     use napi::threadsafe_function::{ErrorStrategy, ThreadSafeCallContext, ThreadsafeFunction};
 
-    let tsfn: ThreadsafeFunction<(String, String), ErrorStrategy::Fatal> =
-        callback.create_threadsafe_function(0, |ctx: ThreadSafeCallContext<(String, String)>| {
+    let tsfn: ThreadsafeFunction<(String, String), ErrorStrategy::Fatal> = callback
+        .create_threadsafe_function(0, |ctx: ThreadSafeCallContext<(String, String)>| {
             let (class_name, event) = ctx.value;
             Ok(vec![
                 ctx.env.create_string_from_std(class_name)?.into_unknown(),
@@ -871,12 +870,7 @@ mod tests {
         let mut engine = create_engine(None).unwrap();
         register_view_model(&mut engine, "LoginViewModel".to_string()).unwrap();
 
-        let result = emit_effect_by_id(
-            &engine,
-            "LoginViewModel".to_string(),
-            999_999,
-            None,
-        );
+        let result = emit_effect_by_id(&engine, "LoginViewModel".to_string(), 999_999, None);
         assert!(result.is_err());
     }
 }

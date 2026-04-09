@@ -363,12 +363,14 @@ pub fn root_object(engine_ptr: *mut c_void) -> *mut c_void {
 #[cfg(not(feature = "mock-qt"))]
 #[allow(dead_code)]
 #[must_use]
-pub fn emit_signal(qobject_ptr: *mut c_void, signal_name: &str, payload_json: Option<&str>) -> bool {
+pub fn emit_signal(
+    qobject_ptr: *mut c_void,
+    signal_name: &str,
+    payload_json: Option<&str>,
+) -> bool {
     let c_name = CString::new(signal_name).expect("signal name must not contain NUL");
     let c_json = payload_json.map(|j| CString::new(j).expect("payload JSON must not contain NUL"));
-    let json_ptr = c_json
-        .as_ref()
-        .map_or(std::ptr::null(), |c| c.as_ptr());
+    let json_ptr = c_json.as_ref().map_or(std::ptr::null(), |c| c.as_ptr());
     unsafe { qmlts_emit_signal(qobject_ptr, c_name.as_ptr(), json_ptr) }
 }
 

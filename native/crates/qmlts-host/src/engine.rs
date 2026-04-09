@@ -375,10 +375,7 @@ impl QmltsEngine {
     /// # Errors
     ///
     /// Returns an error if the engine is destroyed.
-    pub fn register_invoke_handler(
-        &self,
-        handler: Box<dyn Fn(&str, u32) + Send>,
-    ) -> Result<()> {
+    pub fn register_invoke_handler(&self, handler: Box<dyn Fn(&str, u32) + Send>) -> Result<()> {
         self.ensure_alive()?;
         qmlts_host_generated::dispatch::set_command_dispatcher(handler);
         tracing::debug!("Registered invoke handler");
@@ -436,11 +433,7 @@ impl QmltsEngine {
         let runtime_ptr = bridge.runtime_qobject_ptr();
         let ok = qt_context::emit_signal(runtime_ptr, &effect.qml_name, payload_json);
         if ok {
-            tracing::debug!(
-                "Emitted effect '{}' on '{}'",
-                effect_name,
-                class_name
-            );
+            tracing::debug!("Emitted effect '{}' on '{}'", effect_name, class_name);
             Ok(())
         } else {
             Err(QmltsError::Internal(format!(
@@ -1286,9 +1279,7 @@ mod tests {
         reset_app_initialized();
 
         let mut engine = QmltsEngine::new(None).unwrap();
-        engine
-            .register_invoke_handler(Box::new(|_, _| {}))
-            .unwrap();
+        engine.register_invoke_handler(Box::new(|_, _| {})).unwrap();
         engine
             .register_lifecycle_handler(Box::new(|_, _| {}))
             .unwrap();
