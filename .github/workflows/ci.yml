@@ -99,6 +99,13 @@ jobs:
         working-directory: native
         run: cargo clippy --all-targets --all-features -- -D warnings
 
+      - name: Rust integration tests (real Qt)
+        working-directory: native
+        run: cargo test
+        env:
+          QT_DIR: ${{ env.QT_ROOT_DIR }}
+          QT_QPA_PLATFORM: offscreen
+
       - name: Rust tests
         working-directory: native
         run: cargo test --all-features
