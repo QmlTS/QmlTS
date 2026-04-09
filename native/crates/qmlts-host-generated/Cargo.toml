@@ -1,0 +1,19 @@
+[package]
+name = "qmlts-host-generated"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+repository.workspace = true
+rust-version.workspace = true
+description = "Generated cxx-qt bridge types for QmlTS fixture ViewModels"
+
+[lib]
+crate-type = ["rlib"]
+
+[dependencies]
+cxx = { workspace = true }
+cxx-qt = { workspace = true }
+cxx-qt-lib = { workspace = true }
+
+[build-dependencies]
+cxx-qt-build = { workspace = true }
