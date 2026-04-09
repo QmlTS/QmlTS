@@ -39,7 +39,13 @@ pub fn sync_one(
             actual: format!("invalid JSON: {e}"),
         })?;
 
-    write_property(vm_ptr, &schema.class_name, &state.qml_name, &state.qml_type, &parsed)
+    write_property(
+        vm_ptr,
+        &schema.class_name,
+        &state.qml_name,
+        &state.qml_type,
+        &parsed,
+    )
 }
 
 /// Synchronize a batch of property values at once.
@@ -47,15 +53,9 @@ pub fn sync_one(
 /// `json_map` is a JSON object `{"prop1": value1, "prop2": value2, ...}`.
 /// Uses best-effort semantics: all properties are attempted; failures are
 /// collected into `BatchSyncPartialFailure`.
-pub fn sync_batch(
-    vm_ptr: *mut c_void,
-    schema: &ViewModelSchema,
-    json_map: &str,
-) -> Result<()> {
-    let map: serde_json::Map<String, serde_json::Value> =
-        serde_json::from_str(json_map).map_err(|e| {
-            QmltsError::Internal(format!("sync_batch: invalid JSON map: {e}"))
-        })?;
+pub fn sync_batch(vm_ptr: *mut c_void, schema: &ViewModelSchema, json_map: &str) -> Result<()> {
+    let map: serde_json::Map<String, serde_json::Value> = serde_json::from_str(json_map)
+        .map_err(|e| QmltsError::Internal(format!("sync_batch: invalid JSON map: {e}")))?;
 
     let total = map.len();
     let mut failures: Vec<String> = Vec::new();
@@ -89,7 +89,13 @@ fn sync_one_value(
         prop: prop_name.to_string(),
     })?;
 
-    write_property(vm_ptr, &schema.class_name, &state.qml_name, &state.qml_type, value)
+    write_property(
+        vm_ptr,
+        &schema.class_name,
+        &state.qml_name,
+        &state.qml_type,
+        value,
+    )
 }
 
 /// Read a single property from the QObject and return it as a JSON value.
@@ -157,9 +163,8 @@ fn write_property(
         }
         // Complex types (date, list<*>) — pass through as JSON
         _ => {
-            let json_str = serde_json::to_string(value).map_err(|e| {
-                QmltsError::Internal(format!("JSON serialization failed: {e}"))
-            })?;
+            let json_str = serde_json::to_string(value)
+                .map_err(|e| QmltsError::Internal(format!("JSON serialization failed: {e}")))?;
             qt_context::set_property_json(vm_ptr, qml_name, &json_str)
         }
     };
@@ -182,12 +187,11 @@ fn read_property(
 ) -> Result<serde_json::Value> {
     match qml_type {
         "string" => {
-            let val =
-                qt_context::read_string_property(vm_ptr, qml_name).ok_or_else(|| {
-                    QmltsError::Internal(format!(
-                        "FFI read_string_property failed for '{qml_name}' on '{class_name}'"
-                    ))
-                })?;
+            let val = qt_context::read_string_property(vm_ptr, qml_name).ok_or_else(|| {
+                QmltsError::Internal(format!(
+                    "FFI read_string_property failed for '{qml_name}' on '{class_name}'"
+                ))
+            })?;
             Ok(serde_json::Value::String(val))
         }
         "int" => {
@@ -220,12 +224,11 @@ fn read_property(
         }
         _ => {
             // Complex types — try reading as string (JSON encoded)
-            let val =
-                qt_context::read_string_property(vm_ptr, qml_name).ok_or_else(|| {
-                    QmltsError::Internal(format!(
-                        "FFI read_string_property failed for '{qml_name}' on '{class_name}'"
-                    ))
-                })?;
+            let val = qt_context::read_string_property(vm_ptr, qml_name).ok_or_else(|| {
+                QmltsError::Internal(format!(
+                    "FFI read_string_property failed for '{qml_name}' on '{class_name}'"
+                ))
+            })?;
             serde_json::from_str(&val).map_err(|e| {
                 QmltsError::Internal(format!("Failed to parse JSON for '{qml_name}': {e}"))
             })
@@ -315,6 +318,7 @@ mod tests {
 
     // sync_one tests
 
+    #[cfg(feature = "mock-qt")]
     #[test]
     fn sync_one_string_succeeds() {
         let schema = test_schema();
@@ -322,6 +326,7 @@ mod tests {
         assert!(result.is_ok());
     }
 
+    #[cfg(feature = "mock-qt")]
     #[test]
     fn sync_one_int_succeeds() {
         let schema = test_schema();
@@ -329,6 +334,7 @@ mod tests {
         assert!(result.is_ok());
     }
 
+    #[cfg(feature = "mock-qt")]
     #[test]
     fn sync_one_real_succeeds() {
         let schema = test_schema();
@@ -336,6 +342,7 @@ mod tests {
         assert!(result.is_ok());
     }
 
+    #[cfg(feature = "mock-qt")]
     #[test]
     fn sync_one_bool_succeeds() {
         let schema = test_schema();
@@ -343,6 +350,7 @@ mod tests {
         assert!(result.is_ok());
     }
 
+    #[cfg(feature = "mock-qt")]
     #[test]
     fn sync_one_readonly_also_writes() {
         // Host always has full write access regardless of readonly
@@ -392,6 +400,7 @@ mod tests {
 
     // sync_batch tests
 
+    #[cfg(feature = "mock-qt")]
     #[test]
     fn sync_batch_all_succeed() {
         let schema = test_schema();
@@ -403,6 +412,7 @@ mod tests {
         assert!(result.is_ok());
     }
 
+    #[cfg(feature = "mock-qt")]
     #[test]
     fn sync_batch_partial_failure() {
         let schema = test_schema();
@@ -432,6 +442,7 @@ mod tests {
         assert!(matches!(result, Err(QmltsError::Internal(_))));
     }
 
+    #[cfg(feature = "mock-qt")]
     #[test]
     fn sync_batch_empty_map_succeeds() {
         let schema = test_schema();
@@ -445,10 +456,7 @@ mod tests {
     fn read_one_property_not_found() {
         let schema = test_schema();
         let result = read_one(ptr::null_mut(), &schema, "nonexistent");
-        assert!(matches!(
-            result,
-            Err(QmltsError::PropertyNotFound { .. })
-        ));
+        assert!(matches!(result, Err(QmltsError::PropertyNotFound { .. })));
     }
 
     #[cfg(feature = "mock-qt")]

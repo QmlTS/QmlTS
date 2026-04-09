@@ -35,9 +35,9 @@
 mod bridge_registry;
 mod engine;
 mod error;
-mod property_sync;
 #[cfg(feature = "napi")]
 mod exports;
+mod property_sync;
 mod qt_context;
 
 pub use bridge_registry::BridgeRegistry;

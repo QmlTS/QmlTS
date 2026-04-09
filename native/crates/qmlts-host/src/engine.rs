@@ -215,18 +215,12 @@ impl QmltsEngine {
             .ok_or_else(|| QmltsError::BridgeTypeNotFound(class_name.to_string()))?;
 
         // Parse and store schema
-        let schema_json = self
-            .registry
-            .get_schema_json(class_name)
-            .ok_or_else(|| {
-                QmltsError::SchemaValidation(format!("No schema found for '{class_name}'"))
-            })?;
-        let schema: ViewModelSchema =
-            serde_json::from_str(schema_json).map_err(|e| {
-                QmltsError::SchemaValidation(format!(
-                    "Failed to parse schema for '{class_name}': {e}"
-                ))
-            })?;
+        let schema_json = self.registry.get_schema_json(class_name).ok_or_else(|| {
+            QmltsError::SchemaValidation(format!("No schema found for '{class_name}'"))
+        })?;
+        let schema: ViewModelSchema = serde_json::from_str(schema_json).map_err(|e| {
+            QmltsError::SchemaValidation(format!("Failed to parse schema for '{class_name}': {e}"))
+        })?;
 
         #[cfg(not(feature = "mock-qt"))]
         {
@@ -979,10 +973,7 @@ mod tests {
         engine.register_view_model("LoginViewModel").unwrap();
 
         let result = engine.sync_state("LoginViewModel", "nonexistent", "\"x\"");
-        assert!(matches!(
-            result,
-            Err(QmltsError::PropertyNotFound { .. })
-        ));
+        assert!(matches!(result, Err(QmltsError::PropertyNotFound { .. })));
     }
 
     #[test]

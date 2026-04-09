@@ -436,10 +436,7 @@ fn test_sync_state_batch_partial_failure() {
     let mut engine = QmltsEngine::new(None).unwrap();
     engine.register_view_model("LoginViewModel").unwrap();
 
-    let result = engine.sync_state_batch(
-        "LoginViewModel",
-        r#"{"username":"ok","nonexistent":42}"#,
-    );
+    let result = engine.sync_state_batch("LoginViewModel", r#"{"username":"ok","nonexistent":42}"#);
     assert!(result.is_err());
     let err_msg = result.unwrap_err().to_string();
     assert!(err_msg.contains("partial failure"));
