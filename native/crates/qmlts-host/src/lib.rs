@@ -36,6 +36,7 @@ mod bridge_registry;
 mod engine;
 mod error;
 mod exports;
+mod qt_context;
 
 pub use bridge_registry::BridgeRegistry;
 pub use engine::QmltsEngine;
