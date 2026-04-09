@@ -64,6 +64,10 @@ unsafe extern "C" {
         qobject_ptr: *mut c_void,
         name: *const std::ffi::c_char,
     ) -> *mut std::ffi::c_char;
+    fn qmlts_read_property_json(
+        qobject_ptr: *mut c_void,
+        name: *const std::ffi::c_char,
+    ) -> *mut std::ffi::c_char;
     fn qmlts_read_bool_property(
         qobject_ptr: *mut c_void,
         name: *const std::ffi::c_char,
@@ -313,6 +317,21 @@ pub fn read_string_property(qobject_ptr: *mut c_void, name: &str) -> Option<Stri
 
 #[cfg(not(feature = "mock-qt"))]
 #[allow(dead_code)]
+pub fn read_property_json(qobject_ptr: *mut c_void, name: &str) -> Option<String> {
+    let c_name = CString::new(name).expect("property name must not contain NUL");
+    let ptr = unsafe { qmlts_read_property_json(qobject_ptr, c_name.as_ptr()) };
+    if ptr.is_null() {
+        return None;
+    }
+    let result = unsafe { std::ffi::CStr::from_ptr(ptr) }
+        .to_string_lossy()
+        .into_owned();
+    unsafe { qmlts_free_string(ptr) };
+    Some(result)
+}
+
+#[cfg(not(feature = "mock-qt"))]
+#[allow(dead_code)]
 pub fn read_bool_property(qobject_ptr: *mut c_void, name: &str) -> Option<bool> {
     let c_name = CString::new(name).expect("property name must not contain NUL");
     let mut out_value = false;
@@ -404,6 +423,12 @@ pub fn set_property_json(_qobject_ptr: *mut c_void, name: &str, json: &str) -> b
 #[cfg(feature = "mock-qt")]
 #[allow(dead_code)]
 pub fn read_string_property(_qobject_ptr: *mut c_void, _name: &str) -> Option<String> {
+    None
+}
+
+#[cfg(feature = "mock-qt")]
+#[allow(dead_code)]
+pub fn read_property_json(_qobject_ptr: *mut c_void, _name: &str) -> Option<String> {
     None
 }
 

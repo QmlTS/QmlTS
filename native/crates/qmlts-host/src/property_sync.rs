@@ -223,10 +223,12 @@ fn read_property(
             Ok(serde_json::Value::Bool(val))
         }
         _ => {
-            // Complex types — try reading as string (JSON encoded)
-            let val = qt_context::read_string_property(vm_ptr, qml_name).ok_or_else(|| {
+            // Complex types are stored as QVariant-compatible JSON values.
+            // Read them back through the dedicated JSON FFI path to preserve
+            // symmetry with `set_property_json()`.
+            let val = qt_context::read_property_json(vm_ptr, qml_name).ok_or_else(|| {
                 QmltsError::Internal(format!(
-                    "FFI read_string_property failed for '{qml_name}' on '{class_name}'"
+                    "FFI read_property_json failed for '{qml_name}' on '{class_name}'"
                 ))
             })?;
             serde_json::from_str(&val).map_err(|e| {

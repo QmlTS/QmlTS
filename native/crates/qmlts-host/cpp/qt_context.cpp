@@ -8,6 +8,7 @@
 #include <QEventLoop>
 #include <QGuiApplication>
 #include <QJsonDocument>
+#include <QJsonValue>
 #include <QObject>
 #include <QQmlApplicationEngine>
 #include <QQmlContext>
@@ -223,6 +224,25 @@ char* qmlts_read_string_property(void* qobject_ptr, const char* name) {
         return nullptr;
     }
     const QByteArray utf8 = value.toString().toUtf8();
+    char* result = static_cast<char*>(std::malloc(static_cast<std::size_t>(utf8.size()) + 1));
+    if (result) {
+        std::memcpy(result, utf8.constData(), static_cast<std::size_t>(utf8.size()));
+        result[utf8.size()] = '\0';
+    }
+    return result;
+}
+
+char* qmlts_read_property_json(void* qobject_ptr, const char* name) {
+    if (!qobject_ptr || !name) {
+        return nullptr;
+    }
+    auto* object = static_cast<QObject*>(qobject_ptr);
+    const QVariant value = object->property(name);
+    if (!value.isValid()) {
+        return nullptr;
+    }
+
+    const QByteArray utf8 = QJsonValue::fromVariant(value).toJson(QJsonValue::JsonFormat::Compact);
     char* result = static_cast<char*>(std::malloc(static_cast<std::size_t>(utf8.size()) + 1));
     if (result) {
         std::memcpy(result, utf8.constData(), static_cast<std::size_t>(utf8.size()));
