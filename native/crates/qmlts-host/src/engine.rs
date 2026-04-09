@@ -375,6 +375,7 @@ impl QmltsEngine {
     /// # Errors
     ///
     /// Returns an error if the engine is destroyed.
+    #[allow(clippy::type_complexity)]
     pub fn register_invoke_handler(&self, handler: Box<dyn Fn(&str, u32) + Send>) -> Result<()> {
         self.ensure_alive()?;
         qmlts_host_generated::dispatch::set_command_dispatcher(handler);
@@ -392,6 +393,7 @@ impl QmltsEngine {
     /// # Errors
     ///
     /// Returns an error if the engine is destroyed.
+    #[allow(clippy::type_complexity)]
     pub fn register_lifecycle_handler(
         &self,
         handler: Box<dyn Fn(&str, &str) + Send>,

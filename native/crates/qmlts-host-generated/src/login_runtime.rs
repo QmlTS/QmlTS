@@ -1,10 +1,10 @@
 //! `LoginRuntime` bridge QObject — set as `__qmlts` context property.
 //!
 //! Provides:
-//! - invoke(i32): command dispatch (routes to global dispatcher + increments invoke_count)
-//! - onMounted(): lifecycle hook (routes to global dispatcher + increments mounted_count)
-//! - onUnmounting(): lifecycle hook (routes to global dispatcher)
-//! - onLoginCompleted(bool): effect signal
+//! - invoke(i32): command dispatch (routes to global dispatcher + increments `invoke_count`)
+//! - `onMounted()`: lifecycle hook (routes to global dispatcher + increments `mounted_count`)
+//! - `onUnmounting()`: lifecycle hook (routes to global dispatcher)
+//! - `onLoginCompleted(bool)`: effect signal
 
 use core::pin::Pin;
 
@@ -45,6 +45,7 @@ pub struct LoginRuntimeRust {
 
 impl qobject::LoginRuntime {
     /// Handle command dispatch from QML `__qmlts.invoke(commandId)`.
+    #[allow(clippy::cast_sign_loss)]
     pub fn invoke(self: Pin<&mut Self>, command_id: i32) {
         let current = *self.invoke_count();
         self.set_invoke_count(current + 1);

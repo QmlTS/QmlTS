@@ -1,12 +1,12 @@
 //! Global dispatcher storage for command and lifecycle routing.
 //!
-//! Runtime QObjects call `dispatch_command` / `dispatch_lifecycle` when
+//! Runtime `QObjects` call `dispatch_command` / `dispatch_lifecycle` when
 //! QML invokes `__qmlts.invoke(id)` or `__qmlts.onMounted()`.
 //! The host crate sets the actual dispatchers via `set_command_dispatcher`
-//! and `set_lifecycle_dispatcher`, which wrap N-API ThreadsafeFunctions.
+//! and `set_lifecycle_dispatcher`, which wrap N-API `ThreadsafeFunctions`.
 //!
 //! This lives in the generated crate (not the host crate) so runtime
-//! QObjects can call it without creating a circular dependency.
+//! `QObjects` can call it without creating a circular dependency.
 
 use std::sync::Mutex;
 
@@ -19,7 +19,11 @@ static LIFECYCLE_DISPATCHER: Mutex<Option<LifecycleDispatcher>> = Mutex::new(Non
 /// Register the command dispatcher callback.
 ///
 /// Called by the host crate when `registerInvokeHandler` is invoked from TS.
-/// The closure typically wraps an N-API ThreadsafeFunction.
+/// The closure typically wraps an N-API `ThreadsafeFunction`.
+///
+/// # Panics
+///
+/// Panics if the internal mutex is poisoned.
 pub fn set_command_dispatcher(f: CommandDispatcher) {
     let mut guard = COMMAND_DISPATCHER
         .lock()
@@ -30,6 +34,10 @@ pub fn set_command_dispatcher(f: CommandDispatcher) {
 /// Register the lifecycle dispatcher callback.
 ///
 /// Called by the host crate when `registerLifecycleHandler` is invoked from TS.
+///
+/// # Panics
+///
+/// Panics if the internal mutex is poisoned.
 pub fn set_lifecycle_dispatcher(f: LifecycleDispatcher) {
     let mut guard = LIFECYCLE_DISPATCHER
         .lock()
@@ -42,6 +50,10 @@ pub fn set_lifecycle_dispatcher(f: LifecycleDispatcher) {
 /// Called by `LoginRuntime::invoke(i32)`, `CounterRuntime::invoke(i32)`, etc.
 /// If no dispatcher is registered, the call is silently ignored (the runtime
 /// objects still increment `invoke_count` for observability).
+///
+/// # Panics
+///
+/// Panics if the internal mutex is poisoned.
 pub fn dispatch_command(class_name: &str, command_id: u32) {
     let guard = COMMAND_DISPATCHER
         .lock()
@@ -55,6 +67,10 @@ pub fn dispatch_command(class_name: &str, command_id: u32) {
 ///
 /// `event` is `"onMounted"` or `"onUnmounting"`.
 /// If no dispatcher is registered, the call is silently ignored.
+///
+/// # Panics
+///
+/// Panics if the internal mutex is poisoned.
 pub fn dispatch_lifecycle(class_name: &str, event: &str) {
     let guard = LIFECYCLE_DISPATCHER
         .lock()
@@ -65,6 +81,10 @@ pub fn dispatch_lifecycle(class_name: &str, event: &str) {
 }
 
 /// Clear both dispatchers. Called during engine cleanup.
+///
+/// # Panics
+///
+/// Panics if the internal mutex is poisoned.
 pub fn clear_dispatchers() {
     {
         let mut guard = COMMAND_DISPATCHER
@@ -81,6 +101,10 @@ pub fn clear_dispatchers() {
 }
 
 /// Check whether a command dispatcher is currently registered.
+///
+/// # Panics
+///
+/// Panics if the internal mutex is poisoned.
 #[must_use]
 pub fn has_command_dispatcher() -> bool {
     COMMAND_DISPATCHER
@@ -90,6 +114,10 @@ pub fn has_command_dispatcher() -> bool {
 }
 
 /// Check whether a lifecycle dispatcher is currently registered.
+///
+/// # Panics
+///
+/// Panics if the internal mutex is poisoned.
 #[must_use]
 pub fn has_lifecycle_dispatcher() -> bool {
     LIFECYCLE_DISPATCHER
