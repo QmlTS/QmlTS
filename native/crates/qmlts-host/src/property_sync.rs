@@ -266,6 +266,7 @@ fn value_to_f64(v: &serde_json::Value) -> Option<f64> {
 #[cfg(test)]
 mod tests {
     use super::*;
+    use qmlts_host_generated::SchemaLifecycle;
     use std::ptr;
 
     fn test_schema() -> ViewModelSchema {
@@ -312,7 +313,7 @@ mod tests {
             ],
             commands: vec![],
             effects: vec![],
-            lifecycle: Default::default(),
+            lifecycle: SchemaLifecycle::default(),
         }
     }
 

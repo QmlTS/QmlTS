@@ -187,7 +187,7 @@ pub struct BridgeDescriptor {
     pub class_name: &'static str,
     /// Factory function that creates a `BridgeInstance`.
     pub create: fn() -> BridgeInstance,
-    /// JSON schema describing the ViewModel's states, commands, effects, lifecycle.
+    /// JSON schema describing the `ViewModel`'s states, commands, effects, lifecycle.
     pub schema_json: &'static str,
 }
 
