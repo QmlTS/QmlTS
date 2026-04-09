@@ -15,6 +15,7 @@ pub mod qobject {
     unsafe extern "RustQt" {
         #[qobject]
         #[qproperty(i32, invoke_count, cxx_name = "invokeCount")]
+        #[qproperty(i32, dispatch_owner_id, cxx_name = "dispatchOwnerId")]
         type CounterRuntime = super::CounterRuntimeRust;
 
         #[qinvokable]
@@ -26,6 +27,7 @@ pub mod qobject {
 #[derive(Default)]
 pub struct CounterRuntimeRust {
     invoke_count: i32,
+    dispatch_owner_id: i32,
 }
 
 impl qobject::CounterRuntime {
@@ -34,8 +36,11 @@ impl qobject::CounterRuntime {
         let Ok(command_id) = u32::try_from(command_id) else {
             return;
         };
+        let Ok(owner_id) = usize::try_from(*self.dispatch_owner_id()) else {
+            return;
+        };
         let current = *self.invoke_count();
         self.set_invoke_count(current + 1);
-        dispatch::dispatch_command("CounterViewModel", command_id);
+        dispatch::dispatch_command(owner_id, "CounterViewModel", command_id);
     }
 }

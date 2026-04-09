@@ -6,7 +6,7 @@
  */
 
 import { beforeAll, describe, expect, test } from 'bun:test';
-import { existsSync } from 'node:fs';
+import { existsSync, readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 
 const nativeModulePaths = [
@@ -19,6 +19,11 @@ const nativeModulePaths = [
 ];
 
 const isNativeModuleAvailable = nativeModulePaths.some((p) => existsSync(p));
+
+async function flushJsCallbacks(): Promise<void> {
+  await Promise.resolve();
+  await new Promise((resolve) => setTimeout(resolve, 0));
+}
 
 describe.skipIf(!isNativeModuleAvailable)('host/qmlts-host', () => {
   let QmltsHost: typeof import('../../native/npm/qmlts-host/src/qmlts-host').QmltsHost;
@@ -198,6 +203,46 @@ describe.skipIf(!isNativeModuleAvailable)('host/qmlts-host', () => {
 
     host.dispose();
   });
+
+  test('TH-20: multiple hosts keep independent invoke handlers', async () => {
+    const host1 = new QmltsHost();
+    const host2 = new QmltsHost();
+    const host1Calls: Array<[string, number]> = [];
+    const host2Calls: Array<[string, number]> = [];
+
+    try {
+      host1.registerViewModel('LoginViewModel');
+      host2.registerViewModel('LoginViewModel');
+
+      host1.registerInvokeHandler((className, commandId) => {
+        host1Calls.push([className, commandId]);
+      });
+      host2.registerInvokeHandler((className, commandId) => {
+        host2Calls.push([className, commandId]);
+      });
+
+      host1.loadString(
+        ['import QtQuick', 'Item {', '  Component.onCompleted: __qmlts.invoke(101)', '}'].join(
+          '\n',
+        ),
+      );
+      host2.loadString(
+        ['import QtQuick', 'Item {', '  Component.onCompleted: __qmlts.invoke(202)', '}'].join(
+          '\n',
+        ),
+      );
+
+      host1.processEvents();
+      host2.processEvents();
+      await flushJsCallbacks();
+
+      expect(host1Calls).toEqual([['LoginViewModel', 101]]);
+      expect(host2Calls).toEqual([['LoginViewModel', 202]]);
+    } finally {
+      host1.dispose();
+      host2.dispose();
+    }
+  });
 });
 
 describe('host/qmlts-host (skip check)', () => {
@@ -206,5 +251,17 @@ describe('host/qmlts-host (skip check)', () => {
       console.log('⚠️  Native module not built. Skipping QmltsHost tests.');
     }
     expect(true).toBe(true);
+  });
+});
+
+describe('host/package-types', () => {
+  test('TH-21: published index.d.ts is the curated package surface', () => {
+    const indexDtsPath = fileURLToPath(
+      new URL('../../native/npm/qmlts-host/index.d.ts', import.meta.url),
+    );
+    const content = readFileSync(indexDtsPath, 'utf8');
+
+    expect(content).not.toContain('export declare export declare');
+    expect(content).toContain("export * from './src/index';");
   });
 });

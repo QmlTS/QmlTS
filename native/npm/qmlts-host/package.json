@@ -17,11 +17,13 @@
     "index.js",
     "index.cjs",
     "index.d.ts",
+    "index.template.d.ts",
+    "src",
     "*.node"
   ],
   "scripts": {
-    "build": "bunx @napi-rs/cli@3.0.0-alpha.65 build --manifest-path ../../crates/qmlts-host/Cargo.toml --package-json-path package.json --output-dir . --platform --release --no-js --features napi",
-    "build:debug": "bunx @napi-rs/cli@3.0.0-alpha.65 build --manifest-path ../../crates/qmlts-host/Cargo.toml --package-json-path package.json --output-dir . --platform --no-js --features napi",
+    "build": "bunx @napi-rs/cli@3.0.0-alpha.65 build --manifest-path ../../crates/qmlts-host/Cargo.toml --package-json-path package.json --output-dir . --platform --release --no-js --features napi && bun scripts/restore-types.mjs",
+    "build:debug": "bunx @napi-rs/cli@3.0.0-alpha.65 build --manifest-path ../../crates/qmlts-host/Cargo.toml --package-json-path package.json --output-dir . --platform --no-js --features napi && bun scripts/restore-types.mjs",
     "test": "bun test"
   },
   "napi": {

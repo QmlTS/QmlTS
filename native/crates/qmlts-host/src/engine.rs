@@ -226,6 +226,10 @@ impl QmltsEngine {
             QmltsError::SchemaValidation(format!("Failed to parse schema for '{class_name}': {e}"))
         })?;
 
+        let dispatch_owner_id = i32::try_from(self.dispatch_owner_id).map_err(|_| {
+            QmltsError::Internal("dispatch owner id exceeded i32 range".to_string())
+        })?;
+
         #[cfg(not(feature = "mock-qt"))]
         {
             if self.engine_ptr.is_null() {
@@ -234,6 +238,11 @@ impl QmltsEngine {
                 ));
             }
 
+            let owner_set = qt_context::set_int_property(
+                instance.runtime_qobject_ptr(),
+                "dispatchOwnerId",
+                dispatch_owner_id,
+            );
             let vm_set = unsafe {
                 qt_context::set_context_property(self.engine_ptr, "vm", instance.vm_qobject_ptr())
             };
@@ -244,11 +253,16 @@ impl QmltsEngine {
                     instance.runtime_qobject_ptr(),
                 )
             };
-            if !vm_set || !runtime_set {
+            if !owner_set || !vm_set || !runtime_set {
                 return Err(QmltsError::Internal(
                     "Failed to publish bridge objects into the QML context".to_string(),
                 ));
             }
+        }
+
+        #[cfg(feature = "mock-qt")]
+        {
+            let _ = dispatch_owner_id;
         }
 
         tracing::debug!("Registered bridge for '{class_name}'");
@@ -1211,7 +1225,7 @@ mod tests {
 
     #[cfg(feature = "mock-qt")]
     #[test]
-    fn test_second_engine_cannot_overwrite_global_invoke_handler() {
+    fn test_multiple_engines_can_register_independent_invoke_handlers() {
         reset_app_initialized();
         qmlts_host_generated::dispatch::clear_dispatchers();
 
@@ -1222,7 +1236,7 @@ mod tests {
 
         let engine2 = QmltsEngine::new(None).unwrap();
         let result = engine2.register_invoke_handler(Box::new(|_class, _id| {}));
-        assert!(result.is_err());
+        assert!(result.is_ok());
 
         qmlts_host_generated::dispatch::clear_dispatchers();
     }
@@ -1238,7 +1252,10 @@ mod tests {
             .register_invoke_handler(Box::new(|_class, _id| {}))
             .unwrap();
         {
-            let _engine2 = QmltsEngine::new(None).unwrap();
+            let engine2 = QmltsEngine::new(None).unwrap();
+            engine2
+                .register_invoke_handler(Box::new(|_class, _id| {}))
+                .unwrap();
         }
 
         assert!(qmlts_host_generated::dispatch::has_command_dispatcher());
