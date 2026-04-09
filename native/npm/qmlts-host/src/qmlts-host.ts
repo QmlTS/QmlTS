@@ -63,10 +63,13 @@ export class QmltsHost {
 	 * Destroy the engine and release resources.
 	 *
 	 * After calling dispose(), all further method calls will throw.
+	 * Calling dispose() on an already-disposed host is a safe no-op.
 	 */
 	dispose(): void {
-		const eng = this.requireEngine();
-		destroyEngine(eng);
+		if (this.engine === null) {
+			return;
+		}
+		destroyEngine(this.engine);
 		this.engine = null;
 	}
 
@@ -80,13 +83,21 @@ export class QmltsHost {
 	// ────────────────────────────────────────────────────────────────────
 
 	/** QmlTS runtime version. */
-	get runtimeVersion(): string {
+	get version(): string {
+		this.requireEngine();
 		return version();
 	}
 
 	/** Qt runtime version. */
-	get qtRuntimeVersion(): string {
+	get qtVersion(): string {
+		this.requireEngine();
 		return qtVersion();
+	}
+
+	/** All registered bridge type names. */
+	get registeredTypes(): string[] {
+		const eng = this.requireEngine();
+		return getRegisteredTypes(eng);
 	}
 
 	// ────────────────────────────────────────────────────────────────────
@@ -147,16 +158,6 @@ export class QmltsHost {
 	registerViewModel(className: string): void {
 		const eng = this.requireEngine();
 		registerViewModel(eng, className);
-	}
-
-	/**
-	 * Get all registered bridge type names.
-	 *
-	 * @returns Sorted array of ViewModel class names.
-	 */
-	getRegisteredTypes(): string[] {
-		const eng = this.requireEngine();
-		return getRegisteredTypes(eng);
 	}
 
 	/**

@@ -71,6 +71,7 @@ function loadNativeBinding(): typeof import('./types') {
   } catch (e) {
     // Try fallback locations
     const fallbackPaths = [
+      join(__dirname, '..', bindingName),
       join(__dirname, '..', 'build', 'Release', bindingName),
       join(__dirname, '..', '..', 'target', 'release', bindingName),
     ];
