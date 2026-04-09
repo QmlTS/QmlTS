@@ -129,6 +129,23 @@ pub struct BridgeDescriptor {
 
 Each generated module provides its schema JSON as a `const &str`. The engine parses it at `register_view_model()` time and stores the result in `active_schema`.
 
+### Bridge registry changes (`bridge_registry.rs`)
+
+The registry currently stores only `factories: HashMap<&'static str, fn() -> BridgeInstance>`. Step 3 extends it to also store `schema_json` alongside each factory, since it already extracts per-class metadata from descriptors:
+
+```rust
+struct BridgeEntry {
+    create: fn() -> BridgeInstance,
+    schema_json: &'static str,
+}
+
+pub struct BridgeRegistry {
+    entries: HashMap<&'static str, BridgeEntry>,
+}
+```
+
+New method: `get_schema_json(class_name: &str) -> Option<&'static str>` — returns the raw schema JSON for the given class. The engine calls this during `register_view_model()` to parse the schema into `active_schema`.
+
 ### Engine changes
 
 - New field: `active_schema: Option<ViewModelSchema>` — set alongside `active_bridge` during registration
@@ -276,7 +293,6 @@ export class ViewModelManager {
 
     register<T extends object>(schema: ViewModelSchema, instance: T): void;
     sync(className: string): void;
-    syncAll(): void;
     getProperty<T>(className: string, propertyName: string): T;
     unregister(className: string): void;
 
@@ -288,9 +304,10 @@ export class ViewModelManager {
 **Boundary rules (Step 3):**
 - `ViewModelManager` depends only on `schema.className` and `schema.states[].{name, deferred}`.
 - It does NOT touch `commands`, `effects`, or `lifecycle`. Those are later-step concerns.
+- `syncAll()` is **not included in Step 3**. Under the single-active-bridge model it would be misleading — it implies syncing all registrations, but only one can be active. If multi-ViewModel support is added in a later step, `syncAll()` can be introduced then with clear semantics.
 
 **Single-active-ViewModel constraint:**
-The native engine supports only one active bridge at a time (`active_bridge: Option<BridgeInstance>`). The `ViewModelManager` may track multiple registrations internally, but only one ViewModel can be actively registered against the native engine at any given time. Calling `register()` a second time replaces the active bridge. `sync()` and `getProperty()` only operate on the currently active ViewModel. If `sync()` is called for a className that is not the active bridge, it returns an error. `syncAll()` is limited to syncing only the one active ViewModel in Step 3.
+The native engine supports only one active bridge at a time (`active_bridge: Option<BridgeInstance>`). The `ViewModelManager` may track multiple registrations internally, but only one ViewModel can be actively registered against the native engine at any given time. Calling `register()` a second time replaces the active bridge. `sync()` and `getProperty()` only operate on the currently active ViewModel. If `sync()` is called for a className that is not the active bridge, it returns an error.
 
 **`register(schema, instance)`:**
 1. Store `{schema, instance}` in the internal Map keyed by `schema.className`
@@ -338,15 +355,15 @@ Item {
 A new C++ FFI helper `qmlts_root_object(engine_ptr) -> *mut c_void` returns the engine's root QObject. The test then reads the root object's `displayedUsername` property using `qmlts_read_string_property(root_ptr, "displayedUsername")`. This proves the value propagated through the Qt property binding system (QML evaluated `vm.username` and assigned it to the root property), not just that `setProperty` returned true.
 
 **Specific tests:**
-1. `sync_state` writes a string → QML-bound Text reads the updated value
-2. `sync_state` writes an int → QML-bound Text reads the updated value
-3. `sync_state` writes a bool → QML-bound Text reads the updated value
-4. `sync_state_batch` writes multiple properties → all readable from QML
-5. `get_property` round-trip: sync → read back → values match
+1. `sync_state` writes a string → root-property binding reads the updated value via `qmlts_root_object` + `qmlts_read_string_property`
+2. `sync_state` writes an int → root-property binding reads the updated value via `qmlts_root_object` + `qmlts_read_int_property`
+3. `sync_state` writes a bool → root-property binding reads the updated value via `qmlts_root_object` + `qmlts_read_bool_property`
+4. `sync_state_batch` writes multiple properties → all readable from root-property bindings
+5. `get_property` round-trip: sync → read back via engine API → values match
 6. Property not found: sync unknown property → `PropertyNotFound` error
 7. Type mismatch: sync wrong type → `TypeMismatch` error
-8. **Batch partial-failure**: sync one valid + one unknown property. Assert: valid property IS written (readable back), AND error reports the failed property.
-9. **Golden fixture test**: sync state into LoginViewModel → load exact file `tests/compiler/pipeline/fixtures/golden/LoginView.qml` → read back bound values to verify `vm.*` bindings resolve correctly.
+8. **Batch partial-failure**: sync one valid + one unknown property. Assert: valid property IS written (readable via root-property binding), AND error reports the failed property.
+9. **Golden fixture test**: sync state into LoginViewModel → load exact file `tests/compiler/pipeline/fixtures/golden/LoginView.qml` → read back bound values via root object to verify `vm.*` bindings resolve correctly.
 
 ### TypeScript/N-API tests (`tests/host/napi-bindings.test.ts`)
 
@@ -372,6 +389,7 @@ A new C++ FFI helper `qmlts_root_object(engine_ptr) -> *mut c_void` returns the 
 - `native/crates/qmlts-host/src/lib.rs` — add `mod property_sync`
 - `native/crates/qmlts-host/src/engine.rs` — add `active_schema`, sync/read methods
 - `native/crates/qmlts-host/src/exports.rs` — add N-API sync/read exports
+- `native/crates/qmlts-host/src/bridge_registry.rs` — store `schema_json` alongside factory, add `get_schema_json()`
 - `native/crates/qmlts-host/src/error.rs` — add `BatchSyncPartialFailure` variant
 - `native/crates/qmlts-host/src/qt_context.rs` — add FFI declarations + `qmlts_root_object`
 - `native/crates/qmlts-host/cpp/qt_context.cpp` — add C++ FFI implementations + root object helper
@@ -384,5 +402,4 @@ A new C++ FFI helper `qmlts_root_object(engine_ptr) -> *mut c_void` returns the 
 - `tests/host/napi-bindings.test.ts` — add TS behavioral tests
 
 ### Not modified
-- `native/crates/qmlts-host/src/bridge_registry.rs` — no changes needed
 - Generated bridge modules (`login_view_model.rs`, `counter_view_model.rs`) — no changes needed
