@@ -78,6 +78,11 @@ export class QmltsHost {
 		return this.engine === null;
 	}
 
+	/** Whether the engine is currently alive. */
+	get isInitialized(): boolean {
+		return !this.isDisposed;
+	}
+
 	// ────────────────────────────────────────────────────────────────────
 	//  Engine info
 	// ────────────────────────────────────────────────────────────────────
@@ -125,6 +130,15 @@ export class QmltsHost {
 	loadString(qmlSource: string, baseUrl?: string): void {
 		const eng = this.requireEngine();
 		loadString(eng, qmlSource, baseUrl);
+	}
+
+	/**
+	 * Load a QML document from a string.
+	 *
+	 * Alias for `loadString()` to match the higher-level runtime naming.
+	 */
+	loadQml(qmlSource: string, baseUrl?: string): void {
+		this.loadString(qmlSource, baseUrl);
 	}
 
 	/**
@@ -177,24 +191,36 @@ export class QmltsHost {
 	 *
 	 * @param className - ViewModel class name (must match the active bridge).
 	 * @param propertyName - Property name as declared in the schema.
-	 * @param jsonValue - JSON-encoded value to set.
+	 * @param value - Property value to serialize as JSON and set.
 	 * @throws Error if class name doesn't match, property not found, or type mismatch.
 	 */
-	syncState(className: string, propertyName: string, jsonValue: string): void {
+	syncState(className: string, propertyName: string, value: unknown): void {
 		const eng = this.requireEngine();
-		syncState(eng, className, propertyName, jsonValue);
+		syncState(
+			eng,
+			className,
+			propertyName,
+			this.serializeJson(
+				value,
+				`QmltsHost.syncState(${className}.${propertyName})`,
+			),
+		);
 	}
 
 	/**
 	 * Synchronize a batch of property values into the active ViewModel.
 	 *
 	 * @param className - ViewModel class name (must match the active bridge).
-	 * @param jsonStateMap - JSON object mapping property names to values.
+	 * @param state - Object mapping property names to values.
 	 * @throws Error with details of any failed properties.
 	 */
-	syncStateBatch(className: string, jsonStateMap: string): void {
+	syncStateBatch(className: string, state: Record<string, unknown>): void {
 		const eng = this.requireEngine();
-		syncStateBatch(eng, className, jsonStateMap);
+		syncStateBatch(
+			eng,
+			className,
+			this.serializeJson(state, `QmltsHost.syncStateBatch(${className})`),
+		);
 	}
 
 	/**
@@ -202,11 +228,20 @@ export class QmltsHost {
 	 *
 	 * @param className - ViewModel class name (must match the active bridge).
 	 * @param propertyName - Property name to read.
-	 * @returns JSON-encoded property value.
+	 * @returns Parsed property value.
 	 */
-	getProperty(className: string, propertyName: string): string {
+	getProperty<T = unknown>(className: string, propertyName: string): T {
 		const eng = this.requireEngine();
-		return getProperty(eng, className, propertyName);
+		const jsonValue = getProperty(eng, className, propertyName);
+		try {
+			return JSON.parse(jsonValue) as T;
+		} catch (error) {
+			throw new Error(
+				`QmltsHost.getProperty(${className}.${propertyName}) returned invalid JSON: ${
+					error instanceof Error ? error.message : String(error)
+				}`,
+			);
+		}
 	}
 
 	// ────────────────────────────────────────────────────────────────────
@@ -234,9 +269,13 @@ export class QmltsHost {
 	/**
 	 * Process all pending Qt events (non-blocking).
 	 */
-	processEvents(): void {
+	processEvents(timeoutMs?: number): void {
 		const eng = this.requireEngine();
-		processEvents(eng);
+		if (timeoutMs === undefined) {
+			processEvents(eng);
+			return;
+		}
+		processEventsFor(eng, timeoutMs);
 	}
 
 	/**
@@ -256,5 +295,13 @@ export class QmltsHost {
 			throw new Error('QmltsHost has been disposed');
 		}
 		return this.engine;
+	}
+
+	private serializeJson(value: unknown, context: string): string {
+		const json = JSON.stringify(value);
+		if (json === undefined) {
+			throw new Error(`${context} could not serialize value to JSON`);
+		}
+		return json;
 	}
 }

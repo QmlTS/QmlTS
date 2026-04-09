@@ -30,6 +30,7 @@ describe.skipIf(!isNativeModuleAvailable)('host/qmlts-host', () => {
 
   test('TH-01: constructor creates engine, version is accessible', () => {
     const host = new QmltsHost();
+    expect(host.isInitialized).toBe(true);
     expect(host.version).toMatch(/^\d+\.\d+\.\d+/);
     host.dispose();
   });
@@ -63,9 +64,9 @@ describe.skipIf(!isNativeModuleAvailable)('host/qmlts-host', () => {
     const host = new QmltsHost();
     host.registerViewModel('LoginViewModel');
 
-    host.syncState('LoginViewModel', 'username', '"round-trip"');
-    const value = host.getProperty('LoginViewModel', 'username');
-    expect(value).toBe('"round-trip"');
+    host.syncState('LoginViewModel', 'username', 'round-trip');
+    const value = host.getProperty<string>('LoginViewModel', 'username');
+    expect(value).toBe('round-trip');
     host.dispose();
   });
 
@@ -73,12 +74,9 @@ describe.skipIf(!isNativeModuleAvailable)('host/qmlts-host', () => {
     const host = new QmltsHost();
     host.registerViewModel('LoginViewModel');
 
-    host.syncStateBatch(
-      'LoginViewModel',
-      JSON.stringify({ username: 'batch-u', password: 'batch-p' }),
-    );
-    expect(host.getProperty('LoginViewModel', 'username')).toBe('"batch-u"');
-    expect(host.getProperty('LoginViewModel', 'password')).toBe('"batch-p"');
+    host.syncStateBatch('LoginViewModel', { username: 'batch-u', password: 'batch-p' });
+    expect(host.getProperty<string>('LoginViewModel', 'username')).toBe('batch-u');
+    expect(host.getProperty<string>('LoginViewModel', 'password')).toBe('batch-p');
     host.dispose();
   });
 
@@ -86,14 +84,14 @@ describe.skipIf(!isNativeModuleAvailable)('host/qmlts-host', () => {
     const host = new QmltsHost();
     host.registerViewModel('LoginViewModel');
 
-    expect(() => host.syncState('LoginViewModel', 'nope', '"x"')).toThrow(/not found/i);
+    expect(() => host.syncState('LoginViewModel', 'nope', 'x')).toThrow(/not found/i);
     host.dispose();
   });
 
   test('TH-09: loadString and processEvents work', () => {
     const host = new QmltsHost();
     host.registerViewModel('LoginViewModel');
-    host.syncState('LoginViewModel', 'username', '"qml-test"');
+    host.syncState('LoginViewModel', 'username', 'qml-test');
 
     expect(() =>
       host.loadString('import QtQuick\nItem { property string u: vm.username }'),
@@ -107,6 +105,7 @@ describe.skipIf(!isNativeModuleAvailable)('host/qmlts-host', () => {
     expect(host.isDisposed).toBe(false);
     host.dispose();
     expect(host.isDisposed).toBe(true);
+    expect(host.isInitialized).toBe(false);
   });
 
   test('TH-11: registeredTypes returns known types', () => {

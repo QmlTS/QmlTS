@@ -441,6 +441,10 @@ fn test_sync_state_batch_partial_failure() {
     let err_msg = result.unwrap_err().to_string();
     assert!(err_msg.contains("partial failure"));
     assert!(err_msg.contains("1 of 2"));
+    assert_eq!(
+        engine.get_property("LoginViewModel", "username").unwrap(),
+        "\"ok\""
+    );
 }
 
 #[test]

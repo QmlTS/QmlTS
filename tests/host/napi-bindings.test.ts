@@ -442,6 +442,13 @@ describe.skipIf(!isNativeModuleAvailable)('host/napi-bindings', () => {
     expect(() =>
       syncStateBatch(engine, 'LoginViewModel', JSON.stringify({ username: 'ok', nonexistent: 42 })),
     ).toThrow(/partial failure.*1 of 2/i);
+
+    const getProperty = nativeModule.getProperty as (
+      engine: object,
+      className: string,
+      propertyName: string,
+    ) => string;
+    expect(getProperty(engine, 'LoginViewModel', 'username')).toBe('"ok"');
   });
 
   test('TB-26: getProperty() roundtrip for bool property', () => {

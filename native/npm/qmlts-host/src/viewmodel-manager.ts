@@ -60,13 +60,39 @@ export class ViewModelManager {
 	 * @throws Error if the class name is not found in the native registry,
 	 *         or if QML has already been loaded.
 	 */
+	register(schema: ViewModelManagerSchema, instance: ViewModelInstance): void;
 	register(
 		className: string,
 		schema: ViewModelManagerSchema,
 		instance: ViewModelInstance,
+	): void;
+	register(
+		classNameOrSchema: string | ViewModelManagerSchema,
+		schemaOrInstance: ViewModelManagerSchema | ViewModelInstance,
+		maybeInstance?: ViewModelInstance,
 	): void {
+		const [className, schema, instance] =
+			typeof classNameOrSchema === 'string'
+				? [
+						classNameOrSchema,
+						schemaOrInstance as ViewModelManagerSchema,
+						maybeInstance as ViewModelInstance,
+					]
+				: [
+						classNameOrSchema.className,
+						classNameOrSchema,
+						schemaOrInstance as ViewModelInstance,
+					];
+
+		if (schema.className !== className) {
+			throw new Error(
+				`ViewModelManager: schema.className '${schema.className}' does not match '${className}'`,
+			);
+		}
+
 		this.host.registerViewModel(className);
 		this.registrations.set(className, { schema, instance });
+		this.sync(className);
 	}
 
 	/**
@@ -94,6 +120,13 @@ export class ViewModelManager {
 	 */
 	get classNames(): string[] {
 		return [...this.registrations.keys()];
+	}
+
+	/**
+	 * Number of TS-side registrations currently tracked.
+	 */
+	get count(): number {
+		return this.registrations.size;
 	}
 
 	/**
@@ -127,7 +160,19 @@ export class ViewModelManager {
 		}
 
 		if (Object.keys(stateMap).length > 0) {
-			this.host.syncStateBatch(className, JSON.stringify(stateMap));
+			this.host.syncStateBatch(className, stateMap);
 		}
+	}
+
+	/**
+	 * Read a property value back through the host.
+	 */
+	getProperty<T = unknown>(className: string, propertyName: string): T {
+		if (!this.registrations.has(className)) {
+			throw new Error(
+				`ViewModelManager: '${className}' is not registered`,
+			);
+		}
+		return this.host.getProperty<T>(className, propertyName);
 	}
 }

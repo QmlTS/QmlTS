@@ -46,10 +46,12 @@ describe.skipIf(!isNativeModuleAvailable)('host/viewmodel-manager', () => {
     const manager = new ViewModelManager(host);
 
     const instance = { username: 'u', password: 'p', isLoading: false };
-    manager.register('LoginViewModel', loginSchema, instance);
+    manager.register(loginSchema, instance);
 
     expect(manager.has('LoginViewModel')).toBe(true);
     expect(manager.classNames).toContain('LoginViewModel');
+    expect(manager.count).toBe(1);
+    expect(host.getProperty<string>('LoginViewModel', 'username')).toBe('u');
 
     host.dispose();
   });
@@ -59,12 +61,13 @@ describe.skipIf(!isNativeModuleAvailable)('host/viewmodel-manager', () => {
     const manager = new ViewModelManager(host);
 
     const instance = { username: '', password: '' };
-    manager.register('LoginViewModel', loginSchema, instance);
+    manager.register(loginSchema, instance);
     expect(manager.has('LoginViewModel')).toBe(true);
 
     const removed = manager.unregister('LoginViewModel');
     expect(removed).toBe(true);
     expect(manager.has('LoginViewModel')).toBe(false);
+    expect(manager.count).toBe(0);
 
     host.dispose();
   });
@@ -86,18 +89,18 @@ describe.skipIf(!isNativeModuleAvailable)('host/viewmodel-manager', () => {
       isLoading: true,
       lazyData: 'should-be-skipped',
     };
-    manager.register('LoginViewModel', loginSchema, instance);
+    manager.register(loginSchema, instance);
     manager.sync('LoginViewModel');
 
     // Verify the non-deferred properties were synced
-    expect(host.getProperty('LoginViewModel', 'username')).toBe('"sync-test"');
-    expect(host.getProperty('LoginViewModel', 'password')).toBe('"pw"');
-    expect(host.getProperty('LoginViewModel', 'isLoading')).toBe('true');
+    expect(host.getProperty<string>('LoginViewModel', 'username')).toBe('sync-test');
+    expect(host.getProperty<string>('LoginViewModel', 'password')).toBe('pw');
+    expect(host.getProperty<boolean>('LoginViewModel', 'isLoading')).toBe(true);
 
     host.dispose();
   });
 
-  test('TV-05: sync() skips deferred properties', () => {
+  test('TV-05: sync() only writes schema-declared non-deferred states', () => {
     const host = new QmltsHost();
     const manager = new ViewModelManager(host);
 
@@ -106,16 +109,15 @@ describe.skipIf(!isNativeModuleAvailable)('host/viewmodel-manager', () => {
       password: 'p',
       isLoading: false,
       lazyData: 'deferred-value',
+      _internalHelper: 'hidden',
+      computedValue: 123,
     };
-    manager.register('LoginViewModel', loginSchema, instance);
+    manager.register(loginSchema, instance);
     manager.sync('LoginViewModel');
 
-    // lazyData is deferred, so it should NOT be synced
-    // Attempting to get it should fail because the schema defines it
-    // but the property_sync layer only wrote non-deferred properties
-    // The native side still has the default (empty/zero) value
-    // We can verify that username was synced correctly as a control
-    expect(host.getProperty('LoginViewModel', 'username')).toBe('"u"');
+    expect(host.getProperty<string>('LoginViewModel', 'username')).toBe('u');
+    expect(() => host.getProperty('LoginViewModel', 'computedValue')).toThrow(/not found/i);
+    expect(() => host.getProperty('LoginViewModel', '_internalHelper')).toThrow(/not found/i);
 
     host.dispose();
   });
@@ -137,18 +139,18 @@ describe.skipIf(!isNativeModuleAvailable)('host/viewmodel-manager', () => {
       password: 'pw1',
       isLoading: false,
     };
-    manager.register('LoginViewModel', loginSchema, instance);
+    manager.register(loginSchema, instance);
     manager.sync('LoginViewModel');
 
-    expect(host.getProperty('LoginViewModel', 'username')).toBe('"initial"');
+    expect(manager.getProperty<string>('LoginViewModel', 'username')).toBe('initial');
 
     // Mutate the instance and re-sync
     instance.username = 'updated';
     instance.isLoading = true;
     manager.sync('LoginViewModel');
 
-    expect(host.getProperty('LoginViewModel', 'username')).toBe('"updated"');
-    expect(host.getProperty('LoginViewModel', 'isLoading')).toBe('true');
+    expect(manager.getProperty<string>('LoginViewModel', 'username')).toBe('updated');
+    expect(manager.getProperty<boolean>('LoginViewModel', 'isLoading')).toBe(true);
 
     host.dispose();
   });
@@ -159,11 +161,11 @@ describe.skipIf(!isNativeModuleAvailable)('host/viewmodel-manager', () => {
 
     // Only username is set, password and isLoading are undefined
     const instance: Record<string, unknown> = { username: 'only-this' };
-    manager.register('LoginViewModel', loginSchema, instance);
+    manager.register(loginSchema, instance);
 
     // Should not throw — undefined properties are simply skipped
     expect(() => manager.sync('LoginViewModel')).not.toThrow();
-    expect(host.getProperty('LoginViewModel', 'username')).toBe('"only-this"');
+    expect(host.getProperty<string>('LoginViewModel', 'username')).toBe('only-this');
 
     host.dispose();
   });
