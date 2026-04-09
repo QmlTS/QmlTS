@@ -232,7 +232,33 @@ describe.skipIf(!isNativeModuleAvailable)('host/napi-bindings', () => {
     expect(() => registerViewModel(engine, 'NonExistent')).toThrow(/Bridge type not found/i);
   });
 
-  test('TB-17: registerViewModel() throws after QML is loaded', () => {
+  test('TB-17: registerViewModel() enables QML access to vm and __qmlts', () => {
+    const createEngine = nativeModule.createEngine as () => object;
+    const loadString = nativeModule.loadString as (engine: object, qml: string) => void;
+    const processEvents = nativeModule.processEvents as (engine: object) => void;
+    const registerViewModel = nativeModule.registerViewModel as (
+      engine: object,
+      name: string,
+    ) => void;
+
+    const engine = createEngine();
+    expect(() => registerViewModel(engine, 'LoginViewModel')).not.toThrow();
+    expect(() =>
+      loadString(
+        engine,
+        [
+          'import QtQuick',
+          'Item {',
+          '  property string copiedUsername: vm.username',
+          '  Component.onCompleted: __qmlts.invoke(123)',
+          '}',
+        ].join('\n'),
+      ),
+    ).not.toThrow();
+    expect(() => processEvents(engine)).not.toThrow();
+  });
+
+  test('TB-18: registerViewModel() throws after QML is loaded', () => {
     const createEngine = nativeModule.createEngine as () => object;
     const loadString = nativeModule.loadString as (engine: object, qml: string) => void;
     const registerViewModel = nativeModule.registerViewModel as (

@@ -227,7 +227,7 @@ Create `native/crates/qmlts-host-generated/src/login_view_model.rs`:
 //! - password: string (QString)
 //! - isLoading: bool (read-only in schema, but writable here for host to set)
 
-#[cxx_qt::bridge(cxx_file_stem = "login_view_model")]
+#[cxx_qt::bridge]
 pub mod qobject {
     unsafe extern "C++" {
         include!("cxx-qt-lib/qstring.h");
@@ -315,7 +315,7 @@ Create `native/crates/qmlts-host-generated/src/counter_view_model.rs`:
 //! Properties match the compiler schema:
 //! - count: number (i32)
 
-#[cxx_qt::bridge(cxx_file_stem = "counter_view_model")]
+#[cxx_qt::bridge]
 pub mod qobject {
     unsafe extern "RustQt" {
         #[qobject]
@@ -395,7 +395,7 @@ Create `native/crates/qmlts-host-generated/src/login_runtime.rs`:
 
 use core::pin::Pin;
 
-#[cxx_qt::bridge(cxx_file_stem = "login_runtime")]
+#[cxx_qt::bridge]
 pub mod qobject {
     unsafe extern "C++" {
         include!("cxx-qt-lib/qvariant.h");
@@ -519,7 +519,7 @@ Create `native/crates/qmlts-host-generated/src/counter_runtime.rs`:
 
 use core::pin::Pin;
 
-#[cxx_qt::bridge(cxx_file_stem = "counter_runtime")]
+#[cxx_qt::bridge]
 pub mod qobject {
     unsafe extern "C++" {
         include!("cxx-qt-lib/qvariant.h");

@@ -9,8 +9,11 @@
 
 use crate::bridge_registry::BridgeRegistry;
 use crate::error::{QmltsError, Result};
+use crate::qt_context;
 use qmlts_host_generated::BridgeInstance;
 use std::path::Path;
+#[cfg(not(feature = "mock-qt"))]
+use std::ptr;
 use std::sync::atomic::{AtomicBool, Ordering};
 
 /// Global flag to track if QGuiApplication has been initialized.
@@ -18,11 +21,13 @@ use std::sync::atomic::{AtomicBool, Ordering};
 static APP_INITIALIZED: AtomicBool = AtomicBool::new(false);
 
 /// QmlTS Engine version (matches package version).
+#[allow(dead_code)]
 pub const VERSION: &str = env!("CARGO_PKG_VERSION");
 
 /// Qt version this crate is built against.
 /// This is determined at compile time via cxx-qt-build.
 #[cfg(not(feature = "mock-qt"))]
+#[allow(dead_code)]
 pub fn qt_version() -> String {
     // cxx-qt-lib provides qVersion() which returns the runtime Qt version
     // For now, we return the target version
@@ -31,6 +36,7 @@ pub fn qt_version() -> String {
 }
 
 #[cfg(feature = "mock-qt")]
+#[allow(dead_code)]
 pub fn qt_version() -> String {
     "6.11.0-mock".to_string()
 }
@@ -79,6 +85,9 @@ pub struct QmltsEngine {
     active_bridge: Option<BridgeInstance>,
     /// Whether QML has been loaded (prevents further registrations).
     qml_loaded: bool,
+    /// Opaque pointer to the backing `QQmlApplicationEngine`.
+    #[allow(dead_code)]
+    engine_ptr: *mut std::ffi::c_void,
 }
 
 impl QmltsEngine {
@@ -100,6 +109,14 @@ impl QmltsEngine {
         // Initialize QGuiApplication if this is the first engine
         Self::ensure_qt_initialized(&config)?;
 
+        let engine_ptr = qt_context::create_engine();
+        #[cfg(not(feature = "mock-qt"))]
+        if engine_ptr.is_null() {
+            return Err(QmltsError::QtInitFailed(
+                "Failed to create QQmlApplicationEngine".to_string(),
+            ));
+        }
+
         Ok(Self {
             config,
             initialized: true,
@@ -108,6 +125,7 @@ impl QmltsEngine {
             registry: BridgeRegistry::from_descriptors(qmlts_host_generated::descriptors()),
             active_bridge: None,
             qml_loaded: false,
+            engine_ptr,
         })
     }
 
@@ -116,6 +134,7 @@ impl QmltsEngine {
     /// Called by `destroyEngine()` to explicitly release resources.
     /// Further operations on this engine will fail.
     pub fn mark_destroyed(&mut self) {
+        self.cleanup_qt_resources();
         self.destroyed = true;
         self.initialized = false;
         tracing::debug!("Engine marked as destroyed");
@@ -191,6 +210,31 @@ impl QmltsEngine {
             .create_instance(class_name)
             .ok_or_else(|| QmltsError::BridgeTypeNotFound(class_name.to_string()))?;
 
+        #[cfg(not(feature = "mock-qt"))]
+        {
+            if self.engine_ptr.is_null() {
+                return Err(QmltsError::QtInitFailed(
+                    "QQmlApplicationEngine was not created".to_string(),
+                ));
+            }
+
+            let vm_set = unsafe {
+                qt_context::set_context_property(self.engine_ptr, "vm", instance.vm_qobject_ptr())
+            };
+            let runtime_set = unsafe {
+                qt_context::set_context_property(
+                    self.engine_ptr,
+                    "__qmlts",
+                    instance.runtime_qobject_ptr(),
+                )
+            };
+            if !vm_set || !runtime_set {
+                return Err(QmltsError::Internal(
+                    "Failed to publish bridge objects into the QML context".to_string(),
+                ));
+            }
+        }
+
         tracing::debug!("Registered bridge for '{class_name}'");
         self.active_bridge = Some(instance);
         Ok(())
@@ -212,6 +256,29 @@ impl QmltsEngine {
     #[must_use]
     pub fn active_bridge(&self) -> Option<&BridgeInstance> {
         self.active_bridge.as_ref()
+    }
+
+    /// Check whether a QML context property is currently published.
+    #[must_use]
+    pub fn has_context_property(&self, name: &str) -> bool {
+        #[cfg(not(feature = "mock-qt"))]
+        {
+            return !self.engine_ptr.is_null()
+                && qt_context::has_context_property(self.engine_ptr, name);
+        }
+
+        #[cfg(feature = "mock-qt")]
+        {
+            let _ = name;
+            false
+        }
+    }
+
+    /// Read an integer property from the active runtime object.
+    #[must_use]
+    pub fn active_runtime_i32_property(&self, name: &str) -> Option<i32> {
+        let runtime_ptr = self.active_bridge.as_ref()?.runtime_qobject_ptr();
+        qt_context::read_int_property(runtime_ptr, name)
     }
 
     /// Load a QML document from a file.
@@ -243,6 +310,16 @@ impl QmltsEngine {
         // Validate QML syntax (basic check)
         self.validate_qml_syntax(&content)?;
 
+        #[cfg(not(feature = "mock-qt"))]
+        {
+            let loaded = qt_context::load_url(self.engine_ptr, path);
+            if !loaded {
+                return Err(QmltsError::QmlLoadFailed(format!(
+                    "Qt failed to load QML file: {path}"
+                )));
+            }
+        }
+
         // Store the loaded component path
         self.loaded_components.push(path.to_string());
         self.qml_loaded = true;
@@ -270,6 +347,16 @@ impl QmltsEngine {
 
         // Validate QML syntax (basic check)
         self.validate_qml_syntax(source)?;
+
+        #[cfg(not(feature = "mock-qt"))]
+        {
+            let loaded = qt_context::load_data(self.engine_ptr, source.as_bytes(), base_url);
+            if !loaded {
+                return Err(QmltsError::QmlLoadFailed(
+                    "Qt failed to load QML source".to_string(),
+                ));
+            }
+        }
 
         // Store a marker for inline component
         let marker = base_url.unwrap_or("<inline>");
@@ -361,7 +448,7 @@ impl QmltsEngine {
     #[cfg(not(feature = "mock-qt"))]
     pub fn process_events(&self) -> Result<()> {
         self.ensure_alive()?;
-        // TODO: Call QCoreApplication::processEvents() via cxx-qt
+        qt_context::process_events();
         tracing::trace!("Processing Qt events");
         Ok(())
     }
@@ -381,7 +468,7 @@ impl QmltsEngine {
     #[cfg(not(feature = "mock-qt"))]
     pub fn process_events_for(&self, timeout_ms: u32) -> Result<()> {
         self.ensure_alive()?;
-        // TODO: Call QCoreApplication::processEvents(maxtime) via cxx-qt
+        qt_context::process_events_for(timeout_ms);
         tracing::trace!("Processing Qt events for {}ms", timeout_ms);
         Ok(())
     }
@@ -400,9 +487,8 @@ impl QmltsEngine {
     #[cfg(not(feature = "mock-qt"))]
     pub fn exec(&self) -> Result<i32> {
         self.ensure_alive()?;
-        // TODO: Call QCoreApplication::exec() via cxx-qt
         tracing::info!("Starting Qt event loop");
-        Ok(0)
+        Ok(qt_context::exec())
     }
 
     #[cfg(feature = "mock-qt")]
@@ -421,7 +507,7 @@ impl QmltsEngine {
     pub fn quit(&self, exit_code: Option<i32>) -> Result<()> {
         self.ensure_alive()?;
         let code = exit_code.unwrap_or(0);
-        // TODO: Call QCoreApplication::exit(code) via cxx-qt
+        qt_context::quit(code);
         tracing::info!("Requesting Qt event loop quit with code {}", code);
         Ok(())
     }
@@ -454,11 +540,34 @@ impl QmltsEngine {
 
         open_lines.first().copied()
     }
+
+    fn cleanup_qt_resources(&mut self) {
+        #[cfg(not(feature = "mock-qt"))]
+        {
+            if !self.engine_ptr.is_null() {
+                unsafe {
+                    let _ = qt_context::clear_context_property(self.engine_ptr, "vm");
+                    let _ = qt_context::clear_context_property(self.engine_ptr, "__qmlts");
+                }
+                self.active_bridge = None;
+                unsafe {
+                    qt_context::destroy_engine(self.engine_ptr);
+                }
+                self.engine_ptr = ptr::null_mut();
+            }
+        }
+
+        #[cfg(feature = "mock-qt")]
+        {
+            self.active_bridge = None;
+        }
+    }
 }
 
 impl Drop for QmltsEngine {
     fn drop(&mut self) {
         tracing::debug!("Dropping QmltsEngine, cleaning up resources");
+        self.cleanup_qt_resources();
         // Note: We don't reset APP_INITIALIZED because Qt's QGuiApplication
         // cannot be cleanly destroyed and recreated within a process.
         // The engine resources are released, but the Qt application persists.
@@ -690,5 +799,19 @@ mod tests {
 
         let result = engine.register_view_model("LoginViewModel");
         assert!(matches!(result, Err(QmltsError::BridgeAlreadyLoaded)));
+    }
+
+    #[test]
+    fn test_register_view_model_publishes_context_properties() {
+        reset_app_initialized();
+
+        let mut engine = QmltsEngine::new(None).unwrap();
+        engine.register_view_model("LoginViewModel").unwrap();
+
+        #[cfg(not(feature = "mock-qt"))]
+        {
+            assert!(engine.has_context_property("vm"));
+            assert!(engine.has_context_property("__qmlts"));
+        }
     }
 }

@@ -81,7 +81,7 @@ Each fixture ViewModel produces a bridge QObject set as the `vm` context propert
 **LoginViewModel** (`login_view_model.rs`):
 
 ```rust
-#[cxx_qt::bridge(cxx_file_stem = "login_view_model")]
+#[cxx_qt::bridge]
 pub mod qobject {
     unsafe extern "RustQt" {
         #[qobject]
@@ -103,7 +103,7 @@ pub struct LoginViewModelRust {
 **CounterViewModel** (`counter_view_model.rs`):
 
 ```rust
-#[cxx_qt::bridge(cxx_file_stem = "counter_view_model")]
+#[cxx_qt::bridge]
 pub mod qobject {
     unsafe extern "RustQt" {
         #[qobject]
@@ -132,7 +132,7 @@ Each ViewModel produces a runtime QObject set as the `__qmlts` context property.
 **LoginRuntime** (`login_runtime.rs`):
 
 ```rust
-#[cxx_qt::bridge(cxx_file_stem = "login_runtime")]
+#[cxx_qt::bridge]
 pub mod qobject {
     #[auto_cxx_name]
     unsafe extern "RustQt" {
@@ -161,7 +161,7 @@ pub mod qobject {
 **CounterRuntime** (`counter_runtime.rs`):
 
 ```rust
-#[cxx_qt::bridge(cxx_file_stem = "counter_runtime")]
+#[cxx_qt::bridge]
 pub mod qobject {
     #[auto_cxx_name]
     unsafe extern "RustQt" {

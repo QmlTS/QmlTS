@@ -1,3 +1,5 @@
+#![cfg(not(feature = "mock-qt"))]
+
 //! Integration tests for bridge registration with real Qt.
 //!
 //! These tests verify the full engine → registry → bridge pipeline
@@ -31,6 +33,8 @@ fn test_register_login_view_model() {
     let mut engine = QmltsEngine::new(None).unwrap();
     engine.register_view_model("LoginViewModel").unwrap();
     assert!(engine.active_bridge().is_some());
+    assert!(engine.has_context_property("vm"));
+    assert!(engine.has_context_property("__qmlts"));
 }
 
 #[test]
@@ -61,15 +65,18 @@ fn test_register_after_load_fails() {
 fn test_register_then_load_qml_with_vm_ref() {
     let mut engine = QmltsEngine::new(None).unwrap();
     engine.register_view_model("LoginViewModel").unwrap();
-    // Load QML that references vm — verifies bridge is available
+    // Load QML that actually touches both vm and __qmlts.
     let result = engine.load_string(
         r#"import QtQuick
 Item {
-    property string u: ""
+    property string u: vm.username
+    Component.onCompleted: __qmlts.invoke(123)
 }"#,
         None,
     );
     assert!(result.is_ok());
+    engine.process_events().unwrap();
+    assert_eq!(engine.active_runtime_i32_property("invokeCount"), Some(1));
 }
 
 #[test]

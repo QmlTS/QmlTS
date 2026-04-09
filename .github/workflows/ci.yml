@@ -61,6 +61,14 @@ jobs:
         with:
           components: clippy, rustfmt
 
+      - name: Prefer modern linker
+        run: |
+          if command -v ld.lld >/dev/null 2>&1; then
+            echo 'RUSTFLAGS=-Clink-arg=-fuse-ld=lld' >> "$GITHUB_ENV"
+          elif command -v ld.bfd >/dev/null 2>&1; then
+            echo 'RUSTFLAGS=-Clink-arg=-fuse-ld=bfd' >> "$GITHUB_ENV"
+          fi
+
       - name: Cache Cargo
         uses: actions/cache@v4
         with:
