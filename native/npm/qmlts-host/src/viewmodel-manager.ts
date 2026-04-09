@@ -18,8 +18,7 @@
 import type { QmltsHost } from './qmlts-host';
 
 /**
- * Minimal schema subset needed by ViewModelManager.
- * Only `className` and `states[].{name, deferred}` are used.
+ * Schema subset needed by ViewModelManager.
  */
 export interface ViewModelManagerSchema {
 	className: string;
@@ -27,6 +26,18 @@ export interface ViewModelManagerSchema {
 		name: string;
 		deferred: boolean;
 	}>;
+	commands?: Array<{
+		name: string;
+		commandId: number;
+	}>;
+	effects?: Array<{
+		name: string;
+		effectId: number;
+	}>;
+	lifecycle?: {
+		onMounted?: boolean;
+		onUnmounting?: boolean;
+	};
 }
 
 /**
@@ -35,14 +46,23 @@ export interface ViewModelManagerSchema {
  */
 export type ViewModelInstance = Record<string, unknown>;
 
+export type CommandHandler = (
+	commandName: string,
+	commandId: number,
+) => void;
+export type LifecycleHandler = (event: string) => void;
+
 interface Registration {
 	schema: ViewModelManagerSchema;
 	instance: ViewModelInstance;
+	onCommand?: CommandHandler;
+	onLifecycle?: LifecycleHandler;
 }
 
 export class ViewModelManager {
 	private host: QmltsHost;
 	private registrations = new Map<string, Registration>();
+	private handlersRegistered = false;
 
 	constructor(host: QmltsHost) {
 		this.host = host;
@@ -57,32 +77,67 @@ export class ViewModelManager {
 	 * @param className - ViewModel class name matching the generated bridge.
 	 * @param schema - Schema describing the ViewModel's states.
 	 * @param instance - The TypeScript ViewModel instance to sync from.
+	 * @param handlers - Optional command/lifecycle handlers.
 	 * @throws Error if the class name is not found in the native registry,
 	 *         or if QML has already been loaded.
 	 */
-	register(schema: ViewModelManagerSchema, instance: ViewModelInstance): void;
+	register(
+		schema: ViewModelManagerSchema,
+		instance: ViewModelInstance,
+		handlers?: {
+			onCommand?: CommandHandler;
+			onLifecycle?: LifecycleHandler;
+		},
+	): void;
 	register(
 		className: string,
 		schema: ViewModelManagerSchema,
 		instance: ViewModelInstance,
+		handlers?: {
+			onCommand?: CommandHandler;
+			onLifecycle?: LifecycleHandler;
+		},
 	): void;
 	register(
 		classNameOrSchema: string | ViewModelManagerSchema,
 		schemaOrInstance: ViewModelManagerSchema | ViewModelInstance,
-		maybeInstance?: ViewModelInstance,
+		maybeInstanceOrHandlers?:
+			| ViewModelInstance
+			| {
+					onCommand?: CommandHandler;
+					onLifecycle?: LifecycleHandler;
+			  },
+		maybeHandlers?: {
+			onCommand?: CommandHandler;
+			onLifecycle?: LifecycleHandler;
+		},
 	): void {
-		const [className, schema, instance] =
-			typeof classNameOrSchema === 'string'
-				? [
-						classNameOrSchema,
-						schemaOrInstance as ViewModelManagerSchema,
-						maybeInstance as ViewModelInstance,
-					]
-				: [
-						classNameOrSchema.className,
-						classNameOrSchema,
-						schemaOrInstance as ViewModelInstance,
-					];
+		let className: string;
+		let schema: ViewModelManagerSchema;
+		let instance: ViewModelInstance;
+		let handlers:
+			| {
+					onCommand?: CommandHandler;
+					onLifecycle?: LifecycleHandler;
+			  }
+			| undefined;
+
+		if (typeof classNameOrSchema === 'string') {
+			className = classNameOrSchema;
+			schema = schemaOrInstance as ViewModelManagerSchema;
+			instance = maybeInstanceOrHandlers as ViewModelInstance;
+			handlers = maybeHandlers;
+		} else {
+			className = classNameOrSchema.className;
+			schema = classNameOrSchema;
+			instance = schemaOrInstance as ViewModelInstance;
+			handlers = maybeInstanceOrHandlers as
+				| {
+						onCommand?: CommandHandler;
+						onLifecycle?: LifecycleHandler;
+				  }
+				| undefined;
+		}
 
 		if (schema.className !== className) {
 			throw new Error(
@@ -91,7 +146,14 @@ export class ViewModelManager {
 		}
 
 		this.host.registerViewModel(className);
-		this.registrations.set(className, { schema, instance });
+		this.registrations.set(className, {
+			schema,
+			instance,
+			onCommand: handlers?.onCommand,
+			onLifecycle: handlers?.onLifecycle,
+		});
+
+		this.ensureHandlersRegistered();
 		this.sync(className);
 	}
 
@@ -174,5 +236,56 @@ export class ViewModelManager {
 			);
 		}
 		return this.host.getProperty<T>(className, propertyName);
+	}
+
+	/**
+	 * Emit an effect signal on the active runtime QObject.
+	 *
+	 * @param className - ViewModel class name.
+	 * @param effectName - Effect name from the schema.
+	 * @param payload - Optional payload arguments.
+	 */
+	emitEffect(
+		className: string,
+		effectName: string,
+		...payload: unknown[]
+	): void {
+		if (!this.registrations.has(className)) {
+			throw new Error(
+				`ViewModelManager: '${className}' is not registered`,
+			);
+		}
+		this.host.emitEffect(className, effectName, ...payload);
+	}
+
+	private ensureHandlersRegistered(): void {
+		if (this.handlersRegistered) {
+			return;
+		}
+		this.handlersRegistered = true;
+
+		this.host.registerInvokeHandler(
+			(className: string, commandId: number) => {
+				const reg = this.registrations.get(className);
+				if (!reg?.onCommand) {
+					return;
+				}
+				const cmd = reg.schema.commands?.find(
+					(c) => c.commandId === commandId,
+				);
+				const commandName = cmd?.name ?? `unknown(${commandId})`;
+				reg.onCommand(commandName, commandId);
+			},
+		);
+
+		this.host.registerLifecycleHandler(
+			(className: string, event: string) => {
+				const reg = this.registrations.get(className);
+				if (!reg?.onLifecycle) {
+					return;
+				}
+				reg.onLifecycle(event);
+			},
+		);
 	}
 }

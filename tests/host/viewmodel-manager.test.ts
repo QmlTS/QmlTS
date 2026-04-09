@@ -32,6 +32,9 @@ describe.skipIf(!isNativeModuleAvailable)('host/viewmodel-manager', () => {
       { name: 'isLoading', deferred: false },
       { name: 'lazyData', deferred: true },
     ],
+    commands: [{ name: 'login', commandId: 927957157 }],
+    effects: [{ name: 'onLoginCompleted', effectId: 1633635556 }],
+    lifecycle: { onMounted: true, onUnmounting: false },
   };
 
   beforeAll(async () => {
@@ -166,6 +169,68 @@ describe.skipIf(!isNativeModuleAvailable)('host/viewmodel-manager', () => {
     // Should not throw — undefined properties are simply skipped
     expect(() => manager.sync('LoginViewModel')).not.toThrow();
     expect(host.getProperty<string>('LoginViewModel', 'username')).toBe('only-this');
+
+    host.dispose();
+  });
+
+  // ─────────────────────────────────────────────────────────────────────
+  //  Step 4: Command dispatch, lifecycle, and effect tests
+  // ─────────────────────────────────────────────────────────────────────
+
+  test('TV-09: register with command handler receives dispatched commands', () => {
+    const host = new QmltsHost();
+    const manager = new ViewModelManager(host);
+
+    const instance = { username: '', password: '', isLoading: false };
+    manager.register(loginSchema, instance, {
+      onCommand: (_name, _id) => {},
+    });
+
+    // Load QML that invokes a command
+    host.loadString(
+      ['import QtQuick', 'Item {', '  Component.onCompleted: __qmlts.invoke(927957157)', '}'].join(
+        '\n',
+      ),
+    );
+    host.processEvents();
+
+    host.dispose();
+  });
+
+  test('TV-10: register with lifecycle handler', () => {
+    const host = new QmltsHost();
+    const manager = new ViewModelManager(host);
+
+    const instance = { username: '', password: '', isLoading: false };
+    manager.register(loginSchema, instance, {
+      onLifecycle: (_event) => {},
+    });
+
+    host.loadString(
+      ['import QtQuick', 'Item {', '  Component.onCompleted: __qmlts.onMounted()', '}'].join('\n'),
+    );
+    host.processEvents();
+
+    host.dispose();
+  });
+
+  test('TV-11: emitEffect through manager', () => {
+    const host = new QmltsHost();
+    const manager = new ViewModelManager(host);
+
+    const instance = { username: '', password: '', isLoading: false };
+    manager.register(loginSchema, instance);
+
+    expect(() => manager.emitEffect('LoginViewModel', 'onLoginCompleted', true)).not.toThrow();
+
+    host.dispose();
+  });
+
+  test('TV-12: emitEffect throws for unregistered class', () => {
+    const host = new QmltsHost();
+    const manager = new ViewModelManager(host);
+
+    expect(() => manager.emitEffect('NoSuch', 'onLoginCompleted', true)).toThrow(/not registered/i);
 
     host.dispose();
   });

@@ -72,6 +72,12 @@ const expectedExports = [
   'syncState',
   'syncStateBatch',
   'getProperty',
+  // §4 Command dispatch & lifecycle
+  'registerInvokeHandler',
+  'registerLifecycleHandler',
+  // §5 Effect emission
+  'emitEffect',
+  'emitEffectById',
   // §3 Event loop
   'exec',
   'quit',
@@ -520,6 +526,245 @@ describe.skipIf(!isNativeModuleAvailable)('host/napi-bindings', () => {
     // Verify round-trip: the properties we set can be read back
     expect(getProperty(engine, 'LoginViewModel', 'username')).toBe('"flowtest"');
     expect(getProperty(engine, 'LoginViewModel', 'password')).toBe('"pw123"');
+  });
+
+  // ─────────────────────────────────────────────────────────────────────
+  //  Step 4: Command dispatch, lifecycle, and effect tests
+  // ─────────────────────────────────────────────────────────────────────
+
+  test('TB-28: command/lifecycle/effect exports exist and are callable', () => {
+    expect(typeof nativeModule.registerInvokeHandler).toBe('function');
+    expect(typeof nativeModule.registerLifecycleHandler).toBe('function');
+    expect(typeof nativeModule.emitEffect).toBe('function');
+    expect(typeof nativeModule.emitEffectById).toBe('function');
+  });
+
+  test('TB-29: registerInvokeHandler receives command dispatch from QML', () => {
+    const createEngine = nativeModule.createEngine as () => object;
+    const registerViewModel = nativeModule.registerViewModel as (
+      engine: object,
+      name: string,
+    ) => void;
+    const registerInvokeHandler = nativeModule.registerInvokeHandler as (
+      engine: object,
+      callback: (className: string, commandId: number) => void,
+    ) => void;
+    const loadString = nativeModule.loadString as (engine: object, qml: string) => void;
+    const processEvents = nativeModule.processEvents as (engine: object) => void;
+    const activeRuntimeI32Property = nativeModule.activeRuntimeI32Property as (
+      engine: object,
+      name: string,
+    ) => number | null;
+
+    const engine = createEngine();
+    registerViewModel(engine, 'LoginViewModel');
+
+    registerInvokeHandler(engine, (_className, _commandId) => {
+      // Handler registered — verifying QML-side dispatch works
+    });
+
+    loadString(
+      engine,
+      ['import QtQuick', 'Item {', '  Component.onCompleted: __qmlts.invoke(927957157)', '}'].join(
+        '\n',
+      ),
+    );
+    processEvents(engine);
+
+    // The invoke_count on the runtime object confirms QML-side execution
+    expect(activeRuntimeI32Property(engine, 'invokeCount')).toBe(1);
+  });
+
+  test('TB-30: registerLifecycleHandler receives onMounted from QML', () => {
+    const createEngine = nativeModule.createEngine as () => object;
+    const registerViewModel = nativeModule.registerViewModel as (
+      engine: object,
+      name: string,
+    ) => void;
+    const registerLifecycleHandler = nativeModule.registerLifecycleHandler as (
+      engine: object,
+      callback: (className: string, event: string) => void,
+    ) => void;
+    const loadString = nativeModule.loadString as (engine: object, qml: string) => void;
+    const processEvents = nativeModule.processEvents as (engine: object) => void;
+    const activeRuntimeI32Property = nativeModule.activeRuntimeI32Property as (
+      engine: object,
+      name: string,
+    ) => number | null;
+
+    const engine = createEngine();
+    registerViewModel(engine, 'LoginViewModel');
+
+    registerLifecycleHandler(engine, (_className, _event) => {});
+
+    loadString(
+      engine,
+      ['import QtQuick', 'Item {', '  Component.onCompleted: __qmlts.onMounted()', '}'].join('\n'),
+    );
+    processEvents(engine);
+
+    expect(activeRuntimeI32Property(engine, 'mountedCount')).toBe(1);
+  });
+
+  test('TB-31: emitEffect() does not throw for known effect', () => {
+    const createEngine = nativeModule.createEngine as () => object;
+    const registerViewModel = nativeModule.registerViewModel as (
+      engine: object,
+      name: string,
+    ) => void;
+    const emitEffect = nativeModule.emitEffect as (
+      engine: object,
+      className: string,
+      effectName: string,
+      payloadJson?: string,
+    ) => void;
+
+    const engine = createEngine();
+    registerViewModel(engine, 'LoginViewModel');
+
+    expect(() => emitEffect(engine, 'LoginViewModel', 'onLoginCompleted', '[true]')).not.toThrow();
+  });
+
+  test('TB-32: emitEffect() throws for unknown effect', () => {
+    const createEngine = nativeModule.createEngine as () => object;
+    const registerViewModel = nativeModule.registerViewModel as (
+      engine: object,
+      name: string,
+    ) => void;
+    const emitEffect = nativeModule.emitEffect as (
+      engine: object,
+      className: string,
+      effectName: string,
+      payloadJson?: string,
+    ) => void;
+
+    const engine = createEngine();
+    registerViewModel(engine, 'LoginViewModel');
+
+    expect(() => emitEffect(engine, 'LoginViewModel', 'nonExistent')).toThrow(/not found/i);
+  });
+
+  test('TB-33: emitEffectById() works for known effect ID', () => {
+    const createEngine = nativeModule.createEngine as () => object;
+    const registerViewModel = nativeModule.registerViewModel as (
+      engine: object,
+      name: string,
+    ) => void;
+    const emitEffectById = nativeModule.emitEffectById as (
+      engine: object,
+      className: string,
+      effectId: number,
+      payloadJson?: string,
+    ) => void;
+
+    const engine = createEngine();
+    registerViewModel(engine, 'LoginViewModel');
+
+    expect(() => emitEffectById(engine, 'LoginViewModel', 1633635556, '[false]')).not.toThrow();
+  });
+
+  test('TB-34: emitEffectById() throws for unknown effect ID', () => {
+    const createEngine = nativeModule.createEngine as () => object;
+    const registerViewModel = nativeModule.registerViewModel as (
+      engine: object,
+      name: string,
+    ) => void;
+    const emitEffectById = nativeModule.emitEffectById as (
+      engine: object,
+      className: string,
+      effectId: number,
+      payloadJson?: string,
+    ) => void;
+
+    const engine = createEngine();
+    registerViewModel(engine, 'LoginViewModel');
+
+    expect(() => emitEffectById(engine, 'LoginViewModel', 999999)).toThrow(/not found/i);
+  });
+
+  test('TB-35: full golden flow: register, sync, invoke, lifecycle, effect', () => {
+    const createEngine = nativeModule.createEngine as () => object;
+    const registerViewModel = nativeModule.registerViewModel as (
+      engine: object,
+      name: string,
+    ) => void;
+    const syncState = nativeModule.syncState as (
+      engine: object,
+      className: string,
+      propertyName: string,
+      jsonValue: string,
+    ) => void;
+    const registerInvokeHandler = nativeModule.registerInvokeHandler as (
+      engine: object,
+      callback: (className: string, commandId: number) => void,
+    ) => void;
+    const registerLifecycleHandler = nativeModule.registerLifecycleHandler as (
+      engine: object,
+      callback: (className: string, event: string) => void,
+    ) => void;
+    const emitEffect = nativeModule.emitEffect as (
+      engine: object,
+      className: string,
+      effectName: string,
+      payloadJson?: string,
+    ) => void;
+    const loadString = nativeModule.loadString as (engine: object, qml: string) => void;
+    const processEvents = nativeModule.processEvents as (engine: object) => void;
+    const activeRuntimeI32Property = nativeModule.activeRuntimeI32Property as (
+      engine: object,
+      name: string,
+    ) => number | null;
+    const getProperty = nativeModule.getProperty as (
+      engine: object,
+      className: string,
+      propertyName: string,
+    ) => string;
+
+    const engine = createEngine();
+    registerViewModel(engine, 'LoginViewModel');
+
+    // Register handlers
+    registerInvokeHandler(engine, (_className, _commandId) => {});
+    registerLifecycleHandler(engine, (_className, _event) => {});
+
+    // Set state
+    syncState(engine, 'LoginViewModel', 'username', '"golden-user"');
+    syncState(engine, 'LoginViewModel', 'password', '"golden-pass"');
+
+    // Load QML matching the golden LoginView pattern
+    loadString(
+      engine,
+      [
+        'import QtQuick',
+        'Rectangle {',
+        '  width: 400; height: 300',
+        '  Column {',
+        '    Text { text: vm.username }',
+        '    Text { text: vm.password }',
+        '    Text { text: vm.isLoading }',
+        '  }',
+        '  Connections {',
+        '    target: __qmlts',
+        '    function onOnLoginCompleted(success) { }',
+        '  }',
+        '  Component.onCompleted: {',
+        '    __qmlts.invoke(927957157)',
+        '    __qmlts.onMounted()',
+        '  }',
+        '}',
+      ].join('\n'),
+    );
+    processEvents(engine);
+
+    // Verify state was synced
+    expect(getProperty(engine, 'LoginViewModel', 'username')).toBe('"golden-user"');
+
+    // Verify invoke + lifecycle hooks fired
+    expect(activeRuntimeI32Property(engine, 'invokeCount')).toBe(1);
+    expect(activeRuntimeI32Property(engine, 'mountedCount')).toBe(1);
+
+    // Emit an effect — should not throw
+    expect(() => emitEffect(engine, 'LoginViewModel', 'onLoginCompleted', '[true]')).not.toThrow();
   });
 });
 

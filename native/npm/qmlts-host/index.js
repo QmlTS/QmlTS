@@ -77,6 +77,10 @@ export const {
   syncState,
   syncStateBatch,
   getProperty,
+  registerInvokeHandler,
+  registerLifecycleHandler,
+  emitEffect,
+  emitEffectById,
 } = nativeModule;
 
 export { QmltsHost } from './src/qmlts-host.ts';

@@ -122,6 +122,71 @@ describe.skipIf(!isNativeModuleAvailable)('host/qmlts-host', () => {
     expect(host.hasBridgeType('NoSuchVM')).toBe(false);
     host.dispose();
   });
+
+  // ─────────────────────────────────────────────────────────────────────
+  //  Step 4: Command dispatch, lifecycle, and effect tests
+  // ─────────────────────────────────────────────────────────────────────
+
+  test('TH-13: registerInvokeHandler does not throw', () => {
+    const host = new QmltsHost();
+    host.registerViewModel('LoginViewModel');
+    expect(() => host.registerInvokeHandler((_className, _commandId) => {})).not.toThrow();
+    host.dispose();
+  });
+
+  test('TH-14: registerLifecycleHandler does not throw', () => {
+    const host = new QmltsHost();
+    host.registerViewModel('LoginViewModel');
+    expect(() => host.registerLifecycleHandler((_className, _event) => {})).not.toThrow();
+    host.dispose();
+  });
+
+  test('TH-15: emitEffect succeeds for known effect', () => {
+    const host = new QmltsHost();
+    host.registerViewModel('LoginViewModel');
+    expect(() => host.emitEffect('LoginViewModel', 'onLoginCompleted', true)).not.toThrow();
+    host.dispose();
+  });
+
+  test('TH-16: emitEffect throws for unknown effect', () => {
+    const host = new QmltsHost();
+    host.registerViewModel('LoginViewModel');
+    expect(() => host.emitEffect('LoginViewModel', 'noSuch')).toThrow(/not found/i);
+    host.dispose();
+  });
+
+  test('TH-17: emitEffectById succeeds for known ID', () => {
+    const host = new QmltsHost();
+    host.registerViewModel('LoginViewModel');
+    expect(() => host.emitEffectById('LoginViewModel', 1633635556, false)).not.toThrow();
+    host.dispose();
+  });
+
+  test('TH-18: full flow with command/lifecycle/effect', () => {
+    const host = new QmltsHost();
+    host.registerViewModel('LoginViewModel');
+
+    host.registerInvokeHandler((_cn, _id) => {});
+    host.registerLifecycleHandler((_cn, _ev) => {});
+
+    host.syncState('LoginViewModel', 'username', 'full-flow');
+    host.loadString(
+      [
+        'import QtQuick',
+        'Item {',
+        '  Component.onCompleted: {',
+        '    __qmlts.invoke(927957157)',
+        '    __qmlts.onMounted()',
+        '  }',
+        '}',
+      ].join('\n'),
+    );
+    host.processEvents();
+
+    expect(() => host.emitEffect('LoginViewModel', 'onLoginCompleted', true)).not.toThrow();
+
+    host.dispose();
+  });
 });
 
 describe('host/qmlts-host (skip check)', () => {

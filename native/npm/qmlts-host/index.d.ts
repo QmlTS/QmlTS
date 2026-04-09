@@ -108,6 +108,38 @@ export declare export declare function createEngine(config?: EngineConfig | unde
 export declare export declare function destroyEngine(engine: QmltsEngine): void
 
 /**
+ * Emit an effect signal on the active runtime QObject by effect name.
+ *
+ * @param engine - The engine instance.
+ * @param className - ViewModel class name (must match the active bridge).
+ * @param effectName - Effect name as declared in the schema.
+ * @param payloadJson - Optional JSON-encoded payload (e.g., `"[true]"`).
+ * @throws Error if the effect name is not found or no bridge is active.
+ *
+ * @example
+ * ```typescript
+ * emitEffect(engine, 'LoginViewModel', 'onLoginCompleted', '[true]');
+ * ```
+ */
+export declare export declare function emitEffect(engine: QmltsEngine, className: string, effectName: string, payloadJson?: string | undefined | null): void
+
+/**
+ * Emit an effect signal on the active runtime QObject by effect ID.
+ *
+ * @param engine - The engine instance.
+ * @param className - ViewModel class name (must match the active bridge).
+ * @param effectId - Numeric effect ID as declared in the schema.
+ * @param payloadJson - Optional JSON-encoded payload.
+ * @throws Error if no effect with the given ID exists or no bridge is active.
+ *
+ * @example
+ * ```typescript
+ * emitEffectById(engine, 'LoginViewModel', 1633635556, '[true]');
+ * ```
+ */
+export declare export declare function emitEffectById(engine: QmltsEngine, className: string, effectId: number, payloadJson?: string | undefined | null): void
+
+/**
  * Engine configuration options.
  *
  * These options control Qt plugin/import paths and logging behavior.
@@ -273,6 +305,43 @@ export declare export declare function qtVersion(): string
  * ```
  */
 export declare export declare function quit(engine: QmltsEngine, exitCode?: number | undefined | null): void
+
+/**
+ * Register a command invoke handler.
+ *
+ * The handler is called when QML calls `__qmlts.invoke(commandId)`.
+ * It receives `(className: string, commandId: number)`.
+ *
+ * @param engine - The engine instance.
+ * @param callback - Handler function `(className: string, commandId: number) => void`.
+ *
+ * @example
+ * ```typescript
+ * registerInvokeHandler(engine, (className, commandId) => {
+ *   console.log(`${className} invoked command ${commandId}`);
+ * });
+ * ```
+ */
+export declare export declare function registerInvokeHandler(engine: QmltsEngine, callback: (className: string, commandId: number) => void): void
+
+/**
+ * Register a lifecycle event handler.
+ *
+ * The handler is called when QML calls `__qmlts.onMounted()` or
+ * `__qmlts.onUnmounting()`.
+ * It receives `(className: string, event: string)`.
+ *
+ * @param engine - The engine instance.
+ * @param callback - Handler function `(className: string, event: string) => void`.
+ *
+ * @example
+ * ```typescript
+ * registerLifecycleHandler(engine, (className, event) => {
+ *   console.log(`${className}: ${event}`);
+ * });
+ * ```
+ */
+export declare export declare function registerLifecycleHandler(engine: QmltsEngine, callback: (className: string, event: string) => void): void
 
 /**
  * Register a ViewModel bridge type by class name.
