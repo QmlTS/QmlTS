@@ -51,6 +51,11 @@ function findNativeModule(): string | null {
 const nativeModulePath = findNativeModule();
 const isNativeModuleAvailable = nativeModulePath !== null;
 
+async function flushJsCallbacks(): Promise<void> {
+  await Promise.resolve();
+  await new Promise((resolve) => setTimeout(resolve, 0));
+}
+
 // Define expected exports based on Rust #[napi] functions
 const expectedExports = [
   // §1 Engine lifecycle
@@ -72,6 +77,12 @@ const expectedExports = [
   'syncState',
   'syncStateBatch',
   'getProperty',
+  // §4 Command dispatch & lifecycle
+  'registerInvokeHandler',
+  'registerLifecycleHandler',
+  // §5 Effect emission
+  'emitEffect',
+  'emitEffectById',
   // §3 Event loop
   'exec',
   'quit',
@@ -520,6 +531,318 @@ describe.skipIf(!isNativeModuleAvailable)('host/napi-bindings', () => {
     // Verify round-trip: the properties we set can be read back
     expect(getProperty(engine, 'LoginViewModel', 'username')).toBe('"flowtest"');
     expect(getProperty(engine, 'LoginViewModel', 'password')).toBe('"pw123"');
+  });
+
+  // ─────────────────────────────────────────────────────────────────────
+  //  Step 4: Command dispatch, lifecycle, and effect tests
+  // ─────────────────────────────────────────────────────────────────────
+
+  test('TB-28: command/lifecycle/effect exports exist and are callable', () => {
+    expect(typeof nativeModule.registerInvokeHandler).toBe('function');
+    expect(typeof nativeModule.registerLifecycleHandler).toBe('function');
+    expect(typeof nativeModule.emitEffect).toBe('function');
+    expect(typeof nativeModule.emitEffectById).toBe('function');
+  });
+
+  test('TB-29: registerInvokeHandler receives command dispatch from QML', async () => {
+    const createEngine = nativeModule.createEngine as () => object;
+    const destroyEngine = nativeModule.destroyEngine as (engine: object) => void;
+    const registerViewModel = nativeModule.registerViewModel as (
+      engine: object,
+      name: string,
+    ) => void;
+    const registerInvokeHandler = nativeModule.registerInvokeHandler as (
+      engine: object,
+      callback: (error: Error | null, className: string, commandId: number) => void,
+    ) => void;
+    const loadString = nativeModule.loadString as (engine: object, qml: string) => void;
+    const processEvents = nativeModule.processEvents as (engine: object) => void;
+    const activeRuntimeI32Property = nativeModule.activeRuntimeI32Property as (
+      engine: object,
+      name: string,
+    ) => number | null;
+
+    const calls: Array<[string, number]> = [];
+    const errors: Array<Error | null> = [];
+    const engine = createEngine();
+    try {
+      registerViewModel(engine, 'LoginViewModel');
+
+      registerInvokeHandler(engine, (error, className, commandId) => {
+        errors.push(error);
+        calls.push([className, commandId]);
+      });
+
+      loadString(
+        engine,
+        [
+          'import QtQuick',
+          'Item {',
+          '  Component.onCompleted: __qmlts.invoke(927957157)',
+          '}',
+        ].join('\n'),
+      );
+      processEvents(engine);
+      await flushJsCallbacks();
+
+      // The invoke_count on the runtime object confirms QML-side execution
+      expect(activeRuntimeI32Property(engine, 'invokeCount')).toBe(1);
+      expect(errors).toEqual([null]);
+      expect(calls).toEqual([['LoginViewModel', 927957157]]);
+    } finally {
+      destroyEngine(engine);
+    }
+  });
+
+  test('TB-30: registerLifecycleHandler receives onMounted from QML', async () => {
+    const createEngine = nativeModule.createEngine as () => object;
+    const destroyEngine = nativeModule.destroyEngine as (engine: object) => void;
+    const registerViewModel = nativeModule.registerViewModel as (
+      engine: object,
+      name: string,
+    ) => void;
+    const registerLifecycleHandler = nativeModule.registerLifecycleHandler as (
+      engine: object,
+      callback: (error: Error | null, className: string, event: string) => void,
+    ) => void;
+    const loadString = nativeModule.loadString as (engine: object, qml: string) => void;
+    const processEvents = nativeModule.processEvents as (engine: object) => void;
+    const activeRuntimeI32Property = nativeModule.activeRuntimeI32Property as (
+      engine: object,
+      name: string,
+    ) => number | null;
+
+    const calls: Array<[string, string]> = [];
+    const errors: Array<Error | null> = [];
+    const engine = createEngine();
+    try {
+      registerViewModel(engine, 'LoginViewModel');
+
+      registerLifecycleHandler(engine, (error, className, event) => {
+        errors.push(error);
+        calls.push([className, event]);
+      });
+
+      loadString(
+        engine,
+        ['import QtQuick', 'Item {', '  Component.onCompleted: __qmlts.onMounted()', '}'].join(
+          '\n',
+        ),
+      );
+      processEvents(engine);
+      await flushJsCallbacks();
+
+      expect(activeRuntimeI32Property(engine, 'mountedCount')).toBe(1);
+      expect(errors).toEqual([null]);
+      expect(calls).toEqual([['LoginViewModel', 'onMounted']]);
+    } finally {
+      destroyEngine(engine);
+    }
+  });
+
+  test('TB-31: emitEffect() does not throw for known effect', () => {
+    const createEngine = nativeModule.createEngine as () => object;
+    const registerViewModel = nativeModule.registerViewModel as (
+      engine: object,
+      name: string,
+    ) => void;
+    const emitEffect = nativeModule.emitEffect as (
+      engine: object,
+      className: string,
+      effectName: string,
+      payloadJson?: string,
+    ) => void;
+
+    const engine = createEngine();
+    registerViewModel(engine, 'LoginViewModel');
+
+    expect(() => emitEffect(engine, 'LoginViewModel', 'onLoginCompleted', '[true]')).not.toThrow();
+  });
+
+  test('TB-32: emitEffect() throws for unknown effect', () => {
+    const createEngine = nativeModule.createEngine as () => object;
+    const registerViewModel = nativeModule.registerViewModel as (
+      engine: object,
+      name: string,
+    ) => void;
+    const emitEffect = nativeModule.emitEffect as (
+      engine: object,
+      className: string,
+      effectName: string,
+      payloadJson?: string,
+    ) => void;
+
+    const engine = createEngine();
+    registerViewModel(engine, 'LoginViewModel');
+
+    expect(() => emitEffect(engine, 'LoginViewModel', 'nonExistent')).toThrow(/not found/i);
+  });
+
+  test('TB-33: emitEffectById() works for known effect ID', () => {
+    const createEngine = nativeModule.createEngine as () => object;
+    const registerViewModel = nativeModule.registerViewModel as (
+      engine: object,
+      name: string,
+    ) => void;
+    const emitEffectById = nativeModule.emitEffectById as (
+      engine: object,
+      className: string,
+      effectId: number,
+      payloadJson?: string,
+    ) => void;
+
+    const engine = createEngine();
+    registerViewModel(engine, 'LoginViewModel');
+
+    expect(() => emitEffectById(engine, 'LoginViewModel', 1633635556, '[false]')).not.toThrow();
+  });
+
+  test('TB-34: emitEffectById() throws for unknown effect ID', () => {
+    const createEngine = nativeModule.createEngine as () => object;
+    const registerViewModel = nativeModule.registerViewModel as (
+      engine: object,
+      name: string,
+    ) => void;
+    const emitEffectById = nativeModule.emitEffectById as (
+      engine: object,
+      className: string,
+      effectId: number,
+      payloadJson?: string,
+    ) => void;
+
+    const engine = createEngine();
+    registerViewModel(engine, 'LoginViewModel');
+
+    expect(() => emitEffectById(engine, 'LoginViewModel', 999999)).toThrow(/not found/i);
+  });
+
+  test('TB-35: full golden flow: register, sync, invoke, lifecycle, effect', async () => {
+    const createEngine = nativeModule.createEngine as () => object;
+    const destroyEngine = nativeModule.destroyEngine as (engine: object) => void;
+    const registerViewModel = nativeModule.registerViewModel as (
+      engine: object,
+      name: string,
+    ) => void;
+    const syncState = nativeModule.syncState as (
+      engine: object,
+      className: string,
+      propertyName: string,
+      jsonValue: string,
+    ) => void;
+    const registerInvokeHandler = nativeModule.registerInvokeHandler as (
+      engine: object,
+      callback: (error: Error | null, className: string, commandId: number) => void,
+    ) => void;
+    const registerLifecycleHandler = nativeModule.registerLifecycleHandler as (
+      engine: object,
+      callback: (error: Error | null, className: string, event: string) => void,
+    ) => void;
+    const emitEffect = nativeModule.emitEffect as (
+      engine: object,
+      className: string,
+      effectName: string,
+      payloadJson?: string,
+    ) => void;
+    const loadString = nativeModule.loadString as (engine: object, qml: string) => void;
+    const processEvents = nativeModule.processEvents as (engine: object) => void;
+    const activeRuntimeI32Property = nativeModule.activeRuntimeI32Property as (
+      engine: object,
+      name: string,
+    ) => number | null;
+    const getProperty = nativeModule.getProperty as (
+      engine: object,
+      className: string,
+      propertyName: string,
+    ) => string;
+
+    const engine = createEngine();
+    const commandCalls: Array<[string, number]> = [];
+    const lifecycleCalls: Array<[string, string]> = [];
+    const commandErrors: Array<Error | null> = [];
+    const lifecycleErrors: Array<Error | null> = [];
+
+    try {
+      registerViewModel(engine, 'LoginViewModel');
+
+      // Register handlers
+      registerInvokeHandler(engine, (error, className, commandId) => {
+        commandErrors.push(error);
+        commandCalls.push([className, commandId]);
+      });
+      registerLifecycleHandler(engine, (error, className, event) => {
+        lifecycleErrors.push(error);
+        lifecycleCalls.push([className, event]);
+      });
+
+      // Set state
+      syncState(engine, 'LoginViewModel', 'username', '"golden-user"');
+      syncState(engine, 'LoginViewModel', 'password', '"golden-pass"');
+
+      // Load QML matching the golden LoginView pattern
+      loadString(
+        engine,
+        [
+          'import QtQuick',
+          'Rectangle {',
+          '  width: 400; height: 300',
+          '  Column {',
+          '    Text { text: vm.username }',
+          '    Text { text: vm.password }',
+          '    Text { text: vm.isLoading }',
+          '  }',
+          '  Connections {',
+          '    target: __qmlts',
+          '    function onOnLoginCompleted(success) { }',
+          '  }',
+          '  Component.onCompleted: {',
+          '    __qmlts.invoke(927957157)',
+          '    __qmlts.onMounted()',
+          '  }',
+          '}',
+        ].join('\n'),
+      );
+      processEvents(engine);
+      await flushJsCallbacks();
+
+      // Verify state was synced
+      expect(getProperty(engine, 'LoginViewModel', 'username')).toBe('"golden-user"');
+
+      // Verify invoke + lifecycle hooks fired
+      expect(activeRuntimeI32Property(engine, 'invokeCount')).toBe(1);
+      expect(activeRuntimeI32Property(engine, 'mountedCount')).toBe(1);
+      expect(commandErrors).toEqual([null]);
+      expect(lifecycleErrors).toEqual([null]);
+      expect(commandCalls).toEqual([['LoginViewModel', 927957157]]);
+      expect(lifecycleCalls).toEqual([['LoginViewModel', 'onMounted']]);
+
+      // Emit an effect — should not throw
+      expect(() =>
+        emitEffect(engine, 'LoginViewModel', 'onLoginCompleted', '[true]'),
+      ).not.toThrow();
+    } finally {
+      destroyEngine(engine);
+    }
+  });
+
+  test('TB-36: emitEffect() rejects multi-argument payloads instead of dropping extras', () => {
+    const createEngine = nativeModule.createEngine as () => object;
+    const registerViewModel = nativeModule.registerViewModel as (
+      engine: object,
+      name: string,
+    ) => void;
+    const emitEffect = nativeModule.emitEffect as (
+      engine: object,
+      className: string,
+      effectName: string,
+      payloadJson?: string,
+    ) => void;
+
+    const engine = createEngine();
+    registerViewModel(engine, 'LoginViewModel');
+
+    expect(() => emitEffect(engine, 'LoginViewModel', 'onLoginCompleted', '[true,false]')).toThrow(
+      /failed to emit signal|internal/i,
+    );
   });
 });
 

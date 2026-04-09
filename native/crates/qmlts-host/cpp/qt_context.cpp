@@ -7,6 +7,7 @@
 #include <QCoreApplication>
 #include <QEventLoop>
 #include <QGuiApplication>
+#include <QJsonArray>
 #include <QJsonDocument>
 #include <QJsonValue>
 #include <QObject>
@@ -300,6 +301,64 @@ void* qmlts_root_object(void* engine_ptr) {
         return nullptr;
     }
     return static_cast<void*>(roots.first());
+}
+
+// ─────────────────────────────────────────────────────────────────────────
+//  Signal emission (Step 4 — effects)
+// ─────────────────────────────────────────────────────────────────────────
+
+bool qmlts_emit_signal(void* qobject_ptr, const char* signal_name, const char* payload_json) {
+    if (!qobject_ptr || !signal_name) {
+        return false;
+    }
+
+    auto* object = static_cast<QObject*>(qobject_ptr);
+
+    // No payload — emit signal with no arguments
+    if (!payload_json || payload_json[0] == '\0') {
+        return QMetaObject::invokeMethod(object, signal_name);
+    }
+
+    // Parse payload JSON to determine argument type
+    const QByteArray bytes(payload_json);
+    const QJsonDocument doc = QJsonDocument::fromJson(bytes);
+    if (doc.isNull()) {
+        return false;
+    }
+
+    QJsonValue val;
+    if (doc.isArray()) {
+        const QJsonArray array = doc.array();
+        if (array.size() != 1) {
+            return false;
+        }
+        val = array.first();
+    } else {
+        val = QJsonValue::fromVariant(doc.toVariant());
+    }
+
+    if (val.isBool()) {
+        return QMetaObject::invokeMethod(object, signal_name,
+            Q_ARG(bool, val.toBool()));
+    }
+    if (val.isDouble()) {
+        // Try integer first
+        const double d = val.toDouble();
+        if (d == static_cast<double>(static_cast<int>(d))) {
+            return QMetaObject::invokeMethod(object, signal_name,
+                Q_ARG(int, static_cast<int>(d)));
+        }
+        return QMetaObject::invokeMethod(object, signal_name,
+            Q_ARG(double, d));
+    }
+    if (val.isString()) {
+        const QString s = val.toString();
+        return QMetaObject::invokeMethod(object, signal_name,
+            Q_ARG(QString, s));
+    }
+
+    // Fallback: emit with no arguments
+    return QMetaObject::invokeMethod(object, signal_name);
 }
 
 } // extern "C"

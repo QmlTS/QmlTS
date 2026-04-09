@@ -9,6 +9,7 @@
 //! (requires Qt — will fail to link without Qt installation)
 
 use qmlts_host::QmltsEngine;
+use std::sync::{Arc, Mutex};
 
 #[test]
 fn test_engine_creates_with_registry() {
@@ -288,6 +289,71 @@ Item {
         engine.active_runtime_i32_property("mountedCount"),
         Some(1),
         "mountedCount should be 1 after one onMounted() call"
+    );
+}
+
+#[test]
+fn test_multiple_engines_dispatch_to_their_own_handlers() {
+    let mut engine1 = QmltsEngine::new(None).unwrap();
+    let mut engine2 = QmltsEngine::new(None).unwrap();
+    engine1.register_view_model("LoginViewModel").unwrap();
+    engine2.register_view_model("LoginViewModel").unwrap();
+
+    let engine1_calls: Arc<Mutex<Vec<(String, u32)>>> = Arc::new(Mutex::new(Vec::new()));
+    let engine2_calls: Arc<Mutex<Vec<(String, u32)>>> = Arc::new(Mutex::new(Vec::new()));
+
+    {
+        let calls = Arc::clone(&engine1_calls);
+        engine1
+            .register_invoke_handler(Box::new(move |class_name, command_id| {
+                calls
+                    .lock()
+                    .unwrap()
+                    .push((class_name.to_string(), command_id));
+            }))
+            .unwrap();
+    }
+    {
+        let calls = Arc::clone(&engine2_calls);
+        engine2
+            .register_invoke_handler(Box::new(move |class_name, command_id| {
+                calls
+                    .lock()
+                    .unwrap()
+                    .push((class_name.to_string(), command_id));
+            }))
+            .unwrap();
+    }
+
+    engine1
+        .load_string(
+            r#"import QtQuick
+Item {
+    Component.onCompleted: __qmlts.invoke(101)
+}"#,
+            None,
+        )
+        .unwrap();
+    engine2
+        .load_string(
+            r#"import QtQuick
+Item {
+    Component.onCompleted: __qmlts.invoke(202)
+}"#,
+            None,
+        )
+        .unwrap();
+
+    engine1.process_events().unwrap();
+    engine2.process_events().unwrap();
+
+    assert_eq!(
+        *engine1_calls.lock().unwrap(),
+        vec![("LoginViewModel".to_string(), 101)]
+    );
+    assert_eq!(
+        *engine2_calls.lock().unwrap(),
+        vec![("LoginViewModel".to_string(), 202)]
     );
 }
 

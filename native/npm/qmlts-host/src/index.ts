@@ -115,6 +115,12 @@ export const {
 	syncState,
 	syncStateBatch,
 	getProperty,
+	// Command dispatch & lifecycle
+	registerInvokeHandler,
+	registerLifecycleHandler,
+	// Effect emission
+	emitEffect,
+	emitEffectById,
 	// Event loop
 	exec,
 	quit,
@@ -131,4 +137,6 @@ export { ViewModelManager } from './viewmodel-manager';
 export type {
 	ViewModelManagerSchema,
 	ViewModelInstance,
+	CommandHandler,
+	LifecycleHandler,
 } from './viewmodel-manager';

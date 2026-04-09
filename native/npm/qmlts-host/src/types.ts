@@ -247,3 +247,78 @@ export declare function processEventsFor(
   engine: QmltsEngine,
   timeoutMs: number
 ): void;
+
+// ────────────────────────────────────────────────────────────────────────────
+// §4 Command Dispatch & Lifecycle
+// ────────────────────────────────────────────────────────────────────────────
+
+/**
+ * Register a command invoke handler.
+ *
+ * The handler is called when QML calls `__qmlts.invoke(commandId)`.
+ *
+ * @param engine - The engine instance.
+ * @param callback - Handler receiving (className, commandId).
+ */
+export declare function registerInvokeHandler(
+	engine: QmltsEngine,
+	callback: (
+		error: Error | null,
+		className: string,
+		commandId: number,
+	) => void,
+): void;
+
+/**
+ * Register a lifecycle event handler.
+ *
+ * The handler is called when QML calls `__qmlts.onMounted()` or
+ * `__qmlts.onUnmounting()`.
+ *
+ * @param engine - The engine instance.
+ * @param callback - Handler receiving (className, event).
+ */
+export declare function registerLifecycleHandler(
+	engine: QmltsEngine,
+	callback: (
+		error: Error | null,
+		className: string,
+		event: string,
+	) => void,
+): void;
+
+// ────────────────────────────────────────────────────────────────────────────
+// §5 Effect Emission
+// ────────────────────────────────────────────────────────────────────────────
+
+/**
+ * Emit an effect signal on the active runtime QObject by effect name.
+ *
+ * @param engine - The engine instance.
+ * @param className - ViewModel class name (must match the active bridge).
+ * @param effectName - Effect name as declared in the schema.
+ * @param payloadJson - Optional JSON-encoded payload.
+ * @throws Error if the effect name is not found or no bridge is active.
+ */
+export declare function emitEffect(
+	engine: QmltsEngine,
+	className: string,
+	effectName: string,
+	payloadJson?: string,
+): void;
+
+/**
+ * Emit an effect signal on the active runtime QObject by effect ID.
+ *
+ * @param engine - The engine instance.
+ * @param className - ViewModel class name (must match the active bridge).
+ * @param effectId - Numeric effect ID.
+ * @param payloadJson - Optional JSON-encoded payload.
+ * @throws Error if no effect with the given ID exists.
+ */
+export declare function emitEffectById(
+	engine: QmltsEngine,
+	className: string,
+	effectId: number,
+	payloadJson?: string,
+): void;

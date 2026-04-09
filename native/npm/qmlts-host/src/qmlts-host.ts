@@ -36,6 +36,10 @@ import {
 	syncState,
 	syncStateBatch,
 	getProperty,
+	registerInvokeHandler,
+	registerLifecycleHandler,
+	emitEffect,
+	emitEffectById,
 	version,
 	qtVersion,
 } from './index';
@@ -242,6 +246,96 @@ export class QmltsHost {
 				}`,
 			);
 		}
+	}
+
+	// ────────────────────────────────────────────────────────────────────
+	//  Command dispatch & lifecycle (Step 4)
+	// ────────────────────────────────────────────────────────────────────
+
+	/**
+	 * Register a command invoke handler.
+	 *
+	 * Called when QML executes `__qmlts.invoke(commandId)`.
+	 *
+	 * @param callback - Receives (className, commandId).
+	 */
+	registerInvokeHandler(
+		callback: (className: string, commandId: number) => void,
+	): void {
+		const eng = this.requireEngine();
+		registerInvokeHandler(eng, (error, className, commandId) => {
+			if (error) {
+				console.error('QmltsHost invoke handler received error:', error);
+				return;
+			}
+			try {
+				callback(className, commandId);
+			} catch (err) {
+				console.error('QmltsHost invoke handler threw:', err);
+			}
+		});
+	}
+
+	/**
+	 * Register a lifecycle event handler.
+	 *
+	 * Called when QML executes `__qmlts.onMounted()` or `__qmlts.onUnmounting()`.
+	 *
+	 * @param callback - Receives (className, event).
+	 */
+	registerLifecycleHandler(
+		callback: (className: string, event: string) => void,
+	): void {
+		const eng = this.requireEngine();
+		registerLifecycleHandler(eng, (error, className, event) => {
+			if (error) {
+				console.error('QmltsHost lifecycle handler received error:', error);
+				return;
+			}
+			try {
+				callback(className, event);
+			} catch (err) {
+				console.error('QmltsHost lifecycle handler threw:', err);
+			}
+		});
+	}
+
+	// ────────────────────────────────────────────────────────────────────
+	//  Effect emission (Step 4)
+	// ────────────────────────────────────────────────────────────────────
+
+	/**
+	 * Emit an effect signal on the active runtime QObject by name.
+	 *
+	 * @param className - ViewModel class name.
+	 * @param effectName - Effect name from the schema.
+	 * @param payload - Optional payload arguments.
+	 */
+	emitEffect(
+		className: string,
+		effectName: string,
+		...payload: unknown[]
+	): void {
+		const eng = this.requireEngine();
+		const json = payload.length > 0 ? JSON.stringify(payload) : undefined;
+		emitEffect(eng, className, effectName, json);
+	}
+
+	/**
+	 * Emit an effect signal on the active runtime QObject by effect ID.
+	 *
+	 * @param className - ViewModel class name.
+	 * @param effectId - Numeric effect ID from the schema.
+	 * @param payload - Optional payload arguments.
+	 */
+	emitEffectById(
+		className: string,
+		effectId: number,
+		...payload: unknown[]
+	): void {
+		const eng = this.requireEngine();
+		const json = payload.length > 0 ? JSON.stringify(payload) : undefined;
+		emitEffectById(eng, className, effectId, json);
 	}
 
 	// ────────────────────────────────────────────────────────────────────

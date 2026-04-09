@@ -50,6 +50,10 @@ pub enum QmltsError {
     #[error("Command dispatcher not registered")]
     DispatcherNotRegistered,
 
+    /// Lifecycle callback not registered.
+    #[error("Lifecycle callback not registered")]
+    LifecycleCallbackNotRegistered,
+
     /// Effect not found on ViewModel.
     #[error("Effect '{effect}' not found on ViewModel '{vm}'")]
     EffectNotFound { vm: String, effect: String },

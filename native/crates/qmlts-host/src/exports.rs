@@ -471,6 +471,153 @@ pub fn process_events_for(engine: &QmltsEngine, timeout_ms: u32) -> Result<()> {
 }
 
 // ─────────────────────────────────────────────────────────────────────────
+//  §4 Command Dispatch & Lifecycle
+// ─────────────────────────────────────────────────────────────────────────
+
+/// Register a command invoke handler.
+///
+/// The handler is called when QML calls `__qmlts.invoke(commandId)`.
+/// It receives `(className: string, commandId: number)`.
+///
+/// @param engine - The engine instance.
+/// @param callback - Handler function `(error, className, commandId) => void`.
+///
+/// @example
+/// ```typescript
+/// registerInvokeHandler(engine, (className, commandId) => {
+///   console.log(`${className} invoked command ${commandId}`);
+/// });
+/// ```
+#[napi(js_name = "registerInvokeHandler")]
+pub fn register_invoke_handler(
+    engine: &QmltsEngine,
+    #[napi(ts_arg_type = "(error: Error | null, className: string, commandId: number) => void")]
+    callback: napi::JsFunction,
+) -> Result<()> {
+    use napi::threadsafe_function::{ErrorStrategy, ThreadSafeCallContext, ThreadsafeFunction};
+
+    let tsfn: ThreadsafeFunction<(String, u32), ErrorStrategy::CalleeHandled> = callback
+        .create_threadsafe_function(0, |ctx: ThreadSafeCallContext<(String, u32)>| {
+            let (class_name, command_id) = ctx.value;
+            Ok(vec![
+                ctx.env.create_string_from_std(class_name)?.into_unknown(),
+                ctx.env.create_uint32(command_id)?.into_unknown(),
+            ])
+        })?;
+
+    let handler = Box::new(move |class_name: &str, command_id: u32| {
+        tsfn.call(
+            Ok((class_name.to_string(), command_id)),
+            napi::threadsafe_function::ThreadsafeFunctionCallMode::NonBlocking,
+        );
+    });
+
+    engine
+        .inner
+        .register_invoke_handler(handler)
+        .map_err(|e| -> napi::Error { e.into() })
+}
+
+/// Register a lifecycle event handler.
+///
+/// The handler is called when QML calls `__qmlts.onMounted()` or
+/// `__qmlts.onUnmounting()`.
+/// It receives `(className: string, event: string)`.
+///
+/// @param engine - The engine instance.
+/// @param callback - Handler function `(error, className, event) => void`.
+///
+/// @example
+/// ```typescript
+/// registerLifecycleHandler(engine, (className, event) => {
+///   console.log(`${className}: ${event}`);
+/// });
+/// ```
+#[napi(js_name = "registerLifecycleHandler")]
+pub fn register_lifecycle_handler(
+    engine: &QmltsEngine,
+    #[napi(ts_arg_type = "(error: Error | null, className: string, event: string) => void")]
+    callback: napi::JsFunction,
+) -> Result<()> {
+    use napi::threadsafe_function::{ErrorStrategy, ThreadSafeCallContext, ThreadsafeFunction};
+
+    let tsfn: ThreadsafeFunction<(String, String), ErrorStrategy::CalleeHandled> = callback
+        .create_threadsafe_function(0, |ctx: ThreadSafeCallContext<(String, String)>| {
+            let (class_name, event) = ctx.value;
+            Ok(vec![
+                ctx.env.create_string_from_std(class_name)?.into_unknown(),
+                ctx.env.create_string_from_std(event)?.into_unknown(),
+            ])
+        })?;
+
+    let handler = Box::new(move |class_name: &str, event: &str| {
+        tsfn.call(
+            Ok((class_name.to_string(), event.to_string())),
+            napi::threadsafe_function::ThreadsafeFunctionCallMode::NonBlocking,
+        );
+    });
+
+    engine
+        .inner
+        .register_lifecycle_handler(handler)
+        .map_err(|e| -> napi::Error { e.into() })
+}
+
+// ─────────────────────────────────────────────────────────────────────────
+//  §5 Effect Emission
+// ─────────────────────────────────────────────────────────────────────────
+
+/// Emit an effect signal on the active runtime QObject by effect name.
+///
+/// @param engine - The engine instance.
+/// @param className - ViewModel class name (must match the active bridge).
+/// @param effectName - Effect name as declared in the schema.
+/// @param payloadJson - Optional JSON-encoded payload (e.g., `"[true]"`).
+/// @throws Error if the effect name is not found or no bridge is active.
+///
+/// @example
+/// ```typescript
+/// emitEffect(engine, 'LoginViewModel', 'onLoginCompleted', '[true]');
+/// ```
+#[napi(js_name = "emitEffect")]
+pub fn emit_effect(
+    engine: &QmltsEngine,
+    class_name: String,
+    effect_name: String,
+    payload_json: Option<String>,
+) -> Result<()> {
+    engine
+        .inner
+        .emit_effect(&class_name, &effect_name, payload_json.as_deref())
+        .map_err(|e| -> napi::Error { e.into() })
+}
+
+/// Emit an effect signal on the active runtime QObject by effect ID.
+///
+/// @param engine - The engine instance.
+/// @param className - ViewModel class name (must match the active bridge).
+/// @param effectId - Numeric effect ID as declared in the schema.
+/// @param payloadJson - Optional JSON-encoded payload.
+/// @throws Error if no effect with the given ID exists or no bridge is active.
+///
+/// @example
+/// ```typescript
+/// emitEffectById(engine, 'LoginViewModel', 1633635556, '[true]');
+/// ```
+#[napi(js_name = "emitEffectById")]
+pub fn emit_effect_by_id(
+    engine: &QmltsEngine,
+    class_name: String,
+    effect_id: u32,
+    payload_json: Option<String>,
+) -> Result<()> {
+    engine
+        .inner
+        .emit_effect_by_id(&class_name, effect_id, payload_json.as_deref())
+        .map_err(|e| -> napi::Error { e.into() })
+}
+
+// ─────────────────────────────────────────────────────────────────────────
 //  Tests
 // ─────────────────────────────────────────────────────────────────────────
 
@@ -665,5 +812,66 @@ mod tests {
         assert!(result.is_err());
         let err = result.unwrap_err();
         assert!(err.reason.contains("partial failure"));
+    }
+
+    #[cfg(feature = "mock-qt")]
+    #[test]
+    fn test_emit_effect_napi() {
+        reset_qt();
+        let mut engine = create_engine(None).unwrap();
+        register_view_model(&mut engine, "LoginViewModel".to_string()).unwrap();
+
+        let result = emit_effect(
+            &engine,
+            "LoginViewModel".to_string(),
+            "onLoginCompleted".to_string(),
+            Some("[true]".to_string()),
+        );
+        assert!(result.is_ok());
+    }
+
+    #[cfg(feature = "mock-qt")]
+    #[test]
+    fn test_emit_effect_unknown_napi() {
+        reset_qt();
+        let mut engine = create_engine(None).unwrap();
+        register_view_model(&mut engine, "LoginViewModel".to_string()).unwrap();
+
+        let result = emit_effect(
+            &engine,
+            "LoginViewModel".to_string(),
+            "nonExistent".to_string(),
+            None,
+        );
+        assert!(result.is_err());
+        let err = result.unwrap_err();
+        assert!(err.reason.contains("Effect"));
+    }
+
+    #[cfg(feature = "mock-qt")]
+    #[test]
+    fn test_emit_effect_by_id_napi() {
+        reset_qt();
+        let mut engine = create_engine(None).unwrap();
+        register_view_model(&mut engine, "LoginViewModel".to_string()).unwrap();
+
+        let result = emit_effect_by_id(
+            &engine,
+            "LoginViewModel".to_string(),
+            1_633_635_556,
+            Some("[false]".to_string()),
+        );
+        assert!(result.is_ok());
+    }
+
+    #[cfg(feature = "mock-qt")]
+    #[test]
+    fn test_emit_effect_by_id_unknown_napi() {
+        reset_qt();
+        let mut engine = create_engine(None).unwrap();
+        register_view_model(&mut engine, "LoginViewModel".to_string()).unwrap();
+
+        let result = emit_effect_by_id(&engine, "LoginViewModel".to_string(), 999_999, None);
+        assert!(result.is_err());
     }
 }

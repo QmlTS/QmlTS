@@ -1,27 +1,25 @@
 //! `CounterRuntime` bridge QObject — set as `__qmlts` context property.
 //!
 //! Provides:
-//! - invoke(`QVariant`): command dispatch (increments `invoke_count` for observability)
+//! - invoke(i32): command dispatch (routes to global dispatcher + increments `invoke_count`)
 //!
 //! No lifecycle hooks, no effects (per schema).
 
 use core::pin::Pin;
 
+use crate::dispatch;
+
 #[cxx_qt::bridge]
 pub mod qobject {
-    unsafe extern "C++" {
-        include!("cxx-qt-lib/qvariant.h");
-        type QVariant = cxx_qt_lib::QVariant;
-    }
-
     #[auto_cxx_name]
     unsafe extern "RustQt" {
         #[qobject]
         #[qproperty(i32, invoke_count, cxx_name = "invokeCount")]
+        #[qproperty(i32, dispatch_owner_id, cxx_name = "dispatchOwnerId")]
         type CounterRuntime = super::CounterRuntimeRust;
 
         #[qinvokable]
-        fn invoke(self: Pin<&mut CounterRuntime>, command: QVariant);
+        fn invoke(self: Pin<&mut CounterRuntime>, command_id: i32);
     }
 }
 
@@ -29,12 +27,20 @@ pub mod qobject {
 #[derive(Default)]
 pub struct CounterRuntimeRust {
     invoke_count: i32,
+    dispatch_owner_id: i32,
 }
 
 impl qobject::CounterRuntime {
-    /// Handle command dispatch. Increments `invoke_count` for test observability.
-    pub fn invoke(self: Pin<&mut Self>, _command: cxx_qt_lib::QVariant) {
+    /// Handle command dispatch from QML `__qmlts.invoke(commandId)`.
+    pub fn invoke(self: Pin<&mut Self>, command_id: i32) {
+        let Ok(command_id) = u32::try_from(command_id) else {
+            return;
+        };
+        let Ok(owner_id) = usize::try_from(*self.dispatch_owner_id()) else {
+            return;
+        };
         let current = *self.invoke_count();
         self.set_invoke_count(current + 1);
+        dispatch::dispatch_command(owner_id, "CounterViewModel", command_id);
     }
 }

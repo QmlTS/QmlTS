@@ -10,6 +10,7 @@
 
 pub mod counter_runtime;
 pub mod counter_view_model;
+pub mod dispatch;
 pub mod login_runtime;
 pub mod login_view_model;
 
