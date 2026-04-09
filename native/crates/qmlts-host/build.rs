@@ -2,21 +2,35 @@
 //!
 //! This script integrates:
 //! - napi-rs for Node.js/Bun native module generation
-//! - cxx-qt-build for Qt/C++ interop (when Qt is available)
+//! - C++ Qt context shim compiled via cxx-qt-build (when Qt is available)
 
 fn main() {
     // napi-rs build setup
     napi_build::setup();
 
-    // cxx-qt-build integration will be added when we implement
-    // the actual Qt bindings. For the bootstrap step, we just
-    // ensure the napi-rs setup is correct.
+    // Compile the Qt context C++ shim.
+    // When mock-qt feature is active, we skip Qt compilation.
+    #[cfg(not(feature = "mock-qt"))]
+    {
+        cxx_qt_build::CxxQtBuilder::new()
+            .qt_module("Core")
+            .qt_module("Gui")
+            .qt_module("Qml")
+            .cc_builder(|cc| {
+                cc.file("cpp/qt_context.cpp");
+            })
+            .build();
 
-    // TODO: Add cxx-qt-build integration
-    // let qt_modules = ["Core", "Gui", "Qml", "Quick"];
-    // cxx_qt_build::CxxQtBuilder::new()
-    //     .qt_modules(&qt_modules)
-    //     .build();
+        // Repeat the key Qt libraries after the generated shim archive.
+        // This avoids link-order issues on Linux linkers such as ld.bfd when
+        // `--as-needed` is active and the cxx-qt-emitted Qt libs appear too
+        // early on the link line for symbols referenced by our static archive.
+        println!("cargo:rustc-link-lib=Qt6Gui");
+        println!("cargo:rustc-link-lib=Qt6Qml");
+        println!("cargo:rustc-link-lib=Qt6Network");
+        println!("cargo:rustc-link-lib=Qt6Core");
+    }
 
     println!("cargo:rerun-if-changed=src/");
+    println!("cargo:rerun-if-changed=cpp/");
 }

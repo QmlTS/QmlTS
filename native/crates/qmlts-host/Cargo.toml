@@ -8,11 +8,11 @@ rust-version.workspace = true
 description = "QmlTS native host - napi-rs + cxx-qt bridge for Qt QML engine"
 
 [lib]
-crate-type = ["cdylib"]
+crate-type = ["cdylib", "rlib"]
 
 [dependencies]
-napi = { workspace = true }
-napi-derive = { workspace = true }
+napi = { workspace = true, optional = true }
+napi-derive = { workspace = true, optional = true }
 cxx = { workspace = true }
 cxx-qt = { workspace = true }
 cxx-qt-lib = { workspace = true }
@@ -20,6 +20,7 @@ thiserror = { workspace = true }
 serde = { workspace = true }
 serde_json = { workspace = true }
 tracing = { workspace = true }
+qmlts-host-generated = { path = "../qmlts-host-generated" }
 
 [build-dependencies]
 napi-build = { workspace = true }
@@ -27,5 +28,6 @@ cxx-qt-build = { workspace = true }
 
 [features]
 default = []
+napi = ["dep:napi", "dep:napi-derive"]
 # Enable this feature to skip Qt runtime checks (for CI without Qt)
 mock-qt = []

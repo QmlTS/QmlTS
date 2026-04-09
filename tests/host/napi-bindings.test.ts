@@ -63,6 +63,11 @@ const expectedExports = [
   'loadString',
   'addImportPath',
   'addPluginPath',
+  // §2b Bridge registry
+  'registerViewModel',
+  'getRegisteredTypes',
+  'hasBridgeType',
+  'activeRuntimeI32Property',
   // §3 Event loop
   'exec',
   'quit',
@@ -194,6 +199,100 @@ describe.skipIf(!isNativeModuleAvailable)('host/napi-bindings', () => {
     expect(() => loadFile(engine, '/nonexistent/path/to/file.qml')).toThrow(
       /not found|FileNotFound/i,
     );
+  });
+
+  test('TB-14: getRegisteredTypes() returns known bridge types', () => {
+    const createEngine = nativeModule.createEngine as () => object;
+    const getRegisteredTypes = nativeModule.getRegisteredTypes as (engine: object) => string[];
+
+    const engine = createEngine();
+    const types = getRegisteredTypes(engine);
+    expect(Array.isArray(types)).toBe(true);
+    expect(types).toContain('LoginViewModel');
+    expect(types).toContain('CounterViewModel');
+  });
+
+  test('TB-15: hasBridgeType() returns true for known types', () => {
+    const createEngine = nativeModule.createEngine as () => object;
+    const hasBridgeType = nativeModule.hasBridgeType as (engine: object, name: string) => boolean;
+
+    const engine = createEngine();
+    expect(hasBridgeType(engine, 'LoginViewModel')).toBe(true);
+    expect(hasBridgeType(engine, 'CounterViewModel')).toBe(true);
+    expect(hasBridgeType(engine, 'NonExistentViewModel')).toBe(false);
+  });
+
+  test('TB-16: registerViewModel() throws for unknown type', () => {
+    const createEngine = nativeModule.createEngine as () => object;
+    const registerViewModel = nativeModule.registerViewModel as (
+      engine: object,
+      name: string,
+    ) => void;
+
+    const engine = createEngine();
+    expect(() => registerViewModel(engine, 'NonExistent')).toThrow(/Bridge type not found/i);
+  });
+
+  test('TB-17: registerViewModel() enables QML access to vm and __qmlts', () => {
+    const createEngine = nativeModule.createEngine as () => object;
+    const loadString = nativeModule.loadString as (engine: object, qml: string) => void;
+    const processEvents = nativeModule.processEvents as (engine: object) => void;
+    const registerViewModel = nativeModule.registerViewModel as (
+      engine: object,
+      name: string,
+    ) => void;
+    const activeRuntimeI32Property = nativeModule.activeRuntimeI32Property as (
+      engine: object,
+      name: string,
+    ) => number | null;
+
+    const engine = createEngine();
+    registerViewModel(engine, 'LoginViewModel');
+
+    // Load QML exercising ALL golden LoginView bindings
+    loadString(
+      engine,
+      [
+        'import QtQuick',
+        'Rectangle {',
+        '  width: 400; height: 300',
+        '  Column {',
+        '    Text { text: vm.username }',
+        '    Text { text: vm.password }',
+        '    Text { text: vm.isLoading }',
+        '  }',
+        '  Connections {',
+        '    target: __qmlts',
+        '    function onOnLoginCompleted(success) { }',
+        '  }',
+        '  Component.onCompleted: {',
+        '    __qmlts.invoke(42)',
+        '    __qmlts.onMounted()',
+        '  }',
+        '}',
+      ].join('\n'),
+    );
+    processEvents(engine);
+
+    // Verify observable behavioral outcomes, not just "did not throw"
+    const invokeCount = activeRuntimeI32Property(engine, 'invokeCount');
+    expect(invokeCount).toBe(1);
+
+    const mountedCount = activeRuntimeI32Property(engine, 'mountedCount');
+    expect(mountedCount).toBe(1);
+  });
+
+  test('TB-18: registerViewModel() throws after QML is loaded', () => {
+    const createEngine = nativeModule.createEngine as () => object;
+    const loadString = nativeModule.loadString as (engine: object, qml: string) => void;
+    const registerViewModel = nativeModule.registerViewModel as (
+      engine: object,
+      name: string,
+    ) => void;
+
+    const engine = createEngine();
+    loadString(engine, 'import QtQuick\nItem { }');
+    expect(() => registerViewModel(engine, 'LoginViewModel')).toThrow(/already loaded/i);
   });
 });
 

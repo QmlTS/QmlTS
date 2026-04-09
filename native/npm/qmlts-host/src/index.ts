@@ -106,6 +106,10 @@ export const {
   loadString,
   addImportPath,
   addPluginPath,
+  // Bridge registry
+  registerViewModel,
+  getRegisteredTypes,
+  hasBridgeType,
   // Event loop
   exec,
   quit,

@@ -31,3 +31,10 @@ export declare function exec(engine: QmltsEngine): number;
 export declare function quit(engine: QmltsEngine, exitCode?: number): void;
 export declare function processEvents(engine: QmltsEngine): void;
 export declare function processEventsFor(engine: QmltsEngine, timeoutMs: number): void;
+export declare function registerViewModel(engine: QmltsEngine, className: string): void;
+export declare function getRegisteredTypes(engine: QmltsEngine): string[];
+export declare function hasBridgeType(engine: QmltsEngine, className: string): boolean;
+export declare function activeRuntimeI32Property(
+  engine: QmltsEngine,
+  name: string,
+): number | null;

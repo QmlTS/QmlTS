@@ -32,10 +32,15 @@
 #![allow(clippy::unnecessary_wraps)] // napi-rs requires Result return types
 #![allow(clippy::unused_self)] // Self may be used in future Qt integration
 
+mod bridge_registry;
 mod engine;
 mod error;
+#[cfg(feature = "napi")]
 mod exports;
+mod qt_context;
 
+pub use bridge_registry::BridgeRegistry;
 pub use engine::QmltsEngine;
 pub use error::QmltsError;
+#[cfg(feature = "napi")]
 pub use exports::*;

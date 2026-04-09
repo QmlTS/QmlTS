@@ -482,10 +482,21 @@ dependencies = [
  "napi",
  "napi-build",
  "napi-derive",
+ "qmlts-host-generated",
  "serde",
  "serde_json",
  "thiserror 2.0.18",
  "tracing",
+]
+
+[[package]]
+name = "qmlts-host-generated"
+version = "0.1.0"
+dependencies = [
+ "cxx",
+ "cxx-qt",
+ "cxx-qt-build",
+ "cxx-qt-lib",
 ]
 
 [[package]]

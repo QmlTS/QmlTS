@@ -61,6 +61,14 @@ jobs:
         with:
           components: clippy, rustfmt
 
+      - name: Prefer modern linker
+        run: |
+          if command -v ld.lld >/dev/null 2>&1; then
+            echo 'RUSTFLAGS=-Clink-arg=-fuse-ld=lld' >> "$GITHUB_ENV"
+          elif command -v ld.bfd >/dev/null 2>&1; then
+            echo 'RUSTFLAGS=-Clink-arg=-fuse-ld=bfd' >> "$GITHUB_ENV"
+          fi
+
       - name: Cache Cargo
         uses: actions/cache@v4
         with:
@@ -99,9 +107,16 @@ jobs:
         working-directory: native
         run: cargo clippy --all-targets --all-features -- -D warnings
 
+      - name: Rust integration tests (real Qt)
+        working-directory: native
+        run: cargo test
+        env:
+          QT_DIR: ${{ env.QT_ROOT_DIR }}
+          QT_QPA_PLATFORM: offscreen
+
       - name: Rust tests
         working-directory: native
-        run: cargo test --all-features
+        run: cargo test --features mock-qt
 
       - name: Build native module
         working-directory: native/npm/qmlts-host
@@ -110,4 +125,7 @@ jobs:
           QT_DIR: ${{ env.QT_ROOT_DIR }}
 
       - name: Run tests
-        run: QT_DIR="$QT_ROOT_DIR" bun run test:ci
+        run: bun run test:ci
+        env:
+          QT_DIR: ${{ env.QT_ROOT_DIR }}
+          QT_QPA_PLATFORM: offscreen
