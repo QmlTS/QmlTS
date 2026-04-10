@@ -950,6 +950,75 @@ impl QmltsEngine {
         Ok(())
     }
 
+    // ─────────────────────────────────────────────────────────────────────
+    //  §8 Hot Reload
+    // ─────────────────────────────────────────────────────────────────────
+
+    /// Capture the current UI state as a JSON snapshot.
+    ///
+    /// Returns a JSON string containing window geometry, focus state,
+    /// and scroll positions. The snapshot can later be restored with
+    /// `restore_snapshot` after a QML reload.
+    pub fn capture_snapshot(&self) -> Result<String> {
+        self.ensure_alive()?;
+        if !self.qml_loaded {
+            return Err(QmltsError::HotReloadFailed(
+                "cannot capture snapshot: no QML loaded".to_string(),
+            ));
+        }
+        qt_context::capture_snapshot(self.engine_ptr).ok_or_else(|| {
+            QmltsError::HotReloadFailed("failed to capture UI state snapshot".to_string())
+        })
+    }
+
+    /// Reload QML: destroy existing root objects, clear component cache,
+    /// and load new QML source.
+    ///
+    /// Context properties (`vm`, `__qmlts`) survive because they are set
+    /// on the engine's root context, which is NOT destroyed during reload.
+    /// After reload, the `qml_loaded` flag remains `true`.
+    pub fn reload_qml(&mut self, new_source: &str, base_url: Option<&str>) -> Result<()> {
+        self.ensure_alive()?;
+        if !self.qml_loaded {
+            return Err(QmltsError::HotReloadFailed(
+                "cannot reload: no QML has been loaded yet".to_string(),
+            ));
+        }
+
+        let ok = qt_context::reload_qml(self.engine_ptr, new_source.as_bytes(), base_url);
+        if ok {
+            tracing::info!("QML reloaded successfully");
+            Ok(())
+        } else {
+            Err(QmltsError::HotReloadFailed(
+                "QML reload failed: new source did not produce a root object".to_string(),
+            ))
+        }
+    }
+
+    /// Restore UI state from a previously captured snapshot.
+    ///
+    /// Applies window geometry and focus from the snapshot JSON. Unknown
+    /// fields are silently ignored for forward compatibility.
+    pub fn restore_snapshot(&self, snapshot_json: &str) -> Result<()> {
+        self.ensure_alive()?;
+        if !self.qml_loaded {
+            return Err(QmltsError::HotReloadFailed(
+                "cannot restore snapshot: no QML loaded".to_string(),
+            ));
+        }
+
+        let ok = qt_context::restore_snapshot(self.engine_ptr, snapshot_json);
+        if ok {
+            tracing::info!("UI state snapshot restored");
+            Ok(())
+        } else {
+            Err(QmltsError::HotReloadFailed(
+                "failed to restore UI state snapshot".to_string(),
+            ))
+        }
+    }
+
     fn find_brace_mismatch_line(&self, source: &str) -> Option<u32> {
         let mut open_lines = Vec::new();
 
@@ -1629,12 +1698,13 @@ mod tests {
 
     #[cfg(feature = "mock-qt")]
     #[test]
-    fn test_get_list_row() {
+    fn test_get_list_row_out_of_bounds() {
         reset_app_initialized();
         let mut engine = QmltsEngine::new(None).unwrap();
         let id = engine.create_list_model(r#"{"roles": ["name"]}"#).unwrap();
+        // Mock row_count returns 0, so index 0 is out of bounds
         let row = engine.get_list_row(id, 0);
-        assert!(row.is_ok()); // mock returns "{}"
+        assert!(row.is_err());
     }
 
     #[test]

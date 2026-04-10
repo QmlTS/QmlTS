@@ -90,7 +90,11 @@ export const {
   moveRows,
   rowCount,
   getRow,
+  captureSnapshot,
+  reloadQml,
+  restoreSnapshot,
 } = nativeModule;
 
 export { QmltsHost } from './src/qmlts-host.ts';
 export { ViewModelManager } from './src/viewmodel-manager.ts';
+export { DevServer } from './src/dev-server.ts';

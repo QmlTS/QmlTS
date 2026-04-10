@@ -54,8 +54,9 @@ pub use exports::*;
 /// It is NOT part of the public API and only exists for test support.
 pub mod qt_context_test {
     pub use crate::qt_context::{
-        create_list_model, destroy_list_model, emit_signal, list_get_row, list_insert_rows,
-        list_move_rows, list_remove_rows, list_row_count, list_set_data, list_update_row,
-        read_bool_property, read_double_property, read_int_property, read_string_property,
+        capture_snapshot, create_list_model, destroy_list_model, emit_signal, list_get_row,
+        list_insert_rows, list_move_rows, list_remove_rows, list_row_count, list_set_data,
+        list_update_row, read_bool_property, read_double_property, read_int_property,
+        read_string_property, reload_qml, restore_snapshot,
     };
 }

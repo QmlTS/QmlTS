@@ -108,6 +108,21 @@ unsafe extern "C" {
     ) -> bool;
     fn qmlts_list_row_count(model_ptr: *mut c_void) -> i32;
     fn qmlts_list_get_row(model_ptr: *mut c_void, index: i32) -> *mut std::ffi::c_char;
+
+    // §8 Hot Reload
+    fn qmlts_capture_snapshot(engine_ptr: *mut c_void) -> *mut std::ffi::c_char;
+    fn qmlts_free_snapshot_string(ptr: *mut std::ffi::c_char);
+    fn qmlts_reload_qml(
+        engine_ptr: *mut c_void,
+        data: *const std::ffi::c_char,
+        data_len: usize,
+        url: *const std::ffi::c_char,
+    ) -> bool;
+    fn qmlts_restore_snapshot(
+        engine_ptr: *mut c_void,
+        json: *const std::ffi::c_char,
+        json_len: usize,
+    ) -> bool;
 }
 
 #[cfg(not(feature = "mock-qt"))]
@@ -663,6 +678,69 @@ pub fn list_row_count(_model_ptr: *mut c_void) -> i32 {
 pub fn list_get_row(_model_ptr: *mut c_void, _index: i32) -> Option<String> {
     tracing::debug!("Mock: list_get_row");
     Some("{}".to_string())
+}
+
+// ─────────────────────────────────────────────────────────────────────────
+//  §8 Hot Reload
+// ─────────────────────────────────────────────────────────────────────────
+
+/// Capture the current UI state as a JSON string.
+#[cfg(not(feature = "mock-qt"))]
+#[allow(dead_code)]
+pub fn capture_snapshot(engine_ptr: *mut c_void) -> Option<String> {
+    let raw = unsafe { qmlts_capture_snapshot(engine_ptr) };
+    if raw.is_null() {
+        return None;
+    }
+    let s = unsafe { std::ffi::CStr::from_ptr(raw) }
+        .to_string_lossy()
+        .into_owned();
+    unsafe { qmlts_free_snapshot_string(raw) };
+    Some(s)
+}
+
+#[cfg(feature = "mock-qt")]
+#[allow(dead_code)]
+pub fn capture_snapshot(_engine_ptr: *mut c_void) -> Option<String> {
+    tracing::debug!("Mock: capture_snapshot");
+    Some(r#"{"window":{"x":0,"y":0,"width":800,"height":600},"focusId":"","scrollPositions":{},"selectedIndices":{}}"#.to_string())
+}
+
+/// Reload QML: destroy existing root objects, clear cache, load new QML.
+#[cfg(not(feature = "mock-qt"))]
+#[allow(dead_code)]
+#[must_use]
+pub fn reload_qml(engine_ptr: *mut c_void, data: &[u8], base_url: Option<&str>) -> bool {
+    let c_url = base_url.map(|url| CString::new(url).expect("base URL must not contain NUL"));
+    let url_ptr = c_url
+        .as_ref()
+        .map_or(std::ptr::null(), |value| value.as_ptr());
+    unsafe { qmlts_reload_qml(engine_ptr, data.as_ptr().cast(), data.len(), url_ptr) }
+}
+
+#[cfg(feature = "mock-qt")]
+#[allow(dead_code)]
+#[must_use]
+pub fn reload_qml(_engine_ptr: *mut c_void, _data: &[u8], _base_url: Option<&str>) -> bool {
+    tracing::debug!("Mock: reload_qml");
+    true
+}
+
+/// Restore UI state from a JSON snapshot.
+#[cfg(not(feature = "mock-qt"))]
+#[allow(dead_code)]
+#[must_use]
+pub fn restore_snapshot(engine_ptr: *mut c_void, json: &str) -> bool {
+    let bytes = json.as_bytes();
+    unsafe { qmlts_restore_snapshot(engine_ptr, bytes.as_ptr().cast(), bytes.len()) }
+}
+
+#[cfg(feature = "mock-qt")]
+#[allow(dead_code)]
+#[must_use]
+pub fn restore_snapshot(_engine_ptr: *mut c_void, _json: &str) -> bool {
+    tracing::debug!("Mock: restore_snapshot");
+    true
 }
 
 #[cfg(test)]

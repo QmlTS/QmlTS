@@ -131,6 +131,10 @@ export const {
 	moveRows,
 	rowCount,
 	getRow,
+	// Hot reload
+	captureSnapshot,
+	reloadQml,
+	restoreSnapshot,
 	// Event loop
 	exec,
 	quit,
@@ -144,9 +148,11 @@ export type { QmltsEngine, EngineConfig } from './types';
 // Export high-level classes
 export { QmltsHost } from './qmlts-host';
 export { ViewModelManager } from './viewmodel-manager';
+export { DevServer } from './dev-server';
 export type {
 	ViewModelManagerSchema,
 	ViewModelInstance,
 	CommandHandler,
 	LifecycleHandler,
 } from './viewmodel-manager';
+export type { HotReloadOptions, HotReloadEvent } from './dev-server';

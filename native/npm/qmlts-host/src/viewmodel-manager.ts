@@ -227,6 +227,23 @@ export class ViewModelManager {
 	}
 
 	/**
+	 * Rehydrate all registered ViewModels after a QML reload.
+	 *
+	 * Iterates all registrations and calls `sync(className)` for each,
+	 * pushing the current TypeScript ViewModel state back into the native
+	 * bridge properties. This is Step 3 of the four-step hot reload pipeline.
+	 *
+	 * Only the currently active ViewModel will actually be synchronized
+	 * (the host supports one active bridge at a time), but this method
+	 * iterates all registrations for forward compatibility.
+	 */
+	rehydrate(): void {
+		for (const className of this.registrations.keys()) {
+			this.sync(className);
+		}
+	}
+
+	/**
 	 * Read a property value back through the host.
 	 */
 	getProperty<T = unknown>(className: string, propertyName: string): T {

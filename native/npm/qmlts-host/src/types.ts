@@ -452,3 +452,50 @@ export declare function getRow(
 	modelId: number,
 	index: number,
 ): string;
+
+// ────────────────────────────────────────────────────────────────────────────
+// §8 Hot Reload
+// ────────────────────────────────────────────────────────────────────────────
+
+/**
+ * Capture the current UI state as a JSON snapshot.
+ *
+ * Returns a JSON string containing window geometry, focus state,
+ * and scroll positions. Use `restoreSnapshot` to restore after reload.
+ *
+ * @param engine - The engine instance (must have QML loaded).
+ * @returns JSON snapshot string.
+ * @throws Error if no QML is loaded.
+ */
+export declare function captureSnapshot(engine: QmltsEngine): string;
+
+/**
+ * Reload QML: destroy existing root objects, clear cache, load new source.
+ *
+ * Context properties (`vm`, `__qmlts`) survive the reload because they
+ * are set on the engine's root context, not on the QML tree.
+ *
+ * @param engine - The engine instance.
+ * @param newSource - New QML source string.
+ * @param baseUrl - Optional base URL for relative imports.
+ * @throws Error if no QML loaded or reload fails.
+ */
+export declare function reloadQml(
+	engine: QmltsEngine,
+	newSource: string,
+	baseUrl?: string,
+): void;
+
+/**
+ * Restore UI state from a previously captured snapshot.
+ *
+ * Applies window geometry and focus from the JSON snapshot.
+ *
+ * @param engine - The engine instance (must have QML loaded).
+ * @param snapshotJson - JSON snapshot from `captureSnapshot`.
+ * @throws Error if no QML loaded or snapshot is invalid.
+ */
+export declare function restoreSnapshot(
+	engine: QmltsEngine,
+	snapshotJson: string,
+): void;

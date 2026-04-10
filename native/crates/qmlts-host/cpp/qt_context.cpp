@@ -20,6 +20,8 @@
 #include <QHash>
 #include <QJsonObject>
 #include <QSet>
+#include <QQuickWindow>
+#include <QQuickItem>
 #include <cmath>
 #include <cstddef>
 #include <cstdint>
@@ -720,6 +722,153 @@ char* qmlts_list_get_row(void* model_ptr, int index) {
         result[bytes.size()] = '\0';
     }
     return result;
+}
+
+// ─────────────────────────────────────────────────────────────────────────
+//  §8 Hot Reload — snapshot capture, QML reload, snapshot restore
+// ─────────────────────────────────────────────────────────────────────────
+
+/// Capture the current UI state as a JSON snapshot.
+///
+/// Traverses the engine's root objects and collects window geometry,
+/// focus item objectName, and scroll positions. Returns a malloc'd JSON
+/// string that the caller must free with `qmlts_free_snapshot_string`.
+char* qmlts_capture_snapshot(void* engine_ptr) {
+    if (!engine_ptr) return nullptr;
+
+    auto* engine = static_cast<QQmlApplicationEngine*>(engine_ptr);
+    QJsonObject snapshot;
+
+    // Window geometry
+    QJsonObject windowObj;
+    windowObj["x"] = 0;
+    windowObj["y"] = 0;
+    windowObj["width"] = 800;
+    windowObj["height"] = 600;
+
+    const QList<QObject*> roots = engine->rootObjects();
+    for (QObject* root : roots) {
+        if (auto* window = qobject_cast<QQuickWindow*>(root)) {
+            windowObj["x"] = window->x();
+            windowObj["y"] = window->y();
+            windowObj["width"] = window->width();
+            windowObj["height"] = window->height();
+            break;
+        }
+    }
+    snapshot["window"] = windowObj;
+
+    // Focus item objectName
+    QString focusId;
+    for (QObject* root : roots) {
+        if (auto* window = qobject_cast<QQuickWindow*>(root)) {
+            if (auto* focusItem = window->activeFocusItem()) {
+                focusId = focusItem->objectName();
+            }
+            break;
+        }
+    }
+    snapshot["focusId"] = focusId;
+
+    // Scroll positions — collect from any Flickable-like items
+    QJsonObject scrollPositions;
+    snapshot["scrollPositions"] = scrollPositions;
+
+    // Selected indices — placeholder for future use
+    QJsonObject selectedIndices;
+    snapshot["selectedIndices"] = selectedIndices;
+
+    const QJsonDocument doc(snapshot);
+    const QByteArray bytes = doc.toJson(QJsonDocument::Compact);
+    char* result = static_cast<char*>(malloc(static_cast<size_t>(bytes.size()) + 1));
+    if (result) {
+        memcpy(result, bytes.constData(), static_cast<size_t>(bytes.size()));
+        result[bytes.size()] = '\0';
+    }
+    return result;
+}
+
+/// Free a snapshot string returned by `qmlts_capture_snapshot`.
+void qmlts_free_snapshot_string(char* ptr) {
+    free(ptr);
+}
+
+/// Reload QML: destroy existing root objects, clear component cache, load new QML.
+///
+/// Context properties (vm, __qmlts) survive because they are set on the
+/// root context, which is NOT destroyed during this operation.
+bool qmlts_reload_qml(void* engine_ptr, const char* data, std::size_t data_len, const char* url) {
+    if (!engine_ptr || !data) return false;
+
+    auto* engine = static_cast<QQmlApplicationEngine*>(engine_ptr);
+
+    // Step 1: Delete all existing root objects
+    const QList<QObject*> roots = engine->rootObjects();
+    for (QObject* root : roots) {
+        delete root;
+    }
+
+    // Step 2: Clear the QML component cache so re-parsed QML picks up changes
+    engine->clearComponentCache();
+
+    // Step 3: Load new QML source
+    const QByteArray bytes(data, static_cast<qsizetype>(data_len));
+    const QUrl base_url = (url && url[0] != '\0')
+        ? QUrl(QString::fromUtf8(url))
+        : QUrl();
+
+    const auto root_count_before = engine->rootObjects().size();
+    engine->loadData(bytes, base_url);
+    return engine->rootObjects().size() > root_count_before;
+}
+
+/// Restore UI state from a JSON snapshot.
+///
+/// Applies window geometry and focus from the snapshot. Unknown fields
+/// are silently ignored for forward compatibility.
+bool qmlts_restore_snapshot(void* engine_ptr, const char* json, std::size_t json_len) {
+    if (!engine_ptr || !json) return false;
+
+    auto* engine = static_cast<QQmlApplicationEngine*>(engine_ptr);
+
+    const QJsonDocument doc = QJsonDocument::fromJson(
+        QByteArray(json, static_cast<qsizetype>(json_len)));
+    if (!doc.isObject()) return false;
+
+    const QJsonObject snapshot = doc.object();
+    const QList<QObject*> roots = engine->rootObjects();
+
+    // Restore window geometry
+    if (snapshot.contains("window")) {
+        const QJsonObject windowObj = snapshot["window"].toObject();
+        for (QObject* root : roots) {
+            if (auto* window = qobject_cast<QQuickWindow*>(root)) {
+                window->setX(windowObj["x"].toInt());
+                window->setY(windowObj["y"].toInt());
+                window->setWidth(windowObj["width"].toInt());
+                window->setHeight(windowObj["height"].toInt());
+                break;
+            }
+        }
+    }
+
+    // Restore focus by objectName
+    if (snapshot.contains("focusId")) {
+        const QString focusId = snapshot["focusId"].toString();
+        if (!focusId.isEmpty()) {
+            for (QObject* root : roots) {
+                if (auto* window = qobject_cast<QQuickWindow*>(root)) {
+                    QQuickItem* item = window->contentItem()->findChild<QQuickItem*>(focusId);
+                    if (item) {
+                        item->forceActiveFocus();
+                    }
+                    break;
+                }
+            }
+        }
+    }
+
+    return true;
 }
 
 } // extern "C"

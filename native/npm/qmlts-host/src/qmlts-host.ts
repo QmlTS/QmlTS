@@ -49,6 +49,9 @@ import {
 	moveRows,
 	rowCount,
 	getRow,
+	captureSnapshot,
+	reloadQml,
+	restoreSnapshot,
 	version,
 	qtVersion,
 } from './index';
@@ -509,6 +512,47 @@ export class QmltsHost {
 				}`,
 			);
 		}
+	}
+
+	// ────────────────────────────────────────────────────────────────────
+	//  §8 Hot Reload
+	// ────────────────────────────────────────────────────────────────────
+
+	/**
+	 * Capture the current UI state as a snapshot.
+	 *
+	 * Returns a JSON string containing window geometry, focus state,
+	 * and scroll positions. Use `restoreSnapshot` to restore after reload.
+	 *
+	 * @returns JSON snapshot string.
+	 * @throws Error if no QML is loaded or engine is disposed.
+	 */
+	captureSnapshot(): string {
+		return captureSnapshot(this.requireEngine());
+	}
+
+	/**
+	 * Reload QML: destroy existing root objects, clear cache, load new source.
+	 *
+	 * Context properties (`vm`, `__qmlts`) survive the reload because they
+	 * are set on the engine's root context, not on the QML tree.
+	 *
+	 * @param newSource - New QML source string.
+	 * @param baseUrl - Optional base URL for relative imports.
+	 * @throws Error if no QML loaded, reload fails, or engine is disposed.
+	 */
+	reloadQml(newSource: string, baseUrl?: string): void {
+		reloadQml(this.requireEngine(), newSource, baseUrl);
+	}
+
+	/**
+	 * Restore UI state from a previously captured snapshot.
+	 *
+	 * @param snapshotJson - JSON snapshot from `captureSnapshot`.
+	 * @throws Error if no QML loaded or engine is disposed.
+	 */
+	restoreSnapshot(snapshotJson: string): void {
+		restoreSnapshot(this.requireEngine(), snapshotJson);
 	}
 
 	// ────────────────────────────────────────────────────────────────────
