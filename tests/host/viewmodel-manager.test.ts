@@ -6,8 +6,11 @@
  */
 
 import { beforeAll, describe, expect, test } from 'bun:test';
-import { existsSync } from 'node:fs';
+import { existsSync, mkdtempSync, rmSync, writeFileSync } from 'node:fs';
+import { tmpdir } from 'node:os';
+import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { DevServer as DevServerClass } from '../../native/npm/qmlts-host/src/dev-server.ts';
 
 const nativeModulePaths = [
   fileURLToPath(
@@ -23,6 +26,28 @@ const isNativeModuleAvailable = nativeModulePaths.some((p) => existsSync(p));
 async function flushJsCallbacks(): Promise<void> {
   await Promise.resolve();
   await new Promise((resolve) => setTimeout(resolve, 0));
+}
+
+async function waitFor<T>(
+  subscribe: (resolve: (value: T) => void, reject: (error: Error) => void) => void,
+  timeoutMs = 3000,
+): Promise<T> {
+  return new Promise<T>((resolve, reject) => {
+    const timer = setTimeout(() => {
+      reject(new Error(`Timed out after ${timeoutMs}ms`));
+    }, timeoutMs);
+
+    subscribe(
+      (value) => {
+        clearTimeout(timer);
+        resolve(value);
+      },
+      (error) => {
+        clearTimeout(timer);
+        reject(error);
+      },
+    );
+  });
 }
 
 describe.skipIf(!isNativeModuleAvailable)('host/viewmodel-manager', () => {
@@ -259,6 +284,44 @@ describe.skipIf(!isNativeModuleAvailable)('host/viewmodel-manager', () => {
 
     host.dispose();
   });
+
+  // ─────────────────────────────────────────────────────────────────────
+  //  Rehydrate (§8 Hot Reload support)
+  // ─────────────────────────────────────────────────────────────────────
+
+  test('TV-13: rehydrate re-syncs all registered ViewModels', () => {
+    const host = new QmltsHost();
+    const manager = new ViewModelManager(host);
+
+    const instance = {
+      username: 'alice',
+      password: 'secret',
+      isLoading: false,
+    };
+    manager.register('LoginViewModel', loginSchema, instance);
+
+    // Mutate local state through the instance reference
+    instance.username = 'bob';
+    manager.sync('LoginViewModel');
+
+    // Rehydrate should re-sync without error
+    expect(() => manager.rehydrate()).not.toThrow();
+
+    // Property should still be readable
+    const val = manager.getProperty<string>('LoginViewModel', 'username');
+    expect(val).toBe('bob');
+
+    host.dispose();
+  });
+
+  test('TV-14: rehydrate with no registrations does not throw', () => {
+    const host = new QmltsHost();
+    const manager = new ViewModelManager(host);
+
+    expect(() => manager.rehydrate()).not.toThrow();
+
+    host.dispose();
+  });
 });
 
 describe('host/viewmodel-manager (skip check)', () => {
@@ -267,5 +330,300 @@ describe('host/viewmodel-manager (skip check)', () => {
       console.log('⚠️  Native module not built. Skipping ViewModelManager tests.');
     }
     expect(true).toBe(true);
+  });
+});
+
+describe('host/dev-server (unit)', () => {
+  test('DS-U01: reload filters snapshot according to preserve options', async () => {
+    let restoredSnapshot: string | null = null;
+    const host = {
+      captureSnapshot: () =>
+        JSON.stringify({
+          window: { x: 10, y: 20, width: 300, height: 200 },
+          focusId: 'fieldA',
+          scrollPositions: { scroller: { contentX: 12, contentY: 34 } },
+          selectedIndices: {},
+        }),
+      reloadQml: () => {},
+      processEvents: () => {},
+      restoreSnapshot: (snapshot: string) => {
+        restoredSnapshot = snapshot;
+      },
+    };
+    const vmManager = { rehydrate: () => {} };
+    const devServer = new DevServerClass(host as never, vmManager as never);
+
+    await devServer.reload('import QtQuick\nItem { }', {
+      preserveGeometry: false,
+      preserveFocus: true,
+      preserveScroll: false,
+    });
+
+    const restored = JSON.parse(restoredSnapshot ?? '{}') as Record<string, unknown>;
+    expect(restored.window).toBeUndefined();
+    expect(restored.scrollPositions).toBeUndefined();
+    expect(restored.focusId).toBe('fieldA');
+    expect(restored.selectedIndices).toEqual({});
+  });
+
+  test('DS-U02: reload skips restore when all preserve flags are disabled', async () => {
+    let restoreCalls = 0;
+    const host = {
+      captureSnapshot: () =>
+        JSON.stringify({
+          window: { x: 0, y: 0, width: 100, height: 100 },
+          focusId: 'fieldA',
+          scrollPositions: { scroller: { contentX: 1, contentY: 2 } },
+        }),
+      reloadQml: () => {},
+      processEvents: () => {},
+      restoreSnapshot: () => {
+        restoreCalls += 1;
+      },
+    };
+    const vmManager = { rehydrate: () => {} };
+    const devServer = new DevServerClass(host as never, vmManager as never);
+
+    await devServer.reload('import QtQuick\nItem { }', {
+      preserveGeometry: false,
+      preserveFocus: false,
+      preserveScroll: false,
+    });
+
+    expect(restoreCalls).toBe(0);
+  });
+
+  test('DS-U03: reload emits one reload-error when reloadQml throws', async () => {
+    const errors: Error[] = [];
+    const host = {
+      captureSnapshot: () => null,
+      reloadQml: () => {
+        throw new Error('reload boom');
+      },
+      processEvents: () => {},
+      restoreSnapshot: () => {},
+    };
+    const vmManager = { rehydrate: () => {} };
+    const devServer = new DevServerClass(host as never, vmManager as never);
+    devServer.on('reload-error', (error) => {
+      errors.push(error as Error);
+    });
+
+    await expect(devServer.reload('import QtQuick\nItem { }')).rejects.toThrow('reload boom');
+    expect(errors).toHaveLength(1);
+    expect(errors[0]?.message).toBe('reload boom');
+  });
+});
+
+// ─────────────────────────────────────────────────────────────────────
+//  DevServer tests
+// ─────────────────────────────────────────────────────────────────────
+
+describe.skipIf(!isNativeModuleAvailable)('host/dev-server', () => {
+  let QmltsHost: typeof import('../../native/npm/qmlts-host/src/qmlts-host').QmltsHost;
+  let ViewModelManager: typeof import('../../native/npm/qmlts-host/src/viewmodel-manager').ViewModelManager;
+  let DevServer: typeof import('../../native/npm/qmlts-host/src/dev-server').DevServer;
+
+  const loginSchema = {
+    className: 'LoginViewModel',
+    states: [
+      { name: 'username', deferred: false },
+      { name: 'password', deferred: false },
+    ],
+    commands: [],
+    effects: [],
+    lifecycle: { onMounted: false, onUnmounting: false },
+  };
+
+  beforeAll(async () => {
+    const hostMod = await import('../../native/npm/qmlts-host/src/qmlts-host.ts');
+    const vmMod = await import('../../native/npm/qmlts-host/src/viewmodel-manager.ts');
+    const dsMod = await import('../../native/npm/qmlts-host/src/dev-server.ts');
+    QmltsHost = hostMod.QmltsHost;
+    ViewModelManager = vmMod.ViewModelManager;
+    DevServer = dsMod.DevServer;
+  });
+
+  test('DS-01: DevServer.reload() performs full four-step cycle', async () => {
+    const host = new QmltsHost();
+    const manager = new ViewModelManager(host);
+
+    manager.register(loginSchema, { username: 'alice', password: 'pw' });
+    host.loadString('import QtQuick\nItem { }');
+    host.processEvents();
+
+    const devServer = new DevServer(host, manager);
+
+    const events: string[] = [];
+    devServer.on('reload-start', () => events.push('start'));
+    devServer.on('reload-complete', () => events.push('complete'));
+
+    await devServer.reload('import QtQuick\nRectangle { width: 100; height: 100 }');
+
+    expect(events).toContain('start');
+    expect(events).toContain('complete');
+
+    // State should survive the reload
+    const val = host.getProperty<string>('LoginViewModel', 'username');
+    expect(val).toBe('alice');
+
+    host.dispose();
+  });
+
+  test('DS-02: DevServer.reload() emits reload-error on failure', async () => {
+    const host = new QmltsHost();
+    const manager = new ViewModelManager(host);
+
+    manager.register(loginSchema, { username: '', password: '' });
+    host.loadString('import QtQuick\nItem { }');
+    host.processEvents();
+
+    const devServer = new DevServer(host, manager);
+
+    const errors: unknown[] = [];
+    devServer.on('reload-error', (...args) => errors.push(...args));
+
+    // Invalid QML should cause a reload error
+    try {
+      await devServer.reload('this is not valid QML at all {{{');
+    } catch {
+      // expected
+    }
+
+    expect(errors).toHaveLength(1);
+    host.dispose();
+  });
+
+  test('DS-03: DevServer start/stop lifecycle', () => {
+    const host = new QmltsHost();
+    const manager = new ViewModelManager(host);
+    const devServer = new DevServer(host, manager);
+
+    expect(devServer.isRunning).toBe(false);
+
+    // stop when not running should not throw
+    devServer.stop();
+    expect(devServer.isRunning).toBe(false);
+
+    host.dispose();
+  });
+
+  test('DS-04: consecutive reloads are stable', async () => {
+    const host = new QmltsHost();
+    const manager = new ViewModelManager(host);
+
+    manager.register(loginSchema, { username: 'test', password: '' });
+    host.loadString('import QtQuick\nItem { }');
+    host.processEvents();
+
+    const devServer = new DevServer(host, manager);
+
+    for (let i = 0; i < 3; i++) {
+      await devServer.reload(`import QtQuick\nItem { property int idx: ${i} }`);
+    }
+
+    // State should survive all reloads
+    const val = host.getProperty<string>('LoginViewModel', 'username');
+    expect(val).toBe('test');
+
+    host.dispose();
+  });
+
+  test('DS-05: DevServer.start() reloads watched QML files and preserves state', async () => {
+    const host = new QmltsHost();
+    const manager = new ViewModelManager(host);
+    const watchedDir = mkdtempSync(join(tmpdir(), 'qmlts-devserver-'));
+    const watchedFile = join(watchedDir, 'Main.qml');
+    const lifecycleEvents: string[] = [];
+
+    try {
+      manager.register(
+        loginSchema,
+        { username: 'watched-user', password: 'pw' },
+        {
+          onLifecycle: (event) => lifecycleEvents.push(event),
+        },
+      );
+      host.loadString('import QtQuick\nItem { property string currentUser: vm.username }');
+      host.processEvents();
+
+      writeFileSync(
+        watchedFile,
+        'import QtQuick\nItem { property string currentUser: vm.username }',
+      );
+
+      const devServer = new DevServer(host, manager);
+      const reloadComplete = waitFor<void>((resolve) => {
+        devServer.on('reload-complete', () => resolve());
+      });
+
+      devServer.start(watchedDir, { debounceMs: 25 });
+      await new Promise((resolve) => setTimeout(resolve, 50));
+
+      writeFileSync(
+        watchedFile,
+        [
+          'import QtQuick',
+          'Item {',
+          '  property string currentUser: vm.username',
+          '  Component.onCompleted: __qmlts.onMounted()',
+          '}',
+        ].join('\n'),
+      );
+
+      await reloadComplete;
+      await flushJsCallbacks();
+
+      expect(host.getProperty<string>('LoginViewModel', 'username')).toBe('watched-user');
+      expect(lifecycleEvents).toContain('onMounted');
+
+      devServer.stop();
+    } finally {
+      host.dispose();
+      rmSync(watchedDir, { recursive: true, force: true });
+    }
+  });
+
+  test('DS-06: DevServer.start() emits one reload-error for invalid watched QML', async () => {
+    const host = new QmltsHost();
+    const manager = new ViewModelManager(host);
+    const watchedDir = mkdtempSync(join(tmpdir(), 'qmlts-devserver-error-'));
+    const watchedFile = join(watchedDir, 'Main.qml');
+
+    try {
+      manager.register(loginSchema, { username: 'still-here', password: 'pw' });
+      host.loadString('import QtQuick\nItem { property string marker: "stable-root" }');
+      host.processEvents();
+
+      writeFileSync(watchedFile, 'import QtQuick\nItem { property string marker: "stable-root" }');
+
+      const devServer = new DevServer(host, manager);
+      const errors: Error[] = [];
+      const reloadError = waitFor<Error>((resolve, reject) => {
+        devServer.on('reload-error', (error) => {
+          const err = error as Error;
+          errors.push(err);
+          resolve(err);
+        });
+        devServer.on('reload-complete', () => {
+          reject(new Error('Expected watched reload to fail, but it completed'));
+        });
+      });
+
+      devServer.start(watchedDir, { debounceMs: 25 });
+      await new Promise((resolve) => setTimeout(resolve, 50));
+
+      writeFileSync(watchedFile, 'this is not valid QML at all {{{');
+
+      const error = await reloadError;
+      expect(error.message).toMatch(/reload|QML|failed/i);
+      expect(errors).toHaveLength(1);
+      expect(host.getProperty<string>('LoginViewModel', 'username')).toBe('still-here');
+
+      devServer.stop();
+    } finally {
+      host.dispose();
+      rmSync(watchedDir, { recursive: true, force: true });
+    }
   });
 });

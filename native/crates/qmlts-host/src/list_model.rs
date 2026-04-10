@@ -23,6 +23,25 @@ impl ListModelHandle {
     ///
     /// Returns `ListModelError` if the schema is invalid or model creation fails.
     pub fn new(schema_json: &str) -> Result<Self> {
+        // Validate schema before calling C++
+        let parsed: serde_json::Value = serde_json::from_str(schema_json)
+            .map_err(|e| QmltsError::ListModelError(format!("Invalid schema JSON: {e}")))?;
+        if let Some(roles) = parsed.get("roles").and_then(|v| v.as_array()) {
+            let mut seen = std::collections::HashSet::new();
+            for (index, role) in roles.iter().enumerate() {
+                let name = role.as_str().ok_or_else(|| {
+                    QmltsError::ListModelError(format!(
+                        "Invalid schema: roles[{index}] must be a string"
+                    ))
+                })?;
+                if !seen.insert(name) {
+                    return Err(QmltsError::ListModelError(format!(
+                        "Duplicate role name: {name}"
+                    )));
+                }
+            }
+        }
+
         let ptr = qt_context::create_list_model(schema_json);
         if ptr.is_null() {
             return Err(QmltsError::ListModelError(
@@ -34,11 +53,20 @@ impl ListModelHandle {
 
     /// Replace all data in the model with the given JSON array of row objects.
     pub fn set_data(&self, json_array: &str) -> Result<()> {
+        // Validate that input is a JSON array
+        let parsed: serde_json::Value = serde_json::from_str(json_array)
+            .map_err(|e| QmltsError::ListModelError(format!("Invalid JSON for set_data: {e}")))?;
+        if !parsed.is_array() {
+            return Err(QmltsError::ListModelError(
+                "set_data failed: expected a JSON array of row objects".to_string(),
+            ));
+        }
+
         if qt_context::list_set_data(self.ptr, json_array) {
             Ok(())
         } else {
             Err(QmltsError::ListModelError(
-                "set_data failed: expected a JSON array of row objects".to_string(),
+                "set_data failed: C++ rejected the data".to_string(),
             ))
         }
     }
@@ -115,6 +143,12 @@ impl ListModelHandle {
     ///
     /// Returns `ListModelError` if the index is out of range.
     pub fn get_row(&self, index: i32) -> Result<String> {
+        let row_count = self.row_count();
+        if index < 0 || index >= row_count {
+            return Err(QmltsError::ListModelError(format!(
+                "get_row failed at index {index}: out of range (row_count={row_count})"
+            )));
+        }
         qt_context::list_get_row(self.ptr, index)
             .ok_or_else(|| QmltsError::ListModelError(format!("get_row failed at index {index}")))
     }
@@ -187,10 +221,11 @@ mod tests {
     }
 
     #[test]
-    fn list_model_get_row_returns_json() {
+    fn list_model_get_row_out_of_bounds_returns_error() {
         let model = ListModelHandle::new(r#"{"roles": ["name"]}"#).unwrap();
+        // Mock row_count returns 0, so index 0 is out of bounds
         let row = model.get_row(0);
-        assert!(row.is_ok());
+        assert!(row.is_err());
     }
 
     #[test]

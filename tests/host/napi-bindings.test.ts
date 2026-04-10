@@ -93,6 +93,10 @@ const expectedExports = [
   'moveRows',
   'rowCount',
   'getRow',
+  // §8 Hot reload
+  'captureSnapshot',
+  'reloadQml',
+  'restoreSnapshot',
   // §3 Event loop
   'exec',
   'quit',
@@ -1207,6 +1211,206 @@ describe.skipIf(!isNativeModuleAvailable)('host/napi-bindings', () => {
     processEvents(engine);
     expect(rootStringProperty(engine, 'receivedQuery')).toBe('unset');
     expect(rootI32Property(engine, 'receivedCount')).toBe(-1);
+  });
+
+  // ─────────────────────────────────────────────────────────────────────
+  //  §8 Hot Reload
+  // ─────────────────────────────────────────────────────────────────────
+
+  test('TB-47: captureSnapshot returns valid JSON', () => {
+    const createEngine = nativeModule.createEngine as () => object;
+    const registerViewModel = nativeModule.registerViewModel as (
+      engine: object,
+      className: string,
+    ) => void;
+    const loadString = nativeModule.loadString as (engine: object, qml: string) => void;
+    const processEvents = nativeModule.processEvents as (engine: object) => void;
+    const captureSnapshot = nativeModule.captureSnapshot as (engine: object) => string;
+
+    const engine = createEngine();
+    registerViewModel(engine, 'LoginViewModel');
+    loadString(engine, 'import QtQuick\nItem { }');
+    processEvents(engine);
+
+    const snapshot = captureSnapshot(engine);
+    expect(typeof snapshot).toBe('string');
+    const parsed = JSON.parse(snapshot);
+    expect(parsed).toHaveProperty('window');
+    expect(parsed).toHaveProperty('focusId');
+  });
+
+  test('TB-48: captureSnapshot fails before QML loaded', () => {
+    const createEngine = nativeModule.createEngine as () => object;
+    const captureSnapshot = nativeModule.captureSnapshot as (engine: object) => string;
+
+    const engine = createEngine();
+    expect(() => captureSnapshot(engine)).toThrow();
+  });
+
+  test('TB-49: reloadQml succeeds after load', () => {
+    const createEngine = nativeModule.createEngine as () => object;
+    const registerViewModel = nativeModule.registerViewModel as (
+      engine: object,
+      className: string,
+    ) => void;
+    const loadString = nativeModule.loadString as (engine: object, qml: string) => void;
+    const processEvents = nativeModule.processEvents as (engine: object) => void;
+    const reloadQml = nativeModule.reloadQml as (engine: object, source: string) => void;
+
+    const engine = createEngine();
+    registerViewModel(engine, 'LoginViewModel');
+    loadString(engine, 'import QtQuick\nItem { }');
+    processEvents(engine);
+
+    expect(() =>
+      reloadQml(engine, 'import QtQuick\nRectangle { width: 200; height: 100 }'),
+    ).not.toThrow();
+    processEvents(engine);
+  });
+
+  test('TB-49a: reloadQml failure preserves the previous root object', () => {
+    const createEngine = nativeModule.createEngine as () => object;
+    const registerViewModel = nativeModule.registerViewModel as (
+      engine: object,
+      className: string,
+    ) => void;
+    const loadString = nativeModule.loadString as (engine: object, qml: string) => void;
+    const processEvents = nativeModule.processEvents as (engine: object) => void;
+    const reloadQml = nativeModule.reloadQml as (engine: object, source: string) => void;
+    const rootStringProperty = nativeModule.rootStringProperty as (
+      engine: object,
+      name: string,
+    ) => string | null;
+
+    const engine = createEngine();
+    registerViewModel(engine, 'LoginViewModel');
+    loadString(
+      engine,
+      ['import QtQuick', 'Item {', '  property string marker: "old-root"', '}'].join('\n'),
+    );
+    processEvents(engine);
+
+    expect(rootStringProperty(engine, 'marker')).toBe('old-root');
+    expect(() => reloadQml(engine, 'this is not valid QML at all {{{')).toThrow();
+    expect(rootStringProperty(engine, 'marker')).toBe('old-root');
+  });
+
+  test('TB-50: reloadQml fails before QML loaded', () => {
+    const createEngine = nativeModule.createEngine as () => object;
+    const registerViewModel = nativeModule.registerViewModel as (
+      engine: object,
+      className: string,
+    ) => void;
+    const reloadQml = nativeModule.reloadQml as (engine: object, source: string) => void;
+
+    const engine = createEngine();
+    registerViewModel(engine, 'LoginViewModel');
+    expect(() => reloadQml(engine, 'import QtQuick\nItem { }')).toThrow();
+  });
+
+  test('TB-51: restoreSnapshot succeeds after load', () => {
+    const createEngine = nativeModule.createEngine as () => object;
+    const registerViewModel = nativeModule.registerViewModel as (
+      engine: object,
+      className: string,
+    ) => void;
+    const loadString = nativeModule.loadString as (engine: object, qml: string) => void;
+    const processEvents = nativeModule.processEvents as (engine: object) => void;
+    const captureSnapshot = nativeModule.captureSnapshot as (engine: object) => string;
+    const restoreSnapshot = nativeModule.restoreSnapshot as (
+      engine: object,
+      snapshot: string,
+    ) => void;
+
+    const engine = createEngine();
+    registerViewModel(engine, 'LoginViewModel');
+    loadString(engine, 'import QtQuick\nItem { }');
+    processEvents(engine);
+
+    const snapshot = captureSnapshot(engine);
+    expect(() => restoreSnapshot(engine, snapshot)).not.toThrow();
+  });
+
+  test('TB-52: full capture-reload-restore cycle', () => {
+    const createEngine = nativeModule.createEngine as () => object;
+    const registerViewModel = nativeModule.registerViewModel as (
+      engine: object,
+      className: string,
+    ) => void;
+    const syncState = nativeModule.syncState as (
+      engine: object,
+      className: string,
+      prop: string,
+      val: string,
+    ) => void;
+    const getProperty = nativeModule.getProperty as (
+      engine: object,
+      className: string,
+      prop: string,
+    ) => string;
+    const loadString = nativeModule.loadString as (engine: object, qml: string) => void;
+    const processEvents = nativeModule.processEvents as (engine: object) => void;
+    const captureSnapshot = nativeModule.captureSnapshot as (engine: object) => string;
+    const reloadQml = nativeModule.reloadQml as (engine: object, source: string) => void;
+    const restoreSnapshot = nativeModule.restoreSnapshot as (
+      engine: object,
+      snapshot: string,
+    ) => void;
+
+    const engine = createEngine();
+    registerViewModel(engine, 'LoginViewModel');
+    syncState(engine, 'LoginViewModel', 'username', '"alice"');
+    loadString(engine, 'import QtQuick\nItem { }');
+    processEvents(engine);
+
+    // Step 1: Capture
+    const snapshot = captureSnapshot(engine);
+
+    // Step 2: Reload
+    reloadQml(engine, 'import QtQuick\nRectangle { width: 320; height: 240 }');
+    processEvents(engine);
+
+    // Step 3: Rehydrate (re-sync)
+    syncState(engine, 'LoginViewModel', 'username', '"alice"');
+
+    // Step 4: Restore
+    restoreSnapshot(engine, snapshot);
+    processEvents(engine);
+
+    // Verify state survives
+    const val = getProperty(engine, 'LoginViewModel', 'username');
+    expect(val).toBe('"alice"');
+  });
+
+  test('TB-53: consecutive reloads remain stable', () => {
+    const createEngine = nativeModule.createEngine as () => object;
+    const registerViewModel = nativeModule.registerViewModel as (
+      engine: object,
+      className: string,
+    ) => void;
+    const loadString = nativeModule.loadString as (engine: object, qml: string) => void;
+    const processEvents = nativeModule.processEvents as (engine: object) => void;
+    const captureSnapshot = nativeModule.captureSnapshot as (engine: object) => string;
+    const reloadQml = nativeModule.reloadQml as (engine: object, source: string) => void;
+    const restoreSnapshot = nativeModule.restoreSnapshot as (
+      engine: object,
+      snapshot: string,
+    ) => void;
+
+    const engine = createEngine();
+    registerViewModel(engine, 'LoginViewModel');
+    loadString(engine, 'import QtQuick\nItem { }');
+    processEvents(engine);
+
+    for (let i = 0; i < 3; i++) {
+      const snap = captureSnapshot(engine);
+      reloadQml(engine, `import QtQuick\nItem { property int idx: ${i} }`);
+      processEvents(engine);
+      restoreSnapshot(engine, snap);
+      processEvents(engine);
+    }
+    // If we got here without throwing, consecutive reloads are stable
+    expect(true).toBe(true);
   });
 });
 

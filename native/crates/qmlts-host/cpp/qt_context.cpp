@@ -20,6 +20,8 @@
 #include <QHash>
 #include <QJsonObject>
 #include <QSet>
+#include <QQuickWindow>
+#include <QQuickItem>
 #include <cmath>
 #include <cstddef>
 #include <cstdint>
@@ -39,6 +41,73 @@ QGuiApplication* ensure_application()
     static char* argv[] = { app_name, nullptr };
     static QGuiApplication* app = new QGuiApplication(argc, argv);
     return app;
+}
+
+QObject* find_named_object(QObject* root, const QString& objectName)
+{
+    if (!root) {
+        return nullptr;
+    }
+    if (root->objectName() == objectName) {
+        return root;
+    }
+    return root->findChild<QObject*>(objectName);
+}
+
+void collect_scroll_positions(QObject* object, QJsonObject& out)
+{
+    if (!object) {
+        return;
+    }
+
+    const QString objectName = object->objectName();
+    const QVariant contentX = object->property("contentX");
+    const QVariant contentY = object->property("contentY");
+    if (!objectName.isEmpty() && contentX.isValid() && contentY.isValid()) {
+        bool okX = false;
+        bool okY = false;
+        const double x = contentX.toDouble(&okX);
+        const double y = contentY.toDouble(&okY);
+        if (okX && okY) {
+            QJsonObject scrollState;
+            scrollState["contentX"] = x;
+            scrollState["contentY"] = y;
+            out[objectName] = scrollState;
+        }
+    }
+
+    const auto children = object->children();
+    for (QObject* child : children) {
+        collect_scroll_positions(child, out);
+    }
+}
+
+void restore_scroll_positions(const QList<QObject*>& roots, const QJsonObject& scrollPositions)
+{
+    for (auto it = scrollPositions.begin(); it != scrollPositions.end(); ++it) {
+        if (!it->isObject()) {
+            continue;
+        }
+
+        QObject* target = nullptr;
+        for (QObject* root : roots) {
+            target = find_named_object(root, it.key());
+            if (target) {
+                break;
+            }
+        }
+        if (!target) {
+            continue;
+        }
+
+        const QJsonObject scrollState = it->toObject();
+        if (scrollState.contains("contentX")) {
+            target->setProperty("contentX", scrollState["contentX"].toDouble());
+        }
+        if (scrollState.contains("contentY")) {
+            target->setProperty("contentY", scrollState["contentY"].toDouble());
+        }
+    }
 }
 }
 
@@ -720,6 +789,165 @@ char* qmlts_list_get_row(void* model_ptr, int index) {
         result[bytes.size()] = '\0';
     }
     return result;
+}
+
+// ─────────────────────────────────────────────────────────────────────────
+//  §8 Hot Reload — snapshot capture, QML reload, snapshot restore
+// ─────────────────────────────────────────────────────────────────────────
+
+/// Capture the current UI state as a JSON snapshot.
+///
+/// Traverses the engine's root objects and collects window geometry,
+/// focus item objectName, and scroll positions. Returns a malloc'd JSON
+/// string that the caller must free with `qmlts_free_snapshot_string`.
+char* qmlts_capture_snapshot(void* engine_ptr) {
+    if (!engine_ptr) return nullptr;
+
+    auto* engine = static_cast<QQmlApplicationEngine*>(engine_ptr);
+    QJsonObject snapshot;
+
+    // Window geometry
+    QJsonObject windowObj;
+    windowObj["x"] = 0;
+    windowObj["y"] = 0;
+    windowObj["width"] = 800;
+    windowObj["height"] = 600;
+
+    const QList<QObject*> roots = engine->rootObjects();
+    for (QObject* root : roots) {
+        if (auto* window = qobject_cast<QQuickWindow*>(root)) {
+            windowObj["x"] = window->x();
+            windowObj["y"] = window->y();
+            windowObj["width"] = window->width();
+            windowObj["height"] = window->height();
+            break;
+        }
+    }
+    snapshot["window"] = windowObj;
+
+    // Focus item objectName
+    QString focusId;
+    for (QObject* root : roots) {
+        if (auto* window = qobject_cast<QQuickWindow*>(root)) {
+            if (auto* focusItem = window->activeFocusItem()) {
+                focusId = focusItem->objectName();
+            }
+            break;
+        }
+    }
+    snapshot["focusId"] = focusId;
+
+    // Scroll positions — collect from any Flickable-like items
+    QJsonObject scrollPositions;
+    for (QObject* root : roots) {
+        collect_scroll_positions(root, scrollPositions);
+    }
+    snapshot["scrollPositions"] = scrollPositions;
+
+    // Selected indices — placeholder for future use
+    QJsonObject selectedIndices;
+    snapshot["selectedIndices"] = selectedIndices;
+
+    const QJsonDocument doc(snapshot);
+    const QByteArray bytes = doc.toJson(QJsonDocument::Compact);
+    char* result = static_cast<char*>(malloc(static_cast<size_t>(bytes.size()) + 1));
+    if (result) {
+        memcpy(result, bytes.constData(), static_cast<size_t>(bytes.size()));
+        result[bytes.size()] = '\0';
+    }
+    return result;
+}
+
+/// Free a snapshot string returned by `qmlts_capture_snapshot`.
+void qmlts_free_snapshot_string(char* ptr) {
+    free(ptr);
+}
+
+/// Reload QML: keep the existing root tree until the new source loads successfully.
+///
+/// Context properties (vm, __qmlts) survive because they are set on the
+/// root context, which is NOT destroyed during this operation.
+bool qmlts_reload_qml(void* engine_ptr, const char* data, std::size_t data_len, const char* url) {
+    if (!engine_ptr || !data) return false;
+
+    auto* engine = static_cast<QQmlApplicationEngine*>(engine_ptr);
+    const QList<QObject*> previousRoots = engine->rootObjects();
+
+    // Step 1: Clear the QML component cache so re-parsed QML picks up changes
+    engine->clearComponentCache();
+
+    // Step 2: Attempt to load the new QML source while keeping the old tree alive.
+    const QByteArray bytes(data, static_cast<qsizetype>(data_len));
+    const QUrl base_url = (url && url[0] != '\0')
+        ? QUrl(QString::fromUtf8(url))
+        : QUrl();
+
+    const auto root_count_before = previousRoots.size();
+    engine->loadData(bytes, base_url);
+    const QList<QObject*> currentRoots = engine->rootObjects();
+    if (currentRoots.size() <= root_count_before) {
+        return false;
+    }
+
+    // Step 3: New QML is live, so the old roots can now be discarded.
+    for (QObject* root : previousRoots) {
+        delete root;
+    }
+    return true;
+}
+
+/// Restore UI state from a JSON snapshot.
+///
+/// Applies window geometry and focus from the snapshot. Unknown fields
+/// are silently ignored for forward compatibility.
+bool qmlts_restore_snapshot(void* engine_ptr, const char* json, std::size_t json_len) {
+    if (!engine_ptr || !json) return false;
+
+    auto* engine = static_cast<QQmlApplicationEngine*>(engine_ptr);
+
+    const QJsonDocument doc = QJsonDocument::fromJson(
+        QByteArray(json, static_cast<qsizetype>(json_len)));
+    if (!doc.isObject()) return false;
+
+    const QJsonObject snapshot = doc.object();
+    const QList<QObject*> roots = engine->rootObjects();
+
+    // Restore window geometry
+    if (snapshot.contains("window")) {
+        const QJsonObject windowObj = snapshot["window"].toObject();
+        for (QObject* root : roots) {
+            if (auto* window = qobject_cast<QQuickWindow*>(root)) {
+                window->setX(windowObj["x"].toInt());
+                window->setY(windowObj["y"].toInt());
+                window->setWidth(windowObj["width"].toInt());
+                window->setHeight(windowObj["height"].toInt());
+                break;
+            }
+        }
+    }
+
+    // Restore focus by objectName
+    if (snapshot.contains("focusId")) {
+        const QString focusId = snapshot["focusId"].toString();
+        if (!focusId.isEmpty()) {
+            for (QObject* root : roots) {
+                if (auto* window = qobject_cast<QQuickWindow*>(root)) {
+                    QQuickItem* item = window->contentItem()->findChild<QQuickItem*>(focusId);
+                    if (item) {
+                        item->forceActiveFocus();
+                    }
+                    break;
+                }
+            }
+        }
+    }
+
+    // Restore scroll positions by objectName.
+    if (snapshot.contains("scrollPositions") && snapshot["scrollPositions"].isObject()) {
+        restore_scroll_positions(roots, snapshot["scrollPositions"].toObject());
+    }
+
+    return true;
 }
 
 } // extern "C"

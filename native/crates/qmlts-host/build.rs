@@ -16,6 +16,7 @@ fn main() {
             .qt_module("Core")
             .qt_module("Gui")
             .qt_module("Qml")
+            .qt_module("Quick")
             .cc_builder(|cc| {
                 cc.file("cpp/qt_context.cpp");
             })
@@ -27,6 +28,7 @@ fn main() {
         // early on the link line for symbols referenced by our static archive.
         println!("cargo:rustc-link-lib=Qt6Gui");
         println!("cargo:rustc-link-lib=Qt6Qml");
+        println!("cargo:rustc-link-lib=Qt6Quick");
         println!("cargo:rustc-link-lib=Qt6Network");
         println!("cargo:rustc-link-lib=Qt6Core");
     }
