@@ -3,9 +3,9 @@
  *
  * Implements the four-step hot reload pipeline:
  * 1. captureSnapshot  — save window geometry, focus, scroll
- * 2. reloadQml        — destroy old QML tree + load new QML
+ * 2. reloadQml        — load the new QML tree and swap it in on success
  * 3. rehydrate        — re-sync all ViewModel state to new QML tree
- * 4. restoreSnapshot  — restore visual state (geometry, focus)
+ * 4. restoreSnapshot  — restore visual state (geometry, focus, scroll)
  *
  * Optionally watches a directory for QML file changes and triggers
  * automatic reloads with debouncing.

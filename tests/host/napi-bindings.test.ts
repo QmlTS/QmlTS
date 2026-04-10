@@ -1268,6 +1268,33 @@ describe.skipIf(!isNativeModuleAvailable)('host/napi-bindings', () => {
     processEvents(engine);
   });
 
+  test('TB-49a: reloadQml failure preserves the previous root object', () => {
+    const createEngine = nativeModule.createEngine as () => object;
+    const registerViewModel = nativeModule.registerViewModel as (
+      engine: object,
+      className: string,
+    ) => void;
+    const loadString = nativeModule.loadString as (engine: object, qml: string) => void;
+    const processEvents = nativeModule.processEvents as (engine: object) => void;
+    const reloadQml = nativeModule.reloadQml as (engine: object, source: string) => void;
+    const rootStringProperty = nativeModule.rootStringProperty as (
+      engine: object,
+      name: string,
+    ) => string | null;
+
+    const engine = createEngine();
+    registerViewModel(engine, 'LoginViewModel');
+    loadString(
+      engine,
+      ['import QtQuick', 'Item {', '  property string marker: "old-root"', '}'].join('\n'),
+    );
+    processEvents(engine);
+
+    expect(rootStringProperty(engine, 'marker')).toBe('old-root');
+    expect(() => reloadQml(engine, 'this is not valid QML at all {{{')).toThrow();
+    expect(rootStringProperty(engine, 'marker')).toBe('old-root');
+  });
+
   test('TB-50: reloadQml fails before QML loaded', () => {
     const createEngine = nativeModule.createEngine as () => object;
     const registerViewModel = nativeModule.registerViewModel as (
