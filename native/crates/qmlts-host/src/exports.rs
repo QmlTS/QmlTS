@@ -638,8 +638,11 @@ pub fn create_list_model(engine: &mut QmltsEngine, schema_json: String) -> Resul
         .inner
         .create_list_model(&schema_json)
         .map_err(|e| -> napi::Error { e.into() })?;
-    #[allow(clippy::cast_possible_truncation)]
-    Ok(id as u32)
+    u32::try_from(id).map_err(|_| {
+        napi::Error::from_reason(format!(
+            "model ID {id} exceeds the supported u32 range for the N-API interface"
+        ))
+    })
 }
 
 /// Destroy a list model by ID.
@@ -1053,6 +1056,23 @@ mod tests {
     }
 
     #[test]
+    fn test_create_list_model_rejects_invalid_roles_napi() {
+        reset_qt();
+        let mut engine = create_engine(None).unwrap();
+        let result = create_list_model(&mut engine, r#"{"roles":["name","name"]}"#.to_string());
+        assert!(result.is_err());
+    }
+
+    #[test]
+    fn test_set_list_data_rejects_non_array_json_napi() {
+        reset_qt();
+        let mut engine = create_engine(None).unwrap();
+        let id = create_list_model(&mut engine, r#"{"roles":["name"]}"#.to_string()).unwrap();
+        let result = set_list_data(&engine, id, r#"{"name":"alice"}"#.to_string());
+        assert!(result.is_err());
+    }
+
+    #[test]
     fn test_insert_rows_napi() {
         reset_qt();
         let mut engine = create_engine(None).unwrap();
@@ -1104,6 +1124,17 @@ mod tests {
         let id = create_list_model(&mut engine, r#"{"roles":["name"]}"#.to_string()).unwrap();
         let row = get_row(&engine, id, 0);
         assert!(row.is_ok());
+    }
+
+    #[test]
+    fn test_get_row_napi_preserves_empty_object_rows() {
+        reset_qt();
+        let mut engine = create_engine(None).unwrap();
+        let id = create_list_model(&mut engine, r#"{"roles":["name"]}"#.to_string()).unwrap();
+        set_list_data(&engine, id, "[{}]".to_string()).unwrap();
+        let row = get_row(&engine, id, 0).unwrap();
+        assert_eq!(row, "{}");
+        assert!(get_row(&engine, id, 1).is_err());
     }
 
     #[test]

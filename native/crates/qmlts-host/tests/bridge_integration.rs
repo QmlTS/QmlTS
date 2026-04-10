@@ -858,3 +858,40 @@ fn test_list_model_destroy() {
     // After destroy, operations should fail
     assert!(engine.list_row_count(model_id).is_err());
 }
+
+#[test]
+fn test_create_list_model_rejects_invalid_roles() {
+    let mut engine = QmltsEngine::new(None).unwrap();
+
+    let duplicate_roles = engine.create_list_model(r#"{"roles":["name","name"]}"#);
+    assert!(duplicate_roles.is_err());
+
+    let empty_role = engine.create_list_model(r#"{"roles":[""]}"#);
+    assert!(empty_role.is_err());
+
+    let non_string_role = engine.create_list_model(r#"{"roles":["name",42]}"#);
+    assert!(non_string_role.is_err());
+}
+
+#[test]
+fn test_set_list_data_rejects_invalid_json_array() {
+    let mut engine = QmltsEngine::new(None).unwrap();
+    let model_id = engine.create_list_model(r#"{"roles":["name"]}"#).unwrap();
+
+    let result = engine.set_list_data(model_id, r#"{"name":"not-an-array"}"#);
+    assert!(result.is_err());
+}
+
+#[test]
+fn test_get_list_row_supports_valid_empty_object_row() {
+    let mut engine = QmltsEngine::new(None).unwrap();
+    let model_id = engine.create_list_model(r#"{"roles":["name"]}"#).unwrap();
+
+    engine.set_list_data(model_id, r#"[{}]"#).unwrap();
+
+    let row = engine.get_list_row(model_id, 0).unwrap();
+    assert_eq!(row, "{}");
+
+    let missing = engine.get_list_row(model_id, 1);
+    assert!(missing.is_err());
+}

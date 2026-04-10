@@ -33,8 +33,14 @@ impl ListModelHandle {
     }
 
     /// Replace all data in the model with the given JSON array of row objects.
-    pub fn set_data(&self, json_array: &str) {
-        qt_context::list_set_data(self.ptr, json_array);
+    pub fn set_data(&self, json_array: &str) -> Result<()> {
+        if qt_context::list_set_data(self.ptr, json_array) {
+            Ok(())
+        } else {
+            Err(QmltsError::ListModelError(
+                "set_data failed: expected a JSON array of row objects".to_string(),
+            ))
+        }
     }
 
     /// Insert rows at the given index.
@@ -148,7 +154,8 @@ mod tests {
     #[test]
     fn list_model_set_data_does_not_panic() {
         let model = ListModelHandle::new(r#"{"roles": ["name"]}"#).unwrap();
-        model.set_data(r#"[{"name": "alice"}, {"name": "bob"}]"#);
+        let result = model.set_data(r#"[{"name": "alice"}, {"name": "bob"}]"#);
+        assert!(result.is_ok());
     }
 
     #[test]

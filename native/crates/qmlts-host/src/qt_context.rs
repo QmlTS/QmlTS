@@ -88,7 +88,7 @@ unsafe extern "C" {
     ) -> bool;
     fn qmlts_create_list_model(schema_json: *const std::ffi::c_char) -> *mut c_void;
     fn qmlts_destroy_list_model(model_ptr: *mut c_void);
-    fn qmlts_list_set_data(model_ptr: *mut c_void, json_array: *const std::ffi::c_char);
+    fn qmlts_list_set_data(model_ptr: *mut c_void, json_array: *const std::ffi::c_char) -> bool;
     fn qmlts_list_insert_rows(
         model_ptr: *mut c_void,
         index: i32,
@@ -421,7 +421,8 @@ pub fn destroy_list_model(model_ptr: *mut c_void) {
 
 #[cfg(not(feature = "mock-qt"))]
 #[allow(dead_code)]
-pub fn list_set_data(model_ptr: *mut c_void, json_array: &str) {
+#[must_use]
+pub fn list_set_data(model_ptr: *mut c_void, json_array: &str) -> bool {
     let c_json = CString::new(json_array).expect("JSON array must not contain NUL");
     unsafe { qmlts_list_set_data(model_ptr, c_json.as_ptr()) }
 }
@@ -611,8 +612,10 @@ pub fn destroy_list_model(model_ptr: *mut c_void) {
 
 #[cfg(feature = "mock-qt")]
 #[allow(dead_code)]
-pub fn list_set_data(_model_ptr: *mut c_void, json_array: &str) {
+#[must_use]
+pub fn list_set_data(_model_ptr: *mut c_void, json_array: &str) -> bool {
     tracing::debug!("Mock: list_set_data('{json_array}')");
+    true
 }
 
 #[cfg(feature = "mock-qt")]

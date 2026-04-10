@@ -568,8 +568,7 @@ impl QmltsEngine {
     pub fn set_list_data(&self, model_id: usize, json_array: &str) -> Result<()> {
         self.ensure_alive()?;
         let model = self.get_list_model(model_id)?;
-        model.set_data(json_array);
-        Ok(())
+        model.set_data(json_array)
     }
 
     /// Insert rows into a list model at the given index.

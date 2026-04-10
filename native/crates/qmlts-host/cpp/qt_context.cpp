@@ -19,6 +19,7 @@
 #include <QAbstractListModel>
 #include <QHash>
 #include <QJsonObject>
+#include <QSet>
 #include <cstddef>
 #include <cstdint>
 #include <cstdlib>
@@ -92,7 +93,7 @@ public:
         endResetModel();
     }
 
-    bool insertRows(int row, const QJsonArray& rows) {
+    bool insertJsonRows(int row, const QJsonArray& rows) {
         if (row < 0 || row > m_data.size() || rows.isEmpty()) {
             return false;
         }
@@ -104,7 +105,7 @@ public:
         return true;
     }
 
-    bool removeRows(int row, int count) {
+    bool removeJsonRows(int row, int count) {
         if (row < 0 || count <= 0 || row + count > m_data.size()) {
             return false;
         }
@@ -123,7 +124,7 @@ public:
         return true;
     }
 
-    bool moveRows(int sourceRow, int destRow, int count) {
+    bool moveJsonRows(int sourceRow, int destRow, int count) {
         if (count <= 0 || sourceRow < 0 || sourceRow + count > m_data.size()
             || destRow < 0 || destRow > m_data.size()) {
             return false;
@@ -616,11 +617,25 @@ void* qmlts_create_list_model(const char* schema_json) {
         return nullptr;
     }
     const QJsonObject obj = doc.object();
-    const QJsonArray roles = obj["roles"].toArray();
+    const QJsonValue rolesValue = obj["roles"];
+    if (!rolesValue.isArray()) {
+        return nullptr;
+    }
+    const QJsonArray roles = rolesValue.toArray();
     QStringList roleNames;
     roleNames.reserve(roles.size());
+    QSet<QString> seenRoleNames;
+    seenRoleNames.reserve(roles.size());
     for (const auto& r : roles) {
-        roleNames.append(r.toString());
+        if (!r.isString()) {
+            return nullptr;
+        }
+        const QString roleName = r.toString();
+        if (roleName.isEmpty() || seenRoleNames.contains(roleName)) {
+            return nullptr;
+        }
+        seenRoleNames.insert(roleName);
+        roleNames.append(roleName);
     }
     if (roleNames.isEmpty()) {
         return nullptr;
@@ -632,12 +647,13 @@ void qmlts_destroy_list_model(void* model_ptr) {
     delete static_cast<QmltsListModel*>(model_ptr);
 }
 
-void qmlts_list_set_data(void* model_ptr, const char* json_array) {
-    if (!model_ptr || !json_array) return;
+bool qmlts_list_set_data(void* model_ptr, const char* json_array) {
+    if (!model_ptr || !json_array) return false;
     auto* model = static_cast<QmltsListModel*>(model_ptr);
     const QJsonDocument doc = QJsonDocument::fromJson(QByteArray(json_array));
-    if (!doc.isArray()) return;
+    if (!doc.isArray()) return false;
     model->setListData(doc.array());
+    return true;
 }
 
 bool qmlts_list_insert_rows(void* model_ptr, int index, const char* json_rows) {
@@ -645,12 +661,12 @@ bool qmlts_list_insert_rows(void* model_ptr, int index, const char* json_rows) {
     auto* model = static_cast<QmltsListModel*>(model_ptr);
     const QJsonDocument doc = QJsonDocument::fromJson(QByteArray(json_rows));
     if (!doc.isArray()) return false;
-    return model->insertRows(index, doc.array());
+    return model->insertJsonRows(index, doc.array());
 }
 
 bool qmlts_list_remove_rows(void* model_ptr, int index, int count) {
     if (!model_ptr) return false;
-    return static_cast<QmltsListModel*>(model_ptr)->removeRows(index, count);
+    return static_cast<QmltsListModel*>(model_ptr)->removeJsonRows(index, count);
 }
 
 bool qmlts_list_update_row(void* model_ptr, int index, const char* json_data) {
@@ -663,7 +679,7 @@ bool qmlts_list_update_row(void* model_ptr, int index, const char* json_data) {
 
 bool qmlts_list_move_rows(void* model_ptr, int source_row, int dest_row, int count) {
     if (!model_ptr) return false;
-    return static_cast<QmltsListModel*>(model_ptr)->moveRows(source_row, dest_row, count);
+    return static_cast<QmltsListModel*>(model_ptr)->moveJsonRows(source_row, dest_row, count);
 }
 
 int qmlts_list_row_count(void* model_ptr) {
@@ -673,8 +689,11 @@ int qmlts_list_row_count(void* model_ptr) {
 
 char* qmlts_list_get_row(void* model_ptr, int index) {
     if (!model_ptr) return nullptr;
-    const QJsonObject row = static_cast<QmltsListModel*>(model_ptr)->getRow(index);
-    if (row.isEmpty()) return nullptr;
+    auto* model = static_cast<QmltsListModel*>(model_ptr);
+    if (index < 0 || index >= model->rowCountValue()) {
+        return nullptr;
+    }
+    const QJsonObject row = model->getRow(index);
     const QJsonDocument doc(row);
     const QByteArray bytes = doc.toJson(QJsonDocument::Compact);
     char* result = static_cast<char*>(malloc(static_cast<size_t>(bytes.size()) + 1));

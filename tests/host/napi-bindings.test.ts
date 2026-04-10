@@ -891,6 +891,36 @@ describe.skipIf(!isNativeModuleAvailable)('host/napi-bindings', () => {
     expect(rowCount(engine, modelId)).toBe(2);
   });
 
+  test('TB-38a: createListModel rejects invalid role definitions', () => {
+    const createEngine = nativeModule.createEngine as () => object;
+    const createListModel = nativeModule.createListModel as (
+      engine: object,
+      schemaJson: string,
+    ) => number;
+
+    const engine = createEngine();
+    expect(() => createListModel(engine, '{"roles":["name","name"]}')).toThrow();
+    expect(() => createListModel(engine, '{"roles":[""]}')).toThrow();
+    expect(() => createListModel(engine, '{"roles":["name",42]}')).toThrow();
+  });
+
+  test('TB-38b: setListData rejects non-array JSON', () => {
+    const createEngine = nativeModule.createEngine as () => object;
+    const createListModel = nativeModule.createListModel as (
+      engine: object,
+      schemaJson: string,
+    ) => number;
+    const setListData = nativeModule.setListData as (
+      engine: object,
+      modelId: number,
+      data: string,
+    ) => void;
+
+    const engine = createEngine();
+    const modelId = createListModel(engine, '{"roles":["name"]}');
+    expect(() => setListData(engine, modelId, '{"name":"not-an-array"}')).toThrow();
+  });
+
   test('TB-39: insertRows increases count', () => {
     const createEngine = nativeModule.createEngine as () => object;
     const createListModel = nativeModule.createListModel as (
@@ -1015,6 +1045,30 @@ describe.skipIf(!isNativeModuleAvailable)('host/napi-bindings', () => {
     const row = JSON.parse(getRow(engine, modelId, 0));
     expect(row.name).toBe('alice');
     expect(row.value).toBe('100');
+  });
+
+  test('TB-43a: getRow preserves valid empty-object rows', () => {
+    const createEngine = nativeModule.createEngine as () => object;
+    const createListModel = nativeModule.createListModel as (
+      engine: object,
+      schemaJson: string,
+    ) => number;
+    const setListData = nativeModule.setListData as (
+      engine: object,
+      modelId: number,
+      data: string,
+    ) => void;
+    const getRow = nativeModule.getRow as (
+      engine: object,
+      modelId: number,
+      index: number,
+    ) => string;
+
+    const engine = createEngine();
+    const modelId = createListModel(engine, '{"roles":["name"]}');
+    setListData(engine, modelId, '[{}]');
+    expect(JSON.parse(getRow(engine, modelId, 0))).toEqual({});
+    expect(() => getRow(engine, modelId, 1)).toThrow();
   });
 
   test('TB-44: destroyListModel does not throw', () => {
