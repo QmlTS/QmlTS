@@ -1,6 +1,6 @@
-import { existsSync, mkdtempSync, rmSync } from 'node:fs';
+import { existsSync, mkdirSync, mkdtempSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
-import { dirname, join, parse, resolve } from 'node:path';
+import { dirname, join, parse, relative, resolve } from 'node:path';
 import type { Diagnostic } from '../compiler/diagnostics.js';
 import { compile } from '../compiler/pipeline/compiler.js';
 import type { CompilationResult, CompilationStats } from '../compiler/pipeline/pipeline-types.js';
@@ -9,21 +9,25 @@ import type {
   BuildPhase,
   BuildPipelineResult,
   BuildProgress,
+  BundleResult,
   PhaseResult,
   PipelineRunOptions,
   ProductLayout,
+  ResolvedPackages,
 } from './build-types.js';
 import type { ResolvedQmltsConfig } from './config-types.js';
+import { createEntryGenerator } from './entry-generator.js';
+import { checkQtVersionCompatibility, createPackageResolver } from './package-resolver.js';
 import {
   alignCompilationResultToLayout,
   createManifest,
   createProductLayout,
   materializeLayout,
   writeCompilationUnits,
-  writeEntryFile,
   writeEventBindings,
   writeManifest,
 } from './product-layout.js';
+import { createResourceBundler, dryRunBundle } from './resource-bundler.js';
 
 // ─── Types ──────────────────────────────────────────────────
 
@@ -40,6 +44,8 @@ interface PhaseContext {
   compilationResult?: CompilationResult;
   layout?: ProductLayout;
   validationBlockedOutput?: boolean;
+  resolvedPackages?: ResolvedPackages;
+  bundleResult?: BundleResult;
   progressListeners: Array<(progress: BuildProgress) => void>;
 }
 
@@ -208,7 +214,9 @@ function recomputeCompilationStats(
   };
 }
 
-function phaseCollectDeps(ctx: PhaseContext): Promise<{ diagnostics: readonly Diagnostic[] }> {
+async function phaseCollectDeps(
+  ctx: PhaseContext,
+): Promise<{ diagnostics: readonly Diagnostic[] }> {
   const diagnostics: Diagnostic[] = [];
   const nodeModules = join(ctx.config.configDir, 'node_modules');
   if (!existsSync(nodeModules)) {
@@ -217,24 +225,81 @@ function phaseCollectDeps(ctx: PhaseContext): Promise<{ diagnostics: readonly Di
       code: 'QMLTS-G002',
       message: 'node_modules not found; dependency collection skipped',
     });
+    ctx.resolvedPackages = { packages: [], qmlImportPaths: [], nativeLibPaths: [] };
+    return { diagnostics };
   }
-  return Promise.resolve({ diagnostics });
+
+  const resolver = createPackageResolver();
+  const resolved = await resolver.resolve(ctx.config.configDir);
+  ctx.resolvedPackages = resolved;
+
+  if (resolved.packages.length > 0) {
+    emitProgress(ctx, {
+      phase: 'collecting-deps',
+      message: `Resolved ${resolved.packages.length} @qmlts package(s)`,
+      current: resolved.packages.length,
+      total: resolved.packages.length,
+    });
+  }
+
+  const qtWarnings = checkQtVersionCompatibility(resolved.packages, ctx.config.qt.targetVersion);
+  for (const warning of qtWarnings) {
+    diagnostics.push({ severity: 'warning', code: 'QMLTS-G002', message: warning });
+  }
+
+  return { diagnostics };
 }
 
-function phaseBundleAssets(ctx: PhaseContext): Promise<{ diagnostics: readonly Diagnostic[] }> {
+async function phaseBundleAssets(
+  ctx: PhaseContext,
+): Promise<{ diagnostics: readonly Diagnostic[] }> {
   const diagnostics: Diagnostic[] = [];
-  const assetsDir = ctx.config.assets.dir;
+  const assetsDir = resolve(ctx.config.configDir, ctx.config.assets.dir);
   if (!existsSync(assetsDir)) {
     diagnostics.push({
       severity: 'info',
       code: 'QMLTS-G003',
       message: `Assets directory not found: ${assetsDir}; asset bundling skipped`,
     });
+    ctx.bundleResult = { files: [], totalSize: 0 };
+    return { diagnostics };
   }
-  return Promise.resolve({ diagnostics });
+
+  if (ctx.options.dryRun) {
+    ctx.bundleResult = dryRunBundle(ctx.config.assets, ctx.config.configDir);
+    emitProgress(ctx, {
+      phase: 'bundling-assets',
+      message: `Would bundle ${ctx.bundleResult.files.length} asset(s)`,
+    });
+    return { diagnostics };
+  }
+
+  const layout = ctx.layout ?? createProductLayout(ctx.config.outDir, ctx.config);
+  const bundler = createResourceBundler();
+  const result = await bundler.bundle(ctx.config.assets, ctx.config.configDir, layout.assetsDir);
+  ctx.bundleResult = result;
+
+  if (result.files.length > 0) {
+    emitProgress(ctx, {
+      phase: 'bundling-assets',
+      message: `Bundled ${result.files.length} asset(s) (${formatSize(result.totalSize)})`,
+      current: result.files.length,
+      total: result.files.length,
+    });
+  }
+
+  return { diagnostics };
 }
 
-async function phaseValidateQml(ctx: PhaseContext): Promise<{ diagnostics: readonly Diagnostic[] }> {
+function formatSize(bytes: number): string {
+  if (bytes < 1024) return `${bytes} B`;
+  if (bytes < 1024 * 1024) return `${(bytes / 1024).toFixed(1)} KB`;
+  return `${(bytes / (1024 * 1024)).toFixed(1)} MB`;
+}
+
+async function phaseValidateQml(
+  ctx: PhaseContext,
+): Promise<{ diagnostics: readonly Diagnostic[] }> {
   if (!ctx.compilationResult) {
     return { diagnostics: [] };
   }
@@ -324,9 +389,35 @@ function phaseWriteOutput(ctx: PhaseContext): Promise<{ diagnostics: readonly Di
 
   materializeLayout(layout);
 
-  writeEntryFile(layout, ctx.config.entry);
   writeCompilationUnits(layout, ctx.compilationResult.units, ctx.config.build.sourceMaps);
   writeEventBindings(layout, ctx.compilationResult.eventBindings);
+
+  // Generate entry file
+  const generator = createEntryGenerator();
+  const compiledViewModels = ctx.compilationResult.units
+    .filter((u) => u.schema)
+    .map((u) => ({
+      className: u.schema!.className,
+      schemaFile: relative(layout.rootDir, u.schemaOutputPath ?? '').replace(/\\/g, '/'),
+    }));
+
+  const mainQml =
+    ctx.compilationResult.units.length > 0
+      ? `./${relative(layout.rootDir, ctx.compilationResult.units[0]!.qmlOutputPath).replace(/\\/g, '/')}`
+      : './main.qml';
+
+  const qmlImportPaths = [...(ctx.config.qmlModulePaths ?? [])];
+
+  const entryContent = generator.generate({
+    compiledViewModels,
+    mainQml,
+    qmlImportPaths,
+    eventBindingsFile: `./${relative(layout.rootDir, layout.eventBindings).replace(/\\/g, '/')}`,
+    packages: ctx.resolvedPackages,
+  });
+
+  mkdirSync(dirname(layout.entryFile), { recursive: true });
+  writeFileSync(layout.entryFile, entryContent, 'utf-8');
 
   const manifest = createManifest(layout, ctx.compilationResult, ctx.config);
   writeManifest(layout, manifest);
@@ -393,7 +484,9 @@ async function runQtValidation(
   const { validateCompilationOutput } = await import('../compiler/pipeline/qt-validation.js');
 
   const installation = await discover({ qtDir: ctx.config.qt.dir });
-  const qmlFiles = validationResult.units.filter((unit) => unit.qmlContent).map((unit) => unit.qmlOutputPath);
+  const qmlFiles = validationResult.units
+    .filter((unit) => unit.qmlContent)
+    .map((unit) => unit.qmlOutputPath);
 
   const qualityGateResult = await checkFiles(installation, qmlFiles, {
     level: resolveValidationGate(ctx.config),
@@ -410,7 +503,9 @@ async function runQtValidation(
     importPaths: ctx.config.qmlModulePaths,
   });
 
-  diagnostics.push(...mapDiagnosticsToFinalPaths(validationDiagnostics.diagnostics, validationFileMap));
+  diagnostics.push(
+    ...mapDiagnosticsToFinalPaths(validationDiagnostics.diagnostics, validationFileMap),
+  );
 
   return diagnostics;
 }
