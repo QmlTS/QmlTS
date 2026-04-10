@@ -680,12 +680,7 @@ pub fn set_list_data(engine: &QmltsEngine, model_id: u32, data: String) -> Resul
 /// @param index - Insertion index.
 /// @param rows - JSON array of row objects to insert.
 #[napi(js_name = "insertRows")]
-pub fn insert_rows(
-    engine: &QmltsEngine,
-    model_id: u32,
-    index: i32,
-    rows: String,
-) -> Result<()> {
+pub fn insert_rows(engine: &QmltsEngine, model_id: u32, index: i32, rows: String) -> Result<()> {
     engine
         .inner
         .insert_list_rows(model_id as usize, index, &rows)
@@ -713,12 +708,7 @@ pub fn remove_rows(engine: &QmltsEngine, model_id: u32, index: i32, count: i32) 
 /// @param index - Row index to update.
 /// @param data - JSON object with updated data.
 #[napi(js_name = "updateRow")]
-pub fn update_row(
-    engine: &QmltsEngine,
-    model_id: u32,
-    index: i32,
-    data: String,
-) -> Result<()> {
+pub fn update_row(engine: &QmltsEngine, model_id: u32, index: i32, data: String) -> Result<()> {
     engine
         .inner
         .update_list_row(model_id as usize, index, &data)

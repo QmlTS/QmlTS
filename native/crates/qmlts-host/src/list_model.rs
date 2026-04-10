@@ -109,9 +109,8 @@ impl ListModelHandle {
     ///
     /// Returns `ListModelError` if the index is out of range.
     pub fn get_row(&self, index: i32) -> Result<String> {
-        qt_context::list_get_row(self.ptr, index).ok_or_else(|| {
-            QmltsError::ListModelError(format!("get_row failed at index {index}"))
-        })
+        qt_context::list_get_row(self.ptr, index)
+            .ok_or_else(|| QmltsError::ListModelError(format!("get_row failed at index {index}")))
     }
 
     /// Get the raw C pointer for use with `QQmlContext::setContextProperty`.

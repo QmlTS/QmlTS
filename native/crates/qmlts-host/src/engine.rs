@@ -465,8 +465,12 @@ impl QmltsEngine {
         } else {
             Some(serde_json::to_string(&effect.parameters).unwrap_or_default())
         };
-        let ok =
-            qt_context::emit_signal(runtime_ptr, &effect.qml_name, payload_json, param_types.as_deref());
+        let ok = qt_context::emit_signal(
+            runtime_ptr,
+            &effect.qml_name,
+            payload_json,
+            param_types.as_deref(),
+        );
         if ok {
             tracing::debug!("Emitted effect '{}' on '{}'", effect_name, class_name);
             Ok(())
@@ -512,8 +516,12 @@ impl QmltsEngine {
         } else {
             Some(serde_json::to_string(&effect.parameters).unwrap_or_default())
         };
-        let ok =
-            qt_context::emit_signal(runtime_ptr, &effect.qml_name, payload_json, param_types.as_deref());
+        let ok = qt_context::emit_signal(
+            runtime_ptr,
+            &effect.qml_name,
+            payload_json,
+            param_types.as_deref(),
+        );
         if ok {
             tracing::debug!(
                 "Emitted effect id={} ('{}') on '{}'",
@@ -647,11 +655,7 @@ impl QmltsEngine {
     ///
     /// Returns an error if `model_id` is invalid or if the engine is not
     /// initialized.
-    pub fn set_list_model_context_property(
-        &mut self,
-        name: &str,
-        model_id: usize,
-    ) -> Result<()> {
+    pub fn set_list_model_context_property(&mut self, name: &str, model_id: usize) -> Result<()> {
         let ptr = self.list_model_ptr(model_id).ok_or_else(|| {
             QmltsError::ListModelError(format!("List model id={model_id} not found"))
         })?;
@@ -1187,7 +1191,10 @@ mod tests {
 
         let engine = QmltsEngine::new(None).unwrap();
         let types = engine.get_registered_types();
-        assert_eq!(types, vec!["CounterViewModel", "LoginViewModel", "SearchViewModel"]);
+        assert_eq!(
+            types,
+            vec!["CounterViewModel", "LoginViewModel", "SearchViewModel"]
+        );
     }
 
     #[test]
@@ -1525,12 +1532,8 @@ mod tests {
     fn test_create_multiple_list_models() {
         reset_app_initialized();
         let mut engine = QmltsEngine::new(None).unwrap();
-        let id0 = engine
-            .create_list_model(r#"{"roles": ["a"]}"#)
-            .unwrap();
-        let id1 = engine
-            .create_list_model(r#"{"roles": ["b"]}"#)
-            .unwrap();
+        let id0 = engine.create_list_model(r#"{"roles": ["a"]}"#).unwrap();
+        let id1 = engine.create_list_model(r#"{"roles": ["b"]}"#).unwrap();
         assert_eq!(id0, 0);
         assert_eq!(id1, 1);
     }
@@ -1539,9 +1542,7 @@ mod tests {
     fn test_destroy_list_model() {
         reset_app_initialized();
         let mut engine = QmltsEngine::new(None).unwrap();
-        let id = engine
-            .create_list_model(r#"{"roles": ["name"]}"#)
-            .unwrap();
+        let id = engine.create_list_model(r#"{"roles": ["name"]}"#).unwrap();
         let result = engine.destroy_list_model(id);
         assert!(result.is_ok());
     }
@@ -1558,9 +1559,7 @@ mod tests {
     fn test_set_list_data_and_row_count() {
         reset_app_initialized();
         let mut engine = QmltsEngine::new(None).unwrap();
-        let id = engine
-            .create_list_model(r#"{"roles": ["name"]}"#)
-            .unwrap();
+        let id = engine.create_list_model(r#"{"roles": ["name"]}"#).unwrap();
         engine
             .set_list_data(id, r#"[{"name":"a"},{"name":"b"}]"#)
             .unwrap();
@@ -1573,9 +1572,7 @@ mod tests {
     fn test_insert_list_rows() {
         reset_app_initialized();
         let mut engine = QmltsEngine::new(None).unwrap();
-        let id = engine
-            .create_list_model(r#"{"roles": ["name"]}"#)
-            .unwrap();
+        let id = engine.create_list_model(r#"{"roles": ["name"]}"#).unwrap();
         let result = engine.insert_list_rows(id, 0, r#"[{"name":"c"}]"#);
         assert!(result.is_ok());
     }
@@ -1584,9 +1581,7 @@ mod tests {
     fn test_remove_list_rows() {
         reset_app_initialized();
         let mut engine = QmltsEngine::new(None).unwrap();
-        let id = engine
-            .create_list_model(r#"{"roles": ["name"]}"#)
-            .unwrap();
+        let id = engine.create_list_model(r#"{"roles": ["name"]}"#).unwrap();
         let result = engine.remove_list_rows(id, 0, 1);
         assert!(result.is_ok());
     }
@@ -1595,9 +1590,7 @@ mod tests {
     fn test_update_list_row() {
         reset_app_initialized();
         let mut engine = QmltsEngine::new(None).unwrap();
-        let id = engine
-            .create_list_model(r#"{"roles": ["name"]}"#)
-            .unwrap();
+        let id = engine.create_list_model(r#"{"roles": ["name"]}"#).unwrap();
         let result = engine.update_list_row(id, 0, r#"{"name":"updated"}"#);
         assert!(result.is_ok());
     }
@@ -1606,9 +1599,7 @@ mod tests {
     fn test_move_list_rows() {
         reset_app_initialized();
         let mut engine = QmltsEngine::new(None).unwrap();
-        let id = engine
-            .create_list_model(r#"{"roles": ["name"]}"#)
-            .unwrap();
+        let id = engine.create_list_model(r#"{"roles": ["name"]}"#).unwrap();
         let result = engine.move_list_rows(id, 0, 1, 1);
         assert!(result.is_ok());
     }
@@ -1617,9 +1608,7 @@ mod tests {
     fn test_get_list_row() {
         reset_app_initialized();
         let mut engine = QmltsEngine::new(None).unwrap();
-        let id = engine
-            .create_list_model(r#"{"roles": ["name"]}"#)
-            .unwrap();
+        let id = engine.create_list_model(r#"{"roles": ["name"]}"#).unwrap();
         let row = engine.get_list_row(id, 0);
         assert!(row.is_ok()); // mock returns "{}"
     }
@@ -1641,9 +1630,7 @@ mod tests {
     fn test_list_model_ptr_returns_some() {
         reset_app_initialized();
         let mut engine = QmltsEngine::new(None).unwrap();
-        let id = engine
-            .create_list_model(r#"{"roles": ["x"]}"#)
-            .unwrap();
+        let id = engine.create_list_model(r#"{"roles": ["x"]}"#).unwrap();
         assert!(engine.list_model_ptr(id).is_some());
     }
 
@@ -1651,9 +1638,7 @@ mod tests {
     fn test_list_model_ptr_returns_none_after_destroy() {
         reset_app_initialized();
         let mut engine = QmltsEngine::new(None).unwrap();
-        let id = engine
-            .create_list_model(r#"{"roles": ["x"]}"#)
-            .unwrap();
+        let id = engine.create_list_model(r#"{"roles": ["x"]}"#).unwrap();
         engine.destroy_list_model(id).unwrap();
         assert!(engine.list_model_ptr(id).is_none());
     }

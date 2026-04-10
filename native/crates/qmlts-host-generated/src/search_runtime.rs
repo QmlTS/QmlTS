@@ -29,11 +29,7 @@ pub mod qobject {
     #[auto_cxx_name]
     unsafe extern "RustQt" {
         #[qsignal]
-        fn on_search_completed(
-            self: Pin<&mut SearchRuntime>,
-            query: QString,
-            result_count: i32,
-        );
+        fn on_search_completed(self: Pin<&mut SearchRuntime>, query: QString, result_count: i32);
     }
 }
 

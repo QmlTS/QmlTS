@@ -656,16 +656,14 @@ Item {
     let root = engine.root_object_ptr();
     assert!(!root.is_null(), "root object should exist");
 
-    let received_query =
-        qmlts_host::qt_context_test::read_string_property(root, "receivedQuery");
+    let received_query = qmlts_host::qt_context_test::read_string_property(root, "receivedQuery");
     assert_eq!(
         received_query,
         Some("hello".to_string()),
         "QML should receive the string parameter"
     );
 
-    let received_count =
-        qmlts_host::qt_context_test::read_int_property(root, "receivedCount");
+    let received_count = qmlts_host::qt_context_test::read_int_property(root, "receivedCount");
     assert_eq!(
         received_count,
         Some(42),
@@ -701,21 +699,15 @@ Item {
 
     // Emit by ID (SearchViewModel's onSearchCompleted has effectId 1234567890)
     engine
-        .emit_effect_by_id(
-            "SearchViewModel",
-            1_234_567_890,
-            Some(r#"["world", 99]"#),
-        )
+        .emit_effect_by_id("SearchViewModel", 1_234_567_890, Some(r#"["world", 99]"#))
         .unwrap();
     engine.process_events().unwrap();
 
     let root = engine.root_object_ptr();
-    let received_query =
-        qmlts_host::qt_context_test::read_string_property(root, "receivedQuery");
+    let received_query = qmlts_host::qt_context_test::read_string_property(root, "receivedQuery");
     assert_eq!(received_query, Some("world".to_string()));
 
-    let received_count =
-        qmlts_host::qt_context_test::read_int_property(root, "receivedCount");
+    let received_count = qmlts_host::qt_context_test::read_int_property(root, "receivedCount");
     assert_eq!(received_count, Some(99));
 }
 
@@ -793,9 +785,7 @@ fn test_list_model_updates_observable_from_qml() {
     let mut engine = QmltsEngine::new(None).unwrap();
     engine.register_view_model("LoginViewModel").unwrap();
 
-    let model_id = engine
-        .create_list_model(r#"{"roles":["name"]}"#)
-        .unwrap();
+    let model_id = engine.create_list_model(r#"{"roles":["name"]}"#).unwrap();
 
     engine
         .set_list_model_context_property("items", model_id)
@@ -834,9 +824,7 @@ Item {
     assert_eq!(count, Some(2), "Should have 2 items after remove");
 
     // Full reset
-    engine
-        .set_list_data(model_id, r#"[{"name":"X"}]"#)
-        .unwrap();
+    engine.set_list_data(model_id, r#"[{"name":"X"}]"#).unwrap();
     engine.process_events().unwrap();
 
     let count = qmlts_host::qt_context_test::read_int_property(root, "itemCount");
@@ -848,9 +836,7 @@ Item {
 fn test_list_model_destroy() {
     let mut engine = QmltsEngine::new(None).unwrap();
 
-    let model_id = engine
-        .create_list_model(r#"{"roles":["name"]}"#)
-        .unwrap();
+    let model_id = engine.create_list_model(r#"{"roles":["name"]}"#).unwrap();
 
     engine
         .set_list_data(model_id, r#"[{"name":"test"}]"#)
