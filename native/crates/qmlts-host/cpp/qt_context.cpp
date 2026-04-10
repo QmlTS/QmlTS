@@ -16,6 +16,9 @@
 #include <QString>
 #include <QUrl>
 #include <QVariant>
+#include <QAbstractListModel>
+#include <QHash>
+#include <QJsonObject>
 #include <cstddef>
 #include <cstdint>
 #include <cstdlib>
@@ -35,6 +38,140 @@ QGuiApplication* ensure_application()
     return app;
 }
 }
+
+// ─────────────────────────────────────────────────────────────────────────
+//  QmltsListModel — dynamic QAbstractListModel with runtime-defined roles
+// ─────────────────────────────────────────────────────────────────────────
+
+class QmltsListModel : public QAbstractListModel {
+public:
+    explicit QmltsListModel(const QStringList& roleNames, QObject* parent = nullptr)
+        : QAbstractListModel(parent)
+    {
+        // Role indices start at Qt::UserRole + 1
+        for (int i = 0; i < roleNames.size(); ++i) {
+            m_roleHash[Qt::UserRole + 1 + i] = roleNames[i].toUtf8();
+            m_roleNames.append(roleNames[i]);
+        }
+    }
+
+    [[nodiscard]] int rowCount(const QModelIndex& parent = QModelIndex()) const override {
+        if (parent.isValid()) return 0;
+        return static_cast<int>(m_data.size());
+    }
+
+    [[nodiscard]] QVariant data(const QModelIndex& index, int role) const override {
+        if (!index.isValid() || index.row() < 0 || index.row() >= m_data.size()) {
+            return {};
+        }
+        const auto it = m_roleHash.find(role);
+        if (it == m_roleHash.end()) {
+            return {};
+        }
+        const QString key = QString::fromUtf8(it.value());
+        const QJsonObject& row = m_data[index.row()];
+        if (!row.contains(key)) {
+            return {};
+        }
+        return row[key].toVariant();
+    }
+
+    [[nodiscard]] QHash<int, QByteArray> roleNames() const override {
+        return m_roleHash;
+    }
+
+    // ── Mutation API ─────────────────────────────────────────────────
+
+    void setListData(const QJsonArray& rows) {
+        beginResetModel();
+        m_data.clear();
+        m_data.reserve(rows.size());
+        for (const auto& val : rows) {
+            m_data.append(val.toObject());
+        }
+        endResetModel();
+    }
+
+    bool insertRows(int row, const QJsonArray& rows) {
+        if (row < 0 || row > m_data.size() || rows.isEmpty()) {
+            return false;
+        }
+        beginInsertRows(QModelIndex(), row, row + rows.size() - 1);
+        for (int i = 0; i < rows.size(); ++i) {
+            m_data.insert(row + i, rows[i].toObject());
+        }
+        endInsertRows();
+        return true;
+    }
+
+    bool removeRows(int row, int count) {
+        if (row < 0 || count <= 0 || row + count > m_data.size()) {
+            return false;
+        }
+        beginRemoveRows(QModelIndex(), row, row + count - 1);
+        m_data.erase(m_data.begin() + row, m_data.begin() + row + count);
+        endRemoveRows();
+        return true;
+    }
+
+    bool updateRow(int row, const QJsonObject& newData) {
+        if (row < 0 || row >= m_data.size()) {
+            return false;
+        }
+        m_data[row] = newData;
+        emit dataChanged(index(row, 0), index(row, 0), {});
+        return true;
+    }
+
+    bool moveRows(int sourceRow, int destRow, int count) {
+        if (count <= 0 || sourceRow < 0 || sourceRow + count > m_data.size()
+            || destRow < 0 || destRow > m_data.size()) {
+            return false;
+        }
+        // Qt requires destRow not inside [sourceRow, sourceRow+count)
+        if (destRow >= sourceRow && destRow < sourceRow + count) {
+            return true; // no-op
+        }
+        if (!beginMoveRows(QModelIndex(), sourceRow, sourceRow + count - 1,
+                           QModelIndex(), destRow)) {
+            return false;
+        }
+        // Extract rows
+        QList<QJsonObject> moving;
+        moving.reserve(count);
+        for (int i = 0; i < count; ++i) {
+            moving.append(m_data[sourceRow + i]);
+        }
+        // Remove from source
+        m_data.erase(m_data.begin() + sourceRow, m_data.begin() + sourceRow + count);
+        // Insert at destination (adjust if source was before dest)
+        int adjustedDest = destRow;
+        if (sourceRow < destRow) {
+            adjustedDest -= count;
+        }
+        for (int i = 0; i < count; ++i) {
+            m_data.insert(adjustedDest + i, moving[i]);
+        }
+        endMoveRows();
+        return true;
+    }
+
+    [[nodiscard]] QJsonObject getRow(int row) const {
+        if (row < 0 || row >= m_data.size()) {
+            return {};
+        }
+        return m_data[row];
+    }
+
+    [[nodiscard]] int rowCountValue() const {
+        return static_cast<int>(m_data.size());
+    }
+
+private:
+    QHash<int, QByteArray> m_roleHash;
+    QStringList m_roleNames;
+    QList<QJsonObject> m_data;
+};
 
 extern "C" {
 
@@ -440,6 +577,89 @@ bool qmlts_emit_signal(void* qobject_ptr, const char* signal_name,
 
     // Fallback: emit with no arguments
     return QMetaObject::invokeMethod(object, signal_name);
+}
+
+// ─────────────────────────────────────────────────────────────────────────
+//  List model operations (Step 5)
+// ─────────────────────────────────────────────────────────────────────────
+
+void* qmlts_create_list_model(const char* schema_json) {
+    if (!schema_json) {
+        return nullptr;
+    }
+    const QByteArray bytes(schema_json);
+    const QJsonDocument doc = QJsonDocument::fromJson(bytes);
+    if (doc.isNull() || !doc.isObject()) {
+        return nullptr;
+    }
+    const QJsonObject obj = doc.object();
+    const QJsonArray roles = obj["roles"].toArray();
+    QStringList roleNames;
+    roleNames.reserve(roles.size());
+    for (const auto& r : roles) {
+        roleNames.append(r.toString());
+    }
+    if (roleNames.isEmpty()) {
+        return nullptr;
+    }
+    return static_cast<void*>(new QmltsListModel(roleNames));
+}
+
+void qmlts_destroy_list_model(void* model_ptr) {
+    delete static_cast<QmltsListModel*>(model_ptr);
+}
+
+void qmlts_list_set_data(void* model_ptr, const char* json_array) {
+    if (!model_ptr || !json_array) return;
+    auto* model = static_cast<QmltsListModel*>(model_ptr);
+    const QJsonDocument doc = QJsonDocument::fromJson(QByteArray(json_array));
+    if (!doc.isArray()) return;
+    model->setListData(doc.array());
+}
+
+bool qmlts_list_insert_rows(void* model_ptr, int index, const char* json_rows) {
+    if (!model_ptr || !json_rows) return false;
+    auto* model = static_cast<QmltsListModel*>(model_ptr);
+    const QJsonDocument doc = QJsonDocument::fromJson(QByteArray(json_rows));
+    if (!doc.isArray()) return false;
+    return model->insertRows(index, doc.array());
+}
+
+bool qmlts_list_remove_rows(void* model_ptr, int index, int count) {
+    if (!model_ptr) return false;
+    return static_cast<QmltsListModel*>(model_ptr)->removeRows(index, count);
+}
+
+bool qmlts_list_update_row(void* model_ptr, int index, const char* json_data) {
+    if (!model_ptr || !json_data) return false;
+    auto* model = static_cast<QmltsListModel*>(model_ptr);
+    const QJsonDocument doc = QJsonDocument::fromJson(QByteArray(json_data));
+    if (!doc.isObject()) return false;
+    return model->updateRow(index, doc.object());
+}
+
+bool qmlts_list_move_rows(void* model_ptr, int source_row, int dest_row, int count) {
+    if (!model_ptr) return false;
+    return static_cast<QmltsListModel*>(model_ptr)->moveRows(source_row, dest_row, count);
+}
+
+int qmlts_list_row_count(void* model_ptr) {
+    if (!model_ptr) return 0;
+    return static_cast<QmltsListModel*>(model_ptr)->rowCountValue();
+}
+
+char* qmlts_list_get_row(void* model_ptr, int index) {
+    if (!model_ptr) return nullptr;
+    const QJsonObject row = static_cast<QmltsListModel*>(model_ptr)->getRow(index);
+    if (row.isEmpty()) return nullptr;
+    const QJsonDocument doc(row);
+    const QByteArray bytes = doc.toJson(QJsonDocument::Compact);
+    char* result = static_cast<char*>(malloc(static_cast<size_t>(bytes.size()) + 1));
+    if (result) {
+        memcpy(result, bytes.constData(), static_cast<size_t>(bytes.size()));
+        result[bytes.size()] = '\0';
+    }
+    return result;
 }
 
 } // extern "C"
