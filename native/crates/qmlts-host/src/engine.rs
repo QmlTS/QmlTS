@@ -1766,4 +1766,79 @@ mod tests {
         );
         assert!(result.is_ok());
     }
+
+    // ─────────────────────────────────────────────────────────────────────
+    //  §8 Hot Reload
+    // ─────────────────────────────────────────────────────────────────────
+
+    #[cfg(feature = "mock-qt")]
+    #[test]
+    fn test_capture_snapshot_requires_qml() {
+        reset_app_initialized();
+        let engine = QmltsEngine::new(None).unwrap();
+        assert!(engine.capture_snapshot().is_err());
+    }
+
+    #[cfg(feature = "mock-qt")]
+    #[test]
+    fn test_capture_snapshot_after_load() {
+        reset_app_initialized();
+        let mut engine = QmltsEngine::new(None).unwrap();
+        engine.load_string("import QtQuick\nItem { }", None).unwrap();
+        let snap = engine.capture_snapshot().unwrap();
+        assert!(snap.contains("window"));
+    }
+
+    #[cfg(feature = "mock-qt")]
+    #[test]
+    fn test_reload_qml_requires_qml() {
+        reset_app_initialized();
+        let mut engine = QmltsEngine::new(None).unwrap();
+        assert!(engine.reload_qml("import QtQuick\nItem { }", None).is_err());
+    }
+
+    #[cfg(feature = "mock-qt")]
+    #[test]
+    fn test_reload_qml_after_load() {
+        reset_app_initialized();
+        let mut engine = QmltsEngine::new(None).unwrap();
+        engine.load_string("import QtQuick\nItem { }", None).unwrap();
+        assert!(engine.reload_qml("import QtQuick\nRectangle { }", None).is_ok());
+    }
+
+    #[cfg(feature = "mock-qt")]
+    #[test]
+    fn test_restore_snapshot_requires_qml() {
+        reset_app_initialized();
+        let engine = QmltsEngine::new(None).unwrap();
+        assert!(engine.restore_snapshot(r#"{"window":{}}"#).is_err());
+    }
+
+    #[cfg(feature = "mock-qt")]
+    #[test]
+    fn test_restore_snapshot_after_load() {
+        reset_app_initialized();
+        let mut engine = QmltsEngine::new(None).unwrap();
+        engine.load_string("import QtQuick\nItem { }", None).unwrap();
+        assert!(engine.restore_snapshot(r#"{"window":{"x":0,"y":0,"width":800,"height":600}}"#).is_ok());
+    }
+
+    #[cfg(feature = "mock-qt")]
+    #[test]
+    fn test_full_reload_cycle_mock() {
+        reset_app_initialized();
+        let mut engine = QmltsEngine::new(None).unwrap();
+        engine.register_view_model("LoginViewModel").unwrap();
+        engine.sync_state("LoginViewModel", "username", "\"test\"").unwrap();
+        engine.load_string("import QtQuick\nItem { }", None).unwrap();
+
+        // Capture
+        let snap = engine.capture_snapshot().unwrap();
+        // Reload
+        engine.reload_qml("import QtQuick\nRectangle { }", None).unwrap();
+        // Rehydrate
+        engine.sync_state("LoginViewModel", "username", "\"test\"").unwrap();
+        // Restore
+        engine.restore_snapshot(&snap).unwrap();
+    }
 }

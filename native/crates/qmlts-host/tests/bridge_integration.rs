@@ -939,3 +939,198 @@ fn test_get_list_row_supports_valid_empty_object_row() {
     let missing = engine.get_list_row(model_id, 1);
     assert!(missing.is_err());
 }
+
+// ─────────────────────────────────────────────────────────────────────────
+//  §8 Hot Reload Integration Tests
+// ─────────────────────────────────────────────────────────────────────────
+
+/// HR-01: Capture snapshot returns valid JSON with window data.
+#[test]
+fn test_capture_snapshot_returns_valid_json() {
+    let mut engine = QmltsEngine::new(None).unwrap();
+    engine.register_view_model("LoginViewModel").unwrap();
+
+    engine
+        .load_string(
+            r#"import QtQuick
+import QtQuick.Window
+
+Window {
+    width: 400
+    height: 300
+    visible: true
+}"#,
+            None,
+        )
+        .unwrap();
+
+    engine.process_events().unwrap();
+
+    let snapshot = engine.capture_snapshot().unwrap();
+    let parsed: serde_json::Value = serde_json::from_str(&snapshot).unwrap();
+
+    assert!(parsed.get("window").is_some(), "snapshot must contain 'window'");
+    assert!(parsed.get("focusId").is_some(), "snapshot must contain 'focusId'");
+    assert!(
+        parsed.get("scrollPositions").is_some(),
+        "snapshot must contain 'scrollPositions'"
+    );
+}
+
+/// HR-03: Capture fails before QML is loaded.
+#[test]
+fn test_capture_snapshot_fails_before_qml_loaded() {
+    let engine = QmltsEngine::new(None).unwrap();
+    let result = engine.capture_snapshot();
+    assert!(result.is_err());
+}
+
+/// HR-04: Reload QML succeeds and re-loads.
+#[test]
+fn test_reload_qml_succeeds() {
+    let mut engine = QmltsEngine::new(None).unwrap();
+    engine.register_view_model("LoginViewModel").unwrap();
+
+    engine
+        .load_string("import QtQuick\nItem { }", None)
+        .unwrap();
+    engine.process_events().unwrap();
+
+    let result = engine.reload_qml(
+        "import QtQuick\nRectangle { width: 200; height: 100 }",
+        None,
+    );
+    assert!(result.is_ok(), "reload should succeed: {result:?}");
+
+    engine.process_events().unwrap();
+}
+
+/// HR-05: Reload preserves context properties (vm, __qmlts).
+#[test]
+fn test_reload_preserves_context_properties() {
+    let mut engine = QmltsEngine::new(None).unwrap();
+    engine.register_view_model("LoginViewModel").unwrap();
+
+    // Sync initial state
+    engine
+        .sync_state("LoginViewModel", "username", "\"alice\"")
+        .unwrap();
+
+    engine
+        .load_string("import QtQuick\nItem { }", None)
+        .unwrap();
+    engine.process_events().unwrap();
+
+    // Reload with new QML
+    engine
+        .reload_qml(
+            r#"import QtQuick
+Item {
+    id: root
+    property string readUsername: vm.username
+}"#,
+            None,
+        )
+        .unwrap();
+    engine.process_events().unwrap();
+
+    // vm should still be accessible after reload
+    assert!(engine.has_context_property("vm"));
+    assert!(engine.has_context_property("__qmlts"));
+
+    // The synced state should still be readable
+    let val = engine
+        .get_property("LoginViewModel", "username")
+        .unwrap();
+    assert_eq!(val, "\"alice\"");
+}
+
+/// HR-09: Full four-step reload cycle.
+#[test]
+fn test_full_hot_reload_cycle() {
+    let mut engine = QmltsEngine::new(None).unwrap();
+    engine.register_view_model("LoginViewModel").unwrap();
+
+    engine
+        .sync_state("LoginViewModel", "username", "\"bob\"")
+        .unwrap();
+
+    engine
+        .load_string("import QtQuick\nItem { }", None)
+        .unwrap();
+    engine.process_events().unwrap();
+
+    // Step 1: Capture
+    let snapshot = engine.capture_snapshot().unwrap();
+
+    // Step 2: Reload
+    engine
+        .reload_qml("import QtQuick\nRectangle { width: 320; height: 240 }", None)
+        .unwrap();
+    engine.process_events().unwrap();
+
+    // Step 3: Rehydrate (re-sync state)
+    engine
+        .sync_state("LoginViewModel", "username", "\"bob\"")
+        .unwrap();
+
+    // Step 4: Restore
+    engine.restore_snapshot(&snapshot).unwrap();
+    engine.process_events().unwrap();
+
+    // Verify state survived
+    let val = engine
+        .get_property("LoginViewModel", "username")
+        .unwrap();
+    assert_eq!(val, "\"bob\"");
+}
+
+/// HR-10: Consecutive reloads remain stable.
+#[test]
+fn test_consecutive_reloads_stable() {
+    let mut engine = QmltsEngine::new(None).unwrap();
+    engine.register_view_model("CounterViewModel").unwrap();
+
+    engine
+        .load_string("import QtQuick\nItem { }", None)
+        .unwrap();
+    engine.process_events().unwrap();
+
+    for i in 0..5 {
+        let snapshot = engine.capture_snapshot().unwrap();
+
+        engine
+            .reload_qml(
+                &format!("import QtQuick\nItem {{ property int idx: {i} }}"),
+                None,
+            )
+            .unwrap();
+        engine.process_events().unwrap();
+
+        engine.restore_snapshot(&snapshot).unwrap();
+        engine.process_events().unwrap();
+    }
+
+    // If we got here without panicking, consecutive reloads are stable
+    assert!(engine.has_context_property("vm"));
+}
+
+/// HR: Reload fails before QML is loaded.
+#[test]
+fn test_reload_fails_before_qml_loaded() {
+    let mut engine = QmltsEngine::new(None).unwrap();
+    engine.register_view_model("LoginViewModel").unwrap();
+
+    let result = engine.reload_qml("import QtQuick\nItem { }", None);
+    assert!(result.is_err());
+}
+
+/// HR: Restore snapshot fails before QML is loaded.
+#[test]
+fn test_restore_snapshot_fails_before_qml_loaded() {
+    let engine = QmltsEngine::new(None).unwrap();
+    let result = engine.restore_snapshot(
+        r#"{"window":{"x":0,"y":0,"width":800,"height":600},"focusId":""}"#,
+    );
+    assert!(result.is_err());
+}
