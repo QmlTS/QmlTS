@@ -596,7 +596,7 @@ pub fn emit_signal(
 pub fn create_list_model(schema_json: &str) -> *mut c_void {
     tracing::debug!("Mock: create_list_model('{schema_json}')");
     // Return a heap-allocated fake pointer
-    Box::into_raw(Box::new(0u8)) as *mut c_void
+    Box::into_raw(Box::new(0u8)).cast::<c_void>()
 }
 
 #[cfg(feature = "mock-qt")]
@@ -605,7 +605,7 @@ pub fn destroy_list_model(model_ptr: *mut c_void) {
     tracing::debug!("Mock: destroy_list_model");
     if !model_ptr.is_null() {
         // Free the fake pointer
-        drop(unsafe { Box::from_raw(model_ptr as *mut u8) });
+        drop(unsafe { Box::from_raw(model_ptr.cast::<u8>()) });
     }
 }
 

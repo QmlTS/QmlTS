@@ -618,6 +618,162 @@ pub fn emit_effect_by_id(
 }
 
 // ─────────────────────────────────────────────────────────────────────────
+//  §7 List Model
+// ─────────────────────────────────────────────────────────────────────────
+
+/// Create a new list model with the given roles schema.
+///
+/// @param engine - The engine instance.
+/// @param schemaJson - JSON schema with roles array, e.g., `{"roles":["name","value"]}`.
+/// @returns Numeric model ID for subsequent list operations.
+/// @throws Error if the schema is invalid.
+///
+/// @example
+/// ```typescript
+/// const modelId = createListModel(engine, '{"roles":["name","age"]}');
+/// ```
+#[napi(js_name = "createListModel")]
+pub fn create_list_model(engine: &mut QmltsEngine, schema_json: String) -> Result<u32> {
+    let id = engine
+        .inner
+        .create_list_model(&schema_json)
+        .map_err(|e| -> napi::Error { e.into() })?;
+    #[allow(clippy::cast_possible_truncation)]
+    Ok(id as u32)
+}
+
+/// Destroy a list model by ID.
+///
+/// @param engine - The engine instance.
+/// @param modelId - Model ID returned by `createListModel`.
+/// @throws Error if the model ID is invalid.
+#[napi(js_name = "destroyListModel")]
+pub fn destroy_list_model(engine: &mut QmltsEngine, model_id: u32) -> Result<()> {
+    engine
+        .inner
+        .destroy_list_model(model_id as usize)
+        .map_err(|e| -> napi::Error { e.into() })
+}
+
+/// Replace all data in a list model.
+///
+/// @param engine - The engine instance.
+/// @param modelId - Model ID.
+/// @param data - JSON array of row objects.
+///
+/// @example
+/// ```typescript
+/// setListData(engine, modelId, '[{"name":"Alice","age":30}]');
+/// ```
+#[napi(js_name = "setListData")]
+pub fn set_list_data(engine: &QmltsEngine, model_id: u32, data: String) -> Result<()> {
+    engine
+        .inner
+        .set_list_data(model_id as usize, &data)
+        .map_err(|e| -> napi::Error { e.into() })
+}
+
+/// Insert rows into a list model at the given index.
+///
+/// @param engine - The engine instance.
+/// @param modelId - Model ID.
+/// @param index - Insertion index.
+/// @param rows - JSON array of row objects to insert.
+#[napi(js_name = "insertRows")]
+pub fn insert_rows(
+    engine: &QmltsEngine,
+    model_id: u32,
+    index: i32,
+    rows: String,
+) -> Result<()> {
+    engine
+        .inner
+        .insert_list_rows(model_id as usize, index, &rows)
+        .map_err(|e| -> napi::Error { e.into() })
+}
+
+/// Remove rows from a list model.
+///
+/// @param engine - The engine instance.
+/// @param modelId - Model ID.
+/// @param index - Starting index.
+/// @param count - Number of rows to remove.
+#[napi(js_name = "removeRows")]
+pub fn remove_rows(engine: &QmltsEngine, model_id: u32, index: i32, count: i32) -> Result<()> {
+    engine
+        .inner
+        .remove_list_rows(model_id as usize, index, count)
+        .map_err(|e| -> napi::Error { e.into() })
+}
+
+/// Update a single row in a list model.
+///
+/// @param engine - The engine instance.
+/// @param modelId - Model ID.
+/// @param index - Row index to update.
+/// @param data - JSON object with updated data.
+#[napi(js_name = "updateRow")]
+pub fn update_row(
+    engine: &QmltsEngine,
+    model_id: u32,
+    index: i32,
+    data: String,
+) -> Result<()> {
+    engine
+        .inner
+        .update_list_row(model_id as usize, index, &data)
+        .map_err(|e| -> napi::Error { e.into() })
+}
+
+/// Move rows within a list model.
+///
+/// @param engine - The engine instance.
+/// @param modelId - Model ID.
+/// @param source - Source row index.
+/// @param dest - Destination row index.
+/// @param count - Number of rows to move.
+#[napi(js_name = "moveRows")]
+pub fn move_rows(
+    engine: &QmltsEngine,
+    model_id: u32,
+    source: i32,
+    dest: i32,
+    count: i32,
+) -> Result<()> {
+    engine
+        .inner
+        .move_list_rows(model_id as usize, source, dest, count)
+        .map_err(|e| -> napi::Error { e.into() })
+}
+
+/// Get the row count of a list model.
+///
+/// @param engine - The engine instance.
+/// @param modelId - Model ID.
+/// @returns Number of rows in the model.
+#[napi(js_name = "rowCount")]
+pub fn row_count(engine: &QmltsEngine, model_id: u32) -> Result<i32> {
+    engine
+        .inner
+        .list_row_count(model_id as usize)
+        .map_err(|e| -> napi::Error { e.into() })
+}
+
+/// Get a single row from a list model as JSON.
+///
+/// @param engine - The engine instance.
+/// @param modelId - Model ID.
+/// @param index - Row index.
+/// @returns JSON string of the row data.
+#[napi(js_name = "getRow")]
+pub fn get_row(engine: &QmltsEngine, model_id: u32, index: i32) -> Result<String> {
+    engine
+        .inner
+        .get_list_row(model_id as usize, index)
+        .map_err(|e| -> napi::Error { e.into() })
+}
+
+// ─────────────────────────────────────────────────────────────────────────
 //  Tests
 // ─────────────────────────────────────────────────────────────────────────
 
@@ -873,5 +1029,114 @@ mod tests {
 
         let result = emit_effect_by_id(&engine, "LoginViewModel".to_string(), 999_999, None);
         assert!(result.is_err());
+    }
+
+    // ─────────────────────────────────────────────────────────────────────
+    //  §7 List Model N-API Tests
+    // ─────────────────────────────────────────────────────────────────────
+
+    #[test]
+    fn test_create_list_model_napi() {
+        reset_qt();
+        let mut engine = create_engine(None).unwrap();
+        let id = create_list_model(&mut engine, r#"{"roles":["name","value"]}"#.to_string());
+        assert!(id.is_ok());
+        assert_eq!(id.unwrap(), 0);
+    }
+
+    #[test]
+    fn test_destroy_list_model_napi() {
+        reset_qt();
+        let mut engine = create_engine(None).unwrap();
+        let id = create_list_model(&mut engine, r#"{"roles":["name"]}"#.to_string()).unwrap();
+        let result = destroy_list_model(&mut engine, id);
+        assert!(result.is_ok());
+    }
+
+    #[test]
+    fn test_set_list_data_napi() {
+        reset_qt();
+        let mut engine = create_engine(None).unwrap();
+        let id = create_list_model(&mut engine, r#"{"roles":["name"]}"#.to_string()).unwrap();
+        let result = set_list_data(&engine, id, r#"[{"name":"alice"}]"#.to_string());
+        assert!(result.is_ok());
+    }
+
+    #[test]
+    fn test_insert_rows_napi() {
+        reset_qt();
+        let mut engine = create_engine(None).unwrap();
+        let id = create_list_model(&mut engine, r#"{"roles":["name"]}"#.to_string()).unwrap();
+        let result = insert_rows(&engine, id, 0, r#"[{"name":"bob"}]"#.to_string());
+        assert!(result.is_ok());
+    }
+
+    #[test]
+    fn test_remove_rows_napi() {
+        reset_qt();
+        let mut engine = create_engine(None).unwrap();
+        let id = create_list_model(&mut engine, r#"{"roles":["name"]}"#.to_string()).unwrap();
+        let result = remove_rows(&engine, id, 0, 1);
+        assert!(result.is_ok());
+    }
+
+    #[test]
+    fn test_update_row_napi() {
+        reset_qt();
+        let mut engine = create_engine(None).unwrap();
+        let id = create_list_model(&mut engine, r#"{"roles":["name"]}"#.to_string()).unwrap();
+        let result = update_row(&engine, id, 0, r#"{"name":"updated"}"#.to_string());
+        assert!(result.is_ok());
+    }
+
+    #[test]
+    fn test_move_rows_napi() {
+        reset_qt();
+        let mut engine = create_engine(None).unwrap();
+        let id = create_list_model(&mut engine, r#"{"roles":["name"]}"#.to_string()).unwrap();
+        let result = move_rows(&engine, id, 0, 1, 1);
+        assert!(result.is_ok());
+    }
+
+    #[test]
+    fn test_row_count_napi() {
+        reset_qt();
+        let mut engine = create_engine(None).unwrap();
+        let id = create_list_model(&mut engine, r#"{"roles":["name"]}"#.to_string()).unwrap();
+        let count = row_count(&engine, id);
+        assert!(count.is_ok());
+    }
+
+    #[test]
+    fn test_get_row_napi() {
+        reset_qt();
+        let mut engine = create_engine(None).unwrap();
+        let id = create_list_model(&mut engine, r#"{"roles":["name"]}"#.to_string()).unwrap();
+        let row = get_row(&engine, id, 0);
+        assert!(row.is_ok());
+    }
+
+    #[test]
+    fn test_list_model_invalid_id_napi() {
+        reset_qt();
+        let engine = create_engine(None).unwrap();
+        assert!(set_list_data(&engine, 99, "[]".to_string()).is_err());
+        assert!(row_count(&engine, 99).is_err());
+    }
+
+    #[cfg(feature = "mock-qt")]
+    #[test]
+    fn test_emit_effect_multi_param_napi() {
+        reset_qt();
+        let mut engine = create_engine(None).unwrap();
+        register_view_model(&mut engine, "SearchViewModel".to_string()).unwrap();
+
+        let result = emit_effect(
+            &engine,
+            "SearchViewModel".to_string(),
+            "onSearchCompleted".to_string(),
+            Some(r#"["hello", 42]"#.to_string()),
+        );
+        assert!(result.is_ok());
     }
 }

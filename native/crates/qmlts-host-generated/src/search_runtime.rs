@@ -5,7 +5,6 @@
 //! - `onSearchCompleted(QString, i32)`: 2-parameter effect signal
 
 use core::pin::Pin;
-use cxx_qt_lib::QString;
 
 use crate::dispatch;
 
