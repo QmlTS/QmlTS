@@ -47,6 +47,9 @@ function createPkgProject(): string {
       minQtVersion: '6.5.0',
     }),
   );
+  writeFileSync(join(chartsDir, 'lib', 'charts.dll'), '');
+  writeFileSync(join(chartsDir, 'lib', 'libcharts.so'), '');
+  writeFileSync(join(chartsDir, 'lib', 'libcharts.dylib'), '');
 
   // @qmlts/widgets — has qmlts.manifest.json, no qml dir
   const widgetsDir = join(qmltsDir, 'widgets');
@@ -168,6 +171,30 @@ describe('PackageResolver', () => {
     const result = await resolver.resolve(projectDir);
     // charts has nativeLib for all platforms; widgets does not
     expect(result.nativeLibPaths.length).toBeGreaterThanOrEqual(1);
+  });
+
+  test('BP-47a: skips missing native lib paths', async () => {
+    const projectDir = createPkgProject();
+    const missingDir = join(projectDir, 'node_modules', '@qmlts', 'missing-native');
+    mkdirSync(missingDir, { recursive: true });
+    writeFileSync(
+      join(missingDir, 'package.json'),
+      JSON.stringify({ name: '@qmlts/missing-native', version: '0.0.1' }),
+    );
+    writeFileSync(
+      join(missingDir, 'qmlts.manifest.json'),
+      JSON.stringify({
+        nativeLib: {
+          win32: './lib/missing.dll',
+          linux: './lib/libmissing.so',
+          darwin: './lib/libmissing.dylib',
+        },
+      }),
+    );
+
+    const result = await resolver.resolve(projectDir);
+
+    expect(result.nativeLibPaths.some((path) => path.includes('missing-native'))).toBe(false);
   });
 
   // ─── BP-48: resolvePackage returns undefined for no manifest ─

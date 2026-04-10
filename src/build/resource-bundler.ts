@@ -106,7 +106,7 @@ function filterFiles(
 
 function matchGlob(filePath: string, pattern: string): boolean {
   const normalized = filePath.replace(/\\/g, '/');
-  const regexStr = globToRegex(pattern);
+  const regexStr = globToRegex(pattern.replace(/\\/g, '/'));
   return new RegExp(`^${regexStr}$`).test(normalized);
 }
 
@@ -131,16 +131,17 @@ function globToRegex(pattern: string): string {
     } else if (char === '?') {
       result += '[^/]';
       i++;
-    } else if (char === '.') {
-      result += '\\.';
-      i++;
     } else {
-      result += char;
+      result += escapeRegexChar(char);
       i++;
     }
   }
 
   return result;
+}
+
+function escapeRegexChar(char: string): string {
+  return /[\\^$+?.()|[\]{}]/.test(char) ? `\\${char}` : char;
 }
 
 function escapeXml(str: string): string {

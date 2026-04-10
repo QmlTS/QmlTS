@@ -128,6 +128,9 @@ describe('EntryGenerator', () => {
       makeOptions({
         mainQml: '.\\qml\\Main.qml',
         eventBindingsFile: '.\\bindings\\events.json',
+        compiledViewModels: [
+          { className: 'MainViewModel', schemaFile: 'schemas\\MainViewModel.schema.json' },
+        ],
       }),
     );
 

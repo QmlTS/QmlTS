@@ -72,6 +72,16 @@ describe('ResourceBundler', () => {
     expect(result.files.length).toBeGreaterThanOrEqual(5);
   });
 
+  test('BP-56a: supports Windows-style glob separators', async () => {
+    const config = makeAssetsConfig({ include: ['**\\*.png', '**\\*.jpg'] });
+    const result = await bundler.bundle(config, FIXTURES_DIR, TMP_DIR);
+
+    expect(result.files.length).toBe(2);
+    const names = result.files.map((f) => f.outputPath.replace(/\\/g, '/'));
+    expect(names.some((n) => n.includes('logo.png'))).toBe(true);
+    expect(names.some((n) => n.includes('hero.jpg'))).toBe(true);
+  });
+
   // ─── BP-57: Nested directory traversal ───────────────────
   test('BP-57: traverses nested directories', async () => {
     const config = makeAssetsConfig();

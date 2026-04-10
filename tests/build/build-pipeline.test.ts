@@ -313,6 +313,22 @@ describe('BuildPipeline', () => {
     expect(readFileSync(result.output.entryFile, 'utf-8')).toContain('CounterView');
   });
 
+  test('BP-24b: generated entry prefers the configured entry unit as mainQml', async () => {
+    const { projectDir, srcDir } = writeSelectiveProject();
+    const config = makeConfig({
+      entry: join(srcDir, 'SecondaryView.ts'),
+      outDir: join(TMP_DIR, 'dist-secondary-entry'),
+      configDir: projectDir,
+    });
+    const pipeline = createBuildPipeline(config);
+
+    const result = await pipeline.run();
+
+    expect(result.success).toBe(true);
+    const entryContent = readFileSync(result.output.entryFile, 'utf-8');
+    expect(entryContent).toContain('host.loadQml("./qml/SecondaryView.qml")');
+  });
+
   test('BP-25: schema files are written to schemasDir', async () => {
     const config = makeConfig();
     const pipeline = createBuildPipeline(config);

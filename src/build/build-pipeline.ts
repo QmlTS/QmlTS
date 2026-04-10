@@ -401,10 +401,13 @@ function phaseWriteOutput(ctx: PhaseContext): Promise<{ diagnostics: readonly Di
       schemaFile: relative(layout.rootDir, u.schemaOutputPath ?? '').replace(/\\/g, '/'),
     }));
 
-  const mainQml =
-    ctx.compilationResult.units.length > 0
-      ? `./${relative(layout.rootDir, ctx.compilationResult.units[0]!.qmlOutputPath).replace(/\\/g, '/')}`
-      : './main.qml';
+  const entrySourceFile = resolve(ctx.config.entry);
+  const mainUnit =
+    ctx.compilationResult.units.find((unit) => resolve(unit.sourceFile) === entrySourceFile) ??
+    ctx.compilationResult.units[0];
+  const mainQml = mainUnit
+    ? `./${relative(layout.rootDir, mainUnit.qmlOutputPath).replace(/\\/g, '/')}`
+    : './main.qml';
 
   const qmlImportPaths = [...(ctx.config.qmlModulePaths ?? [])];
 

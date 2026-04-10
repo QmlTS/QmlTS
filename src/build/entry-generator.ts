@@ -25,7 +25,9 @@ export function createEntryGenerator(): EntryGenerator {
       if (options.compiledViewModels.length > 0) {
         for (const vm of options.compiledViewModels) {
           lines.push(
-            `import { ${vm.className} } from './${vm.schemaFile.replace(/\.schema\.json$/, '')}';`,
+            `import { ${vm.className} } from './${vm.schemaFile
+              .replace(/\\/g, '/')
+              .replace(/\.schema\.json$/, '')}';`,
           );
         }
         lines.push('');

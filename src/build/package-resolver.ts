@@ -108,7 +108,9 @@ function mergePackages(packages: readonly ResolvedPackageInfo[]): ResolvedPackag
       const nativeLibRelative = m.nativeLib[platformKey];
       if (nativeLibRelative) {
         const nativeLibPath = resolve(pkg.dir, nativeLibRelative);
-        nativeLibPaths.push(nativeLibPath);
+        if (existsSync(nativeLibPath)) {
+          nativeLibPaths.push(nativeLibPath);
+        }
       }
     }
   }
