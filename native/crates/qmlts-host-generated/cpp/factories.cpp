@@ -6,8 +6,10 @@
 
 #include "qmlts-host-generated/src/login_view_model.cxxqt.h"
 #include "qmlts-host-generated/src/counter_view_model.cxxqt.h"
+#include "qmlts-host-generated/src/search_view_model.cxxqt.h"
 #include "qmlts-host-generated/src/login_runtime.cxxqt.h"
 #include "qmlts-host-generated/src/counter_runtime.cxxqt.h"
+#include "qmlts-host-generated/src/search_runtime.cxxqt.h"
 
 extern "C" {
 
@@ -19,12 +21,20 @@ void* qmlts_create_counter_view_model() {
     return static_cast<QObject*>(new CounterViewModel());
 }
 
+void* qmlts_create_search_view_model() {
+    return static_cast<QObject*>(new SearchViewModel());
+}
+
 void* qmlts_create_login_runtime() {
     return static_cast<QObject*>(new LoginRuntime());
 }
 
 void* qmlts_create_counter_runtime() {
     return static_cast<QObject*>(new CounterRuntime());
+}
+
+void* qmlts_create_search_runtime() {
+    return static_cast<QObject*>(new SearchRuntime());
 }
 
 void qmlts_destroy_qobject(void* ptr) {

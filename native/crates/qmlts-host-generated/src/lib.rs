@@ -13,6 +13,8 @@ pub mod counter_view_model;
 pub mod dispatch;
 pub mod login_runtime;
 pub mod login_view_model;
+pub mod search_runtime;
+pub mod search_view_model;
 
 use serde::Deserialize;
 use std::any::Any;
@@ -112,11 +114,25 @@ pub const COUNTER_VIEW_MODEL_SCHEMA: &str = r#"{
   "lifecycle": {"onMounted": false, "onUnmounting": false, "hotReload": false}
 }"#;
 
+pub const SEARCH_VIEW_MODEL_SCHEMA: &str = r#"{
+  "className": "SearchViewModel",
+  "version": 1,
+  "states": [
+    {"name": "query", "qmlName": "query", "qmlType": "string", "memberId": 0, "readonly": false, "deferred": false, "defaultValue": "''"},
+    {"name": "resultCount", "qmlName": "resultCount", "qmlType": "int", "memberId": 1, "readonly": true, "deferred": false, "defaultValue": "0"}
+  ],
+  "commands": [],
+  "effects": [{"name": "onSearchCompleted", "qmlName": "onSearchCompleted", "effectId": 1234567890, "parameters": [{"name": "query", "type": "string"}, {"name": "resultCount", "type": "int"}]}],
+  "lifecycle": {"onMounted": false, "onUnmounting": false, "hotReload": false}
+}"#;
+
 unsafe extern "C" {
     fn qmlts_create_login_view_model() -> *mut c_void;
     fn qmlts_create_counter_view_model() -> *mut c_void;
+    fn qmlts_create_search_view_model() -> *mut c_void;
     fn qmlts_create_login_runtime() -> *mut c_void;
     fn qmlts_create_counter_runtime() -> *mut c_void;
+    fn qmlts_create_search_runtime() -> *mut c_void;
     fn qmlts_destroy_qobject(ptr: *mut c_void);
 }
 
@@ -214,6 +230,17 @@ fn create_counter_instance() -> BridgeInstance {
     BridgeInstance::new(Box::new(pair), vm, rt)
 }
 
+fn create_search_instance() -> BridgeInstance {
+    // SAFETY: C++ factories allocate heap QObjects with standard constructors.
+    let vm = unsafe { qmlts_create_search_view_model() };
+    let rt = unsafe { qmlts_create_search_runtime() };
+    let pair = QObjectPair {
+        vm_ptr: vm,
+        runtime_ptr: rt,
+    };
+    BridgeInstance::new(Box::new(pair), vm, rt)
+}
+
 /// Returns all registered bridge descriptors.
 #[must_use]
 pub fn descriptors() -> &'static [BridgeDescriptor] {
@@ -227,6 +254,11 @@ pub fn descriptors() -> &'static [BridgeDescriptor] {
             class_name: "CounterViewModel",
             create: create_counter_instance,
             schema_json: COUNTER_VIEW_MODEL_SCHEMA,
+        },
+        BridgeDescriptor {
+            class_name: "SearchViewModel",
+            create: create_search_instance,
+            schema_json: SEARCH_VIEW_MODEL_SCHEMA,
         },
     ]
 }
@@ -293,5 +325,32 @@ mod tests {
                 serde_json::from_str(desc.schema_json).expect("descriptor schema should parse");
             assert_eq!(schema.class_name, desc.class_name);
         }
+    }
+
+    #[test]
+    fn search_schema_deserializes() {
+        let schema: ViewModelSchema =
+            serde_json::from_str(SEARCH_VIEW_MODEL_SCHEMA).expect("should parse search schema");
+        assert_eq!(schema.class_name, "SearchViewModel");
+        assert_eq!(schema.version, 1);
+        assert_eq!(schema.states.len(), 2);
+        assert_eq!(schema.states[0].name, "query");
+        assert_eq!(schema.states[0].qml_type, "string");
+        assert_eq!(schema.states[1].name, "resultCount");
+        assert_eq!(schema.states[1].qml_type, "int");
+        assert!(schema.states[1].readonly);
+        assert!(schema.commands.is_empty());
+        assert_eq!(schema.effects.len(), 1);
+        assert_eq!(schema.effects[0].name, "onSearchCompleted");
+        assert_eq!(schema.effects[0].effect_id, 1_234_567_890);
+        assert_eq!(schema.effects[0].parameters.len(), 2);
+        assert!(!schema.lifecycle.on_mounted);
+    }
+
+    #[test]
+    fn descriptors_include_search_view_model() {
+        let names: Vec<&str> = descriptors().iter().map(|d| d.class_name).collect();
+        assert!(names.contains(&"SearchViewModel"));
+        assert_eq!(names.len(), 3);
     }
 }
