@@ -328,6 +328,78 @@ describe.skipIf(!isNativeModuleAvailable)('host/qmlts-host', () => {
     expect(value).toBe('hello world');
     host.dispose();
   });
+
+  // ─────────────────────────────────────────────────────────────────────
+  //  §8 Hot Reload
+  // ─────────────────────────────────────────────────────────────────────
+
+  test('TH-31: captureSnapshot returns parseable JSON', () => {
+    const host = new QmltsHost();
+    host.registerViewModel('LoginViewModel');
+    host.loadString('import QtQuick\nItem { }');
+    host.processEvents();
+
+    const snapshot = host.captureSnapshot();
+    expect(typeof snapshot).toBe('string');
+    const parsed = JSON.parse(snapshot);
+    expect(parsed).toHaveProperty('window');
+    host.dispose();
+  });
+
+  test('TH-32: captureSnapshot fails before QML loaded', () => {
+    const host = new QmltsHost();
+    expect(() => host.captureSnapshot()).toThrow();
+    host.dispose();
+  });
+
+  test('TH-33: reloadQml succeeds after load', () => {
+    const host = new QmltsHost();
+    host.registerViewModel('LoginViewModel');
+    host.loadString('import QtQuick\nItem { }');
+    host.processEvents();
+
+    expect(() =>
+      host.reloadQml('import QtQuick\nRectangle { width: 200; height: 100 }'),
+    ).not.toThrow();
+    host.processEvents();
+    host.dispose();
+  });
+
+  test('TH-34: restoreSnapshot after reload', () => {
+    const host = new QmltsHost();
+    host.registerViewModel('LoginViewModel');
+    host.loadString('import QtQuick\nItem { }');
+    host.processEvents();
+
+    const snapshot = host.captureSnapshot();
+    host.reloadQml('import QtQuick\nRectangle { }');
+    host.processEvents();
+    expect(() => host.restoreSnapshot(snapshot)).not.toThrow();
+    host.dispose();
+  });
+
+  test('TH-35: full four-step reload cycle preserves state', () => {
+    const host = new QmltsHost();
+    host.registerViewModel('LoginViewModel');
+    host.syncState('LoginViewModel', 'username', 'bob');
+    host.loadString('import QtQuick\nItem { }');
+    host.processEvents();
+
+    // 1. Capture
+    const snapshot = host.captureSnapshot();
+    // 2. Reload
+    host.reloadQml('import QtQuick\nRectangle { }');
+    host.processEvents();
+    // 3. Rehydrate
+    host.syncState('LoginViewModel', 'username', 'bob');
+    // 4. Restore
+    host.restoreSnapshot(snapshot);
+    host.processEvents();
+
+    const val = host.getProperty<string>('LoginViewModel', 'username');
+    expect(val).toBe('bob');
+    host.dispose();
+  });
 });
 
 describe('host/qmlts-host (skip check)', () => {
