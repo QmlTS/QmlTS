@@ -16,10 +16,16 @@
 #include <QString>
 #include <QUrl>
 #include <QVariant>
+#include <QAbstractListModel>
+#include <QHash>
+#include <QJsonObject>
+#include <QSet>
+#include <cmath>
 #include <cstddef>
 #include <cstdint>
 #include <cstdlib>
 #include <cstring>
+#include <limits>
 
 namespace {
 QGuiApplication* ensure_application()
@@ -35,6 +41,140 @@ QGuiApplication* ensure_application()
     return app;
 }
 }
+
+// ─────────────────────────────────────────────────────────────────────────
+//  QmltsListModel — dynamic QAbstractListModel with runtime-defined roles
+// ─────────────────────────────────────────────────────────────────────────
+
+class QmltsListModel : public QAbstractListModel {
+public:
+    explicit QmltsListModel(const QStringList& roleNames, QObject* parent = nullptr)
+        : QAbstractListModel(parent)
+    {
+        // Role indices start at Qt::UserRole + 1
+        for (int i = 0; i < roleNames.size(); ++i) {
+            m_roleHash[Qt::UserRole + 1 + i] = roleNames[i].toUtf8();
+            m_roleNames.append(roleNames[i]);
+        }
+    }
+
+    [[nodiscard]] int rowCount(const QModelIndex& parent = QModelIndex()) const override {
+        if (parent.isValid()) return 0;
+        return static_cast<int>(m_data.size());
+    }
+
+    [[nodiscard]] QVariant data(const QModelIndex& index, int role) const override {
+        if (!index.isValid() || index.row() < 0 || index.row() >= m_data.size()) {
+            return {};
+        }
+        const auto it = m_roleHash.find(role);
+        if (it == m_roleHash.end()) {
+            return {};
+        }
+        const QString key = QString::fromUtf8(it.value());
+        const QJsonObject& row = m_data[index.row()];
+        if (!row.contains(key)) {
+            return {};
+        }
+        return row[key].toVariant();
+    }
+
+    [[nodiscard]] QHash<int, QByteArray> roleNames() const override {
+        return m_roleHash;
+    }
+
+    // ── Mutation API ─────────────────────────────────────────────────
+
+    void setListData(const QJsonArray& rows) {
+        beginResetModel();
+        m_data.clear();
+        m_data.reserve(rows.size());
+        for (const auto& val : rows) {
+            m_data.append(val.toObject());
+        }
+        endResetModel();
+    }
+
+    bool insertJsonRows(int row, const QJsonArray& rows) {
+        if (row < 0 || row > m_data.size() || rows.isEmpty()) {
+            return false;
+        }
+        beginInsertRows(QModelIndex(), row, row + rows.size() - 1);
+        for (int i = 0; i < rows.size(); ++i) {
+            m_data.insert(row + i, rows[i].toObject());
+        }
+        endInsertRows();
+        return true;
+    }
+
+    bool removeJsonRows(int row, int count) {
+        if (row < 0 || count <= 0 || row + count > m_data.size()) {
+            return false;
+        }
+        beginRemoveRows(QModelIndex(), row, row + count - 1);
+        m_data.erase(m_data.begin() + row, m_data.begin() + row + count);
+        endRemoveRows();
+        return true;
+    }
+
+    bool updateRow(int row, const QJsonObject& newData) {
+        if (row < 0 || row >= m_data.size()) {
+            return false;
+        }
+        m_data[row] = newData;
+        emit dataChanged(index(row, 0), index(row, 0), {});
+        return true;
+    }
+
+    bool moveJsonRows(int sourceRow, int destRow, int count) {
+        if (count <= 0 || sourceRow < 0 || sourceRow + count > m_data.size()
+            || destRow < 0 || destRow > m_data.size()) {
+            return false;
+        }
+        // Qt requires destRow not inside [sourceRow, sourceRow+count)
+        if (destRow >= sourceRow && destRow < sourceRow + count) {
+            return true; // no-op
+        }
+        if (!beginMoveRows(QModelIndex(), sourceRow, sourceRow + count - 1,
+                           QModelIndex(), destRow)) {
+            return false;
+        }
+        // Extract rows
+        QList<QJsonObject> moving;
+        moving.reserve(count);
+        for (int i = 0; i < count; ++i) {
+            moving.append(m_data[sourceRow + i]);
+        }
+        // Remove from source
+        m_data.erase(m_data.begin() + sourceRow, m_data.begin() + sourceRow + count);
+        // Insert at destination (adjust if source was before dest)
+        int adjustedDest = destRow;
+        if (sourceRow < destRow) {
+            adjustedDest -= count;
+        }
+        for (int i = 0; i < count; ++i) {
+            m_data.insert(adjustedDest + i, moving[i]);
+        }
+        endMoveRows();
+        return true;
+    }
+
+    [[nodiscard]] QJsonObject getRow(int row) const {
+        if (row < 0 || row >= m_data.size()) {
+            return {};
+        }
+        return m_data[row];
+    }
+
+    [[nodiscard]] int rowCountValue() const {
+        return static_cast<int>(m_data.size());
+    }
+
+private:
+    QHash<int, QByteArray> m_roleHash;
+    QStringList m_roleNames;
+    QList<QJsonObject> m_data;
+};
 
 extern "C" {
 
@@ -304,10 +444,11 @@ void* qmlts_root_object(void* engine_ptr) {
 }
 
 // ─────────────────────────────────────────────────────────────────────────
-//  Signal emission (Step 4 — effects)
+//  Signal emission (Step 4 — effects, Step 5 — multi-param)
 // ─────────────────────────────────────────────────────────────────────────
 
-bool qmlts_emit_signal(void* qobject_ptr, const char* signal_name, const char* payload_json) {
+bool qmlts_emit_signal(void* qobject_ptr, const char* signal_name,
+                       const char* payload_json, const char* param_types_json) {
     if (!qobject_ptr || !signal_name) {
         return false;
     }
@@ -319,12 +460,131 @@ bool qmlts_emit_signal(void* qobject_ptr, const char* signal_name, const char* p
         return QMetaObject::invokeMethod(object, signal_name);
     }
 
-    // Parse payload JSON to determine argument type
+    // Parse payload JSON array
     const QByteArray bytes(payload_json);
     const QJsonDocument doc = QJsonDocument::fromJson(bytes);
     if (doc.isNull()) {
         return false;
     }
+
+    // ── Multi-parameter path (schema-aware) ──────────────────────────
+    //
+    // When param_types_json is provided, use schema type info to build
+    // properly typed arguments for QMetaObject::invokeMethod.
+    if (param_types_json && param_types_json[0] != '\0') {
+        const QByteArray typesBytes(param_types_json);
+        const QJsonDocument typesDoc = QJsonDocument::fromJson(typesBytes);
+        if (typesDoc.isNull() || !typesDoc.isArray()) {
+            return false;
+        }
+        const QJsonArray paramTypes = typesDoc.array();
+
+        // Payload must be an array matching param count
+        if (!doc.isArray()) {
+            return false;
+        }
+        const QJsonArray payload = doc.array();
+        if (payload.size() != paramTypes.size()) {
+            return false;
+        }
+
+        const int count = payload.size();
+        if (count == 0) {
+            return QMetaObject::invokeMethod(object, signal_name);
+        }
+
+        // Build typed QVariant storage with proper types
+        // We allocate typed storage on the stack and build QGenericArgument array.
+        // Max 10 params supported.
+        if (count > 10) {
+            return false;
+        }
+
+        // Storage for typed values
+        QString strings[10];
+        int ints[10];
+        double doubles[10];
+        bool bools[10];
+        // Track which type each param uses: 0=string, 1=int, 2=double, 3=bool
+        int types[10] = {};
+
+        for (int i = 0; i < count; ++i) {
+            const QJsonObject paramDef = paramTypes[i].toObject();
+            const QString type = paramDef["type"].toString();
+            const QJsonValue val = payload[i];
+
+            if (type == "string") {
+                if (!val.isString()) {
+                    return false;
+                }
+                strings[i] = val.toString();
+                types[i] = 0;
+            } else if (type == "int") {
+                if (!val.isDouble()) {
+                    return false;
+                }
+                const double d = val.toDouble();
+                if (std::trunc(d) != d
+                    || d < static_cast<double>(std::numeric_limits<int>::min())
+                    || d > static_cast<double>(std::numeric_limits<int>::max())) {
+                    return false;
+                }
+                ints[i] = static_cast<int>(d);
+                types[i] = 1;
+            } else if (type == "number" || type == "double" || type == "real") {
+                if (!val.isDouble()) {
+                    return false;
+                }
+                doubles[i] = val.toDouble();
+                types[i] = 2;
+            } else if (type == "boolean" || type == "bool") {
+                if (!val.isBool()) {
+                    return false;
+                }
+                bools[i] = val.toBool();
+                types[i] = 3;
+            } else {
+                return false;
+            }
+        }
+
+        // Helper macro to produce Q_ARG for the i-th param based on its type
+        #define QMLTS_ARG(i) \
+            (types[i] == 0 ? Q_ARG(QString, strings[i]) : \
+             types[i] == 1 ? Q_ARG(int, ints[i]) : \
+             types[i] == 2 ? Q_ARG(double, doubles[i]) : \
+                             Q_ARG(bool, bools[i]))
+
+        // Qt 6.11 Q_ARG returns QMetaMethodArgument (not storable in arrays),
+        // so we must expand the correct number of args directly:
+        switch (count) {
+            case 1:
+                return QMetaObject::invokeMethod(object, signal_name, QMLTS_ARG(0));
+            case 2:
+                return QMetaObject::invokeMethod(object, signal_name, QMLTS_ARG(0), QMLTS_ARG(1));
+            case 3:
+                return QMetaObject::invokeMethod(object, signal_name, QMLTS_ARG(0), QMLTS_ARG(1), QMLTS_ARG(2));
+            case 4:
+                return QMetaObject::invokeMethod(object, signal_name, QMLTS_ARG(0), QMLTS_ARG(1), QMLTS_ARG(2), QMLTS_ARG(3));
+            case 5:
+                return QMetaObject::invokeMethod(object, signal_name, QMLTS_ARG(0), QMLTS_ARG(1), QMLTS_ARG(2), QMLTS_ARG(3), QMLTS_ARG(4));
+            case 6:
+                return QMetaObject::invokeMethod(object, signal_name, QMLTS_ARG(0), QMLTS_ARG(1), QMLTS_ARG(2), QMLTS_ARG(3), QMLTS_ARG(4), QMLTS_ARG(5));
+            case 7:
+                return QMetaObject::invokeMethod(object, signal_name, QMLTS_ARG(0), QMLTS_ARG(1), QMLTS_ARG(2), QMLTS_ARG(3), QMLTS_ARG(4), QMLTS_ARG(5), QMLTS_ARG(6));
+            case 8:
+                return QMetaObject::invokeMethod(object, signal_name, QMLTS_ARG(0), QMLTS_ARG(1), QMLTS_ARG(2), QMLTS_ARG(3), QMLTS_ARG(4), QMLTS_ARG(5), QMLTS_ARG(6), QMLTS_ARG(7));
+            case 9:
+                return QMetaObject::invokeMethod(object, signal_name, QMLTS_ARG(0), QMLTS_ARG(1), QMLTS_ARG(2), QMLTS_ARG(3), QMLTS_ARG(4), QMLTS_ARG(5), QMLTS_ARG(6), QMLTS_ARG(7), QMLTS_ARG(8));
+            case 10:
+                return QMetaObject::invokeMethod(object, signal_name, QMLTS_ARG(0), QMLTS_ARG(1), QMLTS_ARG(2), QMLTS_ARG(3), QMLTS_ARG(4), QMLTS_ARG(5), QMLTS_ARG(6), QMLTS_ARG(7), QMLTS_ARG(8), QMLTS_ARG(9));
+            default:
+                return false;
+        }
+        #undef QMLTS_ARG
+    }
+
+    // ── Single-parameter fallback (heuristic, backward-compat) ───────
 
     QJsonValue val;
     if (doc.isArray()) {
@@ -359,6 +619,107 @@ bool qmlts_emit_signal(void* qobject_ptr, const char* signal_name, const char* p
 
     // Fallback: emit with no arguments
     return QMetaObject::invokeMethod(object, signal_name);
+}
+
+// ─────────────────────────────────────────────────────────────────────────
+//  List model operations (Step 5)
+// ─────────────────────────────────────────────────────────────────────────
+
+void* qmlts_create_list_model(const char* schema_json) {
+    if (!schema_json) {
+        return nullptr;
+    }
+    const QByteArray bytes(schema_json);
+    const QJsonDocument doc = QJsonDocument::fromJson(bytes);
+    if (doc.isNull() || !doc.isObject()) {
+        return nullptr;
+    }
+    const QJsonObject obj = doc.object();
+    const QJsonValue rolesValue = obj["roles"];
+    if (!rolesValue.isArray()) {
+        return nullptr;
+    }
+    const QJsonArray roles = rolesValue.toArray();
+    QStringList roleNames;
+    roleNames.reserve(roles.size());
+    QSet<QString> seenRoleNames;
+    seenRoleNames.reserve(roles.size());
+    for (const auto& r : roles) {
+        if (!r.isString()) {
+            return nullptr;
+        }
+        const QString roleName = r.toString();
+        if (roleName.isEmpty() || seenRoleNames.contains(roleName)) {
+            return nullptr;
+        }
+        seenRoleNames.insert(roleName);
+        roleNames.append(roleName);
+    }
+    if (roleNames.isEmpty()) {
+        return nullptr;
+    }
+    return static_cast<void*>(new QmltsListModel(roleNames));
+}
+
+void qmlts_destroy_list_model(void* model_ptr) {
+    delete static_cast<QmltsListModel*>(model_ptr);
+}
+
+bool qmlts_list_set_data(void* model_ptr, const char* json_array) {
+    if (!model_ptr || !json_array) return false;
+    auto* model = static_cast<QmltsListModel*>(model_ptr);
+    const QJsonDocument doc = QJsonDocument::fromJson(QByteArray(json_array));
+    if (!doc.isArray()) return false;
+    model->setListData(doc.array());
+    return true;
+}
+
+bool qmlts_list_insert_rows(void* model_ptr, int index, const char* json_rows) {
+    if (!model_ptr || !json_rows) return false;
+    auto* model = static_cast<QmltsListModel*>(model_ptr);
+    const QJsonDocument doc = QJsonDocument::fromJson(QByteArray(json_rows));
+    if (!doc.isArray()) return false;
+    return model->insertJsonRows(index, doc.array());
+}
+
+bool qmlts_list_remove_rows(void* model_ptr, int index, int count) {
+    if (!model_ptr) return false;
+    return static_cast<QmltsListModel*>(model_ptr)->removeJsonRows(index, count);
+}
+
+bool qmlts_list_update_row(void* model_ptr, int index, const char* json_data) {
+    if (!model_ptr || !json_data) return false;
+    auto* model = static_cast<QmltsListModel*>(model_ptr);
+    const QJsonDocument doc = QJsonDocument::fromJson(QByteArray(json_data));
+    if (!doc.isObject()) return false;
+    return model->updateRow(index, doc.object());
+}
+
+bool qmlts_list_move_rows(void* model_ptr, int source_row, int dest_row, int count) {
+    if (!model_ptr) return false;
+    return static_cast<QmltsListModel*>(model_ptr)->moveJsonRows(source_row, dest_row, count);
+}
+
+int qmlts_list_row_count(void* model_ptr) {
+    if (!model_ptr) return 0;
+    return static_cast<QmltsListModel*>(model_ptr)->rowCountValue();
+}
+
+char* qmlts_list_get_row(void* model_ptr, int index) {
+    if (!model_ptr) return nullptr;
+    auto* model = static_cast<QmltsListModel*>(model_ptr);
+    if (index < 0 || index >= model->rowCountValue()) {
+        return nullptr;
+    }
+    const QJsonObject row = model->getRow(index);
+    const QJsonDocument doc(row);
+    const QByteArray bytes = doc.toJson(QJsonDocument::Compact);
+    char* result = static_cast<char*>(malloc(static_cast<size_t>(bytes.size()) + 1));
+    if (result) {
+        memcpy(result, bytes.constData(), static_cast<size_t>(bytes.size()));
+        result[bytes.size()] = '\0';
+    }
+    return result;
 }
 
 } // extern "C"

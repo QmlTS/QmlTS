@@ -26,7 +26,8 @@ fn test_get_registered_types() {
     let types = engine.get_registered_types();
     assert!(types.contains(&"LoginViewModel"));
     assert!(types.contains(&"CounterViewModel"));
-    assert_eq!(types.len(), 2);
+    assert!(types.contains(&"SearchViewModel"));
+    assert_eq!(types.len(), 3);
 }
 
 #[test]
@@ -579,4 +580,362 @@ Item {
         qmlts_host::qt_context_test::read_string_property(root, "boundPassword"),
         Some("update".to_string()),
     );
+}
+
+// ─────────────────────────────────────────────────────────────────────────
+//  Multi-parameter effect signal tests (Step 5)
+// ─────────────────────────────────────────────────────────────────────────
+
+/// Verify that SearchViewModel can be registered and QML can connect
+/// to its multi-parameter onSearchCompleted signal.
+#[test]
+fn test_search_view_model_registers_and_loads_qml() {
+    let mut engine = QmltsEngine::new(None).unwrap();
+    engine.register_view_model("SearchViewModel").unwrap();
+
+    let result = engine.load_string(
+        r#"import QtQuick
+Item {
+    property string receivedQuery: ""
+    property int receivedCount: -1
+
+    Connections {
+        target: __qmlts
+        function onOnSearchCompleted(query, resultCount) {
+            receivedQuery = query
+            receivedCount = resultCount
+        }
+    }
+}"#,
+        None,
+    );
+    assert!(
+        result.is_ok(),
+        "SearchViewModel QML should load: {result:?}"
+    );
+    engine.process_events().unwrap();
+}
+
+/// Verify that emitting a multi-parameter effect signal is observable from QML.
+/// Emits onSearchCompleted("hello", 42) and reads back both values.
+#[test]
+fn test_multi_param_effect_emission_observable() {
+    let mut engine = QmltsEngine::new(None).unwrap();
+    engine.register_view_model("SearchViewModel").unwrap();
+
+    engine
+        .load_string(
+            r#"import QtQuick
+Item {
+    property string receivedQuery: ""
+    property int receivedCount: -1
+
+    Connections {
+        target: __qmlts
+        function onOnSearchCompleted(query, resultCount) {
+            receivedQuery = query
+            receivedCount = resultCount
+        }
+    }
+}"#,
+            None,
+        )
+        .unwrap();
+    engine.process_events().unwrap();
+
+    // Emit the multi-param effect
+    engine
+        .emit_effect(
+            "SearchViewModel",
+            "onSearchCompleted",
+            Some(r#"["hello", 42]"#),
+        )
+        .unwrap();
+    engine.process_events().unwrap();
+
+    let root = engine.root_object_ptr();
+    assert!(!root.is_null(), "root object should exist");
+
+    let received_query = qmlts_host::qt_context_test::read_string_property(root, "receivedQuery");
+    assert_eq!(
+        received_query,
+        Some("hello".to_string()),
+        "QML should receive the string parameter"
+    );
+
+    let received_count = qmlts_host::qt_context_test::read_int_property(root, "receivedCount");
+    assert_eq!(
+        received_count,
+        Some(42),
+        "QML should receive the int parameter"
+    );
+}
+
+/// Verify multi-param effect emission by effect ID.
+#[test]
+fn test_multi_param_effect_emission_by_id() {
+    let mut engine = QmltsEngine::new(None).unwrap();
+    engine.register_view_model("SearchViewModel").unwrap();
+
+    engine
+        .load_string(
+            r#"import QtQuick
+Item {
+    property string receivedQuery: ""
+    property int receivedCount: -1
+
+    Connections {
+        target: __qmlts
+        function onOnSearchCompleted(query, resultCount) {
+            receivedQuery = query
+            receivedCount = resultCount
+        }
+    }
+}"#,
+            None,
+        )
+        .unwrap();
+    engine.process_events().unwrap();
+
+    // Emit by ID (SearchViewModel's onSearchCompleted has effectId 1234567890)
+    engine
+        .emit_effect_by_id("SearchViewModel", 1_234_567_890, Some(r#"["world", 99]"#))
+        .unwrap();
+    engine.process_events().unwrap();
+
+    let root = engine.root_object_ptr();
+    let received_query = qmlts_host::qt_context_test::read_string_property(root, "receivedQuery");
+    assert_eq!(received_query, Some("world".to_string()));
+
+    let received_count = qmlts_host::qt_context_test::read_int_property(root, "receivedCount");
+    assert_eq!(received_count, Some(99));
+}
+
+/// Verify schema-declared parameter types are enforced for multi-parameter effects.
+#[test]
+fn test_multi_param_effect_rejects_wrong_payload_types() {
+    let mut engine = QmltsEngine::new(None).unwrap();
+    engine.register_view_model("SearchViewModel").unwrap();
+
+    engine
+        .load_string(
+            r#"import QtQuick
+Item {
+    property string receivedQuery: "unset"
+    property int receivedCount: -1
+
+    Connections {
+        target: __qmlts
+        function onOnSearchCompleted(query, resultCount) {
+            receivedQuery = query
+            receivedCount = resultCount
+        }
+    }
+}"#,
+            None,
+        )
+        .unwrap();
+    engine.process_events().unwrap();
+
+    let result = engine.emit_effect(
+        "SearchViewModel",
+        "onSearchCompleted",
+        Some(r#"[42, "wrong-order"]"#),
+    );
+    assert!(
+        result.is_err(),
+        "type-mismatched payload should be rejected"
+    );
+
+    let root = engine.root_object_ptr();
+    let received_query = qmlts_host::qt_context_test::read_string_property(root, "receivedQuery");
+    assert_eq!(received_query, Some("unset".to_string()));
+
+    let received_count = qmlts_host::qt_context_test::read_int_property(root, "receivedCount");
+    assert_eq!(received_count, Some(-1));
+}
+
+/// Verify SearchViewModel property sync works (query is a string, resultCount is int).
+#[test]
+fn test_search_view_model_property_sync() {
+    let mut engine = QmltsEngine::new(None).unwrap();
+    engine.register_view_model("SearchViewModel").unwrap();
+
+    engine
+        .sync_state("SearchViewModel", "query", "\"test search\"")
+        .unwrap();
+
+    engine
+        .load_string(
+            r#"import QtQuick
+Item {
+    property string displayedQuery: vm.query
+}"#,
+            None,
+        )
+        .unwrap();
+    engine.process_events().unwrap();
+
+    let root = engine.root_object_ptr();
+    let val = qmlts_host::qt_context_test::read_string_property(root, "displayedQuery");
+    assert_eq!(val, Some("test search".to_string()));
+}
+
+// ─────────────────────────────────────────────────────────────────────────
+//  List model QML integration tests (Step 5)
+// ─────────────────────────────────────────────────────────────────────────
+
+/// Verify that a list model can be created, set as a context property,
+/// and accessed from QML.
+#[test]
+fn test_list_model_visible_in_qml() {
+    let mut engine = QmltsEngine::new(None).unwrap();
+    engine.register_view_model("LoginViewModel").unwrap();
+
+    let model_id = engine
+        .create_list_model(r#"{"roles":["name","value"]}"#)
+        .unwrap();
+
+    engine
+        .set_list_model_context_property("myListModel", model_id)
+        .unwrap();
+
+    engine
+        .set_list_data(
+            model_id,
+            r#"[{"name":"Alice","value":"100"},{"name":"Bob","value":"200"}]"#,
+        )
+        .unwrap();
+
+    engine
+        .load_string(
+            r#"import QtQuick
+Item {
+    Repeater {
+        id: rep
+        model: myListModel
+        delegate: Item {}
+    }
+    property int modelCount: rep.count
+}"#,
+            None,
+        )
+        .unwrap();
+    engine.process_events().unwrap();
+
+    let root = engine.root_object_ptr();
+    let count = qmlts_host::qt_context_test::read_int_property(root, "modelCount");
+    assert_eq!(count, Some(2), "QML should see 2 rows in the list model");
+}
+
+/// Verify that list model updates are observable from QML.
+#[test]
+fn test_list_model_updates_observable_from_qml() {
+    let mut engine = QmltsEngine::new(None).unwrap();
+    engine.register_view_model("LoginViewModel").unwrap();
+
+    let model_id = engine.create_list_model(r#"{"roles":["name"]}"#).unwrap();
+
+    engine
+        .set_list_model_context_property("items", model_id)
+        .unwrap();
+
+    engine
+        .load_string(
+            r#"import QtQuick
+Item {
+    Repeater {
+        id: rep
+        model: items
+        delegate: Item {}
+    }
+    property int itemCount: rep.count
+}"#,
+            None,
+        )
+        .unwrap();
+    engine.process_events().unwrap();
+
+    // Initially empty
+    let root = engine.root_object_ptr();
+    let count = qmlts_host::qt_context_test::read_int_property(root, "itemCount");
+    assert_eq!(count, Some(0), "Initial list should be empty");
+
+    // Insert rows
+    engine
+        .insert_list_rows(model_id, 0, r#"[{"name":"A"},{"name":"B"},{"name":"C"}]"#)
+        .unwrap();
+    engine.process_events().unwrap();
+
+    let count = qmlts_host::qt_context_test::read_int_property(root, "itemCount");
+    assert_eq!(count, Some(3), "Should have 3 items after insert");
+
+    // Remove one row
+    engine.remove_list_rows(model_id, 1, 1).unwrap();
+    engine.process_events().unwrap();
+
+    let count = qmlts_host::qt_context_test::read_int_property(root, "itemCount");
+    assert_eq!(count, Some(2), "Should have 2 items after remove");
+
+    // Full reset
+    engine.set_list_data(model_id, r#"[{"name":"X"}]"#).unwrap();
+    engine.process_events().unwrap();
+
+    let count = qmlts_host::qt_context_test::read_int_property(root, "itemCount");
+    assert_eq!(count, Some(1), "Should have 1 item after full reset");
+}
+
+/// Verify that list model destroy cleans up properly.
+#[test]
+fn test_list_model_destroy() {
+    let mut engine = QmltsEngine::new(None).unwrap();
+
+    let model_id = engine.create_list_model(r#"{"roles":["name"]}"#).unwrap();
+
+    engine
+        .set_list_data(model_id, r#"[{"name":"test"}]"#)
+        .unwrap();
+    assert_eq!(engine.list_row_count(model_id).unwrap(), 1);
+
+    engine.destroy_list_model(model_id).unwrap();
+
+    // After destroy, operations should fail
+    assert!(engine.list_row_count(model_id).is_err());
+}
+
+#[test]
+fn test_create_list_model_rejects_invalid_roles() {
+    let mut engine = QmltsEngine::new(None).unwrap();
+
+    let duplicate_roles = engine.create_list_model(r#"{"roles":["name","name"]}"#);
+    assert!(duplicate_roles.is_err());
+
+    let empty_role = engine.create_list_model(r#"{"roles":[""]}"#);
+    assert!(empty_role.is_err());
+
+    let non_string_role = engine.create_list_model(r#"{"roles":["name",42]}"#);
+    assert!(non_string_role.is_err());
+}
+
+#[test]
+fn test_set_list_data_rejects_invalid_json_array() {
+    let mut engine = QmltsEngine::new(None).unwrap();
+    let model_id = engine.create_list_model(r#"{"roles":["name"]}"#).unwrap();
+
+    let result = engine.set_list_data(model_id, r#"{"name":"not-an-array"}"#);
+    assert!(result.is_err());
+}
+
+#[test]
+fn test_get_list_row_supports_valid_empty_object_row() {
+    let mut engine = QmltsEngine::new(None).unwrap();
+    let model_id = engine.create_list_model(r#"{"roles":["name"]}"#).unwrap();
+
+    engine.set_list_data(model_id, r#"[{}]"#).unwrap();
+
+    let row = engine.get_list_row(model_id, 0).unwrap();
+    assert_eq!(row, "{}");
+
+    let missing = engine.get_list_row(model_id, 1);
+    assert!(missing.is_err());
 }

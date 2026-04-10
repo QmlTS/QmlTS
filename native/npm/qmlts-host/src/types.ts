@@ -322,3 +322,133 @@ export declare function emitEffectById(
 	effectId: number,
 	payloadJson?: string,
 ): void;
+
+// ────────────────────────────────────────────────────────────────────────────
+// §7 List Model
+// ────────────────────────────────────────────────────────────────────────────
+
+/**
+ * Create a new list model with the given roles schema.
+ *
+ * @param engine - The engine instance.
+ * @param schemaJson - JSON schema with roles array, e.g., `{"roles":["name","value"]}`.
+ * @returns Numeric model ID for subsequent list operations.
+ * @throws Error if the schema is invalid.
+ */
+export declare function createListModel(
+	engine: QmltsEngine,
+	schemaJson: string,
+): number;
+
+/**
+ * Destroy a list model by ID, releasing native resources.
+ *
+ * @param engine - The engine instance.
+ * @param modelId - Model ID returned by `createListModel`.
+ * @throws Error if the model ID is invalid.
+ */
+export declare function destroyListModel(
+	engine: QmltsEngine,
+	modelId: number,
+): void;
+
+/**
+ * Replace all data in a list model.
+ *
+ * @param engine - The engine instance.
+ * @param modelId - Model ID.
+ * @param data - JSON array of row objects.
+ */
+export declare function setListData(
+	engine: QmltsEngine,
+	modelId: number,
+	data: string,
+): void;
+
+/**
+ * Insert rows into a list model at the given index.
+ *
+ * @param engine - The engine instance.
+ * @param modelId - Model ID.
+ * @param index - Insertion index.
+ * @param rows - JSON array of row objects to insert.
+ */
+export declare function insertRows(
+	engine: QmltsEngine,
+	modelId: number,
+	index: number,
+	rows: string,
+): void;
+
+/**
+ * Remove rows from a list model.
+ *
+ * @param engine - The engine instance.
+ * @param modelId - Model ID.
+ * @param index - Starting index.
+ * @param count - Number of rows to remove.
+ */
+export declare function removeRows(
+	engine: QmltsEngine,
+	modelId: number,
+	index: number,
+	count: number,
+): void;
+
+/**
+ * Update a single row in a list model.
+ *
+ * @param engine - The engine instance.
+ * @param modelId - Model ID.
+ * @param index - Row index to update.
+ * @param data - JSON object with updated data.
+ */
+export declare function updateRow(
+	engine: QmltsEngine,
+	modelId: number,
+	index: number,
+	data: string,
+): void;
+
+/**
+ * Move rows within a list model.
+ *
+ * @param engine - The engine instance.
+ * @param modelId - Model ID.
+ * @param source - Source row index.
+ * @param dest - Destination row index.
+ * @param count - Number of rows to move.
+ */
+export declare function moveRows(
+	engine: QmltsEngine,
+	modelId: number,
+	source: number,
+	dest: number,
+	count: number,
+): void;
+
+/**
+ * Get the row count of a list model.
+ *
+ * @param engine - The engine instance.
+ * @param modelId - Model ID.
+ * @returns Number of rows in the model.
+ */
+export declare function rowCount(
+	engine: QmltsEngine,
+	modelId: number,
+): number;
+
+/**
+ * Get a single row from a list model as JSON.
+ *
+ * @param engine - The engine instance.
+ * @param modelId - Model ID.
+ * @param index - Row index.
+ * @returns JSON string of the row data.
+ */
+export declare function getRow(
+	engine: QmltsEngine,
+	modelId: number,
+	index: number,
+): string;

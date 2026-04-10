@@ -40,6 +40,15 @@ import {
 	registerLifecycleHandler,
 	emitEffect,
 	emitEffectById,
+	createListModel,
+	destroyListModel,
+	setListData,
+	insertRows,
+	removeRows,
+	updateRow,
+	moveRows,
+	rowCount,
+	getRow,
 	version,
 	qtVersion,
 } from './index';
@@ -378,6 +387,128 @@ export class QmltsHost {
 	processEventsFor(timeoutMs: number): void {
 		const eng = this.requireEngine();
 		processEventsFor(eng, timeoutMs);
+	}
+
+	// ────────────────────────────────────────────────────────────────────
+	//  List model (Step 5)
+	// ────────────────────────────────────────────────────────────────────
+
+	/**
+	 * Create a new list model with the given role names.
+	 *
+	 * @param roles - Array of role name strings.
+	 * @returns Numeric model ID for subsequent list operations.
+	 */
+	createListModel(roles: string[]): number {
+		const eng = this.requireEngine();
+		return createListModel(eng, JSON.stringify({ roles }));
+	}
+
+	/**
+	 * Destroy a list model by ID.
+	 *
+	 * @param modelId - Model ID returned by `createListModel`.
+	 */
+	destroyListModel(modelId: number): void {
+		const eng = this.requireEngine();
+		destroyListModel(eng, modelId);
+	}
+
+	/**
+	 * Replace all data in a list model.
+	 *
+	 * @param modelId - Model ID.
+	 * @param data - Array of row objects.
+	 */
+	setListData(modelId: number, data: unknown[]): void {
+		const eng = this.requireEngine();
+		setListData(eng, modelId, JSON.stringify(data));
+	}
+
+	/**
+	 * Insert rows into a list model at the given index.
+	 *
+	 * @param modelId - Model ID.
+	 * @param index - Insertion index.
+	 * @param rows - Array of row objects to insert.
+	 */
+	insertRows(modelId: number, index: number, rows: unknown[]): void {
+		const eng = this.requireEngine();
+		insertRows(eng, modelId, index, JSON.stringify(rows));
+	}
+
+	/**
+	 * Remove rows from a list model.
+	 *
+	 * @param modelId - Model ID.
+	 * @param index - Starting index.
+	 * @param count - Number of rows to remove.
+	 */
+	removeRows(modelId: number, index: number, count: number): void {
+		const eng = this.requireEngine();
+		removeRows(eng, modelId, index, count);
+	}
+
+	/**
+	 * Update a single row in a list model.
+	 *
+	 * @param modelId - Model ID.
+	 * @param index - Row index to update.
+	 * @param data - Row object with updated data.
+	 */
+	updateRow(modelId: number, index: number, data: Record<string, unknown>): void {
+		const eng = this.requireEngine();
+		updateRow(eng, modelId, index, JSON.stringify(data));
+	}
+
+	/**
+	 * Move rows within a list model.
+	 *
+	 * @param modelId - Model ID.
+	 * @param source - Source row index.
+	 * @param dest - Destination row index.
+	 * @param count - Number of rows to move.
+	 */
+	moveRows(
+		modelId: number,
+		source: number,
+		dest: number,
+		count: number,
+	): void {
+		const eng = this.requireEngine();
+		moveRows(eng, modelId, source, dest, count);
+	}
+
+	/**
+	 * Get the row count of a list model.
+	 *
+	 * @param modelId - Model ID.
+	 * @returns Number of rows.
+	 */
+	listRowCount(modelId: number): number {
+		const eng = this.requireEngine();
+		return rowCount(eng, modelId);
+	}
+
+	/**
+	 * Get a single row from a list model.
+	 *
+	 * @param modelId - Model ID.
+	 * @param index - Row index.
+	 * @returns Parsed row object.
+	 */
+	getListRow(modelId: number, index: number): Record<string, unknown> {
+		const eng = this.requireEngine();
+		const json = getRow(eng, modelId, index);
+		try {
+			return JSON.parse(json) as Record<string, unknown>;
+		} catch (error) {
+			throw new Error(
+				`QmltsHost.getListRow(${modelId}, ${index}) returned invalid JSON: ${
+					error instanceof Error ? error.message : String(error)
+				}`,
+			);
+		}
 	}
 
 	// ────────────────────────────────────────────────────────────────────

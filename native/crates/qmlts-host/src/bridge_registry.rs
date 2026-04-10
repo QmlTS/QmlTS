@@ -81,7 +81,10 @@ mod tests {
     fn registered_types_returns_sorted_names() {
         let registry = BridgeRegistry::from_descriptors(descriptors());
         let types = registry.registered_types();
-        assert_eq!(types, vec!["CounterViewModel", "LoginViewModel"]);
+        assert_eq!(
+            types,
+            vec!["CounterViewModel", "LoginViewModel", "SearchViewModel"]
+        );
     }
 
     #[test]

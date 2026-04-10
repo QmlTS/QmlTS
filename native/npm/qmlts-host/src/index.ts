@@ -121,6 +121,16 @@ export const {
 	// Effect emission
 	emitEffect,
 	emitEffectById,
+	// List model
+	createListModel,
+	destroyListModel,
+	setListData,
+	insertRows,
+	removeRows,
+	updateRow,
+	moveRows,
+	rowCount,
+	getRow,
 	// Event loop
 	exec,
 	quit,

@@ -37,6 +37,7 @@ mod engine;
 mod error;
 #[cfg(feature = "napi")]
 mod exports;
+pub mod list_model;
 mod property_sync;
 mod qt_context;
 
@@ -53,7 +54,8 @@ pub use exports::*;
 /// It is NOT part of the public API and only exists for test support.
 pub mod qt_context_test {
     pub use crate::qt_context::{
-        emit_signal, read_bool_property, read_double_property, read_int_property,
-        read_string_property,
+        create_list_model, destroy_list_model, emit_signal, list_get_row, list_insert_rows,
+        list_move_rows, list_remove_rows, list_row_count, list_set_data, list_update_row,
+        read_bool_property, read_double_property, read_int_property, read_string_property,
     };
 }

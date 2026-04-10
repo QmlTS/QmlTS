@@ -83,6 +83,16 @@ const expectedExports = [
   // §5 Effect emission
   'emitEffect',
   'emitEffectById',
+  // §7 List model
+  'createListModel',
+  'destroyListModel',
+  'setListData',
+  'insertRows',
+  'removeRows',
+  'updateRow',
+  'moveRows',
+  'rowCount',
+  'getRow',
   // §3 Event loop
   'exec',
   'quit',
@@ -843,6 +853,360 @@ describe.skipIf(!isNativeModuleAvailable)('host/napi-bindings', () => {
     expect(() => emitEffect(engine, 'LoginViewModel', 'onLoginCompleted', '[true,false]')).toThrow(
       /failed to emit signal|internal/i,
     );
+  });
+
+  // ─────────────────────────────────────────────────────────────────────
+  //  §7 List Model Tests
+  // ─────────────────────────────────────────────────────────────────────
+
+  test('TB-37: createListModel returns a model ID', () => {
+    const createEngine = nativeModule.createEngine as () => object;
+    const createListModel = nativeModule.createListModel as (
+      engine: object,
+      schemaJson: string,
+    ) => number;
+
+    const engine = createEngine();
+    const modelId = createListModel(engine, '{"roles":["name","value"]}');
+    expect(typeof modelId).toBe('number');
+    expect(modelId).toBeGreaterThanOrEqual(0);
+  });
+
+  test('TB-38: setListData + rowCount round-trip', () => {
+    const createEngine = nativeModule.createEngine as () => object;
+    const createListModel = nativeModule.createListModel as (
+      engine: object,
+      schemaJson: string,
+    ) => number;
+    const setListData = nativeModule.setListData as (
+      engine: object,
+      modelId: number,
+      data: string,
+    ) => void;
+    const rowCount = nativeModule.rowCount as (engine: object, modelId: number) => number;
+
+    const engine = createEngine();
+    const modelId = createListModel(engine, '{"roles":["name"]}');
+    setListData(engine, modelId, '[{"name":"a"},{"name":"b"}]');
+    expect(rowCount(engine, modelId)).toBe(2);
+  });
+
+  test('TB-38a: createListModel rejects invalid role definitions', () => {
+    const createEngine = nativeModule.createEngine as () => object;
+    const createListModel = nativeModule.createListModel as (
+      engine: object,
+      schemaJson: string,
+    ) => number;
+
+    const engine = createEngine();
+    expect(() => createListModel(engine, '{"roles":["name","name"]}')).toThrow();
+    expect(() => createListModel(engine, '{"roles":[""]}')).toThrow();
+    expect(() => createListModel(engine, '{"roles":["name",42]}')).toThrow();
+  });
+
+  test('TB-38b: setListData rejects non-array JSON', () => {
+    const createEngine = nativeModule.createEngine as () => object;
+    const createListModel = nativeModule.createListModel as (
+      engine: object,
+      schemaJson: string,
+    ) => number;
+    const setListData = nativeModule.setListData as (
+      engine: object,
+      modelId: number,
+      data: string,
+    ) => void;
+
+    const engine = createEngine();
+    const modelId = createListModel(engine, '{"roles":["name"]}');
+    expect(() => setListData(engine, modelId, '{"name":"not-an-array"}')).toThrow();
+  });
+
+  test('TB-39: insertRows increases count', () => {
+    const createEngine = nativeModule.createEngine as () => object;
+    const createListModel = nativeModule.createListModel as (
+      engine: object,
+      schemaJson: string,
+    ) => number;
+    const insertRows = nativeModule.insertRows as (
+      engine: object,
+      modelId: number,
+      index: number,
+      rows: string,
+    ) => void;
+    const rowCount = nativeModule.rowCount as (engine: object, modelId: number) => number;
+
+    const engine = createEngine();
+    const modelId = createListModel(engine, '{"roles":["name"]}');
+    expect(rowCount(engine, modelId)).toBe(0);
+    insertRows(engine, modelId, 0, '[{"name":"a"},{"name":"b"}]');
+    expect(rowCount(engine, modelId)).toBe(2);
+  });
+
+  test('TB-40: removeRows decreases count', () => {
+    const createEngine = nativeModule.createEngine as () => object;
+    const createListModel = nativeModule.createListModel as (
+      engine: object,
+      schemaJson: string,
+    ) => number;
+    const setListData = nativeModule.setListData as (
+      engine: object,
+      modelId: number,
+      data: string,
+    ) => void;
+    const removeRows = nativeModule.removeRows as (
+      engine: object,
+      modelId: number,
+      index: number,
+      count: number,
+    ) => void;
+    const rowCount = nativeModule.rowCount as (engine: object, modelId: number) => number;
+
+    const engine = createEngine();
+    const modelId = createListModel(engine, '{"roles":["name"]}');
+    setListData(engine, modelId, '[{"name":"a"},{"name":"b"},{"name":"c"}]');
+    expect(rowCount(engine, modelId)).toBe(3);
+    removeRows(engine, modelId, 0, 1);
+    expect(rowCount(engine, modelId)).toBe(2);
+  });
+
+  test('TB-41: updateRow does not change count', () => {
+    const createEngine = nativeModule.createEngine as () => object;
+    const createListModel = nativeModule.createListModel as (
+      engine: object,
+      schemaJson: string,
+    ) => number;
+    const setListData = nativeModule.setListData as (
+      engine: object,
+      modelId: number,
+      data: string,
+    ) => void;
+    const updateRow = nativeModule.updateRow as (
+      engine: object,
+      modelId: number,
+      index: number,
+      data: string,
+    ) => void;
+    const rowCount = nativeModule.rowCount as (engine: object, modelId: number) => number;
+
+    const engine = createEngine();
+    const modelId = createListModel(engine, '{"roles":["name"]}');
+    setListData(engine, modelId, '[{"name":"a"}]');
+    updateRow(engine, modelId, 0, '{"name":"updated"}');
+    expect(rowCount(engine, modelId)).toBe(1);
+  });
+
+  test('TB-42: moveRows does not change count', () => {
+    const createEngine = nativeModule.createEngine as () => object;
+    const createListModel = nativeModule.createListModel as (
+      engine: object,
+      schemaJson: string,
+    ) => number;
+    const setListData = nativeModule.setListData as (
+      engine: object,
+      modelId: number,
+      data: string,
+    ) => void;
+    const moveRows = nativeModule.moveRows as (
+      engine: object,
+      modelId: number,
+      source: number,
+      dest: number,
+      count: number,
+    ) => void;
+    const rowCount = nativeModule.rowCount as (engine: object, modelId: number) => number;
+
+    const engine = createEngine();
+    const modelId = createListModel(engine, '{"roles":["name"]}');
+    setListData(engine, modelId, '[{"name":"a"},{"name":"b"},{"name":"c"}]');
+    moveRows(engine, modelId, 0, 2, 1);
+    expect(rowCount(engine, modelId)).toBe(3);
+  });
+
+  test('TB-43: getRow returns JSON data', () => {
+    const createEngine = nativeModule.createEngine as () => object;
+    const createListModel = nativeModule.createListModel as (
+      engine: object,
+      schemaJson: string,
+    ) => number;
+    const setListData = nativeModule.setListData as (
+      engine: object,
+      modelId: number,
+      data: string,
+    ) => void;
+    const getRow = nativeModule.getRow as (
+      engine: object,
+      modelId: number,
+      index: number,
+    ) => string;
+
+    const engine = createEngine();
+    const modelId = createListModel(engine, '{"roles":["name","value"]}');
+    setListData(engine, modelId, '[{"name":"alice","value":"100"}]');
+    const row = JSON.parse(getRow(engine, modelId, 0));
+    expect(row.name).toBe('alice');
+    expect(row.value).toBe('100');
+  });
+
+  test('TB-43a: getRow preserves valid empty-object rows', () => {
+    const createEngine = nativeModule.createEngine as () => object;
+    const createListModel = nativeModule.createListModel as (
+      engine: object,
+      schemaJson: string,
+    ) => number;
+    const setListData = nativeModule.setListData as (
+      engine: object,
+      modelId: number,
+      data: string,
+    ) => void;
+    const getRow = nativeModule.getRow as (
+      engine: object,
+      modelId: number,
+      index: number,
+    ) => string;
+
+    const engine = createEngine();
+    const modelId = createListModel(engine, '{"roles":["name"]}');
+    setListData(engine, modelId, '[{}]');
+    expect(JSON.parse(getRow(engine, modelId, 0))).toEqual({});
+    expect(() => getRow(engine, modelId, 1)).toThrow();
+  });
+
+  test('TB-44: destroyListModel does not throw', () => {
+    const createEngine = nativeModule.createEngine as () => object;
+    const createListModel = nativeModule.createListModel as (
+      engine: object,
+      schemaJson: string,
+    ) => number;
+    const destroyListModel = nativeModule.destroyListModel as (
+      engine: object,
+      modelId: number,
+    ) => void;
+
+    const engine = createEngine();
+    const modelId = createListModel(engine, '{"roles":["name"]}');
+    expect(() => destroyListModel(engine, modelId)).not.toThrow();
+  });
+
+  test('TB-45: operations on destroyed list model throw', () => {
+    const createEngine = nativeModule.createEngine as () => object;
+    const createListModel = nativeModule.createListModel as (
+      engine: object,
+      schemaJson: string,
+    ) => number;
+    const destroyListModel = nativeModule.destroyListModel as (
+      engine: object,
+      modelId: number,
+    ) => void;
+    const rowCount = nativeModule.rowCount as (engine: object, modelId: number) => number;
+
+    const engine = createEngine();
+    const modelId = createListModel(engine, '{"roles":["name"]}');
+    destroyListModel(engine, modelId);
+    expect(() => rowCount(engine, modelId)).toThrow();
+  });
+
+  test('TB-46: multi-param emitEffect with SearchViewModel does not throw', () => {
+    const createEngine = nativeModule.createEngine as () => object;
+    const registerViewModel = nativeModule.registerViewModel as (
+      engine: object,
+      name: string,
+    ) => void;
+    const loadString = nativeModule.loadString as (engine: object, qml: string) => void;
+    const emitEffect = nativeModule.emitEffect as (
+      engine: object,
+      className: string,
+      effectName: string,
+      payloadJson?: string,
+    ) => void;
+    const processEvents = nativeModule.processEvents as (engine: object) => void;
+    const rootStringProperty = nativeModule.rootStringProperty as (
+      engine: object,
+      name: string,
+    ) => string | null;
+    const rootI32Property = nativeModule.rootI32Property as (
+      engine: object,
+      name: string,
+    ) => number | null;
+
+    const engine = createEngine();
+    registerViewModel(engine, 'SearchViewModel');
+    loadString(
+      engine,
+      [
+        'import QtQuick',
+        'Item {',
+        '  property string receivedQuery: ""',
+        '  property int receivedCount: -1',
+        '  Connections {',
+        '    target: __qmlts',
+        '    function onOnSearchCompleted(query, resultCount) {',
+        '      receivedQuery = query',
+        '      receivedCount = resultCount',
+        '    }',
+        '  }',
+        '}',
+      ].join('\n'),
+    );
+    processEvents(engine);
+
+    expect(() =>
+      emitEffect(engine, 'SearchViewModel', 'onSearchCompleted', '["test query", 42]'),
+    ).not.toThrow();
+    processEvents(engine);
+    expect(rootStringProperty(engine, 'receivedQuery')).toBe('test query');
+    expect(rootI32Property(engine, 'receivedCount')).toBe(42);
+  });
+
+  test('TB-46a: multi-param emitEffect rejects wrong payload order/types', () => {
+    const createEngine = nativeModule.createEngine as () => object;
+    const registerViewModel = nativeModule.registerViewModel as (
+      engine: object,
+      name: string,
+    ) => void;
+    const loadString = nativeModule.loadString as (engine: object, qml: string) => void;
+    const emitEffect = nativeModule.emitEffect as (
+      engine: object,
+      className: string,
+      effectName: string,
+      payloadJson?: string,
+    ) => void;
+    const processEvents = nativeModule.processEvents as (engine: object) => void;
+    const rootStringProperty = nativeModule.rootStringProperty as (
+      engine: object,
+      name: string,
+    ) => string | null;
+    const rootI32Property = nativeModule.rootI32Property as (
+      engine: object,
+      name: string,
+    ) => number | null;
+
+    const engine = createEngine();
+    registerViewModel(engine, 'SearchViewModel');
+    loadString(
+      engine,
+      [
+        'import QtQuick',
+        'Item {',
+        '  property string receivedQuery: "unset"',
+        '  property int receivedCount: -1',
+        '  Connections {',
+        '    target: __qmlts',
+        '    function onOnSearchCompleted(query, resultCount) {',
+        '      receivedQuery = query',
+        '      receivedCount = resultCount',
+        '    }',
+        '  }',
+        '}',
+      ].join('\n'),
+    );
+    processEvents(engine);
+
+    expect(() =>
+      emitEffect(engine, 'SearchViewModel', 'onSearchCompleted', '[42,"wrong-order"]'),
+    ).toThrow(/failed to emit signal|internal/i);
+    processEvents(engine);
+    expect(rootStringProperty(engine, 'receivedQuery')).toBe('unset');
+    expect(rootI32Property(engine, 'receivedCount')).toBe(-1);
   });
 });
 

@@ -81,6 +81,15 @@ export const {
   registerLifecycleHandler,
   emitEffect,
   emitEffectById,
+  createListModel,
+  destroyListModel,
+  setListData,
+  insertRows,
+  removeRows,
+  updateRow,
+  moveRows,
+  rowCount,
+  getRow,
 } = nativeModule;
 
 export { QmltsHost } from './src/qmlts-host.ts';
