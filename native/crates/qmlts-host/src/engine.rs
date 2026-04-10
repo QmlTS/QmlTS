@@ -456,7 +456,13 @@ impl QmltsEngine {
             })?;
 
         let runtime_ptr = bridge.runtime_qobject_ptr();
-        let ok = qt_context::emit_signal(runtime_ptr, &effect.qml_name, payload_json);
+        let param_types = if effect.parameters.is_empty() {
+            None
+        } else {
+            Some(serde_json::to_string(&effect.parameters).unwrap_or_default())
+        };
+        let ok =
+            qt_context::emit_signal(runtime_ptr, &effect.qml_name, payload_json, param_types.as_deref());
         if ok {
             tracing::debug!("Emitted effect '{}' on '{}'", effect_name, class_name);
             Ok(())
@@ -497,7 +503,13 @@ impl QmltsEngine {
             })?;
 
         let runtime_ptr = bridge.runtime_qobject_ptr();
-        let ok = qt_context::emit_signal(runtime_ptr, &effect.qml_name, payload_json);
+        let param_types = if effect.parameters.is_empty() {
+            None
+        } else {
+            Some(serde_json::to_string(&effect.parameters).unwrap_or_default())
+        };
+        let ok =
+            qt_context::emit_signal(runtime_ptr, &effect.qml_name, payload_json, param_types.as_deref());
         if ok {
             tracing::debug!(
                 "Emitted effect id={} ('{}') on '{}'",
@@ -1036,7 +1048,7 @@ mod tests {
 
         let engine = QmltsEngine::new(None).unwrap();
         let types = engine.get_registered_types();
-        assert_eq!(types, vec!["CounterViewModel", "LoginViewModel"]);
+        assert_eq!(types, vec!["CounterViewModel", "LoginViewModel", "SearchViewModel"]);
     }
 
     #[test]

@@ -304,10 +304,11 @@ void* qmlts_root_object(void* engine_ptr) {
 }
 
 // ─────────────────────────────────────────────────────────────────────────
-//  Signal emission (Step 4 — effects)
+//  Signal emission (Step 4 — effects, Step 5 — multi-param)
 // ─────────────────────────────────────────────────────────────────────────
 
-bool qmlts_emit_signal(void* qobject_ptr, const char* signal_name, const char* payload_json) {
+bool qmlts_emit_signal(void* qobject_ptr, const char* signal_name,
+                       const char* payload_json, const char* param_types_json) {
     if (!qobject_ptr || !signal_name) {
         return false;
     }
@@ -319,12 +320,92 @@ bool qmlts_emit_signal(void* qobject_ptr, const char* signal_name, const char* p
         return QMetaObject::invokeMethod(object, signal_name);
     }
 
-    // Parse payload JSON to determine argument type
+    // Parse payload JSON array
     const QByteArray bytes(payload_json);
     const QJsonDocument doc = QJsonDocument::fromJson(bytes);
     if (doc.isNull()) {
         return false;
     }
+
+    // ── Multi-parameter path (schema-aware) ──────────────────────────
+    //
+    // When param_types_json is provided, use schema type info to build
+    // properly typed arguments for QMetaObject::invokeMethod.
+    if (param_types_json && param_types_json[0] != '\0') {
+        const QByteArray typesBytes(param_types_json);
+        const QJsonDocument typesDoc = QJsonDocument::fromJson(typesBytes);
+        if (typesDoc.isNull() || !typesDoc.isArray()) {
+            return false;
+        }
+        const QJsonArray paramTypes = typesDoc.array();
+
+        // Payload must be an array matching param count
+        if (!doc.isArray()) {
+            return false;
+        }
+        const QJsonArray payload = doc.array();
+        if (payload.size() != paramTypes.size()) {
+            return false;
+        }
+
+        const int count = payload.size();
+        if (count == 0) {
+            return QMetaObject::invokeMethod(object, signal_name);
+        }
+
+        // Build typed QVariant storage with proper types
+        // We allocate typed storage on the stack and build QGenericArgument array.
+        // Max 10 params supported.
+        if (count > 10) {
+            return false;
+        }
+
+        // Storage for typed values
+        QString strings[10];
+        int ints[10];
+        double doubles[10];
+        bool bools[10];
+
+        QGenericArgument args[10];
+
+        for (int i = 0; i < count; ++i) {
+            const QJsonObject paramDef = paramTypes[i].toObject();
+            const QString type = paramDef["type"].toString();
+            const QJsonValue val = payload[i];
+
+            if (type == "string") {
+                strings[i] = val.toString();
+                args[i] = Q_ARG(QString, strings[i]);
+            } else if (type == "int") {
+                ints[i] = val.toInt();
+                args[i] = Q_ARG(int, ints[i]);
+            } else if (type == "number" || type == "double") {
+                doubles[i] = val.toDouble();
+                args[i] = Q_ARG(double, doubles[i]);
+            } else if (type == "boolean") {
+                bools[i] = val.toBool();
+                args[i] = Q_ARG(bool, bools[i]);
+            } else {
+                // Unknown type — try QString fallback
+                strings[i] = val.toString();
+                args[i] = Q_ARG(QString, strings[i]);
+            }
+        }
+
+        return QMetaObject::invokeMethod(object, signal_name,
+            args[0],
+            count > 1 ? args[1] : QGenericArgument(),
+            count > 2 ? args[2] : QGenericArgument(),
+            count > 3 ? args[3] : QGenericArgument(),
+            count > 4 ? args[4] : QGenericArgument(),
+            count > 5 ? args[5] : QGenericArgument(),
+            count > 6 ? args[6] : QGenericArgument(),
+            count > 7 ? args[7] : QGenericArgument(),
+            count > 8 ? args[8] : QGenericArgument(),
+            count > 9 ? args[9] : QGenericArgument());
+    }
+
+    // ── Single-parameter fallback (heuristic, backward-compat) ───────
 
     QJsonValue val;
     if (doc.isArray()) {

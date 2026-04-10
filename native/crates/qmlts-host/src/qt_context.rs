@@ -84,6 +84,7 @@ unsafe extern "C" {
         qobject_ptr: *mut c_void,
         signal_name: *const std::ffi::c_char,
         payload_json: *const std::ffi::c_char,
+        param_types_json: *const std::ffi::c_char,
     ) -> bool;
 }
 
@@ -367,11 +368,15 @@ pub fn emit_signal(
     qobject_ptr: *mut c_void,
     signal_name: &str,
     payload_json: Option<&str>,
+    param_types_json: Option<&str>,
 ) -> bool {
     let c_name = CString::new(signal_name).expect("signal name must not contain NUL");
     let c_json = payload_json.map(|j| CString::new(j).expect("payload JSON must not contain NUL"));
     let json_ptr = c_json.as_ref().map_or(std::ptr::null(), |c| c.as_ptr());
-    unsafe { qmlts_emit_signal(qobject_ptr, c_name.as_ptr(), json_ptr) }
+    let c_types =
+        param_types_json.map(|t| CString::new(t).expect("param types JSON must not contain NUL"));
+    let types_ptr = c_types.as_ref().map_or(std::ptr::null(), |c| c.as_ptr());
+    unsafe { qmlts_emit_signal(qobject_ptr, c_name.as_ptr(), json_ptr, types_ptr) }
 }
 
 // Mock implementations for testing without Qt
@@ -477,6 +482,7 @@ pub fn emit_signal(
     _qobject_ptr: *mut c_void,
     signal_name: &str,
     payload_json: Option<&str>,
+    _param_types_json: Option<&str>,
 ) -> bool {
     tracing::debug!("Mock: emit_signal('{signal_name}', {:?})", payload_json);
     true

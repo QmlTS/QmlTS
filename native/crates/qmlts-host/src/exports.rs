@@ -263,7 +263,7 @@ pub fn register_view_model(engine: &mut QmltsEngine, class_name: String) -> Resu
 /// @example
 /// ```typescript
 /// const types = getRegisteredTypes(engine);
-/// // ['CounterViewModel', 'LoginViewModel']
+/// // ['CounterViewModel', 'LoginViewModel', 'SearchViewModel']
 /// ```
 #[napi(js_name = "getRegisteredTypes")]
 pub fn get_registered_types(engine: &QmltsEngine) -> Vec<String> {
