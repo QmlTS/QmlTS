@@ -1,12 +1,11 @@
 import { existsSync, statSync } from 'node:fs';
 import { dirname, resolve } from 'node:path';
 import { pathToFileURL } from 'node:url';
-import { applyDefaults } from './config-defaults.js';
+import { resolveQtDir } from '../qt-tools/toolchain.js';
+import { applyDefaults, DEFAULT_ENTRY } from './config-defaults.js';
 import { ConfigError } from './config-error.js';
 import type { QmltsConfig, ResolvedQmltsConfig } from './config-types.js';
-import { DEFAULT_ENTRY } from './config-defaults.js';
 import { validateConfig } from './config-validator.js';
-import { resolveQtDir } from '../qt-tools/toolchain.js';
 
 export async function loadConfig(configPath = './qmlts.config.ts'): Promise<ResolvedQmltsConfig> {
   const absolutePath = resolve(configPath);
@@ -67,14 +66,13 @@ function normalizeResolvedConfig(config: ResolvedQmltsConfig): ResolvedQmltsConf
       ...config.distribute,
       icon: config.distribute.icon ? resolve(config.configDir, config.distribute.icon) : undefined,
     },
-    qmlModulePaths: config.qmlModulePaths.map((modulePath) => resolve(config.configDir, modulePath)),
+    qmlModulePaths: config.qmlModulePaths.map((modulePath) =>
+      resolve(config.configDir, modulePath),
+    ),
   };
 }
 
-function validateResolvedConfig(
-  config: ResolvedQmltsConfig,
-  rawConfig: QmltsConfig,
-): void {
+function validateResolvedConfig(config: ResolvedQmltsConfig, rawConfig: QmltsConfig): void {
   if (!existsSync(config.entry)) {
     throw new ConfigError(
       'entry',
