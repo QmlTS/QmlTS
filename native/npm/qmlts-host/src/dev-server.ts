@@ -25,6 +25,9 @@
  * ```
  */
 
+import { readFileSync, watch, type FSWatcher } from 'node:fs';
+import { join } from 'node:path';
+
 import type { QmltsHost } from './qmlts-host';
 import type { ViewModelManager } from './viewmodel-manager';
 
@@ -51,12 +54,13 @@ export type HotReloadEvent =
 	| 'reload-error';
 
 type EventHandler = (...args: unknown[]) => void;
+type SnapshotPayload = Record<string, unknown>;
 
 export class DevServer {
 	private host: QmltsHost;
 	private vmManager: ViewModelManager;
 	private running = false;
-	private watcher: ReturnType<typeof import('node:fs').watch> | null = null;
+	private watcher: FSWatcher | null = null;
 	private debounceTimer: ReturnType<typeof setTimeout> | null = null;
 	private eventHandlers: Map<HotReloadEvent, Set<EventHandler>> = new Map();
 	private lastWatchedSource: string | null = null;
@@ -121,18 +125,9 @@ export class DevServer {
 
 			// Step 4: Restore snapshot (if we captured one)
 			if (snapshot) {
-				const opts = {
-					preserveGeometry: options?.preserveGeometry ?? true,
-					preserveFocus: options?.preserveFocus ?? true,
-					preserveScroll: options?.preserveScroll ?? true,
-				};
-
-				if (
-					opts.preserveGeometry ||
-					opts.preserveFocus ||
-					opts.preserveScroll
-				) {
-					this.host.restoreSnapshot(snapshot);
+				const filteredSnapshot = this.filterSnapshot(snapshot, options);
+				if (filteredSnapshot !== null) {
+					this.host.restoreSnapshot(filteredSnapshot);
 				}
 			}
 
@@ -161,52 +156,53 @@ export class DevServer {
 		}
 
 		const debounceMs = options?.debounceMs ?? 300;
-		const fs = require('node:fs') as typeof import('node:fs');
-		const path = require('node:path') as typeof import('node:path');
+		const supportsRecursiveWatch =
+			process.platform === 'darwin' || process.platform === 'win32';
 
+		const handleWatchEvent = (
+			eventType: string,
+			filename: string | Buffer | null,
+		): void => {
+			const resolvedFilename =
+				typeof filename === 'string'
+					? filename
+					: filename?.toString();
+			if (
+				!resolvedFilename ||
+				!resolvedFilename.endsWith('.qml') ||
+				eventType !== 'change'
+			) {
+				return;
+			}
+
+			if (this.debounceTimer) {
+				clearTimeout(this.debounceTimer);
+			}
+
+			this.debounceTimer = setTimeout(() => {
+				this.debounceTimer = null;
+				const filePath = join(watchDir, resolvedFilename);
+				try {
+					const source = readFileSync(filePath, 'utf-8');
+					this.lastWatchedSource = source;
+					this.reload(source, options).catch(() => {
+						// `reload()` already emits `reload-error`; avoid duplicate events.
+					});
+				} catch (error) {
+					this.emit(
+						'reload-error',
+						error instanceof Error
+							? error
+							: new Error(String(error)),
+					);
+				}
+			}, debounceMs);
+		};
+
+		this.watcher = supportsRecursiveWatch
+			? watch(watchDir, { recursive: true }, handleWatchEvent)
+			: watch(watchDir, handleWatchEvent);
 		this.running = true;
-
-		this.watcher = fs.watch(
-			watchDir,
-			{ recursive: true },
-			(eventType: string, filename: string | null) => {
-				if (
-					!filename ||
-					!filename.endsWith('.qml') ||
-					eventType !== 'change'
-				) {
-					return;
-				}
-
-				if (this.debounceTimer) {
-					clearTimeout(this.debounceTimer);
-				}
-
-				this.debounceTimer = setTimeout(() => {
-					this.debounceTimer = null;
-					const filePath = path.join(watchDir, filename);
-					try {
-						const source = fs.readFileSync(filePath, 'utf-8');
-						this.lastWatchedSource = source;
-						this.reload(source, options).catch((error) => {
-							this.emit(
-								'reload-error',
-								error instanceof Error
-									? error
-									: new Error(String(error)),
-							);
-						});
-					} catch (error) {
-						this.emit(
-							'reload-error',
-							error instanceof Error
-								? error
-								: new Error(String(error)),
-						);
-					}
-				}, debounceMs);
-			},
-		);
 	}
 
 	/**
@@ -263,5 +259,32 @@ export class DevServer {
 				}
 			}
 		}
+	}
+
+	private filterSnapshot(
+		snapshotJson: string,
+		options?: HotReloadOptions,
+	): string | null {
+		const preserveGeometry = options?.preserveGeometry ?? true;
+		const preserveFocus = options?.preserveFocus ?? true;
+		const preserveScroll = options?.preserveScroll ?? true;
+
+		if (!preserveGeometry && !preserveFocus && !preserveScroll) {
+			return null;
+		}
+
+		const snapshot = JSON.parse(snapshotJson) as SnapshotPayload;
+
+		if (!preserveGeometry) {
+			delete snapshot.window;
+		}
+		if (!preserveFocus) {
+			delete snapshot.focusId;
+		}
+		if (!preserveScroll) {
+			delete snapshot.scrollPositions;
+		}
+
+		return JSON.stringify(snapshot);
 	}
 }

@@ -28,13 +28,16 @@ impl ListModelHandle {
             .map_err(|e| QmltsError::ListModelError(format!("Invalid schema JSON: {e}")))?;
         if let Some(roles) = parsed.get("roles").and_then(|v| v.as_array()) {
             let mut seen = std::collections::HashSet::new();
-            for role in roles {
-                if let Some(name) = role.as_str() {
-                    if !seen.insert(name) {
-                        return Err(QmltsError::ListModelError(format!(
-                            "Duplicate role name: {name}"
-                        )));
-                    }
+            for (index, role) in roles.iter().enumerate() {
+                let name = role.as_str().ok_or_else(|| {
+                    QmltsError::ListModelError(format!(
+                        "Invalid schema: roles[{index}] must be a string"
+                    ))
+                })?;
+                if !seen.insert(name) {
+                    return Err(QmltsError::ListModelError(format!(
+                        "Duplicate role name: {name}"
+                    )));
                 }
             }
         }
@@ -140,10 +143,10 @@ impl ListModelHandle {
     ///
     /// Returns `ListModelError` if the index is out of range.
     pub fn get_row(&self, index: i32) -> Result<String> {
-        if index < 0 || index >= self.row_count() {
+        let row_count = self.row_count();
+        if index < 0 || index >= row_count {
             return Err(QmltsError::ListModelError(format!(
-                "get_row failed at index {index}: out of range (row_count={})",
-                self.row_count()
+                "get_row failed at index {index}: out of range (row_count={row_count})"
             )));
         }
         qt_context::list_get_row(self.ptr, index)

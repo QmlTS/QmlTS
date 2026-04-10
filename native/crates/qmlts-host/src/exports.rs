@@ -801,7 +801,7 @@ pub fn capture_snapshot(engine: &QmltsEngine) -> Result<String> {
         .map_err(|e| -> napi::Error { e.into() })
 }
 
-/// Reload QML: destroy existing root objects, clear cache, load new source.
+/// Reload QML by loading a new root tree and swapping it in on success.
 ///
 /// Context properties (`vm`, `__qmlts`) survive the reload because they
 /// are set on the engine's root context, not on the QML tree.

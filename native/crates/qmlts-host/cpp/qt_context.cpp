@@ -42,6 +42,73 @@ QGuiApplication* ensure_application()
     static QGuiApplication* app = new QGuiApplication(argc, argv);
     return app;
 }
+
+QObject* find_named_object(QObject* root, const QString& objectName)
+{
+    if (!root) {
+        return nullptr;
+    }
+    if (root->objectName() == objectName) {
+        return root;
+    }
+    return root->findChild<QObject*>(objectName);
+}
+
+void collect_scroll_positions(QObject* object, QJsonObject& out)
+{
+    if (!object) {
+        return;
+    }
+
+    const QString objectName = object->objectName();
+    const QVariant contentX = object->property("contentX");
+    const QVariant contentY = object->property("contentY");
+    if (!objectName.isEmpty() && contentX.isValid() && contentY.isValid()) {
+        bool okX = false;
+        bool okY = false;
+        const double x = contentX.toDouble(&okX);
+        const double y = contentY.toDouble(&okY);
+        if (okX && okY) {
+            QJsonObject scrollState;
+            scrollState["contentX"] = x;
+            scrollState["contentY"] = y;
+            out[objectName] = scrollState;
+        }
+    }
+
+    const auto children = object->children();
+    for (QObject* child : children) {
+        collect_scroll_positions(child, out);
+    }
+}
+
+void restore_scroll_positions(const QList<QObject*>& roots, const QJsonObject& scrollPositions)
+{
+    for (auto it = scrollPositions.begin(); it != scrollPositions.end(); ++it) {
+        if (!it->isObject()) {
+            continue;
+        }
+
+        QObject* target = nullptr;
+        for (QObject* root : roots) {
+            target = find_named_object(root, it.key());
+            if (target) {
+                break;
+            }
+        }
+        if (!target) {
+            continue;
+        }
+
+        const QJsonObject scrollState = it->toObject();
+        if (scrollState.contains("contentX")) {
+            target->setProperty("contentX", scrollState["contentX"].toDouble());
+        }
+        if (scrollState.contains("contentY")) {
+            target->setProperty("contentY", scrollState["contentY"].toDouble());
+        }
+    }
+}
 }
 
 // ─────────────────────────────────────────────────────────────────────────
@@ -772,6 +839,9 @@ char* qmlts_capture_snapshot(void* engine_ptr) {
 
     // Scroll positions — collect from any Flickable-like items
     QJsonObject scrollPositions;
+    for (QObject* root : roots) {
+        collect_scroll_positions(root, scrollPositions);
+    }
     snapshot["scrollPositions"] = scrollPositions;
 
     // Selected indices — placeholder for future use
@@ -793,7 +863,7 @@ void qmlts_free_snapshot_string(char* ptr) {
     free(ptr);
 }
 
-/// Reload QML: destroy existing root objects, clear component cache, load new QML.
+/// Reload QML: keep the existing root tree until the new source loads successfully.
 ///
 /// Context properties (vm, __qmlts) survive because they are set on the
 /// root context, which is NOT destroyed during this operation.
@@ -801,25 +871,29 @@ bool qmlts_reload_qml(void* engine_ptr, const char* data, std::size_t data_len, 
     if (!engine_ptr || !data) return false;
 
     auto* engine = static_cast<QQmlApplicationEngine*>(engine_ptr);
+    const QList<QObject*> previousRoots = engine->rootObjects();
 
-    // Step 1: Delete all existing root objects
-    const QList<QObject*> roots = engine->rootObjects();
-    for (QObject* root : roots) {
-        delete root;
-    }
-
-    // Step 2: Clear the QML component cache so re-parsed QML picks up changes
+    // Step 1: Clear the QML component cache so re-parsed QML picks up changes
     engine->clearComponentCache();
 
-    // Step 3: Load new QML source
+    // Step 2: Attempt to load the new QML source while keeping the old tree alive.
     const QByteArray bytes(data, static_cast<qsizetype>(data_len));
     const QUrl base_url = (url && url[0] != '\0')
         ? QUrl(QString::fromUtf8(url))
         : QUrl();
 
-    const auto root_count_before = engine->rootObjects().size();
+    const auto root_count_before = previousRoots.size();
     engine->loadData(bytes, base_url);
-    return engine->rootObjects().size() > root_count_before;
+    const QList<QObject*> currentRoots = engine->rootObjects();
+    if (currentRoots.size() <= root_count_before) {
+        return false;
+    }
+
+    // Step 3: New QML is live, so the old roots can now be discarded.
+    for (QObject* root : previousRoots) {
+        delete root;
+    }
+    return true;
 }
 
 /// Restore UI state from a JSON snapshot.
@@ -866,6 +940,11 @@ bool qmlts_restore_snapshot(void* engine_ptr, const char* json, std::size_t json
                 }
             }
         }
+    }
+
+    // Restore scroll positions by objectName.
+    if (snapshot.contains("scrollPositions") && snapshot["scrollPositions"].isObject()) {
+        restore_scroll_positions(roots, snapshot["scrollPositions"].toObject());
     }
 
     return true;

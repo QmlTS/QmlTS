@@ -944,21 +944,29 @@ fn test_get_list_row_supports_valid_empty_object_row() {
 //  §8 Hot Reload Integration Tests
 // ─────────────────────────────────────────────────────────────────────────
 
-/// HR-01: Capture snapshot returns valid JSON with window data.
+/// HR-01/02: Snapshot capture returns valid JSON and records Flickable-like
+/// scroll positions by objectName.
 #[test]
-fn test_capture_snapshot_returns_valid_json() {
+fn test_capture_snapshot_collects_scroll_positions() {
     let mut engine = QmltsEngine::new(None).unwrap();
-    engine.register_view_model("LoginViewModel").unwrap();
-
     engine
         .load_string(
             r#"import QtQuick
-import QtQuick.Window
+Item {
+    width: 200
+    height: 120
 
-Window {
-    width: 400
-    height: 300
-    visible: true
+    Flickable {
+        objectName: "scroller"
+        width: 200
+        height: 120
+        contentWidth: 1000
+        contentHeight: 1000
+        Component.onCompleted: {
+            contentX = 25
+            contentY = 40
+        }
+    }
 }"#,
             None,
         )
@@ -981,6 +989,11 @@ Window {
         parsed.get("scrollPositions").is_some(),
         "snapshot must contain 'scrollPositions'"
     );
+
+    let scroll = &parsed["scrollPositions"]["scroller"];
+
+    assert_eq!(scroll["contentX"].as_f64(), Some(25.0));
+    assert_eq!(scroll["contentY"].as_f64(), Some(40.0));
 }
 
 /// HR-03: Capture fails before QML is loaded.
@@ -1009,6 +1022,30 @@ fn test_reload_qml_succeeds() {
     assert!(result.is_ok(), "reload should succeed: {result:?}");
 
     engine.process_events().unwrap();
+}
+
+/// HR-04a: Reload failure keeps the previous root object alive.
+#[test]
+fn test_reload_failure_preserves_previous_root() {
+    let mut engine = QmltsEngine::new(None).unwrap();
+    engine.register_view_model("LoginViewModel").unwrap();
+
+    engine
+        .load_string(
+            r#"import QtQuick
+Item {
+    property string marker: "old-root"
+}"#,
+            None,
+        )
+        .unwrap();
+    engine.process_events().unwrap();
+
+    let result = engine.reload_qml("this is not valid QML at all {{{", None);
+    assert!(result.is_err(), "reload should fail for invalid QML");
+
+    let marker = engine.root_string_property("marker");
+    assert_eq!(marker.as_deref(), Some("old-root"));
 }
 
 /// HR-05: Reload preserves context properties (vm, __qmlts).
@@ -1088,6 +1125,88 @@ fn test_full_hot_reload_cycle() {
     // Verify state survived
     let val = engine.get_property("LoginViewModel", "username").unwrap();
     assert_eq!(val, "\"bob\"");
+}
+
+/// HR-09a: Restoring a snapshot reapplies captured scroll positions.
+#[test]
+fn test_restore_snapshot_restores_scroll_positions() {
+    let mut engine = QmltsEngine::new(None).unwrap();
+    engine
+        .load_string(
+            r#"import QtQuick
+Item {
+    width: 200
+    height: 120
+
+    Flickable {
+        id: scroller
+        objectName: "scroller"
+        width: 200
+        height: 120
+        contentWidth: 1000
+        contentHeight: 1000
+        Component.onCompleted: {
+            contentX = 25
+            contentY = 40
+        }
+    }
+
+    property real observedX: scroller.contentX
+    property real observedY: scroller.contentY
+}"#,
+            None,
+        )
+        .unwrap();
+    engine.process_events().unwrap();
+
+    let snapshot = engine.capture_snapshot().unwrap();
+
+    engine
+        .reload_qml(
+            r#"import QtQuick
+Item {
+    width: 200
+    height: 120
+
+    Flickable {
+        id: scroller
+        objectName: "scroller"
+        width: 200
+        height: 120
+        contentWidth: 1000
+        contentHeight: 1000
+    }
+
+    property real observedX: scroller.contentX
+    property real observedY: scroller.contentY
+}"#,
+            None,
+        )
+        .unwrap();
+    engine.process_events().unwrap();
+
+    let root = engine.root_object_ptr();
+    assert_eq!(
+        qmlts_host::qt_context_test::read_double_property(root, "observedX"),
+        Some(0.0)
+    );
+    assert_eq!(
+        qmlts_host::qt_context_test::read_double_property(root, "observedY"),
+        Some(0.0)
+    );
+
+    engine.restore_snapshot(&snapshot).unwrap();
+    engine.process_events().unwrap();
+
+    let root = engine.root_object_ptr();
+    assert_eq!(
+        qmlts_host::qt_context_test::read_double_property(root, "observedX"),
+        Some(25.0)
+    );
+    assert_eq!(
+        qmlts_host::qt_context_test::read_double_property(root, "observedY"),
+        Some(40.0)
+    );
 }
 
 /// HR-10: Consecutive reloads remain stable.

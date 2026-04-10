@@ -8,6 +8,7 @@
 import { beforeAll, describe, expect, test } from 'bun:test';
 import { existsSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
+import { DevServer as DevServerClass } from '../../native/npm/qmlts-host/src/dev-server.ts';
 
 const nativeModulePaths = [
   fileURLToPath(
@@ -308,6 +309,88 @@ describe('host/viewmodel-manager (skip check)', () => {
   });
 });
 
+describe('host/dev-server (unit)', () => {
+  test('DS-U01: reload filters snapshot according to preserve options', async () => {
+    let restoredSnapshot: string | null = null;
+    const host = {
+      captureSnapshot: () =>
+        JSON.stringify({
+          window: { x: 10, y: 20, width: 300, height: 200 },
+          focusId: 'fieldA',
+          scrollPositions: { scroller: { contentX: 12, contentY: 34 } },
+          selectedIndices: {},
+        }),
+      reloadQml: () => {},
+      processEvents: () => {},
+      restoreSnapshot: (snapshot: string) => {
+        restoredSnapshot = snapshot;
+      },
+    };
+    const vmManager = { rehydrate: () => {} };
+    const devServer = new DevServerClass(host as never, vmManager as never);
+
+    await devServer.reload('import QtQuick\nItem { }', {
+      preserveGeometry: false,
+      preserveFocus: true,
+      preserveScroll: false,
+    });
+
+    const restored = JSON.parse(restoredSnapshot ?? '{}') as Record<string, unknown>;
+    expect(restored.window).toBeUndefined();
+    expect(restored.scrollPositions).toBeUndefined();
+    expect(restored.focusId).toBe('fieldA');
+    expect(restored.selectedIndices).toEqual({});
+  });
+
+  test('DS-U02: reload skips restore when all preserve flags are disabled', async () => {
+    let restoreCalls = 0;
+    const host = {
+      captureSnapshot: () =>
+        JSON.stringify({
+          window: { x: 0, y: 0, width: 100, height: 100 },
+          focusId: 'fieldA',
+          scrollPositions: { scroller: { contentX: 1, contentY: 2 } },
+        }),
+      reloadQml: () => {},
+      processEvents: () => {},
+      restoreSnapshot: () => {
+        restoreCalls += 1;
+      },
+    };
+    const vmManager = { rehydrate: () => {} };
+    const devServer = new DevServerClass(host as never, vmManager as never);
+
+    await devServer.reload('import QtQuick\nItem { }', {
+      preserveGeometry: false,
+      preserveFocus: false,
+      preserveScroll: false,
+    });
+
+    expect(restoreCalls).toBe(0);
+  });
+
+  test('DS-U03: reload emits one reload-error when reloadQml throws', async () => {
+    const errors: Error[] = [];
+    const host = {
+      captureSnapshot: () => null,
+      reloadQml: () => {
+        throw new Error('reload boom');
+      },
+      processEvents: () => {},
+      restoreSnapshot: () => {},
+    };
+    const vmManager = { rehydrate: () => {} };
+    const devServer = new DevServerClass(host as never, vmManager as never);
+    devServer.on('reload-error', (error) => {
+      errors.push(error as Error);
+    });
+
+    await expect(devServer.reload('import QtQuick\nItem { }')).rejects.toThrow('reload boom');
+    expect(errors).toHaveLength(1);
+    expect(errors[0]?.message).toBe('reload boom');
+  });
+});
+
 // ─────────────────────────────────────────────────────────────────────
 //  DevServer tests
 // ─────────────────────────────────────────────────────────────────────
@@ -383,7 +466,7 @@ describe.skipIf(!isNativeModuleAvailable)('host/dev-server', () => {
       // expected
     }
 
-    expect(errors.length).toBeGreaterThan(0);
+    expect(errors).toHaveLength(1);
     host.dispose();
   });
 

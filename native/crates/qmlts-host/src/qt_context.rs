@@ -706,12 +706,18 @@ pub fn capture_snapshot(_engine_ptr: *mut c_void) -> Option<String> {
     Some(r#"{"window":{"x":0,"y":0,"width":800,"height":600},"focusId":"","scrollPositions":{},"selectedIndices":{}}"#.to_string())
 }
 
-/// Reload QML: destroy existing root objects, clear cache, load new QML.
+/// Reload QML by attempting to load a new root tree and swapping it in on success.
 #[cfg(not(feature = "mock-qt"))]
 #[allow(dead_code)]
 #[must_use]
 pub fn reload_qml(engine_ptr: *mut c_void, data: &[u8], base_url: Option<&str>) -> bool {
-    let c_url = base_url.map(|url| CString::new(url).expect("base URL must not contain NUL"));
+    let c_url = match base_url {
+        Some(url) => match CString::new(url) {
+            Ok(value) => Some(value),
+            Err(_) => return false,
+        },
+        None => None,
+    };
     let url_ptr = c_url
         .as_ref()
         .map_or(std::ptr::null(), |value| value.as_ptr());
