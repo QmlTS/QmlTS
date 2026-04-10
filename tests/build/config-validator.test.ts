@@ -96,6 +96,26 @@ describe('validateConfig', () => {
     expect(() => validateConfig(config)).not.toThrow();
   });
 
+  test('BC-24a: rejects non-array qt.modules values with ConfigError', () => {
+    const config = { qt: { modules: 'QtQuick' } } as unknown as QmltsConfig;
+    expect(() => validateConfig(config)).toThrow(ConfigError);
+    try {
+      validateConfig(config);
+    } catch (e) {
+      expect((e as ConfigError).field).toBe('qt.modules');
+    }
+  });
+
+  test('BC-24b: rejects non-string qt.modules entries with ConfigError', () => {
+    const config = { qt: { modules: ['QtQuick', 42] } } as unknown as QmltsConfig;
+    expect(() => validateConfig(config)).toThrow(ConfigError);
+    try {
+      validateConfig(config);
+    } catch (e) {
+      expect((e as ConfigError).field).toBe('qt.modules');
+    }
+  });
+
   test('BC-25: rejects negative concurrency', () => {
     const config: QmltsConfig = { build: { concurrency: -1 } };
     expect(() => validateConfig(config)).toThrow(ConfigError);
@@ -140,6 +160,16 @@ describe('validateConfig', () => {
     }
   });
 
+  test('BC-29a: rejects non-array distribute.targets values with ConfigError', () => {
+    const config = { distribute: { targets: 'win32-x64' } } as unknown as QmltsConfig;
+    expect(() => validateConfig(config)).toThrow(ConfigError);
+    try {
+      validateConfig(config);
+    } catch (e) {
+      expect((e as ConfigError).field).toBe('distribute.targets');
+    }
+  });
+
   test('BC-30: rejects invalid build mode', () => {
     const config = { build: { mode: 'staging' } } as unknown as QmltsConfig;
     expect(() => validateConfig(config)).toThrow(ConfigError);
@@ -167,6 +197,26 @@ describe('validateConfig', () => {
 
   test('BC-33: accepts empty config (all optional)', () => {
     expect(() => validateConfig({})).not.toThrow();
+  });
+
+  test('BC-33a: rejects non-array qmlModulePaths values', () => {
+    const config = { qmlModulePaths: './qml' } as unknown as QmltsConfig;
+    expect(() => validateConfig(config)).toThrow(ConfigError);
+    try {
+      validateConfig(config);
+    } catch (e) {
+      expect((e as ConfigError).field).toBe('qmlModulePaths');
+    }
+  });
+
+  test('BC-33b: rejects empty qmlModulePaths entries', () => {
+    const config = { qmlModulePaths: ['./qml', ''] } as unknown as QmltsConfig;
+    expect(() => validateConfig(config)).toThrow(ConfigError);
+    try {
+      validateConfig(config);
+    } catch (e) {
+      expect((e as ConfigError).field).toBe('qmlModulePaths[1]');
+    }
   });
 
   test('BC-34: rejects unknown top-level fields', () => {

@@ -41,6 +41,9 @@ export function validateConfig(config: QmltsConfig): void {
     }
   }
 
+  if (config.qmlModulePaths !== undefined) {
+    validateStringArray(config.qmlModulePaths, 'qmlModulePaths');
+  }
   if (config.qt !== undefined) {
     validateQt(config.qt);
   }
@@ -58,6 +61,21 @@ export function validateConfig(config: QmltsConfig): void {
   }
 }
 
+function validateStringArray(value: unknown, field: string): asserts value is readonly string[] {
+  if (!Array.isArray(value)) {
+    throw new ConfigError(field, value, `${field} must be an array of strings`);
+  }
+
+  for (const [index, entry] of value.entries()) {
+    if (typeof entry !== 'string') {
+      throw new ConfigError(field, value, `${field} must be an array of strings`);
+    }
+    if (entry.length === 0) {
+      throw new ConfigError(`${field}[${index}]`, entry, `${field} entries must not be empty`);
+    }
+  }
+}
+
 function validateTopLevelKeys(config: QmltsConfig): void {
   for (const key of Object.keys(config)) {
     if (!VALID_TOP_LEVEL_KEYS.has(key)) {
@@ -72,6 +90,7 @@ function validateTopLevelKeys(config: QmltsConfig): void {
 
 function validateQt(qt: NonNullable<QmltsConfig['qt']>): void {
   if (qt.modules !== undefined) {
+    validateStringArray(qt.modules, 'qt.modules');
     for (const mod of qt.modules) {
       if (!QT_MODULE_PATTERN.test(mod)) {
         throw new ConfigError(
@@ -139,6 +158,7 @@ function validateDev(dev: NonNullable<QmltsConfig['dev']>): void {
 
 function validateDistribute(dist: NonNullable<QmltsConfig['distribute']>): void {
   if (dist.targets !== undefined) {
+    validateStringArray(dist.targets, 'distribute.targets');
     for (const target of dist.targets) {
       if (!VALID_PLATFORM_TARGETS.has(target)) {
         throw new ConfigError(

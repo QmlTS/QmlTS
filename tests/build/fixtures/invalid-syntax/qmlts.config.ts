@@ -1,2 +1,3 @@
-export default {{{
-  this is not valid typescript
+throw new SyntaxError('Fixture config intentionally fails during evaluation');
+
+export default {};
