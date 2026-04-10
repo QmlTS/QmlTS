@@ -20,10 +20,12 @@
 #include <QHash>
 #include <QJsonObject>
 #include <QSet>
+#include <cmath>
 #include <cstddef>
 #include <cstdint>
 #include <cstdlib>
 #include <cstring>
+#include <limits>
 
 namespace {
 QGuiApplication* ensure_application()
@@ -512,21 +514,37 @@ bool qmlts_emit_signal(void* qobject_ptr, const char* signal_name,
             const QJsonValue val = payload[i];
 
             if (type == "string") {
+                if (!val.isString()) {
+                    return false;
+                }
                 strings[i] = val.toString();
                 types[i] = 0;
             } else if (type == "int") {
-                ints[i] = val.toInt();
+                if (!val.isDouble()) {
+                    return false;
+                }
+                const double d = val.toDouble();
+                if (std::trunc(d) != d
+                    || d < static_cast<double>(std::numeric_limits<int>::min())
+                    || d > static_cast<double>(std::numeric_limits<int>::max())) {
+                    return false;
+                }
+                ints[i] = static_cast<int>(d);
                 types[i] = 1;
-            } else if (type == "number" || type == "double") {
+            } else if (type == "number" || type == "double" || type == "real") {
+                if (!val.isDouble()) {
+                    return false;
+                }
                 doubles[i] = val.toDouble();
                 types[i] = 2;
-            } else if (type == "boolean") {
+            } else if (type == "boolean" || type == "bool") {
+                if (!val.isBool()) {
+                    return false;
+                }
                 bools[i] = val.toBool();
                 types[i] = 3;
             } else {
-                // Unknown type — try QString fallback
-                strings[i] = val.toString();
-                types[i] = 0;
+                return false;
             }
         }
 

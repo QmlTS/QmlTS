@@ -314,6 +314,22 @@ pub fn active_runtime_i32_property(engine: &QmltsEngine, name: String) -> Option
     engine.inner.active_runtime_i32_property(&name)
 }
 
+/// Read a string property from the current root QML object.
+///
+/// Test helper for end-to-end QML binding assertions.
+#[napi(js_name = "rootStringProperty")]
+pub fn root_string_property(engine: &QmltsEngine, name: String) -> Option<String> {
+    engine.inner.root_string_property(&name)
+}
+
+/// Read an integer property from the current root QML object.
+///
+/// Test helper for end-to-end QML binding assertions.
+#[napi(js_name = "rootI32Property")]
+pub fn root_i32_property(engine: &QmltsEngine, name: String) -> Option<i32> {
+    engine.inner.root_i32_property(&name)
+}
+
 // ─────────────────────────────────────────────────────────────────────────
 //  §2c Property Synchronization
 // ─────────────────────────────────────────────────────────────────────────

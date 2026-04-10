@@ -711,6 +711,50 @@ Item {
     assert_eq!(received_count, Some(99));
 }
 
+/// Verify schema-declared parameter types are enforced for multi-parameter effects.
+#[test]
+fn test_multi_param_effect_rejects_wrong_payload_types() {
+    let mut engine = QmltsEngine::new(None).unwrap();
+    engine.register_view_model("SearchViewModel").unwrap();
+
+    engine
+        .load_string(
+            r#"import QtQuick
+Item {
+    property string receivedQuery: "unset"
+    property int receivedCount: -1
+
+    Connections {
+        target: __qmlts
+        function onOnSearchCompleted(query, resultCount) {
+            receivedQuery = query
+            receivedCount = resultCount
+        }
+    }
+}"#,
+            None,
+        )
+        .unwrap();
+    engine.process_events().unwrap();
+
+    let result = engine.emit_effect(
+        "SearchViewModel",
+        "onSearchCompleted",
+        Some(r#"[42, "wrong-order"]"#),
+    );
+    assert!(
+        result.is_err(),
+        "type-mismatched payload should be rejected"
+    );
+
+    let root = engine.root_object_ptr();
+    let received_query = qmlts_host::qt_context_test::read_string_property(root, "receivedQuery");
+    assert_eq!(received_query, Some("unset".to_string()));
+
+    let received_count = qmlts_host::qt_context_test::read_int_property(root, "receivedCount");
+    assert_eq!(received_count, Some(-1));
+}
+
 /// Verify SearchViewModel property sync works (query is a string, resultCount is int).
 #[test]
 fn test_search_view_model_property_sync() {

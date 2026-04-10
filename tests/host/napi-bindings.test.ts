@@ -1111,19 +1111,102 @@ describe.skipIf(!isNativeModuleAvailable)('host/napi-bindings', () => {
       engine: object,
       name: string,
     ) => void;
+    const loadString = nativeModule.loadString as (engine: object, qml: string) => void;
     const emitEffect = nativeModule.emitEffect as (
       engine: object,
       className: string,
       effectName: string,
       payloadJson?: string,
     ) => void;
+    const processEvents = nativeModule.processEvents as (engine: object) => void;
+    const rootStringProperty = nativeModule.rootStringProperty as (
+      engine: object,
+      name: string,
+    ) => string | null;
+    const rootI32Property = nativeModule.rootI32Property as (
+      engine: object,
+      name: string,
+    ) => number | null;
 
     const engine = createEngine();
     registerViewModel(engine, 'SearchViewModel');
+    loadString(
+      engine,
+      [
+        'import QtQuick',
+        'Item {',
+        '  property string receivedQuery: ""',
+        '  property int receivedCount: -1',
+        '  Connections {',
+        '    target: __qmlts',
+        '    function onOnSearchCompleted(query, resultCount) {',
+        '      receivedQuery = query',
+        '      receivedCount = resultCount',
+        '    }',
+        '  }',
+        '}',
+      ].join('\n'),
+    );
+    processEvents(engine);
 
     expect(() =>
       emitEffect(engine, 'SearchViewModel', 'onSearchCompleted', '["test query", 42]'),
     ).not.toThrow();
+    processEvents(engine);
+    expect(rootStringProperty(engine, 'receivedQuery')).toBe('test query');
+    expect(rootI32Property(engine, 'receivedCount')).toBe(42);
+  });
+
+  test('TB-46a: multi-param emitEffect rejects wrong payload order/types', () => {
+    const createEngine = nativeModule.createEngine as () => object;
+    const registerViewModel = nativeModule.registerViewModel as (
+      engine: object,
+      name: string,
+    ) => void;
+    const loadString = nativeModule.loadString as (engine: object, qml: string) => void;
+    const emitEffect = nativeModule.emitEffect as (
+      engine: object,
+      className: string,
+      effectName: string,
+      payloadJson?: string,
+    ) => void;
+    const processEvents = nativeModule.processEvents as (engine: object) => void;
+    const rootStringProperty = nativeModule.rootStringProperty as (
+      engine: object,
+      name: string,
+    ) => string | null;
+    const rootI32Property = nativeModule.rootI32Property as (
+      engine: object,
+      name: string,
+    ) => number | null;
+
+    const engine = createEngine();
+    registerViewModel(engine, 'SearchViewModel');
+    loadString(
+      engine,
+      [
+        'import QtQuick',
+        'Item {',
+        '  property string receivedQuery: "unset"',
+        '  property int receivedCount: -1',
+        '  Connections {',
+        '    target: __qmlts',
+        '    function onOnSearchCompleted(query, resultCount) {',
+        '      receivedQuery = query',
+        '      receivedCount = resultCount',
+        '    }',
+        '  }',
+        '}',
+      ].join('\n'),
+    );
+    processEvents(engine);
+
+    expect(() =>
+      emitEffect(engine, 'SearchViewModel', 'onSearchCompleted', '[42,"wrong-order"]'),
+    ).toThrow(/failed to emit signal|internal/i);
+    processEvents(engine);
+    expect(rootStringProperty(engine, 'receivedQuery')).toBe('unset');
+    expect(rootI32Property(engine, 'receivedCount')).toBe(-1);
   });
 });
 

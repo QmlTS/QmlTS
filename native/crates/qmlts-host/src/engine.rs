@@ -691,6 +691,26 @@ impl QmltsEngine {
         qt_context::read_int_property(runtime_ptr, name)
     }
 
+    /// Read a string property from the root QML object.
+    #[must_use]
+    pub fn root_string_property(&self, name: &str) -> Option<String> {
+        let root_ptr = self.root_object_ptr();
+        if root_ptr.is_null() {
+            return None;
+        }
+        qt_context::read_string_property(root_ptr, name)
+    }
+
+    /// Read an integer property from the root QML object.
+    #[must_use]
+    pub fn root_i32_property(&self, name: &str) -> Option<i32> {
+        let root_ptr = self.root_object_ptr();
+        if root_ptr.is_null() {
+            return None;
+        }
+        qt_context::read_int_property(root_ptr, name)
+    }
+
     /// Load a QML document from a file.
     ///
     /// # Arguments
