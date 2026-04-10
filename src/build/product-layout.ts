@@ -1,5 +1,5 @@
 import { mkdirSync, writeFileSync } from 'node:fs';
-import { basename, join, relative } from 'node:path';
+import { basename, dirname, join, relative } from 'node:path';
 import type { CompilationResult, CompilationUnit } from '../compiler/pipeline/pipeline-types.js';
 import type { BuildManifest, ProductLayout } from './build-types.js';
 import type { PlatformTarget, ResolvedQmltsConfig } from './config-types.js';
@@ -7,10 +7,20 @@ import type { PlatformTarget, ResolvedQmltsConfig } from './config-types.js';
 const IS_WINDOWS = process.platform === 'win32';
 
 function currentPlatform(): PlatformTarget {
-  const arch = process.arch === 'arm64' ? 'arm64' : 'x64';
-  if (IS_WINDOWS) return `win32-${arch}` as PlatformTarget;
-  if (process.platform === 'darwin') return `darwin-${arch}` as PlatformTarget;
-  return `linux-${arch}` as PlatformTarget;
+  if (IS_WINDOWS) {
+    if (process.arch === 'x64') return 'win32-x64';
+    throw new Error(`Unsupported host platform: ${process.platform}-${process.arch}`);
+  }
+  if (process.platform === 'darwin') {
+    if (process.arch === 'x64') return 'darwin-x64';
+    if (process.arch === 'arm64') return 'darwin-arm64';
+    throw new Error(`Unsupported host platform: ${process.platform}-${process.arch}`);
+  }
+  if (process.platform === 'linux') {
+    if (process.arch === 'x64') return 'linux-x64';
+    throw new Error(`Unsupported host platform: ${process.platform}-${process.arch}`);
+  }
+  throw new Error(`Unsupported host platform: ${process.platform}-${process.arch}`);
 }
 
 export function hostLibFilename(platform: PlatformTarget): string {
@@ -49,17 +59,11 @@ export function createManifest(
 
   const qmlFiles = compilationResult.units
     .filter((u) => u.qmlContent)
-    .map(
-      (u) =>
-        `./${relative(layout.rootDir, join(layout.qmlDir, `${u.viewName}.qml`)).replace(/\\/g, '/')}`,
-    );
+    .map((u) => `./${relative(layout.rootDir, u.qmlOutputPath).replace(/\\/g, '/')}`);
 
   const schemas = compilationResult.units
-    .filter((u) => u.schema)
-    .map(
-      (u) =>
-        `./${relative(layout.rootDir, join(layout.schemasDir, `${u.schema!.className}.schema.json`)).replace(/\\/g, '/')}`,
-    );
+    .filter((u) => u.schema && u.schemaOutputPath)
+    .map((u) => `./${relative(layout.rootDir, u.schemaOutputPath!).replace(/\\/g, '/')}`);
 
   return {
     version: '0.1.0',
@@ -103,18 +107,74 @@ export function writeCompilationUnits(
 ): void {
   for (const unit of units) {
     if (unit.qmlContent) {
-      const qmlPath = join(layout.qmlDir, `${unit.viewName}.qml`);
+      const qmlPath = unit.qmlOutputPath;
+      mkdirSync(dirname(qmlPath), { recursive: true });
       writeFileSync(qmlPath, unit.qmlContent, 'utf-8');
 
       if (sourceMaps && unit.sourceMap && layout.sourceMapsDir) {
-        const mapPath = join(layout.sourceMapsDir, `${unit.viewName}.qml.map`);
+        const mapPath = join(
+          layout.sourceMapsDir,
+          `${relative(layout.qmlDir, qmlPath).replace(/\\/g, '/')}.map`,
+        );
+        mkdirSync(dirname(mapPath), { recursive: true });
         writeFileSync(mapPath, JSON.stringify(unit.sourceMap, null, 2), 'utf-8');
       }
     }
 
-    if (unit.schema) {
-      const schemaPath = join(layout.schemasDir, `${unit.schema.className}.schema.json`);
+    if (unit.schema && unit.schemaOutputPath) {
+      const schemaPath = unit.schemaOutputPath;
+      mkdirSync(dirname(schemaPath), { recursive: true });
       writeFileSync(schemaPath, JSON.stringify(unit.schema, null, 2), 'utf-8');
     }
   }
+}
+
+export function alignCompilationResultToLayout(
+  result: CompilationResult,
+  layout: ProductLayout,
+  originalOutDir: string,
+): CompilationResult {
+  const normalizedOutDir = originalOutDir.replace(/\\/g, '/');
+
+  const units = result.units.map((unit) => {
+    const qmlRelative = relative(originalOutDir, unit.qmlOutputPath);
+    const qmlPath = join(layout.qmlDir, qmlRelative);
+    const schemaRelativeDir =
+      unit.schema && unit.schemaOutputPath
+        ? dirname(relative(originalOutDir, unit.schemaOutputPath))
+        : '.';
+    const schemaPath = unit.schema
+      ? join(
+          layout.schemasDir,
+          schemaRelativeDir === '.' ? '' : schemaRelativeDir,
+          `${unit.schema.className}.schema.json`,
+        )
+      : undefined;
+
+    return {
+      ...unit,
+      qmlOutputPath: qmlPath,
+      schemaOutputPath: schemaPath,
+      sourceMap: unit.sourceMap
+        ? {
+            ...unit.sourceMap,
+            targetFile: qmlPath.replace(/\\/g, '/'),
+          }
+        : undefined,
+      diagnostics: unit.diagnostics.map((diagnostic) => {
+        if (!diagnostic.file) return diagnostic;
+        const normalizedFile = diagnostic.file.replace(/\\/g, '/');
+        if (!normalizedFile.startsWith(normalizedOutDir)) return diagnostic;
+        return {
+          ...diagnostic,
+          file: join(layout.qmlDir, relative(originalOutDir, diagnostic.file)),
+        };
+      }),
+    };
+  });
+
+  return {
+    ...result,
+    units,
+  };
 }

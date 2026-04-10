@@ -9,6 +9,11 @@ export async function executeBuild(options: BuildCommandOptions = {}): Promise<B
   const config = await loadConfig(options.config);
 
   const pipeline = createBuildPipeline(config);
+  if (options.verbose) {
+    pipeline.onProgress((progress) => {
+      console.info(`[qmlts build:${progress.phase}] ${progress.message}`);
+    });
+  }
 
   const pipelineOptions: PipelineRunOptions = {
     force: options.force,
@@ -30,6 +35,10 @@ export async function executeBuild(options: BuildCommandOptions = {}): Promise<B
     outputDir: config.outDir,
     durationMs: performance.now() - start,
   };
+
+  if (options.json) {
+    console.info(JSON.stringify(commandResult, null, 2));
+  }
 
   return commandResult;
 }

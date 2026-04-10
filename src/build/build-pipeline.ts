@@ -1,8 +1,8 @@
 import { existsSync, rmSync } from 'node:fs';
-import { dirname, join, resolve } from 'node:path';
+import { dirname, join, parse, resolve } from 'node:path';
 import type { Diagnostic } from '../compiler/diagnostics.js';
 import { compile } from '../compiler/pipeline/compiler.js';
-import type { CompilationResult } from '../compiler/pipeline/pipeline-types.js';
+import type { CompilationResult, CompilationStats } from '../compiler/pipeline/pipeline-types.js';
 import { BuildError } from './build-error.js';
 import type {
   BuildPhase,
@@ -14,6 +14,7 @@ import type {
 } from './build-types.js';
 import type { ResolvedQmltsConfig } from './config-types.js';
 import {
+  alignCompilationResultToLayout,
   createManifest,
   createProductLayout,
   materializeLayout,
@@ -108,28 +109,34 @@ function phaseCompileTs(ctx: PhaseContext): Promise<{ diagnostics: readonly Diag
       compilerOpts.codegen ?? (ctx.config.build.sourceMaps ? { sourceMap: true } : undefined),
   });
 
-  ctx.compilationResult = result;
+  const filteredResult = filterCompilationResult(result, ctx.config, ctx.options.files);
+  ctx.compilationResult = filteredResult;
 
-  if (!result.success) {
-    throw new BuildError('compiling-ts', result.diagnostics, 'TypeScript compilation failed');
+  if (!filteredResult.success) {
+    throw new BuildError(
+      'compiling-ts',
+      filteredResult.diagnostics,
+      'TypeScript compilation failed',
+    );
   }
 
   emitProgress(ctx, {
     phase: 'compiling-ts',
-    message: `Compiled ${result.units.length} view(s)`,
-    current: result.units.length,
-    total: result.units.length,
+    message: `Compiled ${filteredResult.units.length} view(s)`,
+    current: filteredResult.units.length,
+    total: filteredResult.units.length,
   });
 
-  return Promise.resolve({ diagnostics: result.diagnostics });
+  return Promise.resolve({ diagnostics: filteredResult.diagnostics });
 }
 
 function findTsconfig(inputDir: string, configDir: string): string | undefined {
   let dir = inputDir;
-  const root = resolve('/');
-  while (dir !== root) {
+  const root = parse(dir).root;
+  while (true) {
     const candidate = join(dir, 'tsconfig.json');
     if (existsSync(candidate)) return candidate;
+    if (dir === root) break;
     const parent = dirname(dir);
     if (parent === dir) break;
     dir = parent;
@@ -137,6 +144,65 @@ function findTsconfig(inputDir: string, configDir: string): string | undefined {
   const configCandidate = join(configDir, 'tsconfig.json');
   if (existsSync(configCandidate)) return configCandidate;
   return undefined;
+}
+
+function filterCompilationResult(
+  result: CompilationResult,
+  config: ResolvedQmltsConfig,
+  files: readonly string[] | undefined,
+): CompilationResult {
+  if (!files || files.length === 0) {
+    return result;
+  }
+
+  const selectedFiles = new Set(files.map((file) => resolve(config.configDir, file)));
+  const units = result.units.filter((unit) => selectedFiles.has(resolve(unit.sourceFile)));
+  const selectedViewModels = new Set(
+    units.flatMap(
+      (unit) => [unit.viewModelName, unit.schema?.className].filter(Boolean) as string[],
+    ),
+  );
+  const diagnostics = result.diagnostics.filter(
+    (diagnostic) => !diagnostic.file || selectedFiles.has(resolve(diagnostic.file)),
+  );
+  const stats = recomputeCompilationStats(result.stats, units, selectedFiles.size);
+  const success = !diagnostics.some((diagnostic) => diagnostic.severity === 'error');
+
+  return {
+    ...result,
+    units,
+    diagnostics,
+    success,
+    stats,
+    eventBindings: {
+      commands: result.eventBindings.commands.filter((command) =>
+        selectedViewModels.has(command.viewModelClass),
+      ),
+      effects: result.eventBindings.effects.filter((effect) =>
+        selectedViewModels.has(effect.viewModelClass),
+      ),
+    },
+  };
+}
+
+function recomputeCompilationStats(
+  original: CompilationStats,
+  units: readonly CompilationResult['units'][number][],
+  totalFiles: number,
+): CompilationStats {
+  const schemas = units
+    .map((unit) => unit.schema)
+    .filter((schema): schema is NonNullable<typeof schema> => Boolean(schema));
+
+  return {
+    ...original,
+    totalFiles,
+    totalViewModels: new Set(schemas.map((schema) => schema.className)).size,
+    totalViews: units.filter((unit) => unit.qmlContent.length > 0).length,
+    totalStates: schemas.reduce((sum, schema) => sum + schema.states.length, 0),
+    totalCommands: schemas.reduce((sum, schema) => sum + schema.commands.length, 0),
+    totalEffects: schemas.reduce((sum, schema) => sum + schema.effects.length, 0),
+  };
 }
 
 function phaseCollectDeps(ctx: PhaseContext): Promise<{ diagnostics: readonly Diagnostic[] }> {
@@ -215,6 +281,11 @@ function phaseWriteOutput(ctx: PhaseContext): Promise<{ diagnostics: readonly Di
 
   const layout = createProductLayout(ctx.config.outDir, ctx.config);
   ctx.layout = layout;
+  ctx.compilationResult = alignCompilationResultToLayout(
+    ctx.compilationResult,
+    layout,
+    ctx.config.outDir,
+  );
 
   if (ctx.options.dryRun) {
     return Promise.resolve({ diagnostics: [] });

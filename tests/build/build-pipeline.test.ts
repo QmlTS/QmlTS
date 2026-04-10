@@ -79,6 +79,68 @@ afterEach(() => {
   }
 });
 
+function writeSelectiveProject(): { projectDir: string; srcDir: string } {
+  const projectDir = join(TMP_DIR, 'selective-project');
+  const srcDir = join(projectDir, 'src');
+  const dslDir = join(srcDir, 'dsl', 'generated', 'QtQuick');
+  mkdirSync(dslDir, { recursive: true });
+
+  writeFileSync(
+    join(projectDir, 'tsconfig.json'),
+    JSON.stringify(
+      {
+        compilerOptions: {
+          target: 'ESNext',
+          module: 'ESNext',
+          moduleResolution: 'bundler',
+          experimentalDecorators: true,
+          strict: false,
+          skipLibCheck: true,
+          noEmit: true,
+          types: [],
+        },
+        include: ['src/**/*.ts'],
+      },
+      null,
+      2,
+    ),
+    'utf-8',
+  );
+
+  writeFileSync(
+    join(dslDir, 'Rectangle.ts'),
+    readFileSync(join(FIXTURES_DIR, 'src', 'dsl', 'generated', 'QtQuick', 'Rectangle.ts'), 'utf-8'),
+  );
+  writeFileSync(
+    join(dslDir, 'Text.ts'),
+    readFileSync(join(FIXTURES_DIR, 'src', 'dsl', 'generated', 'QtQuick', 'Text.ts'), 'utf-8'),
+  );
+  writeFileSync(
+    join(srcDir, 'CounterViewModel.ts'),
+    readFileSync(join(FIXTURES_DIR, 'src', 'CounterViewModel.ts'), 'utf-8'),
+  );
+  writeFileSync(
+    join(srcDir, 'CounterView.ts'),
+    readFileSync(join(FIXTURES_DIR, 'src', 'CounterView.ts'), 'utf-8'),
+  );
+  writeFileSync(
+    join(srcDir, 'SecondaryView.ts'),
+    [
+      "import type { CounterViewModel } from './CounterViewModel.js';",
+      "import { Rectangle } from './dsl/generated/QtQuick/Rectangle.js';",
+      "import { Text } from './dsl/generated/QtQuick/Text.js';",
+      '',
+      'export default function SecondaryView(vm: CounterViewModel) {',
+      '  return Rectangle().width(160).height(80).children(Text().text(vm.count));',
+      '}',
+      '',
+    ].join('\n'),
+    'utf-8',
+  );
+
+  return { projectDir, srcDir };
+}
+
 // ─── Tests ──────────────────────────────────────────────────
 
 describe('BuildPipeline', () => {
@@ -342,5 +404,22 @@ describe('BuildPipeline', () => {
     const doneEvent = progressEvents.find((p) => p.phase === 'done');
     expect(doneEvent).toBeDefined();
     expect(doneEvent!.message).toContain('succeeded');
+  });
+
+  test('BP-34: files option limits written outputs to selected source files', async () => {
+    const { projectDir, srcDir } = writeSelectiveProject();
+    const config = makeConfig({
+      entry: join(srcDir, 'CounterView.ts'),
+      outDir: join(TMP_DIR, 'dist-selective'),
+      configDir: projectDir,
+    });
+    const pipeline = createBuildPipeline(config);
+
+    const result = await pipeline.run({ files: ['src/CounterView.ts'] });
+
+    expect(result.success).toBe(true);
+    expect(existsSync(join(config.outDir, 'qml', 'CounterView.qml'))).toBe(true);
+    expect(existsSync(join(config.outDir, 'qml', 'SecondaryView.qml'))).toBe(false);
+    expect(result.compilationStats?.totalViews).toBe(1);
   });
 });

@@ -29,7 +29,7 @@ function makeCompilationResult(overrides?: Partial<CompilationResult>): Compilat
         sourceFile: '/src/CounterView.ts',
         viewName: 'CounterView',
         viewModelName: 'CounterViewModel',
-        qmlOutputPath: '/dist/qml/CounterView.qml',
+        qmlOutputPath: join(TMP_DIR, 'qml', 'CounterView.qml'),
         qmlContent: 'import QtQuick\nItem { }',
         schema: {
           className: 'CounterViewModel',
@@ -38,7 +38,7 @@ function makeCompilationResult(overrides?: Partial<CompilationResult>): Compilat
           effects: [],
           lifecycle: [],
         } as any,
-        schemaOutputPath: '/dist/schemas/CounterViewModel.schema.json',
+        schemaOutputPath: join(TMP_DIR, 'schemas', 'CounterViewModel.schema.json'),
         diagnostics: [],
       },
     ],
@@ -152,6 +152,25 @@ describe('BuildManifest', () => {
     expect(manifest.hostLib).toContain('qmlts_host.');
   });
 
+  test('BP-13a: createManifest uses authoritative unit output paths', () => {
+    const config = makeConfig();
+    const layout = createProductLayout(TMP_DIR, config);
+    const result = makeCompilationResult({
+      units: [
+        {
+          ...makeCompilationResult().units[0]!,
+          qmlOutputPath: join(layout.qmlDir, 'nested', 'CounterView.qml'),
+          schemaOutputPath: join(layout.schemasDir, 'viewmodels', 'CounterViewModel.schema.json'),
+        },
+      ],
+    });
+
+    const manifest = createManifest(layout, result, config);
+
+    expect(manifest.qmlFiles).toEqual(['./qml/nested/CounterView.qml']);
+    expect(manifest.schemas).toEqual(['./schemas/viewmodels/CounterViewModel.schema.json']);
+  });
+
   test('BP-14: writeManifest writes JSON to disk', () => {
     const config = makeConfig();
     const layout = createProductLayout(TMP_DIR, config);
@@ -189,6 +208,26 @@ describe('writeCompilationUnits', () => {
     expect(readFileSync(qmlPath, 'utf-8')).toBe('import QtQuick\nItem { }');
   });
 
+  test('BP-15a: writes QML files to the unit qmlOutputPath', () => {
+    const config = makeConfig();
+    const layout = createProductLayout(TMP_DIR, config);
+    materializeLayout(layout);
+
+    const nestedQmlPath = join(layout.qmlDir, 'nested', 'CounterView.qml');
+    const result = makeCompilationResult({
+      units: [
+        {
+          ...makeCompilationResult().units[0]!,
+          qmlOutputPath: nestedQmlPath,
+        },
+      ],
+    });
+    writeCompilationUnits(layout, result.units, false);
+
+    expect(existsSync(nestedQmlPath)).toBe(true);
+    expect(readFileSync(nestedQmlPath, 'utf-8')).toBe('import QtQuick\nItem { }');
+  });
+
   test('BP-16: writes schema files to schemasDir', () => {
     const config = makeConfig();
     const layout = createProductLayout(TMP_DIR, config);
@@ -200,6 +239,27 @@ describe('writeCompilationUnits', () => {
     const schemaPath = join(layout.schemasDir, 'CounterViewModel.schema.json');
     expect(existsSync(schemaPath)).toBe(true);
     const schema = JSON.parse(readFileSync(schemaPath, 'utf-8'));
+    expect(schema.className).toBe('CounterViewModel');
+  });
+
+  test('BP-16a: writes schema files to the unit schemaOutputPath', () => {
+    const config = makeConfig();
+    const layout = createProductLayout(TMP_DIR, config);
+    materializeLayout(layout);
+
+    const nestedSchemaPath = join(layout.schemasDir, 'viewmodels', 'CounterViewModel.schema.json');
+    const result = makeCompilationResult({
+      units: [
+        {
+          ...makeCompilationResult().units[0]!,
+          schemaOutputPath: nestedSchemaPath,
+        },
+      ],
+    });
+    writeCompilationUnits(layout, result.units, false);
+
+    expect(existsSync(nestedSchemaPath)).toBe(true);
+    const schema = JSON.parse(readFileSync(nestedSchemaPath, 'utf-8'));
     expect(schema.className).toBe('CounterViewModel');
   });
 
