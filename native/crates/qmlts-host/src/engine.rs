@@ -641,6 +641,30 @@ impl QmltsEngine {
             .map(list_model::ListModelHandle::as_ptr)
     }
 
+    /// Set a list model as a QML context property.
+    ///
+    /// # Errors
+    ///
+    /// Returns an error if `model_id` is invalid or if the engine is not
+    /// initialized.
+    pub fn set_list_model_context_property(
+        &mut self,
+        name: &str,
+        model_id: usize,
+    ) -> Result<()> {
+        let ptr = self.list_model_ptr(model_id).ok_or_else(|| {
+            QmltsError::ListModelError(format!("List model id={model_id} not found"))
+        })?;
+        let ok = unsafe { qt_context::set_context_property(self.engine_ptr, name, ptr) };
+        if ok {
+            Ok(())
+        } else {
+            Err(QmltsError::ListModelError(format!(
+                "Failed to set list model id={model_id} as context property '{name}'"
+            )))
+        }
+    }
+
     /// Check whether a QML context property is currently published.
     #[must_use]
     pub fn has_context_property(&self, name: &str) -> bool {
