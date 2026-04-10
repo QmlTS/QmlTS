@@ -86,6 +86,28 @@ unsafe extern "C" {
         payload_json: *const std::ffi::c_char,
         param_types_json: *const std::ffi::c_char,
     ) -> bool;
+    fn qmlts_create_list_model(schema_json: *const std::ffi::c_char) -> *mut c_void;
+    fn qmlts_destroy_list_model(model_ptr: *mut c_void);
+    fn qmlts_list_set_data(model_ptr: *mut c_void, json_array: *const std::ffi::c_char);
+    fn qmlts_list_insert_rows(
+        model_ptr: *mut c_void,
+        index: i32,
+        json_rows: *const std::ffi::c_char,
+    ) -> bool;
+    fn qmlts_list_remove_rows(model_ptr: *mut c_void, index: i32, count: i32) -> bool;
+    fn qmlts_list_update_row(
+        model_ptr: *mut c_void,
+        index: i32,
+        json_data: *const std::ffi::c_char,
+    ) -> bool;
+    fn qmlts_list_move_rows(
+        model_ptr: *mut c_void,
+        source_row: i32,
+        dest_row: i32,
+        count: i32,
+    ) -> bool;
+    fn qmlts_list_row_count(model_ptr: *mut c_void) -> i32;
+    fn qmlts_list_get_row(model_ptr: *mut c_void, index: i32) -> *mut std::ffi::c_char;
 }
 
 #[cfg(not(feature = "mock-qt"))]
@@ -379,6 +401,82 @@ pub fn emit_signal(
     unsafe { qmlts_emit_signal(qobject_ptr, c_name.as_ptr(), json_ptr, types_ptr) }
 }
 
+// ─────────────────────────────────────────────────────────────────────────
+//  List model FFI wrappers (real Qt)
+// ─────────────────────────────────────────────────────────────────────────
+
+#[cfg(not(feature = "mock-qt"))]
+#[allow(dead_code)]
+#[must_use]
+pub fn create_list_model(schema_json: &str) -> *mut c_void {
+    let c_json = CString::new(schema_json).expect("schema JSON must not contain NUL");
+    unsafe { qmlts_create_list_model(c_json.as_ptr()) }
+}
+
+#[cfg(not(feature = "mock-qt"))]
+#[allow(dead_code)]
+pub fn destroy_list_model(model_ptr: *mut c_void) {
+    unsafe { qmlts_destroy_list_model(model_ptr) }
+}
+
+#[cfg(not(feature = "mock-qt"))]
+#[allow(dead_code)]
+pub fn list_set_data(model_ptr: *mut c_void, json_array: &str) {
+    let c_json = CString::new(json_array).expect("JSON array must not contain NUL");
+    unsafe { qmlts_list_set_data(model_ptr, c_json.as_ptr()) }
+}
+
+#[cfg(not(feature = "mock-qt"))]
+#[allow(dead_code)]
+#[must_use]
+pub fn list_insert_rows(model_ptr: *mut c_void, index: i32, json_rows: &str) -> bool {
+    let c_json = CString::new(json_rows).expect("JSON rows must not contain NUL");
+    unsafe { qmlts_list_insert_rows(model_ptr, index, c_json.as_ptr()) }
+}
+
+#[cfg(not(feature = "mock-qt"))]
+#[allow(dead_code)]
+#[must_use]
+pub fn list_remove_rows(model_ptr: *mut c_void, index: i32, count: i32) -> bool {
+    unsafe { qmlts_list_remove_rows(model_ptr, index, count) }
+}
+
+#[cfg(not(feature = "mock-qt"))]
+#[allow(dead_code)]
+#[must_use]
+pub fn list_update_row(model_ptr: *mut c_void, index: i32, json_data: &str) -> bool {
+    let c_json = CString::new(json_data).expect("JSON data must not contain NUL");
+    unsafe { qmlts_list_update_row(model_ptr, index, c_json.as_ptr()) }
+}
+
+#[cfg(not(feature = "mock-qt"))]
+#[allow(dead_code)]
+#[must_use]
+pub fn list_move_rows(model_ptr: *mut c_void, source: i32, dest: i32, count: i32) -> bool {
+    unsafe { qmlts_list_move_rows(model_ptr, source, dest, count) }
+}
+
+#[cfg(not(feature = "mock-qt"))]
+#[allow(dead_code)]
+#[must_use]
+pub fn list_row_count(model_ptr: *mut c_void) -> i32 {
+    unsafe { qmlts_list_row_count(model_ptr) }
+}
+
+#[cfg(not(feature = "mock-qt"))]
+#[allow(dead_code)]
+pub fn list_get_row(model_ptr: *mut c_void, index: i32) -> Option<String> {
+    let ptr = unsafe { qmlts_list_get_row(model_ptr, index) };
+    if ptr.is_null() {
+        return None;
+    }
+    let s = unsafe { std::ffi::CStr::from_ptr(ptr) }
+        .to_string_lossy()
+        .into_owned();
+    unsafe { qmlts_free_string(ptr) };
+    Some(s)
+}
+
 // Mock implementations for testing without Qt
 #[cfg(feature = "mock-qt")]
 #[allow(dead_code)]
@@ -486,6 +584,82 @@ pub fn emit_signal(
 ) -> bool {
     tracing::debug!("Mock: emit_signal('{signal_name}', {:?})", payload_json);
     true
+}
+
+// ─────────────────────────────────────────────────────────────────────────
+//  List model mock wrappers
+// ─────────────────────────────────────────────────────────────────────────
+
+#[cfg(feature = "mock-qt")]
+#[allow(dead_code)]
+#[must_use]
+pub fn create_list_model(schema_json: &str) -> *mut c_void {
+    tracing::debug!("Mock: create_list_model('{schema_json}')");
+    // Return a heap-allocated fake pointer
+    Box::into_raw(Box::new(0u8)) as *mut c_void
+}
+
+#[cfg(feature = "mock-qt")]
+#[allow(dead_code)]
+pub fn destroy_list_model(model_ptr: *mut c_void) {
+    tracing::debug!("Mock: destroy_list_model");
+    if !model_ptr.is_null() {
+        // Free the fake pointer
+        drop(unsafe { Box::from_raw(model_ptr as *mut u8) });
+    }
+}
+
+#[cfg(feature = "mock-qt")]
+#[allow(dead_code)]
+pub fn list_set_data(_model_ptr: *mut c_void, json_array: &str) {
+    tracing::debug!("Mock: list_set_data('{json_array}')");
+}
+
+#[cfg(feature = "mock-qt")]
+#[allow(dead_code)]
+#[must_use]
+pub fn list_insert_rows(_model_ptr: *mut c_void, index: i32, json_rows: &str) -> bool {
+    tracing::debug!("Mock: list_insert_rows({index}, '{json_rows}')");
+    true
+}
+
+#[cfg(feature = "mock-qt")]
+#[allow(dead_code)]
+#[must_use]
+pub fn list_remove_rows(_model_ptr: *mut c_void, index: i32, count: i32) -> bool {
+    tracing::debug!("Mock: list_remove_rows({index}, {count})");
+    true
+}
+
+#[cfg(feature = "mock-qt")]
+#[allow(dead_code)]
+#[must_use]
+pub fn list_update_row(_model_ptr: *mut c_void, index: i32, json_data: &str) -> bool {
+    tracing::debug!("Mock: list_update_row({index}, '{json_data}')");
+    true
+}
+
+#[cfg(feature = "mock-qt")]
+#[allow(dead_code)]
+#[must_use]
+pub fn list_move_rows(_model_ptr: *mut c_void, source: i32, dest: i32, count: i32) -> bool {
+    tracing::debug!("Mock: list_move_rows({source}, {dest}, {count})");
+    true
+}
+
+#[cfg(feature = "mock-qt")]
+#[allow(dead_code)]
+#[must_use]
+pub fn list_row_count(_model_ptr: *mut c_void) -> i32 {
+    tracing::debug!("Mock: list_row_count");
+    0
+}
+
+#[cfg(feature = "mock-qt")]
+#[allow(dead_code)]
+pub fn list_get_row(_model_ptr: *mut c_void, _index: i32) -> Option<String> {
+    tracing::debug!("Mock: list_get_row");
+    Some("{}".to_string())
 }
 
 #[cfg(test)]
