@@ -7,12 +7,9 @@ describe('EntryGenerator', () => {
 
   function makeOptions(overrides: Partial<EntryGeneratorOptions> = {}): EntryGeneratorOptions {
     return {
-      compiledViewModels: [
-        { className: 'CounterViewModel', schemaFile: 'schemas/CounterViewModel.schema.json' },
-      ],
+      compiledViewModels: [{ className: 'CounterViewModel' }],
       mainQml: './qml/CounterView.qml',
       qmlImportPaths: [],
-      eventBindingsFile: './event-bindings.json',
       ...overrides,
     };
   }
@@ -21,9 +18,10 @@ describe('EntryGenerator', () => {
   test('BP-67: generates entry file with host creation and QML loading', () => {
     const code = generator.generate(makeOptions());
 
-    expect(code).toContain("import { createHost } from '@qmlts/host'");
-    expect(code).toContain('const host = createHost(');
-    expect(code).toContain('host.loadQml("./qml/CounterView.qml")');
+    expect(code).toContain("import { QmltsHost } from '@qmlts/host'");
+    expect(code).toContain('const host = new QmltsHost(');
+    expect(code).toContain('const distDir = dirname(fileURLToPath(import.meta.url));');
+    expect(code).toContain(`host.loadFile(join(distDir, "qml/CounterView.qml"))`);
     expect(code).toContain('host.exec()');
   });
 
@@ -31,8 +29,8 @@ describe('EntryGenerator', () => {
   test('BP-68: registers ViewModels in entry file', () => {
     const code = generator.generate(makeOptions());
 
-    expect(code).toContain('import { CounterViewModel }');
-    expect(code).toContain('host.registerViewModel("CounterViewModel", CounterViewModel)');
+    expect(code).not.toContain('import { CounterViewModel }');
+    expect(code).toContain('host.registerViewModel("CounterViewModel")');
   });
 
   // ─── BP-69: Multiple ViewModels ──────────────────────────
@@ -40,8 +38,8 @@ describe('EntryGenerator', () => {
     const code = generator.generate(
       makeOptions({
         compiledViewModels: [
-          { className: 'CounterViewModel', schemaFile: 'schemas/CounterViewModel.schema.json' },
-          { className: 'TodoViewModel', schemaFile: 'schemas/TodoViewModel.schema.json' },
+          { className: 'CounterViewModel' },
+          { className: 'TodoViewModel' },
         ],
       }),
     );
@@ -56,18 +54,20 @@ describe('EntryGenerator', () => {
   test('BP-70: generates valid entry file with no ViewModels', () => {
     const code = generator.generate(makeOptions({ compiledViewModels: [] }));
 
-    expect(code).toContain("import { createHost } from '@qmlts/host'");
-    expect(code).toContain('const host = createHost(');
-    expect(code).toContain('host.loadQml');
+    expect(code).toContain("import { QmltsHost } from '@qmlts/host'");
+    expect(code).toContain('const host = new QmltsHost(');
+    expect(code).toContain('host.loadFile');
     expect(code).toContain('host.exec()');
     expect(code).not.toContain('registerViewModel');
   });
 
-  // ─── BP-71: Event bindings file ──────────────────────────
-  test('BP-71: loads event bindings file', () => {
+  // ─── BP-71: Generated entry sticks to real host API ──────
+  test('BP-71: does not emit unsupported host APIs', () => {
     const code = generator.generate(makeOptions());
 
-    expect(code).toContain('host.loadEventBindings("./event-bindings.json")');
+    expect(code).not.toContain('createHost(');
+    expect(code).not.toContain('host.loadEventBindings');
+    expect(code).not.toContain('host.loadQml(');
   });
 
   // ─── BP-72: QML import paths ─────────────────────────────
@@ -127,10 +127,7 @@ describe('EntryGenerator', () => {
     const code = generator.generate(
       makeOptions({
         mainQml: '.\\qml\\Main.qml',
-        eventBindingsFile: '.\\bindings\\events.json',
-        compiledViewModels: [
-          { className: 'MainViewModel', schemaFile: 'schemas\\MainViewModel.schema.json' },
-        ],
+        compiledViewModels: [{ className: 'MainViewModel' }],
       }),
     );
 

@@ -127,6 +127,9 @@ export interface ResolvedPackageInfo {
   readonly version: string;
   readonly dir: string;
   readonly manifest: QmltsPackageManifest;
+  readonly qmlImportPath?: string;
+  readonly nativeLibPath?: string;
+  readonly dslEntryPath?: string;
 }
 
 export interface ResolvedPackages {
@@ -154,10 +157,8 @@ export interface BundleResult {
 export interface EntryGeneratorOptions {
   readonly compiledViewModels: readonly {
     readonly className: string;
-    readonly schemaFile: string;
   }[];
   readonly mainQml: string;
   readonly qmlImportPaths: readonly string[];
-  readonly eventBindingsFile: string;
   readonly packages?: ResolvedPackages;
 }

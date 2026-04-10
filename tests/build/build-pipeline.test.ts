@@ -193,6 +193,93 @@ function writeSyntaxFailingProject(): { projectDir: string; srcDir: string } {
   return { projectDir, srcDir };
 }
 
+function writeIntegratedProject(): { projectDir: string; srcDir: string } {
+  const projectDir = join(TMP_DIR, 'integrated-project');
+  const srcDir = join(projectDir, 'src');
+  const dslDir = join(srcDir, 'dsl', 'generated', 'QtQuick');
+  const assetsDir = join(projectDir, 'assets');
+  const packageQmlDir = join(
+    projectDir,
+    'node_modules',
+    '@qmlts',
+    'controls',
+    'qml',
+    'FancyControls',
+  );
+  const packageDslDir = join(projectDir, 'node_modules', '@qmlts', 'controls', 'dsl');
+  mkdirSync(dslDir, { recursive: true });
+  mkdirSync(assetsDir, { recursive: true });
+  mkdirSync(packageQmlDir, { recursive: true });
+  mkdirSync(packageDslDir, { recursive: true });
+
+  writeFileSync(
+    join(projectDir, 'tsconfig.json'),
+    JSON.stringify(
+      {
+        compilerOptions: {
+          target: 'ESNext',
+          module: 'ESNext',
+          moduleResolution: 'bundler',
+          experimentalDecorators: true,
+          strict: false,
+          skipLibCheck: true,
+          noEmit: true,
+          types: [],
+        },
+        include: ['src/**/*.ts'],
+      },
+      null,
+      2,
+    ),
+    'utf-8',
+  );
+
+  writeFileSync(
+    join(dslDir, 'Rectangle.ts'),
+    readFileSync(
+      join(FIXTURES_DIR, 'src', 'dsl', 'generated', 'QtQuick', 'Rectangle.ts'),
+      'utf-8',
+    ),
+  );
+  writeFileSync(
+    join(dslDir, 'Text.ts'),
+    readFileSync(join(FIXTURES_DIR, 'src', 'dsl', 'generated', 'QtQuick', 'Text.ts'), 'utf-8'),
+  );
+  writeFileSync(
+    join(srcDir, 'CounterViewModel.ts'),
+    readFileSync(join(FIXTURES_DIR, 'src', 'CounterViewModel.ts'), 'utf-8'),
+  );
+  writeFileSync(
+    join(srcDir, 'CounterView.ts'),
+    readFileSync(join(FIXTURES_DIR, 'src', 'CounterView.ts'), 'utf-8'),
+  );
+  writeFileSync(join(assetsDir, 'logo.txt'), 'asset-bundle-ok\n', 'utf-8');
+  writeFileSync(join(packageQmlDir, 'qmldir'), 'module FancyControls\n', 'utf-8');
+  writeFileSync(
+    join(packageQmlDir, 'FancyButton.qml'),
+    'import QtQuick\nItem { property string label: "ok" }\n',
+    'utf-8',
+  );
+  writeFileSync(join(packageDslDir, 'index.ts'), 'export const controlsDsl = true;\n', 'utf-8');
+  writeFileSync(
+    join(projectDir, 'node_modules', '@qmlts', 'controls', 'package.json'),
+    JSON.stringify({ name: '@qmlts/controls', version: '0.2.0' }),
+    'utf-8',
+  );
+  writeFileSync(
+    join(projectDir, 'node_modules', '@qmlts', 'controls', 'qmlts.manifest.json'),
+    JSON.stringify({
+      qmlModules: ['FancyControls'],
+      qmlImportPath: './qml',
+      dslEntry: './dsl/index.ts',
+      minQtVersion: '6.5.0',
+    }),
+    'utf-8',
+  );
+
+  return { projectDir, srcDir };
+}
+
 // ─── Tests ──────────────────────────────────────────────────
 
 describe('BuildPipeline', () => {
@@ -310,7 +397,10 @@ describe('BuildPipeline', () => {
 
     expect(result.success).toBe(true);
     expect(existsSync(result.output.entryFile)).toBe(true);
-    expect(readFileSync(result.output.entryFile, 'utf-8')).toContain('CounterView');
+    const entryContent = readFileSync(result.output.entryFile, 'utf-8');
+    expect(entryContent).toContain('new QmltsHost');
+    expect(entryContent).toContain('host.loadFile');
+    expect(entryContent).toContain('CounterView');
   });
 
   test('BP-24b: generated entry prefers the configured entry unit as mainQml', async () => {
@@ -326,7 +416,37 @@ describe('BuildPipeline', () => {
 
     expect(result.success).toBe(true);
     const entryContent = readFileSync(result.output.entryFile, 'utf-8');
-    expect(entryContent).toContain('host.loadQml("./qml/SecondaryView.qml")');
+    expect(entryContent).toContain('host.loadFile(join(distDir, "qml/SecondaryView.qml"))');
+    expect(entryContent).not.toContain('loadEventBindings');
+    expect(entryContent).not.toContain('createHost(');
+  });
+
+  test('BP-24c: pipeline copies package QML modules and bundles assets into dist', async () => {
+    const { projectDir, srcDir } = writeIntegratedProject();
+    const config = makeConfig({
+      entry: join(srcDir, 'CounterView.ts'),
+      outDir: join(TMP_DIR, 'dist-integrated'),
+      configDir: projectDir,
+      assets: {
+        dir: join(projectDir, 'assets'),
+        include: ['**/*'],
+        exclude: [],
+        useQrc: true,
+        optimize: false,
+      },
+    });
+    const pipeline = createBuildPipeline(config);
+
+    const result = await pipeline.run();
+
+    expect(result.success).toBe(true);
+    expect(existsSync(join(config.outDir, 'assets', 'logo.txt'))).toBe(true);
+    expect(existsSync(join(config.outDir, 'assets', 'assets.qrc'))).toBe(true);
+    expect(existsSync(join(config.outDir, 'qml', 'FancyControls', 'FancyButton.qml'))).toBe(true);
+
+    const entryContent = readFileSync(result.output.entryFile, 'utf-8');
+    expect(entryContent).toContain('join(distDir, \'qml\')');
+    expect(entryContent).toContain('host.registerViewModel("CounterViewModel")');
   });
 
   test('BP-25: schema files are written to schemasDir', async () => {

@@ -1,4 +1,13 @@
-import { existsSync, mkdirSync, mkdtempSync, rmSync, writeFileSync } from 'node:fs';
+import {
+  copyFileSync,
+  existsSync,
+  mkdirSync,
+  mkdtempSync,
+  readdirSync,
+  rmSync,
+  statSync,
+  writeFileSync,
+} from 'node:fs';
 import { tmpdir } from 'node:os';
 import { dirname, join, parse, relative, resolve } from 'node:path';
 import type { Diagnostic } from '../compiler/diagnostics.js';
@@ -389,6 +398,7 @@ function phaseWriteOutput(ctx: PhaseContext): Promise<{ diagnostics: readonly Di
 
   materializeLayout(layout);
 
+  copyResolvedPackageQmlImports(layout, ctx.resolvedPackages);
   writeCompilationUnits(layout, ctx.compilationResult.units, ctx.config.build.sourceMaps);
   writeEventBindings(layout, ctx.compilationResult.eventBindings);
 
@@ -398,7 +408,6 @@ function phaseWriteOutput(ctx: PhaseContext): Promise<{ diagnostics: readonly Di
     .filter((u) => u.schema)
     .map((u) => ({
       className: u.schema!.className,
-      schemaFile: relative(layout.rootDir, u.schemaOutputPath ?? '').replace(/\\/g, '/'),
     }));
 
   const entrySourceFile = resolve(ctx.config.entry);
@@ -409,13 +418,12 @@ function phaseWriteOutput(ctx: PhaseContext): Promise<{ diagnostics: readonly Di
     ? `./${relative(layout.rootDir, mainUnit.qmlOutputPath).replace(/\\/g, '/')}`
     : './main.qml';
 
-  const qmlImportPaths = [...(ctx.config.qmlModulePaths ?? [])];
+  const qmlImportPaths = collectQmlImportPaths(ctx);
 
   const entryContent = generator.generate({
     compiledViewModels,
     mainQml,
     qmlImportPaths,
-    eventBindingsFile: `./${relative(layout.rootDir, layout.eventBindings).replace(/\\/g, '/')}`,
     packages: ctx.resolvedPackages,
   });
 
@@ -503,7 +511,7 @@ async function runQtValidation(
     lint: false,
     format: ctx.config.build.format,
     importScan: true,
-    importPaths: ctx.config.qmlModulePaths,
+    importPaths: collectQmlImportPaths(ctx),
   });
 
   diagnostics.push(
@@ -596,6 +604,70 @@ function mapDiagnosticsToFinalPaths(
       ? { ...diagnostic, file: validationFileMap.get(diagnostic.file)! }
       : diagnostic,
   );
+}
+
+function collectQmlImportPaths(ctx: PhaseContext): string[] {
+  const paths: string[] = [];
+  const seenPaths = new Set<string>();
+
+  for (const path of ctx.config.qmlModulePaths) {
+    if (!seenPaths.has(path)) {
+      seenPaths.add(path);
+      paths.push(path);
+    }
+  }
+
+  if (ctx.resolvedPackages) {
+    for (const path of ctx.resolvedPackages.qmlImportPaths) {
+      if (!seenPaths.has(path)) {
+        seenPaths.add(path);
+        paths.push(path);
+      }
+    }
+  }
+
+  return paths;
+}
+
+function copyResolvedPackageQmlImports(
+  layout: ProductLayout,
+  resolvedPackages: ResolvedPackages | undefined,
+): void {
+  if (!resolvedPackages) {
+    return;
+  }
+
+  const copiedRoots = new Set<string>();
+  for (const pkg of resolvedPackages.packages) {
+    if (!pkg.qmlImportPath || copiedRoots.has(pkg.qmlImportPath)) {
+      continue;
+    }
+    copiedRoots.add(pkg.qmlImportPath);
+    copyDirectoryContents(pkg.qmlImportPath, layout.qmlDir);
+  }
+}
+
+function copyDirectoryContents(sourceDir: string, targetDir: string): void {
+  if (!existsSync(sourceDir) || !statSync(sourceDir).isDirectory()) {
+    return;
+  }
+
+  const entries = readdirSync(sourceDir, { withFileTypes: true });
+  for (const entry of entries) {
+    const sourcePath = join(sourceDir, entry.name);
+    const targetPath = join(targetDir, entry.name);
+
+    if (entry.isDirectory()) {
+      mkdirSync(targetPath, { recursive: true });
+      copyDirectoryContents(sourcePath, targetPath);
+      continue;
+    }
+
+    if (entry.isFile()) {
+      mkdirSync(dirname(targetPath), { recursive: true });
+      copyFileSync(sourcePath, targetPath);
+    }
+  }
 }
 
 // ─── Pipeline factory ───────────────────────────────────────

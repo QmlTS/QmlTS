@@ -92,30 +92,58 @@ function currentPlatformKey(): 'win32' | 'linux' | 'darwin' {
 function mergePackages(packages: readonly ResolvedPackageInfo[]): ResolvedPackages {
   const qmlImportPaths: string[] = [];
   const nativeLibPaths: string[] = [];
+  const seenImportPaths = new Set<string>();
+  const seenNativeLibPaths = new Set<string>();
   const platformKey = currentPlatformKey();
+  const resolvedPackages: ResolvedPackageInfo[] = [];
 
   for (const pkg of packages) {
     const m = pkg.manifest;
+    let qmlImportPath: string | undefined;
+    let nativeLibPath: string | undefined;
+    let dslEntryPath: string | undefined;
 
     if (m.qmlImportPath) {
       const importPath = resolve(pkg.dir, m.qmlImportPath);
       if (existsSync(importPath)) {
-        qmlImportPaths.push(importPath);
+        qmlImportPath = importPath;
+        if (!seenImportPaths.has(importPath)) {
+          seenImportPaths.add(importPath);
+          qmlImportPaths.push(importPath);
+        }
       }
     }
 
     if (m.nativeLib) {
       const nativeLibRelative = m.nativeLib[platformKey];
       if (nativeLibRelative) {
-        const nativeLibPath = resolve(pkg.dir, nativeLibRelative);
-        if (existsSync(nativeLibPath)) {
-          nativeLibPaths.push(nativeLibPath);
+        const resolvedNativeLibPath = resolve(pkg.dir, nativeLibRelative);
+        if (existsSync(resolvedNativeLibPath)) {
+          nativeLibPath = resolvedNativeLibPath;
+          if (!seenNativeLibPaths.has(resolvedNativeLibPath)) {
+            seenNativeLibPaths.add(resolvedNativeLibPath);
+            nativeLibPaths.push(resolvedNativeLibPath);
+          }
         }
       }
     }
+
+    if (m.dslEntry) {
+      const resolvedDslEntryPath = resolve(pkg.dir, m.dslEntry);
+      if (existsSync(resolvedDslEntryPath)) {
+        dslEntryPath = resolvedDslEntryPath;
+      }
+    }
+
+    resolvedPackages.push({
+      ...pkg,
+      qmlImportPath,
+      nativeLibPath,
+      dslEntryPath,
+    });
   }
 
-  return { packages, qmlImportPaths, nativeLibPaths };
+  return { packages: resolvedPackages, qmlImportPaths, nativeLibPaths };
 }
 
 export function checkQtVersionCompatibility(

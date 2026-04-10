@@ -29,6 +29,7 @@ function createPkgProject(): string {
   const chartsDir = join(qmltsDir, 'charts');
   mkdirSync(join(chartsDir, 'qml'), { recursive: true });
   mkdirSync(join(chartsDir, 'lib'), { recursive: true });
+  mkdirSync(join(chartsDir, 'dsl'), { recursive: true });
   writeFileSync(
     join(chartsDir, 'package.json'),
     JSON.stringify({ name: '@qmlts/charts', version: '1.2.0' }),
@@ -50,6 +51,7 @@ function createPkgProject(): string {
   writeFileSync(join(chartsDir, 'lib', 'charts.dll'), '');
   writeFileSync(join(chartsDir, 'lib', 'libcharts.so'), '');
   writeFileSync(join(chartsDir, 'lib', 'libcharts.dylib'), '');
+  writeFileSync(join(chartsDir, 'dsl', 'index.ts'), 'export const chartsDsl = true;\n');
 
   // @qmlts/widgets — has qmlts.manifest.json, no qml dir
   const widgetsDir = join(qmltsDir, 'widgets');
@@ -130,6 +132,8 @@ describe('PackageResolver', () => {
     expect(charts!.manifest.minQtVersion).toBe('6.5.0');
     expect(charts!.manifest.nativeLib).toBeDefined();
     expect(charts!.manifest.qmlImportPath).toBe('./qml');
+    expect(charts!.qmlImportPath).toBe(resolve(charts!.dir, 'qml'));
+    expect(charts!.dslEntryPath).toBe(resolve(charts!.dir, 'dsl', 'index.ts'));
   });
 
   // ─── BP-44: Fallback to package.json qmlts field ─────────
@@ -163,6 +167,15 @@ describe('PackageResolver', () => {
       expect(typeof p).toBe('string');
       expect(p.length).toBeGreaterThan(0);
     }
+  });
+
+  test('BP-46a: resolves DSL entry paths when the target file exists', async () => {
+    const projectDir = createPkgProject();
+    const result = await resolver.resolve(projectDir);
+    const charts = result.packages.find((p) => p.name === '@qmlts/charts');
+
+    expect(charts?.dslEntryPath).toBeDefined();
+    expect(charts?.dslEntryPath).toBe(resolve(charts!.dir, 'dsl', 'index.ts'));
   });
 
   // ─── BP-47: Native lib path handling ─────────────────────
