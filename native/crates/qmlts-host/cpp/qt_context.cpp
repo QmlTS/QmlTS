@@ -502,8 +502,8 @@ bool qmlts_emit_signal(void* qobject_ptr, const char* signal_name,
         int ints[10];
         double doubles[10];
         bool bools[10];
-
-        QGenericArgument args[10];
+        // Track which type each param uses: 0=string, 1=int, 2=double, 3=bool
+        int types[10] = {};
 
         for (int i = 0; i < count; ++i) {
             const QJsonObject paramDef = paramTypes[i].toObject();
@@ -512,34 +512,57 @@ bool qmlts_emit_signal(void* qobject_ptr, const char* signal_name,
 
             if (type == "string") {
                 strings[i] = val.toString();
-                args[i] = Q_ARG(QString, strings[i]);
+                types[i] = 0;
             } else if (type == "int") {
                 ints[i] = val.toInt();
-                args[i] = Q_ARG(int, ints[i]);
+                types[i] = 1;
             } else if (type == "number" || type == "double") {
                 doubles[i] = val.toDouble();
-                args[i] = Q_ARG(double, doubles[i]);
+                types[i] = 2;
             } else if (type == "boolean") {
                 bools[i] = val.toBool();
-                args[i] = Q_ARG(bool, bools[i]);
+                types[i] = 3;
             } else {
                 // Unknown type — try QString fallback
                 strings[i] = val.toString();
-                args[i] = Q_ARG(QString, strings[i]);
+                types[i] = 0;
             }
         }
 
-        return QMetaObject::invokeMethod(object, signal_name,
-            args[0],
-            count > 1 ? args[1] : QGenericArgument(),
-            count > 2 ? args[2] : QGenericArgument(),
-            count > 3 ? args[3] : QGenericArgument(),
-            count > 4 ? args[4] : QGenericArgument(),
-            count > 5 ? args[5] : QGenericArgument(),
-            count > 6 ? args[6] : QGenericArgument(),
-            count > 7 ? args[7] : QGenericArgument(),
-            count > 8 ? args[8] : QGenericArgument(),
-            count > 9 ? args[9] : QGenericArgument());
+        // Helper macro to produce Q_ARG for the i-th param based on its type
+        #define QMLTS_ARG(i) \
+            (types[i] == 0 ? Q_ARG(QString, strings[i]) : \
+             types[i] == 1 ? Q_ARG(int, ints[i]) : \
+             types[i] == 2 ? Q_ARG(double, doubles[i]) : \
+                             Q_ARG(bool, bools[i]))
+
+        // Qt 6.11 Q_ARG returns QMetaMethodArgument (not storable in arrays),
+        // so we must expand the correct number of args directly:
+        switch (count) {
+            case 1:
+                return QMetaObject::invokeMethod(object, signal_name, QMLTS_ARG(0));
+            case 2:
+                return QMetaObject::invokeMethod(object, signal_name, QMLTS_ARG(0), QMLTS_ARG(1));
+            case 3:
+                return QMetaObject::invokeMethod(object, signal_name, QMLTS_ARG(0), QMLTS_ARG(1), QMLTS_ARG(2));
+            case 4:
+                return QMetaObject::invokeMethod(object, signal_name, QMLTS_ARG(0), QMLTS_ARG(1), QMLTS_ARG(2), QMLTS_ARG(3));
+            case 5:
+                return QMetaObject::invokeMethod(object, signal_name, QMLTS_ARG(0), QMLTS_ARG(1), QMLTS_ARG(2), QMLTS_ARG(3), QMLTS_ARG(4));
+            case 6:
+                return QMetaObject::invokeMethod(object, signal_name, QMLTS_ARG(0), QMLTS_ARG(1), QMLTS_ARG(2), QMLTS_ARG(3), QMLTS_ARG(4), QMLTS_ARG(5));
+            case 7:
+                return QMetaObject::invokeMethod(object, signal_name, QMLTS_ARG(0), QMLTS_ARG(1), QMLTS_ARG(2), QMLTS_ARG(3), QMLTS_ARG(4), QMLTS_ARG(5), QMLTS_ARG(6));
+            case 8:
+                return QMetaObject::invokeMethod(object, signal_name, QMLTS_ARG(0), QMLTS_ARG(1), QMLTS_ARG(2), QMLTS_ARG(3), QMLTS_ARG(4), QMLTS_ARG(5), QMLTS_ARG(6), QMLTS_ARG(7));
+            case 9:
+                return QMetaObject::invokeMethod(object, signal_name, QMLTS_ARG(0), QMLTS_ARG(1), QMLTS_ARG(2), QMLTS_ARG(3), QMLTS_ARG(4), QMLTS_ARG(5), QMLTS_ARG(6), QMLTS_ARG(7), QMLTS_ARG(8));
+            case 10:
+                return QMetaObject::invokeMethod(object, signal_name, QMLTS_ARG(0), QMLTS_ARG(1), QMLTS_ARG(2), QMLTS_ARG(3), QMLTS_ARG(4), QMLTS_ARG(5), QMLTS_ARG(6), QMLTS_ARG(7), QMLTS_ARG(8), QMLTS_ARG(9));
+            default:
+                return false;
+        }
+        #undef QMLTS_ARG
     }
 
     // ── Single-parameter fallback (heuristic, backward-compat) ───────

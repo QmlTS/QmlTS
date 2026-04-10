@@ -243,6 +243,91 @@ describe.skipIf(!isNativeModuleAvailable)('host/qmlts-host', () => {
       host2.dispose();
     }
   });
+
+  // ─────────────────────────────────────────────────────────────────────
+  //  Step 5: List model and multi-param effect tests
+  // ─────────────────────────────────────────────────────────────────────
+
+  test('TH-22: createListModel returns valid ID', () => {
+    const host = new QmltsHost();
+    const modelId = host.createListModel(['name', 'value']);
+    expect(typeof modelId).toBe('number');
+    expect(modelId).toBeGreaterThanOrEqual(0);
+    host.dispose();
+  });
+
+  test('TH-23: setListData + listRowCount round-trip', () => {
+    const host = new QmltsHost();
+    const modelId = host.createListModel(['name']);
+    host.setListData(modelId, [{ name: 'alice' }, { name: 'bob' }]);
+    expect(host.listRowCount(modelId)).toBe(2);
+    host.dispose();
+  });
+
+  test('TH-24: insertRows + getListRow round-trip', () => {
+    const host = new QmltsHost();
+    const modelId = host.createListModel(['name', 'age']);
+    host.insertRows(modelId, 0, [{ name: 'charlie', age: 30 }]);
+    expect(host.listRowCount(modelId)).toBe(1);
+    const row = host.getListRow(modelId, 0);
+    expect(row.name).toBe('charlie');
+    host.dispose();
+  });
+
+  test('TH-25: removeRows works correctly', () => {
+    const host = new QmltsHost();
+    const modelId = host.createListModel(['name']);
+    host.setListData(modelId, [{ name: 'a' }, { name: 'b' }, { name: 'c' }]);
+    expect(host.listRowCount(modelId)).toBe(3);
+    host.removeRows(modelId, 1, 1);
+    expect(host.listRowCount(modelId)).toBe(2);
+    host.dispose();
+  });
+
+  test('TH-26: updateRow updates in-place', () => {
+    const host = new QmltsHost();
+    const modelId = host.createListModel(['name']);
+    host.setListData(modelId, [{ name: 'before' }]);
+    host.updateRow(modelId, 0, { name: 'after' });
+    const row = host.getListRow(modelId, 0);
+    expect(row.name).toBe('after');
+    expect(host.listRowCount(modelId)).toBe(1);
+    host.dispose();
+  });
+
+  test('TH-27: moveRows reorders without changing count', () => {
+    const host = new QmltsHost();
+    const modelId = host.createListModel(['name']);
+    host.setListData(modelId, [{ name: 'a' }, { name: 'b' }, { name: 'c' }]);
+    host.moveRows(modelId, 0, 2, 1);
+    expect(host.listRowCount(modelId)).toBe(3);
+    host.dispose();
+  });
+
+  test('TH-28: destroyListModel does not throw', () => {
+    const host = new QmltsHost();
+    const modelId = host.createListModel(['name']);
+    expect(() => host.destroyListModel(modelId)).not.toThrow();
+    host.dispose();
+  });
+
+  test('TH-29: multi-param emitEffect with SearchViewModel', () => {
+    const host = new QmltsHost();
+    host.registerViewModel('SearchViewModel');
+    expect(() =>
+      host.emitEffect('SearchViewModel', 'onSearchCompleted', 'test query', 42),
+    ).not.toThrow();
+    host.dispose();
+  });
+
+  test('TH-30: SearchViewModel property sync', () => {
+    const host = new QmltsHost();
+    host.registerViewModel('SearchViewModel');
+    host.syncState('SearchViewModel', 'query', 'hello world');
+    const value = host.getProperty<string>('SearchViewModel', 'query');
+    expect(value).toBe('hello world');
+    host.dispose();
+  });
 });
 
 describe('host/qmlts-host (skip check)', () => {
