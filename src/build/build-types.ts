@@ -107,3 +107,58 @@ export interface PipelineRunOptions {
   readonly files?: readonly string[];
   readonly dryRun?: boolean;
 }
+
+// ─── Package Resolution ─────────────────────────────────────
+
+export interface QmltsPackageManifest {
+  readonly qmlModules?: readonly string[];
+  readonly qmlImportPath?: string;
+  readonly nativeLib?: {
+    readonly win32?: string;
+    readonly linux?: string;
+    readonly darwin?: string;
+  };
+  readonly dslEntry?: string;
+  readonly minQtVersion?: string;
+}
+
+export interface ResolvedPackageInfo {
+  readonly name: string;
+  readonly version: string;
+  readonly dir: string;
+  readonly manifest: QmltsPackageManifest;
+  readonly qmlImportPath?: string;
+  readonly nativeLibPath?: string;
+  readonly dslEntryPath?: string;
+}
+
+export interface ResolvedPackages {
+  readonly packages: readonly ResolvedPackageInfo[];
+  readonly qmlImportPaths: readonly string[];
+  readonly nativeLibPaths: readonly string[];
+}
+
+// ─── Resource Bundling ──────────────────────────────────────
+
+export interface BundledFile {
+  readonly sourcePath: string;
+  readonly outputPath: string;
+  readonly size: number;
+}
+
+export interface BundleResult {
+  readonly files: readonly BundledFile[];
+  readonly totalSize: number;
+  readonly qrcFile?: string;
+}
+
+// ─── Entry Generation ───────────────────────────────────────
+
+export interface EntryGeneratorOptions {
+  readonly compiledViewModels: readonly {
+    readonly className: string;
+  }[];
+  readonly mainQml: string;
+  readonly qmlImportPaths: readonly string[];
+  readonly packages?: ResolvedPackages;
+}

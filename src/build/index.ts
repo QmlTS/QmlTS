@@ -12,9 +12,15 @@ export type {
   BuildPhase,
   BuildPipelineResult,
   BuildProgress,
+  BundledFile,
+  BundleResult,
+  EntryGeneratorOptions,
   PhaseResult,
   PipelineRunOptions,
   ProductLayout,
+  QmltsPackageManifest,
+  ResolvedPackageInfo,
+  ResolvedPackages,
 } from './build-types.js';
 export { BUILD_PHASES } from './build-types.js';
 export {
@@ -32,7 +38,6 @@ export {
 } from './config-defaults.js';
 export { ConfigError } from './config-error.js';
 export { loadConfig } from './config-loader.js';
-
 // ─── Types ──────────────────────────────────────────────────
 export type {
   AssetsConfig,
@@ -54,6 +59,12 @@ export type {
 } from './config-types.js';
 export { validateConfig } from './config-validator.js';
 export { defineConfig } from './define-config.js';
+// ─── Entry Generator ────────────────────────────────────────
+export type { EntryGenerator } from './entry-generator.js';
+export { createEntryGenerator } from './entry-generator.js';
+// ─── Package Resolver ───────────────────────────────────────
+export type { PackageResolver } from './package-resolver.js';
+export { checkQtVersionCompatibility, createPackageResolver } from './package-resolver.js';
 export {
   createManifest,
   createProductLayout,
@@ -64,6 +75,9 @@ export {
   writeEventBindings,
   writeManifest,
 } from './product-layout.js';
+// ─── Resource Bundler ───────────────────────────────────────
+export type { ResourceBundler } from './resource-bundler.js';
+export { createResourceBundler, dryRunBundle } from './resource-bundler.js';
 // Note: BuildConfig is not re-exported here to avoid collision with
 // registry/types.ts BuildConfig. Import directly from './config-types.js'
 // or use QmltsConfig['build'] / ResolvedBuildConfig instead.
