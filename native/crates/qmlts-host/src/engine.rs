@@ -9,6 +9,7 @@
 
 use crate::bridge_registry::BridgeRegistry;
 use crate::error::{QmltsError, Result};
+use crate::list_model;
 use crate::property_sync;
 use crate::qt_context;
 use qmlts_host_generated::{BridgeInstance, ViewModelSchema};
@@ -94,6 +95,8 @@ pub struct QmltsEngine {
     engine_ptr: *mut std::ffi::c_void,
     /// Owner token for process-global Step 4 dispatchers.
     dispatch_owner_id: usize,
+    /// Active list models managed by this engine.
+    list_models: Vec<Option<list_model::ListModelHandle>>,
 }
 
 impl QmltsEngine {
@@ -134,6 +137,7 @@ impl QmltsEngine {
             qml_loaded: false,
             engine_ptr,
             dispatch_owner_id: NEXT_DISPATCH_OWNER_ID.fetch_add(1, Ordering::Relaxed),
+            list_models: Vec::new(),
         })
     }
 
@@ -524,6 +528,117 @@ impl QmltsEngine {
                 effect.qml_name
             )))
         }
+    }
+
+    // ─────────────────────────────────────────────────────────────────────
+    //  §7 List Model Operations
+    // ─────────────────────────────────────────────────────────────────────
+
+    /// Create a new list model and return its ID (index).
+    ///
+    /// The `schema_json` must contain a `roles` array, e.g.:
+    /// `{"roles": ["name", "value"]}`.
+    pub fn create_list_model(&mut self, schema_json: &str) -> Result<usize> {
+        self.ensure_alive()?;
+        let handle = list_model::ListModelHandle::new(schema_json)?;
+        let id = self.list_models.len();
+        self.list_models.push(Some(handle));
+        tracing::debug!("Created list model id={id}");
+        Ok(id)
+    }
+
+    /// Destroy a list model by ID.
+    pub fn destroy_list_model(&mut self, model_id: usize) -> Result<()> {
+        self.ensure_alive()?;
+        let slot = self.get_list_model_slot_mut(model_id)?;
+        *slot = None;
+        tracing::debug!("Destroyed list model id={model_id}");
+        Ok(())
+    }
+
+    /// Replace all data in a list model.
+    pub fn set_list_data(&self, model_id: usize, json_array: &str) -> Result<()> {
+        self.ensure_alive()?;
+        let model = self.get_list_model(model_id)?;
+        model.set_data(json_array);
+        Ok(())
+    }
+
+    /// Insert rows into a list model at the given index.
+    pub fn insert_list_rows(&self, model_id: usize, index: i32, json_rows: &str) -> Result<()> {
+        self.ensure_alive()?;
+        let model = self.get_list_model(model_id)?;
+        model.insert_rows(index, json_rows)
+    }
+
+    /// Remove rows from a list model.
+    pub fn remove_list_rows(&self, model_id: usize, index: i32, count: i32) -> Result<()> {
+        self.ensure_alive()?;
+        let model = self.get_list_model(model_id)?;
+        model.remove_rows(index, count)
+    }
+
+    /// Update a single row in a list model.
+    pub fn update_list_row(&self, model_id: usize, index: i32, json_data: &str) -> Result<()> {
+        self.ensure_alive()?;
+        let model = self.get_list_model(model_id)?;
+        model.update_row(index, json_data)
+    }
+
+    /// Move rows within a list model.
+    pub fn move_list_rows(
+        &self,
+        model_id: usize,
+        source: i32,
+        dest: i32,
+        count: i32,
+    ) -> Result<()> {
+        self.ensure_alive()?;
+        let model = self.get_list_model(model_id)?;
+        model.move_rows(source, dest, count)
+    }
+
+    /// Get the row count of a list model.
+    pub fn list_row_count(&self, model_id: usize) -> Result<i32> {
+        self.ensure_alive()?;
+        let model = self.get_list_model(model_id)?;
+        Ok(model.row_count())
+    }
+
+    /// Get a single row from a list model as JSON.
+    pub fn get_list_row(&self, model_id: usize, index: i32) -> Result<String> {
+        self.ensure_alive()?;
+        let model = self.get_list_model(model_id)?;
+        model.get_row(index)
+    }
+
+    /// Get a reference to a list model handle by ID.
+    fn get_list_model(&self, model_id: usize) -> Result<&list_model::ListModelHandle> {
+        self.list_models
+            .get(model_id)
+            .and_then(|slot| slot.as_ref())
+            .ok_or_else(|| {
+                QmltsError::ListModelError(format!("List model id={model_id} not found"))
+            })
+    }
+
+    /// Get a mutable reference to a list model slot by ID.
+    fn get_list_model_slot_mut(
+        &mut self,
+        model_id: usize,
+    ) -> Result<&mut Option<list_model::ListModelHandle>> {
+        self.list_models.get_mut(model_id).ok_or_else(|| {
+            QmltsError::ListModelError(format!("List model id={model_id} not found"))
+        })
+    }
+
+    /// Get the raw C pointer for a list model (for QML context property binding).
+    #[must_use]
+    pub fn list_model_ptr(&self, model_id: usize) -> Option<*mut std::ffi::c_void> {
+        self.list_models
+            .get(model_id)
+            .and_then(|slot| slot.as_ref())
+            .map(list_model::ListModelHandle::as_ptr)
     }
 
     /// Check whether a QML context property is currently published.
@@ -1367,5 +1482,185 @@ mod tests {
 
         assert!(!qmlts_host_generated::dispatch::has_command_dispatcher());
         assert!(!qmlts_host_generated::dispatch::has_lifecycle_dispatcher());
+    }
+
+    // ─────────────────────────────────────────────────────────────────────
+    //  §7 List Model Tests
+    // ─────────────────────────────────────────────────────────────────────
+
+    #[test]
+    fn test_create_list_model() {
+        reset_app_initialized();
+        let mut engine = QmltsEngine::new(None).unwrap();
+        let id = engine.create_list_model(r#"{"roles": ["name", "value"]}"#);
+        assert!(id.is_ok());
+        assert_eq!(id.unwrap(), 0);
+    }
+
+    #[test]
+    fn test_create_multiple_list_models() {
+        reset_app_initialized();
+        let mut engine = QmltsEngine::new(None).unwrap();
+        let id0 = engine
+            .create_list_model(r#"{"roles": ["a"]}"#)
+            .unwrap();
+        let id1 = engine
+            .create_list_model(r#"{"roles": ["b"]}"#)
+            .unwrap();
+        assert_eq!(id0, 0);
+        assert_eq!(id1, 1);
+    }
+
+    #[test]
+    fn test_destroy_list_model() {
+        reset_app_initialized();
+        let mut engine = QmltsEngine::new(None).unwrap();
+        let id = engine
+            .create_list_model(r#"{"roles": ["name"]}"#)
+            .unwrap();
+        let result = engine.destroy_list_model(id);
+        assert!(result.is_ok());
+    }
+
+    #[test]
+    fn test_destroy_invalid_model_id() {
+        reset_app_initialized();
+        let mut engine = QmltsEngine::new(None).unwrap();
+        let result = engine.destroy_list_model(999);
+        assert!(result.is_err());
+    }
+
+    #[test]
+    fn test_set_list_data_and_row_count() {
+        reset_app_initialized();
+        let mut engine = QmltsEngine::new(None).unwrap();
+        let id = engine
+            .create_list_model(r#"{"roles": ["name"]}"#)
+            .unwrap();
+        engine
+            .set_list_data(id, r#"[{"name":"a"},{"name":"b"}]"#)
+            .unwrap();
+        // Mock always returns 0 for row_count
+        let count = engine.list_row_count(id).unwrap();
+        assert_eq!(count, 0); // mock
+    }
+
+    #[test]
+    fn test_insert_list_rows() {
+        reset_app_initialized();
+        let mut engine = QmltsEngine::new(None).unwrap();
+        let id = engine
+            .create_list_model(r#"{"roles": ["name"]}"#)
+            .unwrap();
+        let result = engine.insert_list_rows(id, 0, r#"[{"name":"c"}]"#);
+        assert!(result.is_ok());
+    }
+
+    #[test]
+    fn test_remove_list_rows() {
+        reset_app_initialized();
+        let mut engine = QmltsEngine::new(None).unwrap();
+        let id = engine
+            .create_list_model(r#"{"roles": ["name"]}"#)
+            .unwrap();
+        let result = engine.remove_list_rows(id, 0, 1);
+        assert!(result.is_ok());
+    }
+
+    #[test]
+    fn test_update_list_row() {
+        reset_app_initialized();
+        let mut engine = QmltsEngine::new(None).unwrap();
+        let id = engine
+            .create_list_model(r#"{"roles": ["name"]}"#)
+            .unwrap();
+        let result = engine.update_list_row(id, 0, r#"{"name":"updated"}"#);
+        assert!(result.is_ok());
+    }
+
+    #[test]
+    fn test_move_list_rows() {
+        reset_app_initialized();
+        let mut engine = QmltsEngine::new(None).unwrap();
+        let id = engine
+            .create_list_model(r#"{"roles": ["name"]}"#)
+            .unwrap();
+        let result = engine.move_list_rows(id, 0, 1, 1);
+        assert!(result.is_ok());
+    }
+
+    #[test]
+    fn test_get_list_row() {
+        reset_app_initialized();
+        let mut engine = QmltsEngine::new(None).unwrap();
+        let id = engine
+            .create_list_model(r#"{"roles": ["name"]}"#)
+            .unwrap();
+        let row = engine.get_list_row(id, 0);
+        assert!(row.is_ok()); // mock returns "{}"
+    }
+
+    #[test]
+    fn test_list_operations_on_invalid_id() {
+        reset_app_initialized();
+        let engine = QmltsEngine::new(None).unwrap();
+        assert!(engine.set_list_data(99, "[]").is_err());
+        assert!(engine.insert_list_rows(99, 0, "[]").is_err());
+        assert!(engine.remove_list_rows(99, 0, 1).is_err());
+        assert!(engine.update_list_row(99, 0, "{}").is_err());
+        assert!(engine.move_list_rows(99, 0, 1, 1).is_err());
+        assert!(engine.list_row_count(99).is_err());
+        assert!(engine.get_list_row(99, 0).is_err());
+    }
+
+    #[test]
+    fn test_list_model_ptr_returns_some() {
+        reset_app_initialized();
+        let mut engine = QmltsEngine::new(None).unwrap();
+        let id = engine
+            .create_list_model(r#"{"roles": ["x"]}"#)
+            .unwrap();
+        assert!(engine.list_model_ptr(id).is_some());
+    }
+
+    #[test]
+    fn test_list_model_ptr_returns_none_after_destroy() {
+        reset_app_initialized();
+        let mut engine = QmltsEngine::new(None).unwrap();
+        let id = engine
+            .create_list_model(r#"{"roles": ["x"]}"#)
+            .unwrap();
+        engine.destroy_list_model(id).unwrap();
+        assert!(engine.list_model_ptr(id).is_none());
+    }
+
+    #[cfg(feature = "mock-qt")]
+    #[test]
+    fn test_emit_effect_multi_param_search() {
+        reset_app_initialized();
+        let mut engine = QmltsEngine::new(None).unwrap();
+        engine.register_view_model("SearchViewModel").unwrap();
+
+        let result = engine.emit_effect(
+            "SearchViewModel",
+            "onSearchCompleted",
+            Some(r#"["test query", 42]"#),
+        );
+        assert!(result.is_ok());
+    }
+
+    #[cfg(feature = "mock-qt")]
+    #[test]
+    fn test_emit_effect_by_id_search() {
+        reset_app_initialized();
+        let mut engine = QmltsEngine::new(None).unwrap();
+        engine.register_view_model("SearchViewModel").unwrap();
+
+        let result = engine.emit_effect_by_id(
+            "SearchViewModel",
+            1_234_567_890,
+            Some(r#"["query text", 100]"#),
+        );
+        assert!(result.is_ok());
     }
 }
