@@ -1,5 +1,5 @@
 import { afterEach, beforeEach, describe, expect, test } from 'bun:test';
-import { existsSync, readFileSync, rmSync } from 'node:fs';
+import { existsSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { join, resolve } from 'node:path';
 import type { BuildManifest } from '../../src/build/build-types.js';
 import { applyDefaults } from '../../src/build/config-defaults.js';
@@ -10,6 +10,7 @@ import {
   hostLibFilename,
   materializeLayout,
   writeCompilationUnits,
+  writeEntryFile,
   writeEventBindings,
   writeManifest,
 } from '../../src/build/product-layout.js';
@@ -284,6 +285,23 @@ describe('writeCompilationUnits', () => {
 
     const mapPath = join(layout.sourceMapsDir!, 'CounterView.qml.map');
     expect(existsSync(mapPath)).toBe(true);
+  });
+});
+
+describe('writeEntryFile', () => {
+  test('BP-17a: copies the entry file into the product layout', () => {
+    const config = makeConfig();
+    const layout = createProductLayout(TMP_DIR, config);
+    materializeLayout(layout);
+
+    const sourceEntry = join(TMP_DIR, 'source-entry.ts');
+    rmSync(sourceEntry, { force: true });
+    writeFileSync(sourceEntry, 'export const boot = true;\n', 'utf-8');
+
+    writeEntryFile(layout, sourceEntry);
+
+    expect(existsSync(layout.entryFile)).toBe(true);
+    expect(readFileSync(layout.entryFile, 'utf-8')).toContain('boot = true');
   });
 });
 

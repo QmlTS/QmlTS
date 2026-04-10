@@ -9,6 +9,7 @@ import type { ResolvedQmltsConfig } from '../../src/build/config-types.js';
 
 const FIXTURES_DIR = resolve(__dirname, 'fixtures', 'sample-project');
 const TMP_DIR = resolve(__dirname, '.tmp-build-pipeline');
+const QT_DIR = process.env['QT_DIR'];
 
 // ─── Helpers ────────────────────────────────────────────────
 
@@ -141,6 +142,57 @@ function writeSelectiveProject(): { projectDir: string; srcDir: string } {
   return { projectDir, srcDir };
 }
 
+function writeSyntaxFailingProject(): { projectDir: string; srcDir: string } {
+  const projectDir = join(TMP_DIR, 'syntax-failing-project');
+  const srcDir = join(projectDir, 'src');
+  const dslDir = join(srcDir, 'dsl', 'generated', 'QtQuick');
+  mkdirSync(dslDir, { recursive: true });
+
+  writeFileSync(
+    join(projectDir, 'tsconfig.json'),
+    JSON.stringify(
+      {
+        compilerOptions: {
+          target: 'ESNext',
+          module: 'ESNext',
+          moduleResolution: 'bundler',
+          experimentalDecorators: true,
+          strict: false,
+          skipLibCheck: true,
+          noEmit: true,
+          types: [],
+        },
+        include: ['src/**/*.ts'],
+      },
+      null,
+      2,
+    ),
+    'utf-8',
+  );
+
+  writeFileSync(
+    join(dslDir, 'Rectangle.ts'),
+    readFileSync(
+      join(FIXTURES_DIR, 'src', 'dsl', 'generated', 'QtQuick', 'Rectangle.ts'),
+      'utf-8',
+    ),
+  );
+  writeFileSync(
+    join(srcDir, 'CounterView.ts'),
+    [
+      "import { Rectangle } from './dsl/generated/QtQuick/Rectangle.js';",
+      '',
+      'export default function CounterView() {',
+      "  return Rectangle().widthBind('}').height(100);",
+      '}',
+      '',
+    ].join('\n'),
+    'utf-8',
+  );
+
+  return { projectDir, srcDir };
+}
+
 // ─── Tests ──────────────────────────────────────────────────
 
 describe('BuildPipeline', () => {
@@ -248,6 +300,17 @@ describe('BuildPipeline', () => {
     expect(manifest.buildTime).toBeTruthy();
     expect(manifest.qmlFiles.length).toBeGreaterThan(0);
     expect(manifest.qtVersion).toBe('6.11.0');
+  });
+
+  test('BP-24a: entry file is copied into the output root', async () => {
+    const config = makeConfig();
+    const pipeline = createBuildPipeline(config);
+
+    const result = await pipeline.run();
+
+    expect(result.success).toBe(true);
+    expect(existsSync(result.output.entryFile)).toBe(true);
+    expect(readFileSync(result.output.entryFile, 'utf-8')).toContain('CounterView');
   });
 
   test('BP-25: schema files are written to schemasDir', async () => {
@@ -422,4 +485,49 @@ describe('BuildPipeline', () => {
     expect(existsSync(join(config.outDir, 'qml', 'SecondaryView.qml'))).toBe(false);
     expect(result.compilationStats?.totalViews).toBe(1);
   });
+
+  test('BP-35: sourceMaps=true writes QML source maps into source-maps/', async () => {
+    const config = makeConfig({
+      outDir: join(TMP_DIR, 'dist-sourcemaps'),
+      build: {
+        ...makeConfig().build,
+        sourceMaps: true,
+      },
+    });
+    const pipeline = createBuildPipeline(config);
+
+    const result = await pipeline.run();
+
+    expect(result.success).toBe(true);
+    expect(result.output.sourceMapsDir).toBeDefined();
+    expect(existsSync(join(result.output.sourceMapsDir!, 'CounterView.qml.map'))).toBe(true);
+  });
+
+  test.skipIf(!QT_DIR)('BP-36: validation failures block writing-output artifacts', async () => {
+    const { projectDir, srcDir } = writeSyntaxFailingProject();
+    const config = makeConfig({
+      entry: join(srcDir, 'CounterView.ts'),
+      outDir: join(TMP_DIR, 'dist-lint-fail'),
+      configDir: projectDir,
+      qt: {
+        dir: QT_DIR!,
+        modules: ['QtQuick'],
+        targetVersion: '6.11.0',
+      },
+      build: {
+        ...makeConfig().build,
+        lint: false,
+        qualityGate: 'syntax',
+      },
+    });
+    const pipeline = createBuildPipeline(config);
+
+    const result = await pipeline.run();
+
+    expect(result.success).toBe(false);
+    expect(result.phases.get('validating-qml')?.success).toBe(false);
+    expect(result.phases.get('writing-output')?.success).toBe(false);
+    expect(existsSync(join(config.outDir, 'manifest.json'))).toBe(false);
+    expect(existsSync(join(config.outDir, 'event-bindings.json'))).toBe(false);
+  }, 30_000);
 });

@@ -1,4 +1,5 @@
-import { existsSync, rmSync } from 'node:fs';
+import { existsSync, mkdtempSync, rmSync } from 'node:fs';
+import { tmpdir } from 'node:os';
 import { dirname, join, parse, resolve } from 'node:path';
 import type { Diagnostic } from '../compiler/diagnostics.js';
 import { compile } from '../compiler/pipeline/compiler.js';
@@ -19,6 +20,7 @@ import {
   createProductLayout,
   materializeLayout,
   writeCompilationUnits,
+  writeEntryFile,
   writeEventBindings,
   writeManifest,
 } from './product-layout.js';
@@ -37,6 +39,7 @@ interface PhaseContext {
   options: PipelineRunOptions;
   compilationResult?: CompilationResult;
   layout?: ProductLayout;
+  validationBlockedOutput?: boolean;
   progressListeners: Array<(progress: BuildProgress) => void>;
 }
 
@@ -231,22 +234,50 @@ function phaseBundleAssets(ctx: PhaseContext): Promise<{ diagnostics: readonly D
   return Promise.resolve({ diagnostics });
 }
 
-function phaseValidateQml(ctx: PhaseContext): Promise<{ diagnostics: readonly Diagnostic[] }> {
-  const diagnostics: Diagnostic[] = [];
+async function phaseValidateQml(ctx: PhaseContext): Promise<{ diagnostics: readonly Diagnostic[] }> {
+  if (!ctx.compilationResult) {
+    return { diagnostics: [] };
+  }
 
-  if (!ctx.config.build.lint) {
-    return Promise.resolve({ diagnostics });
+  const qmlUnits = ctx.compilationResult.units.filter((unit) => unit.qmlContent);
+  if (qmlUnits.length === 0 || ctx.options.dryRun) {
+    return { diagnostics: [] };
   }
 
   if (!ctx.config.qt.dir || !existsSync(ctx.config.qt.dir)) {
-    diagnostics.push({
-      severity: 'warning',
-      code: 'QMLTS-Q002',
-      message: 'QML validation skipped: Qt tools not available',
-    });
+    return {
+      diagnostics: [
+        {
+          severity: 'warning',
+          code: 'QMLTS-Q002',
+          message: 'QML validation skipped: Qt tools not available',
+        },
+      ],
+    };
   }
 
-  return Promise.resolve({ diagnostics });
+  const validationOutDir = mkdtempSync(join(tmpdir(), 'qmlts-build-validation-'));
+  const { finalResult, validationResult } = prepareValidationOutputs(ctx, validationOutDir);
+  let diagnostics: Diagnostic[];
+
+  try {
+    materializeLayout(validationResult.layout);
+    writeCompilationUnits(
+      validationResult.layout,
+      validationResult.compilation.units,
+      ctx.config.build.sourceMaps,
+    );
+
+    diagnostics = await runQtValidation(ctx, finalResult, validationResult.compilation);
+  } finally {
+    rmSync(validationOutDir, { recursive: true, force: true });
+  }
+
+  if (diagnostics.some((diagnostic) => diagnostic.severity === 'error')) {
+    ctx.validationBlockedOutput = true;
+  }
+
+  return { diagnostics };
 }
 
 function phasePrepareHost(ctx: PhaseContext): Promise<{ diagnostics: readonly Diagnostic[] }> {
@@ -293,6 +324,7 @@ function phaseWriteOutput(ctx: PhaseContext): Promise<{ diagnostics: readonly Di
 
   materializeLayout(layout);
 
+  writeEntryFile(layout, ctx.config.entry);
   writeCompilationUnits(layout, ctx.compilationResult.units, ctx.config.build.sourceMaps);
   writeEventBindings(layout, ctx.compilationResult.eventBindings);
 
@@ -305,6 +337,167 @@ function phaseWriteOutput(ctx: PhaseContext): Promise<{ diagnostics: readonly Di
   });
 
   return Promise.resolve({ diagnostics: [] });
+}
+
+function prepareValidationOutputs(
+  ctx: PhaseContext,
+  validationOutDir: string,
+): {
+  finalResult: CompilationResult;
+  validationResult: {
+    layout: ProductLayout;
+    compilation: CompilationResult;
+  };
+} {
+  if (!ctx.compilationResult) {
+    throw new BuildError('validating-qml', [], 'No compilation result available for validation');
+  }
+
+  const finalLayout = createProductLayout(ctx.config.outDir, ctx.config);
+  const finalResult = alignCompilationResultToLayout(
+    ctx.compilationResult,
+    finalLayout,
+    ctx.config.outDir,
+  );
+  const validationLayout = createProductLayout(validationOutDir, ctx.config);
+  const validationCompilation = alignCompilationResultToLayout(
+    ctx.compilationResult,
+    validationLayout,
+    ctx.config.outDir,
+  );
+
+  return {
+    finalResult,
+    validationResult: {
+      layout: validationLayout,
+      compilation: validationCompilation,
+    },
+  };
+}
+
+async function runQtValidation(
+  ctx: PhaseContext,
+  finalResult: CompilationResult,
+  validationResult: CompilationResult,
+): Promise<Diagnostic[]> {
+  const validationFileMap = new Map<string, string>();
+  for (let i = 0; i < validationResult.units.length; i++) {
+    const validationUnit = validationResult.units[i];
+    const finalUnit = finalResult.units[i];
+    if (validationUnit?.qmlOutputPath && finalUnit?.qmlOutputPath) {
+      validationFileMap.set(validationUnit.qmlOutputPath, finalUnit.qmlOutputPath);
+    }
+  }
+
+  const { checkFiles, discover } = await import('../qt-tools/index.js');
+  const { validateCompilationOutput } = await import('../compiler/pipeline/qt-validation.js');
+
+  const installation = await discover({ qtDir: ctx.config.qt.dir });
+  const qmlFiles = validationResult.units.filter((unit) => unit.qmlContent).map((unit) => unit.qmlOutputPath);
+
+  const qualityGateResult = await checkFiles(installation, qmlFiles, {
+    level: resolveValidationGate(ctx.config),
+    lintOptions: ctx.config.build.lint ? ctx.config.build.lintOptions : undefined,
+  });
+
+  const diagnostics = mapQualityGateDiagnostics(qualityGateResult, validationFileMap);
+
+  const validationDiagnostics = await validateCompilationOutput(validationResult, {
+    qtDir: ctx.config.qt.dir,
+    lint: false,
+    format: ctx.config.build.format,
+    importScan: true,
+    importPaths: ctx.config.qmlModulePaths,
+  });
+
+  diagnostics.push(...mapDiagnosticsToFinalPaths(validationDiagnostics.diagnostics, validationFileMap));
+
+  return diagnostics;
+}
+
+function resolveValidationGate(
+  config: ResolvedQmltsConfig,
+): ResolvedQmltsConfig['build']['qualityGate'] {
+  if (!config.build.lint && config.build.qualityGate === 'lint') {
+    return 'syntax';
+  }
+  return config.build.qualityGate;
+}
+
+function mapQualityGateDiagnostics(
+  result: Awaited<ReturnType<typeof import('../qt-tools/index.js')['checkFiles']>>,
+  validationFileMap: ReadonlyMap<string, string>,
+): Diagnostic[] {
+  const diagnostics: Diagnostic[] = [];
+
+  for (const [filePath, gateResult] of result.results) {
+    const finalPath = validationFileMap.get(filePath) ?? filePath;
+
+    if (gateResult.formatResult && gateResult.formatResult.exitCode !== 0) {
+      diagnostics.push({
+        severity: 'error',
+        code: 'QMLTS-Q002',
+        message: `[qmlformat] syntax validation failed for ${finalPath}`,
+        file: finalPath,
+      });
+    }
+
+    for (const diagnostic of gateResult.diagnostics) {
+      diagnostics.push({
+        severity:
+          diagnostic.level === 'error'
+            ? 'error'
+            : diagnostic.level === 'warning'
+              ? 'warning'
+              : 'info',
+        code: 'QMLTS-Q001',
+        message: `[qmllint] ${diagnostic.message}`,
+        file: finalPath,
+        line: diagnostic.line,
+        column: diagnostic.column,
+      });
+    }
+
+    if (gateResult.cachegenResult && !gateResult.cachegenResult.success) {
+      diagnostics.push({
+        severity: 'error',
+        code: 'QMLTS-Q002',
+        message: `[qmlcachegen] failed for ${finalPath}`,
+        file: finalPath,
+      });
+    }
+
+    if (gateResult.smokeTestResult && !gateResult.smokeTestResult.loaded) {
+      diagnostics.push({
+        severity: 'error',
+        code: 'QMLTS-Q002',
+        message: `[qml] smoke test failed for ${finalPath}`,
+        file: finalPath,
+      });
+    }
+
+    if (!gateResult.passed && diagnostics.every((diagnostic) => diagnostic.file !== finalPath)) {
+      diagnostics.push({
+        severity: 'error',
+        code: 'QMLTS-Q002',
+        message: `QML quality gate failed for ${finalPath}`,
+        file: finalPath,
+      });
+    }
+  }
+
+  return diagnostics;
+}
+
+function mapDiagnosticsToFinalPaths(
+  diagnostics: readonly Diagnostic[],
+  validationFileMap: ReadonlyMap<string, string>,
+): Diagnostic[] {
+  return diagnostics.map((diagnostic) =>
+    diagnostic.file && validationFileMap.has(diagnostic.file)
+      ? { ...diagnostic, file: validationFileMap.get(diagnostic.file)! }
+      : diagnostic,
+  );
 }
 
 // ─── Pipeline factory ───────────────────────────────────────
@@ -362,15 +555,17 @@ export function createBuildPipeline(config: ResolvedQmltsConfig): BuildPipeline 
       let compilationFailed = false;
 
       for (const phase of EXECUTABLE_PHASES) {
-        if (compilationFailed && phase === 'writing-output') {
+        if ((compilationFailed || ctx.validationBlockedOutput) && phase === 'writing-output') {
           phases.set(phase, {
-            success: false,
+            success: !ctx.validationBlockedOutput,
             durationMs: 0,
             diagnostics: [
               {
-                severity: 'error',
+                severity: ctx.validationBlockedOutput ? 'warning' : 'error',
                 code: 'QMLTS-G001',
-                message: 'Skipped: compilation failed in earlier phase',
+                message: compilationFailed
+                  ? 'Skipped: compilation failed in earlier phase'
+                  : 'Skipped: QML validation failed earlier in the pipeline',
               },
             ],
           });

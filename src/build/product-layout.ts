@@ -1,4 +1,4 @@
-import { mkdirSync, writeFileSync } from 'node:fs';
+import { copyFileSync, mkdirSync, writeFileSync } from 'node:fs';
 import { basename, dirname, join, relative } from 'node:path';
 import type { CompilationResult, CompilationUnit } from '../compiler/pipeline/pipeline-types.js';
 import type { BuildManifest, ProductLayout } from './build-types.js';
@@ -91,6 +91,11 @@ export function materializeLayout(layout: ProductLayout, dryRun = false): void {
 
 export function writeManifest(layout: ProductLayout, manifest: BuildManifest): void {
   writeFileSync(layout.manifest, JSON.stringify(manifest, null, 2), 'utf-8');
+}
+
+export function writeEntryFile(layout: ProductLayout, entryFile: string): void {
+  mkdirSync(dirname(layout.entryFile), { recursive: true });
+  copyFileSync(entryFile, layout.entryFile);
 }
 
 export function writeEventBindings(

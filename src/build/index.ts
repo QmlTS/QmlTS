@@ -60,6 +60,7 @@ export {
   hostLibFilename,
   materializeLayout,
   writeCompilationUnits,
+  writeEntryFile,
   writeEventBindings,
   writeManifest,
 } from './product-layout.js';
