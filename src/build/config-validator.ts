@@ -223,7 +223,11 @@ function validateDev(dev: NonNullable<QmltsConfig['dev']>): void {
   if (dev.port !== undefined) {
     validateNonNegativeNumber(dev.port, 'dev.port');
     if (!Number.isInteger(dev.port) || dev.port > 65_535) {
-      throw new ConfigError('dev.port', dev.port, 'dev.port must be an integer between 0 and 65535');
+      throw new ConfigError(
+        'dev.port',
+        dev.port,
+        'dev.port must be an integer between 0 and 65535',
+      );
     }
   }
   if (dev.notify !== undefined) {

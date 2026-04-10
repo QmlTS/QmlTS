@@ -142,12 +142,7 @@ describe('loadConfig', () => {
     try {
       writeFileSync(
         configPath,
-        [
-          'export default {',
-          "  entry: './src/main.ts',",
-          "  outDir: './dist',",
-          '};',
-        ].join('\n'),
+        ['export default {', "  entry: './src/main.ts',", "  outDir: './dist',", '};'].join('\n'),
         'utf8',
       );
       mkdirSync(join(tempDir, 'src'), { recursive: true });
@@ -181,12 +176,7 @@ describe('loadConfig', () => {
       writeFileSync(join(tempProjectDir, 'src', 'main.ts'), 'export const ok = true;\n', 'utf8');
       writeFileSync(
         configPath,
-        [
-          'export default {',
-          "  entry: './src/main.ts',",
-          "  outDir: './dist',",
-          '};',
-        ].join('\n'),
+        ['export default {', "  entry: './src/main.ts',", "  outDir: './dist',", '};'].join('\n'),
         'utf8',
       );
       process.env['QMLTS_QT_DIR'] = tempQtDir;

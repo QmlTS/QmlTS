@@ -29,8 +29,65 @@ export function getQuery(): RegistryQueryInterface {
 
 // ─── Re-export AST module ───────────────────────────────────
 export * from './ast/index.js';
+export type {
+  AssetsConfig,
+  BuildCommandOptions,
+  BuildCommandResult,
+  BuildManifest,
+  BuildPipeline,
+  BuildPipelineResult,
+  BuildProgress,
+  CargoConfig,
+  DevConfig,
+  DistributeConfig,
+  HostConfig,
+  PhaseResult,
+  PipelineRunOptions,
+  PlatformTarget,
+  ProductLayout,
+  QmltsConfig,
+  QtConfig,
+  ResolvedAssetsConfig,
+  ResolvedBuildConfig,
+  ResolvedCargoConfig,
+  ResolvedDevConfig,
+  ResolvedDistributeConfig,
+  ResolvedHostConfig,
+  ResolvedQmltsConfig,
+  ResolvedQtConfig,
+} from './build/index.js';
 // ─── Re-export Build module ─────────────────────────────────
-export * from './build/index.js';
+// Note: BuildPhase is not re-exported here to avoid collision with
+// registry/types.ts BuildPhase. Import from '@qmlts/build' or
+// directly from './build/build-types.js'.
+export {
+  applyDefaults,
+  BUILD_PHASES,
+  BuildError,
+  ConfigError,
+  createBuildPipeline,
+  createManifest,
+  createProductLayout,
+  DEFAULT_ASSETS_DIR,
+  DEFAULT_ASSETS_INCLUDE,
+  DEFAULT_BUILD_MODE,
+  DEFAULT_CARGO_PROFILE,
+  DEFAULT_DEBOUNCE_MS,
+  DEFAULT_ENTRY,
+  DEFAULT_OUT_DIR,
+  DEFAULT_QUALITY_GATE,
+  DEFAULT_TARGET_VERSION,
+  DEFAULT_WATCH_PATHS,
+  defineConfig,
+  executeBuild,
+  hostLibFilename,
+  loadConfig,
+  materializeLayout,
+  validateConfig,
+  writeCompilationUnits,
+  writeEventBindings,
+  writeManifest,
+} from './build/index.js';
 // ─── Re-export Compiler module ──────────────────────────────
 export * from './compiler/index.js';
 export * from './dsl/generator/index.js';

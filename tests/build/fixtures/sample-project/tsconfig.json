@@ -1,0 +1,13 @@
+{
+	"compilerOptions": {
+		"target": "ESNext",
+		"module": "ESNext",
+		"moduleResolution": "bundler",
+		"experimentalDecorators": true,
+		"strict": false,
+		"skipLibCheck": true,
+		"noEmit": true,
+		"types": []
+	},
+	"include": ["src/CounterViewModel.ts", "src/CounterView.ts"]
+}
