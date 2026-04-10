@@ -46,5 +46,5 @@ export default defineConfig({
     appName: 'MyQmlApp',
     appVersion: '1.0.0',
   },
-  qmlModulePaths: ['/extra/qml/modules'],
+  qmlModulePaths: ['./qml-modules'],
 });

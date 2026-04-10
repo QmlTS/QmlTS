@@ -4,6 +4,17 @@ import type { QmltsConfig } from '../../src/build/config-types.js';
 import { validateConfig } from '../../src/build/config-validator.js';
 
 describe('validateConfig', () => {
+  test('BC-17a: rejects non-object config roots', () => {
+    const config = [] as unknown as QmltsConfig;
+    expect(() => validateConfig(config)).toThrow(ConfigError);
+    try {
+      validateConfig(config);
+      expect.unreachable('should have thrown');
+    } catch (e) {
+      expect((e as ConfigError).field).toBe('config');
+    }
+  });
+
   test('BC-18: accepts valid minimal config', () => {
     const config: QmltsConfig = {
       entry: './src/main.ts',
@@ -116,6 +127,16 @@ describe('validateConfig', () => {
     }
   });
 
+  test('BC-24c: rejects non-object qt config values', () => {
+    const config = { qt: true } as unknown as QmltsConfig;
+    expect(() => validateConfig(config)).toThrow(ConfigError);
+    try {
+      validateConfig(config);
+    } catch (e) {
+      expect((e as ConfigError).field).toBe('qt');
+    }
+  });
+
   test('BC-25: rejects negative concurrency', () => {
     const config: QmltsConfig = { build: { concurrency: -1 } };
     expect(() => validateConfig(config)).toThrow(ConfigError);
@@ -140,6 +161,16 @@ describe('validateConfig', () => {
       validateConfig(config);
     } catch (e) {
       expect((e as ConfigError).field).toBe('dev.debounceMs');
+    }
+  });
+
+  test('BC-27a: rejects non-string dev.watchPaths entries', () => {
+    const config = { dev: { watchPaths: ['./src', 42] } } as unknown as QmltsConfig;
+    expect(() => validateConfig(config)).toThrow(ConfigError);
+    try {
+      validateConfig(config);
+    } catch (e) {
+      expect((e as ConfigError).field).toBe('dev.watchPaths');
     }
   });
 
@@ -170,6 +201,16 @@ describe('validateConfig', () => {
     }
   });
 
+  test('BC-29b: rejects non-object distribute config values', () => {
+    const config = { distribute: ['win32-x64'] } as unknown as QmltsConfig;
+    expect(() => validateConfig(config)).toThrow(ConfigError);
+    try {
+      validateConfig(config);
+    } catch (e) {
+      expect((e as ConfigError).field).toBe('distribute');
+    }
+  });
+
   test('BC-30: rejects invalid build mode', () => {
     const config = { build: { mode: 'staging' } } as unknown as QmltsConfig;
     expect(() => validateConfig(config)).toThrow(ConfigError);
@@ -192,6 +233,16 @@ describe('validateConfig', () => {
       validateConfig(config);
     } catch (e) {
       expect((e as ConfigError).field).toBe('host.cargo.profile');
+    }
+  });
+
+  test('BC-32a: rejects non-string host.cargo.args entries', () => {
+    const config = { host: { cargo: { args: ['--release', 123] } } } as unknown as QmltsConfig;
+    expect(() => validateConfig(config)).toThrow(ConfigError);
+    try {
+      validateConfig(config);
+    } catch (e) {
+      expect((e as ConfigError).field).toBe('host.cargo.args');
     }
   });
 
