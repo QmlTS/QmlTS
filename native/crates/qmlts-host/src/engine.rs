@@ -1555,6 +1555,7 @@ mod tests {
         assert!(result.is_err());
     }
 
+    #[cfg(feature = "mock-qt")]
     #[test]
     fn test_set_list_data_and_row_count() {
         reset_app_initialized();
@@ -1577,6 +1578,7 @@ mod tests {
         assert!(result.is_ok());
     }
 
+    #[cfg(feature = "mock-qt")]
     #[test]
     fn test_remove_list_rows() {
         reset_app_initialized();
@@ -1586,6 +1588,7 @@ mod tests {
         assert!(result.is_ok());
     }
 
+    #[cfg(feature = "mock-qt")]
     #[test]
     fn test_update_list_row() {
         reset_app_initialized();
@@ -1595,6 +1598,7 @@ mod tests {
         assert!(result.is_ok());
     }
 
+    #[cfg(feature = "mock-qt")]
     #[test]
     fn test_move_list_rows() {
         reset_app_initialized();
@@ -1604,6 +1608,7 @@ mod tests {
         assert!(result.is_ok());
     }
 
+    #[cfg(feature = "mock-qt")]
     #[test]
     fn test_get_list_row() {
         reset_app_initialized();

@@ -767,7 +767,12 @@ fn test_list_model_visible_in_qml() {
         .load_string(
             r#"import QtQuick
 Item {
-    property int modelCount: myListModel.count
+    Repeater {
+        id: rep
+        model: myListModel
+        delegate: Item {}
+    }
+    property int modelCount: rep.count
 }"#,
             None,
         )
@@ -795,7 +800,12 @@ fn test_list_model_updates_observable_from_qml() {
         .load_string(
             r#"import QtQuick
 Item {
-    property int itemCount: items.count
+    Repeater {
+        id: rep
+        model: items
+        delegate: Item {}
+    }
+    property int itemCount: rep.count
 }"#,
             None,
         )

@@ -129,7 +129,7 @@ impl Drop for ListModelHandle {
     }
 }
 
-#[cfg(test)]
+#[cfg(all(test, feature = "mock-qt"))]
 mod tests {
     use super::*;
 
