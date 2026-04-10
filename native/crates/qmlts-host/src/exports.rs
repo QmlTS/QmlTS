@@ -1247,12 +1247,7 @@ mod tests {
     fn test_capture_snapshot_after_load() {
         reset_qt();
         let mut engine = create_engine(None).unwrap();
-        load_string(
-            &mut engine,
-            r#"import QtQuick; Item { }"#.to_string(),
-            None,
-        )
-        .unwrap();
+        load_string(&mut engine, r#"import QtQuick; Item { }"#.to_string(), None).unwrap();
         let result = capture_snapshot(&engine);
         assert!(result.is_ok());
         let snap = result.unwrap();
@@ -1263,11 +1258,7 @@ mod tests {
     fn test_reload_qml_requires_qml_loaded() {
         reset_qt();
         let mut engine = create_engine(None).unwrap();
-        let result = reload_qml(
-            &mut engine,
-            r#"import QtQuick; Item { }"#.to_string(),
-            None,
-        );
+        let result = reload_qml(&mut engine, r#"import QtQuick; Item { }"#.to_string(), None);
         assert!(result.is_err());
     }
 
@@ -1275,12 +1266,7 @@ mod tests {
     fn test_reload_qml_after_load() {
         reset_qt();
         let mut engine = create_engine(None).unwrap();
-        load_string(
-            &mut engine,
-            r#"import QtQuick; Item { }"#.to_string(),
-            None,
-        )
-        .unwrap();
+        load_string(&mut engine, r#"import QtQuick; Item { }"#.to_string(), None).unwrap();
         let result = reload_qml(
             &mut engine,
             r#"import QtQuick; Rectangle { }"#.to_string(),
@@ -1304,12 +1290,7 @@ mod tests {
     fn test_restore_snapshot_after_load() {
         reset_qt();
         let mut engine = create_engine(None).unwrap();
-        load_string(
-            &mut engine,
-            r#"import QtQuick; Item { }"#.to_string(),
-            None,
-        )
-        .unwrap();
+        load_string(&mut engine, r#"import QtQuick; Item { }"#.to_string(), None).unwrap();
         let result = restore_snapshot(
             &engine,
             r#"{"window":{"x":0,"y":0,"width":800,"height":600},"focusId":"","scrollPositions":{},"selectedIndices":{}}"#.to_string(),
@@ -1321,12 +1302,7 @@ mod tests {
     fn test_full_hot_reload_cycle() {
         reset_qt();
         let mut engine = create_engine(None).unwrap();
-        load_string(
-            &mut engine,
-            r#"import QtQuick; Item { }"#.to_string(),
-            None,
-        )
-        .unwrap();
+        load_string(&mut engine, r#"import QtQuick; Item { }"#.to_string(), None).unwrap();
 
         // Step 1: Capture
         let snapshot = capture_snapshot(&engine).unwrap();

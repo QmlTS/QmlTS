@@ -969,8 +969,14 @@ Window {
     let snapshot = engine.capture_snapshot().unwrap();
     let parsed: serde_json::Value = serde_json::from_str(&snapshot).unwrap();
 
-    assert!(parsed.get("window").is_some(), "snapshot must contain 'window'");
-    assert!(parsed.get("focusId").is_some(), "snapshot must contain 'focusId'");
+    assert!(
+        parsed.get("window").is_some(),
+        "snapshot must contain 'window'"
+    );
+    assert!(
+        parsed.get("focusId").is_some(),
+        "snapshot must contain 'focusId'"
+    );
     assert!(
         parsed.get("scrollPositions").is_some(),
         "snapshot must contain 'scrollPositions'"
@@ -1039,9 +1045,7 @@ Item {
     assert!(engine.has_context_property("__qmlts"));
 
     // The synced state should still be readable
-    let val = engine
-        .get_property("LoginViewModel", "username")
-        .unwrap();
+    let val = engine.get_property("LoginViewModel", "username").unwrap();
     assert_eq!(val, "\"alice\"");
 }
 
@@ -1065,7 +1069,10 @@ fn test_full_hot_reload_cycle() {
 
     // Step 2: Reload
     engine
-        .reload_qml("import QtQuick\nRectangle { width: 320; height: 240 }", None)
+        .reload_qml(
+            "import QtQuick\nRectangle { width: 320; height: 240 }",
+            None,
+        )
         .unwrap();
     engine.process_events().unwrap();
 
@@ -1079,9 +1086,7 @@ fn test_full_hot_reload_cycle() {
     engine.process_events().unwrap();
 
     // Verify state survived
-    let val = engine
-        .get_property("LoginViewModel", "username")
-        .unwrap();
+    let val = engine.get_property("LoginViewModel", "username").unwrap();
     assert_eq!(val, "\"bob\"");
 }
 
@@ -1129,8 +1134,7 @@ fn test_reload_fails_before_qml_loaded() {
 #[test]
 fn test_restore_snapshot_fails_before_qml_loaded() {
     let engine = QmltsEngine::new(None).unwrap();
-    let result = engine.restore_snapshot(
-        r#"{"window":{"x":0,"y":0,"width":800,"height":600},"focusId":""}"#,
-    );
+    let result = engine
+        .restore_snapshot(r#"{"window":{"x":0,"y":0,"width":800,"height":600},"focusId":""}"#);
     assert!(result.is_err());
 }

@@ -24,9 +24,8 @@ impl ListModelHandle {
     /// Returns `ListModelError` if the schema is invalid or model creation fails.
     pub fn new(schema_json: &str) -> Result<Self> {
         // Validate schema before calling C++
-        let parsed: serde_json::Value = serde_json::from_str(schema_json).map_err(|e| {
-            QmltsError::ListModelError(format!("Invalid schema JSON: {e}"))
-        })?;
+        let parsed: serde_json::Value = serde_json::from_str(schema_json)
+            .map_err(|e| QmltsError::ListModelError(format!("Invalid schema JSON: {e}")))?;
         if let Some(roles) = parsed.get("roles").and_then(|v| v.as_array()) {
             let mut seen = std::collections::HashSet::new();
             for role in roles {
@@ -52,9 +51,8 @@ impl ListModelHandle {
     /// Replace all data in the model with the given JSON array of row objects.
     pub fn set_data(&self, json_array: &str) -> Result<()> {
         // Validate that input is a JSON array
-        let parsed: serde_json::Value = serde_json::from_str(json_array).map_err(|e| {
-            QmltsError::ListModelError(format!("Invalid JSON for set_data: {e}"))
-        })?;
+        let parsed: serde_json::Value = serde_json::from_str(json_array)
+            .map_err(|e| QmltsError::ListModelError(format!("Invalid JSON for set_data: {e}")))?;
         if !parsed.is_array() {
             return Err(QmltsError::ListModelError(
                 "set_data failed: expected a JSON array of row objects".to_string(),
