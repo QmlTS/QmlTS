@@ -782,4 +782,39 @@ describe('DevSession', () => {
       await session.stop();
     }
   }, 10_000);
+
+  // ─── DS-29: stop drains active rebuilds safely ──────────
+
+  test('DS-29: stop waits for active rebuild and leaves the session stopped', async () => {
+    const config = makeConfig(tempDir);
+    const session = createDevSession(config);
+    const exitEvents = collectEvents(session, 'exit');
+    const stateEvents = collectEvents(session, 'state-change');
+
+    try {
+      await session.start();
+
+      const rebuildPromise = session.rebuild();
+
+      await sleep(10);
+      await session.stop();
+
+      const result = await rebuildPromise;
+      expect(result.success).toBe(true);
+      expect(session.getState()).toBe('stopped');
+      expect(exitEvents.length).toBe(1);
+      expect(session.getStats().rebuildCount).toBe(1);
+
+      await sleep(250);
+
+      const postStopWatchingTransitions = stateEvents.filter((event) => {
+        const data = event.data as { from: string; to: string };
+        return data.from === 'stopping' && data.to === 'watching';
+      });
+      expect(postStopWatchingTransitions.length).toBe(0);
+      expect(session.getState()).toBe('stopped');
+    } finally {
+      await session.stop();
+    }
+  }, 20_000);
 });

@@ -50,6 +50,7 @@ interface SessionInternals {
   pendingRebuild: boolean;
   rebuildInProgress: boolean;
   changedFilesBatch: string[];
+  activeRebuildPromise?: Promise<BuildPipelineResult>;
   queuedRebuildWaiters: Array<{
     resolve: (result: BuildPipelineResult) => void;
     reject: (error: unknown) => void;
@@ -93,6 +94,21 @@ function rejectQueuedRebuilds(internals: SessionInternals, error: unknown): void
   for (const waiter of waiters) {
     waiter.reject(error);
   }
+}
+
+function runRebuild(internals: SessionInternals): Promise<BuildPipelineResult> {
+  if (internals.activeRebuildPromise) {
+    return internals.activeRebuildPromise;
+  }
+
+  const rebuildPromise = performRebuild(internals).finally(() => {
+    if (internals.activeRebuildPromise === rebuildPromise) {
+      internals.activeRebuildPromise = undefined;
+    }
+  });
+
+  internals.activeRebuildPromise = rebuildPromise;
+  return rebuildPromise;
 }
 
 function effectiveDebounceMs(internals: SessionInternals): number {
@@ -157,7 +173,12 @@ async function performRebuild(internals: SessionInternals): Promise<BuildPipelin
       };
       emit(internals, 'rebuild-success', buildData);
 
-      if (internals.config.dev.hotReload && internals.hotReloadClient?.isConnected()) {
+      if (
+        internals.state !== 'stopping' &&
+        internals.state !== 'stopped' &&
+        internals.config.dev.hotReload &&
+        internals.hotReloadClient?.isConnected()
+      ) {
         await performHotReload(internals, changedFiles);
       }
     } else {
@@ -307,7 +328,7 @@ function startWatching(internals: SessionInternals): void {
 
     internals.debounceTimer = setTimeout(() => {
       internals.debounceTimer = undefined;
-      performRebuild(internals).catch(() => {
+      runRebuild(internals).catch(() => {
         // Errors already emitted via events
       });
     }, debounceMs);
@@ -409,9 +430,26 @@ export function createDevSession(
         internals.debounceTimer = undefined;
       }
 
+      internals.pendingRebuild = false;
+      internals.changedFilesBatch = [];
+      if (internals.queuedRebuildWaiters.length > 0) {
+        rejectQueuedRebuilds(
+          internals,
+          new Error('DevSession stopped before queued rebuild completed'),
+        );
+      }
+
       if (internals.watcher) {
         await internals.watcher.close();
         internals.watcher = undefined;
+      }
+
+      if (internals.activeRebuildPromise) {
+        try {
+          await internals.activeRebuildPromise;
+        } catch {
+          // Rebuild errors are already surfaced through session events.
+        }
       }
 
       if (internals.hotReloadClient) {
@@ -440,7 +478,7 @@ export function createDevSession(
       }
 
       internals.changedFilesBatch = [];
-      return performRebuild(internals);
+      return runRebuild(internals);
     },
 
     getState(): DevSessionState {
