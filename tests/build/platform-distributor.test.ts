@@ -152,4 +152,21 @@ describe('PlatformDistributor', () => {
       expect(path).not.toContain('\\');
     }
   });
+
+  test('PD-08: packaging clears stale files from previous output', async () => {
+    const layout = makeMockLayout();
+    const config: ResolvedDistributeConfig = {
+      targets: ['linux-x64'],
+      bundleQt: false,
+    };
+
+    const staleDir = join(tempDir, 'dist-linux-x64');
+    mkdirSync(staleDir, { recursive: true });
+    writeFileSync(join(staleDir, 'stale.txt'), 'old', 'utf-8');
+
+    const distributor = createPlatformDistributor();
+    const result = await distributor.package(layout, config);
+
+    expect(existsSync(join(result.outputPath, 'stale.txt'))).toBe(false);
+  });
 });

@@ -131,6 +131,23 @@ describe('executeInit', () => {
     expect(configContent).toContain('6.11.0');
   });
 
+  test('IN-08a: generated package.json includes @qmlts/build and current TypeScript range', async () => {
+    const dir = join(tempDir, 'package-json-check');
+    await executeInit({
+      dir,
+      template: 'minimal',
+      skipInstall: true,
+    });
+
+    const packageJson = JSON.parse(readFileSync(join(dir, 'package.json'), 'utf-8')) as {
+      dependencies: Record<string, string>;
+      devDependencies: Record<string, string>;
+    };
+
+    expect(packageJson.dependencies['@qmlts/build']).toBe('*');
+    expect(packageJson.devDependencies.typescript).toBe('^6.0.0');
+  });
+
   test('IN-09: init in non-empty directory still creates files', async () => {
     const dir = join(tempDir, 'non-empty');
     mkdirSync(dir, { recursive: true });
@@ -178,5 +195,18 @@ describe('executeInit', () => {
     });
 
     expect(result.packageManager).toBe('npm');
+  });
+
+  test('IN-13: invalid package manager is rejected at runtime', async () => {
+    const dir = join(tempDir, 'invalid-pm');
+
+    await expect(
+      executeInit({
+        dir,
+        template: 'minimal',
+        packageManager: 'evil-pm' as never,
+        skipInstall: true,
+      }),
+    ).rejects.toThrow(/Invalid package manager/);
   });
 });

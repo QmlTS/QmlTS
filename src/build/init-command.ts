@@ -1,4 +1,4 @@
-import { execSync } from 'node:child_process';
+import { execFileSync } from 'node:child_process';
 import { mkdirSync, writeFileSync } from 'node:fs';
 import { basename, join, resolve } from 'node:path';
 import { resolveQtDir } from '../qt-tools/toolchain.js';
@@ -47,11 +47,12 @@ function generatePackageJson(name: string): string {
         clean: 'qmlts clean',
       },
       dependencies: {
+        '@qmlts/build': '*',
         '@qmlts/core': '*',
         '@qmlts/cli': '*',
       },
       devDependencies: {
-        typescript: '^5.0.0',
+        typescript: '^6.0.0',
       },
     },
     null,
@@ -193,6 +194,18 @@ interface TemplateFile {
   content: string;
 }
 
+const VALID_PACKAGE_MANAGERS = new Set<PackageManager>(['npm', 'pnpm', 'yarn', 'bun']);
+
+function normalizePackageManager(packageManager: string | undefined): PackageManager {
+  if (!packageManager) return 'npm';
+  if (VALID_PACKAGE_MANAGERS.has(packageManager as PackageManager)) {
+    return packageManager as PackageManager;
+  }
+  throw new Error(
+    `Invalid package manager '${packageManager}'. Must be one of: ${[...VALID_PACKAGE_MANAGERS].join(', ')}`,
+  );
+}
+
 function getTemplateFiles(template: InitTemplate, projectName: string): TemplateFile[] {
   const qtDir = resolveQtDir();
   const common: TemplateFile[] = [
@@ -249,7 +262,7 @@ function getTemplateFiles(template: InitTemplate, projectName: string): Template
 export async function executeInit(options: InitCommandOptions = {}): Promise<InitResult> {
   const dir = resolve(options.dir ?? '.');
   const template: InitTemplate = options.template ?? 'minimal';
-  const packageManager: PackageManager = options.packageManager ?? 'npm';
+  const packageManager = normalizePackageManager(options.packageManager);
   const skipInstall = options.skipInstall ?? false;
   const projectName = basename(dir) || 'qmlts-app';
 
@@ -270,8 +283,7 @@ export async function executeInit(options: InitCommandOptions = {}): Promise<Ini
   let installed = false;
   if (!skipInstall) {
     try {
-      const installCmd = packageManager === 'yarn' ? 'yarn install' : `${packageManager} install`;
-      execSync(installCmd, {
+      execFileSync(packageManager, ['install'], {
         cwd: dir,
         stdio: 'pipe',
         timeout: 120_000,

@@ -1,6 +1,6 @@
-import { execSync } from 'node:child_process';
+import { execFileSync } from 'node:child_process';
 import { existsSync } from 'node:fs';
-import { join } from 'node:path';
+import { dirname, isAbsolute, join, resolve } from 'node:path';
 import { resolveQtDir } from '../qt-tools/toolchain.js';
 import type {
   DoctorCheck,
@@ -8,6 +8,7 @@ import type {
   DoctorCommandOptions,
   DoctorResult,
 } from './build-types.js';
+import { DEFAULT_TARGET_VERSION } from './config-defaults.js';
 import { ConfigError } from './config-error.js';
 import { loadConfig } from './config-loader.js';
 import { currentPlatform, hostLibFilename } from './product-layout.js';
@@ -31,9 +32,9 @@ const ALL_CHECK_NAMES: readonly DoctorCheckName[] = [
   'dependencies-resolved',
 ];
 
-function tryExec(command: string): { ok: boolean; stdout: string } {
+function tryExec(file: string, args: readonly string[] = []): { ok: boolean; stdout: string } {
   try {
-    const stdout = execSync(command, {
+    const stdout = execFileSync(file, [...args], {
       encoding: 'utf-8',
       timeout: 10_000,
       stdio: ['pipe', 'pipe', 'pipe'],
@@ -48,7 +49,7 @@ function checkBinaryAvailable(
   binary: string,
   versionFlag = '--version',
 ): { available: boolean; version: string } {
-  const result = tryExec(`${binary} ${versionFlag}`);
+  const result = tryExec(binary, [versionFlag]);
   return { available: result.ok, version: result.stdout.split('\n')[0] ?? '' };
 }
 
@@ -68,6 +69,12 @@ function versionAtLeast(actual: number[], required: number[]): boolean {
     if ((actual[i] ?? 0) < (required[i] ?? 0)) return false;
   }
   return true;
+}
+
+function resolveProjectDir(configPath?: string): string {
+  if (!configPath) return process.cwd();
+  const resolvedPath = isAbsolute(configPath) ? configPath : resolve(process.cwd(), configPath);
+  return dirname(resolvedPath);
 }
 
 // ─── Individual check implementations ───────────────────────
@@ -94,38 +101,40 @@ function checkQtInstalled(): DoctorCheck {
 
 function checkQtVersion(): DoctorCheck {
   const qtDir = resolveQtDir();
+  const requiredVersion = parseVersion(DEFAULT_TARGET_VERSION);
+  const description = `Qt version >= ${DEFAULT_TARGET_VERSION}`;
   if (!qtDir) {
     return {
       name: 'qt-version',
-      description: 'Qt version >= 6.0',
+      description,
       status: 'fail',
       message: 'Cannot check Qt version: Qt not found',
     };
   }
   const qmakePaths = [join(qtDir, 'bin', 'qmake6'), join(qtDir, 'bin', 'qmake'), 'qmake6', 'qmake'];
   for (const qmake of qmakePaths) {
-    const result = tryExec(`"${qmake}" --version`);
+    const result = tryExec(qmake, ['--version']);
     if (result.ok) {
       const version = parseVersion(result.stdout);
-      if (version[0]! >= 6) {
+      if (versionAtLeast(version, requiredVersion)) {
         return {
           name: 'qt-version',
-          description: 'Qt version >= 6.0',
+          description,
           status: 'pass',
           message: `Qt ${version.join('.')}`,
         };
       }
       return {
         name: 'qt-version',
-        description: 'Qt version >= 6.0',
-        status: 'warn',
-        message: `Qt ${version.join('.')} detected — QmlTS requires Qt 6.0+`,
+        description,
+        status: 'fail',
+        message: `Qt ${version.join('.')} detected — QmlTS requires ${DEFAULT_TARGET_VERSION}+`,
       };
     }
   }
   return {
     name: 'qt-version',
-    description: 'Qt version >= 6.0',
+    description,
     status: 'warn',
     message: 'Could not determine Qt version (qmake not found in Qt dir)',
   };
@@ -136,7 +145,7 @@ function checkQtTool(name: DoctorCheckName, binary: string, description: string)
   const candidates = qtDir ? [join(qtDir, 'bin', binary), binary] : [binary];
 
   for (const candidate of candidates) {
-    const result = tryExec(`"${candidate}" --version`);
+    const result = tryExec(candidate, ['--version']);
     if (result.ok) {
       return { name, description, status: 'pass', message: `${binary} available` };
     }
@@ -279,7 +288,7 @@ function checkMsvcAvailable(): DoctorCheck {
       message: 'Not required on this platform',
     };
   }
-  const result = tryExec('where cl.exe');
+  const result = tryExec('where', ['cl.exe']);
   if (result.ok) {
     return {
       name: 'msvc-available',
@@ -289,7 +298,8 @@ function checkMsvcAvailable(): DoctorCheck {
     };
   }
   const vsWhere = tryExec(
-    '"C:\\Program Files (x86)\\Microsoft Visual Studio\\Installer\\vswhere.exe" -latest -property installationPath',
+    'C:\\Program Files (x86)\\Microsoft Visual Studio\\Installer\\vswhere.exe',
+    ['-latest', '-property', 'installationPath'],
   );
   if (vsWhere.ok && vsWhere.stdout.length > 0) {
     return {
@@ -328,11 +338,11 @@ function checkNinjaAvailable(): DoctorCheck {
   };
 }
 
-function checkHostLibExists(): DoctorCheck {
+function checkHostLibExists(projectDir = process.cwd()): DoctorCheck {
   try {
     const platform = currentPlatform();
     const filename = hostLibFilename(platform);
-    const nodeModulesPath = join(process.cwd(), 'node_modules', '@qmlts', 'host', filename);
+    const nodeModulesPath = join(projectDir, 'node_modules', '@qmlts', 'host', filename);
     if (existsSync(nodeModulesPath)) {
       return {
         name: 'host-lib-exists',
@@ -383,8 +393,8 @@ async function checkConfigValid(configPath?: string): Promise<DoctorCheck> {
   }
 }
 
-function checkDependenciesResolved(): DoctorCheck {
-  const nodeModulesPath = join(process.cwd(), 'node_modules');
+function checkDependenciesResolved(projectDir = process.cwd()): DoctorCheck {
+  const nodeModulesPath = join(projectDir, 'node_modules');
   if (!existsSync(nodeModulesPath)) {
     return {
       name: 'dependencies-resolved',
@@ -411,6 +421,7 @@ export function getDoctorCheckNames(): readonly DoctorCheckName[] {
 
 export async function runDoctorChecks(options: DoctorCommandOptions = {}): Promise<DoctorResult> {
   const checks: DoctorCheck[] = [];
+  const projectDir = resolveProjectDir(options.config);
 
   checks.push(checkQtInstalled());
   checks.push(checkQtVersion());
@@ -425,9 +436,9 @@ export async function runDoctorChecks(options: DoctorCommandOptions = {}): Promi
   checks.push(checkCmakeVersion());
   checks.push(checkMsvcAvailable());
   checks.push(checkNinjaAvailable());
-  checks.push(checkHostLibExists());
+  checks.push(checkHostLibExists(projectDir));
   checks.push(await checkConfigValid(options.config));
-  checks.push(checkDependenciesResolved());
+  checks.push(checkDependenciesResolved(projectDir));
 
   const allPassed = checks.every((c) => c.status !== 'fail');
 

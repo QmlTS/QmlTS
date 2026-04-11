@@ -60,7 +60,7 @@ describe('executeClean', () => {
     mkdirSync(topCache, { recursive: true });
     writeFileSync(join(topCache, 'cached.json'), '{}', 'utf-8');
 
-    const result = await executeClean({ nodeModules: true });
+    await executeClean({ nodeModules: true });
 
     expect(existsSync(pkgCacheDir)).toBe(false);
     expect(existsSync(topCache)).toBe(false);

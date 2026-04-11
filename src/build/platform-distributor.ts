@@ -1,4 +1,4 @@
-import { copyFileSync, existsSync, mkdirSync, readdirSync, statSync } from 'node:fs';
+import { copyFileSync, existsSync, mkdirSync, readdirSync, rmSync, statSync } from 'node:fs';
 import { basename, join } from 'node:path';
 import type { DistributeResult, ProductLayout } from './build-types.js';
 import type { PlatformTarget, ResolvedDistributeConfig } from './config-types.js';
@@ -75,19 +75,28 @@ function getQtRuntimeFiles(qtLibDir: string, target: PlatformTarget): string[] {
 
   for (const entry of entries) {
     const fullPath = join(qtLibDir, entry);
+    let isFile = false;
+    let isDirectory = false;
     try {
-      if (!statSync(fullPath).isFile()) continue;
+      const stats = statSync(fullPath);
+      isFile = stats.isFile();
+      isDirectory = stats.isDirectory();
     } catch {
       continue;
     }
 
-    if (target.startsWith('win32') && entry.endsWith('.dll') && entry.startsWith('Qt6')) {
+    if (target.startsWith('win32') && isFile && entry.endsWith('.dll') && entry.startsWith('Qt6')) {
       files.push(fullPath);
-    } else if (target.startsWith('linux') && entry.includes('.so') && entry.startsWith('libQt6')) {
+    } else if (
+      target.startsWith('linux') &&
+      isFile &&
+      entry.includes('.so') &&
+      entry.startsWith('libQt6')
+    ) {
       files.push(fullPath);
     } else if (
       target.startsWith('darwin') &&
-      (entry.endsWith('.dylib') || entry.endsWith('.framework')) &&
+      ((isFile && entry.endsWith('.dylib')) || (isDirectory && entry.endsWith('.framework'))) &&
       entry.startsWith('Qt')
     ) {
       files.push(fullPath);
@@ -106,6 +115,7 @@ export function createPlatformDistributor(qtDir?: string): PlatformDistributor {
       const target = config.targets.length > 0 ? config.targets[0]! : currentPlatform();
 
       const distDir = join(layout.rootDir, '..', `dist-${target}`);
+      rmSync(distDir, { recursive: true, force: true });
       mkdirSync(distDir, { recursive: true });
 
       const includes: string[] = [];
@@ -122,8 +132,14 @@ export function createPlatformDistributor(qtDir?: string): PlatformDistributor {
 
           for (const file of qtFiles) {
             const destPath = join(qtOutDir, basename(file));
-            copyFileSync(file, destPath);
-            includes.push(destPath);
+            const stats = statSync(file);
+            if (stats.isDirectory()) {
+              copyDirRecursive(file, destPath);
+              includes.push(...collectFiles(destPath));
+            } else {
+              copyFileSync(file, destPath);
+              includes.push(destPath);
+            }
           }
         }
       }
