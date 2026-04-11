@@ -15,12 +15,17 @@ export type {
   BundledFile,
   BundleResult,
   EntryGeneratorOptions,
+  HostPrepMode,
+  HostPrepResult,
   PhaseResult,
   PipelineRunOptions,
   ProductLayout,
   QmltsPackageManifest,
   ResolvedPackageInfo,
   ResolvedPackages,
+  RustBridgeOutput,
+  SchemaFile,
+  ViewModelSchemaJson,
 } from './build-types.js';
 export { BUILD_PHASES } from './build-types.js';
 export {
@@ -62,12 +67,16 @@ export { defineConfig } from './define-config.js';
 // ─── Entry Generator ────────────────────────────────────────
 export type { EntryGenerator } from './entry-generator.js';
 export { createEntryGenerator } from './entry-generator.js';
+// ─── Host Preparer ──────────────────────────────────────────
+export type { HostPreparer, HostPrepOptions, HostPrepOutput } from './host-preparer.js';
+export { createHostPreparer } from './host-preparer.js';
 // ─── Package Resolver ───────────────────────────────────────
 export type { PackageResolver } from './package-resolver.js';
 export { checkQtVersionCompatibility, createPackageResolver } from './package-resolver.js';
 export {
   createManifest,
   createProductLayout,
+  currentPlatform,
   hostLibFilename,
   materializeLayout,
   writeCompilationUnits,
@@ -78,6 +87,9 @@ export {
 // ─── Resource Bundler ───────────────────────────────────────
 export type { ResourceBundler } from './resource-bundler.js';
 export { createResourceBundler, dryRunBundle } from './resource-bundler.js';
+// ─── Rust Bridge Generator ──────────────────────────────────
+export type { RustBridgeGenerator } from './rust-bridge-generator.js';
+export { createRustBridgeGenerator, validateSchemas } from './rust-bridge-generator.js';
 // Note: BuildConfig is not re-exported here to avoid collision with
 // registry/types.ts BuildConfig. Import directly from './config-types.js'
 // or use QmltsConfig['build'] / ResolvedBuildConfig instead.

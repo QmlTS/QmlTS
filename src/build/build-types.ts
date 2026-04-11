@@ -152,6 +152,65 @@ export interface BundleResult {
   readonly qrcFile?: string;
 }
 
+// ─── Host Preparation ───────────────────────────────────────
+
+export type HostPrepMode = 'prebuilt' | 'custom-path' | 'cargo-build';
+
+export interface HostPrepResult {
+  readonly mode: HostPrepMode;
+  readonly hostLibPath: string;
+  readonly bridgeGenerated: boolean;
+  readonly cargoBuildMs?: number;
+}
+
+export interface SchemaFile {
+  readonly className: string;
+  readonly filePath: string;
+  readonly content: ViewModelSchemaJson;
+}
+
+export interface ViewModelSchemaJson {
+  readonly className: string;
+  readonly version: number;
+  readonly states: readonly {
+    readonly name: string;
+    readonly qmlName: string;
+    readonly qmlType: string;
+    readonly memberId: number;
+    readonly readonly: boolean;
+    readonly deferred: boolean;
+    readonly defaultValue?: string;
+  }[];
+  readonly commands: readonly {
+    readonly name: string;
+    readonly qmlName: string;
+    readonly commandId: number;
+    readonly parameters: readonly { readonly name: string; readonly type: string }[];
+    readonly async: boolean;
+    readonly throttle?: string;
+    readonly throttleMs?: number;
+  }[];
+  readonly effects: readonly {
+    readonly name: string;
+    readonly qmlName: string;
+    readonly effectId: number;
+    readonly parameters: readonly { readonly name: string; readonly type: string }[];
+  }[];
+  readonly lifecycle: {
+    readonly onMounted: boolean;
+    readonly onUnmounting: boolean;
+    readonly hotReload: boolean;
+  };
+}
+
+export interface RustBridgeOutput {
+  readonly generatedDir: string;
+  readonly viewModelFiles: readonly string[];
+  readonly runtimeFiles: readonly string[];
+  readonly libRsPath: string;
+  readonly buildRsPath: string;
+}
+
 // ─── Entry Generation ───────────────────────────────────────
 
 export interface EntryGeneratorOptions {

@@ -19,6 +19,7 @@ import type {
   BuildPipelineResult,
   BuildProgress,
   BundleResult,
+  HostPrepResult,
   PhaseResult,
   PipelineRunOptions,
   ProductLayout,
@@ -26,11 +27,13 @@ import type {
 } from './build-types.js';
 import type { ResolvedQmltsConfig } from './config-types.js';
 import { createEntryGenerator } from './entry-generator.js';
+import { createHostPreparer } from './host-preparer.js';
 import { checkQtVersionCompatibility, createPackageResolver } from './package-resolver.js';
 import {
   alignCompilationResultToLayout,
   createManifest,
   createProductLayout,
+  currentPlatform,
   materializeLayout,
   writeCompilationUnits,
   writeEventBindings,
@@ -55,6 +58,7 @@ interface PhaseContext {
   validationBlockedOutput?: boolean;
   resolvedPackages?: ResolvedPackages;
   bundleResult?: BundleResult;
+  hostPrepResult?: HostPrepResult;
   progressListeners: Array<(progress: BuildProgress) => void>;
 }
 
@@ -357,15 +361,35 @@ async function phaseValidateQml(
 function phasePrepareHost(ctx: PhaseContext): Promise<{ diagnostics: readonly Diagnostic[] }> {
   const diagnostics: Diagnostic[] = [];
 
-  if (ctx.config.host.prebuilt) {
-    const customPath = ctx.config.host.customPath;
-    if (customPath && !existsSync(customPath)) {
-      diagnostics.push({
-        severity: 'warning',
-        code: 'QMLTS-G002',
-        message: `Prebuilt host library not found: ${customPath}`,
-      });
-    }
+  // Compute the layout early so we know the hostLib target path
+  const layout = createProductLayout(ctx.config.outDir, ctx.config);
+  const platform =
+    ctx.config.distribute.targets.length > 0
+      ? ctx.config.distribute.targets[0]!
+      : currentPlatform();
+
+  // Determine schemasDir from compilation output or layout
+  const schemasDir = layout.schemasDir;
+
+  const preparer = createHostPreparer();
+  const output = preparer.prepare({
+    hostConfig: ctx.config.host,
+    schemasDir,
+    hostLibTarget: layout.hostLib,
+    platform,
+    configDir: ctx.config.configDir,
+    outDir: ctx.config.outDir,
+    dryRun: ctx.options.dryRun,
+  });
+
+  diagnostics.push(...output.diagnostics);
+  ctx.hostPrepResult = output.result;
+
+  if (output.result.cargoBuildMs !== undefined) {
+    emitProgress(ctx, {
+      phase: 'preparing-host',
+      message: `Cargo build completed in ${Math.round(output.result.cargoBuildMs)}ms`,
+    });
   }
 
   return Promise.resolve({ diagnostics });
