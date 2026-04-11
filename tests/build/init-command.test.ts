@@ -38,6 +38,7 @@ describe('executeInit', () => {
     expect(existsSync(join(dir, 'package.json'))).toBe(true);
     expect(existsSync(join(dir, 'tsconfig.json'))).toBe(true);
     expect(existsSync(join(dir, 'qmlts.config.ts'))).toBe(true);
+    expect(existsSync(join(dir, 'native', 'Cargo.toml'))).toBe(true);
     expect(existsSync(join(dir, 'src', 'main.ts'))).toBe(true);
   });
 
@@ -164,6 +165,44 @@ describe('executeInit', () => {
     expect(result.packageManager).toBe('pnpm');
   });
 
+  test('IN-07b: install uses pnpm when selected', async () => {
+    const dir = join(tempDir, 'pnpm-install-test');
+    const binDir = join(tempDir, 'bin-pnpm');
+    const originalPath = process.env.PATH ?? '';
+    mkdirSync(binDir, { recursive: true });
+
+    if (process.platform === 'win32') {
+      writeFileSync(
+        join(binDir, 'pnpm.cmd'),
+        '@echo off\r\nif not exist "%CD%\\node_modules" mkdir "%CD%\\node_modules"\r\nexit /b 0\r\n',
+        'utf-8',
+      );
+    } else {
+      writeFileSync(
+        join(binDir, 'pnpm'),
+        '#!/bin/sh\nmkdir -p "$PWD/node_modules"\nexit 0\n',
+        'utf-8',
+      );
+      chmodSync(join(binDir, 'pnpm'), 0o755);
+    }
+
+    process.env.PATH = `${binDir}${process.platform === 'win32' ? ';' : ':'}${originalPath}`;
+
+    try {
+      const result = await executeInit({
+        dir,
+        template: 'minimal',
+        packageManager: 'pnpm',
+        skipInstall: false,
+      });
+
+      expect(result.installed).toBe(true);
+      expect(existsSync(join(dir, 'node_modules'))).toBe(true);
+    } finally {
+      process.env.PATH = originalPath;
+    }
+  });
+
   test('IN-07a: full template README uses the selected package manager commands', async () => {
     const dir = join(tempDir, 'pm-readme');
     await executeInit({
@@ -211,6 +250,22 @@ describe('executeInit', () => {
 
     expect(packageJson.dependencies['@qmlts/build']).toBe('*');
     expect(packageJson.devDependencies.typescript).toBe('^6.0.0');
+  });
+
+  test('IN-08b: generated native Cargo scaffold is present and self-describing', async () => {
+    const dir = join(tempDir, 'native-scaffold');
+    await executeInit({
+      dir,
+      template: 'minimal',
+      skipInstall: true,
+    });
+
+    const cargoToml = readFileSync(join(dir, 'native', 'Cargo.toml'), 'utf-8');
+    const readme = readFileSync(join(dir, 'native', 'README.md'), 'utf-8');
+
+    expect(cargoToml).toContain('[workspace]');
+    expect(cargoToml).toContain('cxx-qt = "0.7"');
+    expect(readme).toContain('dist/.host-generated');
   });
 
   test('IN-09: init in non-empty directory still creates files', async () => {

@@ -41,24 +41,13 @@ function getExecutableCandidates(file: string): string[] {
   return [file, `${file}.exe`, `${file}.cmd`, `${file}.bat`];
 }
 
-function formatWindowsToken(token: string): string {
-  return /[\s"]/.test(token) ? `"${token.replace(/"/g, '\\"')}"` : token;
-}
-
 function execCandidate(file: string, args: readonly string[]): string {
-  if (process.platform === 'win32' && (file.endsWith('.cmd') || file.endsWith('.bat'))) {
-    const command = [formatWindowsToken(file), ...args.map(formatWindowsToken)].join(' ');
-    return execFileSync('cmd.exe', ['/d', '/s', '/c', command], {
-      encoding: 'utf-8',
-      timeout: 10_000,
-      stdio: ['pipe', 'pipe', 'pipe'],
-    }).trim();
-  }
-
   return execFileSync(file, [...args], {
     encoding: 'utf-8',
     timeout: 10_000,
     stdio: ['pipe', 'pipe', 'pipe'],
+    shell: false,
+    env: { ...process.env },
   }).trim();
 }
 

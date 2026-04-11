@@ -138,6 +138,42 @@ describe('PlatformDistributor', () => {
     expect(result.size).toBeGreaterThan(0);
   });
 
+  test('PD-06a: bundleQt copies Qt runtime files for the active platform', async () => {
+    const layout = makeMockLayout();
+    const qtDir = join(tempDir, 'Qt');
+    const runtimeDir = process.platform === 'win32' ? join(qtDir, 'bin') : join(qtDir, 'lib');
+    mkdirSync(runtimeDir, { recursive: true });
+
+    let runtimeSource: string;
+    let expectedOutput: string;
+
+    if (process.platform === 'win32') {
+      runtimeSource = join(runtimeDir, 'Qt6Core.dll');
+      expectedOutput = join('Qt6', 'Qt6Core.dll');
+      writeFileSync(runtimeSource, 'fake-dll', 'utf-8');
+    } else if (process.platform === 'darwin') {
+      runtimeSource = join(runtimeDir, 'QtCore.framework');
+      mkdirSync(runtimeSource, { recursive: true });
+      writeFileSync(join(runtimeSource, 'QtCore'), 'fake-dylib', 'utf-8');
+      expectedOutput = join('Qt6', 'QtCore.framework', 'QtCore');
+    } else {
+      runtimeSource = join(runtimeDir, 'libQt6Core.so.6');
+      expectedOutput = join('Qt6', 'libQt6Core.so.6');
+      writeFileSync(runtimeSource, 'fake-so', 'utf-8');
+    }
+
+    const config: ResolvedDistributeConfig = {
+      targets: [currentPlatform()],
+      bundleQt: true,
+    };
+
+    const distributor = createPlatformDistributor(qtDir);
+    const result = await distributor.package(layout, config);
+
+    expect(existsSync(join(result.outputPath, expectedOutput))).toBe(true);
+    expect(result.includes.some((f) => f.endsWith(expectedOutput.replace(/\\/g, '/')))).toBe(true);
+  });
+
   test('PD-07: includes paths use forward slashes', async () => {
     const layout = makeMockLayout();
     const config: ResolvedDistributeConfig = {

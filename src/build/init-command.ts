@@ -64,6 +64,49 @@ function generatePackageJson(name: string): string {
   );
 }
 
+function generateNativeCargoToml(): string {
+  return `[workspace]
+resolver = "2"
+
+[workspace.package]
+version = "0.1.0"
+edition = "2024"
+license = "MIT"
+repository = "https://github.com/QmlTS/QmlTS"
+rust-version = "1.85"
+
+[workspace.dependencies]
+napi = { version = "2", default-features = false, features = ["napi8"] }
+napi-derive = "2"
+napi-build = "2"
+cxx = "1"
+cxx-qt = "0.7"
+cxx-qt-lib = "0.7"
+cxx-qt-build = "0.7"
+thiserror = "2"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+
+[profile.release]
+lto = true
+codegen-units = 1
+strip = true
+`;
+}
+
+function generateNativeReadme(): string {
+  return `# Native Host Workspace
+
+This directory is reserved for Rust/Qt host customization.
+
+QmlTS build generates a temporary native workspace under \`dist/.host-generated/\`
+when source host compilation is needed. This \`native/Cargo.toml\` file exists so
+projects have a ready Rust workspace scaffold to extend in the future.
+`;
+}
+
 function generateConfig(qtDir: string | undefined): string {
   const qtDirLine = qtDir
     ? `    dir: '${qtDir.replace(/\\/g, '/')}',`
@@ -213,6 +256,8 @@ function getTemplateFiles(
     { path: 'package.json', content: generatePackageJson(projectName) },
     { path: 'tsconfig.json', content: generateTsconfig() },
     { path: 'qmlts.config.ts', content: generateConfig(qtDir) },
+    { path: join('native', 'Cargo.toml'), content: generateNativeCargoToml() },
+    { path: join('native', 'README.md'), content: generateNativeReadme() },
   ];
 
   switch (template) {

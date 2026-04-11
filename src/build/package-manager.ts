@@ -1,6 +1,6 @@
 import { execFileSync } from 'node:child_process';
 import { existsSync } from 'node:fs';
-import { resolve } from 'node:path';
+import { extname, resolve } from 'node:path';
 import type { PackageManager } from './build-types.js';
 
 const VALID_PACKAGE_MANAGERS = new Set<PackageManager>(['npm', 'pnpm', 'yarn', 'bun']);
@@ -44,30 +44,30 @@ export function getPackageManagerScriptCommand(
   }
 }
 
+function getExecutableCandidates(file: string): string[] {
+  if (process.platform !== 'win32' || extname(file) !== '') {
+    return [file];
+  }
+
+  return [`${file}.cmd`, `${file}.exe`, `${file}.bat`, file];
+}
+
 export function runPackageManagerInstall(packageManager: PackageManager, cwd: string): boolean {
-  try {
-    if (process.platform === 'win32') {
-      execFileSync(
-        process.env.ComSpec ?? 'cmd.exe',
-        ['/d', '/s', '/c', `${packageManager} install`],
-        {
-          cwd,
-          env: { ...process.env },
-          stdio: 'pipe',
-          timeout: 120_000,
-        },
-      );
-    } else {
-      execFileSync(packageManager, ['install'], {
+  for (const candidate of getExecutableCandidates(packageManager)) {
+    try {
+      execFileSync(candidate, ['install'], {
         cwd,
         env: { ...process.env },
         stdio: 'pipe',
         timeout: 120_000,
+        shell: false,
       });
-    }
 
-    return true;
-  } catch {
-    return false;
+      return true;
+    } catch {
+      // try next candidate
+    }
   }
+
+  return false;
 }
