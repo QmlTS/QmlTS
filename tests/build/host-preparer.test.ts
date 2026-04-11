@@ -118,6 +118,7 @@ describe('BP-77 host preparation mode resolution', () => {
     const output = preparer.prepare(
       makeOptions({
         hostConfig: makeHostConfig({ prebuilt: false }),
+        dryRun: true,
       }),
     );
     expect(output.result.mode).toBe('cargo-build');
@@ -277,6 +278,7 @@ describe('BP-80 cargo-build host preparation', () => {
     const output = preparer.prepare(
       makeOptions({
         hostConfig: makeHostConfig({ prebuilt: false }),
+        dryRun: true,
       }),
     );
 
@@ -325,7 +327,10 @@ describe('BP-80 cargo-build host preparation', () => {
     const preparer = createHostPreparer();
     const output = preparer.prepare(
       makeOptions({
-        hostConfig: makeHostConfig({ prebuilt: false }),
+        hostConfig: makeHostConfig({
+          prebuilt: false,
+          cargo: { args: ['--dry-run'], profile: 'dev' },
+        }),
         schemasDir,
       }),
     );
@@ -333,15 +338,24 @@ describe('BP-80 cargo-build host preparation', () => {
     expect(output.result.mode).toBe('cargo-build');
     expect(output.result.bridgeGenerated).toBe(true);
 
-    // Bridge files should be generated in .host-generated directory
-    const genDir = join(TMP_DIR, 'dist', '.host-generated', 'src');
+    // Bridge files should be generated in a temporary native workspace
+    const workspaceDir = join(TMP_DIR, 'dist', '.host-generated');
+    const genDir = join(workspaceDir, 'crates', 'qmlts-host-generated', 'src');
     expect(existsSync(join(genDir, 'counter_view_model.rs'))).toBe(true);
     expect(existsSync(join(genDir, 'counter_runtime.rs'))).toBe(true);
     expect(existsSync(join(genDir, 'login_view_model.rs'))).toBe(true);
     expect(existsSync(join(genDir, 'login_runtime.rs'))).toBe(true);
     expect(existsSync(join(genDir, 'dispatch.rs'))).toBe(true);
     expect(existsSync(join(genDir, 'lib.rs'))).toBe(true);
-    expect(existsSync(join(TMP_DIR, 'dist', '.host-generated', 'build.rs'))).toBe(true);
+    expect(existsSync(join(workspaceDir, 'Cargo.toml'))).toBe(true);
+    expect(existsSync(join(workspaceDir, 'crates', 'qmlts-host', 'Cargo.toml'))).toBe(true);
+    expect(existsSync(join(workspaceDir, 'crates', 'qmlts-host-generated', 'build.rs'))).toBe(true);
+    expect(existsSync(join(workspaceDir, 'crates', 'qmlts-host-generated', 'Cargo.toml'))).toBe(
+      true,
+    );
+    expect(
+      existsSync(join(workspaceDir, 'crates', 'qmlts-host-generated', 'cpp', 'factories.cpp')),
+    ).toBe(true);
   });
 
   test('dry run reports bridge generation would happen', () => {
@@ -470,8 +484,15 @@ describe('BP-81 rust bridge generator', () => {
       commands: [
         { name: 'login', qmlName: 'login', commandId: 12345, parameters: [], async: true },
       ],
-      effects: [],
-      lifecycle: { onMounted: true, onUnmounting: false, hotReload: false },
+      effects: [
+        {
+          name: 'onLoginCompleted',
+          qmlName: 'onLoginCompleted',
+          effectId: 11,
+          parameters: [{ name: 'success', type: 'boolean' }],
+        },
+      ],
+      lifecycle: { onMounted: true, onUnmounting: true, hotReload: false },
     });
 
     const gen = createRustBridgeGenerator();
@@ -486,6 +507,11 @@ describe('BP-81 rust bridge generator', () => {
     expect(rtContent).toContain('fn invoke');
     expect(rtContent).toContain('dispatch::dispatch_command');
     expect(rtContent).toContain('"LoginViewModel"');
+    expect(rtContent).toContain('fn on_mounted');
+    expect(rtContent).toContain('fn on_unmounting');
+    expect(rtContent).toContain('dispatch::dispatch_lifecycle');
+    expect(rtContent).toContain('#[qsignal]');
+    expect(rtContent).toContain('fn on_login_completed');
   });
 
   test('generates lib.rs with module declarations', () => {
@@ -514,9 +540,33 @@ describe('BP-81 rust bridge generator', () => {
 
     const buildContent = readFileSync(output.buildRsPath, 'utf-8');
     expect(buildContent).toContain('CxxQtBuilder::new()');
+    expect(buildContent).toContain('.qt_module("Core")');
     expect(buildContent).toContain('.file("src/counter_view_model.rs")');
     expect(buildContent).toContain('.file("src/counter_runtime.rs")');
+    expect(buildContent).toContain('cc.file("cpp/factories.cpp")');
     expect(buildContent).toContain('.build()');
+  });
+
+  test('generates Cargo.toml and C++ factory source', () => {
+    const schemasDir = join(TMP_DIR, 'schemas');
+    writeSchemaFile(schemasDir, 'CounterViewModel');
+
+    const gen = createRustBridgeGenerator();
+    const schemas = gen.discoverSchemas(schemasDir);
+    const genDir = join(TMP_DIR, 'generated');
+    const output = gen.generate(schemas, genDir);
+
+    const cargoToml = readFileSync(output.cargoTomlPath, 'utf-8');
+    expect(cargoToml).toContain('name = "qmlts-host-generated"');
+    expect(cargoToml).toContain('cxx-qt-build = { workspace = true }');
+
+    const factoriesCpp = readFileSync(output.factoriesCppPath, 'utf-8');
+    expect(factoriesCpp).toContain(
+      '#include "qmlts-host-generated/src/counter_view_model.cxxqt.h"',
+    );
+    expect(factoriesCpp).toContain('void* qmlts_create_counter_view_model()');
+    expect(factoriesCpp).toContain('void* qmlts_create_counter_runtime()');
+    expect(factoriesCpp).toContain('void qmlts_destroy_qobject(void* ptr)');
   });
 
   test('generates dispatch.rs', () => {
@@ -532,7 +582,26 @@ describe('BP-81 rust bridge generator', () => {
     expect(existsSync(dispatchPath)).toBe(true);
     const content = readFileSync(dispatchPath, 'utf-8');
     expect(content).toContain('dispatch_command');
-    expect(content).toContain('register_dispatch_handler');
+    expect(content).toContain('set_command_dispatcher');
+    expect(content).toContain('set_lifecycle_dispatcher');
+    expect(content).toContain('clear_dispatchers_for_owner');
+  });
+
+  test('generates lib.rs descriptors and embedded schema JSON', () => {
+    const schemasDir = join(TMP_DIR, 'schemas');
+    writeSchemaFile(schemasDir, 'CounterViewModel');
+
+    const gen = createRustBridgeGenerator();
+    const schemas = gen.discoverSchemas(schemasDir);
+    const genDir = join(TMP_DIR, 'generated');
+    const output = gen.generate(schemas, genDir);
+
+    const libContent = readFileSync(output.libRsPath, 'utf-8');
+    expect(libContent).toContain('pub struct BridgeDescriptor');
+    expect(libContent).toContain('pub fn descriptors() ->');
+    expect(libContent).toContain('COUNTER_VIEW_MODEL_SCHEMA');
+    expect(libContent).toContain('schema_json: COUNTER_VIEW_MODEL_SCHEMA');
+    expect(libContent).toContain('fn qmlts_create_counter_view_model() -> *mut c_void;');
   });
 
   test('handles string qmlType with cxx-qt-lib import', () => {

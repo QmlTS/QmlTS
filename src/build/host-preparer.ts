@@ -1,6 +1,7 @@
 import { execFileSync } from 'node:child_process';
-import { copyFileSync, existsSync, mkdirSync } from 'node:fs';
+import { copyFileSync, cpSync, existsSync, mkdirSync } from 'node:fs';
 import { dirname, join, resolve } from 'node:path';
+import { fileURLToPath } from 'node:url';
 import type { Diagnostic } from '../compiler/diagnostics.js';
 import type { HostPrepMode, HostPrepResult, SchemaFile } from './build-types.js';
 import type { PlatformTarget, ResolvedHostConfig } from './config-types.js';
@@ -28,6 +29,10 @@ export interface HostPrepOutput {
   readonly diagnostics: readonly Diagnostic[];
 }
 
+const MODULE_DIR = dirname(fileURLToPath(import.meta.url));
+const REPO_ROOT = resolve(MODULE_DIR, '..', '..');
+const NATIVE_TEMPLATE_DIR = join(REPO_ROOT, 'native');
+
 // ─── Platform → prebuilt binding name mapping ───────────────
 
 const PLATFORM_BINDING_NAMES: ReadonlyMap<PlatformTarget, string> = new Map([
@@ -39,6 +44,18 @@ const PLATFORM_BINDING_NAMES: ReadonlyMap<PlatformTarget, string> = new Map([
 
 function prebuiltBindingName(platform: PlatformTarget): string {
   return PLATFORM_BINDING_NAMES.get(platform) ?? `qmlts-host.${platform}.node`;
+}
+
+function cargoSharedLibraryName(platform: PlatformTarget): string {
+  switch (platform) {
+    case 'win32-x64':
+      return 'qmlts_host.dll';
+    case 'linux-x64':
+      return 'libqmlts_host.so';
+    case 'darwin-x64':
+    case 'darwin-arm64':
+      return 'libqmlts_host.dylib';
+  }
 }
 
 // ─── Resolve host preparation mode ──────────────────────────
@@ -89,10 +106,8 @@ function prepareCustomPath(
 // ─── Prebuilt flow ──────────────────────────────────────────
 
 function findPrebuiltHostPackage(configDir: string): string | undefined {
-  // Search for @qmlts/host in node_modules, walking up from configDir
   let searchDir = configDir;
 
-  // Walk up at most 10 levels to avoid infinite loop
   for (let i = 0; i < 10; i++) {
     const candidate = join(searchDir, 'node_modules', '@qmlts', 'host');
     if (existsSync(candidate)) {
@@ -135,7 +150,6 @@ function preparePrebuilt(
   const bindingPath = join(packageDir, bindingName);
 
   if (!existsSync(bindingPath)) {
-    // Also try the build directories
     const fallbacks = [
       join(packageDir, 'build', 'Release', 'qmlts-host.node'),
       join(packageDir, 'build', 'Debug', 'qmlts-host.node'),
@@ -187,9 +201,8 @@ function preparePrebuilt(
 
 function prepareCargoBuild(options: HostPrepOptions): HostPrepOutput {
   const diagnostics: Diagnostic[] = [];
-  const { schemasDir, hostLibTarget, hostConfig, outDir, dryRun } = options;
+  const { schemasDir, hostLibTarget, hostConfig, outDir, dryRun, platform } = options;
 
-  // 1. Discover and validate schemas
   const generator = createRustBridgeGenerator();
   const schemas = options.schemas ? [...options.schemas] : generator.discoverSchemas(schemasDir);
 
@@ -212,13 +225,16 @@ function prepareCargoBuild(options: HostPrepOptions): HostPrepOutput {
     };
   }
 
-  // 2. Generate bridge files
-  const generatedDir = join(outDir, '.host-generated');
+  const generatedWorkspaceDir = join(outDir, '.host-generated');
+  const generatedCrateDir = join(generatedWorkspaceDir, 'crates', 'qmlts-host-generated');
+
   if (dryRun) {
     diagnostics.push({
       severity: 'info',
       code: 'QMLTS-G002',
-      message: `[dry-run] Would generate ${schemas.length} bridge files and invoke cargo build`,
+      message:
+        `[dry-run] Would scaffold a temporary native workspace, generate ${schemas.length} ` +
+        'bridge crates, and build qmlts-host with cargo',
     });
     return {
       result: { mode: 'cargo-build', hostLibPath: hostLibTarget, bridgeGenerated: true },
@@ -226,10 +242,22 @@ function prepareCargoBuild(options: HostPrepOptions): HostPrepOutput {
     };
   }
 
-  generator.generate(schemas, generatedDir);
+  scaffoldHostWorkspace(generatedWorkspaceDir);
+  generator.generate(schemas, generatedCrateDir);
 
-  // 3. Invoke cargo build
-  const cargoResult = invokeCargoBuild(hostConfig, generatedDir, hostLibTarget);
+  if (hostConfig.cargo.args.includes('--dry-run')) {
+    diagnostics.push({
+      severity: 'info',
+      code: 'QMLTS-G002',
+      message: '[cargo dry-run] Generated native workspace without invoking cargo',
+    });
+    return {
+      result: { mode: 'cargo-build', hostLibPath: hostLibTarget, bridgeGenerated: true },
+      diagnostics,
+    };
+  }
+
+  const cargoResult = invokeCargoBuild(hostConfig, generatedWorkspaceDir, hostLibTarget, platform);
   diagnostics.push(...cargoResult.diagnostics);
 
   return {
@@ -248,15 +276,31 @@ interface CargoResult {
   readonly durationMs: number;
 }
 
+function scaffoldHostWorkspace(workspaceDir: string): void {
+  const workspaceManifest = join(NATIVE_TEMPLATE_DIR, 'Cargo.toml');
+  const hostCrateDir = join(NATIVE_TEMPLATE_DIR, 'crates', 'qmlts-host');
+
+  if (!existsSync(workspaceManifest) || !existsSync(hostCrateDir)) {
+    throw new Error(`Native host template not found under ${NATIVE_TEMPLATE_DIR}`);
+  }
+
+  mkdirSync(join(workspaceDir, 'crates'), { recursive: true });
+  copyFileSync(workspaceManifest, join(workspaceDir, 'Cargo.toml'));
+  cpSync(hostCrateDir, join(workspaceDir, 'crates', 'qmlts-host'), {
+    recursive: true,
+  });
+}
+
 function invokeCargoBuild(
   hostConfig: ResolvedHostConfig,
-  generatedDir: string,
+  workspaceDir: string,
   hostLibTarget: string,
+  platform: PlatformTarget,
 ): CargoResult {
   const diagnostics: Diagnostic[] = [];
   const start = performance.now();
 
-  const args = ['build'];
+  const args = ['build', '-p', 'qmlts-host', '--features', 'napi'];
 
   if (hostConfig.cargo.profile === 'release') {
     args.push('--release');
@@ -267,17 +311,17 @@ function invokeCargoBuild(
   }
 
   args.push(...hostConfig.cargo.args);
-  const cargoTargetDir = join(generatedDir, 'target');
+  const cargoTargetDir = join(workspaceDir, 'target');
 
   try {
     execFileSync('cargo', args, {
-      cwd: generatedDir,
+      cwd: workspaceDir,
       env: {
         ...process.env,
         CARGO_TARGET_DIR: cargoTargetDir,
       },
       stdio: 'pipe',
-      timeout: 600_000, // 10 minutes max
+      timeout: 600_000,
       encoding: 'utf-8',
     });
   } catch (error) {
@@ -290,7 +334,7 @@ function invokeCargoBuild(
     return { diagnostics, durationMs: performance.now() - start };
   }
 
-  const builtHostLib = resolveCargoArtifactPath(generatedDir, hostConfig);
+  const builtHostLib = resolveCargoArtifactPath(workspaceDir, hostConfig, platform);
   if (!existsSync(builtHostLib)) {
     diagnostics.push({
       severity: 'error',
@@ -303,7 +347,6 @@ function invokeCargoBuild(
   mkdirSync(dirname(hostLibTarget), { recursive: true });
   copyFileSync(builtHostLib, hostLibTarget);
 
-  // Check if the output binary exists
   if (!existsSync(hostLibTarget)) {
     diagnostics.push({
       severity: 'error',
@@ -316,13 +359,14 @@ function invokeCargoBuild(
 }
 
 function resolveCargoArtifactPath(
-  generatedDir: string,
+  workspaceDir: string,
   hostConfig: ResolvedHostConfig,
+  platform: PlatformTarget,
 ): string {
-  const targetDir = join(generatedDir, 'target');
+  const targetDir = join(workspaceDir, 'target');
   const targetRoot = hostConfig.cargo.target ? join(targetDir, hostConfig.cargo.target) : targetDir;
   const profileDir = hostConfig.cargo.profile === 'release' ? 'release' : 'debug';
-  return join(targetRoot, profileDir, 'qmlts-host.node');
+  return join(targetRoot, profileDir, cargoSharedLibraryName(platform));
 }
 
 // ─── Factory ────────────────────────────────────────────────

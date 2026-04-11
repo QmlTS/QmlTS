@@ -209,6 +209,8 @@ export interface RustBridgeOutput {
   readonly runtimeFiles: readonly string[];
   readonly libRsPath: string;
   readonly buildRsPath: string;
+  readonly cargoTomlPath: string;
+  readonly factoriesCppPath: string;
 }
 
 // ─── Entry Generation ───────────────────────────────────────
