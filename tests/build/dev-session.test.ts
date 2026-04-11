@@ -3,11 +3,9 @@ import { cpSync, existsSync, mkdirSync, mkdtempSync, rmSync, writeFileSync } fro
 import { tmpdir } from 'node:os';
 import { join, resolve } from 'node:path';
 import type {
-  BuildPipelineResult,
   BuildResultData,
   DevSessionEvent,
   DevSessionEventType,
-  DevSessionState,
   FileChangeData,
   HotReloadClient,
   HotReloadData,
@@ -39,35 +37,6 @@ function waitForEvent(
     session.on(eventType, (event) => {
       clearTimeout(timer);
       resolve(event);
-    });
-  });
-}
-
-function waitForState(
-  session: ReturnType<typeof createDevSession>,
-  targetState: DevSessionState,
-  timeoutMs = 10_000,
-): Promise<void> {
-  return new Promise((resolve, reject) => {
-    if (session.getState() === targetState) {
-      resolve();
-      return;
-    }
-    const timer = setTimeout(
-      () =>
-        reject(
-          new Error(
-            `Timed out waiting for state '${targetState}', current: '${session.getState()}'`,
-          ),
-        ),
-      timeoutMs,
-    );
-    session.on('state-change', (event) => {
-      const data = event.data as { to: string };
-      if (data.to === targetState) {
-        clearTimeout(timer);
-        resolve();
-      }
     });
   });
 }
@@ -669,6 +638,7 @@ describe('DevSession', () => {
     const config = makeConfig(tempDir);
     const session = createDevSession(config);
     const rebuildEvents = collectEvents(session, 'rebuild-success');
+    const stateEvents = collectEvents(session, 'state-change');
 
     try {
       await session.start();
@@ -682,9 +652,22 @@ describe('DevSession', () => {
       // Both should resolve
       expect(r1).toBeDefined();
       expect(r2).toBeDefined();
+      expect(r1.success).toBe(true);
+      expect(r2.success).toBe(true);
+      expect(r1.phases.size).toBeGreaterThan(0);
+      expect(r2.phases.size).toBeGreaterThan(0);
+      expect(r1.output.entryFile.length).toBeGreaterThan(0);
+      expect(r2.output.entryFile.length).toBeGreaterThan(0);
 
-      // At least one rebuild should have succeeded
-      expect(rebuildEvents.length).toBeGreaterThanOrEqual(1);
+      // The queued rebuild should drain fully before both promises resolve
+      expect(rebuildEvents.length).toBe(2);
+      expect(session.getStats().rebuildCount).toBe(2);
+
+      const rebuildingTransitions = stateEvents.filter((event) => {
+        const data = event.data as { from: string; to: string };
+        return data.from === 'rebuilding' && data.to === 'rebuilding';
+      });
+      expect(rebuildingTransitions.length).toBe(0);
     } finally {
       await session.stop();
     }

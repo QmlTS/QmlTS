@@ -50,6 +50,10 @@ interface SessionInternals {
   pendingRebuild: boolean;
   rebuildInProgress: boolean;
   changedFilesBatch: string[];
+  queuedRebuildWaiters: Array<{
+    resolve: (result: BuildPipelineResult) => void;
+    reject: (error: unknown) => void;
+  }>;
 }
 
 // ─── Helpers ────────────────────────────────────────────────
@@ -70,8 +74,25 @@ function emit(internals: SessionInternals, type: DevSessionEventType, data?: unk
 
 function transition(internals: SessionInternals, newState: DevSessionState): void {
   const oldState = internals.state;
+  if (oldState === newState) return;
   internals.state = newState;
   emit(internals, 'state-change', { from: oldState, to: newState });
+}
+
+function resolveQueuedRebuilds(internals: SessionInternals, result: BuildPipelineResult): void {
+  const waiters = [...internals.queuedRebuildWaiters];
+  internals.queuedRebuildWaiters = [];
+  for (const waiter of waiters) {
+    waiter.resolve(result);
+  }
+}
+
+function rejectQueuedRebuilds(internals: SessionInternals, error: unknown): void {
+  const waiters = [...internals.queuedRebuildWaiters];
+  internals.queuedRebuildWaiters = [];
+  for (const waiter of waiters) {
+    waiter.reject(error);
+  }
 }
 
 function effectiveDebounceMs(internals: SessionInternals): number {
@@ -149,8 +170,8 @@ async function performRebuild(internals: SessionInternals): Promise<BuildPipelin
       };
       emit(internals, 'rebuild-error', buildData);
 
-      if (internals.options.preserveOnError ?? internals.config.dev.preserveOnError) {
-        // Keep last successful output — no action needed
+      if (!(internals.options.preserveOnError ?? internals.config.dev.preserveOnError)) {
+        internals.lastSuccessfulResult = undefined;
       }
     }
 
@@ -158,13 +179,14 @@ async function performRebuild(internals: SessionInternals): Promise<BuildPipelin
 
     if (internals.pendingRebuild) {
       internals.pendingRebuild = false;
-      return performRebuild(internals);
+      return await performRebuild(internals);
     }
 
     if (internals.state === 'rebuilding') {
       transition(internals, 'watching');
     }
 
+    resolveQueuedRebuilds(internals, result);
     return result;
   } catch (err) {
     internals.rebuildInProgress = false;
@@ -190,9 +212,10 @@ async function performRebuild(internals: SessionInternals): Promise<BuildPipelin
 
     if (internals.pendingRebuild) {
       internals.pendingRebuild = false;
-      return performRebuild(internals);
+      return await performRebuild(internals);
     }
 
+    rejectQueuedRebuilds(internals, err);
     throw err;
   }
 }
@@ -319,6 +342,7 @@ export function createDevSession(
     pendingRebuild: false,
     rebuildInProgress: false,
     changedFilesBatch: [],
+    queuedRebuildWaiters: [],
   };
 
   return {
@@ -407,39 +431,11 @@ export function createDevSession(
 
       if (internals.rebuildInProgress) {
         internals.pendingRebuild = true;
-        // Wait for the current + queued rebuild to complete
-        return new Promise((resolvePromise) => {
-          const handler = (event: DevSessionEvent) => {
-            if (event.type === 'rebuild-success' || event.type === 'rebuild-error') {
-              internals.listeners.get('rebuild-success')?.delete(handler);
-              internals.listeners.get('rebuild-error')?.delete(handler);
-              const data = event.data as BuildResultData;
-              resolvePromise({
-                success: data.success,
-                phases: new Map(),
-                output: internals.lastSuccessfulResult?.output ?? {
-                  rootDir: internals.config.outDir,
-                  entryFile: '',
-                  qmlDir: '',
-                  schemasDir: '',
-                  assetsDir: '',
-                  hostLib: '',
-                  manifest: '',
-                  eventBindings: '',
-                },
-                durationMs: data.durationMs,
-                compilationStats: data.stats,
-              });
-            }
-          };
-          if (!internals.listeners.has('rebuild-success')) {
-            internals.listeners.set('rebuild-success', new Set());
-          }
-          if (!internals.listeners.has('rebuild-error')) {
-            internals.listeners.set('rebuild-error', new Set());
-          }
-          internals.listeners.get('rebuild-success')!.add(handler);
-          internals.listeners.get('rebuild-error')!.add(handler);
+        return new Promise((resolvePromise, rejectPromise) => {
+          internals.queuedRebuildWaiters.push({
+            resolve: resolvePromise,
+            reject: rejectPromise,
+          });
         });
       }
 
