@@ -223,3 +223,83 @@ export interface EntryGeneratorOptions {
   readonly qmlImportPaths: readonly string[];
   readonly packages?: ResolvedPackages;
 }
+
+// ─── Dev Session ────────────────────────────────────────────
+
+export type DevSessionState =
+  | 'idle'
+  | 'starting'
+  | 'building'
+  | 'watching'
+  | 'rebuilding'
+  | 'stopping'
+  | 'stopped';
+
+export type DevSessionEventType =
+  | 'state-change'
+  | 'build-start'
+  | 'build-success'
+  | 'build-error'
+  | 'rebuild-start'
+  | 'rebuild-success'
+  | 'rebuild-error'
+  | 'file-change'
+  | 'hot-reload'
+  | 'hot-reload-error'
+  | 'exit';
+
+export interface DevSessionEvent {
+  readonly type: DevSessionEventType;
+  readonly timestamp: number;
+  readonly data?: unknown;
+}
+
+export interface FileChangeData {
+  readonly files: readonly string[];
+  readonly type: 'add' | 'change' | 'unlink';
+}
+
+export interface BuildResultData {
+  readonly success: boolean;
+  readonly durationMs: number;
+  readonly diagnostics: readonly Diagnostic[];
+  readonly stats?: CompilationStats;
+}
+
+export interface HotReloadData {
+  readonly durationMs: number;
+  readonly filesReloaded: readonly string[];
+}
+
+export interface DevSessionOptions {
+  readonly config?: string;
+  readonly headless?: boolean;
+  readonly entry?: string;
+  readonly debounceMs?: number;
+  readonly ignorePatterns?: readonly string[];
+  readonly preserveOnError?: boolean;
+  readonly verbose?: boolean;
+  readonly watchPaths?: readonly string[];
+}
+
+export interface DevSessionStats {
+  readonly buildCount: number;
+  readonly rebuildCount: number;
+  readonly hotReloadCount: number;
+  readonly errorCount: number;
+  readonly totalBuildMs: number;
+  readonly lastBuildMs?: number;
+  readonly uptime: number;
+}
+
+export interface HotReloadClient {
+  reload(changedFiles: readonly string[], outputDir: string): Promise<HotReloadResult>;
+  isConnected(): boolean;
+  dispose(): void;
+}
+
+export interface HotReloadResult {
+  readonly success: boolean;
+  readonly durationMs: number;
+  readonly error?: string;
+}

@@ -12,11 +12,21 @@ export type {
   BuildPhase,
   BuildPipelineResult,
   BuildProgress,
+  BuildResultData,
   BundledFile,
   BundleResult,
+  DevSessionEvent,
+  DevSessionEventType,
+  DevSessionOptions,
+  DevSessionState,
+  DevSessionStats,
   EntryGeneratorOptions,
+  FileChangeData,
   HostPrepMode,
   HostPrepResult,
+  HotReloadClient,
+  HotReloadData,
+  HotReloadResult,
   PhaseResult,
   PipelineRunOptions,
   ProductLayout,
@@ -64,6 +74,11 @@ export type {
 } from './config-types.js';
 export { validateConfig } from './config-validator.js';
 export { defineConfig } from './define-config.js';
+export type { DevCommandResult } from './dev-command.js';
+export { executeDev } from './dev-command.js';
+// ─── Dev Session ────────────────────────────────────────────
+export type { DevSession } from './dev-session.js';
+export { createDevSession } from './dev-session.js';
 // ─── Entry Generator ────────────────────────────────────────
 export type { EntryGenerator } from './entry-generator.js';
 export { createEntryGenerator } from './entry-generator.js';
