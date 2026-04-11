@@ -19,18 +19,22 @@ import type {
   BuildPipelineResult,
   BuildProgress,
   BundleResult,
+  HostPrepResult,
   PhaseResult,
   PipelineRunOptions,
   ProductLayout,
   ResolvedPackages,
+  SchemaFile,
 } from './build-types.js';
 import type { ResolvedQmltsConfig } from './config-types.js';
 import { createEntryGenerator } from './entry-generator.js';
+import { createHostPreparer } from './host-preparer.js';
 import { checkQtVersionCompatibility, createPackageResolver } from './package-resolver.js';
 import {
   alignCompilationResultToLayout,
   createManifest,
   createProductLayout,
+  currentPlatform,
   materializeLayout,
   writeCompilationUnits,
   writeEventBindings,
@@ -55,6 +59,7 @@ interface PhaseContext {
   validationBlockedOutput?: boolean;
   resolvedPackages?: ResolvedPackages;
   bundleResult?: BundleResult;
+  hostPrepResult?: HostPrepResult;
   progressListeners: Array<(progress: BuildProgress) => void>;
 }
 
@@ -356,19 +361,93 @@ async function phaseValidateQml(
 
 function phasePrepareHost(ctx: PhaseContext): Promise<{ diagnostics: readonly Diagnostic[] }> {
   const diagnostics: Diagnostic[] = [];
+  if (!ctx.compilationResult) {
+    return Promise.resolve({ diagnostics });
+  }
 
-  if (ctx.config.host.prebuilt) {
-    const customPath = ctx.config.host.customPath;
-    if (customPath && !existsSync(customPath)) {
-      diagnostics.push({
-        severity: 'warning',
-        code: 'QMLTS-G002',
-        message: `Prebuilt host library not found: ${customPath}`,
-      });
-    }
+  // Compute the layout early so we know the hostLib target path
+  const layout = createProductLayout(ctx.config.outDir, ctx.config);
+  const platform =
+    ctx.config.distribute.targets.length > 0
+      ? ctx.config.distribute.targets[0]!
+      : currentPlatform();
+
+  const schemas = ctx.compilationResult.units
+    .filter((unit) => unit.schema && unit.schemaOutputPath)
+    .map((unit) => toHostPrepSchema(unit.schema!, unit.schemaOutputPath!));
+
+  const preparer = createHostPreparer();
+  const output = preparer.prepare({
+    hostConfig: ctx.config.host,
+    schemasDir: layout.schemasDir,
+    schemas,
+    hostLibTarget: layout.hostLib,
+    platform,
+    configDir: ctx.config.configDir,
+    outDir: ctx.config.outDir,
+    dryRun: ctx.options.dryRun,
+  });
+
+  diagnostics.push(...output.diagnostics);
+  ctx.hostPrepResult = output.result;
+
+  if (output.result.cargoBuildMs !== undefined) {
+    emitProgress(ctx, {
+      phase: 'preparing-host',
+      message: `Cargo build completed in ${Math.round(output.result.cargoBuildMs)}ms`,
+    });
   }
 
   return Promise.resolve({ diagnostics });
+}
+
+function toHostPrepSchema(
+  schema: NonNullable<CompilationResult['units'][number]['schema']>,
+  filePath: string,
+): SchemaFile {
+  return {
+    className: schema.className,
+    filePath,
+    content: {
+      className: schema.className,
+      version: schema.version,
+      states: schema.states.map((state) => ({
+        name: state.name,
+        qmlName: state.qmlName,
+        qmlType: state.qmlType,
+        memberId: state.memberId,
+        readonly: state.readonly,
+        deferred: state.deferred,
+        defaultValue: typeof state.defaultValue === 'string' ? state.defaultValue : undefined,
+      })),
+      commands: schema.commands.map((command) => ({
+        name: command.name,
+        qmlName: command.qmlName,
+        commandId: command.commandId,
+        parameters: command.parameters.map((parameter) => ({
+          name: parameter.name,
+          type: parameter.type,
+        })),
+        async: command.async,
+        throttle: command.throttle,
+        throttleMs: command.throttleMs,
+      })),
+      effects: schema.effects.map((effect) => ({
+        name: effect.name,
+        qmlName: effect.qmlName,
+        effectId: effect.effectId,
+        parameters: effect.parameters.map((parameter) => ({
+          name: parameter.name,
+          type: parameter.type,
+        })),
+      })),
+      lifecycle: {
+        onMounted: schema.lifecycle.onMounted,
+        onUnmounting: schema.lifecycle.onUnmounting,
+        hotReload: schema.lifecycle.hotReload,
+      },
+    },
+  };
 }
 
 function phaseWriteOutput(ctx: PhaseContext): Promise<{ diagnostics: readonly Diagnostic[] }> {

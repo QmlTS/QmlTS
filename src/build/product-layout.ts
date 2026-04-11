@@ -6,7 +6,7 @@ import type { PlatformTarget, ResolvedQmltsConfig } from './config-types.js';
 
 const IS_WINDOWS = process.platform === 'win32';
 
-function currentPlatform(): PlatformTarget {
+export function currentPlatform(): PlatformTarget {
   if (IS_WINDOWS) {
     if (process.arch === 'x64') return 'win32-x64';
     throw new Error(`Unsupported host platform: ${process.platform}-${process.arch}`);
