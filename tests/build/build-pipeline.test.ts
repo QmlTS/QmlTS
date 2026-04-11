@@ -1,5 +1,6 @@
 import { afterEach, beforeEach, describe, expect, test } from 'bun:test';
-import { existsSync, mkdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
+import { existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
+import { tmpdir } from 'node:os';
 import { join, resolve } from 'node:path';
 import { createBuildPipeline } from '../../src/build/build-pipeline.js';
 import type { BuildPhase, BuildProgress } from '../../src/build/build-types.js';
@@ -172,10 +173,7 @@ function writeSyntaxFailingProject(): { projectDir: string; srcDir: string } {
 
   writeFileSync(
     join(dslDir, 'Rectangle.ts'),
-    readFileSync(
-      join(FIXTURES_DIR, 'src', 'dsl', 'generated', 'QtQuick', 'Rectangle.ts'),
-      'utf-8',
-    ),
+    readFileSync(join(FIXTURES_DIR, 'src', 'dsl', 'generated', 'QtQuick', 'Rectangle.ts'), 'utf-8'),
   );
   writeFileSync(
     join(srcDir, 'CounterView.ts'),
@@ -193,8 +191,8 @@ function writeSyntaxFailingProject(): { projectDir: string; srcDir: string } {
   return { projectDir, srcDir };
 }
 
-function writeIntegratedProject(): { projectDir: string; srcDir: string } {
-  const projectDir = join(TMP_DIR, 'integrated-project');
+function writeIntegratedProjectIn(rootDir: string): { projectDir: string; srcDir: string } {
+  const projectDir = join(rootDir, 'integrated-project');
   const srcDir = join(projectDir, 'src');
   const dslDir = join(srcDir, 'dsl', 'generated', 'QtQuick');
   const assetsDir = join(projectDir, 'assets');
@@ -236,10 +234,7 @@ function writeIntegratedProject(): { projectDir: string; srcDir: string } {
 
   writeFileSync(
     join(dslDir, 'Rectangle.ts'),
-    readFileSync(
-      join(FIXTURES_DIR, 'src', 'dsl', 'generated', 'QtQuick', 'Rectangle.ts'),
-      'utf-8',
-    ),
+    readFileSync(join(FIXTURES_DIR, 'src', 'dsl', 'generated', 'QtQuick', 'Rectangle.ts'), 'utf-8'),
   );
   writeFileSync(
     join(dslDir, 'Text.ts'),
@@ -422,31 +417,37 @@ describe('BuildPipeline', () => {
   });
 
   test('BP-24c: pipeline copies package QML modules and bundles assets into dist', async () => {
-    const { projectDir, srcDir } = writeIntegratedProject();
-    const config = makeConfig({
-      entry: join(srcDir, 'CounterView.ts'),
-      outDir: join(TMP_DIR, 'dist-integrated'),
-      configDir: projectDir,
-      assets: {
-        dir: join(projectDir, 'assets'),
-        include: ['**/*'],
-        exclude: [],
-        useQrc: true,
-        optimize: false,
-      },
-    });
-    const pipeline = createBuildPipeline(config);
+    const isolatedRoot = mkdtempSync(join(tmpdir(), 'qmlts-build-pipeline-integrated-'));
 
-    const result = await pipeline.run();
+    try {
+      const { projectDir, srcDir } = writeIntegratedProjectIn(isolatedRoot);
+      const config = makeConfig({
+        entry: join(srcDir, 'CounterView.ts'),
+        outDir: join(isolatedRoot, 'dist-integrated'),
+        configDir: projectDir,
+        assets: {
+          dir: join(projectDir, 'assets'),
+          include: ['**/*'],
+          exclude: [],
+          useQrc: true,
+          optimize: false,
+        },
+      });
+      const pipeline = createBuildPipeline(config);
 
-    expect(result.success).toBe(true);
-    expect(existsSync(join(config.outDir, 'assets', 'logo.txt'))).toBe(true);
-    expect(existsSync(join(config.outDir, 'assets', 'assets.qrc'))).toBe(true);
-    expect(existsSync(join(config.outDir, 'qml', 'FancyControls', 'FancyButton.qml'))).toBe(true);
+      const result = await pipeline.run();
 
-    const entryContent = readFileSync(result.output.entryFile, 'utf-8');
-    expect(entryContent).toContain('join(distDir, \'qml\')');
-    expect(entryContent).toContain('host.registerViewModel("CounterViewModel")');
+      expect(result.success).toBe(true);
+      expect(existsSync(join(config.outDir, 'assets', 'logo.txt'))).toBe(true);
+      expect(existsSync(join(config.outDir, 'assets', 'assets.qrc'))).toBe(true);
+      expect(existsSync(join(config.outDir, 'qml', 'FancyControls', 'FancyButton.qml'))).toBe(true);
+
+      const entryContent = readFileSync(result.output.entryFile, 'utf-8');
+      expect(entryContent).toContain("join(distDir, 'qml')");
+      expect(entryContent).toContain('host.registerViewModel("CounterViewModel")');
+    } finally {
+      rmSync(isolatedRoot, { recursive: true, force: true });
+    }
   });
 
   test('BP-25: schema files are written to schemasDir', async () => {
@@ -639,31 +640,35 @@ describe('BuildPipeline', () => {
     expect(existsSync(join(result.output.sourceMapsDir!, 'CounterView.qml.map'))).toBe(true);
   });
 
-  test.skipIf(!QT_DIR)('BP-36: validation failures block writing-output artifacts', async () => {
-    const { projectDir, srcDir } = writeSyntaxFailingProject();
-    const config = makeConfig({
-      entry: join(srcDir, 'CounterView.ts'),
-      outDir: join(TMP_DIR, 'dist-lint-fail'),
-      configDir: projectDir,
-      qt: {
-        dir: QT_DIR!,
-        modules: ['QtQuick'],
-        targetVersion: '6.11.0',
-      },
-      build: {
-        ...makeConfig().build,
-        lint: false,
-        qualityGate: 'syntax',
-      },
-    });
-    const pipeline = createBuildPipeline(config);
+  test.skipIf(!QT_DIR)(
+    'BP-36: validation failures block writing-output artifacts',
+    async () => {
+      const { projectDir, srcDir } = writeSyntaxFailingProject();
+      const config = makeConfig({
+        entry: join(srcDir, 'CounterView.ts'),
+        outDir: join(TMP_DIR, 'dist-lint-fail'),
+        configDir: projectDir,
+        qt: {
+          dir: QT_DIR!,
+          modules: ['QtQuick'],
+          targetVersion: '6.11.0',
+        },
+        build: {
+          ...makeConfig().build,
+          lint: false,
+          qualityGate: 'syntax',
+        },
+      });
+      const pipeline = createBuildPipeline(config);
 
-    const result = await pipeline.run();
+      const result = await pipeline.run();
 
-    expect(result.success).toBe(false);
-    expect(result.phases.get('validating-qml')?.success).toBe(false);
-    expect(result.phases.get('writing-output')?.success).toBe(false);
-    expect(existsSync(join(config.outDir, 'manifest.json'))).toBe(false);
-    expect(existsSync(join(config.outDir, 'event-bindings.json'))).toBe(false);
-  }, 30_000);
+      expect(result.success).toBe(false);
+      expect(result.phases.get('validating-qml')?.success).toBe(false);
+      expect(result.phases.get('writing-output')?.success).toBe(false);
+      expect(existsSync(join(config.outDir, 'manifest.json'))).toBe(false);
+      expect(existsSync(join(config.outDir, 'event-bindings.json'))).toBe(false);
+    },
+    30_000,
+  );
 });

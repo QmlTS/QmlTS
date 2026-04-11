@@ -1091,7 +1091,10 @@ pub mod tests_support {
 #[cfg(test)]
 mod tests {
     use super::*;
+    use std::sync::{LazyLock, Mutex};
     use tests_support::reset_app_initialized;
+
+    static TEST_MUTEX: LazyLock<Mutex<()>> = LazyLock::new(|| Mutex::new(()));
 
     #[test]
     fn test_engine_creation() {
@@ -1437,6 +1440,7 @@ mod tests {
     #[cfg(feature = "mock-qt")]
     #[test]
     fn test_register_invoke_handler() {
+        let _guard = TEST_MUTEX.lock().unwrap();
         reset_app_initialized();
 
         let engine = QmltsEngine::new(None).unwrap();
@@ -1449,6 +1453,7 @@ mod tests {
     #[cfg(feature = "mock-qt")]
     #[test]
     fn test_register_lifecycle_handler() {
+        let _guard = TEST_MUTEX.lock().unwrap();
         reset_app_initialized();
 
         let engine = QmltsEngine::new(None).unwrap();
@@ -1461,6 +1466,7 @@ mod tests {
     #[cfg(feature = "mock-qt")]
     #[test]
     fn test_register_handler_fails_after_destroy() {
+        let _guard = TEST_MUTEX.lock().unwrap();
         reset_app_initialized();
 
         let mut engine = QmltsEngine::new(None).unwrap();
@@ -1472,6 +1478,7 @@ mod tests {
     #[cfg(feature = "mock-qt")]
     #[test]
     fn test_multiple_engines_can_register_independent_invoke_handlers() {
+        let _guard = TEST_MUTEX.lock().unwrap();
         reset_app_initialized();
         qmlts_host_generated::dispatch::clear_dispatchers();
 
@@ -1490,6 +1497,7 @@ mod tests {
     #[cfg(feature = "mock-qt")]
     #[test]
     fn test_unowned_engine_drop_does_not_clear_global_dispatcher() {
+        let _guard = TEST_MUTEX.lock().unwrap();
         reset_app_initialized();
         qmlts_host_generated::dispatch::clear_dispatchers();
 
@@ -1586,6 +1594,7 @@ mod tests {
 
     #[test]
     fn test_cleanup_clears_dispatchers() {
+        let _guard = TEST_MUTEX.lock().unwrap();
         reset_app_initialized();
 
         let mut engine = QmltsEngine::new(None).unwrap();

@@ -15,11 +15,19 @@ export type {
   BuildResultData,
   BundledFile,
   BundleResult,
+  CleanCommandOptions,
+  CleanResult,
   DevSessionEvent,
   DevSessionEventType,
   DevSessionOptions,
   DevSessionState,
   DevSessionStats,
+  DistributeCommandOptions,
+  DistributeResult,
+  DoctorCheck,
+  DoctorCheckName,
+  DoctorCommandOptions,
+  DoctorResult,
   EntryGeneratorOptions,
   FileChangeData,
   HostPrepMode,
@@ -27,6 +35,10 @@ export type {
   HotReloadClient,
   HotReloadData,
   HotReloadResult,
+  InitCommandOptions,
+  InitResult,
+  InitTemplate,
+  PackageManager,
   PhaseResult,
   PipelineRunOptions,
   ProductLayout,
@@ -38,6 +50,8 @@ export type {
   ViewModelSchemaJson,
 } from './build-types.js';
 export { BUILD_PHASES } from './build-types.js';
+// ─── Clean Command ──────────────────────────────────────────
+export { executeClean } from './clean-command.js';
 export {
   applyDefaults,
   DEFAULT_ASSETS_DIR,
@@ -79,15 +93,23 @@ export { executeDev } from './dev-command.js';
 // ─── Dev Session ────────────────────────────────────────────
 export type { DevSession } from './dev-session.js';
 export { createDevSession } from './dev-session.js';
+// ─── Doctor ─────────────────────────────────────────────────
+export { getDoctorCheckNames, runDoctorChecks } from './doctor.js';
+export { executeDoctor } from './doctor-command.js';
 // ─── Entry Generator ────────────────────────────────────────
 export type { EntryGenerator } from './entry-generator.js';
 export { createEntryGenerator } from './entry-generator.js';
 // ─── Host Preparer ──────────────────────────────────────────
 export type { HostPreparer, HostPrepOptions, HostPrepOutput } from './host-preparer.js';
 export { createHostPreparer } from './host-preparer.js';
+// ─── Init Command ───────────────────────────────────────────
+export { executeInit } from './init-command.js';
 // ─── Package Resolver ───────────────────────────────────────
 export type { PackageResolver } from './package-resolver.js';
 export { checkQtVersionCompatibility, createPackageResolver } from './package-resolver.js';
+// ─── Platform Distributor ───────────────────────────────────
+export type { PlatformDistributor } from './platform-distributor.js';
+export { createPlatformDistributor } from './platform-distributor.js';
 export {
   createManifest,
   createProductLayout,
