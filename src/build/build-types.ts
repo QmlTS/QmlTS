@@ -303,3 +303,93 @@ export interface HotReloadResult {
   readonly durationMs: number;
   readonly error?: string;
 }
+
+// ─── Doctor ─────────────────────────────────────────────────
+
+export type DoctorCheckName =
+  | 'qt-installed'
+  | 'qt-version'
+  | 'qmlformat-available'
+  | 'qmllint-available'
+  | 'qmlcachegen-available'
+  | 'node-version'
+  | 'bun-available'
+  | 'cargo-available'
+  | 'rustc-available'
+  | 'cmake-available'
+  | 'cmake-version'
+  | 'msvc-available'
+  | 'ninja-available'
+  | 'host-lib-exists'
+  | 'config-valid'
+  | 'dependencies-resolved';
+
+export interface DoctorCheck {
+  readonly name: DoctorCheckName;
+  readonly description: string;
+  readonly status: 'pass' | 'warn' | 'fail';
+  readonly message: string;
+  readonly fixable?: boolean;
+  readonly fixCommand?: string;
+}
+
+export interface DoctorResult {
+  readonly checks: readonly DoctorCheck[];
+  readonly allPassed: boolean;
+}
+
+export interface DoctorCommandOptions {
+  readonly config?: string;
+  readonly verbose?: boolean;
+  readonly fix?: boolean;
+}
+
+// ─── Init ───────────────────────────────────────────────────
+
+export type InitTemplate = 'minimal' | 'counter' | 'mvvm' | 'full';
+export type PackageManager = 'npm' | 'pnpm' | 'yarn' | 'bun';
+
+export interface InitCommandOptions {
+  readonly dir?: string;
+  readonly template?: InitTemplate;
+  readonly packageManager?: PackageManager;
+  readonly skipInstall?: boolean;
+}
+
+export interface InitResult {
+  readonly dir: string;
+  readonly template: InitTemplate;
+  readonly filesCreated: readonly string[];
+  readonly packageManager: PackageManager;
+  readonly installed: boolean;
+}
+
+// ─── Clean ──────────────────────────────────────────────────
+
+export interface CleanCommandOptions {
+  readonly config?: string;
+  readonly cache?: boolean;
+  readonly nodeModules?: boolean;
+}
+
+export interface CleanResult {
+  readonly removedPaths: readonly string[];
+  readonly errors: readonly string[];
+}
+
+// ─── Platform Distribution ──────────────────────────────────
+
+export interface DistributeResult {
+  readonly target: PlatformTarget;
+  readonly outputPath: string;
+  readonly size: number;
+  readonly includes: readonly string[];
+}
+
+export interface DistributeCommandOptions {
+  readonly config?: string;
+  readonly verbose?: boolean;
+  readonly targets?: readonly PlatformTarget[];
+  readonly bundleQt?: boolean;
+  readonly icon?: string;
+}
