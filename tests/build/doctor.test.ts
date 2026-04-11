@@ -1,10 +1,21 @@
 import { beforeAll, describe, expect, test } from 'bun:test';
-import { mkdirSync, mkdtempSync, rmSync, writeFileSync } from 'node:fs';
+import { chmodSync, existsSync, mkdirSync, mkdtempSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import type { DoctorCheckName } from '../../src/build/build-types.js';
 import { getDoctorCheckNames, runDoctorChecks } from '../../src/build/doctor.js';
 import { executeDoctor } from '../../src/build/doctor-command.js';
+
+function createFakeCommand(binDir: string, name: string, body: string): void {
+  if (process.platform === 'win32') {
+    writeFileSync(join(binDir, `${name}.cmd`), body, 'utf-8');
+    return;
+  }
+
+  const filePath = join(binDir, name);
+  writeFileSync(filePath, body, 'utf-8');
+  chmodSync(filePath, 0o755);
+}
 
 describe('Doctor', () => {
   let baselineResult: Awaited<ReturnType<typeof runDoctorChecks>>;
@@ -153,4 +164,172 @@ describe('Doctor', () => {
       rmSync(tempDir, { recursive: true, force: true });
     }
   });
+
+  test('DR-13: doctor uses qt.dir and qt.targetVersion from project config', async () => {
+    const tempDir = mkdtempSync(join(tmpdir(), 'qmlts-doctor-qt-'));
+    const originalPath = process.env.PATH ?? '';
+
+    try {
+      const projectDir = join(tempDir, 'app');
+      const qtBinDir = join(projectDir, 'fake-qt', 'bin');
+      mkdirSync(join(projectDir, 'src'), { recursive: true });
+      mkdirSync(join(projectDir, 'node_modules'), { recursive: true });
+      mkdirSync(qtBinDir, { recursive: true });
+      writeFileSync(join(projectDir, 'src', 'main.ts'), 'export default 1;\n', 'utf-8');
+
+      if (process.platform === 'win32') {
+        createFakeCommand(
+          qtBinDir,
+          'qmake6',
+          '@echo off\r\necho QMake version 3.1\r\necho Using Qt version 6.11.0 in C:\\fake-qt\r\n',
+        );
+      } else {
+        createFakeCommand(
+          qtBinDir,
+          'qmake6',
+          '#!/bin/sh\necho "QMake version 3.1"\necho "Using Qt version 6.11.0 in /fake-qt"\n',
+        );
+      }
+
+      process.env.PATH = `${qtBinDir}${process.platform === 'win32' ? ';' : ':'}${originalPath}`;
+
+      writeFileSync(
+        join(projectDir, 'qmlts.config.ts'),
+        `export default {
+  entry: './src/main.ts',
+  outDir: './dist',
+  qt: {
+    dir: './fake-qt',
+    modules: ['QtQuick'],
+    targetVersion: '6.11.0',
+  },
+};
+`,
+        'utf-8',
+      );
+
+      const result = await runDoctorChecks({
+        config: join(projectDir, 'qmlts.config.ts'),
+      });
+      const qtInstalled = result.checks.find((c) => c.name === 'qt-installed');
+      const qtVersion = result.checks.find((c) => c.name === 'qt-version');
+
+      expect(qtInstalled).toBeDefined();
+      expect(qtInstalled!.status).toBe('pass');
+      expect(qtVersion).toBeDefined();
+      expect(qtVersion!.status).toBe('pass');
+      expect(qtVersion!.message).toContain('6.11.0');
+    } finally {
+      process.env.PATH = originalPath;
+      rmSync(tempDir, { recursive: true, force: true });
+    }
+  });
+
+  test('DR-13a: doctor warns when Qt version is below the configured requirement', async () => {
+    const tempDir = mkdtempSync(join(tmpdir(), 'qmlts-doctor-qt-low-'));
+    const originalPath = process.env.PATH ?? '';
+
+    try {
+      const projectDir = join(tempDir, 'app');
+      const qtBinDir = join(projectDir, 'fake-qt', 'bin');
+      mkdirSync(join(projectDir, 'src'), { recursive: true });
+      mkdirSync(join(projectDir, 'node_modules'), { recursive: true });
+      mkdirSync(qtBinDir, { recursive: true });
+      writeFileSync(join(projectDir, 'src', 'main.ts'), 'export default 1;\n', 'utf-8');
+
+      if (process.platform === 'win32') {
+        createFakeCommand(
+          qtBinDir,
+          'qmake6',
+          '@echo off\r\necho QMake version 3.1\r\necho Using Qt version 6.10.0 in C:\\fake-qt\r\n',
+        );
+      } else {
+        createFakeCommand(
+          qtBinDir,
+          'qmake6',
+          '#!/bin/sh\necho "QMake version 3.1"\necho "Using Qt version 6.10.0 in /fake-qt"\n',
+        );
+      }
+
+      process.env.PATH = `${qtBinDir}${process.platform === 'win32' ? ';' : ':'}${originalPath}`;
+
+      writeFileSync(
+        join(projectDir, 'qmlts.config.ts'),
+        `export default {
+  entry: './src/main.ts',
+  outDir: './dist',
+  qt: {
+    dir: './fake-qt',
+    modules: ['QtQuick'],
+    targetVersion: '6.11.0',
+  },
+};
+`,
+        'utf-8',
+      );
+
+      const result = await runDoctorChecks({
+        config: join(projectDir, 'qmlts.config.ts'),
+      });
+      const qtVersion = result.checks.find((c) => c.name === 'qt-version');
+
+      expect(qtVersion).toBeDefined();
+      expect(qtVersion!.status).toBe('warn');
+      expect(qtVersion!.message).toContain('6.10.0');
+      expect(qtVersion!.message).toContain('6.11.0');
+    } finally {
+      process.env.PATH = originalPath;
+      rmSync(tempDir, { recursive: true, force: true });
+    }
+  });
+
+  test('DR-14: executeDoctor --fix installs dependencies for the config project', async () => {
+    const tempDir = mkdtempSync(join(tmpdir(), 'qmlts-doctor-fix-'));
+    const originalPath = process.env.PATH ?? '';
+
+    try {
+      const projectDir = join(tempDir, 'app');
+      const binDir = join(tempDir, 'bin');
+      mkdirSync(join(projectDir, 'src'), { recursive: true });
+      mkdirSync(binDir, { recursive: true });
+      writeFileSync(join(projectDir, 'src', 'main.ts'), 'export default 1;\n', 'utf-8');
+      writeFileSync(
+        join(projectDir, 'qmlts.config.ts'),
+        `export default {
+  entry: './src/main.ts',
+  outDir: './dist',
+  qt: {
+    modules: ['QtQuick'],
+  },
+};
+`,
+        'utf-8',
+      );
+
+      if (process.platform === 'win32') {
+        createFakeCommand(
+          binDir,
+          'npm',
+          '@echo off\r\nif not exist "%CD%\\node_modules" mkdir "%CD%\\node_modules"\r\nexit /b 0\r\n',
+        );
+      } else {
+        createFakeCommand(binDir, 'npm', '#!/bin/sh\nmkdir -p "$PWD/node_modules"\nexit 0\n');
+      }
+
+      process.env.PATH = `${binDir}${process.platform === 'win32' ? ';' : ':'}${originalPath}`;
+
+      const result = await executeDoctor({
+        config: join(projectDir, 'qmlts.config.ts'),
+        fix: true,
+      });
+      const depsCheck = result.checks.find((c) => c.name === 'dependencies-resolved');
+
+      expect(depsCheck).toBeDefined();
+      expect(existsSync(join(projectDir, 'node_modules'))).toBe(true);
+      expect(depsCheck!.status).toBe('pass');
+    } finally {
+      process.env.PATH = originalPath;
+      rmSync(tempDir, { recursive: true, force: true });
+    }
+  }, 20_000);
 });

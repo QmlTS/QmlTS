@@ -1,6 +1,5 @@
-import { execFileSync } from 'node:child_process';
-import { mkdirSync, writeFileSync } from 'node:fs';
-import { basename, join, resolve } from 'node:path';
+import { mkdirSync, readdirSync, writeFileSync } from 'node:fs';
+import { basename, dirname, join, resolve } from 'node:path';
 import { resolveQtDir } from '../qt-tools/toolchain.js';
 import type {
   InitCommandOptions,
@@ -8,6 +7,11 @@ import type {
   InitTemplate,
   PackageManager,
 } from './build-types.js';
+import {
+  getPackageManagerScriptCommand,
+  normalizePackageManager,
+  runPackageManagerInstall,
+} from './package-manager.js';
 
 // ─── Template generators ────────────────────────────────────
 
@@ -166,7 +170,12 @@ export class AppViewModel {
 `;
 }
 
-function generateFullReadme(name: string): string {
+function generateFullReadme(name: string, packageManager: PackageManager): string {
+  const buildCommand = getPackageManagerScriptCommand(packageManager, 'build');
+  const devCommand = getPackageManagerScriptCommand(packageManager, 'dev');
+  const doctorCommand = getPackageManagerScriptCommand(packageManager, 'doctor');
+  const cleanCommand = getPackageManagerScriptCommand(packageManager, 'clean');
+
   return `# ${name}
 
 A QmlTS application.
@@ -175,16 +184,16 @@ A QmlTS application.
 
 \`\`\`bash
 # Build the application
-npm run build
+${buildCommand}
 
 # Start development mode
-npm run dev
+${devCommand}
 
 # Check environment
-npm run doctor
+${doctorCommand}
 
 # Clean build artifacts
-npm run clean
+${cleanCommand}
 \`\`\`
 `;
 }
@@ -194,19 +203,11 @@ interface TemplateFile {
   content: string;
 }
 
-const VALID_PACKAGE_MANAGERS = new Set<PackageManager>(['npm', 'pnpm', 'yarn', 'bun']);
-
-function normalizePackageManager(packageManager: string | undefined): PackageManager {
-  if (!packageManager) return 'npm';
-  if (VALID_PACKAGE_MANAGERS.has(packageManager as PackageManager)) {
-    return packageManager as PackageManager;
-  }
-  throw new Error(
-    `Invalid package manager '${packageManager}'. Must be one of: ${[...VALID_PACKAGE_MANAGERS].join(', ')}`,
-  );
-}
-
-function getTemplateFiles(template: InitTemplate, projectName: string): TemplateFile[] {
+function getTemplateFiles(
+  template: InitTemplate,
+  projectName: string,
+  packageManager: PackageManager,
+): TemplateFile[] {
   const qtDir = resolveQtDir();
   const common: TemplateFile[] = [
     { path: 'package.json', content: generatePackageJson(projectName) },
@@ -252,7 +253,7 @@ function getTemplateFiles(template: InitTemplate, projectName: string): Template
           path: join('src', 'viewmodels', 'AppViewModel.ts'),
           content: generateMvvmViewModel(),
         },
-        { path: 'README.md', content: generateFullReadme(projectName) },
+        { path: 'README.md', content: generateFullReadme(projectName, packageManager) },
       ];
   }
 }
@@ -267,31 +268,25 @@ export async function executeInit(options: InitCommandOptions = {}): Promise<Ini
   const projectName = basename(dir) || 'qmlts-app';
 
   mkdirSync(dir, { recursive: true });
+  if (readdirSync(dir).length > 0) {
+    console.warn(`[qmlts init] Target directory is not empty: ${dir}`);
+  }
 
-  const templateFiles = getTemplateFiles(template, projectName);
+  const templateFiles = getTemplateFiles(template, projectName, packageManager);
   const filesCreated: string[] = [];
 
   mkdirSync(join(dir, 'assets'), { recursive: true });
 
   for (const file of templateFiles) {
     const fullPath = join(dir, file.path);
-    mkdirSync(join(fullPath, '..'), { recursive: true });
+    mkdirSync(dirname(fullPath), { recursive: true });
     writeFileSync(fullPath, file.content, 'utf-8');
     filesCreated.push(file.path);
   }
 
   let installed = false;
   if (!skipInstall) {
-    try {
-      execFileSync(packageManager, ['install'], {
-        cwd: dir,
-        stdio: 'pipe',
-        timeout: 120_000,
-      });
-      installed = true;
-    } catch {
-      installed = false;
-    }
+    installed = runPackageManagerInstall(packageManager, dir);
   }
 
   return {

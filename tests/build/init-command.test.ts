@@ -1,5 +1,13 @@
 import { afterEach, beforeEach, describe, expect, test } from 'bun:test';
-import { existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
+import {
+  chmodSync,
+  existsSync,
+  mkdirSync,
+  mkdtempSync,
+  readFileSync,
+  rmSync,
+  writeFileSync,
+} from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { executeInit } from '../../src/build/init-command.js';
@@ -77,6 +85,9 @@ describe('executeInit', () => {
     expect(existsSync(join(dir, 'src', 'CounterView.ts'))).toBe(true);
     expect(existsSync(join(dir, 'src', 'viewmodels', 'AppViewModel.ts'))).toBe(true);
     expect(existsSync(join(dir, 'README.md'))).toBe(true);
+    const readme = readFileSync(join(dir, 'README.md'), 'utf-8');
+    expect(readme).toContain('npm run build');
+    expect(readme).toContain('npm run dev');
   });
 
   test('IN-05: dir option creates project in specified directory', async () => {
@@ -103,6 +114,44 @@ describe('executeInit', () => {
     expect(existsSync(join(dir, 'node_modules'))).toBe(false);
   });
 
+  test('IN-06a: install uses the selected package manager when skipInstall is false', async () => {
+    const dir = join(tempDir, 'install-test');
+    const binDir = join(tempDir, 'bin');
+    const originalPath = process.env.PATH ?? '';
+    mkdirSync(binDir, { recursive: true });
+
+    if (process.platform === 'win32') {
+      writeFileSync(
+        join(binDir, 'npm.cmd'),
+        '@echo off\r\nif not exist "%CD%\\node_modules" mkdir "%CD%\\node_modules"\r\nexit /b 0\r\n',
+        'utf-8',
+      );
+    } else {
+      writeFileSync(
+        join(binDir, 'npm'),
+        '#!/bin/sh\nmkdir -p "$PWD/node_modules"\nexit 0\n',
+        'utf-8',
+      );
+      chmodSync(join(binDir, 'npm'), 0o755);
+    }
+
+    process.env.PATH = `${binDir}${process.platform === 'win32' ? ';' : ':'}${originalPath}`;
+
+    try {
+      const result = await executeInit({
+        dir,
+        template: 'minimal',
+        packageManager: 'npm',
+        skipInstall: false,
+      });
+
+      expect(result.installed).toBe(true);
+      expect(existsSync(join(dir, 'node_modules'))).toBe(true);
+    } finally {
+      process.env.PATH = originalPath;
+    }
+  });
+
   test('IN-07: packageManager option is recorded in result', async () => {
     const dir = join(tempDir, 'pm-test');
     const result = await executeInit({
@@ -113,6 +162,22 @@ describe('executeInit', () => {
     });
 
     expect(result.packageManager).toBe('pnpm');
+  });
+
+  test('IN-07a: full template README uses the selected package manager commands', async () => {
+    const dir = join(tempDir, 'pm-readme');
+    await executeInit({
+      dir,
+      template: 'full',
+      packageManager: 'pnpm',
+      skipInstall: true,
+    });
+
+    const readme = readFileSync(join(dir, 'README.md'), 'utf-8');
+    expect(readme).toContain('pnpm run build');
+    expect(readme).toContain('pnpm run dev');
+    expect(readme).toContain('pnpm run doctor');
+    expect(readme).toContain('pnpm run clean');
   });
 
   test('IN-08: generated qmlts.config.ts contains valid config structure', async () => {
@@ -152,16 +217,28 @@ describe('executeInit', () => {
     const dir = join(tempDir, 'non-empty');
     mkdirSync(dir, { recursive: true });
     writeFileSync(join(dir, 'existing.txt'), 'hello', 'utf-8');
+    const originalWarn = console.warn;
+    const warnings: string[] = [];
+    console.warn = (...args: unknown[]) => {
+      warnings.push(args.map((arg) => String(arg)).join(' '));
+    };
 
-    const result = await executeInit({
-      dir,
-      template: 'minimal',
-      skipInstall: true,
-    });
+    try {
+      const result = await executeInit({
+        dir,
+        template: 'minimal',
+        skipInstall: true,
+      });
 
-    expect(result.filesCreated.length).toBeGreaterThan(0);
-    expect(existsSync(join(dir, 'existing.txt'))).toBe(true);
-    expect(existsSync(join(dir, 'package.json'))).toBe(true);
+      expect(result.filesCreated.length).toBeGreaterThan(0);
+      expect(existsSync(join(dir, 'existing.txt'))).toBe(true);
+      expect(existsSync(join(dir, 'package.json'))).toBe(true);
+      expect(warnings.some((warning) => warning.includes('Target directory is not empty'))).toBe(
+        true,
+      );
+    } finally {
+      console.warn = originalWarn;
+    }
   });
 
   test('IN-10: filesCreated accurately lists all generated files', async () => {

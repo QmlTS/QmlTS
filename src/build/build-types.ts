@@ -370,6 +370,7 @@ export interface CleanCommandOptions {
   readonly config?: string;
   readonly cache?: boolean;
   readonly nodeModules?: boolean;
+  readonly target?: boolean;
 }
 
 export interface CleanResult {

@@ -99,4 +99,16 @@ describe('executeClean', () => {
     expect(existsSync(nmCache)).toBe(false);
     expect(result.removedPaths.length).toBe(3);
   });
+
+  test('CL-07: target option removes generated Rust target directory', async () => {
+    const distDir = join(tempDir, 'dist');
+    const rustTargetDir = join(distDir, '.host-generated', 'target', 'debug');
+    mkdirSync(rustTargetDir, { recursive: true });
+    writeFileSync(join(rustTargetDir, 'qmlts_host.node'), '', 'utf-8');
+
+    const result = await executeClean({ target: true });
+
+    expect(existsSync(join(distDir, '.host-generated', 'target'))).toBe(false);
+    expect(result.removedPaths).toContain(resolve(join(distDir, '.host-generated', 'target')));
+  });
 });

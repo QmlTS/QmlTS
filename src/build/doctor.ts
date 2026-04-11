@@ -1,6 +1,6 @@
 import { execFileSync } from 'node:child_process';
 import { existsSync } from 'node:fs';
-import { dirname, isAbsolute, join, resolve } from 'node:path';
+import { dirname, extname, isAbsolute, join, resolve } from 'node:path';
 import { resolveQtDir } from '../qt-tools/toolchain.js';
 import type {
   DoctorCheck,
@@ -11,6 +11,7 @@ import type {
 import { DEFAULT_TARGET_VERSION } from './config-defaults.js';
 import { ConfigError } from './config-error.js';
 import { loadConfig } from './config-loader.js';
+import type { ResolvedQmltsConfig } from './config-types.js';
 import { currentPlatform, hostLibFilename } from './product-layout.js';
 
 const ALL_CHECK_NAMES: readonly DoctorCheckName[] = [
@@ -32,17 +33,45 @@ const ALL_CHECK_NAMES: readonly DoctorCheckName[] = [
   'dependencies-resolved',
 ];
 
-function tryExec(file: string, args: readonly string[] = []): { ok: boolean; stdout: string } {
-  try {
-    const stdout = execFileSync(file, [...args], {
+function getExecutableCandidates(file: string): string[] {
+  if (process.platform !== 'win32' || extname(file) !== '') {
+    return [file];
+  }
+
+  return [file, `${file}.exe`, `${file}.cmd`, `${file}.bat`];
+}
+
+function formatWindowsToken(token: string): string {
+  return /[\s"]/.test(token) ? `"${token.replace(/"/g, '\\"')}"` : token;
+}
+
+function execCandidate(file: string, args: readonly string[]): string {
+  if (process.platform === 'win32' && (file.endsWith('.cmd') || file.endsWith('.bat'))) {
+    const command = [formatWindowsToken(file), ...args.map(formatWindowsToken)].join(' ');
+    return execFileSync('cmd.exe', ['/d', '/s', '/c', command], {
       encoding: 'utf-8',
       timeout: 10_000,
       stdio: ['pipe', 'pipe', 'pipe'],
     }).trim();
-    return { ok: true, stdout };
-  } catch {
-    return { ok: false, stdout: '' };
   }
+
+  return execFileSync(file, [...args], {
+    encoding: 'utf-8',
+    timeout: 10_000,
+    stdio: ['pipe', 'pipe', 'pipe'],
+  }).trim();
+}
+
+function tryExec(file: string, args: readonly string[] = []): { ok: boolean; stdout: string } {
+  for (const candidate of getExecutableCandidates(file)) {
+    try {
+      const stdout = execCandidate(candidate, args);
+      return { ok: true, stdout };
+    } catch {
+      // try next candidate
+    }
+  }
+  return { ok: false, stdout: '' };
 }
 
 function checkBinaryAvailable(
@@ -63,6 +92,12 @@ function parseVersion(versionStr: string): number[] {
   ];
 }
 
+function parseQtVersion(output: string): number[] {
+  const qtVersionLine =
+    output.split(/\r?\n/).find((line) => line.toLowerCase().includes('using qt version')) ?? output;
+  return parseVersion(qtVersionLine);
+}
+
 function versionAtLeast(actual: number[], required: number[]): boolean {
   for (let i = 0; i < required.length; i++) {
     if ((actual[i] ?? 0) > (required[i] ?? 0)) return true;
@@ -79,8 +114,7 @@ function resolveProjectDir(configPath?: string): string {
 
 // ─── Individual check implementations ───────────────────────
 
-function checkQtInstalled(): DoctorCheck {
-  const qtDir = resolveQtDir();
+function checkQtInstalled(qtDir = resolveQtDir()): DoctorCheck {
   if (qtDir && existsSync(qtDir)) {
     return {
       name: 'qt-installed',
@@ -99,10 +133,12 @@ function checkQtInstalled(): DoctorCheck {
   };
 }
 
-function checkQtVersion(): DoctorCheck {
-  const qtDir = resolveQtDir();
-  const requiredVersion = parseVersion(DEFAULT_TARGET_VERSION);
-  const description = `Qt version >= ${DEFAULT_TARGET_VERSION}`;
+function checkQtVersion(
+  qtDir = resolveQtDir(),
+  requiredVersionText = DEFAULT_TARGET_VERSION,
+): DoctorCheck {
+  const requiredVersion = parseVersion(requiredVersionText);
+  const description = `Qt version >= ${requiredVersionText}`;
   if (!qtDir) {
     return {
       name: 'qt-version',
@@ -115,7 +151,7 @@ function checkQtVersion(): DoctorCheck {
   for (const qmake of qmakePaths) {
     const result = tryExec(qmake, ['--version']);
     if (result.ok) {
-      const version = parseVersion(result.stdout);
+      const version = parseQtVersion(result.stdout);
       if (versionAtLeast(version, requiredVersion)) {
         return {
           name: 'qt-version',
@@ -127,8 +163,8 @@ function checkQtVersion(): DoctorCheck {
       return {
         name: 'qt-version',
         description,
-        status: 'fail',
-        message: `Qt ${version.join('.')} detected — QmlTS requires ${DEFAULT_TARGET_VERSION}+`,
+        status: 'warn',
+        message: `Qt ${version.join('.')} detected — QmlTS requires ${requiredVersionText}+`,
       };
     }
   }
@@ -140,8 +176,12 @@ function checkQtVersion(): DoctorCheck {
   };
 }
 
-function checkQtTool(name: DoctorCheckName, binary: string, description: string): DoctorCheck {
-  const qtDir = resolveQtDir();
+function checkQtTool(
+  name: DoctorCheckName,
+  binary: string,
+  description: string,
+  qtDir = resolveQtDir(),
+): DoctorCheck {
   const candidates = qtDir ? [join(qtDir, 'bin', binary), binary] : [binary];
 
   for (const candidate of candidates) {
@@ -400,7 +440,7 @@ function checkDependenciesResolved(projectDir = process.cwd()): DoctorCheck {
       name: 'dependencies-resolved',
       description: 'npm dependencies resolved',
       status: 'fail',
-      message: 'node_modules not found. Run npm install.',
+      message: `node_modules not found in ${projectDir}. Run npm install.`,
       fixable: true,
       fixCommand: 'npm install',
     };
@@ -421,13 +461,25 @@ export function getDoctorCheckNames(): readonly DoctorCheckName[] {
 
 export async function runDoctorChecks(options: DoctorCommandOptions = {}): Promise<DoctorResult> {
   const checks: DoctorCheck[] = [];
-  const projectDir = resolveProjectDir(options.config);
+  let loadedConfig: ResolvedQmltsConfig | undefined;
 
-  checks.push(checkQtInstalled());
-  checks.push(checkQtVersion());
-  checks.push(checkQtTool('qmlformat-available', 'qmlformat', 'qmlformat tool'));
-  checks.push(checkQtTool('qmllint-available', 'qmllint', 'qmllint tool'));
-  checks.push(checkQtTool('qmlcachegen-available', 'qmlcachegen', 'qmlcachegen AOT compiler'));
+  try {
+    loadedConfig = await loadConfig(options.config);
+  } catch {
+    // config-valid check below will surface any configuration problems
+  }
+
+  const projectDir = loadedConfig?.configDir ?? resolveProjectDir(options.config);
+  const qtDir = loadedConfig?.qt.dir ?? resolveQtDir();
+  const requiredQtVersion = loadedConfig?.qt.targetVersion ?? DEFAULT_TARGET_VERSION;
+
+  checks.push(checkQtInstalled(qtDir));
+  checks.push(checkQtVersion(qtDir, requiredQtVersion));
+  checks.push(checkQtTool('qmlformat-available', 'qmlformat', 'qmlformat tool', qtDir));
+  checks.push(checkQtTool('qmllint-available', 'qmllint', 'qmllint tool', qtDir));
+  checks.push(
+    checkQtTool('qmlcachegen-available', 'qmlcachegen', 'qmlcachegen AOT compiler', qtDir),
+  );
   checks.push(checkNodeVersion());
   checks.push(checkBunAvailable());
   checks.push(checkCargoAvailable());

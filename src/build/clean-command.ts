@@ -19,6 +19,11 @@ export async function executeClean(options: CleanCommandOptions = {}): Promise<C
     configDir = resolve('.');
   }
 
+  if (options.target) {
+    const rustTargetDir = join(outDir, '.host-generated', 'target');
+    removePath(rustTargetDir, removedPaths, errors);
+  }
+
   removePath(outDir, removedPaths, errors);
 
   if (options.cache) {
