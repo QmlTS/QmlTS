@@ -24,6 +24,7 @@ import type {
   PipelineRunOptions,
   ProductLayout,
   ResolvedPackages,
+  SchemaFile,
 } from './build-types.js';
 import type { ResolvedQmltsConfig } from './config-types.js';
 import { createEntryGenerator } from './entry-generator.js';
@@ -360,6 +361,9 @@ async function phaseValidateQml(
 
 function phasePrepareHost(ctx: PhaseContext): Promise<{ diagnostics: readonly Diagnostic[] }> {
   const diagnostics: Diagnostic[] = [];
+  if (!ctx.compilationResult) {
+    return Promise.resolve({ diagnostics });
+  }
 
   // Compute the layout early so we know the hostLib target path
   const layout = createProductLayout(ctx.config.outDir, ctx.config);
@@ -368,13 +372,15 @@ function phasePrepareHost(ctx: PhaseContext): Promise<{ diagnostics: readonly Di
       ? ctx.config.distribute.targets[0]!
       : currentPlatform();
 
-  // Determine schemasDir from compilation output or layout
-  const schemasDir = layout.schemasDir;
+  const schemas = ctx.compilationResult.units
+    .filter((unit) => unit.schema && unit.schemaOutputPath)
+    .map((unit) => toHostPrepSchema(unit.schema!, unit.schemaOutputPath!));
 
   const preparer = createHostPreparer();
   const output = preparer.prepare({
     hostConfig: ctx.config.host,
-    schemasDir,
+    schemasDir: layout.schemasDir,
+    schemas,
     hostLibTarget: layout.hostLib,
     platform,
     configDir: ctx.config.configDir,
@@ -393,6 +399,55 @@ function phasePrepareHost(ctx: PhaseContext): Promise<{ diagnostics: readonly Di
   }
 
   return Promise.resolve({ diagnostics });
+}
+
+function toHostPrepSchema(
+  schema: NonNullable<CompilationResult['units'][number]['schema']>,
+  filePath: string,
+): SchemaFile {
+  return {
+    className: schema.className,
+    filePath,
+    content: {
+      className: schema.className,
+      version: schema.version,
+      states: schema.states.map((state) => ({
+        name: state.name,
+        qmlName: state.qmlName,
+        qmlType: state.qmlType,
+        memberId: state.memberId,
+        readonly: state.readonly,
+        deferred: state.deferred,
+        defaultValue: typeof state.defaultValue === 'string' ? state.defaultValue : undefined,
+      })),
+      commands: schema.commands.map((command) => ({
+        name: command.name,
+        qmlName: command.qmlName,
+        commandId: command.commandId,
+        parameters: command.parameters.map((parameter) => ({
+          name: parameter.name,
+          type: parameter.type,
+        })),
+        async: command.async,
+        throttle: command.throttle,
+        throttleMs: command.throttleMs,
+      })),
+      effects: schema.effects.map((effect) => ({
+        name: effect.name,
+        qmlName: effect.qmlName,
+        effectId: effect.effectId,
+        parameters: effect.parameters.map((parameter) => ({
+          name: parameter.name,
+          type: parameter.type,
+        })),
+      })),
+      lifecycle: {
+        onMounted: schema.lifecycle.onMounted,
+        onUnmounting: schema.lifecycle.onUnmounting,
+        hotReload: schema.lifecycle.hotReload,
+      },
+    },
+  };
 }
 
 function phaseWriteOutput(ctx: PhaseContext): Promise<{ diagnostics: readonly Diagnostic[] }> {

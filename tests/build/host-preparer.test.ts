@@ -254,12 +254,25 @@ describe('BP-79 prebuilt host preparation', () => {
     expect(existsSync(hostLibTarget)).toBe(true);
     expect(readFileSync(hostLibTarget, 'utf-8')).toBe('LINUX_BINARY');
   });
+
+  test('finds @qmlts/host by walking up parent directories', () => {
+    setupPrebuiltPackage(TMP_DIR);
+    const nestedConfigDir = join(TMP_DIR, 'apps', 'demo');
+    mkdirSync(nestedConfigDir, { recursive: true });
+
+    const preparer = createHostPreparer();
+    const output = preparer.prepare(makeOptions({ configDir: nestedConfigDir }));
+
+    expect(output.result.mode).toBe('prebuilt');
+    expect(output.diagnostics.filter((d) => d.severity === 'error')).toHaveLength(0);
+    expect(existsSync(output.result.hostLibPath)).toBe(true);
+  });
 });
 
 // ─── Cargo Build Flow ───────────────────────────────────────
 
 describe('BP-80 cargo-build host preparation', () => {
-  test('generates bridge files from schema when no schemas found', () => {
+  test('warns when no schemas are found for bridge generation', () => {
     const preparer = createHostPreparer();
     const output = preparer.prepare(
       makeOptions({
@@ -347,6 +360,7 @@ describe('BP-80 cargo-build host preparation', () => {
     expect(output.result.mode).toBe('cargo-build');
     expect(output.result.bridgeGenerated).toBe(true);
     expect(output.diagnostics.some((d) => d.message.includes('dry-run'))).toBe(true);
+    expect(existsSync(join(TMP_DIR, 'dist', '.host-generated'))).toBe(false);
   });
 
   test('reports error on duplicate schema class names', () => {
@@ -421,17 +435,14 @@ describe('BP-81 rust bridge generator', () => {
     ]);
   });
 
-  test('skips invalid JSON files', () => {
+  test('throws on invalid JSON schema files', () => {
     const schemasDir = join(TMP_DIR, 'schemas');
     mkdirSync(schemasDir, { recursive: true });
     writeFileSync(join(schemasDir, 'bad.schema.json'), 'NOT JSON');
     writeSchemaFile(schemasDir, 'ValidViewModel');
 
     const gen = createRustBridgeGenerator();
-    const schemas = gen.discoverSchemas(schemasDir);
-
-    expect(schemas.length).toBe(1);
-    expect(schemas[0].className).toBe('ValidViewModel');
+    expect(() => gen.discoverSchemas(schemasDir)).toThrow(/Failed to load schema file/);
   });
 
   test('generates ViewModel bridge with qproperties', () => {
@@ -555,6 +566,36 @@ describe('BP-81 rust bridge generator', () => {
     expect(vmContent).toContain('#[qproperty(QString, name)]');
   });
 
+  test('uses snake_case Rust field names for camelCase states', () => {
+    const schemasDir = join(TMP_DIR, 'schemas');
+    writeSchemaFile(schemasDir, 'LoginViewModel', {
+      className: 'LoginViewModel',
+      version: 1,
+      states: [
+        {
+          name: 'isLoading',
+          qmlName: 'isLoading',
+          qmlType: 'bool',
+          memberId: 0,
+          readonly: false,
+          deferred: false,
+        },
+      ],
+      commands: [],
+      effects: [],
+      lifecycle: { onMounted: false, onUnmounting: false, hotReload: false },
+    });
+
+    const gen = createRustBridgeGenerator();
+    const schemas = gen.discoverSchemas(schemasDir);
+    const genDir = join(TMP_DIR, 'generated');
+    const output = gen.generate(schemas, genDir);
+
+    const vmContent = readFileSync(output.viewModelFiles[0], 'utf-8');
+    expect(vmContent).toContain('#[qproperty(bool, is_loading, cxx_name = "isLoading")]');
+    expect(vmContent).toContain('is_loading: bool,');
+  });
+
   test('generates multiple ViewModels correctly', () => {
     const schemasDir = join(TMP_DIR, 'schemas');
     writeSchemaFile(schemasDir, 'CounterViewModel');
@@ -625,9 +666,9 @@ describe('BP-82 schema validation', () => {
       },
     ]);
 
-    expect(diagnostics.length).toBe(1);
-    expect(diagnostics[0].severity).toBe('error');
-    expect(diagnostics[0].message).toContain('Duplicate');
+    expect(diagnostics.some((d) => d.severity === 'error' && d.message.includes('Duplicate'))).toBe(
+      true,
+    );
   });
 
   test('returns empty for unique schemas', () => {
@@ -659,6 +700,35 @@ describe('BP-82 schema validation', () => {
         content: {
           className: 'VM2',
           version: 1,
+          states: [
+            {
+              name: 'ready',
+              qmlName: 'ready',
+              qmlType: 'bool',
+              memberId: 0,
+              readonly: false,
+              deferred: false,
+            },
+          ],
+          commands: [],
+          effects: [],
+          lifecycle: { onMounted: false, onUnmounting: false, hotReload: false },
+        },
+      },
+    ]);
+
+    expect(diagnostics.filter((d) => d.severity === 'error')).toHaveLength(0);
+    expect(diagnostics.filter((d) => d.severity === 'warning')).toHaveLength(0);
+  });
+
+  test('warns when schema has no states, commands, or effects', () => {
+    const diagnostics = validateSchemas([
+      {
+        className: 'EmptyVM',
+        filePath: '/empty.schema.json',
+        content: {
+          className: 'EmptyVM',
+          version: 1,
           states: [],
           commands: [],
           effects: [],
@@ -667,7 +737,8 @@ describe('BP-82 schema validation', () => {
       },
     ]);
 
-    expect(diagnostics.length).toBe(0);
+    expect(diagnostics.some((d) => d.severity === 'warning')).toBe(true);
+    expect(diagnostics[0]?.message).toContain('has no states, commands, or effects');
   });
 });
 
@@ -784,5 +855,22 @@ describe('BP-83 pipeline host preparation phase', () => {
     const hostPhase = result.phases.get('preparing-host');
     expect(hostPhase).toBeDefined();
     expect(hostPhase!.diagnostics.some((d) => d.severity === 'error')).toBe(true);
+  });
+
+  test('cargo-build dry run uses in-memory schemas from compilation output', async () => {
+    const { createBuildPipeline } = require('../../src/build/build-pipeline.js');
+    const pipeline = createBuildPipeline(
+      makeFullConfig({
+        host: { prebuilt: false, cargo: { args: [], profile: 'dev' } },
+      }),
+    );
+    const result = await pipeline.run({ dryRun: true });
+
+    const hostPhase = result.phases.get('preparing-host');
+    expect(hostPhase).toBeDefined();
+    expect(hostPhase!.diagnostics.some((d) => d.message.includes('dry-run'))).toBe(true);
+    expect(
+      hostPhase!.diagnostics.some((d) => d.message.includes('No ViewModel schemas found')),
+    ).toBe(false);
   });
 });

@@ -1,8 +1,8 @@
-import { execSync } from 'node:child_process';
+import { execFileSync } from 'node:child_process';
 import { copyFileSync, existsSync, mkdirSync } from 'node:fs';
 import { dirname, join, resolve } from 'node:path';
 import type { Diagnostic } from '../compiler/diagnostics.js';
-import type { HostPrepMode, HostPrepResult } from './build-types.js';
+import type { HostPrepMode, HostPrepResult, SchemaFile } from './build-types.js';
 import type { PlatformTarget, ResolvedHostConfig } from './config-types.js';
 import { createRustBridgeGenerator, validateSchemas } from './rust-bridge-generator.js';
 
@@ -15,6 +15,7 @@ export interface HostPreparer {
 export interface HostPrepOptions {
   readonly hostConfig: ResolvedHostConfig;
   readonly schemasDir: string;
+  readonly schemas?: readonly SchemaFile[];
   readonly hostLibTarget: string;
   readonly platform: PlatformTarget;
   readonly configDir: string;
@@ -90,7 +91,6 @@ function prepareCustomPath(
 function findPrebuiltHostPackage(configDir: string): string | undefined {
   // Search for @qmlts/host in node_modules, walking up from configDir
   let searchDir = configDir;
-  const root = dirname(searchDir);
 
   // Walk up at most 10 levels to avoid infinite loop
   for (let i = 0; i < 10; i++) {
@@ -99,7 +99,7 @@ function findPrebuiltHostPackage(configDir: string): string | undefined {
       return candidate;
     }
     const parent = dirname(searchDir);
-    if (parent === searchDir || parent === root) {
+    if (parent === searchDir) {
       break;
     }
     searchDir = parent;
@@ -191,7 +191,7 @@ function prepareCargoBuild(options: HostPrepOptions): HostPrepOutput {
 
   // 1. Discover and validate schemas
   const generator = createRustBridgeGenerator();
-  const schemas = generator.discoverSchemas(schemasDir);
+  const schemas = options.schemas ? [...options.schemas] : generator.discoverSchemas(schemasDir);
 
   if (schemas.length === 0) {
     diagnostics.push({
@@ -214,8 +214,6 @@ function prepareCargoBuild(options: HostPrepOptions): HostPrepOutput {
 
   // 2. Generate bridge files
   const generatedDir = join(outDir, '.host-generated');
-  generator.generate(schemas, generatedDir);
-
   if (dryRun) {
     diagnostics.push({
       severity: 'info',
@@ -227,6 +225,8 @@ function prepareCargoBuild(options: HostPrepOptions): HostPrepOutput {
       diagnostics,
     };
   }
+
+  generator.generate(schemas, generatedDir);
 
   // 3. Invoke cargo build
   const cargoResult = invokeCargoBuild(hostConfig, generatedDir, hostLibTarget);
@@ -250,7 +250,7 @@ interface CargoResult {
 
 function invokeCargoBuild(
   hostConfig: ResolvedHostConfig,
-  _generatedDir: string,
+  generatedDir: string,
   hostLibTarget: string,
 ): CargoResult {
   const diagnostics: Diagnostic[] = [];
@@ -267,11 +267,15 @@ function invokeCargoBuild(
   }
 
   args.push(...hostConfig.cargo.args);
-
-  const command = `cargo ${args.join(' ')}`;
+  const cargoTargetDir = join(generatedDir, 'target');
 
   try {
-    execSync(command, {
+    execFileSync('cargo', args, {
+      cwd: generatedDir,
+      env: {
+        ...process.env,
+        CARGO_TARGET_DIR: cargoTargetDir,
+      },
       stdio: 'pipe',
       timeout: 600_000, // 10 minutes max
       encoding: 'utf-8',
@@ -286,6 +290,19 @@ function invokeCargoBuild(
     return { diagnostics, durationMs: performance.now() - start };
   }
 
+  const builtHostLib = resolveCargoArtifactPath(generatedDir, hostConfig);
+  if (!existsSync(builtHostLib)) {
+    diagnostics.push({
+      severity: 'error',
+      code: 'QMLTS-G001',
+      message: `Cargo build completed but generated addon was not found: ${builtHostLib}`,
+    });
+    return { diagnostics, durationMs: performance.now() - start };
+  }
+
+  mkdirSync(dirname(hostLibTarget), { recursive: true });
+  copyFileSync(builtHostLib, hostLibTarget);
+
   // Check if the output binary exists
   if (!existsSync(hostLibTarget)) {
     diagnostics.push({
@@ -296,6 +313,16 @@ function invokeCargoBuild(
   }
 
   return { diagnostics, durationMs: performance.now() - start };
+}
+
+function resolveCargoArtifactPath(
+  generatedDir: string,
+  hostConfig: ResolvedHostConfig,
+): string {
+  const targetDir = join(generatedDir, 'target');
+  const targetRoot = hostConfig.cargo.target ? join(targetDir, hostConfig.cargo.target) : targetDir;
+  const profileDir = hostConfig.cargo.profile === 'release' ? 'release' : 'debug';
+  return join(targetRoot, profileDir, 'qmlts-host.node');
 }
 
 // ─── Factory ────────────────────────────────────────────────

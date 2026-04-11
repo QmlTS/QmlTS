@@ -68,8 +68,9 @@ function discoverSchemas(schemasDir: string): SchemaFile[] {
       if (content.className && typeof content.version === 'number') {
         schemas.push({ className: content.className, filePath, content });
       }
-    } catch {
-      // Skip invalid schema files — they will be caught by diagnostics
+    } catch (error) {
+      const message = error instanceof Error ? error.message : String(error);
+      throw new Error(`Failed to load schema file "${filePath}": ${message}`);
     }
   }
 
@@ -120,10 +121,13 @@ function generateViewModelBridge(schema: ViewModelSchemaJson): string {
   lines.push('        #[qobject]');
   for (const state of schema.states) {
     const rustType = mapQmlTypeToRust(state.qmlType);
-    if (state.name !== state.qmlName) {
-      lines.push(`        #[qproperty(${rustType}, ${state.name}, cxx_name = "${state.qmlName}")]`);
+    const fieldName = toSnakeCase(state.name);
+    const qmlName = state.qmlName || state.name;
+    const needsCxxName = fieldName !== qmlName;
+    if (needsCxxName) {
+      lines.push(`        #[qproperty(${rustType}, ${fieldName}, cxx_name = "${qmlName}")]`);
     } else {
-      lines.push(`        #[qproperty(${rustType}, ${state.name})]`);
+      lines.push(`        #[qproperty(${rustType}, ${fieldName})]`);
     }
   }
   lines.push(`        type ${className} = super::${rustStruct};`);
@@ -371,7 +375,11 @@ export function validateSchemas(schemas: readonly SchemaFile[]): Diagnostic[] {
     }
     seenClassNames.add(schema.className);
 
-    if (!schema.content.states && !schema.content.commands && !schema.content.effects) {
+    if (
+      schema.content.states.length === 0 &&
+      schema.content.commands.length === 0 &&
+      schema.content.effects.length === 0
+    ) {
       diagnostics.push({
         severity: 'warning',
         code: 'QMLTS-G002',
