@@ -1,5 +1,33 @@
 // ─── Config ─────────────────────────────────────────────────
 
+// ─── Dev Tools ──────────────────────────────────────────────
+export type {
+  DevServer,
+  DevServerBuildResultData,
+  DevServerEvent,
+  DevServerEventPayload,
+  DevServerFileChangeData,
+  DevServerHotReloadData,
+  DevServerHotReloadErrorData,
+  DevServerOptions,
+  DevServerStartResult,
+  DevServerStats,
+  DevServerStatus,
+  FileChange,
+  FileChangeBatch,
+  FileWatcher,
+  FileWatcherOptions,
+  HotReloadContext,
+  HotReloadOrchestrator,
+  HotReloadOrchestratorOptions,
+  HotReloadOrchestratorResult,
+  StatusChangeData,
+} from '../dev-tools/index.js';
+export {
+  createDevServer,
+  createFileWatcher,
+  createHotReloadOrchestrator,
+} from '../dev-tools/index.js';
 export { executeBuild } from './build-command.js';
 // ─── Build Pipeline ─────────────────────────────────────────
 export { BuildError } from './build-error.js';

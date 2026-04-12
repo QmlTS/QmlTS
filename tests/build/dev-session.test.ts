@@ -762,6 +762,15 @@ describe('DevSession', () => {
     await expect(session.rebuild()).rejects.toThrow(/Cannot rebuild.*idle/);
   });
 
+  test('DS-27b: compatibility wrapper preserves DevSession rebuild error wording', async () => {
+    const config = makeConfig(tempDir);
+    const session = createDevSession(config);
+
+    await expect(session.rebuild()).rejects.toThrow(
+      "Cannot rebuild DevSession: session is in 'idle' state (expected 'watching' or 'rebuilding')",
+    );
+  });
+
   // ─── DS-28: Non-TS files are not watched ────────────────
 
   test('DS-28: non-TypeScript files do not trigger rebuild', async () => {
@@ -817,4 +826,32 @@ describe('DevSession', () => {
       await session.stop();
     }
   }, 20_000);
+
+  // ─── DS-30: outDir is ignored by watcher ───────────────
+
+  test('DS-30: changes inside outDir do not trigger rebuild loops', async () => {
+    const config = makeConfig(tempDir, {
+      dev: {
+        ...makeConfig(tempDir).dev,
+        watchPaths: [tempDir],
+      },
+    });
+    const session = createDevSession(config);
+    const rebuildEvents = collectEvents(session, 'rebuild-start');
+    const fileChangeEvents = collectEvents(session, 'file-change');
+
+    try {
+      await session.start();
+      await sleep(500);
+
+      writeFileSync(join(tempDir, 'dist', 'generated-entry.ts'), 'export const generated = 1;\n');
+
+      await sleep(800);
+
+      expect(fileChangeEvents).toHaveLength(0);
+      expect(rebuildEvents).toHaveLength(0);
+    } finally {
+      await session.stop();
+    }
+  }, 15_000);
 });

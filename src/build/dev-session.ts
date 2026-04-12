@@ -1,23 +1,24 @@
-import { resolve } from 'node:path';
-import chokidar from 'chokidar';
-import type { Diagnostic } from '../compiler/diagnostics.js';
-import { createBuildPipeline } from './build-pipeline.js';
+import { createDevServer, type DevServerInternal } from '../dev-tools/dev-server.js';
+import type {
+  DevServerEventPayload,
+  DevServerFileChangeData,
+  DevServerStatus,
+} from '../dev-tools/dev-types.js';
 import type {
   BuildPipelineResult,
-  BuildResultData,
   DevSessionEvent,
   DevSessionEventType,
   DevSessionOptions,
   DevSessionState,
   DevSessionStats,
   FileChangeData,
-  HotReloadClient,
-  HotReloadData,
-  PipelineRunOptions,
 } from './build-types.js';
 import type { ResolvedQmltsConfig } from './config-types.js';
 
 // ─── DevSession interface ───────────────────────────────────
+// DevSession is a backward-compatible wrapper over the canonical
+// 09-dev-tools DevServer. It preserves the existing BuildPipelineResult
+// return shape and event contract for callers in the build layer.
 
 export interface DevSession {
   start(): Promise<BuildPipelineResult>;
@@ -29,35 +30,10 @@ export interface DevSession {
   off(event: DevSessionEventType, handler: (event: DevSessionEvent) => void): void;
 }
 
-// ─── Internal state ─────────────────────────────────────────
-
 interface SessionInternals {
-  state: DevSessionState;
-  config: ResolvedQmltsConfig;
-  options: DevSessionOptions;
-  hotReloadClient?: HotReloadClient;
-  watcher?: ReturnType<typeof chokidar.watch>;
-  debounceTimer?: ReturnType<typeof setTimeout>;
+  server: DevServerInternal;
   listeners: Map<DevSessionEventType, Set<(event: DevSessionEvent) => void>>;
-  startTime?: number;
-  buildCount: number;
-  rebuildCount: number;
-  hotReloadCount: number;
-  errorCount: number;
-  totalBuildMs: number;
-  lastBuildMs?: number;
-  lastSuccessfulResult?: BuildPipelineResult;
-  pendingRebuild: boolean;
-  rebuildInProgress: boolean;
-  changedFilesBatch: string[];
-  activeRebuildPromise?: Promise<BuildPipelineResult>;
-  queuedRebuildWaiters: Array<{
-    resolve: (result: BuildPipelineResult) => void;
-    reject: (error: unknown) => void;
-  }>;
 }
-
-// ─── Helpers ────────────────────────────────────────────────
 
 function emit(internals: SessionInternals, type: DevSessionEventType, data?: unknown): void {
   const event: DevSessionEvent = {
@@ -73,428 +49,179 @@ function emit(internals: SessionInternals, type: DevSessionEventType, data?: unk
   }
 }
 
-function transition(internals: SessionInternals, newState: DevSessionState): void {
-  const oldState = internals.state;
-  if (oldState === newState) return;
-  internals.state = newState;
-  emit(internals, 'state-change', { from: oldState, to: newState });
-}
-
-function resolveQueuedRebuilds(internals: SessionInternals, result: BuildPipelineResult): void {
-  const waiters = [...internals.queuedRebuildWaiters];
-  internals.queuedRebuildWaiters = [];
-  for (const waiter of waiters) {
-    waiter.resolve(result);
+function mapStatus(status: DevServerStatus): DevSessionState {
+  switch (status) {
+    case 'idle':
+      return 'idle';
+    case 'starting':
+      return 'starting';
+    case 'building':
+      return 'building';
+    case 'running':
+      return 'watching';
+    case 'reloading':
+      return 'rebuilding';
+    case 'stopping':
+      return 'stopping';
+    case 'stopped':
+      return 'stopped';
   }
 }
 
-function rejectQueuedRebuilds(internals: SessionInternals, error: unknown): void {
-  const waiters = [...internals.queuedRebuildWaiters];
-  internals.queuedRebuildWaiters = [];
-  for (const waiter of waiters) {
-    waiter.reject(error);
-  }
+function toStateChangeData(data: unknown): { from: DevSessionState; to: DevSessionState } {
+  const statusChange = data as { from: DevServerStatus; to: DevServerStatus };
+  return {
+    from: mapStatus(statusChange.from),
+    to: mapStatus(statusChange.to),
+  };
 }
 
-function runRebuild(internals: SessionInternals): Promise<BuildPipelineResult> {
-  if (internals.activeRebuildPromise) {
-    return internals.activeRebuildPromise;
-  }
-
-  const rebuildPromise = performRebuild(internals).finally(() => {
-    if (internals.activeRebuildPromise === rebuildPromise) {
-      internals.activeRebuildPromise = undefined;
-    }
-  });
-
-  internals.activeRebuildPromise = rebuildPromise;
-  return rebuildPromise;
-}
-
-function effectiveDebounceMs(internals: SessionInternals): number {
-  return internals.options.debounceMs ?? internals.config.dev.debounceMs;
-}
-
-function effectiveWatchPaths(internals: SessionInternals): readonly string[] {
-  const paths = internals.options.watchPaths ?? internals.config.dev.watchPaths;
-  return paths.map((p) => resolve(internals.config.configDir, p));
-}
-
-function effectiveIgnorePatterns(internals: SessionInternals): readonly string[] {
-  return internals.options.ignorePatterns ?? internals.config.dev.ignorePatterns;
-}
-
-function shouldIgnoreFile(filePath: string, patterns: readonly string[]): boolean {
-  if (patterns.length === 0) return false;
-  const normalized = filePath.replace(/\\/g, '/');
-  for (const pattern of patterns) {
-    if (normalized.includes(pattern)) return true;
-    if (pattern.startsWith('*.')) {
-      const ext = pattern.slice(1);
-      if (normalized.endsWith(ext)) return true;
-    }
-  }
-  return false;
-}
-
-// ─── Rebuild logic ──────────────────────────────────────────
-
-async function performRebuild(internals: SessionInternals): Promise<BuildPipelineResult> {
-  internals.rebuildInProgress = true;
-  const changedFiles = [...internals.changedFilesBatch];
-  internals.changedFilesBatch = [];
-
-  transition(internals, 'rebuilding');
-  emit(internals, 'rebuild-start', { files: changedFiles });
-
-  const start = performance.now();
-
-  try {
-    const pipelineOpts: PipelineRunOptions = {
-      files: changedFiles.length > 0 ? changedFiles : undefined,
+function attachServerEventBridges(internals: SessionInternals): void {
+  const bridge = (
+    serverEvent: string,
+    sessionEvent: DevSessionEventType,
+    mapData?: (data: unknown) => unknown,
+  ): void => {
+    const handler = (payload: DevServerEventPayload): void => {
+      emit(internals, sessionEvent, mapData ? mapData(payload.data) : payload.data);
     };
 
-    const pipeline = createBuildPipeline(internals.config);
-    const result = await pipeline.run(pipelineOpts);
-    const durationMs = performance.now() - start;
+    internals.server.on(serverEvent as never, handler);
+  };
 
-    internals.rebuildCount++;
-    internals.totalBuildMs += durationMs;
-    internals.lastBuildMs = durationMs;
-
-    if (result.success) {
-      internals.lastSuccessfulResult = result;
-
-      const buildData: BuildResultData = {
-        success: true,
-        durationMs,
-        diagnostics: collectDiagnostics(result),
-        stats: result.compilationStats,
-      };
-      emit(internals, 'rebuild-success', buildData);
-
-      if (
-        internals.state !== 'stopping' &&
-        internals.state !== 'stopped' &&
-        internals.config.dev.hotReload &&
-        internals.hotReloadClient?.isConnected()
-      ) {
-        await performHotReload(internals, changedFiles);
-      }
-    } else {
-      internals.errorCount++;
-      const buildData: BuildResultData = {
-        success: false,
-        durationMs,
-        diagnostics: collectDiagnostics(result),
-        stats: result.compilationStats,
-      };
-      emit(internals, 'rebuild-error', buildData);
-
-      if (!(internals.options.preserveOnError ?? internals.config.dev.preserveOnError)) {
-        internals.lastSuccessfulResult = undefined;
-      }
+  bridge('build-start', 'build-start');
+  bridge('build-success', 'build-success');
+  bridge('build-error', 'build-error');
+  bridge('rebuild-start', 'rebuild-start');
+  bridge('rebuild-success', 'rebuild-success');
+  bridge('rebuild-error', 'rebuild-error');
+  bridge('hot-reload', 'hot-reload');
+  bridge('hot-reload-error', 'hot-reload-error');
+  bridge('exit', 'exit');
+  bridge('status-change', 'state-change', toStateChangeData);
+  const fileChangeHandler = (payload: DevServerEventPayload): void => {
+    const batch = payload.data as DevServerFileChangeData;
+    for (const file of batch.files) {
+      emit(internals, 'file-change', {
+        files: [file.path],
+        type: file.type,
+      } satisfies FileChangeData);
     }
+  };
+  internals.server.on('file-change', fileChangeHandler);
+}
 
-    internals.rebuildInProgress = false;
+function getPipelineResultOrThrow(internals: SessionInternals, context: string): BuildPipelineResult {
+  const result = internals.server.getLastPipelineResult();
+  if (!result) {
+    throw new Error(`${context} did not produce a BuildPipelineResult`);
+  }
+  return result;
+}
 
-    if (internals.pendingRebuild) {
-      internals.pendingRebuild = false;
-      return await performRebuild(internals);
-    }
+function mapStats(stats: ReturnType<DevServerInternal['getStats']>): DevSessionStats {
+  return {
+    buildCount: stats.buildCount,
+    rebuildCount: stats.rebuildCount,
+    hotReloadCount: stats.hotReloadCount,
+    errorCount: stats.errorCount,
+    totalBuildMs: stats.totalBuildMs,
+    lastBuildMs: stats.lastBuildMs,
+    uptime: stats.uptime,
+  };
+}
 
-    if (internals.state === 'rebuilding') {
-      transition(internals, 'watching');
-    }
+function wrapSessionError(
+  action: 'start' | 'rebuild',
+  state: DevSessionState,
+  expected: string,
+): Error {
+  return new Error(
+    `Cannot ${action} DevSession: session is in '${state}' state (expected ${expected})`,
+  );
+}
 
-    resolveQueuedRebuilds(internals, result);
-    return result;
-  } catch (err) {
-    internals.rebuildInProgress = false;
-    internals.errorCount++;
-    const durationMs = performance.now() - start;
-
-    const buildData: BuildResultData = {
-      success: false,
-      durationMs,
-      diagnostics: [
-        {
-          severity: 'error' as const,
-          code: 'QMLTS-G001' as const,
-          message: err instanceof Error ? err.message : String(err),
-        },
-      ],
-    };
-    emit(internals, 'rebuild-error', buildData);
-
-    if (internals.state === 'rebuilding') {
-      transition(internals, 'watching');
-    }
-
-    if (internals.pendingRebuild) {
-      internals.pendingRebuild = false;
-      return await performRebuild(internals);
-    }
-
-    rejectQueuedRebuilds(internals, err);
-    throw err;
+function assertCanStart(internals: SessionInternals): void {
+  const state = mapStatus(internals.server.getStatus());
+  if (state !== 'idle') {
+    throw wrapSessionError('start', state, "'idle'");
   }
 }
 
-async function performHotReload(
-  internals: SessionInternals,
-  changedFiles: readonly string[],
-): Promise<void> {
-  if (!internals.hotReloadClient) return;
-
-  const start = performance.now();
-  try {
-    const result = await internals.hotReloadClient.reload(changedFiles, internals.config.outDir);
-    const durationMs = performance.now() - start;
-
-    if (result.success) {
-      internals.hotReloadCount++;
-      const data: HotReloadData = {
-        durationMs,
-        filesReloaded: changedFiles,
-      };
-      emit(internals, 'hot-reload', data);
-    } else {
-      emit(internals, 'hot-reload-error', {
-        error: result.error ?? 'Hot reload failed',
-        durationMs,
-      });
-    }
-  } catch (err) {
-    const durationMs = performance.now() - start;
-    emit(internals, 'hot-reload-error', {
-      error: err instanceof Error ? err.message : String(err),
-      durationMs,
-    });
+function assertCanRebuild(internals: SessionInternals): void {
+  const state = mapStatus(internals.server.getStatus());
+  if (state !== 'watching' && state !== 'rebuilding') {
+    throw wrapSessionError('rebuild', state, "'watching' or 'rebuilding'");
   }
 }
 
-function collectDiagnostics(result: BuildPipelineResult): readonly Diagnostic[] {
-  const diagnostics: Diagnostic[] = [];
-  for (const [, phaseResult] of result.phases) {
-    for (const d of phaseResult.diagnostics) {
-      diagnostics.push(d);
+function normalizeSessionError(action: 'start' | 'rebuild', error: unknown): never {
+  if (error instanceof Error) {
+    const statusMatch = error.message.match(/server is in '([^']+)' state/);
+    if (statusMatch) {
+      const status = statusMatch[1] as DevServerStatus;
+      const state = mapStatus(status);
+      const expected = action === 'start' ? "'idle'" : "'watching' or 'rebuilding'";
+      throw wrapSessionError(action, state, expected);
     }
   }
-  return diagnostics;
+  throw error;
 }
-
-// ─── Watch setup ────────────────────────────────────────────
-
-function startWatching(internals: SessionInternals): void {
-  const watchPaths = effectiveWatchPaths(internals);
-  const ignorePatterns = effectiveIgnorePatterns(internals);
-  const debounceMs = effectiveDebounceMs(internals);
-
-  const ignored = ['**/node_modules/**', '**/.git/**', internals.config.outDir];
-
-  const watcher = chokidar.watch(watchPaths as string[], {
-    ignored,
-    ignoreInitial: true,
-    usePolling: true,
-    interval: 100,
-  });
-
-  function handleFileEvent(eventType: 'add' | 'change' | 'unlink', filePath: string): void {
-    if (internals.state === 'stopping' || internals.state === 'stopped') return;
-
-    if (shouldIgnoreFile(filePath, ignorePatterns)) return;
-
-    // Only watch .ts files (match compiler-watcher behavior)
-    const normalized = filePath.replace(/\\/g, '/');
-    if (!normalized.endsWith('.ts') && !normalized.endsWith('/tsconfig.json')) return;
-
-    const changeData: FileChangeData = {
-      files: [filePath],
-      type: eventType,
-    };
-    emit(internals, 'file-change', changeData);
-
-    internals.changedFilesBatch.push(filePath);
-
-    if (internals.rebuildInProgress) {
-      internals.pendingRebuild = true;
-      return;
-    }
-
-    if (internals.debounceTimer) {
-      clearTimeout(internals.debounceTimer);
-    }
-
-    internals.debounceTimer = setTimeout(() => {
-      internals.debounceTimer = undefined;
-      runRebuild(internals).catch(() => {
-        // Errors already emitted via events
-      });
-    }, debounceMs);
-  }
-
-  watcher.on('change', (path) => handleFileEvent('change', path));
-  watcher.on('add', (path) => handleFileEvent('add', path));
-  watcher.on('unlink', (path) => handleFileEvent('unlink', path));
-
-  internals.watcher = watcher;
-  transition(internals, 'watching');
-}
-
-// ─── Factory ────────────────────────────────────────────────
 
 export function createDevSession(
   config: ResolvedQmltsConfig,
   options: DevSessionOptions = {},
-  hotReloadClient?: HotReloadClient,
+  hotReloadClient?: import('./build-types.js').HotReloadClient,
 ): DevSession {
-  const internals: SessionInternals = {
-    state: 'idle',
-    config,
-    options,
+  const server = createDevServer(config, {
+    entry: options.entry,
+    headless: options.headless,
+    verbose: options.verbose,
+    debounceMs: options.debounceMs,
+    watchPaths: options.watchPaths,
+    ignorePatterns: options.ignorePatterns,
+    preserveOnError: options.preserveOnError,
     hotReloadClient,
+  });
+
+  const internals: SessionInternals = {
+    server,
     listeners: new Map(),
-    buildCount: 0,
-    rebuildCount: 0,
-    hotReloadCount: 0,
-    errorCount: 0,
-    totalBuildMs: 0,
-    pendingRebuild: false,
-    rebuildInProgress: false,
-    changedFilesBatch: [],
-    queuedRebuildWaiters: [],
   };
+
+  attachServerEventBridges(internals);
 
   return {
     async start(): Promise<BuildPipelineResult> {
-      if (internals.state !== 'idle') {
-        throw new Error(
-          `Cannot start DevSession: session is in '${internals.state}' state (expected 'idle')`,
-        );
+      assertCanStart(internals);
+      try {
+        await internals.server.start();
+        return getPipelineResultOrThrow(internals, 'DevSession.start()');
+      } catch (error) {
+        normalizeSessionError('start', error);
       }
-
-      internals.startTime = Date.now();
-      transition(internals, 'starting');
-
-      // Apply entry override if provided
-      const effectiveConfig = options.entry
-        ? { ...config, entry: resolve(config.configDir, options.entry) }
-        : config;
-      internals.config = effectiveConfig;
-
-      transition(internals, 'building');
-      emit(internals, 'build-start');
-
-      const start = performance.now();
-      const pipeline = createBuildPipeline(effectiveConfig);
-      const result = await pipeline.run();
-      const durationMs = performance.now() - start;
-
-      internals.buildCount++;
-      internals.totalBuildMs += durationMs;
-      internals.lastBuildMs = durationMs;
-
-      if (result.success) {
-        internals.lastSuccessfulResult = result;
-        const buildData: BuildResultData = {
-          success: true,
-          durationMs,
-          diagnostics: collectDiagnostics(result),
-          stats: result.compilationStats,
-        };
-        emit(internals, 'build-success', buildData);
-      } else {
-        internals.errorCount++;
-        const buildData: BuildResultData = {
-          success: false,
-          durationMs,
-          diagnostics: collectDiagnostics(result),
-          stats: result.compilationStats,
-        };
-        emit(internals, 'build-error', buildData);
-      }
-
-      startWatching(internals);
-
-      return result;
     },
 
     async stop(): Promise<void> {
-      if (internals.state === 'stopped') return;
-
-      transition(internals, 'stopping');
-
-      if (internals.debounceTimer) {
-        clearTimeout(internals.debounceTimer);
-        internals.debounceTimer = undefined;
-      }
-
-      internals.pendingRebuild = false;
-      internals.changedFilesBatch = [];
-      if (internals.queuedRebuildWaiters.length > 0) {
-        rejectQueuedRebuilds(
-          internals,
-          new Error('DevSession stopped before queued rebuild completed'),
-        );
-      }
-
-      if (internals.watcher) {
-        await internals.watcher.close();
-        internals.watcher = undefined;
-      }
-
-      if (internals.activeRebuildPromise) {
-        try {
-          await internals.activeRebuildPromise;
-        } catch {
-          // Rebuild errors are already surfaced through session events.
-        }
-      }
-
-      if (internals.hotReloadClient) {
-        internals.hotReloadClient.dispose();
-      }
-
-      transition(internals, 'stopped');
-      emit(internals, 'exit');
+      await internals.server.stop();
     },
 
     async rebuild(): Promise<BuildPipelineResult> {
-      if (internals.state !== 'watching' && internals.state !== 'rebuilding') {
-        throw new Error(
-          `Cannot rebuild: session is in '${internals.state}' state (expected 'watching')`,
-        );
+      assertCanRebuild(internals);
+      try {
+        await internals.server.rebuild();
+        return getPipelineResultOrThrow(internals, 'DevSession.rebuild()');
+      } catch (error) {
+        normalizeSessionError('rebuild', error);
       }
-
-      if (internals.rebuildInProgress) {
-        internals.pendingRebuild = true;
-        return new Promise((resolvePromise, rejectPromise) => {
-          internals.queuedRebuildWaiters.push({
-            resolve: resolvePromise,
-            reject: rejectPromise,
-          });
-        });
-      }
-
-      internals.changedFilesBatch = [];
-      return runRebuild(internals);
     },
 
     getState(): DevSessionState {
-      return internals.state;
+      return mapStatus(internals.server.getStatus());
     },
 
     getStats(): DevSessionStats {
-      return {
-        buildCount: internals.buildCount,
-        rebuildCount: internals.rebuildCount,
-        hotReloadCount: internals.hotReloadCount,
-        errorCount: internals.errorCount,
-        totalBuildMs: internals.totalBuildMs,
-        lastBuildMs: internals.lastBuildMs,
-        uptime: internals.startTime ? Date.now() - internals.startTime : 0,
-      };
+      return mapStats(internals.server.getStats());
     },
 
     on(event: DevSessionEventType, handler: (event: DevSessionEvent) => void): void {

@@ -1,0 +1,171 @@
+import type {
+  HotReloadResult as BuildHotReloadResult,
+  HotReloadClient,
+} from '../build/build-types.js';
+import type { Diagnostic } from '../compiler/diagnostics.js';
+import type { CompilationStats } from '../compiler/pipeline/pipeline-types.js';
+
+// ─── FileWatcher ────────────────────────────────────────────
+
+export interface FileWatcher {
+  start(): void;
+  stop(): void;
+  readonly running: boolean;
+  addPath(path: string): void;
+  removePath(path: string): void;
+  on(event: 'change', handler: (batch: FileChangeBatch) => void): void;
+  on(event: 'error', handler: (error: Error) => void): void;
+  on(event: 'ready', handler: () => void): void;
+  off(event: 'change', handler: (batch: FileChangeBatch) => void): void;
+  off(event: 'error', handler: (error: Error) => void): void;
+  off(event: 'ready', handler: () => void): void;
+}
+
+export interface FileWatcherOptions {
+  readonly paths: readonly string[];
+  readonly debounceMs?: number;
+  readonly include?: readonly string[];
+  readonly exclude?: readonly string[];
+  readonly ignorePatterns?: readonly string[];
+}
+
+export interface FileChangeBatch {
+  readonly files: readonly FileChange[];
+  readonly rawChangeCount: number;
+  readonly timestamp: number;
+}
+
+export interface FileChange {
+  readonly path: string;
+  readonly type: 'add' | 'change' | 'unlink';
+}
+
+// ─── HotReloadOrchestrator ──────────────────────────────────
+
+export interface HotReloadOrchestrator {
+  reload(changedFiles: readonly string[], outputDir: string): Promise<HotReloadOrchestratorResult>;
+  onBefore(hook: (ctx: HotReloadContext) => void | Promise<void>): void;
+  onAfter(hook: (result: HotReloadOrchestratorResult) => void | Promise<void>): void;
+  offBefore(hook: (ctx: HotReloadContext) => void | Promise<void>): void;
+  offAfter(hook: (result: HotReloadOrchestratorResult) => void | Promise<void>): void;
+  readonly lastResult: HotReloadOrchestratorResult | undefined;
+  readonly reloadCount: number;
+  dispose(): void;
+}
+
+export interface HotReloadContext {
+  readonly sequence: number;
+  readonly changedFiles: readonly string[];
+}
+
+export interface HotReloadOrchestratorResult {
+  readonly success: boolean;
+  readonly sequence: number;
+  readonly durationMs: number;
+  readonly filesReloaded: readonly string[];
+  readonly error?: string;
+}
+
+export interface HotReloadOrchestratorOptions {
+  readonly client: HotReloadClient;
+}
+
+// ─── DevServer ──────────────────────────────────────────────
+
+export type DevServerStatus =
+  | 'idle'
+  | 'starting'
+  | 'building'
+  | 'running'
+  | 'reloading'
+  | 'stopping'
+  | 'stopped';
+
+export type DevServerEvent =
+  | 'status-change'
+  | 'build-start'
+  | 'build-success'
+  | 'build-error'
+  | 'rebuild-start'
+  | 'rebuild-success'
+  | 'rebuild-error'
+  | 'file-change'
+  | 'hot-reload'
+  | 'hot-reload-error'
+  | 'exit';
+
+export interface DevServerEventPayload {
+  readonly type: DevServerEvent;
+  readonly timestamp: number;
+  readonly data?: unknown;
+}
+
+export interface StatusChangeData {
+  readonly from: DevServerStatus;
+  readonly to: DevServerStatus;
+}
+
+export interface DevServerBuildResultData {
+  readonly success: boolean;
+  readonly durationMs: number;
+  readonly diagnostics: readonly Diagnostic[];
+  readonly stats?: CompilationStats;
+}
+
+export interface DevServerFileChangeData {
+  readonly files: readonly FileChange[];
+  readonly rawChangeCount: number;
+}
+
+export interface DevServerHotReloadData {
+  readonly durationMs: number;
+  readonly filesReloaded: readonly string[];
+  readonly sequence: number;
+}
+
+export interface DevServerHotReloadErrorData {
+  readonly error: string;
+  readonly durationMs: number;
+  readonly sequence: number;
+}
+
+export interface DevServerStats {
+  readonly buildCount: number;
+  readonly rebuildCount: number;
+  readonly hotReloadCount: number;
+  readonly errorCount: number;
+  readonly totalBuildMs: number;
+  readonly lastBuildMs?: number;
+  readonly uptime: number;
+}
+
+export interface DevServer {
+  start(): Promise<DevServerStartResult>;
+  stop(): Promise<void>;
+  rebuild(): Promise<DevServerStartResult>;
+  getStatus(): DevServerStatus;
+  getStats(): DevServerStats;
+  on(event: DevServerEvent, handler: (payload: DevServerEventPayload) => void): void;
+  off(event: DevServerEvent, handler: (payload: DevServerEventPayload) => void): void;
+}
+
+export interface DevServerStartResult {
+  readonly success: boolean;
+  readonly durationMs: number;
+  readonly diagnostics: readonly Diagnostic[];
+  readonly stats?: CompilationStats;
+}
+
+export interface DevServerOptions {
+  readonly entry?: string;
+  readonly headless?: boolean;
+  readonly verbose?: boolean;
+  readonly debounceMs?: number;
+  readonly watchPaths?: readonly string[];
+  readonly ignorePatterns?: readonly string[];
+  readonly preserveOnError?: boolean;
+  readonly hotReloadClient?: HotReloadClient;
+}
+
+// Re-export for convenience
+export type { BuildHotReloadResult, HotReloadClient };
