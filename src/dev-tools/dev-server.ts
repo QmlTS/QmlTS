@@ -1,76 +1,59 @@
 import { resolve } from 'node:path';
+import { createBuildPipeline } from '../build/build-pipeline.js';
+import type { BuildPipelineResult, PipelineRunOptions } from '../build/build-types.js';
+import type { ResolvedQmltsConfig } from '../build/config-types.js';
 import type { Diagnostic } from '../compiler/diagnostics.js';
 import type {
+  DevServer,
+  DevServerBuildResultData,
+  DevServerEvent,
+  DevServerEventPayload,
+  DevServerFileChangeData,
+  DevServerHotReloadData,
+  DevServerHotReloadErrorData,
+  DevServerOptions,
+  DevServerStartResult,
+  DevServerStats,
+  DevServerStatus,
   FileChangeBatch,
   FileWatcher,
   HotReloadOrchestrator,
-} from '../dev-tools/dev-types.js';
-import { createFileWatcher } from '../dev-tools/file-watcher.js';
-import { createHotReloadOrchestrator } from '../dev-tools/hot-reload-orchestrator.js';
-import { createBuildPipeline } from './build-pipeline.js';
-import type {
-  BuildPipelineResult,
-  BuildResultData,
-  DevSessionEvent,
-  DevSessionEventType,
-  DevSessionOptions,
-  DevSessionState,
-  DevSessionStats,
-  FileChangeData,
-  HotReloadClient,
-  HotReloadData,
-  PipelineRunOptions,
-} from './build-types.js';
-import type { ResolvedQmltsConfig } from './config-types.js';
-
-// ─── DevSession interface ───────────────────────────────────
-// DevSession composes the dev-tools primitives (FileWatcher,
-// HotReloadOrchestrator) with BuildPipeline. This ensures it
-// uses the same unified path as DevServer while preserving
-// full BuildPipelineResult backward compatibility.
-
-export interface DevSession {
-  start(): Promise<BuildPipelineResult>;
-  stop(): Promise<void>;
-  rebuild(): Promise<BuildPipelineResult>;
-  getState(): DevSessionState;
-  getStats(): DevSessionStats;
-  on(event: DevSessionEventType, handler: (event: DevSessionEvent) => void): void;
-  off(event: DevSessionEventType, handler: (event: DevSessionEvent) => void): void;
-}
+  StatusChangeData,
+} from './dev-types.js';
+import { createFileWatcher } from './file-watcher.js';
+import { createHotReloadOrchestrator } from './hot-reload-orchestrator.js';
 
 // ─── Internal state ─────────────────────────────────────────
 
-interface SessionInternals {
-  state: DevSessionState;
+interface ServerInternals {
+  status: DevServerStatus;
   config: ResolvedQmltsConfig;
-  options: DevSessionOptions;
-  hotReloadClient?: HotReloadClient;
-  fileWatcher?: FileWatcher;
-  hotReloadOrchestrator?: HotReloadOrchestrator;
-  listeners: Map<DevSessionEventType, Set<(event: DevSessionEvent) => void>>;
-  startTime?: number;
+  options: DevServerOptions;
+  fileWatcher: FileWatcher | undefined;
+  hotReloadOrchestrator: HotReloadOrchestrator | undefined;
+  listeners: Map<DevServerEvent, Set<(payload: DevServerEventPayload) => void>>;
+  startTime: number | undefined;
   buildCount: number;
   rebuildCount: number;
   hotReloadCount: number;
   errorCount: number;
   totalBuildMs: number;
-  lastBuildMs?: number;
-  lastSuccessfulResult?: BuildPipelineResult;
-  pendingRebuild: boolean;
+  lastBuildMs: number | undefined;
+  lastSuccessfulResult: BuildPipelineResult | undefined;
   rebuildInProgress: boolean;
+  pendingRebuild: boolean;
   changedFilesBatch: string[];
-  activeRebuildPromise?: Promise<BuildPipelineResult>;
+  activeRebuildPromise: Promise<DevServerStartResult> | undefined;
   queuedRebuildWaiters: Array<{
-    resolve: (result: BuildPipelineResult) => void;
+    resolve: (result: DevServerStartResult) => void;
     reject: (error: unknown) => void;
   }>;
 }
 
 // ─── Helpers ────────────────────────────────────────────────
 
-function emit(internals: SessionInternals, type: DevSessionEventType, data?: unknown): void {
-  const event: DevSessionEvent = {
+function emit(internals: ServerInternals, type: DevServerEvent, data?: unknown): void {
+  const payload: DevServerEventPayload = {
     type,
     timestamp: Date.now(),
     data,
@@ -78,19 +61,30 @@ function emit(internals: SessionInternals, type: DevSessionEventType, data?: unk
   const handlers = internals.listeners.get(type);
   if (handlers) {
     for (const handler of handlers) {
-      handler(event);
+      handler(payload);
     }
   }
 }
 
-function transition(internals: SessionInternals, newState: DevSessionState): void {
-  const oldState = internals.state;
-  if (oldState === newState) return;
-  internals.state = newState;
-  emit(internals, 'state-change', { from: oldState, to: newState });
+function transition(internals: ServerInternals, newStatus: DevServerStatus): void {
+  const oldStatus = internals.status;
+  if (oldStatus === newStatus) return;
+  internals.status = newStatus;
+  const data: StatusChangeData = { from: oldStatus, to: newStatus };
+  emit(internals, 'status-change', data);
 }
 
-function resolveQueuedRebuilds(internals: SessionInternals, result: BuildPipelineResult): void {
+function collectDiagnostics(result: BuildPipelineResult): readonly Diagnostic[] {
+  const diagnostics: Diagnostic[] = [];
+  for (const [, phaseResult] of result.phases) {
+    for (const d of phaseResult.diagnostics) {
+      diagnostics.push(d);
+    }
+  }
+  return diagnostics;
+}
+
+function resolveQueuedRebuilds(internals: ServerInternals, result: DevServerStartResult): void {
   const waiters = [...internals.queuedRebuildWaiters];
   internals.queuedRebuildWaiters = [];
   for (const waiter of waiters) {
@@ -98,7 +92,7 @@ function resolveQueuedRebuilds(internals: SessionInternals, result: BuildPipelin
   }
 }
 
-function rejectQueuedRebuilds(internals: SessionInternals, error: unknown): void {
+function rejectQueuedRebuilds(internals: ServerInternals, error: unknown): void {
   const waiters = [...internals.queuedRebuildWaiters];
   internals.queuedRebuildWaiters = [];
   for (const waiter of waiters) {
@@ -106,7 +100,18 @@ function rejectQueuedRebuilds(internals: SessionInternals, error: unknown): void
   }
 }
 
-function runRebuild(internals: SessionInternals): Promise<BuildPipelineResult> {
+function toStartResult(result: BuildPipelineResult, durationMs: number): DevServerStartResult {
+  return {
+    success: result.success,
+    durationMs,
+    diagnostics: collectDiagnostics(result),
+    stats: result.compilationStats,
+  };
+}
+
+// ─── Rebuild logic ──────────────────────────────────────────
+
+function runRebuild(internals: ServerInternals): Promise<DevServerStartResult> {
   if (internals.activeRebuildPromise) {
     return internals.activeRebuildPromise;
   }
@@ -121,24 +126,15 @@ function runRebuild(internals: SessionInternals): Promise<BuildPipelineResult> {
   return rebuildPromise;
 }
 
-function collectDiagnostics(result: BuildPipelineResult): readonly Diagnostic[] {
-  const diagnostics: Diagnostic[] = [];
-  for (const [, phaseResult] of result.phases) {
-    for (const d of phaseResult.diagnostics) {
-      diagnostics.push(d);
-    }
-  }
-  return diagnostics;
-}
-
-// ─── Rebuild logic ──────────────────────────────────────────
-
-async function performRebuild(internals: SessionInternals): Promise<BuildPipelineResult> {
+async function performRebuild(internals: ServerInternals): Promise<DevServerStartResult> {
   internals.rebuildInProgress = true;
   const changedFiles = [...internals.changedFilesBatch];
   internals.changedFilesBatch = [];
 
-  transition(internals, 'rebuilding');
+  const previousStatus = internals.status;
+  if (previousStatus === 'running') {
+    transition(internals, 'reloading');
+  }
   emit(internals, 'rebuild-start', { files: changedFiles });
 
   const start = performance.now();
@@ -149,28 +145,30 @@ async function performRebuild(internals: SessionInternals): Promise<BuildPipelin
     };
 
     const pipeline = createBuildPipeline(internals.config);
-    const result = await pipeline.run(pipelineOpts);
+    const pipelineResult = await pipeline.run(pipelineOpts);
     const durationMs = performance.now() - start;
 
     internals.rebuildCount++;
     internals.totalBuildMs += durationMs;
     internals.lastBuildMs = durationMs;
 
-    if (result.success) {
-      internals.lastSuccessfulResult = result;
+    const startResult = toStartResult(pipelineResult, durationMs);
 
-      const buildData: BuildResultData = {
+    if (pipelineResult.success) {
+      internals.lastSuccessfulResult = pipelineResult;
+
+      const buildData: DevServerBuildResultData = {
         success: true,
         durationMs,
-        diagnostics: collectDiagnostics(result),
-        stats: result.compilationStats,
+        diagnostics: startResult.diagnostics,
+        stats: startResult.stats,
       };
       emit(internals, 'rebuild-success', buildData);
 
-      // Use HotReloadOrchestrator from dev-tools for hot reload
+      // Trigger hot reload if enabled and connected
       if (
-        internals.state !== 'stopping' &&
-        internals.state !== 'stopped' &&
+        internals.status !== 'stopping' &&
+        internals.status !== 'stopped' &&
         internals.config.dev.hotReload &&
         internals.hotReloadOrchestrator
       ) {
@@ -178,11 +176,11 @@ async function performRebuild(internals: SessionInternals): Promise<BuildPipelin
       }
     } else {
       internals.errorCount++;
-      const buildData: BuildResultData = {
+      const buildData: DevServerBuildResultData = {
         success: false,
         durationMs,
-        diagnostics: collectDiagnostics(result),
-        stats: result.compilationStats,
+        diagnostics: startResult.diagnostics,
+        stats: startResult.stats,
       };
       emit(internals, 'rebuild-error', buildData);
 
@@ -198,18 +196,18 @@ async function performRebuild(internals: SessionInternals): Promise<BuildPipelin
       return await performRebuild(internals);
     }
 
-    if (internals.state === 'rebuilding') {
-      transition(internals, 'watching');
+    if (internals.status === 'reloading') {
+      transition(internals, 'running');
     }
 
-    resolveQueuedRebuilds(internals, result);
-    return result;
+    resolveQueuedRebuilds(internals, startResult);
+    return startResult;
   } catch (err) {
     internals.rebuildInProgress = false;
     internals.errorCount++;
     const durationMs = performance.now() - start;
 
-    const buildData: BuildResultData = {
+    const buildData: DevServerBuildResultData = {
       success: false,
       durationMs,
       diagnostics: [
@@ -222,8 +220,8 @@ async function performRebuild(internals: SessionInternals): Promise<BuildPipelin
     };
     emit(internals, 'rebuild-error', buildData);
 
-    if (internals.state === 'rebuilding') {
-      transition(internals, 'watching');
+    if (internals.status === 'reloading') {
+      transition(internals, 'running');
     }
 
     if (internals.pendingRebuild) {
@@ -237,7 +235,7 @@ async function performRebuild(internals: SessionInternals): Promise<BuildPipelin
 }
 
 async function performHotReload(
-  internals: SessionInternals,
+  internals: ServerInternals,
   changedFiles: readonly string[],
 ): Promise<void> {
   if (!internals.hotReloadOrchestrator) return;
@@ -249,29 +247,31 @@ async function performHotReload(
 
   if (result.success) {
     internals.hotReloadCount++;
-    const data: HotReloadData = {
+    const data: DevServerHotReloadData = {
       durationMs: result.durationMs,
-      filesReloaded: [...result.filesReloaded],
+      filesReloaded: result.filesReloaded,
+      sequence: result.sequence,
     };
     emit(internals, 'hot-reload', data);
   } else {
-    emit(internals, 'hot-reload-error', {
+    const data: DevServerHotReloadErrorData = {
       error: result.error ?? 'Hot reload failed',
       durationMs: result.durationMs,
-    });
+      sequence: result.sequence,
+    };
+    emit(internals, 'hot-reload-error', data);
   }
 }
 
-// ─── Watch setup (uses dev-tools FileWatcher) ───────────────
+// ─── Watch integration ──────────────────────────────────────
 
-function startWatching(internals: SessionInternals): void {
+function setupFileWatcher(internals: ServerInternals): void {
   const watchPaths = (internals.options.watchPaths ?? internals.config.dev.watchPaths).map((p) =>
     resolve(internals.config.configDir, p),
   );
   const ignorePatterns = internals.options.ignorePatterns ?? internals.config.dev.ignorePatterns;
   const debounceMs = internals.options.debounceMs ?? internals.config.dev.debounceMs;
 
-  // Use canonical FileWatcher from dev-tools
   const fileWatcher = createFileWatcher({
     paths: watchPaths,
     debounceMs,
@@ -279,16 +279,13 @@ function startWatching(internals: SessionInternals): void {
   });
 
   fileWatcher.on('change', (batch: FileChangeBatch) => {
-    if (internals.state === 'stopping' || internals.state === 'stopped') return;
+    if (internals.status === 'stopping' || internals.status === 'stopped') return;
 
-    // Emit per-file change events for backward compatibility
-    for (const file of batch.files) {
-      const changeData: FileChangeData = {
-        files: [file.path],
-        type: file.type,
-      };
-      emit(internals, 'file-change', changeData);
-    }
+    const changeData: DevServerFileChangeData = {
+      files: batch.files,
+      rawChangeCount: batch.rawChangeCount,
+    };
+    emit(internals, 'file-change', changeData);
 
     for (const file of batch.files) {
       internals.changedFilesBatch.push(file.path);
@@ -306,52 +303,56 @@ function startWatching(internals: SessionInternals): void {
 
   internals.fileWatcher = fileWatcher;
   fileWatcher.start();
-  transition(internals, 'watching');
+  transition(internals, 'running');
 }
 
 // ─── Factory ────────────────────────────────────────────────
 
-export function createDevSession(
+export function createDevServer(
   config: ResolvedQmltsConfig,
-  options: DevSessionOptions = {},
-  hotReloadClient?: HotReloadClient,
-): DevSession {
-  const internals: SessionInternals = {
-    state: 'idle',
+  options: DevServerOptions = {},
+): DevServer {
+  const internals: ServerInternals = {
+    status: 'idle',
     config,
     options,
-    hotReloadClient,
+    fileWatcher: undefined,
+    hotReloadOrchestrator: undefined,
     listeners: new Map(),
+    startTime: undefined,
     buildCount: 0,
     rebuildCount: 0,
     hotReloadCount: 0,
     errorCount: 0,
     totalBuildMs: 0,
-    pendingRebuild: false,
+    lastBuildMs: undefined,
+    lastSuccessfulResult: undefined,
     rebuildInProgress: false,
+    pendingRebuild: false,
     changedFilesBatch: [],
+    activeRebuildPromise: undefined,
     queuedRebuildWaiters: [],
   };
 
-  // Set up HotReloadOrchestrator from dev-tools if client provided
-  if (hotReloadClient) {
+  // Set up hot reload orchestrator if client provided
+  if (options.hotReloadClient) {
     internals.hotReloadOrchestrator = createHotReloadOrchestrator({
-      client: hotReloadClient,
+      client: options.hotReloadClient,
     });
   }
 
   return {
-    async start(): Promise<BuildPipelineResult> {
-      if (internals.state !== 'idle') {
+    async start(): Promise<DevServerStartResult> {
+      if (internals.status !== 'idle') {
         throw new Error(
-          `Cannot start DevSession: session is in '${internals.state}' state (expected 'idle')`,
+          `Cannot start DevServer: server is in '${internals.status}' state (expected 'idle')`,
         );
       }
 
       internals.startTime = Date.now();
       transition(internals, 'starting');
 
-      // Apply entry override if provided
+      // Apply entry override
       const effectiveConfig = options.entry
         ? { ...config, entry: resolve(config.configDir, options.entry) }
         : config;
@@ -362,44 +363,46 @@ export function createDevSession(
 
       const start = performance.now();
       const pipeline = createBuildPipeline(effectiveConfig);
-      const result = await pipeline.run();
+      const pipelineResult = await pipeline.run();
       const durationMs = performance.now() - start;
 
       internals.buildCount++;
       internals.totalBuildMs += durationMs;
       internals.lastBuildMs = durationMs;
 
-      if (result.success) {
-        internals.lastSuccessfulResult = result;
-        const buildData: BuildResultData = {
+      const startResult = toStartResult(pipelineResult, durationMs);
+
+      if (pipelineResult.success) {
+        internals.lastSuccessfulResult = pipelineResult;
+        const buildData: DevServerBuildResultData = {
           success: true,
           durationMs,
-          diagnostics: collectDiagnostics(result),
-          stats: result.compilationStats,
+          diagnostics: startResult.diagnostics,
+          stats: startResult.stats,
         };
         emit(internals, 'build-success', buildData);
       } else {
         internals.errorCount++;
-        const buildData: BuildResultData = {
+        const buildData: DevServerBuildResultData = {
           success: false,
           durationMs,
-          diagnostics: collectDiagnostics(result),
-          stats: result.compilationStats,
+          diagnostics: startResult.diagnostics,
+          stats: startResult.stats,
         };
         emit(internals, 'build-error', buildData);
       }
 
-      startWatching(internals);
+      setupFileWatcher(internals);
 
-      return result;
+      return startResult;
     },
 
     async stop(): Promise<void> {
-      if (internals.state === 'stopped') return;
+      if (internals.status === 'stopped') return;
 
       transition(internals, 'stopping');
 
-      // Stop FileWatcher from dev-tools
+      // Stop file watcher
       if (internals.fileWatcher) {
         internals.fileWatcher.stop();
         internals.fileWatcher = undefined;
@@ -410,19 +413,20 @@ export function createDevSession(
       if (internals.queuedRebuildWaiters.length > 0) {
         rejectQueuedRebuilds(
           internals,
-          new Error('DevSession stopped before queued rebuild completed'),
+          new Error('DevServer stopped before queued rebuild completed'),
         );
       }
 
+      // Wait for active rebuild to finish
       if (internals.activeRebuildPromise) {
         try {
           await internals.activeRebuildPromise;
         } catch {
-          // Rebuild errors are already surfaced through session events.
+          // Rebuild errors are already surfaced through events.
         }
       }
 
-      // Dispose HotReloadOrchestrator from dev-tools
+      // Dispose hot reload orchestrator
       if (internals.hotReloadOrchestrator) {
         internals.hotReloadOrchestrator.dispose();
         internals.hotReloadOrchestrator = undefined;
@@ -432,10 +436,10 @@ export function createDevSession(
       emit(internals, 'exit');
     },
 
-    async rebuild(): Promise<BuildPipelineResult> {
-      if (internals.state !== 'watching' && internals.state !== 'rebuilding') {
+    async rebuild(): Promise<DevServerStartResult> {
+      if (internals.status !== 'running' && internals.status !== 'reloading') {
         throw new Error(
-          `Cannot rebuild: session is in '${internals.state}' state (expected 'watching')`,
+          `Cannot rebuild: server is in '${internals.status}' state (expected 'running')`,
         );
       }
 
@@ -453,11 +457,11 @@ export function createDevSession(
       return runRebuild(internals);
     },
 
-    getState(): DevSessionState {
-      return internals.state;
+    getStatus(): DevServerStatus {
+      return internals.status;
     },
 
-    getStats(): DevSessionStats {
+    getStats(): DevServerStats {
       return {
         buildCount: internals.buildCount,
         rebuildCount: internals.rebuildCount,
@@ -469,14 +473,14 @@ export function createDevSession(
       };
     },
 
-    on(event: DevSessionEventType, handler: (event: DevSessionEvent) => void): void {
+    on(event: DevServerEvent, handler: (payload: DevServerEventPayload) => void): void {
       if (!internals.listeners.has(event)) {
         internals.listeners.set(event, new Set());
       }
       internals.listeners.get(event)!.add(handler);
     },
 
-    off(event: DevSessionEventType, handler: (event: DevSessionEvent) => void): void {
+    off(event: DevServerEvent, handler: (payload: DevServerEventPayload) => void): void {
       internals.listeners.get(event)?.delete(handler);
     },
   };
