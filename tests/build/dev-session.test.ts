@@ -762,6 +762,15 @@ describe('DevSession', () => {
     await expect(session.rebuild()).rejects.toThrow(/Cannot rebuild.*idle/);
   });
 
+  test('DS-27b: compatibility wrapper preserves DevSession rebuild error wording', async () => {
+    const config = makeConfig(tempDir);
+    const session = createDevSession(config);
+
+    await expect(session.rebuild()).rejects.toThrow(
+      "Cannot rebuild DevSession: session is in 'idle' state (expected 'watching' or 'rebuilding')",
+    );
+  });
+
   // ─── DS-28: Non-TS files are not watched ────────────────
 
   test('DS-28: non-TypeScript files do not trigger rebuild', async () => {

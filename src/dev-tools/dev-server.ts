@@ -39,6 +39,7 @@ interface ServerInternals {
   errorCount: number;
   totalBuildMs: number;
   lastBuildMs: number | undefined;
+  lastPipelineResult: BuildPipelineResult | undefined;
   lastSuccessfulResult: BuildPipelineResult | undefined;
   rebuildInProgress: boolean;
   pendingRebuild: boolean;
@@ -48,6 +49,10 @@ interface ServerInternals {
     resolve: (result: DevServerStartResult) => void;
     reject: (error: unknown) => void;
   }>;
+}
+
+export interface DevServerInternal extends DevServer {
+  getLastPipelineResult(): BuildPipelineResult | undefined;
 }
 
 // ─── Helpers ────────────────────────────────────────────────
@@ -151,6 +156,7 @@ async function performRebuild(internals: ServerInternals): Promise<DevServerStar
     internals.rebuildCount++;
     internals.totalBuildMs += durationMs;
     internals.lastBuildMs = durationMs;
+    internals.lastPipelineResult = pipelineResult;
 
     const startResult = toStartResult(pipelineResult, durationMs);
 
@@ -315,7 +321,7 @@ function setupFileWatcher(internals: ServerInternals): void {
 export function createDevServer(
   config: ResolvedQmltsConfig,
   options: DevServerOptions = {},
-): DevServer {
+): DevServerInternal {
   const internals: ServerInternals = {
     status: 'idle',
     config,
@@ -330,6 +336,7 @@ export function createDevServer(
     errorCount: 0,
     totalBuildMs: 0,
     lastBuildMs: undefined,
+    lastPipelineResult: undefined,
     lastSuccessfulResult: undefined,
     rebuildInProgress: false,
     pendingRebuild: false,
@@ -373,6 +380,7 @@ export function createDevServer(
       internals.buildCount++;
       internals.totalBuildMs += durationMs;
       internals.lastBuildMs = durationMs;
+      internals.lastPipelineResult = pipelineResult;
 
       const startResult = toStartResult(pipelineResult, durationMs);
 
@@ -475,6 +483,10 @@ export function createDevServer(
         lastBuildMs: internals.lastBuildMs,
         uptime: internals.startTime ? Date.now() - internals.startTime : 0,
       };
+    },
+
+    getLastPipelineResult(): BuildPipelineResult | undefined {
+      return internals.lastPipelineResult;
     },
 
     on(event: DevServerEvent, handler: (payload: DevServerEventPayload) => void): void {
