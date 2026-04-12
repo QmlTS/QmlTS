@@ -16,6 +16,10 @@ interface OrchestratorInternals {
   disposed: boolean;
 }
 
+function toErrorMessage(err: unknown): string {
+  return err instanceof Error ? err.message : String(err);
+}
+
 async function runBeforeHooks(
   internals: OrchestratorInternals,
   ctx: HotReloadContext,
@@ -28,10 +32,18 @@ async function runBeforeHooks(
 async function runAfterHooks(
   internals: OrchestratorInternals,
   result: HotReloadOrchestratorResult,
-): Promise<void> {
+): Promise<Error | undefined> {
+  let firstError: Error | undefined;
   for (const hook of internals.afterHooks) {
-    await hook(result);
+    try {
+      await hook(result);
+    } catch (err) {
+      if (!firstError) {
+        firstError = err instanceof Error ? err : new Error(String(err));
+      }
+    }
   }
+  return firstError;
 }
 
 export function createHotReloadOrchestrator(
@@ -78,6 +90,8 @@ export function createHotReloadOrchestrator(
       const start = performance.now();
 
       try {
+        let result: HotReloadOrchestratorResult;
+
         // Run before hooks
         const ctx: HotReloadContext = {
           sequence: currentSequence,
@@ -87,44 +101,67 @@ export function createHotReloadOrchestrator(
 
         // Check client connection
         if (!internals.client.isConnected()) {
-          const result: HotReloadOrchestratorResult = {
+          result = {
             success: false,
             sequence: currentSequence,
             durationMs: performance.now() - start,
             filesReloaded: [],
             error: 'Hot reload client is not connected',
           };
-          internals.lastResult = result;
-          await runAfterHooks(internals, result);
-          return result;
+        } else {
+          // Perform reload via client
+          const clientResult = await internals.client.reload(changedFiles, outputDir);
+          const durationMs = performance.now() - start;
+
+          result = {
+            success: clientResult.success,
+            sequence: currentSequence,
+            durationMs,
+            filesReloaded: [...changedFiles],
+            error: clientResult.error,
+          };
         }
 
-        // Perform reload via client
-        const clientResult = await internals.client.reload(changedFiles, outputDir);
-        const durationMs = performance.now() - start;
-
-        const result: HotReloadOrchestratorResult = {
-          success: clientResult.success,
-          sequence: currentSequence,
-          durationMs,
-          filesReloaded: [...changedFiles],
-          error: clientResult.error,
-        };
-
         internals.lastResult = result;
-        await runAfterHooks(internals, result);
+
+        const afterHookError = await runAfterHooks(internals, result);
+        if (afterHookError) {
+          result = {
+            success: false,
+            sequence: currentSequence,
+            durationMs: performance.now() - start,
+            filesReloaded: [...result.filesReloaded],
+            error: result.error
+              ? `${result.error}; after hook failed: ${afterHookError.message}`
+              : `After hook failed: ${afterHookError.message}`,
+          };
+          internals.lastResult = result;
+        }
+
         return result;
       } catch (err) {
-        const durationMs = performance.now() - start;
         const result: HotReloadOrchestratorResult = {
           success: false,
           sequence: currentSequence,
-          durationMs,
+          durationMs: performance.now() - start,
           filesReloaded: [],
-          error: err instanceof Error ? err.message : String(err),
+          error: toErrorMessage(err),
         };
         internals.lastResult = result;
-        await runAfterHooks(internals, result);
+
+        const afterHookError = await runAfterHooks(internals, result);
+        if (afterHookError) {
+          const finalResult: HotReloadOrchestratorResult = {
+            success: false,
+            sequence: currentSequence,
+            durationMs: performance.now() - start,
+            filesReloaded: [],
+            error: `${result.error}; after hook failed: ${afterHookError.message}`,
+          };
+          internals.lastResult = finalResult;
+          return finalResult;
+        }
+
         return result;
       } finally {
         internals.reloadInProgress = false;

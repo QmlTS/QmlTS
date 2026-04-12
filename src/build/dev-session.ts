@@ -269,13 +269,17 @@ function startWatching(internals: SessionInternals): void {
     resolve(internals.config.configDir, p),
   );
   const ignorePatterns = internals.options.ignorePatterns ?? internals.config.dev.ignorePatterns;
+  const effectiveIgnorePatterns = [
+    ...ignorePatterns,
+    resolve(internals.config.configDir, internals.config.outDir),
+  ];
   const debounceMs = internals.options.debounceMs ?? internals.config.dev.debounceMs;
 
   // Use canonical FileWatcher from dev-tools
   const fileWatcher = createFileWatcher({
     paths: watchPaths,
     debounceMs,
-    ignorePatterns,
+    ignorePatterns: effectiveIgnorePatterns,
   });
 
   fileWatcher.on('change', (batch: FileChangeBatch) => {
@@ -435,7 +439,7 @@ export function createDevSession(
     async rebuild(): Promise<BuildPipelineResult> {
       if (internals.state !== 'watching' && internals.state !== 'rebuilding') {
         throw new Error(
-          `Cannot rebuild: session is in '${internals.state}' state (expected 'watching')`,
+          `Cannot rebuild: session is in '${internals.state}' state (expected 'watching' or 'rebuilding')`,
         );
       }
 

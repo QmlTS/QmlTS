@@ -270,12 +270,16 @@ function setupFileWatcher(internals: ServerInternals): void {
     resolve(internals.config.configDir, p),
   );
   const ignorePatterns = internals.options.ignorePatterns ?? internals.config.dev.ignorePatterns;
+  const effectiveIgnorePatterns = [
+    ...ignorePatterns,
+    resolve(internals.config.configDir, internals.config.outDir),
+  ];
   const debounceMs = internals.options.debounceMs ?? internals.config.dev.debounceMs;
 
   const fileWatcher = createFileWatcher({
     paths: watchPaths,
     debounceMs,
-    ignorePatterns,
+    ignorePatterns: effectiveIgnorePatterns,
   });
 
   fileWatcher.on('change', (batch: FileChangeBatch) => {
@@ -439,7 +443,7 @@ export function createDevServer(
     async rebuild(): Promise<DevServerStartResult> {
       if (internals.status !== 'running' && internals.status !== 'reloading') {
         throw new Error(
-          `Cannot rebuild: server is in '${internals.status}' state (expected 'running')`,
+          `Cannot rebuild: server is in '${internals.status}' state (expected 'running' or 'reloading')`,
         );
       }
 

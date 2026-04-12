@@ -448,4 +448,35 @@ describe('DevServer', () => {
       await server.stop();
     }
   }, 20_000);
+
+  // ─── DV-16: outDir is ignored by watcher ───────────────
+
+  test('DV-16: changes inside outDir do not trigger rebuild loops', async () => {
+    const config = makeConfig(tempDir, {
+      dev: {
+        ...makeConfig(tempDir).dev,
+        watchPaths: [tempDir],
+      },
+    });
+    const server = createDevServer(config);
+    const rebuildEvents: DevServerEventPayload[] = [];
+    const fileChangeEvents: DevServerEventPayload[] = [];
+
+    server.on('rebuild-start', (p) => rebuildEvents.push(p));
+    server.on('file-change', (p) => fileChangeEvents.push(p));
+
+    try {
+      await server.start();
+      await sleep(500);
+
+      writeFileSync(join(tempDir, 'dist', 'generated-entry.ts'), 'export const generated = 1;\n');
+
+      await sleep(800);
+
+      expect(fileChangeEvents).toHaveLength(0);
+      expect(rebuildEvents).toHaveLength(0);
+    } finally {
+      await server.stop();
+    }
+  }, 15_000);
 });

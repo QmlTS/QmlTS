@@ -58,9 +58,12 @@ function shouldExcludeFile(filePath: string, patterns: readonly string[]): boole
   if (patterns.length === 0) return false;
   const normalized = filePath.replace(/\\/g, '/');
   for (const pattern of patterns) {
-    if (normalized.includes(pattern.replace(/\*\*/g, '').replace(/\*/g, ''))) return true;
-    if (pattern.startsWith('*.')) {
-      const ext = pattern.slice(1);
+    const normalizedPattern = pattern.replace(/\\/g, '/');
+    if (normalized.includes(normalizedPattern.replace(/\*\*/g, '').replace(/\*/g, ''))) {
+      return true;
+    }
+    if (normalizedPattern.startsWith('*.')) {
+      const ext = normalizedPattern.slice(1);
       if (normalized.endsWith(ext)) return true;
     }
   }
@@ -177,8 +180,13 @@ export function createFileWatcher(options: FileWatcherOptions): FileWatcher {
       internals.rawChangeCount = 0;
 
       if (internals.watcher) {
-        internals.watcher.close();
+        const watcher = internals.watcher;
         internals.watcher = undefined;
+        void watcher
+          .close()
+          .catch((err: unknown) =>
+            emitEvent(internals, 'error', err instanceof Error ? err : new Error(String(err))),
+          );
       }
     },
 

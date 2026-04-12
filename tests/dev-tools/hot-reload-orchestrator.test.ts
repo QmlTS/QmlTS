@@ -252,4 +252,30 @@ describe('HotReloadOrchestrator', () => {
     expect(afterResults.length).toBe(1);
     expect(afterResults[0]!.success).toBe(false);
   });
+
+  // ─── HR-13: After hook failures are isolated ───────────
+
+  test('HR-13: after hook failures do not throw or trigger hooks twice', async () => {
+    const client = createMockClient();
+    const orch = createHotReloadOrchestrator({ client });
+
+    let throwingHookCalls = 0;
+    const successfulResults: HotReloadOrchestratorResult[] = [];
+
+    orch.onAfter(() => {
+      throwingHookCalls++;
+      throw new Error('after hook boom');
+    });
+    orch.onAfter((result) => {
+      successfulResults.push(result);
+    });
+
+    const result = await orch.reload(['hook-failure.ts'], '/out');
+
+    expect(result.success).toBe(false);
+    expect(result.error).toMatch(/after hook failed/i);
+    expect(throwingHookCalls).toBe(1);
+    expect(successfulResults).toHaveLength(1);
+    expect(orch.lastResult?.error).toMatch(/after hook failed/i);
+  });
 });

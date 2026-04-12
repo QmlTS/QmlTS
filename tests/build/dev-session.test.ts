@@ -817,4 +817,32 @@ describe('DevSession', () => {
       await session.stop();
     }
   }, 20_000);
+
+  // ─── DS-30: outDir is ignored by watcher ───────────────
+
+  test('DS-30: changes inside outDir do not trigger rebuild loops', async () => {
+    const config = makeConfig(tempDir, {
+      dev: {
+        ...makeConfig(tempDir).dev,
+        watchPaths: [tempDir],
+      },
+    });
+    const session = createDevSession(config);
+    const rebuildEvents = collectEvents(session, 'rebuild-start');
+    const fileChangeEvents = collectEvents(session, 'file-change');
+
+    try {
+      await session.start();
+      await sleep(500);
+
+      writeFileSync(join(tempDir, 'dist', 'generated-entry.ts'), 'export const generated = 1;\n');
+
+      await sleep(800);
+
+      expect(fileChangeEvents).toHaveLength(0);
+      expect(rebuildEvents).toHaveLength(0);
+    } finally {
+      await session.stop();
+    }
+  }, 15_000);
 });
