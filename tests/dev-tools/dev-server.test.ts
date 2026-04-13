@@ -6,6 +6,7 @@ import type { HotReloadClient, HotReloadResult } from '../../src/build/build-typ
 import type { ResolvedQmltsConfig } from '../../src/build/config-types.js';
 import { createDevServer } from '../../src/dev-tools/dev-server.js';
 import type {
+  DevConsole,
   DevServerEventPayload,
   DevServerStatus,
   ErrorOverlay,
@@ -182,6 +183,33 @@ function createThrowingOverlay(mode: 'show' | 'hide'): ErrorOverlay & {
       return this._visible;
     },
     dispose(): void {},
+  };
+}
+
+function createMockConsole(): DevConsole & {
+  disconnectCalls: number;
+  connectedServers: number;
+} {
+  return {
+    disconnectCalls: 0,
+    connectedServers: 0,
+    buildStart(): void {},
+    buildSuccess(): void {},
+    buildError(): void {},
+    hotReload(): void {},
+    fileChange(): void {},
+    serverStatus(): void {},
+    info(): void {},
+    warn(): void {},
+    error(): void {},
+    debug(): void {},
+    clear(): void {},
+    connectToDevServer(): () => void {
+      this.connectedServers++;
+      return () => {
+        this.disconnectCalls++;
+      };
+    },
   };
 }
 
@@ -949,14 +977,9 @@ describe('DevServer', () => {
 
       // Break the file to cause rebuild failure
       await sleep(500);
+      const rebuildErrorPromise = waitForServerEvent(server, 'rebuild-error', 15_000);
       writeFileSync(join(tempDir, 'src', 'CounterView.ts'), 'syntax error %%%');
-      await sleep(250);
-
-      try {
-        await waitForServerEvent(server, 'rebuild-error', 15_000);
-      } catch {
-        // May have already fired
-      }
+      await rebuildErrorPromise;
       await sleep(100);
 
       expect(statuses).toContain('reloading');
@@ -966,17 +989,12 @@ describe('DevServer', () => {
       // Fix the file — should recover
       statuses.length = 0;
       cpSync(join(FIXTURES_DIR, 'src', 'CounterView.ts'), join(tempDir, 'src', 'CounterView.ts'));
+      const hotReloadPromise = waitForServerEvent(server, 'hot-reload', 15_000);
       writeFileSync(
         join(tempDir, 'src', 'CounterView.ts'),
         `${readFileSync(join(tempDir, 'src', 'CounterView.ts'), 'utf-8')}\n// dv54-fixed`,
       );
-      await sleep(250);
-
-      try {
-        await waitForServerEvent(server, 'hot-reload', 15_000);
-      } catch {
-        // May have already fired
-      }
+      await hotReloadPromise;
       await sleep(100);
 
       expect(statuses).toContain('reloading');
@@ -1189,4 +1207,49 @@ describe('DevServer', () => {
       await server.stop();
     }
   }, 30_000);
+
+  test('DV-63: auto-wired DevConsole disconnects on final stop but survives restart', async () => {
+    const mockConsole = createMockConsole();
+    const server = createDevServer(makeConfig(tempDir), { console: mockConsole });
+
+    try {
+      expect(mockConsole.connectedServers).toBe(1);
+
+      await server.start();
+      await server.restart();
+
+      expect(mockConsole.connectedServers).toBe(1);
+      expect(mockConsole.disconnectCalls).toBe(0);
+    } finally {
+      await server.stop();
+    }
+
+    expect(mockConsole.disconnectCalls).toBe(1);
+  }, 20_000);
+
+  test('DV-64: running status-change reports effective watchPaths override', async () => {
+    const overrideWatchPaths = ['./src', './assets'];
+    const statusPayloads: Array<{
+      to: DevServerStatus;
+      watchPaths?: readonly string[];
+    }> = [];
+    const server = createDevServer(makeConfig(tempDir), {
+      watchPaths: overrideWatchPaths,
+    });
+
+    server.on('status-change', (payload) => {
+      const data = payload.data as { to: DevServerStatus; watchPaths?: readonly string[] };
+      statusPayloads.push(data);
+    });
+
+    try {
+      await server.start();
+    } finally {
+      await server.stop();
+    }
+
+    const runningPayload = statusPayloads.find((payload) => payload.to === 'running');
+    expect(runningPayload).toBeDefined();
+    expect(runningPayload!.watchPaths).toEqual(overrideWatchPaths);
+  }, 20_000);
 });

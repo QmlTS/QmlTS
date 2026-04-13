@@ -123,6 +123,10 @@ function toStartResult(result: BuildPipelineResult, durationMs: number): DevServ
   };
 }
 
+function getEffectiveWatchPaths(internals: ServerInternals): readonly string[] {
+  return internals.options.watchPaths ?? internals.config.dev.watchPaths ?? [];
+}
+
 // ─── Rebuild logic ──────────────────────────────────────────
 
 function runRebuild(internals: ServerInternals): Promise<DevServerStartResult> {
@@ -285,7 +289,7 @@ async function performHotReload(
 // ─── Watch integration ──────────────────────────────────────
 
 function setupFileWatcher(internals: ServerInternals): void {
-  const watchPaths = (internals.options.watchPaths ?? internals.config.dev.watchPaths).map((p) =>
+  const watchPaths = getEffectiveWatchPaths(internals).map((p) =>
     resolve(internals.config.configDir, p),
   );
   const ignorePatterns = internals.options.ignorePatterns ?? internals.config.dev.ignorePatterns;
@@ -328,7 +332,7 @@ function setupFileWatcher(internals: ServerInternals): void {
   fileWatcher.start();
   transition(internals, 'running', {
     entry: internals.config.entry,
-    watchPaths: internals.config.dev?.watchPaths ?? internals.options.watchPaths ?? [],
+    watchPaths: getEffectiveWatchPaths(internals),
     hotReload: internals.config.dev?.hotReload ?? false,
   });
 }
@@ -591,6 +595,11 @@ export function createDevServer(
       if (internals.hotReloadOrchestrator) {
         internals.hotReloadOrchestrator.dispose();
         internals.hotReloadOrchestrator = undefined;
+      }
+
+      if (internals.consoleDisconnect && !internals.restartInProgress) {
+        internals.consoleDisconnect();
+        internals.consoleDisconnect = undefined;
       }
 
       transition(internals, 'stopped');
