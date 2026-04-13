@@ -764,16 +764,11 @@ describe('DevServer', () => {
 
     try {
       await server.start();
-      await sleep(500);
       overlay._visible = true;
+      const hotReloadPromise = waitForServerEvent(server, 'hot-reload', 15_000);
 
-      writeFileSync(
-        join(tempDir, 'src', 'CounterView.ts'),
-        `${readFileSync(join(tempDir, 'src', 'CounterView.ts'), 'utf-8')}\n// safe-hide`,
-      );
-      await sleep(250);
-
-      await waitForServerEvent(server, 'hot-reload', 15_000);
+      await server.rebuild();
+      await hotReloadPromise;
       await sleep(100);
 
       expect(server.getStatus()).toBe('running');
