@@ -119,6 +119,19 @@ describe('ErrorOverlay', () => {
     expect(() => overlay.dispose()).not.toThrow();
   });
 
+  test('EO-06a: disposed overlay no longer calls host methods', () => {
+    const host = createMockHost();
+    const overlay = createErrorOverlay({ host });
+
+    overlay.dispose();
+    overlay.show([makeError()]);
+    overlay.hide();
+
+    expect(host.showCalls).toBe(0);
+    expect(host.hideCalls).toBe(0);
+    expect(overlay.visible).toBe(false);
+  });
+
   test('EO-06b: show with empty array calls host with empty message', () => {
     const host = createMockHost();
     const overlay = createErrorOverlay({ host });

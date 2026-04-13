@@ -566,7 +566,9 @@ export class QmltsHost {
 	 * Show the error overlay with the given message text.
 	 *
 	 * Displays a semi-transparent overlay on top of the current window,
-	 * preserving the last known-good UI underneath.
+	 * preserving the last known-good UI underneath. If QML has not been
+	 * loaded yet, the native host creates a minimal startup error shell
+	 * window so a later `reloadQml()` call can replace it with the real UI.
 	 *
 	 * @param message - Error message to display.
 	 * @throws Error if overlay cannot be created or engine is disposed.
@@ -577,6 +579,8 @@ export class QmltsHost {
 
 	/**
 	 * Hide the error overlay.
+	 *
+	 * Calling this before the overlay has ever been shown is a safe no-op.
 	 *
 	 * @throws Error if overlay cannot be hidden or engine is disposed.
 	 */
