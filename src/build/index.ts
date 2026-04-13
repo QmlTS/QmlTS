@@ -29,6 +29,11 @@ export type {
   HotReloadOrchestratorOptions,
   HotReloadOrchestratorResult,
   OverlayError,
+  QmltsRepl,
+  ReplHost,
+  ReplMode,
+  ReplOptions,
+  ReplResult,
   ServerStatusInfo,
   StatusChangeData,
 } from '../dev-tools/index.js';
@@ -38,6 +43,7 @@ export {
   createErrorOverlay,
   createFileWatcher,
   createHotReloadOrchestrator,
+  createRepl,
   diagnosticsToOverlayErrors,
 } from '../dev-tools/index.js';
 export { executeBuild } from './build-command.js';

@@ -31,9 +31,15 @@ export type {
   HotReloadOrchestratorOptions,
   HotReloadOrchestratorResult,
   OverlayError,
+  QmltsRepl,
+  ReplHost,
+  ReplMode,
+  ReplOptions,
+  ReplResult,
   ServerStatusInfo,
   StatusChangeData,
 } from './dev-types.js';
 export { createErrorOverlay, diagnosticsToOverlayErrors } from './error-overlay.js';
 export { createFileWatcher } from './file-watcher.js';
 export { createHotReloadOrchestrator } from './hot-reload-orchestrator.js';
+export { createRepl } from './repl.js';

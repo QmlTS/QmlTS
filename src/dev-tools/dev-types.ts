@@ -206,6 +206,39 @@ export interface HostOverlayApi {
 // Re-export for convenience
 export type { BuildHotReloadResult, HotReloadClient };
 
+// ─── REPL ───────────────────────────────────────────────────
+
+export type ReplMode = 'qml' | 'ts';
+
+export interface ReplResult {
+  readonly success: boolean;
+  readonly durationMs: number;
+  readonly qmlOutput?: string;
+  readonly error?: string;
+}
+
+export interface ReplHost {
+  loadString(qmlSource: string, baseUrl?: string): void;
+  reloadQml(newSource: string, baseUrl?: string): void;
+  processEvents(timeoutMs?: number): void;
+}
+
+export interface ReplOptions {
+  readonly host: ReplHost;
+  readonly defaultMode?: ReplMode;
+  readonly historyFile?: string;
+  readonly maxHistory?: number;
+}
+
+export interface QmltsRepl {
+  start(): Promise<void>;
+  stop(): Promise<void>;
+  eval(input: string): Promise<ReplResult>;
+  setMode(mode: ReplMode): void;
+  readonly mode: ReplMode;
+  readonly history: readonly string[];
+}
+
 // ─── DevConsole ─────────────────────────────────────────────
 
 export type DevConsoleLevel = 'debug' | 'info' | 'warn' | 'error';
