@@ -1,8 +1,13 @@
 // ─── Dev Tools Types ────────────────────────────────────────
 
 // ─── Factory Functions ──────────────────────────────────────
+export { createDevConsole } from './dev-console.js';
 export { createDevServer } from './dev-server.js';
 export type {
+  BuildSuccessInfo,
+  DevConsole,
+  DevConsoleLevel,
+  DevConsoleOptions,
   DevServer,
   DevServerBuildResultData,
   DevServerEvent,
@@ -26,6 +31,7 @@ export type {
   HotReloadOrchestratorOptions,
   HotReloadOrchestratorResult,
   OverlayError,
+  ServerStatusInfo,
   StatusChangeData,
 } from './dev-types.js';
 export { createErrorOverlay, diagnosticsToOverlayErrors } from './error-overlay.js';

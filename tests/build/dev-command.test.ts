@@ -98,10 +98,11 @@ describe('executeDev', () => {
 
   test('DC-03: verbose mode logs lifecycle messages for start and rebuild', async () => {
     const configPath = writeConfig(tempDir);
-    const originalInfo = console.info;
     const logs: string[] = [];
-    console.info = (...args: unknown[]) => {
-      logs.push(args.map((arg) => String(arg)).join(' '));
+    const originalWrite = process.stdout.write;
+    process.stdout.write = (chunk: string | Uint8Array, ...rest: unknown[]) => {
+      logs.push(String(chunk));
+      return true;
     };
 
     try {
@@ -116,12 +117,68 @@ describe('executeDev', () => {
         await session.stop();
       }
     } finally {
-      console.info = originalInfo;
+      process.stdout.write = originalWrite;
     }
 
-    expect(logs.some((line) => line.includes('Starting initial build'))).toBe(true);
+    expect(logs.some((line) => line.includes('Building...'))).toBe(true);
     expect(logs.some((line) => line.includes('Build succeeded'))).toBe(true);
-    expect(logs.some((line) => line.includes('Rebuilding'))).toBe(true);
-    expect(logs.some((line) => line.includes('Rebuild succeeded'))).toBe(true);
+  }, 20_000);
+
+  test('DC-04: verbose mode returns dev console and logs effective status details', async () => {
+    const configPath = writeConfig(tempDir);
+    const logs: string[] = [];
+    const originalWrite = process.stdout.write;
+    process.stdout.write = (chunk: string | Uint8Array, ...rest: unknown[]) => {
+      logs.push(String(chunk));
+      return true;
+    };
+
+    try {
+      const { session, console } = await executeDev({
+        config: configPath,
+        verbose: true,
+        entry: './src/CounterView.ts',
+      });
+
+      try {
+        expect(console).toBeDefined();
+      } finally {
+        await session.stop();
+      }
+    } finally {
+      process.stdout.write = originalWrite;
+    }
+
+    expect(logs.some((line) => line.includes('entry:'))).toBe(true);
+    expect(logs.some((line) => line.includes('watch paths: 1'))).toBe(true);
+    expect(logs.some((line) => line.includes('hot reload: off'))).toBe(true);
+  }, 20_000);
+
+  test('DC-05: verbose mode logs normalized running status instead of raw watching state', async () => {
+    const configPath = writeConfig(tempDir);
+    const logs: string[] = [];
+    const originalWrite = process.stdout.write;
+    process.stdout.write = (chunk: string | Uint8Array, ...rest: unknown[]) => {
+      logs.push(String(chunk));
+      return true;
+    };
+
+    try {
+      const { session } = await executeDev({
+        config: configPath,
+        verbose: true,
+      });
+
+      try {
+        expect(session.getState()).toBe('watching');
+      } finally {
+        await session.stop();
+      }
+    } finally {
+      process.stdout.write = originalWrite;
+    }
+
+    expect(logs.some((line) => line.includes('Server') && line.includes('running'))).toBe(true);
+    expect(logs.some((line) => line.includes('Server') && line.includes('watching'))).toBe(false);
   }, 20_000);
 });

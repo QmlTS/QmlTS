@@ -82,6 +82,25 @@ Item {
 }
 
 #[test]
+fn test_drop_after_vm_bound_qml_is_clean() {
+    let mut engine = QmltsEngine::new(None).unwrap();
+    engine.register_view_model("LoginViewModel").unwrap();
+    engine
+        .load_string(
+            r#"import QtQuick
+Item {
+    property string u: vm.username
+    property string p: vm.password
+}"#,
+            None,
+        )
+        .unwrap();
+    engine.process_events().unwrap();
+
+    drop(engine);
+}
+
+#[test]
 fn test_bridge_pointers_are_valid() {
     let mut engine = QmltsEngine::new(None).unwrap();
     engine.register_view_model("LoginViewModel").unwrap();

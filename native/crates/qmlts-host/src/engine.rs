@@ -1089,16 +1089,16 @@ impl QmltsEngine {
         #[cfg(not(feature = "mock-qt"))]
         {
             if !self.engine_ptr.is_null() {
-                unsafe {
-                    let _ = qt_context::clear_context_property(self.engine_ptr, "vm");
-                    let _ = qt_context::clear_context_property(self.engine_ptr, "__qmlts");
-                }
-                self.active_bridge = None;
-                self.active_schema = None;
+                // Keep bridge-backed context properties alive until the engine and
+                // its root objects are gone. Clearing them first can trigger
+                // teardown-time binding reevaluations against `null`, which is noisy
+                // at best and can destabilize native Qt tests.
                 unsafe {
                     qt_context::destroy_engine(self.engine_ptr);
                 }
                 self.engine_ptr = ptr::null_mut();
+                self.active_bridge = None;
+                self.active_schema = None;
             }
         }
 

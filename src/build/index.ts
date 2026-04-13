@@ -2,6 +2,10 @@
 
 // ─── Dev Tools ──────────────────────────────────────────────
 export type {
+  BuildSuccessInfo,
+  DevConsole,
+  DevConsoleLevel,
+  DevConsoleOptions,
   DevServer,
   DevServerBuildResultData,
   DevServerEvent,
@@ -25,9 +29,11 @@ export type {
   HotReloadOrchestratorOptions,
   HotReloadOrchestratorResult,
   OverlayError,
+  ServerStatusInfo,
   StatusChangeData,
 } from '../dev-tools/index.js';
 export {
+  createDevConsole,
   createDevServer,
   createErrorOverlay,
   createFileWatcher,
