@@ -778,4 +778,415 @@ describe('DevServer', () => {
       await server.stop();
     }
   }, 30_000);
+
+  // ═══════════════════════════════════════════════════════════
+  // Suite 5: DevServer product layer (DV-49 – DV-62)
+  // ═══════════════════════════════════════════════════════════
+
+  // ─── DV-49: start startup flow ─────────────────────────
+
+  test('DV-49: start performs initial build, enters running, and starts file watcher', async () => {
+    const config = makeConfig(tempDir);
+    const statuses: DevServerStatus[] = [];
+    const server = createDevServer(config);
+    server.on('status-change', (payload) => {
+      const data = payload.data as { to: DevServerStatus };
+      if (data) statuses.push(data.to);
+    });
+
+    try {
+      const result = await server.start();
+      expect(result.success).toBe(true);
+      expect(server.getStatus()).toBe('running');
+      // Must have passed through starting → building → running
+      expect(statuses).toContain('starting');
+      expect(statuses).toContain('building');
+      expect(statuses).toContain('running');
+
+      // File watcher is active: trigger a rebuild via a file change
+      await sleep(500);
+      const rebuildPromise = waitForServerEvent(server, 'rebuild-start', 15_000);
+      writeFileSync(
+        join(tempDir, 'src', 'CounterView.ts'),
+        `${readFileSync(join(tempDir, 'src', 'CounterView.ts'), 'utf-8')}\n// dv49`,
+      );
+      const ev = await rebuildPromise;
+      expect(ev).toBeDefined();
+    } finally {
+      await server.stop();
+    }
+  }, 30_000);
+
+  // ─── DV-50: stop cleanup ───────────────────────────────
+
+  test('DV-50: stop cleans up all resources and enters stopped', async () => {
+    const config = makeConfig(tempDir);
+    const server = createDevServer(config);
+
+    await server.start();
+
+    const exitPromise = waitForServerEvent(server, 'exit', 5_000);
+    await server.stop();
+    await exitPromise;
+
+    expect(server.getStatus()).toBe('stopped');
+
+    // File changes after stop should NOT trigger rebuild
+    const rebuildFired = { value: false };
+    server.on('rebuild-start', () => {
+      rebuildFired.value = true;
+    });
+    writeFileSync(
+      join(tempDir, 'src', 'CounterView.ts'),
+      `${readFileSync(join(tempDir, 'src', 'CounterView.ts'), 'utf-8')}\n// after-stop`,
+    );
+    await sleep(500);
+    expect(rebuildFired.value).toBe(false);
+  }, 15_000);
+
+  // ─── DV-51: restart = stop + start ─────────────────────
+
+  test('DV-51: restart stops and re-starts the server with fresh state', async () => {
+    const config = makeConfig(tempDir);
+    const server = createDevServer(config);
+
+    try {
+      await server.start();
+      expect(server.getStatus()).toBe('running');
+      expect(server.getStats().buildCount).toBe(1);
+
+      // Restart
+      const result = await server.restart();
+      expect(result.success).toBe(true);
+      expect(server.getStatus()).toBe('running');
+      // Stats should be reset (fresh start)
+      expect(server.getStats().buildCount).toBe(1);
+      expect(server.getStats().rebuildCount).toBe(0);
+    } finally {
+      await server.stop();
+    }
+  }, 30_000);
+
+  // ─── DV-52: state transitions ─────────────────────────
+
+  test('DV-52: state transitions follow idle → starting → building → running', async () => {
+    const config = makeConfig(tempDir);
+    const statuses: DevServerStatus[] = [];
+    const server = createDevServer(config);
+
+    expect(server.getStatus()).toBe('idle');
+
+    server.on('status-change', (payload) => {
+      const data = payload.data as { to: DevServerStatus };
+      if (data) statuses.push(data.to);
+    });
+
+    try {
+      await server.start();
+      // Verify the exact sequence
+      expect(statuses[0]).toBe('starting');
+      expect(statuses[1]).toBe('building');
+      expect(statuses[2]).toBe('running');
+    } finally {
+      await server.stop();
+      expect(server.getStatus()).toBe('stopped');
+    }
+  }, 15_000);
+
+  // ─── DV-53: file change triggers recompile ────────────
+
+  test('DV-53: file change triggers running → reloading → running', async () => {
+    const config = makeConfig(tempDir);
+    const statuses: DevServerStatus[] = [];
+    const server = createDevServer(config);
+
+    try {
+      await server.start();
+      expect(server.getStatus()).toBe('running');
+
+      server.on('status-change', (payload) => {
+        const data = payload.data as { to: DevServerStatus };
+        if (data) statuses.push(data.to);
+      });
+
+      await sleep(500);
+      const rebuildDone = waitForServerEvent(server, 'rebuild-success', 15_000);
+
+      writeFileSync(
+        join(tempDir, 'src', 'CounterView.ts'),
+        `${readFileSync(join(tempDir, 'src', 'CounterView.ts'), 'utf-8')}\n// dv53`,
+      );
+
+      await rebuildDone;
+      await sleep(100);
+
+      expect(statuses).toContain('reloading');
+      expect(statuses).toContain('running');
+      expect(server.getStatus()).toBe('running');
+    } finally {
+      await server.stop();
+    }
+  }, 30_000);
+
+  // ─── DV-54: compile failure state ─────────────────────
+
+  test('DV-54: rebuild failure transitions running → reloading → error, fix recovers to running', async () => {
+    const mockClient = createMockHotReloadClient();
+    const config = makeErrorTestConfig(tempDir, {
+      dev: { ...makeConfig(tempDir).dev, hotReload: true },
+    });
+    const statuses: DevServerStatus[] = [];
+    const server = createDevServer(config, { hotReloadClient: mockClient });
+
+    try {
+      await server.start();
+      expect(server.getStatus()).toBe('running');
+
+      server.on('status-change', (payload) => {
+        const data = payload.data as { to: DevServerStatus };
+        if (data) statuses.push(data.to);
+      });
+
+      // Break the file to cause rebuild failure
+      await sleep(500);
+      writeFileSync(join(tempDir, 'src', 'CounterView.ts'), 'syntax error %%%');
+      await sleep(250);
+
+      try {
+        await waitForServerEvent(server, 'rebuild-error', 15_000);
+      } catch {
+        // May have already fired
+      }
+      await sleep(100);
+
+      expect(statuses).toContain('reloading');
+      expect(statuses).toContain('error');
+      expect(server.getStatus()).toBe('error');
+
+      // Fix the file — should recover
+      statuses.length = 0;
+      cpSync(join(FIXTURES_DIR, 'src', 'CounterView.ts'), join(tempDir, 'src', 'CounterView.ts'));
+      writeFileSync(
+        join(tempDir, 'src', 'CounterView.ts'),
+        `${readFileSync(join(tempDir, 'src', 'CounterView.ts'), 'utf-8')}\n// dv54-fixed`,
+      );
+      await sleep(250);
+
+      try {
+        await waitForServerEvent(server, 'hot-reload', 15_000);
+      } catch {
+        // May have already fired
+      }
+      await sleep(100);
+
+      expect(statuses).toContain('reloading');
+      expect(statuses).toContain('running');
+      expect(server.getStatus()).toBe('running');
+    } finally {
+      await server.stop();
+    }
+  }, 60_000);
+
+  // ─── DV-55: build-start event ─────────────────────────
+
+  test('DV-55: build-start event is emitted on initial build', async () => {
+    const config = makeConfig(tempDir);
+    const events: string[] = [];
+    const server = createDevServer(config);
+
+    server.on('build-start', () => events.push('build-start'));
+
+    try {
+      await server.start();
+      expect(events).toContain('build-start');
+    } finally {
+      await server.stop();
+    }
+  }, 15_000);
+
+  // ─── DV-56: build-success event ───────────────────────
+
+  test('DV-56: build-success event is emitted on successful initial build', async () => {
+    const config = makeConfig(tempDir);
+    let buildData: { success: boolean; durationMs: number } | undefined;
+    const server = createDevServer(config);
+
+    server.on('build-success', (payload) => {
+      buildData = payload.data as { success: boolean; durationMs: number };
+    });
+
+    try {
+      await server.start();
+      expect(buildData).toBeDefined();
+      expect(buildData!.success).toBe(true);
+      expect(buildData!.durationMs).toBeGreaterThan(0);
+    } finally {
+      await server.stop();
+    }
+  }, 15_000);
+
+  // ─── DV-57: build-error event + ErrorOverlay ──────────
+
+  test('DV-57: build-error event emitted on initial build failure and overlay is shown', async () => {
+    const overlay = createMockOverlay();
+    writeFileSync(join(tempDir, 'src', 'CounterView.ts'), 'syntax error %%%');
+    const config = makeErrorTestConfig(tempDir);
+    let buildData: { success: boolean } | undefined;
+    const server = createDevServer(config, { errorOverlay: overlay });
+
+    server.on('build-error', (payload) => {
+      buildData = payload.data as { success: boolean };
+    });
+
+    try {
+      await server.start();
+      expect(buildData).toBeDefined();
+      expect(buildData!.success).toBe(false);
+      expect(overlay.showCalls.length).toBeGreaterThan(0);
+    } finally {
+      await server.stop();
+    }
+  }, 15_000);
+
+  // ─── DV-58: hot-reload event ──────────────────────────
+
+  test('DV-58: hot-reload event is emitted after successful rebuild with hot reload', async () => {
+    const mockClient = createMockHotReloadClient();
+    const config = makeConfig(tempDir, {
+      dev: { ...makeConfig(tempDir).dev, hotReload: true },
+    });
+    let hotReloadFired = false;
+    const server = createDevServer(config, { hotReloadClient: mockClient });
+
+    server.on('hot-reload', () => {
+      hotReloadFired = true;
+    });
+
+    try {
+      await server.start();
+
+      await server.rebuild();
+      await sleep(500);
+
+      expect(hotReloadFired).toBe(true);
+      expect(mockClient.calls.length).toBe(1);
+    } finally {
+      await server.stop();
+    }
+  }, 30_000);
+
+  // ─── DV-59: file-change event ─────────────────────────
+
+  test('DV-59: file-change event is emitted when source files change', async () => {
+    const config = makeConfig(tempDir);
+    let fileChangeFired = false;
+    const server = createDevServer(config);
+
+    server.on('file-change', () => {
+      fileChangeFired = true;
+    });
+
+    try {
+      await server.start();
+      await sleep(500);
+
+      writeFileSync(
+        join(tempDir, 'src', 'CounterView.ts'),
+        `${readFileSync(join(tempDir, 'src', 'CounterView.ts'), 'utf-8')}\n// dv59`,
+      );
+
+      // Wait for watcher debounce + processing
+      await sleep(2000);
+
+      expect(fileChangeFired).toBe(true);
+    } finally {
+      await server.stop();
+    }
+  }, 15_000);
+
+  // ─── DV-60: exit event on stop ────────────────────────
+
+  test('DV-60: exit event is emitted when server stops', async () => {
+    const config = makeConfig(tempDir);
+    let exitFired = false;
+    const server = createDevServer(config);
+
+    server.on('exit', () => {
+      exitFired = true;
+    });
+
+    await server.start();
+    await server.stop();
+
+    expect(exitFired).toBe(true);
+    expect(server.getStatus()).toBe('stopped');
+  }, 15_000);
+
+  // ─── DV-61: manual rebuild ────────────────────────────
+
+  test('DV-61: rebuild() forces immediate recompile without file change', async () => {
+    const config = makeConfig(tempDir);
+    const server = createDevServer(config);
+
+    try {
+      await server.start();
+      expect(server.getStats().rebuildCount).toBe(0);
+
+      const rebuildSuccessPromise = waitForServerEvent(server, 'rebuild-success', 10_000);
+      const result = await server.rebuild();
+
+      expect(result.success).toBe(true);
+      await rebuildSuccessPromise;
+
+      expect(server.getStats().rebuildCount).toBe(1);
+    } finally {
+      await server.stop();
+    }
+  }, 15_000);
+
+  // ─── DV-62: config change triggers restart ────────────
+
+  test('DV-62: config file change emits config-change event and triggers restart', async () => {
+    // Create a config file in the temp dir so the config watcher can find it
+    const configFilePath = join(tempDir, 'qmlts.config.ts');
+    writeFileSync(configFilePath, 'export default {};');
+
+    const config = makeConfig(tempDir);
+    const events: string[] = [];
+    const server = createDevServer(config);
+
+    server.on('config-change', () => {
+      events.push('config-change');
+    });
+    server.on('status-change', (payload) => {
+      const data = payload.data as { to: DevServerStatus };
+      if (data) events.push(`status:${data.to}`);
+    });
+
+    try {
+      await server.start();
+      expect(server.getStatus()).toBe('running');
+
+      // Clear events from initial start
+      events.length = 0;
+
+      // Wait for a fresh config-change event by modifying the config file
+      const configChangePromise = waitForServerEvent(server, 'config-change', 10_000);
+      await sleep(200);
+      writeFileSync(configFilePath, 'export default { /* modified */ };');
+
+      await configChangePromise;
+
+      // After config-change, restart should happen: stop → idle → start sequence
+      // Wait for server to become running again after restart
+      await sleep(3000);
+
+      expect(events).toContain('config-change');
+      expect(server.getStatus()).toBe('running');
+      // Stats should be reset from the restart
+      expect(server.getStats().rebuildCount).toBe(0);
+    } finally {
+      await server.stop();
+    }
+  }, 30_000);
 });

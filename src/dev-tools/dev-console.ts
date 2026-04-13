@@ -308,12 +308,18 @@ export function createDevConsole(options: DevConsoleOptions = {}): DevConsole {
           const status = data.to;
           if (
             status === 'running' ||
+            status === 'error' ||
             status === 'stopped' ||
             status === 'starting' ||
             status === 'stopping'
           ) {
             console.serverStatus({
               status,
+              ...(data.entry !== undefined && { entry: data.entry }),
+              ...(data.watchPaths !== undefined && {
+                watchPaths: [...data.watchPaths],
+              }),
+              ...(data.hotReload !== undefined && { hotReload: data.hotReload }),
             });
           }
         }

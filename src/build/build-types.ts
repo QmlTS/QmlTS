@@ -232,6 +232,7 @@ export type DevSessionState =
   | 'building'
   | 'watching'
   | 'rebuilding'
+  | 'error'
   | 'stopping'
   | 'stopped';
 

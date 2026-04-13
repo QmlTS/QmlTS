@@ -767,7 +767,7 @@ describe('DevSession', () => {
     const session = createDevSession(config);
 
     await expect(session.rebuild()).rejects.toThrow(
-      "Cannot rebuild DevSession: session is in 'idle' state (expected 'watching' or 'rebuilding')",
+      "Cannot rebuild DevSession: session is in 'idle' state (expected 'watching', 'rebuilding', or 'error')",
     );
   });
 

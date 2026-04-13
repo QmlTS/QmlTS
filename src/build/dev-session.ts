@@ -2,6 +2,7 @@ import { createDevServer, type DevServerInternal } from '../dev-tools/dev-server
 import type {
   DevServerEventPayload,
   DevServerFileChangeData,
+  DevServerOptions,
   DevServerStatus,
 } from '../dev-tools/dev-types.js';
 import type {
@@ -61,6 +62,8 @@ function mapStatus(status: DevServerStatus): DevSessionState {
       return 'watching';
     case 'reloading':
       return 'rebuilding';
+    case 'error':
+      return 'error';
     case 'stopping':
       return 'stopping';
     case 'stopped':
@@ -153,8 +156,8 @@ function assertCanStart(internals: SessionInternals): void {
 
 function assertCanRebuild(internals: SessionInternals): void {
   const state = mapStatus(internals.server.getStatus());
-  if (state !== 'watching' && state !== 'rebuilding') {
-    throw wrapSessionError('rebuild', state, "'watching' or 'rebuilding'");
+  if (state !== 'watching' && state !== 'rebuilding' && state !== 'error') {
+    throw wrapSessionError('rebuild', state, "'watching', 'rebuilding', or 'error'");
   }
 }
 
@@ -175,8 +178,9 @@ export function createDevSession(
   config: ResolvedQmltsConfig,
   options: DevSessionOptions = {},
   hotReloadClient?: import('./build-types.js').HotReloadClient,
+  existingServer?: DevServerInternal,
 ): DevSession {
-  const server = createDevServer(config, {
+  const serverOptions: DevServerOptions = {
     entry: options.entry,
     headless: options.headless,
     verbose: options.verbose,
@@ -185,7 +189,8 @@ export function createDevSession(
     ignorePatterns: options.ignorePatterns,
     preserveOnError: options.preserveOnError,
     hotReloadClient,
-  });
+  };
+  const server = existingServer ?? createDevServer(config, serverOptions);
 
   const internals: SessionInternals = {
     server,

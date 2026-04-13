@@ -1,3 +1,4 @@
+import { existsSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { createBuildPipeline } from '../build/build-pipeline.js';
 import type { BuildPipelineResult, PipelineRunOptions } from '../build/build-types.js';
@@ -31,7 +32,9 @@ interface ServerInternals {
   config: ResolvedQmltsConfig;
   options: DevServerOptions;
   fileWatcher: FileWatcher | undefined;
+  configWatcher: FileWatcher | undefined;
   hotReloadOrchestrator: HotReloadOrchestrator | undefined;
+  consoleDisconnect: (() => void) | undefined;
   listeners: Map<DevServerEvent, Set<(payload: DevServerEventPayload) => void>>;
   startTime: number | undefined;
   buildCount: number;
@@ -50,6 +53,7 @@ interface ServerInternals {
     resolve: (result: DevServerStartResult) => void;
     reject: (error: unknown) => void;
   }>;
+  restartInProgress: boolean;
 }
 
 export interface DevServerInternal extends DevServer {
@@ -72,11 +76,15 @@ function emit(internals: ServerInternals, type: DevServerEvent, data?: unknown):
   }
 }
 
-function transition(internals: ServerInternals, newStatus: DevServerStatus): void {
+function transition(
+  internals: ServerInternals,
+  newStatus: DevServerStatus,
+  extra?: Partial<StatusChangeData>,
+): void {
   const oldStatus = internals.status;
   if (oldStatus === newStatus) return;
   internals.status = newStatus;
-  const data: StatusChangeData = { from: oldStatus, to: newStatus };
+  const data: StatusChangeData = { from: oldStatus, to: newStatus, ...extra };
   emit(internals, 'status-change', data);
 }
 
@@ -138,7 +146,7 @@ async function performRebuild(internals: ServerInternals): Promise<DevServerStar
   internals.changedFilesBatch = [];
 
   const previousStatus = internals.status;
-  if (previousStatus === 'running') {
+  if (previousStatus === 'running' || previousStatus === 'error') {
     transition(internals, 'reloading');
   }
   emit(internals, 'rebuild-start', { files: changedFiles });
@@ -204,7 +212,11 @@ async function performRebuild(internals: ServerInternals): Promise<DevServerStar
     }
 
     if (internals.status === 'reloading') {
-      transition(internals, 'running');
+      if (pipelineResult.success) {
+        transition(internals, 'running');
+      } else {
+        transition(internals, 'error');
+      }
     }
 
     resolveQueuedRebuilds(internals, startResult);
@@ -228,7 +240,7 @@ async function performRebuild(internals: ServerInternals): Promise<DevServerStar
     emit(internals, 'rebuild-error', buildData);
 
     if (internals.status === 'reloading') {
-      transition(internals, 'running');
+      transition(internals, 'error');
     }
 
     if (internals.pendingRebuild) {
@@ -314,7 +326,67 @@ function setupFileWatcher(internals: ServerInternals): void {
 
   internals.fileWatcher = fileWatcher;
   fileWatcher.start();
-  transition(internals, 'running');
+  transition(internals, 'running', {
+    entry: internals.config.entry,
+    watchPaths: internals.config.dev?.watchPaths ?? internals.options.watchPaths ?? [],
+    hotReload: internals.config.dev?.hotReload ?? false,
+  });
+}
+
+// ─── Config file watching ────────────────────────────────────
+
+const CONFIG_FILE_NAMES = ['qmlts.config.ts', 'qmlts.config.js', 'qmlts.config.mjs'];
+
+function resolveConfigFilePath(configDir: string): string | undefined {
+  for (const name of CONFIG_FILE_NAMES) {
+    const candidate = resolve(configDir, name);
+    if (existsSync(candidate)) return candidate;
+  }
+  return undefined;
+}
+
+function setupConfigWatcher(internals: ServerInternals, serverApi: DevServerInternal): void {
+  const configFile = resolveConfigFilePath(internals.config.configDir);
+  if (!configFile) return;
+
+  const configWatcher = createFileWatcher({
+    paths: [configFile],
+    debounceMs: internals.options.debounceMs ?? internals.config.dev.debounceMs,
+    ignorePatterns: [],
+  });
+
+  configWatcher.on('change', () => {
+    if (internals.status === 'stopping' || internals.status === 'stopped') return;
+    if (internals.restartInProgress) return;
+
+    emit(internals, 'config-change');
+
+    serverApi.restart().catch(() => {
+      // Restart errors are emitted via events
+    });
+  });
+
+  internals.configWatcher = configWatcher;
+  configWatcher.start();
+}
+
+// ─── Internal reset ─────────────────────────────────────────
+
+function resetInternals(internals: ServerInternals): void {
+  internals.buildCount = 0;
+  internals.rebuildCount = 0;
+  internals.hotReloadCount = 0;
+  internals.errorCount = 0;
+  internals.totalBuildMs = 0;
+  internals.lastBuildMs = undefined;
+  internals.lastPipelineResult = undefined;
+  internals.lastSuccessfulResult = undefined;
+  internals.rebuildInProgress = false;
+  internals.pendingRebuild = false;
+  internals.changedFilesBatch = [];
+  internals.activeRebuildPromise = undefined;
+  internals.queuedRebuildWaiters = [];
+  internals.startTime = undefined;
 }
 
 // ─── Factory ────────────────────────────────────────────────
@@ -328,7 +400,9 @@ export function createDevServer(
     config,
     options,
     fileWatcher: undefined,
+    configWatcher: undefined,
     hotReloadOrchestrator: undefined,
+    consoleDisconnect: undefined,
     listeners: new Map(),
     startTime: undefined,
     buildCount: 0,
@@ -344,14 +418,19 @@ export function createDevServer(
     changedFilesBatch: [],
     activeRebuildPromise: undefined,
     queuedRebuildWaiters: [],
+    restartInProgress: false,
   };
 
-  // Set up hot reload orchestrator if client provided
-  if (options.hotReloadClient) {
-    internals.hotReloadOrchestrator = createHotReloadOrchestrator({
-      client: options.hotReloadClient,
-    });
+  function setupHotReload(): void {
+    if (options.hotReloadClient && !internals.hotReloadOrchestrator) {
+      internals.hotReloadOrchestrator = createHotReloadOrchestrator({
+        client: options.hotReloadClient,
+      });
+    }
   }
+
+  // Set up hot reload orchestrator if client provided
+  setupHotReload();
 
   // Wire error overlay if provided
   if (options.errorOverlay) {
@@ -415,7 +494,7 @@ export function createDevServer(
     });
   }
 
-  return {
+  const serverApi: DevServerInternal = {
     async start(): Promise<DevServerStartResult> {
       if (internals.status !== 'idle') {
         throw new Error(
@@ -468,6 +547,7 @@ export function createDevServer(
       }
 
       setupFileWatcher(internals);
+      setupConfigWatcher(internals, serverApi);
 
       return startResult;
     },
@@ -481,6 +561,12 @@ export function createDevServer(
       if (internals.fileWatcher) {
         internals.fileWatcher.stop();
         internals.fileWatcher = undefined;
+      }
+
+      // Stop config watcher
+      if (internals.configWatcher) {
+        internals.configWatcher.stop();
+        internals.configWatcher = undefined;
       }
 
       internals.pendingRebuild = false;
@@ -512,9 +598,13 @@ export function createDevServer(
     },
 
     async rebuild(): Promise<DevServerStartResult> {
-      if (internals.status !== 'running' && internals.status !== 'reloading') {
+      if (
+        internals.status !== 'running' &&
+        internals.status !== 'reloading' &&
+        internals.status !== 'error'
+      ) {
         throw new Error(
-          `Cannot rebuild: server is in '${internals.status}' state (expected 'running' or 'reloading')`,
+          `Cannot rebuild: server is in '${internals.status}' state (expected 'running', 'reloading', or 'error')`,
         );
       }
 
@@ -530,6 +620,30 @@ export function createDevServer(
 
       internals.changedFilesBatch = [];
       return runRebuild(internals);
+    },
+
+    async restart(): Promise<DevServerStartResult> {
+      if (internals.status === 'stopped' || internals.status === 'idle') {
+        throw new Error(
+          `Cannot restart DevServer: server is in '${internals.status}' state (expected a running state)`,
+        );
+      }
+
+      internals.restartInProgress = true;
+      try {
+        await serverApi.stop();
+
+        // Reset internals to idle for a fresh start
+        internals.status = 'idle';
+        resetInternals(internals);
+
+        // Re-create hot reload orchestrator for the new session
+        setupHotReload();
+
+        return await serverApi.start();
+      } finally {
+        internals.restartInProgress = false;
+      }
     },
 
     getStatus(): DevServerStatus {
@@ -563,4 +677,11 @@ export function createDevServer(
       internals.listeners.get(event)?.delete(handler);
     },
   };
+
+  // Auto-wire DevConsole if provided
+  if (options.console) {
+    internals.consoleDisconnect = options.console.connectToDevServer(serverApi);
+  }
+
+  return serverApi;
 }
