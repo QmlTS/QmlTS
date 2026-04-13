@@ -166,6 +166,7 @@ export interface DevServerOptions {
   readonly preserveOnError?: boolean;
   readonly hotReloadClient?: HotReloadClient;
   readonly errorOverlay?: ErrorOverlay;
+  readonly console?: DevConsole;
 }
 
 // ─── ErrorOverlay ───────────────────────────────────────────
@@ -198,3 +199,42 @@ export interface HostOverlayApi {
 
 // Re-export for convenience
 export type { BuildHotReloadResult, HotReloadClient };
+
+// ─── DevConsole ─────────────────────────────────────────────
+
+export type DevConsoleLevel = 'debug' | 'info' | 'warn' | 'error';
+
+export interface DevConsoleOptions {
+  readonly level?: DevConsoleLevel;
+  readonly color?: boolean;
+  readonly timestamp?: boolean;
+  readonly write?: (text: string) => void;
+}
+
+export interface BuildSuccessInfo {
+  readonly durationMs: number;
+  readonly filesCompiled: number;
+  readonly qmlFilesGenerated: number;
+}
+
+export interface ServerStatusInfo {
+  readonly status: 'starting' | 'running' | 'stopping' | 'stopped';
+  readonly entry: string;
+  readonly watchPaths: readonly string[];
+  readonly hotReload: boolean;
+}
+
+export interface DevConsole {
+  buildStart(files: readonly string[]): void;
+  buildSuccess(info: BuildSuccessInfo): void;
+  buildError(diagnostics: readonly Diagnostic[]): void;
+  hotReload(result: HotReloadOrchestratorResult): void;
+  fileChange(batch: FileChangeBatch): void;
+  serverStatus(info: ServerStatusInfo): void;
+  info(message: string): void;
+  warn(message: string): void;
+  error(message: string): void;
+  debug(message: string): void;
+  clear(): void;
+  connectToDevServer(server: DevServer): () => void;
+}
