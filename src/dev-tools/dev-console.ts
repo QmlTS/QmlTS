@@ -179,6 +179,10 @@ export function createDevConsole(options: DevConsoleOptions = {}): DevConsole {
       if (info.entry) {
         details.push(`entry: ${info.entry}`);
       }
+      if (info.watchPaths) {
+        const count = info.watchPaths.length;
+        details.push(`watch paths: ${count}`);
+      }
       if (info.hotReload !== undefined) {
         details.push(`hot reload: ${info.hotReload ? 'on' : 'off'}`);
       }

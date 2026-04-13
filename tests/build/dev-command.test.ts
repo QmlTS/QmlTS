@@ -150,6 +150,35 @@ describe('executeDev', () => {
     }
 
     expect(logs.some((line) => line.includes('entry:'))).toBe(true);
+    expect(logs.some((line) => line.includes('watch paths: 1'))).toBe(true);
     expect(logs.some((line) => line.includes('hot reload: off'))).toBe(true);
+  }, 20_000);
+
+  test('DC-05: verbose mode logs normalized running status instead of raw watching state', async () => {
+    const configPath = writeConfig(tempDir);
+    const logs: string[] = [];
+    const originalWrite = process.stdout.write;
+    process.stdout.write = (chunk: string | Uint8Array, ...rest: unknown[]) => {
+      logs.push(String(chunk));
+      return true;
+    };
+
+    try {
+      const { session } = await executeDev({
+        config: configPath,
+        verbose: true,
+      });
+
+      try {
+        expect(session.getState()).toBe('watching');
+      } finally {
+        await session.stop();
+      }
+    } finally {
+      process.stdout.write = originalWrite;
+    }
+
+    expect(logs.some((line) => line.includes('Server') && line.includes('running'))).toBe(true);
+    expect(logs.some((line) => line.includes('Server') && line.includes('watching'))).toBe(false);
   }, 20_000);
 });

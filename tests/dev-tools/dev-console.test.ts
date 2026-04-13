@@ -232,6 +232,7 @@ describe('DevConsole', () => {
     expect(lines.length).toBe(1);
     expect(lines[0]).toContain('running');
     expect(lines[0]).toContain('src/main.ts');
+    expect(lines[0]).toContain('watch paths: 1');
     expect(lines[0]).toContain('hot reload: on');
   });
 
@@ -242,6 +243,16 @@ describe('DevConsole', () => {
     expect(lines[0]).toContain('starting');
     expect(lines[0]).not.toContain('entry:');
     expect(lines[0]).not.toContain('hot reload:');
+  });
+
+  test('DC-44c: serverStatus includes watch path count when provided', () => {
+    const { lines, console } = createCapture();
+    console.serverStatus({
+      status: 'running',
+      watchPaths: ['src', 'assets', 'qml'],
+    });
+    expect(lines).toHaveLength(1);
+    expect(lines[0]).toContain('watch paths: 3');
   });
 
   // Test 45: log level filtering
