@@ -5,6 +5,34 @@ import { join } from 'node:path';
 import type { ReplHost } from '../../src/dev-tools/dev-types.js';
 import { createRepl } from '../../src/dev-tools/repl.js';
 
+const SIMPLE_VIEW_SOURCE = `
+import { Rectangle } from '../../dsl/generated/QtQuick/Rectangle.js';
+import { Text } from '../../dsl/generated/QtQuick/Text.js';
+
+export default function SimpleView() {
+  return Rectangle()
+    .width(400)
+    .height(300)
+    .children(
+      Text().text("Hello")
+    );
+}
+`;
+
+const SIMPLE_VIEW_SOURCE_ALT = `
+import { Rectangle } from '../../dsl/generated/QtQuick/Rectangle.js';
+import { Text } from '../../dsl/generated/QtQuick/Text.js';
+
+export default function AltView() {
+  return Rectangle()
+    .width(240)
+    .height(120)
+    .children(
+      Text().text("Updated")
+    );
+}
+`;
+
 // ─── Mock Host ──────────────────────────────────────────────
 
 interface MockHostCall {
@@ -79,31 +107,17 @@ describe('Suite 6: REPL', () => {
     const repl = createRepl({ host, defaultMode: 'ts' });
     await repl.start();
 
-    // Use a valid TS DSL view that the compiler can parse
-    const tsInput = `
-import { View } from "@qmlts/dsl";
-class MyView extends View {
-  body() {
-    return this.Rectangle({
-      width: 100,
-      height: 100,
-    });
-  }
-}
-`;
-    const result = await repl.eval(tsInput);
+    const result = await repl.eval(SIMPLE_VIEW_SOURCE);
 
-    // The compiler may fail because the DSL doesn't have the runtime — that's expected
-    // What matters is the flow: compile → check diagnostics → either load or return error
-    expect(typeof result.success).toBe('boolean');
+    expect(result.success).toBe(true);
     expect(result.durationMs).toBeGreaterThanOrEqual(0);
-
-    if (result.success) {
-      expect(result.qmlOutput).toBeDefined();
-      expect(typeof result.qmlOutput).toBe('string');
-    } else {
-      expect(result.error).toBeDefined();
-    }
+    expect(result.error).toBeUndefined();
+    expect(result.qmlOutput).toBeDefined();
+    expect(result.qmlOutput).toContain('Rectangle {');
+    expect(result.qmlOutput).toContain('Text {');
+    expect(host.calls[0]!.method).toBe('loadString');
+    expect(host.calls[0]!.args[0]).toBe(result.qmlOutput);
+    expect(host.calls[1]!.method).toBe('processEvents');
 
     await repl.stop();
   });
@@ -153,6 +167,7 @@ class MyView extends View {
     expect(result.error).toBeDefined();
     expect(result.error!.length).toBeGreaterThan(0);
     expect(result.durationMs).toBeGreaterThanOrEqual(0);
+    expect(host.calls).toHaveLength(0);
 
     await repl.stop();
   });
@@ -176,16 +191,28 @@ class MyView extends View {
     const repl = createRepl({ host, defaultMode: 'ts' });
     await repl.start();
 
-    // The compiler may not succeed with arbitrary input,
-    // but we can test a TS compilation that fails gracefully
-    const result = await repl.eval('class X {}');
+    const result = await repl.eval(SIMPLE_VIEW_SOURCE);
 
-    // Even if compilation "succeeds" with no views, or fails,
-    // the shape is correct
-    expect(typeof result.success).toBe('boolean');
-    if (result.success) {
-      expect(result.qmlOutput).toBeDefined();
-    }
+    expect(result.success).toBe(true);
+    expect(result.qmlOutput).toBeDefined();
+    expect(result.qmlOutput).toContain('import QtQuick');
+
+    await repl.stop();
+  });
+
+  test('REPL-69b: subsequent TS evals use reloadQml with compiled output', async () => {
+    const host = createMockHost();
+    const repl = createRepl({ host, defaultMode: 'ts' });
+    await repl.start();
+
+    const first = await repl.eval(SIMPLE_VIEW_SOURCE);
+    const second = await repl.eval(SIMPLE_VIEW_SOURCE_ALT);
+
+    expect(first.success).toBe(true);
+    expect(second.success).toBe(true);
+    expect(host.calls[0]!.method).toBe('loadString');
+    expect(host.calls[2]!.method).toBe('reloadQml');
+    expect(host.calls[2]!.args[0]).toBe(second.qmlOutput);
 
     await repl.stop();
   });
@@ -302,8 +329,7 @@ class MyView extends View {
 
     expect(existsSync(histFile)).toBe(true);
     const saved = readFileSync(histFile, 'utf-8');
-    expect(saved).toContain('Rectangle {}');
-    expect(saved).toContain('Text {}');
+    expect(JSON.parse(saved)).toEqual(['Rectangle {}', 'Text {}']);
 
     // Session 2: history loaded from file
     const repl2 = createRepl({ host, historyFile: histFile, maxHistory: 10 });
@@ -321,7 +347,7 @@ class MyView extends View {
   test('REPL-71b: history file respects maxHistory on load', async () => {
     const histFile = join(tmpDir, 'repl-history-limit.txt');
     // Pre-populate with more entries than maxHistory
-    writeFileSync(histFile, 'old1\nold2\nold3\nold4\nold5\n', 'utf-8');
+    writeFileSync(histFile, JSON.stringify(['old1', 'old2', 'old3', 'old4', 'old5']), 'utf-8');
 
     const host = createMockHost();
     const repl = createRepl({ host, historyFile: histFile, maxHistory: 3 });
@@ -336,6 +362,19 @@ class MyView extends View {
     await repl.stop();
   });
 
+  test('REPL-71c: legacy line-based history files still load correctly', async () => {
+    const histFile = join(tmpDir, 'legacy-history.txt');
+    writeFileSync(histFile, 'old1\nold2\nold3\n', 'utf-8');
+
+    const host = createMockHost();
+    const repl = createRepl({ host, historyFile: histFile, maxHistory: 10 });
+    await repl.start();
+
+    expect(repl.history).toEqual(['old1', 'old2', 'old3']);
+
+    await repl.stop();
+  });
+
   test('REPL-72b: history file in nested dir is created automatically', async () => {
     const histFile = join(tmpDir, 'nested', 'deep', 'history.txt');
     const host = createMockHost();
@@ -346,6 +385,25 @@ class MyView extends View {
     await repl.stop();
 
     expect(existsSync(histFile)).toBe(true);
+  });
+
+  test('REPL-72d: multiline history entries persist without being split', async () => {
+    const histFile = join(tmpDir, 'multiline-history.txt');
+    const host = createMockHost();
+    const repl = createRepl({ host, historyFile: histFile });
+    const multilineInput = 'import QtQuick 2.15\nRectangle {\n  width: 100\n}';
+
+    await repl.start();
+    await repl.eval(multilineInput);
+    await repl.stop();
+
+    const saved = JSON.parse(readFileSync(histFile, 'utf-8')) as string[];
+    expect(saved).toEqual([multilineInput]);
+
+    const replReloaded = createRepl({ host, historyFile: histFile });
+    await replReloaded.start();
+    expect(replReloaded.history).toEqual([multilineInput]);
+    await replReloaded.stop();
   });
 
   // ─── Default mode ───────────────────────────────────────
@@ -376,6 +434,22 @@ class MyView extends View {
     await repl.eval('Text {}');
     // After restart, first eval should use loadString again
     expect(host.calls[0]!.method).toBe('loadString');
+    await repl.stop();
+  });
+
+  test('REPL-72e: missing history file clears stale in-memory history on restart', async () => {
+    const histFile = join(tmpDir, 'restart-history.txt');
+    const host = createMockHost();
+    const repl = createRepl({ host, historyFile: histFile });
+
+    await repl.start();
+    await repl.eval('Rectangle {}');
+    expect(repl.history).toEqual(['Rectangle {}']);
+    await repl.stop();
+
+    rmSync(histFile, { force: true });
+    await repl.start();
+    expect(repl.history).toEqual([]);
     await repl.stop();
   });
 });

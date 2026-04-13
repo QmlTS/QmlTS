@@ -31,7 +31,7 @@ export type {
   HotReloadOrchestratorOptions,
   HotReloadOrchestratorResult,
   OverlayError,
-  QmlTsRepl,
+  QmltsRepl,
   ReplHost,
   ReplMode,
   ReplOptions,

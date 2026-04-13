@@ -1,7 +1,7 @@
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { dirname } from 'node:path';
 import { compileSource } from '../compiler/pipeline/compiler.js';
-import type { QmlTsRepl, ReplMode, ReplOptions, ReplResult } from './dev-types.js';
+import type { QmltsRepl, ReplMode, ReplOptions, ReplResult } from './dev-types.js';
 
 const DEFAULT_MAX_HISTORY = 100;
 
@@ -12,7 +12,7 @@ const DEFAULT_MAX_HISTORY = 100;
  * - **TS mode**: Input is compiled through the QmlTS compiler pipeline first,
  *   then the resulting QML is loaded into the host.
  */
-export function createRepl(options: ReplOptions): QmlTsRepl {
+export function createRepl(options: ReplOptions): QmltsRepl {
   const host = options.host;
   const maxHistory = options.maxHistory ?? DEFAULT_MAX_HISTORY;
   const historyFile = options.historyFile;
@@ -22,7 +22,7 @@ export function createRepl(options: ReplOptions): QmlTsRepl {
   let hasLoadedOnce = false;
   const entries: string[] = [];
 
-  const repl: QmlTsRepl = {
+  const repl: QmltsRepl = {
     get mode(): ReplMode {
       return currentMode;
     },
@@ -125,15 +125,17 @@ export function createRepl(options: ReplOptions): QmlTsRepl {
 
   function loadHistory(): void {
     if (!historyFile) return;
+    entries.length = 0;
     try {
-      if (existsSync(historyFile)) {
-        const raw = readFileSync(historyFile, 'utf-8');
-        const lines = raw.split('\n').filter((l) => l.length > 0);
-        entries.length = 0;
-        const start = maxHistory > 0 ? Math.max(0, lines.length - maxHistory) : 0;
-        for (let i = start; i < lines.length; i++) {
-          entries.push(lines[i]!);
-        }
+      if (!existsSync(historyFile)) {
+        return;
+      }
+
+      const raw = readFileSync(historyFile, 'utf-8');
+      const loadedEntries = parseHistoryEntries(raw);
+      const start = maxHistory > 0 ? Math.max(0, loadedEntries.length - maxHistory) : 0;
+      for (let i = start; i < loadedEntries.length; i++) {
+        entries.push(loadedEntries[i]!);
       }
     } catch {
       // Ignore history load failures — non-critical
@@ -147,10 +149,28 @@ export function createRepl(options: ReplOptions): QmlTsRepl {
       if (!existsSync(dir)) {
         mkdirSync(dir, { recursive: true });
       }
-      writeFileSync(historyFile, `${entries.join('\n')}\n`, 'utf-8');
+      writeFileSync(historyFile, `${JSON.stringify(entries, null, 2)}\n`, 'utf-8');
     } catch {
       // Ignore history save failures — non-critical
     }
+  }
+
+  function parseHistoryEntries(raw: string): string[] {
+    const trimmed = raw.trim();
+    if (trimmed.length === 0) {
+      return [];
+    }
+
+    try {
+      const parsed = JSON.parse(trimmed);
+      if (Array.isArray(parsed)) {
+        return parsed.filter((entry): entry is string => typeof entry === 'string');
+      }
+    } catch {
+      // Fall through to legacy line-based parsing for backward compatibility.
+    }
+
+    return raw.split('\n').filter((line) => line.length > 0);
   }
 
   function errorMessage(err: unknown): string {

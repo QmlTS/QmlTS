@@ -230,7 +230,7 @@ export interface ReplOptions {
   readonly maxHistory?: number;
 }
 
-export interface QmlTsRepl {
+export interface QmltsRepl {
   start(): Promise<void>;
   stop(): Promise<void>;
   eval(input: string): Promise<ReplResult>;
