@@ -19,6 +19,7 @@ import type {
   FileChangeBatch,
   FileWatcher,
   HotReloadOrchestrator,
+  HotReloadOrchestratorResult,
   StatusChangeData,
 } from './dev-types.js';
 import { diagnosticsToOverlayErrors } from './error-overlay.js';
@@ -155,16 +156,33 @@ async function performRebuild(internals: ServerInternals): Promise<DevServerStar
   }
   emit(internals, 'rebuild-start', { files: changedFiles });
 
+  const profilerSpan = internals.options.profiler?.startSpan('rebuild', 'compile');
   const start = performance.now();
+  let pipelineResult!: BuildPipelineResult;
+  let durationMs = 0;
 
   try {
     const pipelineOpts: PipelineRunOptions = {
       files: changedFiles.length > 0 ? changedFiles : undefined,
     };
 
-    const pipeline = createBuildPipeline(internals.config);
-    const pipelineResult = await pipeline.run(pipelineOpts);
-    const durationMs = performance.now() - start;
+    try {
+      const pipeline = createBuildPipeline(internals.config);
+      pipelineResult = await pipeline.run(pipelineOpts);
+      durationMs = performance.now() - start;
+      profilerSpan?.addMetadata('success', pipelineResult.success);
+      profilerSpan?.addMetadata('durationMs', durationMs);
+      profilerSpan?.addMetadata('changedFiles', changedFiles.length);
+    } catch (err) {
+      durationMs = performance.now() - start;
+      profilerSpan?.addMetadata('success', false);
+      profilerSpan?.addMetadata('durationMs', durationMs);
+      profilerSpan?.addMetadata('changedFiles', changedFiles.length);
+      profilerSpan?.addMetadata('error', err instanceof Error ? err.message : String(err));
+      throw err;
+    } finally {
+      profilerSpan?.end();
+    }
 
     internals.rebuildCount++;
     internals.totalBuildMs += durationMs;
@@ -228,7 +246,7 @@ async function performRebuild(internals: ServerInternals): Promise<DevServerStar
   } catch (err) {
     internals.rebuildInProgress = false;
     internals.errorCount++;
-    const durationMs = performance.now() - start;
+    durationMs = durationMs || performance.now() - start;
 
     const buildData: DevServerBuildResultData = {
       success: false,
@@ -263,10 +281,26 @@ async function performHotReload(
 ): Promise<void> {
   if (!internals.hotReloadOrchestrator) return;
 
-  const result = await internals.hotReloadOrchestrator.reload(
-    changedFiles,
-    internals.config.outDir,
-  );
+  const profilerSpan = internals.options.profiler?.startSpan('hot-reload', 'hot-reload');
+  const start = performance.now();
+  let result!: HotReloadOrchestratorResult;
+
+  try {
+    result = await internals.hotReloadOrchestrator.reload(changedFiles, internals.config.outDir);
+    profilerSpan?.addMetadata('success', result.success);
+    profilerSpan?.addMetadata('durationMs', result.durationMs);
+    profilerSpan?.addMetadata('changedFiles', changedFiles.length);
+    profilerSpan?.addMetadata('sequence', result.sequence);
+  } catch (err) {
+    const durationMs = performance.now() - start;
+    profilerSpan?.addMetadata('success', false);
+    profilerSpan?.addMetadata('durationMs', durationMs);
+    profilerSpan?.addMetadata('changedFiles', changedFiles.length);
+    profilerSpan?.addMetadata('error', err instanceof Error ? err.message : String(err));
+    throw err;
+  } finally {
+    profilerSpan?.end();
+  }
 
   if (result.success) {
     internals.hotReloadCount++;
@@ -518,10 +552,26 @@ export function createDevServer(
       transition(internals, 'building');
       emit(internals, 'build-start');
 
+      const profilerSpan = internals.options.profiler?.startSpan('initial-build', 'compile');
       const start = performance.now();
-      const pipeline = createBuildPipeline(effectiveConfig);
-      const pipelineResult = await pipeline.run();
-      const durationMs = performance.now() - start;
+      let pipelineResult!: BuildPipelineResult;
+      let durationMs = 0;
+
+      try {
+        const pipeline = createBuildPipeline(effectiveConfig);
+        pipelineResult = await pipeline.run();
+        durationMs = performance.now() - start;
+        profilerSpan?.addMetadata('success', pipelineResult.success);
+        profilerSpan?.addMetadata('durationMs', durationMs);
+      } catch (error) {
+        durationMs = performance.now() - start;
+        profilerSpan?.addMetadata('success', false);
+        profilerSpan?.addMetadata('durationMs', durationMs);
+        profilerSpan?.addMetadata('error', error instanceof Error ? error.message : String(error));
+        throw error;
+      } finally {
+        profilerSpan?.end();
+      }
 
       internals.buildCount++;
       internals.totalBuildMs += durationMs;

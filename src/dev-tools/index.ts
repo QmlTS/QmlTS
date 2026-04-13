@@ -31,6 +31,11 @@ export type {
   HotReloadOrchestratorOptions,
   HotReloadOrchestratorResult,
   OverlayError,
+  PerfCategory,
+  PerfProfiler,
+  PerfRecord,
+  PerfSpan,
+  PerfSummary,
   QmltsRepl,
   ReplHost,
   ReplMode,
@@ -42,4 +47,5 @@ export type {
 export { createErrorOverlay, diagnosticsToOverlayErrors } from './error-overlay.js';
 export { createFileWatcher } from './file-watcher.js';
 export { createHotReloadOrchestrator } from './hot-reload-orchestrator.js';
+export { createPerfProfiler } from './perf-profiler.js';
 export { createRepl } from './repl.js';
