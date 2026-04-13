@@ -400,6 +400,60 @@ describe.skipIf(!isNativeModuleAvailable)('host/qmlts-host', () => {
     expect(val).toBe('bob');
     host.dispose();
   });
+
+  test('TH-36: showErrorOverlay is visible before any QML load', () => {
+    const host = new QmltsHost();
+
+    try {
+      expect(host.isErrorOverlayVisible()).toBe(false);
+      expect(() => host.showErrorOverlay('startup failure')).not.toThrow();
+      host.processEvents();
+      expect(host.isErrorOverlayVisible()).toBe(true);
+    } finally {
+      host.dispose();
+    }
+  });
+
+  test('TH-37: startup error shell can be replaced by reloadQml', () => {
+    const host = new QmltsHost();
+
+    try {
+      host.showErrorOverlay('startup failure');
+      host.processEvents();
+
+      expect(() =>
+        host.reloadQml(
+          [
+            'import QtQuick',
+            'import QtQuick.Window',
+            'Window { width: 100; height: 80; visible: true }',
+          ].join('\n'),
+        ),
+      ).not.toThrow();
+      host.processEvents();
+
+      expect(host.isErrorOverlayVisible()).toBe(true);
+    } finally {
+      host.dispose();
+    }
+  });
+
+  test('TH-38: hideErrorOverlay is idempotent through QmltsHost', () => {
+    const host = new QmltsHost();
+
+    try {
+      expect(() => host.hideErrorOverlay()).not.toThrow();
+      host.showErrorOverlay('runtime error');
+      host.processEvents();
+      expect(host.isErrorOverlayVisible()).toBe(true);
+
+      expect(() => host.hideErrorOverlay()).not.toThrow();
+      host.processEvents();
+      expect(host.isErrorOverlayVisible()).toBe(false);
+    } finally {
+      host.dispose();
+    }
+  });
 });
 
 describe('host/qmlts-host (skip check)', () => {

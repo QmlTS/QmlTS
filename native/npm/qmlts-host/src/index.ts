@@ -135,6 +135,10 @@ export const {
 	captureSnapshot,
 	reloadQml,
 	restoreSnapshot,
+	// Error overlay
+	showErrorOverlay,
+	hideErrorOverlay,
+	isErrorOverlayVisible,
 	// Event loop
 	exec,
 	quit,

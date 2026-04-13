@@ -37,10 +37,7 @@ describe('EntryGenerator', () => {
   test('BP-69: handles multiple ViewModels', () => {
     const code = generator.generate(
       makeOptions({
-        compiledViewModels: [
-          { className: 'CounterViewModel' },
-          { className: 'TodoViewModel' },
-        ],
+        compiledViewModels: [{ className: 'CounterViewModel' }, { className: 'TodoViewModel' }],
       }),
     );
 

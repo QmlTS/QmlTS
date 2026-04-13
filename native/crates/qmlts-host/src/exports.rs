@@ -835,6 +835,43 @@ pub fn restore_snapshot(engine: &QmltsEngine, snapshot_json: String) -> Result<(
         .map_err(|e| -> napi::Error { e.into() })
 }
 
+// ─── Error overlay ──────────────────────────────────────────────────────
+
+/// Show the error overlay with the given message text.
+///
+/// If QML has not been loaded yet, this marks the engine as loaded so
+/// that `reloadQml()` can later replace the error shell.
+///
+/// @param engine - The engine instance.
+/// @param message - Error message to display.
+#[napi(js_name = "showErrorOverlay")]
+pub fn show_error_overlay(engine: &mut QmltsEngine, message: String) -> Result<()> {
+    engine
+        .inner
+        .show_error_overlay(&message)
+        .map_err(|e| -> napi::Error { e.into() })
+}
+
+/// Hide the error overlay.
+///
+/// @param engine - The engine instance.
+#[napi(js_name = "hideErrorOverlay")]
+pub fn hide_error_overlay(engine: &QmltsEngine) -> Result<()> {
+    engine
+        .inner
+        .hide_error_overlay()
+        .map_err(|e| -> napi::Error { e.into() })
+}
+
+/// Query whether the error overlay is currently visible.
+///
+/// @param engine - The engine instance.
+/// @returns `true` if the overlay is visible.
+#[napi(js_name = "isErrorOverlayVisible")]
+pub fn is_error_overlay_visible(engine: &QmltsEngine) -> bool {
+    engine.inner.is_error_overlay_visible()
+}
+
 // ─────────────────────────────────────────────────────────────────────────
 //  Tests
 // ─────────────────────────────────────────────────────────────────────────
@@ -1318,5 +1355,65 @@ mod tests {
 
         // Step 3: Restore
         restore_snapshot(&engine, snapshot).unwrap();
+    }
+
+    // ─── §9 Error overlay ──────────────────────────────────────────────
+
+    #[test]
+    fn test_show_error_overlay_napi() {
+        reset_qt();
+        let mut engine = create_engine(None).unwrap();
+        let result = show_error_overlay(&mut engine, "Build failed".to_string());
+        assert!(result.is_ok());
+    }
+
+    #[test]
+    fn test_hide_error_overlay_napi() {
+        reset_qt();
+        let mut engine = create_engine(None).unwrap();
+        show_error_overlay(&mut engine, "error".to_string()).unwrap();
+        let result = hide_error_overlay(&engine);
+        assert!(result.is_ok());
+    }
+
+    #[test]
+    fn test_hide_error_overlay_is_idempotent() {
+        reset_qt();
+        let engine = create_engine(None).unwrap();
+        let result = hide_error_overlay(&engine);
+        assert!(result.is_ok());
+    }
+
+    #[test]
+    fn test_is_error_overlay_visible_default() {
+        reset_qt();
+        let engine = create_engine(None).unwrap();
+        // mock-qt always returns false for is_error_overlay_visible
+        assert!(!is_error_overlay_visible(&engine));
+    }
+
+    #[test]
+    fn test_show_overlay_marks_qml_loaded() {
+        reset_qt();
+        let mut engine = create_engine(None).unwrap();
+        // Before showing overlay, reload should fail (no QML loaded)
+        let pre = reload_qml(&mut engine, r"import QtQuick; Item { }".to_string(), None);
+        assert!(pre.is_err());
+
+        // Show overlay marks engine as loaded
+        show_error_overlay(&mut engine, "startup error".to_string()).unwrap();
+
+        // Now reload should succeed since engine is marked as loaded
+        let post = reload_qml(&mut engine, r"import QtQuick; Item { }".to_string(), None);
+        assert!(post.is_ok());
+    }
+
+    #[test]
+    fn test_overlay_after_destroy_fails() {
+        reset_qt();
+        let mut engine = create_engine(None).unwrap();
+        destroy_engine(&mut engine).unwrap();
+        let result = show_error_overlay(&mut engine, "should fail".to_string());
+        assert!(result.is_err());
     }
 }

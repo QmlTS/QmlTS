@@ -123,6 +123,15 @@ unsafe extern "C" {
         json: *const std::ffi::c_char,
         json_len: usize,
     ) -> bool;
+
+    // §9 Error overlay
+    fn qmlts_show_error_overlay(
+        engine_ptr: *mut c_void,
+        message: *const std::ffi::c_char,
+        message_len: usize,
+    ) -> bool;
+    fn qmlts_hide_error_overlay(engine_ptr: *mut c_void) -> bool;
+    fn qmlts_is_error_overlay_visible(engine_ptr: *mut c_void) -> bool;
 }
 
 #[cfg(not(feature = "mock-qt"))]
@@ -747,6 +756,57 @@ pub fn restore_snapshot(engine_ptr: *mut c_void, json: &str) -> bool {
 pub fn restore_snapshot(_engine_ptr: *mut c_void, _json: &str) -> bool {
     tracing::debug!("Mock: restore_snapshot");
     true
+}
+
+// ─── Error overlay ──────────────────────────────────────────────────────
+
+/// Show or update the error overlay with the given message text.
+#[cfg(not(feature = "mock-qt"))]
+#[allow(dead_code)]
+#[must_use]
+pub fn show_error_overlay(engine_ptr: *mut c_void, message: &str) -> bool {
+    let bytes = message.as_bytes();
+    unsafe { qmlts_show_error_overlay(engine_ptr, bytes.as_ptr().cast(), bytes.len()) }
+}
+
+#[cfg(feature = "mock-qt")]
+#[allow(dead_code)]
+#[must_use]
+pub fn show_error_overlay(_engine_ptr: *mut c_void, _message: &str) -> bool {
+    tracing::debug!("Mock: show_error_overlay");
+    true
+}
+
+/// Hide the error overlay (if visible).
+#[cfg(not(feature = "mock-qt"))]
+#[allow(dead_code)]
+#[must_use]
+pub fn hide_error_overlay(engine_ptr: *mut c_void) -> bool {
+    unsafe { qmlts_hide_error_overlay(engine_ptr) }
+}
+
+#[cfg(feature = "mock-qt")]
+#[allow(dead_code)]
+#[must_use]
+pub fn hide_error_overlay(_engine_ptr: *mut c_void) -> bool {
+    tracing::debug!("Mock: hide_error_overlay");
+    true
+}
+
+/// Query whether the error overlay is currently visible.
+#[cfg(not(feature = "mock-qt"))]
+#[allow(dead_code)]
+#[must_use]
+pub fn is_error_overlay_visible(engine_ptr: *mut c_void) -> bool {
+    unsafe { qmlts_is_error_overlay_visible(engine_ptr) }
+}
+
+#[cfg(feature = "mock-qt")]
+#[allow(dead_code)]
+#[must_use]
+pub fn is_error_overlay_visible(_engine_ptr: *mut c_void) -> bool {
+    tracing::debug!("Mock: is_error_overlay_visible");
+    false
 }
 
 #[cfg(test)]
