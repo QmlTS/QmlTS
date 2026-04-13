@@ -140,6 +140,19 @@ describe('DevConsole', () => {
     expect(lines[2]).toContain('Unused var');
   });
 
+  test('DC-41b: buildError omits fake 0:0 when diagnostic has no position', () => {
+    const { lines, console } = createCapture();
+    console.buildError([
+      makeDiagnostic({
+        file: 'src/App.ts',
+        line: undefined,
+        column: undefined,
+      }),
+    ]);
+    expect(lines[1]).toContain('src/App.ts');
+    expect(lines[1]).not.toContain(':0:0');
+  });
+
   // Test 42: hotReload output includes duration and phase info
   test('DC-42: hotReload output includes duration and sequence', () => {
     const { lines, console } = createCapture();
@@ -220,6 +233,15 @@ describe('DevConsole', () => {
     expect(lines[0]).toContain('running');
     expect(lines[0]).toContain('src/main.ts');
     expect(lines[0]).toContain('hot reload: on');
+  });
+
+  test('DC-44b: serverStatus omits unknown detail fields', () => {
+    const { lines, console } = createCapture();
+    console.serverStatus({ status: 'starting' });
+    expect(lines).toHaveLength(1);
+    expect(lines[0]).toContain('starting');
+    expect(lines[0]).not.toContain('entry:');
+    expect(lines[0]).not.toContain('hot reload:');
   });
 
   // Test 45: log level filtering
@@ -408,6 +430,7 @@ describe('DevConsole', () => {
     server._emit('status-change', { from: 'idle', to: 'running' });
     expect(lines.length).toBe(1);
     expect(lines[0]).toContain('running');
+    expect(lines[0]).not.toContain('entry:');
   });
 
   test('DC-57: disconnect removes all listeners', () => {
@@ -423,7 +446,7 @@ describe('DevConsole', () => {
     const { lines, console } = createCapture();
     const server = createMockDevServer();
     console.connectToDevServer(server);
-    server._emit('rebuild-start');
+    server._emit('rebuild-start', { files: ['src/App.ts', 'src/Main.ts'] });
     server._emit('rebuild-success', {
       success: true,
       durationMs: 100,
@@ -440,6 +463,7 @@ describe('DevConsole', () => {
     });
     expect(lines.length).toBe(2);
     expect(lines[0]).toContain('Building...');
+    expect(lines[0]).toContain('2 files');
     expect(lines[1]).toContain('Build succeeded');
   });
 

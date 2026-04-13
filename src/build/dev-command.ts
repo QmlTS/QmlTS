@@ -1,6 +1,6 @@
 import { createDevConsole } from '../dev-tools/dev-console.js';
 import type { DevConsole, FileChangeBatch } from '../dev-tools/dev-types.js';
-import type { BuildResultData, DevSessionOptions } from './build-types.js';
+import type { BuildResultData, DevSessionOptions, DevSessionState } from './build-types.js';
 import { loadConfig } from './config-loader.js';
 import { createDevSession, type DevSession } from './dev-session.js';
 
@@ -8,6 +8,24 @@ export interface DevCommandResult {
   readonly session: DevSession;
   readonly console?: DevConsole;
   readonly initialBuildSuccess: boolean;
+}
+
+function mapDevSessionStateToServerStatus(
+  state: DevSessionState,
+): 'running' | 'stopped' | 'starting' | 'stopping' {
+  switch (state) {
+    case 'watching':
+      return 'running';
+    case 'building':
+    case 'rebuilding':
+    case 'starting':
+      return 'starting';
+    case 'stopping':
+      return 'stopping';
+    case 'idle':
+    case 'stopped':
+      return 'stopped';
+  }
 }
 
 export async function executeDev(options: DevSessionOptions = {}): Promise<DevCommandResult> {
@@ -66,8 +84,9 @@ export async function executeDev(options: DevSessionOptions = {}): Promise<DevCo
       devConsole!.fileChange(batch);
     });
 
-    session.on('rebuild-start', () => {
-      devConsole!.buildStart([]);
+    session.on('rebuild-start', (event) => {
+      const data = event.data as { files?: readonly string[] } | undefined;
+      devConsole!.buildStart(data?.files ?? []);
     });
 
     session.on('rebuild-success', (event) => {
@@ -110,13 +129,13 @@ export async function executeDev(options: DevSessionOptions = {}): Promise<DevCo
     });
 
     session.on('state-change', (event) => {
-      const data = event.data as { from: string; to: string } | undefined;
+      const data = event.data as { from: DevSessionState; to: DevSessionState } | undefined;
       if (data) {
         devConsole!.serverStatus({
-          status: data.to as 'running' | 'stopped' | 'starting' | 'stopping',
-          entry: config.entry,
-          watchPaths: config.dev?.watchPaths ?? [],
-          hotReload: true,
+          status: mapDevSessionStateToServerStatus(data.to),
+          entry: effectiveConfig.entry,
+          watchPaths: effectiveConfig.dev?.watchPaths ?? [],
+          hotReload: effectiveConfig.dev?.hotReload ?? false,
         });
       }
     });

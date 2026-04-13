@@ -67,7 +67,14 @@ function formatDiagnostic(d: Diagnostic, useColor: boolean): string {
   const severity = d.severity === 'error' ? 'error' : d.severity;
   const sevColor = severity === 'error' ? RED : YELLOW;
 
-  const loc = d.file ? `${d.file}:${d.line ?? 0}:${d.column ?? 0}` : '';
+  const loc =
+    d.file == null
+      ? ''
+      : d.line != null && d.column != null
+        ? `${d.file}:${d.line}:${d.column}`
+        : d.line != null
+          ? `${d.file}:${d.line}`
+          : d.file;
   const code = d.code ? ` [${d.code}]` : '';
 
   if (useColor) {
@@ -168,11 +175,15 @@ export function createDevConsole(options: DevConsoleOptions = {}): DevConsole {
       const statusColor =
         info.status === 'running' ? GREEN : info.status === 'stopped' ? RED : YELLOW;
       const statusText = useColor ? `${statusColor}${info.status}${RESET}` : info.status;
-      const hrText = info.hotReload ? 'on' : 'off';
-      output(
-        'info',
-        `${prefix} Server ${statusText} — entry: ${info.entry}, hot reload: ${hrText}`,
-      );
+      const details: string[] = [];
+      if (info.entry) {
+        details.push(`entry: ${info.entry}`);
+      }
+      if (info.hotReload !== undefined) {
+        details.push(`hot reload: ${info.hotReload ? 'on' : 'off'}`);
+      }
+      const detailSuffix = details.length > 0 ? ` — ${details.join(', ')}` : '';
+      output('info', `${prefix} Server ${statusText}${detailSuffix}`);
     },
 
     info(message: string): void {
@@ -228,8 +239,9 @@ export function createDevConsole(options: DevConsoleOptions = {}): DevConsole {
         }
       });
 
-      listen('rebuild-start', () => {
-        console.buildStart([]);
+      listen('rebuild-start', (payload) => {
+        const data = payload.data as { files?: readonly string[] } | undefined;
+        console.buildStart(data?.files ?? []);
       });
 
       listen('rebuild-success', (payload) => {
@@ -298,9 +310,6 @@ export function createDevConsole(options: DevConsoleOptions = {}): DevConsole {
           ) {
             console.serverStatus({
               status,
-              entry: '',
-              watchPaths: [],
-              hotReload: false,
             });
           }
         }

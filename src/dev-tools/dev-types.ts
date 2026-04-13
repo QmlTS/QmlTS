@@ -219,9 +219,9 @@ export interface BuildSuccessInfo {
 
 export interface ServerStatusInfo {
   readonly status: 'starting' | 'running' | 'stopping' | 'stopped';
-  readonly entry: string;
-  readonly watchPaths: readonly string[];
-  readonly hotReload: boolean;
+  readonly entry?: string;
+  readonly watchPaths?: readonly string[];
+  readonly hotReload?: boolean;
 }
 
 export interface DevConsole {

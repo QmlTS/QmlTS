@@ -123,4 +123,33 @@ describe('executeDev', () => {
     expect(logs.some((line) => line.includes('Building...'))).toBe(true);
     expect(logs.some((line) => line.includes('Build succeeded'))).toBe(true);
   }, 20_000);
+
+  test('DC-04: verbose mode returns dev console and logs effective status details', async () => {
+    const configPath = writeConfig(tempDir);
+    const logs: string[] = [];
+    const originalWrite = process.stdout.write;
+    process.stdout.write = (chunk: string | Uint8Array, ...rest: unknown[]) => {
+      logs.push(String(chunk));
+      return true;
+    };
+
+    try {
+      const { session, console } = await executeDev({
+        config: configPath,
+        verbose: true,
+        entry: './src/CounterView.ts',
+      });
+
+      try {
+        expect(console).toBeDefined();
+      } finally {
+        await session.stop();
+      }
+    } finally {
+      process.stdout.write = originalWrite;
+    }
+
+    expect(logs.some((line) => line.includes('entry:'))).toBe(true);
+    expect(logs.some((line) => line.includes('hot reload: off'))).toBe(true);
+  }, 20_000);
 });
