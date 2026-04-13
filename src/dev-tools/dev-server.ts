@@ -155,6 +155,7 @@ async function performRebuild(internals: ServerInternals): Promise<DevServerStar
   }
   emit(internals, 'rebuild-start', { files: changedFiles });
 
+  const profilerSpan = internals.options.profiler?.startSpan('rebuild', 'compile');
   const start = performance.now();
 
   try {
@@ -165,6 +166,10 @@ async function performRebuild(internals: ServerInternals): Promise<DevServerStar
     const pipeline = createBuildPipeline(internals.config);
     const pipelineResult = await pipeline.run(pipelineOpts);
     const durationMs = performance.now() - start;
+    profilerSpan?.addMetadata('success', pipelineResult.success);
+    profilerSpan?.addMetadata('durationMs', durationMs);
+    profilerSpan?.addMetadata('changedFiles', changedFiles.length);
+    profilerSpan?.end();
 
     internals.rebuildCount++;
     internals.totalBuildMs += durationMs;
@@ -229,6 +234,9 @@ async function performRebuild(internals: ServerInternals): Promise<DevServerStar
     internals.rebuildInProgress = false;
     internals.errorCount++;
     const durationMs = performance.now() - start;
+    profilerSpan?.addMetadata('success', false);
+    profilerSpan?.addMetadata('error', err instanceof Error ? err.message : String(err));
+    profilerSpan?.end();
 
     const buildData: DevServerBuildResultData = {
       success: false,
@@ -263,10 +271,17 @@ async function performHotReload(
 ): Promise<void> {
   if (!internals.hotReloadOrchestrator) return;
 
+  const profilerSpan = internals.options.profiler?.startSpan('hot-reload', 'hot-reload');
+
   const result = await internals.hotReloadOrchestrator.reload(
     changedFiles,
     internals.config.outDir,
   );
+
+  profilerSpan?.addMetadata('success', result.success);
+  profilerSpan?.addMetadata('durationMs', result.durationMs);
+  profilerSpan?.addMetadata('sequence', result.sequence);
+  profilerSpan?.end();
 
   if (result.success) {
     internals.hotReloadCount++;
@@ -518,10 +533,14 @@ export function createDevServer(
       transition(internals, 'building');
       emit(internals, 'build-start');
 
+      const profilerSpan = internals.options.profiler?.startSpan('initial-build', 'compile');
       const start = performance.now();
       const pipeline = createBuildPipeline(effectiveConfig);
       const pipelineResult = await pipeline.run();
       const durationMs = performance.now() - start;
+      profilerSpan?.addMetadata('success', pipelineResult.success);
+      profilerSpan?.addMetadata('durationMs', durationMs);
+      profilerSpan?.end();
 
       internals.buildCount++;
       internals.totalBuildMs += durationMs;

@@ -173,6 +173,7 @@ export interface DevServerOptions {
   readonly hotReloadClient?: HotReloadClient;
   readonly errorOverlay?: ErrorOverlay;
   readonly console?: DevConsole;
+  readonly profiler?: PerfProfiler;
 }
 
 // ─── ErrorOverlay ───────────────────────────────────────────
@@ -237,6 +238,45 @@ export interface QmltsRepl {
   setMode(mode: ReplMode): void;
   readonly mode: ReplMode;
   readonly history: readonly string[];
+}
+
+// ─── PerfProfiler ───────────────────────────────────────────
+
+export type PerfCategory =
+  | 'compile'
+  | 'hot-reload'
+  | 'capture'
+  | 'restore'
+  | 'file-watch'
+  | 'qmllint'
+  | 'qmlformat';
+
+export interface PerfRecord {
+  readonly name: string;
+  readonly category: PerfCategory;
+  readonly startMs: number;
+  readonly durationMs: number;
+  readonly metadata?: Readonly<Record<string, string | number | boolean>>;
+}
+
+export interface PerfSpan {
+  end(): void;
+  addMetadata(key: string, value: string | number | boolean): void;
+}
+
+export interface PerfSummary {
+  readonly averageByCategory: Readonly<Partial<Record<PerfCategory, number>>>;
+  readonly totalByCategory: Readonly<Partial<Record<PerfCategory, number>>>;
+  readonly countByCategory: Readonly<Partial<Record<PerfCategory, number>>>;
+  readonly totalRecords: number;
+}
+
+export interface PerfProfiler {
+  startSpan(name: string, category: PerfCategory): PerfSpan;
+  getRecords(): readonly PerfRecord[];
+  getSummary(): PerfSummary;
+  clear(): void;
+  exportChromeTrace(): string;
 }
 
 // ─── DevConsole ─────────────────────────────────────────────
