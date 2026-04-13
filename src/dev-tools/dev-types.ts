@@ -78,6 +78,7 @@ export type DevServerStatus =
   | 'building'
   | 'running'
   | 'reloading'
+  | 'error'
   | 'stopping'
   | 'stopped';
 
@@ -92,6 +93,7 @@ export type DevServerEvent =
   | 'file-change'
   | 'hot-reload'
   | 'hot-reload-error'
+  | 'config-change'
   | 'exit';
 
 export interface DevServerEventPayload {
@@ -103,6 +105,9 @@ export interface DevServerEventPayload {
 export interface StatusChangeData {
   readonly from: DevServerStatus;
   readonly to: DevServerStatus;
+  readonly entry?: string;
+  readonly watchPaths?: readonly string[];
+  readonly hotReload?: boolean;
 }
 
 export interface DevServerBuildResultData {
@@ -143,6 +148,7 @@ export interface DevServer {
   start(): Promise<DevServerStartResult>;
   stop(): Promise<void>;
   rebuild(): Promise<DevServerStartResult>;
+  restart(): Promise<DevServerStartResult>;
   getStatus(): DevServerStatus;
   getStats(): DevServerStats;
   on(event: DevServerEvent, handler: (payload: DevServerEventPayload) => void): void;
@@ -218,7 +224,7 @@ export interface BuildSuccessInfo {
 }
 
 export interface ServerStatusInfo {
-  readonly status: 'starting' | 'running' | 'stopping' | 'stopped';
+  readonly status: 'starting' | 'running' | 'error' | 'stopping' | 'stopped';
   readonly entry?: string;
   readonly watchPaths?: readonly string[];
   readonly hotReload?: boolean;
