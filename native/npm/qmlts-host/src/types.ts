@@ -499,3 +499,44 @@ export declare function restoreSnapshot(
 	engine: QmltsEngine,
 	snapshotJson: string,
 ): void;
+
+// ────────────────────────────────────────────────────────────────────────────
+// §9 Error Overlay
+// ────────────────────────────────────────────────────────────────────────────
+
+/**
+ * Show the error overlay with the given message text.
+ *
+ * Displays a semi-transparent overlay on top of the current window
+ * content, preserving the last known-good UI underneath. If QML has
+ * not been loaded yet, the overlay acts as the startup error shell
+ * and marks the engine as loaded so that `reloadQml()` can later
+ * replace it.
+ *
+ * @param engine - The engine instance.
+ * @param message - Error message to display.
+ * @throws Error if the overlay cannot be created.
+ */
+export declare function showErrorOverlay(
+	engine: QmltsEngine,
+	message: string,
+): void;
+
+/**
+ * Hide the error overlay.
+ *
+ * The overlay is hidden but not destroyed, so it can be re-shown
+ * without recreating it. Call this after a successful reload.
+ *
+ * @param engine - The engine instance.
+ * @throws Error if the overlay cannot be hidden.
+ */
+export declare function hideErrorOverlay(engine: QmltsEngine): void;
+
+/**
+ * Query whether the error overlay is currently visible.
+ *
+ * @param engine - The engine instance.
+ * @returns `true` if the overlay is visible.
+ */
+export declare function isErrorOverlayVisible(engine: QmltsEngine): boolean;

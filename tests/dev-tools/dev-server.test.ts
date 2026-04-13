@@ -1,11 +1,16 @@
 import { afterEach, beforeEach, describe, expect, test } from 'bun:test';
-import { cpSync, mkdtempSync, rmSync, writeFileSync } from 'node:fs';
+import { cpSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join, resolve } from 'node:path';
 import type { HotReloadClient, HotReloadResult } from '../../src/build/build-types.js';
 import type { ResolvedQmltsConfig } from '../../src/build/config-types.js';
 import { createDevServer } from '../../src/dev-tools/dev-server.js';
-import type { DevServerEventPayload, DevServerStatus } from '../../src/dev-tools/dev-types.js';
+import type {
+  DevServerEventPayload,
+  DevServerStatus,
+  ErrorOverlay,
+  OverlayError,
+} from '../../src/dev-tools/dev-types.js';
 
 // ─── Paths ──────────────────────────────────────────────────
 
@@ -109,6 +114,44 @@ function createMockHotReloadClient(
     dispose(): void {
       disposed = true;
     },
+  };
+}
+
+function makeErrorTestConfig(
+  tempDir: string,
+  overrides: Partial<ResolvedQmltsConfig> = {},
+): ResolvedQmltsConfig {
+  const base = makeConfig(tempDir, overrides);
+  return {
+    ...base,
+    build: {
+      ...base.build,
+      compilerOptions: { diagnostics: { suppress: [] } },
+    },
+  };
+}
+
+function createMockOverlay(): ErrorOverlay & {
+  showCalls: OverlayError[][];
+  hideCalls: number;
+  _visible: boolean;
+} {
+  return {
+    showCalls: [],
+    hideCalls: 0,
+    _visible: false,
+    show(errors: readonly OverlayError[]): void {
+      this.showCalls.push([...errors]);
+      this._visible = true;
+    },
+    hide(): void {
+      this.hideCalls++;
+      this._visible = false;
+    },
+    get visible(): boolean {
+      return this._visible;
+    },
+    dispose(): void {},
   };
 }
 
@@ -479,4 +522,188 @@ describe('DevServer', () => {
       await server.stop();
     }
   }, 15_000);
+
+  // ─── ErrorOverlay wiring tests ────────────────────────────
+
+  test('EO-07: shows overlay on initial build-error', async () => {
+    const overlay = createMockOverlay();
+    // Break the entry file so the initial build fails
+    writeFileSync(join(tempDir, 'src', 'CounterView.ts'), 'syntax error %%%');
+    const server = createDevServer(makeErrorTestConfig(tempDir), {
+      errorOverlay: overlay,
+    });
+
+    const result = await server.start();
+    expect(result.success).toBe(false);
+    expect(overlay.showCalls.length).toBeGreaterThan(0);
+
+    await server.stop();
+  });
+
+  test('EO-08: shows overlay on rebuild-error', async () => {
+    const overlay = createMockOverlay();
+    const server = createDevServer(makeErrorTestConfig(tempDir), { errorOverlay: overlay });
+
+    await server.start();
+    await sleep(500);
+
+    writeFileSync(join(tempDir, 'src', 'CounterView.ts'), 'syntax error %%%');
+    await sleep(250);
+
+    try {
+      await waitForServerEvent(server, 'rebuild-error', 15_000);
+    } catch {
+      // Event may have already fired
+    }
+
+    expect(overlay.showCalls.length).toBeGreaterThan(0);
+
+    await server.stop();
+  }, 30_000);
+
+  test('EO-09: shows overlay on hot-reload-error', async () => {
+    const mockClient = createMockHotReloadClient({ shouldFail: true });
+    const overlay = createMockOverlay();
+    const server = createDevServer(
+      makeConfig(tempDir, { dev: { ...makeConfig(tempDir).dev, hotReload: true } }),
+      { hotReloadClient: mockClient, errorOverlay: overlay },
+    );
+
+    await server.start();
+    await sleep(500);
+
+    writeFileSync(
+      join(tempDir, 'src', 'CounterView.ts'),
+      readFileSync(join(tempDir, 'src', 'CounterView.ts'), 'utf-8') + '\n// trigger',
+    );
+    await sleep(250);
+
+    try {
+      await waitForServerEvent(server, 'hot-reload-error', 15_000);
+    } catch {
+      // Already fired
+    }
+
+    expect(overlay.showCalls.length).toBeGreaterThan(0);
+    const lastShow = overlay.showCalls[overlay.showCalls.length - 1];
+    expect(lastShow[0].severity).toBe('error');
+
+    await server.stop();
+  }, 30_000);
+
+  test('EO-10: hides overlay on hot-reload success', async () => {
+    const mockClient = createMockHotReloadClient();
+    const overlay = createMockOverlay();
+    const server = createDevServer(
+      makeConfig(tempDir, { dev: { ...makeConfig(tempDir).dev, hotReload: true } }),
+      { hotReloadClient: mockClient, errorOverlay: overlay },
+    );
+
+    await server.start();
+    await sleep(500);
+
+    overlay._visible = true;
+
+    writeFileSync(
+      join(tempDir, 'src', 'CounterView.ts'),
+      readFileSync(join(tempDir, 'src', 'CounterView.ts'), 'utf-8') + '\n// touch',
+    );
+    await sleep(250);
+
+    try {
+      await waitForServerEvent(server, 'hot-reload', 15_000);
+    } catch {
+      // Event may have already fired
+    }
+
+    expect(overlay.hideCalls).toBeGreaterThan(0);
+
+    await server.stop();
+  }, 30_000);
+
+  test('EO-11: does NOT hide overlay on build-success alone', async () => {
+    const overlay = createMockOverlay();
+    const server = createDevServer(makeConfig(tempDir), { errorOverlay: overlay });
+
+    overlay._visible = true;
+
+    const result = await server.start();
+    expect(result.success).toBe(true);
+
+    expect(overlay.hideCalls).toBe(0);
+
+    await server.stop();
+  });
+
+  test('EO-12: does NOT hide overlay on rebuild-success alone', async () => {
+    const overlay = createMockOverlay();
+    const server = createDevServer(
+      makeConfig(tempDir, { dev: { ...makeConfig(tempDir).dev, hotReload: false } }),
+      { errorOverlay: overlay },
+    );
+
+    await server.start();
+    await sleep(500);
+    overlay._visible = true;
+
+    writeFileSync(
+      join(tempDir, 'src', 'CounterView.ts'),
+      readFileSync(join(tempDir, 'src', 'CounterView.ts'), 'utf-8') + '\n// rebuild',
+    );
+    await sleep(250);
+
+    try {
+      await waitForServerEvent(server, 'rebuild-success', 15_000);
+    } catch {
+      // Already fired
+    }
+
+    expect(overlay.hideCalls).toBe(0);
+
+    await server.stop();
+  }, 30_000);
+
+  test('EO-13: auto-recovery hides overlay after error then success', async () => {
+    const mockClient = createMockHotReloadClient();
+    const overlay = createMockOverlay();
+    const server = createDevServer(
+      makeErrorTestConfig(tempDir, {
+        dev: { ...makeConfig(tempDir).dev, hotReload: true },
+      }),
+      { hotReloadClient: mockClient, errorOverlay: overlay },
+    );
+
+    await server.start();
+    await sleep(500);
+
+    // First: break the file to trigger rebuild-error
+    writeFileSync(join(tempDir, 'src', 'CounterView.ts'), 'syntax error %%%');
+    await sleep(250);
+
+    try {
+      await waitForServerEvent(server, 'rebuild-error', 15_000);
+    } catch {
+      // Already fired
+    }
+
+    expect(overlay.showCalls.length).toBeGreaterThan(0);
+
+    // Second: fix the file to trigger successful rebuild + hot reload
+    cpSync(join(FIXTURES_DIR, 'src', 'CounterView.ts'), join(tempDir, 'src', 'CounterView.ts'));
+    writeFileSync(
+      join(tempDir, 'src', 'CounterView.ts'),
+      readFileSync(join(tempDir, 'src', 'CounterView.ts'), 'utf-8') + '\n// fixed',
+    );
+    await sleep(250);
+
+    try {
+      await waitForServerEvent(server, 'hot-reload', 15_000);
+    } catch {
+      // Already fired
+    }
+
+    expect(overlay.hideCalls).toBeGreaterThan(0);
+
+    await server.stop();
+  }, 60_000);
 });

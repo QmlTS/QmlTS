@@ -14,15 +14,20 @@ export type {
   DevServerStartResult,
   DevServerStats,
   DevServerStatus,
+  ErrorOverlay,
+  ErrorOverlayOptions,
   FileChange,
   FileChangeBatch,
   FileWatcher,
   FileWatcherOptions,
+  HostOverlayApi,
   HotReloadContext,
   HotReloadOrchestrator,
   HotReloadOrchestratorOptions,
   HotReloadOrchestratorResult,
+  OverlayError,
   StatusChangeData,
 } from './dev-types.js';
+export { createErrorOverlay, diagnosticsToOverlayErrors } from './error-overlay.js';
 export { createFileWatcher } from './file-watcher.js';
 export { createHotReloadOrchestrator } from './hot-reload-orchestrator.js';
