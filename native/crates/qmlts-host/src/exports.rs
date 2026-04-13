@@ -1389,22 +1389,14 @@ mod tests {
         reset_qt();
         let mut engine = create_engine(None).unwrap();
         // Before showing overlay, reload should fail (no QML loaded)
-        let pre = reload_qml(
-            &mut engine,
-            r"import QtQuick; Item { }".to_string(),
-            None,
-        );
+        let pre = reload_qml(&mut engine, r"import QtQuick; Item { }".to_string(), None);
         assert!(pre.is_err());
 
         // Show overlay marks engine as loaded
         show_error_overlay(&mut engine, "startup error".to_string()).unwrap();
 
         // Now reload should succeed since engine is marked as loaded
-        let post = reload_qml(
-            &mut engine,
-            r"import QtQuick; Item { }".to_string(),
-            None,
-        );
+        let post = reload_qml(&mut engine, r"import QtQuick; Item { }".to_string(), None);
         assert!(post.is_ok());
     }
 
