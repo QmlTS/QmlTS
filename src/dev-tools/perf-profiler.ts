@@ -38,6 +38,7 @@ export function createPerfProfiler(): PerfProfiler {
         },
 
         addMetadata(key: string, value: string | number | boolean): void {
+          if (record.ended) return;
           record.metadata[key] = value;
         },
       };

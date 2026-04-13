@@ -62,6 +62,19 @@ describe('Suite 7: PerfProfiler', () => {
     expect(records[0]!.metadata!.output).toBe('main.qml');
   });
 
+  test('PERF-75c: addMetadata after end does not mutate recorded span', () => {
+    const profiler = createPerfProfiler();
+    const span = profiler.startSpan('immutable', 'compile');
+
+    span.addMetadata('success', true);
+    span.end();
+    span.addMetadata('late', 'ignored');
+
+    const records = profiler.getRecords();
+    expect(records).toHaveLength(1);
+    expect(records[0]!.metadata).toEqual({ success: true });
+  });
+
   // PERF-76: category grouping correct
   test('PERF-76: records are grouped by category correctly', () => {
     const profiler = createPerfProfiler();
@@ -380,10 +393,7 @@ describe('DevServer profiler integration', () => {
 
     await server.start();
 
-    const rebuildDone = waitForServerEvent(server, 'rebuild-success');
-
     const srcFile = join(tmpDir, 'src', 'CounterView.ts');
-    await sleep(150);
     writeFileSync(
       srcFile,
       `
@@ -394,7 +404,8 @@ export class CounterView extends View {
 `,
     );
 
-    await rebuildDone;
+    const rebuildResult = await server.rebuild();
+    expect(rebuildResult.success).toBe(true);
 
     const records = profiler.getRecords();
     const rebuildRecords = records.filter(
@@ -405,6 +416,52 @@ export class CounterView extends View {
     expect(rebuildRecords[0]!.durationMs).toBeGreaterThan(0);
 
     await server.stop();
+  });
+
+  test('PERF-91b2: rebuild failure records consistent compile metadata', async () => {
+    const profiler = createPerfProfiler();
+    const config = makeConfig({
+      dev: {
+        hotReload: false,
+        watchPaths: [join(tmpDir, 'src')],
+        debounceMs: 50,
+        ignorePatterns: [],
+        port: 0,
+        notify: false,
+        preserveOnError: true,
+      },
+    } as Partial<ResolvedQmltsConfig>);
+    const server = createDevServer(config, { profiler });
+
+    await server.start();
+
+    const srcFile = join(tmpDir, 'src', 'CounterView.ts');
+    writeFileSync(
+      srcFile,
+      `
+import type { CounterViewModel } from './CounterViewModel.js';
+import { Rectangle } from './dsl/generated/QtQuick/Rectangle.js';
+
+export default function CounterView(_vm: CounterViewModel) {
+  return Rectangle().unknownProperty(42);
+}
+`,
+    );
+
+    const rebuildResult = await server.rebuild();
+    expect(rebuildResult.success).toBe(false);
+    await server.stop();
+
+    const rebuildRecords = profiler
+      .getRecords()
+      .filter((r: PerfRecord) => r.name === 'rebuild' && r.category === 'compile');
+
+    expect(rebuildRecords.length).toBeGreaterThanOrEqual(1);
+    const lastRecord = rebuildRecords.at(-1)!;
+    expect(lastRecord.metadata).toBeDefined();
+    expect(lastRecord.metadata!.success).toBe(false);
+    expect(typeof lastRecord.metadata!.durationMs).toBe('number');
+    expect(lastRecord.metadata!.changedFiles).toBe(0);
   });
 
   test('PERF-91c: profiler records hot-reload span when client provided', async () => {
@@ -460,6 +517,115 @@ export class CounterView extends View {
     expect(hrRecords[0]!.metadata!.success).toBe(true);
 
     await server.stop();
+  });
+
+  test('PERF-91c2: hot-reload failure records changedFiles metadata', async () => {
+    const profiler = createPerfProfiler();
+    const config = makeConfig({
+      dev: {
+        hotReload: true,
+        watchPaths: [join(tmpDir, 'src')],
+        debounceMs: 50,
+        ignorePatterns: [],
+        port: 0,
+        notify: false,
+        preserveOnError: true,
+      },
+    } as Partial<ResolvedQmltsConfig>);
+
+    const mockClient: HotReloadClient = {
+      isConnected: () => true,
+      reload: async (): Promise<HotReloadResult> => ({
+        success: false,
+        durationMs: 7,
+        error: 'reload failed',
+      }),
+      dispose: () => {},
+    };
+
+    const server = createDevServer(config, {
+      profiler,
+      hotReloadClient: mockClient,
+    });
+
+    await server.start();
+
+    const hotReloadError = waitForServerEvent(server, 'hot-reload-error');
+    const srcFile = join(tmpDir, 'src', 'CounterView.ts');
+    await sleep(150);
+    writeFileSync(
+      srcFile,
+      `
+import { View } from "@qmlts/dsl";
+export class CounterView extends View {
+  body() { return this.Text({ text: "reload-fail" }); }
+}
+`,
+    );
+
+    await hotReloadError;
+    await server.stop();
+
+    const hotReloadRecords = profiler
+      .getRecords()
+      .filter((r: PerfRecord) => r.name === 'hot-reload' && r.category === 'hot-reload');
+
+    expect(hotReloadRecords.length).toBeGreaterThanOrEqual(1);
+    const lastRecord = hotReloadRecords.at(-1)!;
+    expect(lastRecord.metadata).toBeDefined();
+    expect(lastRecord.metadata!.success).toBe(false);
+    expect(typeof lastRecord.metadata!.durationMs).toBe('number');
+    expect(Number(lastRecord.metadata!.durationMs)).toBeGreaterThan(0);
+    expect(typeof lastRecord.metadata!.changedFiles).toBe('number');
+    expect(Number(lastRecord.metadata!.changedFiles)).toBeGreaterThanOrEqual(1);
+  });
+
+  test('PERF-91e: listener errors after successful rebuild do not mutate ended span metadata', async () => {
+    const profiler = createPerfProfiler();
+    const config = makeConfig({
+      dev: {
+        hotReload: false,
+        watchPaths: [join(tmpDir, 'src')],
+        debounceMs: 50,
+        ignorePatterns: [],
+        port: 0,
+        notify: false,
+        preserveOnError: true,
+      },
+    } as Partial<ResolvedQmltsConfig>);
+    const server = createDevServer(config, { profiler });
+
+    await server.start();
+
+    server.on('rebuild-success', () => {
+      throw new Error('listener boom');
+    });
+
+    const rebuildError = waitForServerEvent(server, 'rebuild-error');
+    const srcFile = join(tmpDir, 'src', 'CounterView.ts');
+    await sleep(150);
+    writeFileSync(
+      srcFile,
+      `
+import { View } from "@qmlts/dsl";
+export class CounterView extends View {
+  body() { return this.Rectangle({ width: 320, height: 180 }); }
+}
+`,
+    );
+
+    await rebuildError;
+    await server.stop();
+
+    const rebuildRecords = profiler
+      .getRecords()
+      .filter((r: PerfRecord) => r.name === 'rebuild' && r.category === 'compile');
+
+    expect(rebuildRecords.length).toBeGreaterThanOrEqual(1);
+    const lastRecord = rebuildRecords.at(-1)!;
+    expect(lastRecord.metadata).toBeDefined();
+    expect(lastRecord.metadata!.success).toBe(true);
+    expect(lastRecord.metadata!.error).toBeUndefined();
   });
 
   test('PERF-91d: full dev cycle produces complete profiler record chain', async () => {
