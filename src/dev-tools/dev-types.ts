@@ -165,6 +165,35 @@ export interface DevServerOptions {
   readonly ignorePatterns?: readonly string[];
   readonly preserveOnError?: boolean;
   readonly hotReloadClient?: HotReloadClient;
+  readonly errorOverlay?: ErrorOverlay;
+}
+
+// ─── ErrorOverlay ───────────────────────────────────────────
+
+export interface ErrorOverlay {
+  show(errors: readonly OverlayError[]): void;
+  hide(): void;
+  readonly visible: boolean;
+  dispose(): void;
+}
+
+export interface OverlayError {
+  readonly file: string;
+  readonly line: number;
+  readonly column: number;
+  readonly message: string;
+  readonly severity: 'error' | 'warning';
+  readonly codeFrame?: string;
+}
+
+export interface ErrorOverlayOptions {
+  readonly host: HostOverlayApi;
+}
+
+export interface HostOverlayApi {
+  showErrorOverlay(text: string): void;
+  hideErrorOverlay(): void;
+  isErrorOverlayVisible(): boolean;
 }
 
 // Re-export for convenience

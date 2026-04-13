@@ -20,6 +20,7 @@ import type {
   HotReloadOrchestrator,
   StatusChangeData,
 } from './dev-types.js';
+import { diagnosticsToOverlayErrors } from './error-overlay.js';
 import { createFileWatcher } from './file-watcher.js';
 import { createHotReloadOrchestrator } from './hot-reload-orchestrator.js';
 
@@ -349,6 +350,68 @@ export function createDevServer(
   if (options.hotReloadClient) {
     internals.hotReloadOrchestrator = createHotReloadOrchestrator({
       client: options.hotReloadClient,
+    });
+  }
+
+  // Wire error overlay if provided
+  if (options.errorOverlay) {
+    const overlay = options.errorOverlay;
+    const safeOverlayShow = (errors: ReturnType<typeof diagnosticsToOverlayErrors>): void => {
+      try {
+        overlay.show(errors);
+      } catch (error) {
+        console.error('DevServer error overlay show() failed:', error);
+      }
+    };
+    const safeOverlayHide = (): void => {
+      try {
+        overlay.hide();
+      } catch (error) {
+        console.error('DevServer error overlay hide() failed:', error);
+      }
+    };
+
+    const addInternalListener = (
+      event: DevServerEvent,
+      handler: (payload: DevServerEventPayload) => void,
+    ) => {
+      if (!internals.listeners.has(event)) {
+        internals.listeners.set(event, new Set());
+      }
+      internals.listeners.get(event)!.add(handler);
+    };
+
+    addInternalListener('build-error', (payload) => {
+      const data = payload.data as DevServerBuildResultData | undefined;
+      if (data?.diagnostics) {
+        safeOverlayShow(diagnosticsToOverlayErrors(data.diagnostics));
+      }
+    });
+
+    addInternalListener('rebuild-error', (payload) => {
+      const data = payload.data as DevServerBuildResultData | undefined;
+      if (data?.diagnostics) {
+        safeOverlayShow(diagnosticsToOverlayErrors(data.diagnostics));
+      }
+    });
+
+    addInternalListener('hot-reload-error', (payload) => {
+      const data = payload.data as DevServerHotReloadErrorData | undefined;
+      if (data) {
+        safeOverlayShow([
+          {
+            file: '',
+            line: 0,
+            column: 0,
+            message: data.error,
+            severity: 'error',
+          },
+        ]);
+      }
+    });
+
+    addInternalListener('hot-reload', () => {
+      safeOverlayHide();
     });
   }
 

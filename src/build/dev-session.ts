@@ -111,7 +111,10 @@ function attachServerEventBridges(internals: SessionInternals): void {
   internals.server.on('file-change', fileChangeHandler);
 }
 
-function getPipelineResultOrThrow(internals: SessionInternals, context: string): BuildPipelineResult {
+function getPipelineResultOrThrow(
+  internals: SessionInternals,
+  context: string,
+): BuildPipelineResult {
   const result = internals.server.getLastPipelineResult();
   if (!result) {
     throw new Error(`${context} did not produce a BuildPipelineResult`);

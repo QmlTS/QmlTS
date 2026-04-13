@@ -13,20 +13,26 @@ export type {
   DevServerStartResult,
   DevServerStats,
   DevServerStatus,
+  ErrorOverlay,
+  ErrorOverlayOptions,
   FileChange,
   FileChangeBatch,
   FileWatcher,
   FileWatcherOptions,
+  HostOverlayApi,
   HotReloadContext,
   HotReloadOrchestrator,
   HotReloadOrchestratorOptions,
   HotReloadOrchestratorResult,
+  OverlayError,
   StatusChangeData,
 } from '../dev-tools/index.js';
 export {
   createDevServer,
+  createErrorOverlay,
   createFileWatcher,
   createHotReloadOrchestrator,
+  diagnosticsToOverlayErrors,
 } from '../dev-tools/index.js';
 export { executeBuild } from './build-command.js';
 // ─── Build Pipeline ─────────────────────────────────────────

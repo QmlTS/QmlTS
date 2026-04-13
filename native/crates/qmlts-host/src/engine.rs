@@ -1019,6 +1019,49 @@ impl QmltsEngine {
         }
     }
 
+    // ─── Error overlay ──────────────────────────────────────────────────
+
+    /// Show the error overlay with the given message.
+    ///
+    /// If QML has not been loaded yet, this sets `qml_loaded = true` so
+    /// that `reload_qml()` can later replace the error shell.
+    pub fn show_error_overlay(&mut self, message: &str) -> Result<()> {
+        self.ensure_alive()?;
+        let ok = qt_context::show_error_overlay(self.engine_ptr, message);
+        if ok {
+            self.qml_loaded = true;
+            tracing::debug!("Error overlay shown");
+            Ok(())
+        } else {
+            Err(QmltsError::OverlayFailed(
+                "failed to show error overlay".to_string(),
+            ))
+        }
+    }
+
+    /// Hide the error overlay.
+    pub fn hide_error_overlay(&self) -> Result<()> {
+        self.ensure_alive()?;
+        let ok = qt_context::hide_error_overlay(self.engine_ptr);
+        if ok {
+            tracing::debug!("Error overlay hidden");
+            Ok(())
+        } else {
+            Err(QmltsError::OverlayFailed(
+                "failed to hide error overlay".to_string(),
+            ))
+        }
+    }
+
+    /// Query whether the error overlay is currently visible.
+    #[must_use]
+    pub fn is_error_overlay_visible(&self) -> bool {
+        if self.ensure_alive().is_err() {
+            return false;
+        }
+        qt_context::is_error_overlay_visible(self.engine_ptr)
+    }
+
     fn find_brace_mismatch_line(&self, source: &str) -> Option<u32> {
         let mut open_lines = Vec::new();
 

@@ -11,7 +11,9 @@
 #include <QJsonDocument>
 #include <QJsonValue>
 #include <QObject>
+#include <QPointer>
 #include <QQmlApplicationEngine>
+#include <QQmlComponent>
 #include <QQmlContext>
 #include <QString>
 #include <QUrl>
@@ -28,6 +30,7 @@
 #include <cstdlib>
 #include <cstring>
 #include <limits>
+#include <unordered_map>
 
 namespace {
 QGuiApplication* ensure_application()
@@ -245,6 +248,140 @@ private:
     QList<QJsonObject> m_data;
 };
 
+// ─────────────────────────────────────────────────────────────────────────
+//  Error overlay — engine-scoped state for the dev-time error overlay
+// ─────────────────────────────────────────────────────────────────────────
+
+struct OverlayState {
+    QPointer<QQuickItem> overlayItem;
+    bool visible = false;
+    QString errorText;
+};
+
+static std::unordered_map<void*, OverlayState> g_overlay_state;
+
+static const char* OVERLAY_QML = R"QML(
+import QtQuick
+
+Rectangle {
+    id: overlayRoot
+    objectName: "__qmlts_error_overlay"
+    property string errorText: ""
+    property bool overlayVisible: true
+    anchors.fill: parent
+    color: "#E0000000"
+    z: 999999
+    visible: overlayVisible
+
+    Flickable {
+        anchors.fill: parent
+        anchors.margins: 24
+        contentHeight: errorTextItem.implicitHeight
+        clip: true
+
+        Text {
+            id: errorTextItem
+            objectName: "__qmlts_error_text"
+            width: parent.width
+            color: "#FFCCCC"
+            font.family: "monospace"
+            font.pixelSize: 14
+            wrapMode: Text.Wrap
+            text: overlayRoot.errorText
+        }
+    }
+}
+)QML";
+
+static const char* ERROR_SHELL_QML = R"QML(
+import QtQuick
+import QtQuick.Window
+
+Window {
+    objectName: "__qmlts_error_shell"
+    width: 800
+    height: 600
+    visible: true
+    color: "#1A1A1A"
+    title: "QmlTS Build Error"
+}
+)QML";
+
+static QQuickWindow* find_overlay_root_window(QQmlApplicationEngine* engine) {
+    if (!engine) {
+        return nullptr;
+    }
+
+    const QList<QObject*> roots = engine->rootObjects();
+    for (QObject* root : roots) {
+        if (auto* window = qobject_cast<QQuickWindow*>(root)) {
+            return window;
+        }
+    }
+    return nullptr;
+}
+
+static QQuickWindow* ensure_overlay_root_window(QQmlApplicationEngine* engine) {
+    if (auto* window = find_overlay_root_window(engine)) {
+        return window;
+    }
+
+    const auto root_count = engine->rootObjects().size();
+    engine->loadData(
+        QByteArray(ERROR_SHELL_QML),
+        QUrl(QStringLiteral("qrc:/qmlts/ErrorShell.qml")));
+    if (engine->rootObjects().size() <= root_count) {
+        return nullptr;
+    }
+
+    return find_overlay_root_window(engine);
+}
+
+static void apply_overlay_state(QQuickItem* item, const OverlayState& state) {
+    if (!item) {
+        return;
+    }
+
+    item->setProperty("errorText", state.errorText);
+    item->setProperty("overlayVisible", state.visible);
+    item->setVisible(state.visible);
+
+    if (state.visible) {
+        if (auto* window = item->window()) {
+            window->setVisible(true);
+        }
+    }
+}
+
+static QQuickItem* inject_overlay(
+    QQmlApplicationEngine* engine,
+    const OverlayState& state,
+    bool ensureWindow = false)
+{
+    QQuickWindow* window = ensureWindow
+        ? ensure_overlay_root_window(engine)
+        : find_overlay_root_window(engine);
+    if (!window || !window->contentItem()) {
+        return nullptr;
+    }
+
+    QQmlComponent component(engine);
+    component.setData(QByteArray(OVERLAY_QML), QUrl(QStringLiteral("qrc:/qmlts/ErrorOverlay.qml")));
+    if (component.status() != QQmlComponent::Ready) {
+        return nullptr;
+    }
+
+    auto* item = qobject_cast<QQuickItem*>(component.create(engine->rootContext()));
+    if (!item) {
+        return nullptr;
+    }
+
+    item->setParentItem(window->contentItem());
+    apply_overlay_state(item, state);
+
+    return item;
+}
+
 extern "C" {
 
 void* qmlts_create_engine() {
@@ -256,6 +393,7 @@ void qmlts_destroy_engine(void* engine_ptr) {
     if (!engine_ptr) {
         return;
     }
+    g_overlay_state.erase(engine_ptr);
     delete static_cast<QQmlApplicationEngine*>(engine_ptr);
 }
 
@@ -311,7 +449,12 @@ bool qmlts_load_data(void* engine_ptr, const char* data, std::size_t data_len, c
 
     const auto root_count = engine->rootObjects().size();
     engine->loadData(bytes, base_url);
-    return engine->rootObjects().size() > root_count;
+    const bool loaded = engine->rootObjects().size() > root_count;
+    if (loaded) {
+        auto& state = g_overlay_state[engine_ptr];
+        state.overlayItem = inject_overlay(engine, state);
+    }
+    return loaded;
 }
 
 bool qmlts_load_url(void* engine_ptr, const char* path) {
@@ -322,7 +465,12 @@ bool qmlts_load_url(void* engine_ptr, const char* path) {
     auto* engine = static_cast<QQmlApplicationEngine*>(engine_ptr);
     const auto root_count = engine->rootObjects().size();
     engine->load(QUrl::fromLocalFile(QString::fromUtf8(path)));
-    return engine->rootObjects().size() > root_count;
+    const bool loaded = engine->rootObjects().size() > root_count;
+    if (loaded) {
+        auto& state = g_overlay_state[engine_ptr];
+        state.overlayItem = inject_overlay(engine, state);
+    }
+    return loaded;
 }
 
 void qmlts_process_events() {
@@ -893,6 +1041,9 @@ bool qmlts_reload_qml(void* engine_ptr, const char* data, std::size_t data_len, 
     for (QObject* root : previousRoots) {
         delete root;
     }
+
+    auto& state = g_overlay_state[engine_ptr];
+    state.overlayItem = inject_overlay(engine, state);
     return true;
 }
 
@@ -948,6 +1099,64 @@ bool qmlts_restore_snapshot(void* engine_ptr, const char* json, std::size_t json
     }
 
     return true;
+}
+
+// ─────────────────────────────────────────────────────────────────────────
+//  Error overlay — show / hide / query
+// ─────────────────────────────────────────────────────────────────────────
+
+bool qmlts_show_error_overlay(void* engine_ptr, const char* message, std::size_t message_len) {
+    if (!engine_ptr || !message) return false;
+
+    auto* engine = static_cast<QQmlApplicationEngine*>(engine_ptr);
+    const QString errorText = QString::fromUtf8(message, static_cast<qsizetype>(message_len));
+
+    auto& state = g_overlay_state[engine_ptr];
+    state.errorText = errorText;
+    state.visible = true;
+
+    // If existing overlay is still alive, just update the text
+    if (state.overlayItem) {
+        apply_overlay_state(state.overlayItem, state);
+        return true;
+    }
+
+    // Inject a new overlay
+    QQuickItem* item = inject_overlay(engine, state, true);
+    if (!item) return false;
+
+    state.overlayItem = item;
+    return true;
+}
+
+bool qmlts_hide_error_overlay(void* engine_ptr) {
+    if (!engine_ptr) return false;
+
+    auto it = g_overlay_state.find(engine_ptr);
+    if (it == g_overlay_state.end()) return true;
+
+    auto& state = it->second;
+    state.visible = false;
+    if (state.overlayItem) {
+        state.overlayItem->setProperty("overlayVisible", false);
+        state.overlayItem->setVisible(false);
+    }
+    return true;
+}
+
+bool qmlts_is_error_overlay_visible(void* engine_ptr) {
+    if (!engine_ptr) return false;
+
+    auto it = g_overlay_state.find(engine_ptr);
+    if (it == g_overlay_state.end()) return false;
+
+    auto& state = it->second;
+    // QPointer auto-nulls if the item was destroyed
+    if (!state.overlayItem) {
+        state.visible = false;
+        return false;
+    }
+    return state.visible;
 }
 
 } // extern "C"

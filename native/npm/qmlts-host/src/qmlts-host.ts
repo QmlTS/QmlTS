@@ -52,6 +52,9 @@ import {
 	captureSnapshot,
 	reloadQml,
 	restoreSnapshot,
+	showErrorOverlay,
+	hideErrorOverlay,
+	isErrorOverlayVisible,
 	version,
 	qtVersion,
 } from './index';
@@ -553,6 +556,45 @@ export class QmltsHost {
 	 */
 	restoreSnapshot(snapshotJson: string): void {
 		restoreSnapshot(this.requireEngine(), snapshotJson);
+	}
+
+	// ────────────────────────────────────────────────────────────────────
+	//  §9 Error Overlay
+	// ────────────────────────────────────────────────────────────────────
+
+	/**
+	 * Show the error overlay with the given message text.
+	 *
+	 * Displays a semi-transparent overlay on top of the current window,
+	 * preserving the last known-good UI underneath. If QML has not been
+	 * loaded yet, the native host creates a minimal startup error shell
+	 * window so a later `reloadQml()` call can replace it with the real UI.
+	 *
+	 * @param message - Error message to display.
+	 * @throws Error if overlay cannot be created or engine is disposed.
+	 */
+	showErrorOverlay(message: string): void {
+		showErrorOverlay(this.requireEngine(), message);
+	}
+
+	/**
+	 * Hide the error overlay.
+	 *
+	 * Calling this before the overlay has ever been shown is a safe no-op.
+	 *
+	 * @throws Error if overlay cannot be hidden or engine is disposed.
+	 */
+	hideErrorOverlay(): void {
+		hideErrorOverlay(this.requireEngine());
+	}
+
+	/**
+	 * Query whether the error overlay is currently visible.
+	 *
+	 * @returns `true` if the overlay is visible.
+	 */
+	isErrorOverlayVisible(): boolean {
+		return isErrorOverlayVisible(this.requireEngine());
 	}
 
 	// ────────────────────────────────────────────────────────────────────

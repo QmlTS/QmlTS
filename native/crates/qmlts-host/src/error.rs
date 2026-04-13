@@ -90,6 +90,10 @@ pub enum QmltsError {
         total: usize,
         details: String,
     },
+
+    /// Error overlay operation failed.
+    #[error("Error overlay failed: {0}")]
+    OverlayFailed(String),
 }
 
 #[cfg(feature = "napi")]
