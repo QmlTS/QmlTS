@@ -155,6 +155,36 @@ function createMockOverlay(): ErrorOverlay & {
   };
 }
 
+function createThrowingOverlay(mode: 'show' | 'hide'): ErrorOverlay & {
+  showCalls: number;
+  hideCalls: number;
+  _visible: boolean;
+} {
+  return {
+    showCalls: 0,
+    hideCalls: 0,
+    _visible: false,
+    show(): void {
+      this.showCalls++;
+      if (mode === 'show') {
+        throw new Error('overlay show boom');
+      }
+      this._visible = true;
+    },
+    hide(): void {
+      this.hideCalls++;
+      if (mode === 'hide') {
+        throw new Error('overlay hide boom');
+      }
+      this._visible = false;
+    },
+    get visible(): boolean {
+      return this._visible;
+    },
+    dispose(): void {},
+  };
+}
+
 // ─── Test suite ─────────────────────────────────────────────
 
 describe('DevServer', () => {
@@ -574,7 +604,7 @@ describe('DevServer', () => {
 
     writeFileSync(
       join(tempDir, 'src', 'CounterView.ts'),
-      readFileSync(join(tempDir, 'src', 'CounterView.ts'), 'utf-8') + '\n// trigger',
+      `${readFileSync(join(tempDir, 'src', 'CounterView.ts'), 'utf-8')}\n// trigger`,
     );
     await sleep(250);
 
@@ -606,7 +636,7 @@ describe('DevServer', () => {
 
     writeFileSync(
       join(tempDir, 'src', 'CounterView.ts'),
-      readFileSync(join(tempDir, 'src', 'CounterView.ts'), 'utf-8') + '\n// touch',
+      `${readFileSync(join(tempDir, 'src', 'CounterView.ts'), 'utf-8')}\n// touch`,
     );
     await sleep(250);
 
@@ -648,7 +678,7 @@ describe('DevServer', () => {
 
     writeFileSync(
       join(tempDir, 'src', 'CounterView.ts'),
-      readFileSync(join(tempDir, 'src', 'CounterView.ts'), 'utf-8') + '\n// rebuild',
+      `${readFileSync(join(tempDir, 'src', 'CounterView.ts'), 'utf-8')}\n// rebuild`,
     );
     await sleep(250);
 
@@ -692,7 +722,7 @@ describe('DevServer', () => {
     cpSync(join(FIXTURES_DIR, 'src', 'CounterView.ts'), join(tempDir, 'src', 'CounterView.ts'));
     writeFileSync(
       join(tempDir, 'src', 'CounterView.ts'),
-      readFileSync(join(tempDir, 'src', 'CounterView.ts'), 'utf-8') + '\n// fixed',
+      `${readFileSync(join(tempDir, 'src', 'CounterView.ts'), 'utf-8')}\n// fixed`,
     );
     await sleep(250);
 
@@ -706,4 +736,51 @@ describe('DevServer', () => {
 
     await server.stop();
   }, 60_000);
+
+  test('EO-16: overlay.show failures do not break initial build-error flow', async () => {
+    const overlay = createThrowingOverlay('show');
+    writeFileSync(join(tempDir, 'src', 'CounterView.ts'), 'syntax error %%%');
+    const server = createDevServer(makeErrorTestConfig(tempDir), {
+      errorOverlay: overlay,
+    });
+
+    try {
+      const result = await server.start();
+      expect(result.success).toBe(false);
+      expect(server.getStatus()).toBe('running');
+      expect(overlay.showCalls).toBeGreaterThan(0);
+    } finally {
+      await server.stop();
+    }
+  });
+
+  test('EO-17: overlay.hide failures do not break successful hot reload', async () => {
+    const mockClient = createMockHotReloadClient();
+    const overlay = createThrowingOverlay('hide');
+    const server = createDevServer(
+      makeConfig(tempDir, { dev: { ...makeConfig(tempDir).dev, hotReload: true } }),
+      { hotReloadClient: mockClient, errorOverlay: overlay },
+    );
+
+    try {
+      await server.start();
+      await sleep(500);
+      overlay._visible = true;
+
+      writeFileSync(
+        join(tempDir, 'src', 'CounterView.ts'),
+        `${readFileSync(join(tempDir, 'src', 'CounterView.ts'), 'utf-8')}\n// safe-hide`,
+      );
+      await sleep(250);
+
+      await waitForServerEvent(server, 'hot-reload', 15_000);
+      await sleep(100);
+
+      expect(server.getStatus()).toBe('running');
+      expect(mockClient.calls.length).toBe(1);
+      expect(overlay.hideCalls).toBeGreaterThan(0);
+    } finally {
+      await server.stop();
+    }
+  }, 30_000);
 });

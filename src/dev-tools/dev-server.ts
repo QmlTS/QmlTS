@@ -356,6 +356,20 @@ export function createDevServer(
   // Wire error overlay if provided
   if (options.errorOverlay) {
     const overlay = options.errorOverlay;
+    const safeOverlayShow = (errors: ReturnType<typeof diagnosticsToOverlayErrors>): void => {
+      try {
+        overlay.show(errors);
+      } catch (error) {
+        console.error('DevServer error overlay show() failed:', error);
+      }
+    };
+    const safeOverlayHide = (): void => {
+      try {
+        overlay.hide();
+      } catch (error) {
+        console.error('DevServer error overlay hide() failed:', error);
+      }
+    };
 
     const addInternalListener = (
       event: DevServerEvent,
@@ -370,21 +384,21 @@ export function createDevServer(
     addInternalListener('build-error', (payload) => {
       const data = payload.data as DevServerBuildResultData | undefined;
       if (data?.diagnostics) {
-        overlay.show(diagnosticsToOverlayErrors(data.diagnostics));
+        safeOverlayShow(diagnosticsToOverlayErrors(data.diagnostics));
       }
     });
 
     addInternalListener('rebuild-error', (payload) => {
       const data = payload.data as DevServerBuildResultData | undefined;
       if (data?.diagnostics) {
-        overlay.show(diagnosticsToOverlayErrors(data.diagnostics));
+        safeOverlayShow(diagnosticsToOverlayErrors(data.diagnostics));
       }
     });
 
     addInternalListener('hot-reload-error', (payload) => {
       const data = payload.data as DevServerHotReloadErrorData | undefined;
       if (data) {
-        overlay.show([
+        safeOverlayShow([
           {
             file: '',
             line: 0,
@@ -397,7 +411,7 @@ export function createDevServer(
     });
 
     addInternalListener('hot-reload', () => {
-      overlay.hide();
+      safeOverlayHide();
     });
   }
 

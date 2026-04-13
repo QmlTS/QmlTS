@@ -1377,6 +1377,14 @@ mod tests {
     }
 
     #[test]
+    fn test_hide_error_overlay_is_idempotent() {
+        reset_qt();
+        let engine = create_engine(None).unwrap();
+        let result = hide_error_overlay(&engine);
+        assert!(result.is_ok());
+    }
+
+    #[test]
     fn test_is_error_overlay_visible_default() {
         reset_qt();
         let engine = create_engine(None).unwrap();

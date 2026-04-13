@@ -509,9 +509,10 @@ export declare function restoreSnapshot(
  *
  * Displays a semi-transparent overlay on top of the current window
  * content, preserving the last known-good UI underneath. If QML has
- * not been loaded yet, the overlay acts as the startup error shell
- * and marks the engine as loaded so that `reloadQml()` can later
- * replace it.
+ * not been loaded yet, the native host creates a minimal startup error
+ * shell window, injects the overlay into it, and marks the engine as
+ * loaded so that `reloadQml()` can later replace that shell with the
+ * real QML tree.
  *
  * @param engine - The engine instance.
  * @param message - Error message to display.
@@ -526,7 +527,8 @@ export declare function showErrorOverlay(
  * Hide the error overlay.
  *
  * The overlay is hidden but not destroyed, so it can be re-shown
- * without recreating it. Call this after a successful reload.
+ * without recreating it. Call this after a successful reload. Calling
+ * `hideErrorOverlay()` when the overlay was never shown is a safe no-op.
  *
  * @param engine - The engine instance.
  * @throws Error if the overlay cannot be hidden.
