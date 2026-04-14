@@ -20,8 +20,10 @@
     "generate": "bun run scripts/generate-registry.ts",
     "generate:dsl": "bun run scripts/generate-dsl.ts",
     "test:prepare": "bun run generate:dsl",
-    "test": "bun run test:prepare && bun test",
-    "test:ci": "bun run test:prepare && bun test --bail=1",
+    "pretest": "bun run test:prepare",
+    "test": "bun test",
+    "pretest:ci": "bun run test:prepare",
+    "test:ci": "bun test --bail=1",
     "typecheck": "tsc --noEmit",
     "clean": "rm -rf dist"
   },
