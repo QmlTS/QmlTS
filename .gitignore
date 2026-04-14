@@ -42,5 +42,5 @@ npm-debug.log*
 # Full DSL generation output (temporary/exploratory runs)
 .generated-full/
 
-# DSL generated output — full version-bound snapshot is committed.
-# To regenerate: `bun run generate:dsl` then commit changes.
+# DSL generated output — generated locally for tests/dev and ignored by git.
+src/dsl/generated/

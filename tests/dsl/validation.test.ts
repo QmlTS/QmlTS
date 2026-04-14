@@ -11,7 +11,7 @@ describe('Generated DSL Validation', () => {
     expect(existsSync(GENERATED_DIR)).toBe(true);
   });
 
-  test('VL-02: committed snapshot has 80+ module directories', () => {
+  test('VL-02: generated output has 80+ module directories', () => {
     const entries = readdirSync(GENERATED_DIR, { withFileTypes: true });
     const dirs = entries.filter((e) => e.isDirectory());
     expect(dirs.length).toBeGreaterThan(80);
@@ -46,14 +46,15 @@ describe('Generated DSL Validation', () => {
     checkDir(GENERATED_DIR);
   });
 
-  test('VL-06: regeneration produces same file set', () => {
+  test('VL-06: generated directory matches current generator file set', () => {
     const result = generate({
       registryPath: SNAPSHOT_PATH,
       outputDir: '',
     });
     expect(result.success).toBe(true);
+    expect(result.files.length).toBeGreaterThan(0);
 
-    // Verify each committed file has a corresponding generated file
+    // Verify each file on disk has a corresponding generated file
     const generatedByPath = new Map<string, string>();
     for (const file of result.files) {
       generatedByPath.set(file.relativePath, file.content);

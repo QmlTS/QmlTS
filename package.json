@@ -19,8 +19,9 @@
     "lint:fix": "biome lint --write .",
     "generate": "bun run scripts/generate-registry.ts",
     "generate:dsl": "bun run scripts/generate-dsl.ts",
-    "test": "bun test",
-    "test:ci": "bun test --bail=1",
+    "test:prepare": "bun run generate:dsl",
+    "test": "bun run test:prepare && bun test",
+    "test:ci": "bun run test:prepare && bun test --bail=1",
     "typecheck": "tsc --noEmit",
     "clean": "rm -rf dist"
   },
