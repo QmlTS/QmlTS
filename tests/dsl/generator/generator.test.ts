@@ -112,6 +112,8 @@ describe('Generator Orchestrator', () => {
       outputDir: '',
       moduleWhitelist: ['QtQuick.Layouts'],
     });
+    expect(result.success).toBe(true);
+    expect(result.files.length).toBeGreaterThan(0);
     for (const file of result.files) {
       expect(file.content).not.toContain('\r\n');
       expect(file.content).not.toContain('\r');
