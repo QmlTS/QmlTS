@@ -105,4 +105,16 @@ describe('Generator Orchestrator', () => {
       }
     }
   });
+
+  test('GO-08: generated text uses LF line endings', () => {
+    const result = generate({
+      registryPath: SNAPSHOT_PATH,
+      outputDir: '',
+      moduleWhitelist: ['QtQuick.Layouts'],
+    });
+    for (const file of result.files) {
+      expect(file.content).not.toContain('\r\n');
+      expect(file.content).not.toContain('\r');
+    }
+  });
 });
