@@ -626,4 +626,100 @@ describe.skipIf(!isNativeModuleAvailable)('host/dev-server', () => {
       rmSync(watchedDir, { recursive: true, force: true });
     }
   });
+
+  // ─────────────────────────────────────────────────────────────────────
+  //  V2 ViewModelManager Integration (requires native module)
+  // ─────────────────────────────────────────────────────────────────────
+
+  test('TV-15: V2 registerClass works with real native host', () => {
+    const { QmltsHost } = require('../../native/npm/qmlts-host/src/qmlts-host.ts');
+    const { ViewModelManager } = require('../../native/npm/qmlts-host/src/viewmodel-manager.ts');
+    const host = new QmltsHost();
+    try {
+      const manager = new ViewModelManager(host);
+
+      const testSchema = {
+        className: 'V2ViewModel',
+        states: [{ name: 'value', deferred: false }],
+        commands: [],
+        effects: [],
+        lifecycle: { onMounted: false, onUnmounting: false },
+      };
+
+      // V2 registerClass is TS-side bookkeeping — works without native V2 support
+      manager.registerClass({
+        className: 'V2ViewModel',
+        schema: testSchema,
+        factory: () => ({ value: 'v2' }),
+      });
+      expect(manager.hasClass('V2ViewModel')).toBe(true);
+
+      // V1 has() returns false — V2 classes are in a separate namespace
+      expect(manager.has('V2ViewModel')).toBe(false);
+    } finally {
+      host.dispose();
+    }
+  });
+
+  test('TV-16: getInstance returns undefined before creation', () => {
+    const { QmltsHost } = require('../../native/npm/qmlts-host/src/qmlts-host.ts');
+    const { ViewModelManager } = require('../../native/npm/qmlts-host/src/viewmodel-manager.ts');
+    const host = new QmltsHost();
+    try {
+      const manager = new ViewModelManager(host);
+      expect(manager.getInstance(42)).toBeUndefined();
+    } finally {
+      host.dispose();
+    }
+  });
+
+  test('TV-17: getInstanceSlots returns empty initially', () => {
+    const { QmltsHost } = require('../../native/npm/qmlts-host/src/qmlts-host.ts');
+    const { ViewModelManager } = require('../../native/npm/qmlts-host/src/viewmodel-manager.ts');
+    const host = new QmltsHost();
+    try {
+      const manager = new ViewModelManager(host);
+      expect(manager.getInstanceSlots()).toEqual([]);
+    } finally {
+      host.dispose();
+    }
+  });
+
+  test('TV-18: handleInstanceCreated + getInstance round-trip', () => {
+    const { QmltsHost } = require('../../native/npm/qmlts-host/src/qmlts-host.ts');
+    const { ViewModelManager } = require('../../native/npm/qmlts-host/src/viewmodel-manager.ts');
+    const host = new QmltsHost();
+    try {
+      const manager = new ViewModelManager(host);
+      const testSchema = {
+        className: 'RoundTripVM',
+        states: [{ name: 'name', deferred: false }],
+        commands: [],
+        effects: [],
+        lifecycle: { onMounted: false, onUnmounting: false },
+      };
+
+      manager.registerClass({
+        className: 'RoundTripVM',
+        schema: testSchema,
+        factory: (event: any) => ({ name: `instance-${event.instanceId}` }),
+      });
+
+      manager.handleInstanceCreated({
+        instanceId: 7,
+        className: 'RoundTripVM',
+        compilerSlotKey: 'TestView::__qmlts_vm0',
+      });
+
+      const inst = manager.getInstance(7);
+      expect(inst).toEqual({ name: 'instance-7' });
+
+      const slots = manager.getInstanceSlots();
+      expect(slots).toHaveLength(1);
+      expect(slots[0]!.instanceId).toBe(7);
+      expect(slots[0]!.className).toBe('RoundTripVM');
+    } finally {
+      host.dispose();
+    }
+  });
 });
