@@ -12,11 +12,13 @@ use crate::error::{QmltsError, Result};
 use crate::list_model;
 use crate::property_sync;
 use crate::qt_context;
+use crate::v2_runtime;
 use qmlts_host_generated::{BridgeInstance, ViewModelSchema};
 use std::path::Path;
 #[cfg(not(feature = "mock-qt"))]
 use std::ptr;
 use std::sync::atomic::{AtomicBool, AtomicUsize, Ordering};
+use std::sync::Arc;
 
 /// Global flag to track if QGuiApplication has been initialized.
 /// Qt requires exactly one QGuiApplication per process.
@@ -97,6 +99,8 @@ pub struct QmltsEngine {
     dispatch_owner_id: usize,
     /// Active list models managed by this engine.
     list_models: Vec<Option<list_model::ListModelHandle>>,
+    /// V2 runtime state. None until `register_module()` is first called.
+    v2_state: Option<v2_runtime::V2EngineState>,
 }
 
 impl QmltsEngine {
@@ -138,6 +142,7 @@ impl QmltsEngine {
             engine_ptr,
             dispatch_owner_id: NEXT_DISPATCH_OWNER_ID.fetch_add(1, Ordering::Relaxed),
             list_models: Vec::new(),
+            v2_state: None,
         })
     }
 
@@ -740,6 +745,14 @@ impl QmltsEngine {
         // Validate QML syntax (basic check)
         self.validate_qml_syntax(&content)?;
 
+        // Set up V2 init context if V2 is enabled (guard auto-clears on drop)
+        let _v2_guard = self.create_v2_context_guard();
+
+        // Mark type registrar that QML loading has started
+        if let Some(ref mut state) = self.v2_state {
+            state.type_registrar.mark_qml_load_started();
+        }
+
         #[cfg(not(feature = "mock-qt"))]
         {
             let loaded = qt_context::load_url(self.engine_ptr, path);
@@ -777,6 +790,14 @@ impl QmltsEngine {
 
         // Validate QML syntax (basic check)
         self.validate_qml_syntax(source)?;
+
+        // Set up V2 init context if V2 is enabled (guard auto-clears on drop)
+        let _v2_guard = self.create_v2_context_guard();
+
+        // Mark type registrar that QML loading has started
+        if let Some(ref mut state) = self.v2_state {
+            state.type_registrar.mark_qml_load_started();
+        }
 
         #[cfg(not(feature = "mock-qt"))]
         {
@@ -1062,6 +1083,394 @@ impl QmltsEngine {
         qt_context::is_error_overlay_visible(self.engine_ptr)
     }
 
+    // ─────────────────────────────────────────────────────────────────────
+    //  §10 V2 Instance Runtime
+    // ─────────────────────────────────────────────────────────────────────
+
+    /// Initialize V2 runtime state (idempotent).
+    ///
+    /// Creates `V2EngineState` and installs the V2 event router on first call.
+    fn ensure_v2_initialized(&mut self) -> Result<()> {
+        self.ensure_alive()?;
+        if self.v2_state.is_none() {
+            let state = v2_runtime::V2EngineState::new();
+            let router = v2_runtime::create_v2_router(
+                Arc::clone(&state.registry),
+                Arc::clone(&state.handlers),
+            );
+            qmlts_host_generated::v2_dispatch::set_v2_router(self.dispatch_owner_id, router)
+                .map_err(|e| QmltsError::Internal(e.to_string()))?;
+            self.v2_state = Some(state);
+        }
+        Ok(())
+    }
+
+    /// Get a reference to V2 state, or error if V2 is not enabled.
+    fn require_v2(&self) -> Result<&v2_runtime::V2EngineState> {
+        self.ensure_alive()?;
+        self.v2_state.as_ref().ok_or(QmltsError::V2NotEnabled)
+    }
+
+    /// Get a mutable reference to V2 state, or error if V2 is not enabled.
+    #[allow(dead_code)]
+    fn require_v2_mut(&mut self) -> Result<&mut v2_runtime::V2EngineState> {
+        self.ensure_alive()?;
+        self.v2_state.as_mut().ok_or(QmltsError::V2NotEnabled)
+    }
+
+    /// Register a V2 module's types. Must be called before QML loading.
+    ///
+    /// Initializes V2 runtime state on first call, then delegates to
+    /// `TypeRegistrar` for idempotent type registration.
+    ///
+    /// # Errors
+    ///
+    /// - `V2ModuleRegistrationFailed` if QML loading has already started.
+    /// - `V2TypeRegistrationFailed` if a type name is not found in V2 descriptors.
+    ///
+    /// # Panics
+    ///
+    /// Panics if the V2 state mutex is poisoned (should not happen in practice).
+    pub fn register_module(
+        &mut self,
+        module_uri: &str,
+        version_major: i32,
+        version_minor: i32,
+        type_names: &[String],
+    ) -> Result<()> {
+        self.ensure_v2_initialized()?;
+        let descriptors = qmlts_host_generated::v2_descriptors();
+        let state = self.v2_state.as_mut().expect("V2 state just initialized");
+        state.type_registrar.register_module(
+            module_uri,
+            version_major,
+            version_minor,
+            type_names,
+            descriptors,
+        )
+    }
+
+    /// Sync a single property to a V2 QObject instance.
+    ///
+    /// Does NOT require instance ready (outbound TS→QML is always allowed).
+    /// Suppresses property change notifications during sync to prevent echo.
+    ///
+    /// # Errors
+    ///
+    /// - `V2NotEnabled` if V2 runtime is not initialized.
+    /// - `V2InstanceNotFound` if `instance_id` is not in the registry.
+    /// - `PropertyNotFound` if the property is not in the schema.
+    ///
+    /// # Panics
+    ///
+    /// Panics if the instance registry mutex is poisoned.
+    pub fn sync_state_v2(
+        &self,
+        instance_id: u32,
+        prop_name: &str,
+        value_json: &str,
+    ) -> Result<()> {
+        let state = self.require_v2()?;
+        let reg = state.registry.lock().expect("registry lock poisoned");
+        let ptr = reg
+            .get_qobject_ptr(instance_id)
+            .ok_or(QmltsError::V2InstanceNotFound(instance_id))?;
+        let class_name = reg
+            .get_class_name(instance_id)
+            .ok_or(QmltsError::V2InstanceNotFound(instance_id))?
+            .to_string();
+        drop(reg);
+
+        let schema = self.find_v2_schema(&class_name)?;
+        let _suppress = qt_context::SuppressGuard::new(ptr);
+        property_sync::sync_one(ptr, &schema, prop_name, value_json)
+    }
+
+    /// Batch-sync properties to a V2 QObject instance.
+    ///
+    /// Suppresses property change notifications during sync.
+    ///
+    /// # Errors
+    ///
+    /// - `V2NotEnabled` if V2 runtime is not initialized.
+    /// - `V2InstanceNotFound` if `instance_id` is not in the registry.
+    ///
+    /// # Panics
+    ///
+    /// Panics if the instance registry mutex is poisoned.
+    pub fn sync_state_batch_v2(&self, instance_id: u32, properties_json: &str) -> Result<()> {
+        let state = self.require_v2()?;
+        let reg = state.registry.lock().expect("registry lock poisoned");
+        let ptr = reg
+            .get_qobject_ptr(instance_id)
+            .ok_or(QmltsError::V2InstanceNotFound(instance_id))?;
+        let class_name = reg
+            .get_class_name(instance_id)
+            .ok_or(QmltsError::V2InstanceNotFound(instance_id))?
+            .to_string();
+        drop(reg);
+
+        let schema = self.find_v2_schema(&class_name)?;
+        let _suppress = qt_context::SuppressGuard::new(ptr);
+        property_sync::sync_batch(ptr, &schema, properties_json)
+    }
+
+    /// Look up the V2 schema for a class name from V2 descriptors.
+    fn find_v2_schema(&self, class_name: &str) -> Result<ViewModelSchema> {
+        let descriptors = qmlts_host_generated::v2_descriptors();
+        let desc = descriptors
+            .iter()
+            .find(|d| d.class_name == class_name)
+            .ok_or_else(|| QmltsError::BridgeTypeNotFound(class_name.to_string()))?;
+        serde_json::from_str(desc.schema_json).map_err(|e| {
+            QmltsError::SchemaValidation(format!(
+                "Failed to parse V2 schema for '{class_name}': {e}"
+            ))
+        })
+    }
+
+    /// Confirm TS-side initialization complete for a V2 instance.
+    ///
+    /// Connects property change forwarder and destroy handler, then
+    /// flushes queued events in FIFO order.
+    ///
+    /// # Errors
+    ///
+    /// - `V2NotEnabled` if V2 runtime is not initialized.
+    /// - `V2InstanceNotFound` if `instance_id` is not in the registry.
+    ///
+    /// # Panics
+    ///
+    /// Panics if the instance registry mutex is poisoned.
+    pub fn instance_ready(&self, instance_id: u32) -> Result<()> {
+        let state = self.require_v2()?;
+        let mut reg = state.registry.lock().expect("registry lock poisoned");
+
+        // Connect per-type property change forwarder and destroy handler
+        if let Some(ptr) = reg.get_qobject_ptr(instance_id) {
+            if let Some(class_name) = reg.get_class_name(instance_id) {
+                // Look up the V2 descriptor for this type's connect_properties
+                let descriptors = qmlts_host_generated::v2_descriptors();
+                if let Some(desc) = descriptors.iter().find(|d| d.class_name == class_name) {
+                    if let (Ok(owner_id), Ok(instance_id_i32)) = (
+                        i32::try_from(self.dispatch_owner_id),
+                        i32::try_from(instance_id),
+                    ) {
+                        (desc.connect_properties)(ptr, owner_id, instance_id_i32);
+                        qt_context::v2_connect_destroy_handler(ptr, owner_id, instance_id_i32);
+                    }
+                }
+            }
+        }
+
+        let flushed = reg.mark_ready(instance_id)?;
+        drop(reg);
+
+        // Deliver flushed events in FIFO order
+        for event in &flushed {
+            v2_runtime::deliver_event(&state.handlers, event);
+        }
+
+        Ok(())
+    }
+
+    /// Emit an effect signal on a V2 QObject instance.
+    ///
+    /// # Errors
+    ///
+    /// - `V2NotEnabled` if V2 runtime is not initialized.
+    /// - `V2InstanceNotFound` if `instance_id` is not in the registry.
+    /// - `EffectNotFound` if the effect name is not in the schema.
+    ///
+    /// # Panics
+    ///
+    /// Panics if the instance registry mutex is poisoned.
+    pub fn emit_effect_v2(
+        &self,
+        instance_id: u32,
+        effect_name: &str,
+        payload_json: Option<&str>,
+    ) -> Result<()> {
+        let state = self.require_v2()?;
+        let reg = state.registry.lock().expect("registry lock poisoned");
+        let ptr = reg
+            .get_qobject_ptr(instance_id)
+            .ok_or(QmltsError::V2InstanceNotFound(instance_id))?;
+        let class_name = reg
+            .get_class_name(instance_id)
+            .ok_or(QmltsError::V2InstanceNotFound(instance_id))?
+            .to_string();
+        drop(reg);
+
+        let schema = self.find_v2_schema(&class_name)?;
+        let effect = schema
+            .effects
+            .iter()
+            .find(|e| e.name == effect_name)
+            .ok_or_else(|| QmltsError::EffectNotFound {
+                vm: class_name.clone(),
+                effect: effect_name.to_string(),
+            })?;
+
+        let param_types = if effect.parameters.is_empty() {
+            None
+        } else {
+            Some(serde_json::to_string(&effect.parameters).unwrap_or_default())
+        };
+
+        let ok = qt_context::emit_signal(ptr, &effect.qml_name, payload_json, param_types.as_deref());
+        if ok {
+            Ok(())
+        } else {
+            Err(QmltsError::Internal(format!(
+                "Failed to emit V2 effect '{effect_name}' on '{class_name}'"
+            )))
+        }
+    }
+
+    /// Register V2 instance-created handler.
+    ///
+    /// Called by the N-API layer when TS registers an instance-created callback.
+    ///
+    /// # Errors
+    ///
+    /// Returns `V2NotEnabled` if V2 runtime is not initialized.
+    ///
+    /// # Panics
+    ///
+    /// Panics if the handler mutex is poisoned.
+    pub fn register_instance_created_handler(
+        &self,
+        handler: v2_runtime::InstanceCreatedHandler,
+    ) -> Result<()> {
+        let state = self.require_v2()?;
+        let mut slot = state
+            .handlers
+            .instance_created
+            .lock()
+            .expect("instance_created lock poisoned");
+        *slot = Some(handler);
+        Ok(())
+    }
+
+    /// Register V2 instance-destroying handler.
+    ///
+    /// # Errors
+    ///
+    /// Returns `V2NotEnabled` if V2 runtime is not initialized.
+    ///
+    /// # Panics
+    ///
+    /// Panics if the handler mutex is poisoned.
+    pub fn register_instance_destroying_handler(
+        &self,
+        handler: v2_runtime::InstanceDestroyingHandler,
+    ) -> Result<()> {
+        let state = self.require_v2()?;
+        let mut slot = state
+            .handlers
+            .instance_destroying
+            .lock()
+            .expect("instance_destroying lock poisoned");
+        *slot = Some(handler);
+        Ok(())
+    }
+
+    /// Register V2 property-changed handler.
+    ///
+    /// # Errors
+    ///
+    /// Returns `V2NotEnabled` if V2 runtime is not initialized.
+    ///
+    /// # Panics
+    ///
+    /// Panics if the handler mutex is poisoned.
+    pub fn register_property_changed_handler(
+        &self,
+        handler: v2_runtime::PropertyChangedHandler,
+    ) -> Result<()> {
+        let state = self.require_v2()?;
+        let mut slot = state
+            .handlers
+            .property_changed
+            .lock()
+            .expect("property_changed lock poisoned");
+        *slot = Some(handler);
+        Ok(())
+    }
+
+    /// Register V2 command dispatcher.
+    ///
+    /// # Errors
+    ///
+    /// Returns `V2NotEnabled` if V2 runtime is not initialized.
+    ///
+    /// # Panics
+    ///
+    /// Panics if the handler mutex is poisoned.
+    pub fn register_command_dispatcher_v2(
+        &self,
+        handler: v2_runtime::CommandDispatcherV2,
+    ) -> Result<()> {
+        let state = self.require_v2()?;
+        let mut slot = state
+            .handlers
+            .command_dispatcher
+            .lock()
+            .expect("command_dispatcher lock poisoned");
+        *slot = Some(handler);
+        Ok(())
+    }
+
+    /// Register V2 lifecycle handler.
+    ///
+    /// # Errors
+    ///
+    /// Returns `V2NotEnabled` if V2 runtime is not initialized.
+    ///
+    /// # Panics
+    ///
+    /// Panics if the handler mutex is poisoned.
+    pub fn register_lifecycle_handler_v2(
+        &self,
+        handler: v2_runtime::LifecycleHandlerV2,
+    ) -> Result<()> {
+        let state = self.require_v2()?;
+        let mut slot = state
+            .handlers
+            .lifecycle_handler
+            .lock()
+            .expect("lifecycle_handler lock poisoned");
+        *slot = Some(handler);
+        Ok(())
+    }
+
+    /// Create a V2 init context guard if V2 is enabled.
+    ///
+    /// The guard sets thread-local V2InitContext for the duration of QML loading
+    /// so V2 QObjects can register themselves during construction.
+    fn create_v2_context_guard(
+        &self,
+    ) -> Option<qmlts_host_generated::v2_dispatch::V2ContextGuard> {
+        let state = self.v2_state.as_ref()?;
+        let registry = Arc::clone(&state.registry);
+        let owner_id = self.dispatch_owner_id;
+        let ctx = qmlts_host_generated::v2_dispatch::V2InitContext {
+            owner_id,
+            register_instance: Arc::new(move |class_name, ptr| {
+                let mut reg = registry.lock().expect("registry lock poisoned");
+                match reg.allocate_instance(class_name, ptr) {
+                    Ok(id) => i32::try_from(id).unwrap_or(-1),
+                    Err(e) => {
+                        tracing::error!(%e, "Failed to allocate V2 instance");
+                        -1
+                    }
+                }
+            }),
+        };
+        Some(qmlts_host_generated::v2_dispatch::V2ContextGuard::new(ctx))
+    }
+
     fn find_brace_mismatch_line(&self, source: &str) -> Option<u32> {
         let mut open_lines = Vec::new();
 
@@ -1084,6 +1493,12 @@ impl QmltsEngine {
     }
 
     fn cleanup_qt_resources(&mut self) {
+        // Clean up V2 state first (removes router, drops handlers)
+        if self.v2_state.is_some() {
+            qmlts_host_generated::v2_dispatch::clear_v2_router(self.dispatch_owner_id);
+            self.v2_state = None;
+        }
+
         qmlts_host_generated::dispatch::clear_dispatchers_for_owner(self.dispatch_owner_id);
 
         #[cfg(not(feature = "mock-qt"))]
@@ -1914,5 +2329,145 @@ mod tests {
             .unwrap();
         // Restore
         engine.restore_snapshot(&snap).unwrap();
+    }
+
+    // ─── V2 engine integration tests ────────────────────────────────────
+
+    #[test]
+    fn v2_not_enabled_by_default() {
+        let _guard = TEST_MUTEX.lock().unwrap();
+        reset_app_initialized();
+        let engine = QmltsEngine::new(None).unwrap();
+        assert!(engine.require_v2().is_err());
+    }
+
+    #[test]
+    fn v2_register_module_enables_v2() {
+        let _guard = TEST_MUTEX.lock().unwrap();
+        reset_app_initialized();
+        crate::type_registrar::clear_global_registrations();
+        let mut engine = QmltsEngine::new(None).unwrap();
+        engine
+            .register_module("QmlTS.Test", 1, 0, &["LoginViewModel".into()])
+            .unwrap();
+        assert!(engine.require_v2().is_ok());
+    }
+
+    #[test]
+    fn v2_sync_state_before_v2_init_fails() {
+        let _guard = TEST_MUTEX.lock().unwrap();
+        reset_app_initialized();
+        let engine = QmltsEngine::new(None).unwrap();
+        let result = engine.sync_state_v2(0, "username", "\"test\"");
+        assert!(matches!(result, Err(QmltsError::V2NotEnabled)));
+    }
+
+    #[test]
+    fn v2_handler_registration_requires_v2() {
+        let _guard = TEST_MUTEX.lock().unwrap();
+        reset_app_initialized();
+        let engine = QmltsEngine::new(None).unwrap();
+        let result =
+            engine.register_instance_created_handler(Box::new(|_class, _id| {}));
+        assert!(matches!(result, Err(QmltsError::V2NotEnabled)));
+    }
+
+    #[test]
+    fn v2_handler_registration_after_init() {
+        let _guard = TEST_MUTEX.lock().unwrap();
+        reset_app_initialized();
+        crate::type_registrar::clear_global_registrations();
+        let mut engine = QmltsEngine::new(None).unwrap();
+        engine
+            .register_module("QmlTS.Test", 1, 0, &["LoginViewModel".into()])
+            .unwrap();
+        engine
+            .register_instance_created_handler(Box::new(|_class, _id| {}))
+            .unwrap();
+        engine
+            .register_instance_destroying_handler(Box::new(|_id| {}))
+            .unwrap();
+        engine
+            .register_property_changed_handler(Box::new(|_id, _prop, _val| {}))
+            .unwrap();
+        engine
+            .register_command_dispatcher_v2(Box::new(|_id, _class, _cmd, _args| {}))
+            .unwrap();
+        engine
+            .register_lifecycle_handler_v2(Box::new(|_id, _class, _event| {}))
+            .unwrap();
+    }
+
+    #[test]
+    fn v2_cleanup_clears_router() {
+        let _guard = TEST_MUTEX.lock().unwrap();
+        reset_app_initialized();
+        crate::type_registrar::clear_global_registrations();
+        let mut engine = QmltsEngine::new(None).unwrap();
+        engine
+            .register_module("QmlTS.Test", 1, 0, &["LoginViewModel".into()])
+            .unwrap();
+        assert!(qmlts_host_generated::v2_dispatch::has_v2_router());
+        engine.mark_destroyed();
+        // After destroy, our router should be cleared
+        // (other tests may have their own routers, so we check engine state)
+        assert!(engine.v2_state.is_none());
+    }
+
+    #[test]
+    fn v2_instance_ready_unknown_instance_fails() {
+        let _guard = TEST_MUTEX.lock().unwrap();
+        reset_app_initialized();
+        crate::type_registrar::clear_global_registrations();
+        let mut engine = QmltsEngine::new(None).unwrap();
+        engine
+            .register_module("QmlTS.Test", 1, 0, &["LoginViewModel".into()])
+            .unwrap();
+        let result = engine.instance_ready(999);
+        assert!(matches!(result, Err(QmltsError::V2InstanceNotFound(999))));
+    }
+
+    #[test]
+    fn v2_emit_effect_before_v2_init_fails() {
+        let _guard = TEST_MUTEX.lock().unwrap();
+        reset_app_initialized();
+        let engine = QmltsEngine::new(None).unwrap();
+        let result = engine.emit_effect_v2(0, "loginCompleted", None);
+        assert!(matches!(result, Err(QmltsError::V2NotEnabled)));
+    }
+
+    #[test]
+    fn v2_context_guard_created_when_v2_enabled() {
+        let _guard = TEST_MUTEX.lock().unwrap();
+        reset_app_initialized();
+        crate::type_registrar::clear_global_registrations();
+        let mut engine = QmltsEngine::new(None).unwrap();
+        engine
+            .register_module("QmlTS.Test", 1, 0, &["LoginViewModel".into()])
+            .unwrap();
+
+        // Should create a guard
+        let guard = engine.create_v2_context_guard();
+        assert!(guard.is_some());
+
+        // While guard is alive, init context should be available
+        let ctx = qmlts_host_generated::v2_dispatch::take_v2_init_context();
+        assert!(ctx.is_some());
+        assert_eq!(ctx.unwrap().owner_id, engine.dispatch_owner_id);
+
+        drop(guard);
+
+        // After guard drops, context should be cleared
+        let ctx = qmlts_host_generated::v2_dispatch::take_v2_init_context();
+        assert!(ctx.is_none());
+    }
+
+    #[test]
+    fn v2_context_guard_none_when_v2_not_enabled() {
+        let _guard = TEST_MUTEX.lock().unwrap();
+        reset_app_initialized();
+        let engine = QmltsEngine::new(None).unwrap();
+        let guard = engine.create_v2_context_guard();
+        assert!(guard.is_none());
     }
 }

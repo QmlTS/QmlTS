@@ -167,8 +167,7 @@ function normalizeSessionError(action: 'start' | 'rebuild', error: unknown): nev
     if (statusMatch) {
       const status = statusMatch[1] as DevServerStatus;
       const state = mapStatus(status);
-      const expected =
-        action === 'start' ? "'idle'" : "'watching', 'rebuilding', or 'error'";
+      const expected = action === 'start' ? "'idle'" : "'watching', 'rebuilding', or 'error'";
       throw wrapSessionError(action, state, expected);
     }
   }

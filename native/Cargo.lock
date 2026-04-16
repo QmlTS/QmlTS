@@ -499,6 +499,7 @@ dependencies = [
  "cxx-qt-lib",
  "serde",
  "serde_json",
+ "tracing",
 ]
 
 [[package]]

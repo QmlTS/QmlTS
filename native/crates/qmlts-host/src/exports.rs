@@ -873,6 +873,250 @@ pub fn is_error_overlay_visible(engine: &QmltsEngine) -> bool {
 }
 
 // ─────────────────────────────────────────────────────────────────────────
+//  §10 V2 Instance Runtime
+// ─────────────────────────────────────────────────────────────────────────
+
+/// Register V2 ViewModel types as a QML module.
+/// Must be called before `loadFile` / `loadString`.
+///
+/// @param engine - The engine instance.
+/// @param moduleUri - QML module URI (e.g., `"QmlTS.App"`).
+/// @param versionMajor - Module major version.
+/// @param versionMinor - Module minor version.
+/// @param typeNames - Array of ViewModel class names to register.
+#[napi(js_name = "registerModule")]
+pub fn register_module(
+    engine: &mut QmltsEngine,
+    module_uri: String,
+    version_major: i32,
+    version_minor: i32,
+    type_names: Vec<String>,
+) -> Result<()> {
+    engine
+        .inner
+        .register_module(&module_uri, version_major, version_minor, &type_names)
+        .map_err(|e| -> napi::Error { e.into() })
+}
+
+/// Sync a single property to a V2 QObject instance.
+///
+/// @param engine - The engine instance.
+/// @param instanceId - Target instance identifier.
+/// @param propName - Property name.
+/// @param valueJson - JSON-encoded property value.
+#[napi(js_name = "syncStateV2")]
+pub fn sync_state_v2(
+    engine: &QmltsEngine,
+    instance_id: u32,
+    prop_name: String,
+    value_json: String,
+) -> Result<()> {
+    engine
+        .inner
+        .sync_state_v2(instance_id, &prop_name, &value_json)
+        .map_err(|e| -> napi::Error { e.into() })
+}
+
+/// Batch-sync properties to a V2 QObject instance.
+///
+/// @param engine - The engine instance.
+/// @param instanceId - Target instance identifier.
+/// @param propertiesJson - JSON object mapping property names to values.
+#[napi(js_name = "syncStateBatchV2")]
+pub fn sync_state_batch_v2(
+    engine: &QmltsEngine,
+    instance_id: u32,
+    properties_json: String,
+) -> Result<()> {
+    engine
+        .inner
+        .sync_state_batch_v2(instance_id, &properties_json)
+        .map_err(|e| -> napi::Error { e.into() })
+}
+
+/// Emit an effect signal on a V2 QObject instance.
+///
+/// @param engine - The engine instance.
+/// @param instanceId - Target instance identifier.
+/// @param effectName - Effect name as declared in the schema.
+/// @param payloadJson - Optional JSON-encoded effect payload.
+#[napi(js_name = "emitEffectV2")]
+pub fn emit_effect_v2(
+    engine: &QmltsEngine,
+    instance_id: u32,
+    effect_name: String,
+    payload_json: Option<String>,
+) -> Result<()> {
+    engine
+        .inner
+        .emit_effect_v2(instance_id, &effect_name, payload_json.as_deref())
+        .map_err(|e| -> napi::Error { e.into() })
+}
+
+/// Confirm TS-side initialization complete for a V2 instance.
+/// Flushes any queued events in FIFO order.
+///
+/// @param engine - The engine instance.
+/// @param instanceId - The instance to mark as ready.
+#[napi(js_name = "instanceReady")]
+pub fn instance_ready(engine: &QmltsEngine, instance_id: u32) -> Result<()> {
+    engine
+        .inner
+        .instance_ready(instance_id)
+        .map_err(|e| -> napi::Error { e.into() })
+}
+
+/// Register callback for native factory instance-created events.
+///
+/// @param engine - The engine instance.
+/// @param callback - Handler `(error, className, instanceId) => void`.
+#[napi(js_name = "registerInstanceCreatedHandler")]
+pub fn register_instance_created_handler(
+    engine: &QmltsEngine,
+    #[napi(ts_arg_type = "(error: Error | null, className: string, instanceId: number) => void")]
+    callback: napi::JsFunction,
+) -> Result<()> {
+    use napi::threadsafe_function::{ErrorStrategy, ThreadSafeCallContext, ThreadsafeFunction};
+
+    let tsfn: ThreadsafeFunction<(String, u32), ErrorStrategy::CalleeHandled> = callback
+        .create_threadsafe_function(0, |ctx: ThreadSafeCallContext<(String, u32)>| {
+            let (class_name, instance_id) = ctx.value;
+            Ok(vec![
+                ctx.env.create_string_from_std(class_name)?.into_unknown(),
+                ctx.env.create_uint32(instance_id)?.into_unknown(),
+            ])
+        })?;
+
+    let handler = Box::new(move |class_name: &str, instance_id: u32| {
+        tsfn.call(
+            Ok((class_name.to_string(), instance_id)),
+            napi::threadsafe_function::ThreadsafeFunctionCallMode::NonBlocking,
+        );
+    });
+
+    engine
+        .inner
+        .register_instance_created_handler(handler)
+        .map_err(|e| -> napi::Error { e.into() })
+}
+
+/// Register callback for pre-destruction instance events.
+///
+/// @param engine - The engine instance.
+/// @param callback - Handler `(error, instanceId) => void`.
+#[napi(js_name = "registerInstanceDestroyingHandler")]
+pub fn register_instance_destroying_handler(
+    engine: &QmltsEngine,
+    #[napi(ts_arg_type = "(error: Error | null, instanceId: number) => void")]
+    callback: napi::JsFunction,
+) -> Result<()> {
+    use napi::threadsafe_function::{ErrorStrategy, ThreadSafeCallContext, ThreadsafeFunction};
+
+    let tsfn: ThreadsafeFunction<u32, ErrorStrategy::CalleeHandled> = callback
+        .create_threadsafe_function(0, |ctx: ThreadSafeCallContext<u32>| {
+            Ok(vec![ctx.env.create_uint32(ctx.value)?.into_unknown()])
+        })?;
+
+    let handler = Box::new(move |instance_id: u32| {
+        tsfn.call(
+            Ok(instance_id),
+            napi::threadsafe_function::ThreadsafeFunctionCallMode::NonBlocking,
+        );
+    });
+
+    engine
+        .inner
+        .register_instance_destroying_handler(handler)
+        .map_err(|e| -> napi::Error { e.into() })
+}
+
+/// Register callback for QML → TS writable property changes.
+///
+/// @param engine - The engine instance.
+/// @param callback - Handler `(error, instanceId, propName, valueJson) => void`.
+#[napi(js_name = "registerPropertyChangedHandler")]
+pub fn register_property_changed_handler(
+    engine: &QmltsEngine,
+    #[napi(ts_arg_type = "(error: Error | null, instanceId: number, propName: string, valueJson: string) => void")]
+    callback: napi::JsFunction,
+) -> Result<()> {
+    use napi::threadsafe_function::{ErrorStrategy, ThreadSafeCallContext, ThreadsafeFunction};
+
+    let tsfn: ThreadsafeFunction<(u32, String, String), ErrorStrategy::CalleeHandled> = callback
+        .create_threadsafe_function(
+            0,
+            |ctx: ThreadSafeCallContext<(u32, String, String)>| {
+                let (instance_id, prop_name, value_json) = ctx.value;
+                Ok(vec![
+                    ctx.env.create_uint32(instance_id)?.into_unknown(),
+                    ctx.env.create_string_from_std(prop_name)?.into_unknown(),
+                    ctx.env.create_string_from_std(value_json)?.into_unknown(),
+                ])
+            },
+        )?;
+
+    let handler = Box::new(move |instance_id: u32, prop_name: &str, value_json: &str| {
+        tsfn.call(
+            Ok((instance_id, prop_name.to_string(), value_json.to_string())),
+            napi::threadsafe_function::ThreadsafeFunctionCallMode::NonBlocking,
+        );
+    });
+
+    engine
+        .inner
+        .register_property_changed_handler(handler)
+        .map_err(|e| -> napi::Error { e.into() })
+}
+
+/// Register V2 per-instance command dispatcher.
+///
+/// @param engine - The engine instance.
+/// @param callback - Handler `(error, instanceId, vmClass, commandName, argsJson) => void`.
+#[napi(js_name = "registerCommandDispatcherV2")]
+pub fn register_command_dispatcher_v2(
+    engine: &QmltsEngine,
+    #[napi(ts_arg_type = "(error: Error | null, instanceId: number, vmClass: string, commandName: string, argsJson: string) => void")]
+    callback: napi::JsFunction,
+) -> Result<()> {
+    use napi::threadsafe_function::{ErrorStrategy, ThreadSafeCallContext, ThreadsafeFunction};
+
+    let tsfn: ThreadsafeFunction<(u32, String, String, String), ErrorStrategy::CalleeHandled> =
+        callback.create_threadsafe_function(
+            0,
+            |ctx: ThreadSafeCallContext<(u32, String, String, String)>| {
+                let (instance_id, vm_class, command_name, args_json) = ctx.value;
+                Ok(vec![
+                    ctx.env.create_uint32(instance_id)?.into_unknown(),
+                    ctx.env.create_string_from_std(vm_class)?.into_unknown(),
+                    ctx.env
+                        .create_string_from_std(command_name)?
+                        .into_unknown(),
+                    ctx.env.create_string_from_std(args_json)?.into_unknown(),
+                ])
+            },
+        )?;
+
+    let handler = Box::new(
+        move |instance_id: u32, class_name: &str, command_name: &str, args_json: &str| {
+            tsfn.call(
+                Ok((
+                    instance_id,
+                    class_name.to_string(),
+                    command_name.to_string(),
+                    args_json.to_string(),
+                )),
+                napi::threadsafe_function::ThreadsafeFunctionCallMode::NonBlocking,
+            );
+        },
+    );
+
+    engine
+        .inner
+        .register_command_dispatcher_v2(handler)
+        .map_err(|e| -> napi::Error { e.into() })
+}
+
+// ─────────────────────────────────────────────────────────────────────────
 //  Tests
 // ─────────────────────────────────────────────────────────────────────────
 
@@ -1414,6 +1658,55 @@ mod tests {
         let mut engine = create_engine(None).unwrap();
         destroy_engine(&mut engine).unwrap();
         let result = show_error_overlay(&mut engine, "should fail".to_string());
+        assert!(result.is_err());
+    }
+
+    // ─── §10 V2 Instance Runtime ───────────────────────────────────────
+
+    #[test]
+    fn test_register_module_enables_v2() {
+        reset_qt();
+        crate::type_registrar::clear_global_registrations();
+        let mut engine = create_engine(None).unwrap();
+        let result = register_module(
+            &mut engine,
+            "QmlTS.Test".into(),
+            1,
+            0,
+            vec!["LoginViewModel".into()],
+        );
+        assert!(result.is_ok());
+    }
+
+    #[test]
+    fn test_sync_state_v2_before_init_fails() {
+        reset_qt();
+        let engine = create_engine(None).unwrap();
+        let result = sync_state_v2(&engine, 0, "username".into(), r#""test""#.into());
+        assert!(result.is_err());
+    }
+
+    #[test]
+    fn test_sync_state_batch_v2_before_init_fails() {
+        reset_qt();
+        let engine = create_engine(None).unwrap();
+        let result = sync_state_batch_v2(&engine, 0, r#"{"count": 5}"#.into());
+        assert!(result.is_err());
+    }
+
+    #[test]
+    fn test_emit_effect_v2_before_init_fails() {
+        reset_qt();
+        let engine = create_engine(None).unwrap();
+        let result = emit_effect_v2(&engine, 0, "loginCompleted".into(), None);
+        assert!(result.is_err());
+    }
+
+    #[test]
+    fn test_instance_ready_before_init_fails() {
+        reset_qt();
+        let engine = create_engine(None).unwrap();
+        let result = instance_ready(&engine, 0);
         assert!(result.is_err());
     }
 }
