@@ -216,3 +216,12 @@ export const V2_REQUIRED_METHODS: readonly (keyof V2NativeBindings)[] = [
 	'registerPropertyChangedHandler',
 	'registerCommandDispatcherV2',
 ] as const;
+
+/** Return true when the native module provides the complete V2 method set. */
+export function supportsV2NativeBindings(
+	bindings: Partial<V2NativeBindings>,
+): boolean {
+	return V2_REQUIRED_METHODS.every(
+		(name) => typeof bindings[name] === 'function',
+	);
+}

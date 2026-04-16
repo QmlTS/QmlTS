@@ -60,7 +60,6 @@ import {
 	v2Native,
 } from './index';
 import {
-	V2_REQUIRED_METHODS,
 	type InstanceCreatedCallback,
 	type InstanceDestroyingCallback,
 	type InstanceId,
@@ -68,6 +67,7 @@ import {
 	type PropertyChangedCallback,
 	type V2CommandDispatcher,
 	type V2NativeBindings,
+	supportsV2NativeBindings,
 } from './v2-types';
 
 export class QmltsHost {
@@ -619,9 +619,7 @@ export class QmltsHost {
 	 * This is an all-or-nothing check — partial V2 support returns `false`.
 	 */
 	supportsV2(): boolean {
-		return V2_REQUIRED_METHODS.every(
-			(name) => typeof v2Native[name] === 'function',
-		);
+		return supportsV2NativeBindings(v2Native);
 	}
 
 	/**

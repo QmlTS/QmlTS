@@ -195,4 +195,4 @@ export type {
 	ViewModelClassRegistration,
 	V2NativeBindings,
 } from './v2-types';
-export { V2_REQUIRED_METHODS } from './v2-types';
+export { V2_REQUIRED_METHODS, supportsV2NativeBindings } from './v2-types';

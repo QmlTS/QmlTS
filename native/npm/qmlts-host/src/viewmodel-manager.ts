@@ -21,6 +21,7 @@ import type {
 	InstanceDestroyingEvent,
 	InstanceId,
 	InstanceStateSnapshot,
+	PropertyChangedEvent,
 	V2CommandPayload,
 	ViewModelClassRegistration,
 } from './v2-types';
@@ -84,6 +85,7 @@ export class ViewModelManager {
 	private handlersRegistered = false;
 	private v2Classes = new Map<string, ViewModelClassRegistration>();
 	private v2Instances = new Map<InstanceId, V2InstanceRecord>();
+	private v2HandlersRegistered = false;
 
 	constructor(host: QmltsHost) {
 		this.host = host;
@@ -308,9 +310,14 @@ export class ViewModelManager {
 	 * and must return the TS ViewModel instance.
 	 *
 	 * @param registration - Class descriptor with className, schema, and factory.
-	 * @throws Error if the className is already registered.
+	 * @throws Error if the className is already registered or schema class mismatches.
 	 */
 	registerClass<T>(registration: ViewModelClassRegistration<T>): void {
+		if (registration.schema.className !== registration.className) {
+			throw new Error(
+				`ViewModelManager: V2 schema.className '${registration.schema.className}' does not match '${registration.className}'`,
+			);
+		}
 		if (this.v2Classes.has(registration.className)) {
 			throw new Error(
 				`ViewModelManager: V2 class '${registration.className}' is already registered`,
@@ -320,6 +327,7 @@ export class ViewModelManager {
 			registration.className,
 			registration as ViewModelClassRegistration,
 		);
+		this.ensureV2HandlersRegistered();
 	}
 
 	/**
@@ -408,11 +416,20 @@ export class ViewModelManager {
 	dispatchCommand(payload: V2CommandPayload): void {
 		const record = this.v2Instances.get(payload.instanceId);
 		if (!record) return;
+		if (payload.vmClass !== record.className) {
+			throw new Error(
+				`ViewModelManager: V2 command '${payload.commandName}' targeted class '${payload.vmClass}' but instance ${payload.instanceId} is '${record.className}'`,
+			);
+		}
 
 		const method = record.instance[payload.commandName];
 		if (typeof method === 'function') {
 			method.apply(record.instance, payload.args);
+			return;
 		}
+		throw new Error(
+			`ViewModelManager: V2 command '${payload.commandName}' is not callable on instance ${payload.instanceId}`,
+		);
 	}
 
 	/**
@@ -439,8 +456,8 @@ export class ViewModelManager {
 	 * Handle a V2 instance-created event from the native host.
 	 *
 	 * Looks up the registered class factory, creates the TS instance,
-	 * and stores a V2InstanceRecord. Does nothing if the className
-	 * is not registered.
+	 * stores a V2InstanceRecord, syncs initial state, and calls
+	 * instanceReady. Does nothing if the className is not registered.
 	 *
 	 * @param event - Instance-created event payload.
 	 */
@@ -459,6 +476,13 @@ export class ViewModelManager {
 			ownership: event.ownership,
 			instance,
 		});
+		try {
+			this.syncInstance(event.instanceId);
+			this.host.instanceReady(event.instanceId);
+		} catch (error) {
+			this.v2Instances.delete(event.instanceId);
+			throw error;
+		}
 	}
 
 	/**
@@ -470,6 +494,40 @@ export class ViewModelManager {
 	 */
 	handleInstanceDestroying(event: InstanceDestroyingEvent): void {
 		this.v2Instances.delete(event.instanceId);
+	}
+
+	/**
+	 * Handle a V2 property-changed event from QML.
+	 *
+	 * Updates the tracked TS instance if it exists. Unknown instances are
+	 * ignored because the native runtime may race destruction notifications.
+	 *
+	 * @param event - Property-changed event payload.
+	 */
+	handlePropertyChanged(event: PropertyChangedEvent): void {
+		const record = this.v2Instances.get(event.instanceId);
+		if (!record) return;
+		record.instance[event.propName] = event.value;
+	}
+
+	private ensureV2HandlersRegistered(): void {
+		if (this.v2HandlersRegistered || !this.host.supportsV2()) {
+			return;
+		}
+		this.v2HandlersRegistered = true;
+
+		this.host.registerInstanceCreatedHandler((event) => {
+			this.handleInstanceCreated(event);
+		});
+		this.host.registerInstanceDestroyingHandler((event) => {
+			this.handleInstanceDestroying(event);
+		});
+		this.host.registerPropertyChangedHandler((event) => {
+			this.handlePropertyChanged(event);
+		});
+		this.host.registerCommandDispatcherV2((payload) => {
+			this.dispatchCommand(payload);
+		});
 	}
 
 	private ensureHandlersRegistered(): void {

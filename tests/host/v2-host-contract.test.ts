@@ -14,6 +14,10 @@ import type {
   V2CommandPayload,
   V2NativeBindings,
 } from '../../native/npm/qmlts-host/src/v2-types';
+import {
+  supportsV2NativeBindings,
+  V2_REQUIRED_METHODS,
+} from '../../native/npm/qmlts-host/src/v2-types';
 
 // ─── Mock Setup ─────────────────────────────────────────────
 
@@ -42,6 +46,20 @@ function createMockHost(v2Bindings: Partial<V2NativeBindings> = {}) {
   };
 }
 
+function createCompleteV2Bindings(): V2NativeBindings {
+  return {
+    registerModule: mock(() => {}),
+    syncStateV2: mock(() => {}),
+    syncStateBatchV2: mock(() => {}),
+    emitEffectV2: mock(() => {}),
+    instanceReady: mock(() => {}),
+    registerInstanceCreatedHandler: mock(() => {}),
+    registerInstanceDestroyingHandler: mock(() => {}),
+    registerPropertyChangedHandler: mock(() => {}),
+    registerCommandDispatcherV2: mock(() => {}),
+  };
+}
+
 // ─── Tests ──────────────────────────────────────────────────
 
 describe('V2 Host Contract', () => {
@@ -49,12 +67,7 @@ describe('V2 Host Contract', () => {
 
   describe('supportsV2()', () => {
     test('V2C-01: returns false when no V2 native methods exist', () => {
-      const host = createMockHost({});
-      const { V2_REQUIRED_METHODS } = require('../../native/npm/qmlts-host/src/v2-types');
-      const allPresent = V2_REQUIRED_METHODS.every(
-        (name: string) => typeof host.v2Bindings[name as keyof V2NativeBindings] === 'function',
-      );
-      expect(allPresent).toBe(false);
+      expect(supportsV2NativeBindings({})).toBe(false);
     });
 
     test('V2C-02: returns false when only some V2 methods exist', () => {
@@ -62,12 +75,11 @@ describe('V2 Host Contract', () => {
         registerModule: mock(() => {}),
         syncStateV2: mock(() => {}),
       };
-      const host = createMockHost(partial);
-      const { V2_REQUIRED_METHODS } = require('../../native/npm/qmlts-host/src/v2-types');
-      const allPresent = V2_REQUIRED_METHODS.every(
-        (name: string) => typeof host.v2Bindings[name as keyof V2NativeBindings] === 'function',
-      );
-      expect(allPresent).toBe(false);
+      expect(supportsV2NativeBindings(partial)).toBe(false);
+    });
+
+    test('V2C-02b: returns true when all V2 methods exist', () => {
+      expect(supportsV2NativeBindings(createCompleteV2Bindings())).toBe(true);
     });
   });
 
@@ -323,7 +335,6 @@ describe('V2 Host Contract', () => {
     });
 
     test('V2C-19: V2_REQUIRED_METHODS lists all 9 core methods', () => {
-      const { V2_REQUIRED_METHODS } = require('../../native/npm/qmlts-host/src/v2-types');
       expect(V2_REQUIRED_METHODS).toHaveLength(9);
       expect(V2_REQUIRED_METHODS).toContain('registerModule');
       expect(V2_REQUIRED_METHODS).toContain('instanceReady');
@@ -385,6 +396,26 @@ describe('V2 Host Contract', () => {
       expect(manager.hasClass('TestVM')).toBe(true);
     });
 
+    test('V2C-20b: registerClass wires V2 native handlers once when supported', () => {
+      const { manager, mockHost } = createMockVMManager();
+
+      manager.registerClass({
+        className: 'TestVM',
+        schema: testSchema,
+        factory: () => ({ name: '', count: 0 }),
+      });
+      manager.registerClass({
+        className: 'OtherVM',
+        schema: { ...testSchema, className: 'OtherVM' },
+        factory: () => ({ name: '', count: 0 }),
+      });
+
+      expect(mockHost.registerInstanceCreatedHandler).toHaveBeenCalledTimes(1);
+      expect(mockHost.registerInstanceDestroyingHandler).toHaveBeenCalledTimes(1);
+      expect(mockHost.registerPropertyChangedHandler).toHaveBeenCalledTimes(1);
+      expect(mockHost.registerCommandDispatcherV2).toHaveBeenCalledTimes(1);
+    });
+
     test('V2C-21: registerClass throws for duplicate className', () => {
       const { manager } = createMockVMManager();
 
@@ -403,6 +434,18 @@ describe('V2 Host Contract', () => {
       ).toThrow(/already registered/i);
     });
 
+    test('V2C-21b: registerClass rejects schema/className mismatch', () => {
+      const { manager } = createMockVMManager();
+
+      expect(() =>
+        manager.registerClass({
+          className: 'TestVM',
+          schema: { ...testSchema, className: 'OtherVM' },
+          factory: () => ({ name: '', count: 0 }),
+        }),
+      ).toThrow(/schema\.className.*does not match/i);
+    });
+
     test('V2C-22: getInstance returns undefined for unknown instanceId', () => {
       const { manager } = createMockVMManager();
       expect(manager.getInstance(999)).toBeUndefined();
@@ -413,8 +456,8 @@ describe('V2 Host Contract', () => {
       expect(manager.getInstanceSlots()).toEqual([]);
     });
 
-    test('V2C-24: handleInstanceCreated creates instance via factory', () => {
-      const { manager } = createMockVMManager();
+    test('V2C-24: handleInstanceCreated creates instance, syncs state, and marks ready', () => {
+      const { manager, mockHost } = createMockVMManager();
       const instances: unknown[] = [];
 
       manager.registerClass({
@@ -437,6 +480,11 @@ describe('V2 Host Contract', () => {
 
       expect(instances).toHaveLength(1);
       expect(manager.getInstance(1)).toEqual({ name: 'created', count: 1 });
+      expect(mockHost.syncStateBatchForInstance).toHaveBeenCalledWith(1, {
+        name: 'created',
+        count: 1,
+      });
+      expect(mockHost.instanceReady).toHaveBeenCalledWith(1);
     });
 
     test('V2C-25: handleInstanceCreated ignores unknown className', () => {
@@ -450,6 +498,29 @@ describe('V2 Host Contract', () => {
       ).not.toThrow();
 
       expect(manager.getInstance(1)).toBeUndefined();
+    });
+
+    test('V2C-25b: handleInstanceCreated rolls back instance when native sync fails', () => {
+      const { manager, mockHost } = createMockVMManager();
+      mockHost.syncStateBatchForInstance = mock(() => {
+        throw new Error("V2 native host API 'syncStateBatchV2' is not available");
+      });
+
+      manager.registerClass({
+        className: 'TestVM',
+        schema: testSchema,
+        factory: () => ({ name: 'test', count: 1 }),
+      });
+
+      expect(() =>
+        manager.handleInstanceCreated({
+          instanceId: 8,
+          className: 'TestVM',
+        }),
+      ).toThrow(/syncStateBatchV2/);
+
+      expect(manager.getInstance(8)).toBeUndefined();
+      expect(mockHost.instanceReady).not.toHaveBeenCalledWith(8);
     });
 
     test('V2C-26: getInstanceSlots returns metadata for active instances', () => {
@@ -516,6 +587,48 @@ describe('V2 Host Contract', () => {
       });
 
       expect(calls).toEqual(['submit-called']);
+    });
+
+    test('V2C-28b: dispatchCommand rejects class mismatch for tracked instance', () => {
+      const { manager } = createMockVMManager();
+
+      manager.registerClass({
+        className: 'TestVM',
+        schema: testSchema,
+        factory: () => ({
+          name: '',
+          count: 0,
+          submit: () => {},
+        }),
+      });
+      manager.handleInstanceCreated({ instanceId: 3, className: 'TestVM' });
+
+      expect(() =>
+        manager.dispatchCommand({
+          instanceId: 3,
+          vmClass: 'OtherVM',
+          commandName: 'submit',
+          args: [],
+        }),
+      ).toThrow(/targeted class/i);
+    });
+
+    test('V2C-28c: handlePropertyChanged updates tracked instance', () => {
+      const { manager } = createMockVMManager();
+
+      manager.registerClass({
+        className: 'TestVM',
+        schema: testSchema,
+        factory: () => ({ name: 'before', count: 0 }),
+      });
+      manager.handleInstanceCreated({ instanceId: 11, className: 'TestVM' });
+      manager.handlePropertyChanged({
+        instanceId: 11,
+        propName: 'name',
+        value: 'after',
+      });
+
+      expect(manager.getInstance(11)).toEqual({ name: 'after', count: 0 });
     });
 
     test('V2C-29: dispatchCommand ignores unknown instanceId', () => {
