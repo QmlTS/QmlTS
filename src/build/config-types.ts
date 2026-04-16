@@ -1,6 +1,20 @@
 import type { CompilerOptions } from '../compiler/pipeline/pipeline-types.js';
 import type { QmlFormatOptions, QmlLintOptions, QualityGateLevel } from '../qt-tools/types.js';
 
+// ─── V2 rollout types ──────────────────────────────────────
+
+export type RuntimeVersion = 'v1' | 'v2';
+
+export interface ModuleVersion {
+  readonly major: number;
+  readonly minor: number;
+}
+
+export interface ModuleConfig {
+  readonly prefix: string;
+  readonly version: ModuleVersion;
+}
+
 // ─── User-facing config (qmlts.config.ts) ──────────────────
 
 export interface QmltsConfig {
@@ -13,6 +27,9 @@ export interface QmltsConfig {
   readonly assets?: AssetsConfig;
   readonly distribute?: DistributeConfig;
   readonly qmlModulePaths?: readonly string[];
+  readonly runtime?: RuntimeVersion;
+  readonly v1Compat?: boolean;
+  readonly module?: ModuleConfig;
 }
 
 export interface QtConfig {
@@ -89,6 +106,9 @@ export interface ResolvedQmltsConfig {
   readonly distribute: ResolvedDistributeConfig;
   readonly qmlModulePaths: readonly string[];
   readonly configDir: string;
+  readonly runtime: RuntimeVersion;
+  readonly v1Compat: boolean;
+  readonly module?: ModuleConfig;
 }
 
 export interface ResolvedQtConfig {

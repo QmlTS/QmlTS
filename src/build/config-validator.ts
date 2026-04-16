@@ -11,12 +11,16 @@ const VALID_TOP_LEVEL_KEYS = new Set([
   'assets',
   'distribute',
   'qmlModulePaths',
+  'runtime',
+  'v1Compat',
+  'module',
 ]);
 
 const VALID_PLATFORM_TARGETS = new Set(['win32-x64', 'linux-x64', 'darwin-x64', 'darwin-arm64']);
 const VALID_BUILD_MODES = new Set(['development', 'production']);
 const VALID_QUALITY_GATES = new Set(['syntax', 'lint', 'compile', 'full']);
 const VALID_CARGO_PROFILES = new Set(['dev', 'release']);
+const VALID_RUNTIMES = new Set(['v1', 'v2']);
 
 const QT_MODULE_PATTERN = /^[A-Za-z][A-Za-z0-9]*(\.[A-Za-z][A-Za-z0-9]*)*$/;
 
@@ -52,6 +56,36 @@ export function validateConfig(config: QmltsConfig): void {
   }
   if (config.distribute !== undefined) {
     validateDistribute(config.distribute);
+  }
+
+  if (config.runtime !== undefined) {
+    if (!VALID_RUNTIMES.has(config.runtime)) {
+      throw new ConfigError('runtime', config.runtime, `runtime must be 'v1' or 'v2'`);
+    }
+  }
+
+  if (config.v1Compat !== undefined) {
+    validateBoolean(config.v1Compat, 'v1Compat');
+  }
+
+  if (config.module !== undefined) {
+    validateModule(config.module);
+  }
+
+  if (config.v1Compat === true && config.runtime !== 'v2') {
+    throw new ConfigError(
+      'v1Compat',
+      config.v1Compat,
+      `v1Compat can only be enabled when runtime is 'v2'`,
+    );
+  }
+
+  if (config.runtime === 'v2' && config.module === undefined) {
+    throw new ConfigError(
+      'module',
+      undefined,
+      `module configuration is required when runtime is 'v2'`,
+    );
   }
 }
 
@@ -284,5 +318,56 @@ function validateDistribute(dist: NonNullable<QmltsConfig['distribute']>): void 
   }
   if (dist.appVersion !== undefined) {
     validateString(dist.appVersion, 'distribute.appVersion');
+  }
+}
+
+function validateModule(mod: NonNullable<QmltsConfig['module']>): void {
+  validateObject(mod, 'module');
+
+  if (mod.prefix === undefined) {
+    throw new ConfigError('module.prefix', undefined, 'module.prefix is required');
+  }
+  validateString(mod.prefix, 'module.prefix');
+  if (!QT_MODULE_PATTERN.test(mod.prefix)) {
+    throw new ConfigError(
+      'module.prefix',
+      mod.prefix,
+      `Invalid module prefix '${mod.prefix}'. Must be a valid QML module identifier (letters, digits, and dots, starting with a letter).`,
+    );
+  }
+
+  if (mod.version === undefined) {
+    throw new ConfigError('module.version', undefined, 'module.version is required');
+  }
+  validateObject(mod.version, 'module.version');
+
+  if (mod.version.major === undefined) {
+    throw new ConfigError('module.version.major', undefined, 'module.version.major is required');
+  }
+  if (
+    typeof mod.version.major !== 'number' ||
+    !Number.isInteger(mod.version.major) ||
+    mod.version.major < 0
+  ) {
+    throw new ConfigError(
+      'module.version.major',
+      mod.version.major,
+      'module.version.major must be a non-negative integer',
+    );
+  }
+
+  if (mod.version.minor === undefined) {
+    throw new ConfigError('module.version.minor', undefined, 'module.version.minor is required');
+  }
+  if (
+    typeof mod.version.minor !== 'number' ||
+    !Number.isInteger(mod.version.minor) ||
+    mod.version.minor < 0
+  ) {
+    throw new ConfigError(
+      'module.version.minor',
+      mod.version.minor,
+      'module.version.minor must be a non-negative integer',
+    );
   }
 }
