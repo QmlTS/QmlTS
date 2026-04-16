@@ -1473,11 +1473,7 @@ impl QmltsEngine {
             for ch in line.chars() {
                 match ch {
                     '{' => open_lines.push(line_number),
-                    '}' => {
-                        if open_lines.pop().is_none() {
-                            return Some(line_number);
-                        }
-                    }
+                    '}' if open_lines.pop().is_none() => return Some(line_number),
                     _ => {}
                 }
             }
