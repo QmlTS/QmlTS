@@ -469,3 +469,112 @@ describe('ViewModelExtractor — generateSchema()', () => {
     expect(schema.lifecycle.hotReload).toBe(false);
   });
 });
+
+describe('ViewModelExtractor — V2 schema generation', () => {
+  test('VE-30: default schema generation produces version=1 with no V2 metadata', () => {
+    const cls = getClass(`
+      import { State, Command, Effect } from './decorators.js';
+      export class TestVM {
+        @State() name = '';
+        @Command() doSomething() {}
+        @Effect() readonly onDone = (..._args: unknown[]) => {};
+      }
+    `);
+    const vm = extractor.extract(cls);
+    const idAlloc = createIdAllocator();
+    const schema = extractor.generateSchema(vm, idAlloc);
+
+    expect(schema.version).toBe(1);
+    expect(schema.moduleUri).toBeUndefined();
+    expect(schema.moduleVersion).toBeUndefined();
+    expect(schema.compilerSlotKey).toBeUndefined();
+  });
+
+  test('VE-31: V1 context produces version=1 with no V2 metadata', () => {
+    const cls = getClass(`
+      import { State } from './decorators.js';
+      export class TestVM {
+        @State() count = 0;
+      }
+    `);
+    const vm = extractor.extract(cls);
+    const idAlloc = createIdAllocator();
+    const schema = extractor.generateSchema(vm, idAlloc, { runtime: 'v1' });
+
+    expect(schema.version).toBe(1);
+    expect(schema.moduleUri).toBeUndefined();
+    expect(schema.moduleVersion).toBeUndefined();
+  });
+
+  test('VE-32: V2 context with moduleConfig produces version=2 and module metadata', () => {
+    const cls = getClass(
+      `
+      import { State, Command } from './decorators.js';
+      export class LoginViewModel {
+        @State() username = '';
+        @Command() login() {}
+      }
+    `,
+      'LoginViewModel',
+    );
+    const vm = extractor.extract(cls);
+    const idAlloc = createIdAllocator();
+    const schema = extractor.generateSchema(vm, idAlloc, {
+      runtime: 'v2',
+      moduleConfig: { prefix: 'MyApp', version: { major: 1, minor: 0 } },
+    });
+
+    expect(schema.version).toBe(2);
+    expect(schema.moduleUri).toBe('MyApp.ViewModels');
+    expect(schema.moduleVersion).toEqual({ major: 1, minor: 0 });
+    expect(schema.compilerSlotKey).toBeUndefined();
+    expect(schema.className).toBe('LoginViewModel');
+    expect(schema.states).toHaveLength(1);
+    expect(schema.commands).toHaveLength(1);
+  });
+
+  test('VE-33: V2 context without moduleConfig produces version=2 but no module metadata', () => {
+    const cls = getClass(`
+      import { State } from './decorators.js';
+      export class TestVM {
+        @State() value = 0;
+      }
+    `);
+    const vm = extractor.extract(cls);
+    const idAlloc = createIdAllocator();
+    const schema = extractor.generateSchema(vm, idAlloc, { runtime: 'v2' });
+
+    expect(schema.version).toBe(2);
+    expect(schema.moduleUri).toBeUndefined();
+    expect(schema.moduleVersion).toBeUndefined();
+  });
+
+  test('VE-34: V2 schema preserves all V1 state/command/effect fields', () => {
+    const cls = getClass(`
+      import { State, Command, Effect } from './decorators.js';
+      export class TestVM {
+        @State() count = 0;
+        @State({ readonly: true }) label = 'test';
+        @Command({ async: true }) submit() {}
+        @Effect() readonly onResult = (..._args: unknown[]) => {};
+      }
+    `);
+    const vm = extractor.extract(cls);
+    const idAlloc = createIdAllocator();
+    const schema = extractor.generateSchema(vm, idAlloc, {
+      runtime: 'v2',
+      moduleConfig: { prefix: 'App', version: { major: 2, minor: 3 } },
+    });
+
+    expect(schema.version).toBe(2);
+    expect(schema.states).toHaveLength(2);
+    expect(schema.commands).toHaveLength(1);
+    expect(schema.effects).toHaveLength(1);
+    expect(schema.states[0]!.memberId).toBeNumber();
+    expect(schema.commands[0]!.commandId).toBeNumber();
+    expect(schema.commands[0]!.async).toBe(true);
+    expect(schema.effects[0]!.effectId).toBeNumber();
+    expect(schema.moduleUri).toBe('App.ViewModels');
+    expect(schema.moduleVersion).toEqual({ major: 2, minor: 3 });
+  });
+});

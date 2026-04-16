@@ -1,5 +1,5 @@
 import type { EmitOptions } from '../../emitter/types.js';
-import type { ViewModelSchema } from '../../viewmodel/schema.js';
+import type { ViewModelInstanceSlot, ViewModelSchema } from '../../viewmodel/schema.js';
 import type { Diagnostic, DiagnosticCode } from '../diagnostics.js';
 import type { SourceLocation } from '../transform/transform-types.js';
 
@@ -14,6 +14,12 @@ export interface CompilerOptions {
   readonly diagnostics?: DiagnosticOptions;
   readonly watch?: WatchOptions;
   readonly qt?: QtValidationOptions;
+  /** V2: Target runtime architecture version. */
+  readonly runtime?: 'v1' | 'v2';
+  /** V2: Optional module config used to populate module metadata in runtime "v2". */
+  readonly moduleConfig?: CompilerModuleConfig;
+  /** V2: Enable V1 compatibility shim (only valid with runtime "v2"). */
+  readonly v1Compat?: boolean;
 }
 
 export interface CodegenOptions {
@@ -26,6 +32,12 @@ export interface DiagnosticOptions {
   readonly warningsAsErrors?: boolean;
   readonly maxErrors?: number;
   readonly suppress?: readonly DiagnosticCode[];
+}
+
+/** V2 compiler module config (structural match with ModuleConfig in config-types.ts). */
+export interface CompilerModuleConfig {
+  readonly prefix: string;
+  readonly version: { readonly major: number; readonly minor: number };
 }
 
 // ─── Source Map ──────────────────────────────────────────────────────────
@@ -81,6 +93,19 @@ export interface CompilationUnit {
   readonly schemaOutputPath?: string;
   readonly sourceMap?: CompilerSourceMap;
   readonly diagnostics: readonly Diagnostic[];
+  /** V2: Stable identity key (convenience — equals viewModelSlots[0].compilerSlotKey). */
+  readonly compilerSlotKey?: string;
+  /** V2: Module URI for this compilation unit. */
+  readonly moduleUri?: string;
+  /** V2: All associated ViewModel class names. */
+  readonly viewModelNames?: readonly string[];
+  /** V2: Per-instance ViewModel slot metadata (the stable V2 contract). */
+  readonly viewModelSlots?: readonly ViewModelInstanceSlot[];
+  /** V2: Module imports needed by the generated QML. */
+  readonly moduleImports?: readonly {
+    readonly moduleUri: string;
+    readonly version?: string;
+  }[];
 }
 
 // ─── Event Binding Index ────────────────────────────────────────────────

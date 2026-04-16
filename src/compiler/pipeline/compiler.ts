@@ -4,7 +4,7 @@ import { Project, ts } from 'ts-morph';
 import type { AstNode } from '../../ast/types.js';
 import { emitWithSourceMap } from '../../emitter/emitter.js';
 import { getQuery } from '../../index.js';
-import type { ViewModelSchema } from '../../viewmodel/schema.js';
+import type { ViewModelInstanceSlot, ViewModelSchema } from '../../viewmodel/schema.js';
 import type { DiscoveredImport, DiscoveredSourceFile } from '../analyzer/analyzer-types.js';
 import { createTsAnalyzer } from '../analyzer/ts-analyzer.js';
 import { createIdAllocator } from '../ids/id-allocator.js';
@@ -18,6 +18,7 @@ import type {
   EffectListenerInfo,
   TransformResult,
 } from '../transform/transform-types.js';
+import type { SchemaGenerationContext } from '../viewmodel/extractor-types.js';
 import { createViewModelExtractor } from '../viewmodel/viewmodel-extractor.js';
 import { createDiagnosticReporter } from './diagnostic-reporter.js';
 import { buildEventBindings } from './event-bindings.js';
@@ -132,8 +133,13 @@ export function compileProjectCore(
 
       const cachedSchema = isDirty
         ? undefined
-        : cached?.schemas.find((schema) => schema.className === vm.className);
-      const schema = cachedSchema ?? extractor.generateSchema(vm, idAllocator);
+        : cached?.schemas.find((s) => schemaMatchesCompilerOptions(s, vm.className, options));
+
+      const v2Context: SchemaGenerationContext | undefined =
+        options.runtime === 'v2'
+          ? { runtime: 'v2', moduleConfig: options.moduleConfig }
+          : undefined;
+      const schema = cachedSchema ?? extractor.generateSchema(vm, idAllocator, v2Context);
       vmMap.set(vm.className, { vm, schema });
       allSchemas.push(schema);
       if (!schemasByFile.has(file.filePath)) {
@@ -195,6 +201,7 @@ export function compileProjectCore(
         postProcessor,
         reporter,
         options,
+        discoveredView.vmParam?.name,
       );
       units.push(unit);
     }
@@ -371,7 +378,9 @@ function compileSingleSource(
 
     const vm = extractor.extract(classDecl);
     for (const d of extractor.validate(vm)) reporter.report(d);
-    const schema = extractor.generateSchema(vm, idAllocator);
+    const v2Context: SchemaGenerationContext | undefined =
+      options?.runtime === 'v2' ? { runtime: 'v2', moduleConfig: options.moduleConfig } : undefined;
+    const schema = extractor.generateSchema(vm, idAllocator, v2Context);
     vmMap.set(vm.className, { vm, schema });
     allSchemas.push(schema);
   }
@@ -407,6 +416,7 @@ function compileSingleSource(
       postProcessor,
       reporter,
       options ? ({ ...options } as CompilerOptions) : undefined,
+      discoveredView.vmParam?.name,
     );
     units.push(unit);
   }
@@ -423,6 +433,7 @@ function compileView(
   postProcessor: ReturnType<typeof createPostProcessor>,
   reporter: DiagnosticReporter,
   options?: Partial<CompilerOptions>,
+  vmParamName?: string,
 ): CompilationUnit {
   const viewName = analyzedView.functionName;
   const qmlOutputPath = computeOutputPath(sourceFilePath, options, '.qml');
@@ -478,6 +489,24 @@ function compileView(
   // Collect per-unit diagnostics (only from this view's transform + postprocess)
   const unitDiagnostics = [...transformResult.diagnostics, ...postResult.diagnostics];
 
+  // V2 slot metadata
+  const isV2 = options?.runtime === 'v2';
+  const slot: ViewModelInstanceSlot | undefined =
+    isV2 && vm && schema
+      ? {
+          viewName,
+          parameterName: vmParamName ?? 'vm',
+          className: vm.className,
+          qmlId: '__qmlts_vm0',
+          compilerSlotKey: `${viewName}::__qmlts_vm0`,
+          ownership: 'owned' as const,
+          moduleUri: schema.moduleUri,
+          moduleVersion: schema.moduleVersion
+            ? { major: schema.moduleVersion.major, minor: schema.moduleVersion.minor }
+            : undefined,
+        }
+      : undefined;
+
   return {
     sourceFile: sourceFilePath,
     viewName,
@@ -490,6 +519,24 @@ function compileView(
       : undefined,
     sourceMap,
     diagnostics: unitDiagnostics,
+    ...(slot
+      ? {
+          compilerSlotKey: slot.compilerSlotKey,
+          moduleUri: schema!.moduleUri,
+          viewModelNames: [vm!.className],
+          viewModelSlots: [slot],
+          moduleImports: schema!.moduleUri
+            ? [
+                {
+                  moduleUri: schema!.moduleUri,
+                  version: schema!.moduleVersion
+                    ? `${schema!.moduleVersion.major}.${schema!.moduleVersion.minor}`
+                    : undefined,
+                },
+              ]
+            : undefined,
+        }
+      : {}),
   };
 }
 
@@ -537,6 +584,37 @@ function buildDslFactoryNameSet(imports: readonly DiscoveredImport[]): ReadonlyS
     }
   }
   return names;
+}
+
+function schemaMatchesCompilerOptions(
+  schema: ViewModelSchema,
+  className: string,
+  options: CompilerOptions,
+): boolean {
+  if (schema.className !== className) return false;
+
+  const expectedVersion = options.runtime === 'v2' ? 2 : 1;
+  if (schema.version !== expectedVersion) return false;
+
+  if (options.runtime !== 'v2') return true;
+
+  const expectedModuleUri = options.moduleConfig
+    ? `${options.moduleConfig.prefix}.ViewModels`
+    : undefined;
+  const expectedModuleVersion = options.moduleConfig?.version;
+
+  return (
+    schema.moduleUri === expectedModuleUri &&
+    moduleVersionsEqual(schema.moduleVersion, expectedModuleVersion)
+  );
+}
+
+function moduleVersionsEqual(
+  a: { readonly major: number; readonly minor: number } | undefined,
+  b: { readonly major: number; readonly minor: number } | undefined,
+): boolean {
+  if (!a || !b) return a === b;
+  return a.major === b.major && a.minor === b.minor;
 }
 
 function computeOutputPath(

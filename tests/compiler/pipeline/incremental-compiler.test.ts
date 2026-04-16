@@ -172,4 +172,102 @@ describe('IncrementalCompiler', () => {
     expect(cached).toBeDefined();
     expect(cached!.viewName).toBe('LoginView');
   });
+
+  test('IC-07: switching runtime V1→V2 regenerates schema (no cache contamination)', () => {
+    const ic = createIncrementalCompiler();
+
+    const v1Result = ic.compile({ ...options, runtime: 'v1' });
+    expect(v1Result.success).toBe(true);
+    const v1Schema = v1Result.units.find((u) => u.schema)?.schema;
+    expect(v1Schema).toBeDefined();
+    expect(v1Schema!.version).toBe(1);
+    expect(v1Schema!.moduleUri).toBeUndefined();
+
+    const v2Result = ic.compile({
+      ...options,
+      outputDir: join(tempDir, 'dist-v2'),
+      runtime: 'v2',
+      moduleConfig: { prefix: 'TestApp', version: { major: 1, minor: 0 } },
+    });
+    expect(v2Result.success).toBe(true);
+    const v2Schema = v2Result.units.find((u) => u.schema)?.schema;
+    expect(v2Schema).toBeDefined();
+    expect(v2Schema!.version).toBe(2);
+    expect(v2Schema!.moduleUri).toBe('TestApp.ViewModels');
+  });
+
+  test('IC-08: switching runtime V2→V1 regenerates schema', () => {
+    const ic = createIncrementalCompiler();
+
+    const v2Result = ic.compile({
+      ...options,
+      runtime: 'v2',
+      moduleConfig: { prefix: 'App', version: { major: 1, minor: 0 } },
+    });
+    expect(v2Result.success).toBe(true);
+
+    const v1Result = ic.compile({
+      ...options,
+      outputDir: join(tempDir, 'dist-v1'),
+      runtime: 'v1',
+    });
+    expect(v1Result.success).toBe(true);
+    const v1Schema = v1Result.units.find((u) => u.schema)?.schema;
+    expect(v1Schema).toBeDefined();
+    expect(v1Schema!.version).toBe(1);
+    expect(v1Schema!.moduleUri).toBeUndefined();
+  });
+
+  test('IC-09: changing V2 module config regenerates schema metadata', () => {
+    const ic = createIncrementalCompiler();
+
+    const firstResult = ic.compile({
+      ...options,
+      runtime: 'v2',
+      moduleConfig: { prefix: 'FirstApp', version: { major: 1, minor: 0 } },
+    });
+    expect(firstResult.success).toBe(true);
+    const firstSchema = firstResult.units.find((u) => u.schema)?.schema;
+    expect(firstSchema).toBeDefined();
+    expect(firstSchema!.moduleUri).toBe('FirstApp.ViewModels');
+    expect(firstSchema!.moduleVersion).toEqual({ major: 1, minor: 0 });
+
+    const secondResult = ic.compile({
+      ...options,
+      runtime: 'v2',
+      moduleConfig: { prefix: 'SecondApp', version: { major: 2, minor: 5 } },
+    });
+    expect(secondResult.success).toBe(true);
+
+    const dirtyFiles = new Set(ic.getChangedFiles());
+    expect(dirtyFiles.has(join(tempDir, 'CounterViewModel.ts'))).toBe(true);
+    expect(dirtyFiles.has(join(tempDir, 'LoginViewModel.ts'))).toBe(true);
+
+    const secondSchema = secondResult.units.find((u) => u.schema)?.schema;
+    expect(secondSchema).toBeDefined();
+    expect(secondSchema!.moduleUri).toBe('SecondApp.ViewModels');
+    expect(secondSchema!.moduleVersion).toEqual({ major: 2, minor: 5 });
+  });
+
+  test('IC-10: changing v1Compat invalidates V2 compilation units', () => {
+    const ic = createIncrementalCompiler();
+    const v2Options: CompilerOptions = {
+      ...options,
+      runtime: 'v2',
+      moduleConfig: { prefix: 'CompatApp', version: { major: 1, minor: 0 } },
+      v1Compat: false,
+    };
+
+    const firstResult = ic.compile(v2Options);
+    expect(firstResult.success).toBe(true);
+
+    const secondResult = ic.compile({ ...v2Options, v1Compat: true });
+    expect(secondResult.success).toBe(true);
+
+    const dirtyFiles = new Set(ic.getChangedFiles());
+    expect(dirtyFiles.has(join(tempDir, 'CounterView.ts'))).toBe(true);
+    expect(dirtyFiles.has(join(tempDir, 'CounterViewModel.ts'))).toBe(true);
+    expect(dirtyFiles.has(join(tempDir, 'LoginView.ts'))).toBe(true);
+    expect(dirtyFiles.has(join(tempDir, 'LoginViewModel.ts'))).toBe(true);
+  });
 });

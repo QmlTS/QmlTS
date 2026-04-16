@@ -10,6 +10,7 @@ export type {
   CompilationResult,
   CompilationStats,
   CompilationUnit,
+  CompilerModuleConfig,
   CompilerOptions,
   CompilerSourceMap,
   CompilerSourceMapEntry,

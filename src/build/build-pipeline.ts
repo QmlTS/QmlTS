@@ -130,6 +130,11 @@ function phaseCompileTs(ctx: PhaseContext): Promise<{ diagnostics: readonly Diag
     diagnostics: compilerOpts.diagnostics,
     codegen:
       compilerOpts.codegen ?? (ctx.config.build.sourceMaps ? { sourceMap: true } : undefined),
+    runtime: ctx.config.runtime,
+    moduleConfig: ctx.config.module
+      ? { prefix: ctx.config.module.prefix, version: ctx.config.module.version }
+      : undefined,
+    v1Compat: ctx.config.v1Compat,
   });
 
   const filteredResult = filterCompilationResult(result, ctx.config, ctx.options.files);
@@ -411,6 +416,13 @@ function toHostPrepSchema(
     content: {
       className: schema.className,
       version: schema.version,
+      ...(schema.moduleUri ? { moduleUri: schema.moduleUri } : {}),
+      ...(schema.moduleVersion
+        ? {
+            moduleVersion: { major: schema.moduleVersion.major, minor: schema.moduleVersion.minor },
+          }
+        : {}),
+      ...(schema.compilerSlotKey ? { compilerSlotKey: schema.compilerSlotKey } : {}),
       states: schema.states.map((state) => ({
         name: state.name,
         qmlName: state.qmlName,

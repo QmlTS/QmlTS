@@ -3,6 +3,7 @@ import { resolve } from 'node:path';
 import type { ViewModelSchema } from '../../viewmodel/schema.js';
 import type { Diagnostic } from '../diagnostics.js';
 import { createIdAllocator } from '../ids/id-allocator.js';
+import type { SchemaGenerationContext } from '../viewmodel/extractor-types.js';
 import { createViewModelExtractor } from '../viewmodel/viewmodel-extractor.js';
 import type { ProjectCompileContext } from './compiler.js';
 import { compileProjectCore, createProjectContext } from './compiler.js';
@@ -23,6 +24,7 @@ export function createIncrementalCompiler(): IncrementalCompiler {
   let totalLookups = 0;
   let totalHits = 0;
   let lastDirtySet = new Set<string>();
+  let lastCompilerContractSignature: string | undefined;
 
   function getChangedFiles(): readonly string[] {
     return [...lastDirtySet];
@@ -69,6 +71,7 @@ export function createIncrementalCompiler(): IncrementalCompiler {
     totalLookups = 0;
     totalHits = 0;
     lastDirtySet = new Set();
+    lastCompilerContractSignature = undefined;
   }
 
   function getCacheStats(): {
@@ -95,6 +98,11 @@ export function createIncrementalCompiler(): IncrementalCompiler {
     const extractor = createViewModelExtractor();
     const vmFilesToCheck = new Set<string>();
     const project = ctx.project;
+    const currentCompilerContractSignature = buildCompilerContractSignature(ctx.options);
+    const compilerContractChanged =
+      lastCompilerContractSignature !== undefined &&
+      lastCompilerContractSignature !== currentCompilerContractSignature;
+    lastCompilerContractSignature = currentCompilerContractSignature;
 
     for (const file of project) {
       const absPath = resolve(file.filePath);
@@ -102,6 +110,13 @@ export function createIncrementalCompiler(): IncrementalCompiler {
 
       const cached = cache.get(absPath);
       if (!cached) {
+        dirty.add(absPath);
+        continue;
+      }
+
+      // Runtime/module/v1Compat switches invalidate schema-bearing files because
+      // generated schemas and unit metadata depend on this compiler contract.
+      if (compilerContractChanged && (file.views.length > 0 || file.viewModels.length > 0)) {
         dirty.add(absPath);
         continue;
       }
@@ -138,12 +153,16 @@ export function createIncrementalCompiler(): IncrementalCompiler {
       if (!sf) continue;
 
       const idAllocator = createIdAllocator();
+      const v2Ctx: SchemaGenerationContext | undefined =
+        ctx.options.runtime === 'v2'
+          ? { runtime: 'v2', moduleConfig: ctx.options.moduleConfig }
+          : undefined;
       const nextSchemas: ViewModelSchema[] = [];
       for (const discoveredVm of discoveredFile.viewModels) {
         const classDecl = sf.getClass(discoveredVm.className);
         if (!classDecl) continue;
         const vm = extractor.extract(classDecl);
-        nextSchemas.push(extractor.generateSchema(vm, idAllocator));
+        nextSchemas.push(extractor.generateSchema(vm, idAllocator, v2Ctx));
       }
 
       const nextSchemaHash = hashContent(JSON.stringify(nextSchemas));
@@ -283,6 +302,22 @@ export function createIncrementalCompiler(): IncrementalCompiler {
     getCacheStats,
     compile: incrementalCompile,
   };
+}
+
+function buildCompilerContractSignature(options: CompilerOptions): string {
+  return JSON.stringify({
+    runtime: options.runtime ?? 'v1',
+    v1Compat: options.v1Compat ?? false,
+    moduleConfig: options.moduleConfig
+      ? {
+          prefix: options.moduleConfig.prefix,
+          version: {
+            major: options.moduleConfig.version.major,
+            minor: options.moduleConfig.version.minor,
+          },
+        }
+      : null,
+  });
 }
 
 function buildEmptyIncrementalResult(
