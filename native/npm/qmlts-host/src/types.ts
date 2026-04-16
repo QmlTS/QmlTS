@@ -542,3 +542,29 @@ export declare function hideErrorOverlay(engine: QmltsEngine): void;
  * @returns `true` if the overlay is visible.
  */
 export declare function isErrorOverlayVisible(engine: QmltsEngine): boolean;
+
+// ────────────────────────────────────────────────────────────────────────────
+// §10 V2 Instance Runtime (future native API)
+//
+// V2 native functions are NOT declared here as required exports because
+// the Rust host does not implement them yet. Adding them as `declare function`
+// would make `typeof import('./types')` require them, breaking module loading
+// when the native binary does not provide them.
+//
+// The authoritative V2 native function signatures live in:
+//   V2NativeBindings interface in ./v2-types.ts
+//
+// At runtime, V2 functions are accessed via:
+//   v2Native: Partial<V2NativeBindings> (exported from ./index.ts)
+//
+// V2 native functions (to be implemented in Rust host):
+//   registerModule(engine, moduleUri, versionMajor, versionMinor, typeNames[])
+//   syncStateV2(engine, instanceId, propName, valueJson)
+//   syncStateBatchV2(engine, instanceId, propertiesJson)
+//   emitEffectV2(engine, instanceId, effectName, payloadJson?)
+//   instanceReady(engine, instanceId)
+//   registerInstanceCreatedHandler(engine, callback)
+//   registerInstanceDestroyingHandler(engine, callback)
+//   registerPropertyChangedHandler(engine, callback)
+//   registerCommandDispatcherV2(engine, callback)
+// ────────────────────────────────────────────────────────────────────────────

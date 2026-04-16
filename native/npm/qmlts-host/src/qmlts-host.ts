@@ -57,7 +57,18 @@ import {
 	isErrorOverlayVisible,
 	version,
 	qtVersion,
+	v2Native,
 } from './index';
+import {
+	type InstanceCreatedCallback,
+	type InstanceDestroyingCallback,
+	type InstanceId,
+	type ModuleRegistration,
+	type PropertyChangedCallback,
+	type V2CommandDispatcher,
+	type V2NativeBindings,
+	supportsV2NativeBindings,
+} from './v2-types';
 
 export class QmltsHost {
 	private engine: QmltsEngine | null;
@@ -598,8 +609,276 @@ export class QmltsHost {
 	}
 
 	// ────────────────────────────────────────────────────────────────────
+	//  §10 V2 Instance Runtime
+	// ────────────────────────────────────────────────────────────────────
+
+	/**
+	 * Check whether the native host supports all required V2 APIs.
+	 *
+	 * Returns `true` only if every core V2 native method is present.
+	 * This is an all-or-nothing check — partial V2 support returns `false`.
+	 */
+	supportsV2(): boolean {
+		return supportsV2NativeBindings(v2Native);
+	}
+
+	/**
+	 * Register ViewModel types as a QML module.
+	 *
+	 * Must be called before `loadFile()` / `loadString()`.
+	 *
+	 * @param registration - Module descriptor with URI, version, and type names.
+	 * @throws Error if V2 native API is not available.
+	 */
+	registerModule(registration: ModuleRegistration): void {
+		const eng = this.requireEngine();
+		const fn = this.getV2Fn('registerModule');
+		fn(
+			eng,
+			registration.moduleUri,
+			registration.versionMajor,
+			registration.versionMinor,
+			[...registration.typeNames],
+		);
+	}
+
+	/**
+	 * Sync a single property to a specific QObject instance (V2).
+	 *
+	 * @param instanceId - Target instance ID.
+	 * @param propName - Property name.
+	 * @param value - Value to serialize and set.
+	 * @throws Error if V2 native API is not available.
+	 */
+	syncStateForInstance(
+		instanceId: InstanceId,
+		propName: string,
+		value: unknown,
+	): void {
+		const eng = this.requireEngine();
+		const fn = this.getV2Fn('syncStateV2');
+		fn(
+			eng,
+			instanceId,
+			propName,
+			this.serializeJson(
+				value,
+				`QmltsHost.syncStateForInstance(${instanceId}.${propName})`,
+			),
+		);
+	}
+
+	/**
+	 * Batch-sync properties to a specific QObject instance (V2).
+	 *
+	 * @param instanceId - Target instance ID.
+	 * @param properties - Property name → value map.
+	 * @throws Error if V2 native API is not available.
+	 */
+	syncStateBatchForInstance(
+		instanceId: InstanceId,
+		properties: Record<string, unknown>,
+	): void {
+		const eng = this.requireEngine();
+		const fn = this.getV2Fn('syncStateBatchV2');
+		fn(
+			eng,
+			instanceId,
+			this.serializeJson(
+				properties,
+				`QmltsHost.syncStateBatchForInstance(${instanceId})`,
+			),
+		);
+	}
+
+	/**
+	 * Emit an effect signal on a specific QObject instance (V2).
+	 *
+	 * @param instanceId - Target instance ID.
+	 * @param effectName - Effect name from the schema.
+	 * @param payload - Optional payload (single value, JSON-serialized).
+	 * @throws Error if V2 native API is not available.
+	 */
+	emitEffectForInstance(
+		instanceId: InstanceId,
+		effectName: string,
+		payload?: unknown,
+	): void {
+		const eng = this.requireEngine();
+		const fn = this.getV2Fn('emitEffectV2');
+		fn(
+			eng,
+			instanceId,
+			effectName,
+			payload !== undefined
+				? this.serializeJson(
+						payload,
+						`QmltsHost.emitEffectForInstance(${instanceId}.${effectName})`,
+					)
+				: undefined,
+		);
+	}
+
+	/**
+	 * Confirm TS-side initialization is complete for an instance (V2).
+	 *
+	 * After calling this, the native host flushes queued commands and
+	 * property-change notifications for this instance.
+	 *
+	 * @param instanceId - Instance whose initialization is complete.
+	 * @throws Error if V2 native API is not available.
+	 */
+	instanceReady(instanceId: InstanceId): void {
+		const eng = this.requireEngine();
+		const fn = this.getV2Fn('instanceReady');
+		fn(eng, instanceId);
+	}
+
+	/**
+	 * Register a callback for V2 instance-created events.
+	 *
+	 * The callback receives an `InstanceCreatedEvent` object.
+	 * Raw native positional args are wrapped internally.
+	 *
+	 * @param callback - Handler receiving event-object payload.
+	 * @throws Error if V2 native API is not available.
+	 */
+	registerInstanceCreatedHandler(callback: InstanceCreatedCallback): void {
+		const eng = this.requireEngine();
+		const fn = this.getV2Fn('registerInstanceCreatedHandler');
+		fn(eng, (error, className, instanceId) => {
+			if (error) {
+				console.error(
+					'QmltsHost instance-created handler received error:',
+					error,
+				);
+				return;
+			}
+			try {
+				callback({ instanceId, className });
+			} catch (err) {
+				console.error('QmltsHost instance-created handler threw:', err);
+			}
+		});
+	}
+
+	/**
+	 * Register a callback for V2 instance-destroying events.
+	 *
+	 * @param callback - Handler receiving event-object payload.
+	 * @throws Error if V2 native API is not available.
+	 */
+	registerInstanceDestroyingHandler(
+		callback: InstanceDestroyingCallback,
+	): void {
+		const eng = this.requireEngine();
+		const fn = this.getV2Fn('registerInstanceDestroyingHandler');
+		fn(eng, (error, instanceId) => {
+			if (error) {
+				console.error(
+					'QmltsHost instance-destroying handler received error:',
+					error,
+				);
+				return;
+			}
+			try {
+				callback({ instanceId });
+			} catch (err) {
+				console.error(
+					'QmltsHost instance-destroying handler threw:',
+					err,
+				);
+			}
+		});
+	}
+
+	/**
+	 * Register a callback for V2 property-changed events (QML → TS).
+	 *
+	 * The callback receives a `PropertyChangedEvent` with the value
+	 * already parsed from JSON.
+	 *
+	 * @param callback - Handler receiving event-object payload.
+	 * @throws Error if V2 native API is not available.
+	 */
+	registerPropertyChangedHandler(callback: PropertyChangedCallback): void {
+		const eng = this.requireEngine();
+		const fn = this.getV2Fn('registerPropertyChangedHandler');
+		fn(eng, (error, instanceId, propName, valueJson) => {
+			if (error) {
+				console.error(
+					'QmltsHost property-changed handler received error:',
+					error,
+				);
+				return;
+			}
+			try {
+				callback({
+					instanceId,
+					propName,
+					value: JSON.parse(valueJson),
+				});
+			} catch (err) {
+				console.error(
+					'QmltsHost property-changed handler threw:',
+					err,
+				);
+			}
+		});
+	}
+
+	/**
+	 * Register a V2 per-instance command dispatcher.
+	 *
+	 * The dispatcher receives a `V2CommandPayload` with args already
+	 * parsed from JSON.
+	 *
+	 * @param dispatcher - Handler receiving parsed command payload.
+	 * @throws Error if V2 native API is not available.
+	 */
+	registerCommandDispatcherV2(dispatcher: V2CommandDispatcher): void {
+		const eng = this.requireEngine();
+		const fn = this.getV2Fn('registerCommandDispatcherV2');
+		fn(eng, (error, instanceId, vmClass, commandName, argsJson) => {
+			if (error) {
+				console.error(
+					'QmltsHost V2 command dispatcher received error:',
+					error,
+				);
+				return;
+			}
+			try {
+				dispatcher({
+					instanceId,
+					vmClass,
+					commandName,
+					args: JSON.parse(argsJson),
+				});
+			} catch (err) {
+				console.error('QmltsHost V2 command dispatcher threw:', err);
+			}
+		});
+	}
+
+	// ────────────────────────────────────────────────────────────────────
 	//  Internal
 	// ────────────────────────────────────────────────────────────────────
+
+	/**
+	 * Get a V2 native function, throwing if not available.
+	 * @internal
+	 */
+	private getV2Fn<K extends keyof V2NativeBindings>(
+		name: K,
+	): V2NativeBindings[K] {
+		const fn = v2Native[name];
+		if (typeof fn !== 'function') {
+			throw new Error(
+				`V2 native host API '${name}' is not available in this native build`,
+			);
+		}
+		return fn as V2NativeBindings[K];
+	}
 
 	private requireEngine(): QmltsEngine {
 		if (this.engine === null) {

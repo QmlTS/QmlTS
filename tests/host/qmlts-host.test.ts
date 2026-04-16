@@ -454,6 +454,100 @@ describe.skipIf(!isNativeModuleAvailable)('host/qmlts-host', () => {
       host.dispose();
     }
   });
+  // ─────────────────────────────────────────────────────────────────────
+  //  V2 Host Contract (integration — requires native module)
+  // ─────────────────────────────────────────────────────────────────────
+
+  test('TH-41: supportsV2() returns false (native V2 not implemented)', () => {
+    const host = new QmltsHost();
+    try {
+      expect(host.supportsV2()).toBe(false);
+    } finally {
+      host.dispose();
+    }
+  });
+
+  test('TH-42: registerModule throws clear unsupported error', () => {
+    const host = new QmltsHost();
+    try {
+      expect(() =>
+        host.registerModule({
+          moduleUri: 'Test.Module',
+          versionMajor: 1,
+          versionMinor: 0,
+          typeNames: ['TestVM'],
+        }),
+      ).toThrow(/V2 native host API 'registerModule' is not available/);
+    } finally {
+      host.dispose();
+    }
+  });
+
+  test('TH-43: syncStateForInstance throws clear unsupported error', () => {
+    const host = new QmltsHost();
+    try {
+      expect(() => host.syncStateForInstance(1, 'prop', 'val')).toThrow(
+        /V2 native host API 'syncStateV2' is not available/,
+      );
+    } finally {
+      host.dispose();
+    }
+  });
+
+  test('TH-44: instanceReady throws clear unsupported error', () => {
+    const host = new QmltsHost();
+    try {
+      expect(() => host.instanceReady(1)).toThrow(
+        /V2 native host API 'instanceReady' is not available/,
+      );
+    } finally {
+      host.dispose();
+    }
+  });
+
+  test('TH-45: emitEffectForInstance throws clear unsupported error', () => {
+    const host = new QmltsHost();
+    try {
+      expect(() => host.emitEffectForInstance(1, 'onDone')).toThrow(
+        /V2 native host API 'emitEffectV2' is not available/,
+      );
+    } finally {
+      host.dispose();
+    }
+  });
+
+  test('TH-46: registerInstanceCreatedHandler throws clear unsupported error', () => {
+    const host = new QmltsHost();
+    try {
+      expect(() => host.registerInstanceCreatedHandler(() => {})).toThrow(
+        /V2 native host API 'registerInstanceCreatedHandler' is not available/,
+      );
+    } finally {
+      host.dispose();
+    }
+  });
+
+  test('TH-47: registerCommandDispatcherV2 throws clear unsupported error', () => {
+    const host = new QmltsHost();
+    try {
+      expect(() => host.registerCommandDispatcherV2(() => {})).toThrow(
+        /V2 native host API 'registerCommandDispatcherV2' is not available/,
+      );
+    } finally {
+      host.dispose();
+    }
+  });
+
+  test('TH-48: V1 APIs still work unchanged after V2 additions', () => {
+    const host = new QmltsHost();
+    try {
+      host.registerViewModel('LoginViewModel');
+      expect(host.registeredTypes).toContain('LoginViewModel');
+      expect(host.hasBridgeType('LoginViewModel')).toBe(true);
+    } finally {
+      host.dispose();
+    }
+  });
 });
 
 describe('host/qmlts-host (skip check)', () => {

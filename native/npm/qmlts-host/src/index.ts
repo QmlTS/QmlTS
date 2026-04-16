@@ -149,6 +149,20 @@ export const {
 // Export types
 export type { QmltsEngine, EngineConfig } from './types';
 
+// V2 native bindings — optional feature-detection accessor.
+// V2 functions are undefined until the Rust host implements them.
+import type { V2NativeBindings } from './v2-types';
+
+/**
+ * V2 native bindings accessor.
+ *
+ * Provides typed access to optional V2 native functions. Each property
+ * is `undefined` if the current native build does not support it.
+ * Use `QmltsHost.supportsV2()` to check all-or-nothing availability.
+ */
+export const v2Native: Partial<V2NativeBindings> =
+	nativeModule as unknown as Partial<V2NativeBindings>;
+
 // Export high-level classes
 export { QmltsHost } from './qmlts-host';
 export { ViewModelManager } from './viewmodel-manager';
@@ -159,4 +173,26 @@ export type {
 	CommandHandler,
 	LifecycleHandler,
 } from './viewmodel-manager';
-export type { HotReloadOptions, HotReloadEvent } from './dev-server';
+export type {
+	HotReloadOptions,
+	HotReloadEvent,
+	DevServerOptions,
+} from './dev-server';
+
+// V2 types
+export type {
+	InstanceId,
+	ModuleRegistration,
+	InstanceCreatedEvent,
+	InstanceDestroyingEvent,
+	PropertyChangedEvent,
+	InstanceCreatedCallback,
+	InstanceDestroyingCallback,
+	PropertyChangedCallback,
+	V2CommandPayload,
+	V2CommandDispatcher,
+	InstanceStateSnapshot,
+	ViewModelClassRegistration,
+	V2NativeBindings,
+} from './v2-types';
+export { V2_REQUIRED_METHODS, supportsV2NativeBindings } from './v2-types';

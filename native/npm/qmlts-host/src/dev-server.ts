@@ -30,6 +30,7 @@ import { join } from 'node:path';
 
 import type { QmltsHost } from './qmlts-host';
 import type { ViewModelManager } from './viewmodel-manager';
+import type { InstanceId } from './v2-types';
 
 /**
  * Hot reload configuration options.
@@ -53,6 +54,12 @@ export type HotReloadEvent =
 	| 'reload-complete'
 	| 'reload-error';
 
+/** DevServer construction options. */
+export interface DevServerOptions {
+	/** Runtime mode. Defaults to 'v1'. */
+	runtimeMode?: 'v1' | 'v2';
+}
+
 type EventHandler = (...args: unknown[]) => void;
 type SnapshotPayload = Record<string, unknown>;
 
@@ -64,16 +71,24 @@ export class DevServer {
 	private debounceTimer: ReturnType<typeof setTimeout> | null = null;
 	private eventHandlers: Map<HotReloadEvent, Set<EventHandler>> = new Map();
 	private lastWatchedSource: string | null = null;
+	private _runtimeMode: 'v1' | 'v2';
+	private _targetInstance: string | InstanceId | null = null;
 
 	/**
 	 * Create a new DevServer instance.
 	 *
 	 * @param host - The QmltsHost engine wrapper.
 	 * @param vmManager - The ViewModelManager for state rehydration.
+	 * @param options - Optional configuration including V2 runtime mode.
 	 */
-	constructor(host: QmltsHost, vmManager: ViewModelManager) {
+	constructor(
+		host: QmltsHost,
+		vmManager: ViewModelManager,
+		options?: DevServerOptions,
+	) {
 		this.host = host;
 		this.vmManager = vmManager;
+		this._runtimeMode = options?.runtimeMode ?? 'v1';
 	}
 
 	/**
@@ -81,6 +96,37 @@ export class DevServer {
 	 */
 	get isRunning(): boolean {
 		return this.running;
+	}
+
+	/**
+	 * The runtime mode this DevServer is configured for.
+	 */
+	get runtimeMode(): 'v1' | 'v2' {
+		return this._runtimeMode;
+	}
+
+	/**
+	 * The currently targeted instance for REPL/debugging.
+	 * `null` means no specific target (default behavior).
+	 */
+	get targetInstance(): string | InstanceId | null {
+		return this._targetInstance;
+	}
+
+	/**
+	 * Set the target instance for REPL/debugging operations.
+	 *
+	 * In V2 mode, this selects which instance receives targeted
+	 * operations. Accepts a compilerSlotKey string, a numeric
+	 * instanceId, or `null` to clear.
+	 *
+	 * The target is stored for future use — V2 multi-instance hot
+	 * reload behavior is not implemented in this step.
+	 *
+	 * @param selector - Instance selector, or `null` to clear.
+	 */
+	setTargetInstance(selector: string | InstanceId | null): void {
+		this._targetInstance = selector;
 	}
 
 	/**
