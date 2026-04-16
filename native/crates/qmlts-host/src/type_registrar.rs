@@ -92,18 +92,16 @@ impl TypeRegistrar {
             let descriptor = descriptors
                 .iter()
                 .find(|d| d.class_name == type_name)
-                .ok_or_else(|| {
-                    QmltsError::V2TypeRegistrationFailed {
-                        type_name: type_name.clone(),
-                        reason: format!(
-                            "Unknown V2 type. Available types: {}",
-                            descriptors
-                                .iter()
-                                .map(|d| d.class_name)
-                                .collect::<Vec<_>>()
-                                .join(", ")
-                        ),
-                    }
+                .ok_or_else(|| QmltsError::V2TypeRegistrationFailed {
+                    type_name: type_name.clone(),
+                    reason: format!(
+                        "Unknown V2 type. Available types: {}",
+                        descriptors
+                            .iter()
+                            .map(|d| d.class_name)
+                            .collect::<Vec<_>>()
+                            .join(", ")
+                    ),
                 })?;
 
             let qml_name = type_name.as_str();
@@ -224,7 +222,12 @@ mod tests {
     /// Static counter for idempotent test (fn pointer can't capture).
     static IDEMPOTENT_CALL_COUNT: AtomicI32 = AtomicI32::new(0);
 
-    fn idempotent_register(_uri: &str, _maj: i32, _min: i32, _name: &str) -> std::result::Result<i32, String> {
+    fn idempotent_register(
+        _uri: &str,
+        _maj: i32,
+        _min: i32,
+        _name: &str,
+    ) -> std::result::Result<i32, String> {
         IDEMPOTENT_CALL_COUNT.fetch_add(1, Ordering::SeqCst);
         Ok(1)
     }
@@ -283,10 +286,12 @@ mod tests {
             &descriptors,
         );
         assert!(result.is_err());
-        assert!(result
-            .unwrap_err()
-            .to_string()
-            .contains("after QML loading"));
+        assert!(
+            result
+                .unwrap_err()
+                .to_string()
+                .contains("after QML loading")
+        );
     }
 
     #[test]

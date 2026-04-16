@@ -109,11 +109,7 @@ pub fn route_v2_event(owner_id: usize, event: V2Event) {
     if let Some(router) = router {
         router(event);
     } else {
-        tracing::warn!(
-            owner_id,
-            ?event,
-            "V2 event dropped: no router for owner_id"
-        );
+        tracing::warn!(owner_id, ?event, "V2 event dropped: no router for owner_id");
     }
 }
 
@@ -123,10 +119,7 @@ pub fn route_v2_event(owner_id: usize, event: V2Event) {
 ///
 /// Panics if the internal mutex is poisoned.
 pub fn clear_all_v2_routers() {
-    V2_ROUTERS
-        .lock()
-        .expect("V2_ROUTERS lock poisoned")
-        .clear();
+    V2_ROUTERS.lock().expect("V2_ROUTERS lock poisoned").clear();
 }
 
 /// Check whether any V2 router is currently registered.

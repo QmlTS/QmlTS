@@ -399,8 +399,7 @@ fn register_search_v2(
 ) -> std::result::Result<i32, String> {
     let c_uri = std::ffi::CString::new(uri).map_err(|e| e.to_string())?;
     let c_name = std::ffi::CString::new(qml_name).map_err(|e| e.to_string())?;
-    let result =
-        unsafe { qmlts_register_search_v2(c_uri.as_ptr(), major, minor, c_name.as_ptr()) };
+    let result = unsafe { qmlts_register_search_v2(c_uri.as_ptr(), major, minor, c_name.as_ptr()) };
     if result >= 0 {
         Ok(result)
     } else {

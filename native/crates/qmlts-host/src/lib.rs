@@ -47,11 +47,11 @@ pub mod v2_runtime;
 pub use bridge_registry::BridgeRegistry;
 pub use engine::QmltsEngine;
 pub use error::QmltsError;
+#[cfg(feature = "napi")]
+pub use exports::*;
 pub use instance_registry::InstanceRegistry;
 pub use type_registrar::TypeRegistrar;
 pub use v2_runtime::{V2EngineState, V2Handlers};
-#[cfg(feature = "napi")]
-pub use exports::*;
 
 /// Public test helpers for integration tests that need to read Qt properties.
 ///
@@ -60,10 +60,10 @@ pub use exports::*;
 /// It is NOT part of the public API and only exists for test support.
 pub mod qt_context_test {
     pub use crate::qt_context::{
-        capture_snapshot, create_list_model, destroy_list_model, emit_signal, list_get_row,
-        list_insert_rows, list_move_rows, list_remove_rows, list_row_count, list_set_data,
-        list_update_row, read_bool_property, read_double_property, read_int_property,
-        read_string_property, reload_qml, restore_snapshot, v2_connect_destroy_handler,
-        v2_set_suppress, SuppressGuard,
+        SuppressGuard, capture_snapshot, create_list_model, destroy_list_model, emit_signal,
+        list_get_row, list_insert_rows, list_move_rows, list_remove_rows, list_row_count,
+        list_set_data, list_update_row, read_bool_property, read_double_property,
+        read_int_property, read_string_property, reload_qml, restore_snapshot,
+        v2_connect_destroy_handler, v2_set_suppress,
     };
 }

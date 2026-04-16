@@ -63,11 +63,7 @@ impl InstanceRegistry {
     /// # Errors
     ///
     /// Returns error if `next_id` would overflow `u32::MAX`.
-    pub fn allocate_instance(
-        &mut self,
-        class_name: &str,
-        qobject_ptr: *mut c_void,
-    ) -> Result<u32> {
+    pub fn allocate_instance(&mut self, class_name: &str, qobject_ptr: *mut c_void) -> Result<u32> {
         let id = self.next_id;
         self.next_id = self.next_id.checked_add(1).ok_or_else(|| {
             QmltsError::Internal(
@@ -352,8 +348,8 @@ mod tests {
         reg.remove_instance(id);
         assert!(!reg.contains(id));
         assert!(reg.mark_ready(id).is_err());
-        assert!(reg
-            .enqueue_event(
+        assert!(
+            reg.enqueue_event(
                 id,
                 V2Event::Command {
                     instance_id: id,
@@ -362,6 +358,7 @@ mod tests {
                     args_json: "[]".into(),
                 },
             )
-            .is_err());
+            .is_err()
+        );
     }
 }

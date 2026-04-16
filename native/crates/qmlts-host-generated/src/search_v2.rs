@@ -28,11 +28,7 @@ pub mod qobject {
     unsafe extern "RustQt" {
         /// Effect signal: searchCompleted(query: QString, resultCount: i32)
         #[qsignal]
-        fn search_completed(
-            self: Pin<&mut SearchViewModelV2>,
-            query: QString,
-            result_count: i32,
-        );
+        fn search_completed(self: Pin<&mut SearchViewModelV2>, query: QString, result_count: i32);
     }
 }
 
@@ -61,15 +57,15 @@ impl Default for SearchViewModelV2Rust {
 impl cxx_qt::Initialize for qobject::SearchViewModelV2 {
     fn initialize(mut self: Pin<&mut Self>) {
         if let Some(ctx) = v2_dispatch::take_v2_init_context() {
-            let ptr = std::ptr::from_ref(self.as_ref().get_ref()).cast_mut().cast::<std::ffi::c_void>();
+            let ptr = std::ptr::from_ref(self.as_ref().get_ref())
+                .cast_mut()
+                .cast::<std::ffi::c_void>();
             let instance_id = (ctx.register_instance)("SearchViewModel", ptr);
             self.as_mut().set_instance_id(instance_id);
             #[allow(clippy::cast_possible_truncation, clippy::cast_possible_wrap)]
             self.as_mut().set_owner_id(ctx.owner_id as i32);
         } else {
-            tracing::warn!(
-                "SearchViewModelV2 created without V2InitContext — instance is inert"
-            );
+            tracing::warn!("SearchViewModelV2 created without V2InitContext — instance is inert");
         }
     }
 }

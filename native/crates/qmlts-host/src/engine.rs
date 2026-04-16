@@ -17,8 +17,8 @@ use qmlts_host_generated::{BridgeInstance, ViewModelSchema};
 use std::path::Path;
 #[cfg(not(feature = "mock-qt"))]
 use std::ptr;
-use std::sync::atomic::{AtomicBool, AtomicUsize, Ordering};
 use std::sync::Arc;
+use std::sync::atomic::{AtomicBool, AtomicUsize, Ordering};
 
 /// Global flag to track if QGuiApplication has been initialized.
 /// Qt requires exactly one QGuiApplication per process.
@@ -1164,12 +1164,7 @@ impl QmltsEngine {
     /// # Panics
     ///
     /// Panics if the instance registry mutex is poisoned.
-    pub fn sync_state_v2(
-        &self,
-        instance_id: u32,
-        prop_name: &str,
-        value_json: &str,
-    ) -> Result<()> {
+    pub fn sync_state_v2(&self, instance_id: u32, prop_name: &str, value_json: &str) -> Result<()> {
         let state = self.require_v2()?;
         let reg = state.registry.lock().expect("registry lock poisoned");
         let ptr = reg
@@ -1318,7 +1313,8 @@ impl QmltsEngine {
             Some(serde_json::to_string(&effect.parameters).unwrap_or_default())
         };
 
-        let ok = qt_context::emit_signal(ptr, &effect.qml_name, payload_json, param_types.as_deref());
+        let ok =
+            qt_context::emit_signal(ptr, &effect.qml_name, payload_json, param_types.as_deref());
         if ok {
             Ok(())
         } else {
@@ -1449,9 +1445,7 @@ impl QmltsEngine {
     ///
     /// The guard sets thread-local V2InitContext for the duration of QML loading
     /// so V2 QObjects can register themselves during construction.
-    fn create_v2_context_guard(
-        &self,
-    ) -> Option<qmlts_host_generated::v2_dispatch::V2ContextGuard> {
+    fn create_v2_context_guard(&self) -> Option<qmlts_host_generated::v2_dispatch::V2ContextGuard> {
         let state = self.v2_state.as_ref()?;
         let registry = Arc::clone(&state.registry);
         let owner_id = self.dispatch_owner_id;
@@ -2367,8 +2361,7 @@ mod tests {
         let _guard = TEST_MUTEX.lock().unwrap();
         reset_app_initialized();
         let engine = QmltsEngine::new(None).unwrap();
-        let result =
-            engine.register_instance_created_handler(Box::new(|_class, _id| {}));
+        let result = engine.register_instance_created_handler(Box::new(|_class, _id| {}));
         assert!(matches!(result, Err(QmltsError::V2NotEnabled)));
     }
 

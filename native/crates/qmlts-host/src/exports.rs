@@ -1037,23 +1037,22 @@ pub fn register_instance_destroying_handler(
 #[napi(js_name = "registerPropertyChangedHandler")]
 pub fn register_property_changed_handler(
     engine: &QmltsEngine,
-    #[napi(ts_arg_type = "(error: Error | null, instanceId: number, propName: string, valueJson: string) => void")]
+    #[napi(
+        ts_arg_type = "(error: Error | null, instanceId: number, propName: string, valueJson: string) => void"
+    )]
     callback: napi::JsFunction,
 ) -> Result<()> {
     use napi::threadsafe_function::{ErrorStrategy, ThreadSafeCallContext, ThreadsafeFunction};
 
     let tsfn: ThreadsafeFunction<(u32, String, String), ErrorStrategy::CalleeHandled> = callback
-        .create_threadsafe_function(
-            0,
-            |ctx: ThreadSafeCallContext<(u32, String, String)>| {
-                let (instance_id, prop_name, value_json) = ctx.value;
-                Ok(vec![
-                    ctx.env.create_uint32(instance_id)?.into_unknown(),
-                    ctx.env.create_string_from_std(prop_name)?.into_unknown(),
-                    ctx.env.create_string_from_std(value_json)?.into_unknown(),
-                ])
-            },
-        )?;
+        .create_threadsafe_function(0, |ctx: ThreadSafeCallContext<(u32, String, String)>| {
+            let (instance_id, prop_name, value_json) = ctx.value;
+            Ok(vec![
+                ctx.env.create_uint32(instance_id)?.into_unknown(),
+                ctx.env.create_string_from_std(prop_name)?.into_unknown(),
+                ctx.env.create_string_from_std(value_json)?.into_unknown(),
+            ])
+        })?;
 
     let handler = Box::new(move |instance_id: u32, prop_name: &str, value_json: &str| {
         tsfn.call(
@@ -1075,7 +1074,9 @@ pub fn register_property_changed_handler(
 #[napi(js_name = "registerCommandDispatcherV2")]
 pub fn register_command_dispatcher_v2(
     engine: &QmltsEngine,
-    #[napi(ts_arg_type = "(error: Error | null, instanceId: number, vmClass: string, commandName: string, argsJson: string) => void")]
+    #[napi(
+        ts_arg_type = "(error: Error | null, instanceId: number, vmClass: string, commandName: string, argsJson: string) => void"
+    )]
     callback: napi::JsFunction,
 ) -> Result<()> {
     use napi::threadsafe_function::{ErrorStrategy, ThreadSafeCallContext, ThreadsafeFunction};
@@ -1088,9 +1089,7 @@ pub fn register_command_dispatcher_v2(
                 Ok(vec![
                     ctx.env.create_uint32(instance_id)?.into_unknown(),
                     ctx.env.create_string_from_std(vm_class)?.into_unknown(),
-                    ctx.env
-                        .create_string_from_std(command_name)?
-                        .into_unknown(),
+                    ctx.env.create_string_from_std(command_name)?.into_unknown(),
                     ctx.env.create_string_from_std(args_json)?.into_unknown(),
                 ])
             },

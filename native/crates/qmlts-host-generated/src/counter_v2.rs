@@ -39,15 +39,15 @@ impl Default for CounterViewModelV2Rust {
 impl cxx_qt::Initialize for qobject::CounterViewModelV2 {
     fn initialize(mut self: Pin<&mut Self>) {
         if let Some(ctx) = v2_dispatch::take_v2_init_context() {
-            let ptr = std::ptr::from_ref(self.as_ref().get_ref()).cast_mut().cast::<std::ffi::c_void>();
+            let ptr = std::ptr::from_ref(self.as_ref().get_ref())
+                .cast_mut()
+                .cast::<std::ffi::c_void>();
             let instance_id = (ctx.register_instance)("CounterViewModel", ptr);
             self.as_mut().set_instance_id(instance_id);
             #[allow(clippy::cast_possible_truncation, clippy::cast_possible_wrap)]
             self.as_mut().set_owner_id(ctx.owner_id as i32);
         } else {
-            tracing::warn!(
-                "CounterViewModelV2 created without V2InitContext — instance is inert"
-            );
+            tracing::warn!("CounterViewModelV2 created without V2InitContext — instance is inert");
         }
     }
 }

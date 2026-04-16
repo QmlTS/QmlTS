@@ -240,10 +240,9 @@ mod tests {
         let called = Arc::new(AtomicU32::new(0));
         let called2 = called.clone();
 
-        *handlers.instance_created.lock().unwrap() =
-            Some(Box::new(move |_class, id| {
-                called2.store(id, Ordering::SeqCst);
-            }));
+        *handlers.instance_created.lock().unwrap() = Some(Box::new(move |_class, id| {
+            called2.store(id, Ordering::SeqCst);
+        }));
 
         let router = create_v2_router(registry, handlers);
         router(V2Event::InstanceCreated {
@@ -265,10 +264,9 @@ mod tests {
         let called = Arc::new(AtomicU32::new(0));
         let called2 = called.clone();
 
-        *handlers.command_dispatcher.lock().unwrap() =
-            Some(Box::new(move |iid, _, _, _| {
-                called2.store(iid, Ordering::SeqCst);
-            }));
+        *handlers.command_dispatcher.lock().unwrap() = Some(Box::new(move |iid, _, _, _| {
+            called2.store(iid, Ordering::SeqCst);
+        }));
 
         let router = create_v2_router(registry.clone(), handlers);
         router(V2Event::Command {
@@ -299,10 +297,9 @@ mod tests {
         let called = Arc::new(AtomicU32::new(0));
         let called2 = called.clone();
 
-        *handlers.command_dispatcher.lock().unwrap() =
-            Some(Box::new(move |iid, _, _, _| {
-                called2.store(iid, Ordering::SeqCst);
-            }));
+        *handlers.command_dispatcher.lock().unwrap() = Some(Box::new(move |iid, _, _, _| {
+            called2.store(iid, Ordering::SeqCst);
+        }));
 
         let router = create_v2_router(registry, handlers);
         router(V2Event::Command {
@@ -326,10 +323,9 @@ mod tests {
         let called = Arc::new(AtomicU32::new(0));
         let called2 = called.clone();
 
-        *handlers.instance_destroying.lock().unwrap() =
-            Some(Box::new(move |iid| {
-                called2.store(iid, Ordering::SeqCst);
-            }));
+        *handlers.instance_destroying.lock().unwrap() = Some(Box::new(move |iid| {
+            called2.store(iid, Ordering::SeqCst);
+        }));
 
         let router = create_v2_router(registry.clone(), handlers);
         router(V2Event::InstanceDestroying {
@@ -346,10 +342,9 @@ mod tests {
         let called = Arc::new(AtomicU32::new(0));
         let called2 = called.clone();
 
-        *handlers.property_changed.lock().unwrap() =
-            Some(Box::new(move |iid, _, _| {
-                called2.store(iid, Ordering::SeqCst);
-            }));
+        *handlers.property_changed.lock().unwrap() = Some(Box::new(move |iid, _, _| {
+            called2.store(iid, Ordering::SeqCst);
+        }));
 
         deliver_event(
             &handlers,
@@ -368,10 +363,9 @@ mod tests {
         let called = Arc::new(AtomicU32::new(0));
         let called2 = called.clone();
 
-        *handlers.lifecycle_handler.lock().unwrap() =
-            Some(Box::new(move |iid, _, _| {
-                called2.store(iid, Ordering::SeqCst);
-            }));
+        *handlers.lifecycle_handler.lock().unwrap() = Some(Box::new(move |iid, _, _| {
+            called2.store(iid, Ordering::SeqCst);
+        }));
 
         deliver_event(
             &handlers,

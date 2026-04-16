@@ -96,7 +96,6 @@ pub enum QmltsError {
     OverlayFailed(String),
 
     // ── V2 runtime errors ──────────────────────────────────────────
-
     /// V2 runtime is not enabled on this engine.
     #[error("V2 runtime not enabled")]
     V2NotEnabled,
