@@ -18,4 +18,12 @@ fn main() {
             cc.file("cpp/factories_v2.cpp");
         })
         .build();
+
+    // Repeat Qt libraries after the generated static archive. Linux linkers
+    // resolve static archive references left-to-right; the V2 factories call
+    // qmlRegisterType<T>(), so QtQml symbols must also appear after that
+    // archive when tests link this crate directly.
+    println!("cargo:rustc-link-lib=Qt6Qml");
+    println!("cargo:rustc-link-lib=Qt6Network");
+    println!("cargo:rustc-link-lib=Qt6Core");
 }
