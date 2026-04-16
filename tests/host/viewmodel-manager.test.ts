@@ -330,6 +330,15 @@ describe.skipIf(!isNativeModuleAvailable)('host/viewmodel-manager', () => {
   test('TV-15: V2 registerClass works with real native host', () => {
     const host = new QmltsHost();
     try {
+      if (host.supportsV2()) {
+        host.registerModule({
+          moduleUri: 'QmlTS.Manager',
+          versionMajor: 1,
+          versionMinor: 0,
+          typeNames: ['LoginViewModel'],
+        });
+      }
+
       const manager = new ViewModelManager(host);
 
       const testSchema = {
@@ -375,9 +384,19 @@ describe.skipIf(!isNativeModuleAvailable)('host/viewmodel-manager', () => {
     }
   });
 
-  test('TV-18: handleInstanceCreated fails fast when native V2 sync is absent', () => {
+  test('TV-18: handleInstanceCreated rolls back when native V2 instance is unknown', () => {
     const host = new QmltsHost();
     try {
+      const hasNativeV2 = host.supportsV2();
+      if (hasNativeV2) {
+        host.registerModule({
+          moduleUri: 'QmlTS.RoundTrip',
+          versionMajor: 1,
+          versionMinor: 0,
+          typeNames: ['LoginViewModel'],
+        });
+      }
+
       const manager = new ViewModelManager(host);
       const testSchema = {
         className: 'RoundTripVM',
@@ -399,7 +418,11 @@ describe.skipIf(!isNativeModuleAvailable)('host/viewmodel-manager', () => {
           className: 'RoundTripVM',
           compilerSlotKey: 'TestView::__qmlts_vm0',
         }),
-      ).toThrow(/V2 native host API 'syncStateBatchV2' is not available/);
+      ).toThrow(
+        hasNativeV2
+          ? /V2 instance not found|instance.*not found/i
+          : /V2 native host API 'syncStateBatchV2' is not available/,
+      );
 
       expect(manager.getInstance(7)).toBeUndefined();
       expect(manager.getInstanceSlots()).toEqual([]);
