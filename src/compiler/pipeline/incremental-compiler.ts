@@ -24,7 +24,7 @@ export function createIncrementalCompiler(): IncrementalCompiler {
   let totalLookups = 0;
   let totalHits = 0;
   let lastDirtySet = new Set<string>();
-  let lastRuntimeMode: 'v1' | 'v2' | undefined;
+  let lastCompilerContractSignature: string | undefined;
 
   function getChangedFiles(): readonly string[] {
     return [...lastDirtySet];
@@ -71,7 +71,7 @@ export function createIncrementalCompiler(): IncrementalCompiler {
     totalLookups = 0;
     totalHits = 0;
     lastDirtySet = new Set();
-    lastRuntimeMode = undefined;
+    lastCompilerContractSignature = undefined;
   }
 
   function getCacheStats(): {
@@ -98,9 +98,11 @@ export function createIncrementalCompiler(): IncrementalCompiler {
     const extractor = createViewModelExtractor();
     const vmFilesToCheck = new Set<string>();
     const project = ctx.project;
-    const currentRuntime = ctx.options.runtime ?? 'v1';
-    const runtimeChanged = lastRuntimeMode !== undefined && lastRuntimeMode !== currentRuntime;
-    lastRuntimeMode = currentRuntime;
+    const currentCompilerContractSignature = buildCompilerContractSignature(ctx.options);
+    const compilerContractChanged =
+      lastCompilerContractSignature !== undefined &&
+      lastCompilerContractSignature !== currentCompilerContractSignature;
+    lastCompilerContractSignature = currentCompilerContractSignature;
 
     for (const file of project) {
       const absPath = resolve(file.filePath);
@@ -112,8 +114,9 @@ export function createIncrementalCompiler(): IncrementalCompiler {
         continue;
       }
 
-      // Runtime mode switch invalidates all files with views or viewmodels
-      if (runtimeChanged && (file.views.length > 0 || file.viewModels.length > 0)) {
+      // Runtime/module/v1Compat switches invalidate schema-bearing files because
+      // generated schemas and unit metadata depend on this compiler contract.
+      if (compilerContractChanged && (file.views.length > 0 || file.viewModels.length > 0)) {
         dirty.add(absPath);
         continue;
       }
@@ -299,6 +302,22 @@ export function createIncrementalCompiler(): IncrementalCompiler {
     getCacheStats,
     compile: incrementalCompile,
   };
+}
+
+function buildCompilerContractSignature(options: CompilerOptions): string {
+  return JSON.stringify({
+    runtime: options.runtime ?? 'v1',
+    v1Compat: options.v1Compat ?? false,
+    moduleConfig: options.moduleConfig
+      ? {
+          prefix: options.moduleConfig.prefix,
+          version: {
+            major: options.moduleConfig.version.major,
+            minor: options.moduleConfig.version.minor,
+          },
+        }
+      : null,
+  });
 }
 
 function buildEmptyIncrementalResult(

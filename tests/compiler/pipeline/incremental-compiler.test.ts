@@ -217,4 +217,57 @@ describe('IncrementalCompiler', () => {
     expect(v1Schema!.version).toBe(1);
     expect(v1Schema!.moduleUri).toBeUndefined();
   });
+
+  test('IC-09: changing V2 module config regenerates schema metadata', () => {
+    const ic = createIncrementalCompiler();
+
+    const firstResult = ic.compile({
+      ...options,
+      runtime: 'v2',
+      moduleConfig: { prefix: 'FirstApp', version: { major: 1, minor: 0 } },
+    });
+    expect(firstResult.success).toBe(true);
+    const firstSchema = firstResult.units.find((u) => u.schema)?.schema;
+    expect(firstSchema).toBeDefined();
+    expect(firstSchema!.moduleUri).toBe('FirstApp.ViewModels');
+    expect(firstSchema!.moduleVersion).toEqual({ major: 1, minor: 0 });
+
+    const secondResult = ic.compile({
+      ...options,
+      runtime: 'v2',
+      moduleConfig: { prefix: 'SecondApp', version: { major: 2, minor: 5 } },
+    });
+    expect(secondResult.success).toBe(true);
+
+    const dirtyFiles = new Set(ic.getChangedFiles());
+    expect(dirtyFiles.has(join(tempDir, 'CounterViewModel.ts'))).toBe(true);
+    expect(dirtyFiles.has(join(tempDir, 'LoginViewModel.ts'))).toBe(true);
+
+    const secondSchema = secondResult.units.find((u) => u.schema)?.schema;
+    expect(secondSchema).toBeDefined();
+    expect(secondSchema!.moduleUri).toBe('SecondApp.ViewModels');
+    expect(secondSchema!.moduleVersion).toEqual({ major: 2, minor: 5 });
+  });
+
+  test('IC-10: changing v1Compat invalidates V2 compilation units', () => {
+    const ic = createIncrementalCompiler();
+    const v2Options: CompilerOptions = {
+      ...options,
+      runtime: 'v2',
+      moduleConfig: { prefix: 'CompatApp', version: { major: 1, minor: 0 } },
+      v1Compat: false,
+    };
+
+    const firstResult = ic.compile(v2Options);
+    expect(firstResult.success).toBe(true);
+
+    const secondResult = ic.compile({ ...v2Options, v1Compat: true });
+    expect(secondResult.success).toBe(true);
+
+    const dirtyFiles = new Set(ic.getChangedFiles());
+    expect(dirtyFiles.has(join(tempDir, 'CounterView.ts'))).toBe(true);
+    expect(dirtyFiles.has(join(tempDir, 'CounterViewModel.ts'))).toBe(true);
+    expect(dirtyFiles.has(join(tempDir, 'LoginView.ts'))).toBe(true);
+    expect(dirtyFiles.has(join(tempDir, 'LoginViewModel.ts'))).toBe(true);
+  });
 });

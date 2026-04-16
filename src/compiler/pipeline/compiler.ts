@@ -131,12 +131,9 @@ export function compileProjectCore(
         reporter.report(d);
       }
 
-      const expectedVersion = options.runtime === 'v2' ? 2 : 1;
       const cachedSchema = isDirty
         ? undefined
-        : cached?.schemas.find(
-            (s) => s.className === vm.className && s.version === expectedVersion,
-          );
+        : cached?.schemas.find((s) => schemaMatchesCompilerOptions(s, vm.className, options));
 
       const v2Context: SchemaGenerationContext | undefined =
         options.runtime === 'v2'
@@ -587,6 +584,37 @@ function buildDslFactoryNameSet(imports: readonly DiscoveredImport[]): ReadonlyS
     }
   }
   return names;
+}
+
+function schemaMatchesCompilerOptions(
+  schema: ViewModelSchema,
+  className: string,
+  options: CompilerOptions,
+): boolean {
+  if (schema.className !== className) return false;
+
+  const expectedVersion = options.runtime === 'v2' ? 2 : 1;
+  if (schema.version !== expectedVersion) return false;
+
+  if (options.runtime !== 'v2') return true;
+
+  const expectedModuleUri = options.moduleConfig
+    ? `${options.moduleConfig.prefix}.ViewModels`
+    : undefined;
+  const expectedModuleVersion = options.moduleConfig?.version;
+
+  return (
+    schema.moduleUri === expectedModuleUri &&
+    moduleVersionsEqual(schema.moduleVersion, expectedModuleVersion)
+  );
+}
+
+function moduleVersionsEqual(
+  a: { readonly major: number; readonly minor: number } | undefined,
+  b: { readonly major: number; readonly minor: number } | undefined,
+): boolean {
+  if (!a || !b) return a === b;
+  return a.major === b.major && a.minor === b.minor;
 }
 
 function computeOutputPath(

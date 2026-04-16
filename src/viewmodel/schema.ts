@@ -54,8 +54,10 @@ export interface ViewModelSchema {
 /**
  * V2: Per-instance ViewModel slot metadata.
  *
- * Describes a single ViewModel instance declaration within a View.
- * Multiple VMs per view produce multiple slots (e.g. __qmlts_vm0, __qmlts_vm1).
+ * Describes the ViewModel instance slot declaration within a View.
+ * Current compiler behavior supports a single generated slot per view,
+ * typically using qmlId `__qmlts_vm0`; the array-shaped IR leaves room for
+ * later multi-ViewModel support.
  * The compilerSlotKey on this type is the stable V2 identity contract.
  */
 export interface ViewModelInstanceSlot {

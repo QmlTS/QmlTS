@@ -16,7 +16,7 @@ export interface CompilerOptions {
   readonly qt?: QtValidationOptions;
   /** V2: Target runtime architecture version. */
   readonly runtime?: 'v1' | 'v2';
-  /** V2: Module config (required when runtime is "v2"). */
+  /** V2: Optional module config used to populate module metadata in runtime "v2". */
   readonly moduleConfig?: CompilerModuleConfig;
   /** V2: Enable V1 compatibility shim (only valid with runtime "v2"). */
   readonly v1Compat?: boolean;
