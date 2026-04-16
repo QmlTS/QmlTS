@@ -211,4 +211,64 @@ describe('loadConfig', () => {
       rmSync(tempDir, { recursive: true, force: true });
     }
   });
+
+  test('BC-47: loads V2 rollout fields from a real config file', async () => {
+    const tempDir = mkdtempSync(join(tmpdir(), 'qmlts-build-v2-config-'));
+    const configPath = join(tempDir, 'qmlts.config.ts');
+    const entryPath = join(tempDir, 'src', 'main.ts');
+
+    try {
+      mkdirSync(join(tempDir, 'src'), { recursive: true });
+      writeFileSync(entryPath, 'export const app = true;\n', 'utf8');
+      writeFileSync(
+        configPath,
+        [
+          'export default {',
+          "  entry: './src/main.ts',",
+          "  outDir: './dist',",
+          "  runtime: 'v2',",
+          '  v1Compat: true,',
+          "  module: { prefix: 'Com.Example.App', version: { major: 1, minor: 2 } },",
+          '};',
+        ].join('\n'),
+        'utf8',
+      );
+
+      const resolved = await loadConfig(configPath);
+
+      expect(resolved.entry).toBe(entryPath);
+      expect(resolved.outDir).toBe(join(tempDir, 'dist'));
+      expect(resolved.runtime).toBe('v2');
+      expect(resolved.v1Compat).toBe(true);
+      expect(resolved.module).toEqual({
+        prefix: 'Com.Example.App',
+        version: { major: 1, minor: 2 },
+      });
+    } finally {
+      rmSync(tempDir, { recursive: true, force: true });
+    }
+  });
+
+  test('BC-48: rejects runtime v2 config files without module config', async () => {
+    const tempDir = mkdtempSync(join(tmpdir(), 'qmlts-build-v2-missing-module-'));
+    const configPath = join(tempDir, 'qmlts.config.ts');
+
+    try {
+      mkdirSync(join(tempDir, 'src'), { recursive: true });
+      writeFileSync(join(tempDir, 'src', 'main.ts'), 'export const app = true;\n', 'utf8');
+      writeFileSync(
+        configPath,
+        ['export default {', "  entry: './src/main.ts',", "  runtime: 'v2',", '};'].join('\n'),
+        'utf8',
+      );
+
+      await loadConfig(configPath);
+      expect.unreachable('should have thrown');
+    } catch (e) {
+      expect(e).toBeInstanceOf(ConfigError);
+      expect((e as ConfigError).field).toBe('module');
+    } finally {
+      rmSync(tempDir, { recursive: true, force: true });
+    }
+  });
 });
