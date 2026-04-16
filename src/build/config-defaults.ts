@@ -10,6 +10,7 @@ import type {
   ResolvedHostConfig,
   ResolvedQmltsConfig,
   ResolvedQtConfig,
+  RuntimeVersion,
 } from './config-types.js';
 
 export const DEFAULT_ENTRY = './src/main.ts';
@@ -22,6 +23,8 @@ export const DEFAULT_DEBOUNCE_MS = 200;
 export const DEFAULT_ASSETS_DIR = './assets';
 export const DEFAULT_WATCH_PATHS: readonly string[] = ['./src'];
 export const DEFAULT_ASSETS_INCLUDE: readonly string[] = ['**/*'];
+export const DEFAULT_RUNTIME: RuntimeVersion = 'v1';
+export const DEFAULT_V1_COMPAT = false;
 
 export function applyDefaults(config: QmltsConfig, configDir: string): ResolvedQmltsConfig {
   return {
@@ -35,6 +38,9 @@ export function applyDefaults(config: QmltsConfig, configDir: string): ResolvedQ
     distribute: resolveDistribute(config.distribute),
     qmlModulePaths: config.qmlModulePaths ?? [],
     configDir,
+    runtime: config.runtime ?? DEFAULT_RUNTIME,
+    v1Compat: config.v1Compat ?? DEFAULT_V1_COMPAT,
+    module: config.module,
   };
 }
 

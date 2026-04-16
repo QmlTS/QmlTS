@@ -120,4 +120,41 @@ describe('applyDefaults', () => {
     expect(resolved.host.cargo.profile).toBe('dev');
     expect(resolved.host.cargo.args).toEqual([]);
   });
+
+  // ─── V2 defaults ─────────────────────────────────────────
+
+  test('BC-63: runtime defaults to v1', () => {
+    const resolved = applyDefaults({}, configDir);
+    expect(resolved.runtime).toBe('v1');
+  });
+
+  test('BC-64: v1Compat defaults to false', () => {
+    const resolved = applyDefaults({}, configDir);
+    expect(resolved.v1Compat).toBe(false);
+  });
+
+  test('BC-65: module defaults to undefined', () => {
+    const resolved = applyDefaults({}, configDir);
+    expect(resolved.module).toBeUndefined();
+  });
+
+  test('BC-66: user runtime value is preserved', () => {
+    const config: QmltsConfig = {
+      runtime: 'v2',
+      module: { prefix: 'MyApp', version: { major: 1, minor: 0 } },
+    };
+    const resolved = applyDefaults(config, configDir);
+    expect(resolved.runtime).toBe('v2');
+    expect(resolved.module).toEqual({ prefix: 'MyApp', version: { major: 1, minor: 0 } });
+  });
+
+  test('BC-67: user v1Compat value is preserved', () => {
+    const config: QmltsConfig = {
+      runtime: 'v2',
+      v1Compat: true,
+      module: { prefix: 'MyApp', version: { major: 1, minor: 0 } },
+    };
+    const resolved = applyDefaults(config, configDir);
+    expect(resolved.v1Compat).toBe(true);
+  });
 });

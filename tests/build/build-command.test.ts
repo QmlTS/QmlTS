@@ -1,5 +1,5 @@
 import { afterEach, beforeEach, describe, expect, test } from 'bun:test';
-import { existsSync, mkdirSync, rmSync, writeFileSync } from 'node:fs';
+import { existsSync, mkdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { join, resolve } from 'node:path';
 import { executeBuild } from '../../src/build/build-command.js';
 
@@ -27,7 +27,7 @@ afterEach(() => {
 
 let configCounter = 0;
 
-function writeConfig(outDir: string): string {
+function writeConfig(outDir: string, extraFields = ''): string {
   configCounter++;
   const configPath = join(TMP_DIR, `qmlts.config.${configCounter}.ts`);
   const defineConfigPath = resolve(__dirname, '../../src/build/define-config.ts').replace(
@@ -39,6 +39,7 @@ import { defineConfig } from '${defineConfigPath}';
 export default defineConfig({
   entry: '${join(FIXTURES_DIR, 'src', 'CounterView.ts').replace(/\\/g, '/')}',
   outDir: '${outDir.replace(/\\/g, '/')}',
+${extraFields}
   qt: {
     targetVersion: '6.11.0',
     modules: ['QtQuick'],
@@ -140,5 +141,26 @@ describe('executeBuild', () => {
     const parsed = JSON.parse(serialized);
     expect(parsed.success).toBe(true);
     expect(parsed.outputDir).toBe(resolve(outDir));
+  });
+
+  test('BP-41: V2 rollout config reaches build without changing generated output shape', async () => {
+    const outDir = join(TMP_DIR, 'dist-v2-config');
+    const configPath = writeConfig(
+      outDir,
+      [
+        "  runtime: 'v2',",
+        '  v1Compat: true,',
+        "  module: { prefix: 'MyApp', version: { major: 1, minor: 0 } },",
+      ].join('\n'),
+    );
+
+    const result = await executeBuild({ config: configPath });
+
+    expect(result.success).toBe(true);
+    expect(result.outputDir).toBe(resolve(outDir));
+
+    const entryContent = readFileSync(join(outDir, 'CounterView.ts'), 'utf-8');
+    expect(entryContent).toContain('host.registerViewModel("CounterViewModel")');
+    expect(entryContent).not.toContain('host.registerModule');
   });
 });

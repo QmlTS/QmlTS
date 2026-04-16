@@ -114,7 +114,9 @@ export {
   DEFAULT_ENTRY,
   DEFAULT_OUT_DIR,
   DEFAULT_QUALITY_GATE,
+  DEFAULT_RUNTIME,
   DEFAULT_TARGET_VERSION,
+  DEFAULT_V1_COMPAT,
   DEFAULT_WATCH_PATHS,
 } from './config-defaults.js';
 export { ConfigError } from './config-error.js';
@@ -126,6 +128,8 @@ export type {
   DevConfig,
   DistributeConfig,
   HostConfig,
+  ModuleConfig,
+  ModuleVersion,
   PlatformTarget,
   QmltsConfig,
   QtConfig,
@@ -137,6 +141,7 @@ export type {
   ResolvedHostConfig,
   ResolvedQmltsConfig,
   ResolvedQtConfig,
+  RuntimeVersion,
 } from './config-types.js';
 export { validateConfig } from './config-validator.js';
 export { defineConfig } from './define-config.js';

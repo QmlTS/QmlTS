@@ -280,4 +280,155 @@ describe('validateConfig', () => {
       expect(err.field).toBe('foo');
     }
   });
+
+  // ─── V2 config fields ────────────────────────────────────
+
+  test('BC-50: accepts runtime "v1"', () => {
+    const config: QmltsConfig = { runtime: 'v1' };
+    expect(() => validateConfig(config)).not.toThrow();
+  });
+
+  test('BC-51: accepts runtime "v2" with module', () => {
+    const config: QmltsConfig = {
+      runtime: 'v2',
+      module: { prefix: 'MyApp', version: { major: 1, minor: 0 } },
+    };
+    expect(() => validateConfig(config)).not.toThrow();
+  });
+
+  test('BC-52: rejects invalid runtime value', () => {
+    const config = { runtime: 'v3' } as unknown as QmltsConfig;
+    expect(() => validateConfig(config)).toThrow(ConfigError);
+    try {
+      validateConfig(config);
+    } catch (e) {
+      expect((e as ConfigError).field).toBe('runtime');
+    }
+  });
+
+  test('BC-53: rejects non-string runtime', () => {
+    const config = { runtime: 2 } as unknown as QmltsConfig;
+    expect(() => validateConfig(config)).toThrow(ConfigError);
+    try {
+      validateConfig(config);
+    } catch (e) {
+      expect((e as ConfigError).field).toBe('runtime');
+    }
+  });
+
+  test('BC-54: rejects v1Compat without runtime v2', () => {
+    const config: QmltsConfig = { v1Compat: true };
+    expect(() => validateConfig(config)).toThrow(ConfigError);
+    try {
+      validateConfig(config);
+    } catch (e) {
+      expect((e as ConfigError).field).toBe('v1Compat');
+    }
+  });
+
+  test('BC-55: rejects v1Compat with runtime v1', () => {
+    const config: QmltsConfig = { runtime: 'v1', v1Compat: true };
+    expect(() => validateConfig(config)).toThrow(ConfigError);
+    try {
+      validateConfig(config);
+    } catch (e) {
+      expect((e as ConfigError).field).toBe('v1Compat');
+    }
+  });
+
+  test('BC-56: accepts v1Compat with runtime v2', () => {
+    const config: QmltsConfig = {
+      runtime: 'v2',
+      v1Compat: true,
+      module: { prefix: 'MyApp', version: { major: 1, minor: 0 } },
+    };
+    expect(() => validateConfig(config)).not.toThrow();
+  });
+
+  test('BC-57: rejects non-boolean v1Compat', () => {
+    const config = { v1Compat: 'yes' } as unknown as QmltsConfig;
+    expect(() => validateConfig(config)).toThrow(ConfigError);
+    try {
+      validateConfig(config);
+    } catch (e) {
+      expect((e as ConfigError).field).toBe('v1Compat');
+    }
+  });
+
+  test('BC-58: rejects runtime v2 without module', () => {
+    const config: QmltsConfig = { runtime: 'v2' };
+    expect(() => validateConfig(config)).toThrow(ConfigError);
+    try {
+      validateConfig(config);
+    } catch (e) {
+      expect((e as ConfigError).field).toBe('module');
+    }
+  });
+
+  test('BC-59: rejects invalid module.prefix', () => {
+    const config: QmltsConfig = {
+      runtime: 'v2',
+      module: { prefix: '123Bad', version: { major: 1, minor: 0 } },
+    };
+    expect(() => validateConfig(config)).toThrow(ConfigError);
+    try {
+      validateConfig(config);
+    } catch (e) {
+      expect((e as ConfigError).field).toBe('module.prefix');
+    }
+  });
+
+  test('BC-60: rejects non-integer module.version.major', () => {
+    const config: QmltsConfig = {
+      runtime: 'v2',
+      module: { prefix: 'MyApp', version: { major: 1.5, minor: 0 } },
+    };
+    expect(() => validateConfig(config)).toThrow(ConfigError);
+    try {
+      validateConfig(config);
+    } catch (e) {
+      expect((e as ConfigError).field).toBe('module.version.major');
+    }
+  });
+
+  test('BC-61: rejects negative module.version.minor', () => {
+    const config: QmltsConfig = {
+      runtime: 'v2',
+      module: { prefix: 'MyApp', version: { major: 1, minor: -1 } },
+    };
+    expect(() => validateConfig(config)).toThrow(ConfigError);
+    try {
+      validateConfig(config);
+    } catch (e) {
+      expect((e as ConfigError).field).toBe('module.version.minor');
+    }
+  });
+
+  test('BC-62: accepts module with runtime v1 (inert)', () => {
+    const config: QmltsConfig = {
+      runtime: 'v1',
+      module: { prefix: 'MyApp', version: { major: 1, minor: 0 } },
+    };
+    expect(() => validateConfig(config)).not.toThrow();
+  });
+
+  test('BC-62a: accepts dotted module prefix', () => {
+    const config: QmltsConfig = {
+      runtime: 'v2',
+      module: { prefix: 'Com.Example.App', version: { major: 2, minor: 3 } },
+    };
+    expect(() => validateConfig(config)).not.toThrow();
+  });
+
+  test('BC-62b: accepts valid complete V2 config', () => {
+    const config: QmltsConfig = {
+      entry: './src/main.ts',
+      outDir: './dist',
+      runtime: 'v2',
+      v1Compat: true,
+      module: { prefix: 'MyApp', version: { major: 1, minor: 0 } },
+      qt: { modules: ['QtQuick'] },
+    };
+    expect(() => validateConfig(config)).not.toThrow();
+  });
 });
