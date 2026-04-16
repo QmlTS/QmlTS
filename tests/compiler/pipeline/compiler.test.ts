@@ -376,4 +376,95 @@ describe('Compiler Pipeline', () => {
       expect(result.diagnostics.filter((d) => d.severity === 'error')).toHaveLength(0);
     });
   });
+
+  describe('V2 schema/IR metadata', () => {
+    test('CP-13: V1 mode — no V2 metadata on CompilationUnit', () => {
+      const unit = compileSource(VIEW_WITH_VM_SOURCE, { runtime: 'v1' });
+      expect(unit.compilerSlotKey).toBeUndefined();
+      expect(unit.moduleUri).toBeUndefined();
+      expect(unit.viewModelNames).toBeUndefined();
+      expect(unit.viewModelSlots).toBeUndefined();
+      expect(unit.moduleImports).toBeUndefined();
+      expect(unit.schema).toBeDefined();
+      expect(unit.schema!.version).toBe(1);
+    });
+
+    test('CP-14: default (no runtime) — same as V1, no V2 metadata', () => {
+      const unit = compileSource(VIEW_WITH_VM_SOURCE);
+      expect(unit.compilerSlotKey).toBeUndefined();
+      expect(unit.viewModelSlots).toBeUndefined();
+      expect(unit.schema!.version).toBe(1);
+    });
+
+    test('CP-15: V2 mode — CompilationUnit has viewModelSlots with stable compilerSlotKey', () => {
+      const unit = compileSource(VIEW_WITH_VM_SOURCE, {
+        runtime: 'v2',
+        moduleConfig: { prefix: 'MyApp', version: { major: 1, minor: 0 } },
+      });
+
+      expect(unit.schema).toBeDefined();
+      expect(unit.schema!.version).toBe(2);
+      expect(unit.schema!.moduleUri).toBe('MyApp.ViewModels');
+      expect(unit.schema!.moduleVersion).toEqual({ major: 1, minor: 0 });
+
+      expect(unit.viewModelSlots).toBeDefined();
+      expect(unit.viewModelSlots).toHaveLength(1);
+      const slot = unit.viewModelSlots![0]!;
+      expect(slot.viewName).toBe('CounterView');
+      expect(slot.className).toBe('CounterViewModel');
+      expect(slot.qmlId).toBe('__qmlts_vm0');
+      expect(slot.compilerSlotKey).toBe('CounterView::__qmlts_vm0');
+      expect(slot.ownership).toBe('owned');
+      expect(slot.moduleUri).toBe('MyApp.ViewModels');
+      expect(slot.moduleVersion).toEqual({ major: 1, minor: 0 });
+
+      expect(unit.compilerSlotKey).toBe('CounterView::__qmlts_vm0');
+      expect(unit.moduleUri).toBe('MyApp.ViewModels');
+      expect(unit.viewModelNames).toEqual(['CounterViewModel']);
+    });
+
+    test('CP-16: V2 mode — moduleImports populated from schema', () => {
+      const unit = compileSource(VIEW_WITH_VM_SOURCE, {
+        runtime: 'v2',
+        moduleConfig: { prefix: 'TestApp', version: { major: 2, minor: 1 } },
+      });
+
+      expect(unit.moduleImports).toBeDefined();
+      expect(unit.moduleImports).toHaveLength(1);
+      expect(unit.moduleImports![0]!.moduleUri).toBe('TestApp.ViewModels');
+      expect(unit.moduleImports![0]!.version).toBe('2.1');
+    });
+
+    test('CP-17: V2 mode — QML output is still V1-shaped (unchanged)', () => {
+      const v1Unit = compileSource(VIEW_WITH_VM_SOURCE);
+      const v2Unit = compileSource(VIEW_WITH_VM_SOURCE, {
+        runtime: 'v2',
+        moduleConfig: { prefix: 'MyApp', version: { major: 1, minor: 0 } },
+      });
+
+      expect(v2Unit.qmlContent).toBe(v1Unit.qmlContent);
+    });
+
+    test('CP-18: V2 mode — view without ViewModel has no slots or module metadata', () => {
+      const unit = compileSource(SIMPLE_VIEW_SOURCE, {
+        runtime: 'v2',
+        moduleConfig: { prefix: 'MyApp', version: { major: 1, minor: 0 } },
+      });
+
+      expect(unit.viewModelSlots).toBeUndefined();
+      expect(unit.compilerSlotKey).toBeUndefined();
+      expect(unit.moduleUri).toBeUndefined();
+      expect(unit.viewModelNames).toBeUndefined();
+      expect(unit.moduleImports).toBeUndefined();
+    });
+
+    test('CP-19: V2 slot parameterName matches View function parameter name', () => {
+      const unit = compileSource(VIEW_WITH_VM_SOURCE, {
+        runtime: 'v2',
+        moduleConfig: { prefix: 'MyApp', version: { major: 1, minor: 0 } },
+      });
+
+      expect(unit.viewModelSlots![0]!.parameterName).toBe('vm');
+    });
+  });
 });

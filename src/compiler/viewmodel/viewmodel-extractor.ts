@@ -13,6 +13,7 @@ import type {
   AnalyzedState,
   AnalyzedStateOptions,
   AnalyzedViewModel,
+  SchemaGenerationContext,
   ViewModelExtractor,
 } from './extractor-types.js';
 import { mapTsTypeToQml } from './ts-qml-type-map.js';
@@ -241,10 +242,25 @@ class ViewModelExtractorImpl implements ViewModelExtractor {
     };
   }
 
-  generateSchema(vm: AnalyzedViewModel, idAllocator: IdAllocator): ViewModelSchema {
+  generateSchema(
+    vm: AnalyzedViewModel,
+    idAllocator: IdAllocator,
+    context?: SchemaGenerationContext,
+  ): ViewModelSchema {
+    const isV2 = context?.runtime === 'v2';
+
     return {
       className: vm.className,
-      version: 1,
+      version: isV2 ? 2 : 1,
+      ...(isV2 && context?.moduleConfig
+        ? {
+            moduleUri: `${context.moduleConfig.prefix}.ViewModels`,
+            moduleVersion: {
+              major: context.moduleConfig.version.major,
+              minor: context.moduleConfig.version.minor,
+            },
+          }
+        : {}),
       states: vm.states.map((s) => ({
         name: s.fieldName,
         qmlName: s.qmlName,

@@ -172,4 +172,49 @@ describe('IncrementalCompiler', () => {
     expect(cached).toBeDefined();
     expect(cached!.viewName).toBe('LoginView');
   });
+
+  test('IC-07: switching runtime V1→V2 regenerates schema (no cache contamination)', () => {
+    const ic = createIncrementalCompiler();
+
+    const v1Result = ic.compile({ ...options, runtime: 'v1' });
+    expect(v1Result.success).toBe(true);
+    const v1Schema = v1Result.units.find((u) => u.schema)?.schema;
+    expect(v1Schema).toBeDefined();
+    expect(v1Schema!.version).toBe(1);
+    expect(v1Schema!.moduleUri).toBeUndefined();
+
+    const v2Result = ic.compile({
+      ...options,
+      outputDir: join(tempDir, 'dist-v2'),
+      runtime: 'v2',
+      moduleConfig: { prefix: 'TestApp', version: { major: 1, minor: 0 } },
+    });
+    expect(v2Result.success).toBe(true);
+    const v2Schema = v2Result.units.find((u) => u.schema)?.schema;
+    expect(v2Schema).toBeDefined();
+    expect(v2Schema!.version).toBe(2);
+    expect(v2Schema!.moduleUri).toBe('TestApp.ViewModels');
+  });
+
+  test('IC-08: switching runtime V2→V1 regenerates schema', () => {
+    const ic = createIncrementalCompiler();
+
+    const v2Result = ic.compile({
+      ...options,
+      runtime: 'v2',
+      moduleConfig: { prefix: 'App', version: { major: 1, minor: 0 } },
+    });
+    expect(v2Result.success).toBe(true);
+
+    const v1Result = ic.compile({
+      ...options,
+      outputDir: join(tempDir, 'dist-v1'),
+      runtime: 'v1',
+    });
+    expect(v1Result.success).toBe(true);
+    const v1Schema = v1Result.units.find((u) => u.schema)?.schema;
+    expect(v1Schema).toBeDefined();
+    expect(v1Schema!.version).toBe(1);
+    expect(v1Schema!.moduleUri).toBeUndefined();
+  });
 });

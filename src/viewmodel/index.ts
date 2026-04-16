@@ -4,6 +4,7 @@ export { getViewModelMetadata } from './metadata.js';
 export type {
   SchemaParameter,
   ViewModelCommandThrottleMode,
+  ViewModelInstanceSlot,
   ViewModelSchema,
   ViewModelSchemaCommand,
   ViewModelSchemaEffect,

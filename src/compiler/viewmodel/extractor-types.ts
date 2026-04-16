@@ -86,8 +86,21 @@ export interface AnalyzedConstructorParam {
   readonly isService: boolean;
 }
 
+/** V2 context passed to schema generation for module metadata. */
+export interface SchemaGenerationContext {
+  readonly runtime: 'v1' | 'v2';
+  readonly moduleConfig?: {
+    readonly prefix: string;
+    readonly version: { readonly major: number; readonly minor: number };
+  };
+}
+
 export interface ViewModelExtractor {
   extract(classDeclaration: ClassDeclaration): AnalyzedViewModel;
-  generateSchema(vm: AnalyzedViewModel, idAllocator: IdAllocator): ViewModelSchema;
+  generateSchema(
+    vm: AnalyzedViewModel,
+    idAllocator: IdAllocator,
+    context?: SchemaGenerationContext,
+  ): ViewModelSchema;
   validate(vm: AnalyzedViewModel): readonly Diagnostic[];
 }

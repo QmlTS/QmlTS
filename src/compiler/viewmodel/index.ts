@@ -10,6 +10,7 @@ export type {
   AnalyzedState,
   AnalyzedStateOptions,
   AnalyzedViewModel,
+  SchemaGenerationContext,
   ViewModelExtractor,
 } from './extractor-types.js';
 export { mapTsTypeToQml } from './ts-qml-type-map.js';

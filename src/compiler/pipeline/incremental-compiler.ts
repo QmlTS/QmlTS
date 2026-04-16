@@ -3,6 +3,7 @@ import { resolve } from 'node:path';
 import type { ViewModelSchema } from '../../viewmodel/schema.js';
 import type { Diagnostic } from '../diagnostics.js';
 import { createIdAllocator } from '../ids/id-allocator.js';
+import type { SchemaGenerationContext } from '../viewmodel/extractor-types.js';
 import { createViewModelExtractor } from '../viewmodel/viewmodel-extractor.js';
 import type { ProjectCompileContext } from './compiler.js';
 import { compileProjectCore, createProjectContext } from './compiler.js';
@@ -23,6 +24,7 @@ export function createIncrementalCompiler(): IncrementalCompiler {
   let totalLookups = 0;
   let totalHits = 0;
   let lastDirtySet = new Set<string>();
+  let lastRuntimeMode: 'v1' | 'v2' | undefined;
 
   function getChangedFiles(): readonly string[] {
     return [...lastDirtySet];
@@ -69,6 +71,7 @@ export function createIncrementalCompiler(): IncrementalCompiler {
     totalLookups = 0;
     totalHits = 0;
     lastDirtySet = new Set();
+    lastRuntimeMode = undefined;
   }
 
   function getCacheStats(): {
@@ -95,6 +98,9 @@ export function createIncrementalCompiler(): IncrementalCompiler {
     const extractor = createViewModelExtractor();
     const vmFilesToCheck = new Set<string>();
     const project = ctx.project;
+    const currentRuntime = ctx.options.runtime ?? 'v1';
+    const runtimeChanged = lastRuntimeMode !== undefined && lastRuntimeMode !== currentRuntime;
+    lastRuntimeMode = currentRuntime;
 
     for (const file of project) {
       const absPath = resolve(file.filePath);
@@ -102,6 +108,12 @@ export function createIncrementalCompiler(): IncrementalCompiler {
 
       const cached = cache.get(absPath);
       if (!cached) {
+        dirty.add(absPath);
+        continue;
+      }
+
+      // Runtime mode switch invalidates all files with views or viewmodels
+      if (runtimeChanged && (file.views.length > 0 || file.viewModels.length > 0)) {
         dirty.add(absPath);
         continue;
       }
@@ -138,12 +150,16 @@ export function createIncrementalCompiler(): IncrementalCompiler {
       if (!sf) continue;
 
       const idAllocator = createIdAllocator();
+      const v2Ctx: SchemaGenerationContext | undefined =
+        ctx.options.runtime === 'v2'
+          ? { runtime: 'v2', moduleConfig: ctx.options.moduleConfig }
+          : undefined;
       const nextSchemas: ViewModelSchema[] = [];
       for (const discoveredVm of discoveredFile.viewModels) {
         const classDecl = sf.getClass(discoveredVm.className);
         if (!classDecl) continue;
         const vm = extractor.extract(classDecl);
-        nextSchemas.push(extractor.generateSchema(vm, idAllocator));
+        nextSchemas.push(extractor.generateSchema(vm, idAllocator, v2Ctx));
       }
 
       const nextSchemaHash = hashContent(JSON.stringify(nextSchemas));

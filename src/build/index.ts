@@ -1,5 +1,7 @@
 // ─── Config ─────────────────────────────────────────────────
 
+export type { CompilerModuleConfig } from '../compiler/pipeline/pipeline-types.js';
+export type { SchemaGenerationContext } from '../compiler/viewmodel/extractor-types.js';
 // ─── Dev Tools ──────────────────────────────────────────────
 export type {
   BuildSuccessInfo,
@@ -52,6 +54,8 @@ export {
   createRepl,
   diagnosticsToOverlayErrors,
 } from '../dev-tools/index.js';
+// ─── V2 types re-exported for convenience ───────────────────
+export type { ViewModelInstanceSlot } from '../viewmodel/schema.js';
 export { executeBuild } from './build-command.js';
 // ─── Build Pipeline ─────────────────────────────────────────
 export { BuildError } from './build-error.js';

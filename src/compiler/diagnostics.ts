@@ -68,4 +68,11 @@ export type DiagnosticCode =
   | 'QMLTS-Q002'
   | 'QMLTS-Q003'
   // Incremental (I)
-  | 'QMLTS-I001';
+  | 'QMLTS-I001'
+  // V2 Schema/IR (V)
+  | 'QMLTS-V001'
+  | 'QMLTS-V002'
+  | 'QMLTS-V003'
+  | 'QMLTS-V004'
+  | 'QMLTS-V005'
+  | 'QMLTS-V006';

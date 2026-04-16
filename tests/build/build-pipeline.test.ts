@@ -671,4 +671,43 @@ describe('BuildPipeline', () => {
     },
     30_000,
   );
+
+  test('BP-42: V2 config threads runtime/moduleConfig — V2 schemas have version=2', async () => {
+    const config = makeConfig({
+      runtime: 'v2',
+      v1Compat: false,
+      module: { prefix: 'TestApp', version: { major: 2, minor: 1 } },
+    });
+    const pipeline = createBuildPipeline(config);
+    const result = await pipeline.run();
+
+    expect(result.success).toBe(true);
+
+    const schemaPath = join(config.outDir, 'schemas', 'CounterViewModel.schema.json');
+    expect(existsSync(schemaPath)).toBe(true);
+
+    const schema = JSON.parse(readFileSync(schemaPath, 'utf-8'));
+    expect(schema.className).toBe('CounterViewModel');
+    expect(schema.version).toBe(2);
+    expect(schema.moduleUri).toBe('TestApp.ViewModels');
+    expect(schema.moduleVersion).toEqual({ major: 2, minor: 1 });
+  });
+
+  test('BP-43: V1 config (default) produces version=1 schemas without V2 metadata', async () => {
+    const config = makeConfig();
+    const pipeline = createBuildPipeline(config);
+    const result = await pipeline.run();
+
+    expect(result.success).toBe(true);
+
+    const schemaPath = join(config.outDir, 'schemas', 'CounterViewModel.schema.json');
+    expect(existsSync(schemaPath)).toBe(true);
+
+    const schema = JSON.parse(readFileSync(schemaPath, 'utf-8'));
+    expect(schema.className).toBe('CounterViewModel');
+    expect(schema.version).toBe(1);
+    expect(schema.moduleUri).toBeUndefined();
+    expect(schema.moduleVersion).toBeUndefined();
+    expect(schema.compilerSlotKey).toBeUndefined();
+  });
 });

@@ -44,6 +44,7 @@ export type {
   CargoConfig,
   CleanCommandOptions,
   CleanResult,
+  CompilerModuleConfig,
   DevCommandResult,
   DevConfig,
   DevConsole,
@@ -137,8 +138,10 @@ export type {
   RustBridgeGenerator,
   RustBridgeOutput,
   SchemaFile,
+  SchemaGenerationContext,
   ServerStatusInfo,
   StatusChangeData,
+  ViewModelInstanceSlot,
   ViewModelSchemaJson,
 } from './build/index.js';
 // ─── Re-export Build module ─────────────────────────────────

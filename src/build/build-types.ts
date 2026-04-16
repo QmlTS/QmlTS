@@ -172,6 +172,12 @@ export interface SchemaFile {
 export interface ViewModelSchemaJson {
   readonly className: string;
   readonly version: number;
+  /** V2: QML module URI. */
+  readonly moduleUri?: string;
+  /** V2: QML module version. */
+  readonly moduleVersion?: { readonly major: number; readonly minor: number };
+  /** V2: Stable identity key for hot-reload. */
+  readonly compilerSlotKey?: string;
   readonly states: readonly {
     readonly name: string;
     readonly qmlName: string;
