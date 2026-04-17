@@ -896,7 +896,13 @@ pub fn register_module(
 ) -> Result<()> {
     engine
         .inner
-        .register_module(&module_uri, version_major, version_minor, &type_names, v1_compat)
+        .register_module(
+            &module_uri,
+            version_major,
+            version_minor,
+            &type_names,
+            v1_compat,
+        )
         .map_err(|e| -> napi::Error { e.into() })
 }
 

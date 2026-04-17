@@ -1517,21 +1517,15 @@ impl QmltsEngine {
                 match reg.allocate_instance(class_name, ptr) {
                     Ok(id) => {
                         // V1 compat: set context properties for the first instance only
-                        if v1_compat
-                            && !v1_compat_applied.load(Ordering::SeqCst)
-                        {
+                        if v1_compat && !v1_compat_applied.load(Ordering::SeqCst) {
                             let engine_ptr = engine_ptr_addr as *mut std::ffi::c_void;
                             // SAFETY: Called on Qt main thread during QML loading.
                             // engine_ptr is valid for the lifetime of the engine.
                             // ptr is the just-constructed QObject, valid for its lifetime.
                             unsafe {
-                                let vm_ok =
-                                    qt_context::set_context_property(engine_ptr, "vm", ptr);
-                                let qmlts_ok = qt_context::set_context_property(
-                                    engine_ptr,
-                                    "__qmlts",
-                                    ptr,
-                                );
+                                let vm_ok = qt_context::set_context_property(engine_ptr, "vm", ptr);
+                                let qmlts_ok =
+                                    qt_context::set_context_property(engine_ptr, "__qmlts", ptr);
                                 if vm_ok && qmlts_ok {
                                     tracing::info!(
                                         instance_id = id,
@@ -2663,7 +2657,10 @@ mod tests {
             .unwrap();
         // Creating a V2 context guard should succeed when v1_compat is enabled
         let guard = engine.create_v2_context_guard();
-        assert!(guard.is_some(), "V2 context guard should be created when v1_compat is enabled");
+        assert!(
+            guard.is_some(),
+            "V2 context guard should be created when v1_compat is enabled"
+        );
         // The v1_compat_applied flag should start as false (no instance created yet)
         let state = engine.require_v2().unwrap();
         assert!(
