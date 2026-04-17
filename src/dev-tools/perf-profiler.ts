@@ -7,6 +7,9 @@ interface MutableRecord {
   durationMs: number;
   metadata: Record<string, string | number | boolean>;
   ended: boolean;
+  instanceId?: number;
+  className?: string;
+  compilerSlotKey?: string;
 }
 
 /**
@@ -17,6 +20,19 @@ interface MutableRecord {
  */
 export function createPerfProfiler(): PerfProfiler {
   const records: MutableRecord[] = [];
+
+  function toRecord(r: MutableRecord): PerfRecord {
+    return {
+      name: r.name,
+      category: r.category,
+      startMs: r.startMs,
+      durationMs: r.durationMs,
+      ...(Object.keys(r.metadata).length > 0 && { metadata: { ...r.metadata } }),
+      ...(r.instanceId !== undefined && { instanceId: r.instanceId }),
+      ...(r.className !== undefined && { className: r.className }),
+      ...(r.compilerSlotKey !== undefined && { compilerSlotKey: r.compilerSlotKey }),
+    };
+  }
 
   return {
     startSpan(name: string, category: PerfCategory): PerfSpan {
@@ -41,22 +57,18 @@ export function createPerfProfiler(): PerfProfiler {
           if (record.ended) return;
           record.metadata[key] = value;
         },
+
+        setInstanceContext(instanceId: number, className: string, compilerSlotKey?: string): void {
+          if (record.ended) return;
+          record.instanceId = instanceId;
+          record.className = className;
+          record.compilerSlotKey = compilerSlotKey;
+        },
       };
     },
 
     getRecords(): readonly PerfRecord[] {
-      return records.map((r) => {
-        const result: PerfRecord = {
-          name: r.name,
-          category: r.category,
-          startMs: r.startMs,
-          durationMs: r.durationMs,
-        };
-        if (Object.keys(r.metadata).length > 0) {
-          return { ...result, metadata: { ...r.metadata } };
-        }
-        return result;
-      });
+      return records.map(toRecord);
     },
 
     getSummary(): PerfSummary {
@@ -86,18 +98,40 @@ export function createPerfProfiler(): PerfProfiler {
     },
 
     exportChromeTrace(): string {
-      const events = records.map((r) => ({
-        name: r.name,
-        cat: r.category,
-        ph: 'X',
-        ts: Math.round(r.startMs * 1000),
-        dur: Math.round(r.durationMs * 1000),
-        pid: 1,
-        tid: 1,
-        args: Object.keys(r.metadata).length > 0 ? { ...r.metadata } : undefined,
-      }));
+      const events = records.map((r) => {
+        const args: Record<string, string | number | boolean> = {};
+        if (Object.keys(r.metadata).length > 0) {
+          Object.assign(args, r.metadata);
+        }
+        if (r.instanceId !== undefined) args.instanceId = r.instanceId;
+        if (r.className !== undefined) args.className = r.className;
+        if (r.compilerSlotKey !== undefined) args.compilerSlotKey = r.compilerSlotKey;
+
+        return {
+          name: r.name,
+          cat: r.category,
+          ph: 'X',
+          ts: Math.round(r.startMs * 1000),
+          dur: Math.round(r.durationMs * 1000),
+          pid: 1,
+          tid: 1,
+          args: Object.keys(args).length > 0 ? args : undefined,
+        };
+      });
 
       return JSON.stringify({ traceEvents: events }, null, 2);
+    },
+
+    getRecordsByInstance(instanceId: number): readonly PerfRecord[] {
+      return records.filter((r) => r.instanceId === instanceId).map(toRecord);
+    },
+
+    getRecordsByClass(className: string): readonly PerfRecord[] {
+      return records.filter((r) => r.className === className).map(toRecord);
+    },
+
+    getRecordsBySlotKey(slotKey: string): readonly PerfRecord[] {
+      return records.filter((r) => r.compilerSlotKey === slotKey).map(toRecord);
     },
   };
 }

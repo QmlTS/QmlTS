@@ -3,6 +3,7 @@ import type { HostOverlayApi, OverlayError } from '../../src/dev-tools/dev-types
 import {
   createErrorOverlay,
   diagnosticsToOverlayErrors,
+  formatOverlayErrors,
 } from '../../src/dev-tools/error-overlay.js';
 
 // ─── Mock Host ──────────────────────────────────────────────
@@ -187,5 +188,45 @@ describe('ErrorOverlay', () => {
     expect(errors[1].line).toBe(0);
     expect(errors[1].column).toBe(0);
     expect(errors[1].severity).toBe('warning');
+  });
+});
+
+// ─── V2 Instance Context Tests ──────────────────────────────
+
+describe('ErrorOverlay V2', () => {
+  test('EO-V2-01: formatOverlayErrors includes instance context tag', () => {
+    const errors: OverlayError[] = [
+      { file: 'a.ts', line: 1, column: 1, message: 'err', severity: 'error' },
+    ];
+    const result = formatOverlayErrors(errors, { instanceId: 42, className: 'Login' });
+    expect(result).toContain('[Login#42]');
+    expect(result).toContain('err');
+  });
+
+  test('EO-V2-02: formatOverlayErrors without instance context has no tag', () => {
+    const errors: OverlayError[] = [
+      { file: 'a.ts', line: 1, column: 1, message: 'err', severity: 'error' },
+    ];
+    const result = formatOverlayErrors(errors);
+    // No instance context tag like [Login#42] should appear
+    expect(result).not.toMatch(/\[\w+#\d+\]/);
+    // Still contains the error
+    expect(result).toContain('err');
+  });
+
+  test('EO-V2-03: formatOverlayErrors with instance context and multiple errors', () => {
+    const errors: OverlayError[] = [
+      { file: 'a.ts', line: 1, column: 1, message: 'Error A', severity: 'error' },
+      { file: 'b.ts', line: 2, column: 2, message: 'Error B', severity: 'warning' },
+    ];
+    const result = formatOverlayErrors(errors, { instanceId: 7, className: 'Counter' });
+    expect(result).toContain('[Counter#7]');
+    expect(result).toContain('Error A');
+    expect(result).toContain('Error B');
+  });
+
+  test('EO-V2-04: formatOverlayErrors with empty errors and instance context', () => {
+    const result = formatOverlayErrors([], { instanceId: 1, className: 'Search' });
+    expect(result).toBe('Unknown error');
   });
 });

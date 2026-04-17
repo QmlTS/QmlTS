@@ -1486,6 +1486,184 @@ impl QmltsEngine {
         Ok(())
     }
 
+    /// Capture state of all ready V2 instances.
+    ///
+    /// Returns JSON: `{"snapshots": [...], "diagnostics": [...]}`
+    /// Each snapshot: `{"instanceId": N, "className": "...", "properties": {...}}`
+    ///
+    /// Only ready instances are captured. Unready instances produce a diagnostic.
+    ///
+    /// # Panics
+    ///
+    /// Panics if the instance registry mutex is poisoned.
+    pub fn capture_instance_states(&self) -> Result<String> {
+        let state = self.require_v2()?;
+        let reg = state.registry.lock().expect("registry lock poisoned");
+        let descriptors = qmlts_host_generated::v2_descriptors();
+
+        let mut snapshots = Vec::new();
+        let mut diagnostics = Vec::new();
+
+        for (instance_id, class_name, ptr, ready) in reg.iter_instances() {
+            if !ready {
+                diagnostics.push(serde_json::json!({
+                    "code": "HR_INSTANCE_NOT_READY",
+                    "message": format!("Instance {} ({}) not ready, skipped", instance_id, class_name),
+                    "instanceId": instance_id,
+                    "className": class_name,
+                }));
+                continue;
+            }
+
+            let desc = descriptors.iter().find(|d| d.class_name == class_name);
+            let Some(desc) = desc else {
+                diagnostics.push(serde_json::json!({
+                    "code": "HR_NO_DESCRIPTOR",
+                    "message": format!("No V2 descriptor for class '{}'", class_name),
+                    "instanceId": instance_id,
+                    "className": class_name,
+                }));
+                continue;
+            };
+
+            let prop_names: Vec<&str> =
+                desc.state_properties.iter().map(|p| p.qml_name).collect();
+            let names_json = serde_json::to_string(&prop_names)
+                .map_err(|e| QmltsError::Internal(e.to_string()))?;
+
+            let read_result = qt_context::v2_read_properties(ptr, &names_json);
+            match read_result {
+                Some(json_str) => {
+                    if let Ok(parsed) = serde_json::from_str::<serde_json::Value>(&json_str) {
+                        let props =
+                            parsed.get("props").cloned().unwrap_or(serde_json::json!({}));
+                        if let Some(read_diags) = parsed.get("diagnostics") {
+                            if let Some(arr) = read_diags.as_array() {
+                                for d in arr {
+                                    let mut diag = d.clone();
+                                    if let Some(obj) = diag.as_object_mut() {
+                                        obj.insert(
+                                            "instanceId".to_string(),
+                                            serde_json::json!(instance_id),
+                                        );
+                                        obj.insert(
+                                            "className".to_string(),
+                                            serde_json::json!(class_name),
+                                        );
+                                    }
+                                    diagnostics.push(diag);
+                                }
+                            }
+                        }
+                        snapshots.push(serde_json::json!({
+                            "instanceId": instance_id,
+                            "className": class_name,
+                            "properties": props,
+                        }));
+                    }
+                }
+                None => {
+                    diagnostics.push(serde_json::json!({
+                        "code": "HR_READ_FAILED",
+                        "message": format!("Failed to read properties for instance {}", instance_id),
+                        "instanceId": instance_id,
+                        "className": class_name,
+                    }));
+                }
+            }
+        }
+
+        let result = serde_json::json!({ "snapshots": snapshots, "diagnostics": diagnostics });
+        Ok(result.to_string())
+    }
+
+    /// Restore state to matched V2 instances.
+    ///
+    /// `matched_pairs_json`: JSON array of `{"instanceId": N, "properties": {...}}`
+    /// Returns JSON: `{"diagnostics": [...]}`
+    ///
+    /// # Panics
+    ///
+    /// Panics if the instance registry mutex is poisoned.
+    pub fn restore_instance_states(&self, matched_pairs_json: &str) -> Result<String> {
+        let state = self.require_v2()?;
+        let reg = state.registry.lock().expect("registry lock poisoned");
+        let descriptors = qmlts_host_generated::v2_descriptors();
+
+        let pairs: Vec<serde_json::Value> = serde_json::from_str(matched_pairs_json)
+            .map_err(|e| QmltsError::Internal(format!("Invalid matched pairs JSON: {e}")))?;
+
+        let mut diagnostics = Vec::new();
+
+        for pair in &pairs {
+            let instance_id = pair.get("instanceId").and_then(serde_json::Value::as_u64).and_then(|v| u32::try_from(v).ok());
+            let properties = pair.get("properties");
+
+            let Some(instance_id) = instance_id else {
+                diagnostics.push(serde_json::json!({
+                    "code": "HR_INVALID_PAIR",
+                    "message": "Restore pair missing instanceId",
+                }));
+                continue;
+            };
+
+            let Some(properties) = properties else {
+                continue;
+            };
+
+            let ptr = reg.get_qobject_ptr(instance_id);
+            let class_name = reg.get_class_name(instance_id);
+
+            let Some(ptr) = ptr else {
+                diagnostics.push(serde_json::json!({
+                    "code": "HR_INSTANCE_NOT_FOUND",
+                    "message": format!("Instance {} not found in registry", instance_id),
+                    "instanceId": instance_id,
+                }));
+                continue;
+            };
+
+            let Some(class_name) = class_name else {
+                continue;
+            };
+
+            // Validate property names against descriptor allowlist
+            let desc = descriptors.iter().find(|d| d.class_name == class_name);
+            if let Some(desc) = desc {
+                if let Some(obj) = properties.as_object() {
+                    let allowed: std::collections::HashSet<&str> =
+                        desc.state_properties.iter().map(|p| p.qml_name).collect();
+                    for key in obj.keys() {
+                        if !allowed.contains(key.as_str()) {
+                            diagnostics.push(serde_json::json!({
+                                "code": "HR_UNKNOWN_PROPERTY",
+                                "message": format!("Property '{}' not in schema for '{}'", key, class_name),
+                                "instanceId": instance_id,
+                                "className": class_name,
+                            }));
+                        }
+                    }
+                }
+            }
+
+            let _suppress = qt_context::SuppressGuard::new(ptr);
+            let props_json = serde_json::to_string(properties)
+                .map_err(|e| QmltsError::Internal(e.to_string()))?;
+
+            if !qt_context::v2_write_properties(ptr, &props_json) {
+                diagnostics.push(serde_json::json!({
+                    "code": "HR_WRITE_FAILED",
+                    "message": format!("Failed to write properties for instance {}", instance_id),
+                    "instanceId": instance_id,
+                    "className": class_name.to_string(),
+                }));
+            }
+        }
+
+        let result = serde_json::json!({ "diagnostics": diagnostics });
+        Ok(result.to_string())
+    }
+
     /// Create a V2 init context guard if V2 is enabled.
     ///
     /// The guard sets thread-local V2InitContext for the duration of QML loading
@@ -2710,5 +2888,154 @@ mod tests {
             !state.v1_compat_applied.load(Ordering::SeqCst),
             "v1_compat_applied should always be false when v1_compat is disabled"
         );
+    }
+
+    // ─── capture / restore ───────────────────────────────────────────────
+
+    #[test]
+    fn capture_v2_not_enabled_fails() {
+        let _guard = TEST_MUTEX.lock().unwrap();
+        reset_app_initialized();
+        let engine = QmltsEngine::new(None).unwrap();
+        let result = engine.capture_instance_states();
+        assert!(result.is_err());
+    }
+
+    #[test]
+    fn capture_empty_registry_returns_empty_snapshots() {
+        let _guard = TEST_MUTEX.lock().unwrap();
+        reset_app_initialized();
+        crate::type_registrar::clear_global_registrations();
+        let mut engine = QmltsEngine::new(None).unwrap();
+        engine
+            .register_module("QmlTS.Test", 1, 0, &["LoginViewModel".into()], false)
+            .unwrap();
+        let json = engine.capture_instance_states().unwrap();
+        let parsed: serde_json::Value = serde_json::from_str(&json).unwrap();
+        assert_eq!(parsed["snapshots"].as_array().unwrap().len(), 0);
+    }
+
+    #[test]
+    fn capture_unready_instance_produces_diagnostic() {
+        let _guard = TEST_MUTEX.lock().unwrap();
+        reset_app_initialized();
+        crate::type_registrar::clear_global_registrations();
+        let mut engine = QmltsEngine::new(None).unwrap();
+        engine
+            .register_module("QmlTS.Test", 1, 0, &["LoginViewModel".into()], false)
+            .unwrap();
+
+        // Allocate an instance but don't mark ready
+        {
+            let state = engine.require_v2().unwrap();
+            let mut reg = state.registry.lock().unwrap();
+            reg.allocate_instance("LoginViewModel", std::ptr::null_mut())
+                .unwrap();
+        }
+
+        let json = engine.capture_instance_states().unwrap();
+        let parsed: serde_json::Value = serde_json::from_str(&json).unwrap();
+        assert_eq!(parsed["snapshots"].as_array().unwrap().len(), 0);
+        assert!(parsed["diagnostics"].as_array().unwrap().len() >= 1);
+        assert_eq!(
+            parsed["diagnostics"][0]["code"],
+            "HR_INSTANCE_NOT_READY"
+        );
+    }
+
+    #[test]
+    fn capture_ready_instance_returns_snapshot() {
+        let _guard = TEST_MUTEX.lock().unwrap();
+        reset_app_initialized();
+        crate::type_registrar::clear_global_registrations();
+        qt_context::mock_clear_v2_properties();
+        let mut engine = QmltsEngine::new(None).unwrap();
+        engine
+            .register_module("QmlTS.Test", 1, 0, &["LoginViewModel".into()], false)
+            .unwrap();
+
+        // Allocate and mark ready
+        let id = {
+            let state = engine.require_v2().unwrap();
+            let mut reg = state.registry.lock().unwrap();
+            let id = reg
+                .allocate_instance("LoginViewModel", 0xABCD as *mut std::ffi::c_void)
+                .unwrap();
+            reg.mark_ready(id).unwrap();
+            id
+        };
+
+        // Seed mock properties
+        qt_context::mock_seed_v2_properties(
+            0xABCD as *mut std::ffi::c_void,
+            &[("username", "\"alice\""), ("password", "\"secret\"")],
+        );
+
+        let json = engine.capture_instance_states().unwrap();
+        let parsed: serde_json::Value = serde_json::from_str(&json).unwrap();
+        let snapshots = parsed["snapshots"].as_array().unwrap();
+        assert_eq!(snapshots.len(), 1);
+        assert_eq!(snapshots[0]["instanceId"], id);
+        assert_eq!(snapshots[0]["className"], "LoginViewModel");
+        qt_context::mock_clear_v2_properties();
+    }
+
+    #[test]
+    fn restore_v2_not_enabled_fails() {
+        let _guard = TEST_MUTEX.lock().unwrap();
+        reset_app_initialized();
+        let engine = QmltsEngine::new(None).unwrap();
+        let result = engine.restore_instance_states("[]");
+        assert!(result.is_err());
+    }
+
+    #[test]
+    fn restore_to_nonexistent_instance_produces_diagnostic() {
+        let _guard = TEST_MUTEX.lock().unwrap();
+        reset_app_initialized();
+        crate::type_registrar::clear_global_registrations();
+        let mut engine = QmltsEngine::new(None).unwrap();
+        engine
+            .register_module("QmlTS.Test", 1, 0, &["LoginViewModel".into()], false)
+            .unwrap();
+        let pairs =
+            r#"[{"instanceId": 999, "properties": {"username": "\"alice\""}}]"#;
+        let json = engine.restore_instance_states(pairs).unwrap();
+        let parsed: serde_json::Value = serde_json::from_str(&json).unwrap();
+        let diags = parsed["diagnostics"].as_array().unwrap();
+        assert!(diags.len() >= 1);
+        assert_eq!(diags[0]["code"], "HR_INSTANCE_NOT_FOUND");
+    }
+
+    #[test]
+    fn restore_writes_properties() {
+        let _guard = TEST_MUTEX.lock().unwrap();
+        reset_app_initialized();
+        crate::type_registrar::clear_global_registrations();
+        qt_context::mock_clear_v2_properties();
+        let mut engine = QmltsEngine::new(None).unwrap();
+        engine
+            .register_module("QmlTS.Test", 1, 0, &["LoginViewModel".into()], false)
+            .unwrap();
+
+        let ptr = 0xBEEF as *mut std::ffi::c_void;
+        let id = {
+            let state = engine.require_v2().unwrap();
+            let mut reg = state.registry.lock().unwrap();
+            let id = reg.allocate_instance("LoginViewModel", ptr).unwrap();
+            reg.mark_ready(id).unwrap();
+            id
+        };
+
+        let pairs = format!(
+            r#"[{{"instanceId": {}, "properties": {{"username": "\"bob\""}}}}]"#,
+            id
+        );
+        let json = engine.restore_instance_states(&pairs).unwrap();
+        let parsed: serde_json::Value = serde_json::from_str(&json).unwrap();
+        let diags = parsed["diagnostics"].as_array().unwrap();
+        // Should succeed with no diagnostics (mock write always returns true)
+        assert!(diags.is_empty(), "Expected no diagnostics, got: {:?}", diags);
+        qt_context::mock_clear_v2_properties();
     }
 }

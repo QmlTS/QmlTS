@@ -136,6 +136,16 @@ unsafe extern "C" {
     // §10 V2 property change forwarding and lifecycle
     fn qmlts_v2_set_suppress(qobj: *mut c_void, suppress: bool);
     fn qmlts_v2_connect_destroy_handler(qobj: *mut c_void, owner_id: i32, instance_id: i32);
+
+    // §11 V2 instance state capture / restore (Step 8)
+    fn qmlts_v2_read_properties(
+        qobject_ptr: *mut c_void,
+        property_names_json: *const std::ffi::c_char,
+    ) -> *mut std::ffi::c_char;
+    fn qmlts_v2_write_properties(
+        qobject_ptr: *mut c_void,
+        properties_json: *const std::ffi::c_char,
+    ) -> bool;
 }
 
 #[cfg(not(feature = "mock-qt"))]
@@ -860,6 +870,109 @@ impl Drop for SuppressGuard {
     fn drop(&mut self) {
         v2_set_suppress(self.ptr, false);
     }
+}
+
+// ─── V2 instance state capture / restore (Step 8) ───────────────────────
+
+#[cfg(feature = "mock-qt")]
+mod mock_v2_props {
+    use std::collections::HashMap;
+    use std::sync::{LazyLock, Mutex};
+
+    /// Single shared store for mock V2 property data.
+    /// Key: qobject ptr as usize → {prop_name → json_value_string}
+    pub(super) static STORE: LazyLock<Mutex<HashMap<usize, HashMap<String, String>>>> =
+        LazyLock::new(|| Mutex::new(HashMap::new()));
+}
+
+/// Read schema-declared properties from a V2 QObject.
+/// Returns JSON: `{"props": {...}, "diagnostics": [...]}`
+#[cfg(not(feature = "mock-qt"))]
+#[allow(dead_code)]
+pub fn v2_read_properties(qobject_ptr: *mut c_void, property_names_json: &str) -> Option<String> {
+    let c_json = std::ffi::CString::new(property_names_json).ok()?;
+    let raw = unsafe { qmlts_v2_read_properties(qobject_ptr, c_json.as_ptr()) };
+    if raw.is_null() {
+        return None;
+    }
+    let result = unsafe { std::ffi::CStr::from_ptr(raw) }
+        .to_str()
+        .ok()
+        .map(|s| s.to_string());
+    unsafe { qmlts_free_string(raw) };
+    result
+}
+
+#[cfg(feature = "mock-qt")]
+#[allow(dead_code)]
+pub fn v2_read_properties(qobject_ptr: *mut c_void, property_names_json: &str) -> Option<String> {
+    let ptr_key = qobject_ptr as usize;
+    let names: Vec<String> = serde_json::from_str(property_names_json).ok()?;
+    let store = mock_v2_props::STORE.lock().expect("mock props lock");
+    let obj_props = store.get(&ptr_key);
+
+    let mut props = serde_json::Map::new();
+    let diagnostics = serde_json::Value::Array(vec![]);
+
+    for name in &names {
+        if let Some(obj) = obj_props {
+            if let Some(val_str) = obj.get(name) {
+                if let Ok(val) = serde_json::from_str::<serde_json::Value>(val_str) {
+                    props.insert(name.clone(), val);
+                }
+            }
+        }
+    }
+
+    let result = serde_json::json!({ "props": props, "diagnostics": diagnostics });
+    Some(result.to_string())
+}
+
+/// Write properties to a V2 QObject.
+#[cfg(not(feature = "mock-qt"))]
+#[allow(dead_code)]
+pub fn v2_write_properties(qobject_ptr: *mut c_void, properties_json: &str) -> bool {
+    let Ok(c_json) = std::ffi::CString::new(properties_json) else {
+        return false;
+    };
+    unsafe { qmlts_v2_write_properties(qobject_ptr, c_json.as_ptr()) }
+}
+
+#[cfg(feature = "mock-qt")]
+#[allow(dead_code)]
+pub fn v2_write_properties(qobject_ptr: *mut c_void, properties_json: &str) -> bool {
+    let ptr_key = qobject_ptr as usize;
+    let props: serde_json::Map<String, serde_json::Value> =
+        match serde_json::from_str(properties_json) {
+            Ok(serde_json::Value::Object(m)) => m,
+            _ => return false,
+        };
+
+    let mut store = mock_v2_props::STORE.lock().expect("mock props lock");
+    let obj_props = store.entry(ptr_key).or_default();
+    for (k, v) in props {
+        obj_props.insert(k, v.to_string());
+    }
+    true
+}
+
+/// Seed mock property data for a QObject pointer. Test-only.
+#[cfg(feature = "mock-qt")]
+#[allow(dead_code)]
+pub fn mock_seed_v2_properties(qobject_ptr: *mut c_void, properties: &[(&str, &str)]) {
+    let ptr_key = qobject_ptr as usize;
+    let mut store = mock_v2_props::STORE.lock().expect("mock props lock");
+    let obj_props = store.entry(ptr_key).or_default();
+    for (name, value) in properties {
+        obj_props.insert((*name).to_string(), (*value).to_string());
+    }
+}
+
+/// Clear all mock V2 property data. Test-only.
+#[cfg(feature = "mock-qt")]
+#[allow(dead_code)]
+pub fn mock_clear_v2_properties() {
+    mock_v2_props::STORE.lock().expect("mock props lock").clear();
 }
 
 #[cfg(test)]

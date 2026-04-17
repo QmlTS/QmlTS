@@ -5,6 +5,18 @@ import type {
 import type { Diagnostic } from '../compiler/diagnostics.js';
 import type { CompilationStats } from '../compiler/pipeline/pipeline-types.js';
 
+/**
+ * Slot metadata for a V2 instance. Structurally compatible with
+ * `InstanceStateSnapshot` from the native host package. Defined locally
+ * to avoid cross-rootDir imports.
+ */
+export interface InstanceSlotInfo {
+  readonly instanceId: number;
+  readonly className: string;
+  readonly compilerSlotKey?: string;
+  readonly properties: Record<string, unknown>;
+}
+
 // ─── FileWatcher ────────────────────────────────────────────
 
 export interface FileWatcher {
@@ -64,10 +76,48 @@ export interface HotReloadOrchestratorResult {
   readonly durationMs: number;
   readonly filesReloaded: readonly string[];
   readonly error?: string;
+  // V2 additions
+  readonly instancesRestored?: number;
+  readonly instancesUnmatched?: number;
+  readonly degraded?: boolean;
+  readonly diagnostics?: readonly HotReloadDiagnostic[];
 }
 
 export interface HotReloadOrchestratorOptions {
   readonly client: HotReloadClient;
+  // V2 optional context for instance-scoped hot reload
+  readonly getInstanceSlots?: () => InstanceSlotInfo[];
+}
+
+// ─── V2 Hot Reload Types ────────────────────────────────────
+
+export interface HotReloadDiagnostic {
+  readonly code: string;
+  readonly message: string;
+  readonly instanceId?: number;
+  readonly className?: string;
+  readonly compilerSlotKey?: string;
+}
+
+export interface NativeInstanceSnapshot {
+  readonly instanceId: number;
+  readonly className: string;
+  readonly properties: Readonly<Record<string, unknown>>;
+}
+
+export interface InstanceRestorePair {
+  readonly instanceId: number;
+  readonly properties: Readonly<Record<string, unknown>>;
+}
+
+export interface RestoreDiagnostics {
+  readonly diagnostics: readonly HotReloadDiagnostic[];
+}
+
+export interface InstanceContext {
+  readonly instanceId: number;
+  readonly className: string;
+  readonly compilerSlotKey?: string;
 }
 
 // ─── DevServer ──────────────────────────────────────────────
@@ -80,7 +130,9 @@ export type DevServerStatus =
   | 'reloading'
   | 'error'
   | 'stopping'
-  | 'stopped';
+  | 'stopped'
+  | 'capturing-state'
+  | 'restoring-state';
 
 export type DevServerEvent =
   | 'status-change'
@@ -174,6 +226,8 @@ export interface DevServerOptions {
   readonly errorOverlay?: ErrorOverlay;
   readonly console?: DevConsole;
   readonly profiler?: PerfProfiler;
+  /** V2: function to get current instance slot metadata for hot reload matching */
+  readonly getInstanceSlots?: () => InstanceSlotInfo[];
 }
 
 // ─── ErrorOverlay ───────────────────────────────────────────
@@ -231,10 +285,14 @@ export interface ReplOptions {
   readonly maxHistory?: number;
 }
 
+export interface ReplEvalOptions {
+  readonly selector?: string;
+}
+
 export interface QmltsRepl {
   start(): Promise<void>;
   stop(): Promise<void>;
-  eval(input: string): Promise<ReplResult>;
+  eval(input: string, options?: ReplEvalOptions): Promise<ReplResult>;
   setMode(mode: ReplMode): void;
   readonly mode: ReplMode;
   readonly history: readonly string[];
@@ -257,11 +315,16 @@ export interface PerfRecord {
   readonly startMs: number;
   readonly durationMs: number;
   readonly metadata?: Readonly<Record<string, string | number | boolean>>;
+  // V2 instance context
+  readonly instanceId?: number;
+  readonly className?: string;
+  readonly compilerSlotKey?: string;
 }
 
 export interface PerfSpan {
   end(): void;
   addMetadata(key: string, value: string | number | boolean): void;
+  setInstanceContext?(instanceId: number, className: string, compilerSlotKey?: string): void;
 }
 
 export interface PerfSummary {
@@ -277,6 +340,10 @@ export interface PerfProfiler {
   getSummary(): PerfSummary;
   clear(): void;
   exportChromeTrace(): string;
+  // V2 instance filtering
+  getRecordsByInstance?(instanceId: number): readonly PerfRecord[];
+  getRecordsByClass?(className: string): readonly PerfRecord[];
+  getRecordsBySlotKey?(slotKey: string): readonly PerfRecord[];
 }
 
 // ─── DevConsole ─────────────────────────────────────────────
@@ -310,10 +377,10 @@ export interface DevConsole {
   hotReload(result: HotReloadOrchestratorResult): void;
   fileChange(batch: FileChangeBatch): void;
   serverStatus(info: ServerStatusInfo): void;
-  info(message: string): void;
-  warn(message: string): void;
-  error(message: string): void;
-  debug(message: string): void;
+  info(message: string, instanceContext?: InstanceContext): void;
+  warn(message: string, instanceContext?: InstanceContext): void;
+  error(message: string, instanceContext?: InstanceContext): void;
+  debug(message: string, instanceContext?: InstanceContext): void;
   clear(): void;
   connectToDevServer(server: DevServer): () => void;
 }

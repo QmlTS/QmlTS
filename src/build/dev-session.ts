@@ -68,6 +68,9 @@ function mapStatus(status: DevServerStatus): DevSessionState {
       return 'stopping';
     case 'stopped':
       return 'stopped';
+    case 'capturing-state':
+    case 'restoring-state':
+      return 'rebuilding';
   }
 }
 

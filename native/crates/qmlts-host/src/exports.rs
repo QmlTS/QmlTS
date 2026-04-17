@@ -1124,6 +1124,37 @@ pub fn register_command_dispatcher_v2(
 }
 
 // ─────────────────────────────────────────────────────────────────────────
+//  §11 V2 Dev Tools — Capture / Restore
+// ─────────────────────────────────────────────────────────────────────────
+
+/// Capture state of all ready V2 instances.
+///
+/// Returns JSON `{"snapshots":[...],"diagnostics":[...]}`.
+/// Each snapshot: `{"instanceId":N,"className":"...","properties":{...}}`.
+#[napi(js_name = "captureInstanceStates")]
+pub fn capture_instance_states(engine: &QmltsEngine) -> Result<String> {
+    engine
+        .inner
+        .capture_instance_states()
+        .map_err(|e| -> napi::Error { e.into() })
+}
+
+/// Restore state to matched V2 instances.
+///
+/// `matched_pairs_json`: JSON array of `{"instanceId":N,"properties":{...}}`.
+/// Returns JSON `{"diagnostics":[...]}`.
+#[napi(js_name = "restoreInstanceStates")]
+pub fn restore_instance_states(
+    engine: &QmltsEngine,
+    matched_pairs_json: String,
+) -> Result<String> {
+    engine
+        .inner
+        .restore_instance_states(&matched_pairs_json)
+        .map_err(|e| -> napi::Error { e.into() })
+}
+
+// ─────────────────────────────────────────────────────────────────────────
 //  Tests
 // ─────────────────────────────────────────────────────────────────────────
 

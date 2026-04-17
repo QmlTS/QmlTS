@@ -694,3 +694,102 @@ export class CounterView extends View {
     expect(parsed.traceEvents.length).toBe(records.length);
   });
 });
+
+// ─── V2 Instance Context Tests ──────────────────────────────
+
+describe('PerfProfiler V2', () => {
+  test('PP-V2-01: span with instance context includes instanceId in record', () => {
+    const profiler = createPerfProfiler();
+    const span = profiler.startSpan('test', 'compile');
+    span.setInstanceContext?.(42, 'LoginViewModel', 'login-slot');
+    span.end();
+    const records = profiler.getRecords();
+    expect(records[0]!.instanceId).toBe(42);
+    expect(records[0]!.className).toBe('LoginViewModel');
+    expect(records[0]!.compilerSlotKey).toBe('login-slot');
+  });
+
+  test('PP-V2-02: getRecordsByInstance filters correctly', () => {
+    const profiler = createPerfProfiler();
+    const s1 = profiler.startSpan('a', 'compile');
+    s1.setInstanceContext?.(1, 'A');
+    s1.end();
+    const s2 = profiler.startSpan('b', 'compile');
+    s2.setInstanceContext?.(2, 'B');
+    s2.end();
+    const s3 = profiler.startSpan('c', 'compile');
+    s3.end(); // no instance context
+    expect(profiler.getRecordsByInstance?.(1)).toHaveLength(1);
+    expect(profiler.getRecordsByInstance?.(2)).toHaveLength(1);
+    expect(profiler.getRecordsByInstance?.(99)).toHaveLength(0);
+  });
+
+  test('PP-V2-03: getRecordsByClass filters correctly', () => {
+    const profiler = createPerfProfiler();
+    const s1 = profiler.startSpan('a', 'compile');
+    s1.setInstanceContext?.(1, 'Login');
+    s1.end();
+    const s2 = profiler.startSpan('b', 'compile');
+    s2.setInstanceContext?.(2, 'Login');
+    s2.end();
+    const s3 = profiler.startSpan('c', 'compile');
+    s3.setInstanceContext?.(3, 'Counter');
+    s3.end();
+    expect(profiler.getRecordsByClass?.('Login')).toHaveLength(2);
+    expect(profiler.getRecordsByClass?.('Counter')).toHaveLength(1);
+  });
+
+  test('PP-V2-04: getRecordsBySlotKey filters correctly', () => {
+    const profiler = createPerfProfiler();
+    const s1 = profiler.startSpan('a', 'compile');
+    s1.setInstanceContext?.(1, 'A', 'slot-a');
+    s1.end();
+    const s2 = profiler.startSpan('b', 'compile');
+    s2.setInstanceContext?.(2, 'B', 'slot-b');
+    s2.end();
+    expect(profiler.getRecordsBySlotKey?.('slot-a')).toHaveLength(1);
+    expect(profiler.getRecordsBySlotKey?.('slot-b')).toHaveLength(1);
+    expect(profiler.getRecordsBySlotKey?.('nonexistent')).toHaveLength(0);
+  });
+
+  test('PP-V2-05: Chrome trace includes instance args', () => {
+    const profiler = createPerfProfiler();
+    const span = profiler.startSpan('test', 'compile');
+    span.setInstanceContext?.(42, 'Login', 'login-slot');
+    span.end();
+    const trace = JSON.parse(profiler.exportChromeTrace());
+    expect(trace.traceEvents[0].args.instanceId).toBe(42);
+    expect(trace.traceEvents[0].args.className).toBe('Login');
+    expect(trace.traceEvents[0].args.compilerSlotKey).toBe('login-slot');
+  });
+
+  test('PP-V2-06: setInstanceContext after end is ignored', () => {
+    const profiler = createPerfProfiler();
+    const span = profiler.startSpan('test', 'compile');
+    span.end();
+    span.setInstanceContext?.(42, 'Login');
+    const records = profiler.getRecords();
+    expect(records[0]!.instanceId).toBeUndefined();
+  });
+
+  test('PP-V2-07: record without instance context omits instance fields', () => {
+    const profiler = createPerfProfiler();
+    const span = profiler.startSpan('test', 'compile');
+    span.end();
+    const records = profiler.getRecords();
+    expect(records[0]!.instanceId).toBeUndefined();
+    expect(records[0]!.className).toBeUndefined();
+    expect(records[0]!.compilerSlotKey).toBeUndefined();
+  });
+
+  test('PP-V2-08: setInstanceContext without compilerSlotKey', () => {
+    const profiler = createPerfProfiler();
+    const span = profiler.startSpan('test', 'compile');
+    span.setInstanceContext?.(10, 'Counter');
+    span.end();
+    const records = profiler.getRecords();
+    expect(records[0]!.instanceId).toBe(10);
+    expect(records[0]!.className).toBe('Counter');
+    expect(records[0]!.compilerSlotKey).toBeUndefined();
+  });
+});

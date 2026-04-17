@@ -1253,3 +1253,133 @@ describe('DevServer', () => {
     expect(runningPayload!.watchPaths).toEqual(overrideWatchPaths);
   }, 20_000);
 });
+
+// ─── DevServer V2 Status Tests ──────────────────────────────
+
+describe('DevServer V2 status', () => {
+  let tempDir: string;
+
+  beforeEach(() => {
+    tempDir = mkdtempSync(join(tmpdir(), 'devserver-v2-'));
+    cpSync(FIXTURES_DIR, tempDir, { recursive: true });
+  });
+
+  afterEach(() => {
+    rmSync(tempDir, { recursive: true, force: true });
+  });
+
+  test('DS-V2-01: V2 hot reload emits capturing-state and restoring-state', async () => {
+    const mockClient = createMockHotReloadClient();
+    const config = makeConfig(tempDir, {
+      dev: {
+        ...makeConfig(tempDir).dev,
+        hotReload: true,
+        debounceMs: 200,
+      },
+    });
+    const statuses: DevServerStatus[] = [];
+    const getInstanceSlots = () => [
+      { instanceId: 1, className: 'Counter', compilerSlotKey: 'counter-slot' },
+    ];
+
+    const server = createDevServer(config, { hotReloadClient: mockClient, getInstanceSlots });
+    server.on('status-change', (payload) => {
+      const data = payload.data as { to: DevServerStatus };
+      statuses.push(data.to);
+    });
+
+    try {
+      await server.start();
+      await sleep(500);
+
+      const counterViewPath = join(tempDir, 'src', 'CounterView.ts');
+      const content = await Bun.file(counterViewPath).text();
+      writeFileSync(counterViewPath, content.replace('width(200)', 'width(999)'));
+
+      await waitForServerEvent(server, 'hot-reload', 15_000);
+
+      expect(statuses).toContain('capturing-state');
+      expect(statuses).toContain('restoring-state');
+      // capturing-state should come before restoring-state
+      const capIdx = statuses.indexOf('capturing-state');
+      const resIdx = statuses.indexOf('restoring-state');
+      expect(capIdx).toBeLessThan(resIdx);
+    } finally {
+      await server.stop();
+    }
+  }, 20_000);
+
+  test('DS-V2-02: V1 mode (no getInstanceSlots) does not emit V2 status states', async () => {
+    const mockClient = createMockHotReloadClient();
+    const config = makeConfig(tempDir, {
+      dev: {
+        ...makeConfig(tempDir).dev,
+        hotReload: true,
+        debounceMs: 200,
+      },
+    });
+    const statuses: DevServerStatus[] = [];
+
+    // No getInstanceSlots — this is V1 mode
+    const server = createDevServer(config, { hotReloadClient: mockClient });
+    server.on('status-change', (payload) => {
+      const data = payload.data as { to: DevServerStatus };
+      statuses.push(data.to);
+    });
+
+    try {
+      await server.start();
+      await sleep(500);
+
+      const counterViewPath = join(tempDir, 'src', 'CounterView.ts');
+      const content = await Bun.file(counterViewPath).text();
+      writeFileSync(counterViewPath, content.replace('width(200)', 'width(888)'));
+
+      await waitForServerEvent(server, 'hot-reload', 15_000);
+
+      expect(statuses).not.toContain('capturing-state');
+      expect(statuses).not.toContain('restoring-state');
+    } finally {
+      await server.stop();
+    }
+  }, 20_000);
+
+  test('DS-V2-03: failed hot reload does not emit restoring-state', async () => {
+    const mockClient = createMockHotReloadClient({ shouldFail: true });
+    const config = makeConfig(tempDir, {
+      dev: {
+        ...makeConfig(tempDir).dev,
+        hotReload: true,
+        debounceMs: 200,
+      },
+    });
+    const statuses: DevServerStatus[] = [];
+    const getInstanceSlots = () => [
+      { instanceId: 1, className: 'Counter', compilerSlotKey: 'counter-slot' },
+    ];
+
+    const server = createDevServer(config, { hotReloadClient: mockClient, getInstanceSlots });
+    server.on('status-change', (payload) => {
+      const data = payload.data as { to: DevServerStatus };
+      statuses.push(data.to);
+    });
+
+    try {
+      await server.start();
+      await sleep(500);
+
+      const counterViewPath = join(tempDir, 'src', 'CounterView.ts');
+      const content = await Bun.file(counterViewPath).text();
+      writeFileSync(counterViewPath, content.replace('width(200)', 'width(777)'));
+
+      await waitForServerEvent(server, 'hot-reload-error', 15_000);
+
+      // capturing-state is emitted before the reload attempt
+      expect(statuses).toContain('capturing-state');
+      // restoring-state should NOT be emitted since reload failed
+      expect(statuses).not.toContain('restoring-state');
+    } finally {
+      await server.stop();
+    }
+  }, 20_000);
+});

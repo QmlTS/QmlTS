@@ -281,12 +281,19 @@ async function performHotReload(
 ): Promise<void> {
   if (!internals.hotReloadOrchestrator) return;
 
+  const isV2 = !!internals.options.getInstanceSlots;
   const profilerSpan = internals.options.profiler?.startSpan('hot-reload', 'hot-reload');
   const start = performance.now();
   let result!: HotReloadOrchestratorResult;
 
   try {
+    if (isV2) {
+      transition(internals, 'capturing-state');
+    }
     result = await internals.hotReloadOrchestrator.reload(changedFiles, internals.config.outDir);
+    if (isV2 && result.success) {
+      transition(internals, 'restoring-state');
+    }
     profilerSpan?.addMetadata('success', result.success);
     profilerSpan?.addMetadata('durationMs', result.durationMs);
     profilerSpan?.addMetadata('changedFiles', changedFiles.length);
@@ -463,6 +470,7 @@ export function createDevServer(
     if (options.hotReloadClient && !internals.hotReloadOrchestrator) {
       internals.hotReloadOrchestrator = createHotReloadOrchestrator({
         client: options.hotReloadClient,
+        getInstanceSlots: options.getInstanceSlots,
       });
     }
   }

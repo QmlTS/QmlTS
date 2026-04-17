@@ -1,9 +1,13 @@
 import type {
   HotReloadClient,
   HotReloadContext,
+  HotReloadDiagnostic,
   HotReloadOrchestrator,
   HotReloadOrchestratorOptions,
   HotReloadOrchestratorResult,
+  InstanceRestorePair,
+  InstanceSlotInfo,
+  NativeInstanceSnapshot,
 } from './dev-types.js';
 
 interface OrchestratorInternals {
@@ -14,6 +18,7 @@ interface OrchestratorInternals {
   beforeHooks: Set<(ctx: HotReloadContext) => void | Promise<void>>;
   afterHooks: Set<(result: HotReloadOrchestratorResult) => void | Promise<void>>;
   disposed: boolean;
+  getInstanceSlots?: () => InstanceSlotInfo[];
 }
 
 function toErrorMessage(err: unknown): string {
@@ -46,6 +51,54 @@ async function runAfterHooks(
   return firstError;
 }
 
+function matchSnapshots(
+  nativeSnapshots: readonly NativeInstanceSnapshot[],
+  oldSlots: readonly InstanceSlotInfo[],
+  newSlots: readonly InstanceSlotInfo[],
+): { pairs: InstanceRestorePair[]; unmatched: number } {
+  const pairs: InstanceRestorePair[] = [];
+  let unmatched = 0;
+
+  // Build lookup: old instanceId → (className, compilerSlotKey)
+  const oldSlotMap = new Map<number, { className: string; compilerSlotKey?: string }>();
+  for (const slot of oldSlots) {
+    oldSlotMap.set(slot.instanceId, {
+      className: slot.className,
+      compilerSlotKey: slot.compilerSlotKey,
+    });
+  }
+
+  // Build lookup: (className, compilerSlotKey) → new instanceId
+  const newSlotMap = new Map<string, number>();
+  for (const slot of newSlots) {
+    if (slot.compilerSlotKey) {
+      newSlotMap.set(`${slot.className}::${slot.compilerSlotKey}`, slot.instanceId);
+    }
+  }
+
+  for (const snapshot of nativeSnapshots) {
+    const oldMeta = oldSlotMap.get(snapshot.instanceId);
+    if (!oldMeta?.compilerSlotKey) {
+      unmatched++;
+      continue;
+    }
+
+    const matchKey = `${oldMeta.className}::${oldMeta.compilerSlotKey}`;
+    const newInstanceId = newSlotMap.get(matchKey);
+
+    if (newInstanceId !== undefined) {
+      pairs.push({
+        instanceId: newInstanceId,
+        properties: snapshot.properties,
+      });
+    } else {
+      unmatched++;
+    }
+  }
+
+  return { pairs, unmatched };
+}
+
 export function createHotReloadOrchestrator(
   options: HotReloadOrchestratorOptions,
 ): HotReloadOrchestrator {
@@ -57,6 +110,7 @@ export function createHotReloadOrchestrator(
     beforeHooks: new Set(),
     afterHooks: new Set(),
     disposed: false,
+    getInstanceSlots: options.getInstanceSlots,
   };
 
   return {
@@ -109,9 +163,64 @@ export function createHotReloadOrchestrator(
             error: 'Hot reload client is not connected',
           };
         } else {
-          // Perform reload via client
+          // V2 Phase 1: Capture (before reload)
+          let oldSlots: InstanceSlotInfo[] | undefined;
+          let capturedSnapshots: NativeInstanceSnapshot[] | undefined;
+          const v2Diagnostics: HotReloadDiagnostic[] = [];
+          let degraded: boolean | undefined;
+
+          if (internals.getInstanceSlots && internals.client.captureInstanceStates) {
+            oldSlots = internals.getInstanceSlots();
+            try {
+              capturedSnapshots = await internals.client.captureInstanceStates();
+            } catch (err) {
+              v2Diagnostics.push({
+                code: 'HR_CAPTURE_FAILED',
+                message: `Capture failed: ${toErrorMessage(err)}`,
+              });
+            }
+          } else if (internals.getInstanceSlots && !internals.client.captureInstanceStates) {
+            degraded = true;
+            v2Diagnostics.push({
+              code: 'HR_DEGRADED',
+              message: 'V2 hot reload degraded: native captureInstanceStates not available',
+            });
+          }
+
+          // V2 Phase 2: Reload
           const clientResult = await internals.client.reload(changedFiles, outputDir);
           const durationMs = performance.now() - start;
+
+          // V2 Phase 3: Restore (after reload)
+          let instancesRestored: number | undefined;
+          let instancesUnmatched: number | undefined;
+
+          if (
+            clientResult.success &&
+            capturedSnapshots &&
+            oldSlots &&
+            internals.getInstanceSlots &&
+            internals.client.restoreInstanceStates
+          ) {
+            const newSlots = internals.getInstanceSlots();
+            const { pairs, unmatched } = matchSnapshots(capturedSnapshots, oldSlots, newSlots);
+            instancesUnmatched = unmatched;
+
+            if (pairs.length > 0) {
+              try {
+                const restoreResult = await internals.client.restoreInstanceStates(pairs);
+                instancesRestored = pairs.length;
+                v2Diagnostics.push(...restoreResult.diagnostics);
+              } catch (err) {
+                v2Diagnostics.push({
+                  code: 'HR_RESTORE_FAILED',
+                  message: `Restore failed: ${toErrorMessage(err)}`,
+                });
+              }
+            } else {
+              instancesRestored = 0;
+            }
+          }
 
           result = {
             success: clientResult.success,
@@ -119,6 +228,10 @@ export function createHotReloadOrchestrator(
             durationMs,
             filesReloaded: [...changedFiles],
             error: clientResult.error,
+            instancesRestored,
+            instancesUnmatched,
+            degraded,
+            diagnostics: v2Diagnostics.length > 0 ? v2Diagnostics : undefined,
           };
         }
 

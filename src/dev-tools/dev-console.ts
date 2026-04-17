@@ -12,6 +12,7 @@ import type {
   DevServerHotReloadErrorData,
   FileChangeBatch,
   HotReloadOrchestratorResult,
+  InstanceContext,
   ServerStatusInfo,
   StatusChangeData,
 } from './dev-types.js';
@@ -46,6 +47,11 @@ const LEVEL_ORDER: Record<DevConsoleLevel, number> = {
 
 function shouldLog(msgLevel: DevConsoleLevel, threshold: DevConsoleLevel): boolean {
   return LEVEL_ORDER[msgLevel] >= LEVEL_ORDER[threshold];
+}
+
+function formatInstanceTag(ctx?: InstanceContext): string {
+  if (!ctx) return '';
+  return `[${ctx.className}#${ctx.instanceId}] `;
 }
 
 // ─── Formatting helpers ─────────────────────────────────────
@@ -190,20 +196,26 @@ export function createDevConsole(options: DevConsoleOptions = {}): DevConsole {
       output('info', `${prefix} Server ${statusText}${detailSuffix}`);
     },
 
-    info(message: string): void {
-      output('info', `${prefix} ${message}`);
+    info(message: string, instanceContext?: InstanceContext): void {
+      output('info', `${prefix} ${formatInstanceTag(instanceContext)}${message}`);
     },
 
-    warn(message: string): void {
-      output('warn', `${prefix} ${useColor ? YELLOW : ''}⚠ ${message}${useColor ? RESET : ''}`);
+    warn(message: string, instanceContext?: InstanceContext): void {
+      const tag = formatInstanceTag(instanceContext);
+      output(
+        'warn',
+        `${prefix} ${useColor ? YELLOW : ''}⚠ ${tag}${message}${useColor ? RESET : ''}`,
+      );
     },
 
-    error(message: string): void {
-      output('error', `${prefix} ${useColor ? RED : ''}✗ ${message}${useColor ? RESET : ''}`);
+    error(message: string, instanceContext?: InstanceContext): void {
+      const tag = formatInstanceTag(instanceContext);
+      output('error', `${prefix} ${useColor ? RED : ''}✗ ${tag}${message}${useColor ? RESET : ''}`);
     },
 
-    debug(message: string): void {
-      output('debug', `${prefix} ${useColor ? DIM : ''}${message}${useColor ? RESET : ''}`);
+    debug(message: string, instanceContext?: InstanceContext): void {
+      const tag = formatInstanceTag(instanceContext);
+      output('debug', `${prefix} ${useColor ? DIM : ''}${tag}${message}${useColor ? RESET : ''}`);
     },
 
     clear(): void {

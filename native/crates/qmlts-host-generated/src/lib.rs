@@ -327,31 +327,66 @@ pub struct V2BridgeDescriptor {
     /// Connect property change notification signals for writable properties.
     /// Called during `instanceReady()` to enable QML → TS property forwarding.
     pub connect_properties: fn(qobj: *mut c_void, owner_id: i32, instance_id: i32) -> bool,
+    /// Structured metadata for schema-declared state properties.
+    /// Used by capture/restore to read/write only these properties.
+    pub state_properties: &'static [V2StatePropertyDescriptor],
 }
+
+/// Descriptor for a single declared state property on a V2 `ViewModel`.
+///
+/// Used by the capture/restore path to read/write only schema-declared
+/// state properties. `schema_json` is NOT parsed at runtime for this path.
+pub struct V2StatePropertyDescriptor {
+    /// Rust/TS property name (e.g., `"username"`).
+    pub name: &'static str,
+    /// QML property name (e.g., `"username"` — same unless aliased).
+    pub qml_name: &'static str,
+    /// QML/Qt type for serialization: `"bool"` | `"int"` | `"real"` | `"string"`.
+    pub qml_type: &'static str,
+}
+
+static LOGIN_STATE_PROPERTIES: &[V2StatePropertyDescriptor] = &[
+    V2StatePropertyDescriptor { name: "username", qml_name: "username", qml_type: "string" },
+    V2StatePropertyDescriptor { name: "password", qml_name: "password", qml_type: "string" },
+    V2StatePropertyDescriptor { name: "isLoading", qml_name: "isLoading", qml_type: "bool" },
+];
+
+static COUNTER_STATE_PROPERTIES: &[V2StatePropertyDescriptor] = &[
+    V2StatePropertyDescriptor { name: "count", qml_name: "count", qml_type: "int" },
+];
+
+static SEARCH_STATE_PROPERTIES: &[V2StatePropertyDescriptor] = &[
+    V2StatePropertyDescriptor { name: "query", qml_name: "query", qml_type: "string" },
+    V2StatePropertyDescriptor { name: "resultCount", qml_name: "resultCount", qml_type: "int" },
+];
 
 /// Returns all registered V2 bridge descriptors.
 #[must_use]
 pub fn v2_descriptors() -> &'static [V2BridgeDescriptor] {
-    &[
+    static DESCS: &[V2BridgeDescriptor] = &[
         V2BridgeDescriptor {
             class_name: "LoginViewModel",
             schema_json: LOGIN_VIEW_MODEL_SCHEMA,
             register_type: register_login_v2,
             connect_properties: connect_login_v2_properties,
+            state_properties: LOGIN_STATE_PROPERTIES,
         },
         V2BridgeDescriptor {
             class_name: "CounterViewModel",
             schema_json: COUNTER_VIEW_MODEL_SCHEMA,
             register_type: register_counter_v2,
             connect_properties: connect_counter_v2_properties,
+            state_properties: COUNTER_STATE_PROPERTIES,
         },
         V2BridgeDescriptor {
             class_name: "SearchViewModel",
             schema_json: SEARCH_VIEW_MODEL_SCHEMA,
             register_type: register_search_v2,
             connect_properties: connect_search_v2_properties,
+            state_properties: SEARCH_STATE_PROPERTIES,
         },
-    ]
+    ];
+    DESCS
 }
 
 fn register_login_v2(
@@ -532,5 +567,23 @@ mod tests {
             assert!(source.contains("instance_id, cxx_name = \"instanceId\", READ"));
             assert!(!source.contains("owner_id, cxx_name = \"ownerId\""));
         }
+    }
+
+    #[test]
+    fn v2_descriptors_have_state_properties() {
+        let descs = v2_descriptors();
+        let login = descs.iter().find(|d| d.class_name == "LoginViewModel").unwrap();
+        assert_eq!(login.state_properties.len(), 3);
+        assert_eq!(login.state_properties[0].name, "username");
+        assert_eq!(login.state_properties[0].qml_type, "string");
+
+        let counter = descs.iter().find(|d| d.class_name == "CounterViewModel").unwrap();
+        assert_eq!(counter.state_properties.len(), 1);
+        assert_eq!(counter.state_properties[0].qml_type, "int");
+
+        let search = descs.iter().find(|d| d.class_name == "SearchViewModel").unwrap();
+        assert_eq!(search.state_properties.len(), 2);
+        assert_eq!(search.state_properties[0].name, "query");
+        assert_eq!(search.state_properties[1].name, "resultCount");
     }
 }
