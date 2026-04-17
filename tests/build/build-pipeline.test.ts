@@ -711,3 +711,143 @@ describe('BuildPipeline', () => {
     expect(schema.compilerSlotKey).toBeUndefined();
   });
 });
+
+describe('V2 Build Pipeline', () => {
+  // BP-V2-05
+  test('BP-V2-05: V1 build output unchanged (no qmldir/qmltypes)', async () => {
+    const { projectDir, srcDir } = writeIntegratedProjectIn(TMP_DIR);
+    const config = makeConfig({
+      entry: join(srcDir, 'CounterView.ts'),
+      outDir: join(projectDir, 'dist'),
+      configDir: projectDir,
+      assets: {
+        dir: join(projectDir, 'assets'),
+        include: ['**/*'],
+        exclude: [],
+        useQrc: false,
+        optimize: false,
+      },
+      runtime: 'v1',
+    });
+
+    const pipeline = createBuildPipeline(config);
+    const result = await pipeline.run();
+
+    expect(result.success).toBe(true);
+    // V1 should NOT have module directory or qmldir/qmltypes
+    expect(existsSync(join(config.outDir, 'qml', 'TestApp'))).toBe(false);
+
+    const manifestPath = join(config.outDir, 'manifest.json');
+    if (existsSync(manifestPath)) {
+      const manifest = JSON.parse(readFileSync(manifestPath, 'utf-8'));
+      expect(manifest.runtime).toBeUndefined();
+      expect(manifest.modules).toBeUndefined();
+    }
+  });
+
+  // BP-V2-01, BP-V2-02, BP-V2-03, BP-V2-04
+  test('BP-V2-01/02/03/04: V2 build produces module artifacts', async () => {
+    const { projectDir, srcDir } = writeIntegratedProjectIn(TMP_DIR);
+    const config = makeConfig({
+      entry: join(srcDir, 'CounterView.ts'),
+      outDir: join(projectDir, 'dist'),
+      configDir: projectDir,
+      assets: {
+        dir: join(projectDir, 'assets'),
+        include: ['**/*'],
+        exclude: [],
+        useQrc: false,
+        optimize: false,
+      },
+      runtime: 'v2',
+      module: { prefix: 'TestApp', version: { major: 1, minor: 0 } },
+    });
+
+    const pipeline = createBuildPipeline(config);
+    const result = await pipeline.run();
+
+    expect(result.success).toBe(true);
+
+    // BP-V2-01: qmldir exists
+    const qmldirPath = join(config.outDir, 'qml', 'TestApp', 'ViewModels', 'qmldir');
+    expect(existsSync(qmldirPath)).toBe(true);
+    const qmldirContent = readFileSync(qmldirPath, 'utf-8');
+    expect(qmldirContent).toContain('module TestApp.ViewModels');
+
+    // BP-V2-02: qmltypes exists
+    const qmltypesPath = join(
+      config.outDir,
+      'qml',
+      'TestApp',
+      'ViewModels',
+      'testapp_viewmodels.qmltypes',
+    );
+    expect(existsSync(qmltypesPath)).toBe(true);
+    const qmltypesContent = readFileSync(qmltypesPath, 'utf-8');
+    expect(qmltypesContent).toContain('import QtQuick.tooling 1.2');
+    expect(qmltypesContent).toContain('CounterViewModel');
+
+    // BP-V2-03: manifest
+    const manifestPath = join(config.outDir, 'manifest.json');
+    expect(existsSync(manifestPath)).toBe(true);
+    const manifest = JSON.parse(readFileSync(manifestPath, 'utf-8'));
+    expect(manifest.runtime).toBe('v2');
+    expect(manifest.modules).toBeDefined();
+    expect(manifest.modules.length).toBeGreaterThan(0);
+    expect(manifest.modules[0].qmldir).toMatch(/^\.\/qml\//);
+
+    // BP-V2-04: entry uses registerModule
+    const entryPath = result.output.entryFile;
+    if (existsSync(entryPath)) {
+      const entryContent = readFileSync(entryPath, 'utf-8');
+      expect(entryContent).toContain('registerModule');
+      expect(entryContent).not.toContain('registerViewModel');
+    }
+  });
+
+  // BP-V2-06: V2 build with no ViewModels
+  test('BP-V2-06: V2 build with no ViewModels produces no module artifacts', async () => {
+    const { projectDir, srcDir } = writeIntegratedProjectIn(TMP_DIR);
+
+    // Overwrite CounterView.ts so it has no ViewModel
+    writeFileSync(
+      join(srcDir, 'CounterView.ts'),
+      `import { Rectangle } from './dsl/generated/QtQuick/Rectangle.js';
+export default function CounterView() {
+  return Rectangle({ width: 200, height: 100 });
+}
+`,
+      'utf-8',
+    );
+    // Remove CounterViewModel.ts so no ViewModel schema is produced
+    rmSync(join(srcDir, 'CounterViewModel.ts'), { force: true });
+
+    const config = makeConfig({
+      entry: join(srcDir, 'CounterView.ts'),
+      outDir: join(projectDir, 'dist'),
+      configDir: projectDir,
+      assets: {
+        dir: join(projectDir, 'assets'),
+        include: ['**/*'],
+        exclude: [],
+        useQrc: false,
+        optimize: false,
+      },
+      runtime: 'v2',
+      module: { prefix: 'TestApp', version: { major: 1, minor: 0 } },
+    });
+
+    const pipeline = createBuildPipeline(config);
+    const result = await pipeline.run();
+
+    expect(result.success).toBe(true);
+    // No module directory or qmldir/qmltypes
+    expect(existsSync(join(config.outDir, 'qml', 'TestApp', 'ViewModels'))).toBe(false);
+
+    const manifestPath = join(config.outDir, 'manifest.json');
+    expect(existsSync(manifestPath)).toBe(true);
+    const manifest = JSON.parse(readFileSync(manifestPath, 'utf-8'));
+    expect(manifest.runtime).toBe('v2');
+    expect(manifest.modules).toEqual([]);
+  });
+});
