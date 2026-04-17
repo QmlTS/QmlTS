@@ -3,6 +3,7 @@ import type {
   AttachedBindingNode,
   BindingNode,
   FunctionDeclarationNode,
+  IdAssignmentNode,
   ImportNode,
   ObjectDefinitionNode,
   ObjectMember,
@@ -372,4 +373,11 @@ export function findImport(
   moduleUri: string,
 ): ImportNode | undefined {
   return imports.find((i) => i.moduleUri === moduleUri);
+}
+
+export function findIdAssignment(
+  members: readonly ObjectMember[],
+  id: string,
+): IdAssignmentNode | undefined {
+  return members.find((m): m is IdAssignmentNode => m.kind === 'IdAssignment' && m.id === id);
 }
