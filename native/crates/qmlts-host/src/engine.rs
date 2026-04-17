@@ -1513,52 +1513,59 @@ impl QmltsEngine {
         let ctx = qmlts_host_generated::v2_dispatch::V2InitContext {
             owner_id,
             register_instance: Arc::new(move |class_name, ptr| {
-                let mut reg = registry.lock().expect("registry lock poisoned");
-                match reg.allocate_instance(class_name, ptr) {
-                    Ok(id) => {
-                        // V1 compat: set context properties for the first instance only
-                        if v1_compat && !v1_compat_applied.load(Ordering::SeqCst) {
-                            let engine_ptr = engine_ptr_addr as *mut std::ffi::c_void;
-                            // SAFETY: Called on Qt main thread during QML loading.
-                            // engine_ptr is valid for the lifetime of the engine.
-                            // ptr is the just-constructed QObject, valid for its lifetime.
-                            unsafe {
-                                let vm_ok = qt_context::set_context_property(engine_ptr, "vm", ptr);
-                                let qmlts_ok =
-                                    qt_context::set_context_property(engine_ptr, "__qmlts", ptr);
-                                if vm_ok && qmlts_ok {
-                                    tracing::info!(
-                                        instance_id = id,
-                                        class_name,
-                                        "V1 compat: installed vm/__qmlts context properties"
-                                    );
-                                } else {
-                                    tracing::warn!(
-                                        instance_id = id,
-                                        vm_ok,
-                                        qmlts_ok,
-                                        "V1 compat: partial context property setup"
-                                    );
-                                }
-                            }
-                            v1_compat_applied.store(true, Ordering::SeqCst);
+                let id = {
+                    let mut reg = registry.lock().expect("registry lock poisoned");
+                    match reg.allocate_instance(class_name, ptr) {
+                        Ok(id) => id,
+                        Err(e) => {
+                            tracing::error!(%e, "Failed to allocate V2 instance");
+                            return -1;
                         }
+                    }
+                };
 
-                        if let Ok(qml_id) = i32::try_from(id) {
-                            qml_id
-                        } else {
-                            tracing::error!(
+                // V1 compat: set context properties for the first instance only.
+                // Do this after releasing the registry lock; Qt may evaluate
+                // bindings while context properties are updated.
+                if v1_compat
+                    && v1_compat_applied
+                        .compare_exchange(false, true, Ordering::SeqCst, Ordering::SeqCst)
+                        .is_ok()
+                {
+                    let engine_ptr = engine_ptr_addr as *mut std::ffi::c_void;
+                    // SAFETY: Called on Qt main thread during QML loading.
+                    // engine_ptr is valid for the lifetime of the engine.
+                    // ptr is the just-constructed QObject, valid for its lifetime.
+                    unsafe {
+                        let vm_ok = qt_context::set_context_property(engine_ptr, "vm", ptr);
+                        let qmlts_ok = qt_context::set_context_property(engine_ptr, "__qmlts", ptr);
+                        if vm_ok && qmlts_ok {
+                            tracing::info!(
                                 instance_id = id,
-                                "Allocated V2 instance id does not fit in i32; removing inert instance"
+                                class_name,
+                                "V1 compat: installed vm/__qmlts context properties"
                             );
-                            let _ = reg.remove_instance(id);
-                            -1
+                        } else {
+                            tracing::warn!(
+                                instance_id = id,
+                                vm_ok,
+                                qmlts_ok,
+                                "V1 compat: partial context property setup"
+                            );
                         }
                     }
-                    Err(e) => {
-                        tracing::error!(%e, "Failed to allocate V2 instance");
-                        -1
-                    }
+                }
+
+                if let Ok(qml_id) = i32::try_from(id) {
+                    qml_id
+                } else {
+                    tracing::error!(
+                        instance_id = id,
+                        "Allocated V2 instance id does not fit in i32; removing inert instance"
+                    );
+                    let mut reg = registry.lock().expect("registry lock poisoned");
+                    let _ = reg.remove_instance(id);
+                    -1
                 }
             }),
         };
@@ -2667,6 +2674,18 @@ mod tests {
             !state.v1_compat_applied.load(Ordering::SeqCst),
             "v1_compat_applied should be false before any instance is created"
         );
+
+        let _guard = guard.unwrap();
+        let ctx = qmlts_host_generated::v2_dispatch::take_v2_init_context()
+            .expect("V2 init context should be installed while guard is alive");
+        let instance_id = (ctx.register_instance)("LoginViewModel", std::ptr::null_mut());
+        assert!(instance_id >= 0);
+
+        let state = engine.require_v2().unwrap();
+        assert!(
+            state.v1_compat_applied.load(Ordering::SeqCst),
+            "v1_compat_applied should flip after the first instance is registered"
+        );
     }
 
     #[test]
@@ -2680,6 +2699,12 @@ mod tests {
             .unwrap();
         let guard = engine.create_v2_context_guard();
         assert!(guard.is_some());
+        let _guard = guard.unwrap();
+        let ctx = qmlts_host_generated::v2_dispatch::take_v2_init_context()
+            .expect("V2 init context should be installed while guard is alive");
+        let instance_id = (ctx.register_instance)("LoginViewModel", std::ptr::null_mut());
+        assert!(instance_id >= 0);
+
         let state = engine.require_v2().unwrap();
         assert!(
             !state.v1_compat_applied.load(Ordering::SeqCst),
