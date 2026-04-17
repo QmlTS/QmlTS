@@ -435,14 +435,28 @@ describe('Compiler Pipeline', () => {
       expect(unit.moduleImports![0]!.version).toBe('2.1');
     });
 
-    test('CP-17: V2 mode — QML output is still V1-shaped (unchanged)', () => {
+    test('CP-17: V2 mode — QML output is V2-shaped (differs from V1)', () => {
       const v1Unit = compileSource(VIEW_WITH_VM_SOURCE);
       const v2Unit = compileSource(VIEW_WITH_VM_SOURCE, {
         runtime: 'v2',
         moduleConfig: { prefix: 'MyApp', version: { major: 1, minor: 0 } },
       });
 
-      expect(v2Unit.qmlContent).toBe(v1Unit.qmlContent);
+      // V2 output must differ from V1 output
+      expect(v2Unit.qmlContent).not.toBe(v1Unit.qmlContent);
+
+      // V2 output must contain V2 patterns
+      expect(v2Unit.qmlContent).toContain('import MyApp.ViewModels 1.0');
+      expect(v2Unit.qmlContent).toContain('CounterViewModel {');
+      expect(v2Unit.qmlContent).toContain('id: __qmlts_vm0');
+      expect(v2Unit.qmlContent).toContain('__qmlts_vm0.count');
+      expect(v2Unit.qmlContent).toContain('__qmlts_vm0.onMounted()');
+
+      // V2 output must NOT contain V1 patterns
+      expect(v2Unit.qmlContent).not.toContain('vm.count');
+      expect(v2Unit.qmlContent).not.toContain('target: __qmlts');
+      expect(v2Unit.qmlContent).not.toContain('__qmlts.onMounted()');
+      expect(v2Unit.qmlContent).not.toContain('__qmlts.invoke(');
     });
 
     test('CP-18: V2 mode — view without ViewModel has no slots or module metadata', () => {
@@ -465,6 +479,91 @@ describe('Compiler Pipeline', () => {
       });
 
       expect(unit.viewModelSlots![0]!.parameterName).toBe('vm');
+    });
+  });
+
+  describe('V2 compiler output', () => {
+    // V2 project-level compile helper
+    function compileV2Project() {
+      return compile({
+        inputDir: FIXTURES_DIR,
+        outputDir: 'dist',
+        tsconfigPath: TSCONFIG_PATH,
+        runtime: 'v2',
+        moduleConfig: { prefix: 'TestApp', version: { major: 1, minor: 0 } },
+        diagnostics: { suppress: ['QMLTS-A011'] },
+      });
+    }
+
+    test('CP-V2-01: V2 CounterView QML matches golden file', () => {
+      const result = compileV2Project();
+      const unit = result.units.find((u) => u.viewName === 'CounterView');
+      expect(unit).toBeDefined();
+      expect(unit!.qmlContent).toBe(readGolden('CounterView.v2.qml'));
+    });
+
+    test('CP-V2-02: V2 LoginView QML matches golden file', () => {
+      const result = compileV2Project();
+      const unit = result.units.find((u) => u.viewName === 'LoginView');
+      expect(unit).toBeDefined();
+      expect(unit!.qmlContent).toBe(readGolden('LoginView.v2.qml'));
+    });
+
+    test('CP-V2-03: V2 output contains no vm.* bindings for ViewModel-backed views', () => {
+      const result = compileV2Project();
+      for (const unit of result.units) {
+        if (unit.viewModelName) {
+          expect(unit.qmlContent).not.toMatch(/\bvm\./);
+        }
+      }
+    });
+
+    test('CP-V2-04: V2 output contains no __qmlts.invoke or Connections { target: __qmlts }', () => {
+      const result = compileV2Project();
+      for (const unit of result.units) {
+        expect(unit.qmlContent).not.toContain('__qmlts.invoke(');
+        expect(unit.qmlContent).not.toContain('target: __qmlts');
+      }
+    });
+
+    test('CP-V2-05: V2 mode with ViewModel but missing moduleConfig emits QMLTS-V007', () => {
+      const unit = compileSource(VIEW_WITH_VM_SOURCE, {
+        runtime: 'v2',
+        // No moduleConfig — should trigger V007
+      });
+
+      const v007 = unit.diagnostics.find((d) => d.code === 'QMLTS-V007');
+      expect(v007).toBeDefined();
+      expect(v007!.severity).toBe('error');
+      expect(v007!.message).toContain('CounterViewModel');
+    });
+
+    test('CP-V2-06: V1 golden output is unchanged when runtime is v1', () => {
+      const result = compile({
+        inputDir: FIXTURES_DIR,
+        outputDir: 'dist',
+        tsconfigPath: TSCONFIG_PATH,
+        runtime: 'v1',
+        diagnostics: { suppress: ['QMLTS-A011'] },
+      });
+
+      const counterUnit = result.units.find((u) => u.viewName === 'CounterView');
+      const loginUnit = result.units.find((u) => u.viewName === 'LoginView');
+      expect(counterUnit).toBeDefined();
+      expect(loginUnit).toBeDefined();
+      expect(counterUnit!.qmlContent).toBe(readGolden('CounterView.qml'));
+      expect(loginUnit!.qmlContent).toBe(readGolden('LoginView.qml'));
+    });
+
+    test('CP-V2-07: V2 view without ViewModel has no module import or ViewModel block', () => {
+      const unit = compileSource(SIMPLE_VIEW_SOURCE, {
+        runtime: 'v2',
+        moduleConfig: { prefix: 'MyApp', version: { major: 1, minor: 0 } },
+      });
+
+      expect(unit.qmlContent).not.toContain('import MyApp.ViewModels');
+      expect(unit.qmlContent).not.toContain('__qmlts_vm0');
+      expect(unit.qmlContent).toContain('Rectangle {');
     });
   });
 });

@@ -27,6 +27,7 @@ import type {
   RequiredImport,
   StateBindingInfo,
   TransformResult,
+  V2TransformOptions,
 } from './transform-types.js';
 
 /**
@@ -34,8 +35,12 @@ import type {
  */
 export function createDslTransformer(registry: RegistryQueryInterface): DslTransformer {
   return {
-    transform(view: AnalyzedView, vm?: AnalyzedViewModel): TransformResult {
-      const ctx = createTransformContext(registry, vm);
+    transform(
+      view: AnalyzedView,
+      vm?: AnalyzedViewModel,
+      v2Options?: V2TransformOptions,
+    ): TransformResult {
+      const ctx = createTransformContext(registry, vm, v2Options);
       const rootObject = lowerNode(view.dslTree, ctx);
 
       // Generate required imports from used types
@@ -67,8 +72,8 @@ export function createDslTransformer(registry: RegistryQueryInterface): DslTrans
       };
     },
 
-    transformNode(node: DslCallNode, vm?: AnalyzedViewModel) {
-      const ctx = createTransformContext(registry, vm);
+    transformNode(node: DslCallNode, vm?: AnalyzedViewModel, v2Options?: V2TransformOptions) {
+      const ctx = createTransformContext(registry, vm, v2Options);
       const objectNode = lowerNode(node, ctx);
 
       return {
@@ -88,6 +93,7 @@ export function createDslTransformer(registry: RegistryQueryInterface): DslTrans
 interface TransformContext {
   readonly registry: RegistryQueryInterface;
   readonly vm?: AnalyzedViewModel;
+  readonly v2Options?: V2TransformOptions;
   readonly diagnostics: Diagnostic[];
   readonly requiredImports: RequiredImport[];
   readonly stateBindings: StateBindingInfo[];
@@ -98,10 +104,12 @@ interface TransformContext {
 function createTransformContext(
   registry: RegistryQueryInterface,
   vm?: AnalyzedViewModel,
+  v2Options?: V2TransformOptions,
 ): TransformContext {
   return {
     registry,
     vm,
+    v2Options,
     diagnostics: [],
     requiredImports: [],
     stateBindings: [],
@@ -300,6 +308,18 @@ function lowerHandler(
       objectTypeName,
     });
 
+    // V2: direct method call on typed ViewModel instance
+    if (ctx.v2Options) {
+      return {
+        kind: 'SignalHandler',
+        name: handler.signalName,
+        body: {
+          form: 'expression',
+          code: `${ctx.v2Options.qmlId}.${handler.commandRef.methodName}()`,
+        },
+      };
+    }
+
     // Lower to __qmlts.invoke(N) if we have a commandId, otherwise use method name
     const invokeCode =
       commandId != null
@@ -348,6 +368,11 @@ function lowerValue(
         vmProperty: value.property,
         objectTypeName,
       });
+      // V2: use typed ViewModel instance id
+      if (ctx.v2Options) {
+        return { kind: 'expression', code: `${ctx.v2Options.qmlId}.${value.property}` };
+      }
+      // V1: vm.property
       return { kind: 'expression', code: `${value.vmName}.${value.property}` };
 
     case 'expression':
@@ -404,6 +429,14 @@ function lowerAttachedHandlerBinding(
 
 function lowerAttachedHandlerValue(handler: DslHandler, ctx: TransformContext): BindingValue {
   if (handler.handlerType === 'command-ref' && handler.commandRef) {
+    // V2: direct method call on typed ViewModel instance
+    if (ctx.v2Options) {
+      return {
+        kind: 'expression',
+        code: `${ctx.v2Options.qmlId}.${handler.commandRef.methodName}()`,
+      };
+    }
+
     let commandId: number | undefined;
     if (ctx.vm) {
       const cmd = ctx.vm.commands.find((c) => c.methodName === handler.commandRef!.methodName);

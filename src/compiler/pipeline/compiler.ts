@@ -7,8 +7,10 @@ import { getQuery } from '../../index.js';
 import type { ViewModelInstanceSlot, ViewModelSchema } from '../../viewmodel/schema.js';
 import type { DiscoveredImport, DiscoveredSourceFile } from '../analyzer/analyzer-types.js';
 import { createTsAnalyzer } from '../analyzer/ts-analyzer.js';
+import type { Diagnostic, DiagnosticCode } from '../diagnostics.js';
 import { createIdAllocator } from '../ids/id-allocator.js';
 import { createPostProcessor } from '../postprocess/post-processor.js';
+import type { V2PostProcessOptions } from '../postprocess/postprocess-types.js';
 import { analyzeView } from '../transform/dsl-classifier.js';
 import { createDslTransformer } from '../transform/dsl-transformer.js';
 import { createImportResolver } from '../transform/import-resolver.js';
@@ -17,6 +19,7 @@ import type {
   AnalyzedViewModel,
   EffectListenerInfo,
   TransformResult,
+  V2TransformOptions,
 } from '../transform/transform-types.js';
 import type { SchemaGenerationContext } from '../viewmodel/extractor-types.js';
 import { createViewModelExtractor } from '../viewmodel/viewmodel-extractor.js';
@@ -438,30 +441,72 @@ function compileView(
   const viewName = analyzedView.functionName;
   const qmlOutputPath = computeOutputPath(sourceFilePath, options, '.qml');
   const generateSourceMap = options?.codegen?.sourceMap ?? false;
+  const isV2 = options?.runtime === 'v2';
+
+  // V2 fail-fast: ViewModel-backed view in V2 mode requires schema with module metadata
+  if (isV2 && vm && !schema?.moduleUri) {
+    const diag: Diagnostic = {
+      severity: 'error',
+      code: 'QMLTS-V007' as DiagnosticCode,
+      message:
+        `V2 mode requires module metadata for ViewModel "${vm.className}" ` +
+        `in view "${viewName}". Ensure moduleConfig is set in compiler options.`,
+    };
+    reporter.report(diag);
+    return buildFailedUnit(sourceFilePath, viewName, qmlOutputPath, vm, schema, [diag]);
+  }
+
+  // V2 transform options
+  const v2TransformOptions: V2TransformOptions | undefined =
+    isV2 && vm ? { qmlId: '__qmlts_vm0', className: vm.className } : undefined;
 
   // Transform: DSL IR → QML AST
-  const transformResult = transformer.transform(analyzedView, vm);
+  const transformResult = transformer.transform(analyzedView, vm, v2TransformOptions);
   for (const d of transformResult.diagnostics) reporter.report(d);
 
   // Bridge ViewModel effects → effectListeners for PostProcessor.
-  // The transformer doesn't populate effectListeners from the ViewModel —
-  // effects are ViewModel metadata, not DSL tree constructs.
-  const effectListeners: EffectListenerInfo[] = vm
-    ? vm.effects.map((e) => ({
-        signalName: e.qmlName,
-        effectName: e.fieldName,
-        objectTypeName: analyzedView.dslTree.typeName,
-        handlerParameters: e.parameters.map((p) => p.name),
-      }))
-    : [];
+  // In V2 mode, effects are handled as signal handler bindings inside the
+  // ViewModel block (via V2PostProcessOptions), not as Connections.
+  const effectListeners: EffectListenerInfo[] =
+    !isV2 && vm
+      ? vm.effects.map((e) => ({
+          signalName: e.qmlName,
+          effectName: e.fieldName,
+          objectTypeName: analyzedView.dslTree.typeName,
+          handlerParameters: e.parameters.map((p) => p.name),
+        }))
+      : [];
 
   const augmentedResult: TransformResult = {
     ...transformResult,
     effectListeners: [...transformResult.effectListeners, ...effectListeners],
   };
 
-  // PostProcess: inject imports, Connections, lifecycle
-  const postResult = postProcessor.process(augmentedResult, vm);
+  // V2 post-process options
+  const v2PostOptions: V2PostProcessOptions | undefined =
+    isV2 && vm && schema?.moduleUri
+      ? {
+          moduleImport: {
+            moduleUri: schema.moduleUri,
+            version: schema.moduleVersion
+              ? `${schema.moduleVersion.major}.${schema.moduleVersion.minor}`
+              : '1.0',
+          },
+          viewModelType: vm.className,
+          qmlId: '__qmlts_vm0',
+          effects: vm.effects.map((e) => ({
+            handlerName: deriveHandlerName(e.qmlName),
+            parameters: e.parameters.map((p) => p.name),
+          })),
+          lifecycle: {
+            hasMounted: vm.lifecycle.hasOnMounted,
+            hasUnmounting: vm.lifecycle.hasOnUnmounting,
+          },
+        }
+      : undefined;
+
+  // PostProcess: inject imports, Connections (V1) or ViewModel block (V2), lifecycle
+  const postResult = postProcessor.process(augmentedResult, vm, v2PostOptions);
   for (const d of postResult.diagnostics) reporter.report(d);
 
   // Source map annotation — must happen AFTER PostProcessor clone so that
@@ -490,7 +535,6 @@ function compileView(
   const unitDiagnostics = [...transformResult.diagnostics, ...postResult.diagnostics];
 
   // V2 slot metadata
-  const isV2 = options?.runtime === 'v2';
   const slot: ViewModelInstanceSlot | undefined =
     isV2 && vm && schema
       ? {
@@ -537,6 +581,51 @@ function compileView(
             : undefined,
         }
       : {}),
+  };
+}
+
+// ─── V2 Helpers ─────────────────────────────────────────────────────────
+
+/**
+ * Derive the QML signal handler name for a V2 effect.
+ *
+ * Prevents double-prefix: if qmlName already starts with "on" + uppercase
+ * (e.g., "onLoginCompleted"), use it as-is. Otherwise prepend "on" + capitalize.
+ */
+function deriveHandlerName(qmlName: string): string {
+  if (
+    qmlName.length >= 3 &&
+    qmlName.startsWith('on') &&
+    qmlName[2] === qmlName[2]!.toUpperCase() &&
+    qmlName[2] !== qmlName[2]!.toLowerCase()
+  ) {
+    return qmlName;
+  }
+  return `on${qmlName.charAt(0).toUpperCase()}${qmlName.slice(1)}`;
+}
+
+/**
+ * Build a CompilationUnit for a view that failed V2 validation (e.g., QMLTS-V007).
+ * Emits empty QML content so the pipeline can continue reporting all errors.
+ */
+function buildFailedUnit(
+  sourceFilePath: string,
+  viewName: string,
+  qmlOutputPath: string,
+  vm: AnalyzedViewModel | undefined,
+  schema: ViewModelSchema | undefined,
+  diagnostics: readonly Diagnostic[],
+): CompilationUnit {
+  return {
+    sourceFile: sourceFilePath,
+    viewName,
+    viewModelName: vm?.className,
+    qmlOutputPath,
+    qmlContent: '',
+    schema,
+    schemaOutputPath: schema ? qmlOutputPath.replace(/\.qml$/, '.schema.json') : undefined,
+    sourceMap: undefined,
+    diagnostics,
   };
 }
 

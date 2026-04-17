@@ -180,13 +180,25 @@ export interface EffectListenerInfo {
   readonly handlerParameters?: readonly string[];
 }
 
+// ─── V2 Transform Options ───────────────────────────────────────────────
+
+export interface V2TransformOptions {
+  readonly qmlId: string;
+  readonly className: string;
+}
+
 // ─── Transformer Interface ──────────────────────────────────────────────
 
 export interface DslTransformer {
-  transform(view: AnalyzedView, vm?: AnalyzedViewModel): TransformResult;
+  transform(
+    view: AnalyzedView,
+    vm?: AnalyzedViewModel,
+    v2Options?: V2TransformOptions,
+  ): TransformResult;
   transformNode(
     node: DslCallNode,
     vm?: AnalyzedViewModel,
+    v2Options?: V2TransformOptions,
   ): {
     readonly objectNode: ObjectDefinitionNode;
     readonly requiredImports: readonly RequiredImport[];

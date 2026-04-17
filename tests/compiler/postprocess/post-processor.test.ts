@@ -13,7 +13,9 @@ import {
   findBinding,
   findChildByType,
   findFunctionDeclaration,
+  findIdAssignment,
   findImport,
+  findSignalHandler,
 } from './helpers.js';
 
 const registry = createPostProcessorRegistry();
@@ -446,6 +448,216 @@ describe('PostProcessor', () => {
       expect(result.injected.connections).toBe(2);
       expect(result.injected.bindings).toBe(1);
       expect(result.injected.lifecycleHandlers).toBe(2);
+    });
+  });
+
+  describe('V2 mode', () => {
+    const v2BaseOptions: import('../../../src/compiler/postprocess/postprocess-types.js').V2PostProcessOptions =
+      {
+        moduleImport: { moduleUri: 'MyApp.ViewModels', version: '1.0' },
+        viewModelType: 'LoginViewModel',
+        qmlId: '__qmlts_vm0',
+        effects: [{ handlerName: 'onLoginCompleted', parameters: ['success'] }],
+        lifecycle: { hasMounted: true, hasUnmounting: false },
+      };
+
+    it('PP-V2-01: injects ViewModel instance block as first child', () => {
+      const pp = createPostProcessor(importResolver, registry);
+      const vm = createMockViewModel({
+        className: 'LoginViewModel',
+        effects: [
+          createMockEffect('onLoginCompleted', {
+            parameters: [{ name: 'success', tsType: 'boolean' }],
+          }),
+        ],
+        lifecycle: { hasOnMounted: true },
+      });
+      const tr = createTransformResultBuilder().build();
+
+      const result = pp.process(tr, vm, v2BaseOptions);
+
+      const firstChild = result.document.rootObject.members[0]!;
+      expect(firstChild.kind).toBe('ObjectDefinition');
+      if (firstChild.kind === 'ObjectDefinition') {
+        expect(firstChild.typeName).toBe('LoginViewModel');
+        const idNode = findIdAssignment(firstChild.members, '__qmlts_vm0');
+        expect(idNode).toBeDefined();
+      }
+    });
+
+    it('PP-V2-02: ViewModel block contains effect signal handler bindings', () => {
+      const pp = createPostProcessor(importResolver, registry);
+      const vm = createMockViewModel({ className: 'LoginViewModel' });
+      const tr = createTransformResultBuilder().build();
+
+      const result = pp.process(tr, vm, v2BaseOptions);
+
+      const vmBlock = findChildByType(result.document.rootObject, 'LoginViewModel')!;
+      expect(vmBlock).toBeDefined();
+      const handler = findSignalHandler(vmBlock.members, 'onLoginCompleted');
+      expect(handler).toBeDefined();
+      expect(handler!.body.form).toBe('expression');
+      expect(handler!.body.code).toBe('function(success) { }');
+    });
+
+    it('PP-V2-03: injects module import for ViewModel type', () => {
+      const pp = createPostProcessor(importResolver, registry);
+      const vm = createMockViewModel({ className: 'LoginViewModel' });
+      const tr = createTransformResultBuilder().build();
+
+      const result = pp.process(tr, vm, v2BaseOptions);
+
+      const moduleImport = findImport(result.document.imports, 'MyApp.ViewModels');
+      expect(moduleImport).toBeDefined();
+      expect(moduleImport!.version).toBe('1.0');
+    });
+
+    it('PP-V2-04: V2 does not inject Connections block', () => {
+      const pp = createPostProcessor(importResolver, registry);
+      const vm = createMockViewModel({
+        className: 'LoginViewModel',
+        effects: [createMockEffect('onLoginCompleted')],
+      });
+      const tr = createTransformResultBuilder()
+        .withEffectListeners({
+          signalName: 'onLoginCompleted',
+          effectName: 'onLoginCompleted',
+          objectTypeName: 'Rectangle',
+        })
+        .build();
+
+      const result = pp.process(tr, vm, v2BaseOptions);
+
+      const conn = findChildByType(result.document.rootObject, 'Connections');
+      expect(conn).toBeUndefined();
+      expect(result.injected.connections).toBe(0);
+    });
+
+    it('PP-V2-05: V2 lifecycle emits qmlId.onMounted()', () => {
+      const pp = createPostProcessor(importResolver, registry);
+      const vm = createMockViewModel({ lifecycle: { hasOnMounted: true } });
+      const tr = createTransformResultBuilder().build();
+
+      const result = pp.process(tr, vm, v2BaseOptions);
+
+      const comp = findAttachedBinding(result.document.rootObject, 'Component');
+      expect(comp).toBeDefined();
+      const onCompleted = findBinding(comp!.bindings, 'onCompleted');
+      expect(onCompleted).toBeDefined();
+      expect(onCompleted!.value).toEqual({
+        kind: 'script-block',
+        code: '__qmlts_vm0.onMounted()',
+      });
+    });
+
+    it('PP-V2-06: V2 lifecycle emits qmlId.onUnmounting()', () => {
+      const pp = createPostProcessor(importResolver, registry);
+      const vm = createMockViewModel({ lifecycle: { hasOnUnmounting: true } });
+      const tr = createTransformResultBuilder().build();
+      const opts = { ...v2BaseOptions, lifecycle: { hasMounted: false, hasUnmounting: true } };
+
+      const result = pp.process(tr, vm, opts);
+
+      const comp = findAttachedBinding(result.document.rootObject, 'Component');
+      expect(comp).toBeDefined();
+      const onDestruction = findBinding(comp!.bindings, 'onDestruction');
+      expect(onDestruction).toBeDefined();
+      expect(onDestruction!.value).toEqual({
+        kind: 'script-block',
+        code: '__qmlts_vm0.onUnmounting()',
+      });
+    });
+
+    it('PP-V2-07: V2 idempotency — no duplicate ViewModel block injection', () => {
+      const pp = createPostProcessor(importResolver, registry);
+      const root = createObject('Rectangle')
+        .child(createObject('LoginViewModel').id('__qmlts_vm0'))
+        .build();
+      const tr = createTransformResultBuilder().withRootObject(root).build();
+
+      const result = pp.process(tr, undefined, v2BaseOptions);
+
+      const vmBlocks = result.document.rootObject.members.filter(
+        (m) => m.kind === 'ObjectDefinition' && m.typeName === 'LoginViewModel',
+      );
+      expect(vmBlocks).toHaveLength(1);
+      const handler = findSignalHandler(vmBlocks[0]!.members, 'onLoginCompleted');
+      expect(handler).toBeDefined();
+      expect(handler!.body.code).toBe('function(success) { }');
+    });
+
+    it('PP-V2-08: V2 collision — diagnostic on same type with different id', () => {
+      const pp = createPostProcessor(importResolver, registry);
+      const root = createObject('Rectangle')
+        .child(createObject('LoginViewModel').id('someOtherId'))
+        .build();
+      const tr = createTransformResultBuilder().withRootObject(root).build();
+
+      const result = pp.process(tr, undefined, v2BaseOptions);
+
+      const v008 = result.diagnostics.filter((d) => d.code === 'QMLTS-V008');
+      expect(v008).toHaveLength(1);
+      expect(v008[0]!.severity).toBe('error');
+      expect(v008[0]!.message).toContain('someOtherId');
+    });
+
+    it('PP-V2-09: repairs same-type existing block that is missing id', () => {
+      const pp = createPostProcessor(importResolver, registry);
+      const root = createObject('Rectangle').child(createObject('LoginViewModel').build()).build();
+      const tr = createTransformResultBuilder().withRootObject(root).build();
+
+      const result = pp.process(tr, undefined, v2BaseOptions);
+
+      const vmBlocks = result.document.rootObject.members.filter(
+        (m) => m.kind === 'ObjectDefinition' && m.typeName === 'LoginViewModel',
+      );
+      expect(vmBlocks).toHaveLength(1);
+      expect(findIdAssignment(vmBlocks[0]!.members, '__qmlts_vm0')).toBeDefined();
+      expect(findSignalHandler(vmBlocks[0]!.members, 'onLoginCompleted')).toBeDefined();
+      expect(result.diagnostics.some((d) => d.code === 'QMLTS-V008')).toBe(false);
+    });
+
+    it('PP-V2-10: V2 collision — diagnostic on same id with different type', () => {
+      const pp = createPostProcessor(importResolver, registry);
+      const root = createObject('Rectangle')
+        .child(createObject('OtherViewModel').id('__qmlts_vm0'))
+        .build();
+      const tr = createTransformResultBuilder().withRootObject(root).build();
+
+      const result = pp.process(tr, undefined, v2BaseOptions);
+
+      const v008 = result.diagnostics.filter((d) => d.code === 'QMLTS-V008');
+      expect(v008).toHaveLength(1);
+      expect(v008[0]!.severity).toBe('error');
+      expect(v008[0]!.message).toContain('__qmlts_vm0');
+      expect(v008[0]!.message).toContain('OtherViewModel');
+    });
+
+    it('PP-V2-11: effects with no parameters produce empty function()', () => {
+      const pp = createPostProcessor(importResolver, registry);
+      const opts = {
+        ...v2BaseOptions,
+        effects: [{ handlerName: 'onCountChanged', parameters: [] as string[] }],
+      };
+      const tr = createTransformResultBuilder().build();
+
+      const result = pp.process(tr, undefined, opts);
+
+      const vmBlock = findChildByType(result.document.rootObject, 'LoginViewModel')!;
+      const handler = findSignalHandler(vmBlock.members, 'onCountChanged');
+      expect(handler).toBeDefined();
+      expect(handler!.body.code).toBe('function() { }');
+    });
+
+    it('PP-V2-12: V2 mode with no lifecycle produces no Component block', () => {
+      const pp = createPostProcessor(importResolver, registry);
+      const opts = { ...v2BaseOptions, lifecycle: { hasMounted: false, hasUnmounting: false } };
+      const tr = createTransformResultBuilder().build();
+
+      const result = pp.process(tr, undefined, opts);
+
+      const comp = findAttachedBinding(result.document.rootObject, 'Component');
+      expect(comp).toBeUndefined();
     });
   });
 });

@@ -259,4 +259,83 @@ describe('DslTransformer', () => {
       expect(idNode.id).toBe('root');
     }
   });
+
+  describe('V2 mode', () => {
+    const v2Options: import('../../../src/compiler/transform/transform-types.js').V2TransformOptions =
+      {
+        qmlId: '__qmlts_vm0',
+        className: 'TestVm',
+      };
+
+    test('DT-V2-01: command-ref lowers to qmlId.method() in V2 mode', () => {
+      const view = buildView(
+        `function MyView(vm: any) { return Rectangle().onClicked(vm.handleClick); }`,
+        'MyView',
+        'vm',
+      );
+      const result = transformer.transform(view, commandVm, v2Options);
+      const handler = result.document.rootObject.members.find(
+        (m) => m.kind === 'SignalHandler' && m.name === 'clicked',
+      );
+      expect(handler).toBeDefined();
+      if (handler && handler.kind === 'SignalHandler') {
+        expect(handler.body.code).toBe('__qmlts_vm0.handleClick()');
+        expect(handler.body.code).not.toContain('__qmlts.invoke');
+      }
+    });
+
+    test('DT-V2-02: state-ref lowers to qmlId.property in V2 mode', () => {
+      const view = buildView(
+        `function MyView(vm: any) { return Text().text(vm.title); }`,
+        'MyView',
+        'vm',
+      );
+      const result = transformer.transform(view, undefined, v2Options);
+      const binding = result.document.rootObject.members.find(
+        (m) => m.kind === 'Binding' && m.property === 'text',
+      );
+      expect(binding).toBeDefined();
+      if (binding && binding.kind === 'Binding') {
+        expect(binding.value).toEqual({ kind: 'expression', code: '__qmlts_vm0.title' });
+      }
+    });
+
+    test('DT-V2-03: V1 mode still emits __qmlts.invoke when v2Options absent', () => {
+      const view = buildView(
+        `function MyView(vm: any) { return Rectangle().onClicked(vm.handleClick); }`,
+        'MyView',
+        'vm',
+      );
+      const result = transformer.transform(view, commandVm);
+      const handler = result.document.rootObject.members.find(
+        (m) => m.kind === 'SignalHandler' && m.name === 'clicked',
+      );
+      expect(handler).toBeDefined();
+      if (handler && handler.kind === 'SignalHandler') {
+        expect(handler.body.code).toContain('__qmlts.invoke');
+      }
+    });
+
+    test('DT-V2-04: V2 command bindings metadata still collected', () => {
+      const view = buildView(
+        `function MyView(vm: any) { return Rectangle().onClicked(vm.handleClick); }`,
+        'MyView',
+        'vm',
+      );
+      const result = transformer.transform(view, commandVm, v2Options);
+      expect(result.commandBindings).toHaveLength(1);
+      expect(result.commandBindings[0]!.methodName).toBe('handleClick');
+    });
+
+    test('DT-V2-05: V2 state bindings metadata still collected', () => {
+      const view = buildView(
+        `function MyView(vm: any) { return Text().text(vm.title); }`,
+        'MyView',
+        'vm',
+      );
+      const result = transformer.transform(view, undefined, v2Options);
+      expect(result.stateBindings).toHaveLength(1);
+      expect(result.stateBindings[0]!.vmProperty).toBe('title');
+    });
+  });
 });
