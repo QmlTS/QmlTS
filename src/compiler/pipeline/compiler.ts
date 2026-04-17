@@ -444,7 +444,7 @@ function compileView(
   const isV2 = options?.runtime === 'v2';
 
   // V2 fail-fast: ViewModel-backed view in V2 mode requires schema with module metadata
-  if (isV2 && vm && (!schema || !schema.moduleUri)) {
+  if (isV2 && vm && !schema?.moduleUri) {
     const diag: Diagnostic = {
       severity: 'error',
       code: 'QMLTS-V007' as DiagnosticCode,
