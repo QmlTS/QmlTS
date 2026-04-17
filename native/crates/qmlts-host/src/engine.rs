@@ -1631,27 +1631,44 @@ impl QmltsEngine {
                 continue;
             };
 
-            // Validate property names against descriptor allowlist
-            let desc = descriptors.iter().find(|d| d.class_name == class_name);
-            if let Some(desc) = desc {
-                if let Some(obj) = properties.as_object() {
-                    let allowed: std::collections::HashSet<&str> =
-                        desc.state_properties.iter().map(|p| p.qml_name).collect();
-                    for key in obj.keys() {
-                        if !allowed.contains(key.as_str()) {
-                            diagnostics.push(serde_json::json!({
-                                "code": "HR_UNKNOWN_PROPERTY",
-                                "message": format!("Property '{}' not in schema for '{}'", key, class_name),
-                                "instanceId": instance_id,
-                                "className": class_name,
-                            }));
-                        }
-                    }
+            let Some(desc) = descriptors.iter().find(|d| d.class_name == class_name) else {
+                diagnostics.push(serde_json::json!({
+                    "code": "HR_DESCRIPTOR_NOT_FOUND",
+                    "message": format!("No schema descriptor found for '{}'", class_name),
+                    "instanceId": instance_id,
+                    "className": class_name,
+                }));
+                continue;
+            };
+
+            let Some(obj) = properties.as_object() else {
+                diagnostics.push(serde_json::json!({
+                    "code": "HR_INVALID_PROPERTIES",
+                    "message": format!("Properties for instance {} must be a JSON object", instance_id),
+                    "instanceId": instance_id,
+                    "className": class_name,
+                }));
+                continue;
+            };
+
+            let allowed: std::collections::HashSet<&str> =
+                desc.state_properties.iter().map(|p| p.qml_name).collect();
+            let mut filtered_properties = serde_json::Map::new();
+            for (key, value) in obj {
+                if allowed.contains(key.as_str()) {
+                    filtered_properties.insert(key.clone(), value.clone());
+                } else {
+                    diagnostics.push(serde_json::json!({
+                        "code": "HR_UNKNOWN_PROPERTY",
+                        "message": format!("Property '{}' not in schema for '{}'", key, class_name),
+                        "instanceId": instance_id,
+                        "className": class_name,
+                    }));
                 }
             }
 
             let _suppress = qt_context::SuppressGuard::new(ptr);
-            let props_json = serde_json::to_string(properties)
+            let props_json = serde_json::to_string(&serde_json::Value::Object(filtered_properties))
                 .map_err(|e| QmltsError::Internal(e.to_string()))?;
 
             if !qt_context::v2_write_properties(ptr, &props_json) {
@@ -3009,6 +3026,34 @@ mod tests {
     }
 
     #[test]
+    fn restore_without_descriptor_produces_diagnostic() {
+        let _guard = TEST_MUTEX.lock().unwrap();
+        reset_app_initialized();
+        crate::type_registrar::clear_global_registrations();
+        let mut engine = QmltsEngine::new(None).unwrap();
+        engine
+            .register_module("QmlTS.Test", 1, 0, &["LoginViewModel".into()], false)
+            .unwrap();
+
+        let id = {
+            let state = engine.require_v2().unwrap();
+            let mut reg = state.registry.lock().unwrap();
+            let id = reg
+                .allocate_instance("UnknownViewModel", 0xCAFE as *mut std::ffi::c_void)
+                .unwrap();
+            reg.mark_ready(id).unwrap();
+            id
+        };
+
+        let pairs = format!(r#"[{{"instanceId": {id}, "properties": {{"username": "alice"}}}}]"#);
+        let json = engine.restore_instance_states(&pairs).unwrap();
+        let parsed: serde_json::Value = serde_json::from_str(&json).unwrap();
+        let diags = parsed["diagnostics"].as_array().unwrap();
+        assert!(!diags.is_empty());
+        assert_eq!(diags[0]["code"], "HR_DESCRIPTOR_NOT_FOUND");
+    }
+
+    #[test]
     #[cfg(feature = "mock-qt")]
     fn restore_writes_properties() {
         let _guard = TEST_MUTEX.lock().unwrap();
@@ -3035,6 +3080,43 @@ mod tests {
         let diags = parsed["diagnostics"].as_array().unwrap();
         // Should succeed with no diagnostics (mock write always returns true)
         assert!(diags.is_empty(), "Expected no diagnostics, got: {diags:?}");
+        qt_context::mock_clear_v2_properties();
+    }
+
+    #[test]
+    #[cfg(feature = "mock-qt")]
+    fn restore_filters_unknown_properties_before_write() {
+        let _guard = TEST_MUTEX.lock().unwrap();
+        reset_app_initialized();
+        crate::type_registrar::clear_global_registrations();
+        qt_context::mock_clear_v2_properties();
+        let mut engine = QmltsEngine::new(None).unwrap();
+        engine
+            .register_module("QmlTS.Test", 1, 0, &["LoginViewModel".into()], false)
+            .unwrap();
+
+        let ptr = 0xD00D as *mut std::ffi::c_void;
+        let id = {
+            let state = engine.require_v2().unwrap();
+            let mut reg = state.registry.lock().unwrap();
+            let id = reg.allocate_instance("LoginViewModel", ptr).unwrap();
+            reg.mark_ready(id).unwrap();
+            id
+        };
+
+        let pairs = format!(
+            r#"[{{"instanceId": {id}, "properties": {{"username": "bob", "unexpected": true}}}}]"#
+        );
+        let json = engine.restore_instance_states(&pairs).unwrap();
+        let parsed: serde_json::Value = serde_json::from_str(&json).unwrap();
+        let diags = parsed["diagnostics"].as_array().unwrap();
+        assert!(diags.iter().any(|d| d["code"] == "HR_UNKNOWN_PROPERTY"));
+
+        let names = serde_json::json!(["username", "unexpected"]).to_string();
+        let read_back = qt_context::v2_read_properties(ptr, &names).unwrap();
+        let parsed_read: serde_json::Value = serde_json::from_str(&read_back).unwrap();
+        assert_eq!(parsed_read["props"]["username"], "bob");
+        assert!(parsed_read["props"].get("unexpected").is_none());
         qt_context::mock_clear_v2_properties();
     }
 }

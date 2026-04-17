@@ -128,6 +128,10 @@ function getEffectiveWatchPaths(internals: ServerInternals): readonly string[] {
   return internals.options.watchPaths ?? internals.config.dev.watchPaths ?? [];
 }
 
+function isReloadFlowStatus(status: DevServerStatus): boolean {
+  return status === 'reloading' || status === 'capturing-state' || status === 'restoring-state';
+}
+
 // ─── Rebuild logic ──────────────────────────────────────────
 
 function runRebuild(internals: ServerInternals): Promise<DevServerStartResult> {
@@ -233,7 +237,7 @@ async function performRebuild(internals: ServerInternals): Promise<DevServerStar
       return await performRebuild(internals);
     }
 
-    if (internals.status === 'reloading') {
+    if (isReloadFlowStatus(internals.status)) {
       if (pipelineResult.success) {
         transition(internals, 'running');
       } else {
@@ -261,7 +265,7 @@ async function performRebuild(internals: ServerInternals): Promise<DevServerStar
     };
     emit(internals, 'rebuild-error', buildData);
 
-    if (internals.status === 'reloading') {
+    if (isReloadFlowStatus(internals.status)) {
       transition(internals, 'error');
     }
 
@@ -307,6 +311,10 @@ async function performHotReload(
     throw err;
   } finally {
     profilerSpan?.end();
+  }
+
+  if (isReloadFlowStatus(internals.status)) {
+    transition(internals, 'running');
   }
 
   if (result.success) {

@@ -169,22 +169,34 @@ export function createHotReloadOrchestrator(
           const v2Diagnostics: HotReloadDiagnostic[] = [];
           let degraded: boolean | undefined;
 
-          if (internals.getInstanceSlots && internals.client.captureInstanceStates) {
-            oldSlots = internals.getInstanceSlots();
-            try {
-              capturedSnapshots = await internals.client.captureInstanceStates();
-            } catch (err) {
+          if (internals.getInstanceSlots) {
+            if (!internals.client.captureInstanceStates) {
+              degraded = true;
               v2Diagnostics.push({
-                code: 'HR_CAPTURE_FAILED',
-                message: `Capture failed: ${toErrorMessage(err)}`,
+                code: 'HR_DEGRADED',
+                message: 'V2 hot reload degraded: native captureInstanceStates not available',
               });
             }
-          } else if (internals.getInstanceSlots && !internals.client.captureInstanceStates) {
-            degraded = true;
-            v2Diagnostics.push({
-              code: 'HR_DEGRADED',
-              message: 'V2 hot reload degraded: native captureInstanceStates not available',
-            });
+
+            if (!internals.client.restoreInstanceStates) {
+              degraded = true;
+              v2Diagnostics.push({
+                code: 'HR_DEGRADED',
+                message: 'V2 hot reload degraded: native restoreInstanceStates not available',
+              });
+            }
+
+            if (internals.client.captureInstanceStates) {
+              oldSlots = internals.getInstanceSlots();
+              try {
+                capturedSnapshots = await internals.client.captureInstanceStates();
+              } catch (err) {
+                v2Diagnostics.push({
+                  code: 'HR_CAPTURE_FAILED',
+                  message: `Capture failed: ${toErrorMessage(err)}`,
+                });
+              }
+            }
           }
 
           // V2 Phase 2: Reload

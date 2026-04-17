@@ -1094,10 +1094,14 @@ bool qmlts_v2_write_properties(void* qobject_ptr, const char* properties_json) {
 
     const QMetaObject* meta = obj->metaObject();
     QJsonObject propsObj = doc.object();
+    bool hadWriteFailure = false;
 
     for (auto it = propsObj.begin(); it != propsObj.end(); ++it) {
         int propIndex = meta->indexOfProperty(it.key().toUtf8().constData());
-        if (propIndex < 0) continue;
+        if (propIndex < 0) {
+            hadWriteFailure = true;
+            continue;
+        }
         QMetaProperty prop = meta->property(propIndex);
         QJsonValue val = it.value();
 
@@ -1110,11 +1114,16 @@ bool qmlts_v2_write_properties(void* qobject_ptr, const char* properties_json) {
                 variant = QVariant(val.toDouble());
         }
         else if (val.isString()) variant = QVariant(val.toString());
-        else continue;
+        else {
+            hadWriteFailure = true;
+            continue;
+        }
 
-        prop.write(obj, variant);
+        if (!prop.isWritable() || !prop.write(obj, variant)) {
+            hadWriteFailure = true;
+        }
     }
-    return true;
+    return !hadWriteFailure;
 }
 
 /// Reload QML: keep the existing root tree until the new source loads successfully.

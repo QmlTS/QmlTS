@@ -1279,7 +1279,7 @@ describe('DevServer V2 status', () => {
     });
     const statuses: DevServerStatus[] = [];
     const getInstanceSlots = () => [
-      { instanceId: 1, className: 'Counter', compilerSlotKey: 'counter-slot' },
+      { instanceId: 1, className: 'Counter', compilerSlotKey: 'counter-slot', properties: {} },
     ];
 
     const server = createDevServer(config, { hotReloadClient: mockClient, getInstanceSlots });
@@ -1304,6 +1304,8 @@ describe('DevServer V2 status', () => {
       const capIdx = statuses.indexOf('capturing-state');
       const resIdx = statuses.indexOf('restoring-state');
       expect(capIdx).toBeLessThan(resIdx);
+      expect(statuses).toContain('running');
+      expect(server.getStatus()).toBe('running');
     } finally {
       await server.stop();
     }
@@ -1355,7 +1357,7 @@ describe('DevServer V2 status', () => {
     });
     const statuses: DevServerStatus[] = [];
     const getInstanceSlots = () => [
-      { instanceId: 1, className: 'Counter', compilerSlotKey: 'counter-slot' },
+      { instanceId: 1, className: 'Counter', compilerSlotKey: 'counter-slot', properties: {} },
     ];
 
     const server = createDevServer(config, { hotReloadClient: mockClient, getInstanceSlots });
@@ -1378,6 +1380,7 @@ describe('DevServer V2 status', () => {
       expect(statuses).toContain('capturing-state');
       // restoring-state should NOT be emitted since reload failed
       expect(statuses).not.toContain('restoring-state');
+      expect(server.getStatus()).toBe('running');
     } finally {
       await server.stop();
     }

@@ -580,6 +580,38 @@ describe('HotReloadOrchestrator V2', () => {
     expect(result.degraded).toBe(true);
     expect(result.diagnostics).toBeDefined();
     expect(result.diagnostics!.some((d) => d.code === 'HR_DEGRADED')).toBe(true);
+    expect(result.diagnostics!.map((d) => d.message)).toContain(
+      'V2 hot reload degraded: native captureInstanceStates not available',
+    );
+    expect(result.diagnostics!.map((d) => d.message)).toContain(
+      'V2 hot reload degraded: native restoreInstanceStates not available',
+    );
+    expect(result.instancesRestored).toBeUndefined();
+  });
+
+  test('HR-V2-08b: missing restoreInstanceStates marks degraded after capture support exists', async () => {
+    let captureCalls = 0;
+    const client: HotReloadClient = {
+      async reload(): Promise<HotReloadResult> {
+        return { success: true, durationMs: 5 };
+      },
+      isConnected: () => true,
+      dispose: () => {},
+      captureInstanceStates(): NativeInstanceSnapshot[] {
+        captureCalls++;
+        return [{ instanceId: 0, className: 'LoginViewModel', properties: { username: 'test' } }];
+      },
+    };
+    const orch = createHotReloadOrchestrator({
+      client,
+      getInstanceSlots: () => makeOldSlots(),
+    });
+
+    const result = await orch.reload(['file.ts'], '/output');
+    expect(result.success).toBe(true);
+    expect(captureCalls).toBe(1);
+    expect(result.degraded).toBe(true);
+    expect(result.diagnostics?.some((d) => d.message.includes('restoreInstanceStates'))).toBe(true);
     expect(result.instancesRestored).toBeUndefined();
   });
 
