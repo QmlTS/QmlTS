@@ -171,6 +171,9 @@ export { checkQtVersionCompatibility, createPackageResolver } from './package-re
 // ─── Platform Distributor ───────────────────────────────────
 export type { PlatformDistributor } from './platform-distributor.js';
 export { createPlatformDistributor } from './platform-distributor.js';
+// ─── Module Metadata ────────────────────────────────────────
+export type { ModuleMeta } from './module-meta.js';
+export { deriveModuleMeta, deriveModuleRelDir, deriveModuleUri, deriveQmltypesFilename, validateSchemaConsistency } from './module-meta.js';
 export {
   createManifest,
   createProductLayout,
@@ -182,6 +185,13 @@ export {
   writeEventBindings,
   writeManifest,
 } from './product-layout.js';
+export { attachModuleDir } from './product-layout.js';
+// ─── Qmldir Generator ──────────────────────────────────────
+export type { QmldirGenerator, QmldirGeneratorOptions } from './qmldir-generator.js';
+export { createQmldirGenerator } from './qmldir-generator.js';
+// ─── Qmltypes Generator ────────────────────────────────────
+export type { QmltypesGenerator, QmltypesGeneratorOptions } from './qmltypes-generator.js';
+export { createQmltypesGenerator } from './qmltypes-generator.js';
 // ─── Resource Bundler ───────────────────────────────────────
 export type { ResourceBundler } from './resource-bundler.js';
 export { createResourceBundler, dryRunBundle } from './resource-bundler.js';
