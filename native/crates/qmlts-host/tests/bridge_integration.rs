@@ -37,7 +37,13 @@ fn test_v2_pre_ready_command_is_queued_and_flushed() {
     let _guard = V2_TEST_MUTEX.lock().unwrap();
     let mut engine = QmltsEngine::new(None).unwrap();
     engine
-        .register_module("QmlTS.V2Queue", 1, 0, &["LoginViewModel".to_string()])
+        .register_module(
+            "QmlTS.V2Queue",
+            1,
+            0,
+            &["LoginViewModel".to_string()],
+            false,
+        )
         .unwrap();
 
     let created_ids = Arc::new(Mutex::new(Vec::<u32>::new()));
