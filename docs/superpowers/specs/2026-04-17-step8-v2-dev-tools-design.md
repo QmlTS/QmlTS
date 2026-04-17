@@ -116,24 +116,53 @@ interface HotReloadResult {
 
 ## §2 Native Capture/Restore API
 
+### Structured Descriptor Metadata
+
+Step 8 adds structured state-property metadata to `V2BridgeDescriptor` so the
+capture/restore path never parses `schema_json` at runtime:
+
+```rust
+/// Descriptor for a single declared state property on a V2 ViewModel.
+pub struct V2StatePropertyDescriptor {
+    /// Rust/TS property name (e.g., "username").
+    pub name: &'static str,
+    /// QML property name (e.g., "username" — same unless aliased).
+    pub qml_name: &'static str,
+    /// QML/Qt type for serialization: "bool" | "int" | "real" | "string".
+    pub qml_type: &'static str,
+}
+```
+
+`V2BridgeDescriptor` gains a new field:
+
+```rust
+pub state_properties: &'static [V2StatePropertyDescriptor],
+```
+
+Each fixture descriptor (`LoginViewModel`, `CounterViewModel`, `SearchViewModel`)
+populates `state_properties` with static arrays matching their declared states.
+`schema_json` remains on the descriptor for diagnostics, tests, and contract
+validation — it is **not** used by the hot-reload runtime path.
+
 ### Capture Flow
 
 1. Rust iterates `InstanceRegistry` — only **ready** instances are captured. Unready
    instances are skipped and logged as diagnostic.
 2. For each ready instance, Rust looks up `className` → `V2BridgeDescriptor` →
-   `schema_json` to get the declared state property names and types.
+   `state_properties` to get the structured allowlist of property names and types.
 3. Rust passes the **allowlist** of property names to C++ FFI:
    `qmlts_v2_read_properties(qobject_ptr, property_names_json) → char*`
 4. C++ reads only the requested properties via `QMetaObject::property(name)` /
-   `QVariant`, serializes to JSON. Unsupported types (not bool/int/double/string)
+   `QVariant`, serializes to JSON. Unsupported types (not bool/int/real/string)
    produce per-property diagnostics, not panics.
 5. Return value: `{ "snapshots": [...], "diagnostics": [...] }`
 
 ### Restore Flow
 
 1. Rust receives matched pairs: `[(instanceId, propertiesJson)]`
-2. For each pair, Rust validates property names against the schema allowlist. Unknown
-   properties are rejected with diagnostic.
+2. For each pair, Rust validates property names against the descriptor's
+   `state_properties` allowlist. Unknown or internal properties are rejected with
+   diagnostic.
 3. Rust calls C++ FFI: `qmlts_v2_write_properties(qobject_ptr, validated_json) → bool`
 4. C++ writes properties with **suppress-notifications RAII guard** (same mechanism as
    `syncStateV2`) to avoid echo.
