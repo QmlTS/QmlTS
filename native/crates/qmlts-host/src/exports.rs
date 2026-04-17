@@ -884,6 +884,7 @@ pub fn is_error_overlay_visible(engine: &QmltsEngine) -> bool {
 /// @param versionMajor - Module major version.
 /// @param versionMinor - Module minor version.
 /// @param typeNames - Array of ViewModel class names to register.
+/// @param v1Compat - Enable V1 compatibility mode (context property aliases).
 #[napi(js_name = "registerModule")]
 pub fn register_module(
     engine: &mut QmltsEngine,
@@ -891,10 +892,11 @@ pub fn register_module(
     version_major: i32,
     version_minor: i32,
     type_names: Vec<String>,
+    v1_compat: bool,
 ) -> Result<()> {
     engine
         .inner
-        .register_module(&module_uri, version_major, version_minor, &type_names)
+        .register_module(&module_uri, version_major, version_minor, &type_names, v1_compat)
         .map_err(|e| -> napi::Error { e.into() })
 }
 

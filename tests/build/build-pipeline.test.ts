@@ -850,4 +850,68 @@ export default function CounterView() {
     expect(manifest.runtime).toBe('v2');
     expect(manifest.modules).toEqual([]);
   });
+
+  test('BP-V1C-B003-01: v1Compat with single VM type builds successfully', async () => {
+    const config = makeConfig({
+      runtime: 'v2',
+      v1Compat: true,
+      module: { prefix: 'TestApp', version: { major: 1, minor: 0 } },
+    });
+    const pipeline = createBuildPipeline(config);
+    const result = await pipeline.run({ dryRun: true });
+    const outputDiags = result.phases.get('writing-output')?.diagnostics ?? [];
+    const b003 = outputDiags.filter((d) => d.code === 'QMLTS-B003');
+    expect(b003.length).toBe(0);
+  });
+
+  test('BP-V1C-B003-02: multiple VM types without v1Compat does not trigger B003', async () => {
+    const config = makeConfig({
+      runtime: 'v2',
+      module: { prefix: 'TestApp', version: { major: 1, minor: 0 } },
+    });
+    const pipeline = createBuildPipeline(config);
+    const result = await pipeline.run({ dryRun: true });
+    const outputDiags = result.phases.get('writing-output')?.diagnostics ?? [];
+    const b003 = outputDiags.filter((d) => d.code === 'QMLTS-B003');
+    expect(b003.length).toBe(0);
+  });
+
+  test('BP-V1C-MANIFEST-01: V2 manifest includes v1Compat when enabled', async () => {
+    const outDir = mkdtempSync(join(tmpdir(), 'qmlts-bp-v1c-'));
+    try {
+      const config = makeConfig({
+        outDir,
+        runtime: 'v2',
+        v1Compat: true,
+        module: { prefix: 'TestApp', version: { major: 1, minor: 0 } },
+      });
+      const pipeline = createBuildPipeline(config);
+      await pipeline.run();
+      const manifestPath = join(outDir, 'manifest.json');
+      expect(existsSync(manifestPath)).toBe(true);
+      const manifest = JSON.parse(readFileSync(manifestPath, 'utf-8'));
+      expect(manifest.v1Compat).toBe(true);
+    } finally {
+      rmSync(outDir, { recursive: true, force: true });
+    }
+  });
+
+  test('BP-V1C-MANIFEST-02: V2 manifest omits v1Compat when not enabled', async () => {
+    const outDir = mkdtempSync(join(tmpdir(), 'qmlts-bp-v1c2-'));
+    try {
+      const config = makeConfig({
+        outDir,
+        runtime: 'v2',
+        module: { prefix: 'TestApp', version: { major: 1, minor: 0 } },
+      });
+      const pipeline = createBuildPipeline(config);
+      await pipeline.run();
+      const manifestPath = join(outDir, 'manifest.json');
+      expect(existsSync(manifestPath)).toBe(true);
+      const manifest = JSON.parse(readFileSync(manifestPath, 'utf-8'));
+      expect(manifest.v1Compat).toBeUndefined();
+    } finally {
+      rmSync(outDir, { recursive: true, force: true });
+    }
+  });
 });

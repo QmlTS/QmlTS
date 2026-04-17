@@ -31,6 +31,8 @@ export interface ModuleRegistration {
 	readonly versionMajor: number;
 	readonly versionMinor: number;
 	readonly typeNames: readonly string[];
+	/** V1 compatibility mode: set vm/__qmlts context properties for first instance. */
+	readonly v1Compat?: boolean;
 }
 
 // ────────────────────────────────────────────────────────────────────────────
@@ -133,6 +135,7 @@ export interface V2NativeBindings {
 		versionMajor: number,
 		versionMinor: number,
 		typeNames: string[],
+		v1Compat: boolean,
 	): void;
 
 	/** Sync a single property to a specific QObject instance. */

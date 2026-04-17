@@ -79,6 +79,10 @@ export type DiagnosticCode =
   // V2 Compiler Output (V007+)
   | 'QMLTS-V007'
   | 'QMLTS-V008'
+  // V2 V1-Compat Validation (V009+)
+  | 'QMLTS-V009'
+  | 'QMLTS-V010'
   // Build (B)
   | 'QMLTS-B001'
-  | 'QMLTS-B002';
+  | 'QMLTS-B002'
+  | 'QMLTS-B003';

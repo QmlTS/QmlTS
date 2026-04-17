@@ -66,6 +66,47 @@ export default function BrokenView() {
 }
 `;
 
+const MULTI_VM_SOURCE = `
+import { Rectangle } from '../../dsl/generated/QtQuick/Rectangle.js';
+import { Text } from '../../dsl/generated/QtQuick/Text.js';
+
+function State(_opts?: Record<string, unknown>) {
+  return (_target: any, _context: any) => {};
+}
+function Command(_opts?: Record<string, unknown>) {
+  return (_target: any, _context: any) => {};
+}
+function Effect(_opts?: Record<string, unknown>) {
+  return (_target: any, _context: any) => {};
+}
+
+export class AlphaViewModel {
+  @State() value = 0;
+}
+
+export class BetaViewModel {
+  @State() name = "";
+}
+
+export default function AlphaView(vm: AlphaViewModel) {
+  return Rectangle()
+    .width(400)
+    .height(300)
+    .children(
+      Text().text(vm.value)
+    );
+}
+
+export function BetaView(vm: BetaViewModel) {
+  return Rectangle()
+    .width(200)
+    .height(100)
+    .children(
+      Text().text(vm.name)
+    );
+}
+`;
+
 // ─── File fixture paths ────────────────────────────────────────────────
 
 const FIXTURES_DIR = resolve(__dirname, 'fixtures');
@@ -564,6 +605,81 @@ describe('Compiler Pipeline', () => {
       expect(unit.qmlContent).not.toContain('import MyApp.ViewModels');
       expect(unit.qmlContent).not.toContain('__qmlts_vm0');
       expect(unit.qmlContent).toContain('Rectangle {');
+    });
+  });
+
+  describe('v1Compat Phase 1 validation', () => {
+    const V2_MODULE_CONFIG = { prefix: 'MyApp', version: { major: 1, minor: 0 } };
+
+    test('CP-V1C-01: V009 — multi-VM per file with v1Compat emits error', () => {
+      const result = compileSource(MULTI_VM_SOURCE, {
+        runtime: 'v2',
+        moduleConfig: V2_MODULE_CONFIG,
+        v1Compat: true,
+      });
+      const v009 = result.diagnostics.filter((d) => d.code === 'QMLTS-V009');
+      expect(v009.length).toBeGreaterThanOrEqual(1);
+      expect(v009[0]!.message).toContain('single ViewModel type per source file');
+      expect(v009[0]!.message).toContain('AlphaViewModel');
+      expect(v009[0]!.message).toContain('BetaViewModel');
+    });
+
+    test('CP-V1C-02: same VM type in multiple views with v1Compat does not emit V009', () => {
+      const result = compileSource(VIEW_WITH_VM_SOURCE, {
+        runtime: 'v2',
+        moduleConfig: V2_MODULE_CONFIG,
+        v1Compat: true,
+      });
+      const v009 = result.diagnostics.filter((d) => d.code === 'QMLTS-V009');
+      expect(v009.length).toBe(0);
+    });
+
+    test('CP-V1C-03: multi-VM without v1Compat does not emit V009', () => {
+      const result = compileSource(MULTI_VM_SOURCE, {
+        runtime: 'v2',
+        moduleConfig: V2_MODULE_CONFIG,
+      });
+      const v009 = result.diagnostics.filter((d) => d.code === 'QMLTS-V009');
+      expect(v009.length).toBe(0);
+    });
+
+    test('CP-V1C-04: V1 mode ignores v1Compat flag', () => {
+      const result = compileSource(MULTI_VM_SOURCE, {
+        runtime: 'v1',
+        v1Compat: true,
+      });
+      const v009 = result.diagnostics.filter((d) => d.code === 'QMLTS-V009');
+      expect(v009.length).toBe(0);
+    });
+
+    test('CP-V1C-05: v1Compat does not change V2 QML output', () => {
+      const withCompat = compileSource(VIEW_WITH_VM_SOURCE, {
+        runtime: 'v2',
+        moduleConfig: V2_MODULE_CONFIG,
+        v1Compat: true,
+      });
+      const withoutCompat = compileSource(VIEW_WITH_VM_SOURCE, {
+        runtime: 'v2',
+        moduleConfig: V2_MODULE_CONFIG,
+      });
+      expect(withCompat.qmlContent).toBe(withoutCompat.qmlContent);
+    });
+
+    test('CP-V1C-06: v1Compat flag included in CompilationUnit', () => {
+      const unit = compileSource(VIEW_WITH_VM_SOURCE, {
+        runtime: 'v2',
+        moduleConfig: V2_MODULE_CONFIG,
+        v1Compat: true,
+      });
+      expect(unit.v1Compat).toBe(true);
+    });
+
+    test('CP-V1C-07: no v1Compat flag when v1Compat is false', () => {
+      const unit = compileSource(VIEW_WITH_VM_SOURCE, {
+        runtime: 'v2',
+        moduleConfig: V2_MODULE_CONFIG,
+      });
+      expect(unit.v1Compat).toBeUndefined();
     });
   });
 });

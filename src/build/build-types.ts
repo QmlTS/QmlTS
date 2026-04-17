@@ -83,6 +83,8 @@ export interface BuildManifest {
     /** Output-relative path, e.g. "./qml/TestApp/ViewModels/testapp_viewmodels.qmltypes". */
     readonly qmltypes: string;
   }[];
+  /** V2: V1 compatibility shim enabled for this build. */
+  readonly v1Compat?: boolean;
 }
 
 // ─── Pipeline Result ────────────────────────────────────────
@@ -250,6 +252,8 @@ export interface EntryGeneratorOptions {
     readonly versionMajor: number;
     readonly versionMinor: number;
     readonly typeNames: readonly string[];
+    /** V2: Enable V1 compatibility shim (context property aliases). */
+    readonly v1Compat?: boolean;
   };
 }
 
