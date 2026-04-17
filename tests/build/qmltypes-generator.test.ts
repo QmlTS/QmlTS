@@ -90,9 +90,7 @@ describe('QmltypesGenerator', () => {
         }),
       ],
     });
-    expect(content).toContain(
-      'Property { name: "isLoading"; type: "bool"; isReadonly: true }',
-    );
+    expect(content).toContain('Property { name: "isLoading"; type: "bool"; isReadonly: true }');
   });
 
   // QT-05

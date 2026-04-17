@@ -483,11 +483,9 @@ function phaseWriteOutput(ctx: PhaseContext): Promise<{ diagnostics: readonly Di
 
   // Derive V2 module metadata after compilation (schemas now available)
   const isV2 = ctx.config.runtime === 'v2';
-  const schemasForMeta = ctx.compilationResult.units
-    .filter((u) => u.schema)
-    .map((u) => u.schema!);
+  const schemasForMeta = ctx.compilationResult.units.filter((u) => u.schema).map((u) => u.schema!);
 
-  let moduleMeta: ReturnType<typeof deriveModuleMeta> = undefined;
+  let moduleMeta: ReturnType<typeof deriveModuleMeta>;
   if (isV2 && ctx.config.module && schemasForMeta.length > 0) {
     // Convert to ViewModelSchemaJson for validation
     const schemaJsonsForValidation = schemasForMeta.map((s) => toHostPrepSchema(s, '').content);
@@ -559,11 +557,7 @@ function phaseWriteOutput(ctx: PhaseContext): Promise<{ diagnostics: readonly Di
       },
       schemas: uniqueSchemas,
     });
-    writeFileSync(
-      join(layout.moduleDir, moduleMeta.qmltypesFilename),
-      qmltypesContent,
-      'utf-8',
-    );
+    writeFileSync(join(layout.moduleDir, moduleMeta.qmltypesFilename), qmltypesContent, 'utf-8');
   }
 
   // Generate entry file

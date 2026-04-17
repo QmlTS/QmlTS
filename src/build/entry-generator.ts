@@ -105,9 +105,7 @@ function generateV2Entry(options: EntryGeneratorOptions): string {
     lines.push('if (!host.supportsV2()) {');
     lines.push('  throw new Error(');
     lines.push("    'This application requires V2 runtime support. ' +");
-    lines.push(
-      "      'Please update @qmlts/host to a version that includes V2 native bindings.'",
-    );
+    lines.push("      'Please update @qmlts/host to a version that includes V2 native bindings.'");
     lines.push('  );');
     lines.push('}');
     lines.push('');

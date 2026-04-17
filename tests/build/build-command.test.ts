@@ -143,7 +143,7 @@ describe('executeBuild', () => {
     expect(parsed.outputDir).toBe(resolve(outDir));
   });
 
-  test('BP-41: V2 rollout config reaches build without changing generated output shape', async () => {
+  test('BP-41: V2 rollout config reaches build and produces V2 entry shape', async () => {
     const outDir = join(TMP_DIR, 'dist-v2-config');
     const configPath = writeConfig(
       outDir,
@@ -160,7 +160,7 @@ describe('executeBuild', () => {
     expect(result.outputDir).toBe(resolve(outDir));
 
     const entryContent = readFileSync(join(outDir, 'CounterView.ts'), 'utf-8');
-    expect(entryContent).toContain('host.registerViewModel("CounterViewModel")');
-    expect(entryContent).not.toContain('host.registerModule');
+    expect(entryContent).toContain('host.registerModule');
+    expect(entryContent).not.toContain('host.registerViewModel');
   });
 });

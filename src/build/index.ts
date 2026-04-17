@@ -165,16 +165,23 @@ export type { HostPreparer, HostPrepOptions, HostPrepOutput } from './host-prepa
 export { createHostPreparer } from './host-preparer.js';
 // ─── Init Command ───────────────────────────────────────────
 export { executeInit } from './init-command.js';
+// ─── Module Metadata ────────────────────────────────────────
+export type { ModuleMeta } from './module-meta.js';
+export {
+  deriveModuleMeta,
+  deriveModuleRelDir,
+  deriveModuleUri,
+  deriveQmltypesFilename,
+  validateSchemaConsistency,
+} from './module-meta.js';
 // ─── Package Resolver ───────────────────────────────────────
 export type { PackageResolver } from './package-resolver.js';
 export { checkQtVersionCompatibility, createPackageResolver } from './package-resolver.js';
 // ─── Platform Distributor ───────────────────────────────────
 export type { PlatformDistributor } from './platform-distributor.js';
 export { createPlatformDistributor } from './platform-distributor.js';
-// ─── Module Metadata ────────────────────────────────────────
-export type { ModuleMeta } from './module-meta.js';
-export { deriveModuleMeta, deriveModuleRelDir, deriveModuleUri, deriveQmltypesFilename, validateSchemaConsistency } from './module-meta.js';
 export {
+  attachModuleDir,
   createManifest,
   createProductLayout,
   currentPlatform,
@@ -185,7 +192,6 @@ export {
   writeEventBindings,
   writeManifest,
 } from './product-layout.js';
-export { attachModuleDir } from './product-layout.js';
 // ─── Qmldir Generator ──────────────────────────────────────
 export type { QmldirGenerator, QmldirGeneratorOptions } from './qmldir-generator.js';
 export { createQmldirGenerator } from './qmldir-generator.js';

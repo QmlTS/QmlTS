@@ -55,9 +55,7 @@ function emitComponent(
         `        Property { name: "${state.qmlName}"; type: "${state.qmlType}"; isReadonly: true }`,
       );
     } else {
-      lines.push(
-        `        Property { name: "${state.qmlName}"; type: "${state.qmlType}" }`,
-      );
+      lines.push(`        Property { name: "${state.qmlName}"; type: "${state.qmlType}" }`);
     }
   }
 
@@ -68,9 +66,7 @@ function emitComponent(
       lines.push('        Method {');
       lines.push(`            name: "${cmd.qmlName}"`);
       for (const param of cmd.parameters) {
-        lines.push(
-          `            Parameter { name: "${param.name}"; type: "${param.type}" }`,
-        );
+        lines.push(`            Parameter { name: "${param.name}"; type: "${param.type}" }`);
       }
       lines.push('        }');
     }
@@ -83,9 +79,7 @@ function emitComponent(
       lines.push('        Signal {');
       lines.push(`            name: "${effect.qmlName}"`);
       for (const param of effect.parameters) {
-        lines.push(
-          `            Parameter { name: "${param.name}"; type: "${param.type}" }`,
-        );
+        lines.push(`            Parameter { name: "${param.name}"; type: "${param.type}" }`);
       }
       lines.push('        }');
     }

@@ -27,9 +27,7 @@ describe('deriveModuleRelDir', () => {
 describe('deriveQmltypesFilename', () => {
   // MM-03
   test('MM-03: lowercases and replaces all dots with underscores', () => {
-    expect(deriveQmltypesFilename('TestApp.ViewModels')).toBe(
-      'testapp_viewmodels.qmltypes',
-    );
+    expect(deriveQmltypesFilename('TestApp.ViewModels')).toBe('testapp_viewmodels.qmltypes');
   });
 
   // MM-04
