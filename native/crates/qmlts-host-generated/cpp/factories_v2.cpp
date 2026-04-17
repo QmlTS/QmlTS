@@ -8,6 +8,8 @@
 // Returns >= 0 (Qt type ID) on success, < 0 on error (registration functions).
 
 #include <QtQml/qqml.h>
+#include <QJsonArray>
+#include <QJsonDocument>
 #include <QObject>
 #include <QVariant>
 #include "qmlts-host-generated/src/login_v2.cxxqt.h"
@@ -25,10 +27,12 @@ extern "C" void qmlts_v2_route_instance_destroying(
 
 // Helper: serialize QString to JSON string value
 static QByteArray qstringToJson(const QString& s) {
-    QByteArray utf8 = s.toUtf8();
-    utf8.replace('\\', "\\\\");
-    utf8.replace('"', "\\\"");
-    return "\"" + utf8 + "\"";
+    QJsonArray values;
+    values.append(s);
+    const QByteArray arrayJson = QJsonDocument(values).toJson(QJsonDocument::Compact);
+    // QJsonDocument serializes only arrays/objects. Strip the surrounding
+    // single-element array brackets to return the JSON string literal.
+    return arrayJson.mid(1, arrayJson.size() - 2);
 }
 
 extern "C" {

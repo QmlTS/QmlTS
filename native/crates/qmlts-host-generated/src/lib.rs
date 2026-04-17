@@ -521,4 +521,16 @@ mod tests {
         assert!(names.contains(&"CounterViewModel"));
         assert!(names.contains(&"SearchViewModel"));
     }
+
+    #[test]
+    fn v2_routing_identifiers_are_not_writable_qml_properties() {
+        for source in [
+            include_str!("login_v2.rs"),
+            include_str!("counter_v2.rs"),
+            include_str!("search_v2.rs"),
+        ] {
+            assert!(source.contains("instance_id, cxx_name = \"instanceId\", READ"));
+            assert!(!source.contains("owner_id, cxx_name = \"ownerId\""));
+        }
+    }
 }

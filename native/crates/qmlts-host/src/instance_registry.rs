@@ -12,6 +12,7 @@ use crate::error::{QmltsError, Result};
 
 /// Default maximum queue depth per instance before overflow error.
 const DEFAULT_MAX_QUEUE_DEPTH: usize = 1000;
+const MAX_QML_INSTANCE_ID: u32 = i32::MAX as u32;
 
 /// Internal entry for a tracked V2 QObject instance.
 struct InstanceEntry {
@@ -62,14 +63,16 @@ impl InstanceRegistry {
     ///
     /// # Errors
     ///
-    /// Returns error if `next_id` would overflow `u32::MAX`.
+    /// Returns error if `next_id` can no longer be represented by the QML
+    /// `instanceId` property type (`i32`).
     pub fn allocate_instance(&mut self, class_name: &str, qobject_ptr: *mut c_void) -> Result<u32> {
+        if self.next_id > MAX_QML_INSTANCE_ID {
+            return Err(QmltsError::Internal(
+                "V2 instance ID overflow: i32::MAX reached within engine lifetime".to_string(),
+            ));
+        }
         let id = self.next_id;
-        self.next_id = self.next_id.checked_add(1).ok_or_else(|| {
-            QmltsError::Internal(
-                "V2 instance ID overflow: u32::MAX reached within engine lifetime".to_string(),
-            )
-        })?;
+        self.next_id = self.next_id.saturating_add(1);
 
         self.instances.insert(
             id,
@@ -360,5 +363,17 @@ mod tests {
             )
             .is_err()
         );
+    }
+
+    #[test]
+    fn allocation_rejects_ids_that_do_not_fit_qml_i32() {
+        let mut reg = InstanceRegistry::new();
+        reg.next_id = i32::MAX as u32;
+        let max_id = reg.allocate_instance("A", ptr::null_mut()).unwrap();
+        assert_eq!(max_id, i32::MAX as u32);
+
+        let result = reg.allocate_instance("B", ptr::null_mut());
+        assert!(result.is_err());
+        assert!(!reg.contains((i32::MAX as u32) + 1));
     }
 }

@@ -1,7 +1,7 @@
 # Step 4: V2 Native Multi-Instance Runtime — Design Spec
 
-**Date:** 2026-04-16
-**Repository:** `C:\MyFile\DevAll\QmlTS` (implementation)
+**Date:** 2026-04-17
+**Repository:** `QmlTS` (implementation)
 **Branch:** `step4/v2-native-runtime` (from `main`)
 **Dependencies:** Steps 0–3 merged; V2 config, schema IR, and TS host contract in place.
 

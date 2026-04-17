@@ -618,6 +618,71 @@ describe.skipIf(!isNativeModuleAvailable)('host/qmlts-host', () => {
     }
   });
 
+  test('TH-47b: V2 handler registration rejects duplicates', () => {
+    const host = new QmltsHost();
+    try {
+      if (!host.supportsV2()) {
+        expect(() => host.registerInstanceCreatedHandler(() => {})).toThrow(
+          /V2 native host API 'registerInstanceCreatedHandler' is not available/,
+        );
+        return;
+      }
+
+      host.registerModule({
+        moduleUri: 'QmlTS.HandlerDup',
+        versionMajor: 1,
+        versionMinor: 0,
+        typeNames: ['LoginViewModel'],
+      });
+      host.registerInstanceCreatedHandler(() => {});
+      expect(() => host.registerInstanceCreatedHandler(() => {})).toThrow(
+        /handler.*already registered/i,
+      );
+    } finally {
+      host.dispose();
+    }
+  });
+
+  test('TH-49: V2 instance-created handler receives QML-created instances', async () => {
+    const host = new QmltsHost();
+    try {
+      if (!host.supportsV2()) {
+        expect(() => host.registerInstanceCreatedHandler(() => {})).toThrow(
+          /V2 native host API 'registerInstanceCreatedHandler' is not available/,
+        );
+        return;
+      }
+
+      const created: Array<{ className: string; instanceId: number }> = [];
+      host.registerModule({
+        moduleUri: 'QmlTS.CreatedTs',
+        versionMajor: 1,
+        versionMinor: 0,
+        typeNames: ['LoginViewModel'],
+      });
+      host.registerInstanceCreatedHandler((event) => {
+        created.push(event);
+      });
+
+      host.loadString(`import QtQuick
+import QmlTS.CreatedTs 1.0
+
+Item {
+    LoginViewModel { id: login }
+    Component.onCompleted: login.login()
+}`);
+      host.processEvents();
+      await flushJsCallbacks();
+
+      expect(created).toHaveLength(1);
+      expect(created[0].className).toBe('LoginViewModel');
+      expect(created[0].instanceId).toBeGreaterThanOrEqual(0);
+      host.instanceReady(created[0].instanceId);
+    } finally {
+      host.dispose();
+    }
+  });
+
   test('TH-48: V1 APIs still work unchanged after V2 additions', () => {
     const host = new QmltsHost();
     try {

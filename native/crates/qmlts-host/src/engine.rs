@@ -1242,21 +1242,36 @@ impl QmltsEngine {
         let mut reg = state.registry.lock().expect("registry lock poisoned");
 
         // Connect per-type property change forwarder and destroy handler
-        if let Some(ptr) = reg.get_qobject_ptr(instance_id) {
-            if let Some(class_name) = reg.get_class_name(instance_id) {
-                // Look up the V2 descriptor for this type's connect_properties
-                let descriptors = qmlts_host_generated::v2_descriptors();
-                if let Some(desc) = descriptors.iter().find(|d| d.class_name == class_name) {
-                    if let (Ok(owner_id), Ok(instance_id_i32)) = (
-                        i32::try_from(self.dispatch_owner_id),
-                        i32::try_from(instance_id),
-                    ) {
-                        (desc.connect_properties)(ptr, owner_id, instance_id_i32);
-                        qt_context::v2_connect_destroy_handler(ptr, owner_id, instance_id_i32);
-                    }
-                }
-            }
+        let ptr = reg
+            .get_qobject_ptr(instance_id)
+            .ok_or(QmltsError::V2InstanceNotFound(instance_id))?;
+        let class_name = reg
+            .get_class_name(instance_id)
+            .ok_or(QmltsError::V2InstanceNotFound(instance_id))?
+            .to_string();
+        if reg.is_ready(instance_id) {
+            return Ok(());
         }
+        let owner_id = i32::try_from(self.dispatch_owner_id).map_err(|_| {
+            QmltsError::Internal(format!(
+                "V2 dispatch owner id {} does not fit in i32",
+                self.dispatch_owner_id
+            ))
+        })?;
+        let instance_id_i32 = i32::try_from(instance_id).map_err(|_| {
+            QmltsError::Internal(format!("V2 instance id {instance_id} does not fit in i32"))
+        })?;
+        let descriptors = qmlts_host_generated::v2_descriptors();
+        let desc = descriptors
+            .iter()
+            .find(|d| d.class_name == class_name)
+            .ok_or_else(|| QmltsError::BridgeTypeNotFound(class_name.clone()))?;
+        if !(desc.connect_properties)(ptr, owner_id, instance_id_i32) {
+            return Err(QmltsError::Internal(format!(
+                "Failed to connect V2 property forwarder for '{class_name}'"
+            )));
+        }
+        qt_context::v2_connect_destroy_handler(ptr, owner_id, instance_id_i32);
 
         let flushed = reg.mark_ready(instance_id)?;
         drop(reg);
@@ -1345,6 +1360,11 @@ impl QmltsEngine {
             .instance_created
             .lock()
             .expect("instance_created lock poisoned");
+        if slot.is_some() {
+            return Err(QmltsError::V2HandlerAlreadyRegistered(
+                self.dispatch_owner_id,
+            ));
+        }
         *slot = Some(handler);
         Ok(())
     }
@@ -1368,6 +1388,11 @@ impl QmltsEngine {
             .instance_destroying
             .lock()
             .expect("instance_destroying lock poisoned");
+        if slot.is_some() {
+            return Err(QmltsError::V2HandlerAlreadyRegistered(
+                self.dispatch_owner_id,
+            ));
+        }
         *slot = Some(handler);
         Ok(())
     }
@@ -1391,6 +1416,11 @@ impl QmltsEngine {
             .property_changed
             .lock()
             .expect("property_changed lock poisoned");
+        if slot.is_some() {
+            return Err(QmltsError::V2HandlerAlreadyRegistered(
+                self.dispatch_owner_id,
+            ));
+        }
         *slot = Some(handler);
         Ok(())
     }
@@ -1414,6 +1444,11 @@ impl QmltsEngine {
             .command_dispatcher
             .lock()
             .expect("command_dispatcher lock poisoned");
+        if slot.is_some() {
+            return Err(QmltsError::V2HandlerAlreadyRegistered(
+                self.dispatch_owner_id,
+            ));
+        }
         *slot = Some(handler);
         Ok(())
     }
@@ -1437,6 +1472,11 @@ impl QmltsEngine {
             .lifecycle_handler
             .lock()
             .expect("lifecycle_handler lock poisoned");
+        if slot.is_some() {
+            return Err(QmltsError::V2HandlerAlreadyRegistered(
+                self.dispatch_owner_id,
+            ));
+        }
         *slot = Some(handler);
         Ok(())
     }
@@ -1449,12 +1489,30 @@ impl QmltsEngine {
         let state = self.v2_state.as_ref()?;
         let registry = Arc::clone(&state.registry);
         let owner_id = self.dispatch_owner_id;
+        if i32::try_from(owner_id).is_err() {
+            tracing::error!(
+                owner_id,
+                "V2 dispatch owner id does not fit in i32; V2 QObjects will be inert"
+            );
+            return None;
+        }
         let ctx = qmlts_host_generated::v2_dispatch::V2InitContext {
             owner_id,
             register_instance: Arc::new(move |class_name, ptr| {
                 let mut reg = registry.lock().expect("registry lock poisoned");
                 match reg.allocate_instance(class_name, ptr) {
-                    Ok(id) => i32::try_from(id).unwrap_or(-1),
+                    Ok(id) => {
+                        if let Ok(qml_id) = i32::try_from(id) {
+                            qml_id
+                        } else {
+                            tracing::error!(
+                                instance_id = id,
+                                "Allocated V2 instance id does not fit in i32; removing inert instance"
+                            );
+                            let _ = reg.remove_instance(id);
+                            -1
+                        }
+                    }
                     Err(e) => {
                         tracing::error!(%e, "Failed to allocate V2 instance");
                         -1
@@ -2385,6 +2443,57 @@ mod tests {
         engine
             .register_lifecycle_handler_v2(Box::new(|_id, _class, _event| {}))
             .unwrap();
+    }
+
+    #[test]
+    fn v2_handler_registration_rejects_duplicates() {
+        let _guard = TEST_MUTEX.lock().unwrap();
+        reset_app_initialized();
+        crate::type_registrar::clear_global_registrations();
+        let mut engine = QmltsEngine::new(None).unwrap();
+        engine
+            .register_module("QmlTS.Test", 1, 0, &["LoginViewModel".into()])
+            .unwrap();
+
+        engine
+            .register_instance_created_handler(Box::new(|_class, _id| {}))
+            .unwrap();
+        assert!(matches!(
+            engine.register_instance_created_handler(Box::new(|_class, _id| {})),
+            Err(QmltsError::V2HandlerAlreadyRegistered(_))
+        ));
+
+        engine
+            .register_instance_destroying_handler(Box::new(|_id| {}))
+            .unwrap();
+        assert!(matches!(
+            engine.register_instance_destroying_handler(Box::new(|_id| {})),
+            Err(QmltsError::V2HandlerAlreadyRegistered(_))
+        ));
+
+        engine
+            .register_property_changed_handler(Box::new(|_id, _prop, _val| {}))
+            .unwrap();
+        assert!(matches!(
+            engine.register_property_changed_handler(Box::new(|_id, _prop, _val| {})),
+            Err(QmltsError::V2HandlerAlreadyRegistered(_))
+        ));
+
+        engine
+            .register_command_dispatcher_v2(Box::new(|_id, _class, _cmd, _args| {}))
+            .unwrap();
+        assert!(matches!(
+            engine.register_command_dispatcher_v2(Box::new(|_id, _class, _cmd, _args| {})),
+            Err(QmltsError::V2HandlerAlreadyRegistered(_))
+        ));
+
+        engine
+            .register_lifecycle_handler_v2(Box::new(|_id, _class, _event| {}))
+            .unwrap();
+        assert!(matches!(
+            engine.register_lifecycle_handler_v2(Box::new(|_id, _class, _event| {})),
+            Err(QmltsError::V2HandlerAlreadyRegistered(_))
+        ));
     }
 
     #[test]
