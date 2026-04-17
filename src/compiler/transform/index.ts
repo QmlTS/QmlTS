@@ -24,4 +24,5 @@ export type {
   SourceLocation,
   StateBindingInfo,
   TransformResult,
+  V2TransformOptions,
 } from './transform-types.js';
