@@ -202,6 +202,11 @@ export interface V2NativeBindings {
 			argsJson: string,
 		) => void,
 	): void;
+
+	/** Capture state of all ready V2 instances. Returns JSON string. */
+	captureInstanceStates(engine: QmltsEngine): string;
+	/** Restore state to matched V2 instances. Returns JSON string with diagnostics. */
+	restoreInstanceStates(engine: QmltsEngine, matchedPairsJson: string): string;
 }
 
 /**

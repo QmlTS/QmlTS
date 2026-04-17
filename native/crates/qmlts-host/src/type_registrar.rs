@@ -191,12 +191,14 @@ mod tests {
                 schema_json: "{}",
                 register_type: |_uri, _maj, _min, _name| Ok(1),
                 connect_properties: |_, _, _| true,
+                state_properties: &[],
             },
             V2BridgeDescriptor {
                 class_name: "CounterViewModel",
                 schema_json: "{}",
                 register_type: |_uri, _maj, _min, _name| Ok(2),
                 connect_properties: |_, _, _| true,
+                state_properties: &[],
             },
         ]
     }
@@ -243,6 +245,7 @@ mod tests {
             schema_json: "{}",
             register_type: idempotent_register,
             connect_properties: |_, _, _| true,
+            state_properties: &[],
         }];
         let mut registrar = TypeRegistrar::new();
         registrar
@@ -303,12 +306,14 @@ mod tests {
             schema_json: "{}",
             register_type: |_, _, _, _| Ok(1),
             connect_properties: |_, _, _| true,
+            state_properties: &[],
         }];
         let descriptors_b = vec![V2BridgeDescriptor {
             class_name: "B",
             schema_json: "{}",
             register_type: |_, _, _, _| Ok(2),
             connect_properties: |_, _, _| true,
+            state_properties: &[],
         }];
         let mut reg1 = TypeRegistrar::new();
         reg1.register_module("QmlTS.App", 1, 0, &["A".into()], &descriptors_a)

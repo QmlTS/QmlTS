@@ -1,7 +1,7 @@
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { dirname } from 'node:path';
 import { compileSource } from '../compiler/pipeline/compiler.js';
-import type { QmltsRepl, ReplMode, ReplOptions, ReplResult } from './dev-types.js';
+import type { QmltsRepl, ReplEvalOptions, ReplMode, ReplOptions, ReplResult } from './dev-types.js';
 
 const DEFAULT_MAX_HISTORY = 100;
 
@@ -49,7 +49,7 @@ export function createRepl(options: ReplOptions): QmltsRepl {
       currentMode = mode;
     },
 
-    async eval(input: string): Promise<ReplResult> {
+    async eval(input: string, _options?: ReplEvalOptions): Promise<ReplResult> {
       if (!started) {
         throw new Error('REPL is not started. Call start() first.');
       }

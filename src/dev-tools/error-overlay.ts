@@ -1,12 +1,25 @@
 import type { Diagnostic } from '../compiler/diagnostics.js';
-import type { ErrorOverlay, ErrorOverlayOptions, OverlayError } from './dev-types.js';
+import type {
+  ErrorOverlay,
+  ErrorOverlayOptions,
+  InstanceContext,
+  OverlayError,
+} from './dev-types.js';
 
-export function formatOverlayErrors(errors: readonly OverlayError[]): string {
+export function formatOverlayErrors(
+  errors: readonly OverlayError[],
+  instanceContext?: InstanceContext,
+): string {
   if (errors.length === 0) {
     return 'Unknown error';
   }
 
   const parts: string[] = [];
+
+  if (instanceContext) {
+    parts.push(`[${instanceContext.className}#${instanceContext.instanceId}]`);
+    parts.push('');
+  }
 
   for (let i = 0; i < errors.length; i++) {
     const err = errors[i]!;

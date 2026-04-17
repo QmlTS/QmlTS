@@ -27,9 +27,15 @@ export type {
   FileWatcherOptions,
   HostOverlayApi,
   HotReloadContext,
+  // V2 instance-scoped types
+  HotReloadDiagnostic,
   HotReloadOrchestrator,
   HotReloadOrchestratorOptions,
   HotReloadOrchestratorResult,
+  InstanceContext,
+  InstanceRestorePair,
+  InstanceSlotInfo,
+  NativeInstanceSnapshot,
   OverlayError,
   PerfCategory,
   PerfProfiler,
@@ -37,15 +43,26 @@ export type {
   PerfSpan,
   PerfSummary,
   QmltsRepl,
+  ReplEvalOptions,
   ReplHost,
   ReplMode,
   ReplOptions,
   ReplResult,
+  RestoreDiagnostics,
   ServerStatusInfo,
   StatusChangeData,
 } from './dev-types.js';
-export { createErrorOverlay, diagnosticsToOverlayErrors } from './error-overlay.js';
+export {
+  createErrorOverlay,
+  diagnosticsToOverlayErrors,
+  formatOverlayErrors,
+} from './error-overlay.js';
 export { createFileWatcher } from './file-watcher.js';
 export { createHotReloadOrchestrator } from './hot-reload-orchestrator.js';
+export {
+  isSelectorError,
+  parseInstanceSelector,
+  resolveInstanceSelector,
+} from './instance-selector.js';
 export { createPerfProfiler } from './perf-profiler.js';
 export { createRepl } from './repl.js';

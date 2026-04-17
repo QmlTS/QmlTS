@@ -1,5 +1,10 @@
 import type { Diagnostic } from '../compiler/diagnostics.js';
 import type { CompilationStats } from '../compiler/pipeline/pipeline-types.js';
+import type {
+  InstanceRestorePair,
+  NativeInstanceSnapshot,
+  RestoreDiagnostics,
+} from '../dev-tools/dev-types.js';
 import type { PlatformTarget } from './config-types.js';
 
 // ─── Build Phase ────────────────────────────────────────────
@@ -330,6 +335,11 @@ export interface HotReloadClient {
   reload(changedFiles: readonly string[], outputDir: string): Promise<HotReloadResult>;
   isConnected(): boolean;
   dispose(): void;
+  // V2 optional methods — absent means V1-only client
+  captureInstanceStates?(): Promise<NativeInstanceSnapshot[]> | NativeInstanceSnapshot[];
+  restoreInstanceStates?(
+    pairs: InstanceRestorePair[],
+  ): Promise<RestoreDiagnostics> | RestoreDiagnostics;
 }
 
 export interface HotReloadResult {

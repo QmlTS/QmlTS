@@ -184,6 +184,14 @@ impl InstanceRegistry {
     pub fn contains(&self, instance_id: u32) -> bool {
         self.instances.contains_key(&instance_id)
     }
+
+    /// Iterate over all instances: `(instance_id, class_name, qobject_ptr, ready)`.
+    pub fn iter_instances(&self) -> Vec<(u32, String, *mut c_void, bool)> {
+        self.instances
+            .iter()
+            .map(|(&id, entry)| (id, entry.class_name.clone(), entry.qobject_ptr, entry.ready))
+            .collect()
+    }
 }
 
 impl Default for InstanceRegistry {
@@ -375,5 +383,24 @@ mod tests {
         let result = reg.allocate_instance("B", ptr::null_mut());
         assert!(result.is_err());
         assert!(!reg.contains((i32::MAX as u32) + 1));
+    }
+
+    #[test]
+    fn iter_instances_returns_all_entries() {
+        let mut reg = InstanceRegistry::new();
+        let id0 = reg.allocate_instance("A", ptr::null_mut()).unwrap();
+        let id1 = reg.allocate_instance("B", 0x1234 as *mut c_void).unwrap();
+        reg.mark_ready(id1).unwrap();
+
+        let entries = reg.iter_instances();
+        assert_eq!(entries.len(), 2);
+
+        let a = entries.iter().find(|(id, ..)| *id == id0).unwrap();
+        assert_eq!(a.1, "A");
+        assert!(!a.3); // not ready
+
+        let b = entries.iter().find(|(id, ..)| *id == id1).unwrap();
+        assert_eq!(b.1, "B");
+        assert!(b.3); // ready
     }
 }

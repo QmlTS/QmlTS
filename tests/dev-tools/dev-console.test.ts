@@ -512,3 +512,48 @@ describe('DevConsole', () => {
     expect(lines.length).toBe(0);
   });
 });
+
+// ─── V2 Instance Context Tests ──────────────────────────────
+
+describe('DevConsole V2', () => {
+  test('DC-V2-01: info with instance context includes tag', () => {
+    const { lines, console } = createCapture();
+    console.info('test message', { instanceId: 42, className: 'LoginViewModel' });
+    expect(lines.some((line) => line.includes('[LoginViewModel#42]'))).toBe(true);
+    expect(lines.some((line) => line.includes('test message'))).toBe(true);
+  });
+
+  test('DC-V2-02: warn with instance context includes tag', () => {
+    const { lines, console } = createCapture();
+    console.warn('warning msg', { instanceId: 7, className: 'Counter' });
+    expect(lines.some((line) => line.includes('[Counter#7]'))).toBe(true);
+    expect(lines.some((line) => line.includes('warning msg'))).toBe(true);
+  });
+
+  test('DC-V2-03: error with instance context includes tag', () => {
+    const { lines, console } = createCapture();
+    console.error('error msg', { instanceId: 1, className: 'Search' });
+    expect(lines.some((line) => line.includes('[Search#1]'))).toBe(true);
+    expect(lines.some((line) => line.includes('error msg'))).toBe(true);
+  });
+
+  test('DC-V2-04: debug with instance context includes tag', () => {
+    const { lines, console } = createCapture({ level: 'debug' });
+    console.debug('debug msg', { instanceId: 3, className: 'Login' });
+    expect(lines.some((line) => line.includes('[Login#3]'))).toBe(true);
+    expect(lines.some((line) => line.includes('debug msg'))).toBe(true);
+  });
+
+  test('DC-V2-05: info without instance context has no tag', () => {
+    const { lines, console } = createCapture();
+    console.info('plain message');
+    expect(lines.some((line) => line.includes('plain message'))).toBe(true);
+    expect(lines.some((line) => /\[.*#\d+\]/.test(line))).toBe(false);
+  });
+
+  test('DC-V2-06: instance context with compilerSlotKey still uses className#instanceId', () => {
+    const { lines, console } = createCapture();
+    console.info('msg', { instanceId: 5, className: 'Login', compilerSlotKey: 'slot-a' });
+    expect(lines.some((line) => line.includes('[Login#5]'))).toBe(true);
+  });
+});

@@ -1011,6 +1011,121 @@ void qmlts_free_snapshot_string(char* ptr) {
     free(ptr);
 }
 
+// ─────────────────────────────────────────────────────────────────────────
+//  V2 Instance State Capture / Restore (Step 8)
+// ─────────────────────────────────────────────────────────────────────────
+
+namespace {
+char* alloc_c_string(const QByteArray& bytes) {
+    char* result = static_cast<char*>(malloc(static_cast<size_t>(bytes.size()) + 1));
+    if (result) {
+        memcpy(result, bytes.constData(), static_cast<size_t>(bytes.size()));
+        result[bytes.size()] = '\0';
+    }
+    return result;
+}
+} // namespace
+
+char* qmlts_v2_read_properties(void* qobject_ptr, const char* property_names_json) {
+    QObject* obj = static_cast<QObject*>(qobject_ptr);
+    if (!obj || !property_names_json) {
+        return alloc_c_string(R"({"props":{},"diagnostics":[{"code":"HR_NULL_OBJECT","message":"null qobject"}]})");
+    }
+
+    QJsonDocument namesDoc = QJsonDocument::fromJson(property_names_json);
+    if (!namesDoc.isArray()) {
+        return alloc_c_string(R"({"props":{},"diagnostics":[{"code":"HR_INVALID_INPUT","message":"property_names_json not an array"}]})");
+    }
+
+    QJsonObject props;
+    QJsonArray diags;
+    const QMetaObject* meta = obj->metaObject();
+
+    for (const QJsonValue& nameVal : namesDoc.array()) {
+        if (!nameVal.isString()) continue;
+        QString propName = nameVal.toString();
+        int propIndex = meta->indexOfProperty(propName.toUtf8().constData());
+        if (propIndex < 0) {
+            QJsonObject diag;
+            diag["code"] = QStringLiteral("HR_PROPERTY_NOT_FOUND");
+            diag["message"] = QStringLiteral("Property '%1' not found on QObject").arg(propName);
+            diags.append(diag);
+            continue;
+        }
+        QVariant value = meta->property(propIndex).read(obj);
+        switch (value.typeId()) {
+            case QMetaType::Bool:
+                props[propName] = value.toBool();
+                break;
+            case QMetaType::Int:
+                props[propName] = value.toInt();
+                break;
+            case QMetaType::Double:
+            case QMetaType::Float:
+                props[propName] = value.toDouble();
+                break;
+            case QMetaType::QString:
+                props[propName] = value.toString();
+                break;
+            default: {
+                QJsonObject diag;
+                diag["code"] = QStringLiteral("HR_UNSUPPORTED_TYPE");
+                diag["message"] = QStringLiteral("Property '%1' has unsupported type %2")
+                    .arg(propName, QString::fromUtf8(value.typeName()));
+                diags.append(diag);
+                break;
+            }
+        }
+    }
+
+    QJsonObject result;
+    result["props"] = props;
+    result["diagnostics"] = diags;
+    QByteArray json = QJsonDocument(result).toJson(QJsonDocument::Compact);
+    return alloc_c_string(json);
+}
+
+bool qmlts_v2_write_properties(void* qobject_ptr, const char* properties_json) {
+    QObject* obj = static_cast<QObject*>(qobject_ptr);
+    if (!obj || !properties_json) return false;
+
+    QJsonDocument doc = QJsonDocument::fromJson(properties_json);
+    if (!doc.isObject()) return false;
+
+    const QMetaObject* meta = obj->metaObject();
+    QJsonObject propsObj = doc.object();
+    bool hadWriteFailure = false;
+
+    for (auto it = propsObj.begin(); it != propsObj.end(); ++it) {
+        int propIndex = meta->indexOfProperty(it.key().toUtf8().constData());
+        if (propIndex < 0) {
+            hadWriteFailure = true;
+            continue;
+        }
+        QMetaProperty prop = meta->property(propIndex);
+        QJsonValue val = it.value();
+
+        QVariant variant;
+        if (val.isBool()) variant = QVariant(val.toBool());
+        else if (val.isDouble()) {
+            if (prop.typeId() == QMetaType::Int)
+                variant = QVariant(static_cast<int>(val.toDouble()));
+            else
+                variant = QVariant(val.toDouble());
+        }
+        else if (val.isString()) variant = QVariant(val.toString());
+        else {
+            hadWriteFailure = true;
+            continue;
+        }
+
+        if (!prop.isWritable() || !prop.write(obj, variant)) {
+            hadWriteFailure = true;
+        }
+    }
+    return !hadWriteFailure;
+}
+
 /// Reload QML: keep the existing root tree until the new source loads successfully.
 ///
 /// Context properties (vm, __qmlts) survive because they are set on the

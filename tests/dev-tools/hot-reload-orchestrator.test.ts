@@ -2,7 +2,12 @@ import { describe, expect, test } from 'bun:test';
 import type { HotReloadClient, HotReloadResult } from '../../src/build/build-types.js';
 import type {
   HotReloadContext,
+  HotReloadDiagnostic,
   HotReloadOrchestratorResult,
+  InstanceRestorePair,
+  InstanceSlotInfo,
+  NativeInstanceSnapshot,
+  RestoreDiagnostics,
 } from '../../src/dev-tools/dev-types.js';
 import { createHotReloadOrchestrator } from '../../src/dev-tools/hot-reload-orchestrator.js';
 
@@ -277,5 +282,414 @@ describe('HotReloadOrchestrator', () => {
     expect(throwingHookCalls).toBe(1);
     expect(successfulResults).toHaveLength(1);
     expect(orch.lastResult?.error).toMatch(/after hook failed/i);
+  });
+});
+
+// ─────────────────────────────────────────────────────────────
+//  V2 Hot Reload Tests
+// ─────────────────────────────────────────────────────────────
+
+function createV2MockClient(
+  options: {
+    connected?: boolean;
+    shouldFail?: boolean;
+    capturedSnapshots?: NativeInstanceSnapshot[];
+    restoreDiagnostics?: HotReloadDiagnostic[];
+    captureThrows?: boolean;
+    restoreThrows?: boolean;
+  } = {},
+): HotReloadClient & {
+  calls: Array<{ files: readonly string[]; dir: string }>;
+  captureCalls: number;
+  restoreCalls: Array<InstanceRestorePair[]>;
+} {
+  const calls: Array<{ files: readonly string[]; dir: string }> = [];
+  const restoreCalls: Array<InstanceRestorePair[]> = [];
+  const captureCalls = 0;
+  let disposed = false;
+
+  const client = {
+    calls,
+    captureCalls,
+    restoreCalls,
+    async reload(changedFiles: readonly string[], outputDir: string): Promise<HotReloadResult> {
+      calls.push({ files: changedFiles, dir: outputDir });
+      if (options.shouldFail) {
+        return { success: false, durationMs: 1, error: 'Mock failure' };
+      }
+      return { success: true, durationMs: 5 };
+    },
+    isConnected(): boolean {
+      return !disposed && (options.connected ?? true);
+    },
+    dispose(): void {
+      disposed = true;
+    },
+    captureInstanceStates(): NativeInstanceSnapshot[] {
+      client.captureCalls++;
+      if (options.captureThrows) {
+        throw new Error('Capture error');
+      }
+      return options.capturedSnapshots ?? [];
+    },
+    restoreInstanceStates(pairs: InstanceRestorePair[]): RestoreDiagnostics {
+      restoreCalls.push(pairs);
+      if (options.restoreThrows) {
+        throw new Error('Restore error');
+      }
+      return { diagnostics: options.restoreDiagnostics ?? [] };
+    },
+  };
+  return client;
+}
+
+describe('HotReloadOrchestrator V2', () => {
+  const makeOldSlots = (): InstanceSlotInfo[] => [
+    { instanceId: 0, className: 'LoginViewModel', compilerSlotKey: 'login-slot', properties: {} },
+  ];
+
+  const makeNewSlots = (): InstanceSlotInfo[] => [
+    {
+      instanceId: 10,
+      className: 'LoginViewModel',
+      compilerSlotKey: 'login-slot',
+      properties: {},
+    },
+  ];
+
+  function withPhaseSwitch<T extends HotReloadClient>(client: T, setPhase: () => void): T {
+    const origReload = client.reload.bind(client);
+    client.reload = async (f: readonly string[], d: string) => {
+      const r = await origReload(f, d);
+      setPhase();
+      return r;
+    };
+    return client;
+  }
+
+  // HR-V2-01: Single-instance capture → reload → restore by compilerSlotKey
+  test('HR-V2-01: single instance capture/restore by compilerSlotKey', async () => {
+    const client = createV2MockClient({
+      capturedSnapshots: [
+        { instanceId: 0, className: 'LoginViewModel', properties: { username: 'test' } },
+      ],
+    });
+    let phase = 'old';
+    withPhaseSwitch(client, () => {
+      phase = 'new';
+    });
+    const orch = createHotReloadOrchestrator({
+      client,
+      getInstanceSlots: () => (phase === 'old' ? makeOldSlots() : makeNewSlots()),
+    });
+
+    const result = await orch.reload(['file.ts'], '/output');
+    expect(result.success).toBe(true);
+    expect(result.instancesRestored).toBe(1);
+    expect(result.instancesUnmatched).toBe(0);
+    expect(client.restoreCalls.length).toBe(1);
+    expect(client.restoreCalls[0]![0]!.instanceId).toBe(10);
+    expect(client.restoreCalls[0]![0]!.properties).toEqual({ username: 'test' });
+  });
+
+  // HR-V2-02: Multiple instances matched by different compilerSlotKeys
+  test('HR-V2-02: multiple instances matched by different slot keys', async () => {
+    const client = createV2MockClient({
+      capturedSnapshots: [
+        { instanceId: 0, className: 'LoginViewModel', properties: { username: 'a' } },
+        { instanceId: 1, className: 'CounterViewModel', properties: { count: 5 } },
+      ],
+    });
+    let phase = 'old';
+    withPhaseSwitch(client, () => {
+      phase = 'new';
+    });
+    const orch = createHotReloadOrchestrator({
+      client,
+      getInstanceSlots: () => {
+        if (phase === 'old') {
+          return [
+            {
+              instanceId: 0,
+              className: 'LoginViewModel',
+              compilerSlotKey: 'login-slot',
+              properties: {},
+            },
+            {
+              instanceId: 1,
+              className: 'CounterViewModel',
+              compilerSlotKey: 'counter-slot',
+              properties: {},
+            },
+          ];
+        }
+        return [
+          {
+            instanceId: 10,
+            className: 'LoginViewModel',
+            compilerSlotKey: 'login-slot',
+            properties: {},
+          },
+          {
+            instanceId: 11,
+            className: 'CounterViewModel',
+            compilerSlotKey: 'counter-slot',
+            properties: {},
+          },
+        ];
+      },
+    });
+
+    const result = await orch.reload(['file.ts'], '/output');
+    expect(result.instancesRestored).toBe(2);
+    expect(result.instancesUnmatched).toBe(0);
+  });
+
+  // HR-V2-03: Partial match — one instance removed after reload
+  test('HR-V2-03: partial match with instance removed after reload', async () => {
+    const client = createV2MockClient({
+      capturedSnapshots: [
+        { instanceId: 0, className: 'LoginViewModel', properties: { username: 'a' } },
+        { instanceId: 1, className: 'CounterViewModel', properties: { count: 5 } },
+      ],
+    });
+    let phase = 'old';
+    withPhaseSwitch(client, () => {
+      phase = 'new';
+    });
+    const orch = createHotReloadOrchestrator({
+      client,
+      getInstanceSlots: () => {
+        if (phase === 'old') {
+          return [
+            {
+              instanceId: 0,
+              className: 'LoginViewModel',
+              compilerSlotKey: 'login-slot',
+              properties: {},
+            },
+            {
+              instanceId: 1,
+              className: 'CounterViewModel',
+              compilerSlotKey: 'counter-slot',
+              properties: {},
+            },
+          ];
+        }
+        // CounterViewModel removed after reload
+        return [
+          {
+            instanceId: 10,
+            className: 'LoginViewModel',
+            compilerSlotKey: 'login-slot',
+            properties: {},
+          },
+        ];
+      },
+    });
+
+    const result = await orch.reload(['file.ts'], '/output');
+    expect(result.instancesRestored).toBe(1);
+    expect(result.instancesUnmatched).toBe(1);
+  });
+
+  // HR-V2-04: No captured snapshots (empty registry) → no restore
+  test('HR-V2-04: empty captured snapshots → no restore', async () => {
+    const client = createV2MockClient({ capturedSnapshots: [] });
+    let phase = 'old';
+    withPhaseSwitch(client, () => {
+      phase = 'new';
+    });
+    const orch = createHotReloadOrchestrator({
+      client,
+      getInstanceSlots: () => (phase === 'old' ? makeOldSlots() : makeNewSlots()),
+    });
+
+    const result = await orch.reload(['file.ts'], '/output');
+    expect(result.success).toBe(true);
+    expect(result.instancesRestored).toBe(0);
+    expect(result.instancesUnmatched).toBe(0);
+  });
+
+  // HR-V2-05: Missing compilerSlotKey → no match
+  test('HR-V2-05: missing compilerSlotKey → no match', async () => {
+    const client = createV2MockClient({
+      capturedSnapshots: [
+        { instanceId: 0, className: 'LoginViewModel', properties: { username: 'test' } },
+      ],
+    });
+    const orch = createHotReloadOrchestrator({
+      client,
+      getInstanceSlots: () => [{ instanceId: 0, className: 'LoginViewModel', properties: {} }],
+    });
+
+    const result = await orch.reload(['file.ts'], '/output');
+    expect(result.instancesUnmatched).toBe(1);
+    expect(result.instancesRestored).toBe(0);
+  });
+
+  // HR-V2-06: Capture failure → diagnostic, reload still happens
+  test('HR-V2-06: capture failure → diagnostic, reload still proceeds', async () => {
+    const client = createV2MockClient({ captureThrows: true });
+    const orch = createHotReloadOrchestrator({
+      client,
+      getInstanceSlots: () => makeOldSlots(),
+    });
+
+    const result = await orch.reload(['file.ts'], '/output');
+    expect(result.success).toBe(true);
+    expect(result.diagnostics).toBeDefined();
+    expect(result.diagnostics!.some((d) => d.code === 'HR_CAPTURE_FAILED')).toBe(true);
+    // No restore should happen since capture failed
+    expect(result.instancesRestored).toBeUndefined();
+  });
+
+  // HR-V2-07: Restore failure → diagnostic
+  test('HR-V2-07: restore failure → diagnostic', async () => {
+    const client = createV2MockClient({
+      capturedSnapshots: [
+        { instanceId: 0, className: 'LoginViewModel', properties: { username: 'test' } },
+      ],
+      restoreThrows: true,
+    });
+    let phase = 'old';
+    withPhaseSwitch(client, () => {
+      phase = 'new';
+    });
+    const orch = createHotReloadOrchestrator({
+      client,
+      getInstanceSlots: () => (phase === 'old' ? makeOldSlots() : makeNewSlots()),
+    });
+
+    const result = await orch.reload(['file.ts'], '/output');
+    expect(result.success).toBe(true);
+    expect(result.diagnostics).toBeDefined();
+    expect(result.diagnostics!.some((d) => d.code === 'HR_RESTORE_FAILED')).toBe(true);
+  });
+
+  // HR-V2-08: V2 mode with missing native capture/restore → degraded
+  test('HR-V2-08: missing native V2 methods → degraded', async () => {
+    const client = createMockClient(); // V1-only client
+    const orch = createHotReloadOrchestrator({
+      client,
+      getInstanceSlots: () => makeOldSlots(),
+    });
+
+    const result = await orch.reload(['file.ts'], '/output');
+    expect(result.success).toBe(true);
+    expect(result.degraded).toBe(true);
+    expect(result.diagnostics).toBeDefined();
+    expect(result.diagnostics!.some((d) => d.code === 'HR_DEGRADED')).toBe(true);
+    expect(result.diagnostics!.map((d) => d.message)).toContain(
+      'V2 hot reload degraded: native captureInstanceStates not available',
+    );
+    expect(result.diagnostics!.map((d) => d.message)).toContain(
+      'V2 hot reload degraded: native restoreInstanceStates not available',
+    );
+    expect(result.instancesRestored).toBeUndefined();
+  });
+
+  test('HR-V2-08b: missing restoreInstanceStates marks degraded after capture support exists', async () => {
+    let captureCalls = 0;
+    const client: HotReloadClient = {
+      async reload(): Promise<HotReloadResult> {
+        return { success: true, durationMs: 5 };
+      },
+      isConnected: () => true,
+      dispose: () => {},
+      captureInstanceStates(): NativeInstanceSnapshot[] {
+        captureCalls++;
+        return [{ instanceId: 0, className: 'LoginViewModel', properties: { username: 'test' } }];
+      },
+    };
+    const orch = createHotReloadOrchestrator({
+      client,
+      getInstanceSlots: () => makeOldSlots(),
+    });
+
+    const result = await orch.reload(['file.ts'], '/output');
+    expect(result.success).toBe(true);
+    expect(captureCalls).toBe(1);
+    expect(result.degraded).toBe(true);
+    expect(result.diagnostics?.some((d) => d.message.includes('restoreInstanceStates'))).toBe(true);
+    expect(result.instancesRestored).toBeUndefined();
+  });
+
+  // HR-V2-09: Build failure → no restore
+  test('HR-V2-09: build failure → no restore', async () => {
+    const client = createV2MockClient({
+      shouldFail: true,
+      capturedSnapshots: [
+        { instanceId: 0, className: 'LoginViewModel', properties: { username: 'test' } },
+      ],
+    });
+    const orch = createHotReloadOrchestrator({
+      client,
+      getInstanceSlots: () => makeOldSlots(),
+    });
+
+    const result = await orch.reload(['file.ts'], '/output');
+    expect(result.success).toBe(false);
+    // Restore does NOT fire on failure
+    expect(client.restoreCalls.length).toBe(0);
+  });
+
+  // HR-V2-10: Restore diagnostics propagated to result
+  test('HR-V2-10: restore diagnostics propagated to result', async () => {
+    const client = createV2MockClient({
+      capturedSnapshots: [
+        { instanceId: 0, className: 'LoginViewModel', properties: { username: 'test' } },
+      ],
+      restoreDiagnostics: [{ code: 'HR_UNKNOWN_PROPERTY', message: 'Property xyz not in schema' }],
+    });
+    let phase = 'old';
+    withPhaseSwitch(client, () => {
+      phase = 'new';
+    });
+    const orch = createHotReloadOrchestrator({
+      client,
+      getInstanceSlots: () => (phase === 'old' ? makeOldSlots() : makeNewSlots()),
+    });
+
+    const result = await orch.reload(['file.ts'], '/output');
+    expect(result.diagnostics).toBeDefined();
+    expect(result.diagnostics!.some((d) => d.code === 'HR_UNKNOWN_PROPERTY')).toBe(true);
+  });
+
+  // HR-V2-11: V1 client without getInstanceSlots → no V2 fields
+  test('HR-V2-11: V1 client without getInstanceSlots → no V2 fields', async () => {
+    const client = createMockClient();
+    const orch = createHotReloadOrchestrator({ client });
+    const result = await orch.reload(['file.ts'], '/output');
+    expect(result.instancesRestored).toBeUndefined();
+    expect(result.instancesUnmatched).toBeUndefined();
+    expect(result.degraded).toBeUndefined();
+    expect(result.diagnostics).toBeUndefined();
+  });
+
+  // HR-V2-12: Capture called before reload
+  test('HR-V2-12: capture is called before reload', async () => {
+    const order: string[] = [];
+    const client = createV2MockClient({
+      capturedSnapshots: [{ instanceId: 0, className: 'LoginViewModel', properties: {} }],
+    });
+    const origCapture = client.captureInstanceStates!;
+    client.captureInstanceStates = () => {
+      order.push('capture');
+      return origCapture.call(client);
+    };
+    const origReload = client.reload.bind(client);
+    client.reload = async (f: readonly string[], d: string) => {
+      order.push('reload');
+      return origReload(f, d);
+    };
+
+    const orch = createHotReloadOrchestrator({
+      client,
+      getInstanceSlots: () => makeOldSlots(),
+    });
+
+    await orch.reload(['file.ts'], '/output');
+    expect(order).toEqual(['capture', 'reload']);
   });
 });
