@@ -127,7 +127,7 @@ const host = new QmltsHost({
 });
 
 // V2: Verify native host supports V2 runtime
-if (!host.supportsV2()) {
+if (typeof host.supportsV2 !== 'function' || !host.supportsV2()) {
   throw new Error(
     'This application requires V2 runtime support. ' +
     'Please update @qmlts/host to a version that includes V2 native bindings.'
@@ -148,8 +148,9 @@ host.exec();
 ```
 
 Key points:
-- The `host.supportsV2()` preflight gives a clear error if the native host is
-  too old, instead of an opaque missing-function failure during `registerModule`.
+- The `typeof host.supportsV2 !== 'function' || !host.supportsV2()` preflight
+  gives a clear error if either the JS wrapper or native host is too old,
+  instead of an opaque missing-function failure during `registerModule`.
 - `host.registerModule(...)` uses the high-level object-form wrapper on `QmltsHost`.
   The native positional signature is internal to the wrapper.
 
@@ -287,9 +288,11 @@ emitted as `Signal` entries. The Qt meta-object system handles NOTIFY signals
 internally. Only signals explicitly declared in `schema.effects` appear as
 `Signal` entries in `.qmltypes`.
 
-**Parameter type mapping:** Schema parameters already carry QML type strings in
-`states[].qmlType` and `commands[]/effects[].parameters[].type`.
-These are used directly — no additional mapping needed.
+**Parameter type mapping:** Schema parameters should usually carry QML type
+strings, but the generator defensively maps known TypeScript primitives before
+writing `.qmltypes`: `boolean` → `bool`, `number` → `real`, and
+`unknown`/`any`/`object` → `var`. Existing QML type strings such as `string`,
+`bool`, `int`, and `real` are preserved.
 
 ### 4.3 New Module: `src/build/qmltypes-generator.ts`
 
@@ -443,7 +446,7 @@ Add a golden test for V1 entry output to prove byte-for-byte stability.
 | BP-82 | V2 entry includes all import paths |
 | BP-83 | V2 entry fail-fast if moduleRegistration has empty typeNames |
 | BP-84 | V1 entry not affected by V2 fields in options |
-| BP-85 | V2 entry includes `host.supportsV2()` preflight check |
+| BP-85 | V2 entry includes robust `supportsV2` preflight check that handles missing method |
 | BP-86 | V2 entry without ViewModels omits registerModule and supportsV2 |
 
 ### 8.3 qmldir Generator Tests
@@ -472,6 +475,7 @@ Add a golden test for V1 entry output to prove byte-for-byte stability.
 | QT-11 | Handles multiple ViewModels in one module |
 | QT-12 | Empty schemas list produces empty Module block |
 | QT-13 | Does NOT emit state-change notify signals |
+| QT-14 | Maps TS primitive parameter types to QML tooling types |
 
 ### 8.5 Build Pipeline Tests
 

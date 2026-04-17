@@ -66,7 +66,9 @@ function emitComponent(
       lines.push('        Method {');
       lines.push(`            name: "${cmd.qmlName}"`);
       for (const param of cmd.parameters) {
-        lines.push(`            Parameter { name: "${param.name}"; type: "${param.type}" }`);
+        lines.push(
+          `            Parameter { name: "${param.name}"; type: "${toQmlToolingType(param.type)}" }`,
+        );
       }
       lines.push('        }');
     }
@@ -79,7 +81,9 @@ function emitComponent(
       lines.push('        Signal {');
       lines.push(`            name: "${effect.qmlName}"`);
       for (const param of effect.parameters) {
-        lines.push(`            Parameter { name: "${param.name}"; type: "${param.type}" }`);
+        lines.push(
+          `            Parameter { name: "${param.name}"; type: "${toQmlToolingType(param.type)}" }`,
+        );
       }
       lines.push('        }');
     }
@@ -93,4 +97,20 @@ function emitComponent(
   }
 
   lines.push('    }');
+}
+
+function toQmlToolingType(typeName: string): string {
+  const normalized = typeName.trim();
+  switch (normalized.toLowerCase()) {
+    case 'boolean':
+      return 'bool';
+    case 'number':
+      return 'real';
+    case 'unknown':
+    case 'any':
+    case 'object':
+      return 'var';
+    default:
+      return normalized;
+  }
 }

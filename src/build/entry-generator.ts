@@ -102,7 +102,7 @@ function generateV2Entry(options: EntryGeneratorOptions): string {
     const reg = options.moduleRegistration;
 
     lines.push('// V2: Verify native host supports V2 runtime');
-    lines.push('if (!host.supportsV2()) {');
+    lines.push("if (typeof host.supportsV2 !== 'function' || !host.supportsV2()) {");
     lines.push('  throw new Error(');
     lines.push("    'This application requires V2 runtime support. ' +");
     lines.push("      'Please update @qmlts/host to a version that includes V2 native bindings.'");
@@ -112,10 +112,10 @@ function generateV2Entry(options: EntryGeneratorOptions): string {
 
     lines.push('// V2: Register module types with QML engine');
     lines.push('host.registerModule({');
-    lines.push(`  moduleUri: '${reg.moduleUri}',`);
+    lines.push(`  moduleUri: ${JSON.stringify(reg.moduleUri)},`);
     lines.push(`  versionMajor: ${reg.versionMajor},`);
     lines.push(`  versionMinor: ${reg.versionMinor},`);
-    const typeNamesStr = reg.typeNames.map((t) => `'${t}'`).join(', ');
+    const typeNamesStr = reg.typeNames.map((t) => JSON.stringify(t)).join(', ');
     lines.push(`  typeNames: [${typeNamesStr}],`);
     lines.push('});');
     lines.push('');

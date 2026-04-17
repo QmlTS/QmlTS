@@ -187,6 +187,50 @@ describe('QmltypesGenerator', () => {
     expect(content).toContain('Parameter { name: "success"; type: "bool" }');
   });
 
+  // QT-14
+  test('QT-14: maps TS primitive parameter types to QML tooling types', () => {
+    const content = generator.generate({
+      ...baseOpts,
+      schemas: [
+        makeSchema({
+          commands: [
+            {
+              name: 'setProgress',
+              qmlName: 'setProgress',
+              commandId: 1,
+              parameters: [
+                { name: 'enabled', type: 'boolean' },
+                { name: 'ratio', type: 'number' },
+                { name: 'payload', type: 'unknown' },
+              ],
+              async: false,
+              throttle: 'none',
+              throttleMs: 0,
+            },
+          ],
+          effects: [
+            {
+              name: 'progressChanged',
+              qmlName: 'progressChanged',
+              effectId: 2,
+              parameters: [
+                { name: 'ok', type: 'boolean' },
+                { name: 'value', type: 'number' },
+              ],
+            },
+          ],
+        }),
+      ],
+    });
+    expect(content).toContain('Parameter { name: "enabled"; type: "bool" }');
+    expect(content).toContain('Parameter { name: "ratio"; type: "real" }');
+    expect(content).toContain('Parameter { name: "payload"; type: "var" }');
+    expect(content).toContain('Parameter { name: "ok"; type: "bool" }');
+    expect(content).toContain('Parameter { name: "value"; type: "real" }');
+    expect(content).not.toContain('type: "boolean"');
+    expect(content).not.toContain('type: "number"');
+  });
+
   // QT-09
   test('QT-09: emits lifecycle methods when enabled', () => {
     const content = generator.generate({

@@ -172,7 +172,7 @@ describe('EntryGenerator', () => {
   // BP-80
   test('BP-80: V2 entry includes correct moduleUri and version', () => {
     const code = generator.generate(makeV2Options());
-    expect(code).toContain("moduleUri: 'TestApp.ViewModels'");
+    expect(code).toContain('moduleUri: "TestApp.ViewModels"');
     expect(code).toContain('versionMajor: 1');
     expect(code).toContain('versionMinor: 0');
   });
@@ -189,8 +189,8 @@ describe('EntryGenerator', () => {
         },
       }),
     );
-    expect(code).toContain("'CounterViewModel'");
-    expect(code).toContain("'LoginViewModel'");
+    expect(code).toContain('"CounterViewModel"');
+    expect(code).toContain('"LoginViewModel"');
   });
 
   // BP-82
@@ -236,9 +236,10 @@ describe('EntryGenerator', () => {
   });
 
   // BP-85
-  test('BP-85: V2 entry includes supportsV2 preflight check', () => {
+  test('BP-85: V2 entry includes robust supportsV2 preflight check', () => {
     const code = generator.generate(makeV2Options());
-    expect(code).toContain('host.supportsV2()');
+    expect(code).toContain("typeof host.supportsV2 !== 'function'");
+    expect(code).toContain('!host.supportsV2()');
     expect(code).toContain('V2 runtime support');
   });
 
