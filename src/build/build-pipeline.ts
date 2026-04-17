@@ -29,9 +29,11 @@ import type {
 import type { ResolvedQmltsConfig } from './config-types.js';
 import { createEntryGenerator } from './entry-generator.js';
 import { createHostPreparer } from './host-preparer.js';
+import { deriveModuleMeta, validateSchemaConsistency } from './module-meta.js';
 import { checkQtVersionCompatibility, createPackageResolver } from './package-resolver.js';
 import {
   alignCompilationResultToLayout,
+  attachModuleDir,
   createManifest,
   createProductLayout,
   currentPlatform,
@@ -40,6 +42,8 @@ import {
   writeEventBindings,
   writeManifest,
 } from './product-layout.js';
+import { createQmldirGenerator } from './qmldir-generator.js';
+import { createQmltypesGenerator } from './qmltypes-generator.js';
 import { createResourceBundler, dryRunBundle } from './resource-bundler.js';
 
 // ─── Types ──────────────────────────────────────────────────
@@ -475,7 +479,37 @@ function phaseWriteOutput(ctx: PhaseContext): Promise<{ diagnostics: readonly Di
     });
   }
 
-  const layout = createProductLayout(ctx.config.outDir, ctx.config);
+  let layout = createProductLayout(ctx.config.outDir, ctx.config);
+
+  // Derive V2 module metadata after compilation (schemas now available)
+  const isV2 = ctx.config.runtime === 'v2';
+  const schemasForMeta = ctx.compilationResult.units.filter((u) => u.schema).map((u) => u.schema!);
+
+  let moduleMeta: ReturnType<typeof deriveModuleMeta>;
+  if (isV2 && ctx.config.module && schemasForMeta.length > 0) {
+    // Convert to ViewModelSchemaJson for validation
+    const schemaJsonsForValidation = schemasForMeta.map((s) => toHostPrepSchema(s, '').content);
+
+    // Validate schema consistency before deriving metadata
+    const consistencyDiags = validateSchemaConsistency(schemaJsonsForValidation);
+    if (consistencyDiags.length > 0) {
+      return Promise.resolve({ diagnostics: consistencyDiags });
+    }
+
+    moduleMeta = deriveModuleMeta(ctx.config.module, schemasForMeta);
+  } else if (isV2 && schemasForMeta.length > 0 && !ctx.config.module) {
+    return Promise.resolve({
+      diagnostics: [
+        {
+          severity: 'error',
+          code: 'QMLTS-B001',
+          message: 'V2 build requires module configuration but none was provided',
+        },
+      ],
+    });
+  }
+
+  layout = attachModuleDir(layout, moduleMeta);
   ctx.layout = layout;
   ctx.compilationResult = alignCompilationResultToLayout(
     ctx.compilationResult,
@@ -492,6 +526,39 @@ function phaseWriteOutput(ctx: PhaseContext): Promise<{ diagnostics: readonly Di
   copyResolvedPackageQmlImports(layout, ctx.resolvedPackages);
   writeCompilationUnits(layout, ctx.compilationResult.units, ctx.config.build.sourceMaps);
   writeEventBindings(layout, ctx.compilationResult.eventBindings);
+
+  // V2: Write qmldir and qmltypes
+  if (isV2 && moduleMeta && layout.moduleDir) {
+    const qmldirGen = createQmldirGenerator();
+    const qmltypesGen = createQmltypesGenerator();
+
+    const qmldirContent = qmldirGen.generate({
+      moduleUri: moduleMeta.moduleUri,
+      qmltypesFilename: moduleMeta.qmltypesFilename,
+    });
+    writeFileSync(join(layout.moduleDir, 'qmldir'), qmldirContent, 'utf-8');
+
+    const schemaJsons = ctx.compilationResult.units
+      .filter((u) => u.schema)
+      .map((u) => toHostPrepSchema(u.schema!, '').content);
+    // Deduplicate by className (identical schemas already validated)
+    const seen = new Set<string>();
+    const uniqueSchemas = schemaJsons.filter((s) => {
+      if (seen.has(s.className)) return false;
+      seen.add(s.className);
+      return true;
+    });
+
+    const qmltypesContent = qmltypesGen.generate({
+      moduleUri: moduleMeta.moduleUri,
+      moduleVersion: {
+        major: moduleMeta.versionMajor,
+        minor: moduleMeta.versionMinor,
+      },
+      schemas: uniqueSchemas,
+    });
+    writeFileSync(join(layout.moduleDir, moduleMeta.qmltypesFilename), qmltypesContent, 'utf-8');
+  }
 
   // Generate entry file
   const generator = createEntryGenerator();
@@ -516,12 +583,21 @@ function phaseWriteOutput(ctx: PhaseContext): Promise<{ diagnostics: readonly Di
     mainQml,
     qmlImportPaths,
     packages: ctx.resolvedPackages,
+    runtime: isV2 ? 'v2' : undefined,
+    moduleRegistration: moduleMeta
+      ? {
+          moduleUri: moduleMeta.moduleUri,
+          versionMajor: moduleMeta.versionMajor,
+          versionMinor: moduleMeta.versionMinor,
+          typeNames: [...moduleMeta.typeNames],
+        }
+      : undefined,
   });
 
   mkdirSync(dirname(layout.entryFile), { recursive: true });
   writeFileSync(layout.entryFile, entryContent, 'utf-8');
 
-  const manifest = createManifest(layout, ctx.compilationResult, ctx.config);
+  const manifest = createManifest(layout, ctx.compilationResult, ctx.config, moduleMeta);
   writeManifest(layout, manifest);
 
   emitProgress(ctx, {

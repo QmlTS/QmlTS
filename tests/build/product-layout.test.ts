@@ -5,6 +5,7 @@ import type { BuildManifest } from '../../src/build/build-types.js';
 import { applyDefaults } from '../../src/build/config-defaults.js';
 import type { ResolvedQmltsConfig } from '../../src/build/config-types.js';
 import {
+  attachModuleDir,
   createManifest,
   createProductLayout,
   hostLibFilename,
@@ -316,5 +317,105 @@ describe('writeEventBindings', () => {
     expect(existsSync(layout.eventBindings)).toBe(true);
     const content = JSON.parse(readFileSync(layout.eventBindings, 'utf-8'));
     expect(content).toEqual({ commands: [], effects: [] });
+  });
+});
+
+describe('V2 ProductLayout', () => {
+  // PL-01
+  test('PL-01: attachModuleDir adds moduleDir for V2 with ViewModels', () => {
+    const config = makeConfig();
+    const layout = createProductLayout(TMP_DIR, config);
+    const meta = {
+      moduleUri: 'TestApp.ViewModels',
+      versionMajor: 1,
+      versionMinor: 0,
+      versionString: '1.0',
+      moduleRelDir: 'TestApp/ViewModels',
+      qmltypesFilename: 'testapp_viewmodels.qmltypes',
+      typeNames: ['CounterViewModel'] as readonly string[],
+    };
+    const v2Layout = attachModuleDir(layout, meta);
+    expect(v2Layout.moduleDir).toBe(join(TMP_DIR, 'qml', 'TestApp', 'ViewModels'));
+  });
+
+  // PL-02
+  test('PL-02: V1 layout does not include moduleDir', () => {
+    const config = makeConfig();
+    const layout = createProductLayout(TMP_DIR, config);
+    expect(layout.moduleDir).toBeUndefined();
+  });
+
+  // PL-03
+  test('PL-03: materializeLayout creates moduleDir when present', () => {
+    const config = makeConfig();
+    const layout = createProductLayout(TMP_DIR, config);
+    const meta = {
+      moduleUri: 'TestApp.ViewModels',
+      versionMajor: 1,
+      versionMinor: 0,
+      versionString: '1.0',
+      moduleRelDir: 'TestApp/ViewModels',
+      qmltypesFilename: 'testapp_viewmodels.qmltypes',
+      typeNames: ['CounterViewModel'] as readonly string[],
+    };
+    const v2Layout = attachModuleDir(layout, meta);
+    materializeLayout(v2Layout);
+    expect(existsSync(v2Layout.moduleDir!)).toBe(true);
+  });
+
+  // PL-04
+  test('PL-04: attachModuleDir returns undefined moduleDir when meta is undefined', () => {
+    const config = makeConfig();
+    const layout = createProductLayout(TMP_DIR, config);
+    const v2Layout = attachModuleDir(layout, undefined);
+    expect(v2Layout.moduleDir).toBeUndefined();
+  });
+});
+
+describe('V2 BuildManifest', () => {
+  test('BP-V2-03a: V2 manifest includes runtime and modules with portable paths', () => {
+    const config = makeConfig({ runtime: 'v2' as const });
+    const layout = createProductLayout(TMP_DIR, config);
+    const result = makeCompilationResult();
+    const meta = {
+      moduleUri: 'TestApp.ViewModels',
+      versionMajor: 1,
+      versionMinor: 0,
+      versionString: '1.0',
+      moduleRelDir: 'TestApp/ViewModels',
+      qmltypesFilename: 'testapp_viewmodels.qmltypes',
+      typeNames: ['CounterViewModel'] as readonly string[],
+    };
+    const manifest = createManifest(layout, result, config, meta);
+
+    expect(manifest.runtime).toBe('v2');
+    expect(manifest.modules).toBeDefined();
+    expect(manifest.modules).toHaveLength(1);
+    const mod = manifest.modules![0]!;
+    expect(mod.uri).toBe('TestApp.ViewModels');
+    expect(mod.version).toBe('1.0');
+    expect(mod.types).toEqual(['CounterViewModel']);
+    expect(mod.qmldir).toBe('./qml/TestApp/ViewModels/qmldir');
+    expect(mod.qmltypes).toBe('./qml/TestApp/ViewModels/testapp_viewmodels.qmltypes');
+  });
+
+  test('BP-V2-03b: V1 manifest has no runtime or modules', () => {
+    const config = makeConfig();
+    const layout = createProductLayout(TMP_DIR, config);
+    const result = makeCompilationResult();
+    const manifest = createManifest(layout, result, config);
+
+    expect(manifest.runtime).toBeUndefined();
+    expect(manifest.modules).toBeUndefined();
+  });
+
+  test('BP-V2-06a: V2 manifest with no ViewModels has empty modules', () => {
+    const config = makeConfig({ runtime: 'v2' as const });
+    const layout = createProductLayout(TMP_DIR, config);
+    const result = makeCompilationResult();
+    const manifest = createManifest(layout, result, config, undefined);
+
+    expect(manifest.runtime).toBe('v2');
+    expect(manifest.modules).toEqual([]);
   });
 });

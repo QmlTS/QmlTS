@@ -4,6 +4,8 @@ import type { CompilationResult, CompilationUnit } from '../compiler/pipeline/pi
 import type { BuildManifest, ProductLayout } from './build-types.js';
 import type { PlatformTarget, ResolvedQmltsConfig } from './config-types.js';
 
+import type { ModuleMeta } from './module-meta.js';
+
 const IS_WINDOWS = process.platform === 'win32';
 
 export function currentPlatform(): PlatformTarget {
@@ -49,10 +51,22 @@ export function createProductLayout(outDir: string, config: ResolvedQmltsConfig)
   return layout;
 }
 
+export function attachModuleDir(
+  layout: ProductLayout,
+  moduleMeta: ModuleMeta | undefined,
+): ProductLayout {
+  if (!moduleMeta) return layout;
+  return {
+    ...layout,
+    moduleDir: join(layout.qmlDir, ...moduleMeta.moduleRelDir.split('/')),
+  };
+}
+
 export function createManifest(
   layout: ProductLayout,
   compilationResult: CompilationResult,
   config: ResolvedQmltsConfig,
+  moduleMeta?: ModuleMeta,
 ): BuildManifest {
   const platform =
     config.distribute.targets.length > 0 ? config.distribute.targets[0]! : currentPlatform();
@@ -65,7 +79,7 @@ export function createManifest(
     .filter((u) => u.schema && u.schemaOutputPath)
     .map((u) => `./${relative(layout.rootDir, u.schemaOutputPath!).replace(/\\/g, '/')}`);
 
-  return {
+  const base: BuildManifest = {
     version: '0.1.0',
     buildTime: new Date().toISOString(),
     entry: `./${basename(config.entry)}`,
@@ -75,6 +89,23 @@ export function createManifest(
     qtVersion: config.qt.targetVersion,
     platform,
   };
+
+  if (config.runtime === 'v2') {
+    const modules = moduleMeta
+      ? [
+          {
+            uri: moduleMeta.moduleUri,
+            version: moduleMeta.versionString,
+            types: [...moduleMeta.typeNames],
+            qmldir: `./qml/${moduleMeta.moduleRelDir}/qmldir`,
+            qmltypes: `./qml/${moduleMeta.moduleRelDir}/${moduleMeta.qmltypesFilename}`,
+          },
+        ]
+      : [];
+    return { ...base, runtime: 'v2', modules };
+  }
+
+  return base;
 }
 
 export function materializeLayout(layout: ProductLayout, dryRun = false): void {
@@ -86,6 +117,9 @@ export function materializeLayout(layout: ProductLayout, dryRun = false): void {
   mkdirSync(layout.assetsDir, { recursive: true });
   if (layout.sourceMapsDir) {
     mkdirSync(layout.sourceMapsDir, { recursive: true });
+  }
+  if (layout.moduleDir) {
+    mkdirSync(layout.moduleDir, { recursive: true });
   }
 }
 

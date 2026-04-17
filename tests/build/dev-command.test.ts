@@ -183,7 +183,7 @@ describe('executeDev', () => {
     expect(logs.some((line) => line.includes('Server') && line.includes('watching'))).toBe(false);
   }, 20_000);
 
-  test('DC-06: executeDev accepts V2 rollout config without switching runtime behavior', async () => {
+  test('DC-06: executeDev accepts V2 rollout config and produces V2 entry shape', async () => {
     const configPath = writeConfig(
       tempDir,
       './src/CounterView.ts',
@@ -199,8 +199,8 @@ describe('executeDev', () => {
     try {
       expect(initialBuildSuccess).toBe(true);
       const entryContent = readFileSync(join(tempDir, 'dist', 'CounterView.ts'), 'utf-8');
-      expect(entryContent).toContain('host.registerViewModel("CounterViewModel")');
-      expect(entryContent).not.toContain('host.registerModule');
+      expect(entryContent).toContain('host.registerModule');
+      expect(entryContent).not.toContain('host.registerViewModel');
     } finally {
       await session.stop();
     }
