@@ -117,6 +117,9 @@ function generateV2Entry(options: EntryGeneratorOptions): string {
     lines.push(`  versionMinor: ${reg.versionMinor},`);
     const typeNamesStr = reg.typeNames.map((t) => JSON.stringify(t)).join(', ');
     lines.push(`  typeNames: [${typeNamesStr}],`);
+    if (reg.v1Compat) {
+      lines.push('  v1Compat: true,');
+    }
     lines.push('});');
     lines.push('');
   }

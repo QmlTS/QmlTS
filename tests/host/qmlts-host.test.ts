@@ -693,6 +693,64 @@ Item {
       host.dispose();
     }
   });
+
+  // ─── V1 Compat Host Contract ────────────────────────────────
+
+  test('TH-V1C-01: registerModule accepts v1Compat option', () => {
+    const host = new QmltsHost();
+    try {
+      if (!host.supportsV2()) {
+        expect(() =>
+          host.registerModule({
+            moduleUri: 'Test.ViewModels',
+            versionMajor: 1,
+            versionMinor: 0,
+            typeNames: ['LoginViewModel'],
+            v1Compat: true,
+          }),
+        ).toThrow(/V2 native host API/);
+      } else {
+        expect(() =>
+          host.registerModule({
+            moduleUri: 'Test.ViewModels',
+            versionMajor: 1,
+            versionMinor: 0,
+            typeNames: ['LoginViewModel'],
+            v1Compat: true,
+          }),
+        ).not.toThrow();
+      }
+    } finally {
+      host.dispose();
+    }
+  });
+
+  test('TH-V1C-02: registerModule works without v1Compat (backward compat)', () => {
+    const host = new QmltsHost();
+    try {
+      if (!host.supportsV2()) {
+        expect(() =>
+          host.registerModule({
+            moduleUri: 'Test.ViewModels',
+            versionMajor: 1,
+            versionMinor: 0,
+            typeNames: ['LoginViewModel'],
+          }),
+        ).toThrow(/V2 native host API/);
+      } else {
+        expect(() =>
+          host.registerModule({
+            moduleUri: 'Test.ViewModels',
+            versionMajor: 1,
+            versionMinor: 0,
+            typeNames: ['LoginViewModel'],
+          }),
+        ).not.toThrow();
+      }
+    } finally {
+      host.dispose();
+    }
+  });
 });
 
 describe('host/qmlts-host (skip check)', () => {

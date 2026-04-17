@@ -497,6 +497,23 @@ function phaseWriteOutput(ctx: PhaseContext): Promise<{ diagnostics: readonly Di
     }
 
     moduleMeta = deriveModuleMeta(ctx.config.module, schemasForMeta);
+
+    // QMLTS-B003: v1Compat rejects multi-VM-type modules
+    if (ctx.config.v1Compat && moduleMeta && moduleMeta.typeNames.length > 1) {
+      const nameList = [...moduleMeta.typeNames].join(', ');
+      return Promise.resolve({
+        diagnostics: [
+          {
+            severity: 'error',
+            code: 'QMLTS-B003' as import('../compiler/diagnostics.js').DiagnosticCode,
+            message:
+              `V1 compat mode (Phase 1) supports only a single ViewModel type per module. ` +
+              `Module "${moduleMeta.moduleUri}" registers ${moduleMeta.typeNames.length} types: ${nameList}. ` +
+              `Remove v1Compat or reduce to a single ViewModel type.`,
+          },
+        ],
+      });
+    }
   } else if (isV2 && schemasForMeta.length > 0 && !ctx.config.module) {
     return Promise.resolve({
       diagnostics: [
@@ -590,6 +607,7 @@ function phaseWriteOutput(ctx: PhaseContext): Promise<{ diagnostics: readonly Di
           versionMajor: moduleMeta.versionMajor,
           versionMinor: moduleMeta.versionMinor,
           typeNames: [...moduleMeta.typeNames],
+          ...(ctx.config.v1Compat ? { v1Compat: true } : {}),
         }
       : undefined,
   });

@@ -1137,10 +1137,15 @@ impl QmltsEngine {
         version_major: i32,
         version_minor: i32,
         type_names: &[String],
+        v1_compat: bool,
     ) -> Result<()> {
         self.ensure_v2_initialized()?;
         let descriptors = qmlts_host_generated::v2_descriptors();
         let state = self.v2_state.as_mut().expect("V2 state just initialized");
+        // V1 compat is sticky: once enabled, stays enabled for this engine
+        if v1_compat {
+            state.v1_compat = true;
+        }
         state.type_registrar.register_module(
             module_uri,
             version_major,
@@ -1496,27 +1501,71 @@ impl QmltsEngine {
             );
             return None;
         }
+
+        // V1 compat: capture state for context property setup during first instance creation
+        let v1_compat = state.v1_compat;
+        let v1_compat_applied = Arc::clone(&state.v1_compat_applied);
+        // Capture engine_ptr as usize for Send safety (raw pointers are !Send).
+        // This is safe because the closure runs on the Qt main thread during QML loading,
+        // which is the same thread that owns the engine pointer.
+        let engine_ptr_addr = self.engine_ptr as usize;
+
         let ctx = qmlts_host_generated::v2_dispatch::V2InitContext {
             owner_id,
             register_instance: Arc::new(move |class_name, ptr| {
-                let mut reg = registry.lock().expect("registry lock poisoned");
-                match reg.allocate_instance(class_name, ptr) {
-                    Ok(id) => {
-                        if let Ok(qml_id) = i32::try_from(id) {
-                            qml_id
-                        } else {
-                            tracing::error!(
-                                instance_id = id,
-                                "Allocated V2 instance id does not fit in i32; removing inert instance"
-                            );
-                            let _ = reg.remove_instance(id);
-                            -1
+                let id = {
+                    let mut reg = registry.lock().expect("registry lock poisoned");
+                    match reg.allocate_instance(class_name, ptr) {
+                        Ok(id) => id,
+                        Err(e) => {
+                            tracing::error!(%e, "Failed to allocate V2 instance");
+                            return -1;
                         }
                     }
-                    Err(e) => {
-                        tracing::error!(%e, "Failed to allocate V2 instance");
-                        -1
+                };
+
+                // V1 compat: set context properties for the first instance only.
+                // Do this after releasing the registry lock; Qt may evaluate
+                // bindings while context properties are updated.
+                if v1_compat
+                    && v1_compat_applied
+                        .compare_exchange(false, true, Ordering::SeqCst, Ordering::SeqCst)
+                        .is_ok()
+                {
+                    let engine_ptr = engine_ptr_addr as *mut std::ffi::c_void;
+                    // SAFETY: Called on Qt main thread during QML loading.
+                    // engine_ptr is valid for the lifetime of the engine.
+                    // ptr is the just-constructed QObject, valid for its lifetime.
+                    unsafe {
+                        let vm_ok = qt_context::set_context_property(engine_ptr, "vm", ptr);
+                        let qmlts_ok = qt_context::set_context_property(engine_ptr, "__qmlts", ptr);
+                        if vm_ok && qmlts_ok {
+                            tracing::info!(
+                                instance_id = id,
+                                class_name,
+                                "V1 compat: installed vm/__qmlts context properties"
+                            );
+                        } else {
+                            tracing::warn!(
+                                instance_id = id,
+                                vm_ok,
+                                qmlts_ok,
+                                "V1 compat: partial context property setup"
+                            );
+                        }
                     }
+                }
+
+                if let Ok(qml_id) = i32::try_from(id) {
+                    qml_id
+                } else {
+                    tracing::error!(
+                        instance_id = id,
+                        "Allocated V2 instance id does not fit in i32; removing inert instance"
+                    );
+                    let mut reg = registry.lock().expect("registry lock poisoned");
+                    let _ = reg.remove_instance(id);
+                    -1
                 }
             }),
         };
@@ -2396,7 +2445,7 @@ mod tests {
         crate::type_registrar::clear_global_registrations();
         let mut engine = QmltsEngine::new(None).unwrap();
         engine
-            .register_module("QmlTS.Test", 1, 0, &["LoginViewModel".into()])
+            .register_module("QmlTS.Test", 1, 0, &["LoginViewModel".into()], false)
             .unwrap();
         assert!(engine.require_v2().is_ok());
     }
@@ -2426,7 +2475,7 @@ mod tests {
         crate::type_registrar::clear_global_registrations();
         let mut engine = QmltsEngine::new(None).unwrap();
         engine
-            .register_module("QmlTS.Test", 1, 0, &["LoginViewModel".into()])
+            .register_module("QmlTS.Test", 1, 0, &["LoginViewModel".into()], false)
             .unwrap();
         engine
             .register_instance_created_handler(Box::new(|_class, _id| {}))
@@ -2452,7 +2501,7 @@ mod tests {
         crate::type_registrar::clear_global_registrations();
         let mut engine = QmltsEngine::new(None).unwrap();
         engine
-            .register_module("QmlTS.Test", 1, 0, &["LoginViewModel".into()])
+            .register_module("QmlTS.Test", 1, 0, &["LoginViewModel".into()], false)
             .unwrap();
 
         engine
@@ -2503,7 +2552,7 @@ mod tests {
         crate::type_registrar::clear_global_registrations();
         let mut engine = QmltsEngine::new(None).unwrap();
         engine
-            .register_module("QmlTS.Test", 1, 0, &["LoginViewModel".into()])
+            .register_module("QmlTS.Test", 1, 0, &["LoginViewModel".into()], false)
             .unwrap();
         assert!(qmlts_host_generated::v2_dispatch::has_v2_router());
         engine.mark_destroyed();
@@ -2519,7 +2568,7 @@ mod tests {
         crate::type_registrar::clear_global_registrations();
         let mut engine = QmltsEngine::new(None).unwrap();
         engine
-            .register_module("QmlTS.Test", 1, 0, &["LoginViewModel".into()])
+            .register_module("QmlTS.Test", 1, 0, &["LoginViewModel".into()], false)
             .unwrap();
         let result = engine.instance_ready(999);
         assert!(matches!(result, Err(QmltsError::V2InstanceNotFound(999))));
@@ -2541,7 +2590,7 @@ mod tests {
         crate::type_registrar::clear_global_registrations();
         let mut engine = QmltsEngine::new(None).unwrap();
         engine
-            .register_module("QmlTS.Test", 1, 0, &["LoginViewModel".into()])
+            .register_module("QmlTS.Test", 1, 0, &["LoginViewModel".into()], false)
             .unwrap();
 
         // Should create a guard
@@ -2567,5 +2616,99 @@ mod tests {
         let engine = QmltsEngine::new(None).unwrap();
         let guard = engine.create_v2_context_guard();
         assert!(guard.is_none());
+    }
+
+    // ─── V1 Compat Tests ────────────────────────────────────────
+
+    #[test]
+    fn v1_compat_sticky_once_enabled() {
+        let _guard = TEST_MUTEX.lock().unwrap();
+        reset_app_initialized();
+        crate::type_registrar::clear_global_registrations();
+        let mut engine = QmltsEngine::new(None).unwrap();
+        // First register with v1_compat = true
+        engine
+            .register_module("QmlTS.Test", 1, 0, &["LoginViewModel".into()], true)
+            .unwrap();
+        let state = engine.require_v2().unwrap();
+        assert!(state.v1_compat);
+        // Register again with v1_compat = false — should stay true (sticky)
+        engine
+            .register_module("QmlTS.Test", 1, 0, &["LoginViewModel".into()], false)
+            .unwrap();
+        let state = engine.require_v2().unwrap();
+        assert!(state.v1_compat, "v1_compat should be sticky once enabled");
+    }
+
+    #[test]
+    fn v1_compat_false_by_default() {
+        let _guard = TEST_MUTEX.lock().unwrap();
+        reset_app_initialized();
+        crate::type_registrar::clear_global_registrations();
+        let mut engine = QmltsEngine::new(None).unwrap();
+        engine
+            .register_module("QmlTS.Test", 1, 0, &["LoginViewModel".into()], false)
+            .unwrap();
+        let state = engine.require_v2().unwrap();
+        assert!(!state.v1_compat);
+    }
+
+    #[test]
+    fn v1_compat_context_guard_installs_aliases() {
+        let _guard = TEST_MUTEX.lock().unwrap();
+        reset_app_initialized();
+        crate::type_registrar::clear_global_registrations();
+        let mut engine = QmltsEngine::new(None).unwrap();
+        engine
+            .register_module("QmlTS.Test", 1, 0, &["LoginViewModel".into()], true)
+            .unwrap();
+        // Creating a V2 context guard should succeed when v1_compat is enabled
+        let guard = engine.create_v2_context_guard();
+        assert!(
+            guard.is_some(),
+            "V2 context guard should be created when v1_compat is enabled"
+        );
+        // The v1_compat_applied flag should start as false (no instance created yet)
+        let state = engine.require_v2().unwrap();
+        assert!(
+            !state.v1_compat_applied.load(Ordering::SeqCst),
+            "v1_compat_applied should be false before any instance is created"
+        );
+
+        let _guard = guard.unwrap();
+        let ctx = qmlts_host_generated::v2_dispatch::take_v2_init_context()
+            .expect("V2 init context should be installed while guard is alive");
+        let instance_id = (ctx.register_instance)("LoginViewModel", std::ptr::null_mut());
+        assert!(instance_id >= 0);
+
+        let state = engine.require_v2().unwrap();
+        assert!(
+            state.v1_compat_applied.load(Ordering::SeqCst),
+            "v1_compat_applied should flip after the first instance is registered"
+        );
+    }
+
+    #[test]
+    fn v1_compat_not_applied_when_disabled() {
+        let _guard = TEST_MUTEX.lock().unwrap();
+        reset_app_initialized();
+        crate::type_registrar::clear_global_registrations();
+        let mut engine = QmltsEngine::new(None).unwrap();
+        engine
+            .register_module("QmlTS.Test", 1, 0, &["LoginViewModel".into()], false)
+            .unwrap();
+        let guard = engine.create_v2_context_guard();
+        assert!(guard.is_some());
+        let _guard = guard.unwrap();
+        let ctx = qmlts_host_generated::v2_dispatch::take_v2_init_context()
+            .expect("V2 init context should be installed while guard is alive");
+        let instance_id = (ctx.register_instance)("LoginViewModel", std::ptr::null_mut());
+        assert!(instance_id >= 0);
+
+        let state = engine.require_v2().unwrap();
+        assert!(
+            !state.v1_compat_applied.load(Ordering::SeqCst),
+            "v1_compat_applied should always be false when v1_compat is disabled"
+        );
     }
 }

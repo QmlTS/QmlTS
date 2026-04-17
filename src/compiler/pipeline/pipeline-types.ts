@@ -106,6 +106,8 @@ export interface CompilationUnit {
     readonly moduleUri: string;
     readonly version?: string;
   }[];
+  /** V2: Whether V1 compatibility mode is active for this unit. */
+  readonly v1Compat?: boolean;
 }
 
 // ─── Event Binding Index ────────────────────────────────────────────────

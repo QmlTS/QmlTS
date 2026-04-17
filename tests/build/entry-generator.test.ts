@@ -256,4 +256,34 @@ describe('EntryGenerator', () => {
     expect(code).toContain('host.loadFile');
     expect(code).toContain('host.exec()');
   });
+
+  // ─── V1 Compat Entry Tests ──────────────────────────────────
+
+  test('BP-V1C-01: V2 entry with v1Compat includes v1Compat in registerModule', () => {
+    const code = generator.generate(
+      makeV2Options({
+        moduleRegistration: {
+          moduleUri: 'TestApp.ViewModels',
+          versionMajor: 1,
+          versionMinor: 0,
+          typeNames: ['CounterViewModel'],
+          v1Compat: true,
+        },
+      }),
+    );
+    expect(code).toContain('v1Compat: true');
+    expect(code).toContain('registerModule(');
+  });
+
+  test('BP-V1C-02: V2 entry without v1Compat does not include v1Compat field', () => {
+    const code = generator.generate(makeV2Options());
+    expect(code).not.toContain('v1Compat');
+  });
+
+  test('BP-V1C-03: V1 entry unaffected by v1Compat option', () => {
+    const code = generator.generate(makeOptions({ runtime: 'v1' }));
+    expect(code).not.toContain('v1Compat');
+    expect(code).not.toContain('registerModule');
+    expect(code).toContain('registerViewModel');
+  });
 });

@@ -3,6 +3,7 @@
 //! Provides `V2EngineState` (owned by `QmltsEngine`) and `V2Handlers` (shared
 //! between engine and the V2 event router closure).
 
+use std::sync::atomic::AtomicBool;
 use std::sync::{Arc, Mutex};
 
 use qmlts_host_generated::v2_dispatch::V2Event;
@@ -68,6 +69,12 @@ impl Default for V2Handlers {
 pub struct V2EngineState {
     /// Whether V2 runtime is enabled for this engine.
     pub enabled: bool,
+    /// V1 compat mode: set `vm` and `__qmlts` context properties for the first instance.
+    /// Sticky: once enabled, stays enabled for this engine.
+    pub v1_compat: bool,
+    /// Whether V1 compat context properties have been applied (first instance only).
+    /// Shared with the `register_instance` closure in `create_v2_context_guard`.
+    pub v1_compat_applied: Arc<AtomicBool>,
     /// Per-engine instance registry (behind Mutex for router access).
     pub registry: Arc<Mutex<InstanceRegistry>>,
     /// Per-engine type registrar.
@@ -82,6 +89,8 @@ impl V2EngineState {
     pub fn new() -> Self {
         Self {
             enabled: true,
+            v1_compat: false,
+            v1_compat_applied: Arc::new(AtomicBool::new(false)),
             registry: Arc::new(Mutex::new(InstanceRegistry::new())),
             type_registrar: TypeRegistrar::new(),
             handlers: Arc::new(V2Handlers::new()),

@@ -424,6 +424,40 @@ function compileSingleSource(
     units.push(unit);
   }
 
+  // ── V1 Compat Phase 1 validation ────────────────────────────────────
+  if (options?.runtime === 'v2' && options?.v1Compat) {
+    // V009: Collect unique ViewModel types across all units in this source file
+    const vmClassNames = new Set<string>();
+    for (const unit of units) {
+      if (unit.viewModelName) {
+        vmClassNames.add(unit.viewModelName);
+      }
+    }
+    if (vmClassNames.size > 1) {
+      const nameList = [...vmClassNames].sort().join(', ');
+      reporter.error(
+        'QMLTS-V009',
+        `V1 compat mode (Phase 1) supports only a single ViewModel type per source file. ` +
+          `Found: ${nameList}. Remove v1Compat or consolidate to a single ViewModel.`,
+      );
+    }
+
+    // V010: Check for injected ownership (forward-looking guard)
+    for (const unit of units) {
+      if (unit.viewModelSlots) {
+        for (const slot of unit.viewModelSlots) {
+          if (slot.ownership === 'injected') {
+            reporter.error(
+              'QMLTS-V010',
+              `V1 compat mode (Phase 1) does not support externally injected ViewModels. ` +
+                `ViewModel "${slot.className}" has injected ownership.`,
+            );
+          }
+        }
+      }
+    }
+  }
+
   return units;
 }
 
@@ -579,6 +613,7 @@ function compileView(
                 },
               ]
             : undefined,
+          ...(options?.v1Compat ? { v1Compat: true } : {}),
         }
       : {}),
   };

@@ -639,6 +639,7 @@ export class QmltsHost {
 			registration.versionMajor,
 			registration.versionMinor,
 			[...registration.typeNames],
+			registration.v1Compat ?? false,
 		);
 	}
 

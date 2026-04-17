@@ -275,6 +275,37 @@ function writeIntegratedProjectIn(rootDir: string): { projectDir: string; srcDir
   return { projectDir, srcDir };
 }
 
+function writeOtherViewModelFiles(srcDir: string): void {
+  writeFileSync(
+    join(srcDir, 'OtherViewModel.ts'),
+    [
+      'function State(_opts?: Record<string, unknown>) {',
+      '  return (_target: any, _context: any) => {};',
+      '}',
+      '',
+      'export class OtherViewModel {',
+      "  @State() title = 'other';",
+      '}',
+      '',
+    ].join('\n'),
+    'utf-8',
+  );
+  writeFileSync(
+    join(srcDir, 'OtherView.ts'),
+    [
+      "import type { OtherViewModel } from './OtherViewModel.js';",
+      "import { Rectangle } from './dsl/generated/QtQuick/Rectangle.js';",
+      "import { Text } from './dsl/generated/QtQuick/Text.js';",
+      '',
+      'export default function OtherView(vm: OtherViewModel) {',
+      '  return Rectangle().width(200).height(100).children(Text().text(vm.title));',
+      '}',
+      '',
+    ].join('\n'),
+    'utf-8',
+  );
+}
+
 // ─── Tests ──────────────────────────────────────────────────
 
 describe('BuildPipeline', () => {
@@ -849,5 +880,119 @@ export default function CounterView() {
     const manifest = JSON.parse(readFileSync(manifestPath, 'utf-8'));
     expect(manifest.runtime).toBe('v2');
     expect(manifest.modules).toEqual([]);
+  });
+
+  test('BP-V1C-B003-01: v1Compat with single VM type builds successfully', async () => {
+    const config = makeConfig({
+      runtime: 'v2',
+      v1Compat: true,
+      module: { prefix: 'TestApp', version: { major: 1, minor: 0 } },
+    });
+    const pipeline = createBuildPipeline(config);
+    const result = await pipeline.run({ dryRun: true });
+    const outputDiags = result.phases.get('writing-output')?.diagnostics ?? [];
+    const b003 = outputDiags.filter((d) => d.code === 'QMLTS-B003');
+    expect(b003.length).toBe(0);
+  });
+
+  test('BP-V1C-B003-02: multiple VM types without v1Compat does not trigger B003', async () => {
+    const { projectDir, srcDir } = writeIntegratedProjectIn(TMP_DIR);
+    writeOtherViewModelFiles(srcDir);
+
+    const config = makeConfig({
+      entry: join(srcDir, 'CounterView.ts'),
+      outDir: join(projectDir, 'dist'),
+      configDir: projectDir,
+      assets: {
+        dir: join(projectDir, 'assets'),
+        include: ['**/*'],
+        exclude: [],
+        useQrc: false,
+        optimize: false,
+      },
+      runtime: 'v2',
+      module: { prefix: 'TestApp', version: { major: 1, minor: 0 } },
+    });
+    const pipeline = createBuildPipeline(config);
+    const result = await pipeline.run();
+    const outputDiags = result.phases.get('writing-output')?.diagnostics ?? [];
+    const b003 = outputDiags.filter((d) => d.code === 'QMLTS-B003');
+    const manifest = JSON.parse(readFileSync(join(config.outDir, 'manifest.json'), 'utf-8'));
+
+    expect(result.success).toBe(true);
+    expect(b003.length).toBe(0);
+    expect(manifest.modules[0].types).toEqual(['CounterViewModel', 'OtherViewModel']);
+  });
+
+  test('BP-V1C-B003-03: v1Compat with multiple VM types emits B003 and skips output', async () => {
+    const { projectDir, srcDir } = writeIntegratedProjectIn(TMP_DIR);
+    writeOtherViewModelFiles(srcDir);
+
+    const config = makeConfig({
+      entry: join(srcDir, 'CounterView.ts'),
+      outDir: join(projectDir, 'dist'),
+      configDir: projectDir,
+      assets: {
+        dir: join(projectDir, 'assets'),
+        include: ['**/*'],
+        exclude: [],
+        useQrc: false,
+        optimize: false,
+      },
+      runtime: 'v2',
+      v1Compat: true,
+      module: { prefix: 'TestApp', version: { major: 1, minor: 0 } },
+    });
+
+    const pipeline = createBuildPipeline(config);
+    const result = await pipeline.run();
+    const outputDiags = result.phases.get('writing-output')?.diagnostics ?? [];
+    const b003 = outputDiags.filter((d) => d.code === 'QMLTS-B003');
+
+    expect(result.success).toBe(false);
+    expect(b003).toHaveLength(1);
+    expect(b003[0]!.message).toContain('CounterViewModel');
+    expect(b003[0]!.message).toContain('OtherViewModel');
+    expect(existsSync(join(config.outDir, 'manifest.json'))).toBe(false);
+    expect(existsSync(result.output.entryFile)).toBe(false);
+  });
+
+  test('BP-V1C-MANIFEST-01: V2 manifest includes v1Compat when enabled', async () => {
+    const outDir = mkdtempSync(join(tmpdir(), 'qmlts-bp-v1c-'));
+    try {
+      const config = makeConfig({
+        outDir,
+        runtime: 'v2',
+        v1Compat: true,
+        module: { prefix: 'TestApp', version: { major: 1, minor: 0 } },
+      });
+      const pipeline = createBuildPipeline(config);
+      await pipeline.run();
+      const manifestPath = join(outDir, 'manifest.json');
+      expect(existsSync(manifestPath)).toBe(true);
+      const manifest = JSON.parse(readFileSync(manifestPath, 'utf-8'));
+      expect(manifest.v1Compat).toBe(true);
+    } finally {
+      rmSync(outDir, { recursive: true, force: true });
+    }
+  });
+
+  test('BP-V1C-MANIFEST-02: V2 manifest omits v1Compat when not enabled', async () => {
+    const outDir = mkdtempSync(join(tmpdir(), 'qmlts-bp-v1c2-'));
+    try {
+      const config = makeConfig({
+        outDir,
+        runtime: 'v2',
+        module: { prefix: 'TestApp', version: { major: 1, minor: 0 } },
+      });
+      const pipeline = createBuildPipeline(config);
+      await pipeline.run();
+      const manifestPath = join(outDir, 'manifest.json');
+      expect(existsSync(manifestPath)).toBe(true);
+      const manifest = JSON.parse(readFileSync(manifestPath, 'utf-8'));
+      expect(manifest.v1Compat).toBeUndefined();
+    } finally {
+      rmSync(outDir, { recursive: true, force: true });
+    }
   });
 });

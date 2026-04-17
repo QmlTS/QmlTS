@@ -37,7 +37,13 @@ fn test_v2_pre_ready_command_is_queued_and_flushed() {
     let _guard = V2_TEST_MUTEX.lock().unwrap();
     let mut engine = QmltsEngine::new(None).unwrap();
     engine
-        .register_module("QmlTS.V2Queue", 1, 0, &["LoginViewModel".to_string()])
+        .register_module(
+            "QmlTS.V2Queue",
+            1,
+            0,
+            &["LoginViewModel".to_string()],
+            false,
+        )
         .unwrap();
 
     let created_ids = Arc::new(Mutex::new(Vec::<u32>::new()));
@@ -96,6 +102,69 @@ Item {
     assert_eq!(commands[0].1, "LoginViewModel");
     assert_eq!(commands[0].2, "login");
     assert_eq!(commands[0].3, "[]");
+}
+
+#[test]
+fn test_v2_v1_compat_aliases_bind_to_primary_instance() {
+    let _guard = V2_TEST_MUTEX.lock().unwrap();
+    let mut engine = QmltsEngine::new(None).unwrap();
+    engine
+        .register_module(
+            "QmlTS.V1Compat",
+            1,
+            0,
+            &["LoginViewModel".to_string()],
+            true,
+        )
+        .unwrap();
+
+    let created_ids = Arc::new(Mutex::new(Vec::<u32>::new()));
+    let created_ids_for_handler = Arc::clone(&created_ids);
+    engine
+        .register_instance_created_handler(Box::new(move |_class_name, instance_id| {
+            created_ids_for_handler.lock().unwrap().push(instance_id);
+        }))
+        .unwrap();
+
+    engine
+        .load_string(
+            r#"import QtQuick
+import QmlTS.V1Compat 1.0
+
+Item {
+    LoginViewModel { id: login }
+    property string viaVm: vm.username
+    property string viaQmlts: __qmlts.username
+}"#,
+            None,
+        )
+        .unwrap();
+    engine.process_events().unwrap();
+
+    assert!(engine.has_context_property("vm"));
+    assert!(engine.has_context_property("__qmlts"));
+
+    let instance_id = {
+        let created_ids = created_ids.lock().unwrap();
+        assert_eq!(created_ids.len(), 1);
+        created_ids[0]
+    };
+
+    engine
+        .sync_state_v2(instance_id, "username", r#""alice""#)
+        .unwrap();
+    engine.process_events().unwrap();
+
+    let root = engine.root_object_ptr();
+    assert!(!root.is_null(), "root object should exist");
+    assert_eq!(
+        qmlts_host::qt_context_test::read_string_property(root, "viaVm"),
+        Some("alice".to_string())
+    );
+    assert_eq!(
+        qmlts_host::qt_context_test::read_string_property(root, "viaQmlts"),
+        Some("alice".to_string())
+    );
 }
 
 #[test]

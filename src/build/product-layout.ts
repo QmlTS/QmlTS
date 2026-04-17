@@ -102,7 +102,12 @@ export function createManifest(
           },
         ]
       : [];
-    return { ...base, runtime: 'v2', modules };
+    return {
+      ...base,
+      runtime: 'v2',
+      modules,
+      ...(config.v1Compat ? { v1Compat: true } : {}),
+    };
   }
 
   return base;
