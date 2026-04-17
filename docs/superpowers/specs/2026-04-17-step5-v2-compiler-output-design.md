@@ -8,6 +8,8 @@ The compiler still emits V1-shaped QML when `runtime: "v2"` is enabled. V1 QML u
 
 Two-layer gating: the **DslTransformer** handles inline expression lowering (commands → method calls, state → instance properties), and the **PostProcessor** handles structural QML injection (ViewModel instance block with effect signal handlers, module import, V2 lifecycle). The **compiler** (`compileView`) threads V2 context from slot/schema metadata to both layers. V1 output is completely unchanged when `runtime` is `"v1"` or unset.
 
+**Scope:** Step 5 supports the existing single ViewModel-per-view compiler path. Multi-ViewModel owned/injected placement is deferred to a later step.
+
 ## V1 vs V2 QML Output
 
 ### Commands
@@ -35,8 +37,10 @@ Two-layer gating: the **DslTransformer** handles inline expression lowering (com
 
 | Aspect | V1 | V2 |
 |--------|----|----|
-| Mounted | `Component.onCompleted: { __qmlts.onMounted() }` | `Component.onCompleted: { __qmlts_vm0.lifecycleMounted() }` |
-| Unmounting | `Component.onDestruction: { __qmlts.onUnmounting() }` | `Component.onDestruction: { __qmlts_vm0.lifecycleUnmounting() }` |
+| Mounted | `Component.onCompleted: { __qmlts.onMounted() }` | `Component.onCompleted: { __qmlts_vm0.onMounted() }` |
+| Unmounting | `Component.onDestruction: { __qmlts.onUnmounting() }` | `Component.onDestruction: { __qmlts_vm0.onUnmounting() }` |
+
+The V2 lifecycle method names (`onMounted` / `onUnmounting`) match the current Step 4 native bridge: Rust `on_mounted` / `on_unmounting` → cxx-qt camelCase → QML `onMounted()` / `onUnmounting()`. No native bridge changes are required.
 
 ### Module Imports
 
@@ -85,7 +89,7 @@ export interface V2PostProcessOptions {
   readonly viewModelType: string;   // e.g., "LoginViewModel"
   readonly qmlId: string;           // e.g., "__qmlts_vm0"
   readonly effects: readonly {
-    readonly signalName: string;
+    readonly handlerName: string;    // e.g., "onLoginCompleted" — full handler name, never double-prefixed
     readonly parameters: readonly string[];
   }[];
   readonly lifecycle: {
@@ -105,7 +109,7 @@ export interface V2PostProcessOptions {
 
 3. **Skip Connections block:** When V2 options are present, do not inject the V1 Connections block.
 
-4. **V2 lifecycle:** Emit `__qmlts_vm0.lifecycleMounted()` and `__qmlts_vm0.lifecycleUnmounting()` instead of `__qmlts.onMounted()` / `__qmlts.onUnmounting()`.
+4. **V2 lifecycle:** Emit `__qmlts_vm0.onMounted()` and `__qmlts_vm0.onUnmounting()` instead of `__qmlts.onMounted()` / `__qmlts.onUnmounting()`.
 
 5. **V2 command validation:** Update diagnostic message to reference method call syntax instead of `__qmlts.invoke(...)`.
 
@@ -119,7 +123,26 @@ export interface V2PostProcessOptions {
 4. Pass to `postProcessor.process(augmentedResult, vm, v2Options)`.
 5. When V2, skip the manual `effectListeners` bridge (effects go through post-processor V2 path).
 
-## Effect Signal Handler Detail
+**Fail-fast rule:** If `runtime: "v2"` and the view has a ViewModel, but no V2 slot metadata is available (e.g., `slot` is undefined), the compiler must emit an internal compile error diagnostic. It must **never** silently fall back to V1-shaped output. In V2 mode, emitting `vm.username` or `__qmlts.invoke(...)` for a ViewModel-backed view is always a bug.
+
+## Effect Handler Naming Rules
+
+V2 effect handlers use the `handlerName` field from `V2PostProcessOptions.effects`, which is the complete handler name including the `on` prefix. The handler name is derived as follows:
+
+1. The native bridge signal is named `loginCompleted` (Rust `login_completed` → cxx-qt camelCase).
+2. The schema `qmlName` may already be `onLoginCompleted` (with `on` prefix from the effect analyzer).
+3. The post-processor **must not double-prefix** `on`. The rule:
+   - If the schema `qmlName` already starts with `on` followed by an uppercase letter, use it directly as the handler name.
+   - Otherwise, prepend `on` and capitalize the first letter of the signal name.
+4. The compiler constructs `handlerName` when building `V2PostProcessOptions` from the schema/ViewModel, applying this rule once. The post-processor consumes the name verbatim.
+
+Examples:
+- Schema `qmlName: "onLoginCompleted"` → handlerName: `"onLoginCompleted"` ✓
+- Schema `qmlName: "loginCompleted"` → handlerName: `"onLoginCompleted"` ✓
+- Schema `qmlName: "onCountChanged"` → handlerName: `"onCountChanged"` ✓
+- Never: `"onOnLoginCompleted"` ✗
+
+## Effect Signal Handler AST Detail
 
 V2 effects use signal handler binding syntax inside the ViewModel instance block:
 ```qml
@@ -149,6 +172,14 @@ For effects with no parameters:
 ```
 Produces: `onCountChanged: function() { }`
 
+## ViewModel Block Injection Safety
+
+The post-processor must enforce these rules when injecting the ViewModel instance block:
+
+1. **Idempotency:** If the root object already contains a child with the same `id` (matching `qmlId`) and the same `typeName` (matching `viewModelType`), do not inject a duplicate.
+2. **Collision detection:** If the root object already contains a child with the same `id` but a different `typeName`, emit a compiler diagnostic error (`QMLTS-P001` duplicate id or a new V2-specific code).
+3. **Reserved prefix:** Compiler-generated ids use the `__qmlts_` prefix. This prefix is reserved — user-authored QML ids must not start with `__qmlts_`. The existing duplicate ID detection (`detectDuplicateIds`) will catch same-name collisions, and a V2-specific check can warn if user ids use the reserved prefix.
+
 ## Views Without ViewModel
 
 When a view has no ViewModel (`vm === undefined`), V2 output is identical to V1 output: no ViewModel instance block, no module import, no lifecycle. The V2 options are simply not constructed.
@@ -167,8 +198,10 @@ When a view has no ViewModel (`vm === undefined`), V2 output is identical to V1 
 - V2 ViewModel instance block injection (correct position, id, type)
 - V2 effect signal handler bindings inside instance block
 - V2 module import injection
-- V2 lifecycle method calls
+- V2 lifecycle method calls (`onMounted` / `onUnmounting`)
 - V2 skips Connections block
+- V2 idempotency: no duplicate injection
+- V2 collision: diagnostic on conflicting ids
 - V1 tests unchanged and still passing
 
 ### Pipeline Tests (golden files)
@@ -176,12 +209,13 @@ When a view has no ViewModel (`vm === undefined`), V2 output is identical to V1 
 - Add V2 golden files: `CounterView.v2.qml`, `LoginView.v2.qml`
 - Update CP-17 to assert V2 QML differs from V1 and matches V2 golden
 - Add new CP tests for V2-specific pipeline behavior
-- V1 golden files unchanged
+- Existing V1 golden files must remain byte-for-byte unchanged
+- V2 tests opt in through runtime/config flags and must not replace V1 expectations
 
 ## Scope Guard
 
 This step does NOT:
-- Change native Rust code
+- Change native Rust code or bridge definitions
 - Change runtime behavior
 - Add qmldir/.qmltypes generation
 - Add library/package build behavior
