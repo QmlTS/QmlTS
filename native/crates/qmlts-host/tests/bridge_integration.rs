@@ -9,7 +9,9 @@
 //! (requires Qt — will fail to link without Qt installation)
 
 use qmlts_host::QmltsEngine;
-use std::sync::{Arc, Mutex};
+use std::sync::{Arc, LazyLock, Mutex};
+
+static V2_TEST_MUTEX: LazyLock<Mutex<()>> = LazyLock::new(|| Mutex::new(()));
 
 #[test]
 fn test_engine_creates_with_registry() {
@@ -28,6 +30,72 @@ fn test_get_registered_types() {
     assert!(types.contains(&"CounterViewModel"));
     assert!(types.contains(&"SearchViewModel"));
     assert_eq!(types.len(), 3);
+}
+
+#[test]
+fn test_v2_pre_ready_command_is_queued_and_flushed() {
+    let _guard = V2_TEST_MUTEX.lock().unwrap();
+    let mut engine = QmltsEngine::new(None).unwrap();
+    engine
+        .register_module("QmlTS.V2Queue", 1, 0, &["LoginViewModel".to_string()])
+        .unwrap();
+
+    let created_ids = Arc::new(Mutex::new(Vec::<u32>::new()));
+    let created_ids_for_handler = Arc::clone(&created_ids);
+    engine
+        .register_instance_created_handler(Box::new(move |_class_name, instance_id| {
+            created_ids_for_handler.lock().unwrap().push(instance_id);
+        }))
+        .unwrap();
+
+    let commands = Arc::new(Mutex::new(Vec::<(u32, String, String, String)>::new()));
+    let commands_for_handler = Arc::clone(&commands);
+    engine
+        .register_command_dispatcher_v2(Box::new(
+            move |instance_id, class_name, command_name, args_json| {
+                commands_for_handler.lock().unwrap().push((
+                    instance_id,
+                    class_name.to_string(),
+                    command_name.to_string(),
+                    args_json.to_string(),
+                ));
+            },
+        ))
+        .unwrap();
+
+    engine
+        .load_string(
+            r#"import QtQuick
+import QmlTS.V2Queue 1.0
+
+Item {
+    LoginViewModel { id: login }
+    Component.onCompleted: login.login()
+}"#,
+            None,
+        )
+        .unwrap();
+    engine.process_events().unwrap();
+
+    let instance_id = {
+        let created_ids = created_ids.lock().unwrap();
+        assert_eq!(created_ids.len(), 1);
+        created_ids[0]
+    };
+
+    assert!(
+        commands.lock().unwrap().is_empty(),
+        "command should remain queued until instanceReady"
+    );
+
+    engine.instance_ready(instance_id).unwrap();
+
+    let commands = commands.lock().unwrap();
+    assert_eq!(commands.len(), 1);
+    assert_eq!(commands[0].0, instance_id);
+    assert_eq!(commands[0].1, "LoginViewModel");
+    assert_eq!(commands[0].2, "login");
+    assert_eq!(commands[0].3, "[]");
 }
 
 #[test]

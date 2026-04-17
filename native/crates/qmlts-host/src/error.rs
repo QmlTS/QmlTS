@@ -94,6 +94,35 @@ pub enum QmltsError {
     /// Error overlay operation failed.
     #[error("Error overlay failed: {0}")]
     OverlayFailed(String),
+
+    // ── V2 runtime errors ──────────────────────────────────────────
+    /// V2 runtime is not enabled on this engine.
+    #[error("V2 runtime not enabled")]
+    V2NotEnabled,
+
+    /// V2 instance not found in registry.
+    #[error("V2 instance not found: {0}")]
+    V2InstanceNotFound(u32),
+
+    /// V2 instance not yet ready (instanceReady not called).
+    #[error("V2 instance {0} not ready")]
+    V2InstanceNotReady(u32),
+
+    /// V2 event queue overflow for instance.
+    #[error("V2 event queue overflow for instance {instance_id} (max {max_depth})")]
+    V2QueueOverflow { instance_id: u32, max_depth: usize },
+
+    /// V2 module registration failed.
+    #[error("V2 module registration failed: {0}")]
+    V2ModuleRegistrationFailed(String),
+
+    /// V2 type registration failed.
+    #[error("V2 type registration failed for '{type_name}': {reason}")]
+    V2TypeRegistrationFailed { type_name: String, reason: String },
+
+    /// V2 handler already registered for this engine.
+    #[error("V2 handler already registered for engine {0}")]
+    V2HandlerAlreadyRegistered(usize),
 }
 
 #[cfg(feature = "napi")]
@@ -162,6 +191,66 @@ mod tests {
         assert_eq!(
             err.to_string(),
             "Batch sync partial failure (1 of 3 failed): Property 'foo' not found on ViewModel 'X'"
+        );
+    }
+
+    #[test]
+    fn test_v2_not_enabled_display() {
+        let err = QmltsError::V2NotEnabled;
+        assert_eq!(err.to_string(), "V2 runtime not enabled");
+    }
+
+    #[test]
+    fn test_v2_instance_not_found_display() {
+        let err = QmltsError::V2InstanceNotFound(42);
+        assert_eq!(err.to_string(), "V2 instance not found: 42");
+    }
+
+    #[test]
+    fn test_v2_instance_not_ready_display() {
+        let err = QmltsError::V2InstanceNotReady(7);
+        assert_eq!(err.to_string(), "V2 instance 7 not ready");
+    }
+
+    #[test]
+    fn test_v2_queue_overflow_display() {
+        let err = QmltsError::V2QueueOverflow {
+            instance_id: 3,
+            max_depth: 1000,
+        };
+        assert_eq!(
+            err.to_string(),
+            "V2 event queue overflow for instance 3 (max 1000)"
+        );
+    }
+
+    #[test]
+    fn test_v2_module_registration_failed_display() {
+        let err = QmltsError::V2ModuleRegistrationFailed("URI conflict".to_string());
+        assert_eq!(
+            err.to_string(),
+            "V2 module registration failed: URI conflict"
+        );
+    }
+
+    #[test]
+    fn test_v2_type_registration_failed_display() {
+        let err = QmltsError::V2TypeRegistrationFailed {
+            type_name: "LoginViewModelV2".to_string(),
+            reason: "duplicate registration".to_string(),
+        };
+        assert_eq!(
+            err.to_string(),
+            "V2 type registration failed for 'LoginViewModelV2': duplicate registration"
+        );
+    }
+
+    #[test]
+    fn test_v2_handler_already_registered_display() {
+        let err = QmltsError::V2HandlerAlreadyRegistered(1);
+        assert_eq!(
+            err.to_string(),
+            "V2 handler already registered for engine 1"
         );
     }
 }

@@ -132,6 +132,10 @@ unsafe extern "C" {
     ) -> bool;
     fn qmlts_hide_error_overlay(engine_ptr: *mut c_void) -> bool;
     fn qmlts_is_error_overlay_visible(engine_ptr: *mut c_void) -> bool;
+
+    // §10 V2 property change forwarding and lifecycle
+    fn qmlts_v2_set_suppress(qobj: *mut c_void, suppress: bool);
+    fn qmlts_v2_connect_destroy_handler(qobj: *mut c_void, owner_id: i32, instance_id: i32);
 }
 
 #[cfg(not(feature = "mock-qt"))]
@@ -807,6 +811,55 @@ pub fn is_error_overlay_visible(engine_ptr: *mut c_void) -> bool {
 pub fn is_error_overlay_visible(_engine_ptr: *mut c_void) -> bool {
     tracing::debug!("Mock: is_error_overlay_visible");
     false
+}
+
+// ─── V2 property change forwarding and lifecycle ────────────────────────
+
+/// Set the suppress flag on a V2 QObject to prevent echo during sync.
+#[cfg(not(feature = "mock-qt"))]
+#[allow(dead_code)]
+pub fn v2_set_suppress(qobj: *mut c_void, suppress: bool) {
+    unsafe { qmlts_v2_set_suppress(qobj, suppress) }
+}
+
+#[cfg(feature = "mock-qt")]
+#[allow(dead_code)]
+pub fn v2_set_suppress(_qobj: *mut c_void, _suppress: bool) {
+    tracing::debug!("Mock: v2_set_suppress");
+}
+
+/// Connect the QObject::destroyed handler for V2 instance cleanup.
+#[cfg(not(feature = "mock-qt"))]
+#[allow(dead_code)]
+pub fn v2_connect_destroy_handler(qobj: *mut c_void, owner_id: i32, instance_id: i32) {
+    unsafe { qmlts_v2_connect_destroy_handler(qobj, owner_id, instance_id) }
+}
+
+#[cfg(feature = "mock-qt")]
+#[allow(dead_code)]
+pub fn v2_connect_destroy_handler(_qobj: *mut c_void, _owner_id: i32, _instance_id: i32) {
+    tracing::debug!("Mock: v2_connect_destroy_handler");
+}
+
+/// RAII guard that suppresses V2 property change notifications.
+/// Used during `sync_state_v2` to prevent echo.
+pub struct SuppressGuard {
+    ptr: *mut c_void,
+}
+
+impl SuppressGuard {
+    /// Create a new suppress guard. Suppresses notifications on construction.
+    #[must_use]
+    pub fn new(ptr: *mut c_void) -> Self {
+        v2_set_suppress(ptr, true);
+        Self { ptr }
+    }
+}
+
+impl Drop for SuppressGuard {
+    fn drop(&mut self) {
+        v2_set_suppress(self.ptr, false);
+    }
 }
 
 #[cfg(test)]

@@ -9,12 +9,16 @@
 #![allow(clippy::unnecessary_box_returns)]
 
 pub mod counter_runtime;
+pub mod counter_v2;
 pub mod counter_view_model;
 pub mod dispatch;
 pub mod login_runtime;
+pub mod login_v2;
 pub mod login_view_model;
 pub mod search_runtime;
+pub mod search_v2;
 pub mod search_view_model;
+pub mod v2_dispatch;
 
 use serde::Deserialize;
 use std::any::Any;
@@ -134,6 +138,48 @@ unsafe extern "C" {
     fn qmlts_create_counter_runtime() -> *mut c_void;
     fn qmlts_create_search_runtime() -> *mut c_void;
     fn qmlts_destroy_qobject(ptr: *mut c_void);
+}
+
+// V2 C++ FFI — type registration and lifecycle helpers
+// (implementations in factories_v2.cpp)
+unsafe extern "C" {
+    pub fn qmlts_register_login_v2(
+        uri: *const std::ffi::c_char,
+        major: i32,
+        minor: i32,
+        qml_name: *const std::ffi::c_char,
+    ) -> i32;
+    pub fn qmlts_register_counter_v2(
+        uri: *const std::ffi::c_char,
+        major: i32,
+        minor: i32,
+        qml_name: *const std::ffi::c_char,
+    ) -> i32;
+    pub fn qmlts_register_search_v2(
+        uri: *const std::ffi::c_char,
+        major: i32,
+        minor: i32,
+        qml_name: *const std::ffi::c_char,
+    ) -> i32;
+    // Per-type property change forwarding
+    pub fn qmlts_v2_connect_login_properties(
+        qobj: *mut c_void,
+        owner_id: i32,
+        instance_id: i32,
+    ) -> bool;
+    pub fn qmlts_v2_connect_counter_properties(
+        qobj: *mut c_void,
+        owner_id: i32,
+        instance_id: i32,
+    ) -> bool;
+    pub fn qmlts_v2_connect_search_properties(
+        qobj: *mut c_void,
+        owner_id: i32,
+        instance_id: i32,
+    ) -> bool;
+    // Suppress and lifecycle
+    pub fn qmlts_v2_set_suppress(qobj: *mut c_void, suppress: bool);
+    pub fn qmlts_v2_connect_destroy_handler(qobj: *mut c_void, owner_id: i32, instance_id: i32);
 }
 
 /// Holds a pair of QObject raw pointers, calling the C++ destructor on drop.
@@ -263,6 +309,118 @@ pub fn descriptors() -> &'static [BridgeDescriptor] {
     ]
 }
 
+// ─────────────────────────────────────────────────────────────────────────
+//  V2 bridge descriptor — single-QObject pattern
+// ─────────────────────────────────────────────────────────────────────────
+
+/// Static descriptor for V2 single-`QObject` bridge types.
+pub struct V2BridgeDescriptor {
+    /// The `ViewModel` class name (e.g., `"LoginViewModel"`).
+    pub class_name: &'static str,
+    /// JSON schema describing the `ViewModel`'s states, commands, effects, lifecycle.
+    pub schema_json: &'static str,
+    /// Register the QML type with the given module URI and version.
+    /// Returns `Ok(type_id)` on success, `Err(message)` on failure.
+    /// `qml_name` allows custom QML type names.
+    pub register_type:
+        fn(uri: &str, major: i32, minor: i32, qml_name: &str) -> std::result::Result<i32, String>,
+    /// Connect property change notification signals for writable properties.
+    /// Called during `instanceReady()` to enable QML → TS property forwarding.
+    pub connect_properties: fn(qobj: *mut c_void, owner_id: i32, instance_id: i32) -> bool,
+}
+
+/// Returns all registered V2 bridge descriptors.
+#[must_use]
+pub fn v2_descriptors() -> &'static [V2BridgeDescriptor] {
+    &[
+        V2BridgeDescriptor {
+            class_name: "LoginViewModel",
+            schema_json: LOGIN_VIEW_MODEL_SCHEMA,
+            register_type: register_login_v2,
+            connect_properties: connect_login_v2_properties,
+        },
+        V2BridgeDescriptor {
+            class_name: "CounterViewModel",
+            schema_json: COUNTER_VIEW_MODEL_SCHEMA,
+            register_type: register_counter_v2,
+            connect_properties: connect_counter_v2_properties,
+        },
+        V2BridgeDescriptor {
+            class_name: "SearchViewModel",
+            schema_json: SEARCH_VIEW_MODEL_SCHEMA,
+            register_type: register_search_v2,
+            connect_properties: connect_search_v2_properties,
+        },
+    ]
+}
+
+fn register_login_v2(
+    uri: &str,
+    major: i32,
+    minor: i32,
+    qml_name: &str,
+) -> std::result::Result<i32, String> {
+    let c_uri = std::ffi::CString::new(uri).map_err(|e| e.to_string())?;
+    let c_name = std::ffi::CString::new(qml_name).map_err(|e| e.to_string())?;
+    let result = unsafe { qmlts_register_login_v2(c_uri.as_ptr(), major, minor, c_name.as_ptr()) };
+    if result >= 0 {
+        Ok(result)
+    } else {
+        Err(format!(
+            "Qt registration failed for '{qml_name}' (code: {result})"
+        ))
+    }
+}
+
+fn register_counter_v2(
+    uri: &str,
+    major: i32,
+    minor: i32,
+    qml_name: &str,
+) -> std::result::Result<i32, String> {
+    let c_uri = std::ffi::CString::new(uri).map_err(|e| e.to_string())?;
+    let c_name = std::ffi::CString::new(qml_name).map_err(|e| e.to_string())?;
+    let result =
+        unsafe { qmlts_register_counter_v2(c_uri.as_ptr(), major, minor, c_name.as_ptr()) };
+    if result >= 0 {
+        Ok(result)
+    } else {
+        Err(format!(
+            "Qt registration failed for '{qml_name}' (code: {result})"
+        ))
+    }
+}
+
+fn register_search_v2(
+    uri: &str,
+    major: i32,
+    minor: i32,
+    qml_name: &str,
+) -> std::result::Result<i32, String> {
+    let c_uri = std::ffi::CString::new(uri).map_err(|e| e.to_string())?;
+    let c_name = std::ffi::CString::new(qml_name).map_err(|e| e.to_string())?;
+    let result = unsafe { qmlts_register_search_v2(c_uri.as_ptr(), major, minor, c_name.as_ptr()) };
+    if result >= 0 {
+        Ok(result)
+    } else {
+        Err(format!(
+            "Qt registration failed for '{qml_name}' (code: {result})"
+        ))
+    }
+}
+
+fn connect_login_v2_properties(qobj: *mut c_void, owner_id: i32, instance_id: i32) -> bool {
+    unsafe { qmlts_v2_connect_login_properties(qobj, owner_id, instance_id) }
+}
+
+fn connect_counter_v2_properties(qobj: *mut c_void, owner_id: i32, instance_id: i32) -> bool {
+    unsafe { qmlts_v2_connect_counter_properties(qobj, owner_id, instance_id) }
+}
+
+fn connect_search_v2_properties(qobj: *mut c_void, owner_id: i32, instance_id: i32) -> bool {
+    unsafe { qmlts_v2_connect_search_properties(qobj, owner_id, instance_id) }
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -352,5 +510,27 @@ mod tests {
         let names: Vec<&str> = descriptors().iter().map(|d| d.class_name).collect();
         assert!(names.contains(&"SearchViewModel"));
         assert_eq!(names.len(), 3);
+    }
+
+    #[test]
+    fn v2_descriptors_include_all_fixtures() {
+        let descs = v2_descriptors();
+        assert_eq!(descs.len(), 3);
+        let names: Vec<&str> = descs.iter().map(|d| d.class_name).collect();
+        assert!(names.contains(&"LoginViewModel"));
+        assert!(names.contains(&"CounterViewModel"));
+        assert!(names.contains(&"SearchViewModel"));
+    }
+
+    #[test]
+    fn v2_routing_identifiers_are_not_writable_qml_properties() {
+        for source in [
+            include_str!("login_v2.rs"),
+            include_str!("counter_v2.rs"),
+            include_str!("search_v2.rs"),
+        ] {
+            assert!(source.contains("instance_id, cxx_name = \"instanceId\", READ"));
+            assert!(!source.contains("owner_id, cxx_name = \"ownerId\""));
+        }
     }
 }

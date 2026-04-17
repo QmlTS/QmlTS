@@ -458,81 +458,226 @@ describe.skipIf(!isNativeModuleAvailable)('host/qmlts-host', () => {
   //  V2 Host Contract (integration — requires native module)
   // ─────────────────────────────────────────────────────────────────────
 
-  test('TH-41: supportsV2() returns false (native V2 not implemented)', () => {
+  test('TH-41: supportsV2() reports current native V2 capability', () => {
     const host = new QmltsHost();
     try {
-      expect(host.supportsV2()).toBe(false);
+      expect(typeof host.supportsV2()).toBe('boolean');
     } finally {
       host.dispose();
     }
   });
 
-  test('TH-42: registerModule throws clear unsupported error', () => {
+  test('TH-42: registerModule accepts known V2 ViewModel types', () => {
     const host = new QmltsHost();
     try {
+      if (!host.supportsV2()) {
+        expect(() =>
+          host.registerModule({
+            moduleUri: 'QmlTS.Test',
+            versionMajor: 1,
+            versionMinor: 0,
+            typeNames: ['LoginViewModel'],
+          }),
+        ).toThrow(/V2 native host API 'registerModule' is not available/);
+        return;
+      }
+
       expect(() =>
         host.registerModule({
-          moduleUri: 'Test.Module',
+          moduleUri: 'QmlTS.Test',
+          versionMajor: 1,
+          versionMinor: 0,
+          typeNames: ['LoginViewModel', 'CounterViewModel', 'SearchViewModel'],
+        }),
+      ).not.toThrow();
+    } finally {
+      host.dispose();
+    }
+  });
+
+  test('TH-43: registerModule rejects unknown V2 type names', () => {
+    const host = new QmltsHost();
+    try {
+      if (!host.supportsV2()) {
+        expect(() =>
+          host.registerModule({
+            moduleUri: 'QmlTS.Unknown',
+            versionMajor: 1,
+            versionMinor: 0,
+            typeNames: ['TestVM'],
+          }),
+        ).toThrow(/V2 native host API 'registerModule' is not available/);
+        return;
+      }
+
+      expect(() =>
+        host.registerModule({
+          moduleUri: 'QmlTS.Unknown',
           versionMajor: 1,
           versionMinor: 0,
           typeNames: ['TestVM'],
         }),
-      ).toThrow(/V2 native host API 'registerModule' is not available/);
+      ).toThrow(/Unknown V2 type|type registration/i);
     } finally {
       host.dispose();
     }
   });
 
-  test('TH-43: syncStateForInstance throws clear unsupported error', () => {
+  test('TH-44: syncStateForInstance fails clearly for unknown instance', () => {
     const host = new QmltsHost();
     try {
-      expect(() => host.syncStateForInstance(1, 'prop', 'val')).toThrow(
-        /V2 native host API 'syncStateV2' is not available/,
+      if (!host.supportsV2()) {
+        expect(() => host.syncStateForInstance(1, 'username', 'val')).toThrow(
+          /V2 native host API 'syncStateV2' is not available/,
+        );
+        return;
+      }
+
+      host.registerModule({
+        moduleUri: 'QmlTS.Sync',
+        versionMajor: 1,
+        versionMinor: 0,
+        typeNames: ['LoginViewModel'],
+      });
+      expect(() => host.syncStateForInstance(1, 'username', 'val')).toThrow(
+        /V2 instance not found|instance.*not found/i,
       );
     } finally {
       host.dispose();
     }
   });
 
-  test('TH-44: instanceReady throws clear unsupported error', () => {
+  test('TH-45: instanceReady fails clearly for unknown instance', () => {
     const host = new QmltsHost();
     try {
-      expect(() => host.instanceReady(1)).toThrow(
-        /V2 native host API 'instanceReady' is not available/,
+      if (!host.supportsV2()) {
+        expect(() => host.instanceReady(1)).toThrow(
+          /V2 native host API 'instanceReady' is not available/,
+        );
+        return;
+      }
+
+      host.registerModule({
+        moduleUri: 'QmlTS.Ready',
+        versionMajor: 1,
+        versionMinor: 0,
+        typeNames: ['LoginViewModel'],
+      });
+      expect(() => host.instanceReady(1)).toThrow(/V2 instance not found|instance.*not found/i);
+    } finally {
+      host.dispose();
+    }
+  });
+
+  test('TH-46: emitEffectForInstance fails clearly for unknown instance', () => {
+    const host = new QmltsHost();
+    try {
+      if (!host.supportsV2()) {
+        expect(() => host.emitEffectForInstance(1, 'loginCompleted')).toThrow(
+          /V2 native host API 'emitEffectV2' is not available/,
+        );
+        return;
+      }
+
+      host.registerModule({
+        moduleUri: 'QmlTS.Effects',
+        versionMajor: 1,
+        versionMinor: 0,
+        typeNames: ['LoginViewModel'],
+      });
+      expect(() => host.emitEffectForInstance(1, 'loginCompleted')).toThrow(
+        /V2 instance not found|instance.*not found/i,
       );
     } finally {
       host.dispose();
     }
   });
 
-  test('TH-45: emitEffectForInstance throws clear unsupported error', () => {
+  test('TH-47: V2 handler registration succeeds after module registration', () => {
     const host = new QmltsHost();
     try {
-      expect(() => host.emitEffectForInstance(1, 'onDone')).toThrow(
-        /V2 native host API 'emitEffectV2' is not available/,
-      );
+      if (!host.supportsV2()) {
+        expect(() => host.registerInstanceCreatedHandler(() => {})).toThrow(
+          /V2 native host API 'registerInstanceCreatedHandler' is not available/,
+        );
+        return;
+      }
+
+      host.registerModule({
+        moduleUri: 'QmlTS.Handlers',
+        versionMajor: 1,
+        versionMinor: 0,
+        typeNames: ['LoginViewModel'],
+      });
+      expect(() => host.registerInstanceCreatedHandler(() => {})).not.toThrow();
+      expect(() => host.registerInstanceDestroyingHandler(() => {})).not.toThrow();
+      expect(() => host.registerPropertyChangedHandler(() => {})).not.toThrow();
+      expect(() => host.registerCommandDispatcherV2(() => {})).not.toThrow();
     } finally {
       host.dispose();
     }
   });
 
-  test('TH-46: registerInstanceCreatedHandler throws clear unsupported error', () => {
+  test('TH-47b: V2 handler registration rejects duplicates', () => {
     const host = new QmltsHost();
     try {
+      if (!host.supportsV2()) {
+        expect(() => host.registerInstanceCreatedHandler(() => {})).toThrow(
+          /V2 native host API 'registerInstanceCreatedHandler' is not available/,
+        );
+        return;
+      }
+
+      host.registerModule({
+        moduleUri: 'QmlTS.HandlerDup',
+        versionMajor: 1,
+        versionMinor: 0,
+        typeNames: ['LoginViewModel'],
+      });
+      host.registerInstanceCreatedHandler(() => {});
       expect(() => host.registerInstanceCreatedHandler(() => {})).toThrow(
-        /V2 native host API 'registerInstanceCreatedHandler' is not available/,
+        /handler.*already registered/i,
       );
     } finally {
       host.dispose();
     }
   });
 
-  test('TH-47: registerCommandDispatcherV2 throws clear unsupported error', () => {
+  test('TH-49: V2 instance-created handler receives QML-created instances', async () => {
     const host = new QmltsHost();
     try {
-      expect(() => host.registerCommandDispatcherV2(() => {})).toThrow(
-        /V2 native host API 'registerCommandDispatcherV2' is not available/,
-      );
+      if (!host.supportsV2()) {
+        expect(() => host.registerInstanceCreatedHandler(() => {})).toThrow(
+          /V2 native host API 'registerInstanceCreatedHandler' is not available/,
+        );
+        return;
+      }
+
+      const created: Array<{ className: string; instanceId: number }> = [];
+      host.registerModule({
+        moduleUri: 'QmlTS.CreatedTs',
+        versionMajor: 1,
+        versionMinor: 0,
+        typeNames: ['LoginViewModel'],
+      });
+      host.registerInstanceCreatedHandler((event) => {
+        created.push(event);
+      });
+
+      host.loadString(`import QtQuick
+import QmlTS.CreatedTs 1.0
+
+Item {
+    LoginViewModel { id: login }
+    Component.onCompleted: login.login()
+}`);
+      host.processEvents();
+      await flushJsCallbacks();
+
+      expect(created).toHaveLength(1);
+      expect(created[0].className).toBe('LoginViewModel');
+      expect(created[0].instanceId).toBeGreaterThanOrEqual(0);
+      host.instanceReady(created[0].instanceId);
     } finally {
       host.dispose();
     }
