@@ -581,6 +581,9 @@ describe('PostProcessor', () => {
         (m) => m.kind === 'ObjectDefinition' && m.typeName === 'LoginViewModel',
       );
       expect(vmBlocks).toHaveLength(1);
+      const handler = findSignalHandler(vmBlocks[0]!.members, 'onLoginCompleted');
+      expect(handler).toBeDefined();
+      expect(handler!.body.code).toBe('function(success) { }');
     });
 
     it('PP-V2-08: V2 collision — diagnostic on same type with different id', () => {
@@ -598,7 +601,39 @@ describe('PostProcessor', () => {
       expect(v008[0]!.message).toContain('someOtherId');
     });
 
-    it('PP-V2-09: effects with no parameters produce empty function()', () => {
+    it('PP-V2-09: repairs same-type existing block that is missing id', () => {
+      const pp = createPostProcessor(importResolver, registry);
+      const root = createObject('Rectangle').child(createObject('LoginViewModel').build()).build();
+      const tr = createTransformResultBuilder().withRootObject(root).build();
+
+      const result = pp.process(tr, undefined, v2BaseOptions);
+
+      const vmBlocks = result.document.rootObject.members.filter(
+        (m) => m.kind === 'ObjectDefinition' && m.typeName === 'LoginViewModel',
+      );
+      expect(vmBlocks).toHaveLength(1);
+      expect(findIdAssignment(vmBlocks[0]!.members, '__qmlts_vm0')).toBeDefined();
+      expect(findSignalHandler(vmBlocks[0]!.members, 'onLoginCompleted')).toBeDefined();
+      expect(result.diagnostics.some((d) => d.code === 'QMLTS-V008')).toBe(false);
+    });
+
+    it('PP-V2-10: V2 collision — diagnostic on same id with different type', () => {
+      const pp = createPostProcessor(importResolver, registry);
+      const root = createObject('Rectangle')
+        .child(createObject('OtherViewModel').id('__qmlts_vm0'))
+        .build();
+      const tr = createTransformResultBuilder().withRootObject(root).build();
+
+      const result = pp.process(tr, undefined, v2BaseOptions);
+
+      const v008 = result.diagnostics.filter((d) => d.code === 'QMLTS-V008');
+      expect(v008).toHaveLength(1);
+      expect(v008[0]!.severity).toBe('error');
+      expect(v008[0]!.message).toContain('__qmlts_vm0');
+      expect(v008[0]!.message).toContain('OtherViewModel');
+    });
+
+    it('PP-V2-11: effects with no parameters produce empty function()', () => {
       const pp = createPostProcessor(importResolver, registry);
       const opts = {
         ...v2BaseOptions,
@@ -614,7 +649,7 @@ describe('PostProcessor', () => {
       expect(handler!.body.code).toBe('function() { }');
     });
 
-    it('PP-V2-10: V2 mode with no lifecycle produces no Component block', () => {
+    it('PP-V2-12: V2 mode with no lifecycle produces no Component block', () => {
       const pp = createPostProcessor(importResolver, registry);
       const opts = { ...v2BaseOptions, lifecycle: { hasMounted: false, hasUnmounting: false } };
       const tr = createTransformResultBuilder().build();

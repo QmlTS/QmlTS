@@ -177,8 +177,12 @@ Produces: `onCountChanged: function() { }`
 The post-processor must enforce these rules when injecting the ViewModel instance block:
 
 1. **Idempotency:** If the root object already contains a child with the same `id` (matching `qmlId`) and the same `typeName` (matching `viewModelType`), do not inject a duplicate.
-2. **Collision detection:** If the root object already contains a child with the same `id` but a different `typeName`, emit a compiler diagnostic error (`QMLTS-P001` duplicate id or a new V2-specific code).
-3. **Reserved prefix:** Compiler-generated ids use the `__qmlts_` prefix. This prefix is reserved — user-authored QML ids must not start with `__qmlts_`. The existing duplicate ID detection (`detectDuplicateIds`) will catch same-name collisions, and a V2-specific check can warn if user ids use the reserved prefix.
+2. **Idempotent repair:** If the matching ViewModel child already exists and has the same `id`, ensure required V2 effect handlers are present. If the matching ViewModel child exists but has no `id`, insert `qmlId` and ensure required handlers are present so generated references resolve.
+3. **Collision detection:** Emit `QMLTS-V008` if either:
+   - a child already uses `qmlId` but has a different `typeName`, or
+   - a child with `viewModelType` already exists with a different `id`.
+   This prevents both duplicate-id injection and ambiguous multiple owned ViewModel blocks for the same view.
+4. **Reserved prefix:** Compiler-generated ids use the `__qmlts_` prefix. This prefix is reserved — user-authored QML ids must not start with `__qmlts_`. The existing duplicate ID detection (`detectDuplicateIds`) will catch same-name collisions, and a V2-specific check can warn if user ids use the reserved prefix.
 
 ## Views Without ViewModel
 
@@ -202,6 +206,7 @@ When a view has no ViewModel (`vm === undefined`), V2 output is identical to V1 
 - V2 skips Connections block
 - V2 idempotency: no duplicate injection
 - V2 collision: diagnostic on conflicting ids
+- V2 repair: same-type existing block without id receives `qmlId` and required effect handlers
 - V1 tests unchanged and still passing
 
 ### Pipeline Tests (golden files)

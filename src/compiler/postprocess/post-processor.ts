@@ -3,7 +3,6 @@ import type {
   AttachedBindingNode,
   BindingNode,
   FunctionDeclarationNode,
-  IdAssignmentNode,
   ImportNode,
   ObjectDefinitionNode,
   ObjectMember,
@@ -126,41 +125,35 @@ function processV2(
   importResolver: ImportResolver,
   registry: RegistryQueryInterface,
 ): PostProcessResult {
-  // Build ViewModel instance block
-  const vmMembers: ObjectMember[] = [];
+  const rootMembers = document.rootObject.members as ObjectMember[];
+  const vmBlock = buildV2ViewModelBlock(v2Options);
 
-  // id assignment
-  const idNode: IdAssignmentNode = { kind: 'IdAssignment', id: v2Options.qmlId };
-  vmMembers.push(idNode);
-
-  // Effect signal handler bindings
-  for (const effect of v2Options.effects) {
-    const paramList = effect.parameters.length > 0 ? effect.parameters.join(', ') : '';
-    const handlerNode: SignalHandlerNode = {
-      kind: 'SignalHandler',
-      name: effect.handlerName,
-      body: { form: 'expression', code: `function(${paramList}) { }` },
-    };
-    vmMembers.push(handlerNode);
-  }
-
-  const vmBlock: ObjectDefinitionNode = {
-    kind: 'ObjectDefinition',
-    typeName: v2Options.viewModelType,
-    members: vmMembers,
-  };
-
-  // Idempotency: check if identical block already exists
-  const existingChild = (document.rootObject.members as ObjectMember[]).find(
+  const existingSameId = rootMembers.find(
+    (m): m is ObjectDefinitionNode =>
+      m.kind === 'ObjectDefinition' &&
+      m.members.some((member) => member.kind === 'IdAssignment' && member.id === v2Options.qmlId),
+  );
+  const existingSameType = rootMembers.find(
     (m): m is ObjectDefinitionNode =>
       m.kind === 'ObjectDefinition' && m.typeName === v2Options.viewModelType,
   );
-  if (existingChild) {
-    const existingId = existingChild.members.find((m) => m.kind === 'IdAssignment');
-    if (existingId && existingId.kind === 'IdAssignment' && existingId.id === v2Options.qmlId) {
-      // Identical — skip injection (idempotency)
-    } else if (existingId && existingId.kind === 'IdAssignment') {
-      // Same type, different id — collision diagnostic
+
+  if (existingSameId) {
+    if (existingSameId.typeName === v2Options.viewModelType) {
+      // Reuse existing block (idempotency) and make sure required handlers exist.
+      ensureV2EffectHandlers(existingSameId, v2Options);
+    } else {
+      diagnostics.push(
+        createDiagnostic(
+          'error',
+          'QMLTS-V008',
+          `ViewModel block collision: id "${v2Options.qmlId}" already exists on type "${existingSameId.typeName}" (expected "${v2Options.viewModelType}")`,
+        ),
+      );
+    }
+  } else if (existingSameType) {
+    const existingId = existingSameType.members.find((m) => m.kind === 'IdAssignment');
+    if (existingId && existingId.kind === 'IdAssignment') {
       diagnostics.push(
         createDiagnostic(
           'error',
@@ -168,10 +161,14 @@ function processV2(
           `ViewModel block collision: type "${v2Options.viewModelType}" already exists with id "${existingId.id}" (expected "${v2Options.qmlId}")`,
         ),
       );
+    } else {
+      // Same type but no id: repair the block so generated V2 references resolve.
+      existingSameType.members.unshift({ kind: 'IdAssignment', id: v2Options.qmlId });
+      ensureV2EffectHandlers(existingSameType, v2Options);
     }
   } else {
     // Prepend as first child of root object
-    (document.rootObject.members as ObjectMember[]).unshift(vmBlock);
+    rootMembers.unshift(vmBlock);
   }
 
   // Collect imports — add module import + transform imports
@@ -217,6 +214,42 @@ function processV2(
   };
 
   return { document, injected, diagnostics };
+}
+
+function buildV2ViewModelBlock(v2Options: V2PostProcessOptions): ObjectDefinitionNode {
+  const members: ObjectMember[] = [{ kind: 'IdAssignment', id: v2Options.qmlId }];
+  for (const effect of v2Options.effects) {
+    members.push(createV2EffectHandler(effect));
+  }
+
+  return {
+    kind: 'ObjectDefinition',
+    typeName: v2Options.viewModelType,
+    members,
+  };
+}
+
+function ensureV2EffectHandlers(
+  vmBlock: ObjectDefinitionNode,
+  v2Options: V2PostProcessOptions,
+): void {
+  for (const effect of v2Options.effects) {
+    const hasHandler = vmBlock.members.some(
+      (m) => m.kind === 'SignalHandler' && m.name === effect.handlerName,
+    );
+    if (!hasHandler) {
+      vmBlock.members.push(createV2EffectHandler(effect));
+    }
+  }
+}
+
+function createV2EffectHandler(effect: V2PostProcessOptions['effects'][number]): SignalHandlerNode {
+  const paramList = effect.parameters.length > 0 ? effect.parameters.join(', ') : '';
+  return {
+    kind: 'SignalHandler',
+    name: effect.handlerName,
+    body: { form: 'expression', code: `function(${paramList}) { }` },
+  };
 }
 
 function buildV2Lifecycle(v2Options: V2PostProcessOptions): {
