@@ -1681,6 +1681,7 @@ mod tests {
             1,
             0,
             vec!["LoginViewModel".into()],
+            false,
         );
         assert!(result.is_ok());
     }
