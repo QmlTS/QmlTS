@@ -130,4 +130,129 @@ describe('EntryGenerator', () => {
 
     expect(code).not.toContain('\\');
   });
+
+  // ─── V2 Entry Tests ─────────────────────────────────────────
+
+  function makeV2Options(overrides: Partial<EntryGeneratorOptions> = {}): EntryGeneratorOptions {
+    return {
+      compiledViewModels: [{ className: 'CounterViewModel' }],
+      mainQml: './qml/CounterView.qml',
+      qmlImportPaths: [],
+      runtime: 'v2',
+      moduleRegistration: {
+        moduleUri: 'TestApp.ViewModels',
+        versionMajor: 1,
+        versionMinor: 0,
+        typeNames: ['CounterViewModel'],
+      },
+      ...overrides,
+    };
+  }
+
+  // BP-77
+  test('BP-77: V1 entry output unchanged (golden snapshot)', () => {
+    const code = generator.generate(makeOptions());
+    expect(code).toContain('host.registerViewModel("CounterViewModel")');
+    expect(code).not.toContain('registerModule');
+    expect(code).not.toContain('supportsV2');
+  });
+
+  // BP-78
+  test('BP-78: V2 entry contains host.registerModule(...)', () => {
+    const code = generator.generate(makeV2Options());
+    expect(code).toContain('host.registerModule(');
+  });
+
+  // BP-79
+  test('BP-79: V2 entry does NOT contain registerViewModel', () => {
+    const code = generator.generate(makeV2Options());
+    expect(code).not.toContain('registerViewModel');
+  });
+
+  // BP-80
+  test('BP-80: V2 entry includes correct moduleUri and version', () => {
+    const code = generator.generate(makeV2Options());
+    expect(code).toContain("moduleUri: 'TestApp.ViewModels'");
+    expect(code).toContain('versionMajor: 1');
+    expect(code).toContain('versionMinor: 0');
+  });
+
+  // BP-81
+  test('BP-81: V2 entry includes typeNames', () => {
+    const code = generator.generate(
+      makeV2Options({
+        moduleRegistration: {
+          moduleUri: 'TestApp.ViewModels',
+          versionMajor: 1,
+          versionMinor: 0,
+          typeNames: ['CounterViewModel', 'LoginViewModel'],
+        },
+      }),
+    );
+    expect(code).toContain("'CounterViewModel'");
+    expect(code).toContain("'LoginViewModel'");
+  });
+
+  // BP-82
+  test('BP-82: V2 entry includes all import paths', () => {
+    const code = generator.generate(
+      makeV2Options({ qmlImportPaths: ['/opt/qt/qml', '/extra/path'] }),
+    );
+    expect(code).toContain('/opt/qt/qml');
+    expect(code).toContain('/extra/path');
+  });
+
+  // BP-83
+  test('BP-83: V2 entry fail-fast if moduleRegistration has empty typeNames', () => {
+    expect(() =>
+      generator.generate(
+        makeV2Options({
+          moduleRegistration: {
+            moduleUri: 'TestApp.ViewModels',
+            versionMajor: 1,
+            versionMinor: 0,
+            typeNames: [],
+          },
+        }),
+      ),
+    ).toThrow(/empty.*typeNames/i);
+  });
+
+  // BP-84
+  test('BP-84: V1 entry not affected by V2 fields in options', () => {
+    const code = generator.generate(
+      makeOptions({
+        runtime: 'v1',
+        moduleRegistration: {
+          moduleUri: 'TestApp.ViewModels',
+          versionMajor: 1,
+          versionMinor: 0,
+          typeNames: ['CounterViewModel'],
+        },
+      }),
+    );
+    expect(code).toContain('registerViewModel');
+    expect(code).not.toContain('registerModule');
+  });
+
+  // BP-85
+  test('BP-85: V2 entry includes supportsV2 preflight check', () => {
+    const code = generator.generate(makeV2Options());
+    expect(code).toContain('host.supportsV2()');
+    expect(code).toContain('V2 runtime support');
+  });
+
+  // BP-86
+  test('BP-86: V2 entry without ViewModels omits registerModule and supportsV2', () => {
+    const code = generator.generate(
+      makeV2Options({
+        moduleRegistration: undefined,
+      }),
+    );
+    expect(code).not.toContain('registerModule');
+    expect(code).not.toContain('supportsV2');
+    expect(code).not.toContain('registerViewModel');
+    expect(code).toContain('host.loadFile');
+    expect(code).toContain('host.exec()');
+  });
 });
