@@ -56,6 +56,8 @@ export interface ProductLayout {
   readonly manifest: string;
   readonly sourceMapsDir?: string;
   readonly eventBindings: string;
+  /** V2: Module directory (e.g. dist/qml/TestApp/ViewModels/). Set after compilation. */
+  readonly moduleDir?: string;
 }
 
 // ─── Build Manifest ─────────────────────────────────────────
@@ -69,6 +71,18 @@ export interface BuildManifest {
   readonly hostLib: string;
   readonly qtVersion: string;
   readonly platform: PlatformTarget;
+  /** V2: Runtime version used for this build. */
+  readonly runtime?: 'v1' | 'v2';
+  /** V2: Module declarations produced by this build. */
+  readonly modules?: readonly {
+    readonly uri: string;
+    readonly version: string;
+    readonly types: readonly string[];
+    /** Output-relative path, e.g. "./qml/TestApp/ViewModels/qmldir". */
+    readonly qmldir: string;
+    /** Output-relative path, e.g. "./qml/TestApp/ViewModels/testapp_viewmodels.qmltypes". */
+    readonly qmltypes: string;
+  }[];
 }
 
 // ─── Pipeline Result ────────────────────────────────────────
@@ -228,6 +242,15 @@ export interface EntryGeneratorOptions {
   readonly mainQml: string;
   readonly qmlImportPaths: readonly string[];
   readonly packages?: ResolvedPackages;
+  /** V2: Runtime version. Defaults to V1 behavior when undefined. */
+  readonly runtime?: 'v1' | 'v2';
+  /** V2: Module registration metadata. Undefined means no ViewModels in V2 mode. */
+  readonly moduleRegistration?: {
+    readonly moduleUri: string;
+    readonly versionMajor: number;
+    readonly versionMinor: number;
+    readonly typeNames: readonly string[];
+  };
 }
 
 // ─── Dev Session ────────────────────────────────────────────
