@@ -389,9 +389,7 @@ mod tests {
     fn iter_instances_returns_all_entries() {
         let mut reg = InstanceRegistry::new();
         let id0 = reg.allocate_instance("A", ptr::null_mut()).unwrap();
-        let id1 = reg
-            .allocate_instance("B", 0x1234 as *mut c_void)
-            .unwrap();
+        let id1 = reg.allocate_instance("B", 0x1234 as *mut c_void).unwrap();
         reg.mark_ready(id1).unwrap();
 
         let entries = reg.iter_instances();

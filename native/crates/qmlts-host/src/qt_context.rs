@@ -972,7 +972,10 @@ pub fn mock_seed_v2_properties(qobject_ptr: *mut c_void, properties: &[(&str, &s
 #[cfg(feature = "mock-qt")]
 #[allow(dead_code)]
 pub fn mock_clear_v2_properties() {
-    mock_v2_props::STORE.lock().expect("mock props lock").clear();
+    mock_v2_props::STORE
+        .lock()
+        .expect("mock props lock")
+        .clear();
 }
 
 #[cfg(test)]

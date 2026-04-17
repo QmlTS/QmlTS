@@ -1144,10 +1144,7 @@ pub fn capture_instance_states(engine: &QmltsEngine) -> Result<String> {
 /// `matched_pairs_json`: JSON array of `{"instanceId":N,"properties":{...}}`.
 /// Returns JSON `{"diagnostics":[...]}`.
 #[napi(js_name = "restoreInstanceStates")]
-pub fn restore_instance_states(
-    engine: &QmltsEngine,
-    matched_pairs_json: String,
-) -> Result<String> {
+pub fn restore_instance_states(engine: &QmltsEngine, matched_pairs_json: String) -> Result<String> {
     engine
         .inner
         .restore_instance_states(&matched_pairs_json)

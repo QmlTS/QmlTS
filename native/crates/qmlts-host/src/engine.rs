@@ -1526,8 +1526,7 @@ impl QmltsEngine {
                 continue;
             };
 
-            let prop_names: Vec<&str> =
-                desc.state_properties.iter().map(|p| p.qml_name).collect();
+            let prop_names: Vec<&str> = desc.state_properties.iter().map(|p| p.qml_name).collect();
             let names_json = serde_json::to_string(&prop_names)
                 .map_err(|e| QmltsError::Internal(e.to_string()))?;
 
@@ -1535,8 +1534,10 @@ impl QmltsEngine {
             match read_result {
                 Some(json_str) => {
                     if let Ok(parsed) = serde_json::from_str::<serde_json::Value>(&json_str) {
-                        let props =
-                            parsed.get("props").cloned().unwrap_or(serde_json::json!({}));
+                        let props = parsed
+                            .get("props")
+                            .cloned()
+                            .unwrap_or(serde_json::json!({}));
                         if let Some(read_diags) = parsed.get("diagnostics") {
                             if let Some(arr) = read_diags.as_array() {
                                 for d in arr {
@@ -1596,7 +1597,10 @@ impl QmltsEngine {
         let mut diagnostics = Vec::new();
 
         for pair in &pairs {
-            let instance_id = pair.get("instanceId").and_then(serde_json::Value::as_u64).and_then(|v| u32::try_from(v).ok());
+            let instance_id = pair
+                .get("instanceId")
+                .and_then(serde_json::Value::as_u64)
+                .and_then(|v| u32::try_from(v).ok());
             let properties = pair.get("properties");
 
             let Some(instance_id) = instance_id else {
@@ -2936,14 +2940,12 @@ mod tests {
         let json = engine.capture_instance_states().unwrap();
         let parsed: serde_json::Value = serde_json::from_str(&json).unwrap();
         assert_eq!(parsed["snapshots"].as_array().unwrap().len(), 0);
-        assert!(parsed["diagnostics"].as_array().unwrap().len() >= 1);
-        assert_eq!(
-            parsed["diagnostics"][0]["code"],
-            "HR_INSTANCE_NOT_READY"
-        );
+        assert!(!parsed["diagnostics"].as_array().unwrap().is_empty());
+        assert_eq!(parsed["diagnostics"][0]["code"], "HR_INSTANCE_NOT_READY");
     }
 
     #[test]
+    #[cfg(feature = "mock-qt")]
     fn capture_ready_instance_returns_snapshot() {
         let _guard = TEST_MUTEX.lock().unwrap();
         reset_app_initialized();
@@ -2998,16 +3000,16 @@ mod tests {
         engine
             .register_module("QmlTS.Test", 1, 0, &["LoginViewModel".into()], false)
             .unwrap();
-        let pairs =
-            r#"[{"instanceId": 999, "properties": {"username": "\"alice\""}}]"#;
+        let pairs = r#"[{"instanceId": 999, "properties": {"username": "\"alice\""}}]"#;
         let json = engine.restore_instance_states(pairs).unwrap();
         let parsed: serde_json::Value = serde_json::from_str(&json).unwrap();
         let diags = parsed["diagnostics"].as_array().unwrap();
-        assert!(diags.len() >= 1);
+        assert!(!diags.is_empty());
         assert_eq!(diags[0]["code"], "HR_INSTANCE_NOT_FOUND");
     }
 
     #[test]
+    #[cfg(feature = "mock-qt")]
     fn restore_writes_properties() {
         let _guard = TEST_MUTEX.lock().unwrap();
         reset_app_initialized();
@@ -3027,15 +3029,12 @@ mod tests {
             id
         };
 
-        let pairs = format!(
-            r#"[{{"instanceId": {}, "properties": {{"username": "\"bob\""}}}}]"#,
-            id
-        );
+        let pairs = format!(r#"[{{"instanceId": {id}, "properties": {{"username": "\"bob\""}}}}]"#);
         let json = engine.restore_instance_states(&pairs).unwrap();
         let parsed: serde_json::Value = serde_json::from_str(&json).unwrap();
         let diags = parsed["diagnostics"].as_array().unwrap();
         // Should succeed with no diagnostics (mock write always returns true)
-        assert!(diags.is_empty(), "Expected no diagnostics, got: {:?}", diags);
+        assert!(diags.is_empty(), "Expected no diagnostics, got: {diags:?}");
         qt_context::mock_clear_v2_properties();
     }
 }
