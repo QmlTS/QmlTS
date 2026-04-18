@@ -562,6 +562,19 @@ function phaseWriteOutput(ctx: PhaseContext): Promise<{ diagnostics: readonly Di
     });
   }
 
+  if (ctx.options.library && !moduleMeta) {
+    return Promise.resolve({
+      diagnostics: [
+        {
+          severity: 'error',
+          code: 'QMLTS-B006',
+          message:
+            'Library mode requires at least one ViewModel schema so qmlts.module.json can declare exported module types.',
+        },
+      ],
+    });
+  }
+
   layout = attachModuleDir(layout, moduleMeta);
   ctx.layout = layout;
   ctx.compilationResult = alignCompilationResultToLayout(

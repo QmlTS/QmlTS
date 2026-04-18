@@ -52,16 +52,31 @@ export function readModuleManifest(packageDir: string): QmltsModuleManifest | un
   }
 }
 
+function isStringArray(value: unknown): value is string[] {
+  return Array.isArray(value) && value.every((item) => typeof item === 'string');
+}
+
+function isStringRecord(value: unknown): value is Record<string, string> {
+  if (typeof value !== 'object' || value === null || Array.isArray(value)) return false;
+  return Object.values(value).every((item) => typeof item === 'string');
+}
+
 function isValidModuleManifest(value: unknown): boolean {
-  if (typeof value !== 'object' || value === null) return false;
+  if (typeof value !== 'object' || value === null || Array.isArray(value)) return false;
   const obj = value as Record<string, unknown>;
   if (!Array.isArray(obj.modules)) return false;
+  if (obj.native !== undefined && !isStringRecord(obj.native)) return false;
   for (const mod of obj.modules) {
-    if (typeof mod !== 'object' || mod === null) return false;
+    if (typeof mod !== 'object' || mod === null || Array.isArray(mod)) return false;
     const m = mod as Record<string, unknown>;
     if (typeof m.uri !== 'string') return false;
     if (typeof m.version !== 'string') return false;
-    if (typeof m.types !== 'object' || m.types === null) return false;
+    if (typeof m.qmldir !== 'string') return false;
+    if (typeof m.qmltypes !== 'string') return false;
+    if (typeof m.types !== 'object' || m.types === null || Array.isArray(m.types)) return false;
+    const types = m.types as Record<string, unknown>;
+    if (!isStringArray(types.native)) return false;
+    if (!isStringArray(types.qml)) return false;
   }
   return true;
 }

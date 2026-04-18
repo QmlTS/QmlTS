@@ -27,7 +27,7 @@ function createModuleMeta(): ModuleMeta {
     versionString: '1.0',
     versionMajor: 1,
     versionMinor: 0,
-    typeNames: new Set(['CounterViewModel', 'LoginViewModel']),
+    typeNames: ['CounterViewModel', 'LoginViewModel'],
   };
 }
 
@@ -151,6 +151,53 @@ describe('Module Manifest', () => {
     writeFileSync(
       join(pkgDir, 'qmlts.module.json'),
       JSON.stringify({ modules: [{ uri: 'Test' }] }),
+      'utf-8',
+    );
+
+    const result = readModuleManifest(pkgDir);
+    expect(result).toBeUndefined();
+  });
+
+  test('MM-V2-09: readModuleManifest rejects malformed type arrays', () => {
+    const pkgDir = join(TMP_DIR, 'bad-types');
+    mkdirSync(pkgDir, { recursive: true });
+    writeFileSync(
+      join(pkgDir, 'qmlts.module.json'),
+      JSON.stringify({
+        modules: [
+          {
+            uri: 'Com.Bad.ViewModels',
+            version: '1.0',
+            types: { native: ['GoodVM'], qml: [42] },
+            qmldir: './qml/Com/Bad/qmldir',
+            qmltypes: './qml/Com/Bad/bad.qmltypes',
+          },
+        ],
+      }),
+      'utf-8',
+    );
+
+    const result = readModuleManifest(pkgDir);
+    expect(result).toBeUndefined();
+  });
+
+  test('MM-V2-10: readModuleManifest rejects malformed native platform map', () => {
+    const pkgDir = join(TMP_DIR, 'bad-native-map');
+    mkdirSync(pkgDir, { recursive: true });
+    writeFileSync(
+      join(pkgDir, 'qmlts.module.json'),
+      JSON.stringify({
+        modules: [
+          {
+            uri: 'Com.BadNative.ViewModels',
+            version: '1.0',
+            types: { native: ['NativeVM'], qml: ['NativeVM'] },
+            qmldir: './qml/Com/BadNative/qmldir',
+            qmltypes: './qml/Com/BadNative/bad.qmltypes',
+          },
+        ],
+        native: { 'linux-x64': 123 },
+      }),
       'utf-8',
     );
 

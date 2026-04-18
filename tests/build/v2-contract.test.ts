@@ -1,5 +1,5 @@
 import { describe, expect, test } from 'bun:test';
-import { mkdirSync, rmSync, writeFileSync } from 'node:fs';
+import { mkdirSync, rmSync } from 'node:fs';
 import { join } from 'node:path';
 import type { QmltsModuleManifest, ResolvedQmltsModule } from '../../src/build/build-types.js';
 import { applyDefaults, DEFAULT_RUNTIME } from '../../src/build/config-defaults.js';
@@ -105,7 +105,7 @@ describe('V2 Contract Tests', () => {
       versionString: '1.0',
       versionMajor: 1,
       versionMinor: 0,
-      typeNames: new Set(['TestVM']),
+      typeNames: ['TestVM'],
     };
 
     const manifest = generateModuleManifest(
@@ -131,7 +131,7 @@ describe('V2 Contract Tests', () => {
       versionString: '1.0',
       versionMajor: 1,
       versionMinor: 0,
-      typeNames: new Set(['RoundTripVM']),
+      typeNames: ['RoundTripVM'],
     };
 
     const manifest = generateModuleManifest(
@@ -160,7 +160,7 @@ describe('V2 Contract Tests', () => {
       versionString: '1.0',
       versionMajor: 1,
       versionMinor: 0,
-      typeNames: new Set(['NativeVM']),
+      typeNames: ['NativeVM'],
     };
 
     const manifest = generateModuleManifest(
@@ -197,7 +197,8 @@ describe('V2 Contract Tests', () => {
 
     const errors = validateModuleUris(modules);
     expect(errors.length).toBeGreaterThan(0);
-    expect(errors[0]).toContain('QMLTS-B004');
+    expect(errors[0]).toContain('Duplicate module URI');
+    expect(errors[0]).not.toContain('QMLTS-B004');
   });
 
   test('CT-13: Duplicate module URI with project is detected', () => {
@@ -229,7 +230,8 @@ describe('V2 Contract Tests', () => {
 
     const errors = validatePlatformArtifacts(modules);
     expect(errors.length).toBeGreaterThan(0);
-    expect(errors[0]).toContain('QMLTS-B005');
+    expect(errors[0]).toContain('no binary found');
+    expect(errors[0]).not.toContain('QMLTS-B005');
   });
 
   // ─── CT-15 to CT-16: V1 backward compatibility contracts ──

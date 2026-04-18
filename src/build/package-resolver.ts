@@ -252,7 +252,7 @@ export function validateModuleUris(
     const existing = uriToPackage.get(mod.uri);
     if (existing) {
       errors.push(
-        `QMLTS-B004: Duplicate module URI "${mod.uri}" registered by both "${existing}" and "${mod.packageName}"`,
+        `Duplicate module URI "${mod.uri}" registered by both "${existing}" and "${mod.packageName}"`,
       );
     } else {
       uriToPackage.set(mod.uri, mod.packageName);
@@ -268,9 +268,20 @@ export function validatePlatformArtifacts(modules: readonly ResolvedQmltsModule[
   const platform = currentPlatform();
 
   for (const mod of modules) {
-    if (mod.nativeArtifact && !existsSync(mod.nativeArtifact)) {
+    if (mod.types.native.length === 0) {
+      continue;
+    }
+
+    if (!mod.nativeArtifact) {
       errors.push(
-        `QMLTS-B005: Package "${mod.packageName}" declares native types for module "${mod.uri}" but no binary found for platform "${platform}" at ${mod.nativeArtifact}`,
+        `Package "${mod.packageName}" declares native types for module "${mod.uri}" but no binary is declared for platform "${platform}"`,
+      );
+      continue;
+    }
+
+    if (!existsSync(mod.nativeArtifact)) {
+      errors.push(
+        `Package "${mod.packageName}" declares native types for module "${mod.uri}" but no binary found for platform "${platform}" at ${mod.nativeArtifact}`,
       );
     }
   }

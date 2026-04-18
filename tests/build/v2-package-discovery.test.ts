@@ -1,5 +1,5 @@
 import { afterAll, beforeAll, describe, expect, test } from 'bun:test';
-import { existsSync, mkdirSync, rmSync, writeFileSync } from 'node:fs';
+import { mkdirSync, rmSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import type { QmltsModuleManifest, ResolvedQmltsModule } from '../../src/build/build-types.js';
 import {
@@ -127,7 +127,7 @@ describe('V2 Package Discovery', () => {
     mkdirSync(projectDir, { recursive: true });
 
     // Package with qmlts.module.json but no qmlts.manifest.json
-    const pkgDir = setupPackage(projectDir, 'widgets', {
+    setupPackage(projectDir, 'widgets', {
       manifest: createModuleManifest('Com.Widgets.ViewModels'),
     });
 
@@ -176,7 +176,8 @@ describe('Module URI Validation (QMLTS-B004)', () => {
 
     const errors = validateModuleUris(modules);
     expect(errors).toHaveLength(1);
-    expect(errors[0]).toContain('QMLTS-B004');
+    expect(errors[0]).toContain('Duplicate module URI');
+    expect(errors[0]).not.toContain('QMLTS-B004');
     expect(errors[0]).toContain('Com.Shared.ViewModels');
     expect(errors[0]).toContain('@qmlts/lib-a');
     expect(errors[0]).toContain('@qmlts/lib-b');
@@ -195,7 +196,8 @@ describe('Module URI Validation (QMLTS-B004)', () => {
 
     const errors = validateModuleUris(modules, 'MyApp.ViewModels');
     expect(errors).toHaveLength(1);
-    expect(errors[0]).toContain('QMLTS-B004');
+    expect(errors[0]).toContain('Duplicate module URI');
+    expect(errors[0]).not.toContain('QMLTS-B004');
     expect(errors[0]).toContain('<project>');
   });
 
@@ -237,8 +239,26 @@ describe('Platform Artifact Validation (QMLTS-B005)', () => {
 
     const errors = validatePlatformArtifacts(modules);
     expect(errors).toHaveLength(1);
-    expect(errors[0]).toContain('QMLTS-B005');
+    expect(errors[0]).toContain('no binary found');
+    expect(errors[0]).not.toContain('QMLTS-B005');
     expect(errors[0]).toContain('@qmlts/native-lib');
+  });
+
+  test('PD-09b: validatePlatformArtifacts reports native types with no platform binary entry', () => {
+    const modules: ResolvedQmltsModule[] = [
+      {
+        packageName: '@qmlts/native-lib',
+        packageDir: '/fake-pkg',
+        uri: 'Com.Native.ViewModels',
+        version: '1.0',
+        types: { native: ['NativeVM'], qml: ['NativeVM'] },
+      },
+    ];
+
+    const errors = validatePlatformArtifacts(modules);
+    expect(errors).toHaveLength(1);
+    expect(errors[0]).toContain('no binary is declared');
+    expect(errors[0]).not.toContain('QMLTS-B005');
   });
 
   test('PD-10: validatePlatformArtifacts passes when artifact exists', () => {

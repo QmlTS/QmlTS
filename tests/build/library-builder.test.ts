@@ -1,5 +1,5 @@
 import { afterAll, beforeAll, describe, expect, test } from 'bun:test';
-import { existsSync, mkdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
+import { existsSync, mkdirSync, readFileSync, rmSync } from 'node:fs';
 import { join } from 'node:path';
 import type { ProductLayout } from '../../src/build/build-types.js';
 import { applyDefaults } from '../../src/build/config-defaults.js';
@@ -27,7 +27,7 @@ function makeModuleMeta(): ModuleMeta {
     versionString: '1.0',
     versionMajor: 1,
     versionMinor: 0,
-    typeNames: new Set(['CounterViewModel']),
+    typeNames: ['CounterViewModel'],
   };
 }
 
