@@ -400,7 +400,7 @@ describe('V2 BuildManifest', () => {
   });
 
   test('BP-V2-03b: V1 manifest has no runtime or modules', () => {
-    const config = makeConfig();
+    const config = makeConfig({ runtime: 'v1' as const });
     const layout = createProductLayout(TMP_DIR, config);
     const result = makeCompilationResult();
     const manifest = createManifest(layout, result, config);

@@ -123,9 +123,9 @@ describe('applyDefaults', () => {
 
   // ─── V2 defaults ─────────────────────────────────────────
 
-  test('BC-63: runtime defaults to v1', () => {
+  test('BC-63: runtime defaults to v2', () => {
     const resolved = applyDefaults({}, configDir);
-    expect(resolved.runtime).toBe('v1');
+    expect(resolved.runtime).toBe('v2');
   });
 
   test('BC-64: v1Compat defaults to false', () => {

@@ -11,9 +11,9 @@ describe('V2 config surface', () => {
     return applyDefaults(config, configDir);
   }
 
-  test('BC-70: default config resolves to V1 runtime with no module', () => {
+  test('BC-70: default config resolves to V2 runtime with no module', () => {
     const resolved = resolveV2Config({});
-    expect(resolved.runtime).toBe('v1');
+    expect(resolved.runtime).toBe('v2');
     expect(resolved.v1Compat).toBe(false);
     expect(resolved.module).toBeUndefined();
   });

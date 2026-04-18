@@ -29,8 +29,14 @@ import type {
 import type { ResolvedQmltsConfig } from './config-types.js';
 import { createEntryGenerator } from './entry-generator.js';
 import { createHostPreparer } from './host-preparer.js';
+import { writeLibraryManifest } from './library-builder.js';
 import { deriveModuleMeta, validateSchemaConsistency } from './module-meta.js';
-import { checkQtVersionCompatibility, createPackageResolver } from './package-resolver.js';
+import {
+  checkQtVersionCompatibility,
+  createPackageResolver,
+  validateModuleUris,
+  validatePlatformArtifacts,
+} from './package-resolver.js';
 import {
   alignCompilationResultToLayout,
   attachModuleDir,
@@ -270,6 +276,21 @@ async function phaseCollectDeps(
     diagnostics.push({ severity: 'warning', code: 'QMLTS-G002', message: warning });
   }
 
+  // V2: Validate module URIs and platform artifacts for discovered modules
+  if (ctx.config.runtime === 'v2' && resolved.modules && resolved.modules.length > 0) {
+    const projectModuleUri = ctx.config.module
+      ? `${ctx.config.module.prefix}.ViewModels`
+      : undefined;
+    const uriErrors = validateModuleUris(resolved.modules, projectModuleUri);
+    for (const err of uriErrors) {
+      diagnostics.push({ severity: 'error', code: 'QMLTS-B004', message: err });
+    }
+    const platformErrors = validatePlatformArtifacts(resolved.modules);
+    for (const err of platformErrors) {
+      diagnostics.push({ severity: 'error', code: 'QMLTS-B005', message: err });
+    }
+  }
+
   return { diagnostics };
 }
 
@@ -479,6 +500,21 @@ function phaseWriteOutput(ctx: PhaseContext): Promise<{ diagnostics: readonly Di
     });
   }
 
+  // QMLTS-B006: Library mode requires V2 runtime with module configuration
+  if (ctx.options.library && (ctx.config.runtime !== 'v2' || !ctx.config.module)) {
+    return Promise.resolve({
+      diagnostics: [
+        {
+          severity: 'error',
+          code: 'QMLTS-B006',
+          message:
+            'Library mode requires V2 runtime with module configuration. ' +
+            'Set runtime to "v2" and provide a module configuration block.',
+        },
+      ],
+    });
+  }
+
   let layout = createProductLayout(ctx.config.outDir, ctx.config);
 
   // Derive V2 module metadata after compilation (schemas now available)
@@ -575,6 +611,18 @@ function phaseWriteOutput(ctx: PhaseContext): Promise<{ diagnostics: readonly Di
       schemas: uniqueSchemas,
     });
     writeFileSync(join(layout.moduleDir, moduleMeta.qmltypesFilename), qmltypesContent, 'utf-8');
+  }
+
+  // Library mode: write module manifest instead of entry file
+  if (ctx.options.library && moduleMeta) {
+    const libResult = writeLibraryManifest(layout, ctx.config, ctx.compilationResult, moduleMeta);
+
+    emitProgress(ctx, {
+      phase: 'writing-output',
+      message: `Library output written to ${ctx.config.outDir} (${libResult.manifestPath})`,
+    });
+
+    return Promise.resolve({ diagnostics: [] });
   }
 
   // Generate entry file

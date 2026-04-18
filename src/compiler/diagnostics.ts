@@ -85,4 +85,7 @@ export type DiagnosticCode =
   // Build (B)
   | 'QMLTS-B001'
   | 'QMLTS-B002'
-  | 'QMLTS-B003';
+  | 'QMLTS-B003'
+  | 'QMLTS-B004'
+  | 'QMLTS-B005'
+  | 'QMLTS-B006';

@@ -111,6 +111,8 @@ export interface BuildCommandOptions {
   readonly files?: readonly string[];
   readonly dryRun?: boolean;
   readonly json?: boolean;
+  /** V2: Build as a distributable library package instead of a runnable app. */
+  readonly library?: boolean;
 }
 
 export interface BuildCommandResult {
@@ -127,6 +129,8 @@ export interface PipelineRunOptions {
   readonly force?: boolean;
   readonly files?: readonly string[];
   readonly dryRun?: boolean;
+  /** V2: Build in library mode (no entry file, produces qmlts.module.json). */
+  readonly library?: boolean;
 }
 
 // ─── Package Resolution ─────────────────────────────────────
@@ -151,12 +155,16 @@ export interface ResolvedPackageInfo {
   readonly qmlImportPath?: string;
   readonly nativeLibPath?: string;
   readonly dslEntryPath?: string;
+  /** V2: Parsed qmlts.module.json, if present. */
+  readonly moduleManifest?: QmltsModuleManifest;
 }
 
 export interface ResolvedPackages {
   readonly packages: readonly ResolvedPackageInfo[];
   readonly qmlImportPaths: readonly string[];
   readonly nativeLibPaths: readonly string[];
+  /** V2: Modules discovered from qmlts.module.json manifests. */
+  readonly modules?: readonly ResolvedQmltsModule[];
 }
 
 // ─── Resource Bundling ──────────────────────────────────────
@@ -437,4 +445,37 @@ export interface DistributeCommandOptions {
   readonly targets?: readonly PlatformTarget[];
   readonly bundleQt?: boolean;
   readonly icon?: string;
+}
+
+// ─── V2 Module Manifest (qmlts.module.json) ─────────────────
+
+export interface QmltsModuleManifest {
+  readonly modules: readonly QmltsModuleManifestEntry[];
+  readonly native?: Readonly<Record<string, string>>;
+}
+
+export interface QmltsModuleManifestEntry {
+  readonly uri: string;
+  readonly version: string;
+  readonly types: {
+    readonly native: readonly string[];
+    readonly qml: readonly string[];
+  };
+  readonly qmldir: string;
+  readonly qmltypes: string;
+}
+
+/** V2: A resolved third-party module discovered from qmlts.module.json. */
+export interface ResolvedQmltsModule {
+  readonly packageName: string;
+  readonly packageDir: string;
+  readonly uri: string;
+  readonly version: string;
+  readonly types: {
+    readonly native: readonly string[];
+    readonly qml: readonly string[];
+  };
+  readonly qmldir?: string;
+  readonly qmltypes?: string;
+  readonly nativeArtifact?: string;
 }
