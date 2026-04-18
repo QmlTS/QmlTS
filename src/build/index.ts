@@ -98,9 +98,12 @@ export type {
   PhaseResult,
   PipelineRunOptions,
   ProductLayout,
+  QmltsModuleManifest,
+  QmltsModuleManifestEntry,
   QmltsPackageManifest,
   ResolvedPackageInfo,
   ResolvedPackages,
+  ResolvedQmltsModule,
   RustBridgeOutput,
   SchemaFile,
   ViewModelSchemaJson,
@@ -147,7 +150,7 @@ export type {
   ResolvedQtConfig,
   RuntimeVersion,
 } from './config-types.js';
-export { validateConfig } from './config-validator.js';
+export { resetDeprecationWarnings, validateConfig } from './config-validator.js';
 export { defineConfig } from './define-config.js';
 export type { DevCommandResult } from './dev-command.js';
 export { executeDev } from './dev-command.js';
@@ -165,6 +168,15 @@ export type { HostPreparer, HostPrepOptions, HostPrepOutput } from './host-prepa
 export { createHostPreparer } from './host-preparer.js';
 // ─── Init Command ───────────────────────────────────────────
 export { executeInit } from './init-command.js';
+// ─── Library Builder ────────────────────────────────────────
+export type { LibraryBuildResult } from './library-builder.js';
+export { writeLibraryManifest } from './library-builder.js';
+// ─── Module Manifest ────────────────────────────────────────
+export {
+  generateModuleManifest,
+  readModuleManifest,
+  writeModuleManifest,
+} from './module-manifest.js';
 // ─── Module Metadata ────────────────────────────────────────
 export type { ModuleMeta } from './module-meta.js';
 export {
@@ -176,7 +188,12 @@ export {
 } from './module-meta.js';
 // ─── Package Resolver ───────────────────────────────────────
 export type { PackageResolver } from './package-resolver.js';
-export { checkQtVersionCompatibility, createPackageResolver } from './package-resolver.js';
+export {
+  checkQtVersionCompatibility,
+  createPackageResolver,
+  validateModuleUris,
+  validatePlatformArtifacts,
+} from './package-resolver.js';
 // ─── Platform Distributor ───────────────────────────────────
 export type { PlatformDistributor } from './platform-distributor.js';
 export { createPlatformDistributor } from './platform-distributor.js';

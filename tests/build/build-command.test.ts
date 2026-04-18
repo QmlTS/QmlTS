@@ -34,12 +34,17 @@ function writeConfig(outDir: string, extraFields = ''): string {
     /\\/g,
     '/',
   );
+  // V2 is the default runtime and requires module config
+  const needsModule = !extraFields.includes('module:') && !extraFields.includes("runtime: 'v1'");
+  const moduleFields = needsModule
+    ? "  module: { prefix: 'TestApp', version: { major: 1, minor: 0 } },\n"
+    : '';
   const content = `
 import { defineConfig } from '${defineConfigPath}';
 export default defineConfig({
   entry: '${join(FIXTURES_DIR, 'src', 'CounterView.ts').replace(/\\/g, '/')}',
   outDir: '${outDir.replace(/\\/g, '/')}',
-${extraFields}
+${moduleFields}${extraFields}
   qt: {
     targetVersion: '6.11.0',
     modules: ['QtQuick'],

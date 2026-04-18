@@ -19,6 +19,7 @@ export async function executeBuild(options: BuildCommandOptions = {}): Promise<B
     force: options.force,
     files: options.files,
     dryRun: options.dryRun,
+    library: options.library,
   };
 
   const result = await pipeline.run(pipelineOptions);

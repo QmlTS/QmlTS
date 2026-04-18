@@ -8,12 +8,17 @@ const FIXTURES_DIR = join(import.meta.dir, 'fixtures', 'sample-project');
 
 function writeConfig(tempDir: string, entry = './src/CounterView.ts', extraFields = ''): string {
   const configPath = join(tempDir, 'qmlts.config.ts');
+  // V2 is the default runtime and requires module config
+  const needsModule = !extraFields.includes('module:') && !extraFields.includes("runtime: 'v1'");
+  const moduleFields = needsModule
+    ? '  module: { prefix: "TestApp", version: { major: 1, minor: 0 } },\n'
+    : '';
   writeFileSync(
     configPath,
     `export default {
   entry: ${JSON.stringify(entry)},
   outDir: "./dist",
-${extraFields}
+${moduleFields}${extraFields}
   qt: { modules: ["QtQuick"] },
   build: {
     lint: false,

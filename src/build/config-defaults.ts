@@ -23,7 +23,7 @@ export const DEFAULT_DEBOUNCE_MS = 200;
 export const DEFAULT_ASSETS_DIR = './assets';
 export const DEFAULT_WATCH_PATHS: readonly string[] = ['./src'];
 export const DEFAULT_ASSETS_INCLUDE: readonly string[] = ['**/*'];
-export const DEFAULT_RUNTIME: RuntimeVersion = 'v1';
+export const DEFAULT_RUNTIME: RuntimeVersion = 'v2';
 export const DEFAULT_V1_COMPAT = false;
 
 export function applyDefaults(config: QmltsConfig, configDir: string): ResolvedQmltsConfig {

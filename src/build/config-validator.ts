@@ -1,6 +1,13 @@
 import { ConfigError } from './config-error.js';
 import type { QmltsConfig } from './config-types.js';
 
+let v1DeprecationEmitted = false;
+
+/** Reset the V1 deprecation warning state (for testing). */
+export function resetDeprecationWarnings(): void {
+  v1DeprecationEmitted = false;
+}
+
 const VALID_TOP_LEVEL_KEYS = new Set([
   'entry',
   'outDir',
@@ -85,6 +92,15 @@ export function validateConfig(config: QmltsConfig): void {
       'module',
       undefined,
       `module configuration is required when runtime is 'v2'`,
+    );
+  }
+
+  // V1 deprecation warning: emit once per process when runtime is explicitly set to 'v1'
+  if (config.runtime === 'v1' && !v1DeprecationEmitted) {
+    v1DeprecationEmitted = true;
+    console.warn(
+      '[qmlts] Warning: V1 runtime is deprecated and will be removed in a future release. ' +
+        'Please migrate to V2 by removing `runtime: "v1"` and adding a `module` configuration block.',
     );
   }
 }

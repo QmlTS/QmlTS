@@ -275,6 +275,54 @@ function writeIntegratedProjectIn(rootDir: string): { projectDir: string; srcDir
   return { projectDir, srcDir };
 }
 
+function writePureQmlProjectIn(rootDir: string): { projectDir: string; srcDir: string } {
+  const projectDir = join(rootDir, 'pure-qml-project');
+  const srcDir = join(projectDir, 'src');
+  const dslDir = join(srcDir, 'dsl', 'generated', 'QtQuick');
+  mkdirSync(dslDir, { recursive: true });
+
+  writeFileSync(
+    join(projectDir, 'tsconfig.json'),
+    JSON.stringify(
+      {
+        compilerOptions: {
+          target: 'ESNext',
+          module: 'ESNext',
+          moduleResolution: 'bundler',
+          experimentalDecorators: true,
+          strict: false,
+          skipLibCheck: true,
+          noEmit: true,
+          types: [],
+        },
+        include: ['src/**/*.ts'],
+      },
+      null,
+      2,
+    ),
+    'utf-8',
+  );
+
+  writeFileSync(
+    join(dslDir, 'Rectangle.ts'),
+    readFileSync(join(FIXTURES_DIR, 'src', 'dsl', 'generated', 'QtQuick', 'Rectangle.ts'), 'utf-8'),
+  );
+  writeFileSync(
+    join(srcDir, 'PureView.ts'),
+    [
+      "import { Rectangle } from './dsl/generated/QtQuick/Rectangle.js';",
+      '',
+      'export default function PureView() {',
+      '  return Rectangle().width(200).height(100);',
+      '}',
+      '',
+    ].join('\n'),
+    'utf-8',
+  );
+
+  return { projectDir, srcDir };
+}
+
 function writeOtherViewModelFiles(srcDir: string): void {
   writeFileSync(
     join(srcDir, 'OtherViewModel.ts'),
@@ -994,5 +1042,34 @@ export default function CounterView() {
     } finally {
       rmSync(outDir, { recursive: true, force: true });
     }
+  });
+
+  test('BP-LIB-01: library mode without ViewModel schemas emits B006 and no app entry', async () => {
+    const { projectDir, srcDir } = writePureQmlProjectIn(TMP_DIR);
+    const config = makeConfig({
+      entry: join(srcDir, 'PureView.ts'),
+      outDir: join(projectDir, 'dist'),
+      configDir: projectDir,
+      assets: {
+        dir: join(projectDir, 'assets'),
+        include: ['**/*'],
+        exclude: [],
+        useQrc: false,
+        optimize: false,
+      },
+      runtime: 'v2',
+      module: { prefix: 'TestApp', version: { major: 1, minor: 0 } },
+    });
+
+    const pipeline = createBuildPipeline(config);
+    const result = await pipeline.run({ library: true });
+    const outputDiags = result.phases.get('writing-output')?.diagnostics ?? [];
+    const b006 = outputDiags.filter((d) => d.code === 'QMLTS-B006');
+
+    expect(result.success).toBe(false);
+    expect(b006).toHaveLength(1);
+    expect(b006[0]!.message).toContain('at least one ViewModel schema');
+    expect(existsSync(join(config.outDir, 'qmlts.module.json'))).toBe(false);
+    expect(existsSync(result.output.entryFile)).toBe(false);
   });
 });

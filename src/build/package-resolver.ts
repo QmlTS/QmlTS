@@ -1,12 +1,20 @@
 import { existsSync, readdirSync, readFileSync, statSync } from 'node:fs';
 import { join, resolve } from 'node:path';
-import type { QmltsPackageManifest, ResolvedPackageInfo, ResolvedPackages } from './build-types.js';
+import type {
+  QmltsPackageManifest,
+  ResolvedPackageInfo,
+  ResolvedPackages,
+  ResolvedQmltsModule,
+} from './build-types.js';
+import { readModuleManifest } from './module-manifest.js';
+import { currentPlatform } from './product-layout.js';
 
 // ─── Types ──────────────────────────────────────────────────
 
 export interface PackageResolver {
   resolve(projectDir: string): Promise<ResolvedPackages>;
   resolvePackage(packageDir: string): Promise<QmltsPackageManifest | undefined>;
+  resolveModuleManifest(packageDir: string): Promise<ResolvedQmltsModule[]>;
 }
 
 // ─── Factory ────────────────────────────────────────────────
@@ -21,6 +29,7 @@ export function createPackageResolver(): PackageResolver {
 
       const entries = readdirSync(nodeModules, { withFileTypes: true });
       const packages: ResolvedPackageInfo[] = [];
+      const allModules: ResolvedQmltsModule[] = [];
 
       for (const entry of entries) {
         if (!entry.isDirectory()) continue;
@@ -30,15 +39,24 @@ export function createPackageResolver(): PackageResolver {
         if (!manifest) continue;
 
         const pkgJson = readPackageJson(packageDir);
+        const moduleManifest = readModuleManifest(packageDir);
+
+        const modules = moduleManifest
+          ? resolveModulesFromManifest(`@qmlts/${entry.name}`, resolve(packageDir), moduleManifest)
+          : [];
+        allModules.push(...modules);
+
         packages.push({
           name: `@qmlts/${entry.name}`,
           version: (pkgJson?.version as string) ?? '0.0.0',
           dir: resolve(packageDir),
           manifest,
+          moduleManifest,
         });
       }
 
-      return mergePackages(packages);
+      const base = mergePackages(packages);
+      return { ...base, modules: allModules.length > 0 ? allModules : undefined };
     },
 
     async resolvePackage(packageDir: string): Promise<QmltsPackageManifest | undefined> {
@@ -54,7 +72,20 @@ export function createPackageResolver(): PackageResolver {
         return pkgJson.qmlts as QmltsPackageManifest;
       }
 
+      // Fallback: if qmlts.module.json exists, synthesize a minimal V1 manifest
+      if (existsSync(join(packageDir, 'qmlts.module.json'))) {
+        return { qmlImportPath: './qml' };
+      }
+
       return undefined;
+    },
+
+    async resolveModuleManifest(packageDir: string): Promise<ResolvedQmltsModule[]> {
+      const manifest = readModuleManifest(packageDir);
+      if (!manifest) return [];
+      const pkgJson = readPackageJson(packageDir);
+      const packageName = (pkgJson?.name as string) ?? 'unknown';
+      return resolveModulesFromManifest(packageName, resolve(packageDir), manifest);
     },
   };
 }
@@ -175,4 +206,85 @@ function compareVersions(a: string, b: string): number {
     if (va !== vb) return va - vb;
   }
   return 0;
+}
+
+// ─── V2 module resolution helpers ───────────────────────────
+
+function resolveModulesFromManifest(
+  packageName: string,
+  packageDir: string,
+  manifest: import('./build-types.js').QmltsModuleManifest,
+): ResolvedQmltsModule[] {
+  const platform = currentPlatform();
+  const nativeArtifactRelPath = manifest.native?.[platform];
+  const nativeArtifact = nativeArtifactRelPath
+    ? resolve(packageDir, nativeArtifactRelPath)
+    : undefined;
+
+  return manifest.modules.map((entry) => ({
+    packageName,
+    packageDir,
+    uri: entry.uri,
+    version: entry.version,
+    types: {
+      native: [...entry.types.native],
+      qml: [...entry.types.qml],
+    },
+    qmldir: entry.qmldir ? resolve(packageDir, entry.qmldir) : undefined,
+    qmltypes: entry.qmltypes ? resolve(packageDir, entry.qmltypes) : undefined,
+    nativeArtifact,
+  }));
+}
+
+/** QMLTS-B004: Validate that no two packages register the same module URI. */
+export function validateModuleUris(
+  modules: readonly ResolvedQmltsModule[],
+  projectModuleUri?: string,
+): string[] {
+  const uriToPackage = new Map<string, string>();
+  const errors: string[] = [];
+
+  if (projectModuleUri) {
+    uriToPackage.set(projectModuleUri, '<project>');
+  }
+
+  for (const mod of modules) {
+    const existing = uriToPackage.get(mod.uri);
+    if (existing) {
+      errors.push(
+        `Duplicate module URI "${mod.uri}" registered by both "${existing}" and "${mod.packageName}"`,
+      );
+    } else {
+      uriToPackage.set(mod.uri, mod.packageName);
+    }
+  }
+
+  return errors;
+}
+
+/** QMLTS-B005: Validate that all declared native artifacts exist on the current platform. */
+export function validatePlatformArtifacts(modules: readonly ResolvedQmltsModule[]): string[] {
+  const errors: string[] = [];
+  const platform = currentPlatform();
+
+  for (const mod of modules) {
+    if (mod.types.native.length === 0) {
+      continue;
+    }
+
+    if (!mod.nativeArtifact) {
+      errors.push(
+        `Package "${mod.packageName}" declares native types for module "${mod.uri}" but no binary is declared for platform "${platform}"`,
+      );
+      continue;
+    }
+
+    if (!existsSync(mod.nativeArtifact)) {
+      errors.push(
+        `Package "${mod.packageName}" declares native types for module "${mod.uri}" but no binary found for platform "${platform}" at ${mod.nativeArtifact}`,
+      );
+    }
+  }
+
+  return errors;
 }
